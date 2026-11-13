@@ -1,11 +1,21 @@
 {
+  "level": "2",
   "specFolder": "commands/005-doctor-symlink-install/004-command-contract-and-readme",
-  "description": "Phase 4: command-contract-and-readme",
+  "description": "`command-contract.json` is the shape `sk-create-command` publishes for a command family, and its doctor entry named neither new command",
   "keywords": [
-    "phase",
-    "command-contract-and-readme"
+    "command-contract",
+    "json",
+    "shape",
+    "sk-create-command",
+    "publishes",
+    "command",
+    "family",
+    "doctor",
+    "entry",
+    "named",
+    "new"
   ],
-  "lastUpdated": "2026-10-31T14:41:33.811Z",
+  "lastUpdated": "2026-11-13T10:04:39.657Z",
   "specId": "004",
   "folderSlug": "command-contract-and-readme",
   "parentChain": [
@@ -13,6 +23,5 @@
     "005-doctor-symlink-install"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

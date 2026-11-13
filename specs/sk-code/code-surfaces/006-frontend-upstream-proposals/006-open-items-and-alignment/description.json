@@ -1,11 +1,19 @@
 {
+  "level": "2",
   "specFolder": "sk-code/code-surfaces/006-frontend-upstream-proposals/006-open-items-and-alignment",
-  "description": "Phase 6: open-items-and-alignment",
+  "description": "`compiled-route-admission.test.cjs` pins 96 gold scenarios, but the live corpus holds 84",
   "keywords": [
-    "phase",
-    "open-items-and-alignment"
+    "compiled-route-admission",
+    "test",
+    "cjs",
+    "pins",
+    "gold",
+    "scenarios",
+    "live",
+    "corpus",
+    "holds"
   ],
-  "lastUpdated": "2026-11-03T14:26:32.689Z",
+  "lastUpdated": "2026-11-13T10:04:43.613Z",
   "specId": "006",
   "folderSlug": "open-items-and-alignment",
   "parentChain": [
@@ -14,6 +22,5 @@
     "006-frontend-upstream-proposals"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

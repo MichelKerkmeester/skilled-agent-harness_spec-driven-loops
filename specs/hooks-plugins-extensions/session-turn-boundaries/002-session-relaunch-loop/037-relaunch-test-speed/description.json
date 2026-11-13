@@ -1,12 +1,25 @@
 {
   "level": "1",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/037-relaunch-test-speed",
-  "description": "Phase 37: relaunch-test-speed",
+  "description": "The relaunch suite took 130 seconds because `skilled-loop.test.cjs` alone ran for about 123 seconds and `node --test` waits for its slowest file",
   "keywords": [
-    "phase",
-    "relaunch-test-speed"
+    "relaunch",
+    "suite",
+    "took",
+    "seconds",
+    "because",
+    "skilled-loop",
+    "test",
+    "cjs",
+    "alone",
+    "ran",
+    "about",
+    "node",
+    "waits",
+    "slowest",
+    "file"
   ],
-  "lastUpdated": "2026-11-12T21:13:52.827Z",
+  "lastUpdated": "2026-11-13T10:04:41.873Z",
   "specId": "037",
   "folderSlug": "relaunch-test-speed",
   "parentChain": [

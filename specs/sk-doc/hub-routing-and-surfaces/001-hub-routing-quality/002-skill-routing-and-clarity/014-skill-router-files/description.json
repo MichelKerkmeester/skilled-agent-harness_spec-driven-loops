@@ -1,12 +1,18 @@
 {
   "level": "2",
   "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files",
-  "description": "Phase 14: skill-router-files",
+  "description": "Every SKILL.md ends with a `## MACHINE ROUTER` section, and that section loads whenever the skill does",
   "keywords": [
-    "phase",
-    "skill-router-files"
+    "every",
+    "skill",
+    "ends",
+    "machine",
+    "router",
+    "section",
+    "loads",
+    "whenever"
   ],
-  "lastUpdated": "2026-10-30T06:24:20.338Z",
+  "lastUpdated": "2026-11-13T10:04:51.895Z",
   "specId": "014",
   "folderSlug": "skill-router-files",
   "parentChain": [

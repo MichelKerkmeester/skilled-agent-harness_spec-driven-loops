@@ -15,11 +15,12 @@
     "real",
     "vault"
   ],
-  "lastUpdated": "2026-08-15T14:40:56.475Z",
+  "lastUpdated": "2026-11-13T10:04:42.842Z",
   "specId": "017",
   "folderSlug": "health-md-live-validation-closeout",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "013-mcp-obsidian"
   ],
   "memorySequence": 0,

@@ -15,12 +15,13 @@
     "tree",
     "database"
   ],
-  "lastUpdated": "2026-08-15T14:41:11.762Z",
+  "lastUpdated": "2026-11-13T10:05:09.675Z",
   "specId": "007",
   "folderSlug": "017-physical-move-and-database",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "z_archive",
     "wave-2-merges"
   ],

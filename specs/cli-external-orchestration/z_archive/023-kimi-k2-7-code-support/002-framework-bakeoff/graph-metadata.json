@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`kimi-k2.7-code` was registered in Phase 001 with a reasoned-but-unverified prompt framework: `recommendedframeworks.primary` is `rcaf` and `status` is `default-unverified`, with every evidence field null",
     "created_at": "2026-06-15T09:21:01Z",
-    "last_save_at": "2026-09-07T16:16:53.750Z",
+    "last_save_at": "2026-11-13T13:13:05.218Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:746ff703527648d8f1714190d660e51785d8471e90597792f1763398ff1d41cb",
+    "source_fingerprint": "sha256:49494cefb039146db1773626db9e6075aef1898372518eb82b581ebeb11def11",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "319c06e396be771714e30c342ca793a1af020c9fa9c8337427df398bd2212c4c",
+      "spec.md": "df4246fd9afc8c7452ee619dda5efe353b059fae7e5b8b26398b119c9fa1e495",
       "plan.md": "48436e0b9cce032db56ebf55e7f322c0d35742af590b2f2163e8019d5cf70140",
       "tasks.md": "724c6cb5553e57b39d9d1b9b5433948b2078a0247bbf6a180b5c764147d0ecf4",
       "implementation-summary.md": "ac300c04c0f92e423cffbf1fa2498f1d27667d9f7533200e8c0ab80790535846"

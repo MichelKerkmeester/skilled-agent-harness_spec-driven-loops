@@ -1,12 +1,18 @@
 {
   "level": "3",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements/002-exempt-and-rewrite-guard",
-  "description": "Phase 2: exempt-and-rewrite-guard",
+  "description": "The exempt rule has three copies: `validatedocument.py:186-195` and `:253-258` skip all validation with no consumer",
   "keywords": [
-    "phase",
-    "exempt-and-rewrite-guard"
+    "exempt",
+    "rule",
+    "three",
+    "copies",
+    "validatedocument",
+    "skip",
+    "validation",
+    "consumer"
   ],
-  "lastUpdated": "2026-11-05T10:53:14.063Z",
+  "lastUpdated": "2026-11-13T10:04:51.542Z",
   "specId": "002",
   "folderSlug": "exempt-and-rewrite-guard",
   "parentChain": [

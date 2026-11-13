@@ -19,11 +19,12 @@
     "measured",
     "page"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.035Z",
+  "lastUpdated": "2026-11-13T10:04:49.346Z",
   "specId": "005",
   "folderSlug": "measured-composition-and-retrieval-facets",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "012-sk-design-program",
     "004-hallmark-design-system"
   ],

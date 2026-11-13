@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/008-trp-decomposition",
   "description": "The candidate hypothesis is that `defaultMode` conflates how much evidence is needed to commit with what happens after uncertainty or a wrong pick",
   "keywords": [
@@ -15,16 +16,16 @@
     "wrong",
     "pick"
   ],
-  "lastUpdated": "2026-08-15T14:40:59.362Z",
+  "lastUpdated": "2026-11-13T10:04:52.672Z",
   "specId": "008",
   "folderSlug": "trp-decomposition",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "001-research",
     "009-oob-idea-deep-dives"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

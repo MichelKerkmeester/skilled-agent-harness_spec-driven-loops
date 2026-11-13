@@ -1,11 +1,18 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/014-doctor-and-ci-gate-honesty",
-  "description": "Phase 14: doctor-and-ci-gate-honesty",
+  "description": "`symlink-engine.cjs check` returns a literal 0 after printing broken links",
   "keywords": [
-    "phase",
-    "doctor-and-ci-gate-honesty"
+    "symlink-engine",
+    "cjs",
+    "check",
+    "returns",
+    "literal",
+    "printing",
+    "broken",
+    "links"
   ],
-  "lastUpdated": "2026-11-08T23:39:04.977Z",
+  "lastUpdated": "2026-11-13T10:05:23.513Z",
   "specId": "014",
   "folderSlug": "doctor-and-ci-gate-honesty",
   "parentChain": [
@@ -14,6 +21,5 @@
     "004-v4-release-line-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

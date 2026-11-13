@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Seven adjudicated P2 findings remain in `mk-goal.js`",
     "created_at": "2026-07-04T09:31:20.024Z",
-    "last_save_at": "2026-10-07T18:15:15.640Z",
+    "last_save_at": "2026-11-13T13:18:19.839Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,10 +199,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fae91b40da7396496fc6e696648f8a4c78a5569917f61cdde75ce7382ca539b3",
+    "source_fingerprint": "sha256:d32dc9e0183b9860f9c91868aff9ef58f1972782c7670e589d55e729aac3158b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5644bb6bfa52ae878315f720244890a812b897f54925dcf76249748f71f9c518",
+      "spec.md": "1a1163856795d8863213897f0bdebae53e9ce555b192f429b59b8da0eb6a2b17",
       "plan.md": "944277599102171418215b5485992650c9294296b722e820b28f6c90992a4d7f",
       "tasks.md": "f586d0d10916b3a5b24d8943f6eb3195d6f1c79b3d06893815423790523b28e7",
       "implementation-summary.md": "36f6c309f1840b4cbad4ec9160ec7c5561d8519e6e4cddfd91b2d9fb17cf0f2f"

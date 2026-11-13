@@ -1,11 +1,25 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/017-over-engineering-cuts",
-  "description": "Phase 17: over-engineering-cuts",
+  "description": "`system-deep-loop/runtime/lib/branch-leases-waves` is 3,165 lines whose only importers are two type-only imports, and it carries its own unit suite",
   "keywords": [
-    "phase",
-    "over-engineering-cuts"
+    "system-deep-loop",
+    "runtime",
+    "lib",
+    "branch-leases-waves",
+    "lines",
+    "whose",
+    "only",
+    "importers",
+    "two",
+    "type-only",
+    "imports",
+    "carries",
+    "own",
+    "unit",
+    "suite"
   ],
-  "lastUpdated": "2026-11-08T23:39:07.054Z",
+  "lastUpdated": "2026-11-13T10:05:23.523Z",
   "specId": "017",
   "folderSlug": "over-engineering-cuts",
   "parentChain": [
@@ -14,6 +28,5 @@
     "004-v4-release-line-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

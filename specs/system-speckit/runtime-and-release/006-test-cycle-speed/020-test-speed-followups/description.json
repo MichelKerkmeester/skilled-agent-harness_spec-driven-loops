@@ -1,12 +1,21 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/020-test-speed-followups",
-  "description": "Phase 20: test-speed-followups",
+  "description": "A red check that a rerun turns green costs the operator a second wait of several minutes",
   "keywords": [
-    "phase",
-    "test-speed-followups"
+    "red",
+    "check",
+    "rerun",
+    "turns",
+    "green",
+    "costs",
+    "operator",
+    "second",
+    "wait",
+    "several",
+    "minutes"
   ],
-  "lastUpdated": "2026-11-12T21:28:13.840Z",
+  "lastUpdated": "2026-11-13T10:05:23.855Z",
   "specId": "020",
   "folderSlug": "test-speed-followups",
   "parentChain": [

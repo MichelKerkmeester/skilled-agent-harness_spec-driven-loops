@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/011-skill-alignment",
   "description": "The `011-skill-alignment` pack preserved an older story that no longer matched the repository",
   "keywords": [
@@ -11,7 +12,7 @@
     "matched",
     "repository"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.393Z",
+  "lastUpdated": "2026-11-13T10:05:34.118Z",
   "specId": "011",
   "folderSlug": "skill-alignment",
   "parentChain": [
@@ -23,6 +24,5 @@
   "memoryNameHistory": [
     "15-03-26_11-31__manual-context-save.md",
     "27-04-26_15-38__retroactive-migration-by-worker-1.md"
-  ],
-  "level": "2"
+  ]
 }

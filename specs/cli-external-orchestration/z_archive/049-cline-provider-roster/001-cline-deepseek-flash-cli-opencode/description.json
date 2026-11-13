@@ -12,11 +12,12 @@
     "exposing",
     "deepseek-v4-flash"
   ],
-  "lastUpdated": "2026-08-18T14:02:52.904Z",
+  "lastUpdated": "2026-11-13T10:04:38.901Z",
   "specId": "001",
   "folderSlug": "cline-deepseek-flash-cli-opencode",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "049-cline-provider-roster"
   ],
   "memorySequence": 0,

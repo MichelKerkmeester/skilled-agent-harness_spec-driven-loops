@@ -10,13 +10,13 @@
     "project",
     "keeps",
     "baseline",
-    "backend",
     "deletion",
     "pass",
+    "backend",
     "judged",
     "against"
   ],
-  "lastUpdated": "2026-09-27T09:26:17.063Z",
+  "lastUpdated": "2026-11-13T10:04:35.822Z",
   "specId": "005",
   "folderSlug": "compaction-recall-harness",
   "parentChain": [

@@ -1,12 +1,19 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/001-shim-wrapper-trust",
-  "description": "Phase 1: shim-wrapper-trust",
+  "description": "`skilledloopfindwrapper` walks up from `$PWD` and prints the first `.skilled/bin/skilled-loop` it finds",
   "keywords": [
-    "phase",
-    "shim-wrapper-trust"
+    "skilledloopfindwrapper",
+    "walks",
+    "pwd",
+    "prints",
+    "first",
+    "skilled",
+    "bin",
+    "skilled-loop",
+    "finds"
   ],
-  "lastUpdated": "2026-11-12T10:01:30.094Z",
+  "lastUpdated": "2026-11-13T10:04:41.841Z",
   "specId": "001",
   "folderSlug": "shim-wrapper-trust",
   "parentChain": [

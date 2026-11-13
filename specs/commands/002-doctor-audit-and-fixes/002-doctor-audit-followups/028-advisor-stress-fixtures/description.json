@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/028-advisor-stress-fixtures",
-  "description": "Phase 28: advisor-stress-fixtures",
+  "description": "The kebab-case migration renamed the code's future-folder check from `/zfuture/` to `/z-future/` but left `sa-016` building `zfuture` paths, so 160",
   "keywords": [
-    "phase",
-    "advisor-stress-fixtures"
+    "kebab-case",
+    "migration",
+    "renamed",
+    "code",
+    "future-folder",
+    "check",
+    "zfuture",
+    "z-future",
+    "left",
+    "sa-016",
+    "paths"
   ],
-  "lastUpdated": "2026-10-05T10:06:04.997Z",
+  "lastUpdated": "2026-11-13T10:04:39.367Z",
   "specId": "028",
   "folderSlug": "advisor-stress-fixtures",
   "parentChain": [
@@ -14,6 +24,5 @@
     "002-doctor-audit-followups"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,19 +1,15 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/004-track-aware-archive",
-  "description": "Keep a track packet inside its own track when archive.sh archives or restores it, and refresh the track list",
+  "description": "`archive.sh` knew one archive, `specs/zarchive/`",
   "keywords": [
-    "keep",
-    "track",
-    "packet",
-    "inside",
-    "own",
     "archive",
-    "archives",
-    "restores",
-    "refresh",
-    "list"
+    "knew",
+    "one",
+    "specs",
+    "zarchive"
   ],
-  "lastUpdated": "2026-09-24T14:01:48.795Z",
+  "lastUpdated": "2026-11-13T10:05:31.445Z",
   "specId": "004",
   "folderSlug": "track-aware-archive",
   "parentChain": [
@@ -23,6 +19,5 @@
     "003-spec-folder-tooling"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

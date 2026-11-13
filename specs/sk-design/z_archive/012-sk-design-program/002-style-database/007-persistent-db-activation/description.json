@@ -17,11 +17,12 @@
     "style",
     "bundles"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.975Z",
+  "lastUpdated": "2026-11-13T10:04:49.325Z",
   "specId": "007",
   "folderSlug": "persistent-db-activation",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "012-sk-design-program",
     "002-style-database"
   ],

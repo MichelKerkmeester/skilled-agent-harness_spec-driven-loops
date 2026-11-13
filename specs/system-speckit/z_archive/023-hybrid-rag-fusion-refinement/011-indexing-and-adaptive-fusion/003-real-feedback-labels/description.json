@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/003-real-feedback-labels",
   "description": "`buildReplayRanks()` originally derived replay relevance from the shadow proposal itself",
   "keywords": [
@@ -11,7 +12,7 @@
     "proposal",
     "itself"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.529Z",
+  "lastUpdated": "2026-11-13T10:05:34.367Z",
   "specId": "003",
   "folderSlug": "real-feedback-labels",
   "parentChain": [
@@ -21,6 +22,5 @@
     "011-indexing-and-adaptive-fusion"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

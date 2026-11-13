@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-design/z_archive/004-design-audit",
   "description": "The shipped `audit` mode is the cross-cutting QA and critique child of the `sk-design` family, but its packet was absent from git and memory",
   "keywords": [
@@ -15,13 +16,13 @@
     "git",
     "memory"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.461Z",
+  "lastUpdated": "2026-11-13T10:04:48.938Z",
   "specId": "004",
   "folderSlug": "design-audit",
   "parentChain": [
-    "sk-design"
+    "sk-design",
+    "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

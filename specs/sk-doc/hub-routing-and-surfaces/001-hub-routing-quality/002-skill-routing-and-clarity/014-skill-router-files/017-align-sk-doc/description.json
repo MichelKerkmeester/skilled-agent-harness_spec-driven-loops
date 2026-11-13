@@ -1,11 +1,17 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/017-align-sk-doc",
-  "description": "Phase 17: align-sk-doc",
+  "description": "The machine router of the sk-doc hub and its packets moved from `SKILL.md` to `ROUTER.md`",
   "keywords": [
-    "phase",
-    "align-sk-doc"
+    "machine",
+    "router",
+    "sk-doc",
+    "hub",
+    "packets",
+    "moved",
+    "skill"
   ],
-  "lastUpdated": "2026-10-29T17:20:38.449Z",
+  "lastUpdated": "2026-11-13T10:04:51.889Z",
   "specId": "017",
   "folderSlug": "align-sk-doc",
   "parentChain": [
@@ -16,6 +22,5 @@
     "014-skill-router-files"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

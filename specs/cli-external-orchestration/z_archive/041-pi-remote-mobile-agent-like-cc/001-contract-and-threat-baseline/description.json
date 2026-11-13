@@ -17,11 +17,12 @@
     "production",
     "implementation"
   ],
-  "lastUpdated": "2026-08-19T19:14:46.890Z",
+  "lastUpdated": "2026-11-13T10:04:38.751Z",
   "specId": "001",
   "folderSlug": "contract-and-threat-baseline",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "041-pi-remote-mobile-agent-like-cc"
   ],
   "memorySequence": 0,

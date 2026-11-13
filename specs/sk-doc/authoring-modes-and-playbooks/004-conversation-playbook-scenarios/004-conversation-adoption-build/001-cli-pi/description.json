@@ -1,11 +1,25 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/001-cli-pi",
-  "description": "Phase 1: cli-pi",
+  "description": "PI-020 skips the `sessioncompact` event because it only fires in an interactive session, and the Pi goal hook is only checked inside one request",
   "keywords": [
-    "phase",
-    "cli-pi"
+    "pi-020",
+    "skips",
+    "sessioncompact",
+    "event",
+    "because",
+    "only",
+    "fires",
+    "interactive",
+    "session",
+    "goal",
+    "hook",
+    "checked",
+    "inside",
+    "one",
+    "request"
   ],
-  "lastUpdated": "2026-11-02T18:33:47.920Z",
+  "lastUpdated": "2026-11-13T10:04:50.117Z",
   "specId": "001",
   "folderSlug": "cli-pi",
   "parentChain": [
@@ -15,6 +29,5 @@
     "004-conversation-adoption-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

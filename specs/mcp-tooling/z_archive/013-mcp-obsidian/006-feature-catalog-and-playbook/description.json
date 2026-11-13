@@ -17,11 +17,12 @@
     "reproducible",
     "way"
   ],
-  "lastUpdated": "2026-08-15T14:40:56.154Z",
+  "lastUpdated": "2026-11-13T10:04:42.766Z",
   "specId": "006",
   "folderSlug": "feature-catalog-and-playbook",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "013-mcp-obsidian"
   ],
   "memorySequence": 0,

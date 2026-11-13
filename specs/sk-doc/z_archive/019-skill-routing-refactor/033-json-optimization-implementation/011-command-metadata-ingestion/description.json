@@ -10,11 +10,12 @@
     "dict",
     "fleet"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.372Z",
+  "lastUpdated": "2026-11-13T10:04:53.426Z",
   "specId": "011",
   "folderSlug": "command-metadata-ingestion",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "033-json-optimization-implementation"
   ],

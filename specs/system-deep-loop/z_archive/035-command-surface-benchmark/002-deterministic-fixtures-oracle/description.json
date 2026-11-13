@@ -17,11 +17,12 @@
     "code",
     "deterministic"
   ],
-  "lastUpdated": "2026-08-30T07:16:22.385Z",
+  "lastUpdated": "2026-11-13T10:05:01.142Z",
   "specId": "002",
   "folderSlug": "deterministic-fixtures-oracle",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "035-command-surface-benchmark"
   ],
   "memorySequence": 0,

@@ -1,27 +1,19 @@
 {
+  "level": "3",
   "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/004-hook-feature-flags-and-hub-index",
-  "description": "Give every repo-authored runtime hook a default-on per-concern kill-switch across six runtimes, backed by a master switch and one canonical hub index.",
+  "description": "Equivalent hooks used different runtime adapters, module formats, and shell entrypoints",
   "keywords": [
-    "give",
-    "every",
-    "repo-authored",
+    "equivalent",
+    "hooks",
+    "different",
     "runtime",
-    "hook",
-    "default-on",
-    "per-concern",
-    "kill-switch",
-    "across",
-    "six",
-    "runtimes",
-    "backed",
-    "master",
-    "switch",
-    "one",
-    "canonical",
-    "hub",
-    "index"
+    "adapters",
+    "module",
+    "formats",
+    "shell",
+    "entrypoints"
   ],
-  "lastUpdated": "2026-10-03T14:45:17.100Z",
+  "lastUpdated": "2026-11-13T10:04:40.822Z",
   "specId": "004",
   "folderSlug": "hook-feature-flags-and-hub-index",
   "parentChain": [
@@ -29,6 +21,5 @@
     "hook-injection-pipeline"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

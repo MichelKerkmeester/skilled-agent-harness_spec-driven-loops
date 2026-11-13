@@ -12,11 +12,12 @@
     "packets",
     "carry"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.471Z",
+  "lastUpdated": "2026-11-13T10:04:52.056Z",
   "specId": "002",
   "folderSlug": "deprecate-numbered-snippet-filenames",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "014-sk-doc-parent",
     "027-catalog-naming-convention"
   ],

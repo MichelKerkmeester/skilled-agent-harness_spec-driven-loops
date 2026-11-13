@@ -16,11 +16,12 @@
     "direct-router",
     "family"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.884Z",
+  "lastUpdated": "2026-11-13T10:05:00.784Z",
   "specId": "002",
   "folderSlug": "direct-dispatch-to-yaml",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "030-deep-loop-unification",
     "012-deep-command-family-parity"
   ],

@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/007-follow-up-fixes/004-hook-stdin-deadline",
-  "description": "Phase 4: hook-stdin-deadline",
+  "description": "`readStdin` in `.skilled/hooks/shared/hook-adapter-shared.cjs` reads with `for await` until the stream closes, and it has no deadline (lines 14-18)",
   "keywords": [
-    "phase",
-    "hook-stdin-deadline"
+    "readstdin",
+    "skilled",
+    "hooks",
+    "shared",
+    "hook-adapter-shared",
+    "cjs",
+    "reads",
+    "await",
+    "until",
+    "stream",
+    "closes",
+    "deadline",
+    "lines"
   ],
-  "lastUpdated": "2026-10-10T05:26:28.784Z",
+  "lastUpdated": "2026-11-13T10:04:45.328Z",
   "specId": "004",
   "folderSlug": "hook-stdin-deadline",
   "parentChain": [
@@ -15,6 +27,5 @@
     "007-follow-up-fixes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,11 +1,15 @@
 {
+  "level": "2",
   "specFolder": "sk-git/worktree-lifecycle/004-fsmonitor-daemon-and-worktree-relocation-regression/006-numbered-worktree-cleanup",
-  "description": "Phase 6: numbered-worktree-cleanup",
+  "description": "The reaper only removes launch-wrapper worktrees",
   "keywords": [
-    "phase",
-    "numbered-worktree-cleanup"
+    "reaper",
+    "only",
+    "removes",
+    "launch-wrapper",
+    "worktrees"
   ],
-  "lastUpdated": "2026-10-27T20:29:25.312Z",
+  "lastUpdated": "2026-11-13T10:04:54.337Z",
   "specId": "006",
   "folderSlug": "numbered-worktree-cleanup",
   "parentChain": [
@@ -14,6 +18,5 @@
     "004-fsmonitor-daemon-and-worktree-relocation-regression"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

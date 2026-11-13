@@ -1,11 +1,27 @@
 {
+  "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/016-residual-closeout",
-  "description": "Phase 16: residual-closeout",
+  "description": "The 015 closeout ended several items CLOSED that an honest fix could reach: 13 skill units failing the strict package check, seven HVR hard blockers",
   "keywords": [
-    "phase",
-    "residual-closeout"
+    "closeout",
+    "ended",
+    "several",
+    "items",
+    "closed",
+    "honest",
+    "reach",
+    "skill",
+    "units",
+    "failing",
+    "strict",
+    "package",
+    "check",
+    "seven",
+    "hvr",
+    "hard",
+    "blockers"
   ],
-  "lastUpdated": "2026-10-11T10:14:04.785Z",
+  "lastUpdated": "2026-11-13T10:04:46.195Z",
   "specId": "016",
   "folderSlug": "residual-closeout",
   "parentChain": [
@@ -14,6 +30,5 @@
     "003-sk-code-poinytail-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

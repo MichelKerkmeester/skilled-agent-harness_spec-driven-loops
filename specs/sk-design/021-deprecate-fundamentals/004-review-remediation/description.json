@@ -1,12 +1,22 @@
 {
   "level": "2",
   "specFolder": "sk-design/021-deprecate-fundamentals/004-review-remediation",
-  "description": "Phase 4: review-remediation",
+  "description": "A visual-review request still compiles to `sk-code-review` alone, so `web-visual-hierarchy.md` never loads for the reader who asked for a design",
   "keywords": [
-    "phase",
-    "review-remediation"
+    "visual-review",
+    "request",
+    "still",
+    "compiles",
+    "sk-code-review",
+    "alone",
+    "web-visual-hierarchy",
+    "never",
+    "loads",
+    "reader",
+    "asked",
+    "design"
   ],
-  "lastUpdated": "2026-11-05T16:11:12.968Z",
+  "lastUpdated": "2026-11-13T10:04:48.900Z",
   "specId": "004",
   "folderSlug": "review-remediation",
   "parentChain": [

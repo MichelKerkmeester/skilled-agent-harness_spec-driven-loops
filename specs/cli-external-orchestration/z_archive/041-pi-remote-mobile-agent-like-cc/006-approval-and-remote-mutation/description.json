@@ -14,11 +14,12 @@
     "remote",
     "mutation"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.277Z",
+  "lastUpdated": "2026-11-13T10:04:38.778Z",
   "specId": "006",
   "folderSlug": "approval-and-remote-mutation",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "041-pi-remote-mobile-agent-like-cc"
   ],
   "memorySequence": 0,

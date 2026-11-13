@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title"
     last_updated_at: "2026-11-13T18:55:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Ran the whole gate at the final state and ticked the six criteria"
-    next_safe_action: "Operator decides on merge and push of worktree 366"
+    recent_action: "Merged the packet into main and pushed it"
+    next_safe_action: "None. Merged into main and pushed on 2026-11-13"
     blockers: []
     key_files: []
     session_dedup:
@@ -99,7 +99,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Operator answers | Done | 2026-11-13, through the question tool. "Fix the dialog-after-prepare hop", with design "Refuse the dialog (Recommended)". Goal rule "The note's packet goal (Recommended)", then "Skip finished goal docs (Recommended)". Spec folder "Move to new packet 039 (Recommended)", which replaced the earlier answers that put the three children under packet 038 |
-| Code commits | Done | On `worktrees/366-hop-after-question-dialog`: `9d0c5368d1` for child 001, `c461b79a71` and `085449ab6a` for child 002, `7d6077678e` for child 003. Not merged, not pushed |
+| Code commits | Done | Written on branch `worktrees/366-hop-after-question-dialog`: `9d0c5368d1` for child 001, `c461b79a71` and `085449ab6a` for child 002, `7d6077678e` for child 003 |
 | Parent goal authored | Done | 2026-11-13, from `spec.md` and the three child goals. `check-goal.cjs` printed `RESULT: PASSED (5/5 checks)` and `goal.cjs packet` printed `packet_durable_chars=2932` and `packet_budget=ok` |
 | Criterion 1 | Done | 2026-11-13 in worktree 366: recursive strict validation printed `Errors: 0  Warnings: 0` and `RESULT: PASSED` for this packet and for children 001, 002 and 003, exit 0 |
 | Criterion 2 | Done | 2026-11-13: the `rg -c` command printed no line and exited 1, which is ripgrep's no-match status |
@@ -107,7 +107,7 @@ and findings belong here.
 | Criterion 4 | Done | 2026-11-13: exit 0, tests 200, pass 200, fail 0 |
 | Criterion 5 | Done | 2026-11-13: exit 0, 1 test file passed, 62 of 62 tests passed |
 | Criterion 6 | Done | 2026-11-13: `PASS: 4 registration files match the 35-hook registry; 22 Pi extensions resolve.` and `PASS: 256 mirrors across 10 trees are in sync.`, both exit 0 |
-| Merge and push | Not started | Waits on the operator |
+| Merge and push | Done | 2026-11-13: the operator answered "Merge to main locally (Recommended)", "Push after tests pass (Recommended)" and "Remove it after the merge (Recommended)". The merge commit on main is `bc670ffc21`. The gate on the merged tree: relaunch and OpenCode plugin suites 1536 of 1536, goal suites 200 of 200, Pi adapter suite 62 of 62, both sync checks `PASS`. Main was then pushed to origin, and worktree 366 and its branch were removed |
 
 ### Deviations and findings
 

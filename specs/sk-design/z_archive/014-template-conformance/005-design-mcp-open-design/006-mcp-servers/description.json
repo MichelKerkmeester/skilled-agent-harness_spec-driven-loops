@@ -11,11 +11,12 @@
     "audited",
     "against"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.313Z",
+  "lastUpdated": "2026-11-13T10:04:49.487Z",
   "specId": "006",
   "folderSlug": "mcp-servers",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "014-template-conformance",
     "005-design-mcp-open-design"
   ],

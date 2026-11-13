@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/035-memory-speckit-merger",
   "description": "The current architecture has two overlapping skill folders for documentation and context management:",
   "keywords": [
@@ -12,7 +13,7 @@
     "context",
     "management"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.805Z",
+  "lastUpdated": "2026-11-13T10:05:32.533Z",
   "specId": "035",
   "folderSlug": "memory-speckit-merger",
   "parentChain": [
@@ -22,6 +23,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

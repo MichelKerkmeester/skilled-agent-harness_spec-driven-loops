@@ -1,5 +1,6 @@
 {
   "title": "002 rerun-24-scenarios-suite (validate post-fix substrate)",
+  "level": "2",
   "schema_version": 1,
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/002-rerun-24-scenarios-suite",
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/002-rerun-24-scenarios-suite",
@@ -24,7 +25,7 @@
     "wave",
     "lands"
   ],
-  "lastUpdated": "2026-08-15T14:41:10.523Z",
+  "lastUpdated": "2026-11-13T10:05:06.519Z",
   "specId": "002",
   "folderSlug": "rerun-24-scenarios-suite",
   "parentChain": [
@@ -37,6 +38,5 @@
     "032-substrate-repair-followups"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

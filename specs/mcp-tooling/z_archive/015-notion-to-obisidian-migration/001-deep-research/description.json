@@ -20,11 +20,12 @@
     "views",
     "fully"
   ],
-  "lastUpdated": "2026-08-23T03:33:37.821Z",
+  "lastUpdated": "2026-11-13T10:04:42.915Z",
   "specId": "001",
   "folderSlug": "deep-research",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "015-notion-to-obisidian-migration"
   ],
   "memorySequence": 0,

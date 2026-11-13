@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-prompt/z_archive/004-sk-prompt-small-model-optimization",
   "description": "Our cli- dispatch surface (`cli-devin` for SWE-1.6, `cli-opencode` for DeepSeek-v4-pro / Kimi-k2.6 / Qwen3.6 / GLM-5.1) and `sk-prompt`'s framework",
   "keywords": [
@@ -15,7 +16,7 @@
     "sk-prompt",
     "framework"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.475Z",
+  "lastUpdated": "2026-11-13T10:04:54.607Z",
   "specId": "004",
   "folderSlug": "sk-prompt-small-model-optimization",
   "parentChain": [
@@ -30,6 +31,5 @@
     "18-05-26_16-14__phase-007-hardening-ci-deleted-per-user-direction.md",
     "18-05-26_19-46__post-implementation-follow-on-to-114-phase-002.md",
     "21-05-26_07-00__007-rename-sk-prompt-models-shipped.md"
-  ],
-  "level": "2"
+  ]
 }

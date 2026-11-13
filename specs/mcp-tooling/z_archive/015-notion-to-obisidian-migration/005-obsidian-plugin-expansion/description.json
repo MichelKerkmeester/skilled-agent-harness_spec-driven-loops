@@ -18,11 +18,12 @@
     "stack",
     "growing"
   ],
-  "lastUpdated": "2026-08-23T03:54:06.801Z",
+  "lastUpdated": "2026-11-13T10:04:42.926Z",
   "specId": "005",
   "folderSlug": "obsidian-plugin-expansion",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "015-notion-to-obisidian-migration"
   ],
   "memorySequence": 0,

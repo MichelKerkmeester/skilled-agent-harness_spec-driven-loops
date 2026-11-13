@@ -1,4 +1,5 @@
 {
+  "level": 1,
   "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/033-json-optimization-implementation/018-finding-disposition-register",
   "description": "Record a per-finding disposition for all 41 audit findings including the nine refuted ones, and capture why four independent legs and 20 iterations",
   "keywords": [
@@ -17,15 +18,15 @@
     "legs",
     "iterations"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.384Z",
+  "lastUpdated": "2026-11-13T10:04:53.434Z",
   "specId": "018",
   "folderSlug": "finding-disposition-register",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "033-json-optimization-implementation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 1
+  "memoryNameHistory": []
 }

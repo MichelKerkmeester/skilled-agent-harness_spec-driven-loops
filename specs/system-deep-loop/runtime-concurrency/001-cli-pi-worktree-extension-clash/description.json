@@ -1,21 +1,23 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/runtime-concurrency/001-cli-pi-worktree-extension-clash",
-  "description": "Let a second copy of the Pi fast-mode extension stand down, so cli-pi runs from a git worktree",
+  "description": "A cli-pi dispatch started inside a git worktree of this repo exits 1 before it reaches the model: `Failed to load extension",
   "keywords": [
-    "let",
-    "fast-mode",
-    "extension",
-    "stand",
-    "project",
-    "carries",
-    "own",
-    "copy",
     "cli-pi",
-    "runs",
+    "dispatch",
+    "started",
+    "inside",
     "git",
-    "worktree"
+    "worktree",
+    "repo",
+    "exits",
+    "reaches",
+    "model",
+    "failed",
+    "load",
+    "extension"
   ],
-  "lastUpdated": "2026-10-19T11:44:13.512Z",
+  "lastUpdated": "2026-11-13T10:04:56.375Z",
   "specId": "001",
   "folderSlug": "cli-pi-worktree-extension-clash",
   "parentChain": [
@@ -23,6 +25,5 @@
     "runtime-concurrency"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

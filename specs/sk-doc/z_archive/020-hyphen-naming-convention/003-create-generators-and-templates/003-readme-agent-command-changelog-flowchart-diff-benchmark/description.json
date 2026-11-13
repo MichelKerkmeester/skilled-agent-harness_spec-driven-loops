@@ -16,11 +16,12 @@
     "underscore",
     "names"
   ],
-  "lastUpdated": "2026-08-30T08:03:51.844Z",
+  "lastUpdated": "2026-11-13T10:04:53.619Z",
   "specId": "003",
   "folderSlug": "readme-agent-command-changelog-flowchart-diff-benchmark",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "003-create-generators-and-templates"
   ],

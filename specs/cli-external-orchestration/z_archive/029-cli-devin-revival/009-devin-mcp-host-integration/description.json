@@ -19,11 +19,12 @@
     "opencode",
     "already"
   ],
-  "lastUpdated": "2026-08-30T07:16:08.844Z",
+  "lastUpdated": "2026-11-13T10:04:38.583Z",
   "specId": "009",
   "folderSlug": "devin-mcp-host-integration",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "029-cli-devin-revival"
   ],
   "memorySequence": 0,

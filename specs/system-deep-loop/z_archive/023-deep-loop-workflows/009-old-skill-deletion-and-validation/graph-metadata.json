@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The five old skill directories must be deleted only after every surface (skill, commands, agents, advisor, governance, docs, runtime) is green, so that rollback stays per-strata until the very end",
     "created_at": "2026-06-14T20:16:09.680Z",
-    "last_save_at": "2026-10-07T18:14:45.467Z",
+    "last_save_at": "2026-11-13T13:17:52.647Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,10 +206,10 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d2337b7880285ceeae7dc64a5d89c22e935d0bf74c5f1b8132f53c1fb62eae7",
+    "source_fingerprint": "sha256:8c965cbcf0c3e4c5d2d6ea0fa4c737dc11bd9a7eca7fc4be851afb0c873dc98d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bad1ded5ef8c34910d11daaf2b85442267640f6d70af22e69879b9b7344773e8",
+      "spec.md": "39f315a71638bb19251a7b777fbf515f744a73caa2fe78b73daea02b7c554cec",
       "plan.md": "986fc325c313d471a739da8b5a82badacbd677b9475dddffb218ea1e4ff077a4",
       "tasks.md": "c872bff6c017ea243dc34ebbf4592b8b28f72686f245f2e1f77928a7b843cafa",
       "decision-record.md": "431db2812f3d0d67194a6d3144bd3b53da28e7d917b8b0b6aa0bde0189bb3734",

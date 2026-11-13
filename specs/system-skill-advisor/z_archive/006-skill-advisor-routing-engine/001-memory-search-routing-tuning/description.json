@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/001-memory-search-routing-tuning",
   "description": "This packet root was active in the 026 phase map, but its root identity lived only in `description.json`, `graph-metadata.json`, and the child folders",
   "keywords": [
@@ -16,7 +17,7 @@
     "child",
     "folders"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.052Z",
+  "lastUpdated": "2026-11-13T10:05:02.895Z",
   "specId": "001",
   "folderSlug": "memory-search-routing-tuning",
   "parentChain": [
@@ -25,6 +26,5 @@
     "006-skill-advisor-routing-engine"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

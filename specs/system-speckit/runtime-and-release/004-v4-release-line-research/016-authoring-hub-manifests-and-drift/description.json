@@ -1,11 +1,23 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/016-authoring-hub-manifests-and-drift",
-  "description": "Phase 16: authoring-hub-manifests-and-drift",
+  "description": "`packageskill.py` without `--check` writes `<skill>.zip` into the working directory, which planted three zips in the repository root",
   "keywords": [
-    "phase",
-    "authoring-hub-manifests-and-drift"
+    "packageskill",
+    "without",
+    "check",
+    "writes",
+    "skill",
+    "zip",
+    "working",
+    "directory",
+    "planted",
+    "three",
+    "zips",
+    "repository",
+    "root"
   ],
-  "lastUpdated": "2026-11-08T23:39:06.380Z",
+  "lastUpdated": "2026-11-13T10:05:23.519Z",
   "specId": "016",
   "folderSlug": "authoring-hub-manifests-and-drift",
   "parentChain": [
@@ -14,6 +26,5 @@
     "004-v4-release-line-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -18,11 +18,12 @@
     "codex",
     "lineages"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.080Z",
+  "lastUpdated": "2026-11-13T10:04:38.459Z",
   "specId": "002",
   "folderSlug": "deep-loop-executor-support",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "027-cli-codex-revival"
   ],
   "memorySequence": 0,

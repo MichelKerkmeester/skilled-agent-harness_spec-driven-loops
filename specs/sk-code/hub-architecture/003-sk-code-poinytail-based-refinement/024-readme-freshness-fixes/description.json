@@ -1,11 +1,23 @@
 {
+  "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/024-readme-freshness-fixes",
-  "description": "Phase 24: readme-freshness-fixes",
+  "description": "The root README and eleven related docs still carry counts and setup lines from before v4.0.0.4: 12 agents where 11 exist, 39 commands where 37 exist,",
   "keywords": [
-    "phase",
-    "readme-freshness-fixes"
+    "root",
+    "readme",
+    "eleven",
+    "related",
+    "docs",
+    "still",
+    "carry",
+    "counts",
+    "setup",
+    "lines",
+    "agents",
+    "exist",
+    "commands"
   ],
-  "lastUpdated": "2026-10-12T15:52:28.602Z",
+  "lastUpdated": "2026-11-13T10:04:46.623Z",
   "specId": "024",
   "folderSlug": "readme-freshness-fixes",
   "parentChain": [
@@ -14,6 +26,5 @@
     "003-sk-code-poinytail-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

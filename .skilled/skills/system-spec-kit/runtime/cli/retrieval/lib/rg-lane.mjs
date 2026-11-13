@@ -57,6 +57,18 @@ export const GLOBS = Object.freeze([
   '--glob', '!**/scratch/**',
 ]);
 
+/**
+ * Archive-inclusive variant of `GLOBS`: the same guards minus the archive
+ * exclusion. Archived packets are searched only on request, so the default glob
+ * set keeps excluding them and this set exists for the opt-in path.
+ */
+export const ARCHIVE_GLOBS = Object.freeze(
+  GLOBS.filter((argument, index, all) => {
+    const archived = `!**/z_archive/**`;
+    return argument !== archived && all[index + 1] !== archived;
+  }),
+);
+
 /** Default search roots. */
 export const DEFAULT_ROOTS = Object.freeze(['specs', '.skilled']);
 
@@ -94,28 +106,34 @@ export const RIPGREP_BIN_ENV = 'SPECKIT_RG_BIN';
 /**
  * @param {string} phrase Literal phrase.
  * @param {string[]} [roots] Search roots.
+ * @param {{ includeArchive?: boolean }} [options] Include archived trees when true.
  * @returns {string[]} Argument vector for the structured JSONL recipe.
  */
-export function structuredRecipe(phrase, roots = DEFAULT_ROOTS) {
-  return [...BASE_FLAGS, '--json', ...GLOBS, '--', phrase, ...roots];
+export function structuredRecipe(phrase, roots = DEFAULT_ROOTS, options = {}) {
+  const globs = options.includeArchive === true ? ARCHIVE_GLOBS : GLOBS;
+  return [...BASE_FLAGS, '--json', ...globs, '--', phrase, ...roots];
 }
 
 /**
  * @param {string} phrase Literal phrase.
  * @param {string[]} [roots] Search roots.
+ * @param {{ includeArchive?: boolean }} [options] Include archived trees when true.
  * @returns {string[]} Argument vector for the path-only recipe.
  */
-export function pathOnlyRecipe(phrase, roots = DEFAULT_ROOTS) {
-  return [...BASE_FLAGS, '--files-with-matches', '--max-count', '1', ...GLOBS, '--', phrase, ...roots];
+export function pathOnlyRecipe(phrase, roots = DEFAULT_ROOTS, options = {}) {
+  const globs = options.includeArchive === true ? ARCHIVE_GLOBS : GLOBS;
+  return [...BASE_FLAGS, '--files-with-matches', '--max-count', '1', ...globs, '--', phrase, ...roots];
 }
 
 /**
  * @param {string} phrase Literal phrase.
  * @param {string[]} [roots] Search roots.
+ * @param {{ includeArchive?: boolean }} [options] Include archived trees when true.
  * @returns {string[]} Argument vector for the count recipe.
  */
-export function countRecipe(phrase, roots = DEFAULT_ROOTS) {
-  return [...BASE_FLAGS, '--count', ...GLOBS, '--', phrase, ...roots];
+export function countRecipe(phrase, roots = DEFAULT_ROOTS, options = {}) {
+  const globs = options.includeArchive === true ? ARCHIVE_GLOBS : GLOBS;
+  return [...BASE_FLAGS, '--count', ...globs, '--', phrase, ...roots];
 }
 
 // ───────────────────────────────────────────────────────────────────

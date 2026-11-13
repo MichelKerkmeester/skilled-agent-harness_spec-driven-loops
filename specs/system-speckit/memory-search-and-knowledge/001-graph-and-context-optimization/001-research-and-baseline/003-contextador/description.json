@@ -1,5 +1,6 @@
 {
   "title": "Feature Specification: Contextador Research Phase (003-contextador)",
+  "level": "3",
   "migration": {
     "moved_at": "2026-04-21T12:00:00Z",
     "source_spec_folder": "system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/003-contextador",
@@ -29,7 +30,7 @@
     "kit",
     "memory"
   ],
-  "lastUpdated": "2026-08-15T14:41:10.090Z",
+  "lastUpdated": "2026-11-13T10:05:04.676Z",
   "specId": "003",
   "folderSlug": "contextador",
   "parentChain": [
@@ -43,6 +44,5 @@
     "06-04-26_12-25__completed-deep-research-phase-003-contextador-via.md",
     "06-04-26_13-49__extended-deep-research-phase-003-contextador-from.md",
     "08-04-26_08-11__extended-the-003-contextador-deep-research-packet.md"
-  ],
-  "level": "3"
+  ]
 }

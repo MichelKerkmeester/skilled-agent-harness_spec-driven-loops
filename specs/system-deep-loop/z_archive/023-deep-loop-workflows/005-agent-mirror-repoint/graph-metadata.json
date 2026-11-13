@@ -49,9 +49,6 @@
       ".codex/agents/deep-research.toml",
       ".claude/agents/deep-review.md",
       ".codex/agents/deep-review.toml",
-      ".opencode/agents/deep-improvement.md",
-      ".claude/agents/deep-improvement.md",
-      ".codex/agents/deep-improvement.toml",
       ".opencode/agents/ai-council.md",
       ".claude/agents/ai-council.md",
       ".codex/agents/ai-council.toml"
@@ -103,18 +100,6 @@
         "name": "deep-review.toml",
         "kind": "file",
         "path": ".codex/agents/deep-review.toml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-improvement.md",
-        "kind": "doc",
-        "path": ".opencode/agents/deep-improvement.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-improvement.toml",
-        "kind": "file",
-        "path": ".codex/agents/deep-improvement.toml",
         "source": "derived"
       },
       {
@@ -200,11 +185,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The five deep agents (deep-context, deep-research, deep-review, deep-improvement, ai-council) exist as real three-file mirrors (.opencode/agents canonical + .claude + .codex), not symlinks; a missed mirror is a silent native-seat failure in that runtime (risk R5)",
     "created_at": "2026-06-14T20:16:09.679Z",
-    "last_save_at": "2026-10-07T18:14:41.966Z",
+    "last_save_at": "2026-11-13T13:17:52.694Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,10 +210,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:827e9926c42d4f3a5b83cc5762cff5ef31895eaca9cd0415d68144dd82ec7fbe",
+    "source_fingerprint": "sha256:6ab73b17dc213e2fda8ae6619d27030f0cc0b4d3dcaadf87753de6367613c559",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "010f3542025205b8388e1eda7e4d96f185c6dc7de9e2276e01febc6b4949a327",
+      "spec.md": "a9b955ad0c9b257a9fe53fb90e692408d67fcfa91d1390cda8110ae7e43c590a",
       "plan.md": "0405d688fc299a45b6ea1018ecf797b8020ebede0346f9db6740299bfeb63fc7",
       "tasks.md": "4b84446b295d6b724a7458bff971fea9574cf840ab068456211f5f12a904f214",
       "implementation-summary.md": "4c852f215e0a2ac725d29511ce4e52f45f9ee25489ad05dd246f104d130e4d0f"

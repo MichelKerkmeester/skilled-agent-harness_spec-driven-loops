@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/023-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr"
+    packet_pointer: "system-deep-loop/z_archive/023-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr"
     last_updated_at: "2026-06-15T05:55:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored runtime-ownership ADR and B5 discovery rule"

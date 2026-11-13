@@ -1,11 +1,17 @@
 {
+  "level": "1",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/002-track-narrowing-improvements",
-  "description": "Phase 2: track-narrowing-improvements",
+  "description": "Feature 017 kept at 97 against 68 of 256 with only 3.4 rows of margin slack",
   "keywords": [
-    "phase",
-    "track-narrowing-improvements"
+    "feature",
+    "kept",
+    "against",
+    "only",
+    "rows",
+    "margin",
+    "slack"
   ],
-  "lastUpdated": "2026-10-03T05:30:04.441Z",
+  "lastUpdated": "2026-11-13T10:04:36.775Z",
   "specId": "002",
   "folderSlug": "track-narrowing-improvements",
   "parentChain": [
@@ -14,6 +20,5 @@
     "049-jev-feature-improvement-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/z_archive/005-cli-self-invocation-guards",
   "description": "The CLI bridge skills are meant for cross-AI delegation, but the shared skill system makes it possible for a runtime to be told to invoke the very",
   "keywords": [
@@ -17,7 +18,7 @@
     "invoke",
     "very"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.384Z",
+  "lastUpdated": "2026-11-13T10:04:38.276Z",
   "specId": "005",
   "folderSlug": "cli-self-invocation-guards",
   "parentChain": [
@@ -25,6 +26,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

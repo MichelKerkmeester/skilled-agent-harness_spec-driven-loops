@@ -113,6 +113,50 @@ describe('archive.sh with tracks', () => {
     expect(children('tools')).toEqual(['tools/001-a', 'tools/002-b']);
   });
 
+  it('restores an archived packet on the next free number when a live packet holds its number', { timeout: 120_000 }, () => {
+    // The restore cannot reuse a number a live packet holds, so the move goes
+    // through the relocation engine. It refuses to start without its helper
+    // writers, so the real mover is copied in and the follow-up writers whose
+    // own suites cover them are stubbed.
+    const spec = path.dirname(archiveScript);
+    const cli = path.dirname(spec);
+    const skill = path.resolve(cli, '..', '..');
+    const stub = (file: string, body: string, mode?: number) => {
+      fs.mkdirSync(path.dirname(file), { recursive: true });
+      fs.writeFileSync(file, body);
+      if (mode !== undefined) fs.chmodSync(file, mode);
+    };
+    fs.copyFileSync(path.join(CLI_DIR, 'spec', 'relocate.mjs'), path.join(spec, 'relocate.mjs'));
+    stub(path.join(spec, 'repair-derived.cjs'), 'process.exit(0);\n');
+    stub(path.join(spec, 'sweep-track-roots.mjs'), 'process.exit(0);\n');
+    stub(path.join(spec, 'validate.sh'), '#!/usr/bin/env bash\nprintf "RESULT: PASSED\\n"\nexit 0\n', 0o755);
+    stub(path.join(cli, 'graph', 'migrate-generated-json.ts'), 'process.exit(0);\n');
+    stub(path.join(cli, 'retrieval', 'generate-trigger-index.mjs'), 'process.exit(0);\n');
+    stub(path.join(skill, 'node_modules', 'tsx', 'dist', 'loader.mjs'), 'export {};\n');
+    stub(path.join(repo, '.skilled', 'skills', 'sk-doc', 'shared', 'scripts', 'cite-drift-scan.mjs'), 'process.exit(0);\n');
+
+    trackRoot('tools', ['tools/005-y']);
+    packet('tools/z_archive/005-x');
+    fs.writeFileSync(path.join(specs, 'tools', '005-y', 'spec.md'), '# Live packet\n');
+    const liveBefore = fs.readFileSync(path.join(specs, 'tools', '005-y', 'spec.md'), 'utf8');
+    // The relocation engine refuses a plan with uncommitted work under the
+    // paths it moves or rewrites, so the throwaway repository starts clean.
+    execFileSync('git', ['add', '-A', '-f'], { cwd: repo });
+    execFileSync(
+      'git',
+      ['-c', 'commit.gpgsign=false', '-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.com', 'commit', '--quiet', '--no-verify', '-m', 'fixture'],
+      { cwd: repo },
+    );
+
+    const result = archive(['--restore', 'specs/tools/z_archive/005-x']);
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(fs.existsSync(path.join(specs, 'tools', 'z_archive', '005-x'))).toBe(false);
+    expect(fs.existsSync(path.join(specs, 'tools', '006-x', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'tools', '005-x'))).toBe(false);
+    expect(fs.readFileSync(path.join(specs, 'tools', '005-y', 'spec.md'), 'utf8')).toBe(liveBefore);
+    expect(children('tools')).toEqual(['tools/005-y', 'tools/006-x']);
+  });
+
   it('keeps the root archive for a packet at the specs root', () => {
     packet('005-root');
     fs.writeFileSync(path.join(specs, 'graph-metadata.json'), '{}\n');

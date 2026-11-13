@@ -15,11 +15,12 @@
     "compiled",
     "manifests"
   ],
-  "lastUpdated": "2026-08-18T03:31:01.446Z",
+  "lastUpdated": "2026-11-13T10:04:53.282Z",
   "specId": "022",
   "folderSlug": "legacy-hub-compiled-routing-refresh",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program"
   ],

@@ -16,12 +16,13 @@
     "gate",
     "feedbackbundlegatesmokerun"
   ],
-  "lastUpdated": "2026-08-15T14:41:11.801Z",
+  "lastUpdated": "2026-11-13T10:05:09.764Z",
   "specId": "014",
   "folderSlug": "local-embeddings-migration-054-code-folder-readmes",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "z_archive",
     "wave-2-merges"
   ],

@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-deep-loop/z_archive/009-deep-loop-parallel-fanout/009-fanout-remediation",
   "description": "Packet 123 shipped a \"parallel multi-executor fan-out\" layer for `/deep:start-review-loop` and `/deep:start-research-loop`",
   "keywords": [
@@ -12,7 +13,7 @@
     "start-review-loop",
     "start-research-loop"
   ],
-  "lastUpdated": "2026-08-15T14:41:06.108Z",
+  "lastUpdated": "2026-11-13T10:04:57.214Z",
   "specId": "009",
   "folderSlug": "fanout-remediation",
   "parentChain": [
@@ -21,6 +22,5 @@
     "009-deep-loop-parallel-fanout"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

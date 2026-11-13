@@ -7,11 +7,12 @@
     "numbered-prefix",
     "deprecation"
   ],
-  "lastUpdated": "2026-08-30T08:03:49.765Z",
+  "lastUpdated": "2026-11-13T10:04:52.046Z",
   "specId": "001",
   "folderSlug": "convention-docs",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "014-sk-doc-parent",
     "027-catalog-naming-convention",
     "001-deprecate-numbered-category-prefix"

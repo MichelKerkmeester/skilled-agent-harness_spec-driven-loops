@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/001-sk-code-skilled-standards-audit",
   "description": "Packets 033, 034, and 036 added retention-sweep, half-auto advisor, hook freshness, and matrix-runner code",
   "keywords": [
@@ -11,7 +12,7 @@
     "matrix-runner",
     "code"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.769Z",
+  "lastUpdated": "2026-11-13T10:05:03.944Z",
   "specId": "001",
   "folderSlug": "sk-code-skilled-standards-audit",
   "parentChain": [
@@ -25,6 +26,5 @@
   "memorySequence": 2,
   "memoryNameHistory": [
     "29-04-26_19-38__resource-map-authored-and-memory-finalization.md"
-  ],
-  "level": 2
+  ]
 }

@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/005-stale-index-fallback",
-  "description": "Phase 5: stale-index-fallback",
+  "description": "The trigger index is committed and rebuilt by hand, so a packet created or edited since the last build is invisible to the Gate 1 lookup",
   "keywords": [
-    "phase",
-    "stale-index-fallback"
+    "trigger",
+    "index",
+    "committed",
+    "rebuilt",
+    "hand",
+    "packet",
+    "edited",
+    "since",
+    "last",
+    "invisible",
+    "gate",
+    "lookup"
   ],
-  "lastUpdated": "2026-11-09T16:18:07.772Z",
+  "lastUpdated": "2026-11-13T10:04:41.499Z",
   "specId": "005",
   "folderSlug": "stale-index-fallback",
   "parentChain": [
@@ -14,6 +25,5 @@
     "001-sweet-search-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

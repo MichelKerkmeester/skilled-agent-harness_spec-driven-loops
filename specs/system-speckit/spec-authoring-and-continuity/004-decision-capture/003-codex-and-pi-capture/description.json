@@ -1,12 +1,24 @@
 {
   "level": "2",
   "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/003-codex-and-pi-capture",
-  "description": "Phase 3: codex-and-pi-capture",
+  "description": "An operator who answers a question in Codex or Pi gets no decision entry at save time, because 001 left both runtimes `UNKNOWN` and disabled",
   "keywords": [
-    "phase",
-    "codex-and-pi-capture"
+    "operator",
+    "answers",
+    "question",
+    "codex",
+    "gets",
+    "decision",
+    "entry",
+    "save",
+    "time",
+    "because",
+    "left",
+    "runtimes",
+    "unknown",
+    "disabled"
   ],
-  "lastUpdated": "2026-11-02T18:14:05.725Z",
+  "lastUpdated": "2026-11-13T10:05:29.659Z",
   "specId": "003",
   "folderSlug": "codex-and-pi-capture",
   "parentChain": [

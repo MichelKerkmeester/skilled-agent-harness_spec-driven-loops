@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/016-documentation-quality-program/011-review-remediation",
   "description": "The forced 20-iteration deep review of the 021 program returned FAIL",
   "keywords": [
@@ -10,15 +11,15 @@
     "returned",
     "fail"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.015Z",
+  "lastUpdated": "2026-11-13T10:04:53.296Z",
   "specId": "011",
   "folderSlug": "review-remediation",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "016-documentation-quality-program"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

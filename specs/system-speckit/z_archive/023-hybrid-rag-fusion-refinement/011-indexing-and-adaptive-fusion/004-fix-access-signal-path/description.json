@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/004-fix-access-signal-path",
   "description": "Adaptive ranking needed access events from the main search pipeline, not only from storage-side batching paths",
   "keywords": [
@@ -15,7 +16,7 @@
     "batching",
     "paths"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.532Z",
+  "lastUpdated": "2026-11-13T10:05:34.375Z",
   "specId": "004",
   "folderSlug": "fix-access-signal-path",
   "parentChain": [
@@ -25,6 +26,5 @@
     "011-indexing-and-adaptive-fusion"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

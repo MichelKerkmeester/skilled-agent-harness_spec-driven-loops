@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal",
   "description": "The MCP retrieval and causal-graph read path (semantic search, unified context, trigger matching, causal links) was heavily reworked across 026",
   "keywords": [
@@ -19,7 +20,7 @@
     "reworked",
     "across"
   ],
-  "lastUpdated": "2026-08-15T14:41:09.901Z",
+  "lastUpdated": "2026-11-13T10:05:04.483Z",
   "specId": "002",
   "folderSlug": "mcp-retrieval-causal",
   "parentChain": [
@@ -30,6 +31,5 @@
     "012-comprehensive-deep-review-audit"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

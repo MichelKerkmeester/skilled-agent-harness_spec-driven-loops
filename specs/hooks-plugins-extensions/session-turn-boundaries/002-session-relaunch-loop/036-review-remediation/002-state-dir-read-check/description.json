@@ -1,12 +1,22 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation/002-state-dir-read-check",
-  "description": "Phase 2: state-dir-read-check",
+  "description": "`ensureStateDir` rejects a state directory that is a symlink or is owned by another account, and only write paths call it",
   "keywords": [
-    "phase",
-    "state-dir-read-check"
+    "ensurestatedir",
+    "rejects",
+    "state",
+    "directory",
+    "symlink",
+    "owned",
+    "another",
+    "account",
+    "only",
+    "write",
+    "paths",
+    "call"
   ],
-  "lastUpdated": "2026-11-12T10:34:02.193Z",
+  "lastUpdated": "2026-11-13T10:04:41.844Z",
   "specId": "002",
   "folderSlug": "state-dir-read-check",
   "parentChain": [

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phase 018 integrated `design-mcp-open-design` as a registered `packetKind: \"transport\"` mode in sk-design's registries, but the hub's `manualtestingplaybook` (the corpus the skill-benchmark harness scores against) still only exercised the five original design-judgment modes — it had zero scenarios naming the new mode",
     "created_at": "2026-07-07T08:32:09.549Z",
-    "last_save_at": "2026-10-07T18:12:06.701Z",
+    "last_save_at": "2026-11-13T13:14:14.981Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,10 +205,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:484d787a51075333d761570f3697577dde8b67ab71d70c26d25d3178b49152dc",
+    "source_fingerprint": "sha256:398955840fbeba43ddd053b856d082a1b041d434a84a2adb81c4bcf53da98e8a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "90a28c544d034d7a3a842e6c8199c80f43dd3df82adf8714cd14c551966bb96a",
+      "spec.md": "031240be065f5f7c93823b1eba07d74484934ab39ec6d418f97f354671da657b",
       "plan.md": "860860dfe292b7d548fe4e748a8528bffa110e8ed24602d406c66ebf7b4ad61b",
       "tasks.md": "c09eba57c6812d76a214ec1c41951001e3c843d08174811eadaf300b636a78b8",
       "implementation-summary.md": "6defc0388c793ee49a6130b352a4f3ee6aa8d830cf8c2517d7448c772cd81697"

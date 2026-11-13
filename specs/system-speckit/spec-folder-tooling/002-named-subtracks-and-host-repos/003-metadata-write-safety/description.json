@@ -1,22 +1,20 @@
 {
   "level": "1",
   "specFolder": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/003-metadata-write-safety",
-  "description": "Refuse symlinked graph-metadata writes and seed missing declared sub-track metadata so track-root repair succeeds.",
+  "description": "`refresh-track-roots.mjs --apply` calls `fs.writeFileSync` on the track's metadata path (`refresh-track-roots.mjs:107`), which follows a symlink",
   "keywords": [
-    "refuse",
-    "symlinked",
-    "graph-metadata",
-    "writes",
-    "seed",
-    "missing",
-    "declared",
-    "sub-track",
+    "refresh-track-roots",
+    "mjs",
+    "apply",
+    "calls",
+    "writefilesync",
+    "track",
     "metadata",
-    "track-root",
-    "repair",
-    "succeeds"
+    "path",
+    "follows",
+    "symlink"
   ],
-  "lastUpdated": "2026-11-07T22:48:35.828Z",
+  "lastUpdated": "2026-11-13T10:05:32.326Z",
   "specId": "003",
   "folderSlug": "metadata-write-safety",
   "parentChain": [

@@ -9,7 +9,7 @@ trigger_phrases:
   - "manual save triggers"
 importance_tier: normal
 contextType: implementation
-version: 1.6.2.0
+version: 1.6.3.0
 ---
 
 # Trigger Configuration - Keywords and Manual Save Settings
@@ -139,7 +139,7 @@ The Gate 3 enforcement trigger set uses 33 trigger phrases to detect file modifi
 node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs \
   --json -- "refactor the authentication module"
 # Returns: Gate 3 file-modification trigger match, phrases: ["refactor"]
-# AI then asks: "Spec Folder (required): A) Existing | B) New (new or unrelated work only) | C) Related (Use a related folder, phase child, or a series parent for a different change to the same artifact as an existing packet in the same track) | D) Skip"
+# AI then asks: "Spec Folder (required): A) Existing | B) New (new or unrelated work only) | C) Related (Use a related folder, phase child, new or existing sub-track, or a series parent for a different change to the same artifact as an existing packet in the same track) | D) Skip"
 ```
 
 **Trigger Design Guidelines for Enforcement Trigger Sets:**

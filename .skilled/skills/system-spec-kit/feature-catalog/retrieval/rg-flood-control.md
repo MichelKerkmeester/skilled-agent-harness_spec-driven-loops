@@ -6,7 +6,7 @@ trigger_phrases:
   - "ripgrep per-file match flood control"
   - "rg-wrapper structured file limit"
   - "structured ripgrep result shaping"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Ripgrep one row per file (rg-wrapper.mjs)
@@ -66,3 +66,4 @@ A clean miss returns results as an empty array and zero match, file and hidden t
 Related references:
 - [stale-index-fallback.md](stale-index-fallback.md) - Covers the adjacent ripgrep retrieval experience.
 - [trigger-lookup-total-candidates.md](trigger-lookup-total-candidates.md) - Documents result totals and truncation in trigger lookup.
+- [rg-archive-search.md](rg-archive-search.md) - Covers the `--include-archive` mode of the same wrapper.

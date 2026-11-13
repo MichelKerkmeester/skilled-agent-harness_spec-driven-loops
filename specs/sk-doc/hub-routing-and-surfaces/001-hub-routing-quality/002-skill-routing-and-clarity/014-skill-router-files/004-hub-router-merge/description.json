@@ -1,11 +1,24 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/004-hub-router-merge",
-  "description": "Phase 4: hub-router-merge",
+  "description": "All seven parent hubs keep their stage-two routing in the root `ROUTER.md`, yet each SKILL.md still ends with a MACHINE ROUTER section that repeats",
   "keywords": [
-    "phase",
-    "hub-router-merge"
+    "seven",
+    "parent",
+    "hubs",
+    "keep",
+    "stage-two",
+    "routing",
+    "root",
+    "router",
+    "skill",
+    "still",
+    "ends",
+    "machine",
+    "section",
+    "repeats"
   ],
-  "lastUpdated": "2026-10-29T07:52:43.842Z",
+  "lastUpdated": "2026-11-13T10:04:51.847Z",
   "specId": "004",
   "folderSlug": "hub-router-merge",
   "parentChain": [
@@ -16,6 +29,5 @@
     "014-skill-router-files"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

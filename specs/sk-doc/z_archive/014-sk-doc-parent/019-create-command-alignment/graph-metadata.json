@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Two gaps in the sk-doc `/create:` command surface: (1) three packets (`create-command`, `create-benchmark`, `create-flowchart`) had no bound command — their `mode-registry.json` `command` field was `null`; and (2) four commands drifted from their packet names (`sk-skill`, `sk-skill-parent`, `folderreadme`, `testing-playbook`) so the public ids no longer matched `/create:<packet>`",
     "created_at": "2026-07-07T12:40:40.991Z",
-    "last_save_at": "2026-10-07T18:12:33.403Z",
+    "last_save_at": "2026-11-13T13:15:01.356Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a778e59cae113cb5f7192c1078fa3a18cbad4d0d8bedb0e95a36068f5fbc8d8f",
+    "source_fingerprint": "sha256:8b6786a281c807bd1564259e14eaa9a4e506bd6321320c885b35a8776e611c86",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "83c766c6767490d87e8f29388995931e0bfb567d01b70549ee3c72cafb31fad7",
+      "spec.md": "40f2bd4734a6c60ec0af00403f3e6ddcf940d503b15c974ce61d6e7b6def4ef0",
       "plan.md": "3cdd6e401beedb3fa385f651bfb2ae943155c21a2bdae6e42e6b304768b3c1f5",
       "tasks.md": "0e7e8644c8c2cfb9d6bc12308778eae9d42a4077df52150390e55eb1a02db374",
       "implementation-summary.md": "6af91c87185bc4b9bb7c73db1c0182918e13bc175b612b27f166670be33d17e2"

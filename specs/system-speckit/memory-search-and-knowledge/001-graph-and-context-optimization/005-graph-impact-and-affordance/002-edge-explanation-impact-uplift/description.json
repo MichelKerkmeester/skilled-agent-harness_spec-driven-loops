@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/005-graph-impact-and-affordance/002-edge-explanation-impact-uplift",
   "description": "Add reason/step fields to edge metadata + display; enrich blast_radius with depth groups, risk levels, min-confidence filter, ambiguity candidates,",
   "keywords": [
@@ -18,7 +19,7 @@
     "ambiguity",
     "candidates"
   ],
-  "lastUpdated": "2026-08-15T14:41:11.375Z",
+  "lastUpdated": "2026-11-13T10:05:08.699Z",
   "specId": "002",
   "folderSlug": "edge-explanation-impact-uplift",
   "parentChain": [
@@ -30,6 +31,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "25-04-26_11-48__scaffold-initialization-for-012-sub-phase-003.md"
-  ],
-  "level": "2"
+  ]
 }

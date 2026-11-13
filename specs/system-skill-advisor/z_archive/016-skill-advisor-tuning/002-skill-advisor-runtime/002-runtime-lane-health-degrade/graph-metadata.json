@@ -176,7 +176,7 @@
     ],
     "causal_summary": "The Skill Advisor fuses five lanes (`explicitauthor 0.42 / lexical 0.28 / graphcausal 0.13 / derivedgenerated 0.12 / semanticshadow 0.05`, `lane-registry.ts:8-19`) and normalizes confidence against a `liveTotal` denominator built from registry-static live weights filtered only by the config `disabled` set, never by runtime emptiness (`fusion.ts:343-345`, `liveNormalized = score / liveTotal` at `fusion.ts:388`) [CONFIRMED: research.md Internal Baseline, iter-003 F5/F7]",
     "created_at": "2026-06-19T05:52:29.584Z",
-    "last_save_at": "2026-10-07T18:16:04.188Z",
+    "last_save_at": "2026-11-13T13:19:06.053Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -185,10 +185,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4e65d39f49ff18b2e11d33cacdaff04b1ac51ac6f409c3857dfbdfd25cb9a572",
+    "source_fingerprint": "sha256:67f3b18da0433614bb7892cae1a884ed37e3c4a8d893487f6cda62348ae844dc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3d34e2d075a5dcb1d10adfdda5f536ca6095191e33a63e84b1bdb91e8e80a16c",
+      "spec.md": "3fecd58250ae81fba24eb4a6069ced9ce946a8b51d7a49973766b9f2ccef114d",
       "plan.md": "327fc3e2a70c89f2446128d85c50bbaeb2b32422257c545a3b46baa189cc70a2",
       "tasks.md": "062449052705c5f5b7933ce2c818183e0406d0fa944e85e08e18eb2f885dd5be",
       "implementation-summary.md": "c260499a85115e1d099cde6b7277b5cce9b5fb65333adc432e02393a4f345a4f"

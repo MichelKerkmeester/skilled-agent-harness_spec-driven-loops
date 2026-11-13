@@ -1,11 +1,18 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/memory-search-and-knowledge/006-open-knowledge-format-adoption/008-context-type-hardening",
-  "description": "Phase 8: context-type-hardening",
+  "description": "Phase 003 measured the cleanup: 33 distinct spec-doc values became 12, and 102 off-list values became 0",
   "keywords": [
     "phase",
-    "context-type-hardening"
+    "measured",
+    "cleanup",
+    "distinct",
+    "spec-doc",
+    "values",
+    "became",
+    "off-list"
   ],
-  "lastUpdated": "2026-10-04T12:00:33.339Z",
+  "lastUpdated": "2026-11-13T10:05:14.946Z",
   "specId": "008",
   "folderSlug": "context-type-hardening",
   "parentChain": [
@@ -14,6 +21,5 @@
     "006-open-knowledge-format-adoption"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

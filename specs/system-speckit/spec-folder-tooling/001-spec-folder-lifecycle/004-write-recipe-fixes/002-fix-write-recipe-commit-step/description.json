@@ -1,16 +1,24 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/004-write-recipe-fixes/002-fix-write-recipe-commit-step",
-  "description": "Fix the commit and push step of the spec folder write recipe",
+  "description": "Step 7 of the spec folder write recipe told authors to write a subject shaped `feat|chore|fix(<packet>): <short description>` and to add a",
   "keywords": [
-    "commit",
-    "push",
     "step",
     "spec",
     "folder",
     "write",
-    "recipe"
+    "recipe",
+    "told",
+    "authors",
+    "subject",
+    "shaped",
+    "feat",
+    "chore",
+    "packet",
+    "short",
+    "description"
   ],
-  "lastUpdated": "2026-09-29T06:08:24.891Z",
+  "lastUpdated": "2026-11-13T10:05:32.265Z",
   "specId": "002",
   "folderSlug": "fix-write-recipe-commit-step",
   "parentChain": [
@@ -20,6 +28,5 @@
     "004-write-recipe-fixes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

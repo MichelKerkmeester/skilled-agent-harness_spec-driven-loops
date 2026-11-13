@@ -17,11 +17,12 @@
     "every",
     "command"
   ],
-  "lastUpdated": "2026-08-15T14:41:03.100Z",
+  "lastUpdated": "2026-11-13T10:05:01.143Z",
   "specId": "003",
   "folderSlug": "command-contract-adapter",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "035-command-surface-benchmark"
   ],
   "memorySequence": 0,

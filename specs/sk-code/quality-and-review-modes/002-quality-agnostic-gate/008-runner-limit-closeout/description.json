@@ -1,12 +1,19 @@
 {
+  "level": "2",
   "specFolder": "sk-code/quality-and-review-modes/002-quality-agnostic-gate/008-runner-limit-closeout",
-  "description": "Runner limit closeout",
+  "description": "The runner gives an honest verdict, but five items in its own record are unfinished",
   "keywords": [
     "runner",
-    "limit",
-    "closeout"
+    "gives",
+    "honest",
+    "verdict",
+    "five",
+    "items",
+    "own",
+    "record",
+    "unfinished"
   ],
-  "lastUpdated": "2026-10-26T06:50:04.927Z",
+  "lastUpdated": "2026-11-13T10:04:47.125Z",
   "specId": "008",
   "folderSlug": "runner-limit-closeout",
   "parentChain": [
@@ -15,6 +22,5 @@
     "002-quality-agnostic-gate"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,4 +1,5 @@
 {
+  "level": "3+",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/080-speckit-bug-remediation",
   "description": "Comprehensive audit by 10 parallel Opus agents identified 45+ bugs across the Spec Kit MCP server codebase",
   "keywords": [
@@ -16,7 +17,7 @@
     "server",
     "codebase"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.926Z",
+  "lastUpdated": "2026-11-13T10:05:32.724Z",
   "specId": "080",
   "folderSlug": "speckit-bug-remediation",
   "parentChain": [
@@ -26,6 +27,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3+"
+  "memoryNameHistory": []
 }

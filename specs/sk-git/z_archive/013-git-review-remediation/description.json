@@ -10,11 +10,12 @@
     "remain",
     "packet"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.175Z",
+  "lastUpdated": "2026-11-13T10:04:54.379Z",
   "specId": "013",
   "folderSlug": "git-review-remediation",
   "parentChain": [
-    "sk-git"
+    "sk-git",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

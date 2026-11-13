@@ -1,12 +1,19 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/067-root-docs-and-git-hook-disclosure",
-  "description": "Phase 67: root-docs-and-git-hook-disclosure",
+  "description": "A fresh review of the external user experience on 2026-09-28 found the root docs stale",
   "keywords": [
-    "phase",
-    "root-docs-and-git-hook-disclosure"
+    "fresh",
+    "review",
+    "external",
+    "user",
+    "experience",
+    "found",
+    "root",
+    "docs",
+    "stale"
   ],
-  "lastUpdated": "2026-09-28T20:03:11.569Z",
+  "lastUpdated": "2026-11-13T10:05:21.925Z",
   "specId": "067",
   "folderSlug": "root-docs-and-git-hook-disclosure",
   "parentChain": [

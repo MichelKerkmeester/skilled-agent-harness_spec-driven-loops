@@ -15,11 +15,12 @@
     "lanes",
     "benchmark"
   ],
-  "lastUpdated": "2026-08-30T08:03:52.847Z",
+  "lastUpdated": "2026-11-13T10:04:53.730Z",
   "specId": "006",
   "folderSlug": "deep-improvement",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "007-system-deep-loop"

@@ -1,6 +1,6 @@
 ---
 description: "Continuity retrieval front door: trigger-index lookup plus the ripgrep recipes over spec docs and skill docs."
-argument-hint: "<query> [--packet <specFolder>] [--triggers] [--paths] [--count]"
+argument-hint: "<query> [--packet <specFolder>] [--triggers] [--paths] [--count] [--include-archive]"
 allowed-tools: Bash, Read, Grep, Glob
 ---
 
@@ -106,6 +106,14 @@ node .skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs struct
 ```
 
 Narrow with one `--search-root <path>` per root in place of the default `specs .skilled`. Pass `--limit <n>` when the user asks for more files, and `--limit 0` for all of them. The record's `command` field is the exact `rg` line that ran. The wrapper reads a phrase that starts with `--` as a flag and exits `2`; run the raw Section 2.1 recipe for that phrase instead. The other three modes run their recipe directly.
+
+Archived packets are left out by default. Add `--include-archive` to any wrapper recipe to search them as well:
+
+```bash
+node .skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs path 'skill routing refactor' --include-archive
+```
+
+A phrase that only an archived packet holds exits `1` without the flag and `0` with it, and each archived path ends `[archived]`. The flag drops the `!**/z_archive/**` glob from the recipe and marks every printed hit under a `z_archive` segment with `[archived]`. The JSON rows of the structured and count recipes carry `archived: true|false`. A second invocation then lists the `description.json` and `graph-metadata.json` files of archived packets that hold the phrase, under a `json    :` section, and the exit is `0` when either lane matches. The mode is opt-in only. `/speckit:resume` excludes archives and has no such flag, and the trigger-index lane never reads them.
 
 1. Resolve the search roots. Narrow by path, never by pattern: `specs .skilled` for everything, `specs/<track>` for one track, `specs/<track>/<sub-track>` for one declared sub-track, `specs/<track>/<NNN-name>` for one packet, `specs/<track>/<sub-track>/<NNN-name>` for a packet inside a sub-track, `specs/<track>/<NNN-name>/<NNN-child-name>` for one phase child. `--packet <specFolder>` replaces the roots with that path.
 2. Run exactly one recipe. Never combine `--json` with the path-only or count mode: ripgrep does not reject the combination, the last output-mode flag wins silently, and a JSONL parser handed count output sees an empty result rather than an error.

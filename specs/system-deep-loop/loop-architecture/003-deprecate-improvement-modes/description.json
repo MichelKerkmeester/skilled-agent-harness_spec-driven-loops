@@ -1,23 +1,14 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/loop-architecture/003-deprecate-improvement-modes",
-  "description": "Deprecate and delete the agent-improvement and model-benchmark deep-loop modes with every reference, cross-repo integration, runtime mirror and README",
+  "description": "`system-deep-loop` registers five modes",
   "keywords": [
-    "deprecate",
-    "delete",
-    "agent-improvement",
-    "model-benchmark",
-    "deep-loop",
-    "modes",
-    "every",
-    "reference",
-    "cross-repo",
-    "integration",
-    "runtime",
-    "mirror",
-    "readme",
-    "mention"
+    "system-deep-loop",
+    "registers",
+    "five",
+    "modes"
   ],
-  "lastUpdated": "2026-10-10T18:23:47.510Z",
+  "lastUpdated": "2026-11-13T10:04:56.339Z",
   "specId": "003",
   "folderSlug": "deprecate-improvement-modes",
   "parentChain": [
@@ -25,6 +16,5 @@
     "loop-architecture"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

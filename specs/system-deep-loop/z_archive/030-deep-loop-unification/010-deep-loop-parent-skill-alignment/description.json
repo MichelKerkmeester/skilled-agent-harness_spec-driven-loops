@@ -14,11 +14,12 @@
     "pattern",
     "beyond"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.872Z",
+  "lastUpdated": "2026-11-13T13:18:27.976Z",
   "specId": "010",
   "folderSlug": "deep-loop-parent-skill-alignment",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "030-deep-loop-unification"
   ],
   "memorySequence": 0,

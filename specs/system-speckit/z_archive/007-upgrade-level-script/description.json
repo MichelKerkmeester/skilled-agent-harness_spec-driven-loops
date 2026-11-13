@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/z_archive/007-upgrade-level-script",
   "description": "This archived folder captures work that added or refined a spec folder level upgrade script",
   "keywords": [
@@ -12,7 +13,7 @@
     "upgrade",
     "script"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.975Z",
+  "lastUpdated": "2026-11-13T10:05:32.808Z",
   "specId": "007",
   "folderSlug": "upgrade-level-script",
   "parentChain": [
@@ -20,6 +21,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

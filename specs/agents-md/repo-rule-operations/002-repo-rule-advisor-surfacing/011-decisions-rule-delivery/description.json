@@ -1,11 +1,16 @@
 {
+  "level": "1",
   "specFolder": "agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/011-decisions-rule-delivery",
-  "description": "Phase 11: decisions-rule-delivery",
+  "description": "The operator reported that `communication-decisions.md` is ignored on every runtime",
   "keywords": [
-    "phase",
-    "decisions-rule-delivery"
+    "operator",
+    "reported",
+    "communication-decisions",
+    "ignored",
+    "every",
+    "runtime"
   ],
-  "lastUpdated": "2026-11-07T10:33:37.096Z",
+  "lastUpdated": "2026-11-13T10:04:35.334Z",
   "specId": "011",
   "folderSlug": "decisions-rule-delivery",
   "parentChain": [
@@ -14,6 +19,5 @@
     "002-repo-rule-advisor-surfacing"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

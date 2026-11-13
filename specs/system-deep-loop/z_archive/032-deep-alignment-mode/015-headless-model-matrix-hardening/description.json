@@ -17,11 +17,12 @@
     "acceptance",
     "step"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.963Z",
+  "lastUpdated": "2026-11-13T10:05:00.920Z",
   "specId": "015",
   "folderSlug": "headless-model-matrix-hardening",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "032-deep-alignment-mode"
   ],
   "memorySequence": 0,

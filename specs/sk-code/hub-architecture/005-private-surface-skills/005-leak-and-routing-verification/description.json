@@ -1,11 +1,23 @@
 {
+  "level": "3",
   "specFolder": "sk-code/hub-architecture/005-private-surface-skills/005-leak-and-routing-verification",
-  "description": "Phase 5: leak-and-routing-verification",
+  "description": "Phases 001 through 004 delete the two surfaces from the hub, scrub the advisor vocabulary and recreate them as gitignored `local-` symlinks, but",
   "keywords": [
-    "phase",
-    "leak-and-routing-verification"
+    "phases",
+    "delete",
+    "two",
+    "surfaces",
+    "hub",
+    "scrub",
+    "advisor",
+    "vocabulary",
+    "recreate",
+    "them",
+    "gitignored",
+    "local",
+    "symlinks"
   ],
-  "lastUpdated": "2026-10-23T07:03:41.569Z",
+  "lastUpdated": "2026-11-13T10:04:46.970Z",
   "specId": "005",
   "folderSlug": "leak-and-routing-verification",
   "parentChain": [
@@ -14,6 +26,5 @@
     "005-private-surface-skills"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

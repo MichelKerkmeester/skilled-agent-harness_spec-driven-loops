@@ -1,12 +1,23 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/031-relaunch-model-and-effort",
-  "description": "Phase 31: relaunch-model-and-effort",
+  "description": "`buildrelauncharguments` in `.skilled/bin/skilled-loop` rebuilds the relaunch command from the model, provider, name and Pi extension flags only",
   "keywords": [
-    "phase",
-    "relaunch-model-and-effort"
+    "buildrelauncharguments",
+    "skilled",
+    "bin",
+    "skilled-loop",
+    "rebuilds",
+    "relaunch",
+    "command",
+    "model",
+    "provider",
+    "name",
+    "extension",
+    "flags",
+    "only"
   ],
-  "lastUpdated": "2026-10-25T09:18:16.680Z",
+  "lastUpdated": "2026-11-13T10:04:41.742Z",
   "specId": "031",
   "folderSlug": "relaunch-model-and-effort",
   "parentChain": [

@@ -14,11 +14,12 @@
     "standalone",
     "top-level"
   ],
-  "lastUpdated": "2026-08-30T07:16:08.812Z",
+  "lastUpdated": "2026-11-13T10:04:38.573Z",
   "specId": "003",
   "folderSlug": "cli-devin-skill-packet",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "029-cli-devin-revival"
   ],
   "memorySequence": 0,

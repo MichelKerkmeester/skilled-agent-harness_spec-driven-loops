@@ -16,11 +16,12 @@
     "run",
     "executors"
   ],
-  "lastUpdated": "2026-08-15T14:41:03.208Z",
+  "lastUpdated": "2026-11-13T10:05:01.215Z",
   "specId": "015",
   "folderSlug": "command-benchmark-cli-opencode-driver",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "035-command-surface-benchmark"
   ],
   "memorySequence": 0,

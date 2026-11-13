@@ -196,7 +196,7 @@
     ],
     "causal_summary": "A structure-only merge can silently change behavior",
     "created_at": "2026-06-14T20:16:09.677Z",
-    "last_save_at": "2026-10-07T18:14:50.108Z",
+    "last_save_at": "2026-11-13T13:17:52.733Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:367b4f8577f91ad0d24a29154cc8b2a9c14ba25b08aecf93cbf6b0def7540046",
+    "source_fingerprint": "sha256:35a4008bd7f27b245bbc7b3e601acb513148bfc819d0eedfe5f060fdcf4a396c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7b6060d6c192d7f7f635b3005ce835bff7bed3dff8b7869418af94159de6787e",
+      "spec.md": "a2a4ca43185774d372a295d38e2a3634fe17a2daf092f405110b7a3cfbf14235",
       "plan.md": "c1ab3ec79e616e7dd2610d86a0249044c98c14d64715213f591f2186ff149af1",
       "tasks.md": "aeaad5751231b0d5fd37d38aeec59b3ae5834ee9a8cbbb0c68fc4e2bda5cdeec",
-      "decision-record.md": "b527d1a233c1924431b11c56cf253791da2a50571c9e0932f1d2cc9805de72e5",
-      "implementation-summary.md": "153e90b3f19394c9c03665769bdebc51bffdd1e314f18794e6c40b78d9680bab"
+      "decision-record.md": "1b1aaf31d4b8641e780d8981efc2830b83b8bfce50428e98c27e24d451c9de41",
+      "implementation-summary.md": "070bed0d42920f1842816d25a8c0a7347e2b40255a6f74716c13ad6c116a0896"
     },
     "last_active_child_id": null,
     "last_active_at": null

@@ -1,12 +1,22 @@
 {
   "level": "3",
   "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/003-repin",
-  "description": "Phase 3: repin",
+  "description": "Barter's tree is untracked, so a re-pin overwrites files nothing can restore, and the runbook's \"restore from git\" rollback does not exist",
   "keywords": [
-    "phase",
-    "repin"
+    "barter",
+    "tree",
+    "untracked",
+    "re-pin",
+    "overwrites",
+    "files",
+    "nothing",
+    "restore",
+    "runbook",
+    "git",
+    "rollback",
+    "exist"
   ],
-  "lastUpdated": "2026-11-06T09:30:27.838Z",
+  "lastUpdated": "2026-11-13T10:05:03.332Z",
   "specId": "003",
   "folderSlug": "repin",
   "parentChain": [

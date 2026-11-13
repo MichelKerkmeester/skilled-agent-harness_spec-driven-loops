@@ -19,11 +19,12 @@
     "serves",
     "root"
   ],
-  "lastUpdated": "2026-08-16T18:06:00.723Z",
+  "lastUpdated": "2026-11-13T10:04:53.268Z",
   "specId": "003",
   "folderSlug": "seven-hub-root-adoption",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program",
     "020-root-router-document-standard"

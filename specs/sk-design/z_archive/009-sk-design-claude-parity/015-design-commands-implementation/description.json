@@ -18,11 +18,12 @@
     "status",
     "templates"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.487Z",
+  "lastUpdated": "2026-11-13T10:04:48.961Z",
   "specId": "015",
   "folderSlug": "design-commands-implementation",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "009-sk-design-claude-parity"
   ],
   "memorySequence": 0,

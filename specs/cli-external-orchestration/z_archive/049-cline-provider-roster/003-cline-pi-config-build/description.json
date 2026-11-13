@@ -18,11 +18,12 @@
     "omitted",
     "deepseek"
   ],
-  "lastUpdated": "2026-08-18T14:02:52.849Z",
+  "lastUpdated": "2026-11-13T10:04:38.905Z",
   "specId": "003",
   "folderSlug": "cline-pi-config-build",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "049-cline-provider-roster"
   ],
   "memorySequence": 0,

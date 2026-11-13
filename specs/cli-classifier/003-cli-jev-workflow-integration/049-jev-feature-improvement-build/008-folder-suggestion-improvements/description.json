@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/008-folder-suggestion-improvements",
-  "description": "Phase 8: folder-suggestion-improvements",
+  "description": "Feature 022 kept against the top-listed alternative, because the fixture's target is wrong on every row",
   "keywords": [
-    "phase",
-    "folder-suggestion-improvements"
+    "feature",
+    "kept",
+    "against",
+    "top-listed",
+    "alternative",
+    "because",
+    "fixture",
+    "target",
+    "wrong",
+    "every",
+    "row"
   ],
-  "lastUpdated": "2026-10-03T05:30:09.288Z",
+  "lastUpdated": "2026-11-13T10:04:36.781Z",
   "specId": "008",
   "folderSlug": "folder-suggestion-improvements",
   "parentChain": [
@@ -14,6 +24,5 @@
     "049-jev-feature-improvement-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

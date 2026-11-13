@@ -18,11 +18,12 @@
     "smart-router",
     "fallback"
   ],
-  "lastUpdated": "2026-08-15T14:41:03.143Z",
+  "lastUpdated": "2026-11-13T10:05:01.187Z",
   "specId": "011",
   "folderSlug": "create-benchmark-completeness-remediation",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "035-command-surface-benchmark"
   ],
   "memorySequence": 0,

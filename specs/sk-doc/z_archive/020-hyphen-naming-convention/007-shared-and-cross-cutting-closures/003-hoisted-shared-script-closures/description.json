@@ -19,11 +19,12 @@
     "closure",
     "rather"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.639Z",
+  "lastUpdated": "2026-11-13T10:04:53.667Z",
   "specId": "003",
   "folderSlug": "hoisted-shared-script-closures",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "007-shared-and-cross-cutting-closures"
   ],

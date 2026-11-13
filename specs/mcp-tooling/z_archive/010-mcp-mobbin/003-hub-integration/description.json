@@ -18,11 +18,12 @@
     "metadata",
     "mention"
   ],
-  "lastUpdated": "2026-08-15T14:40:56.063Z",
+  "lastUpdated": "2026-11-13T10:04:42.716Z",
   "specId": "003",
   "folderSlug": "hub-integration",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "010-mcp-mobbin"
   ],
   "memorySequence": 0,

@@ -1,14 +1,15 @@
 {
   "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/025-cli-opencode-docs-and-listings",
-  "description": "cli-opencode docs and command listings",
+  "description": "The cli-opencode docs disagree with the installed binaries",
   "keywords": [
     "cli-opencode",
     "docs",
-    "command",
-    "listings"
+    "disagree",
+    "installed",
+    "binaries"
   ],
-  "lastUpdated": "2026-10-20T10:25:00.509Z",
+  "lastUpdated": "2026-11-13T10:04:37.469Z",
   "specId": "025",
   "folderSlug": "cli-opencode-docs-and-listings",
   "parentChain": [

@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/006-clean-deferred-documentation",
   "description": "Children 002-005 deferred a set of findings from the 001 research synthesis",
   "keywords": [
@@ -9,7 +10,7 @@
     "research",
     "synthesis"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.157Z",
+  "lastUpdated": "2026-11-13T10:05:03.035Z",
   "specId": "006",
   "folderSlug": "clean-deferred-documentation",
   "parentChain": [
@@ -19,6 +20,5 @@
     "004-documentation-quality-refactor"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

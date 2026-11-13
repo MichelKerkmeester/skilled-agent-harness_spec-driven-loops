@@ -19,11 +19,12 @@
     "tier",
     "exposes"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.094Z",
+  "lastUpdated": "2026-11-13T10:04:38.536Z",
   "specId": "008",
   "folderSlug": "cli-codex-model-roster-and-alignment",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "027-cli-codex-revival"
   ],
   "memorySequence": 0,

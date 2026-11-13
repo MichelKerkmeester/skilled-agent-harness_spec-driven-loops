@@ -18,11 +18,12 @@
     "interactive",
     "oauth"
   ],
-  "lastUpdated": "2026-08-21T15:51:28.347Z",
+  "lastUpdated": "2026-11-13T10:04:42.887Z",
   "specId": "002",
   "folderSlug": "skill-authoring",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "014-mcp-notion"
   ],
   "memorySequence": 0,

@@ -1,11 +1,27 @@
 {
+  "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/029-relaunch-evidence-gaps-and-playbook-drift",
-  "description": "Phase 29: relaunch-evidence-gaps-and-playbook-drift",
+  "description": "The phase 23 live runs showed that Codex withdraw output was never captured because the wait was 30 seconds, that Claude extra nudge arrived only",
   "keywords": [
     "phase",
-    "relaunch-evidence-gaps-and-playbook-drift"
+    "live",
+    "runs",
+    "showed",
+    "codex",
+    "withdraw",
+    "output",
+    "never",
+    "captured",
+    "because",
+    "wait",
+    "seconds",
+    "claude",
+    "extra",
+    "nudge",
+    "arrived",
+    "only"
   ],
-  "lastUpdated": "2026-10-24T19:03:16.258Z",
+  "lastUpdated": "2026-11-13T10:04:41.728Z",
   "specId": "029",
   "folderSlug": "relaunch-evidence-gaps-and-playbook-drift",
   "parentChain": [
@@ -14,6 +30,5 @@
     "002-session-relaunch-loop"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

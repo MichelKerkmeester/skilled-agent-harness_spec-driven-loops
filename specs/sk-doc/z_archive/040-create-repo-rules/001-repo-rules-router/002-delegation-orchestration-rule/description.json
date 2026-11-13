@@ -16,11 +16,12 @@
     "break",
     "diagnose"
   ],
-  "lastUpdated": "2026-08-31T11:33:46.014Z",
+  "lastUpdated": "2026-11-13T10:04:54.041Z",
   "specId": "002",
   "folderSlug": "delegation-orchestration-rule",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "040-create-repo-rules",
     "001-repo-rules-router"
   ],

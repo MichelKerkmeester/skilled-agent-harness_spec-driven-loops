@@ -1,11 +1,18 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/016-residual-closeout/008-surface-hint-hub-root",
-  "description": "Phase 8: surface-hint-hub-root",
+  "description": "`detectWorkspaceSurface` in `.opencode/plugins/system-skill-advisor.js` returns OPENCODE when any path component is `.skilled`",
   "keywords": [
-    "phase",
-    "surface-hint-hub-root"
+    "detectworkspacesurface",
+    "opencode",
+    "plugins",
+    "system-skill-advisor",
+    "returns",
+    "path",
+    "component",
+    "skilled"
   ],
-  "lastUpdated": "2026-10-11T11:28:05.467Z",
+  "lastUpdated": "2026-11-13T10:04:46.185Z",
   "specId": "008",
   "folderSlug": "surface-hint-hub-root",
   "parentChain": [
@@ -15,6 +22,5 @@
     "016-residual-closeout"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

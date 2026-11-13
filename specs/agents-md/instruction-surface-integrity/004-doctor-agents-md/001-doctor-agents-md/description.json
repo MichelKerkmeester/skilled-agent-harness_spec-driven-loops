@@ -1,22 +1,19 @@
 {
   "level": "2",
   "specFolder": "agents-md/instruction-surface-integrity/004-doctor-agents-md/001-doctor-agents-md",
-  "description": "Build /doctor:agents-md: the shipped manifest, a read-only check, an embed that preserves every repo-unique line, and a restore",
+  "description": "The template at the repository root is the only copy of the shipped instructions anywhere in the framework",
   "keywords": [
-    "doctor",
-    "agents-md",
+    "template",
+    "repository",
+    "root",
+    "only",
+    "copy",
     "shipped",
-    "manifest",
-    "read-only",
-    "check",
-    "embed",
-    "preserves",
-    "every",
-    "repo-unique",
-    "line",
-    "restore"
+    "instructions",
+    "anywhere",
+    "framework"
   ],
-  "lastUpdated": "2026-10-30T11:29:51.082Z",
+  "lastUpdated": "2026-11-13T10:04:35.185Z",
   "specId": "001",
   "folderSlug": "doctor-agents-md",
   "parentChain": [

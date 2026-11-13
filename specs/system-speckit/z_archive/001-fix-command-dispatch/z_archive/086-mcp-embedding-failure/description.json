@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/086-mcp-embedding-failure",
   "description": "Users report that the `speckitmemory` MCP server fails to generate semantic embeddings due to a corrupted local HuggingFace embedding model cache",
   "keywords": [
@@ -18,7 +19,7 @@
     "model",
     "cache"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.944Z",
+  "lastUpdated": "2026-11-13T10:05:32.758Z",
   "specId": "086",
   "folderSlug": "mcp-embedding-failure",
   "parentChain": [
@@ -28,6 +29,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

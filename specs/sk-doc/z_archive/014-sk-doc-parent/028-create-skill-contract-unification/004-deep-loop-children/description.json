@@ -17,11 +17,12 @@
     "luna",
     "max"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.482Z",
+  "lastUpdated": "2026-11-13T10:04:52.064Z",
   "specId": "004",
   "folderSlug": "deep-loop-children",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "014-sk-doc-parent",
     "028-create-skill-contract-unification"
   ],

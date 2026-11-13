@@ -17,11 +17,12 @@
     "cli",
     "wiring"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.381Z",
+  "lastUpdated": "2026-11-13T13:14:42.855Z",
   "specId": "015",
   "folderSlug": "deprecate-open-design",
   "parentChain": [
-    "sk-design"
+    "sk-design",
+    "z_archive"
   ],
   "memorySequence": 15,
   "memoryNameHistory": [

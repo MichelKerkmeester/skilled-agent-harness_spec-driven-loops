@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/005-routing-skill-benchmark",
   "description": "Run the mcp-tooling skill/routing benchmark (Mode A router-replay) validating seven-mode routing, and record the official-CLI scenarios as",
   "keywords": [
@@ -15,15 +16,15 @@
     "official-cli",
     "scenarios"
   ],
-  "lastUpdated": "2026-08-15T14:40:56.464Z",
+  "lastUpdated": "2026-11-13T10:04:42.826Z",
   "specId": "005",
   "folderSlug": "routing-skill-benchmark",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "013-mcp-obsidian",
     "010-playbook-validation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

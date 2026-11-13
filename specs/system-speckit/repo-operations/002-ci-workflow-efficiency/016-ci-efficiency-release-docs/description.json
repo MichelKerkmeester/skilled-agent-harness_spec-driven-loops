@@ -1,27 +1,16 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/repo-operations/002-ci-workflow-efficiency/016-ci-efficiency-release-docs",
-  "description": "Changelogs for the skills the CI workflow efficiency and private surface work touched, the changelog hub symlink check, and the README, user guide and",
+  "description": "The CI workflow-efficiency program (`specs/system-speckit/repo-operations/002-ci-workflow-efficiency`)",
   "keywords": [
-    "changelogs",
-    "skills",
-    "workflow",
-    "efficiency",
-    "private",
-    "surface",
-    "work",
-    "touched",
-    "changelog",
-    "hub",
-    "symlink",
-    "check",
-    "readme",
-    "user",
-    "guide",
-    "doctor",
-    "command",
-    "describe"
+    "workflow-efficiency",
+    "program",
+    "specs",
+    "system-speckit",
+    "repo-operations",
+    "002-ci-workflow-efficiency"
   ],
-  "lastUpdated": "2026-10-25T21:51:38.144Z",
+  "lastUpdated": "2026-11-13T10:05:16.697Z",
   "specId": "016",
   "folderSlug": "ci-efficiency-release-docs",
   "parentChain": [
@@ -30,6 +19,5 @@
     "002-ci-workflow-efficiency"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

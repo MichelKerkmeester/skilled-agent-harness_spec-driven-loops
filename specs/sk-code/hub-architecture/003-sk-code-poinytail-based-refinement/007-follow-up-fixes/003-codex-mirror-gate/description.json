@@ -1,11 +1,19 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/007-follow-up-fixes/003-codex-mirror-gate",
-  "description": "Phase 3: codex-mirror-gate",
+  "description": "The agent-mirror gate recognizes three roots: `.opencode/agents/`, `.skilled/agents/` and `.claude/agents/`",
   "keywords": [
-    "phase",
-    "codex-mirror-gate"
+    "agent-mirror",
+    "gate",
+    "recognizes",
+    "three",
+    "roots",
+    "opencode",
+    "agents",
+    "skilled",
+    "claude"
   ],
-  "lastUpdated": "2026-10-10T05:26:27.881Z",
+  "lastUpdated": "2026-11-13T10:04:45.318Z",
   "specId": "003",
   "folderSlug": "codex-mirror-gate",
   "parentChain": [
@@ -15,6 +23,5 @@
     "007-follow-up-fixes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

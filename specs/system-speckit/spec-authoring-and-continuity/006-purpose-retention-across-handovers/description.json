@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers",
+  "description": "The operator reported on 2026-11-13 that the core reason, problem, purpose or user need behind a piece of work gets lost after several in-session",
+  "keywords": [
+    "operator",
+    "reported",
+    "core",
+    "reason",
+    "problem",
+    "purpose",
+    "user",
+    "need",
+    "behind",
+    "piece",
+    "work",
+    "gets",
+    "lost",
+    "several",
+    "in-session"
+  ],
+  "lastUpdated": "2026-11-13T21:18:47.852Z",
+  "specId": "006",
+  "folderSlug": "purpose-retention-across-handovers",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "13-11-26_22-18__deep-research-finished-two-deepseek-lineages-of.md"
+  ]
+}

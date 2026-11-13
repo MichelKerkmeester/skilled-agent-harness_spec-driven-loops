@@ -19,11 +19,12 @@
     "artifacts",
     "changelog"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.957Z",
+  "lastUpdated": "2026-11-13T10:04:53.761Z",
   "specId": "012",
   "folderSlug": "sk-git",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration"
   ],

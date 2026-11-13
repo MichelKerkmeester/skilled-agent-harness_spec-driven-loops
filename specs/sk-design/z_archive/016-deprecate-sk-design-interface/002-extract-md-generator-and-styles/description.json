@@ -17,11 +17,12 @@
     "via",
     "directory"
   ],
-  "lastUpdated": "2026-08-19T17:04:10.993Z",
+  "lastUpdated": "2026-11-13T10:04:49.533Z",
   "specId": "002",
   "folderSlug": "extract-md-generator-and-styles",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "016-deprecate-sk-design-interface"
   ],
   "memorySequence": 2,

@@ -18,11 +18,12 @@
     "smart-router",
     "marker"
   ],
-  "lastUpdated": "2026-08-15T14:40:59.382Z",
+  "lastUpdated": "2026-11-13T10:04:52.696Z",
   "specId": "007",
   "folderSlug": "create-skill-router-marker-gap",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor"
   ],
   "memorySequence": 0,

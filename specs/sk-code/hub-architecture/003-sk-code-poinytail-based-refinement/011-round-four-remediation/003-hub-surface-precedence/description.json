@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/003-hub-surface-precedence",
-  "description": "Phase 3: hub-surface-precedence",
+  "description": "The canary router keeps every mode within the ambiguity delta and sorts the kept set by `routerPolicy.tieBreak`",
   "keywords": [
-    "phase",
-    "hub-surface-precedence"
+    "canary",
+    "router",
+    "keeps",
+    "every",
+    "mode",
+    "within",
+    "ambiguity",
+    "delta",
+    "sorts",
+    "kept",
+    "set",
+    "routerpolicy",
+    "tiebreak"
   ],
-  "lastUpdated": "2026-10-10T14:44:43.976Z",
+  "lastUpdated": "2026-11-13T10:04:45.799Z",
   "specId": "003",
   "folderSlug": "hub-surface-precedence",
   "parentChain": [
@@ -15,6 +27,5 @@
     "011-round-four-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

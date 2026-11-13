@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/063-v4-0-0-13-final-changelog",
-  "description": "Phase 63: v4-0-0-13-final-changelog",
+  "description": "The v4.0.0.13 changelog had been trimmed and reordered, but it still described the release as it stood before two later changes landed",
   "keywords": [
-    "phase",
-    "v4-0-0-13-final-changelog"
+    "changelog",
+    "trimmed",
+    "reordered",
+    "still",
+    "described",
+    "release",
+    "stood",
+    "two",
+    "later",
+    "changes",
+    "landed"
   ],
-  "lastUpdated": "2026-10-23T00:23:41.658Z",
+  "lastUpdated": "2026-11-13T10:04:37.699Z",
   "specId": "063",
   "folderSlug": "v4-0-0-13-final-changelog",
   "parentChain": [
@@ -14,6 +24,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

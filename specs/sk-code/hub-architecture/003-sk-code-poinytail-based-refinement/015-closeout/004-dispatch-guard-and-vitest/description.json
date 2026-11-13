@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/015-closeout/004-dispatch-guard-and-vitest",
-  "description": "Phase 4: dispatch-guard-and-vitest",
+  "description": "`npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/dispatch` exits 1 with `No test suite found` on dispatch-rule-checks.test.mjs,",
   "keywords": [
-    "phase",
-    "dispatch-guard-and-vitest"
+    "npx",
+    "vitest",
+    "run",
+    "config",
+    "skilled",
+    "hooks",
+    "dispatch",
+    "exits",
+    "test",
+    "suite",
+    "found",
+    "dispatch-rule-checks",
+    "mjs"
   ],
-  "lastUpdated": "2026-10-11T04:49:34.657Z",
+  "lastUpdated": "2026-11-13T10:04:46.129Z",
   "specId": "004",
   "folderSlug": "dispatch-guard-and-vitest",
   "parentChain": [
@@ -15,6 +27,5 @@
     "015-closeout"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

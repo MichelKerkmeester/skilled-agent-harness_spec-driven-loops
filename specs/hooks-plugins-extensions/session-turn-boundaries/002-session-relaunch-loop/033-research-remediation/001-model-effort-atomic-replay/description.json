@@ -1,11 +1,19 @@
 {
+  "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation/001-model-effort-atomic-replay",
-  "description": "Phase 1: model-effort-atomic-replay",
+  "description": "The wrapper takes the live model at `.skilled/bin/skilled-loop:789-800` and the live effort separately at `:814-823`",
   "keywords": [
-    "phase",
-    "model-effort-atomic-replay"
+    "wrapper",
+    "takes",
+    "live",
+    "model",
+    "skilled",
+    "bin",
+    "skilled-loop",
+    "effort",
+    "separately"
   ],
-  "lastUpdated": "2026-10-25T13:42:26.110Z",
+  "lastUpdated": "2026-11-13T10:04:41.772Z",
   "specId": "001",
   "folderSlug": "model-effort-atomic-replay",
   "parentChain": [
@@ -15,6 +23,5 @@
     "033-research-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

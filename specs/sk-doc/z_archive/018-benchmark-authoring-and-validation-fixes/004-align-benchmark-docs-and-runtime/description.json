@@ -19,11 +19,12 @@
     "packager",
     "pass"
   ],
-  "lastUpdated": "2026-08-15T14:40:59.132Z",
+  "lastUpdated": "2026-11-13T10:04:52.341Z",
   "specId": "004",
   "folderSlug": "align-benchmark-docs-and-runtime",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "018-benchmark-authoring-and-validation-fixes"
   ],
   "memorySequence": 0,

@@ -188,7 +188,7 @@
     ],
     "causal_summary": "GLM-5.2 (served through the Z.AI GLM Coding Plan, surfaced in opencode as \"Z.AI Coding Plan (api)\") is available to the operator but is not registered anywhere in the small-model surfaces, so it cannot be dispatched or routed by name",
     "created_at": "2026-06-28T10:15:17.145Z",
-    "last_save_at": "2026-08-30T15:39:08.827Z",
+    "last_save_at": "2026-11-13T13:13:05.631Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,10 +197,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d9ddfe1c1d2db5c2c6993e016a02c41b32bb37e5545c5719bd2a9afc9e29129f",
+    "source_fingerprint": "sha256:5ba988d4b48c793c0942d1c85044206e6795d9bd45ded9ab0977e8c97682e095",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "63caa12748fd7634ab18ef7a303666438b839a5e49046a28f56a6ec1e3b010f8",
+      "spec.md": "4675b3ea6002db2dd8bb1759516d909e80db9d1d334cffee50f94339743cf1ce",
       "plan.md": "ec569d135515b0144d6007cf1c47e8d399751cff7853256c6dd95495d76bd784",
       "tasks.md": "4e7203119f7fdc1b71b359e32b9fcc67f18b03b402e97f0f48f2f287fd8ba0d3",
       "implementation-summary.md": "a39283a981146367134ed7a62255dcc0a2150021a566c949becdbb404cf84da7"

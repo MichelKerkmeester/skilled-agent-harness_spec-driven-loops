@@ -14,11 +14,12 @@
     "session",
     "survey"
   ],
-  "lastUpdated": "2026-09-07T16:15:00.563Z",
+  "lastUpdated": "2026-11-13T10:04:54.401Z",
   "specId": "001",
   "folderSlug": "advisory-research",
   "parentChain": [
     "sk-git",
+    "z_archive",
     "016-git-action-advisory-hook"
   ],
   "memorySequence": 2,

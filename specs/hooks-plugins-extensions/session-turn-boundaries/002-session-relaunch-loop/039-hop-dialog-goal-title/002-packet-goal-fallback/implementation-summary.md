@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-11-13T19:45:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Recorded the packet goal fallback, its tests and the checks run in worktree 366"
-    next_safe_action: "Operator decides on merge and push of worktree 366"
+    next_safe_action: "None. Merged into main and pushed on 2026-11-13"
     blockers: []
     key_files: [".skilled/hooks/session-relaunch/lib/relaunch-core.cjs", ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs", ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs", ".skilled/hooks/session-relaunch/README.md"]
     session_dedup:
@@ -78,7 +78,7 @@ A read-only review of the plan ran before the code was committed. The operator a
 
 The orchestrator ran the suites in worktree 366 at the final state. The relaunch and OpenCode plugin suites ran 1536 of 1536 with exit 0. The goal hook suites ran 200 of 200 with exit 0. The Pi adapter suite ran 62 of 62. Removing `if (!whole) return none;` made the case `a log read only in part` fail. This author reran the resolver test file and the new CLI test on 2026-11-13, both with exit 0.
 
-The code is committed on branch `worktrees/366-hop-after-question-dialog` as `c461b79a71`. It is not merged and not pushed. These documents are committed on the same branch. That commit left the comment on where Claude session logs sit above `packetGoalIsSettable`, one function too early. Commit `085449ab6a` put it back above `claudeSessionLogPath` and changes no behaviour.
+The code is committed on branch `worktrees/366-hop-after-question-dialog` as `c461b79a71`. These documents are committed on the same branch, which was merged into main as `bc670ffc21` and pushed on 2026-11-13. That commit left the comment on where Claude session logs sit above `packetGoalIsSettable`, one function too early. Commit `085449ab6a` put it back above `claudeSessionLogPath` and changes no behaviour.
 
 The operator's answers on 2026-11-13, given through the question tool: spec folder "C) Related: children 019 and 020 (Recommended)". Goal rule "The note's packet goal (Recommended)". Workspace "Same worktree 366 (Recommended)". After the review: "Skip finished goal docs (Recommended)". The spec folder answer was replaced later that day by "Move to new packet 039 (Recommended)", because the goal of packet 038 was at 3,996 of its 4,000 characters and could not bind more children. These documents moved from `038-goal-and-workflow-resume/019-packet-goal-fallback` to this folder before they were committed, and the `Spec:` line of the code commit was reworded to match.
 <!-- /ANCHOR:how-delivered -->

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/005-sprint-4-feedback-and-quality",
   "description": "Chunked memories are scored individually without aggregation — a memory with 5 matching chunks gets no advantage over one with 1 chunk, losing",
   "keywords": [
@@ -17,7 +18,7 @@
     "chunk",
     "losing"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.069Z",
+  "lastUpdated": "2026-11-13T10:05:33.011Z",
   "specId": "005",
   "folderSlug": "sprint-4-feedback-and-quality",
   "parentChain": [
@@ -27,6 +28,5 @@
     "001-hybrid-rag-fusion-epic"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

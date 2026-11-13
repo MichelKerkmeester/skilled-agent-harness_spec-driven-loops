@@ -10,11 +10,12 @@
     "gitkeep",
     "today"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.234Z",
+  "lastUpdated": "2026-11-13T10:04:38.721Z",
   "specId": "013",
   "folderSlug": "pi-manual-testing-playbook-authoring",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "031-cli-pi-creation"
   ],
   "memorySequence": 0,

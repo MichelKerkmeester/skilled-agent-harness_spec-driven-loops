@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/001-scratch-enforcement",
   "description": "Ensure AI agents never place random scripts, tests, or temporary files in the project root folder, directing them to use `specs/[###-name]/scratch/`",
   "keywords": [
@@ -20,7 +21,7 @@
     "name",
     "scratch"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.737Z",
+  "lastUpdated": "2026-11-13T10:05:32.399Z",
   "specId": "001",
   "folderSlug": "scratch-enforcement",
   "parentChain": [
@@ -30,6 +31,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

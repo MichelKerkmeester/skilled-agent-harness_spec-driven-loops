@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/039-node-modules-consolidation",
   "description": "The `system-spec-kit` skill has duplicate nodemodules directories consuming ~1.9GB:",
   "keywords": [
@@ -10,7 +11,7 @@
     "consuming",
     "9gb"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.813Z",
+  "lastUpdated": "2026-11-13T10:05:32.545Z",
   "specId": "039",
   "folderSlug": "node-modules-consolidation",
   "parentChain": [
@@ -20,6 +21,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

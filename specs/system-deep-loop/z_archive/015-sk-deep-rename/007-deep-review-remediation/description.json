@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/z_archive/015-sk-deep-rename/007-deep-review-remediation",
   "description": "The Packet 070 deep review failed because child phase documentation still contains over-replaced identity-renames such as `deep-review to deep-review`",
   "keywords": [
@@ -16,7 +17,7 @@
     "identity-renames",
     "deep-review"
   ],
-  "lastUpdated": "2026-08-15T14:41:06.185Z",
+  "lastUpdated": "2026-11-13T10:04:57.338Z",
   "specId": "007",
   "folderSlug": "deep-review-remediation",
   "parentChain": [
@@ -25,6 +26,5 @@
     "015-sk-deep-rename"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

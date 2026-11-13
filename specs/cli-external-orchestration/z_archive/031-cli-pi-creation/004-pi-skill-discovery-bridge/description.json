@@ -14,11 +14,12 @@
     "needed",
     "bespoke"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.210Z",
+  "lastUpdated": "2026-11-13T10:04:38.696Z",
   "specId": "004",
   "folderSlug": "pi-skill-discovery-bridge",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "031-cli-pi-creation"
   ],
   "memorySequence": 0,

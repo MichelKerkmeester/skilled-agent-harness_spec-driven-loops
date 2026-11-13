@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The 022 deep review found 18 defects in the parent-hub pattern: one P0 (sk-design fails the canon checker on an un-canonized `transport` axis), seven P1s (surfaceBundle doctrine fiction, unenforced one-identity ingestion, two sk-code tool-contract contradictions, two unguarded advisor command-bridge lanes, sk-design's self-contradicting routing contract), and ten P2s (doctrine/checker/template staleness and cross-hub metadata dialect drift)",
     "created_at": "2026-07-07T15:55:58.850Z",
-    "last_save_at": "2026-10-07T18:12:33.776Z",
+    "last_save_at": "2026-11-13T13:15:02.004Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +201,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cbf882c75733da15c2247a673531077c1b7bfe2f4ca84f2b02ce9c30e5e83964",
+    "source_fingerprint": "sha256:f374a2d4745703474e274bdcd6ef47b296c53eabacc61c8ed95819a85800aa48",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d30930886b134b04f740ee9e6c0b72aee941e700954ad5533c3efc6643843274",
+      "spec.md": "35d908eb962c51368036e73868106be3b36af38f0923fb933ea05a6cc9f37226",
       "plan.md": "2f72125376b888370d294f14d1cfb9048785f58b319f1f82f378032f4ec659e3",
       "tasks.md": "94a7e03ae5b375763a611ad722828de957620598c5cfdab99825467f0884cc9e",
       "implementation-summary.md": "07011e58b1e9d63ec811ab9f80920aceec6206b74dfe71c852d76ebd20c16042"

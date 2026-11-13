@@ -1,11 +1,18 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/068-retire-opencode2-name",
-  "description": "Phase 68: retire-opencode2-name",
+  "description": "Three names reached two binaries: `opencode` and `opencode2` both ran OpenCode 2",
   "keywords": [
-    "phase",
-    "retire-opencode2-name"
+    "three",
+    "names",
+    "reached",
+    "two",
+    "binaries",
+    "opencode",
+    "opencode2",
+    "ran"
   ],
-  "lastUpdated": "2026-10-24T08:39:54.690Z",
+  "lastUpdated": "2026-11-13T10:04:37.704Z",
   "specId": "068",
   "folderSlug": "retire-opencode2-name",
   "parentChain": [
@@ -14,6 +21,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

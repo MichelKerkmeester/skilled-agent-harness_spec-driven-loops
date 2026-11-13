@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/013-cli-external-orchestration",
-  "description": "Phase 13: cli-external-orchestration",
+  "description": "Dispatch authorization is tested in process, but the conversation-level repair, where a follow-up names the executor and turns a denial into an allow",
   "keywords": [
-    "phase",
-    "cli-external-orchestration"
+    "dispatch",
+    "authorization",
+    "tested",
+    "process",
+    "conversation-level",
+    "repair",
+    "follow-up",
+    "names",
+    "executor",
+    "turns",
+    "denial",
+    "allow"
   ],
-  "lastUpdated": "2026-11-02T18:33:55.891Z",
+  "lastUpdated": "2026-11-13T10:04:50.131Z",
   "specId": "013",
   "folderSlug": "cli-external-orchestration",
   "parentChain": [
@@ -15,6 +26,5 @@
     "004-conversation-adoption-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

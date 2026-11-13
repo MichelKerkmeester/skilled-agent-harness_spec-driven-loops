@@ -9,7 +9,7 @@ trigger_phrases:
   - "suggested phase counts"
 importance_tier: normal
 contextType: planning
-version: 1.6.4.0
+version: 1.6.5.0
 ---
 
 # Phase Definitions
@@ -68,6 +68,8 @@ If only one condition is met, the specification proceeds as a standard (non-phas
 ### Series Parent: The Second Qualification Path
 
 The thresholds above decide whether one large piece of work splits into phases. A series parent groups separate small pieces of work instead, and it qualifies without those thresholds.
+
+A series parent groups changes to one artifact. Grouping a whole track's packets by theme is a sub-track instead, and [folder-structure.md](folder-structure.md) says when to propose one under "When to Propose a Sub-Track".
 
 A series parent qualifies when all three hold:
 

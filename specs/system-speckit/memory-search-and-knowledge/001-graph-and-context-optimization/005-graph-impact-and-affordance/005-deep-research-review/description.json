@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/005-graph-impact-and-affordance/005-deep-research-review",
   "description": "Phase 006 and the 006/007 remediation claimed broad closure across graph-impact and affordance work, but the shipped code, tests, and playbook",
   "keywords": [
@@ -16,7 +17,7 @@
     "tests",
     "playbook"
   ],
-  "lastUpdated": "2026-08-15T14:41:11.391Z",
+  "lastUpdated": "2026-11-13T10:05:08.723Z",
   "specId": "005",
   "folderSlug": "deep-research-review",
   "parentChain": [
@@ -26,6 +27,5 @@
     "005-graph-impact-and-affordance"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

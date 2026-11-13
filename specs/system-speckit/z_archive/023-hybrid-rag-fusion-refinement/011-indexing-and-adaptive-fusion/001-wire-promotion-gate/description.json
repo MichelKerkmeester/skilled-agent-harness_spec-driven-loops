@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/001-wire-promotion-gate",
   "description": "`runShadowEvaluation()` computes a `promotionGate` result (pass/fail with NDCG/MRR/Kendall-tau metrics and a recommendation), but nothing acts on it",
   "keywords": [
@@ -16,7 +17,7 @@
     "nothing",
     "acts"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.524Z",
+  "lastUpdated": "2026-11-13T10:05:34.354Z",
   "specId": "001",
   "folderSlug": "wire-promotion-gate",
   "parentChain": [
@@ -26,6 +27,5 @@
     "011-indexing-and-adaptive-fusion"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

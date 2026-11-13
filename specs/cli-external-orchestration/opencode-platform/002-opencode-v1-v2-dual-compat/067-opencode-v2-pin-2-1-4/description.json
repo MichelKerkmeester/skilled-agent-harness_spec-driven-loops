@@ -1,11 +1,17 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/067-opencode-v2-pin-2-1-4",
-  "description": "Phase 67: opencode-v2-pin-2-1-4",
+  "description": "The skill pinned OpenCode 2 at 2.0.32, but 2.1.4 is the npm `latest` and the installed version",
   "keywords": [
-    "phase",
-    "opencode-v2-pin-2-1-4"
+    "skill",
+    "pinned",
+    "opencode",
+    "npm",
+    "latest",
+    "installed",
+    "version"
   ],
-  "lastUpdated": "2026-10-24T07:52:29.850Z",
+  "lastUpdated": "2026-11-13T10:04:37.703Z",
   "specId": "067",
   "folderSlug": "opencode-v2-pin-2-1-4",
   "parentChain": [
@@ -14,6 +20,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

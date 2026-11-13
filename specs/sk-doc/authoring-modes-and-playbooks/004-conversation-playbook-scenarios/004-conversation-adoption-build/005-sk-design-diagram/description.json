@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/005-sk-design-diagram",
-  "description": "Phase 5: sk-design-diagram",
+  "description": "DIA-003 makes the style-guide write wait for explicit approval, and nothing scripts the approve or decline answer",
   "keywords": [
-    "phase",
-    "sk-design-diagram"
+    "dia-003",
+    "style-guide",
+    "write",
+    "wait",
+    "explicit",
+    "approval",
+    "nothing",
+    "scripts",
+    "approve",
+    "decline",
+    "answer"
   ],
-  "lastUpdated": "2026-11-02T18:33:50.631Z",
+  "lastUpdated": "2026-11-13T10:04:50.124Z",
   "specId": "005",
   "folderSlug": "sk-design-diagram",
   "parentChain": [
@@ -15,6 +25,5 @@
     "004-conversation-adoption-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

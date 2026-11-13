@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The five persona skills must become one skill without flattening their five distinct convergence contracts (coverage-saturation, dual-layer newInfoRatio, P0-gated verdict, two-of-three council, config-driven plateau)",
     "created_at": "2026-06-14T20:16:09.678Z",
-    "last_save_at": "2026-10-07T18:14:41.998Z",
+    "last_save_at": "2026-11-13T13:17:51.853Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +201,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a9ee66b08b54eb4c6b068009f5ac0150f416aa11d1114c45c9b2f5d92790ef8d",
+    "source_fingerprint": "sha256:4125f60791ea8b18bf381f21a358a13c75e82bdb30686e889226d30d247f061e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ea4d6e5ab264a5dd57bcc2dcd6731c95f70af80dcc918da592a8019c4a237fd5",
+      "spec.md": "325436c401fe506c0bd332ee3255f8d343ffe03a2655e5c3b3fc89521a8d212a",
       "plan.md": "380baaf5ecc3045c50db44b19158323fdecbf4301687196c9c76af946980865a",
       "tasks.md": "a76a9aaf1a451db1e5dc25f5298822e5d7dbf9b5b4d48d4d9b7953ac42a3b18d",
       "implementation-summary.md": "0ccaa6248ec3883fec45ef65d62b411730b9d3a597654c349cea2e0ba4600b54"

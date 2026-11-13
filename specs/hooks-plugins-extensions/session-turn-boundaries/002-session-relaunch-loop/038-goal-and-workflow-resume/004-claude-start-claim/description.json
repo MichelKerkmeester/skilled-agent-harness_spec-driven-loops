@@ -1,12 +1,20 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/004-claude-start-claim",
-  "description": "Phase 4: claude-start-claim",
+  "description": "The Claude start hook returns before it reads a startup payload when the Claude relaunch switch is off (`SYSTEMSESSIONRELAUNCHCLAUDEENABLED=0`)",
   "keywords": [
-    "phase",
-    "claude-start-claim"
+    "claude",
+    "start",
+    "hook",
+    "returns",
+    "reads",
+    "startup",
+    "payload",
+    "relaunch",
+    "switch",
+    "systemsessionrelaunchclaudeenabled"
   ],
-  "lastUpdated": "2026-11-13T03:56:24.640Z",
+  "lastUpdated": "2026-11-13T10:04:41.882Z",
   "specId": "004",
   "folderSlug": "claude-start-claim",
   "parentChain": [

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/z_archive/025-skill-doc-currency/004-hub-surface-drift-sweep",
   "description": "A naming migration and a hub consolidation each moved real things, and each left the prose behind",
   "keywords": [
@@ -13,14 +14,14 @@
     "prose",
     "behind"
   ],
-  "lastUpdated": "2026-08-15T14:41:01.491Z",
+  "lastUpdated": "2026-11-13T10:04:53.841Z",
   "specId": "004",
   "folderSlug": "hub-surface-drift-sweep",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "025-skill-doc-currency"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

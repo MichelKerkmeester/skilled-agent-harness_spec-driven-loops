@@ -1,20 +1,21 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research",
-  "description": "Deep research of the Skilled v4 release line v4.0.0.0 to v4.0.2.0: drift, bugs, alignment, over-engineering and extension opportunities",
+  "description": "Nineteen releases shipped between v4.0.0.0 (2026-09-21) and v4.0.2.0 (2026-11-08): 3,687 commits across spec kit, the authoring hubs, the CLI",
   "keywords": [
-    "deep",
-    "research",
-    "skilled",
-    "release",
-    "line",
-    "drift",
-    "bugs",
-    "alignment",
-    "over-engineering",
-    "extension",
-    "opportunities"
+    "nineteen",
+    "releases",
+    "shipped",
+    "between",
+    "commits",
+    "across",
+    "spec",
+    "kit",
+    "authoring",
+    "hubs",
+    "cli"
   ],
-  "lastUpdated": "2026-11-09T14:52:33.876Z",
+  "lastUpdated": "2026-11-13T10:05:23.577Z",
   "specId": "004",
   "folderSlug": "v4-release-line-research",
   "parentChain": [
@@ -42,6 +43,5 @@
     "09-11-26_15-46__the-deltas-and-each-child-s-synthesis-both-record.md",
     "09-11-26_15-46__unchanged-all-six-goal-criteria-hold-on.md",
     "09-11-26_15-52__the-depth-bars-for-001-and-005-are-now-confirmed.md"
-  ],
-  "level": "2"
+  ]
 }

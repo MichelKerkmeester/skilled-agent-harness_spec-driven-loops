@@ -15,11 +15,12 @@
     "under-wired",
     "command"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.458Z",
+  "lastUpdated": "2026-11-13T10:04:53.473Z",
   "specId": "002",
   "folderSlug": "core-alignment-fixes",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "035-create-doctor-skill-advisor-alignment"
   ],

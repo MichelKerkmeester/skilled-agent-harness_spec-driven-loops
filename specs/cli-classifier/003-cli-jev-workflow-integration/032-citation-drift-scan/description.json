@@ -1,16 +1,20 @@
 {
+  "level": "1",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/032-citation-drift-scan",
-  "description": "Test offline whether a Jev or Deem noul that asks if a cited file:line window still shows what the citing sentence claims finds drifted skill-doc citations better than a zero-call identifier-overlap check.",
+  "description": "Skill docs cite code as `file:line`, and agents follow those citations to decide what the code does",
   "keywords": [
-    "r24",
-    "jev",
-    "deem",
-    "offline",
-    "citation",
-    "drift",
-    "scan"
+    "skill",
+    "docs",
+    "cite",
+    "code",
+    "file",
+    "line",
+    "agents",
+    "follow",
+    "citations",
+    "decide"
   ],
-  "lastUpdated": "2026-09-29T13:27:36.000Z",
+  "lastUpdated": "2026-11-13T10:04:36.466Z",
   "specId": "032",
   "folderSlug": "citation-drift-scan",
   "parentChain": [
@@ -18,6 +22,5 @@
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

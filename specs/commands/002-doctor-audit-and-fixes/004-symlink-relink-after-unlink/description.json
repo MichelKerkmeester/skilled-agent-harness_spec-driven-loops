@@ -1,11 +1,21 @@
 {
+  "level": "2",
   "specFolder": "commands/002-doctor-audit-and-fixes/004-symlink-relink-after-unlink",
-  "description": "Phase 4: symlink-relink-after-unlink",
+  "description": "`createRunRecord()` in `symlink-engine.cjs` named the run folder `path.join(RUNSPATH, digest.slice(0",
   "keywords": [
-    "phase",
-    "symlink-relink-after-unlink"
+    "createrunrecord",
+    "symlink-engine",
+    "cjs",
+    "named",
+    "run",
+    "folder",
+    "path",
+    "join",
+    "runspath",
+    "digest",
+    "slice"
   ],
-  "lastUpdated": "2026-11-01T08:41:04.882Z",
+  "lastUpdated": "2026-11-13T10:04:39.412Z",
   "specId": "004",
   "folderSlug": "symlink-relink-after-unlink",
   "parentChain": [
@@ -13,6 +23,5 @@
     "002-doctor-audit-and-fixes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

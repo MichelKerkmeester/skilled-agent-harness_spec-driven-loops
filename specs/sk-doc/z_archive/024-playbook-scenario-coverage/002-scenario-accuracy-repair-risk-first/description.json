@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/z_archive/024-playbook-scenario-coverage/002-scenario-accuracy-repair-risk-first",
   "description": "A dedicated research pass walked existing scenarios against current behavior and found a class the census work",
   "keywords": [
@@ -16,14 +17,14 @@
     "census",
     "work"
   ],
-  "lastUpdated": "2026-08-15T14:41:01.448Z",
+  "lastUpdated": "2026-11-13T10:04:53.832Z",
   "specId": "002",
   "folderSlug": "scenario-accuracy-repair-risk-first",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "024-playbook-scenario-coverage"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/z_archive/025-nested-changelog-per-spec",
   "description": "System Spec Kit already had `implementation-summary.md`, but packet-local changelog history was ad hoc and drift-prone",
   "keywords": [
@@ -13,7 +14,7 @@
     "hoc",
     "drift-prone"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.694Z",
+  "lastUpdated": "2026-11-13T10:05:34.630Z",
   "specId": "025",
   "folderSlug": "nested-changelog-per-spec",
   "parentChain": [
@@ -23,6 +24,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "24-04-26_15-53__applied-cli-copilot-audit-fixes-added-missing.md"
-  ],
-  "level": "3"
+  ]
 }

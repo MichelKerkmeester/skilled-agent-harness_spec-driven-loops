@@ -16,11 +16,12 @@
     "staged",
     "release"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.280Z",
+  "lastUpdated": "2026-11-13T10:04:38.791Z",
   "specId": "009",
   "folderSlug": "release-verification-and-rollout",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "041-pi-remote-mobile-agent-like-cc"
   ],
   "memorySequence": 0,

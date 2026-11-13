@@ -1,11 +1,23 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/memory-search-and-knowledge/006-open-knowledge-format-adoption/003-context-type-unification",
-  "description": "Phase 3: context-type-unification",
+  "description": "`shared/context-types.ts` is the declared single source of truth with four values (`implementation`, `research`, `planning`, `general`) and two",
   "keywords": [
-    "phase",
-    "context-type-unification"
+    "shared",
+    "context-types",
+    "declared",
+    "single",
+    "source",
+    "truth",
+    "four",
+    "values",
+    "implementation",
+    "research",
+    "planning",
+    "general",
+    "two"
   ],
-  "lastUpdated": "2026-10-04T08:04:51.781Z",
+  "lastUpdated": "2026-11-13T10:05:14.908Z",
   "specId": "003",
   "folderSlug": "context-type-unification",
   "parentChain": [
@@ -14,6 +26,5 @@
     "006-open-knowledge-format-adoption"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

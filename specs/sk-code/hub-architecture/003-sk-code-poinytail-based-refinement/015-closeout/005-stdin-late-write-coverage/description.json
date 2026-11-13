@@ -1,11 +1,26 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/015-closeout/005-stdin-late-write-coverage",
-  "description": "Phase 5: stdin-late-write-coverage",
+  "description": "hook-stdin-deadline.test.mjs held seven entries to the 500 ms short-host deadline but tested a late write against only the Claude prompt shim, and the",
   "keywords": [
-    "phase",
-    "stdin-late-write-coverage"
+    "hook-stdin-deadline",
+    "test",
+    "mjs",
+    "held",
+    "seven",
+    "entries",
+    "short-host",
+    "deadline",
+    "tested",
+    "late",
+    "write",
+    "against",
+    "only",
+    "claude",
+    "prompt",
+    "shim"
   ],
-  "lastUpdated": "2026-10-11T04:49:35.660Z",
+  "lastUpdated": "2026-11-13T10:04:46.131Z",
   "specId": "005",
   "folderSlug": "stdin-late-write-coverage",
   "parentChain": [
@@ -15,6 +30,5 @@
     "015-closeout"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -15,11 +15,12 @@
     "validator",
     "counted"
   ],
-  "lastUpdated": "2026-08-28T16:24:15.233Z",
+  "lastUpdated": "2026-11-13T10:04:52.038Z",
   "specId": "018",
   "folderSlug": "swimlane-revert",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "014-sk-doc-parent"
   ],
   "memorySequence": 0,

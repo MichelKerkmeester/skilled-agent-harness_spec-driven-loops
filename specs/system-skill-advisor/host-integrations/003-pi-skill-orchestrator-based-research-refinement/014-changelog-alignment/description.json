@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/014-changelog-alignment",
-  "description": "Phase 14: changelog-alignment",
+  "description": "The advisor is the only skill whose changelog still uses three-part file names, 10 of its 12 entries, while the contract and the other 539 entries",
   "keywords": [
-    "phase",
-    "changelog-alignment"
+    "advisor",
+    "only",
+    "skill",
+    "whose",
+    "changelog",
+    "still",
+    "three-part",
+    "file",
+    "names",
+    "entries",
+    "while",
+    "contract"
   ],
-  "lastUpdated": "2026-09-28T11:14:33.165Z",
+  "lastUpdated": "2026-11-13T10:05:01.418Z",
   "specId": "014",
   "folderSlug": "changelog-alignment",
   "parentChain": [
@@ -14,6 +25,5 @@
     "003-pi-skill-orchestrator-based-research-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

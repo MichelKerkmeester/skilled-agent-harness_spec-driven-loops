@@ -1,11 +1,20 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/006-deep-loop-findings-parser",
-  "description": "Phase 6: deep-loop-findings-parser",
+  "description": "`parseIterationMarkdownFindings` (`iteration-findings.cjs` lines 5 to 32) trims every line of the `## Findings` section before matching `^\\d+\\.\\s+`,",
   "keywords": [
-    "phase",
-    "deep-loop-findings-parser"
+    "parseiterationmarkdownfindings",
+    "iteration-findings",
+    "cjs",
+    "lines",
+    "trims",
+    "every",
+    "line",
+    "findings",
+    "section",
+    "matching"
   ],
-  "lastUpdated": "2026-10-10T14:44:47.680Z",
+  "lastUpdated": "2026-11-13T10:04:45.856Z",
   "specId": "006",
   "folderSlug": "deep-loop-findings-parser",
   "parentChain": [
@@ -15,6 +24,5 @@
     "011-round-four-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

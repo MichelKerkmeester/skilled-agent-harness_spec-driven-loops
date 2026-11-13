@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/015-closeout/003-sk-git-playbook-changelog",
-  "description": "Phase 3: sk-git-playbook-changelog",
+  "description": "Commit 410df0acce changed the sk-git playbook scenario doctor-git-hooks-list from thirteen to fourteen gates when the commit hook gained its skill",
   "keywords": [
-    "phase",
-    "sk-git-playbook-changelog"
+    "commit",
+    "410df0acce",
+    "changed",
+    "sk-git",
+    "playbook",
+    "scenario",
+    "doctor-git-hooks-list",
+    "thirteen",
+    "fourteen",
+    "gates",
+    "hook",
+    "gained",
+    "skill"
   ],
-  "lastUpdated": "2026-10-11T04:49:33.617Z",
+  "lastUpdated": "2026-11-13T10:04:46.126Z",
   "specId": "003",
   "folderSlug": "sk-git-playbook-changelog",
   "parentChain": [
@@ -15,6 +27,5 @@
     "015-closeout"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

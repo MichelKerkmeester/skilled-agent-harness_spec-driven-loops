@@ -6,6 +6,7 @@
     "sk-doc snippet template alignment",
     "catalog OVERVIEW canonical"
   ],
+  "level": 2,
   "contextType": "implementation",
   "importance_tier": "important",
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/019-feature-catalog-shape-realignment",
@@ -20,7 +21,7 @@
     "sk-doc",
     "shape"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.664Z",
+  "lastUpdated": "2026-11-13T10:05:03.643Z",
   "specId": "019",
   "folderSlug": "feature-catalog-shape-realignment",
   "parentChain": [
@@ -31,6 +32,5 @@
     "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

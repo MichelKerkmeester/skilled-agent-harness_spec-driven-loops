@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/007-follow-up-fixes/002-leaf-generator-ignores",
-  "description": "Phase 2: leaf-generator-ignores",
+  "description": "`walkLeafFiles` in `.skilled/skills/sk-doc/sk-create-skill/scripts/generate-leaf-manifest.cjs` (lines 96 to 130) lists every regular file under a",
   "keywords": [
-    "phase",
-    "leaf-generator-ignores"
+    "walkleaffiles",
+    "skilled",
+    "skills",
+    "sk-doc",
+    "sk-create-skill",
+    "scripts",
+    "generate-leaf-manifest",
+    "cjs",
+    "lines",
+    "lists",
+    "every",
+    "regular",
+    "file"
   ],
-  "lastUpdated": "2026-10-10T05:26:27.082Z",
+  "lastUpdated": "2026-11-13T10:04:45.307Z",
   "specId": "002",
   "folderSlug": "leaf-generator-ignores",
   "parentChain": [
@@ -15,6 +27,5 @@
     "007-follow-up-fixes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

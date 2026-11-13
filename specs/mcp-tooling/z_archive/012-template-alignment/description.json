@@ -15,11 +15,12 @@
     "reference",
     "asset"
   ],
-  "lastUpdated": "2026-08-15T14:40:56.095Z",
+  "lastUpdated": "2026-11-13T10:04:42.743Z",
   "specId": "012",
   "folderSlug": "template-alignment",
   "parentChain": [
-    "mcp-tooling"
+    "mcp-tooling",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

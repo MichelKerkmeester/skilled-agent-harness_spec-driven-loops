@@ -467,9 +467,10 @@ function normalizeBasePaths(basePaths: string[]): string[] {
 }
 
 /**
- * Returns whether the description scanner excludes z_* staging and archive
- * folders from the descriptions.json cache. Default-on so the global cache
- * stops admitting prefixed folders; set
+ * Returns whether the description scanner excludes z-future staging folders
+ * from the descriptions.json cache. z_archive folders stay in that cache so
+ * archived packets remain discoverable. Default-on so the global cache stops
+ * admitting z-future folders; set
  * SPECKIT_GENERATED_METADATA_Z_EXCLUSION=false to restore the prior scanner
  * behavior that walked them. Read fresh each call so a caller can toggle it.
  */
@@ -482,8 +483,8 @@ function shouldSkipDirectoryName(name: string): boolean {
   if (normalizedName.startsWith('.')) {
     return true;
   }
-  // The local skip set omits z_*, so route the prefixed staging and archive
-  // folders through the authoritative generated-metadata exclusion instead.
+  // The local skip set omits z-future staging, so route those folders through
+  // the shared generated-metadata exclusion; z_archive folders are not skipped.
   if (isGeneratedMetadataZExclusionEnabled() && isExcludedFromGeneratedMetadata(normalizedName)) {
     return true;
   }

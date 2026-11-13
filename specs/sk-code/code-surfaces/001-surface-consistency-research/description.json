@@ -1,19 +1,19 @@
 {
   "level": "2",
   "specFolder": "sk-code/code-surfaces/001-surface-consistency-research",
-  "description": "Research how to make sk-code-skilled, sk-code-obsidian and sk-code-webflow consistent in skill setup and reference architecture",
+  "description": "The sk-code hub has three code surfaces that route the same way but are built differently",
   "keywords": [
-    "research",
-    "sk-code-skilled",
-    "sk-code-obsidian",
-    "sk-code-webflow",
-    "consistent",
-    "skill",
-    "setup",
-    "reference",
-    "architecture"
+    "sk-code",
+    "hub",
+    "three",
+    "code",
+    "surfaces",
+    "route",
+    "same",
+    "way",
+    "differently"
   ],
-  "lastUpdated": "2026-11-08T14:48:52.410Z",
+  "lastUpdated": "2026-11-13T10:04:43.388Z",
   "specId": "001",
   "folderSlug": "surface-consistency-research",
   "parentChain": [

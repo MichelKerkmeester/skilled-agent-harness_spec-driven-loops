@@ -20,7 +20,9 @@
 //
 // An undeclared non-numbered folder, a symlinked sub-track and, in the working
 // tree, a numbered folder without spec.md beside sub-tracks each print one
-// diagnostic. Diagnostics are advisory and never change the exit code.
+// diagnostic. A declared sub-track with no z_archive folder is checked in the
+// working tree only and prints one too. Diagnostics are advisory and never
+// change the exit code.
 //
 // With --rev <commit> the sweep reads that commit instead of the working tree.
 // The pre-push gate uses it, because a shared checkout carries other sessions'
@@ -37,6 +39,9 @@
 //             1 = at least one track differs, is mixed or has unreadable metadata,
 //             2 = a rejected argument or a commit that cannot be read.
 // ───────────────────────────────────────────────────────────────────
+
+import fs from 'node:fs';
+import path from 'node:path';
 
 import {
   compareTrackChildren,
@@ -86,6 +91,18 @@ function main() {
   } else {
     tracks = readWorkingTreeTracks(specsRoot);
     diagnostics = tracks.diagnostics;
+    const archiveAdvisories = [];
+    for (const track of tracks) {
+      if (!track.name.includes('/')) {
+        continue;
+      }
+      const archive = path.join(specsRoot, track.name, 'z_archive');
+      const found = fs.statSync(archive, { throwIfNoEntry: false });
+      if (!found?.isDirectory()) {
+        archiveAdvisories.push(`${track.name}: sub-track has no z_archive/; seed it with refresh-track-roots.mjs --apply`);
+      }
+    }
+    diagnostics = [...diagnostics, ...archiveAdvisories];
   }
 
   if (skipped.length > 0) {

@@ -11,11 +11,12 @@
     "wrapper",
     "shape"
   ],
-  "lastUpdated": "2026-08-30T07:16:08.857Z",
+  "lastUpdated": "2026-11-13T10:04:38.586Z",
   "specId": "011",
   "folderSlug": "hook-truth-and-runtime-readmes",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "029-cli-devin-revival"
   ],
   "memorySequence": 0,

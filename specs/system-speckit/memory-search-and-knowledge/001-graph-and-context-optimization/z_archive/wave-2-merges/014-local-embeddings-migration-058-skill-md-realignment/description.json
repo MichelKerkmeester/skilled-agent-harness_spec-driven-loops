@@ -11,12 +11,13 @@
     "drift",
     "gaps"
   ],
-  "lastUpdated": "2026-08-15T14:41:11.820Z",
+  "lastUpdated": "2026-11-13T10:05:09.850Z",
   "specId": "014",
   "folderSlug": "local-embeddings-migration-058-skill-md-realignment",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "z_archive",
     "wave-2-merges"
   ],

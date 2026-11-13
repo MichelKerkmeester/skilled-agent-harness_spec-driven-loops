@@ -1,17 +1,21 @@
 {
+  "level": "1",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/034-hvr-reader-needed-lens",
-  "description": "Test offline whether a Jev or Deem noul flags three reader-needed voice tells, synonym cycling, significance inflation and false ranges, better than the HVR scanner's floor, which flags none of them.",
+  "description": "The Human Voice Rules scanner settles only what a machine can settle without reading for meaning",
   "keywords": [
-    "r22",
-    "jev",
-    "deem",
-    "offline",
-    "hvr",
-    "reader",
-    "needed",
-    "lens"
+    "human",
+    "voice",
+    "rules",
+    "scanner",
+    "settles",
+    "only",
+    "machine",
+    "settle",
+    "without",
+    "reading",
+    "meaning"
   ],
-  "lastUpdated": "2026-09-29T13:27:36.000Z",
+  "lastUpdated": "2026-11-13T10:04:36.511Z",
   "specId": "034",
   "folderSlug": "hvr-reader-needed-lens",
   "parentChain": [
@@ -19,6 +23,5 @@
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

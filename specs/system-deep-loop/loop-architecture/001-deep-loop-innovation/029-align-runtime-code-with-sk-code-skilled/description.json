@@ -1,12 +1,20 @@
 {
   "level": "2",
   "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/029-align-runtime-code-with-sk-code-skilled",
-  "description": "Phase 29: align-runtime-code-with-sk-code-skilled",
+  "description": "Code under `.skilled/skills/system-deep-loop/runtime/` does not follow the sk-code-skilled comment and structure rules in",
   "keywords": [
-    "phase",
-    "align-runtime-code-with-sk-code-skilled"
+    "code",
+    "skilled",
+    "skills",
+    "system-deep-loop",
+    "runtime",
+    "follow",
+    "sk-code-skilled",
+    "comment",
+    "structure",
+    "rules"
   ],
-  "lastUpdated": "2026-09-30T22:06:48.496Z",
+  "lastUpdated": "2026-11-13T10:04:56.056Z",
   "specId": "029",
   "folderSlug": "align-runtime-code-with-sk-code-skilled",
   "parentChain": [

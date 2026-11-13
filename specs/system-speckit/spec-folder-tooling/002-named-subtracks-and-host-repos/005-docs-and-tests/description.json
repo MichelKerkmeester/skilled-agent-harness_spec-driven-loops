@@ -1,12 +1,19 @@
 {
   "level": "1",
   "specFolder": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/005-docs-and-tests",
-  "description": "Phase 5: docs-and-tests",
+  "description": "`folder-structure.md:115` requires a sub-track `description.json` to carry `specId` set to `<track>/<sub-track>`",
   "keywords": [
-    "phase",
-    "docs-and-tests"
+    "folder-structure",
+    "requires",
+    "sub-track",
+    "description",
+    "json",
+    "carry",
+    "specid",
+    "set",
+    "track"
   ],
-  "lastUpdated": "2026-11-08T01:44:32.816Z",
+  "lastUpdated": "2026-11-13T10:05:32.331Z",
   "specId": "005",
   "folderSlug": "docs-and-tests",
   "parentChain": [

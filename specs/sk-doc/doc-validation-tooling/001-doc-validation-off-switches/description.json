@@ -1,13 +1,14 @@
 {
   "level": "2",
   "specFolder": "sk-doc/doc-validation-tooling/001-doc-validation-off-switches",
-  "description": "Doc validation off switches",
+  "description": "`SPECKITSKIPVALIDATION` exists but traps commits",
   "keywords": [
-    "doc",
-    "validation",
-    "switches"
+    "speckitskipvalidation",
+    "exists",
+    "traps",
+    "commits"
   ],
-  "lastUpdated": "2026-09-28T20:03:09.186Z",
+  "lastUpdated": "2026-11-13T10:04:51.569Z",
   "specId": "001",
   "folderSlug": "doc-validation-off-switches",
   "parentChain": [

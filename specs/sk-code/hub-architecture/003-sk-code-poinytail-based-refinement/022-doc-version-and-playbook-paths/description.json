@@ -1,13 +1,22 @@
 {
+  "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths",
-  "description": "Doc version and playbook paths",
+  "description": "Phase `021-open-ends-remediation/003-doc-and-catalog-truth` kept `version` on `SKILL.md` only and removed the line from 2,845 child docs in commit",
   "keywords": [
-    "doc",
+    "phase",
+    "021-open-ends-remediation",
+    "003-doc-and-catalog-truth",
+    "kept",
     "version",
-    "playbook",
-    "paths"
+    "skill",
+    "only",
+    "removed",
+    "line",
+    "child",
+    "docs",
+    "commit"
   ],
-  "lastUpdated": "2026-10-12T05:21:01.435Z",
+  "lastUpdated": "2026-11-13T10:04:46.583Z",
   "specId": "022",
   "folderSlug": "doc-version-and-playbook-paths",
   "parentChain": [
@@ -16,6 +25,5 @@
     "003-sk-code-poinytail-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

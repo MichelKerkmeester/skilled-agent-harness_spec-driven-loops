@@ -1,11 +1,17 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring/007-playbook-catalog-readme-alignment",
-  "description": "Phase 7: playbook-catalog-readme-alignment",
+  "description": "A fresh v2.3 scaffold carries value tokens and a Draft warning",
   "keywords": [
-    "phase",
-    "playbook-catalog-readme-alignment"
+    "fresh",
+    "scaffold",
+    "carries",
+    "value",
+    "tokens",
+    "draft",
+    "warning"
   ],
-  "lastUpdated": "2026-10-23T11:27:25.722Z",
+  "lastUpdated": "2026-11-13T10:05:24.637Z",
   "specId": "007",
   "folderSlug": "playbook-catalog-readme-alignment",
   "parentChain": [
@@ -14,6 +20,5 @@
     "003-weak-model-spec-authoring"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

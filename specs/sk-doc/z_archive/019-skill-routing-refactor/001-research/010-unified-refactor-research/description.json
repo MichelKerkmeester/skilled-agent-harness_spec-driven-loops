@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/010-unified-refactor-research",
   "description": "The eight source ideas overlap at their most important boundaries: outcome typing, uncertainty recovery, policy posture, compiled identity, authority,",
   "keywords": [
@@ -18,15 +19,15 @@
     "identity",
     "authority"
   ],
-  "lastUpdated": "2026-08-15T14:40:59.365Z",
+  "lastUpdated": "2026-11-13T10:04:52.676Z",
   "specId": "010",
   "folderSlug": "unified-refactor-research",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "001-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

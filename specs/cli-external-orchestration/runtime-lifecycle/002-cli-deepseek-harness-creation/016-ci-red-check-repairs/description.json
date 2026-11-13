@@ -1,12 +1,20 @@
 {
   "level": "1",
   "specFolder": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/016-ci-red-check-repairs",
-  "description": "Phase 16: ci-red-check-repairs",
+  "description": "`.dsh/prompts/local-skilled-alignment.md` was committed although its source, the operator's private command, is gitignored",
   "keywords": [
-    "phase",
-    "ci-red-check-repairs"
+    "dsh",
+    "prompts",
+    "local-skilled-alignment",
+    "committed",
+    "although",
+    "source",
+    "operator",
+    "private",
+    "command",
+    "gitignored"
   ],
-  "lastUpdated": "2026-11-08T17:09:32.536Z",
+  "lastUpdated": "2026-11-13T10:04:38.263Z",
   "specId": "016",
   "folderSlug": "ci-red-check-repairs",
   "parentChain": [

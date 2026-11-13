@@ -10,11 +10,12 @@
     "executor",
     "kind"
   ],
-  "lastUpdated": "2026-08-30T07:16:08.805Z",
+  "lastUpdated": "2026-11-13T10:04:38.571Z",
   "specId": "002",
   "folderSlug": "deep-loop-executor-support",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "029-cli-devin-revival"
   ],
   "memorySequence": 0,

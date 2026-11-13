@@ -13,11 +13,12 @@
     "bytes",
     "readme"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.202Z",
+  "lastUpdated": "2026-11-13T10:04:49.449Z",
   "specId": "001",
   "folderSlug": "packet-root",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "014-template-conformance",
     "002-design-interface"
   ],

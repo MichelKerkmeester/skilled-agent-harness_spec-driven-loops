@@ -1,11 +1,21 @@
 {
+  "level": "2",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/016-deem-local-hardening",
-  "description": "Phase 16: deem-local-hardening",
+  "description": "The local Deem server sends `Access-Control-Allow-Origin: ` on every answer (`serve/deemserver.py:809`) and on every preflight (`:837`) and checks no",
   "keywords": [
-    "phase",
-    "deem-local-hardening"
+    "local",
+    "deem",
+    "server",
+    "sends",
+    "access-control-allow-origin",
+    "every",
+    "answer",
+    "serve",
+    "deemserver",
+    "preflight",
+    "checks"
   ],
-  "lastUpdated": "2026-09-27T11:50:22.914Z",
+  "lastUpdated": "2026-11-13T10:04:35.961Z",
   "specId": "016",
   "folderSlug": "deem-local-hardening",
   "parentChain": [
@@ -13,6 +23,5 @@
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

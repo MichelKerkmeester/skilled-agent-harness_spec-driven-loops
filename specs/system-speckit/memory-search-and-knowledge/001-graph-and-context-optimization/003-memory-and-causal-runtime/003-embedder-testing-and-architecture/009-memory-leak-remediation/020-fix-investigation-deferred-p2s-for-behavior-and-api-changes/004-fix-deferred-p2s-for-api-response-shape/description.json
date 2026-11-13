@@ -23,7 +23,7 @@
     "response-shape",
     "surface"
   ],
-  "lastUpdated": "2026-09-11T16:49:41.376Z",
+  "lastUpdated": "2026-11-13T10:05:08.115Z",
   "specId": "004",
   "folderSlug": "fix-deferred-p2s-for-api-response-shape",
   "parentChain": [

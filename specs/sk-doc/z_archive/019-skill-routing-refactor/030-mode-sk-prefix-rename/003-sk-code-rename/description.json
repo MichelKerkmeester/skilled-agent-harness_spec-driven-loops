@@ -1,4 +1,5 @@
 {
+  "level": 1,
   "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/003-sk-code-rename",
   "description": "Move code-quality, code-review, code-webflow and code-skilled to sk-code-* names, fix the benchmark engine prefixes that hardcoded the old names, and",
   "keywords": [
@@ -15,15 +16,15 @@
     "hardcoded",
     "old"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.282Z",
+  "lastUpdated": "2026-11-13T10:04:53.387Z",
   "specId": "003",
   "folderSlug": "sk-code-rename",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "030-mode-sk-prefix-rename"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 1
+  "memoryNameHistory": []
 }

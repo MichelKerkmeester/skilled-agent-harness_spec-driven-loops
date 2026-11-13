@@ -21,11 +21,12 @@
     "modes",
     "read-only"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.665Z",
+  "lastUpdated": "2026-11-13T10:04:53.691Z",
   "specId": "001",
   "folderSlug": "sk-code",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration"
   ],

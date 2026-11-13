@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The external Claude procedure set contains useful design-manager behaviors, but exposing those procedures as fourteen public OpenCode skills would fragment the `sk-design` surface and create a taxonomy users did not ask for",
     "created_at": "2026-07-05T00:00:00.000Z",
-    "last_save_at": "2026-10-08T19:29:53.555Z",
+    "last_save_at": "2026-11-13T13:14:10.772Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,13 +222,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40b5c22732bb19b30efdc723f07880f2e6eb01cf22ab550957914fcbfc81358a",
+    "source_fingerprint": "sha256:258a2ac454b0692f01932140dca878243ca2b52ee86434c308e5b35c9b1bcd4f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c2af4987202e25b6b3400532f4d813c052077b644a3c2dba92ce27ac44cc9d31",
+      "spec.md": "373a69c6453df63d592a59240fc35ddc4ab3b768c5af0680eb8d7024c37c924c",
       "plan.md": "4dba17fb80b240bc0035fc95dc44545df5936c0adb12bf46b56f3d829908a037",
       "tasks.md": "968414d3d7051357ec0cf675b8e27399484006aee3f19c2ceea50259a6b28503",
-      "decision-record.md": "966d4e50ec65cdfc4bff7f175ae09cabe9e81bcd1e3e3369a0fc9b13ebcd7c13",
+      "decision-record.md": "68d9b670f4d3be0d41f79fd541c3db3512e62f68827286fcd31ee2efe41f9d17",
       "implementation-summary.md": "8e22aff3dbe5959002cfa1e2cf9125685e90f0493023526d35926c3f39608f88"
     },
     "last_active_child_id": null,

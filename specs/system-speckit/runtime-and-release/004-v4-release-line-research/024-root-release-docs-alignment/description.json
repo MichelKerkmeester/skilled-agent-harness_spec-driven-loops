@@ -1,17 +1,18 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/024-root-release-docs-alignment",
-  "description": "Align the root release, contributing and security docs with the current repository",
+  "description": "Three root documents told readers things the repository no longer does",
   "keywords": [
-    "align",
+    "three",
     "root",
-    "release",
-    "contributing",
-    "security",
-    "docs",
-    "current",
-    "repository"
+    "documents",
+    "told",
+    "readers",
+    "things",
+    "repository",
+    "longer"
   ],
-  "lastUpdated": "2026-11-09T19:57:49.735Z",
+  "lastUpdated": "2026-11-13T10:05:23.552Z",
   "specId": "024",
   "folderSlug": "root-release-docs-alignment",
   "parentChain": [
@@ -20,6 +21,5 @@
     "004-v4-release-line-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

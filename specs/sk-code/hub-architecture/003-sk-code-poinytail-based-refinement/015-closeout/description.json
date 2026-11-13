@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/015-closeout",
-  "description": "Phase 15: closeout",
+  "description": "The epic's phases 012 to 014 and the feature-catalog track each closed with items marked deferred, handed off or left to the master orchestrator",
   "keywords": [
-    "phase",
-    "closeout"
+    "epic",
+    "phases",
+    "feature-catalog",
+    "track",
+    "closed",
+    "items",
+    "marked",
+    "deferred",
+    "handed",
+    "left",
+    "master",
+    "orchestrator"
   ],
-  "lastUpdated": "2026-10-11T04:49:21.196Z",
+  "lastUpdated": "2026-11-13T10:04:46.145Z",
   "specId": "015",
   "folderSlug": "closeout",
   "parentChain": [
@@ -14,6 +25,5 @@
     "003-sk-code-poinytail-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

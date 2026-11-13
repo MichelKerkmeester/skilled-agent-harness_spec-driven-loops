@@ -17,11 +17,12 @@
     "parent-hub",
     "frame"
   ],
-  "lastUpdated": "2026-08-30T09:32:20.936Z",
+  "lastUpdated": "2026-11-13T10:04:52.661Z",
   "specId": "008",
   "folderSlug": "oob-glm-parallel-research",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "001-research"
   ],

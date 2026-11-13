@@ -15,11 +15,12 @@
     "archived",
     "packet"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.168Z",
+  "lastUpdated": "2026-11-13T10:04:38.640Z",
   "specId": "003",
   "folderSlug": "cli-cursor-skill-packet",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "030-cli-cursor-creation"
   ],
   "memorySequence": 0,

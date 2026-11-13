@@ -17,11 +17,12 @@
     "names",
     "kebab-case"
   ],
-  "lastUpdated": "2026-08-30T08:03:51.713Z",
+  "lastUpdated": "2026-11-13T10:04:53.615Z",
   "specId": "001",
   "folderSlug": "create-skill-and-packaging",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "003-create-generators-and-templates"
   ],

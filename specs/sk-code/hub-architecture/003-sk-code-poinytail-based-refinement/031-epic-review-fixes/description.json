@@ -1,11 +1,17 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/031-epic-review-fixes",
-  "description": "Phase 31: epic-review-fixes",
+  "description": "The epic deep review confirmed three small defects",
   "keywords": [
-    "phase",
-    "epic-review-fixes"
+    "epic",
+    "deep",
+    "review",
+    "confirmed",
+    "three",
+    "small",
+    "defects"
   ],
-  "lastUpdated": "2026-10-14T18:04:51.842Z",
+  "lastUpdated": "2026-11-13T10:04:46.908Z",
   "specId": "031",
   "folderSlug": "epic-review-fixes",
   "parentChain": [
@@ -14,6 +20,5 @@
     "003-sk-code-poinytail-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

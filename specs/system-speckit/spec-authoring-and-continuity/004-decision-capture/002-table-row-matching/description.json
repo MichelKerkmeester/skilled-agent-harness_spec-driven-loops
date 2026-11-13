@@ -1,12 +1,22 @@
 {
   "level": "2",
   "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/002-table-row-matching",
-  "description": "Phase 2: table-row-matching",
+  "description": "The writer reuses an id only through a `source:` HTML comment under an appendix heading or through an unkeyed appendix item with the same question and",
   "keywords": [
-    "phase",
-    "table-row-matching"
+    "writer",
+    "reuses",
+    "only",
+    "source",
+    "html",
+    "comment",
+    "appendix",
+    "heading",
+    "unkeyed",
+    "item",
+    "same",
+    "question"
   ],
-  "lastUpdated": "2026-11-02T20:58:44.140Z",
+  "lastUpdated": "2026-11-13T10:05:29.655Z",
   "specId": "002",
   "folderSlug": "table-row-matching",
   "parentChain": [

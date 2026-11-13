@@ -1,20 +1,25 @@
 {
+  "level": "2",
   "specFolder": "sk-code/quality-and-review-modes/004-portable-code-modes/004-quality-resolver",
-  "description": "Quality resolver: multi-file explain with surface skill folders, checklist seats and rule overrides",
+  "description": "`quality-gate.cjs --explain` accepts exactly one path, so a caller with a ten-file change makes ten calls, and a second path is a `USAGE` error",
   "keywords": [
-    "quality",
-    "resolver",
-    "multi-file",
+    "quality-gate",
+    "cjs",
     "explain",
-    "surface",
-    "skill",
-    "folders",
-    "checklist",
-    "seats",
-    "rule",
-    "overrides"
+    "accepts",
+    "exactly",
+    "one",
+    "path",
+    "caller",
+    "ten-file",
+    "change",
+    "ten",
+    "calls",
+    "second",
+    "usage",
+    "error"
   ],
-  "lastUpdated": "2026-10-27T21:19:05.619Z",
+  "lastUpdated": "2026-11-13T10:04:47.156Z",
   "specId": "004",
   "folderSlug": "quality-resolver",
   "parentChain": [
@@ -23,6 +28,5 @@
     "004-portable-code-modes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

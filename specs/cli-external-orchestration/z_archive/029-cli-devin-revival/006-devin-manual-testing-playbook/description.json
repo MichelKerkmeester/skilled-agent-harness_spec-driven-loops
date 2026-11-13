@@ -16,11 +16,12 @@
     "canonical",
     "no-mocking"
   ],
-  "lastUpdated": "2026-08-30T07:16:08.828Z",
+  "lastUpdated": "2026-11-13T10:04:38.577Z",
   "specId": "006",
   "folderSlug": "devin-manual-testing-playbook",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "029-cli-devin-revival"
   ],
   "memorySequence": 0,

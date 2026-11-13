@@ -1,11 +1,20 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/056-command-folder-guard-and-readme-baseline",
-  "description": "Phase 56: command-folder-guard-and-readme-baseline",
+  "description": "Phase 055 proved the `.markdown` suffix works by reading two command lists on each version",
   "keywords": [
     "phase",
-    "command-folder-guard-and-readme-baseline"
+    "proved",
+    "markdown",
+    "suffix",
+    "works",
+    "reading",
+    "two",
+    "command",
+    "lists",
+    "version"
   ],
-  "lastUpdated": "2026-10-22T14:23:52.375Z",
+  "lastUpdated": "2026-11-13T10:04:37.671Z",
   "specId": "056",
   "folderSlug": "command-folder-guard-and-readme-baseline",
   "parentChain": [
@@ -14,6 +23,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

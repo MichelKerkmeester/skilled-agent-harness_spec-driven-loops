@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/003-stale-jev-canary",
-  "description": "Phase 3: stale-jev-canary",
+  "description": "The case `jev-transport-single` expects the prompt \"use jev choice to pick a queue\" to route to mode cli-jev in the cli-external-orchestration hub",
   "keywords": [
-    "phase",
-    "stale-jev-canary"
+    "case",
+    "jev-transport-single",
+    "expects",
+    "prompt",
+    "jev",
+    "choice",
+    "pick",
+    "queue",
+    "route",
+    "mode",
+    "cli-jev",
+    "cli-external-orchestration",
+    "hub"
   ],
-  "lastUpdated": "2026-10-10T19:27:04.801Z",
+  "lastUpdated": "2026-11-13T10:04:45.961Z",
   "specId": "003",
   "folderSlug": "stale-jev-canary",
   "parentChain": [
@@ -15,6 +27,5 @@
     "013-root-cause-and-ux-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

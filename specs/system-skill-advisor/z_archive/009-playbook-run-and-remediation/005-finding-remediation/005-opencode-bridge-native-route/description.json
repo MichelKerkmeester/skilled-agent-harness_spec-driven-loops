@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation/005-opencode-bridge-native-route",
   "description": "`mk-skill-advisor-bridge.mjs` fails open to the python route (`route:\"python\"`, `SYSTEMSKILLADVISORUNAVAILABLE`) even though",
   "keywords": [
@@ -12,7 +13,7 @@
     "even",
     "though"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.190Z",
+  "lastUpdated": "2026-11-13T10:05:03.065Z",
   "specId": "005",
   "folderSlug": "opencode-bridge-native-route",
   "parentChain": [
@@ -24,6 +25,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "26-05-26_22-20__executed-all-46-playbook-scenarios-across-9.md"
-  ],
-  "level": "1"
+  ]
 }

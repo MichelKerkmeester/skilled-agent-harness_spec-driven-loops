@@ -20,11 +20,12 @@
     "pilot",
     "already"
   ],
-  "lastUpdated": "2026-08-16T18:06:00.736Z",
+  "lastUpdated": "2026-11-13T10:04:53.280Z",
   "specId": "020",
   "folderSlug": "root-router-document-standard",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program"
   ],

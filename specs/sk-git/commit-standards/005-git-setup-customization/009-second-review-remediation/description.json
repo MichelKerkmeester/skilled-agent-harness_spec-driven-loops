@@ -1,12 +1,21 @@
 {
   "level": "1",
   "specFolder": "sk-git/commit-standards/005-git-setup-customization/009-second-review-remediation",
-  "description": "Phase 9: second-review-remediation",
+  "description": "The `/doctor:git setup` battery passes on its own checkout but gives wrong answers elsewhere",
   "keywords": [
-    "phase",
-    "second-review-remediation"
+    "doctor",
+    "git",
+    "setup",
+    "battery",
+    "passes",
+    "own",
+    "checkout",
+    "gives",
+    "wrong",
+    "answers",
+    "elsewhere"
   ],
-  "lastUpdated": "2026-10-16T21:05:20.034Z",
+  "lastUpdated": "2026-11-13T10:04:54.266Z",
   "specId": "009",
   "folderSlug": "second-review-remediation",
   "parentChain": [

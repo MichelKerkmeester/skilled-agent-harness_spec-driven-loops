@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers",
+  "parent_id": "system-speckit/spec-authoring-and-continuity",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "purpose retention across handovers",
+      "keep a packet s core purpose across handovers",
+      "purpose retention across handovers plan",
+      "purpose retention across handovers tasks",
+      "006-purpose-retention-across-handovers operator decisions",
+      "purpose retention across handovers implementation summary",
+      "why compaction loses the purpose",
+      "purpose row in the resume brief"
+    ],
+    "key_topics": [
+      "purpose",
+      "retention",
+      "across",
+      "handovers",
+      "keep",
+      "packet",
+      "core",
+      "plan",
+      "tasks",
+      "006-purpose-retention-across-handovers",
+      "operator",
+      "decisions"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/resource-map.md",
+      "templates/core/spec.md.tmpl",
+      "templates/packet-types/phase-parent.spec.md.tmpl",
+      "templates/addons/handover.md.tmpl",
+      "templates/addons/acceptance-criteria.md.tmpl",
+      "templates/addons/goal.md.tmpl",
+      "runtime/hooks/claude/compact-inject.ts",
+      "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md",
+      "research/lineages/deepseek-1/research.md",
+      "research/lineages/deepseek-2/research.md",
+      "runtime/lib/continuity/thin-continuity-record.ts",
+      ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md.tmpl",
+        "kind": "file",
+        "path": "templates/core/spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "phase-parent.spec.md.tmpl",
+        "kind": "file",
+        "path": "templates/packet-types/phase-parent.spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md.tmpl",
+        "kind": "file",
+        "path": "templates/addons/handover.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md.tmpl",
+        "kind": "file",
+        "path": "templates/addons/acceptance-criteria.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md.tmpl",
+        "kind": "file",
+        "path": "templates/addons/goal.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "compact-inject.ts",
+        "kind": "code",
+        "path": "runtime/hooks/claude/compact-inject.ts",
+        "source": "derived"
+      },
+      {
+        "name": "thin-continuity-record.ts",
+        "kind": "code",
+        "path": "runtime/lib/continuity/thin-continuity-record.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-state.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handover Summary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Transfer",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Run",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator reported on 2026-11-13 that the core reason, problem, purpose or user need behind a piece of work gets lost after several in-session handovers (relaunch hops) or context compactions",
+    "created_at": "2026-11-13T20:59:19Z",
+    "last_save_at": "2026-11-13T21:20:10.679Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:f80e49b66e45b5e9f5c5f6b58c07fb4eb013b8d79e313c52d68f48c2c64042d8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "7e3737aba6dbc49cf16b3779ec4a2fad7715f8b641e064cd199706d0be3633f7",
+      "plan.md": "4d2c2864ea17ecda1f7c0ba309d5417972de1bf3752db73d878ac865c10a5112",
+      "tasks.md": "8a27e74d4d2e5fc872676c93a8aaf45e80ce01225d1b3ffd942cf96096e10ec6",
+      "decision-record.md": "8190a2d4daf4df60edd4e4f35fe7c36670b48fa19b753f4e0573f40359ec3a77",
+      "implementation-summary.md": "7bc11e64ccb517398b3efb57af2155033c92c6c934b37ac111d38c6c70f4d1fe",
+      "research/research.md": "0b60b02a67c79f092bb66566007ad66c84bf404fc165c2fcd1ebf4e7a183a9a3"
+    },
+    "last_active_at": null
+  }
+}

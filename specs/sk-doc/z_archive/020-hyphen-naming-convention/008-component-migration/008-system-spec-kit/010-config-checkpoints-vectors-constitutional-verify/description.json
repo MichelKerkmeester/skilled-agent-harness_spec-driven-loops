@@ -17,11 +17,12 @@
     "constitutional",
     "surfaces"
   ],
-  "lastUpdated": "2026-08-30T08:03:53.126Z",
+  "lastUpdated": "2026-11-13T10:04:53.742Z",
   "specId": "010",
   "folderSlug": "config-checkpoints-vectors-constitutional-verify",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "008-system-spec-kit"

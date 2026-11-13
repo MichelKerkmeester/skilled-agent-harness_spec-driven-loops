@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/008-sk-design-hub",
-  "description": "Phase 8: sk-design-hub",
+  "description": "SD-007 lets the router ask the user to pick between two intents, and no turn scripts that pick",
   "keywords": [
-    "phase",
-    "sk-design-hub"
+    "sd-007",
+    "lets",
+    "router",
+    "ask",
+    "user",
+    "pick",
+    "between",
+    "two",
+    "intents",
+    "turn",
+    "scripts"
   ],
-  "lastUpdated": "2026-11-02T18:33:52.670Z",
+  "lastUpdated": "2026-11-13T10:04:50.126Z",
   "specId": "008",
   "folderSlug": "sk-design-hub",
   "parentChain": [
@@ -15,6 +25,5 @@
     "004-conversation-adoption-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

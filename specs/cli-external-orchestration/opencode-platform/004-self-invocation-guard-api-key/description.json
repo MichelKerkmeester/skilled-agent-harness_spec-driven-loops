@@ -1,13 +1,23 @@
 {
   "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/004-self-invocation-guard-api-key",
-  "description": "Self-invocation guard ignores OPENCODE_API_KEY",
+  "description": "Layer 1 of the cli-opencode self-invocation guard treats any `OPENCODE` environment variable as proof that the caller already runs inside OpenCode",
   "keywords": [
+    "layer",
+    "cli-opencode",
     "self-invocation",
     "guard",
-    "ignores"
+    "treats",
+    "opencode",
+    "environment",
+    "variable",
+    "proof",
+    "caller",
+    "already",
+    "runs",
+    "inside"
   ],
-  "lastUpdated": "2026-11-12T15:11:57.523Z",
+  "lastUpdated": "2026-11-13T10:04:37.762Z",
   "specId": "004",
   "folderSlug": "self-invocation-guard-api-key",
   "parentChain": [

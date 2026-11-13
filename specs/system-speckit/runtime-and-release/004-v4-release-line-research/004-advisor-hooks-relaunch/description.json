@@ -1,12 +1,20 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/004-advisor-hooks-relaunch",
-  "description": "Phase 4: advisor-hooks-relaunch",
+  "description": "The skill advisor, compiled routing and the hook layer changed in almost every v4 release",
   "keywords": [
-    "phase",
-    "advisor-hooks-relaunch"
+    "skill",
+    "advisor",
+    "compiled",
+    "routing",
+    "hook",
+    "layer",
+    "changed",
+    "almost",
+    "every",
+    "release"
   ],
-  "lastUpdated": "2026-11-08T22:33:49.727Z",
+  "lastUpdated": "2026-11-13T10:05:23.297Z",
   "specId": "004",
   "folderSlug": "advisor-hooks-relaunch",
   "parentChain": [

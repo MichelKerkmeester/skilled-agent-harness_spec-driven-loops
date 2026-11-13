@@ -17,11 +17,12 @@
     "style",
     "predates"
   ],
-  "lastUpdated": "2026-08-30T07:16:20.554Z",
+  "lastUpdated": "2026-11-13T10:04:53.883Z",
   "specId": "028",
   "folderSlug": "sk-create-flowchart",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "026-skill-readme-refinement",
     "005-mode-child-readme-revisit"
   ],

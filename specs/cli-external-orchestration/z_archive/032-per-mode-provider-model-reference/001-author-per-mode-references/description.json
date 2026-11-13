@@ -17,11 +17,12 @@
     "cli-reference",
     "section"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.238Z",
+  "lastUpdated": "2026-11-13T10:04:38.732Z",
   "specId": "001",
   "folderSlug": "author-per-mode-references",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "032-per-mode-provider-model-reference"
   ],
   "memorySequence": 0,

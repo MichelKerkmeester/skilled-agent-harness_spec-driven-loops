@@ -17,11 +17,12 @@
     "feature-heavy",
     "pitch"
   ],
-  "lastUpdated": "2026-08-30T08:03:53.628Z",
+  "lastUpdated": "2026-11-13T10:04:53.845Z",
   "specId": "001",
   "folderSlug": "cli-external-orchestration",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "026-skill-readme-refinement",
     "004-standalone-readme-revisit"
   ],

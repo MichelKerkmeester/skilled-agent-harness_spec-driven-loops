@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/011-indexing-and-adaptive-fusion/002-persist-tuned-thresholds",
   "description": "`tuneAdaptiveThresholdsAfterEvaluation()` in `adaptive-ranking.ts` stores adjusted thresholds (`maxAdaptiveDelta`, `signalWeights`,",
   "keywords": [
@@ -10,7 +11,7 @@
     "maxadaptivedelta",
     "signalweights"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.526Z",
+  "lastUpdated": "2026-11-13T10:05:34.360Z",
   "specId": "002",
   "folderSlug": "persist-tuned-thresholds",
   "parentChain": [
@@ -20,6 +21,5 @@
     "011-indexing-and-adaptive-fusion"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

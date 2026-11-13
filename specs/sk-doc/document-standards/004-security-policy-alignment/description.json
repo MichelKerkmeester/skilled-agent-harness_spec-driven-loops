@@ -1,13 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/document-standards/004-security-policy-alignment",
-  "description": "Align SECURITY.md with sk-doc and expand it",
+  "description": "Commit `b0f89ee5f0` (2026-10-01, `chore(repo): stop tracking vendored packet context and add a security policy`) created `SECURITY.md` as a 35-line",
   "keywords": [
-    "align",
+    "commit",
+    "b0f89ee5f0",
+    "chore",
+    "repo",
+    "stop",
+    "tracking",
+    "vendored",
+    "packet",
+    "context",
     "security",
-    "sk-doc",
-    "expand"
+    "policy",
+    "35-line"
   ],
-  "lastUpdated": "2026-10-02T10:45:38.052Z",
+  "lastUpdated": "2026-11-13T10:04:51.691Z",
   "specId": "004",
   "folderSlug": "security-policy-alignment",
   "parentChain": [
@@ -15,6 +24,5 @@
     "document-standards"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

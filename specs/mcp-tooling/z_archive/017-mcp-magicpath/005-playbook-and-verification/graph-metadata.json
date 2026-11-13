@@ -189,7 +189,7 @@
     ],
     "causal_summary": "Four phases will each have proven their own piece",
     "created_at": "2026-08-29T11:35:17.398Z",
-    "last_save_at": "2026-10-07T18:11:04.165Z",
+    "last_save_at": "2026-11-13T13:13:56.453Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,7 +198,7 @@
       "tasks.md",
       "acceptance-criteria.md"
     ],
-    "source_fingerprint": "sha256:17da692c359490a196f789950555e26015b2aa67dbbc7eb831db10021018e167",
+    "source_fingerprint": "sha256:ef0d028d1ab17fc4a49ff2a99d635c6dd3395e40bb5fd71f1719d55df54b9d8c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2d8a3be236f65fad2b369adce0e4fc6fc239231e7c03d0083c0992bdaca7f933",

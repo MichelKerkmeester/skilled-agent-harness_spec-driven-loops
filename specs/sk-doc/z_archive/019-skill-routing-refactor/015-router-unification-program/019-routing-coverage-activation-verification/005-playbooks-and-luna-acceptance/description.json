@@ -18,11 +18,12 @@
     "noncritical",
     "status"
   ],
-  "lastUpdated": "2026-08-30T08:03:50.454Z",
+  "lastUpdated": "2026-11-13T10:04:53.200Z",
   "specId": "005",
   "folderSlug": "playbooks-and-luna-acceptance",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program",
     "019-routing-coverage-activation-verification"

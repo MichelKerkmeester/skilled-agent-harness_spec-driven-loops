@@ -1,11 +1,19 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/012-sk-vision-v2-prompt-hook",
-  "description": "Phase 12: sk-vision-v2-prompt-hook",
+  "description": "On OpenCode 1, sk-vision's `server` entry registers a `chat.message` hook when `SKVISIONAUTOINSPECT=1`",
   "keywords": [
-    "phase",
-    "sk-vision-v2-prompt-hook"
+    "opencode",
+    "sk-vision",
+    "server",
+    "entry",
+    "registers",
+    "chat",
+    "message",
+    "hook",
+    "skvisionautoinspect"
   ],
-  "lastUpdated": "2026-10-19T11:29:13.799Z",
+  "lastUpdated": "2026-11-13T10:04:37.358Z",
   "specId": "012",
   "folderSlug": "sk-vision-v2-prompt-hook",
   "parentChain": [
@@ -14,6 +22,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

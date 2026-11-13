@@ -68,7 +68,7 @@ gate_3_compliance:
   status: ENFORCED_VIA_PHASES
   mechanism: "Phase 1-3 blocking gates in implement.md"
   machine_contract: ".skilled/skills/system-spec-kit/shared/gate-3-classifier.ts (classifyPrompt)"
-  standard_question: "Spec Folder (required): A) Existing | B) New (new or unrelated work only) | C) Related (Use a related folder, phase child, or a series parent for a different change to the same artifact as an existing packet in the same track) | D) Skip"
+  standard_question: "Spec Folder (required): A) Existing | B) New (new or unrelated work only) | C) Related (Use a related folder, phase child, new or existing sub-track, or a series parent for a different change to the same artifact as an existing packet in the same track) | D) Skip"
   ask_surface: "Ask standard_question through the question tool .skilled/repo-rules/communication-handoff.md section 5 names for your runtime, with A to D as its choices. Print it as text only where section 5 names no tool for this session."
   first_message_protocol: "If FIRST message requests implementation, ask spec folder FIRST, unless child_dispatch applies"
   child_dispatch: "When AI_SESSION_CHILD=1 marks a non-interactive worker bound to a lineage directory, Gate 3 is pre-resolved to that directory and the worker does not ask. Interactive sessions always ask."

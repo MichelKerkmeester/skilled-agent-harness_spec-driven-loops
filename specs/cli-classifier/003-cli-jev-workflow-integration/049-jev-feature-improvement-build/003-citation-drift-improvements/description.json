@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/003-citation-drift-improvements",
-  "description": "Phase 3: citation-drift-improvements",
+  "description": "Feature 032 kept on its 40-row benchmark, but the modal flag misses a catch that flagging on the lowest rerun makes for free",
   "keywords": [
-    "phase",
-    "citation-drift-improvements"
+    "feature",
+    "kept",
+    "40-row",
+    "benchmark",
+    "modal",
+    "flag",
+    "misses",
+    "catch",
+    "flagging",
+    "lowest",
+    "rerun",
+    "free"
   ],
-  "lastUpdated": "2026-10-03T05:30:05.256Z",
+  "lastUpdated": "2026-11-13T10:04:36.775Z",
   "specId": "003",
   "folderSlug": "citation-drift-improvements",
   "parentChain": [
@@ -14,6 +25,5 @@
     "049-jev-feature-improvement-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

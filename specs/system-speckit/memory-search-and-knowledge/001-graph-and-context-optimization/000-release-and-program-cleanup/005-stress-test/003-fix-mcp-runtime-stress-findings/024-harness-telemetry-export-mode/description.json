@@ -1,4 +1,5 @@
 {
+  "level": 1,
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/024-harness-telemetry-export-mode",
   "description": "The search-quality harness at `mcpserver/stresstest/search-quality/` is intentionally database-agnostic and result-oriented:",
   "keywords": [
@@ -10,7 +11,7 @@
     "database-agnostic",
     "result-oriented"
   ],
-  "lastUpdated": "2026-08-15T14:41:09.629Z",
+  "lastUpdated": "2026-11-13T10:05:04.348Z",
   "specId": "024",
   "folderSlug": "harness-telemetry-export-mode",
   "parentChain": [
@@ -22,6 +23,5 @@
     "003-fix-mcp-runtime-stress-findings"
   ],
   "memorySequence": 1,
-  "memoryNameHistory": [],
-  "level": 1
+  "memoryNameHistory": []
 }

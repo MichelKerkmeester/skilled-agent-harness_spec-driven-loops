@@ -1,11 +1,15 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/013-align-mcp-code-mode",
-  "description": "Phase 13: align-mcp-code-mode",
+  "description": "The machine router of mcp-code-mode moved from SKILL.md to ROUTER.md",
   "keywords": [
-    "phase",
-    "align-mcp-code-mode"
+    "machine",
+    "router",
+    "mcp-code-mode",
+    "moved",
+    "skill"
   ],
-  "lastUpdated": "2026-10-29T17:20:36.133Z",
+  "lastUpdated": "2026-11-13T10:04:51.884Z",
   "specId": "013",
   "folderSlug": "align-mcp-code-mode",
   "parentChain": [
@@ -16,6 +20,5 @@
     "014-skill-router-files"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

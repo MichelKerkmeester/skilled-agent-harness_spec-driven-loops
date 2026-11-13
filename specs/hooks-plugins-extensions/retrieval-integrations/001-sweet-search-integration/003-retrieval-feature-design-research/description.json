@@ -1,12 +1,17 @@
 {
   "level": "1",
   "specFolder": "hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/003-retrieval-feature-design-research",
-  "description": "Phase 3: retrieval-feature-design-research",
+  "description": "Phase 2 named what to build and roughly how big each change is, but not the exact design",
   "keywords": [
     "phase",
-    "retrieval-feature-design-research"
+    "named",
+    "roughly",
+    "big",
+    "change",
+    "exact",
+    "design"
   ],
-  "lastUpdated": "2026-11-09T15:25:53.731Z",
+  "lastUpdated": "2026-11-13T10:04:41.476Z",
   "specId": "003",
   "folderSlug": "retrieval-feature-design-research",
   "parentChain": [

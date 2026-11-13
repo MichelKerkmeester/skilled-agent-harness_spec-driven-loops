@@ -1,0 +1,24 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/004-archive-search-and-json",
+  "description": "An archived packet cannot be found or checked with the standard tools",
+  "keywords": [
+    "archived",
+    "packet",
+    "cannot",
+    "found",
+    "checked",
+    "standard",
+    "tools"
+  ],
+  "lastUpdated": "2026-11-13T10:27:26.633Z",
+  "specId": "004",
+  "folderSlug": "archive-search-and-json",
+  "parentChain": [
+    "system-speckit",
+    "spec-folder-tooling",
+    "005-subtrack-proposal-and-archive-reach"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

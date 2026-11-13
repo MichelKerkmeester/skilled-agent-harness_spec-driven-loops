@@ -1,27 +1,20 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/001-layer-3-own-paths-baseline",
-  "description": "Reword the cli-opencode Layer 3 commit-before-dispatch safety net so it snapshots the dispatch target's own in-flight paths by explicit path instead o",
+  "description": "The cli-opencode skill requires a recovery baseline before any non-interactive `opencode run` with `--dangerously-skip-permissions` in a deep-loop",
   "keywords": [
-    "reword",
     "cli-opencode",
-    "layer",
-    "commit-before-dispatch",
-    "safety",
-    "net",
-    "snapshots",
-    "dispatch",
-    "target",
-    "own",
-    "in-flight",
-    "paths",
-    "explicit",
-    "path",
-    "instead",
-    "requiring",
-    "clean",
-    "tree"
+    "skill",
+    "requires",
+    "recovery",
+    "baseline",
+    "non-interactive",
+    "opencode",
+    "run",
+    "dangerously-skip-permissions",
+    "deep-loop"
   ],
-  "lastUpdated": "2026-09-29T07:29:10.290Z",
+  "lastUpdated": "2026-11-13T10:04:37.099Z",
   "specId": "001",
   "folderSlug": "layer-3-own-paths-baseline",
   "parentChain": [
@@ -29,6 +22,5 @@
     "opencode-platform"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

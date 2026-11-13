@@ -17,11 +17,12 @@
     "heuristics",
     "existing"
   ],
-  "lastUpdated": "2026-08-30T07:16:12.024Z",
+  "lastUpdated": "2026-11-13T10:04:49.345Z",
   "specId": "004",
   "folderSlug": "brand-first-lane",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "012-sk-design-program",
     "004-hallmark-design-system"
   ],

@@ -1,12 +1,22 @@
 {
   "level": "3",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/004-integration-review-and-docs-closure",
-  "description": "Phase 4: integration-review-and-docs-closure",
+  "description": "Phases 001 to 003 each reviewed their own lane outputs, but no single pass covers the union of files the packet changed",
   "keywords": [
-    "phase",
-    "integration-review-and-docs-closure"
+    "phases",
+    "reviewed",
+    "own",
+    "lane",
+    "outputs",
+    "single",
+    "pass",
+    "covers",
+    "union",
+    "files",
+    "packet",
+    "changed"
   ],
-  "lastUpdated": "2026-10-18T13:24:03.611Z",
+  "lastUpdated": "2026-11-13T10:04:41.521Z",
   "specId": "004",
   "folderSlug": "integration-review-and-docs-closure",
   "parentChain": [

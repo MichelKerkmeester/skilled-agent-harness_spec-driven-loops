@@ -1,11 +1,15 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/008-ai-systems-migration",
-  "description": "Phase 8: ai-systems-migration",
+  "description": "The 16 AI Systems skills keep their machine router in `## 2",
   "keywords": [
-    "phase",
-    "ai-systems-migration"
+    "systems",
+    "skills",
+    "keep",
+    "machine",
+    "router"
   ],
-  "lastUpdated": "2026-10-29T11:37:25.616Z",
+  "lastUpdated": "2026-11-13T10:04:51.875Z",
   "specId": "008",
   "folderSlug": "ai-systems-migration",
   "parentChain": [
@@ -16,6 +20,5 @@
     "014-skill-router-files"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

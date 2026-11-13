@@ -17,11 +17,12 @@
     "footer",
     "pervasive"
   ],
-  "lastUpdated": "2026-08-28T16:24:15.285Z",
+  "lastUpdated": "2026-11-13T10:04:52.308Z",
   "specId": "023",
   "folderSlug": "system-spec-kit-readme",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "016-create-diff-mode",
     "014-skill-readme-standardization"
   ],

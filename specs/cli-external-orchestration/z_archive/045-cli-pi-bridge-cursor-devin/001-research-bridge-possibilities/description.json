@@ -12,11 +12,12 @@
     "provider",
     "roster"
   ],
-  "lastUpdated": "2026-08-17T11:47:01.071Z",
+  "lastUpdated": "2026-11-13T10:04:38.885Z",
   "specId": "001",
   "folderSlug": "research-bridge-possibilities",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "045-cli-pi-bridge-cursor-devin"
   ],
   "memorySequence": 0,

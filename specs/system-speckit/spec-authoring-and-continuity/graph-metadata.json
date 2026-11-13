@@ -8,7 +8,8 @@
     "system-speckit/spec-authoring-and-continuity/002-research-folder-continuity",
     "system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring",
     "system-speckit/spec-authoring-and-continuity/004-decision-capture",
-    "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review"
+    "system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review",
+    "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers"
   ],
   "manual": {
     "depends_on": [],

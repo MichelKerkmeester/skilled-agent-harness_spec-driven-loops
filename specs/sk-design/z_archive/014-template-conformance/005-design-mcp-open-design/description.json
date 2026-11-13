@@ -15,11 +15,12 @@
     "template",
     "family"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.317Z",
+  "lastUpdated": "2026-11-13T10:04:49.490Z",
   "specId": "005",
   "folderSlug": "design-mcp-open-design",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "014-template-conformance"
   ],
   "memorySequence": 0,

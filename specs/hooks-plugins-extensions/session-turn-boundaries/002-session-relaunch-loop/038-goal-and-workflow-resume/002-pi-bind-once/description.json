@@ -1,12 +1,16 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/002-pi-bind-once",
-  "description": "Phase 2: pi-bind-once",
+  "description": "Pi 1.5.2 starts a new session inside the receiving process",
   "keywords": [
-    "phase",
-    "pi-bind-once"
+    "starts",
+    "new",
+    "session",
+    "inside",
+    "receiving",
+    "process"
   ],
-  "lastUpdated": "2026-11-13T03:56:20.575Z",
+  "lastUpdated": "2026-11-13T10:04:41.877Z",
   "specId": "002",
   "folderSlug": "pi-bind-once",
   "parentChain": [

@@ -1,12 +1,22 @@
 {
   "level": "2",
   "specFolder": "sk-doc/document-standards/003-changelog-system/003-skilled-release-changelog/003-adjacent-alignment",
-  "description": "Phase 3: adjacent-alignment",
+  "description": "Phases 1 and 2 changed what a changelog is, and several surfaces next to them still describe or perform the old behavior",
   "keywords": [
-    "phase",
-    "adjacent-alignment"
+    "phases",
+    "changed",
+    "changelog",
+    "several",
+    "surfaces",
+    "next",
+    "them",
+    "still",
+    "describe",
+    "perform",
+    "old",
+    "behavior"
   ],
-  "lastUpdated": "2026-09-27T18:56:10.122Z",
+  "lastUpdated": "2026-11-13T10:04:51.669Z",
   "specId": "003",
   "folderSlug": "adjacent-alignment",
   "parentChain": [

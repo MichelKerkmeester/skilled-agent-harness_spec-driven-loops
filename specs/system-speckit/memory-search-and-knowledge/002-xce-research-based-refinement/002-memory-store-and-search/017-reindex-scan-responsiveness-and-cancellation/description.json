@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/017-reindex-scan-responsiveness-and-cancellation",
   "description": "A background `memoryindexscan` ran the entire scan on the daemon's single event-loop thread",
   "keywords": [
@@ -12,7 +13,7 @@
     "event-loop",
     "thread"
   ],
-  "lastUpdated": "2026-08-15T14:41:12.097Z",
+  "lastUpdated": "2026-11-13T10:05:10.269Z",
   "specId": "017",
   "folderSlug": "reindex-scan-responsiveness-and-cancellation",
   "parentChain": [
@@ -24,6 +25,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "17-06-26_13-03__made-the-background-memory-index-scan-yield-the.md"
-  ],
-  "level": "1"
+  ]
 }

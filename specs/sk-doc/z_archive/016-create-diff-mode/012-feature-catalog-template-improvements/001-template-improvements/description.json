@@ -19,11 +19,12 @@
     "categories",
     "system-skill-advisor"
   ],
-  "lastUpdated": "2026-08-29T12:13:21.105Z",
+  "lastUpdated": "2026-11-13T10:04:52.174Z",
   "specId": "001",
   "folderSlug": "template-improvements",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "016-create-diff-mode",
     "012-feature-catalog-template-improvements"
   ],

@@ -10,11 +10,12 @@
     "permission-mode",
     "values"
   ],
-  "lastUpdated": "2026-08-30T14:13:19.933Z",
+  "lastUpdated": "2026-11-13T10:04:38.961Z",
   "specId": "058",
   "folderSlug": "flag-enum-authority",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

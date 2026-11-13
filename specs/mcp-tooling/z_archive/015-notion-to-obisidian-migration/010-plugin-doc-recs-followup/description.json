@@ -13,11 +13,12 @@
     "error",
     "unresolved"
   ],
-  "lastUpdated": "2026-08-23T05:04:45.493Z",
+  "lastUpdated": "2026-11-13T10:04:43.115Z",
   "specId": "010",
   "folderSlug": "plugin-doc-recs-followup",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "015-notion-to-obisidian-migration"
   ],
   "memorySequence": 0,

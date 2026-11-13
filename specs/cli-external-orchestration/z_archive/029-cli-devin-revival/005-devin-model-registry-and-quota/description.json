@@ -14,11 +14,12 @@
     "cli-opencode",
     "alternative"
   ],
-  "lastUpdated": "2026-08-30T07:16:08.824Z",
+  "lastUpdated": "2026-11-13T10:04:38.576Z",
   "specId": "005",
   "folderSlug": "devin-model-registry-and-quota",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "029-cli-devin-revival"
   ],
   "memorySequence": 0,

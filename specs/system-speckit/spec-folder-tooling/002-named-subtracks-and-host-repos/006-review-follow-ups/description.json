@@ -1,12 +1,22 @@
 {
   "level": "1",
   "specFolder": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/006-review-follow-ups",
-  "description": "Phase 6: review-follow-ups",
+  "description": "The parser and `repair-derived.cjs` check only the sub-track folder's own name, so a declared folder under a numbered, hidden",
   "keywords": [
-    "phase",
-    "review-follow-ups"
+    "parser",
+    "repair-derived",
+    "cjs",
+    "check",
+    "only",
+    "sub-track",
+    "folder",
+    "own",
+    "name",
+    "declared",
+    "numbered",
+    "hidden"
   ],
-  "lastUpdated": "2026-11-08T05:33:40.825Z",
+  "lastUpdated": "2026-11-13T10:05:32.333Z",
   "specId": "006",
   "folderSlug": "review-follow-ups",
   "parentChain": [

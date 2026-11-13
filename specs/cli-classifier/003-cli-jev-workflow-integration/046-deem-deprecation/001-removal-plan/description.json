@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/001-removal-plan",
-  "description": "Phase 1: removal-plan",
+  "description": "Deem reaches about 209 files outside `specs/`, and many matches are the English word (`deems`, `deemed`)",
   "keywords": [
-    "phase",
-    "removal-plan"
+    "deem",
+    "reaches",
+    "about",
+    "files",
+    "outside",
+    "specs",
+    "many",
+    "matches",
+    "english",
+    "word",
+    "deems",
+    "deemed"
   ],
-  "lastUpdated": "2026-10-02T07:54:41.709Z",
+  "lastUpdated": "2026-11-13T10:04:36.558Z",
   "specId": "001",
   "folderSlug": "removal-plan",
   "parentChain": [
@@ -14,6 +25,5 @@
     "046-deem-deprecation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

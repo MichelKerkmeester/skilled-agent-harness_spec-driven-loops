@@ -1,18 +1,25 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
-  "description": "Goals and running workflows survive a session hop on every runtime",
+  "description": "A review of 2026-11-12, checked by a second reviewer, found that a session hop carries the goal on Claude Code, Pi and OpenCode but loses work around",
   "keywords": [
-    "goals",
-    "running",
-    "workflows",
-    "survive",
+    "review",
+    "checked",
+    "second",
+    "reviewer",
+    "found",
     "session",
     "hop",
-    "every",
-    "runtime"
+    "carries",
+    "goal",
+    "claude",
+    "code",
+    "opencode",
+    "loses",
+    "work",
+    "around"
   ],
-  "lastUpdated": "2026-11-13T08:36:01.317Z",
+  "lastUpdated": "2026-11-13T10:04:42.025Z",
   "specId": "038",
   "folderSlug": "goal-and-workflow-resume",
   "parentChain": [

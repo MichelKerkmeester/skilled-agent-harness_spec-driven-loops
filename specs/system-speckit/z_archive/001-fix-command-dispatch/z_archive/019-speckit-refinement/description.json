@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/019-speckit-refinement",
   "description": "\"Conversation context is volatile, but the filesystem is persistent",
   "keywords": [
@@ -8,7 +9,7 @@
     "filesystem",
     "persistent"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.763Z",
+  "lastUpdated": "2026-11-13T13:19:17.617Z",
   "specId": "019",
   "folderSlug": "speckit-refinement",
   "parentChain": [
@@ -20,6 +21,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "SpecKit Refinement: ECP Analysis & Improvements"
-  ],
-  "level": "2"
+  ]
 }

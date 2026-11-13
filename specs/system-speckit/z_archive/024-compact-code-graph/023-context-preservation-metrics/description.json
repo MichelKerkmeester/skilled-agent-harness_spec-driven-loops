@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/024-compact-code-graph/023-context-preservation-metrics",
   "description": "We needed a way to measure how well session context survives across runtimes instead of relying on parity claims and anecdotal failures",
   "keywords": [
@@ -18,7 +19,7 @@
     "anecdotal",
     "failures"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.646Z",
+  "lastUpdated": "2026-11-13T10:05:34.551Z",
   "specId": "023",
   "folderSlug": "context-preservation-metrics",
   "parentChain": [
@@ -27,6 +28,5 @@
     "024-compact-code-graph"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

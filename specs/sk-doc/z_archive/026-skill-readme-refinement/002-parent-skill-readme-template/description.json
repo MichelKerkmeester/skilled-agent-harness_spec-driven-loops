@@ -10,11 +10,12 @@
     "inconsistent",
     "shape"
   ],
-  "lastUpdated": "2026-08-30T07:16:20.412Z",
+  "lastUpdated": "2026-11-13T10:04:53.843Z",
   "specId": "002",
   "folderSlug": "parent-skill-readme-template",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "026-skill-readme-refinement"
   ],
   "memorySequence": 0,

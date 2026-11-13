@@ -1,11 +1,20 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/012-system-skill-advisor",
-  "description": "Phase 12: system-skill-advisor",
+  "description": "The docs of `.skilled/skills/system-skill-advisor` were never read as a whole for readability, layout and structure",
   "keywords": [
-    "phase",
-    "system-skill-advisor"
+    "docs",
+    "skilled",
+    "skills",
+    "system-skill-advisor",
+    "never",
+    "read",
+    "whole",
+    "readability",
+    "layout",
+    "structure"
   ],
-  "lastUpdated": "2026-11-04T07:15:59.189Z",
+  "lastUpdated": "2026-11-13T10:04:51.517Z",
   "specId": "012",
   "folderSlug": "system-skill-advisor",
   "parentChain": [
@@ -14,6 +23,5 @@
     "005-skill-readability-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

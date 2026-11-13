@@ -1,11 +1,26 @@
 {
+  "level": "2",
   "specFolder": "sk-code/code-surfaces/006-frontend-upstream-proposals/009-reference-restructure",
-  "description": "Phase 9: reference-restructure",
+  "description": "The rule files write each rule as six bold-labelled lines with no blank line or list marker between them, so Markdown joins them into one paragraph",
   "keywords": [
-    "phase",
-    "reference-restructure"
+    "rule",
+    "files",
+    "write",
+    "six",
+    "bold-labelled",
+    "lines",
+    "blank",
+    "line",
+    "list",
+    "marker",
+    "between",
+    "them",
+    "markdown",
+    "joins",
+    "one",
+    "paragraph"
   ],
-  "lastUpdated": "2026-11-03T21:18:58.763Z",
+  "lastUpdated": "2026-11-13T10:04:43.729Z",
   "specId": "009",
   "folderSlug": "reference-restructure",
   "parentChain": [
@@ -14,6 +29,5 @@
     "006-frontend-upstream-proposals"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

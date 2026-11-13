@@ -1,16 +1,15 @@
 {
   "level": "2",
   "specFolder": "sk-code/code-surfaces/006-frontend-upstream-proposals",
-  "description": "Frontend upstream proposals from Barter's frontend practice program",
+  "description": "Skilled's sk-code hub has no frontend guidance",
   "keywords": [
+    "skilled",
+    "sk-code",
+    "hub",
     "frontend",
-    "upstream",
-    "proposals",
-    "barter",
-    "practice",
-    "program"
+    "guidance"
   ],
-  "lastUpdated": "2026-11-05T05:22:55.505Z",
+  "lastUpdated": "2026-11-13T10:04:44.942Z",
   "specId": "006",
   "folderSlug": "frontend-upstream-proposals",
   "parentChain": [

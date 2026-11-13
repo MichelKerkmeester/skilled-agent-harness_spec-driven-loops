@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "mcp-tooling/017-mcp-magicpath/005-playbook-and-verification"
+    packet_pointer: "mcp-tooling/z_archive/017-mcp-magicpath/005-playbook-and-verification"
     last_updated_at: "2026-08-29T12:29:55Z"
     last_updated_by: "session"
     recent_action: "Drafted the verification criteria"

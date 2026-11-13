@@ -1,15 +1,22 @@
 {
+  "level": "2",
   "specFolder": "sk-code/quality-and-review-modes/004-portable-code-modes/005-review-floor-lens-overrides",
-  "description": "Review floor, default lens and rule overrides",
+  "description": "The review checklists apply this repository's house rules, such as 20-line functions, the Law of Demeter, the Rule of Three",
   "keywords": [
     "review",
-    "floor",
-    "default",
-    "lens",
+    "checklists",
+    "apply",
+    "repository",
+    "house",
+    "rules",
+    "20-line",
+    "functions",
+    "law",
+    "demeter",
     "rule",
-    "overrides"
+    "three"
   ],
-  "lastUpdated": "2026-10-27T23:41:53.107Z",
+  "lastUpdated": "2026-11-13T10:04:47.162Z",
   "specId": "005",
   "folderSlug": "review-floor-lens-overrides",
   "parentChain": [
@@ -18,6 +25,5 @@
     "004-portable-code-modes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

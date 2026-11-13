@@ -1,11 +1,24 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/018-epic-docs-alignment",
-  "description": "Phase 18: epic-docs-alignment",
+  "description": "A read-only audit on 2026-10-09 found the docs around the epic's features behind the code: a playbook expects 12 hook gates where there are 13, five",
   "keywords": [
-    "phase",
-    "epic-docs-alignment"
+    "read-only",
+    "audit",
+    "found",
+    "docs",
+    "around",
+    "epic",
+    "features",
+    "behind",
+    "code",
+    "playbook",
+    "expects",
+    "hook",
+    "gates",
+    "five"
   ],
-  "lastUpdated": "2026-10-09T15:47:55.542Z",
+  "lastUpdated": "2026-11-13T10:05:31.903Z",
   "specId": "018",
   "folderSlug": "epic-docs-alignment",
   "parentChain": [
@@ -15,6 +28,5 @@
     "003-spec-folder-tooling"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

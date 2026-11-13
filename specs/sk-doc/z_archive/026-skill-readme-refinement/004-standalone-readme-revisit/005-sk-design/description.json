@@ -14,11 +14,12 @@
     "reference-card",
     "style"
   ],
-  "lastUpdated": "2026-08-30T07:16:20.433Z",
+  "lastUpdated": "2026-11-13T10:04:53.848Z",
   "specId": "005",
   "folderSlug": "sk-design",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "026-skill-readme-refinement",
     "004-standalone-readme-revisit"
   ],

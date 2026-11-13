@@ -16,11 +16,12 @@
     "install",
     "mode"
   ],
-  "lastUpdated": "2026-09-07T16:14:42.031Z",
+  "lastUpdated": "2026-11-13T10:04:42.765Z",
   "specId": "005",
   "folderSlug": "skill-authoring",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "013-mcp-obsidian"
   ],
   "memorySequence": 0,

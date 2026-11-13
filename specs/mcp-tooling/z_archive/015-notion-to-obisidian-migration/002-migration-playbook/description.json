@@ -13,11 +13,12 @@
     "mcp-notion",
     "carries"
   ],
-  "lastUpdated": "2026-08-22T03:41:25.258Z",
+  "lastUpdated": "2026-11-13T10:04:42.917Z",
   "specId": "002",
   "folderSlug": "migration-playbook",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "015-notion-to-obisidian-migration"
   ],
   "memorySequence": 0,

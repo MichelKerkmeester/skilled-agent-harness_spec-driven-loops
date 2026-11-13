@@ -1,5 +1,6 @@
 {
   "title": "005 substrate-stability-instrumentation",
+  "level": "2",
   "schema_version": 1,
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/005-stability-instrumentation",
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups/005-stability-instrumentation",
@@ -28,7 +29,7 @@
     "memoryhealth",
     "response"
   ],
-  "lastUpdated": "2026-08-15T14:41:10.526Z",
+  "lastUpdated": "2026-11-13T10:05:06.525Z",
   "specId": "005",
   "folderSlug": "stability-instrumentation",
   "parentChain": [
@@ -41,6 +42,5 @@
     "032-substrate-repair-followups"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

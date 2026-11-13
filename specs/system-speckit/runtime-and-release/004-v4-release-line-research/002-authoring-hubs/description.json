@@ -1,12 +1,20 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/002-authoring-hubs",
-  "description": "Phase 2: authoring-hubs",
+  "description": "Every v4 release from v4.0.0.0 to v4.0.2.0 changed the authoring hubs: `.skilled/skills/sk-doc/`, `sk-code/`, `sk-design/`",
   "keywords": [
-    "phase",
-    "authoring-hubs"
+    "every",
+    "release",
+    "changed",
+    "authoring",
+    "hubs",
+    "skilled",
+    "skills",
+    "sk-doc",
+    "sk-code",
+    "sk-design"
   ],
-  "lastUpdated": "2026-11-08T22:35:38.318Z",
+  "lastUpdated": "2026-11-13T10:05:22.945Z",
   "specId": "002",
   "folderSlug": "authoring-hubs",
   "parentChain": [

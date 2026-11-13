@@ -16,11 +16,12 @@
     "across",
     "repo"
   ],
-  "lastUpdated": "2026-08-30T08:03:51.674Z",
+  "lastUpdated": "2026-11-13T10:04:53.293Z",
   "specId": "008",
   "folderSlug": "existing-readme-cleanup",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "016-documentation-quality-program"
   ],

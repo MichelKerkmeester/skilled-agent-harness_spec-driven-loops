@@ -147,7 +147,7 @@ Main flow:
 | `slugifyFolderName()` | Function | Normalizes a folder name into a slug. |
 | `getSpecsBasePaths()` | Function | Resolves the base paths under which spec folders live. |
 | `getRepairMergeSafe()` | Function | Whether description.json repairs preserve unrecognized authored keys (`SPECKIT_DESCRIPTION_REPAIR_MERGE_SAFE`). |
-| `isGeneratedMetadataZExclusionEnabled()` | Function | Whether `z-future`/`z_archive` segments are excluded from generated metadata (`SPECKIT_GENERATED_METADATA_Z_EXCLUSION`). |
+| `isGeneratedMetadataZExclusionEnabled()` | Function | Whether `z-future` segments are excluded from generated metadata (`SPECKIT_GENERATED_METADATA_Z_EXCLUSION`). `z_archive` stays in. |
 
 ---
 

@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/014-doctor-playbook-spec-kit",
-  "description": "Phase 14: doctor-playbook-spec-kit",
+  "description": "The system-spec-kit playbook's doctor category tests only `/doctor:deep-loop` and `/doctor:skill-advisor rebuild`, which other skills now own",
   "keywords": [
-    "phase",
-    "doctor-playbook-spec-kit"
+    "system-spec-kit",
+    "playbook",
+    "doctor",
+    "category",
+    "tests",
+    "only",
+    "deep-loop",
+    "skill-advisor",
+    "rebuild",
+    "skills",
+    "now",
+    "own"
   ],
-  "lastUpdated": "2026-10-04T11:02:48.005Z",
+  "lastUpdated": "2026-11-13T10:04:39.333Z",
   "specId": "014",
   "folderSlug": "doctor-playbook-spec-kit",
   "parentChain": [
@@ -14,6 +25,5 @@
     "002-doctor-audit-followups"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

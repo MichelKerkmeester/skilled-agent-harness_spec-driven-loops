@@ -1,12 +1,19 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/022-runtime-certainty-claude-pi-opencode",
-  "description": "Phase 22: runtime-certainty-claude-pi-opencode",
+  "description": "A probe on OpenCode 1.19.3 showed that a `task` sub-agent runs as a child session with its own session id",
   "keywords": [
-    "phase",
-    "runtime-certainty-claude-pi-opencode"
+    "probe",
+    "opencode",
+    "showed",
+    "task",
+    "sub-agent",
+    "runs",
+    "child",
+    "session",
+    "own"
   ],
-  "lastUpdated": "2026-10-22T11:28:04.328Z",
+  "lastUpdated": "2026-11-13T10:04:41.653Z",
   "specId": "022",
   "folderSlug": "runtime-certainty-claude-pi-opencode",
   "parentChain": [

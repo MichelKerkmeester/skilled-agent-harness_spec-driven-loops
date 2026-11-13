@@ -1,11 +1,19 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/006-sk-code/006-sk-code-skilled",
-  "description": "Phase 6: sk-code-skilled",
+  "description": "The docs of the `sk-code-skilled` mode were never read as a whole for readability, layout and structure",
   "keywords": [
-    "phase",
-    "sk-code-skilled"
+    "docs",
+    "sk-code-skilled",
+    "mode",
+    "never",
+    "read",
+    "whole",
+    "readability",
+    "layout",
+    "structure"
   ],
-  "lastUpdated": "2026-11-04T07:16:36.200Z",
+  "lastUpdated": "2026-11-13T10:04:51.235Z",
   "specId": "006",
   "folderSlug": "sk-code-skilled",
   "parentChain": [
@@ -15,6 +23,5 @@
     "006-sk-code"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

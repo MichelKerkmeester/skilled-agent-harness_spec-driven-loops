@@ -1,4 +1,5 @@
 {
+  "level": "3+",
   "specFolder": "system-speckit/z_archive/013-memory-overhaul-and-agent-upgrade-release/003-command-alignment",
   "description": "Audit all command configuration files in `.opencode/commands/` to ensure agent routing patterns (spec 014), memory command capabilities (specs",
   "keywords": [
@@ -17,7 +18,7 @@
     "capabilities",
     "specs"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.996Z",
+  "lastUpdated": "2026-11-13T10:05:32.841Z",
   "specId": "003",
   "folderSlug": "command-alignment",
   "parentChain": [
@@ -26,6 +27,5 @@
     "013-memory-overhaul-and-agent-upgrade-release"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3+"
+  "memoryNameHistory": []
 }

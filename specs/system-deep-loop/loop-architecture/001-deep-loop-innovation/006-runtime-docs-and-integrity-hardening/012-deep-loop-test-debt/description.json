@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/012-deep-loop-test-debt",
   "description": "Fix the pre-existing red tests and typecheck errors that the spec-kit nesting triage attributed to system-deep-loop: council persist-artifacts",
   "keywords": [
@@ -15,7 +16,7 @@
     "council",
     "persist-artifacts"
   ],
-  "lastUpdated": "2026-09-20T08:32:53.490Z",
+  "lastUpdated": "2026-11-13T10:04:55.732Z",
   "specId": "012",
   "folderSlug": "deep-loop-test-debt",
   "parentChain": [
@@ -25,6 +26,5 @@
     "006-runtime-docs-and-integrity-hardening"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

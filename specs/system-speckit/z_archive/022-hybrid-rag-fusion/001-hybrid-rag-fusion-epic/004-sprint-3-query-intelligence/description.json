@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/004-sprint-3-query-intelligence",
   "description": "All queries use the full 5-channel pipeline regardless of complexity, meaning simple lookups (e.g., trigger phrase matches) pay the same latency cost",
   "keywords": [
@@ -19,7 +20,7 @@
     "latency",
     "cost"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.067Z",
+  "lastUpdated": "2026-11-13T10:05:33.008Z",
   "specId": "004",
   "folderSlug": "sprint-3-query-intelligence",
   "parentChain": [
@@ -29,6 +30,5 @@
     "001-hybrid-rag-fusion-epic"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -18,11 +18,12 @@
     "refining",
     "shared"
   ],
-  "lastUpdated": "2026-08-30T07:28:18.963Z",
+  "lastUpdated": "2026-11-13T10:04:53.898Z",
   "specId": "026",
   "folderSlug": "skill-readme-refinement",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -17,11 +17,12 @@
     "gpt-5",
     "5-fast"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.524Z",
+  "lastUpdated": "2026-11-13T10:04:48.986Z",
   "specId": "024",
   "folderSlug": "manual-playbook-bug-remediation",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "009-sk-design-claude-parity"
   ],
   "memorySequence": 0,

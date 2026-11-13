@@ -1,11 +1,16 @@
 {
+  "level": "1",
   "specFolder": "agents-md/instruction-surface-integrity/004-doctor-agents-md/003-advisor-bridge-activation",
-  "description": "Phase 3: advisor-bridge-activation",
+  "description": "Deriving a bridge and activating it are two different acts",
   "keywords": [
-    "phase",
-    "advisor-bridge-activation"
+    "deriving",
+    "bridge",
+    "activating",
+    "two",
+    "different",
+    "acts"
   ],
-  "lastUpdated": "2026-10-30T17:18:47.106Z",
+  "lastUpdated": "2026-11-13T10:04:35.189Z",
   "specId": "003",
   "folderSlug": "advisor-bridge-activation",
   "parentChain": [
@@ -14,6 +19,5 @@
     "004-doctor-agents-md"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

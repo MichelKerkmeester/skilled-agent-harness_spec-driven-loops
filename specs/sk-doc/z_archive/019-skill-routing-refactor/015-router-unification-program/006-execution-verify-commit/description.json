@@ -7,11 +7,12 @@
     "decision",
     "effect"
   ],
-  "lastUpdated": "2026-08-16T18:06:00.652Z",
+  "lastUpdated": "2026-11-13T10:04:52.864Z",
   "specId": "006",
   "folderSlug": "execution-verify-commit",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program"
   ],

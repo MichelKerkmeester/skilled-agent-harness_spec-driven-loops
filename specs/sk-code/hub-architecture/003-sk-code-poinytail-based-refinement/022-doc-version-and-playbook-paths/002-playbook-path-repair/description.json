@@ -1,12 +1,21 @@
 {
   "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/002-playbook-path-repair",
-  "description": "Phase 2: playbook-path-repair",
+  "description": "`node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --strict` exits 0 and prints 258",
   "keywords": [
-    "phase",
-    "playbook-path-repair"
+    "node",
+    "skilled",
+    "skills",
+    "sk-doc",
+    "sk-create-manual-testing-playbook",
+    "scripts",
+    "validate-playbook-package",
+    "cjs",
+    "strict",
+    "exits",
+    "prints"
   ],
-  "lastUpdated": "2026-10-12T07:16:11.011Z",
+  "lastUpdated": "2026-11-13T10:04:46.565Z",
   "specId": "002",
   "folderSlug": "playbook-path-repair",
   "parentChain": [

@@ -1,12 +1,24 @@
 {
   "level": "3",
   "specFolder": "sk-doc/document-standards/003-changelog-system/003-skilled-release-changelog/002-changelog-findability",
-  "description": "Phase 2: changelog-findability",
+  "description": "A spec document is findable because its frontmatter names it: a title, a description and trigger phrases the Gate 1 index turns into lookups",
   "keywords": [
-    "phase",
-    "changelog-findability"
+    "spec",
+    "document",
+    "findable",
+    "because",
+    "frontmatter",
+    "names",
+    "title",
+    "description",
+    "trigger",
+    "phrases",
+    "gate",
+    "index",
+    "turns",
+    "lookups"
   ],
-  "lastUpdated": "2026-09-27T15:13:05.952Z",
+  "lastUpdated": "2026-11-13T10:04:51.668Z",
   "specId": "002",
   "folderSlug": "changelog-findability",
   "parentChain": [

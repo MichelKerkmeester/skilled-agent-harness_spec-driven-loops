@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/005-stress-test-folder-migration",
   "description": "Stress-test coverage for the MCP server lived inside `mcpserver/tests/`, making it harder to distinguish explicit stress, load, and matrix-cell",
   "keywords": [
@@ -17,7 +18,7 @@
     "load",
     "matrix-cell"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.778Z",
+  "lastUpdated": "2026-11-13T10:05:03.966Z",
   "specId": "005",
   "folderSlug": "stress-test-folder-migration",
   "parentChain": [
@@ -31,6 +32,5 @@
   "memorySequence": 6,
   "memoryNameHistory": [
     "29-04-26_19-39__resource-map-authored-and-memory-finalization.md"
-  ],
-  "level": 2
+  ]
 }

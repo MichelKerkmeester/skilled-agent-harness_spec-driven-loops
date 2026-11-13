@@ -14,11 +14,12 @@
     "sentence",
     "case"
   ],
-  "lastUpdated": "2026-08-31T11:33:46.011Z",
+  "lastUpdated": "2026-11-13T10:04:54.038Z",
   "specId": "001",
   "folderSlug": "header-format-and-dividers",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "040-create-repo-rules",
     "001-repo-rules-router"
   ],

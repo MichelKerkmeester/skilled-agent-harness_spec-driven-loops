@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/017-doctor-playbook-git",
-  "description": "Phase 17: doctor-playbook-git",
+  "description": "`/doctor:git hooks` and `/doctor:git standards` change git config and the repository's `.sk-git/` templates, but the sk-git playbook has no scenario",
   "keywords": [
-    "phase",
-    "doctor-playbook-git"
+    "doctor",
+    "git",
+    "hooks",
+    "standards",
+    "change",
+    "config",
+    "repository",
+    "sk-git",
+    "templates",
+    "playbook",
+    "scenario"
   ],
-  "lastUpdated": "2026-10-04T11:02:50.246Z",
+  "lastUpdated": "2026-11-13T10:04:39.336Z",
   "specId": "017",
   "folderSlug": "doctor-playbook-git",
   "parentChain": [
@@ -14,6 +24,5 @@
     "002-doctor-audit-followups"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

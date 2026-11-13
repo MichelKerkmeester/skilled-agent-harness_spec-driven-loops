@@ -17,11 +17,12 @@
     "routes",
     "intent"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.179Z",
+  "lastUpdated": "2026-11-13T10:04:54.382Z",
   "specId": "003",
   "folderSlug": "sk-git-integration-doc-and-router",
   "parentChain": [
     "sk-git",
+    "z_archive",
     "014-gitkraken-mcp-integration"
   ],
   "memorySequence": 0,

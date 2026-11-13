@@ -17,11 +17,12 @@
     "took",
     "hub"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.365Z",
+  "lastUpdated": "2026-11-13T10:04:49.519Z",
   "specId": "013",
   "folderSlug": "design-command-decomposition-research",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "014-template-conformance"
   ],
   "memorySequence": 0,

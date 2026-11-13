@@ -1,11 +1,24 @@
 {
+  "level": "1",
   "specFolder": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/013-doctor-docs-and-ci-fix",
-  "description": "Phase 13: doctor-docs-and-ci-fix",
+  "description": "The Spec-Kit Check doctor-scripts job fails 212 of 213 tests: `skill-advisor-route-contract.test.cjs` requires `yaml`, which `.skilled` only pulls in",
   "keywords": [
-    "phase",
-    "doctor-docs-and-ci-fix"
+    "spec-kit",
+    "check",
+    "doctor-scripts",
+    "job",
+    "fails",
+    "tests",
+    "skill-advisor-route-contract",
+    "test",
+    "cjs",
+    "requires",
+    "yaml",
+    "skilled",
+    "only",
+    "pulls"
   ],
-  "lastUpdated": "2026-10-04T09:58:04.333Z",
+  "lastUpdated": "2026-11-13T10:04:39.332Z",
   "specId": "013",
   "folderSlug": "doctor-docs-and-ci-fix",
   "parentChain": [
@@ -14,6 +27,5 @@
     "002-doctor-audit-followups"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/010-search-retrieval-quality-fixes",
   "description": "`memorycontext({ input: \"semantic search\", mode: \"deep\", intent: \"understand\" })` returns 0 results despite the database containing 1202 memories with",
   "keywords": [
@@ -17,7 +18,7 @@
     "containing",
     "memories"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.521Z",
+  "lastUpdated": "2026-11-13T10:05:34.347Z",
   "specId": "010",
   "folderSlug": "search-retrieval-quality-fixes",
   "parentChain": [
@@ -28,6 +29,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "31-03-26_18-45__completed-all-6-search-retrieval-quality-fixes.md"
-  ],
-  "level": "2"
+  ]
 }

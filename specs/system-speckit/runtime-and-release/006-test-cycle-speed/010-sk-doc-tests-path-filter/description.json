@@ -1,12 +1,21 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/010-sk-doc-tests-path-filter",
-  "description": "Phase 10: sk-doc-tests-path-filter",
+  "description": "`.github/workflows/sk-doc-script-tests.yml` has no `paths:` filter, so its script-test step runs on every push",
   "keywords": [
-    "phase",
-    "sk-doc-tests-path-filter"
+    "github",
+    "workflows",
+    "sk-doc-script-tests",
+    "yml",
+    "paths",
+    "filter",
+    "script-test",
+    "step",
+    "runs",
+    "every",
+    "push"
   ],
-  "lastUpdated": "2026-11-12T17:43:51.762Z",
+  "lastUpdated": "2026-11-13T10:05:23.816Z",
   "specId": "010",
   "folderSlug": "sk-doc-tests-path-filter",
   "parentChain": [

@@ -1,20 +1,17 @@
 {
   "level": "2",
   "specFolder": "system-skill-advisor/routing-and-scoring/006-runtime-name-implementation-routing",
-  "description": "Route implementation prompts that name a runtime surface to the code skill, not the CLI executor",
+  "description": "The executor-delegation resolver treats any bare executor alias as a hand-off",
   "keywords": [
-    "route",
-    "implementation",
-    "prompts",
-    "name",
-    "runtime",
-    "surface",
-    "code",
-    "skill",
-    "cli",
-    "executor"
+    "executor-delegation",
+    "resolver",
+    "treats",
+    "bare",
+    "executor",
+    "alias",
+    "hand-off"
   ],
-  "lastUpdated": "2026-11-08T16:43:36.975Z",
+  "lastUpdated": "2026-11-13T10:05:01.509Z",
   "specId": "006",
   "folderSlug": "runtime-name-implementation-routing",
   "parentChain": [

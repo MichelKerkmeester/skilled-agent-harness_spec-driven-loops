@@ -1,12 +1,20 @@
 {
   "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/028-plugin-kill-switch-coverage",
-  "description": "Phase 28: plugin-kill-switch-coverage",
+  "description": "The repo's master switch `SYSTEMHOOKSDISABLED` silences every hook and plugin except three",
   "keywords": [
-    "phase",
-    "plugin-kill-switch-coverage"
+    "repo",
+    "master",
+    "switch",
+    "systemhooksdisabled",
+    "silences",
+    "every",
+    "hook",
+    "plugin",
+    "except",
+    "three"
   ],
-  "lastUpdated": "2026-10-20T13:37:01.897Z",
+  "lastUpdated": "2026-11-13T10:04:37.478Z",
   "specId": "028",
   "folderSlug": "plugin-kill-switch-coverage",
   "parentChain": [

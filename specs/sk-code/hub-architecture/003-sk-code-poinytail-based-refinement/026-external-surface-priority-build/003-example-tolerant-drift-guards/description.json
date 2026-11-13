@@ -1,14 +1,17 @@
 {
   "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/026-external-surface-priority-build/003-example-tolerant-drift-guards",
-  "description": "Example-tolerant drift guards",
+  "description": "`run-all-drift-guards.sh` is the completion gate for system-code changes (`sk-code-skilled/SKILL.md:175`)",
   "keywords": [
-    "example",
-    "tolerant",
-    "drift",
-    "guards"
+    "run-all-drift-guards",
+    "completion",
+    "gate",
+    "system-code",
+    "changes",
+    "sk-code-skilled",
+    "skill"
   ],
-  "lastUpdated": "2026-10-13T06:33:07.037Z",
+  "lastUpdated": "2026-11-13T10:04:46.773Z",
   "specId": "003",
   "folderSlug": "example-tolerant-drift-guards",
   "parentChain": [

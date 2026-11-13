@@ -20,11 +20,12 @@
     "exists",
     "passed"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.484Z",
+  "lastUpdated": "2026-11-13T13:14:09.679Z",
   "specId": "012",
   "folderSlug": "routing-benchmark-rigor",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "009-sk-design-claude-parity"
   ],
   "memorySequence": 5,

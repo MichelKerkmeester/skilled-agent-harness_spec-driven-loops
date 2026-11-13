@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-design/z_archive/008-design-shared-backbone",
   "description": "The sk-design family shares a backbone of register, context, proof, transport-boundary, token, procedure, and verification contracts, but this packet",
   "keywords": [
@@ -16,13 +17,13 @@
     "contracts",
     "packet"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.465Z",
+  "lastUpdated": "2026-11-13T10:04:48.942Z",
   "specId": "008",
   "folderSlug": "design-shared-backbone",
   "parentChain": [
-    "sk-design"
+    "sk-design",
+    "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

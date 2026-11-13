@@ -1,15 +1,23 @@
 {
   "level": "2",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration",
-  "description": "Jev workflow integration deep research",
+  "description": "The `cli-jev` hub can ask the Jev model for a typed judgment (a probability, a score, a choice or a ranking) through its `cli-usage` transport",
   "keywords": [
+    "cli-jev",
+    "hub",
+    "ask",
     "jev",
-    "workflow",
-    "integration",
-    "deep",
-    "research"
+    "model",
+    "typed",
+    "judgment",
+    "probability",
+    "score",
+    "choice",
+    "ranking",
+    "cli-usage",
+    "transport"
   ],
-  "lastUpdated": "2026-10-03T14:12:49.098Z",
+  "lastUpdated": "2026-11-13T10:04:36.805Z",
   "specId": "003",
   "folderSlug": "cli-jev-workflow-integration",
   "parentChain": [

@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/z_archive/010-cli-opencode-providers",
   "description": "The cli-opencode skill currently treats `github-copilot` as the default provider with `gpt-5.4` and `claude-sonnet-4.6` surfaced by name across",
   "keywords": [
@@ -15,7 +16,7 @@
     "name",
     "across"
   ],
-  "lastUpdated": "2026-08-30T05:43:09.702Z",
+  "lastUpdated": "2026-11-13T10:04:38.294Z",
   "specId": "010",
   "folderSlug": "cli-opencode-providers",
   "parentChain": [
@@ -26,6 +27,5 @@
   "memoryNameHistory": [
     "29-04-26_11-56__provider-realignment-for-cli-opencode-skill.md",
     "29-04-26_13-03__051-complete-github-copilot-provider-removed-from.md"
-  ],
-  "level": "1"
+  ]
 }

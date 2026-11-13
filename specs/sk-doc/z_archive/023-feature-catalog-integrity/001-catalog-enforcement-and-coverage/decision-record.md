@@ -11,7 +11,7 @@ contextType: "planning"
 parent: "sk-doc/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage"
 _memory:
   continuity:
-    packet_pointer: "sk-doc/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage"
+    packet_pointer: "sk-doc/z_archive/023-feature-catalog-integrity/001-catalog-enforcement-and-coverage"
     last_updated_at: "2026-07-30T00:00:00Z"
     last_updated_by: "claude"
     recent_action: "Drafted the four rulings as one proposed decision"

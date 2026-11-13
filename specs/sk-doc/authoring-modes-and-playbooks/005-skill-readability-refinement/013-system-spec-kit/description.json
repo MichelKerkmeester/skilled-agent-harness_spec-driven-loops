@@ -1,11 +1,20 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/013-system-spec-kit",
-  "description": "Phase 13: system-spec-kit",
+  "description": "The docs of `.skilled/skills/system-spec-kit` were never read as a whole for readability, layout and structure",
   "keywords": [
-    "phase",
-    "system-spec-kit"
+    "docs",
+    "skilled",
+    "skills",
+    "system-spec-kit",
+    "never",
+    "read",
+    "whole",
+    "readability",
+    "layout",
+    "structure"
   ],
-  "lastUpdated": "2026-11-04T07:15:59.737Z",
+  "lastUpdated": "2026-11-13T10:04:51.536Z",
   "specId": "013",
   "folderSlug": "system-spec-kit",
   "parentChain": [
@@ -14,6 +23,5 @@
     "005-skill-readability-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

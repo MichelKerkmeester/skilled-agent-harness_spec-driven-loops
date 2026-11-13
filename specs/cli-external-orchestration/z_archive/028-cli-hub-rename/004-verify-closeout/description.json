@@ -20,11 +20,12 @@
     "graph",
     "keys"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.119Z",
+  "lastUpdated": "2026-11-13T10:04:38.568Z",
   "specId": "004",
   "folderSlug": "verify-closeout",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "028-cli-hub-rename"
   ],
   "memorySequence": 3,

@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/002-cli-external-orchestration/004-cli-cursor",
-  "description": "Phase 4: cli-cursor",
+  "description": "The docs of the `.skilled/skills/cli-external-orchestration/cli-cursor` mode were never read as a whole for readability, layout and structure",
   "keywords": [
-    "phase",
-    "cli-cursor"
+    "docs",
+    "skilled",
+    "skills",
+    "cli-external-orchestration",
+    "cli-cursor",
+    "mode",
+    "never",
+    "read",
+    "whole",
+    "readability",
+    "layout",
+    "structure"
   ],
-  "lastUpdated": "2026-11-04T07:16:23.398Z",
+  "lastUpdated": "2026-11-13T10:04:50.481Z",
   "specId": "004",
   "folderSlug": "cli-cursor",
   "parentChain": [
@@ -15,6 +26,5 @@
     "002-cli-external-orchestration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

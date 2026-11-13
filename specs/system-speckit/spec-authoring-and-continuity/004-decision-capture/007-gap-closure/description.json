@@ -1,12 +1,23 @@
 {
   "level": "2",
   "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/007-gap-closure",
-  "description": "Phase 7: gap-closure",
+  "description": "The Codex and Pi sweeps exit 0 with no output when a named transcript cannot be read, so a save cannot tell a failed read from an empty one",
   "keywords": [
-    "phase",
-    "gap-closure"
+    "codex",
+    "sweeps",
+    "exit",
+    "output",
+    "named",
+    "transcript",
+    "cannot",
+    "read",
+    "save",
+    "tell",
+    "failed",
+    "empty",
+    "one"
   ],
-  "lastUpdated": "2026-11-03T08:11:03.711Z",
+  "lastUpdated": "2026-11-13T10:05:30.395Z",
   "specId": "007",
   "folderSlug": "gap-closure",
   "parentChain": [

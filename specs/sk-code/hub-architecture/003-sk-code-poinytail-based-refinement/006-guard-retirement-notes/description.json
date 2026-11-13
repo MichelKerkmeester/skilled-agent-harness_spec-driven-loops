@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/006-guard-retirement-notes",
-  "description": "Phase 6: guard-retirement-notes",
+  "description": "The drift-guard umbrella script already records the retired router-sync guard as missing (`sk-code-skilled/scripts/run-all-drift-guards.sh:50-53`),",
   "keywords": [
-    "phase",
-    "guard-retirement-notes"
+    "drift-guard",
+    "umbrella",
+    "script",
+    "already",
+    "records",
+    "retired",
+    "router-sync",
+    "guard",
+    "missing",
+    "sk-code-skilled",
+    "scripts",
+    "run-all-drift-guards"
   ],
-  "lastUpdated": "2026-10-09T16:00:52.581Z",
+  "lastUpdated": "2026-11-13T10:04:45.294Z",
   "specId": "006",
   "folderSlug": "guard-retirement-notes",
   "parentChain": [
@@ -14,6 +25,5 @@
     "003-sk-code-poinytail-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,19 +1,22 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/dispatch-surface-maintenance/003-claude-code-native-dispatch",
-  "description": "Tell Claude Code sessions to dispatch native subagents instead of the cli-claude-code CLI",
+  "description": "The guard in `.skilled/skills/cli-external-orchestration/cli-claude-code/SKILL.md` refuses self-invocation and says only \"use native capabilities\"",
   "keywords": [
-    "tell",
-    "claude",
-    "code",
-    "sessions",
-    "dispatch",
-    "native",
-    "subagents",
-    "instead",
+    "guard",
+    "skilled",
+    "skills",
+    "cli-external-orchestration",
     "cli-claude-code",
-    "cli"
+    "skill",
+    "refuses",
+    "self-invocation",
+    "says",
+    "only",
+    "native",
+    "capabilities"
   ],
-  "lastUpdated": "2026-10-03T21:11:45.316Z",
+  "lastUpdated": "2026-11-13T10:04:37.032Z",
   "specId": "003",
   "folderSlug": "claude-code-native-dispatch",
   "parentChain": [
@@ -21,6 +24,5 @@
     "dispatch-surface-maintenance"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

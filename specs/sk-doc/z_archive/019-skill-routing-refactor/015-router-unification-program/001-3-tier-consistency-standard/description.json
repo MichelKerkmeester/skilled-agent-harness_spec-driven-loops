@@ -1,4 +1,5 @@
 {
+  "level": 3,
   "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/001-3-tier-consistency-standard",
   "description": "Routing config is inconsistent across the fleet, in ways that make it hard to trust and test uniformly:",
   "keywords": [
@@ -13,15 +14,15 @@
     "test",
     "uniformly"
   ],
-  "lastUpdated": "2026-07-24T12:10:59.623Z",
+  "lastUpdated": "2026-11-13T10:04:52.719Z",
   "specId": "001",
   "folderSlug": "3-tier-consistency-standard",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 3
+  "memoryNameHistory": []
 }

@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename",
   "description": "Rename 20 mode packets and 21 workflowMode keys across the four sk- hubs so a mode's directory name and its routing key are the same string, and every",
   "keywords": [
@@ -18,14 +19,14 @@
     "string",
     "every"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.334Z",
+  "lastUpdated": "2026-11-13T10:04:53.410Z",
   "specId": "030",
   "folderSlug": "mode-sk-prefix-rename",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

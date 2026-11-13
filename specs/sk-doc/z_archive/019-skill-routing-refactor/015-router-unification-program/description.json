@@ -19,11 +19,12 @@
     "recovery",
     "budget"
   ],
-  "lastUpdated": "2026-08-16T18:06:00.739Z",
+  "lastUpdated": "2026-11-13T10:04:53.284Z",
   "specId": "015",
   "folderSlug": "router-unification-program",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor"
   ],
   "memorySequence": 38,

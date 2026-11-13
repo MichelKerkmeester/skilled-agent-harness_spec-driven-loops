@@ -19,11 +19,12 @@
     "every",
     "source"
   ],
-  "lastUpdated": "2026-08-15T14:41:01.850Z",
+  "lastUpdated": "2026-11-13T10:04:53.913Z",
   "specId": "010",
   "folderSlug": "benchmark-artifact-embedding",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "028-sk-create-diagram"
   ],
   "memorySequence": 0,

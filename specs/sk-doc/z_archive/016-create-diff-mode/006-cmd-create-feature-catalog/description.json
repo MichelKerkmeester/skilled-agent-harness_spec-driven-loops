@@ -15,11 +15,12 @@
     "creation",
     "references"
   ],
-  "lastUpdated": "2026-08-29T12:13:21.061Z",
+  "lastUpdated": "2026-11-13T10:04:52.103Z",
   "specId": "006",
   "folderSlug": "cmd-create-feature-catalog",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "016-create-diff-mode"
   ],
   "memorySequence": 0,

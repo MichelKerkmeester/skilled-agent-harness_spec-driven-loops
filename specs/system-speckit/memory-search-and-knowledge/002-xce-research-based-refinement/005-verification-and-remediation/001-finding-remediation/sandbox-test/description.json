@@ -1,20 +1,22 @@
 {
   "level": "1",
   "specFolder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/sandbox-test",
-  "description": "title: \"Sandbox Mutation Test Doc\"",
+  "description": "This is a temporary sandbox document for mutation testing validation.",
   "keywords": [
-    "title",
+    "temporary",
     "sandbox",
+    "document",
     "mutation",
-    "test",
-    "doc"
+    "testing",
+    "validation"
   ],
-  "lastUpdated": "2026-08-30T08:03:56.362Z",
+  "lastUpdated": "2026-11-13T10:05:11.235Z",
   "specId": "",
   "folderSlug": "sandbox-test",
   "parentChain": [
     "system-speckit",
-    "027-xce-research-based-refinement",
+    "memory-search-and-knowledge",
+    "002-xce-research-based-refinement",
     "005-verification-and-remediation",
     "001-finding-remediation"
   ],

@@ -43,7 +43,6 @@
       ".opencode/skills/system-deep-loop/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-research/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-review/SKILL.md",
-      ".opencode/skills/system-deep-loop/deep-improvement/SKILL.md",
       ".opencode/skills/system-deep-loop/deep-ai-council/SKILL.md",
       ".opencode/agents/orchestrate.md",
       ".opencode/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
@@ -198,7 +197,7 @@
     ],
     "causal_summary": "Phase 006 verified SKILL.md structural template conformance across `system-deep-loop` (already 100%) and fixed a set of soft warnings (asset naming, word count, changelog frontmatter)",
     "created_at": "2026-07-08T18:58:44.424Z",
-    "last_save_at": "2026-10-07T18:15:18.404Z",
+    "last_save_at": "2026-11-13T13:18:28.337Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,11 +206,11 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:62dc01c64fccab1325310435462ebb27137099ba711f77fe8ebce5e163380240",
+    "source_fingerprint": "sha256:23e9cfe3ec0b593f1a37a968737186aa94cd421d8e52a35c2719383711306adf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "291a052f4a95953b36c251ceae6425e84ba25cf8b07372be286ebfad5d672e63",
-      "plan.md": "a00c772254f6a9b15ab62a2913485464f55754f116e7bb25ad986d1718f93cd3",
+      "spec.md": "a162a21a8f9ab26c80524b5d60076502b2fd4b6b7061e96ee23701aa4e0ba2be",
+      "plan.md": "c02e0fbd25bfac87be5a1cb8f8596a4a169b15565658c5d39c15891b1a072300",
       "tasks.md": "11c59d603d0647374517b087c7e390f9d4a0594803cdfb252c6a29fed6abd583",
       "implementation-summary.md": "0c035611367110df9a9bee25516a4868ed035a0174f5f3adb56863346cf7df8e"
     },

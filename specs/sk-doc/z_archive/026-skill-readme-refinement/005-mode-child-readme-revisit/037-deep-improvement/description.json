@@ -15,11 +15,12 @@
     "reference-card",
     "style"
   ],
-  "lastUpdated": "2026-09-04T17:50:17.898Z",
+  "lastUpdated": "2026-11-13T10:04:53.892Z",
   "specId": "037",
   "folderSlug": "deep-improvement",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "026-skill-readme-refinement",
     "005-mode-child-readme-revisit"
   ],

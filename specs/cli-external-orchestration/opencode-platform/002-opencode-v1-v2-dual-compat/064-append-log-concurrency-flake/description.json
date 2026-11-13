@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/064-append-log-concurrency-flake",
-  "description": "Phase 64: append-log-concurrency-flake",
+  "description": "The Hook Node Tests case 'appendLog keeps every line when eight processes append concurrently' failed once in CI",
   "keywords": [
-    "phase",
-    "append-log-concurrency-flake"
+    "hook",
+    "node",
+    "tests",
+    "case",
+    "appendlog",
+    "keeps",
+    "every",
+    "line",
+    "eight",
+    "processes",
+    "append",
+    "concurrently",
+    "failed"
   ],
-  "lastUpdated": "2026-10-23T04:12:27.037Z",
+  "lastUpdated": "2026-11-13T10:04:37.700Z",
   "specId": "064",
   "folderSlug": "append-log-concurrency-flake",
   "parentChain": [
@@ -14,6 +26,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

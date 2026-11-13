@@ -1,17 +1,13 @@
 {
   "level": "2",
   "specFolder": "commands/002-doctor-audit-and-fixes/001-doctor-command-audit/003-update",
-  "description": "`/doctor:update` rebuilds the spec-kit runtime databases in dependency order",
+  "description": "`/doctor:update` was a database rebuild",
   "keywords": [
     "doctor",
-    "rebuilds",
-    "spec-kit",
-    "runtime",
-    "databases",
-    "dependency",
-    "order"
+    "database",
+    "rebuild"
   ],
-  "lastUpdated": "2026-10-02T21:03:18.862Z",
+  "lastUpdated": "2026-11-13T10:04:39.164Z",
   "specId": "003",
   "folderSlug": "update",
   "parentChain": [

@@ -9,11 +9,12 @@
     "document",
     "capability"
   ],
-  "lastUpdated": "2026-08-29T17:21:20.534Z",
+  "lastUpdated": "2026-11-13T10:04:43.270Z",
   "specId": "004",
   "folderSlug": "hub-integration",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "017-mcp-magicpath"
   ],
   "memorySequence": 0,

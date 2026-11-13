@@ -1,12 +1,21 @@
 {
   "level": "1",
   "specFolder": "hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/002-retrieval-lessons-research",
-  "description": "Phase 2: retrieval-lessons-research",
+  "description": "system-spec-kit retrieval is a committed trigger index plus ripgrep recipes with a caller-side ranking tuple",
   "keywords": [
-    "phase",
-    "retrieval-lessons-research"
+    "system-spec-kit",
+    "retrieval",
+    "committed",
+    "trigger",
+    "index",
+    "plus",
+    "ripgrep",
+    "recipes",
+    "caller-side",
+    "ranking",
+    "tuple"
   ],
-  "lastUpdated": "2026-11-09T14:38:47.304Z",
+  "lastUpdated": "2026-11-13T10:04:41.457Z",
   "specId": "002",
   "folderSlug": "retrieval-lessons-research",
   "parentChain": [

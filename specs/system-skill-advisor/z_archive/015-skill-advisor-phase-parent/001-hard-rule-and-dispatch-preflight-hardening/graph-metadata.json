@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Two dispatch-path failures — a manual opencode run with no stdin redirect that hung at 0% CPU, and a fanout lineage that stalled at 0 iterations with no terminal event — both trace to the same shape: a machine check that would have caught it exists or is nearly free, but nothing in the execution path runs it before the risky action. Implemented on-branch 2026-07-05 (Wave D + A′ + B2); both acceptance tests met.",
     "created_at": "2026-07-05T05:43:02.602Z",
-    "last_save_at": "2026-10-08T19:30:39.746Z",
+    "last_save_at": "2026-11-13T13:19:05.916Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,14 +206,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e4d79e72ba9459ea253fd5c4ecb959ebe8d731e6ea863f157455fc483e066f3b",
+    "source_fingerprint": "sha256:78151e7609612e4d157fb4bbbcce03428e4dc42d0d4be2ec3ee3f5aa7b1572e4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "7fc1488f51036665fbded7f9921c6e58ea00cabb11536c9ac47fa9aef7695502",
+      "spec.md": "1c6bff27736ef4470f0a38cd00ae009cd242b1a68896fe6deb42764bdda4ec55",
       "plan.md": "ff39bc3052821fd0c9583fd6ec27ac0ee7778c86fc2873c7deb91768c8861004",
       "tasks.md": "8fa6f9f616d417b5540ee95af8f2d32e8f68b5a3c83a206a40579126d32b6b93",
       "decision-record.md": "dd77b9d2da644fe66d0d40b9d4f6fe8ec4a313a0eea8f83631f2cf0a0b9e74c7",
-      "implementation-summary.md": "cb9407a0d8832b29a7fe02208a2c093c7401219dc8fe9428dc8ca5b389c54f7e"
+      "implementation-summary.md": "1fcb54a5b8a083d761f2522c8cc0228f7cbd995088d30fc7c900ae647518d64a"
     },
     "last_active_child_id": null,
     "last_active_at": null

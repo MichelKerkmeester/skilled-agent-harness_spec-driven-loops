@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/015-manual-testing-per-playbook/016-tooling-and-scripts",
   "description": "The tooling-and-scripts category (16) contains 33 scenario files covering 65 exact scenario IDs that have not been manually tested against the live",
   "keywords": [
@@ -15,7 +16,7 @@
     "against",
     "live"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.432Z",
+  "lastUpdated": "2026-11-13T10:05:34.186Z",
   "specId": "016",
   "folderSlug": "tooling-and-scripts",
   "parentChain": [
@@ -25,6 +26,5 @@
     "015-manual-testing-per-playbook"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

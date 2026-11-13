@@ -194,7 +194,7 @@
     ],
     "causal_summary": "`sk-design`'s hub root had a `references/` folder containing exactly one file, `designprooftoken.md`, while every other cross-cutting design doc (`antislopprinciples.md`, `cognitivelaws.md`, `designtokenvocabulary.md`, etc.) already lives directly in `shared/`",
     "created_at": "2026-07-07T04:26:23.402Z",
-    "last_save_at": "2026-10-07T18:11:38.987Z",
+    "last_save_at": "2026-11-13T13:14:15.456Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:de95b6a243a5d36446b17640764ec4195167f889fb6606b792cfb3481f101f34",
+    "source_fingerprint": "sha256:ee280d97672fa48b71ff1e869521386b7725f0cb58d2731960311ad4cd2dd183",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "230fc26ba5ecf930b87d9d2ab17b2c596ecf4030355e213bf6c0042cab2e5363",
+      "spec.md": "8945fbb9a8e69f45f6c013f6098ffd1ade6cdc6fbc209b9600047758c35c6743",
       "plan.md": "48812cacad42544ef9496e9a4434939b469aa7335fe492aad90ba04b5e3622a1",
       "tasks.md": "adf25ae7d939a9378c1db9f83c0607f458b67465dfbf1d28e0997245f23e7bf6",
       "implementation-summary.md": "aebe11c76c2a33dc5af6013734ca80ddb2884e70f9dac36d66deeeea215d6bba"

@@ -14,11 +14,12 @@
     "skill",
     "readme"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.759Z",
+  "lastUpdated": "2026-11-13T10:04:53.718Z",
   "specId": "004",
   "folderSlug": "cli-codex",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "005-cli-external-orchestration"

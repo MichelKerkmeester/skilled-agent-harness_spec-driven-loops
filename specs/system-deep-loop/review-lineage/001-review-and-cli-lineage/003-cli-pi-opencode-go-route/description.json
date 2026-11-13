@@ -1,18 +1,21 @@
 {
   "level": "1",
   "specFolder": "system-deep-loop/review-lineage/001-review-and-cli-lineage/003-cli-pi-opencode-go-route",
-  "description": "Let the deep-loop cli-pi executor reach DeepSeek V4.1 Flash through opencode-go",
+  "description": "`PIMODELPROVIDERS` maps the bare `deepseek-v4.1-flash` literal to `llmgateway`, and one literal maps to one provider, so `/deep:review` and",
   "keywords": [
-    "let",
-    "deep-loop",
-    "cli-pi",
-    "executor",
-    "reach",
-    "deepseek",
-    "flash",
-    "opencode-go"
+    "pimodelproviders",
+    "maps",
+    "bare",
+    "deepseek-v4",
+    "1-flash",
+    "literal",
+    "llmgateway",
+    "one",
+    "provider",
+    "deep",
+    "review"
   ],
-  "lastUpdated": "2026-10-11T19:55:30.435Z",
+  "lastUpdated": "2026-11-13T10:04:56.348Z",
   "specId": "003",
   "folderSlug": "cli-pi-opencode-go-route",
   "parentChain": [

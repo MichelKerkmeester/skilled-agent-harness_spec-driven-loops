@@ -17,11 +17,12 @@
     "mcp-obsidian",
     "set"
   ],
-  "lastUpdated": "2026-08-30T07:16:20.518Z",
+  "lastUpdated": "2026-11-13T10:04:53.872Z",
   "specId": "018",
   "folderSlug": "sk-code-webflow",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "026-skill-readme-refinement",
     "005-mode-child-readme-revisit"
   ],

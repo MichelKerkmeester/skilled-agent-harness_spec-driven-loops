@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/035-v2-bridge-plugin-effects",
-  "description": "Phase 35: v2-bridge-plugin-effects",
+  "description": "All 17 repository plugins register as `active` on OpenCode 2.0.32, but phase 034's live runs showed only 10 of them act",
   "keywords": [
+    "repository",
+    "plugins",
+    "register",
+    "active",
+    "opencode",
     "phase",
-    "v2-bridge-plugin-effects"
+    "live",
+    "runs",
+    "showed",
+    "only",
+    "them",
+    "act"
   ],
-  "lastUpdated": "2026-10-20T20:32:45.836Z",
+  "lastUpdated": "2026-11-13T10:04:37.515Z",
   "specId": "035",
   "folderSlug": "v2-bridge-plugin-effects",
   "parentChain": [
@@ -14,6 +25,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

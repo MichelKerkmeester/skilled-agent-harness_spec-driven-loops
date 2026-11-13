@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/008-deep-stack-playbook-validation",
   "description": "The five deep-loop skills — `deep-loop-runtime` (22), `deep-ai-council` (32), `deep-review` (45), `deep-research` (41), and `deep-agent-improvement`",
   "keywords": [
@@ -11,7 +12,7 @@
     "deep-research",
     "deep-agent-improvement"
   ],
-  "lastUpdated": "2026-08-15T14:41:05.615Z",
+  "lastUpdated": "2026-11-13T10:04:56.680Z",
   "specId": "008",
   "folderSlug": "deep-stack-playbook-validation",
   "parentChain": [
@@ -22,6 +23,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "27-05-26_08-37__scaffolded-a-new-phased-spec-030-deep-loop-skills.md"
-  ],
-  "level": "2"
+  ]
 }

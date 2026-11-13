@@ -1,17 +1,19 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/runtime-and-release/003-symlinked-runtime-root",
-  "description": "Symlinked runtime: entry guard, project root and empty saves",
+  "description": "Consuming repositories reach the spec-kit runtime through a `.skilled` symlink into the shared runtime repository",
   "keywords": [
-    "symlinked",
+    "consuming",
+    "repositories",
+    "reach",
+    "spec-kit",
     "runtime",
-    "entry",
-    "guard",
-    "project",
-    "root",
-    "empty",
-    "saves"
+    "skilled",
+    "symlink",
+    "shared",
+    "repository"
   ],
-  "lastUpdated": "2026-10-12T09:25:17.896Z",
+  "lastUpdated": "2026-11-13T10:05:22.632Z",
   "specId": "003",
   "folderSlug": "symlinked-runtime-root",
   "parentChain": [
@@ -19,6 +21,5 @@
     "runtime-and-release"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

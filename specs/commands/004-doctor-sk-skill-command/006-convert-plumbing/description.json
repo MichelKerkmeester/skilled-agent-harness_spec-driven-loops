@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "commands/004-doctor-sk-skill-command/006-convert-plumbing",
-  "description": "Phase 6: convert-plumbing",
+  "description": "After phase 5, `sk-skill-convert.cjs` can plan and apply a conversion, but only a person who knows the script path can run it",
   "keywords": [
     "phase",
-    "convert-plumbing"
+    "sk-skill-convert",
+    "cjs",
+    "plan",
+    "apply",
+    "conversion",
+    "only",
+    "person",
+    "knows",
+    "script",
+    "path",
+    "run"
   ],
-  "lastUpdated": "2026-10-30T05:21:17.466Z",
+  "lastUpdated": "2026-11-13T10:04:39.461Z",
   "specId": "006",
   "folderSlug": "convert-plumbing",
   "parentChain": [
@@ -13,6 +24,5 @@
     "004-doctor-sk-skill-command"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

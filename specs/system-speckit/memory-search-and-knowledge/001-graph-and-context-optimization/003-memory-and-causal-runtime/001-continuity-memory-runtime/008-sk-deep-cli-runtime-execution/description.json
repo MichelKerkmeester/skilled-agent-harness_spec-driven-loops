@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "migration": {
     "moved_at": "2026-04-21T12:00:00Z",
     "source_spec_folder": "system-spec-kit/026-graph-and-context-optimization/017-sk-deep-cli-runtime-execution",
@@ -34,7 +35,7 @@
     "ex-019",
     "cli-gemini"
   ],
-  "lastUpdated": "2026-08-15T14:41:10.311Z",
+  "lastUpdated": "2026-11-13T10:05:05.163Z",
   "specId": "008",
   "folderSlug": "sk-deep-cli-runtime-execution",
   "parentChain": [
@@ -47,6 +48,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "25-04-26_11-34__metadata-refresh-rewrite-children-ids-in-graph.md"
-  ],
-  "level": "3"
+  ]
 }

@@ -1,14 +1,17 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/spec-folder-tooling/004-create-path-track-refresh",
-  "description": "create.sh --path refreshes the track root of the folder it creates",
+  "description": "`create.sh --track` adds a new packet to its track root's `childrenids`, but `--path` never did",
   "keywords": [
-    "path",
-    "refreshes",
     "track",
+    "new",
+    "packet",
     "root",
-    "folder"
+    "childrenids",
+    "path",
+    "never"
   ],
-  "lastUpdated": "2026-11-08T18:17:08.129Z",
+  "lastUpdated": "2026-11-13T10:05:32.391Z",
   "specId": "004",
   "folderSlug": "create-path-track-refresh",
   "parentChain": [
@@ -16,6 +19,5 @@
     "spec-folder-tooling"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

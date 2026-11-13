@@ -1,12 +1,22 @@
 {
   "level": "1",
   "specFolder": "hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/008-routing-and-release-alignment",
-  "description": "Phase 8: routing-and-release-alignment",
+  "description": "Three of the seven prompts stored by the phase 4 to 6 alignment runs routed to the doctor helper instead of `system-spec-kit`",
   "keywords": [
+    "three",
+    "seven",
+    "prompts",
+    "stored",
     "phase",
-    "routing-and-release-alignment"
+    "alignment",
+    "runs",
+    "routed",
+    "doctor",
+    "helper",
+    "instead",
+    "system-spec-kit"
   ],
-  "lastUpdated": "2026-11-10T11:30:36.358Z",
+  "lastUpdated": "2026-11-13T10:04:41.508Z",
   "specId": "008",
   "folderSlug": "routing-and-release-alignment",
   "parentChain": [

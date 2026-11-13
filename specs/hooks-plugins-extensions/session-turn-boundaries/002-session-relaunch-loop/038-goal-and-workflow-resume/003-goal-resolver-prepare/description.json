@@ -1,12 +1,26 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/003-goal-resolver-prepare",
-  "description": "Phase 3: goal-resolver-prepare",
+  "description": "Devin and Cursor receivers start under a fresh native id, so the goal record the sender wrote under the old id never matches and the next manual hop",
   "keywords": [
-    "phase",
-    "goal-resolver-prepare"
+    "devin",
+    "cursor",
+    "receivers",
+    "start",
+    "fresh",
+    "native",
+    "goal",
+    "record",
+    "sender",
+    "wrote",
+    "old",
+    "never",
+    "matches",
+    "next",
+    "manual",
+    "hop"
   ],
-  "lastUpdated": "2026-11-13T03:56:22.615Z",
+  "lastUpdated": "2026-11-13T10:04:41.879Z",
   "specId": "003",
   "folderSlug": "goal-resolver-prepare",
   "parentChain": [

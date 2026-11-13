@@ -12,11 +12,12 @@
     "git",
     "repository"
   ],
-  "lastUpdated": "2026-08-15T14:40:59.124Z",
+  "lastUpdated": "2026-11-13T10:04:52.327Z",
   "specId": "016",
   "folderSlug": "create-diff-mode",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

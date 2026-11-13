@@ -15,11 +15,12 @@
     "actively",
     "misleads"
   ],
-  "lastUpdated": "2026-08-15T14:40:59.393Z",
+  "lastUpdated": "2026-11-13T10:04:52.717Z",
   "specId": "014",
   "folderSlug": "sk-code-router-alignment",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor"
   ],
   "memorySequence": 0,

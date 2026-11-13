@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/016-residual-closeout/007-dispatch-wrapper-scan",
-  "description": "Phase 7: dispatch-wrapper-scan",
+  "description": "`inspectDispatch` in `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` unwraps only the first `bash -c` wrapper",
   "keywords": [
-    "phase",
-    "dispatch-wrapper-scan"
+    "inspectdispatch",
+    "skilled",
+    "hooks",
+    "dispatch",
+    "lib",
+    "dispatch-audit",
+    "mjs",
+    "unwraps",
+    "only",
+    "first",
+    "bash",
+    "wrapper"
   ],
-  "lastUpdated": "2026-10-11T11:28:04.491Z",
+  "lastUpdated": "2026-11-13T10:04:46.182Z",
   "specId": "007",
   "folderSlug": "dispatch-wrapper-scan",
   "parentChain": [
@@ -15,6 +26,5 @@
     "016-residual-closeout"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

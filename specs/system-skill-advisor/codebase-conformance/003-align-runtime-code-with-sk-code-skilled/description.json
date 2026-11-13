@@ -1,21 +1,20 @@
 {
   "level": "2",
   "specFolder": "system-skill-advisor/codebase-conformance/003-align-runtime-code-with-sk-code-skilled",
-  "description": "Align runtime code with sk-code-skilled: section comments, folder depth, code READMEs, ARCHITECTURE.md (system-skill-advisor)",
+  "description": "Code under `.skilled/skills/system-skill-advisor/runtime/` does not follow the sk-code-skilled comment and structure rules in",
   "keywords": [
-    "align",
-    "runtime",
     "code",
+    "skilled",
+    "skills",
+    "system-skill-advisor",
+    "runtime",
+    "follow",
     "sk-code-skilled",
-    "section",
-    "comments",
-    "folder",
-    "depth",
-    "readmes",
-    "architecture",
-    "system-skill-advisor"
+    "comment",
+    "structure",
+    "rules"
   ],
-  "lastUpdated": "2026-09-30T22:06:51.595Z",
+  "lastUpdated": "2026-11-13T10:05:01.227Z",
   "specId": "003",
   "folderSlug": "align-runtime-code-with-sk-code-skilled",
   "parentChain": [

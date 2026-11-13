@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/z_archive/024-compact-code-graph/033-fts-forced-degrade-hardening",
   "description": "The research said FTS hardening is now a low-priority but still useful truth lane",
   "keywords": [
@@ -13,7 +14,7 @@
     "truth",
     "lane"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.655Z",
+  "lastUpdated": "2026-11-13T10:05:34.568Z",
   "specId": "033",
   "folderSlug": "fts-forced-degrade-hardening",
   "parentChain": [
@@ -22,6 +23,5 @@
     "024-compact-code-graph"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

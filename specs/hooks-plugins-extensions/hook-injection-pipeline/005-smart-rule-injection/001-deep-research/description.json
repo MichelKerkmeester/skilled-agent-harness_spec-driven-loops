@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/001-deep-research",
   "description": "Repo rules load at Gate 5, which fires on the first write of a session",
   "keywords": [
@@ -11,7 +12,7 @@
     "write",
     "session"
   ],
-  "lastUpdated": "2026-10-03T15:32:29.673Z",
+  "lastUpdated": "2026-11-13T10:04:40.832Z",
   "specId": "001",
   "folderSlug": "deep-research",
   "parentChain": [
@@ -20,6 +21,5 @@
     "005-smart-rule-injection"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

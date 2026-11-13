@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/003-subtrack-archive-and-numbering",
+  "description": "`archive.sh` moves a subtrack's packet into that subtrack's own `zarchive/`, but no script creates the folder",
+  "keywords": [
+    "archive",
+    "moves",
+    "subtrack",
+    "packet",
+    "own",
+    "zarchive",
+    "script",
+    "folder"
+  ],
+  "lastUpdated": "2026-11-13T12:56:38.709Z",
+  "specId": "003",
+  "folderSlug": "subtrack-archive-and-numbering",
+  "parentChain": [
+    "system-speckit",
+    "spec-folder-tooling",
+    "005-subtrack-proposal-and-archive-reach"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

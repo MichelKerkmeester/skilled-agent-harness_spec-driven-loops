@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The primary deep-loop router agent was named `deep`",
     "created_at": "2026-07-03T19:59:02.276Z",
-    "last_save_at": "2026-10-07T18:15:12.533Z",
+    "last_save_at": "2026-11-13T13:18:28.776Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +201,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:04dbd1544165a35463628101d3c8f50fb525c48ffe6aec9a89d42fb0afd69f08",
+    "source_fingerprint": "sha256:475e13ff2ef5511a7c6ffe84cddb5e36823c51f67de789f3281cc4f8b5d3fd1d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b02178cfeed673f26c391c750c473b16efd9a570c33e3eebc1fc3232160a1850",
+      "spec.md": "1c71086910539a1feff868ef2f09e19c732c6bede5c6271806988179c47f023d",
       "plan.md": "506385dc143c4735e10633f9846db8b60a82c2f84a692bd5b2c5b2a70f0a920c",
       "tasks.md": "e228e43037ab7a7db16daeb1802b354686ad538b66810ca68009a8349e20d077",
       "implementation-summary.md": "a45a13ebbf9c8a01de21efe222033f36957c4857672fefdfb61c9e8d8f91f30e"

@@ -12,11 +12,12 @@
     "all-caps",
     "headers"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.005Z",
+  "lastUpdated": "2026-11-13T10:04:53.287Z",
   "specId": "002",
   "folderSlug": "reference-asset-template-alignment",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "016-documentation-quality-program"
   ],

@@ -1,12 +1,17 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/005-deep-review-remediation",
-  "description": "Phase 5: deep-review-remediation",
+  "description": "The deep review passed the loop but left twelve advisories",
   "keywords": [
-    "phase",
-    "deep-review-remediation"
+    "deep",
+    "review",
+    "passed",
+    "loop",
+    "left",
+    "twelve",
+    "advisories"
   ],
-  "lastUpdated": "2026-10-18T18:14:17.620Z",
+  "lastUpdated": "2026-11-13T10:04:41.524Z",
   "specId": "005",
   "folderSlug": "deep-review-remediation",
   "parentChain": [

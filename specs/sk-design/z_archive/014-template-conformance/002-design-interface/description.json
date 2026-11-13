@@ -17,11 +17,12 @@
     "references",
     "assets"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.226Z",
+  "lastUpdated": "2026-11-13T10:04:49.459Z",
   "specId": "002",
   "folderSlug": "design-interface",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "014-template-conformance"
   ],
   "memorySequence": 0,

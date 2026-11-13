@@ -1,0 +1,71 @@
+{
+  "run_id": "1794603759690-pm09h3",
+  "loop_type": "research",
+  "spec_folder": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers",
+  "base_artifact_dir": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 2,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0,
+    "quota": 0
+  },
+  "timestamp_anomalies": [
+    {
+      "label": "deepseek-2",
+      "state_log": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research/lineages/deepseek-2/deep-research-state.jsonl",
+      "window": {
+        "start_at_iso": "2026-11-13T21:02:39.753Z",
+        "end_at_iso": "2026-11-13T21:10:35.763Z",
+        "tolerance_ms": 120000
+      },
+      "counts": {
+        "anomalous": 4,
+        "untimestamped": 0,
+        "unparseable": 0,
+        "total": 7
+      },
+      "sample": [
+        {
+          "index": 2,
+          "reason": "after_window",
+          "timestamp": "2026-11-13T21:14:00.000Z",
+          "deltaMs": 84237
+        },
+        {
+          "index": 3,
+          "reason": "after_window",
+          "timestamp": "2026-11-13T21:20:00.000Z",
+          "deltaMs": 444237
+        },
+        {
+          "index": 4,
+          "reason": "after_window",
+          "timestamp": "2026-11-13T21:26:00.000Z",
+          "deltaMs": 804237
+        },
+        {
+          "index": 5,
+          "reason": "after_window",
+          "timestamp": "2026-11-13T21:32:00.000Z",
+          "deltaMs": 1164237
+        }
+      ]
+    }
+  ]
+}

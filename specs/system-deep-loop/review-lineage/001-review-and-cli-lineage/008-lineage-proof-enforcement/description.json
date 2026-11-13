@@ -1,11 +1,16 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/review-lineage/001-review-and-cli-lineage/008-lineage-proof-enforcement",
-  "description": "Phase 8: lineage-proof-enforcement",
+  "description": "A four-lineage cli-pi research run on 2026-10-12 reported 4 of 4 fulfilled",
   "keywords": [
-    "phase",
-    "lineage-proof-enforcement"
+    "four-lineage",
+    "cli-pi",
+    "research",
+    "run",
+    "reported",
+    "fulfilled"
   ],
-  "lastUpdated": "2026-10-12T09:25:16.571Z",
+  "lastUpdated": "2026-11-13T10:04:56.364Z",
   "specId": "008",
   "folderSlug": "lineage-proof-enforcement",
   "parentChain": [
@@ -14,6 +19,5 @@
     "001-review-and-cli-lineage"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

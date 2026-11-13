@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/008-series-parent-review-fixes",
-  "description": "Phase 8: series-parent-review-fixes",
+  "description": "Anyone following the series parent recipe gets three placeholder children that the next steps collide with",
   "keywords": [
-    "phase",
-    "series-parent-review-fixes"
+    "anyone",
+    "following",
+    "series",
+    "parent",
+    "recipe",
+    "gets",
+    "three",
+    "placeholder",
+    "children",
+    "next",
+    "steps",
+    "collide"
   ],
-  "lastUpdated": "2026-10-07T09:58:44.112Z",
+  "lastUpdated": "2026-11-13T10:05:31.522Z",
   "specId": "008",
   "folderSlug": "series-parent-review-fixes",
   "parentChain": [
@@ -15,6 +26,5 @@
     "003-spec-folder-tooling"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

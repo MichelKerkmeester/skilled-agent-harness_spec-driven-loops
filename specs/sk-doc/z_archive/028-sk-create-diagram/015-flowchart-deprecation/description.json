@@ -17,11 +17,12 @@
     "stub",
     "matching"
   ],
-  "lastUpdated": "2026-08-19T19:14:46.897Z",
+  "lastUpdated": "2026-11-13T10:04:53.944Z",
   "specId": "015",
   "folderSlug": "flowchart-deprecation",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "028-sk-create-diagram"
   ],
   "memorySequence": 0,

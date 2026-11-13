@@ -1,11 +1,16 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/loop-architecture/003-deprecate-improvement-modes/011-pre-existing-gate-failures",
-  "description": "Phase 11: pre-existing-gate-failures",
+  "description": "The compiled-route sync builds its runtime closure from the authored program under",
   "keywords": [
-    "phase",
-    "pre-existing-gate-failures"
+    "compiled-route",
+    "sync",
+    "runtime",
+    "closure",
+    "authored",
+    "program"
   ],
-  "lastUpdated": "2026-10-11T04:57:16.530Z",
+  "lastUpdated": "2026-11-13T10:04:56.308Z",
   "specId": "011",
   "folderSlug": "pre-existing-gate-failures",
   "parentChain": [
@@ -14,6 +19,5 @@
     "003-deprecate-improvement-modes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

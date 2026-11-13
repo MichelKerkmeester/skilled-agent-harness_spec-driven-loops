@@ -130,18 +130,18 @@
     ],
     "causal_summary": "This parent packet coordinates the phased work under `023 Path Scoped Rules` so the child packets stay discoverable and the root purpose remains clear while implementation details live below the parent level",
     "created_at": "2026-04-27T13:33:11Z",
-    "last_save_at": "2026-11-10T05:48:49.381Z",
+    "last_save_at": "2026-11-13T13:19:18.076Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:51b36cd99fad1eee7a24d1abc636fe33aaca32c6c30e600eb75632338492d095",
+    "source_fingerprint": "sha256:40224033e2aa7cb8dbd3e246aaff7d91c57d4a56dcc475c29bdc1feb25664143",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "88f58f025705b6a0ae45b3090b899f8ebd20792318b2852d950b371a69a5fea8",
-      "resource-map.md": "2c0bb6515c2f79008221e875eae1dfe26c4844d65c3a8b0d3f8da2bd09e44b5e"
+      "resource-map.md": "5be1d8012dd99c4be38e95e726966856311923204aecd03c5e13ef63083331a0"
     },
     "last_active_child_id": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules/001-mvp-monolithic",
     "last_active_at": null

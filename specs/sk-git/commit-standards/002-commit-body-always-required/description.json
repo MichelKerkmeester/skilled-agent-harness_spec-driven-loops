@@ -1,14 +1,24 @@
 {
+  "level": "2",
   "specFolder": "sk-git/commit-standards/002-commit-body-always-required",
-  "description": "Require a commit body on every authored commit",
+  "description": "`SKILL.md` section 6 asked for a commit body only when a commit staged four or more paths, and the `commit-msg` hook enforced exactly that by counting",
   "keywords": [
-    "require",
+    "skill",
+    "section",
+    "asked",
     "commit",
     "body",
-    "every",
-    "authored"
+    "only",
+    "staged",
+    "four",
+    "paths",
+    "commit-msg",
+    "hook",
+    "enforced",
+    "exactly",
+    "counting"
   ],
-  "lastUpdated": "2026-09-28T20:37:18.864Z",
+  "lastUpdated": "2026-11-13T10:04:54.146Z",
   "specId": "002",
   "folderSlug": "commit-body-always-required",
   "parentChain": [
@@ -16,6 +26,5 @@
     "commit-standards"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

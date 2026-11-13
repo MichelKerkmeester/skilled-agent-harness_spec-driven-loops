@@ -1,12 +1,19 @@
 {
   "level": "2",
   "specFolder": "sk-git/commit-standards/005-git-setup-customization/002-doctor-git-setup",
-  "description": "Phase 2: doctor-git-setup",
+  "description": "sk-git has twelve surfaces a repository can change, and several of them fail open",
   "keywords": [
-    "phase",
-    "doctor-git-setup"
+    "sk-git",
+    "twelve",
+    "surfaces",
+    "repository",
+    "change",
+    "several",
+    "them",
+    "fail",
+    "open"
   ],
-  "lastUpdated": "2026-10-15T08:10:12.055Z",
+  "lastUpdated": "2026-11-13T10:04:54.192Z",
   "specId": "002",
   "folderSlug": "doctor-git-setup",
   "parentChain": [

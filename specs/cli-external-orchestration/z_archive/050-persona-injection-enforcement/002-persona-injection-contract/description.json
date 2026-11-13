@@ -17,11 +17,12 @@
     "path",
     "five"
   ],
-  "lastUpdated": "2026-08-19T17:04:10.636Z",
+  "lastUpdated": "2026-11-13T10:04:38.923Z",
   "specId": "002",
   "folderSlug": "persona-injection-contract",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "050-persona-injection-enforcement"
   ],
   "memorySequence": 0,

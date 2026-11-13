@@ -18,11 +18,12 @@
     "gpt",
     "provider"
   ],
-  "lastUpdated": "2026-09-05T11:38:12.333Z",
+  "lastUpdated": "2026-11-13T10:04:38.979Z",
   "specId": "064",
   "folderSlug": "gpt-6-astra-oauth",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

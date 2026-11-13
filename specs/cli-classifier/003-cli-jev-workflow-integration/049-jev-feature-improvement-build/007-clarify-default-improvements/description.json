@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/007-clarify-default-improvements",
-  "description": "Phase 7: clarify-default-improvements",
+  "description": "Feature 020 kept mostly as a none-of-these detector: 12 of 17 wins are abstentions, and always answering none (34 of 54) beats Jev (28)",
   "keywords": [
-    "phase",
-    "clarify-default-improvements"
+    "feature",
+    "kept",
+    "mostly",
+    "none-of-these",
+    "detector",
+    "wins",
+    "abstentions",
+    "always",
+    "answering",
+    "none",
+    "beats",
+    "jev"
   ],
-  "lastUpdated": "2026-10-03T05:30:08.477Z",
+  "lastUpdated": "2026-11-13T10:04:36.779Z",
   "specId": "007",
   "folderSlug": "clarify-default-improvements",
   "parentChain": [
@@ -14,6 +25,5 @@
     "049-jev-feature-improvement-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

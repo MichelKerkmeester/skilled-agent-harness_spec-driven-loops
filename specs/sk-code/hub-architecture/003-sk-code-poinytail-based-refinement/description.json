@@ -1,28 +1,25 @@
 {
+  "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement",
-  "description": "sk-code Ponytail-based refinement: mine the Ponytail plugin for teachings, logic and new ideas that improve the sk-code parent hub, every nested sk-co",
+  "description": "Ponytail is an external coding-agent plugin that teaches restraint: write the least code that meets the requirement, and still ship tests for risky",
   "keywords": [
-    "sk-code",
-    "ponytail-based",
-    "refinement",
-    "mine",
     "ponytail",
+    "external",
+    "coding-agent",
     "plugin",
-    "teachings",
-    "logic",
-    "new",
-    "ideas",
-    "improve",
-    "parent",
-    "hub",
-    "every",
-    "nested",
-    "mode",
-    "surface",
-    "related",
-    "tooling"
+    "teaches",
+    "restraint",
+    "write",
+    "least",
+    "code",
+    "meets",
+    "requirement",
+    "still",
+    "ship",
+    "tests",
+    "risky"
   ],
-  "lastUpdated": "2026-10-09T13:20:17.085Z",
+  "lastUpdated": "2026-11-13T10:04:46.925Z",
   "specId": "003",
   "folderSlug": "sk-code-poinytail-based-refinement",
   "parentChain": [
@@ -30,6 +27,5 @@
     "hub-architecture"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

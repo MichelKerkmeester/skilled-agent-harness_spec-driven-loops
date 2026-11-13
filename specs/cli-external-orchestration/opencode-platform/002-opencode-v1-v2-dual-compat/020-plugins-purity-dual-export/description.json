@@ -1,12 +1,21 @@
 {
   "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/020-plugins-purity-dual-export",
-  "description": "Phase 20: plugins-purity-dual-export",
+  "description": "The CI Spec-Kit Check failed on main commit `22f563b032` (run `39373558502`) in its Runtime vitest project step:",
   "keywords": [
-    "phase",
-    "plugins-purity-dual-export"
+    "spec-kit",
+    "check",
+    "failed",
+    "main",
+    "commit",
+    "22f563b032",
+    "run",
+    "runtime",
+    "vitest",
+    "project",
+    "step"
   ],
-  "lastUpdated": "2026-10-20T06:45:07.397Z",
+  "lastUpdated": "2026-11-13T10:04:37.452Z",
   "specId": "020",
   "folderSlug": "plugins-purity-dual-export",
   "parentChain": [

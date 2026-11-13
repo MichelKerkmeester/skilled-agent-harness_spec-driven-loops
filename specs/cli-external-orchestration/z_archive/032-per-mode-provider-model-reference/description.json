@@ -16,11 +16,12 @@
     "effort",
     "tiers"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.249Z",
+  "lastUpdated": "2026-11-13T10:04:38.742Z",
   "specId": "032",
   "folderSlug": "per-mode-provider-model-reference",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

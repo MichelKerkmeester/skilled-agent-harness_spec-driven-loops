@@ -1,26 +1,23 @@
 {
+  "level": "2",
   "specFolder": "agents/005-haiku-explore-and-context-agents",
-  "description": "Haiku-default Explore override and haiku-pinned context agent across Claude and sibling runtime surfaces",
+  "description": "Claude Code's built-in Explore subagent no longer runs on Haiku",
   "keywords": [
-    "haiku-default",
-    "explore",
-    "override",
-    "haiku-pinned",
-    "context",
-    "agent",
-    "across",
     "claude",
-    "sibling",
-    "runtime",
-    "surfaces"
+    "code",
+    "built-in",
+    "explore",
+    "subagent",
+    "longer",
+    "runs",
+    "haiku"
   ],
-  "lastUpdated": "2026-10-08T09:30:42.984Z",
+  "lastUpdated": "2026-11-13T10:04:35.351Z",
   "specId": "005",
   "folderSlug": "haiku-explore-and-context-agents",
   "parentChain": [
     "agents"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

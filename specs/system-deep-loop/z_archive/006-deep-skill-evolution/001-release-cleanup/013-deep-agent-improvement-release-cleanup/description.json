@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/013-deep-agent-improvement-release-cleanup",
   "description": "The `deep-agent-improvement` skill carries ~545 lines of SKILL.md, ~410 lines of README, 15 references, 9 assets (incl",
   "keywords": [
@@ -11,7 +12,7 @@
     "assets",
     "incl"
   ],
-  "lastUpdated": "2026-08-15T14:41:05.459Z",
+  "lastUpdated": "2026-11-13T10:04:56.530Z",
   "specId": "013",
   "folderSlug": "deep-agent-improvement-release-cleanup",
   "parentChain": [
@@ -23,6 +24,5 @@
   "memorySequence": 0,
   "memoryNameHistory": [
     "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/005-deep-agent-improvement"
-  ],
-  "level": "3"
+  ]
 }

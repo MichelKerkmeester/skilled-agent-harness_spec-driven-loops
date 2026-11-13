@@ -17,11 +17,12 @@
     "asset",
     "manual-playbook"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.953Z",
+  "lastUpdated": "2026-11-13T10:04:53.760Z",
   "specId": "005",
   "folderSlug": "changelog-verify",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "012-sk-git"

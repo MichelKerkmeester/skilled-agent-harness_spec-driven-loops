@@ -1,12 +1,24 @@
 {
   "level": "2",
   "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/004-opencode-devin-live-capture",
-  "description": "Phase 4: opencode-devin-live-capture",
+  "description": "An operator who answers a question in OpenCode or Devin has that answer queued only when a later save runs `bin/sweep-opencode.mjs` or",
   "keywords": [
-    "phase",
-    "opencode-devin-live-capture"
+    "operator",
+    "answers",
+    "question",
+    "opencode",
+    "devin",
+    "answer",
+    "queued",
+    "only",
+    "later",
+    "save",
+    "runs",
+    "bin",
+    "sweep-opencode",
+    "mjs"
   ],
-  "lastUpdated": "2026-11-02T20:58:46.369Z",
+  "lastUpdated": "2026-11-13T10:05:29.666Z",
   "specId": "004",
   "folderSlug": "opencode-devin-live-capture",
   "parentChain": [

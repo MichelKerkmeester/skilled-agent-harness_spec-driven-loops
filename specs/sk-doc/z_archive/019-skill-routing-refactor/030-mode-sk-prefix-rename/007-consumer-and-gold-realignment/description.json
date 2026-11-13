@@ -1,4 +1,5 @@
 {
+  "level": 1,
   "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/007-consumer-and-gold-realignment",
   "description": "Sweep live surfaces outside the four hubs — runtime mirrors, agent definitions, commands, workflows, cli-orchestration docs, metadata — to the sk-",
   "keywords": [
@@ -18,15 +19,15 @@
     "docs",
     "metadata"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.286Z",
+  "lastUpdated": "2026-11-13T10:04:53.391Z",
   "specId": "007",
   "folderSlug": "consumer-and-gold-realignment",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "030-mode-sk-prefix-rename"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 1
+  "memoryNameHistory": []
 }

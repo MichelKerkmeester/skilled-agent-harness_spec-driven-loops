@@ -14,11 +14,12 @@
     "untouched",
     "out-of-scope"
   ],
-  "lastUpdated": "2026-08-15T14:40:59.133Z",
+  "lastUpdated": "2026-11-13T10:04:52.343Z",
   "specId": "005",
   "folderSlug": "enable-registry-checks-and-repair-tests",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "018-benchmark-authoring-and-validation-fixes"
   ],
   "memorySequence": 0,

@@ -1,11 +1,19 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/005-mcp-tooling",
-  "description": "Phase 5: mcp-tooling",
+  "description": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
   "keywords": [
-    "phase",
-    "mcp-tooling"
+    "yourvaluehere",
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
   ],
-  "lastUpdated": "2026-11-04T07:15:55.334Z",
+  "lastUpdated": "2026-11-13T10:04:51.152Z",
   "specId": "005",
   "folderSlug": "mcp-tooling",
   "parentChain": [
@@ -14,6 +22,5 @@
     "005-skill-readability-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -19,11 +19,12 @@
     "design",
     "doc"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.489Z",
+  "lastUpdated": "2026-11-13T10:04:48.963Z",
   "specId": "017",
   "folderSlug": "design-proof-token-relocation",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "009-sk-design-claude-parity"
   ],
   "memorySequence": 0,

@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/015-freshness-strict-content",
-  "description": "Phase 15: freshness-strict-content",
+  "description": "skill-graph-freshness.cjs --strict decides staleness from timestamps only and never fails on a family mismatch, so an intent-signal edit with an",
   "keywords": [
-    "phase",
-    "freshness-strict-content"
+    "skill-graph-freshness",
+    "cjs",
+    "strict",
+    "decides",
+    "staleness",
+    "timestamps",
+    "only",
+    "never",
+    "fails",
+    "family",
+    "mismatch",
+    "intent-signal",
+    "edit"
   ],
-  "lastUpdated": "2026-10-10T23:56:41.515Z",
+  "lastUpdated": "2026-11-13T10:04:46.114Z",
   "specId": "015",
   "folderSlug": "freshness-strict-content",
   "parentChain": [
@@ -15,6 +27,5 @@
     "014-skill-authoring-ux-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

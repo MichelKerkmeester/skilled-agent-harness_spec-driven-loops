@@ -1,4 +1,5 @@
 {
+  "level": 1,
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/004-extended-bake-off",
   "description": "Re-run 018/003 benchmark harness against 2 additional candidates: nomic-CodeRankEmbed (previously failed) + stella_en_400M_v5 (newly registered).",
   "keywords": [
@@ -14,7 +15,7 @@
     "newly",
     "registered"
   ],
-  "lastUpdated": "2026-08-15T14:41:10.687Z",
+  "lastUpdated": "2026-11-13T10:05:06.971Z",
   "specId": "004",
   "folderSlug": "extended-bake-off",
   "parentChain": [
@@ -28,6 +29,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "18-05-26_06-13__scaffolded-packet-during-2026-05-18-autonomous.md"
-  ],
-  "level": 1
+  ]
 }

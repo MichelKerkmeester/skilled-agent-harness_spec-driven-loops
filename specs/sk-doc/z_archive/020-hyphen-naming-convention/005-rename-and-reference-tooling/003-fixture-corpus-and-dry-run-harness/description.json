@@ -15,11 +15,12 @@
     "migration",
     "run"
   ],
-  "lastUpdated": "2026-08-30T08:03:52.034Z",
+  "lastUpdated": "2026-11-13T10:04:53.642Z",
   "specId": "003",
   "folderSlug": "fixture-corpus-and-dry-run-harness",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "005-rename-and-reference-tooling"
   ],

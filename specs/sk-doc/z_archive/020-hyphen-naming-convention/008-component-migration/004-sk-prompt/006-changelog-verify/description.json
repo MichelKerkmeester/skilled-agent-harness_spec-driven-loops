@@ -16,11 +16,12 @@
     "completed",
     "kebab-case"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.745Z",
+  "lastUpdated": "2026-11-13T10:04:53.715Z",
   "specId": "006",
   "folderSlug": "changelog-verify",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "004-sk-prompt"

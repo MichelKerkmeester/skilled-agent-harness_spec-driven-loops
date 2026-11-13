@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-deep-loop/z_archive/002-sk-agent-improver-test-report-alignment/005-improve-agent-executable-wiring",
   "description": "After 060/002, sk-improve-agent has CRITIC PASS in the agent body (4 runtime mirrors), score-candidate baseline+delta wiring, scan-integration",
   "keywords": [
@@ -15,7 +16,7 @@
     "wiring",
     "scan-integration"
   ],
-  "lastUpdated": "2026-08-15T14:41:05.360Z",
+  "lastUpdated": "2026-11-13T10:04:56.429Z",
   "specId": "005",
   "folderSlug": "improve-agent-executable-wiring",
   "parentChain": [
@@ -24,6 +25,5 @@
     "002-sk-agent-improver-test-report-alignment"
   ],
   "memorySequence": 1,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

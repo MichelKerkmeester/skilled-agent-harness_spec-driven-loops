@@ -1,5 +1,5 @@
 {
-  "manifestHash": "771105bc8fbb0781a8df0afafd1952ebcdedcc2f64577c96b9e99275d927c736",
+  "manifestHash": "4c88bad3fe91d55a1497958d3d6163676e836aa342c4d047e3911ca196b1a6dc",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1507,6 +1507,9 @@
     "005 strict validator chk t15": [
       "005 strict validator CHK-T15"
     ],
+    "005 subtrack proposal and archive reach operator decisions": [
+      "005-subtrack-proposal-and-archive-reach operator decisions"
+    ],
     "005 tasks promote qwen": [
       "005 tasks promote qwen"
     ],
@@ -1515,6 +1518,9 @@
     ],
     "005 test cycle speed operator decisions": [
       "005-test-cycle-speed operator decisions"
+    ],
+    "005 tests and closeout operator decisions": [
+      "005-tests-and-closeout operator decisions"
     ],
     "005 vestigial embedding readiness gate removal": [
       "005-vestigial-embedding-readiness-gate-removal"
@@ -1656,6 +1662,9 @@
     ],
     "006 playbook run and remediation rollup": [
       "006-playbook-run-and-remediation rollup"
+    ],
+    "006 purpose retention across handovers operator decisions": [
+      "006-purpose-retention-across-handovers operator decisions"
     ],
     "006 redundancy decision record": [
       "006 redundancy decision record"
@@ -12519,11 +12528,32 @@
     "archive root graph node tasks": [
       "archive root graph node tasks"
     ],
+    "archive search and json": [
+      "archive search and json"
+    ],
+    "archive search and json acceptance criteria": [
+      "archive search and json acceptance criteria"
+    ],
+    "archive search and json goal": [
+      "archive search and json goal"
+    ],
+    "archive search and json implementation summary": [
+      "archive search and json implementation summary"
+    ],
+    "archive search and json plan": [
+      "archive search and json plan"
+    ],
+    "archive search and json tasks": [
+      "archive search and json tasks"
+    ],
     "archive seeds sub track metadata": [
       "archive seeds sub-track metadata"
     ],
     "archive sh track": [
       "archive.sh track"
+    ],
+    "archived label in ripgrep results": [
+      "archived label in ripgrep results"
     ],
     "archived opt in": [
       "archived opt-in"
@@ -34306,6 +34336,9 @@
     "declaration module header alignment": [
       "declaration module header alignment"
     ],
+    "declare a sub track": [
+      "declare a sub-track"
+    ],
     "declare an sk code surface": [
       "declare an sk-code surface"
     ],
@@ -40135,6 +40168,9 @@
     "deterministic n gram": [
       "deterministic n-gram"
     ],
+    "deterministic packet relocation": [
+      "deterministic packet relocation"
+    ],
     "deterministic provenance merge": [
       "deterministic provenance merge"
     ],
@@ -45380,6 +45416,9 @@
     ],
     "embed repo unique instructions": [
       "embed repo unique instructions"
+    ],
+    "embed write failure exits 3": [
+      "embed write failure exits 3"
     ],
     "embedded artifact reference kind": [
       "embedded artifact reference kind"
@@ -58169,6 +58208,9 @@
     "hook guards and audit log tasks": [
       "hook guards and audit log tasks"
     ],
+    "hook health by default": [
+      "hook health by default"
+    ],
     "hook health record by default": [
       "hook health record by default"
     ],
@@ -58396,6 +58438,9 @@
     ],
     "hook usefulness validation": [
       "hook usefulness validation"
+    ],
+    "hook wiring reads the launch": [
+      "hook wiring reads the launch"
     ],
     "hooks": [
       "hooks"
@@ -59881,6 +59926,9 @@
     ],
     "incident timeline": [
       "incident timeline"
+    ],
+    "include archive search mode": [
+      "include-archive search mode"
     ],
     "include archived default": [
       "include archived default"
@@ -61873,6 +61921,9 @@
     ],
     "kebab to snake convention": [
       "kebab-to-snake convention"
+    ],
+    "keep a packet s core purpose across handovers": [
+      "keep a packet s core purpose across handovers"
     ],
     "keep a published release in step": [
       "keep a published release in step"
@@ -72750,6 +72801,9 @@
     "move a page": [
       "Move a page"
     ],
+    "move a spec packet": [
+      "move a spec packet"
+    ],
     "move containment primitive": [
       "move containment primitive"
     ],
@@ -72779,6 +72833,9 @@
     ],
     "move or rename a note": [
       "Move or rename a note"
+    ],
+    "move or renumber a spec packet": [
+      "move or renumber a spec packet"
     ],
     "move reconciliation packet id identity": [
       "move reconciliation packet_id identity"
@@ -73779,6 +73836,9 @@
     "no drift no debt": [
       "no drift no debt"
     ],
+    "no edit prompt gets no command": [
+      "no-edit prompt gets no command"
+    ],
     "no fabrication goal binding": [
       "no fabrication goal binding"
     ],
@@ -74597,6 +74657,9 @@
     ],
     "numbered worktrees and sharper git routing": [
       "Numbered Worktrees and Sharper Git Routing"
+    ],
+    "numbering counts archived packets": [
+      "numbering counts archived packets"
     ],
     "numeric design laws": [
       "numeric design laws"
@@ -76953,6 +77016,9 @@
     ],
     "ops helpers": [
       "ops helpers"
+    ],
+    "opt in archive search": [
+      "opt-in archive search"
     ],
     "opt in collector posture": [
       "opt-in collector posture"
@@ -80375,6 +80441,9 @@
     "phase 1 quality mode research": [
       "phase 1 quality mode research"
     ],
+    "phase 1 relocation engine": [
+      "phase 1 relocation engine"
+    ],
     "phase 1 removal research": [
       "phase 1 removal research"
     ],
@@ -81200,6 +81269,9 @@
     "phase 2 subtrack predicate": [
       "phase 2 subtrack predicate"
     ],
+    "phase 2 subtrack proposal": [
+      "phase 2 subtrack proposal"
+    ],
     "phase 2 surface contract alignment": [
       "phase 2 surface contract alignment"
     ],
@@ -81578,6 +81650,9 @@
     "phase 3 stale jev canary": [
       "phase 3 stale jev canary"
     ],
+    "phase 3 subtrack archive and numbering": [
+      "phase 3 subtrack archive and numbering"
+    ],
     "phase 3 system spec kit": [
       "phase 3 system spec kit"
     ],
@@ -81664,6 +81739,9 @@
     ],
     "phase 4 alignment fixes": [
       "phase 4 alignment fixes"
+    ],
+    "phase 4 archive search and json": [
+      "phase 4 archive search and json"
     ],
     "phase 4 battery misses": [
       "phase 4 battery misses"
@@ -82039,6 +82117,9 @@
     ],
     "phase 5 subagent guard cancel consume": [
       "phase 5 subagent guard cancel consume"
+    ],
+    "phase 5 tests and closeout": [
+      "phase 5 tests and closeout"
     ],
     "phase 5 version aware guards": [
       "phase 5 version aware guards"
@@ -87323,6 +87404,12 @@
     "propagate enhances": [
       "propagate enhances"
     ],
+    "propose sub tracks": [
+      "propose sub-tracks"
+    ],
+    "propose sub tracks for a track": [
+      "propose sub-tracks for a track"
+    ],
     "proposed qualifier removal": [
       "(proposed) qualifier removal"
     ],
@@ -87671,6 +87758,21 @@
     ],
     "purpose first readme rewrite on the refined skill readme template": [
       "purpose-first README rewrite on the refined skill README template"
+    ],
+    "purpose retention across handovers": [
+      "purpose retention across handovers"
+    ],
+    "purpose retention across handovers implementation summary": [
+      "purpose retention across handovers implementation summary"
+    ],
+    "purpose retention across handovers plan": [
+      "purpose retention across handovers plan"
+    ],
+    "purpose retention across handovers tasks": [
+      "purpose retention across handovers tasks"
+    ],
+    "purpose row in the resume brief": [
+      "purpose row in the resume brief"
     ],
     "push and create a pull request": [
       "push and create a pull request"
@@ -88619,6 +88721,9 @@
     ],
     "re election integration test plan": [
       "re-election integration test plan"
+    ],
+    "re parent packets into a sub track": [
+      "re-parent packets into a sub-track"
     ],
     "re pin after frontmatter move": [
       "re-pin after frontmatter move"
@@ -92199,6 +92304,15 @@
     "relevance dominant confidence rebalance": [
       "relevance-dominant confidence rebalance"
     ],
+    "relocate and suggest subtracks vitest suites": [
+      "relocate and suggest-subtracks vitest suites"
+    ],
+    "relocate mjs": [
+      "relocate.mjs"
+    ],
+    "relocate mjs move renumber re parent": [
+      "relocate.mjs move renumber re-parent"
+    ],
     "relocate specs folder": [
       "relocate specs folder"
     ],
@@ -92219,6 +92333,24 @@
     ],
     "relocate specs folder relocation implications research changelog": [
       "relocate specs folder relocation implications research changelog"
+    ],
+    "relocation engine": [
+      "relocation engine"
+    ],
+    "relocation engine acceptance criteria": [
+      "relocation engine acceptance criteria"
+    ],
+    "relocation engine goal": [
+      "relocation engine goal"
+    ],
+    "relocation engine implementation summary": [
+      "relocation engine implementation summary"
+    ],
+    "relocation engine plan": [
+      "relocation engine plan"
+    ],
+    "relocation engine tasks": [
+      "relocation engine tasks"
     ],
     "relocation events": [
       "relocation events"
@@ -96885,11 +97017,17 @@
     "rg wrapper flood control design": [
       "rg wrapper flood control design"
     ],
+    "rg wrapper include archive": [
+      "rg-wrapper --include-archive"
+    ],
     "rg wrapper structured file limit": [
       "rg-wrapper structured file limit"
     ],
     "right hooks honest reverts": [
       "Right Hooks, Honest Reverts"
+    ],
+    "ripgrep archive search": [
+      "Ripgrep archive search"
     ],
     "ripgrep conventions": [
       "ripgrep conventions"
@@ -100954,6 +101092,12 @@
     ],
     "search append citation probe": [
       "search append citation probe"
+    ],
+    "search archived packets": [
+      "search archived packets"
+    ],
+    "search archived spec packets": [
+      "search archived spec packets"
     ],
     "search behavior benchmark": [
       "search behavior benchmark"
@@ -112120,6 +112264,9 @@
     "skill md code rank embed keyword": [
       "SKILL.md code-rank-embed keyword"
     ],
+    "skill md command file refused": [
+      "skill.md command file refused"
+    ],
     "skill md recovery commands": [
       "skill md recovery commands"
     ],
@@ -115293,6 +115440,9 @@
     "spec packet path leak fix": [
       "spec packet path leak fix"
     ],
+    "spec packet relocation": [
+      "Spec packet relocation"
+    ],
     "spec path cleanup": [
       "spec path cleanup"
     ],
@@ -115961,6 +116111,9 @@
     ],
     "speckit save search rename": [
       "speckit save search rename"
+    ],
+    "speckit search intent phrases": [
+      "speckit search intent phrases"
     ],
     "speckit semantic triggers flag": [
       "SPECKIT_SEMANTIC_TRIGGERS flag"
@@ -117931,6 +118084,9 @@
     "sub track predicate implementation": [
       "sub-track predicate implementation"
     ],
+    "sub track proposal": [
+      "Sub-track proposal"
+    ],
     "sub track rule parity plan": [
       "sub-track rule parity plan"
     ],
@@ -118111,6 +118267,24 @@
     "subsystem decommission": [
       "subsystem decommission"
     ],
+    "subtrack archive and numbering": [
+      "subtrack archive and numbering"
+    ],
+    "subtrack archive and numbering acceptance criteria": [
+      "subtrack archive and numbering acceptance criteria"
+    ],
+    "subtrack archive and numbering goal": [
+      "subtrack archive and numbering goal"
+    ],
+    "subtrack archive and numbering implementation summary": [
+      "subtrack archive and numbering implementation summary"
+    ],
+    "subtrack archive and numbering plan": [
+      "subtrack archive and numbering plan"
+    ],
+    "subtrack archive and numbering tasks": [
+      "subtrack archive and numbering tasks"
+    ],
     "subtrack predicate": [
       "subtrack predicate"
     ],
@@ -118119,6 +118293,27 @@
     ],
     "subtrack predicate tasks": [
       "subtrack predicate tasks"
+    ],
+    "subtrack proposal": [
+      "subtrack proposal"
+    ],
+    "subtrack proposal acceptance criteria": [
+      "subtrack proposal acceptance criteria"
+    ],
+    "subtrack proposal and archive reach phase parent spec": [
+      "subtrack proposal and archive reach phase parent spec"
+    ],
+    "subtrack proposal goal": [
+      "subtrack proposal goal"
+    ],
+    "subtrack proposal implementation summary": [
+      "subtrack proposal implementation summary"
+    ],
+    "subtrack proposal plan": [
+      "subtrack proposal plan"
+    ],
+    "subtrack proposal tasks": [
+      "subtrack proposal tasks"
     ],
     "subtree root scan deletion": [
       "subtree root scan deletion"
@@ -118152,6 +118347,12 @@
     ],
     "suggest repo rules": [
       "suggest repo rules"
+    ],
+    "suggest subtracks mjs": [
+      "suggest-subtracks.mjs"
+    ],
+    "suggest subtracks mjs whole track map": [
+      "suggest-subtracks.mjs whole-track map"
     ],
     "suggested order eval verdict": [
       "suggested order eval verdict"
@@ -119498,6 +119699,9 @@
     "system skill advisor 1 0 0 0": [
       "system-skill-advisor 1.0.0.0"
     ],
+    "system skill advisor 1 1 0 0": [
+      "system-skill-advisor 1.1.0.0"
+    ],
     "system skill advisor architectural shape": [
       "system-skill-advisor architectural shape"
     ],
@@ -119822,6 +120026,9 @@
     "system skill advisor v1 0 0 0": [
       "system-skill-advisor v1.0.0.0"
     ],
+    "system skill advisor v1 1 0 0": [
+      "system-skill-advisor v1.1.0.0"
+    ],
     "system skilled doctor 1 0 0 0": [
       "system-skilled-doctor 1.0.0.0"
     ],
@@ -119845,6 +120052,9 @@
     ],
     "system skilled doctor 1 1 6 0": [
       "system-skilled-doctor 1.1.6.0"
+    ],
+    "system skilled doctor 1 1 7 0": [
+      "system-skilled-doctor 1.1.7.0"
     ],
     "system skilled doctor benchmark": [
       "system-skilled-doctor benchmark"
@@ -119902,6 +120112,9 @@
     ],
     "system skilled doctor v1 1 6 0": [
       "system-skilled-doctor v1.1.6.0"
+    ],
+    "system skilled doctor v1 1 7 0": [
+      "system-skilled-doctor v1.1.7.0"
     ],
     "system spec gate": [
       "system-spec-gate"
@@ -120301,6 +120514,12 @@
     ],
     "system spec kit 2 12 9 0": [
       "system-spec-kit 2.12.9.0"
+    ],
+    "system spec kit 2 13 0 0": [
+      "system-spec-kit 2.13.0.0"
+    ],
+    "system spec kit 2 13 1 0": [
+      "system-spec-kit 2.13.1.0"
     ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
@@ -120928,6 +121147,12 @@
     ],
     "system spec kit v2 12 9 0": [
       "system-spec-kit v2.12.9.0"
+    ],
+    "system spec kit v2 13 0 0": [
+      "system-spec-kit v2.13.0.0"
+    ],
+    "system spec kit v2 13 1 0": [
+      "system-spec-kit v2.13.1.0"
     ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"
@@ -122375,6 +122600,24 @@
     ],
     "testing strategy": [
       "testing strategy"
+    ],
+    "tests and closeout": [
+      "tests and closeout"
+    ],
+    "tests and closeout acceptance criteria": [
+      "tests and closeout acceptance criteria"
+    ],
+    "tests and closeout goal": [
+      "tests and closeout goal"
+    ],
+    "tests and closeout implementation summary": [
+      "tests and closeout implementation summary"
+    ],
+    "tests and closeout plan": [
+      "tests and closeout plan"
+    ],
+    "tests and closeout tasks": [
+      "tests and closeout tasks"
     ],
     "tests that cannot fail": [
       "tests that cannot fail"
@@ -128658,6 +128901,9 @@
     "which spec was worked on first": [
       "which spec was worked on first"
     ],
+    "which sub track fits this packet": [
+      "which sub-track fits this packet"
+    ],
     "which system uses cocoindex or mk spec memory": [
       "which system uses cocoindex or mk-spec-memory"
     ],
@@ -128708,6 +128954,9 @@
     ],
     "why are repo rules ignored": [
       "why are repo rules ignored"
+    ],
+    "why compaction loses the purpose": [
+      "why compaction loses the purpose"
     ],
     "why did council recommend plan": [
       "why did council recommend plan"
@@ -129666,6 +129915,9 @@
     ],
     "z archive memory indexing": [
       "z_archive memory indexing"
+    ],
+    "z archive on every subtrack": [
+      "z_archive on every subtrack"
     ],
     "z archive parent id resolution": [
       "z_archive parent_id resolution"

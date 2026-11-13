@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/027-derived-sanitizer-instruction-shape",
-  "description": "Phase 27: derived-sanitizer-instruction-shape",
+  "description": "The sanitizer's instruction filter rejected any label containing words such as `system`, `developer`, `tool` or `run`",
   "keywords": [
-    "phase",
-    "derived-sanitizer-instruction-shape"
+    "sanitizer",
+    "instruction",
+    "filter",
+    "rejected",
+    "label",
+    "containing",
+    "words",
+    "system",
+    "developer",
+    "tool",
+    "run"
   ],
-  "lastUpdated": "2026-10-05T09:13:12.512Z",
+  "lastUpdated": "2026-11-13T10:04:39.367Z",
   "specId": "027",
   "folderSlug": "derived-sanitizer-instruction-shape",
   "parentChain": [
@@ -14,6 +24,5 @@
     "002-doctor-audit-followups"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

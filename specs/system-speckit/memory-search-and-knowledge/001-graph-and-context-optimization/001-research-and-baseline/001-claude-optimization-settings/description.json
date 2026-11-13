@@ -1,5 +1,6 @@
 {
   "title": "Spec: Phase 001 - Claude Optimization Settings (Reddit field-report audit)",
+  "level": "3",
   "migration": {
     "moved_at": "2026-04-21T12:00:00Z",
     "source_spec_folder": "system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/001-claude-optimization-settings",
@@ -29,7 +30,7 @@
     "configuration",
     "changes"
   ],
-  "lastUpdated": "2026-08-15T14:41:10.086Z",
+  "lastUpdated": "2026-11-13T10:05:04.672Z",
   "specId": "001",
   "folderSlug": "claude-optimization-settings",
   "parentChain": [
@@ -43,6 +44,5 @@
     "06-04-26_12-05__deep-research-run-8-iterations-via-cli-copilot.md",
     "06-04-26_13-47__extended-deep-research-run-13-iterations-total-8.md",
     "07-04-26_16-18__this-session-closed-out-the-research-only-level-3.md"
-  ],
-  "level": "3"
+  ]
 }

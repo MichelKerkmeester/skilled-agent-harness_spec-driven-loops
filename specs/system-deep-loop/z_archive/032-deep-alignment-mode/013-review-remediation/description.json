@@ -18,11 +18,12 @@
     "returned",
     "fail"
   ],
-  "lastUpdated": "2026-08-30T08:19:46.703Z",
+  "lastUpdated": "2026-11-13T10:05:00.911Z",
   "specId": "013",
   "folderSlug": "review-remediation",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "032-deep-alignment-mode"
   ],
   "memorySequence": 0,

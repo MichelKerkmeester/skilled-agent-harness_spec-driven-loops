@@ -16,11 +16,12 @@
     "deepseek-v4-pro",
     "list-verified"
   ],
-  "lastUpdated": "2026-08-18T17:51:54.833Z",
+  "lastUpdated": "2026-11-13T10:04:38.908Z",
   "specId": "005",
   "folderSlug": "cline-pro-and-pi-default",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "049-cline-provider-roster"
   ],
   "memorySequence": 0,

@@ -19,11 +19,12 @@
     "redesign",
     "study"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.884Z",
+  "lastUpdated": "2026-11-13T10:04:49.260Z",
   "specId": "004",
   "folderSlug": "hallmark-design-skill-research",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "012-sk-design-program",
     "001-research"
   ],

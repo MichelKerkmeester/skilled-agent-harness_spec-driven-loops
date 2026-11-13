@@ -1,12 +1,18 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/019-local-test-speedups",
-  "description": "Phase 19: local-test-speedups",
+  "description": "The operator waits 667 s on the spec-kit suite and 497 s on the deep-loop suite before trusting a local change",
   "keywords": [
-    "phase",
-    "local-test-speedups"
+    "operator",
+    "waits",
+    "spec-kit",
+    "suite",
+    "deep-loop",
+    "trusting",
+    "local",
+    "change"
   ],
-  "lastUpdated": "2026-11-12T20:07:27.984Z",
+  "lastUpdated": "2026-11-13T10:05:23.848Z",
   "specId": "019",
   "folderSlug": "local-test-speedups",
   "parentChain": [

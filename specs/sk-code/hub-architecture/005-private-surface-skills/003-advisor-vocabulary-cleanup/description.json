@@ -1,11 +1,24 @@
 {
+  "level": "3",
   "specFolder": "sk-code/hub-architecture/005-private-surface-skills/003-advisor-vocabulary-cleanup",
-  "description": "Phase 3: advisor-vocabulary-cleanup",
+  "description": "Phase 2 removes the Webflow and Obsidian surfaces from the sk-code hub, but the advisor still declares them: the lexical lane carries an `obsidian",
   "keywords": [
     "phase",
-    "advisor-vocabulary-cleanup"
+    "removes",
+    "webflow",
+    "obsidian",
+    "surfaces",
+    "sk-code",
+    "hub",
+    "advisor",
+    "still",
+    "declares",
+    "them",
+    "lexical",
+    "lane",
+    "carries"
   ],
-  "lastUpdated": "2026-10-23T13:10:00.000Z",
+  "lastUpdated": "2026-11-13T10:04:46.959Z",
   "specId": "003",
   "folderSlug": "advisor-vocabulary-cleanup",
   "parentChain": [
@@ -14,6 +27,5 @@
     "005-private-surface-skills"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

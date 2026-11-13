@@ -1,12 +1,20 @@
 {
   "level": "3",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/002-pi-opencode-adapters",
-  "description": "Phase 2: pi-opencode-adapters",
+  "description": "The approved plan marks Pi messageend usage and OpenCode event info.tokens as unverified",
   "keywords": [
-    "phase",
-    "pi-opencode-adapters"
+    "approved",
+    "plan",
+    "marks",
+    "messageend",
+    "usage",
+    "opencode",
+    "event",
+    "info",
+    "tokens",
+    "unverified"
   ],
-  "lastUpdated": "2026-10-18T11:56:55.840Z",
+  "lastUpdated": "2026-11-13T10:04:41.515Z",
   "specId": "002",
   "folderSlug": "pi-opencode-adapters",
   "parentChain": [

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/001-hybrid-rag-fusion-epic/001-sprint-0-measurement-foundation",
   "description": "The graph channel is completely broken — 0% hit rate in production due to `mem:${edgeId}` string IDs being compared against numeric memory IDs",
   "keywords": [
@@ -19,7 +20,7 @@
     "numeric",
     "memory"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.063Z",
+  "lastUpdated": "2026-11-13T10:05:33.001Z",
   "specId": "001",
   "folderSlug": "sprint-0-measurement-foundation",
   "parentChain": [
@@ -29,6 +30,5 @@
     "001-hybrid-rag-fusion-epic"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

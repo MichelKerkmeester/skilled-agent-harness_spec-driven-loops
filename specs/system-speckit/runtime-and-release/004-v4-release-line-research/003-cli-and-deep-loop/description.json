@@ -1,12 +1,18 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/003-cli-and-deep-loop",
-  "description": "Phase 3: cli-and-deep-loop",
+  "description": "The CLI executors and the deep-loop runtime changed in almost every v4 release",
   "keywords": [
-    "phase",
-    "cli-and-deep-loop"
+    "cli",
+    "executors",
+    "deep-loop",
+    "runtime",
+    "changed",
+    "almost",
+    "every",
+    "release"
   ],
-  "lastUpdated": "2026-11-08T23:08:32.179Z",
+  "lastUpdated": "2026-11-13T10:05:23.211Z",
   "specId": "003",
   "folderSlug": "cli-and-deep-loop",
   "parentChain": [

@@ -1,11 +1,18 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/007-follow-up-fixes/005-router-sync-guard",
-  "description": "Phase 5: router-sync-guard",
+  "description": "Commit `b45ea54cea3` deleted the sk-code router-sync suite with the skill-benchmark lane",
   "keywords": [
-    "phase",
-    "router-sync-guard"
+    "commit",
+    "b45ea54cea3",
+    "deleted",
+    "sk-code",
+    "router-sync",
+    "suite",
+    "skill-benchmark",
+    "lane"
   ],
-  "lastUpdated": "2026-10-10T05:26:29.515Z",
+  "lastUpdated": "2026-11-13T10:04:45.343Z",
   "specId": "005",
   "folderSlug": "router-sync-guard",
   "parentChain": [
@@ -15,6 +22,5 @@
     "007-follow-up-fixes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

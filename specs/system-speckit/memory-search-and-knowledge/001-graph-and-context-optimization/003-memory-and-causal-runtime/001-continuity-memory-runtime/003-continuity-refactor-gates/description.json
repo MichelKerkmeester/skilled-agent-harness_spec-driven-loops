@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "migration": {
     "moved_at": "2026-04-21T12:00:00Z",
     "source_spec_folder": "system-spec-kit/026-graph-and-context-optimization/006-continuity-refactor-gates",
@@ -33,7 +34,7 @@
     "follow-on",
     "work"
   ],
-  "lastUpdated": "2026-08-15T14:41:10.278Z",
+  "lastUpdated": "2026-11-13T10:05:05.067Z",
   "specId": "003",
   "folderSlug": "continuity-refactor-gates",
   "parentChain": [
@@ -46,6 +47,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "25-04-26_11-34__metadata-refresh-rewrite-children-ids-in-graph.md"
-  ],
-  "level": "2"
+  ]
 }

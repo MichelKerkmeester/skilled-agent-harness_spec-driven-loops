@@ -1,19 +1,31 @@
 {
+  "level": "2",
   "specFolder": "commands/002-doctor-audit-and-fixes",
-  "description": "Doctor command audit and the fixes it recorded",
+  "description": "Doctor commands were written against earlier paths and retired subsystems, leaving their current checks uncertain; the audit also recorded subsystem",
   "keywords": [
     "doctor",
+    "commands",
+    "written",
+    "against",
+    "earlier",
+    "paths",
+    "retired",
+    "subsystems",
+    "leaving",
+    "current",
+    "checks",
+    "uncertain",
     "audit",
-    "and",
-    "fixes"
+    "also",
+    "recorded",
+    "subsystem"
   ],
-  "lastUpdated": "2026-10-31T13:31:06.000Z",
+  "lastUpdated": "2026-11-13T10:04:39.428Z",
   "specId": "002",
   "folderSlug": "doctor-audit-and-fixes",
   "parentChain": [
     "commands"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

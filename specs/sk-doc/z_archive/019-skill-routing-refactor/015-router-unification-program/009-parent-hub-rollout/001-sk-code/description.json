@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/001-sk-code",
   "description": "`sk-code` today routes through a registry-driven hub that reads `mode-registry.json` and applies `routerPolicy.outcomes.surfaceBundle` to bundle a",
   "keywords": [
@@ -16,16 +17,16 @@
     "surfacebundle",
     "bundle"
   ],
-  "lastUpdated": "2026-08-15T14:40:59.510Z",
+  "lastUpdated": "2026-11-13T10:04:52.909Z",
   "specId": "001",
   "folderSlug": "sk-code",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program",
     "009-parent-hub-rollout"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

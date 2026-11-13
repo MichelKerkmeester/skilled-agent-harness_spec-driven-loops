@@ -15,11 +15,12 @@
     "cite",
     "sk-doc"
   ],
-  "lastUpdated": "2026-08-28T16:24:15.229Z",
+  "lastUpdated": "2026-11-13T10:04:52.033Z",
   "specId": "014",
   "folderSlug": "markdown-agent-sync",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "014-sk-doc-parent"
   ],
   "memorySequence": 0,

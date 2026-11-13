@@ -1,22 +1,24 @@
 {
+  "level": "1",
   "specFolder": "agents-md/agent-behavior/004-thinking-discipline",
-  "description": "Assess a proposed thinking discipline against AGENTS.md and the repo rules, and integrate what survives the repo-rule decision tests",
+  "description": "The operator proposed a nine-point \"Thinking discipline\": check the request, finish one approach, stop after one check, doubt is not evidence, don't",
   "keywords": [
-    "assess",
+    "operator",
     "proposed",
+    "nine-point",
     "thinking",
     "discipline",
-    "against",
-    "agents",
-    "repo",
-    "rules",
-    "integrate",
-    "survives",
-    "repo-rule",
-    "decision",
-    "tests"
+    "check",
+    "request",
+    "finish",
+    "one",
+    "approach",
+    "stop",
+    "doubt",
+    "evidence",
+    "don"
   ],
-  "lastUpdated": "2026-10-07T05:03:30.378Z",
+  "lastUpdated": "2026-11-13T10:04:35.075Z",
   "specId": "004",
   "folderSlug": "thinking-discipline",
   "parentChain": [
@@ -24,6 +26,5 @@
     "agent-behavior"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

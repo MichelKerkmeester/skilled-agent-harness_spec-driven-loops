@@ -1,12 +1,17 @@
 {
   "level": "1",
   "specFolder": "system-speckit/memory-search-and-knowledge/006-open-knowledge-format-adoption/012-review-remediation",
-  "description": "Phase 12: review-remediation",
+  "description": "The review found four small defects in the packet's tooling",
   "keywords": [
-    "phase",
-    "review-remediation"
+    "review",
+    "found",
+    "four",
+    "small",
+    "defects",
+    "packet",
+    "tooling"
   ],
-  "lastUpdated": "2026-10-05T15:53:18.233Z",
+  "lastUpdated": "2026-11-13T10:05:15.207Z",
   "specId": "012",
   "folderSlug": "review-remediation",
   "parentChain": [

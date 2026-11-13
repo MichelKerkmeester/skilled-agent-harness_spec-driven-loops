@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/z_archive/025-skill-doc-currency",
   "description": "Skill-level documentation — the `SKILL.md`, `README.md`, `references/` and `assets/` that agents read before acting — has drifted away from the code,",
   "keywords": [
@@ -15,13 +16,13 @@
     "away",
     "code"
   ],
-  "lastUpdated": "2026-08-15T14:41:01.492Z",
+  "lastUpdated": "2026-11-13T10:04:53.841Z",
   "specId": "025",
   "folderSlug": "skill-doc-currency",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -16,11 +16,12 @@
     "triggers",
     "3-seat"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.860Z",
+  "lastUpdated": "2026-11-13T10:05:00.759Z",
   "specId": "008",
   "folderSlug": "divergent-mode-dogfood",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "030-deep-loop-unification"
   ],
   "memorySequence": 7,

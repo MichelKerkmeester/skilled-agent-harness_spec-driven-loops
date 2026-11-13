@@ -22,11 +22,12 @@
     "deleted",
     "snippet"
   ],
-  "lastUpdated": "2026-08-28T16:24:15.263Z",
+  "lastUpdated": "2026-11-13T10:04:52.200Z",
   "specId": "007",
   "folderSlug": "link-integrity-guard",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "016-create-diff-mode",
     "013-catalog-playbook-snippet-denumbering"
   ],

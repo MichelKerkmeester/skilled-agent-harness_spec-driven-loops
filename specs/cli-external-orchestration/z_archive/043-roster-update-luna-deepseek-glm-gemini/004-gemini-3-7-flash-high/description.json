@@ -15,11 +15,12 @@
     "cli-cursor",
     "cursorsupportedmodels"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.370Z",
+  "lastUpdated": "2026-11-13T10:04:38.868Z",
   "specId": "004",
   "folderSlug": "gemini-3-7-flash-high",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "043-roster-update-luna-deepseek-glm-gemini"
   ],
   "memorySequence": 0,

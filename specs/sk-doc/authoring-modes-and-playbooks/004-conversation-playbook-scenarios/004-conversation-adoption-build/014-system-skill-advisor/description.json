@@ -1,11 +1,20 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/014-system-skill-advisor",
-  "description": "Phase 14: system-skill-advisor",
+  "description": "CL-007 checks goal injection inside one request, not that a later request carries the bound goal",
   "keywords": [
-    "phase",
-    "system-skill-advisor"
+    "cl-007",
+    "checks",
+    "goal",
+    "injection",
+    "inside",
+    "one",
+    "request",
+    "later",
+    "carries",
+    "bound"
   ],
-  "lastUpdated": "2026-11-02T18:33:56.616Z",
+  "lastUpdated": "2026-11-13T10:04:50.133Z",
   "specId": "014",
   "folderSlug": "system-skill-advisor",
   "parentChain": [
@@ -15,6 +24,5 @@
     "004-conversation-adoption-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

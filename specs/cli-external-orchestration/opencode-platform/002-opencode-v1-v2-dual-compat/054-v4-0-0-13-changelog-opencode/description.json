@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/054-v4-0-0-13-changelog-opencode",
-  "description": "Phase 54: v4-0-0-13-changelog-opencode",
+  "description": "v4.0.0.13 made OpenCode 2 a headline change: every plugin, agent, command and the config run on OpenCode 1 and 2 from one source",
   "keywords": [
-    "phase",
-    "v4-0-0-13-changelog-opencode"
+    "opencode",
+    "headline",
+    "change",
+    "every",
+    "plugin",
+    "agent",
+    "command",
+    "config",
+    "run",
+    "one",
+    "source"
   ],
-  "lastUpdated": "2026-10-22T07:26:46.424Z",
+  "lastUpdated": "2026-11-13T10:04:37.667Z",
   "specId": "054",
   "folderSlug": "v4-0-0-13-changelog-opencode",
   "parentChain": [
@@ -14,6 +24,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

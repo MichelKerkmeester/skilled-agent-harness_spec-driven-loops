@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The deep-loop fan-out merge ships three finished, default-off capabilities behind no measured verdict",
     "created_at": "2026-06-24T04:53:47.796Z",
-    "last_save_at": "2026-10-08T19:30:33.074Z",
+    "last_save_at": "2026-11-13T13:18:25.233Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e1690d92bc3fe7cb70ce3e09fa6084d6c1e592c4d941688b4e821acbca0f2bca",
+    "source_fingerprint": "sha256:19ae7d008088f1c1add52f55a3594132e9851ec56ffd58f4360f835100c0c63d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "31e57e7c80bbdc42e7bd3d5563f5270af77d47f10add77289e0d8b96a5b45d2c",
+      "spec.md": "d0cf013d43fa7d2782835f1a461ee9c17823907abbf717ae20c36834d177aa5d",
       "plan.md": "7cdbda6352405d923ea169eae36d3a9531588fcf67dbf067ca88a5a3339e42dc",
       "tasks.md": "128f39cf075834a92b82f51fb7c0f636fcbc1d8e9b37456fac772b4f715f4511",
-      "implementation-summary.md": "7ef1c70f658a60771e35763e023b3d0d02e156a5a120945f4c9b8aec1b26ad03"
+      "implementation-summary.md": "85ac179d7e7c4729297b30df65407fbe4319623e16ab0abe6fc81c42f042875f"
     },
     "last_active_child_id": null,
     "last_active_at": null

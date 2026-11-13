@@ -182,7 +182,7 @@
     ],
     "causal_summary": "The deep-loop fan-out runtime (`.opencode/skills/deep-loop-runtime/scripts/`) is a fire-and-exit BATCH orchestrator [CONFIRMED iter-12: `fanout-run.cjs` `process.exit` per run]",
     "created_at": "2026-06-19T06:06:27.159Z",
-    "last_save_at": "2026-10-07T18:15:10.726Z",
+    "last_save_at": "2026-11-13T13:18:23.010Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -191,10 +191,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:40a76c7713f13eb696908915304cc510afeed72c74c540b0f731003d133fd684",
+    "source_fingerprint": "sha256:1acee535c38eea7b37b120e511336d0765115e818d5aeafb0976295bffb6c6c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5da54b39835526d607a9d0b90d32b28ffae3a888cee8abaac6d76b6292f91d3a",
+      "spec.md": "020e1294fe07b515dd963b0610e5a87e4c74d0b20eecba9d6bcb06411bcd29cf",
       "plan.md": "32cf56abb7e9e1ba0f7c81a4222164bb4094443fd1377da07aab12377dc9fbb2",
       "tasks.md": "a5654323398a9f562530a99865d448c78494221d90ae7f9dadab165c4ac4ff43",
       "implementation-summary.md": "bb076b59ec0e0f1dd9b6de376bd4a6ff05608210dd7ca9aadf8f8b14e5d18d47"

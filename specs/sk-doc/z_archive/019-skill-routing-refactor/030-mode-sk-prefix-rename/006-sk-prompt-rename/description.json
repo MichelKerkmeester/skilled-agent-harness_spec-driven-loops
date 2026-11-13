@@ -1,4 +1,5 @@
 {
+  "level": 1,
   "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/030-mode-sk-prefix-rename/006-sk-prompt-rename",
   "description": "Move prompt-improve and prompt-models to sk-prompt-improve and sk-prompt-models across directories, routing keys, gold and consumers, holding the Lane",
   "keywords": [
@@ -16,15 +17,15 @@
     "holding",
     "lane"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.286Z",
+  "lastUpdated": "2026-11-13T10:04:53.390Z",
   "specId": "006",
   "folderSlug": "sk-prompt-rename",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "030-mode-sk-prefix-rename"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 1
+  "memoryNameHistory": []
 }

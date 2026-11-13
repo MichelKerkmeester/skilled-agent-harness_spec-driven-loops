@@ -1,23 +1,12 @@
 {
   "level": "1",
   "specFolder": "system-skill-advisor/runtime-lifecycle/004-defect-and-hardening-fixes/003-fix-remaining-advisor-defects",
-  "description": "Restore the pi advisor dedup return, renew the drifted advisor battery, read each renamed env variable once and fix the stale advisor docs",
+  "description": "The 028 dedup fix half-landed",
   "keywords": [
-    "restore",
-    "advisor",
     "dedup",
-    "return",
-    "renew",
-    "drifted",
-    "battery",
-    "read",
-    "renamed",
-    "env",
-    "variable",
-    "stale",
-    "docs"
+    "half-landed"
   ],
-  "lastUpdated": "2026-09-23T07:35:24.547Z",
+  "lastUpdated": "2026-11-13T10:05:02.477Z",
   "specId": "003",
   "folderSlug": "fix-remaining-advisor-defects",
   "parentChain": [

@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "sk-doc/z_archive/022-code-readme-coverage/002-code-readme-truth-and-missing-orientation",
   "description": "These are the only findings in the program with real operator cost",
   "keywords": [
@@ -9,14 +10,14 @@
     "operator",
     "cost"
   ],
-  "lastUpdated": "2026-08-15T14:41:01.431Z",
+  "lastUpdated": "2026-11-13T10:04:53.824Z",
   "specId": "002",
   "folderSlug": "code-readme-truth-and-missing-orientation",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "022-code-readme-coverage"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

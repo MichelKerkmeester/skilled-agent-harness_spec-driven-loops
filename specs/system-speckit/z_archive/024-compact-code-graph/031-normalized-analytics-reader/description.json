@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/z_archive/024-compact-code-graph/031-normalized-analytics-reader",
   "description": "The Stop hook already captures token snapshots and now persists transcript identity plus cache-token carry-forward data, but that state remains",
   "keywords": [
@@ -19,7 +20,7 @@
     "state",
     "remains"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.651Z",
+  "lastUpdated": "2026-11-13T10:05:34.563Z",
   "specId": "031",
   "folderSlug": "normalized-analytics-reader",
   "parentChain": [
@@ -28,6 +29,5 @@
     "024-compact-code-graph"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

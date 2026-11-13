@@ -14,11 +14,12 @@
     "non-python",
     "directories"
   ],
-  "lastUpdated": "2026-08-30T08:03:53.240Z",
+  "lastUpdated": "2026-11-13T10:04:53.744Z",
   "specId": "001",
   "folderSlug": "mcp-server-dir-and-manifest-closure",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "009-system-skill-advisor"

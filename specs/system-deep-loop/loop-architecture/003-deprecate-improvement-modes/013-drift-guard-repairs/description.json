@@ -1,12 +1,24 @@
 {
   "level": "1",
   "specFolder": "system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs",
-  "description": "Phase 13: drift-guard-repairs",
+  "description": "The drift workflow still checks a corpus hash from before four retired-mode rows were removed, so its pin check stops before scoring",
   "keywords": [
-    "phase",
-    "drift-guard-repairs"
+    "drift",
+    "workflow",
+    "still",
+    "checks",
+    "corpus",
+    "hash",
+    "four",
+    "retired-mode",
+    "rows",
+    "removed",
+    "pin",
+    "check",
+    "stops",
+    "scoring"
   ],
-  "lastUpdated": "2026-10-11T15:02:21.409Z",
+  "lastUpdated": "2026-11-13T10:04:56.337Z",
   "specId": "013",
   "folderSlug": "drift-guard-repairs",
   "parentChain": [

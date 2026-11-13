@@ -1,4 +1,5 @@
 {
+  "level": 1,
   "specFolder": "sk-git/z_archive/016-git-action-advisory-hook/008-docs-and-playbooks",
   "description": "Phase 007 landed four runtime adapters and style-aligned scripts, but the `scripts/lib/` and `scripts/hooks/` directories had no READMEs, and no",
   "keywords": [
@@ -14,14 +15,14 @@
     "directories",
     "readmes"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.220Z",
+  "lastUpdated": "2026-11-13T10:04:54.408Z",
   "specId": "008",
   "folderSlug": "docs-and-playbooks",
   "parentChain": [
     "sk-git",
+    "z_archive",
     "016-git-action-advisory-hook"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 1
+  "memoryNameHistory": []
 }

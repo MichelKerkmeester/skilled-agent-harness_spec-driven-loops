@@ -1,11 +1,20 @@
 {
+  "level": "2",
   "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/008-overlay-first-write-checks",
-  "description": "Phase 8: overlay-first-write-checks",
+  "description": "The engine's `--guard` refuses two cases: a path an overlay owns, and a path a removal targets",
   "keywords": [
-    "phase",
-    "overlay-first-write-checks"
+    "engine",
+    "guard",
+    "refuses",
+    "two",
+    "cases",
+    "path",
+    "overlay",
+    "owns",
+    "removal",
+    "targets"
   ],
-  "lastUpdated": "2026-11-11T18:02:36.705Z",
+  "lastUpdated": "2026-11-13T10:05:03.376Z",
   "specId": "008",
   "folderSlug": "overlay-first-write-checks",
   "parentChain": [
@@ -13,6 +22,5 @@
     "001-skill-and-overlay-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

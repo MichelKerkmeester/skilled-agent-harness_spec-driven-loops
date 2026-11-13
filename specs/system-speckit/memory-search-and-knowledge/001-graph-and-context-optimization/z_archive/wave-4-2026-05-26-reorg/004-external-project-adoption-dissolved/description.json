@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved",
   "description": "Public's Code Graph, Memory causal graph, and Skill Advisor systems each carry known gaps that the 007-external-project deep-research effort surfaced",
   "keywords": [
@@ -18,12 +19,13 @@
     "effort",
     "surfaced"
   ],
-  "lastUpdated": "2026-08-15T14:41:11.865Z",
+  "lastUpdated": "2026-11-13T10:05:09.907Z",
   "specId": "004",
   "folderSlug": "external-project-adoption-dissolved",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "z_archive",
     "wave-4-2026-05-26-reorg"
   ],
@@ -31,6 +33,5 @@
   "memoryNameHistory": [
     "25-04-26_11-47__scaffold-initialization-for-012-sub-phase-012.md",
     "25-04-26_14-51__refreshed-010-phase-children-ids-to-include-the.md"
-  ],
-  "level": "3"
+  ]
 }

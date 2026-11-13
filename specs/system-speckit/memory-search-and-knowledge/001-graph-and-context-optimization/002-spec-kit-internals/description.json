@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/002-spec-kit-internals",
   "description": "Improve internal spec-kit and skill-system mechanics: the resource-map and deep-loop artifact plumbing, the skill-advisor system, the spec-folder",
   "keywords": [
@@ -15,7 +16,7 @@
     "system",
     "spec-folder"
   ],
-  "lastUpdated": "2026-08-15T14:41:10.240Z",
+  "lastUpdated": "2026-11-13T10:05:04.854Z",
   "specId": "002",
   "folderSlug": "spec-kit-internals",
   "parentChain": [
@@ -24,6 +25,5 @@
     "001-graph-and-context-optimization"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

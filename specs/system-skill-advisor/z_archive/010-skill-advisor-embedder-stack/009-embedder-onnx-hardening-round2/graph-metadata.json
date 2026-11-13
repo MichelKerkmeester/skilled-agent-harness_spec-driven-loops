@@ -195,7 +195,7 @@
     ],
     "causal_summary": "An independent adversarial code review of packet 005's Round 2 shipped diff (provider persistence, cross-server DB-path leak fix, onnx shutdown-crash mitigation — see `../005-shared-embedder-logic-with-spec-memory/implementation-summary.md`) found 4 gaps that Round 2's own verification never exercised: (1) `hf-model-server.cjs`'s graceful-shutdown failsafe timer can SIGKILL the process before a legitimately in-flight embed finishes draining; (2) the cross-server DB-leak fix reuses `MEMORYDBPATH`, an env var whose repo-wide established meaning is mk-spec-memory's database, creating a latent",
     "created_at": "2026-07-08T08:41:59.423Z",
-    "last_save_at": "2026-10-07T18:16:08.572Z",
+    "last_save_at": "2026-11-13T13:19:02.619Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:761a77dfe544e05f8a05a6f5f95599d7495c91a0d8ea94de5a62b0f7c3975ba0",
+    "source_fingerprint": "sha256:ae9b687764887b4c09811c786b3dd332128bbbed6233badcfa63e189835e0812",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "14de3c20308390c8cb1181358dffc9553ba4f60582bf62bae1a8f183bbb350c5",
+      "spec.md": "1cf47b05ec188567b3d21696aad459640a253167753d7f4c1e880d95344f58f0",
       "plan.md": "479c35c222f2301e905810027d078ea18aec2aa9f10b3fcbefc629a31cf8d267",
       "tasks.md": "9e00d3f8e58b2da9491a3a46cc5b0dd31a81aeac8c37b33ae20aa7c9e74d3ad6",
       "implementation-summary.md": "88df9df9d95163d8fa23ad464a8852f202abc4d01298c7b881f27ef69860fc45"

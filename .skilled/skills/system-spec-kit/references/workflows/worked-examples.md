@@ -8,7 +8,7 @@ trigger_phrases:
   - "feature implementation example"
 importance_tier: normal
 contextType: general
-version: 1.6.4.0
+version: 1.6.5.0
 ---
 
 # Worked Examples Reference
@@ -68,7 +68,7 @@ Fix a CSS alignment issue affecting button positioning on mobile viewports. Esti
 
 ```bash
 User: /speckit:complete
-AI: Spec folder? A) Existing B) New (new or unrelated work only) C) Related (Use a related folder, phase child, or a series parent for a different change to the same artifact as an existing packet in the same track) D) Skip
+AI: Spec folder? A) Existing B) New (new or unrelated work only) C) Related (Use a related folder, phase child, new or existing sub-track, or a series parent for a different change to the same artifact as an existing packet in the same track) D) Skip
 User: B
 ```
 

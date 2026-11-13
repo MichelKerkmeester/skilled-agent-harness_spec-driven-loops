@@ -1,16 +1,21 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/model-rosters/004-claude-5-5-roster-and-effort-levels",
-  "description": "Claude 5.5 roster and effort levels for cli-claude-code and Claude Code settings",
+  "description": "The cli-claude-code mode, which agents in other terminals use to shell out to the `claude` CLI, named `claude-sonnet-4-6` as its default and listed",
   "keywords": [
-    "claude",
-    "roster",
-    "effort",
-    "levels",
     "cli-claude-code",
-    "code",
-    "settings"
+    "mode",
+    "agents",
+    "terminals",
+    "shell",
+    "claude",
+    "cli",
+    "named",
+    "claude-sonnet-4-6",
+    "default",
+    "listed"
   ],
-  "lastUpdated": "2026-10-07T18:49:48.307Z",
+  "lastUpdated": "2026-11-13T10:04:37.076Z",
   "specId": "004",
   "folderSlug": "claude-5-5-roster-and-effort-levels",
   "parentChain": [
@@ -18,6 +23,5 @@
     "model-rosters"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

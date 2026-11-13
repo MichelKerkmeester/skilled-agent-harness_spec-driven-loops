@@ -14,11 +14,12 @@
     "contrastcheck",
     "namingdoccheck"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.209Z",
+  "lastUpdated": "2026-11-13T10:04:49.455Z",
   "specId": "006",
   "folderSlug": "scripts",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "014-template-conformance",
     "002-design-interface"
   ],

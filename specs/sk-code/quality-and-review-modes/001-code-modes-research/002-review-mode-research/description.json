@@ -1,12 +1,14 @@
 {
   "level": "2",
   "specFolder": "sk-code/quality-and-review-modes/001-code-modes-research/002-review-mode-research",
-  "description": "Phase 2: review-mode-research",
+  "description": "`sk-code-review` is the findings-first review baseline",
   "keywords": [
-    "phase",
-    "review-mode-research"
+    "sk-code-review",
+    "findings-first",
+    "review",
+    "baseline"
   ],
-  "lastUpdated": "2026-10-25T13:10:25.381Z",
+  "lastUpdated": "2026-11-13T10:04:47.072Z",
   "specId": "002",
   "folderSlug": "review-mode-research",
   "parentChain": [

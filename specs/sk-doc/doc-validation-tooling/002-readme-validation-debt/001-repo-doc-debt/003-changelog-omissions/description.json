@@ -1,11 +1,20 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/doc-validation-tooling/002-readme-validation-debt/001-repo-doc-debt/003-changelog-omissions",
-  "description": "Phase 3: changelog-omissions",
+  "description": "The sk-create-changelog omission rule keeps internal ids and test counts out of changelog prose",
   "keywords": [
-    "phase",
-    "changelog-omissions"
+    "sk-create-changelog",
+    "omission",
+    "rule",
+    "keeps",
+    "internal",
+    "ids",
+    "test",
+    "counts",
+    "changelog",
+    "prose"
   ],
-  "lastUpdated": "2026-10-27T06:53:13.513Z",
+  "lastUpdated": "2026-11-13T10:04:51.572Z",
   "specId": "003",
   "folderSlug": "changelog-omissions",
   "parentChain": [
@@ -15,6 +24,5 @@
     "001-repo-doc-debt"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

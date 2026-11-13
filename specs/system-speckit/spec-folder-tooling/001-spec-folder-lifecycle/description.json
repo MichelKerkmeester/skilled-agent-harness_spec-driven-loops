@@ -1,12 +1,24 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle",
-  "description": "Spec folder lifecycle: root, location, tooling and write recipe",
+  "description": "Spec folders relied on inconsistent roots, resolution rules, numbering, track indexes, archive behavior, and authoring guidance",
   "keywords": [
     "spec",
-    "folder",
-    "lifecycle"
+    "folders",
+    "relied",
+    "inconsistent",
+    "roots",
+    "resolution",
+    "rules",
+    "numbering",
+    "track",
+    "indexes",
+    "archive",
+    "behavior",
+    "authoring",
+    "guidance"
   ],
-  "lastUpdated": "2026-10-31T13:31:06.000Z",
+  "lastUpdated": "2026-11-13T10:05:32.303Z",
   "specId": "001",
   "folderSlug": "spec-folder-lifecycle",
   "parentChain": [
@@ -14,6 +26,5 @@
     "spec-folder-tooling"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

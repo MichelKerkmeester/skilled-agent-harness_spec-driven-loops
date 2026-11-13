@@ -2,15 +2,8 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/z_archive/020-skill-readme-standardization",
   "spec_folder": "system-deep-loop/z_archive/020-skill-readme-standardization",
-  "parent_id": "system-deep-loop/z_archive",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [
-    "system-deep-loop/z_archive/021-skill-readme-standardization/001-deep-ai-council-readme",
-    "system-deep-loop/z_archive/021-skill-readme-standardization/002-deep-context-readme",
-    "system-deep-loop/z_archive/021-skill-readme-standardization/003-deep-improvement-readme",
-    "system-deep-loop/z_archive/021-skill-readme-standardization/004-deep-loop-runtime-readme",
-    "system-deep-loop/z_archive/021-skill-readme-standardization/005-deep-research-readme",
-    "system-deep-loop/z_archive/021-skill-readme-standardization/006-deep-review-readme",
     "system-deep-loop/z_archive/020-skill-readme-standardization/001-deep-ai-council-readme",
     "system-deep-loop/z_archive/020-skill-readme-standardization/002-deep-context-readme",
     "system-deep-loop/z_archive/020-skill-readme-standardization/003-deep-improvement-readme",
@@ -94,16 +87,16 @@
     ],
     "causal_summary": "The archived deep-loop skill README standardization work spans six completed child phases, one for each deep-loop sub-skill README that needed a problem-first narrative entry point instead of a tabular reference-card presentation",
     "created_at": "2026-07-08T05:56:44.284Z",
-    "last_save_at": "2026-08-30T15:39:24.218Z",
+    "last_save_at": "2026-11-13T13:17:43.189Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:1bffbee6fabe5e74fb0c7cf08e7ebe0746594f4157534f582c2a6213aaf40b0a",
+    "source_fingerprint": "sha256:c73d911b1370f9796b8f9c9b9c470b260c85926f003bb12eb2bcdb10d7340d77",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8c1429d601de88fe3c52a18ae2a22d1525d665bdbd6fe3a9ab254196a943259d"
+      "spec.md": "6bda1078efaf11c782d68388943aaea561135a9936173414d21b84ac9405ce5d"
     },
     "last_active_child_id": "system-deep-loop/z_archive/021-skill-readme-standardization/006-deep-review-readme",
     "last_active_at": "2026-06-07T12:18:52Z"

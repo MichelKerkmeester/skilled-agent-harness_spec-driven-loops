@@ -17,11 +17,12 @@
     "opportunities",
     "styles"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.960Z",
+  "lastUpdated": "2026-11-13T10:04:49.319Z",
   "specId": "003",
   "folderSlug": "js-capabilities",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "012-sk-design-program",
     "002-style-database"
   ],

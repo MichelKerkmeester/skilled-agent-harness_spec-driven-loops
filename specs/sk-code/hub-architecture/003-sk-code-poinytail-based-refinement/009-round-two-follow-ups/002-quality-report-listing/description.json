@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/009-round-two-follow-ups/002-quality-report-listing",
-  "description": "Phase 2: quality-report-listing",
+  "description": "The earlier debt-report child added `ceiling-report.sh` and `ceiling-report.test.sh` to `.skilled/skills/sk-code/sk-code-quality/scripts/` but left",
   "keywords": [
-    "phase",
-    "quality-report-listing"
+    "earlier",
+    "debt-report",
+    "child",
+    "ceiling-report",
+    "test",
+    "skilled",
+    "skills",
+    "sk-code",
+    "sk-code-quality",
+    "scripts",
+    "left"
   ],
-  "lastUpdated": "2026-10-10T08:16:20.379Z",
+  "lastUpdated": "2026-11-13T10:04:45.495Z",
   "specId": "002",
   "folderSlug": "quality-report-listing",
   "parentChain": [
@@ -15,6 +25,5 @@
     "009-round-two-follow-ups"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

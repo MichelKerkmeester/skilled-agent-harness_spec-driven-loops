@@ -12,11 +12,12 @@
     "subdirectories",
     "advanced-craft"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.289Z",
+  "lastUpdated": "2026-11-13T10:04:49.468Z",
   "specId": "007",
   "folderSlug": "manual-testing-playbook",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "014-template-conformance",
     "003-design-motion"
   ],

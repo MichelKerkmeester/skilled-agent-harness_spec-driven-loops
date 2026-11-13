@@ -16,11 +16,12 @@
     "live-render",
     "chrome-devtools-driven"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.954Z",
+  "lastUpdated": "2026-11-13T10:05:00.896Z",
   "specId": "010",
   "folderSlug": "adapter-sk-design-live-render",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "032-deep-alignment-mode"
   ],
   "memorySequence": 0,

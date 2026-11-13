@@ -17,11 +17,12 @@
     "database",
     "readme"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.175Z",
+  "lastUpdated": "2026-11-13T10:04:49.424Z",
   "specId": "004",
   "folderSlug": "post-review-remediation",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "012-sk-design-program",
     "005-reviews-and-remediation"
   ],

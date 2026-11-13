@@ -11,11 +11,12 @@
     "component-system-inventory",
     "deck-direction-spec"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.206Z",
+  "lastUpdated": "2026-11-13T10:04:49.452Z",
   "specId": "004",
   "folderSlug": "procedures",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "014-template-conformance",
     "002-design-interface"
   ],

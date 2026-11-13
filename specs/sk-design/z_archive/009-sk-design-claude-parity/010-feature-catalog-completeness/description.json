@@ -13,11 +13,12 @@
     "featurecatalog",
     "package"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.481Z",
+  "lastUpdated": "2026-11-13T10:04:48.955Z",
   "specId": "010",
   "folderSlug": "feature-catalog-completeness",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "009-sk-design-claude-parity"
   ],
   "memorySequence": 3,

@@ -14,11 +14,12 @@
     "doesn",
     "know"
   ],
-  "lastUpdated": "2026-08-15T14:41:01.839Z",
+  "lastUpdated": "2026-11-13T10:04:53.906Z",
   "specId": "005",
   "folderSlug": "command-and-hub-wiring",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "028-sk-create-diagram"
   ],
   "memorySequence": 0,

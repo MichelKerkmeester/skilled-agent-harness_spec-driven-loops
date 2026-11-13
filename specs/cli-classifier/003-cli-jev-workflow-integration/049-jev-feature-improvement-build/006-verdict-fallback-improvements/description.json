@@ -1,11 +1,17 @@
 {
+  "level": "1",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/006-verdict-fallback-improvements",
-  "description": "Phase 6: verdict-fallback-improvements",
+  "description": "Feature 025 scored 24 of 24, but on reports written so the regex misses them",
   "keywords": [
-    "phase",
-    "verdict-fallback-improvements"
+    "feature",
+    "scored",
+    "reports",
+    "written",
+    "regex",
+    "misses",
+    "them"
   ],
-  "lastUpdated": "2026-10-03T05:30:07.683Z",
+  "lastUpdated": "2026-11-13T10:04:36.778Z",
   "specId": "006",
   "folderSlug": "verdict-fallback-improvements",
   "parentChain": [
@@ -14,6 +20,5 @@
     "049-jev-feature-improvement-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

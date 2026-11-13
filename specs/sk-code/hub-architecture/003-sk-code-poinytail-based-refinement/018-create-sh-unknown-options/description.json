@@ -1,11 +1,19 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/018-create-sh-unknown-options",
-  "description": "Phase 18: create-sh-unknown-options",
+  "description": "The argument loop's catch-all branch appended every unrecognized argument to the title words",
   "keywords": [
-    "phase",
-    "create-sh-unknown-options"
+    "argument",
+    "loop",
+    "catch-all",
+    "branch",
+    "appended",
+    "every",
+    "unrecognized",
+    "title",
+    "words"
   ],
-  "lastUpdated": "2026-10-11T14:31:18.094Z",
+  "lastUpdated": "2026-11-13T10:04:46.200Z",
   "specId": "018",
   "folderSlug": "create-sh-unknown-options",
   "parentChain": [
@@ -14,6 +22,5 @@
     "003-sk-code-poinytail-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

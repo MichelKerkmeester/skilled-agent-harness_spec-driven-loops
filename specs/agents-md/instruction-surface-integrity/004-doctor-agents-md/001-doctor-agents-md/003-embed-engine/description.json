@@ -1,12 +1,18 @@
 {
   "level": "2",
   "specFolder": "agents-md/instruction-surface-integrity/004-doctor-agents-md/001-doctor-agents-md/003-embed-engine",
-  "description": "Phase: 003-embed-engine",
+  "description": "Carrying a repository's own lines into a block is where this command can do real damage",
   "keywords": [
-    "phase",
-    "003-embed-engine"
+    "carrying",
+    "repository",
+    "own",
+    "lines",
+    "block",
+    "command",
+    "real",
+    "damage"
   ],
-  "lastUpdated": "2026-10-30T11:29:51.291Z",
+  "lastUpdated": "2026-11-13T10:04:35.172Z",
   "specId": "003",
   "folderSlug": "embed-engine",
   "parentChain": [

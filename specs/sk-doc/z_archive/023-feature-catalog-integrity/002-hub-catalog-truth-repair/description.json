@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/z_archive/023-feature-catalog-integrity/002-hub-catalog-truth-repair",
   "description": "These are the catalogs an agent reads to learn what a hub does, and their leaves are indexed in the `leaf-manifest.json`",
   "keywords": [
@@ -12,14 +13,14 @@
     "leaf-manifest",
     "json"
   ],
-  "lastUpdated": "2026-08-15T14:41:01.439Z",
+  "lastUpdated": "2026-11-13T10:04:53.829Z",
   "specId": "002",
   "folderSlug": "hub-catalog-truth-repair",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "023-feature-catalog-integrity"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "migration": {
     "moved_at": "2026-04-21T12:00:00Z",
     "source_spec_folder": "system-spec-kit/026-graph-and-context-optimization/001-research-graph-context-systems/006-research-memory-redundancy",
@@ -30,7 +31,7 @@
     "layer",
     "apply"
   ],
-  "lastUpdated": "2026-08-15T14:41:10.094Z",
+  "lastUpdated": "2026-11-13T10:05:04.680Z",
   "specId": "006",
   "folderSlug": "research-memory-redundancy",
   "parentChain": [
@@ -40,6 +41,5 @@
     "001-research-and-baseline"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

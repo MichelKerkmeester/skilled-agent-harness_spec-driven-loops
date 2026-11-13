@@ -13,11 +13,12 @@
     "user",
     "action"
   ],
-  "lastUpdated": "2026-08-25T06:59:17.201Z",
+  "lastUpdated": "2026-11-13T10:04:42.721Z",
   "specId": "007",
   "folderSlug": "code-mode-transport-leak",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "010-mcp-mobbin"
   ],
   "memorySequence": 0,

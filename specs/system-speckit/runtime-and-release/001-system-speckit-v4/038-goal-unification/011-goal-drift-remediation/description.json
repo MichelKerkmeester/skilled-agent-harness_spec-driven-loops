@@ -1,12 +1,18 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/011-goal-drift-remediation",
-  "description": "Phase 11: goal-drift-remediation",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
   "keywords": [
-    "phase",
-    "goal-drift-remediation"
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
   ],
-  "lastUpdated": "2026-09-27T12:00:15.131Z",
+  "lastUpdated": "2026-11-13T10:05:19.804Z",
   "specId": "011",
   "folderSlug": "goal-drift-remediation",
   "parentChain": [

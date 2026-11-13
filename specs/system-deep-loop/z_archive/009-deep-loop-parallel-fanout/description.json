@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-deep-loop/z_archive/009-deep-loop-parallel-fanout",
   "description": "Phase parent: add an opt-in fan-out layer above the existing single-executor sequential loop so /deep:start-research-loop and /deep:start-review-loop",
   "keywords": [
@@ -15,7 +16,7 @@
     "start-research-loop",
     "start-review-loop"
   ],
-  "lastUpdated": "2026-08-15T14:41:06.111Z",
+  "lastUpdated": "2026-11-13T10:04:57.215Z",
   "specId": "009",
   "folderSlug": "deep-loop-parallel-fanout",
   "parentChain": [
@@ -25,6 +26,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "30-05-26_15-31__strongest-restriction-for-review-any-lineage.md"
-  ],
-  "level": "3"
+  ]
 }

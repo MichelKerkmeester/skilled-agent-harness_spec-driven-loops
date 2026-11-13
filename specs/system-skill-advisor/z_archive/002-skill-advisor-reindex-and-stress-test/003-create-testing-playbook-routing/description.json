@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "completionPct": 100,
   "lastOutcome": "CP-105 now routes to create:testing-playbook top-1 at confidence 0.8387; advisor tests, typecheck, and build passed.",
   "specFolder": "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/003-create-testing-playbook-routing",
@@ -15,7 +16,7 @@
     "documentation",
     "skills"
   ],
-  "lastUpdated": "2026-08-15T14:41:07.742Z",
+  "lastUpdated": "2026-11-13T10:05:02.538Z",
   "specId": "003",
   "folderSlug": "create-testing-playbook-routing",
   "parentChain": [
@@ -24,6 +25,5 @@
     "002-skill-advisor-reindex-and-stress-test"
   ],
   "memorySequence": 3,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

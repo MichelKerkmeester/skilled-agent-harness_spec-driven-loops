@@ -1,11 +1,25 @@
 {
+  "level": "1",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/049-jev-feature-improvement-build/001-fanout-merge-improvements",
-  "description": "Phase 1: fanout-merge-improvements",
+  "description": "Feature 030 measured keep at A=53 of 60, but only against a baseline that answers \"different\" on every cross-body pair, and a lexical rule ties Jev at",
   "keywords": [
-    "phase",
-    "fanout-merge-improvements"
+    "feature",
+    "measured",
+    "keep",
+    "only",
+    "against",
+    "baseline",
+    "answers",
+    "different",
+    "every",
+    "cross-body",
+    "pair",
+    "lexical",
+    "rule",
+    "ties",
+    "jev"
   ],
-  "lastUpdated": "2026-10-03T05:30:03.630Z",
+  "lastUpdated": "2026-11-13T10:04:36.774Z",
   "specId": "001",
   "folderSlug": "fanout-merge-improvements",
   "parentChain": [
@@ -14,6 +28,5 @@
     "049-jev-feature-improvement-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

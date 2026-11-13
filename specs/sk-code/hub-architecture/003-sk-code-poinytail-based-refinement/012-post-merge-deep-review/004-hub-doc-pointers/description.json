@@ -1,11 +1,20 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/012-post-merge-deep-review/004-hub-doc-pointers",
-  "description": "Phase 4: hub-doc-pointers",
+  "description": "`comment-hygiene-hook.md:11` and `check-dist-staleness-hook.md:11` call `sk-code-quality/scripts/hooks/claude-posttooluse.sh` \"the shared Claude Code",
   "keywords": [
-    "phase",
-    "hub-doc-pointers"
+    "comment-hygiene-hook",
+    "check-dist-staleness-hook",
+    "call",
+    "sk-code-quality",
+    "scripts",
+    "hooks",
+    "claude-posttooluse",
+    "shared",
+    "claude",
+    "code"
   ],
-  "lastUpdated": "2026-10-10T20:17:52.702Z",
+  "lastUpdated": "2026-11-13T10:04:45.893Z",
   "specId": "004",
   "folderSlug": "hub-doc-pointers",
   "parentChain": [
@@ -15,6 +24,5 @@
     "012-post-merge-deep-review"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

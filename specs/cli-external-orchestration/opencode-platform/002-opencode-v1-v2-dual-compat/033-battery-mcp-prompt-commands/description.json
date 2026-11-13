@@ -1,11 +1,18 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/033-battery-mcp-prompt-commands",
   "description": "OpenCode 2 lists each prompt of a connected MCP server as a command named `<server>:<prompt>`",
   "keywords": [
-    "phase",
-    "battery-mcp-prompt-commands"
+    "opencode",
+    "lists",
+    "prompt",
+    "connected",
+    "mcp",
+    "server",
+    "command",
+    "named"
   ],
-  "lastUpdated": "2026-10-20T17:01:28.000Z",
+  "lastUpdated": "2026-11-13T10:04:37.504Z",
   "specId": "033",
   "folderSlug": "battery-mcp-prompt-commands",
   "parentChain": [
@@ -14,6 +21,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

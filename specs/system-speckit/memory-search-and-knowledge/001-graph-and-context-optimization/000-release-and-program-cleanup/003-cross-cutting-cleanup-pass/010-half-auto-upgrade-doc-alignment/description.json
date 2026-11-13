@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/010-half-auto-upgrade-doc-alignment",
   "description": "Packet 013 identified four Tier C surfaces where automation was easy to overstate:",
   "keywords": [
@@ -11,7 +12,7 @@
     "easy",
     "overstate"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.620Z",
+  "lastUpdated": "2026-11-13T10:05:03.571Z",
   "specId": "010",
   "folderSlug": "half-auto-upgrade-doc-alignment",
   "parentChain": [
@@ -24,6 +25,5 @@
   "memorySequence": 2,
   "memoryNameHistory": [
     "29-04-26_19-36__resource-map-authored-and-memory-finalization.md"
-  ],
-  "level": 2
+  ]
 }

@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "sk-code/quality-and-review-modes/004-portable-code-modes/015-frontmatter-yaml-validity",
-  "description": "Phase 15: frontmatter-yaml-validity",
+  "description": "The operator opened the quality skill and found its frontmatter was not valid YAML: `description` held a sentence with `: ` in it, unquoted",
   "keywords": [
-    "phase",
-    "frontmatter-yaml-validity"
+    "operator",
+    "opened",
+    "quality",
+    "skill",
+    "found",
+    "frontmatter",
+    "valid",
+    "yaml",
+    "description",
+    "held",
+    "sentence",
+    "unquoted"
   ],
-  "lastUpdated": "2026-10-28T05:17:34.071Z",
+  "lastUpdated": "2026-11-13T10:04:47.193Z",
   "specId": "015",
   "folderSlug": "frontmatter-yaml-validity",
   "parentChain": [
@@ -14,6 +25,5 @@
     "004-portable-code-modes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

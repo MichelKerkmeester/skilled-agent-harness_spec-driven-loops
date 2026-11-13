@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/013-fts5-fix-and-search-dashboard",
   "description": "Item 1 — FTS5 Double-Quoting Bug (COMPLETED): `normalizeLexicalQueryTokens()` in `bm25-index.ts` produces pre-quoted phrase tokens such as `\"semantic",
   "keywords": [
@@ -15,7 +16,7 @@
     "tokens",
     "semantic"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.569Z",
+  "lastUpdated": "2026-11-13T10:05:34.456Z",
   "specId": "013",
   "folderSlug": "fts5-fix-and-search-dashboard",
   "parentChain": [
@@ -26,6 +27,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "01-04-26_19-35__diagnosed-and-fixed-memory-search-0-results-bug.md"
-  ],
-  "level": "2"
+  ]
 }

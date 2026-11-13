@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement",
   "description": "Feature Specification: ESM Module Compliance",
   "keywords": [
@@ -8,7 +9,7 @@
     "module",
     "compliance"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.588Z",
+  "lastUpdated": "2026-11-13T10:05:34.487Z",
   "specId": "023",
   "folderSlug": "hybrid-rag-fusion-refinement",
   "parentChain": [
@@ -25,6 +26,5 @@
     "29-03-26_18-36__completed-the-full-023-esm-module-compliance-2.md",
     "30-03-26_10-55__completed-10-iteration-deep-review-of-spec-023.md",
     "27-04-26_15-38__retroactive-migration-by-worker-1.md"
-  ],
-  "level": "2"
+  ]
 }

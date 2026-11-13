@@ -18,11 +18,12 @@
     "operator",
     "deferred"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.179Z",
+  "lastUpdated": "2026-11-13T10:04:38.663Z",
   "specId": "002",
   "folderSlug": "cursor-hooks-live-wiring",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "030-cli-cursor-creation",
     "009-cursor-hooks-lifecycle"
   ],

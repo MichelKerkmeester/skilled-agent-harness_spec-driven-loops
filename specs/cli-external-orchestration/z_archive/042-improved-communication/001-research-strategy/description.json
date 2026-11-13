@@ -17,11 +17,12 @@
     "fail-open",
     "display"
   ],
-  "lastUpdated": "2026-08-19T19:26:13.151Z",
+  "lastUpdated": "2026-11-13T10:04:38.824Z",
   "specId": "001",
   "folderSlug": "research-strategy",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "042-improved-communication"
   ],
   "memorySequence": 0,

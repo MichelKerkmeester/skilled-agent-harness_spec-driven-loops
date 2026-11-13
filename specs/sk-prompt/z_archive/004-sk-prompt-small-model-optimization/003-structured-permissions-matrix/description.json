@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "sk-prompt/z_archive/004-sk-prompt-small-model-optimization/003-structured-permissions-matrix",
   "description": "cli-opencode v1.3.3.0 ALWAYS rule #13 ships a four-layer prose mitigation for destructive scope violations (RM-8 follow-on): (L1) prompt contains",
   "keywords": [
@@ -17,7 +18,7 @@
     "prompt",
     "contains"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.413Z",
+  "lastUpdated": "2026-11-13T10:04:54.523Z",
   "specId": "003",
   "folderSlug": "structured-permissions-matrix",
   "parentChain": [
@@ -28,6 +29,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "18-05-26_13-32__003-l3-packet-authored.md"
-  ],
-  "level": "3"
+  ]
 }

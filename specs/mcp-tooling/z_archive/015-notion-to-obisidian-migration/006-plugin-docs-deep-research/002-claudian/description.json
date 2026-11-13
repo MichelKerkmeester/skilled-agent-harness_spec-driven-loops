@@ -21,11 +21,12 @@
     "mcp",
     "json"
   ],
-  "lastUpdated": "2026-08-23T03:59:25.482Z",
+  "lastUpdated": "2026-11-13T10:04:42.963Z",
   "specId": "002",
   "folderSlug": "claudian",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "015-notion-to-obisidian-migration",
     "006-plugin-docs-deep-research"
   ],

@@ -1,11 +1,19 @@
 {
+  "level": "3",
   "specFolder": "sk-code/hub-architecture/005-private-surface-skills/001-ignore-and-commit-guard",
-  "description": "Phase 1: ignore-and-commit-guard",
+  "description": "The two surfaces that are about to become private skills have no safe place to live yet",
   "keywords": [
-    "phase",
-    "ignore-and-commit-guard"
+    "two",
+    "surfaces",
+    "about",
+    "become",
+    "private",
+    "skills",
+    "safe",
+    "place",
+    "live"
   ],
-  "lastUpdated": "2026-10-23T07:03:38.671Z",
+  "lastUpdated": "2026-11-13T10:04:46.953Z",
   "specId": "001",
   "folderSlug": "ignore-and-commit-guard",
   "parentChain": [
@@ -14,6 +22,5 @@
     "005-private-surface-skills"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

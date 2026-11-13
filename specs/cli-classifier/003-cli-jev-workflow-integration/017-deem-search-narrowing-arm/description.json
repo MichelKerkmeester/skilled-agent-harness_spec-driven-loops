@@ -1,17 +1,18 @@
 {
+  "level": "2",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/017-deem-search-narrowing-arm",
-  "description": "Plan an offline measurement of whether one Deem or Jev choice that picks the spec track beats ripgrep and the trigger-index lookup at naming the right track, under a keep rule fixed before the build. Jev comes first, then Deem, and Jev runs on the operator flag.",
+  "description": "The committed trigger-index lookup finds exact wording and little else",
   "keywords": [
-    "deem",
-    "jev",
-    "track",
-    "narrowing",
+    "committed",
     "trigger-index",
-    "ripgrep",
-    "baseline",
-    "offline"
+    "lookup",
+    "finds",
+    "exact",
+    "wording",
+    "little",
+    "else"
   ],
-  "lastUpdated": "2026-09-27T12:09:31.905Z",
+  "lastUpdated": "2026-11-13T10:04:36.016Z",
   "specId": "017",
   "folderSlug": "deem-search-narrowing-arm",
   "parentChain": [
@@ -19,6 +20,5 @@
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

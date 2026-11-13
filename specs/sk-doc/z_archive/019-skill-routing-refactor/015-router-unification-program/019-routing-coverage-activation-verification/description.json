@@ -16,11 +16,12 @@
     "phased",
     "outcome"
   ],
-  "lastUpdated": "2026-08-30T08:03:51.646Z",
+  "lastUpdated": "2026-11-13T10:04:53.263Z",
   "specId": "019",
   "folderSlug": "routing-coverage-activation-verification",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program"
   ],

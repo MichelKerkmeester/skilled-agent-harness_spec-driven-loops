@@ -13,11 +13,12 @@
     "pinned",
     "corpus"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.350Z",
+  "lastUpdated": "2026-11-13T10:04:53.420Z",
   "specId": "006",
   "folderSlug": "ci-compiler-accuracy-gates",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "033-json-optimization-implementation"
   ],

@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/008-fanout-convergence-mode-flag",
   "description": "The fan-out path never read --convergence-mode, so every lineage silently took the default while the caller believed convergence was disabled.",
   "keywords": [
@@ -18,7 +19,7 @@
     "convergence",
     "disabled"
   ],
-  "lastUpdated": "2026-09-20T08:32:53.576Z",
+  "lastUpdated": "2026-11-13T10:04:55.270Z",
   "specId": "008",
   "folderSlug": "fanout-convergence-mode-flag",
   "parentChain": [
@@ -28,6 +29,5 @@
     "002-substrate-and-orchestration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

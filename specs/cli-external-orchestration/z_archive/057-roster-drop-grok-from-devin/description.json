@@ -15,11 +15,12 @@
     "grok-4-6-high",
     "grok-4-6-low"
   ],
-  "lastUpdated": "2026-09-07T16:16:48.512Z",
+  "lastUpdated": "2026-11-13T10:04:38.957Z",
   "specId": "057",
   "folderSlug": "roster-drop-grok-from-devin",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

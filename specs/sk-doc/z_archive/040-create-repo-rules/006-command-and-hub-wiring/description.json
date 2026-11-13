@@ -7,11 +7,12 @@
     "complete",
     "unreachable"
   ],
-  "lastUpdated": "2026-08-31T13:33:31.490Z",
+  "lastUpdated": "2026-11-13T10:04:54.069Z",
   "specId": "006",
   "folderSlug": "command-and-hub-wiring",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "040-create-repo-rules"
   ],
   "memorySequence": 0,

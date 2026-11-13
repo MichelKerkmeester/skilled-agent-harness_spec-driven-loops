@@ -1,12 +1,18 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/011-sparse-checkout-rollout",
-  "description": "Phase 11: sparse-checkout-rollout",
+  "description": "Every job checks out 134,068 tracked files, and 113,819 of them sit under `specs/`",
   "keywords": [
-    "phase",
-    "sparse-checkout-rollout"
+    "every",
+    "job",
+    "checks",
+    "tracked",
+    "files",
+    "them",
+    "sit",
+    "specs"
   ],
-  "lastUpdated": "2026-11-12T17:43:54.372Z",
+  "lastUpdated": "2026-11-13T10:05:23.819Z",
   "specId": "011",
   "folderSlug": "sparse-checkout-rollout",
   "parentChain": [

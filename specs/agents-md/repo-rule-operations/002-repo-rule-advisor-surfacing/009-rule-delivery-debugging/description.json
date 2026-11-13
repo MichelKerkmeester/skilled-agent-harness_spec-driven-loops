@@ -1,11 +1,23 @@
 {
+  "level": "2",
   "specFolder": "agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/009-rule-delivery-debugging",
-  "description": "Phase 9: rule-delivery-debugging",
+  "description": "`AGENTS.md` mandates two loads: Gate 5 opens `REPO RULES.md` before the first write, and the reply-rule line loads `communication.md` and",
   "keywords": [
-    "phase",
-    "rule-delivery-debugging"
+    "agents",
+    "mandates",
+    "two",
+    "loads",
+    "gate",
+    "opens",
+    "repo",
+    "rules",
+    "first",
+    "write",
+    "reply-rule",
+    "line",
+    "communication"
   ],
-  "lastUpdated": "2026-10-04T21:40:04.594Z",
+  "lastUpdated": "2026-11-13T10:04:35.330Z",
   "specId": "009",
   "folderSlug": "rule-delivery-debugging",
   "parentChain": [
@@ -14,6 +26,5 @@
     "002-repo-rule-advisor-surfacing"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,15 +1,22 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/052-v1-default-llmgateway",
-  "description": "Make llmgateway the OpenCode 1 cli-opencode default model and close 043",
+  "description": "cli-opencode's default model was chosen by version: OpenCode 1 took `opencode-go/deepseek-v4.1-flash --variant max` and OpenCode 2 took",
   "keywords": [
-    "llmgateway",
-    "opencode",
     "cli-opencode",
     "default",
     "model",
-    "close"
+    "chosen",
+    "version",
+    "opencode",
+    "took",
+    "opencode-go",
+    "deepseek-v4",
+    "1-flash",
+    "variant",
+    "max"
   ],
-  "lastUpdated": "2026-10-21T18:58:28.089Z",
+  "lastUpdated": "2026-11-13T10:04:37.643Z",
   "specId": "052",
   "folderSlug": "v1-default-llmgateway",
   "parentChain": [
@@ -18,6 +25,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

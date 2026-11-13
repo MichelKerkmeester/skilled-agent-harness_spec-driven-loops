@@ -1,4 +1,5 @@
 {
+  "level": 1,
   "specFolder": "system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/005-verification-and-remediation/001-finding-remediation/008-doc-truth-and-test-fidelity",
   "description": "The epic deep-review sweep left this lane with 23 unverified P1 claims and 35 P2 clusters",
   "keywords": [
@@ -11,7 +12,7 @@
     "claims",
     "clusters"
   ],
-  "lastUpdated": "2026-08-15T14:41:12.532Z",
+  "lastUpdated": "2026-11-13T10:05:11.217Z",
   "specId": "008",
   "folderSlug": "doc-truth-and-test-fidelity",
   "parentChain": [
@@ -22,6 +23,5 @@
     "001-finding-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 1
+  "memoryNameHistory": []
 }

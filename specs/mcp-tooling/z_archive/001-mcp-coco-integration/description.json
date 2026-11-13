@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "mcp-tooling/z_archive/001-mcp-coco-integration",
   "description": "OpenCode had no semantic code search capability",
   "keywords": [
@@ -8,7 +9,7 @@
     "search",
     "capability"
   ],
-  "lastUpdated": "2026-08-30T05:43:10.228Z",
+  "lastUpdated": "2026-11-13T10:04:42.491Z",
   "specId": "001",
   "folderSlug": "mcp-coco-integration",
   "parentChain": [
@@ -21,6 +22,5 @@
     "18-03-26_14-51__cross-cli-auto-usage-test.md",
     "18-03-26_19-06__portable-cocoindex-mcp-paths-applied.md",
     "21-03-26_07-41__next-steps.md"
-  ],
-  "level": "2"
+  ]
 }

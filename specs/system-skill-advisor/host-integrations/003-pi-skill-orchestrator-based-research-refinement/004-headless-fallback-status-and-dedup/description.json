@@ -1,11 +1,20 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/004-headless-fallback-status-and-dedup",
-  "description": "Headless Fallback Status and Dedup",
+  "description": "The fallback is the directives block alone (`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:443-448`)",
   "keywords": [
-    "phase",
-    "headless-fallback-status-and-dedup"
+    "fallback",
+    "directives",
+    "block",
+    "alone",
+    "skilled",
+    "skills",
+    "system-skill-advisor",
+    "runtime",
+    "lib",
+    "render"
   ],
-  "lastUpdated": "2026-09-26T10:05:46.051Z",
+  "lastUpdated": "2026-11-13T10:05:01.302Z",
   "specId": "004",
   "folderSlug": "headless-fallback-status-and-dedup",
   "parentChain": [
@@ -14,6 +23,5 @@
     "003-pi-skill-orchestrator-based-research-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

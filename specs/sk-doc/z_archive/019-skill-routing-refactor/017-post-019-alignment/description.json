@@ -12,11 +12,12 @@
     "evidence",
     "contract"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.031Z",
+  "lastUpdated": "2026-11-13T10:04:53.308Z",
   "specId": "017",
   "folderSlug": "post-019-alignment",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor"
   ],
   "memorySequence": 0,

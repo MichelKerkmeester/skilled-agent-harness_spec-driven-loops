@@ -1,12 +1,17 @@
 {
   "level": "2",
   "specFolder": "sk-code/quality-and-review-modes/001-code-modes-research/001-quality-mode-research",
-  "description": "Phase 1: quality-mode-research",
+  "description": "`sk-code-quality` is the author-side gate that runs after implementation and before a completion claim",
   "keywords": [
-    "phase",
-    "quality-mode-research"
+    "sk-code-quality",
+    "author-side",
+    "gate",
+    "runs",
+    "implementation",
+    "completion",
+    "claim"
   ],
-  "lastUpdated": "2026-10-25T13:00:42.607Z",
+  "lastUpdated": "2026-11-13T10:04:47.042Z",
   "specId": "001",
   "folderSlug": "quality-mode-research",
   "parentChain": [

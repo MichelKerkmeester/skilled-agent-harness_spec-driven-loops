@@ -1,19 +1,21 @@
 {
   "level": "1",
   "specFolder": "mcp-tooling/code-mode/002-clickup-hosted-route-fix",
-  "description": "Repoint the clickup_official Code Mode manual to the hosted ClickUp MCP and fix stale ClickUp docs",
+  "description": "The `clickupofficial` manual in `.utcpconfig.json` runs `npx -y @clickup/mcp-server`, and `npm view @clickup/mcp-server` returns a 404",
   "keywords": [
-    "repoint",
-    "code",
-    "mode",
+    "clickupofficial",
     "manual",
-    "hosted",
+    "utcpconfig",
+    "json",
+    "runs",
+    "npx",
     "clickup",
-    "mcp",
-    "stale",
-    "docs"
+    "mcp-server",
+    "npm",
+    "view",
+    "returns"
   ],
-  "lastUpdated": "2026-10-09T12:44:12.478Z",
+  "lastUpdated": "2026-11-13T10:04:42.392Z",
   "specId": "002",
   "folderSlug": "clickup-hosted-route-fix",
   "parentChain": [

@@ -1,24 +1,25 @@
 {
+  "level": "1",
   "specFolder": "system-skilled-doctor/002-symlink-first-link",
-  "description": "Link everything on the first symlink run and keep its relative links ignored",
+  "description": "On a new project the first `/doctor:symlink link` left `.claude` and `.opencode` as `partial-merge`",
   "keywords": [
-    "link",
-    "everything",
+    "new",
+    "project",
     "first",
+    "doctor",
     "symlink",
-    "run",
-    "keep",
-    "relative",
-    "links",
-    "ignored"
+    "link",
+    "left",
+    "claude",
+    "opencode",
+    "partial-merge"
   ],
-  "lastUpdated": "2026-11-08T11:02:53.580Z",
+  "lastUpdated": "2026-11-13T10:05:03.393Z",
   "specId": "002",
   "folderSlug": "symlink-first-link",
   "parentChain": [
     "system-skilled-doctor"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

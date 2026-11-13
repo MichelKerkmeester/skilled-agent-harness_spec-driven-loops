@@ -1,4 +1,5 @@
 {
+  "level": 1,
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/005-vestigial-embedding-readiness-gate-removal",
   "description": "The v1.0.3 stress test (Phase H) failed to capture full live-handler envelopes because the direct `handleMemorySearch` probe hit `Embedding model not",
   "keywords": [
@@ -18,7 +19,7 @@
     "embedding",
     "model"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.602Z",
+  "lastUpdated": "2026-11-13T10:05:03.511Z",
   "specId": "005",
   "folderSlug": "vestigial-embedding-readiness-gate-removal",
   "parentChain": [
@@ -29,6 +30,5 @@
     "003-cross-cutting-cleanup-pass"
   ],
   "memorySequence": 1,
-  "memoryNameHistory": [],
-  "level": 1
+  "memoryNameHistory": []
 }

@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/002-subtrack-proposal",
+  "spec_folder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/002-subtrack-proposal",
+  "parent_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "subtrack proposal",
+      "phase 2 subtrack proposal",
+      "suggest-subtracks.mjs whole-track map",
+      "subtrack proposal plan",
+      "subtrack proposal tasks",
+      "subtrack proposal acceptance criteria",
+      "subtrack proposal goal",
+      "subtrack proposal implementation summary"
+    ],
+    "key_topics": [
+      "subtrack",
+      "proposal",
+      "phase",
+      "suggest-subtracks",
+      "mjs",
+      "whole-track",
+      "map",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/suggest-subtracks.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+      ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs",
+      ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
+      ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
+      ".skilled/commands/speckit/assets/speckit-implement.yaml",
+      ".skilled/commands/doctor/assets/agents-md-manifest.json",
+      ".skilled/skills/system-spec-kit/references/memory/trigger-config.md",
+      ".skilled/skills/system-spec-kit/references/workflows/worked-examples.md",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/policy-plan/baseline-contexts.json",
+      ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+      ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+      ".skilled/skills/system-spec-kit/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "suggest-subtracks.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/suggest-subtracks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-gate-core.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hooks/spec-gate-core.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-plan-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-complete-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-implement.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-implement.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-manifest.json",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-config.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/memory/trigger-config.md",
+        "source": "derived"
+      },
+      {
+        "name": "worked-examples.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/worked-examples.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-contexts.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/policy-plan/baseline-contexts.json",
+        "source": "derived"
+      },
+      {
+        "name": "folder-structure.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-definitions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An operator learns that a flat track should be grouped only by noticing it",
+    "created_at": "2026-11-13T10:07:31Z",
+    "last_save_at": "2026-11-13T16:01:48.768Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:800f62b84935235131f7c91b6d0e4c2ac114a81b74f75ad13ac30ca19cb9914d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fbc28d39054f799bb8685dcd77a49b8fb5fcd6d716928c4811beda90d4a08a4e",
+      "plan.md": "f5a9d7c6dc3d269f172d9b08a22ee78e89e99dcad0edae32ff89d86fa81b517b",
+      "tasks.md": "4147fdc2268c8373be9e354a331e9d7d06fa3c5e39f029da0d635225c64f9167",
+      "implementation-summary.md": "0bc531fb4910a7fed783ef7b6fb3491b42ceee1e20bc09b6044f31b44b5412a7"
+    },
+    "last_active_at": null
+  }
+}

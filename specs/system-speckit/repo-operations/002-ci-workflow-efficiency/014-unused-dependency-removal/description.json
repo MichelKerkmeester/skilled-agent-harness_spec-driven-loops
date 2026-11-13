@@ -1,15 +1,23 @@
 {
   "level": "1",
   "specFolder": "system-speckit/repo-operations/002-ci-workflow-efficiency/014-unused-dependency-removal",
-  "description": "unused dependency removal in the md-generator backend",
+  "description": "Dependabot alert 1410 (`deepmerge` 4.3.1 and older, prototype poisoning, low severity) has no patched version, so it cannot be cleared by an upgrade",
   "keywords": [
-    "unused",
-    "dependency",
-    "removal",
-    "md-generator",
-    "backend"
+    "dependabot",
+    "alert",
+    "deepmerge",
+    "older",
+    "prototype",
+    "poisoning",
+    "low",
+    "severity",
+    "patched",
+    "version",
+    "cannot",
+    "cleared",
+    "upgrade"
   ],
-  "lastUpdated": "2026-10-27T22:12:20.622Z",
+  "lastUpdated": "2026-11-13T10:05:16.692Z",
   "specId": "014",
   "folderSlug": "unused-dependency-removal",
   "parentChain": [

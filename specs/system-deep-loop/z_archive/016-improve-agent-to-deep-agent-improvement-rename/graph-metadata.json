@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "system-deep-loop/z_archive/016-improve-agent-to-deep-agent-improvement-rename",
   "spec_folder": "system-deep-loop/z_archive/016-improve-agent-to-deep-agent-improvement-rename",
-  "parent_id": "system-deep-loop/z_archive",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [],
   "manual": {
     "depends_on": [],

@@ -1,11 +1,20 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/016-cli-codex",
-  "description": "Phase 16: cli-codex",
+  "description": "CX-017 checks the resume and fork flags, not the resumed session's memory of its earlier turn",
   "keywords": [
-    "phase",
-    "cli-codex"
+    "cx-017",
+    "checks",
+    "resume",
+    "fork",
+    "flags",
+    "resumed",
+    "session",
+    "memory",
+    "earlier",
+    "turn"
   ],
-  "lastUpdated": "2026-11-02T18:33:58.014Z",
+  "lastUpdated": "2026-11-13T10:04:50.139Z",
   "specId": "016",
   "folderSlug": "cli-codex",
   "parentChain": [
@@ -15,6 +24,5 @@
     "004-conversation-adoption-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

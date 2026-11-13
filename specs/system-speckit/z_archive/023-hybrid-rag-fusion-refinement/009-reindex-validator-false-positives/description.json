@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/023-hybrid-rag-fusion-refinement/009-reindex-validator-false-positives",
   "description": "Batch reindex discovered substantially more files on disk than were inserted into the memory index",
   "keywords": [
@@ -12,7 +13,7 @@
     "memory",
     "index"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.518Z",
+  "lastUpdated": "2026-11-13T10:05:34.342Z",
   "specId": "009",
   "folderSlug": "reindex-validator-false-positives",
   "parentChain": [
@@ -24,6 +25,5 @@
   "memoryNameHistory": [
     "31-03-26_15-13__created-phase-009-and-implemented-16-fixes-for.md",
     "01-04-26_11-03__completed-phase-3-deep-review-remediation-6-of-8.md"
-  ],
-  "level": "2"
+  ]
 }

@@ -13,11 +13,12 @@
     "markdown",
     "filenames"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.913Z",
+  "lastUpdated": "2026-11-13T10:04:53.754Z",
   "specId": "003",
   "folderSlug": "references-and-assets",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "011-mcp-code-mode"

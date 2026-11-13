@@ -17,11 +17,12 @@
     "standalone",
     "graph-metadata"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.109Z",
+  "lastUpdated": "2026-11-13T10:04:53.338Z",
   "specId": "023",
   "folderSlug": "skill-metadata-templates",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor"
   ],
   "memorySequence": 0,

@@ -17,11 +17,12 @@
     "generic",
     "cross-packet"
   ],
-  "lastUpdated": "2026-08-28T16:24:15.227Z",
+  "lastUpdated": "2026-11-13T10:04:52.032Z",
   "specId": "013",
   "folderSlug": "shared-refs-reorg",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "014-sk-doc-parent"
   ],
   "memorySequence": 0,

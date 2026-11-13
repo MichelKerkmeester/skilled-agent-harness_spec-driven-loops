@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Phase parent for completed skill-advisor reindex/stress-test baseline plus follow-on router calibration phases discovered by that campaign.",
     "created_at": "2026-05-18T07:49:27.122Z",
-    "last_save_at": "2026-10-07T18:15:29.822Z",
+    "last_save_at": "2026-11-13T13:18:44.642Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "tasks.md",
       "resource-map.md"
     ],
-    "source_fingerprint": "sha256:dda027f9342bb6af67dabdfa41ca6796eb55edd6c83416ad79b345055701b83d",
+    "source_fingerprint": "sha256:dcb1b80329e6474a7d68fecac98034eff00a5bc5b01eea039a92b148a881fcd3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "cff9a83ae003e5510ff3e0e714a22290c6ca3020fb4e40b97b46984bc3df34a4",
       "plan.md": "3cb68d5b24acd7dada18976ddcdf70716aa0118b29f585451e022cdf3ec85043",
       "tasks.md": "8d3523dd3a86a3a2d26a44e10df2871cb205b888fac91b978cd2e3f9f660c1ba",
-      "resource-map.md": "f6917c2845f00105260ff23266c5996764bff89f99ee7e1867dc8001956355a6"
+      "resource-map.md": "32e9f7e7f22191093f04f64c397b445734f1bd2237db33cca38dea742430ab9d"
     },
     "last_active_child_id": "system-skill-advisor/z_archive/002-skill-advisor-reindex-and-stress-test/005-ambiguous-debug-review-routing",
     "last_active_at": null

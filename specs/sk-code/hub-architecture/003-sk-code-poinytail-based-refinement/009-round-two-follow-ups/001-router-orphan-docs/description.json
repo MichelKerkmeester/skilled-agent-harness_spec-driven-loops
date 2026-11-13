@@ -1,11 +1,27 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/009-round-two-follow-ups/001-router-orphan-docs",
-  "description": "Phase 1: router-orphan-docs",
+  "description": "`node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verifyroutersync.cjs --checks 1b` lists nine docs that no router names, so leg 1b is held",
   "keywords": [
-    "phase",
-    "router-orphan-docs"
+    "node",
+    "skilled",
+    "skills",
+    "sk-code",
+    "sk-code-skilled",
+    "assets",
+    "scripts",
+    "verifyroutersync",
+    "cjs",
+    "checks",
+    "lists",
+    "nine",
+    "docs",
+    "router",
+    "names",
+    "leg",
+    "held"
   ],
-  "lastUpdated": "2026-10-10T08:16:19.079Z",
+  "lastUpdated": "2026-11-13T10:04:45.488Z",
   "specId": "001",
   "folderSlug": "router-orphan-docs",
   "parentChain": [
@@ -15,6 +31,5 @@
     "009-round-two-follow-ups"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

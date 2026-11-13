@@ -10,7 +10,7 @@ importance_tier: "high"
 contextType: "decision"
 _memory:
   continuity:
-    packet_pointer: "sk-design/009-sk-design-claude-parity/003-private-procedure-card-layer"
+    packet_pointer: "sk-design/z_archive/009-sk-design-claude-parity/003-private-procedure-card-layer"
     last_updated_at: "2026-07-06T00:00:00.000Z"
     last_updated_by: "claude-sonnet-5"
     recent_action: "Revalidated ADR-001."

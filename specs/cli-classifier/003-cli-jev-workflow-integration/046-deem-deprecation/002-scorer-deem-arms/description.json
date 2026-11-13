@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/046-deem-deprecation/002-scorer-deem-arms",
-  "description": "Phase 2: scorer-deem-arms",
+  "description": "Twenty scorers accept `--deem`, and each arm has tests, docs and in two cases a side-by-side comparison with Jev",
   "keywords": [
-    "phase",
-    "scorer-deem-arms"
+    "twenty",
+    "scorers",
+    "accept",
+    "deem",
+    "arm",
+    "tests",
+    "docs",
+    "two",
+    "cases",
+    "side-by-side",
+    "comparison",
+    "jev"
   ],
-  "lastUpdated": "2026-10-02T07:54:42.758Z",
+  "lastUpdated": "2026-11-13T10:04:36.559Z",
   "specId": "002",
   "folderSlug": "scorer-deem-arms",
   "parentChain": [
@@ -14,6 +25,5 @@
     "046-deem-deprecation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

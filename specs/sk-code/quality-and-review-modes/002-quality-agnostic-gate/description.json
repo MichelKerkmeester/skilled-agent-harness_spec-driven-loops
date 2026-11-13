@@ -1,14 +1,17 @@
 {
+  "level": "2",
   "specFolder": "sk-code/quality-and-review-modes/002-quality-agnostic-gate",
-  "description": "Make sk-code-quality a codebase-agnostic, executable author gate",
+  "description": "The `sk-code-quality` mode is the author-side gate that runs before a completion claim",
   "keywords": [
     "sk-code-quality",
-    "codebase-agnostic",
-    "executable",
-    "author",
-    "gate"
+    "mode",
+    "author-side",
+    "gate",
+    "runs",
+    "completion",
+    "claim"
   ],
-  "lastUpdated": "2026-10-25T23:21:45.946Z",
+  "lastUpdated": "2026-11-13T10:04:47.133Z",
   "specId": "002",
   "folderSlug": "quality-agnostic-gate",
   "parentChain": [
@@ -16,6 +19,5 @@
     "quality-and-review-modes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

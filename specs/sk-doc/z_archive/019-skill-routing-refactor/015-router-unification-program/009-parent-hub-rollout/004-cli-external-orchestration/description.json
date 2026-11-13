@@ -20,11 +20,12 @@
     "contract",
     "needs"
   ],
-  "lastUpdated": "2026-08-16T18:06:00.677Z",
+  "lastUpdated": "2026-11-13T10:04:52.926Z",
   "specId": "004",
   "folderSlug": "cli-external-orchestration",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program",
     "009-parent-hub-rollout"

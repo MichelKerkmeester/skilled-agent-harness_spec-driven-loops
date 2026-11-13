@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/021-align-system-skill-advisor",
-  "description": "Phase 21: align-system-skill-advisor",
+  "description": "The router move changed where the system-skill-advisor machine router lives, but the docs around it were written for the old place",
   "keywords": [
-    "phase",
-    "align-system-skill-advisor"
+    "router",
+    "move",
+    "changed",
+    "system-skill-advisor",
+    "machine",
+    "lives",
+    "docs",
+    "around",
+    "written",
+    "old",
+    "place"
   ],
-  "lastUpdated": "2026-10-29T17:20:40.829Z",
+  "lastUpdated": "2026-11-13T10:04:51.893Z",
   "specId": "021",
   "folderSlug": "align-system-skill-advisor",
   "parentChain": [
@@ -16,6 +26,5 @@
     "014-skill-router-files"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

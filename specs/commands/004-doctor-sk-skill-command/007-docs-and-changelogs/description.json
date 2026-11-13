@@ -1,11 +1,18 @@
 {
+  "level": "2",
   "specFolder": "commands/004-doctor-sk-skill-command/007-docs-and-changelogs",
-  "description": "Phase 7: docs-and-changelogs",
+  "description": "The root README lists the doctor commands at `README.md:213` and describes each in the Doctor section near `README.md:1247-1257`",
   "keywords": [
-    "phase",
-    "docs-and-changelogs"
+    "root",
+    "readme",
+    "lists",
+    "doctor",
+    "commands",
+    "describes",
+    "section",
+    "near"
   ],
-  "lastUpdated": "2026-10-30T05:21:18.407Z",
+  "lastUpdated": "2026-11-13T10:04:39.466Z",
   "specId": "007",
   "folderSlug": "docs-and-changelogs",
   "parentChain": [
@@ -13,6 +20,5 @@
     "004-doctor-sk-skill-command"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

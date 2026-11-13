@@ -1,17 +1,21 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/doc-validation-tooling/004-doc-tooling-prose-and-release-amend",
-  "description": "Doc tooling fixes found while writing the install guide and v4.0.2.0 notes",
+  "description": "The README rules turned any paragraph with several points into bullets, so the root README grew to 537 bullet lines",
   "keywords": [
-    "doc",
-    "tooling",
-    "found",
-    "while",
-    "writing",
-    "install",
-    "guide",
-    "notes"
+    "readme",
+    "rules",
+    "turned",
+    "paragraph",
+    "several",
+    "points",
+    "bullets",
+    "root",
+    "grew",
+    "bullet",
+    "lines"
   ],
-  "lastUpdated": "2026-11-08T14:18:54.497Z",
+  "lastUpdated": "2026-11-13T10:04:51.622Z",
   "specId": "004",
   "folderSlug": "doc-tooling-prose-and-release-amend",
   "parentChain": [
@@ -19,6 +23,5 @@
     "doc-validation-tooling"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

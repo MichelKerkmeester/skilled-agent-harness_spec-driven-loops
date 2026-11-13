@@ -1,11 +1,19 @@
 {
+  "level": "2",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/015-fanout-merge-and-steering-fixes",
-  "description": "Phase 15: fanout-merge-and-steering-fixes",
+  "description": "In all three research rounds of this packet, `stepconvergencereport` recorded `synthesisincomplete` with the single invariant",
   "keywords": [
-    "phase",
-    "fanout-merge-and-steering-fixes"
+    "three",
+    "research",
+    "rounds",
+    "packet",
+    "stepconvergencereport",
+    "recorded",
+    "synthesisincomplete",
+    "single",
+    "invariant"
   ],
-  "lastUpdated": "2026-09-27T11:50:21.942Z",
+  "lastUpdated": "2026-11-13T10:04:35.954Z",
   "specId": "015",
   "folderSlug": "fanout-merge-and-steering-fixes",
   "parentChain": [
@@ -13,6 +21,5 @@
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

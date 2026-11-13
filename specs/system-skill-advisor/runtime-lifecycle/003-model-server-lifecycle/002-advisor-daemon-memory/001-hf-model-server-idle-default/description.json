@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "system-skill-advisor/runtime-lifecycle/003-model-server-lifecycle/002-advisor-daemon-memory/001-hf-model-server-idle-default",
-  "description": "Phase 1: hf-model-server-idle-default",
+  "description": "With Ollama off, `EMBEDDINGSPROVIDER=auto` resolves to hf-local, and the launcher keeps an hf-model-server process with its model loaded for every",
   "keywords": [
-    "phase",
-    "hf-model-server-idle-default"
+    "ollama",
+    "embeddingsprovider",
+    "auto",
+    "resolves",
+    "hf-local",
+    "launcher",
+    "keeps",
+    "hf-model-server",
+    "process",
+    "model",
+    "loaded",
+    "every"
   ],
-  "lastUpdated": "2026-10-21T09:51:15.380Z",
+  "lastUpdated": "2026-11-13T10:05:02.447Z",
   "specId": "001",
   "folderSlug": "hf-model-server-idle-default",
   "parentChain": [
@@ -15,6 +26,5 @@
     "002-advisor-daemon-memory"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

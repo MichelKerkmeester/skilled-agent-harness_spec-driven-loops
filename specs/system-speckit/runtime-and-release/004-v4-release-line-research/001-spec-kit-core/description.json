@@ -1,12 +1,20 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/001-spec-kit-core",
-  "description": "Phase 1: spec-kit-core",
+  "description": "Every v4 release from v4.0.0.0 to v4.0.2.0 changed the spec-kit core: `.skilled/skills/system-spec-kit/` and `.skilled/commands/speckit/`",
   "keywords": [
-    "phase",
-    "spec-kit-core"
+    "every",
+    "release",
+    "changed",
+    "spec-kit",
+    "core",
+    "skilled",
+    "skills",
+    "system-spec-kit",
+    "commands",
+    "speckit"
   ],
-  "lastUpdated": "2026-11-08T22:35:36.107Z",
+  "lastUpdated": "2026-11-13T10:05:22.874Z",
   "specId": "001",
   "folderSlug": "spec-kit-core",
   "parentChain": [

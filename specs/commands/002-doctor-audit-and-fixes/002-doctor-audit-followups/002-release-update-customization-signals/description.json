@@ -1,11 +1,24 @@
 {
+  "level": "3",
   "specFolder": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/002-release-update-customization-signals",
-  "description": "Phase 2: release-update-customization-signals",
+  "description": "`release-update.cjs` compares base, local and release blobs per file and derives a unit status from the resulting classes",
   "keywords": [
-    "phase",
-    "release-update-customization-signals"
+    "release-update",
+    "cjs",
+    "compares",
+    "base",
+    "local",
+    "release",
+    "blobs",
+    "per",
+    "file",
+    "derives",
+    "unit",
+    "status",
+    "resulting",
+    "classes"
   ],
-  "lastUpdated": "2026-10-03T05:27:41.329Z",
+  "lastUpdated": "2026-11-13T10:04:39.209Z",
   "specId": "002",
   "folderSlug": "release-update-customization-signals",
   "parentChain": [
@@ -14,6 +27,5 @@
     "002-doctor-audit-followups"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

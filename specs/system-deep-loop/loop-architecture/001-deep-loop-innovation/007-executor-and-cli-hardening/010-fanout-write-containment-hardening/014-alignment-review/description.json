@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/014-alignment-review",
   "description": "The fan-out containment packet changed the deep-loop runtime, its command YAMLs, the deep-research references and compiled contract, and the skill",
   "keywords": [
@@ -16,7 +17,7 @@
     "contract",
     "skill"
   ],
-  "lastUpdated": "2026-09-20T08:32:53.516Z",
+  "lastUpdated": "2026-11-13T10:04:55.851Z",
   "specId": "014",
   "folderSlug": "alignment-review",
   "parentChain": [
@@ -27,6 +28,5 @@
     "010-fanout-write-containment-hardening"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

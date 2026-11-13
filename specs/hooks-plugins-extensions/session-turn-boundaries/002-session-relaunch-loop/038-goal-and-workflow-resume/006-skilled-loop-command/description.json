@@ -1,12 +1,19 @@
 {
   "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/006-skilled-loop-command",
-  "description": "Phase 6: skilled-loop-command",
+  "description": "The wrapper prints `skilled-loop <runtime>` as the manual claim command, and so does `relaunch-core.cjs`",
   "keywords": [
-    "phase",
-    "skilled-loop-command"
+    "wrapper",
+    "prints",
+    "skilled-loop",
+    "runtime",
+    "manual",
+    "claim",
+    "command",
+    "relaunch-core",
+    "cjs"
   ],
-  "lastUpdated": "2026-11-13T03:56:28.865Z",
+  "lastUpdated": "2026-11-13T10:04:41.886Z",
   "specId": "006",
   "folderSlug": "skilled-loop-command",
   "parentChain": [

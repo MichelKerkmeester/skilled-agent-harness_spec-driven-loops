@@ -1,14 +1,23 @@
 {
   "level": "research",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat",
-  "description": "OpenCode v1 and v2 dual compatibility research",
+  "description": "OpenCode now ships two lines that load plugins, read config and parse the `run` command differently",
   "keywords": [
     "opencode",
-    "dual",
-    "compatibility",
-    "research"
+    "now",
+    "ships",
+    "two",
+    "lines",
+    "load",
+    "plugins",
+    "read",
+    "config",
+    "parse",
+    "run",
+    "command",
+    "differently"
   ],
-  "lastUpdated": "2026-10-24T09:41:35.371Z",
+  "lastUpdated": "2026-11-13T10:04:37.760Z",
   "specId": "002",
   "folderSlug": "opencode-v1-v2-dual-compat",
   "parentChain": [

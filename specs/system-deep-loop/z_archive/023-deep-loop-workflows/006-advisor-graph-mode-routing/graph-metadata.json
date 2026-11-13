@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Collapsing five advisor skill IDs into one risks a routing precision/recall regression from unioning the trigger phrases (risk R2)",
     "created_at": "2026-06-14T20:16:09.679Z",
-    "last_save_at": "2026-10-07T18:14:48.548Z",
+    "last_save_at": "2026-11-13T13:17:53.005Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,10 +204,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:74a2d2f284dd3930b5c4461ee95ef50fbbee45483892f34c7dd0e087f84c101f",
+    "source_fingerprint": "sha256:ca849a56c7a790a24b80d5d76f77c87d8b1fed61f023e35b76c29b4d05378ceb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ee2da37f5fa6d8de7ec487422b89865d0ad4891b3bce5cabdc9273ef3232b6b1",
+      "spec.md": "28efc54fab7cd4234710f6981c3f44896bbcfc8f1f2be25239a90ea38206a066",
       "plan.md": "dd8f11514ce490fd71ef08186863399d63be2fe1ef7d9c55561ecfe0ee32eda6",
       "tasks.md": "7a26c9e1ed43e50ae90fda7a97bb002fe4e17752ea13485541a16e45431d5192",
       "implementation-summary.md": "1f80e285c1e3039b2226a2cb4a37f31054448572a8f3ada19e3dd5b677950b91"

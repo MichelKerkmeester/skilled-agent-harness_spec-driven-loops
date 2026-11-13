@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/004-index-lock-retry",
   "description": "Every git call in the containment guard returned an empty result on any non-zero exit and discarded stderr, and every caller read empty as a clean",
   "keywords": [
@@ -18,7 +19,7 @@
     "read",
     "clean"
   ],
-  "lastUpdated": "2026-09-20T08:32:53.498Z",
+  "lastUpdated": "2026-11-13T10:04:55.818Z",
   "specId": "004",
   "folderSlug": "index-lock-retry",
   "parentChain": [
@@ -29,6 +30,5 @@
     "010-fanout-write-containment-hardening"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

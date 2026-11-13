@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Phase 021 rewrote `design-command-surface-check.mjs` and fixed the remaining 020 deep-research findings, but the Lane C skill-benchmark had not been re-run since before that work, so there was no fresh evidence it didn't regress anything",
     "created_at": "2026-07-07T13:00:00.167Z",
-    "last_save_at": "2026-10-07T18:12:15.664Z",
+    "last_save_at": "2026-11-13T13:14:15.044Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -197,10 +197,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d2017c0b42846f8eb3eca8920a5f6b36c5cc2d79014fd52d37fda045c3f86131",
+    "source_fingerprint": "sha256:a91745042507865b66753710edf4b5c8bf7409c3ac4148f540cffa8dfdf2d9a0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "459fde040f700cf2f79bb600fdf4a3854d5253e709ea5065b4fa1629ded42281",
+      "spec.md": "e69bd4c56e79051bfa40f866c6dc03f209a3711b330f400dc316a9b3b34c2afc",
       "plan.md": "3cc21e4d6f38a70922910dc1ddaab33909bd6303acb205503b62195e79d85dc6",
       "tasks.md": "3e7807e4e5dfa87dc86d31c8cbcba3d15972cf84d2f6159ad5b97890f8a90585",
       "implementation-summary.md": "7ddb5763bf9eb62bad62cf8d5db6288c62747292c1e6d937c8e669000d3419a4"

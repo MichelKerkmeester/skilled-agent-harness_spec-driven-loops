@@ -1,11 +1,25 @@
 {
+  "level": "2",
   "specFolder": "commands/005-doctor-symlink-install/006-doctor-helper-handoff",
-  "description": "Phase 6: doctor-helper-handoff",
+  "description": "`requireDoctorPhraseAnchor` in `lib/scorer/fusion.ts` lets a doctor bridge pass only when the prompt carries one of its manifest phrases or its slash",
   "keywords": [
-    "phase",
-    "doctor-helper-handoff"
+    "requiredoctorphraseanchor",
+    "lib",
+    "scorer",
+    "fusion",
+    "lets",
+    "doctor",
+    "bridge",
+    "pass",
+    "only",
+    "prompt",
+    "carries",
+    "one",
+    "manifest",
+    "phrases",
+    "slash"
   ],
-  "lastUpdated": "2026-10-31T22:05:33.084Z",
+  "lastUpdated": "2026-11-13T10:04:39.664Z",
   "specId": "006",
   "folderSlug": "doctor-helper-handoff",
   "parentChain": [
@@ -13,6 +27,5 @@
     "005-doctor-symlink-install"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

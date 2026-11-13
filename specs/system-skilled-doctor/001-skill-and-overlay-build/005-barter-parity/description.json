@@ -1,16 +1,19 @@
 {
   "level": "2",
   "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/005-barter-parity",
-  "description": "Phase 5: barter-parity. A vendoring project with its own overlay folder could not use /doctor:overlay; the engine now reports a protected file per entry, re-pins .dsh, lists the upstream changes a re-pin leaves out and documents adoption, with Barter's tree passing the upstream status.",
+  "description": "Barter vendors Skilled with 130 overlays, and the upstream `/doctor:overlay` could not read them",
   "keywords": [
-    "phase",
-    "barter-parity",
+    "barter",
+    "vendors",
+    "skilled",
+    "overlays",
+    "upstream",
+    "doctor",
     "overlay",
-    "re-pin",
-    "vendored",
-    "adoption"
+    "read",
+    "them"
   ],
-  "lastUpdated": "2026-11-07T21:36:41.351Z",
+  "lastUpdated": "2026-11-13T10:05:03.363Z",
   "specId": "005",
   "folderSlug": "barter-parity",
   "parentChain": [

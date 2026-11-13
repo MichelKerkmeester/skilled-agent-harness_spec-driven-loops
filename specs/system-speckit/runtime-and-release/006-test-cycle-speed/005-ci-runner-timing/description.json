@@ -1,12 +1,15 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/005-ci-runner-timing",
-  "description": "Phase 5: ci-runner-timing",
+  "description": "The suites now run files in parallel",
   "keywords": [
-    "phase",
-    "ci-runner-timing"
+    "suites",
+    "now",
+    "run",
+    "files",
+    "parallel"
   ],
-  "lastUpdated": "2026-11-10T20:35:13.219Z",
+  "lastUpdated": "2026-11-13T10:05:23.710Z",
   "specId": "005",
   "folderSlug": "ci-runner-timing",
   "parentChain": [

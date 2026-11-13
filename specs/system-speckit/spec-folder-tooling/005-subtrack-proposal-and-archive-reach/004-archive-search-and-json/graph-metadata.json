@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/004-archive-search-and-json",
+  "spec_folder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/004-archive-search-and-json",
+  "parent_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "archive search and json",
+      "phase 4 archive search and json",
+      "include-archive search mode",
+      "archive search and json plan",
+      "archive search and json tasks",
+      "archive search and json acceptance criteria",
+      "archive search and json goal",
+      "archive search and json implementation summary"
+    ],
+    "key_topics": [
+      "archive",
+      "search",
+      "json",
+      "phase",
+      "include-archive",
+      "mode",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "specs/descriptions.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+      ".skilled/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts",
+      ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      ".skilled/commands/speckit/search.md",
+      ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+      ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      ".skilled/skills/system-spec-kit/runtime/lib/search/README.md",
+      "scratch/baseline.txt",
+      "tests/validate-archive-recursive.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "descriptions.json",
+        "kind": "config",
+        "path": "specs/descriptions.json",
+        "source": "derived"
+      },
+      {
+        "name": "rg-lane.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "rg-wrapper.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "archive.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        "source": "derived"
+      },
+      {
+        "name": "repair-derived.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "folder-discovery.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV-REFERENCE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/search/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-archive-recursive.vitest.ts",
+        "kind": "test",
+        "path": "tests/validate-archive-recursive.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An archived packet cannot be found or checked with the standard tools",
+    "created_at": "2026-11-13T10:07:35Z",
+    "last_save_at": "2026-11-13T16:03:52.913Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:77aa2e8f77a8a7b0fe918caa6068c48b047520f2450637d7e6b8ddd069b81f9f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b59d12b69548682ae3e048412a2a20aca7aeceb5f167c8c05942a3276228434e",
+      "plan.md": "eb47343fedadb17921ac0cda35bf0c9a30079efa231ff7f353da64b2d2a9e772",
+      "tasks.md": "34ab26c2ce0bc46008c724ec72eac94a2ecce707c3cb470e7336284fe8733704",
+      "implementation-summary.md": "e3651e6a02e7da4f8c07e34773d28981764c72eb9d8d63ce376ac4d8cfda897b"
+    },
+    "last_active_at": null
+  }
+}

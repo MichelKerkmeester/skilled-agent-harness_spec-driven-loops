@@ -10,11 +10,12 @@
     "filesystem",
     "names"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.607Z",
+  "lastUpdated": "2026-11-13T10:04:53.629Z",
   "specId": "004",
   "folderSlug": "no-new-snake-guard",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention"
   ],
   "memorySequence": 0,

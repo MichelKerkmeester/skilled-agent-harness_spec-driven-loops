@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/z_archive/009-playbook-run-and-remediation/005-finding-remediation/001-advisor-validate-alias-matching",
   "description": "`advisorvalidate` matches corpus gold labels to the recommended skill with strict equality (`result.topSkill === expected`,",
   "keywords": [
@@ -15,7 +16,7 @@
     "topskill",
     "expected"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.184Z",
+  "lastUpdated": "2026-11-13T10:05:03.061Z",
   "specId": "001",
   "folderSlug": "advisor-validate-alias-matching",
   "parentChain": [
@@ -27,6 +28,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "26-05-26_22-12__executed-all-46-playbook-scenarios-across-9.md"
-  ],
-  "level": "1"
+  ]
 }

@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/057-v4-0-0-13-reliability-fixes",
-  "description": "Phase 57: v4-0-0-13-reliability-fixes",
+  "description": "v4.0.0.13 shipped a run of reliability fixes between tag v4.0.0.12 and the release: advisor lookups that queued without a deadline, a hand-off count",
   "keywords": [
-    "phase",
-    "v4-0-0-13-reliability-fixes"
+    "shipped",
+    "run",
+    "reliability",
+    "between",
+    "tag",
+    "release",
+    "advisor",
+    "lookups",
+    "queued",
+    "without",
+    "deadline",
+    "hand-off",
+    "count"
   ],
-  "lastUpdated": "2026-10-22T19:01:34.783Z",
+  "lastUpdated": "2026-11-13T10:04:37.673Z",
   "specId": "057",
   "folderSlug": "v4-0-0-13-reliability-fixes",
   "parentChain": [
@@ -14,6 +26,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,11 +1,24 @@
 {
+  "level": "2",
   "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost",
-  "description": "Phase 8: embedder-setup-and-cost",
+  "description": "Meaning matching only works with a local Ollama server serving `nomic-embed-text:v1.5` and with vectors written by a skill graph scan",
   "keywords": [
-    "phase",
-    "embedder-setup-and-cost"
+    "meaning",
+    "matching",
+    "only",
+    "works",
+    "local",
+    "ollama",
+    "server",
+    "serving",
+    "nomic-embed-text",
+    "vectors",
+    "written",
+    "skill",
+    "graph",
+    "scan"
   ],
-  "lastUpdated": "2026-11-12T20:22:20.917Z",
+  "lastUpdated": "2026-11-13T10:05:02.100Z",
   "specId": "008",
   "folderSlug": "embedder-setup-and-cost",
   "parentChain": [
@@ -14,6 +27,5 @@
     "008-command-surfacing-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

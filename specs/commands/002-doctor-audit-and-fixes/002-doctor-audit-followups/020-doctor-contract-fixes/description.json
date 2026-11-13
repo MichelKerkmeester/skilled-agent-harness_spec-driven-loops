@@ -1,11 +1,24 @@
 {
+  "level": "1",
   "specFolder": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/020-doctor-contract-fixes",
-  "description": "Phase 20: doctor-contract-fixes",
+  "description": "The retrieval doctor treated any low-quality trigger phrase as staleness, and the committed corpus always has some, so a fresh index never reported OK",
   "keywords": [
-    "phase",
-    "doctor-contract-fixes"
+    "retrieval",
+    "doctor",
+    "treated",
+    "low-quality",
+    "trigger",
+    "phrase",
+    "staleness",
+    "committed",
+    "corpus",
+    "always",
+    "fresh",
+    "index",
+    "never",
+    "reported"
   ],
-  "lastUpdated": "2026-10-04T17:25:27.248Z",
+  "lastUpdated": "2026-11-13T10:04:39.358Z",
   "specId": "020",
   "folderSlug": "doctor-contract-fixes",
   "parentChain": [
@@ -14,6 +27,5 @@
     "002-doctor-audit-followups"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

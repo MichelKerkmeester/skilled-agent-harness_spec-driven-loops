@@ -1,11 +1,17 @@
 {
+  "level": "2",
   "specFolder": "commands/005-doctor-symlink-install/003-integration-and-docs",
-  "description": "Phase 3: integration-and-docs",
+  "description": "A doctor command that no entry point names is a command nobody runs",
   "keywords": [
-    "phase",
-    "integration-and-docs"
+    "doctor",
+    "command",
+    "entry",
+    "point",
+    "names",
+    "nobody",
+    "runs"
   ],
-  "lastUpdated": "2026-10-31T13:38:34.464Z",
+  "lastUpdated": "2026-11-13T10:04:39.643Z",
   "specId": "003",
   "folderSlug": "integration-and-docs",
   "parentChain": [
@@ -13,6 +19,5 @@
     "005-doctor-symlink-install"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

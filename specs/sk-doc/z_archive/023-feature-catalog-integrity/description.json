@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/z_archive/023-feature-catalog-integrity",
   "description": "Feature catalogs are the canonical inventory of what each skill does today, and agents read them to decide what",
   "keywords": [
@@ -13,13 +14,13 @@
     "them",
     "decide"
   ],
-  "lastUpdated": "2026-08-15T14:41:01.442Z",
+  "lastUpdated": "2026-11-13T10:04:53.830Z",
   "specId": "023",
   "folderSlug": "feature-catalog-integrity",
   "parentChain": [
-    "sk-doc"
+    "sk-doc",
+    "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

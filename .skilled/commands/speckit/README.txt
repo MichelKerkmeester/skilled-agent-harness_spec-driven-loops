@@ -86,7 +86,7 @@ This document is a routing and reference surface only. Run the command entrypoin
 | **resume** | `/speckit:resume [spec-folder] [:auto\|:confirm]` | varies | Resume or recover work on an existing spec folder |
 | **plan --intake-only** | `/speckit:plan --intake-only [description] [:auto\|:confirm]` | intake-only | Standalone intake that publishes `spec.md`, `description.json`, and `graph-metadata.json` |
 | **complete** | `/speckit:complete <description> [:auto\|:confirm] [:with-research] [:with-phases]` | 14+ | Full end-to-end workflow combining all phases. `:with-phases` adds phase decomposition pre-workflow |
-| **search** | `/speckit:search <query> [--packet <specFolder>] [--triggers] [--paths] [--count]` | direct-dispatch | Lexical retrieval: trigger-index lookup and the ripgrep recipes over spec docs and skill docs |
+| **search** | `/speckit:search <query> [--packet <specFolder>] [--triggers] [--paths] [--count] [--include-archive]` | direct-dispatch | Lexical retrieval: trigger-index lookup and the ripgrep recipes over spec docs and skill docs |
 | **save** | `/speckit:save <spec-folder>` | direct-dispatch | Write session context into the packet's continuity surfaces |
 | **handoff** | `/speckit:handoff` | 5 | Manual session-relaunch trigger: write the handoff note and arm the loop |
 
@@ -100,6 +100,9 @@ The two lanes answer different questions. Prompt-to-declared-phrase matching is 
 | Free-text evidence | default | `rg-wrapper.mjs structured`, which runs the `retrieval-conventions.md` Section 2.1 recipe |
 | Which files mention it | `--paths` | Path-only recipe, Section 2.2 |
 | How many times | `--count` | Count recipe, Section 2.3 |
+| Archived packets too | `--include-archive` | Any `rg-wrapper.mjs` recipe (`structured`, `path` or `count`) without the `!**/z_archive/**` glob, plus a second invocation over the `description.json` and `graph-metadata.json` files of archived packets |
+
+Archived packets are left out by default. With `--include-archive` the wrapper marks each archived path `[archived]`, the JSON rows of the structured and count recipes carry `archived: true` or `archived: false`, and the archived metadata files that hold the phrase are listed under a `json    :` section. The exit is `0` when either invocation matches. The trigger-index lane never reads archives, and `/speckit:resume` has no such flag.
 
 The `rg-wrapper.mjs` structured lane keeps the highest-ranked row per file, and `/speckit:search` runs its default lane through it. The wrapper's `--limit` defaults to 20 files, and `--limit 0` is uncapped. JSON uses `schemaVersion: 3` and reports `moreInFile`, `matchCount`, `fileCount`, `hidden: { files, matches }`, `limit` and `truncated`. The path-only and count recipes take the same limit and report the files they hid.
 

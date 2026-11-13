@@ -1,12 +1,15 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/006-overlay-replaced-subtree-repin",
-  "description": "Phase 6: overlay-replaced-subtree-repin",
+  "description": "A skill-root overlay can replace a whole folder",
   "keywords": [
-    "phase",
-    "overlay-replaced-subtree-repin"
+    "skill-root",
+    "overlay",
+    "replace",
+    "whole",
+    "folder"
   ],
-  "lastUpdated": "2026-11-10T21:05:26.662Z",
+  "lastUpdated": "2026-11-13T10:05:23.713Z",
   "specId": "006",
   "folderSlug": "overlay-replaced-subtree-repin",
   "parentChain": [

@@ -2,8 +2,7 @@
   "schema_version": 1,
   "packet_id": "sk-code/z_archive/005-sk-code-fullstack-branch",
   "spec_folder": "sk-code/z_archive/005-sk-code-fullstack-branch",
-  "parent_id": "sk-code/z_archive",
-  "parent_id_review_required": true,
+  "parent_id": null,
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -50,6 +49,7 @@
       "implementation-summary.md",
       ".opencode/skills/sk-code/SKILL.md",
       ".opencode/skills/sk-code/README.md",
+      ".opencode/skills/sk-code/changelog/v1.3.0.0.md",
       ".opencode/skills/sk-code/description.json",
       ".opencode/skills/sk-code/graph-metadata.json"
     ],
@@ -88,6 +88,12 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.3.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-code/changelog/v1.3.0.0.md",
         "source": "derived"
       },
       {
@@ -191,17 +197,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Stack Detection",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`sk-code` was the umbrella code-routing skill but only had one live stack (Webflow)",
     "created_at": "2026-04-30T13:00:00Z",
-    "last_save_at": "2026-08-30T15:39:11.395Z",
+    "last_save_at": "2026-11-13T13:34:54.949Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-04-30T18:30:00Z",
     "source_docs": [

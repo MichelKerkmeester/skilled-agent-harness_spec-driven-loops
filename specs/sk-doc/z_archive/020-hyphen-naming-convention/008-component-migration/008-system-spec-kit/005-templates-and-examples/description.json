@@ -16,11 +16,12 @@
     "layouts",
     "including"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.834Z",
+  "lastUpdated": "2026-11-13T10:04:53.739Z",
   "specId": "005",
   "folderSlug": "templates-and-examples",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "008-system-spec-kit"

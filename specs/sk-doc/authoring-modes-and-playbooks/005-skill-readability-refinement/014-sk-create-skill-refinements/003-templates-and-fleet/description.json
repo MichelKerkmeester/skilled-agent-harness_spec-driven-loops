@@ -1,12 +1,20 @@
 {
   "level": "3",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/014-sk-create-skill-refinements/003-templates-and-fleet",
-  "description": "Phase 3: templates-and-fleet",
+  "description": "`skill-reference-template.md:20-36` and `skill-asset-template.md:18-20` break their own OVERVIEW skeleton, and their intro guidance says `description",
   "keywords": [
-    "phase",
-    "templates-and-fleet"
+    "skill-reference-template",
+    "skill-asset-template",
+    "break",
+    "own",
+    "overview",
+    "skeleton",
+    "intro",
+    "guidance",
+    "says",
+    "description"
   ],
-  "lastUpdated": "2026-11-05T13:06:19.825Z",
+  "lastUpdated": "2026-11-13T10:04:51.554Z",
   "specId": "003",
   "folderSlug": "templates-and-fleet",
   "parentChain": [

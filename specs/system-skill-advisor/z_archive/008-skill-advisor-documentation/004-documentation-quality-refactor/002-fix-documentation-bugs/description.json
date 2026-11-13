@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/z_archive/008-skill-advisor-documentation/004-documentation-quality-refactor/002-fix-documentation-bugs",
   "description": "Audit-confirmed P0 bugs in system-skill-advisor docs: broken ADR-001 path (missing `004-skill-graph/` segment), broken hook reference link in",
   "keywords": [
@@ -16,7 +17,7 @@
     "reference",
     "link"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.152Z",
+  "lastUpdated": "2026-11-13T10:05:03.026Z",
   "specId": "002",
   "folderSlug": "fix-documentation-bugs",
   "parentChain": [
@@ -26,6 +27,5 @@
     "004-documentation-quality-refactor"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

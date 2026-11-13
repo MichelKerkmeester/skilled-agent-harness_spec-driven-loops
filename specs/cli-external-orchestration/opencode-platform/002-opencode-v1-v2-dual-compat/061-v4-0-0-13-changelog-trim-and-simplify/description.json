@@ -1,11 +1,19 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/061-v4-0-0-13-changelog-trim-and-simplify",
-  "description": "Phase 61: v4-0-0-13-changelog-trim-and-simplify",
+  "description": "The v4.0.0.13 changelog had grown to 3359 words and still described work the operator did not want in this release",
   "keywords": [
-    "phase",
-    "v4-0-0-13-changelog-trim-and-simplify"
+    "changelog",
+    "grown",
+    "words",
+    "still",
+    "described",
+    "work",
+    "operator",
+    "want",
+    "release"
   ],
-  "lastUpdated": "2026-10-22T20:42:40.765Z",
+  "lastUpdated": "2026-11-13T10:04:37.697Z",
   "specId": "061",
   "folderSlug": "v4-0-0-13-changelog-trim-and-simplify",
   "parentChain": [
@@ -14,6 +22,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

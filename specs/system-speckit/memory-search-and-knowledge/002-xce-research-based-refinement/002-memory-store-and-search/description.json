@@ -1,6 +1,7 @@
 {
   "title": "Feature Specification: Memory Store and Search (Phase Parent)",
   "type": "coordination-parent",
+  "level": "2",
   "childTopology": [
     "001-memory-write-safety",
     "002-memory-index-causal-lifecycle",
@@ -43,7 +44,7 @@
     "semantic",
     "trigger"
   ],
-  "lastUpdated": "2026-08-15T14:41:12.249Z",
+  "lastUpdated": "2026-11-13T10:05:10.583Z",
   "specId": "002",
   "folderSlug": "memory-store-and-search",
   "parentChain": [
@@ -52,6 +53,5 @@
     "002-xce-research-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

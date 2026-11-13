@@ -14,11 +14,12 @@
     "source-to-target",
     "map"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.612Z",
+  "lastUpdated": "2026-11-13T10:04:53.633Z",
   "specId": "001",
   "folderSlug": "rename-engine",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "005-rename-and-reference-tooling"
   ],

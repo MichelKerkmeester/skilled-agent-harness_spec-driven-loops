@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Three sibling packets landed in close succession and need a release-readiness check before the trio is called \"done\": `147-deep-loop-workflows` (the 9-phase merge that folded the five deep-loop mode packets into one parent skill, including a destructive old-skill-deletion phase), `148-mcp-skill-install-doctor-standardization` (new install/doctor scripts), and `117-parent-nested-skill-pattern` (the parent-nested-skill formalization)",
     "created_at": "2026-06-15T18:14:25.486Z",
-    "last_save_at": "2026-10-07T18:14:49.078Z",
+    "last_save_at": "2026-11-13T13:17:53.154Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:83ebb9958f4db374b88888ee90ef252d789066de89c3f926b2ff9a5685f7c99a",
+    "source_fingerprint": "sha256:5ebcac55d51fa709b6030236a3f6a04d60c0592975cc98efee6136cbc78c7026",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cbbd81a35aead154cdab285b2d460a1ea859e3dd8645a2a4a86868cb370dbd58",
+      "spec.md": "6ba678008941aa1e699c4e39223e8b2bd3204ecb71151675524772b4ca5859bd",
       "plan.md": "712d68328f26b12f78a2cc3a5cfe54367a9ca02a0aa19dc006f2374f67b50e0b",
       "tasks.md": "eb9bff81b8b540a723a89a4977bbfdc847919df188114742a3d49134fc23bf5b",
-      "implementation-summary.md": "fe014f6081ba4ca9b16f68c5f7ad423ead6ab28f05e0b6ab5a77def0bf07f454"
+      "implementation-summary.md": "3b82b3e05306e2495c5a5b6ae793a9f8fbcda1fe48d950c22fabec41c398318d"
     },
     "last_active_child_id": null,
     "last_active_at": null

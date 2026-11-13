@@ -1,21 +1,15 @@
 {
   "level": "2",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/001-scenario-contract",
-  "description": "Phase 1: the json conversation block, its validator rules and tests, the snippet template and the contract reference",
+  "description": "A playbook scenario has no way to script a conversation",
   "keywords": [
-    "phase",
-    "json",
-    "conversation",
-    "block",
-    "validator",
-    "rules",
-    "tests",
-    "snippet",
-    "template",
-    "contract",
-    "reference"
+    "playbook",
+    "scenario",
+    "way",
+    "script",
+    "conversation"
   ],
-  "lastUpdated": "2026-11-01T21:22:55.683Z",
+  "lastUpdated": "2026-11-13T10:04:49.886Z",
   "specId": "001",
   "folderSlug": "scenario-contract",
   "parentChain": [

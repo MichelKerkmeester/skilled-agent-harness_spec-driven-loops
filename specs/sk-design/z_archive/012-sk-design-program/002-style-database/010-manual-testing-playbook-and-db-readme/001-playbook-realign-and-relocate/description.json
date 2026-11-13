@@ -15,11 +15,12 @@
     "lines",
     "version"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.992Z",
+  "lastUpdated": "2026-11-13T10:04:49.329Z",
   "specId": "001",
   "folderSlug": "playbook-realign-and-relocate",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "012-sk-design-program",
     "002-style-database",
     "010-manual-testing-playbook-and-db-readme"

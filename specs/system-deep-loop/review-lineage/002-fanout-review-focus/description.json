@@ -1,15 +1,21 @@
 {
   "level": "1",
   "specFolder": "system-deep-loop/review-lineage/002-fanout-review-focus",
-  "description": "Fan-out review focus input for deep-review",
+  "description": "`fanout-run.cjs` starts every `/deep:review` lineage with setup bindings that hard-code `reviewdimensions: all`",
   "keywords": [
-    "fan-out",
+    "fanout-run",
+    "cjs",
+    "starts",
+    "every",
+    "deep",
     "review",
-    "focus",
-    "input",
-    "deep-review"
+    "lineage",
+    "setup",
+    "bindings",
+    "hard-code",
+    "reviewdimensions"
   ],
-  "lastUpdated": "2026-10-25T18:30:25.412Z",
+  "lastUpdated": "2026-11-13T10:04:56.370Z",
   "specId": "002",
   "folderSlug": "fanout-review-focus",
   "parentChain": [

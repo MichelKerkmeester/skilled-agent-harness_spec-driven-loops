@@ -1,18 +1,25 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/045-relaunch-takeover-lock-identity",
-  "description": "Relaunch takeover lock identity: owner token instead of inode alone",
+  "description": "`.github/workflows/hooks-node-tests.yml` failed `killer leaves a takeover directory a contender replaced while it was held` in `killer.test.cjs` on",
   "keywords": [
-    "relaunch",
+    "github",
+    "workflows",
+    "hooks-node-tests",
+    "yml",
+    "failed",
+    "killer",
+    "leaves",
     "takeover",
-    "lock",
-    "identity",
-    "owner",
-    "token",
-    "instead",
-    "inode",
-    "alone"
+    "directory",
+    "contender",
+    "replaced",
+    "while",
+    "held",
+    "test",
+    "cjs"
   ],
-  "lastUpdated": "2026-10-21T10:04:06.555Z",
+  "lastUpdated": "2026-11-13T10:04:37.596Z",
   "specId": "045",
   "folderSlug": "relaunch-takeover-lock-identity",
   "parentChain": [
@@ -21,6 +28,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

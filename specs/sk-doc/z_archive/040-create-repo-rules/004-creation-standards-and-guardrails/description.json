@@ -18,11 +18,12 @@
     "reader",
     "change"
   ],
-  "lastUpdated": "2026-08-31T13:27:29.054Z",
+  "lastUpdated": "2026-11-13T10:04:54.067Z",
   "specId": "004",
   "folderSlug": "creation-standards-and-guardrails",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "040-create-repo-rules"
   ],
   "memorySequence": 0,

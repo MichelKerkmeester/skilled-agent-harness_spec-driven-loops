@@ -15,11 +15,12 @@
     "cli-opencode",
     "cli-pi"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.252Z",
+  "lastUpdated": "2026-11-13T10:04:38.744Z",
   "specId": "033",
   "folderSlug": "deepseek-v4-flash-pi-roster",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

@@ -7,11 +7,12 @@
     "mcp",
     "server"
   ],
-  "lastUpdated": "2026-08-29T12:01:02.522Z",
+  "lastUpdated": "2026-11-13T10:04:43.290Z",
   "specId": "017",
   "folderSlug": "mcp-magicpath",
   "parentChain": [
-    "mcp-tooling"
+    "mcp-tooling",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

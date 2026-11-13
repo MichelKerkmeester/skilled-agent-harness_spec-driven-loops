@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/008-quarantine-destination-canonical",
   "description": "The quarantine writer created directories and wrote content copies, patches and the manifest under a path derived from the lane's own directory",
   "keywords": [
@@ -16,7 +17,7 @@
     "own",
     "directory"
   ],
-  "lastUpdated": "2026-09-20T08:32:53.509Z",
+  "lastUpdated": "2026-11-13T10:04:55.830Z",
   "specId": "008",
   "folderSlug": "quarantine-destination-canonical",
   "parentChain": [
@@ -27,6 +28,5 @@
     "010-fanout-write-containment-hardening"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

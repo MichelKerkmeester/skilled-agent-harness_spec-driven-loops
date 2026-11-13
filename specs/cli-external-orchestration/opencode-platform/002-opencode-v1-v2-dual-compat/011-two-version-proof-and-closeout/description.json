@@ -1,11 +1,14 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/011-two-version-proof-and-closeout",
-  "description": "Phase 11: two-version-proof-and-closeout",
+  "description": "The build spans eleven phase children",
   "keywords": [
+    "spans",
+    "eleven",
     "phase",
-    "two-version-proof-and-closeout"
+    "children"
   ],
-  "lastUpdated": "2026-10-18T12:45:11.572Z",
+  "lastUpdated": "2026-11-13T10:04:37.345Z",
   "specId": "011",
   "folderSlug": "two-version-proof-and-closeout",
   "parentChain": [
@@ -14,6 +17,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

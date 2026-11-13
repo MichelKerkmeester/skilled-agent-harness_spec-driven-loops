@@ -12,11 +12,12 @@
     "3-line",
     "stub"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.993Z",
+  "lastUpdated": "2026-11-13T10:04:49.330Z",
   "specId": "002",
   "folderSlug": "database-readme-speckit-alignment",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "012-sk-design-program",
     "002-style-database",
     "010-manual-testing-playbook-and-db-readme"

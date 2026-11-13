@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Skill-advisor and mk-spec-memory currently have separate embedder registries with competing defaults and parallel factory implementations",
     "created_at": "2026-05-21T18:08:46.935Z",
-    "last_save_at": "2026-10-07T22:13:18.020Z",
+    "last_save_at": "2026-11-13T13:19:01.946Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d8efcea0a739b9366cbca738046c37bea3b2d1084d4bcbfbd008f5548260b940",
+    "source_fingerprint": "sha256:b28a77c6ab722d29d88d63b46f334c54b18d0d8b3837760165b3c934bcacf0d0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4b0278b81a8197ee90ef97afb959e5b2ed877202a956cb2892dea30e0d2ed7cb",
+      "spec.md": "6007e7421f2c1e0917b3e5dd3626af8f71825a8cd09fb3992484025804523496",
       "plan.md": "84044329aa1beef3ecb0bfda0bac393548c77fbb3323bb11e3eb0c109302d6ff",
       "tasks.md": "b2c33da3efccf3528f5f9fbe080619c1f68b0da07406401b52437c9b58cb9c82",
-      "implementation-summary.md": "bd75f956f25ad275c7775bdacbb9aa2cf8427725ce52d96a296398f043bf58d4"
+      "implementation-summary.md": "9b352c5c361e1187567b1e0074bdef32dbb22dc51f222087f077d28b27780523"
     },
     "last_active_child_id": null,
     "last_active_at": null

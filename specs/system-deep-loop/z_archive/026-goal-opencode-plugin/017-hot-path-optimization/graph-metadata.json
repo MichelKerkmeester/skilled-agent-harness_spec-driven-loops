@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The passive injection path runs on every single chat message: `appendGoalBrief` (mk-goal.js:1581-1596) does a disk read plus a full `JSON.parse` plus a complete `normalizeStoredGoal` pass with no cache, and that normalize pass unconditionally re-runs `buildEnhancedGoalPrompt()` — including a 7-regex CLEAR-scoring pass — inside `normalizeGoalPromptFields` (mk-goal.js:348-357) even when the stored prompt fields are already valid",
     "created_at": "2026-07-03T07:30:48Z",
-    "last_save_at": "2026-10-07T18:15:15.267Z",
+    "last_save_at": "2026-11-13T13:18:18.854Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,10 +200,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da5c406efdbc98bc26efc695b3bc53500ea1f9ce4c6314cc35962dbcc5827341",
+    "source_fingerprint": "sha256:7d1d450eb81db323af2ec2f48d605960246cd6b5dc4f071330c0a124fc8019af",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9a47feb02de5e15dd7f3c5ba01d9b48509e3b68d45c0360c5fe9cfb07d2b957a",
+      "spec.md": "cf7138e1c3a433e6d045fff0086da912820fa194326736ae02efa895d81f6fd5",
       "plan.md": "94dc8f4d6756ce0abed3e5dc2cbc1e5edc97d34e412239401809b660d7923a10",
       "tasks.md": "fb48a35bbd634d8a3ea47a817756d6607d6066783e6bb8333aef12f79a12d144",
       "implementation-summary.md": "dbfa913a19260b732cf540a7b2d2bbb9b6706b2c940a285a47c723b37d20bdc3"

@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup",
   "description": "Spec 026 shipped capabilities across 8 tracks over months",
   "keywords": [
@@ -9,7 +10,7 @@
     "tracks",
     "months"
   ],
-  "lastUpdated": "2026-08-15T14:41:09.719Z",
+  "lastUpdated": "2026-11-13T10:05:04.424Z",
   "specId": "001",
   "folderSlug": "docs-and-catalogs-rollup",
   "parentChain": [
@@ -22,6 +23,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "25-04-26_11-48__scaffold-initialization-for-012-sub-phase-006.md"
-  ],
-  "level": 2
+  ]
 }

@@ -19,11 +19,12 @@
     "while",
     "recording"
   ],
-  "lastUpdated": "2026-08-30T08:03:52.008Z",
+  "lastUpdated": "2026-11-13T10:04:53.636Z",
   "specId": "002",
   "folderSlug": "reference-checker-and-disposition-ledger",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "005-rename-and-reference-tooling"
   ],

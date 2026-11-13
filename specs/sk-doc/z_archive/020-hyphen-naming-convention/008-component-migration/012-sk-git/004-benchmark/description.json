@@ -16,11 +16,12 @@
     "path",
     "pointers"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.949Z",
+  "lastUpdated": "2026-11-13T10:04:53.759Z",
   "specId": "004",
   "folderSlug": "benchmark",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "012-sk-git"

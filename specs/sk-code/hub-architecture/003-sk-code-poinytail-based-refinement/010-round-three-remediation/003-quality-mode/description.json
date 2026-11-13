@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/010-round-three-remediation/003-quality-mode",
-  "description": "Phase 3: quality-mode",
+  "description": "The quality mode owns the comment-hygiene gate, yet its `SKILL.md` names `scripts/hooks/claude-posttooluse.sh` as the write-time warning and",
   "keywords": [
-    "phase",
-    "quality-mode"
+    "quality",
+    "mode",
+    "owns",
+    "comment-hygiene",
+    "gate",
+    "skill",
+    "names",
+    "scripts",
+    "hooks",
+    "claude-posttooluse",
+    "write-time",
+    "warning"
   ],
-  "lastUpdated": "2026-10-10T10:07:19.993Z",
+  "lastUpdated": "2026-11-13T10:04:45.671Z",
   "specId": "003",
   "folderSlug": "quality-mode",
   "parentChain": [
@@ -15,6 +26,5 @@
     "010-round-three-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

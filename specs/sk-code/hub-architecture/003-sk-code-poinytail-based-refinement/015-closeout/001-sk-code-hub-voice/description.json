@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/015-closeout/001-sk-code-hub-voice",
-  "description": "Phase 1: sk-code-hub-voice",
+  "description": "The human-voice scan reports 36 hard blockers in `.skilled/skills/sk-code/SKILL.md`: 27 semicolons and 9 em dashes",
   "keywords": [
-    "phase",
-    "sk-code-hub-voice"
+    "human-voice",
+    "scan",
+    "reports",
+    "hard",
+    "blockers",
+    "skilled",
+    "skills",
+    "sk-code",
+    "skill",
+    "semicolons",
+    "dashes"
   ],
-  "lastUpdated": "2026-10-11T04:49:31.470Z",
+  "lastUpdated": "2026-11-13T10:04:46.121Z",
   "specId": "001",
   "folderSlug": "sk-code-hub-voice",
   "parentChain": [
@@ -15,6 +25,5 @@
     "015-closeout"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -17,11 +17,12 @@
     "json",
     "across"
   ],
-  "lastUpdated": "2026-08-15T14:41:00.426Z",
+  "lastUpdated": "2026-11-13T10:04:53.455Z",
   "specId": "033",
   "folderSlug": "json-optimization-implementation",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor"
   ],
   "memorySequence": 0,

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The sk-design `manualtestingplaybook` documents real-orchestrator scenarios but none of the fallback-and-resilience (`fallback-and-resilience/`) or hub-manager-intake (`hub-manager-intake/`) scenarios had ever been run through a real `opencode run` dispatch against the live GPT-5.5-fast executor",
     "created_at": "2026-07-07T15:21:16.287Z",
-    "last_save_at": "2026-10-07T18:12:22.080Z",
+    "last_save_at": "2026-11-13T13:14:15.433Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:33231a2c89c723163720b8c58dceb45800ea898d29fcdf5268bc626d9de441b3",
+    "source_fingerprint": "sha256:f23d735d159a032874f5e30bbe85ff6eb386a825384c1061cc14d99e11ce9659",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "045d52a4ff8ab33879a59de44c059976f2a85a3ea876524c85ba5a9155b52a27",
+      "spec.md": "a8c237cd6e540a8ba76d7d4a609923d6dc4737eeb8b09e20c4ecfaf755a465e2",
       "plan.md": "747304b3b0657f9ad59644a9b3d609cf04fc06a9bdf93a9097e29f148965cc1f",
       "tasks.md": "53e59eb17f31fbdb0cfce3727226f498af302daf0927145e4291e5cbd4b26127",
       "implementation-summary.md": "a57d6e76cfee7b96edc0944789b65fefd5f6878ad2ecb80a203c13c0efd5abd5"

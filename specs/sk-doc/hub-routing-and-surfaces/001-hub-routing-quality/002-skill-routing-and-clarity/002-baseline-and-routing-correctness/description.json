@@ -1,11 +1,18 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/002-baseline-and-routing-correctness",
-  "description": "Phase 2: baseline-and-routing-correctness",
+  "description": "Later phases cannot claim no regressions without numbers from before they start",
   "keywords": [
-    "phase",
-    "baseline-and-routing-correctness"
+    "later",
+    "phases",
+    "cannot",
+    "claim",
+    "regressions",
+    "without",
+    "numbers",
+    "start"
   ],
-  "lastUpdated": "2026-10-28T06:38:43.940Z",
+  "lastUpdated": "2026-11-13T10:04:51.766Z",
   "specId": "002",
   "folderSlug": "baseline-and-routing-correctness",
   "parentChain": [
@@ -15,6 +22,5 @@
     "002-skill-routing-and-clarity"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

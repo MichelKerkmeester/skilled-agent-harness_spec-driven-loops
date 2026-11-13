@@ -15,7 +15,7 @@
     "heartbeat",
     "freshness"
   ],
-  "lastUpdated": "2026-09-11T16:49:41.374Z",
+  "lastUpdated": "2026-11-13T10:05:08.009Z",
   "specId": "013",
   "folderSlug": "owner-lease-heartbeat-staleness-detection",
   "parentChain": [

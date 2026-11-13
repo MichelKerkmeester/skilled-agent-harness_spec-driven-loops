@@ -1,14 +1,24 @@
 {
+  "level": "1",
   "specFolder": "system-deep-loop/z_archive/008-deep-improvement-skill-benchmark-mode/008-playbook-manual-test-run",
-  "description": "008 — Deep-Improvement Playbook Manual Test Run",
+  "description": "Run every scenario in the deep-improvement manual testing playbook (48 scenarios across 10 categories and 3 lanes) for real in a sandbox, capture",
   "keywords": [
+    "run",
+    "every",
+    "scenario",
     "deep-improvement",
-    "playbook",
     "manual",
-    "test",
-    "run"
+    "testing",
+    "playbook",
+    "scenarios",
+    "across",
+    "categories",
+    "lanes",
+    "real",
+    "sandbox",
+    "capture"
   ],
-  "lastUpdated": "2026-08-15T14:41:05.910Z",
+  "lastUpdated": "2026-11-13T10:04:57.020Z",
   "specId": "008",
   "folderSlug": "playbook-manual-test-run",
   "parentChain": [
@@ -19,6 +29,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "31-05-26_18-50__executed-the-full-48-scenario-deep-improvement.md"
-  ],
-  "level": "1"
+  ]
 }

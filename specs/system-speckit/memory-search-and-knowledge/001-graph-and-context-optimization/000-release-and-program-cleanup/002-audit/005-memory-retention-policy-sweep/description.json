@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/002-audit/005-memory-retention-policy-sweep",
   "description": "The 013 supplemental research validated P1-2: governed memory ingest persists `deleteafter`, but no cleanup path consumes it",
   "keywords": [
@@ -15,7 +16,7 @@
     "path",
     "consumes"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.551Z",
+  "lastUpdated": "2026-11-13T10:05:03.437Z",
   "specId": "005",
   "folderSlug": "memory-retention-policy-sweep",
   "parentChain": [
@@ -28,6 +29,5 @@
   "memorySequence": 2,
   "memoryNameHistory": [
     "29-04-26_19-36__resource-map-authored-and-memory-finalization.md"
-  ],
-  "level": 2
+  ]
 }

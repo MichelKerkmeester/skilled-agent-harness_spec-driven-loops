@@ -1,12 +1,22 @@
 {
+  "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/021-open-ends-remediation",
-  "description": "Open ends remediation",
+  "description": "The open ends research in `../020-open-ends-research/` ended with ranked recommendations and one review report, and only 006 built any of them",
   "keywords": [
     "open",
     "ends",
-    "remediation"
+    "research",
+    "020-open-ends-research",
+    "ended",
+    "ranked",
+    "recommendations",
+    "one",
+    "review",
+    "report",
+    "only",
+    "them"
   ],
-  "lastUpdated": "2026-10-11T18:31:49.080Z",
+  "lastUpdated": "2026-11-13T10:04:46.515Z",
   "specId": "021",
   "folderSlug": "open-ends-remediation",
   "parentChain": [
@@ -15,6 +25,5 @@
     "003-sk-code-poinytail-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

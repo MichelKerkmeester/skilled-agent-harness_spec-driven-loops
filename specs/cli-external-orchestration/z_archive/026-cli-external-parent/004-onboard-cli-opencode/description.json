@@ -11,11 +11,12 @@
     "relocated",
     "implementation"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.059Z",
+  "lastUpdated": "2026-11-13T10:04:38.416Z",
   "specId": "004",
   "folderSlug": "onboard-cli-opencode",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "026-cli-external-parent"
   ],
   "memorySequence": 0,

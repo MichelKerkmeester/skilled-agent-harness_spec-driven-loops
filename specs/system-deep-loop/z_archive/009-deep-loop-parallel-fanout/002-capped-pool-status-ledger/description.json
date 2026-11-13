@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/z_archive/009-deep-loop-parallel-fanout/002-capped-pool-status-ledger",
   "description": "Provide the concurrency-capped fan-out orchestrator primitive (the one thing the council dispatcher lacks)",
   "keywords": [
@@ -13,7 +14,7 @@
     "dispatcher",
     "lacks"
   ],
-  "lastUpdated": "2026-08-15T14:41:05.947Z",
+  "lastUpdated": "2026-11-13T10:04:57.057Z",
   "specId": "002",
   "folderSlug": "capped-pool-status-ledger",
   "parentChain": [
@@ -22,6 +23,5 @@
     "009-deep-loop-parallel-fanout"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

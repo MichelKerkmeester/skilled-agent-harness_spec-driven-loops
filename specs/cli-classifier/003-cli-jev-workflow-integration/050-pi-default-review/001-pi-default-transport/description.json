@@ -1,11 +1,24 @@
 {
+  "level": "1",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/050-pi-default-review/001-pi-default-transport",
-  "description": "Phase 1: pi-default-transport",
+  "description": "The Pi transport answered with 95.1% agreement with the jev CLI in about half the p95 time, yet it runs only when a caller sets `JEVTRANSPORT=pi`",
   "keywords": [
-    "phase",
-    "pi-default-transport"
+    "transport",
+    "answered",
+    "agreement",
+    "jev",
+    "cli",
+    "about",
+    "half",
+    "p95",
+    "time",
+    "runs",
+    "only",
+    "caller",
+    "sets",
+    "jevtransport"
   ],
-  "lastUpdated": "2026-10-03T17:39:27.680Z",
+  "lastUpdated": "2026-11-13T10:04:36.787Z",
   "specId": "001",
   "folderSlug": "pi-default-transport",
   "parentChain": [
@@ -14,6 +27,5 @@
     "050-pi-default-review"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

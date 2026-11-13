@@ -1,4 +1,5 @@
 {
+  "level": 2,
   "specFolder": "cli-external-orchestration/z_archive/031-cli-pi-creation/016-fanout-cli-pi-executor",
   "description": "Replace the throwing cli-pi command-builder stub with a real print-mode dispatch so cli-pi runs as a genuine deep-loop lineage.",
   "keywords": [
@@ -15,14 +16,14 @@
     "deep-loop",
     "lineage"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.237Z",
+  "lastUpdated": "2026-11-13T10:04:38.729Z",
   "specId": "016",
   "folderSlug": "fanout-cli-pi-executor",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "031-cli-pi-creation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

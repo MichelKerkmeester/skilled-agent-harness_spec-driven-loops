@@ -146,7 +146,7 @@
     ],
     "causal_summary": "The iter-8 mining of aionforge `cross-family-guard.md` + `drift.md` opened two orthogonal families the fusion-math roadmap never touches - provenance-contamination and temporal-drift - plus a skip-reason taxonomy refinement [CONFIRMED: iter-008 focus, \"both docs occupy families the roadmap never touches\"]",
     "created_at": "2026-06-19T06:06:27.155Z",
-    "last_save_at": "2026-10-07T18:15:53.071Z",
+    "last_save_at": "2026-11-13T13:19:06.103Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -155,10 +155,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f476beaf29c206c2b6ecae79d2a61155fbb3341f8b999abe30412dd4221c22fa",
+    "source_fingerprint": "sha256:8042c8bcb44fdbe808246ec1a054cb9d532ba3194ebdcdf2e9966e5ce3e5fb3a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4d5a30252174f7f00b321e71809ec9f2957d2a1ff9164e334ba9aa3a18b65c42",
+      "spec.md": "042aa2f573baf95fc185cbd7d935afeb9332c426d97beb630909197f5a186057",
       "plan.md": "c9c58884513b69489c821357b9bcfb90dde2e3492d4bf9f9f0c08852fb5cef83",
       "tasks.md": "5c23fd2f46ac77a079b3412d73e1b9f18fa912f6670841f34e9b4080d42f2cc4",
       "implementation-summary.md": "0b2d29b28177d7b8ab5945d4793b18f48186a3f5f0542f628709dcdf476c145a"

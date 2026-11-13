@@ -1,16 +1,24 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/runtime-lifecycle/003-cli-hermes-deprecation",
-  "description": "Deprecate and remove the cli-hermes executor and the .hermes runtime folder",
+  "description": "Hermes Agent was wired in as a seventh CLI runtime: the `cli-hermes` executor mode, a `.hermes/` folder of 67 generated skill copies, 44 prompt stubs",
   "keywords": [
-    "deprecate",
-    "remove",
+    "hermes",
+    "agent",
+    "wired",
+    "seventh",
+    "cli",
+    "runtime",
     "cli-hermes",
     "executor",
-    "hermes",
-    "runtime",
-    "folder"
+    "mode",
+    "folder",
+    "skill",
+    "copies",
+    "prompt",
+    "stubs"
   ],
-  "lastUpdated": "2026-11-07T10:34:38.941Z",
+  "lastUpdated": "2026-11-13T10:04:38.269Z",
   "specId": "003",
   "folderSlug": "cli-hermes-deprecation",
   "parentChain": [
@@ -18,6 +26,5 @@
     "runtime-lifecycle"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

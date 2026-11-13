@@ -16,11 +16,12 @@
     "skills",
     "referrers"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.052Z",
+  "lastUpdated": "2026-11-13T10:04:38.413Z",
   "specId": "001",
   "folderSlug": "research-and-context",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "026-cli-external-parent"
   ],
   "memorySequence": 0,

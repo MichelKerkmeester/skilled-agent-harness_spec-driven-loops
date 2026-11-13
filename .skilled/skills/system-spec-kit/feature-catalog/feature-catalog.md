@@ -7,8 +7,8 @@ trigger_phrases:
   - "spec kit feature inventory"
   - "what does spec kit do"
   - "spec kit capability inventory"
-last_updated: "2026-11-07"
-version: 2.1.29.0
+last_updated: "2026-11-13"
+version: 2.1.30.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -671,11 +671,27 @@ Coordinated shell lifecycle for recommending spec depth, creating spec folders a
 
 #### Current Reality
 
-`create.sh`, `recommend-level.sh`, `check-completion.sh` and `archive.sh` are the entry points.
+`create.sh`, `recommend-level.sh`, `upgrade-level.sh`, `calculate-completeness.sh`, `check-completion.sh` and `archive.sh` are the entry points. `create.sh` counts archived numbers when it numbers a packet and, with `--track`, prints at most one advisory sub-track line from `suggest-subtracks.mjs`. `archive.sh` archives into the `z_archive/` beside the packet, a declared sub-track's own included, refreshes the description cache after a move and restores a packet whose number is taken onto the next free number through `relocate.mjs`.
 
 #### Source Files
 
 See [`tooling-and-scripts/spec-lifecycle-automation.md`](tooling-and-scripts/spec-lifecycle-automation.md) for full implementation and test file listings.
+
+---
+
+### Spec packet relocation
+
+#### Description
+
+Moves, renumbers and re-parents spec packets and rewrites every store that records the packet path, as a dry run unless --apply is passed.
+
+#### Current Reality
+
+`relocate.mjs` takes one mode: `--map`, `--from` with `--to`, `--renumber` or `--declare-subtrack`. It prints the plan and exits 1 when a dry run finds work, and `--apply` writes. Every refusal happens before the first write. An applied run moves the folders, rewrites references under `specs/`, re-derives the packets' recorded paths, refreshes the track roots, the relocation ledger, the redirect table and the trigger index, then closes with the track-root sweep and strict validation of each moved packet. Code and CI files are never rewritten: a moved path named there refuses the run.
+
+#### Source Files
+
+See [`tooling-and-scripts/spec-packet-relocation.md`](tooling-and-scripts/spec-packet-relocation.md) for full implementation and test file listings.
 
 ---
 
@@ -687,7 +703,7 @@ Validation orchestrator that detects spec level, loads configured or alphabetica
 
 #### Current Reality
 
-`validate.sh` is the authoritative completion gate; a stale compiled orchestrator makes it exit 3 with no rule output rather than pass silently.
+`validate.sh` is the authoritative completion gate; a stale compiled orchestrator makes it exit 3 with no rule output rather than pass silently. `--recursive --include-archive` also validates the packets in the `z_archive/` of the folder given and, for a track root, of each declared sub-track.
 
 #### Source Files
 
@@ -708,6 +724,22 @@ Extends `validate.sh --strict` with continuity-freshness, evidence-marker lint, 
 #### Source Files
 
 See [`tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md`](tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md) for full implementation and test file listings.
+
+---
+
+### Sub-track proposal
+
+#### Description
+
+Proposes a sub-track grouping for a whole flat track, or names the declared sub-track a new packet fits, and writes nothing.
+
+#### Current Reality
+
+`suggest-subtracks.mjs --track <name>` prints a JSON map of every live packet in a flat track to a proposed sub-track, in the shape `relocate.mjs --map` takes, or one line that says why there is no map. With `--describe` it prints the best-fitting declared sub-track or says that none fits. It reads packet metadata only and exits 0 for a proposal and for an explained non-answer.
+
+#### Source Files
+
+See [`tooling-and-scripts/sub-track-proposal.md`](tooling-and-scripts/sub-track-proposal.md) for full implementation and test file listings.
 
 ---
 
@@ -783,7 +815,7 @@ Keeps each track root's `children_ids` equal to the packets the track holds, and
 
 #### Current Reality
 
-`create.sh --track` lists each new packet, `refresh-track-roots.mjs --apply` rewrites a list from disk, and the pre-push hook sweeps each pushed commit.
+`create.sh --track` lists each new packet, `refresh-track-roots.mjs --apply` rewrites a list from disk, and the pre-push hook sweeps each pushed commit. The writer also seeds `z_archive/.gitkeep` in a declared sub-track that has no archive, and the working-tree sweep prints one advisory line for a declared sub-track without `z_archive/`.
 
 #### Source Files
 
@@ -1034,6 +1066,20 @@ The structured recipe ranks matches first, then returns one highest-ranked row p
 #### Source Files
 
 See [retrieval/rg-flood-control.md](retrieval/rg-flood-control.md) for full implementation and test file listings.
+
+### Ripgrep archive search
+
+#### Description
+
+Searches archived packets on request, labels each archived hit and lists the archived packet metadata files that carry the phrase.
+
+#### Current Reality
+
+Every recipe leaves `z_archive/` out by default. `rg-wrapper.mjs --include-archive` searches archived packets too. Human output marks each archived path `[archived]`, and JSON rows in `results` and `counts` carry `archived: true` or `archived: false`. A second lane lists the `description.json` and `graph-metadata.json` files of archived packets that match, under a `json    :` section in human output and as `jsonLane` in JSON, and it is not bounded by the file limit.
+
+#### Source Files
+
+See [retrieval/rg-archive-search.md](retrieval/rg-archive-search.md) for full implementation and test file listings.
 
 ---
 

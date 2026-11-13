@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/002-doctor-update-orchestrator/001-implement-initial-doctor-command-set",
   "description": "A user at spec-kit `v3.3.0.0` (or any version older than `v3.4.1.0`) has 6+ databases that drift out of alignment with their codebase:",
   "keywords": [
@@ -11,7 +12,7 @@
     "alignment",
     "codebase"
   ],
-  "lastUpdated": "2026-08-15T14:41:11.432Z",
+  "lastUpdated": "2026-11-13T10:05:08.768Z",
   "specId": "001",
   "folderSlug": "implement-initial-doctor-command-set",
   "parentChain": [
@@ -30,6 +31,5 @@
     "09-05-26_19-34__manual-context-save.md",
     "09-05-26_21-41__manual-context-save.md",
     "11-05-26_09-39__manual-context-save.md"
-  ],
-  "level": "2"
+  ]
 }

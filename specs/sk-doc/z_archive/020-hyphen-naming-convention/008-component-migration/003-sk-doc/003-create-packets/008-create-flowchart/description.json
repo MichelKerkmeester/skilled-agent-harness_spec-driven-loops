@@ -14,11 +14,12 @@
     "authoring",
     "validation"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.713Z",
+  "lastUpdated": "2026-11-13T10:04:53.706Z",
   "specId": "008",
   "folderSlug": "create-flowchart",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "003-sk-doc",

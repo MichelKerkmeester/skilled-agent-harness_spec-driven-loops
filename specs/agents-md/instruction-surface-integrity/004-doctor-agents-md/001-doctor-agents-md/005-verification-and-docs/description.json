@@ -1,12 +1,22 @@
 {
   "level": "2",
   "specFolder": "agents-md/instruction-surface-integrity/004-doctor-agents-md/001-doctor-agents-md/005-verification-and-docs",
-  "description": "Phase: 005-verification-and-docs",
+  "description": "The engines can each pass their own suite and still fail together: a check that classifies correctly and an embed that composes correctly can still",
   "keywords": [
-    "phase",
-    "005-verification-and-docs"
+    "engines",
+    "pass",
+    "own",
+    "suite",
+    "still",
+    "fail",
+    "together",
+    "check",
+    "classifies",
+    "correctly",
+    "embed",
+    "composes"
   ],
-  "lastUpdated": "2026-10-30T11:29:51.441Z",
+  "lastUpdated": "2026-11-13T10:04:35.182Z",
   "specId": "005",
   "folderSlug": "verification-and-docs",
   "parentChain": [

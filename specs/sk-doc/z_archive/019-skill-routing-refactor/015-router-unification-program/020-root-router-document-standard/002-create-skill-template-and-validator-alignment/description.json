@@ -16,11 +16,12 @@
     "references",
     "smart-routing"
   ],
-  "lastUpdated": "2026-08-16T18:06:00.718Z",
+  "lastUpdated": "2026-11-13T10:04:53.266Z",
   "specId": "002",
   "folderSlug": "create-skill-template-and-validator-alignment",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program",
     "020-root-router-document-standard"

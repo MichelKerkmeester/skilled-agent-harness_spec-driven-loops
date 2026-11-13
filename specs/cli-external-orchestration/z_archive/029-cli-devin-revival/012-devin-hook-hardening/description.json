@@ -14,11 +14,12 @@
     "hardening",
     "gaps"
   ],
-  "lastUpdated": "2026-08-30T07:16:08.862Z",
+  "lastUpdated": "2026-11-13T10:04:38.587Z",
   "specId": "012",
   "folderSlug": "devin-hook-hardening",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "029-cli-devin-revival"
   ],
   "memorySequence": 1,

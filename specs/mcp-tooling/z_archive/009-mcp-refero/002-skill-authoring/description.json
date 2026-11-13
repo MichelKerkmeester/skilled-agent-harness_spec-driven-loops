@@ -17,11 +17,12 @@
     "inventory",
     "routing"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.945Z",
+  "lastUpdated": "2026-11-13T10:04:42.689Z",
   "specId": "002",
   "folderSlug": "skill-authoring",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "009-mcp-refero"
   ],
   "memorySequence": 0,

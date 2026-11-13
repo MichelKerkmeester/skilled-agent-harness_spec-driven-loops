@@ -1,11 +1,24 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/042-hooks-and-plugins-held-fixes",
-  "description": "Phase 42: hooks-and-plugins-held-fixes",
+  "description": "Phase 039 confirmed seven P1 and nine P2 findings in the hook tree and the OpenCode plugins whose fixes change behaviour, so it held them",
   "keywords": [
     "phase",
-    "hooks-and-plugins-held-fixes"
+    "confirmed",
+    "seven",
+    "nine",
+    "findings",
+    "hook",
+    "tree",
+    "opencode",
+    "plugins",
+    "whose",
+    "change",
+    "behaviour",
+    "held",
+    "them"
   ],
-  "lastUpdated": "2026-10-21T04:53:46.227Z",
+  "lastUpdated": "2026-11-13T10:04:37.578Z",
   "specId": "042",
   "folderSlug": "hooks-and-plugins-held-fixes",
   "parentChain": [
@@ -14,6 +27,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

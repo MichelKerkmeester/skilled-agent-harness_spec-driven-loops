@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/015-cli-claude-code",
-  "description": "Phase 15: cli-claude-code",
+  "description": "CC-016 and CC-015 check the headless resume flags, not that the resumed session answers from its earlier turn",
   "keywords": [
-    "phase",
-    "cli-claude-code"
+    "cc-016",
+    "cc-015",
+    "check",
+    "headless",
+    "resume",
+    "flags",
+    "resumed",
+    "session",
+    "answers",
+    "earlier",
+    "turn"
   ],
-  "lastUpdated": "2026-11-02T18:33:57.293Z",
+  "lastUpdated": "2026-11-13T10:04:50.135Z",
   "specId": "015",
   "folderSlug": "cli-claude-code",
   "parentChain": [
@@ -15,6 +25,5 @@
     "004-conversation-adoption-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

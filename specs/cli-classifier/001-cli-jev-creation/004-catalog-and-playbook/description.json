@@ -1,11 +1,17 @@
 {
+  "level": "2",
   "specFolder": "cli-classifier/001-cli-jev-creation/004-catalog-and-playbook",
-  "description": "Phase 4: catalog-and-playbook",
+  "description": "A transport mode is invisible until something goes wrong",
   "keywords": [
-    "phase",
-    "catalog-and-playbook"
+    "transport",
+    "mode",
+    "invisible",
+    "until",
+    "something",
+    "goes",
+    "wrong"
   ],
-  "lastUpdated": "2026-09-20T07:39:08.307Z",
+  "lastUpdated": "2026-11-13T10:04:35.359Z",
   "specId": "004",
   "folderSlug": "catalog-and-playbook",
   "parentChain": [
@@ -13,6 +19,5 @@
     "001-cli-jev-creation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

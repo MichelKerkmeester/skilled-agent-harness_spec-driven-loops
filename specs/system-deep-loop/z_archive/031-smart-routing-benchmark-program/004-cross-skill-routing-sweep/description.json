@@ -16,11 +16,12 @@
     "deep-review",
     "deep-ai-council"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.909Z",
+  "lastUpdated": "2026-11-13T10:05:00.808Z",
   "specId": "004",
   "folderSlug": "cross-skill-routing-sweep",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "031-smart-routing-benchmark-program"
   ],
   "memorySequence": 0,

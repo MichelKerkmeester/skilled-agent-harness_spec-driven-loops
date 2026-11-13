@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout",
+  "description": "The behavior that phases 001 to 004 add has no automated coverage",
+  "keywords": [
+    "behavior",
+    "phases",
+    "automated",
+    "coverage"
+  ],
+  "lastUpdated": "2026-11-13T10:27:32.193Z",
+  "specId": "005",
+  "folderSlug": "tests-and-closeout",
+  "parentChain": [
+    "system-speckit",
+    "spec-folder-tooling",
+    "005-subtrack-proposal-and-archive-reach"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

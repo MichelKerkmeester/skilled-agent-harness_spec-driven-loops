@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/z_archive/025-skill-doc-currency/001-executor-and-dispatch-contract-truth",
   "description": "Every document that tells an agent which external executor exists and how to invoke it is wrong somewhere",
   "keywords": [
@@ -13,14 +14,14 @@
     "wrong",
     "somewhere"
   ],
-  "lastUpdated": "2026-08-15T14:41:01.455Z",
+  "lastUpdated": "2026-11-13T10:04:53.834Z",
   "specId": "001",
   "folderSlug": "executor-and-dispatch-contract-truth",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "025-skill-doc-currency"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

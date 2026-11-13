@@ -16,11 +16,12 @@
     "prioritized",
     "cross-model"
   ],
-  "lastUpdated": "2026-08-30T07:16:23.235Z",
+  "lastUpdated": "2026-11-13T10:05:01.198Z",
   "specId": "012",
   "folderSlug": "command-improvement-research",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "035-command-surface-benchmark"
   ],
   "memorySequence": 0,

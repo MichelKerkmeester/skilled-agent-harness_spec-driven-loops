@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/010-trigger-index-ci-rebuild",
-  "description": "Phase 10: trigger-index-ci-rebuild",
+  "description": "`.github/workflows/advisory-checks.yml` runs `generate-trigger-index.mjs --check` with `continue-on-error`, so a stale index is reported and merged",
   "keywords": [
-    "phase",
-    "trigger-index-ci-rebuild"
+    "github",
+    "workflows",
+    "advisory-checks",
+    "yml",
+    "runs",
+    "generate-trigger-index",
+    "mjs",
+    "check",
+    "continue-on-error",
+    "stale",
+    "index",
+    "reported",
+    "merged"
   ],
-  "lastUpdated": "2026-10-07T09:58:46.143Z",
+  "lastUpdated": "2026-11-13T10:05:31.531Z",
   "specId": "010",
   "folderSlug": "trigger-index-ci-rebuild",
   "parentChain": [
@@ -15,6 +27,5 @@
     "003-spec-folder-tooling"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

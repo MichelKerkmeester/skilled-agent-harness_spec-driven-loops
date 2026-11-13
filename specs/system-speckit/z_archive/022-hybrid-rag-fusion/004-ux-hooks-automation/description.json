@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/004-ux-hooks-automation",
   "description": "Mutation handlers had inconsistent post-mutation follow-up behavior and uneven UX hint output across save/update/delete paths",
   "keywords": [
@@ -16,7 +17,7 @@
     "delete",
     "paths"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.111Z",
+  "lastUpdated": "2026-11-13T10:05:33.099Z",
   "specId": "004",
   "folderSlug": "ux-hooks-automation",
   "parentChain": [
@@ -27,6 +28,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "19-03-26_08-35__ux-hooks-automation.md"
-  ],
-  "level": "2"
+  ]
 }

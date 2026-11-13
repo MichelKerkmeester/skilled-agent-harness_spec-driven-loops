@@ -18,11 +18,12 @@
     "quick",
     "start"
   ],
-  "lastUpdated": "2026-08-30T07:16:20.573Z",
+  "lastUpdated": "2026-11-13T10:04:53.887Z",
   "specId": "033",
   "folderSlug": "sk-prompt-improve",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "026-skill-readme-refinement",
     "005-mode-child-readme-revisit"
   ],

@@ -1,18 +1,21 @@
 {
   "level": "1",
   "specFolder": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/019-doctor-test-environment-research",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "`/doctor:speckit` can never report OK on the current corpus, and `/doctor:mcp` defines no error for an unknown flag",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "doctor",
+    "speckit",
+    "never",
+    "report",
+    "current",
+    "corpus",
+    "mcp",
+    "defines",
+    "error",
+    "unknown",
+    "flag"
   ],
-  "lastUpdated": "2026-10-04T13:58:00.819Z",
+  "lastUpdated": "2026-11-13T10:04:39.357Z",
   "specId": "019",
   "folderSlug": "doctor-test-environment-research",
   "parentChain": [

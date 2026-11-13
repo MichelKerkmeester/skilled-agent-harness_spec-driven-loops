@@ -15,11 +15,12 @@
     "parent",
     "skill"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.921Z",
+  "lastUpdated": "2026-11-13T10:04:42.620Z",
   "specId": "003",
   "folderSlug": "hub-integration",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "008-mcp-aside"
   ],
   "memorySequence": 0,

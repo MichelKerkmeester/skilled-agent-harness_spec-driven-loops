@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/z_archive/019-skill-routing-refactor/001-research/009-oob-idea-deep-dives/001-compiled-policy-collapse",
   "description": "Parent-hub routing is represented in both prose tables and JSON metadata, so equivalent rules can drift and no single immutable artifact identifies",
   "keywords": [
@@ -17,16 +18,16 @@
     "artifact",
     "identifies"
   ],
-  "lastUpdated": "2026-08-15T14:40:59.354Z",
+  "lastUpdated": "2026-11-13T10:04:52.663Z",
   "specId": "001",
   "folderSlug": "compiled-policy-collapse",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "001-research",
     "009-oob-idea-deep-dives"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

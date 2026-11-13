@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "commands/002-doctor-audit-and-fixes/003-nested-skilled-root",
-  "description": "Phase 3: nested-skilled-root",
+  "description": "Three doctor scripts choose the repository root themselves instead of using the resolver Skilled already ships",
   "keywords": [
-    "phase",
-    "nested-skilled-root"
+    "three",
+    "doctor",
+    "scripts",
+    "choose",
+    "repository",
+    "root",
+    "themselves",
+    "instead",
+    "resolver",
+    "skilled",
+    "already",
+    "ships"
   ],
-  "lastUpdated": "2026-11-01T05:57:12.807Z",
+  "lastUpdated": "2026-11-13T10:04:39.402Z",
   "specId": "003",
   "folderSlug": "nested-skilled-root",
   "parentChain": [
@@ -13,6 +24,5 @@
     "002-doctor-audit-and-fixes"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

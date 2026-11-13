@@ -15,11 +15,12 @@
     "documentation",
     "gap"
   ],
-  "lastUpdated": "2026-08-20T05:54:12.856Z",
+  "lastUpdated": "2026-11-13T10:04:38.937Z",
   "specId": "051",
   "folderSlug": "cli-cursor-max-mode-doc",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

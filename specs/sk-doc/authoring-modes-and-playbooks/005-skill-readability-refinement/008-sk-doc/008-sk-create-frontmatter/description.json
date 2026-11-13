@@ -1,11 +1,19 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/008-sk-doc/008-sk-create-frontmatter",
-  "description": "Phase 8: sk-create-frontmatter",
+  "description": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
   "keywords": [
-    "phase",
-    "sk-create-frontmatter"
+    "yourvaluehere",
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
   ],
-  "lastUpdated": "2026-11-04T07:16:45.207Z",
+  "lastUpdated": "2026-11-13T10:04:51.365Z",
   "specId": "008",
   "folderSlug": "sk-create-frontmatter",
   "parentChain": [
@@ -15,6 +23,5 @@
     "008-sk-doc"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

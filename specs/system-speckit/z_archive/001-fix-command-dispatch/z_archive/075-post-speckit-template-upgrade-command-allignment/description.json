@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/075-post-speckit-template-upgrade-command-allignment",
   "description": "Comprehensive analysis of specs 072-075 in 003-memory-and-spec-kit combined with current system-spec-kit state to determine command alignment needs.",
   "keywords": [
@@ -15,7 +16,7 @@
     "alignment",
     "needs"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.911Z",
+  "lastUpdated": "2026-11-13T10:05:32.699Z",
   "specId": "075",
   "folderSlug": "post-speckit-template-upgrade-command-allignment",
   "parentChain": [
@@ -25,6 +26,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

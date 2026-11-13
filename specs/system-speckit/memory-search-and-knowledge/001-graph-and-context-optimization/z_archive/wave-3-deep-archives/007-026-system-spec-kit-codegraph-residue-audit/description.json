@@ -14,12 +14,13 @@
     "system-code-graph",
     "skill"
   ],
-  "lastUpdated": "2026-08-15T14:41:11.833Z",
+  "lastUpdated": "2026-11-13T10:05:09.873Z",
   "specId": "007",
   "folderSlug": "026-system-spec-kit-codegraph-residue-audit",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "z_archive",
     "wave-3-deep-archives"
   ],

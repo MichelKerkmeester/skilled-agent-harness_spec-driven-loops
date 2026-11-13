@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Seven /deep: commands plus roughly twelve YAML assets reference the five old skill paths and skill: keys (the heaviest YAML carry dozens of path occurrences each)",
     "created_at": "2026-06-14T20:16:09.678Z",
-    "last_save_at": "2026-10-07T18:14:47.337Z",
+    "last_save_at": "2026-11-13T13:17:52.091Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +201,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7bf299934f9d89c387be7e25b83eb42a69449723c568a3a4d4ade0bf257b7421",
+    "source_fingerprint": "sha256:0b6903c397053f55429f7b09ae788826c65eaed9ccc4fdd35f9904c43ab78bbc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b9b5237fd991de9143662dc16a0cf4ed02addceded1cb6d386f83eaa9eccf337",
+      "spec.md": "dff934226d7f252032a67d2e9ffc48fbe16ae80a0295c90c009c9c9369ede680",
       "plan.md": "e23b2b2ef14449b70373c0144cb20afb26259f514ffb299085cbac5fc2958c36",
       "tasks.md": "c658ceab65ebf2823bbe640d70606f5e006d15e33b9a4237cbd976a94c9b9c8c",
       "implementation-summary.md": "36fb148de90db1c3b6e3380e2f4a1760ea0aa8c6e1605ed085103159106d9100"

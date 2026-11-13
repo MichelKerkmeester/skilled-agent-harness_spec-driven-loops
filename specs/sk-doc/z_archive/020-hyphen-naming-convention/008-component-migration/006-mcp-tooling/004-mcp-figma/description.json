@@ -16,11 +16,12 @@
     "underscored",
     "install"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.779Z",
+  "lastUpdated": "2026-11-13T10:04:53.723Z",
   "specId": "004",
   "folderSlug": "mcp-figma",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "006-mcp-tooling"

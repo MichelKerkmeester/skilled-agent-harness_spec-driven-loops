@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-deep-loop/z_archive/011-deep-context-workflow-adoption",
   "description": "Across packet 135 (24 phases of skill-README rewrites), the plan specified `/deep:start-context-loop:auto` with a `cli-opencode` executor pool for",
   "keywords": [
@@ -16,7 +17,7 @@
     "executor",
     "pool"
   ],
-  "lastUpdated": "2026-08-15T14:41:06.158Z",
+  "lastUpdated": "2026-11-13T10:04:57.310Z",
   "specId": "011",
   "folderSlug": "deep-context-workflow-adoption",
   "parentChain": [
@@ -26,6 +27,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "07-06-26_19-08__fix-the-root-cause-that-made-you-not-use-the.md"
-  ],
-  "level": "1"
+  ]
 }

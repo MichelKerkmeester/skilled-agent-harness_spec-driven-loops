@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/z_archive/017-command-adherence",
   "description": "This archived system-spec-kit archive folder captures work related to Command Adherence",
   "keywords": [
@@ -12,7 +13,7 @@
     "command",
     "adherence"
   ],
-  "lastUpdated": "2026-09-07T16:14:54.166Z",
+  "lastUpdated": "2026-11-13T10:05:32.888Z",
   "specId": "017",
   "folderSlug": "command-adherence",
   "parentChain": [
@@ -20,6 +21,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

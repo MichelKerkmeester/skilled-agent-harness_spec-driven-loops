@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-11-13T18:30:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Recorded the question dialog denial, its tests and the checks run in worktree 366"
-    next_safe_action: "Operator decides on merge and push of worktree 366"
+    next_safe_action: "None. Merged into main and pushed on 2026-11-13"
     blockers: []
     key_files: [".skilled/hooks/session-relaunch/claude/subagent-guard.mjs", ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs"]
     session_dedup:
@@ -86,7 +86,7 @@ and findings belong here.
 | Validation | Done | 2026-11-13: `repair-derived.cjs --apply` re-derived the graph metadata, then `validate.sh ... --strict` printed `Errors: 0  Warnings: 0` and `RESULT: PASSED` |
 | Goal budget | Not applicable | `goal.cjs packet` prints `packet_durable_chars=2385` and `packet_budget=unknown`. The cap skips a phase child that is not itself a phase parent (`.skilled/hooks/goal/lib/goal-slice.cjs:424`). Children 014 and 016 of packet 038 print `unknown` too |
 | Commit | Done | `9d0c5368d1` on `worktrees/366-hop-after-question-dialog`, with these documents committed on the same branch |
-| Merge and push | Not started | Waits on the operator |
+| Merge and push | Done | 2026-11-13: merged into main as `bc670ffc21` and pushed, on the operator's answers "Merge to main locally (Recommended)" and "Push after tests pass (Recommended)" |
 
 ### Deviations and findings
 

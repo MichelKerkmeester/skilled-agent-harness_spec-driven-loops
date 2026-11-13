@@ -16,11 +16,12 @@
     "refined",
     "template"
   ],
-  "lastUpdated": "2026-08-30T07:16:20.599Z",
+  "lastUpdated": "2026-11-13T10:04:53.894Z",
   "specId": "005",
   "folderSlug": "mode-child-readme-revisit",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "026-skill-readme-refinement"
   ],
   "memorySequence": 0,

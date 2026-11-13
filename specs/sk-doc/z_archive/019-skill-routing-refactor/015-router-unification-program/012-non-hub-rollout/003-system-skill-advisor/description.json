@@ -17,11 +17,12 @@
     "positive-route",
     "shadow-parity"
   ],
-  "lastUpdated": "2026-08-16T18:06:00.694Z",
+  "lastUpdated": "2026-11-13T10:04:52.949Z",
   "specId": "003",
   "folderSlug": "system-skill-advisor",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor",
     "015-router-unification-program",
     "012-non-hub-rollout"

@@ -15,11 +15,12 @@
     "flat",
     "single-file"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.485Z",
+  "lastUpdated": "2026-11-13T13:14:09.230Z",
   "specId": "013",
   "folderSlug": "design-commands-asset-refactor",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "009-sk-design-claude-parity"
   ],
   "memorySequence": 2,

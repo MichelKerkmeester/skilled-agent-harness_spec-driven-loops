@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/z_archive/019-readme-and-summary-with-hvr",
   "description": "This archived system-spec-kit archive folder captures work related to Readme And Summary With HVR",
   "keywords": [
@@ -13,7 +14,7 @@
     "summary",
     "hvr"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.012Z",
+  "lastUpdated": "2026-11-13T10:05:32.895Z",
   "specId": "019",
   "folderSlug": "readme-and-summary-with-hvr",
   "parentChain": [
@@ -21,6 +22,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

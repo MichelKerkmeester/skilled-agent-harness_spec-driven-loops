@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/080-ai-integration-patterns-research",
   "description": "Cross-repository analysis of AI assistant integration patterns from three open-source projects to inform improvements to the system-spec-kit MCP.",
   "keywords": [
@@ -15,7 +16,7 @@
     "system-spec-kit",
     "mcp"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.925Z",
+  "lastUpdated": "2026-11-13T10:05:32.721Z",
   "specId": "080",
   "folderSlug": "ai-integration-patterns-research",
   "parentChain": [
@@ -25,6 +26,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

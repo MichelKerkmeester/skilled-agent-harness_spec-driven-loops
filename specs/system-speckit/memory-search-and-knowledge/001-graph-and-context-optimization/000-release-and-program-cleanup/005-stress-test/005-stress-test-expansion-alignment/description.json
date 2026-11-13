@@ -6,6 +6,7 @@
     "stress test coverage",
     "sk-code-skilled stress test"
   ],
+  "level": 2,
   "contextType": "implementation",
   "importance_tier": "important",
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/005-stress-test-expansion-alignment",
@@ -21,7 +22,7 @@
     "catalog",
     "map"
   ],
-  "lastUpdated": "2026-08-15T14:41:09.661Z",
+  "lastUpdated": "2026-11-13T10:05:04.380Z",
   "specId": "005",
   "folderSlug": "stress-test-expansion-alignment",
   "parentChain": [
@@ -32,6 +33,5 @@
     "005-stress-test"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": 2
+  "memoryNameHistory": []
 }

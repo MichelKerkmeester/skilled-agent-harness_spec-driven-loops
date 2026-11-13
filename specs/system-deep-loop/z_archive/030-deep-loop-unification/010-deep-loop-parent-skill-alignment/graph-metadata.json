@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`deep-loop-workflows` was the canonical parent-skill example, but the sk-design conversion (spec 154) advanced the pattern beyond it",
     "created_at": "2026-06-26T11:31:27.588Z",
-    "last_save_at": "2026-10-08T19:30:33.569Z",
+    "last_save_at": "2026-11-13T13:18:28.754Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aaf1e600d6ff14f81d374b9abef6d3b732feb85693bfe7dceb0f729e322422b1",
+    "source_fingerprint": "sha256:53f78b26d05455a79ef8c613384eed03d59001223137abecff2757d4dc480a53",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2f85bfdaa49bdb9cd49be0e50896d448baa39ee63dece3b8246151a91ba305da",
+      "spec.md": "6d84c85972eeb204b455c1cd22ae5e8e10a92de8454e57150c57f0bc178a4718",
       "plan.md": "9f97a5d21b13dc9fdd7f81d339d42247c40bf469451ddaccc57546c396348e41",
       "tasks.md": "d4baa12259de6d22f477e57ddd01be0662e01634534e46147451d849bfb8aaf4",
-      "decision-record.md": "4929fc4fb36179a543dcc9654dbea67a965e87ddf46e58d459bc72bb7f53428d",
+      "decision-record.md": "43c1b80fed4ef41737e0fd17c5cb473632954d83d2a5149b6aac9bb44ec1c1b0",
       "implementation-summary.md": "8313f581cbf237d7ad7f35cc9d65441c193f605b88b372b2c9e993bb5eeebbeb"
     },
     "last_active_child_id": null,

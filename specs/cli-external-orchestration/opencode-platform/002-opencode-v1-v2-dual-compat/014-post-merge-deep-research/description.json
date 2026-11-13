@@ -1,21 +1,22 @@
 {
   "level": "research",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/014-post-merge-deep-research",
-  "description": "Ten steered deep-research iterations over the merged dual-compat, Pi fast-mode, worktree provisioning and adapter-runner work",
+  "description": "Four branches reached main on 2026-10-19: the OpenCode dual-compat build, the Pi fast-mode copy claim, worktree dependency provisioning and the",
   "keywords": [
-    "ten",
-    "steered",
-    "deep-research",
-    "iterations",
-    "merged",
+    "four",
+    "branches",
+    "reached",
+    "main",
+    "opencode",
     "dual-compat",
     "fast-mode",
+    "copy",
+    "claim",
     "worktree",
-    "provisioning",
-    "adapter-runner",
-    "work"
+    "dependency",
+    "provisioning"
   ],
-  "lastUpdated": "2026-10-19T21:50:59.249Z",
+  "lastUpdated": "2026-11-13T10:04:37.405Z",
   "specId": "014",
   "folderSlug": "post-merge-deep-research",
   "parentChain": [

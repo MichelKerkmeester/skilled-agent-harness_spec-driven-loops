@@ -1,11 +1,21 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/003-feature-catalog-template-anchor-deprecation/007-sk-code-script-kebab-names",
-  "description": "Phase 7: sk-code-script-kebab-names",
+  "description": "`packageskill.py --check --strict` failed sk-code-skilled because `routerreplaylib.cjs`, `verifydocclaims.cjs` and `verifyroutersync.cjs` break the",
   "keywords": [
-    "phase",
-    "sk-code-script-kebab-names"
+    "packageskill",
+    "check",
+    "strict",
+    "failed",
+    "sk-code-skilled",
+    "because",
+    "routerreplaylib",
+    "cjs",
+    "verifydocclaims",
+    "verifyroutersync",
+    "break"
   ],
-  "lastUpdated": "2026-10-10T19:23:41.732Z",
+  "lastUpdated": "2026-11-13T10:04:49.857Z",
   "specId": "007",
   "folderSlug": "sk-code-script-kebab-names",
   "parentChain": [
@@ -14,6 +24,5 @@
     "003-feature-catalog-template-anchor-deprecation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

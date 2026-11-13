@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-skill-advisor/z_archive/006-skill-advisor-routing-engine/004-advisor-hook-surface-integration",
   "description": "Current state — skill-advisor invocation and context cost:",
   "keywords": [
@@ -9,7 +10,7 @@
     "context",
     "cost"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.089Z",
+  "lastUpdated": "2026-11-13T10:05:02.946Z",
   "specId": "004",
   "folderSlug": "advisor-hook-surface-integration",
   "parentChain": [
@@ -18,6 +19,5 @@
     "006-skill-advisor-routing-engine"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

@@ -1,12 +1,19 @@
 {
   "level": "1",
   "specFolder": "system-skilled-doctor/001-skill-and-overlay-build/007-doctor-ux-research",
-  "description": "Phase 7: doctor-ux-research",
+  "description": "The doctor overlay engine and the external-repo onboarding path grew over six phases",
   "keywords": [
-    "phase",
-    "doctor-ux-research"
+    "doctor",
+    "overlay",
+    "engine",
+    "external-repo",
+    "onboarding",
+    "path",
+    "grew",
+    "six",
+    "phases"
   ],
-  "lastUpdated": "2026-11-08T16:39:25.977Z",
+  "lastUpdated": "2026-11-13T10:05:03.375Z",
   "specId": "007",
   "folderSlug": "doctor-ux-research",
   "parentChain": [

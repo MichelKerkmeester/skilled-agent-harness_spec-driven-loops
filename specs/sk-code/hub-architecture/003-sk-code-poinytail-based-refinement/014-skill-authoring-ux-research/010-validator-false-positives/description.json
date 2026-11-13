@@ -1,11 +1,24 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/010-validator-false-positives",
-  "description": "Phase 10: validator-false-positives",
+  "description": "The feature-catalog track reported validator findings that no document edit can clear: a committed symlink whose build target is absent counts as",
   "keywords": [
-    "phase",
-    "validator-false-positives"
+    "feature-catalog",
+    "track",
+    "reported",
+    "validator",
+    "findings",
+    "document",
+    "edit",
+    "clear",
+    "committed",
+    "symlink",
+    "whose",
+    "target",
+    "absent",
+    "counts"
   ],
-  "lastUpdated": "2026-10-10T21:28:14.089Z",
+  "lastUpdated": "2026-11-13T10:04:46.082Z",
   "specId": "010",
   "folderSlug": "validator-false-positives",
   "parentChain": [
@@ -15,6 +28,5 @@
     "014-skill-authoring-ux-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

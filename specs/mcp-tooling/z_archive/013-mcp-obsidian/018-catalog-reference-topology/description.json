@@ -16,11 +16,12 @@
     "surface",
     "warrants"
   ],
-  "lastUpdated": "2026-08-15T14:40:56.476Z",
+  "lastUpdated": "2026-11-13T10:04:42.844Z",
   "specId": "018",
   "folderSlug": "catalog-reference-topology",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "013-mcp-obsidian"
   ],
   "memorySequence": 0,

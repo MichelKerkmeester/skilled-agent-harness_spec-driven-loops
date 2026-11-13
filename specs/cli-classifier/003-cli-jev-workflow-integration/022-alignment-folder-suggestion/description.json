@@ -1,16 +1,18 @@
 {
+  "level": "1",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/022-alignment-folder-suggestion",
-  "description": "Test research R13 offline: whether a Jev or Deem choice among the folders a low-alignment save already lists picks the right folder more often than staying with the target or taking the top-scored alternative.",
+  "description": "A save checks how well its content matches the target spec folder",
   "keywords": [
-    "r13",
-    "jev",
-    "deem",
-    "offline",
-    "alignment",
-    "folder",
-    "suggestion"
+    "save",
+    "checks",
+    "well",
+    "content",
+    "matches",
+    "target",
+    "spec",
+    "folder"
   ],
-  "lastUpdated": "2026-09-29T13:27:36.000Z",
+  "lastUpdated": "2026-11-13T10:04:36.134Z",
   "specId": "022",
   "folderSlug": "alignment-folder-suggestion",
   "parentChain": [
@@ -18,6 +20,5 @@
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

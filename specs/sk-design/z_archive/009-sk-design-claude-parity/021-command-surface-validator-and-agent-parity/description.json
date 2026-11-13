@@ -12,11 +12,12 @@
     "mjs",
     "reporting"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.493Z",
+  "lastUpdated": "2026-11-13T10:04:48.968Z",
   "specId": "021",
   "folderSlug": "command-surface-validator-and-agent-parity",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "009-sk-design-claude-parity"
   ],
   "memorySequence": 0,

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "948 non-noise references to `deep-loop-workflows`/`deep-loop-runtime` exist outside the two skills' own folders — across `/deep:` commands (434 hits, 24 files), doctor (15 hits incl",
     "created_at": "2026-07-08T04:36:15.645Z",
-    "last_save_at": "2026-10-07T18:15:17.768Z",
+    "last_save_at": "2026-11-13T13:18:27.757Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,10 +203,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9335bf58e6286e6e961150cefa86e8ca8abb58e7ae636c636c798ad8148e38d6",
+    "source_fingerprint": "sha256:fe06532995b7b41ba5fbb3ab88ce68fbe0504cefeac54739e28a3c213a64589c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b0937ba73ed65ec74cb786a20bc51fca8f7745668a86eee4cd6e7fd42fd21868",
+      "spec.md": "652b6dbfbf665d71df43d365449852390f561550087c859f35615322acc4aaae",
       "plan.md": "11bdfc388c3f3f195423d54bccd8bec80b012cfe36c59ea2421f490c160d0715",
       "tasks.md": "321b8c7aac7b2c479e742d414b2dd5346c7fedc5529da8c4f3d4c813eb218bf1",
       "implementation-summary.md": "03ea6d3076f76d1c4ac97188b3ebb9d4a9578704d9ad054f0c2e3e3f94c5409d"

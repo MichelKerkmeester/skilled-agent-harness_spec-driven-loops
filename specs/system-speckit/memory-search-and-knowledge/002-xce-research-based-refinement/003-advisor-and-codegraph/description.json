@@ -1,6 +1,7 @@
 {
   "title": "Feature Specification: Advisor and Code Graph (Phase Parent)",
   "type": "coordination-parent",
+  "level": "2",
   "status": "phase-parent",
   "childTopology": [
     "001-causal-traversal-bfs",
@@ -24,7 +25,7 @@
     "bfs",
     "helper"
   ],
-  "lastUpdated": "2026-08-15T14:41:12.271Z",
+  "lastUpdated": "2026-11-13T10:05:10.658Z",
   "specId": "003",
   "folderSlug": "advisor-and-codegraph",
   "parentChain": [
@@ -33,6 +34,5 @@
     "002-xce-research-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

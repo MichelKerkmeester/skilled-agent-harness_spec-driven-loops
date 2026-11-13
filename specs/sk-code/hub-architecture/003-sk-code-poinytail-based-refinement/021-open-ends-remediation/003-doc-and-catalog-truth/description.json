@@ -1,11 +1,24 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/021-open-ends-remediation/003-doc-and-catalog-truth",
-  "description": "Phase 3: doc-and-catalog-truth",
+  "description": "Doc-version `verify` fails on every skill because child docs carry a per-doc version that most state in the wrong era",
   "keywords": [
-    "phase",
-    "doc-and-catalog-truth"
+    "doc-version",
+    "verify",
+    "fails",
+    "every",
+    "skill",
+    "because",
+    "child",
+    "docs",
+    "carry",
+    "per-doc",
+    "version",
+    "state",
+    "wrong",
+    "era"
   ],
-  "lastUpdated": "2026-10-11T18:31:52.126Z",
+  "lastUpdated": "2026-11-13T10:04:46.492Z",
   "specId": "003",
   "folderSlug": "doc-and-catalog-truth",
   "parentChain": [
@@ -15,6 +28,5 @@
     "021-open-ends-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

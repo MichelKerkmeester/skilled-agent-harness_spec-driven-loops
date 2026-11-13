@@ -1,15 +1,24 @@
 {
   "level": "2",
   "specFolder": "sk-git/z_archive/019-mass-deletion-guard",
-  "description": "Spec — Mass-Deletion Guard for Commits and Pushes",
+  "description": "Block a commit (primary) or push (backstop) that deletes more than a configurable number of tracked files unless the operator explicitly authorizes",
   "keywords": [
-    "spec",
-    "mass-deletion",
-    "guard",
-    "commits",
-    "pushes"
+    "block",
+    "commit",
+    "primary",
+    "push",
+    "backstop",
+    "deletes",
+    "configurable",
+    "number",
+    "tracked",
+    "files",
+    "unless",
+    "operator",
+    "explicitly",
+    "authorizes"
   ],
-  "lastUpdated": "2026-09-20T04:33:22.875Z",
+  "lastUpdated": "2026-11-13T10:04:54.412Z",
   "specId": "019",
   "folderSlug": "mass-deletion-guard",
   "parentChain": [

@@ -1,12 +1,19 @@
 {
   "level": "1",
   "specFolder": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/005-doctor-update-research",
-  "description": "Phase 5: doctor-update-research",
+  "description": "`/doctor:update` updates an operator's framework copy to a newer release while keeping their customizations",
   "keywords": [
-    "phase",
-    "doctor-update-research"
+    "doctor",
+    "operator",
+    "framework",
+    "copy",
+    "newer",
+    "release",
+    "while",
+    "keeping",
+    "customizations"
   ],
-  "lastUpdated": "2026-10-03T20:43:10.176Z",
+  "lastUpdated": "2026-11-13T10:04:39.274Z",
   "specId": "005",
   "folderSlug": "doctor-update-research",
   "parentChain": [

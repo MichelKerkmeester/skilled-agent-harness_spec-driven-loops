@@ -1,11 +1,17 @@
 {
+  "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/012-session-name-carry",
-  "description": "Phase 12: session-name-carry",
+  "description": "A Claude session renamed with `/rename` loses that name on a hop",
   "keywords": [
-    "phase",
-    "session-name-carry"
+    "claude",
+    "session",
+    "renamed",
+    "rename",
+    "loses",
+    "name",
+    "hop"
   ],
-  "lastUpdated": "2026-11-13T08:49:34.968Z",
+  "lastUpdated": "2026-11-13T10:04:41.914Z",
   "specId": "012",
   "folderSlug": "session-name-carry",
   "parentChain": [
@@ -15,6 +21,5 @@
     "038-goal-and-workflow-resume"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

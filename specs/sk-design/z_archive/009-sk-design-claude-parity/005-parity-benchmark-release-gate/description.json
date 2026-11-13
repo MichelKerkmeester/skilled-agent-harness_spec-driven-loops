@@ -40,11 +40,12 @@
     "discipline",
     "anti-slop"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.472Z",
+  "lastUpdated": "2026-11-13T13:14:09.670Z",
   "specId": "005",
   "folderSlug": "parity-benchmark-release-gate",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "009-sk-design-claude-parity"
   ],
   "memorySequence": 6,

@@ -7,11 +7,12 @@
     "numbered-snippet-filename",
     "deprecation"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.468Z",
+  "lastUpdated": "2026-11-13T10:04:52.053Z",
   "specId": "002",
   "folderSlug": "generator-alignment",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "014-sk-doc-parent",
     "027-catalog-naming-convention",
     "002-deprecate-numbered-snippet-filenames"

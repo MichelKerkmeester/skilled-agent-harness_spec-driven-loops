@@ -19,11 +19,12 @@
     "livefinal",
     "livemodeb"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.659Z",
+  "lastUpdated": "2026-11-13T10:04:53.685Z",
   "specId": "007",
   "folderSlug": "benchmark",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "001-sk-code"

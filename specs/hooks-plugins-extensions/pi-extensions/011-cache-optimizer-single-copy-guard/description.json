@@ -1,17 +1,15 @@
 {
+  "level": "1",
   "specFolder": "hooks-plugins-extensions/pi-extensions/011-cache-optimizer-single-copy-guard",
-  "description": "Let a second pi-cache-optimizer copy stand down so pi starts in git worktrees",
+  "description": "A user-level link `~/.pi/agent/extensions/pi-cache-optimizer`, added on 2026-10-28",
   "keywords": [
-    "let",
-    "second",
-    "pi-cache-optimizer",
-    "copy",
-    "stand",
-    "starts",
-    "git",
-    "worktrees"
+    "user-level",
+    "link",
+    "agent",
+    "extensions",
+    "pi-cache-optimizer"
   ],
-  "lastUpdated": "2026-10-28T09:01:08.949Z",
+  "lastUpdated": "2026-11-13T10:04:41.349Z",
   "specId": "011",
   "folderSlug": "cache-optimizer-single-copy-guard",
   "parentChain": [
@@ -19,6 +17,5 @@
     "pi-extensions"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

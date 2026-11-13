@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-skill-advisor/z_archive/008-skill-advisor-documentation/003-fix-documentation-config-drift",
   "description": "A maintenance pass on `system-skill-advisor` surfaced three drift issues that the package's own ARCHITECTURE.md already flags or implies: (1) `npm run",
   "keywords": [
@@ -18,7 +19,7 @@
     "npm",
     "run"
   ],
-  "lastUpdated": "2026-08-15T14:41:08.138Z",
+  "lastUpdated": "2026-11-13T10:05:02.994Z",
   "specId": "003",
   "folderSlug": "fix-documentation-config-drift",
   "parentChain": [
@@ -30,6 +31,5 @@
   "memoryNameHistory": [
     "16-05-26_10-11__issues-drift-create-spec-folder-for-it.md",
     "16-05-26_10-12__issues-drift-create-spec-folder-for-it.md"
-  ],
-  "level": "1"
+  ]
 }

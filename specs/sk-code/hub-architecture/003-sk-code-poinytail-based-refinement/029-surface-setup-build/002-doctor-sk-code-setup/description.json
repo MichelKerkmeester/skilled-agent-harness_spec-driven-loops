@@ -1,11 +1,16 @@
 {
+  "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/029-surface-setup-build/002-doctor-sk-code-setup",
-  "description": "Phase 2: doctor-sk-code-setup",
+  "description": "The README battery is six commands to copy by hand",
   "keywords": [
-    "phase",
-    "doctor-sk-code-setup"
+    "readme",
+    "battery",
+    "six",
+    "commands",
+    "copy",
+    "hand"
   ],
-  "lastUpdated": "2026-10-13T18:45:44.155Z",
+  "lastUpdated": "2026-11-13T10:04:46.892Z",
   "specId": "002",
   "folderSlug": "doctor-sk-code-setup",
   "parentChain": [
@@ -15,6 +20,5 @@
     "029-surface-setup-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,11 +1,16 @@
 {
+  "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/007-follow-up-fixes",
-  "description": "Phase 7: follow-up-fixes",
+  "description": "Building phases 002 to 006 surfaced five gaps that were out of scope at the time",
   "keywords": [
-    "phase",
-    "follow-up-fixes"
+    "phases",
+    "surfaced",
+    "five",
+    "gaps",
+    "scope",
+    "time"
   ],
-  "lastUpdated": "2026-10-10T05:26:20.466Z",
+  "lastUpdated": "2026-11-13T10:04:45.344Z",
   "specId": "007",
   "folderSlug": "follow-up-fixes",
   "parentChain": [
@@ -14,6 +19,5 @@
     "003-sk-code-poinytail-based-refinement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

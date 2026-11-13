@@ -1,11 +1,22 @@
 {
+  "level": "2",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/032-opencode2-standalone-replay",
-  "description": "Phase 32: opencode2-standalone-replay",
+  "description": "The wrapper rebuilds an OpenCode relaunch as `[-m model] --prompt seed`, so a `--standalone` the operator passed is never replayed",
   "keywords": [
-    "phase",
-    "opencode2-standalone-replay"
+    "wrapper",
+    "rebuilds",
+    "opencode",
+    "relaunch",
+    "model",
+    "prompt",
+    "seed",
+    "standalone",
+    "operator",
+    "passed",
+    "never",
+    "replayed"
   ],
-  "lastUpdated": "2026-10-25T09:21:14.915Z",
+  "lastUpdated": "2026-11-13T10:04:41.745Z",
   "specId": "032",
   "folderSlug": "opencode2-standalone-replay",
   "parentChain": [
@@ -14,6 +25,5 @@
     "002-session-relaunch-loop"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

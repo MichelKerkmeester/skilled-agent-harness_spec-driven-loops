@@ -1,11 +1,25 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/020-deep-review-remediation",
-  "description": "Phase 20: deep-review-remediation",
+  "description": "The deep review of phases 016 to 019 found three default paths that check a name, then follow a symlink at the step that writes, reads or moves a",
   "keywords": [
-    "phase",
-    "deep-review-remediation"
+    "deep",
+    "review",
+    "phases",
+    "found",
+    "three",
+    "default",
+    "paths",
+    "check",
+    "name",
+    "follow",
+    "symlink",
+    "step",
+    "writes",
+    "reads",
+    "moves"
   ],
-  "lastUpdated": "2026-10-10T05:30:21.042Z",
+  "lastUpdated": "2026-11-13T10:05:32.181Z",
   "specId": "020",
   "folderSlug": "deep-review-remediation",
   "parentChain": [
@@ -15,6 +29,5 @@
     "003-spec-folder-tooling"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,11 +1,19 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/008-sk-doc/015-sk-create-with-human-voice",
-  "description": "Phase 15: sk-create-with-human-voice",
+  "description": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
   "keywords": [
-    "phase",
-    "sk-create-with-human-voice"
+    "yourvaluehere",
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
   ],
-  "lastUpdated": "2026-11-04T07:16:49.056Z",
+  "lastUpdated": "2026-11-13T10:04:51.444Z",
   "specId": "015",
   "folderSlug": "sk-create-with-human-voice",
   "parentChain": [
@@ -15,6 +23,5 @@
     "008-sk-doc"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

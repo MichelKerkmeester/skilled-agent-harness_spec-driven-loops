@@ -1,17 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-git/commit-standards/007-advisory-cd-prefix-env-steps",
-  "description": "Teach the git preflight advisory that environment assignments between cd and git keep the cd",
+  "description": "The preflight advisory resolves the directory a git command runs in, so a command typed against a worktree is judged by that worktree's state",
   "keywords": [
-    "teach",
-    "git",
     "preflight",
     "advisory",
-    "environment",
-    "assignments",
-    "between",
-    "keep"
+    "resolves",
+    "directory",
+    "git",
+    "command",
+    "runs",
+    "typed",
+    "against",
+    "worktree",
+    "judged",
+    "state"
   ],
-  "lastUpdated": "2026-10-30T16:23:34.154Z",
+  "lastUpdated": "2026-11-13T10:04:54.274Z",
   "specId": "007",
   "folderSlug": "advisory-cd-prefix-env-steps",
   "parentChain": [
@@ -19,6 +24,5 @@
     "commit-standards"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

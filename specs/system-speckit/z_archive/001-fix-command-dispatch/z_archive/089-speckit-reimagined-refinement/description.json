@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/089-speckit-reimagined-refinement",
   "description": "title: \\\"Spec 089: system-spec-kit Reimagined Refinement\\\"",
   "keywords": [
@@ -8,7 +9,7 @@
     "reimagined",
     "refinement"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.949Z",
+  "lastUpdated": "2026-11-13T10:05:32.770Z",
   "specId": "089",
   "folderSlug": "speckit-reimagined-refinement",
   "parentChain": [
@@ -18,6 +19,5 @@
     "z_archive"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

@@ -1,11 +1,26 @@
 {
+  "level": "2",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/022-doc-version-and-playbook-paths/001-per-doc-versions",
-  "description": "Phase 1: per-doc-versions",
+  "description": "Since 31888d05bb only `SKILL.md` carries a version, so a reader of a single reference, asset, playbook or catalog doc cannot tell which edition of",
   "keywords": [
-    "phase",
-    "per-doc-versions"
+    "since",
+    "31888d05bb",
+    "only",
+    "skill",
+    "carries",
+    "version",
+    "reader",
+    "single",
+    "reference",
+    "asset",
+    "playbook",
+    "catalog",
+    "doc",
+    "cannot",
+    "tell",
+    "edition"
   ],
-  "lastUpdated": "2026-10-12T05:21:02.561Z",
+  "lastUpdated": "2026-11-13T10:04:46.546Z",
   "specId": "001",
   "folderSlug": "per-doc-versions",
   "parentChain": [
@@ -15,6 +30,5 @@
     "022-doc-version-and-playbook-paths"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

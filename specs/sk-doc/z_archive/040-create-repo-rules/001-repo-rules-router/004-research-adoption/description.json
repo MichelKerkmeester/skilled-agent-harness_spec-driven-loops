@@ -14,11 +14,12 @@
     "five",
     "iterations"
   ],
-  "lastUpdated": "2026-08-31T11:33:46.025Z",
+  "lastUpdated": "2026-11-13T10:04:54.055Z",
   "specId": "004",
   "folderSlug": "research-adoption",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "040-create-repo-rules",
     "001-repo-rules-router"
   ],

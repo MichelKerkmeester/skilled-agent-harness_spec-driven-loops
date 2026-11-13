@@ -13,11 +13,12 @@
     "should-it-be-audit",
     "clarify-alias-only"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.509Z",
+  "lastUpdated": "2026-11-13T10:04:48.977Z",
   "specId": "005",
   "folderSlug": "transform-verb-should-it-be",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "009-sk-design-claude-parity",
     "023-full-manual-playbook-execution"
   ],

@@ -1,11 +1,25 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/004-doctor-playbook",
-  "description": "Phase 4: doctor-playbook",
+  "description": "The `/doctor` menu and four approval flows branch on the operator's answer, and no scenario proves that a no writes nothing while a yes applies",
   "keywords": [
-    "phase",
-    "doctor-playbook"
+    "doctor",
+    "menu",
+    "four",
+    "approval",
+    "flows",
+    "branch",
+    "operator",
+    "answer",
+    "scenario",
+    "proves",
+    "writes",
+    "nothing",
+    "while",
+    "yes",
+    "applies"
   ],
-  "lastUpdated": "2026-11-02T18:33:49.960Z",
+  "lastUpdated": "2026-11-13T10:04:50.123Z",
   "specId": "004",
   "folderSlug": "doctor-playbook",
   "parentChain": [
@@ -15,6 +29,5 @@
     "004-conversation-adoption-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

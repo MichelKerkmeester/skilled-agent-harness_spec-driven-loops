@@ -1,12 +1,22 @@
 {
   "level": "3",
   "specFolder": "system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring/001-template-drift-census-and-baseline",
-  "description": "Phase 1: template-drift-census-and-baseline",
+  "description": "Five template and doc defects are confirmed, but they came from a spot check, not a census, so the full list is unknown",
   "keywords": [
-    "phase",
-    "template-drift-census-and-baseline"
+    "five",
+    "template",
+    "doc",
+    "defects",
+    "confirmed",
+    "came",
+    "spot",
+    "check",
+    "census",
+    "full",
+    "list",
+    "unknown"
   ],
-  "lastUpdated": "2026-10-23T11:45:12.972Z",
+  "lastUpdated": "2026-11-13T10:05:24.135Z",
   "specId": "001",
   "folderSlug": "template-drift-census-and-baseline",
   "parentChain": [

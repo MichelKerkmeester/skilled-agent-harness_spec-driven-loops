@@ -1,11 +1,19 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/010-decision-routing-vocabulary",
-  "description": "Phase 10: decision-routing-vocabulary",
+  "description": "An operator who types \"record this as a decision\" or \"Record my chat reply as a decision\" gets no skill recommendation",
   "keywords": [
-    "phase",
-    "decision-routing-vocabulary"
+    "operator",
+    "types",
+    "record",
+    "decision",
+    "chat",
+    "reply",
+    "gets",
+    "skill",
+    "recommendation"
   ],
-  "lastUpdated": "2026-11-03T09:15:11.154Z",
+  "lastUpdated": "2026-11-13T10:05:30.425Z",
   "specId": "010",
   "folderSlug": "decision-routing-vocabulary",
   "parentChain": [
@@ -14,6 +22,5 @@
     "004-decision-capture"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,11 +1,24 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/011-regeneration-and-verification",
-  "description": "Phase 11: regeneration-and-verification",
+  "description": "Every change in the earlier phases reaches runtime mirrors and generated files: Hermes text copies, command prompt stubs",
   "keywords": [
-    "phase",
-    "regeneration-and-verification"
+    "every",
+    "change",
+    "earlier",
+    "phases",
+    "reaches",
+    "runtime",
+    "mirrors",
+    "files",
+    "hermes",
+    "text",
+    "copies",
+    "command",
+    "prompt",
+    "stubs"
   ],
-  "lastUpdated": "2026-10-28T06:38:53.272Z",
+  "lastUpdated": "2026-11-13T10:04:51.799Z",
   "specId": "011",
   "folderSlug": "regeneration-and-verification",
   "parentChain": [
@@ -15,6 +28,5 @@
     "002-skill-routing-and-clarity"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

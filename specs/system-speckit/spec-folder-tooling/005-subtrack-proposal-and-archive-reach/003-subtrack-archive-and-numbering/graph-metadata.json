@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/003-subtrack-archive-and-numbering",
+  "spec_folder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/003-subtrack-archive-and-numbering",
+  "parent_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "subtrack archive and numbering",
+      "phase 3 subtrack archive and numbering",
+      "numbering counts archived packets",
+      "subtrack archive and numbering plan",
+      "subtrack archive and numbering tasks",
+      "subtrack archive and numbering acceptance criteria",
+      "subtrack archive and numbering goal",
+      "subtrack archive and numbering implementation summary"
+    ],
+    "key_topics": [
+      "subtrack",
+      "archive",
+      "numbering",
+      "phase",
+      "counts",
+      "archived",
+      "packets",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs",
+      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+      "scratch/sweep-before.txt",
+      "scratch/baseline.txt",
+      "tests/track-roots.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+      "feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md",
+      "runtime/cli/spec/README.md",
+      "runtime/cli/spec/refresh-track-roots.mjs",
+      "runtime/cli/spec/sweep-track-roots.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "create-root-numbering.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "refresh-track-roots.mjs",
+        "kind": "key_phrase",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-track-roots.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec-lifecycle-automation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-before.txt",
+        "kind": "file",
+        "path": "scratch/sweep-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "track-roots.vitest.ts",
+        "kind": "test",
+        "path": "tests/track-roots.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "track-roots.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`archive.sh` moves a subtrack's packet into that subtrack's own `zarchive/`, but no script creates the folder, so this worktree holds 40 declared subtracks and no subtrack archive folder",
+    "created_at": "2026-11-13T10:07:33Z",
+    "last_save_at": "2026-11-13T16:03:52.896Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:d47ca28fb14b2ab132c5a0fb15a710b9ad75a971ad6c99262ce58efca710a749",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "066984e3c28c2448b397da8c314865c2cc0204401748e33530d10e42c61b6d6a",
+      "plan.md": "8b480958bedec1d899e0bb59ad63dd72bf104afb337afe148c8d6555b1bb687c",
+      "tasks.md": "f48a6e90075f24f32b2e171b6d6fa0d9b3b81b0e24d1518609dbbe6ed404fb72",
+      "implementation-summary.md": "984a8054ccc27203662ec4217ac80fd55b3fe97f5a1b584d882bfc692c89652e"
+    },
+    "last_active_at": null
+  }
+}

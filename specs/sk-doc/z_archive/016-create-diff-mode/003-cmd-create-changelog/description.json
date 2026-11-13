@@ -8,11 +8,12 @@
     "changelog",
     "entries"
   ],
-  "lastUpdated": "2026-08-30T08:21:44.213Z",
+  "lastUpdated": "2026-11-13T10:04:52.096Z",
   "specId": "003",
   "folderSlug": "cmd-create-changelog",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "016-create-diff-mode"
   ],
   "memorySequence": 0,

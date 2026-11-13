@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "mcp-tooling/z_archive/013-mcp-obsidian/010-playbook-validation/002-headless-cli-scenarios",
   "description": "Execute the 8 headless notesmd-cli manual-testing-playbook scenarios against the test vault and record pass/fail.",
   "keywords": [
@@ -14,15 +15,15 @@
     "pass",
     "fail"
   ],
-  "lastUpdated": "2026-08-15T14:40:56.461Z",
+  "lastUpdated": "2026-11-13T10:04:42.822Z",
   "specId": "002",
   "folderSlug": "headless-cli-scenarios",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "013-mcp-obsidian",
     "010-playbook-validation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

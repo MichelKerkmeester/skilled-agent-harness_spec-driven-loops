@@ -1,18 +1,23 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/060-save-resume-pointer-truth",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "After a save, the writer walks up from the saved packet and rewrites the pointer in every phase-parent ancestor's `graph-metadata.json`, including the",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "save",
+    "writer",
+    "walks",
+    "saved",
+    "packet",
+    "rewrites",
+    "pointer",
+    "every",
+    "phase-parent",
+    "ancestor",
+    "graph-metadata",
+    "json",
+    "including"
   ],
-  "lastUpdated": "2026-09-24T06:17:58.657Z",
+  "lastUpdated": "2026-11-13T10:05:21.805Z",
   "specId": "060",
   "folderSlug": "save-resume-pointer-truth",
   "parentChain": [

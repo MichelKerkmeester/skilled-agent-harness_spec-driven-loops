@@ -1,20 +1,16 @@
 {
   "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/006-release-writing-defaults",
-  "description": "Release writing defaults: changelog detail, short sentences and release sync without being asked",
+  "description": "The v4.0.2.1 release notes needed four operator requests",
   "keywords": [
     "release",
-    "writing",
-    "defaults",
-    "changelog",
-    "detail",
-    "short",
-    "sentences",
-    "sync",
-    "without",
-    "asked"
+    "notes",
+    "needed",
+    "four",
+    "operator",
+    "requests"
   ],
-  "lastUpdated": "2026-11-10T12:22:28.868Z",
+  "lastUpdated": "2026-11-13T10:04:51.557Z",
   "specId": "006",
   "folderSlug": "release-writing-defaults",
   "parentChain": [

@@ -1,12 +1,15 @@
 {
   "level": "2",
   "specFolder": "agents-md/instruction-surface-integrity/004-doctor-agents-md/001-doctor-agents-md/004-command-plumbing",
-  "description": "Phase: 004-command-plumbing",
+  "description": "The doctor family is validated by shape, not by intent",
   "keywords": [
-    "phase",
-    "004-command-plumbing"
+    "doctor",
+    "family",
+    "validated",
+    "shape",
+    "intent"
   ],
-  "lastUpdated": "2026-10-30T11:29:51.364Z",
+  "lastUpdated": "2026-11-13T10:04:35.175Z",
   "specId": "004",
   "folderSlug": "command-plumbing",
   "parentChain": [

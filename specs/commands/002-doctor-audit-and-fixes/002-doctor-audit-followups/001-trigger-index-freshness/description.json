@@ -1,11 +1,23 @@
 {
+  "level": "3",
   "specFolder": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/001-trigger-index-freshness",
-  "description": "Phase 1: trigger-index-freshness",
+  "description": "`generate-trigger-index.mjs --check --json` exits 1 on this checkout: the committed index is stale (176 documents differ, 175 indexed paths are",
   "keywords": [
-    "phase",
-    "trigger-index-freshness"
+    "generate-trigger-index",
+    "mjs",
+    "check",
+    "json",
+    "exits",
+    "checkout",
+    "committed",
+    "index",
+    "stale",
+    "documents",
+    "differ",
+    "indexed",
+    "paths"
   ],
-  "lastUpdated": "2026-10-03T05:27:40.543Z",
+  "lastUpdated": "2026-11-13T10:04:39.207Z",
   "specId": "001",
   "folderSlug": "trigger-index-freshness",
   "parentChain": [
@@ -14,6 +26,5 @@
     "002-doctor-audit-followups"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

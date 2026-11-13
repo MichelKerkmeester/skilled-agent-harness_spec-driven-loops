@@ -81,6 +81,8 @@ NOTES:
       specs root, specs/<track>/z_archive/ in a track, a declared sub-track's
       own z_archive/ for its packets, <parent>/z_archive/ for a phase
     - Restore returns a spec to the folder its z_archive/ belongs to
+    - A restore whose number a live packet already holds lands on the next free
+      number, counting archived packets, through relocate.mjs
     - A z_archive/ that is a symlink is refused on archive and on restore
     - An archive or restore argument that passes through a symlink is refused,
       and the message names the real folder to use instead
@@ -326,6 +328,74 @@ rederive_moved() {
     fi
 }
 
+# The description cache lists every spec folder by path, so a move into or out
+# of an archive leaves a row for the folder that is gone. Only the cache's own
+# producer may rewrite it, so the move asks that producer to rebuild it and
+# reports a failure rather than undoing the move. A tree without the cache keeps
+# none: an archive move never creates it.
+refresh_description_cache() {
+    local specs_root="$1"
+    local cache="$specs_root/descriptions.json"
+    local discovery_module="$SCRIPT_DIR/../../dist/lib/search/folder-discovery.js"
+    [[ -f "$cache" ]] || return 0
+    if [[ ! -f "$discovery_module" ]]; then
+        log_warning "descriptions.json was not refreshed: $discovery_module is missing. Restore it, then run ensureDescriptionCache."
+        return 0
+    fi
+    if ! command -v node >/dev/null 2>&1; then
+        log_warning "descriptions.json was not refreshed: node is not on PATH, so $discovery_module cannot run. Restore node, then run ensureDescriptionCache."
+        return 0
+    fi
+    if ! node --input-type=module -e '
+import { pathToFileURL } from "node:url";
+const { ensureDescriptionCache } = await import(pathToFileURL(process.argv[1]).href);
+if (ensureDescriptionCache([process.argv[2]]) === null) process.exit(1);
+' "$discovery_module" "$specs_root" >/dev/null; then
+        log_warning "descriptions.json may still list the old folder. Rerun ensureDescriptionCache on $specs_root."
+    fi
+}
+
+# The next number after every one already used in a packet home, live or
+# archived, so the restored packet cannot collide with either. relocate.mjs then
+# moves it and rewrites every record that names it, from its own preflight on.
+restore_on_next_number() {
+    local archived="$1"
+    local home="$2"
+    local archive_dir="$3"
+    local name="$4"
+    local specs_root="$5"
+    local holder="$6"
+    local relocate_script="$SCRIPT_DIR/relocate.mjs"
+    local highest=0 candidate number next from_id to_id home_id
+
+    for candidate in "$home"/[0-9][0-9][0-9]-*/ "$archive_dir"/[0-9][0-9][0-9]-*/; do
+        [[ -d "${candidate%/}" ]] || continue
+        number="$(basename "${candidate%/}")"
+        number="${number:0:3}"
+        if (( 10#$number > highest )); then
+            highest=$((10#$number))
+        fi
+    done
+    next="$(printf '%03d' $((highest + 1)))"
+
+    from_id="${archived#"$specs_root"/}"
+    home_id="${home#"$specs_root"}"
+    home_id="${home_id#/}"
+    to_id="${next}-${name:4}"
+    [[ -z "$home_id" ]] || to_id="$home_id/$to_id"
+
+    if [[ ! -f "$relocate_script" ]]; then
+        log_error "Number ${name:0:3} is taken by $holder and $relocate_script is missing, so the packet cannot take number $next"
+        exit 1
+    fi
+    log_info "Number ${name:0:3} is taken by $holder; restoring as specs/$to_id"
+    if ! node "$relocate_script" --from "$from_id" --to "$to_id" --apply; then
+        log_error "Restore did not finish. Read the report above, then rerun: node $relocate_script --from $from_id --to $to_id --apply"
+        exit 1
+    fi
+    log_success "Restored: $archived -> $specs_root/$to_id"
+}
+
 # ───────────────────────────────────────────────────────────────
 # 4. CORE FUNCTIONS
 # ───────────────────────────────────────────────────────────────
@@ -479,6 +549,7 @@ archive_spec() {
 
     log_success "Archived: $resolved_spec -> $archive_root/$basename"
     rederive_moved "$archive_root/$basename"
+    refresh_description_cache "$specs_root"
     refresh_track_levels "$specs_root" "$track"
 
     # A phase parent's children_ids is not rewritten here. Its writer only adds
@@ -612,15 +683,35 @@ restore_spec() {
     [[ "$logical_archived" == /* ]] || logical_archived="$PROJECT_ROOT/$logical_archived"
     reject_linked_argument "$logical_archived" "$specs_root" "Restore"
 
+    # A folder or link already at the exact destination is refused: two live
+    # packets under one name is a decision for a person, not a renumber.
     if [[ -e "$destination" || -L "$destination" ]]; then
         log_error "Restore target already exists: $destination"
         exit 1
+    fi
+
+    # A packet number names one folder among its siblings. When a live packet
+    # under another name already holds the restored packet's number, the packet
+    # takes the next free number instead. A new number changes every record that
+    # names the packet, so the relocation engine moves it rather than mv.
+    local number_holder=""
+    local sibling
+    for sibling in "$home"/"${basename:0:3}"-*/; do
+        if [[ -d "${sibling%/}" ]]; then
+            number_holder="${sibling%/}"
+            break
+        fi
+    done
+    if [[ -n "$number_holder" ]]; then
+        restore_on_next_number "$resolved_archived" "$home" "$archive_dir" "$basename" "$specs_root" "$number_holder"
+        return
     fi
 
     mv "$resolved_archived" "$destination"
 
     log_success "Restored: $resolved_archived -> $destination"
     rederive_moved "$destination"
+    refresh_description_cache "$specs_root"
     refresh_track_levels "$specs_root" "$track"
 }
 

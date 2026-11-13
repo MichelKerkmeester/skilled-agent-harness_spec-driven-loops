@@ -1,11 +1,21 @@
 {
+  "level": "2",
   "specFolder": "sk-design/021-deprecate-fundamentals/002-retire-fundamentals",
-  "description": "Phase 2: retire-fundamentals",
+  "description": "`sk-design-fundamentals` was a fourth design mode whose value and decision guidance moved into `sk-code-frontend` during phase 1",
   "keywords": [
-    "phase",
-    "retire-fundamentals"
+    "sk-design-fundamentals",
+    "fourth",
+    "design",
+    "mode",
+    "whose",
+    "value",
+    "decision",
+    "guidance",
+    "moved",
+    "sk-code-frontend",
+    "phase"
   ],
-  "lastUpdated": "2026-11-05T08:27:37.804Z",
+  "lastUpdated": "2026-11-13T10:04:48.892Z",
   "specId": "002",
   "folderSlug": "retire-fundamentals",
   "parentChain": [
@@ -13,6 +23,5 @@
     "021-deprecate-fundamentals"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,11 +1,16 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/008-write-containment-scoping",
-  "description": "Phase 8: write-containment-scoping",
+  "description": "`snapshotOutOfScopeDirtyPaths` and `detectNewOutOfScopeViolations` read repo-wide `git status`",
   "keywords": [
-    "phase",
-    "write-containment-scoping"
+    "snapshotoutofscopedirtypaths",
+    "detectnewoutofscopeviolations",
+    "read",
+    "repo-wide",
+    "git",
+    "status"
   ],
-  "lastUpdated": "2026-11-08T23:39:00.764Z",
+  "lastUpdated": "2026-11-13T10:05:23.472Z",
   "specId": "008",
   "folderSlug": "write-containment-scoping",
   "parentChain": [
@@ -14,6 +19,5 @@
     "004-v4-release-line-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

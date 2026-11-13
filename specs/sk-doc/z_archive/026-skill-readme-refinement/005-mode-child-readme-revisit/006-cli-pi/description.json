@@ -16,11 +16,12 @@
     "style",
     "predates"
   ],
-  "lastUpdated": "2026-08-30T07:16:20.475Z",
+  "lastUpdated": "2026-11-13T10:04:53.861Z",
   "specId": "006",
   "folderSlug": "cli-pi",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "026-skill-readme-refinement",
     "005-mode-child-readme-revisit"
   ],

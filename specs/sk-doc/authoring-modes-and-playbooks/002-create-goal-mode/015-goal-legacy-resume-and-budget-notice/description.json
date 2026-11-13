@@ -1,11 +1,15 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/015-goal-legacy-resume-and-budget-notice",
-  "description": "Phase 15: goal-legacy-resume-and-budget-notice",
+  "description": "Phase 14 left three loose ends",
   "keywords": [
     "phase",
-    "goal-legacy-resume-and-budget-notice"
+    "left",
+    "three",
+    "loose",
+    "ends"
   ],
-  "lastUpdated": "2026-10-24T19:03:22.549Z",
+  "lastUpdated": "2026-11-13T10:04:49.841Z",
   "specId": "015",
   "folderSlug": "goal-legacy-resume-and-budget-notice",
   "parentChain": [
@@ -14,6 +18,5 @@
     "002-create-goal-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

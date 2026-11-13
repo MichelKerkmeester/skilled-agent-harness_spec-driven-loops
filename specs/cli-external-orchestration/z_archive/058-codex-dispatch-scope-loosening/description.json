@@ -9,11 +9,12 @@
     "legal",
     "path"
   ],
-  "lastUpdated": "2026-08-30T09:08:50.432Z",
+  "lastUpdated": "2026-11-13T10:04:38.960Z",
   "specId": "058",
   "folderSlug": "codex-dispatch-scope-loosening",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

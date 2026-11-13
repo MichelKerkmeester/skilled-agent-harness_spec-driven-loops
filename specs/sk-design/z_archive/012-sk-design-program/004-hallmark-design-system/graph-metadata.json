@@ -44,7 +44,7 @@
       "objective"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -180,7 +180,7 @@
     ],
     "causal_summary": "The hallmark design system needed adopting into sk-design in a controlled way — surgical fixes first, then evidence envelopes, authored cards, brand-first authoring, and measured composition retrieval — rather than a single large change",
     "created_at": "2026-07-22T16:38:23.466Z",
-    "last_save_at": "2026-10-07T18:12:31.299Z",
+    "last_save_at": "2026-11-13T13:14:26.836Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -188,11 +188,11 @@
       "goal.md",
       "handover.md"
     ],
-    "source_fingerprint": "sha256:ce9751fc3bb27ce2152b6242665eb340e780990cc0b05ea5ef37090f52193c51",
+    "source_fingerprint": "sha256:52886cfa81a269f48d149e74ae388fa3352daf602a7ebffb9c82df29bdc1cd0c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e250cdcb4221acfedd2aa226a6bdca1af3048c5af322d93ed5eaf76ad1612ce5",
-      "handover.md": "800a594f51bd18acfc11895ddbaf67e7c0710e058ccee9844fc6a2c7480d6220"
+      "handover.md": "ff36756381fbe08fb0a519c113ac339e9af27e2cf6a64c343ef25fc1155fa134"
     },
     "last_active_child_id": "sk-design/012-sk-design-program/004-hallmark-design-system/005-measured-composition-and-retrieval-facets",
     "last_active_at": null

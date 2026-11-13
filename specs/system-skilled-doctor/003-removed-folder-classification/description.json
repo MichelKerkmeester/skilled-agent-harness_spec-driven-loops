@@ -1,29 +1,21 @@
 {
+  "level": "1",
   "specFolder": "system-skilled-doctor/003-removed-folder-classification",
-  "description": "Overlay engine treats upstream files inside a skill-root remove folder as removed, not live-edited; verify Barter items 1 to 5",
+  "description": "A skill-root overlay can remove folders from an upstream skill",
   "keywords": [
-    "overlay",
-    "engine",
-    "treats",
-    "upstream",
-    "files",
-    "inside",
     "skill-root",
+    "overlay",
     "remove",
-    "folder",
-    "removed",
-    "live-edited",
-    "verify",
-    "barter",
-    "items"
+    "folders",
+    "upstream",
+    "skill"
   ],
-  "lastUpdated": "2026-11-08T16:58:14.259Z",
+  "lastUpdated": "2026-11-13T10:05:03.394Z",
   "specId": "003",
   "folderSlug": "removed-folder-classification",
   "parentChain": [
     "system-skilled-doctor"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

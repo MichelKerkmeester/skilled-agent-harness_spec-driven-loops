@@ -13,11 +13,12 @@
     "including",
     "color"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.203Z",
+  "lastUpdated": "2026-11-13T10:04:49.450Z",
   "specId": "002",
   "folderSlug": "references",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "014-template-conformance",
     "002-design-interface"
   ],

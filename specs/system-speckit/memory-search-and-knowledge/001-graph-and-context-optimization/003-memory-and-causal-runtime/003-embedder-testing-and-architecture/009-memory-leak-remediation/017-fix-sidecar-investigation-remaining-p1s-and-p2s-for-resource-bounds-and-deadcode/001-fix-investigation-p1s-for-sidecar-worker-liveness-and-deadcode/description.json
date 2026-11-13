@@ -23,7 +23,7 @@
     "detection",
     "f14"
   ],
-  "lastUpdated": "2026-08-15T14:41:11.171Z",
+  "lastUpdated": "2026-11-13T10:05:08.084Z",
   "specId": "001",
   "folderSlug": "fix-investigation-p1s-for-sidecar-worker-liveness-and-deadcode",
   "parentChain": [

@@ -1,12 +1,21 @@
 {
   "level": "2",
   "specFolder": "sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/002-skill-routing-and-clarity/014-skill-router-files/009-ai-systems-verification",
-  "description": "Phase 9: ai-systems-verification",
+  "description": "Phase 008 moved the machine router of 16 AI Systems skills into sibling `ROUTER.md` files and reran its own baseline",
   "keywords": [
     "phase",
-    "ai-systems-verification"
+    "moved",
+    "machine",
+    "router",
+    "systems",
+    "skills",
+    "sibling",
+    "files",
+    "reran",
+    "own",
+    "baseline"
   ],
-  "lastUpdated": "2026-10-30T04:49:52.206Z",
+  "lastUpdated": "2026-11-13T10:04:51.879Z",
   "specId": "009",
   "folderSlug": "ai-systems-verification",
   "parentChain": [

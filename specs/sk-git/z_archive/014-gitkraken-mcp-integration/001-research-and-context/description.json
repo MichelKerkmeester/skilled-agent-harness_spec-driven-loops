@@ -20,11 +20,12 @@
     "real",
     "tool"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.176Z",
+  "lastUpdated": "2026-11-13T10:04:54.380Z",
   "specId": "001",
   "folderSlug": "research-and-context",
   "parentChain": [
     "sk-git",
+    "z_archive",
     "014-gitkraken-mcp-integration"
   ],
   "memorySequence": 0,

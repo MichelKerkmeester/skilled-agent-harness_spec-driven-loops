@@ -17,11 +17,12 @@
     "reach",
     "regardless"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.177Z",
+  "lastUpdated": "2026-11-13T10:04:54.381Z",
   "specId": "002",
   "folderSlug": "utcp-config-registration",
   "parentChain": [
     "sk-git",
+    "z_archive",
     "014-gitkraken-mcp-integration"
   ],
   "memorySequence": 0,

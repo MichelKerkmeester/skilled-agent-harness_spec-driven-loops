@@ -15,11 +15,12 @@
     "real",
     "cli-opencode"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.516Z",
+  "lastUpdated": "2026-11-13T10:04:48.982Z",
   "specId": "008",
   "folderSlug": "parity-proof-and-fallback-start",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "009-sk-design-claude-parity",
     "023-full-manual-playbook-execution"
   ],

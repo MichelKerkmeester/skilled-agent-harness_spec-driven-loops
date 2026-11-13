@@ -1,11 +1,18 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/006-cli-opencode-dual-dispatch",
-  "description": "Phase 6: cli-opencode-dual-dispatch",
+  "description": "The cli-opencode guard in `SKILL.md` line 134 runs `opencode --version | grep -q '^1\\.'`",
   "keywords": [
-    "phase",
-    "cli-opencode-dual-dispatch"
+    "cli-opencode",
+    "guard",
+    "skill",
+    "line",
+    "runs",
+    "opencode",
+    "version",
+    "grep"
   ],
-  "lastUpdated": "2026-10-18T12:45:06.213Z",
+  "lastUpdated": "2026-11-13T10:04:37.229Z",
   "specId": "006",
   "folderSlug": "cli-opencode-dual-dispatch",
   "parentChain": [
@@ -14,6 +21,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

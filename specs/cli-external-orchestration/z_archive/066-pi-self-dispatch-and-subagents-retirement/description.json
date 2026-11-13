@@ -10,11 +10,12 @@
     "packet",
     "reflected"
   ],
-  "lastUpdated": "2026-09-08T14:47:02.728Z",
+  "lastUpdated": "2026-11-13T10:04:39.011Z",
   "specId": "066",
   "folderSlug": "pi-self-dispatch-and-subagents-retirement",
   "parentChain": [
-    "cli-external-orchestration"
+    "cli-external-orchestration",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

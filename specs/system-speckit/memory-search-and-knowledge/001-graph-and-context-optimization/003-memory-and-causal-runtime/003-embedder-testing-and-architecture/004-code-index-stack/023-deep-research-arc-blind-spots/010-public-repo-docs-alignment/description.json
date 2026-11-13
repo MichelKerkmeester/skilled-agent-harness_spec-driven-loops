@@ -1,4 +1,5 @@
 {
+  "level": 1,
   "specFolder": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots/010-public-repo-docs-alignment",
   "description": "Bring public-repo documentation back into alignment with current code defaults (Qwen3-Reranker-0.6B, nomic-embed-text-v1.5, nomic-CodeRankEmbed,",
   "keywords": [
@@ -14,7 +15,7 @@
     "nomic-embed-text-v1",
     "nomic-coderankembed"
   ],
-  "lastUpdated": "2026-08-15T14:41:10.872Z",
+  "lastUpdated": "2026-11-13T10:05:07.249Z",
   "specId": "010",
   "folderSlug": "public-repo-docs-alignment",
   "parentChain": [
@@ -31,6 +32,5 @@
     "20-05-26_16-20__closed-the-residual-docs-alignment-gaps-remaining.md",
     "20-05-26_16-23__closed-the-residual-docs-alignment-gaps-remaining.md",
     "20-05-26_16-26__closed-the-residual-docs-alignment-gaps-remaining.md"
-  ],
-  "level": 1
+  ]
 }

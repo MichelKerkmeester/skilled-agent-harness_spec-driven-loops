@@ -1,18 +1,16 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/001-system-speckit-v4/059-phase-map-sync-normalization",
-  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+  "description": "Run on the v4 parent, `sync-phase-map-status.ts` proposed 38 map-row changes",
   "keywords": [
-    "broken",
-    "missing",
-    "inefficient",
-    "sentences",
-    "describing",
-    "specific",
-    "pain",
-    "point"
+    "run",
+    "parent",
+    "sync-phase-map-status",
+    "proposed",
+    "map-row",
+    "changes"
   ],
-  "lastUpdated": "2026-09-24T05:55:05.845Z",
+  "lastUpdated": "2026-11-13T10:05:21.800Z",
   "specId": "059",
   "folderSlug": "phase-map-sync-normalization",
   "parentChain": [

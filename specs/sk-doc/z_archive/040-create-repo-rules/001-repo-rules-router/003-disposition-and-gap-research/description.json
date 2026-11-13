@@ -10,11 +10,12 @@
     "rule",
     "set"
   ],
-  "lastUpdated": "2026-08-31T11:34:15.856Z",
+  "lastUpdated": "2026-11-13T10:04:54.054Z",
   "specId": "003",
   "folderSlug": "disposition-and-gap-research",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "040-create-repo-rules",
     "001-repo-rules-router"
   ],

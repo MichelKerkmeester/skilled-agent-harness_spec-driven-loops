@@ -1,11 +1,27 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/011-round-four-remediation/001-review-canary-pins",
-  "description": "Phase 1: review-canary-pins",
+  "description": "The review mode applies four `AGENTS.md` evidence floors (state what is inferred, read a command's output and exit status, treat a finding as a claim,",
   "keywords": [
-    "phase",
-    "review-canary-pins"
+    "review",
+    "mode",
+    "applies",
+    "four",
+    "agents",
+    "evidence",
+    "floors",
+    "state",
+    "inferred",
+    "read",
+    "command",
+    "output",
+    "exit",
+    "status",
+    "treat",
+    "finding",
+    "claim"
   ],
-  "lastUpdated": "2026-10-10T14:44:41.707Z",
+  "lastUpdated": "2026-11-13T10:04:45.768Z",
   "specId": "001",
   "folderSlug": "review-canary-pins",
   "parentChain": [
@@ -15,6 +31,5 @@
     "011-round-four-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

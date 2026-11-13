@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-deep-loop/z_archive/025-deep-loop-gpt-reliability/003-guard-and-enforcement/002-mk-deep-loop-guard-hardening",
   "description": "`cli-opencode/SKILL.md` now correctly documents that `orchestrate` may perform exactly one bounded hand-off dispatch to a command-owned loop executor",
   "keywords": [
@@ -18,7 +19,7 @@
     "loop",
     "executor"
   ],
-  "lastUpdated": "2026-08-15T14:41:07.381Z",
+  "lastUpdated": "2026-11-13T10:04:59.651Z",
   "specId": "002",
   "folderSlug": "mk-deep-loop-guard-hardening",
   "parentChain": [
@@ -28,6 +29,5 @@
     "003-guard-and-enforcement"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

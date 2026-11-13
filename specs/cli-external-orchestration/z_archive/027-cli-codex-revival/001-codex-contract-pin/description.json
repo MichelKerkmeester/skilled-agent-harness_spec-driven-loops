@@ -11,11 +11,12 @@
     "became",
     "unreliable"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.079Z",
+  "lastUpdated": "2026-11-13T10:04:38.450Z",
   "specId": "001",
   "folderSlug": "codex-contract-pin",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "027-cli-codex-revival"
   ],
   "memorySequence": 0,

@@ -1,12 +1,22 @@
 {
   "level": "3",
   "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/003-command-trigger-runtimes",
-  "description": "Phase 3: command-trigger-runtimes",
+  "description": "Codex, Cursor, Devin and Hermes expose no usage signal at all, so the context-threshold nudge and the Stop-event arming built for Claude, Pi and",
   "keywords": [
-    "phase",
-    "command-trigger-runtimes"
+    "codex",
+    "cursor",
+    "devin",
+    "hermes",
+    "expose",
+    "usage",
+    "signal",
+    "context-threshold",
+    "nudge",
+    "stop-event",
+    "arming",
+    "claude"
   ],
-  "lastUpdated": "2026-10-18T11:56:34.466Z",
+  "lastUpdated": "2026-11-13T10:04:41.518Z",
   "specId": "003",
   "folderSlug": "command-trigger-runtimes",
   "parentChain": [

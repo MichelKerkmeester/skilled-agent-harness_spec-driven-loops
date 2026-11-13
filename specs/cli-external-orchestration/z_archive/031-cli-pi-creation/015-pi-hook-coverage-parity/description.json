@@ -16,11 +16,12 @@
     "dispatch-preflight",
     "dispatch-audit"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.236Z",
+  "lastUpdated": "2026-11-13T10:04:38.727Z",
   "specId": "015",
   "folderSlug": "pi-hook-coverage-parity",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "031-cli-pi-creation"
   ],
   "memorySequence": 0,

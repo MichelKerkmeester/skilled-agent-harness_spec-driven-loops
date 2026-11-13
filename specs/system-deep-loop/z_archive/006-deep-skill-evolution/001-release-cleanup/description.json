@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup",
   "description": "The five deep- skills (`deep-loop-runtime`, `deep-research`, `deep-review`, `deep-ai-council`, `deep-agent-improvement`) each required release-cleanup",
   "keywords": [
@@ -13,7 +14,7 @@
     "required",
     "release-cleanup"
   ],
-  "lastUpdated": "2026-08-15T14:41:05.464Z",
+  "lastUpdated": "2026-11-13T10:04:56.534Z",
   "specId": "001",
   "folderSlug": "release-cleanup",
   "parentChain": [
@@ -22,6 +23,5 @@
     "006-deep-skill-evolution"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

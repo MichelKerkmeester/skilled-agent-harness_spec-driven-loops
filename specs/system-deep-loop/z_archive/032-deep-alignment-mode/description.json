@@ -17,11 +17,12 @@
     "sk-git",
     "commit"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.969Z",
+  "lastUpdated": "2026-11-13T10:05:00.931Z",
   "specId": "032",
   "folderSlug": "deep-alignment-mode",
   "parentChain": [
-    "system-deep-loop"
+    "system-deep-loop",
+    "z_archive"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

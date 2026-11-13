@@ -15,11 +15,12 @@
     "wiring",
     "work"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.182Z",
+  "lastUpdated": "2026-11-13T10:04:38.671Z",
   "specId": "004",
   "folderSlug": "hooks-manual-testing-results",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "030-cli-cursor-creation",
     "009-cursor-hooks-lifecycle"
   ],

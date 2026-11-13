@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/002-admission-corpus-pin",
-  "description": "Phase 2: admission-corpus-pin",
+  "description": "`LIVECORPUSSIZE` is a deliberate change detector: its comment says a change means scenarios were added and the baseline report needs a rerun",
   "keywords": [
-    "phase",
-    "admission-corpus-pin"
+    "livecorpussize",
+    "deliberate",
+    "change",
+    "detector",
+    "comment",
+    "says",
+    "means",
+    "scenarios",
+    "baseline",
+    "report",
+    "needs",
+    "rerun"
   ],
-  "lastUpdated": "2026-10-10T19:27:03.781Z",
+  "lastUpdated": "2026-11-13T10:04:45.959Z",
   "specId": "002",
   "folderSlug": "admission-corpus-pin",
   "parentChain": [
@@ -15,6 +26,5 @@
     "013-root-cause-and-ux-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

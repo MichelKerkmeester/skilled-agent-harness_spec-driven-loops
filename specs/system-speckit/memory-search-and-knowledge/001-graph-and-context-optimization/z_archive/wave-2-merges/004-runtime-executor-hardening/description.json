@@ -26,12 +26,13 @@
     "harder",
     "browse"
   ],
-  "lastUpdated": "2026-08-30T09:32:22.478Z",
+  "lastUpdated": "2026-11-13T13:19:11.781Z",
   "specId": "004",
   "folderSlug": "runtime-executor-hardening",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "z_archive",
     "wave-2-merges"
   ],

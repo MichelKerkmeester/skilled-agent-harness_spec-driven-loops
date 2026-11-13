@@ -1,12 +1,18 @@
 {
   "level": "1",
   "specFolder": "sk-git/commit-standards/005-git-setup-customization/003-improvement-research",
-  "description": "Phase 3: improvement-research",
+  "description": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
   "keywords": [
-    "phase",
-    "improvement-research"
+    "broken",
+    "missing",
+    "inefficient",
+    "sentences",
+    "describing",
+    "specific",
+    "pain",
+    "point"
   ],
-  "lastUpdated": "2026-10-15T14:23:53.676Z",
+  "lastUpdated": "2026-11-13T10:04:54.209Z",
   "specId": "003",
   "folderSlug": "improvement-research",
   "parentChain": [

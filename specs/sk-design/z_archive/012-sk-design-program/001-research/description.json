@@ -16,11 +16,12 @@
     "commands",
     "help"
   ],
-  "lastUpdated": "2026-08-15T14:40:57.956Z",
+  "lastUpdated": "2026-11-13T10:04:49.316Z",
   "specId": "001",
   "folderSlug": "research",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "012-sk-design-program"
   ],
   "memorySequence": 0,

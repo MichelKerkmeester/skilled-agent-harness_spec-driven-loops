@@ -1,11 +1,23 @@
 {
+  "level": "2",
   "specFolder": "sk-doc/document-standards/003-changelog-system",
-  "description": "Changelog format, retrofit, release line and spacing",
+  "description": "The changelog template prescribed machine-era tables and stale paths, and its workflow did not enforce the concise narrative style established by",
   "keywords": [
     "changelog",
-    "system"
+    "template",
+    "prescribed",
+    "machine-era",
+    "tables",
+    "stale",
+    "paths",
+    "workflow",
+    "enforce",
+    "concise",
+    "narrative",
+    "style",
+    "established"
   ],
-  "lastUpdated": "2026-10-31T13:31:06.000Z",
+  "lastUpdated": "2026-11-13T10:04:51.690Z",
   "specId": "003",
   "folderSlug": "changelog-system",
   "parentChain": [
@@ -13,6 +25,5 @@
     "document-standards"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

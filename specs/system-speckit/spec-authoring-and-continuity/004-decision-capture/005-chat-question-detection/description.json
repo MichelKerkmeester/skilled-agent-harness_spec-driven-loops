@@ -1,12 +1,23 @@
 {
   "level": "2",
   "specFolder": "system-speckit/spec-authoring-and-continuity/004-decision-capture/005-chat-question-detection",
-  "description": "Phase 5: chat-question-detection",
+  "description": "`chatCandidate` in `sweep-transcript.mjs` reads only the last paragraph of an assistant message and returns null unless that paragraph contains `?`",
   "keywords": [
-    "phase",
-    "chat-question-detection"
+    "chatcandidate",
+    "sweep-transcript",
+    "mjs",
+    "reads",
+    "only",
+    "last",
+    "paragraph",
+    "assistant",
+    "message",
+    "returns",
+    "null",
+    "unless",
+    "contains"
   ],
-  "lastUpdated": "2026-11-02T20:58:48.519Z",
+  "lastUpdated": "2026-11-13T10:05:29.672Z",
   "specId": "005",
   "folderSlug": "chat-question-detection",
   "parentChain": [

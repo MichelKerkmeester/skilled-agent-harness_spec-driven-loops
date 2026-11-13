@@ -11,11 +11,12 @@
     "uneven",
     "shape"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.889Z",
+  "lastUpdated": "2026-11-13T10:05:00.794Z",
   "specId": "012",
   "folderSlug": "deep-command-family-parity",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "030-deep-loop-unification"
   ],
   "memorySequence": 0,

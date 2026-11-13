@@ -141,17 +141,17 @@
     ],
     "causal_summary": "The deep-loop capability is split across five sibling skills — `deep-ai-council`, `deep-context`, `deep-improvement`, `deep-research`, `deep-review` — that already share one backend (`deep-loop-runtime`, the MCP-free runtime created by the FULLISOLATENOMCP consolidation)",
     "created_at": "2026-06-14T20:16:09.672Z",
-    "last_save_at": "2026-10-07T18:14:36.229Z",
+    "last_save_at": "2026-11-13T13:17:52.358Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:5216ae26684e3632f93e63c8c27a787fc7933449392682ecc0c9d49d56425ba2",
+    "source_fingerprint": "sha256:ffd48377cc64a3ea35371d5f7ae660c0a9a84ca6b5d920da6974ad2c60378995",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "074e55b372d6c2cc40b1209ff264d2363e838a6fde29bd69f724e8a08de834b0",
+      "spec.md": "eee675e0cb642c90c5640e8a1022055a8eb6bed441c01a52e8aa504a94729a2c",
       "research/research.md": "d3e6246e54bc9a64268e51d35e5c7c54dabd21ec4630ef9eec6c9cdc00bd26ea"
     },
     "last_active_child_id": "system-deep-loop/z_archive/023-deep-loop-workflows/004-command-surface-repoint",

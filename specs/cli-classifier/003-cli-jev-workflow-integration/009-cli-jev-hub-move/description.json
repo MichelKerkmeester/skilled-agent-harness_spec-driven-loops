@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/009-cli-jev-hub-move",
-  "description": "Phase 2: cli-jev-hub-move",
+  "description": "Decision D2 of the parent goal puts both classifier transports under one hub, but `cli-jev` is its own hub today with one mode",
   "keywords": [
-    "phase",
-    "cli-jev-hub-move"
+    "decision",
+    "parent",
+    "goal",
+    "puts",
+    "classifier",
+    "transports",
+    "one",
+    "hub",
+    "cli-jev",
+    "own",
+    "today",
+    "mode"
   ],
-  "lastUpdated": "2026-09-27T09:21:56.935Z",
+  "lastUpdated": "2026-11-13T10:04:35.937Z",
   "specId": "009",
   "folderSlug": "cli-jev-hub-move",
   "parentChain": [
@@ -13,6 +24,5 @@
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

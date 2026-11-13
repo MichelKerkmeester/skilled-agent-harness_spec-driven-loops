@@ -1,11 +1,17 @@
 {
+  "level": "1",
   "specFolder": "commands/002-doctor-audit-and-fixes/002-doctor-audit-followups/007-speckit-router-contract-drift",
-  "description": "Phase 7: speckit-router-contract-drift",
+  "description": "`generate-command-routers.cjs --check` exits 1 with three path drifts",
   "keywords": [
-    "phase",
-    "speckit-router-contract-drift"
+    "generate-command-routers",
+    "cjs",
+    "check",
+    "exits",
+    "three",
+    "path",
+    "drifts"
   ],
-  "lastUpdated": "2026-10-04T05:02:38.121Z",
+  "lastUpdated": "2026-11-13T10:04:39.290Z",
   "specId": "007",
   "folderSlug": "speckit-router-contract-drift",
   "parentChain": [
@@ -14,6 +20,5 @@
     "002-doctor-audit-followups"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

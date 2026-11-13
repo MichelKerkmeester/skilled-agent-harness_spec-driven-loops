@@ -14,11 +14,12 @@
     "bridges",
     "reference"
   ],
-  "lastUpdated": "2026-08-30T07:16:18.867Z",
+  "lastUpdated": "2026-11-13T10:04:53.746Z",
   "specId": "004",
   "folderSlug": "hooks",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "020-hyphen-naming-convention",
     "008-component-migration",
     "009-system-skill-advisor"

@@ -1,4 +1,5 @@
 {
+  "level": "3",
   "specFolder": "sk-doc/z_archive/025-skill-doc-currency/002-create-skill-canon-self-consistency",
   "description": "A canon that contradicts itself cannot be enforced, and this one contradicts itself in the most consequential place",
   "keywords": [
@@ -11,14 +12,14 @@
     "consequential",
     "place"
   ],
-  "lastUpdated": "2026-08-15T14:41:01.468Z",
+  "lastUpdated": "2026-11-13T10:04:53.836Z",
   "specId": "002",
   "folderSlug": "create-skill-canon-self-consistency",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "025-skill-doc-currency"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

@@ -14,11 +14,12 @@
     "nothing",
     "about"
   ],
-  "lastUpdated": "2026-08-15T14:40:56.471Z",
+  "lastUpdated": "2026-11-13T10:04:42.834Z",
   "specId": "012",
   "folderSlug": "skill-support-extension",
   "parentChain": [
     "mcp-tooling",
+    "z_archive",
     "013-mcp-obsidian"
   ],
   "memorySequence": 0,

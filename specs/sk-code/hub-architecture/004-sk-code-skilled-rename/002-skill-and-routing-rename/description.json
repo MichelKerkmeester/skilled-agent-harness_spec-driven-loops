@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/004-sk-code-skilled-rename/002-skill-and-routing-rename",
-  "description": "Phase 2: skill-and-routing-rename",
+  "description": "The surface packet for this framework's own code is called `sk-code-opencode`, with the routing alias `code-opencode` and the surface id OPENCODE",
   "keywords": [
-    "phase",
-    "skill-and-routing-rename"
+    "surface",
+    "packet",
+    "framework",
+    "own",
+    "code",
+    "called",
+    "sk-code-opencode",
+    "routing",
+    "alias",
+    "code-opencode",
+    "opencode"
   ],
-  "lastUpdated": "2026-10-18T17:32:13.800Z",
+  "lastUpdated": "2026-11-13T10:04:46.939Z",
   "specId": "002",
   "folderSlug": "skill-and-routing-rename",
   "parentChain": [
@@ -14,6 +24,5 @@
     "004-sk-code-skilled-rename"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,11 +1,23 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/010-round-three-remediation/005-opencode-and-guards",
-  "description": "Phase 5: opencode-and-guards",
+  "description": "Every round-three drift cluster sits in prose that no guard reads: the routers and manifests were updated after each rename and all pass, while the",
   "keywords": [
-    "phase",
-    "opencode-and-guards"
+    "every",
+    "round-three",
+    "drift",
+    "cluster",
+    "sits",
+    "prose",
+    "guard",
+    "reads",
+    "routers",
+    "manifests",
+    "rename",
+    "pass",
+    "while"
   ],
-  "lastUpdated": "2026-10-10T10:07:21.926Z",
+  "lastUpdated": "2026-11-13T10:04:45.707Z",
   "specId": "005",
   "folderSlug": "opencode-and-guards",
   "parentChain": [
@@ -15,6 +27,5 @@
     "010-round-three-remediation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

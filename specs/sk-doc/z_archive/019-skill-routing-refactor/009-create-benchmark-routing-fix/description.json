@@ -16,11 +16,12 @@
     "terms",
     "benchmarkreport"
   ],
-  "lastUpdated": "2026-08-15T14:40:59.384Z",
+  "lastUpdated": "2026-11-13T10:04:52.700Z",
   "specId": "009",
   "folderSlug": "create-benchmark-routing-fix",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "019-skill-routing-refactor"
   ],
   "memorySequence": 0,

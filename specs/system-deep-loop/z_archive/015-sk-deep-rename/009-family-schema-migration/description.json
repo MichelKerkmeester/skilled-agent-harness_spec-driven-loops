@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/z_archive/015-sk-deep-rename/009-family-schema-migration",
   "description": "Phase 008 attempted the `sk-deep` to `deep-loop` internal family rename, but the existing SQLite-backed skill graph schema rejects `deep-loop` inserts",
   "keywords": [
@@ -17,7 +18,7 @@
     "rejects",
     "inserts"
   ],
-  "lastUpdated": "2026-08-15T14:41:06.188Z",
+  "lastUpdated": "2026-11-13T10:04:57.340Z",
   "specId": "009",
   "folderSlug": "family-schema-migration",
   "parentChain": [
@@ -26,6 +27,5 @@
     "015-sk-deep-rename"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

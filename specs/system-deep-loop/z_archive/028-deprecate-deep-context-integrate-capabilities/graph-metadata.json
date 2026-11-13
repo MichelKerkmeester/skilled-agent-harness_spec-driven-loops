@@ -91,16 +91,16 @@
     ],
     "causal_summary": "The deep-loop framework still exposes a standalone `deep-context` route through command, agent, nested skill, registry, advisor, generated contract, documentation, fixture, and benchmark surfaces",
     "created_at": "2026-07-04T10:46:17Z",
-    "last_save_at": "2026-10-07T18:14:37.847Z",
+    "last_save_at": "2026-11-13T13:18:21.907Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:a6e6e61c12c484cf6298e6058385fcaa18535c785bbbfb531eb49b326bc6378f",
+    "source_fingerprint": "sha256:44ebeb3af64b98296798a44dde3a0438868762061b61fbf9d70d97c46b6a2e3e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2b11fef2866f063fd60f930ae8edf283225ae2629d2aa47e8b33820124ed44fa"
+      "spec.md": "15a66b73db9d07c948705c35bfbfc2ce025f82d8b9ae321ae4b97bd7832b26a3"
     },
     "last_active_child_id": "system-deep-loop/z_archive/028-deprecate-deep-context-integrate-capabilities/004-fixtures-benchmarks-and-runtime-cleanup",
     "last_active_at": null

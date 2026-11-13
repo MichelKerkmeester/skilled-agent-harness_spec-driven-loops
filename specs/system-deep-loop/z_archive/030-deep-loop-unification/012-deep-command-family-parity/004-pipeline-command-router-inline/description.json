@@ -17,11 +17,12 @@
     "family",
     "still"
   ],
-  "lastUpdated": "2026-08-15T14:41:02.888Z",
+  "lastUpdated": "2026-11-13T10:05:00.793Z",
   "specId": "004",
   "folderSlug": "pipeline-command-router-inline",
   "parentChain": [
     "system-deep-loop",
+    "z_archive",
     "030-deep-loop-unification",
     "012-deep-command-family-parity"
   ],

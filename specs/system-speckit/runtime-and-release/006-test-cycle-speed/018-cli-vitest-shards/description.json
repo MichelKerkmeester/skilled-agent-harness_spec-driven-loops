@@ -1,12 +1,21 @@
 {
   "level": "1",
   "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/018-cli-vitest-shards",
-  "description": "Phase 18: cli-vitest-shards",
+  "description": "The `cli-vitest` job in `.github/workflows/spec-kit-check.yml` is the slowest check a spec-kit push waits on",
   "keywords": [
-    "phase",
-    "cli-vitest-shards"
+    "cli-vitest",
+    "job",
+    "github",
+    "workflows",
+    "spec-kit-check",
+    "yml",
+    "slowest",
+    "check",
+    "spec-kit",
+    "push",
+    "waits"
   ],
-  "lastUpdated": "2026-11-12T17:43:59.654Z",
+  "lastUpdated": "2026-11-13T10:05:23.845Z",
   "specId": "018",
   "folderSlug": "cli-vitest-shards",
   "parentChain": [

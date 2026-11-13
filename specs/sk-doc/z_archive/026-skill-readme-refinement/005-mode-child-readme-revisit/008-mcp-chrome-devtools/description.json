@@ -19,11 +19,12 @@
     "voice",
     "rules"
   ],
-  "lastUpdated": "2026-08-30T07:16:20.481Z",
+  "lastUpdated": "2026-11-13T10:04:53.862Z",
   "specId": "008",
   "folderSlug": "mcp-chrome-devtools",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "026-skill-readme-refinement",
     "005-mode-child-readme-revisit"
   ],

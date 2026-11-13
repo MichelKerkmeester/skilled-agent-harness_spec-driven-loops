@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/015-hook-suite-job-split",
-  "description": "Phase 15: hook-suite-job-split",
+  "description": "`dispatch-enforcement-guard.yml` holds two jobs: `dispatch-enforcement-guard` runs `node --test` over one dispatch rule suite",
   "keywords": [
-    "phase",
-    "hook-suite-job-split"
+    "dispatch-enforcement-guard",
+    "yml",
+    "holds",
+    "two",
+    "jobs",
+    "runs",
+    "node",
+    "test",
+    "one",
+    "dispatch",
+    "rule",
+    "suite"
   ],
-  "lastUpdated": "2026-11-12T08:22:01.554Z",
+  "lastUpdated": "2026-11-13T10:05:23.832Z",
   "specId": "015",
   "folderSlug": "hook-suite-job-split",
   "parentChain": [
@@ -14,6 +25,5 @@
     "006-test-cycle-speed"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

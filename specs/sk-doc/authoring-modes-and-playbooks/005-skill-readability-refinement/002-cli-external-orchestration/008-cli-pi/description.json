@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/002-cli-external-orchestration/008-cli-pi",
-  "description": "Phase 8: cli-pi",
+  "description": "The docs of the `.skilled/skills/cli-external-orchestration/cli-pi` mode were never read as a whole for readability, layout and structure",
   "keywords": [
-    "phase",
-    "cli-pi"
+    "docs",
+    "skilled",
+    "skills",
+    "cli-external-orchestration",
+    "cli-pi",
+    "mode",
+    "never",
+    "read",
+    "whole",
+    "readability",
+    "layout",
+    "structure"
   ],
-  "lastUpdated": "2026-11-04T07:16:25.632Z",
+  "lastUpdated": "2026-11-13T10:04:51.006Z",
   "specId": "008",
   "folderSlug": "cli-pi",
   "parentChain": [
@@ -15,6 +26,5 @@
     "002-cli-external-orchestration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

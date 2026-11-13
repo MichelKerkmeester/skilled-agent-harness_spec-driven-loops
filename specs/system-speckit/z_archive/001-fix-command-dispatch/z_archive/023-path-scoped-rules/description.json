@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/001-fix-command-dispatch/z_archive/023-path-scoped-rules",
   "description": "This parent packet coordinates the phased work under `023 Path Scoped Rules` so the child packets stay discoverable and the root purpose remains clear",
   "keywords": [
@@ -19,7 +20,7 @@
     "remains",
     "clear"
   ],
-  "lastUpdated": "2026-08-15T14:41:14.780Z",
+  "lastUpdated": "2026-11-13T13:19:17.260Z",
   "specId": "023",
   "folderSlug": "path-scoped-rules",
   "parentChain": [
@@ -31,6 +32,5 @@
   "memorySequence": 1,
   "memoryNameHistory": [
     "Feature Specification: 023 Path Scoped Rules"
-  ],
-  "level": "2"
+  ]
 }

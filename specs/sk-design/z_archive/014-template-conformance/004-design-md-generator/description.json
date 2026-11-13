@@ -15,11 +15,12 @@
     "skill",
     "readme"
   ],
-  "lastUpdated": "2026-08-15T14:40:58.305Z",
+  "lastUpdated": "2026-11-13T10:04:49.481Z",
   "specId": "004",
   "folderSlug": "design-md-generator",
   "parentChain": [
     "sk-design",
+    "z_archive",
     "014-template-conformance"
   ],
   "memorySequence": 0,

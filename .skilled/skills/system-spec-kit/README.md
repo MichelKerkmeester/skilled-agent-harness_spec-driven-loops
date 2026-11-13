@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.36.0
+version: 2.7.37.0
 ---
 
 # System Spec Kit
@@ -329,7 +329,7 @@ System Spec Kit has no memory MCP server. Its search pipeline, query intelligenc
 Retrieval is two lexical lanes: the committed trigger index, which on a zero-hit also checks unindexed spec docs in the working tree, and ripgrep over the working tree.
 
 - **Trigger-index lookup:** `lookup-trigger-index.mjs` matches a prompt against author-declared `trigger_phrases` through the generated index.
-- **Free-text retrieval:** the ripgrep recipes in `references/retrieval/retrieval-conventions.md` find a phrase anywhere in the corpus. The `rg-wrapper.mjs` structured recipe shows each file once at its best line, cuts at `--limit` files (default 20, `--limit 0` uncapped) and reports the hidden files and matches. The path-only and count recipes take the same limit.
+- **Free-text retrieval:** the ripgrep recipes in `references/retrieval/retrieval-conventions.md` find a phrase anywhere in the corpus. The `rg-wrapper.mjs` structured recipe shows each file once at its best line, cuts at `--limit` files (default 20, `--limit 0` uncapped) and reports the hidden files and matches. The path-only and count recipes take the same limit. Archived packets are left out by default. `--include-archive` searches them as well, marks each archived path `[archived]` and lists the `description.json` and `graph-metadata.json` files of archived packets that hold the phrase.
 - **Continuity:** `runtime/cli/dist/continuity/generate-context.js` writes it into the packet itself, and `/speckit:resume` reads it back through the ladder it walks.
 - **Declared losses:** semantic paraphrase, ranking fusion, decay, access tracking, session dedup and graph traversal have no successor, so a phrase nobody wrote is a clean no-hit.
 
@@ -624,7 +624,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/<tr
 | Script | Purpose |
 |---|---|
 | `create.sh` | create spec folders with level-appropriate templates, `--phase` for parent plus child folders |
-| `validate.sh` | run the validation set from the 42-rule registry, `--strict` for strict-only rules, `--recursive` for phase folders, `--verbose` for details, `--quiet` for the result line only. A `--strict` run on a Draft packet whose only errors are derived metadata repairs it once and revalidates, so it can write files, and `SPECKIT_DRAFT_AUTO_REPAIR=0` turns that off |
+| `validate.sh` | run the validation set from the 42-rule registry, `--strict` for strict-only rules, `--recursive` for phase folders, `--include-archive` with `--recursive` to also validate packets in the `z_archive/` of the folder given and, for a track root, of each declared sub-track, `--verbose` for details, `--quiet` for the result line only. A `--strict` run on a Draft packet whose only errors are derived metadata repairs it once and revalidates, so it can write files, and `SPECKIT_DRAFT_AUTO_REPAIR=0` turns that off |
 | `upgrade-level.sh` | render additional Level contract sections for a higher level |
 | `recommend-level.sh` | analyze scope and risk to recommend the right level |
 | `calculate-completeness.sh` | calculate spec folder completeness as a percentage |
@@ -635,7 +635,9 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/<tr
 | `check-template-staleness.sh` | detect templates that need regeneration |
 | `progressive-validate.sh` | progressive validation for in-progress work |
 | `quality-audit.sh` | run a quality audit on spec folder content |
-| `archive.sh` | archive completed spec folders |
+| `archive.sh` | archive completed spec folders into the `z_archive/` beside them, which for a packet in a declared sub-track is the sub-track's own `z_archive/`. `--restore` returns a folder to the place its archive belongs to, and when a live packet already holds its number it lands on the next free number, counting archived packets, through `relocate.mjs`. After an archive or a plain restore the description cache `specs/descriptions.json` is rebuilt when it exists |
+| `relocate.mjs` | move, renumber or re-parent spec packets and rewrite every store that records the path, from `--map <file.json>`, `--from` with `--to`, `--renumber <folder>` or `--declare-subtrack <track>/<name>`. Dry run by default, `--apply` writes |
+| `suggest-subtracks.mjs` | propose a whole-track sub-track map for a flat track, or with `--describe` name the declared sub-track a new packet fits best. Prints the proposal and writes nothing |
 | `test-validation.sh` | test the validation rules themselves |
 
 ### Scripts That Maintain Continuity

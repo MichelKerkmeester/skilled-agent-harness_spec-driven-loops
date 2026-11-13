@@ -1,11 +1,19 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/006-sk-code/003-sk-code-frontend",
-  "description": "Phase 3: sk-code-frontend",
+  "description": "The docs of the `sk-code-frontend` mode were never read as a whole for readability, layout and structure",
   "keywords": [
-    "phase",
-    "sk-code-frontend"
+    "docs",
+    "sk-code-frontend",
+    "mode",
+    "never",
+    "read",
+    "whole",
+    "readability",
+    "layout",
+    "structure"
   ],
-  "lastUpdated": "2026-11-04T07:16:34.560Z",
+  "lastUpdated": "2026-11-13T10:04:51.188Z",
   "specId": "003",
   "folderSlug": "sk-code-frontend",
   "parentChain": [
@@ -15,6 +23,5 @@
     "006-sk-code"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

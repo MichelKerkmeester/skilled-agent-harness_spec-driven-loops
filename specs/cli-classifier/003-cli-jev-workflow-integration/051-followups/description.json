@@ -1,12 +1,16 @@
 {
   "level": "1",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/051-followups",
-  "description": "Phase 51: followups",
+  "description": "Phase 050 kept Pi as the default and left open items",
   "keywords": [
     "phase",
-    "followups"
+    "kept",
+    "default",
+    "left",
+    "open",
+    "items"
   ],
-  "lastUpdated": "2026-10-04T12:11:28.007Z",
+  "lastUpdated": "2026-11-13T10:04:36.796Z",
   "specId": "051",
   "folderSlug": "followups",
   "parentChain": [

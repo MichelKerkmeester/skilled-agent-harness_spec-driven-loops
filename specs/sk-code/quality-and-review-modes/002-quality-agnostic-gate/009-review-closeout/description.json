@@ -1,11 +1,19 @@
 {
+  "level": "2",
   "specFolder": "sk-code/quality-and-review-modes/002-quality-agnostic-gate/009-review-closeout",
-  "description": "Phase 9: review-closeout",
+  "description": "The review found that the gate still trusts too much and claims too much in a few places",
   "keywords": [
-    "phase",
-    "review-closeout"
+    "review",
+    "found",
+    "gate",
+    "still",
+    "trusts",
+    "too",
+    "much",
+    "claims",
+    "places"
   ],
-  "lastUpdated": "2026-10-26T15:21:49.326Z",
+  "lastUpdated": "2026-11-13T10:04:47.128Z",
   "specId": "009",
   "folderSlug": "review-closeout",
   "parentChain": [
@@ -14,6 +22,5 @@
     "002-quality-agnostic-gate"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -1,11 +1,21 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/006-sk-prompt",
-  "description": "Phase 6: sk-prompt",
+  "description": "SP-008 prints a four-item checklist and sets `needsdisambiguation`, but never answers it, so the effect of the answer is untested",
   "keywords": [
-    "phase",
-    "sk-prompt"
+    "sp-008",
+    "prints",
+    "four-item",
+    "checklist",
+    "sets",
+    "needsdisambiguation",
+    "never",
+    "answers",
+    "effect",
+    "answer",
+    "untested"
   ],
-  "lastUpdated": "2026-11-02T18:33:51.317Z",
+  "lastUpdated": "2026-11-13T10:04:50.124Z",
   "specId": "006",
   "folderSlug": "sk-prompt",
   "parentChain": [
@@ -15,6 +25,5 @@
     "004-conversation-adoption-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,11 +1,14 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/013-root-cause-and-ux-research/005-readme-node-floor",
-  "description": "Phase 5: readme-node-floor",
+  "description": "The README prerequisite says Node.js 20.11+",
   "keywords": [
-    "phase",
-    "readme-node-floor"
+    "readme",
+    "prerequisite",
+    "says",
+    "node"
   ],
-  "lastUpdated": "2026-10-10T19:27:06.821Z",
+  "lastUpdated": "2026-11-13T10:04:45.966Z",
   "specId": "005",
   "folderSlug": "readme-node-floor",
   "parentChain": [
@@ -15,6 +18,5 @@
     "013-root-cause-and-ux-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

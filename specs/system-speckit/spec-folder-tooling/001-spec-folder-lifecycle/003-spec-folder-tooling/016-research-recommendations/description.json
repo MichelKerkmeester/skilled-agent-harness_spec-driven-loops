@@ -1,12 +1,24 @@
 {
   "level": "2",
   "specFolder": "system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/003-spec-folder-tooling/016-research-recommendations",
-  "description": "Phase 16: research-recommendations",
+  "description": "The tools that scaffold, archive, heal and index spec packets kept producing failures that the corpus-wide repair then had to clean up by hand: a",
   "keywords": [
-    "phase",
-    "research-recommendations"
+    "tools",
+    "scaffold",
+    "archive",
+    "heal",
+    "index",
+    "spec",
+    "packets",
+    "kept",
+    "producing",
+    "failures",
+    "corpus-wide",
+    "repair",
+    "clean",
+    "hand"
   ],
-  "lastUpdated": "2026-10-09T10:08:37.068Z",
+  "lastUpdated": "2026-11-13T10:05:31.874Z",
   "specId": "016",
   "folderSlug": "research-recommendations",
   "parentChain": [

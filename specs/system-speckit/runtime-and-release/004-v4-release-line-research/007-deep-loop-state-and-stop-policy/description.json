@@ -1,11 +1,16 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/runtime-and-release/004-v4-release-line-research/007-deep-loop-state-and-stop-policy",
-  "description": "Phase 7: deep-loop-state-and-stop-policy",
+  "description": "The deep loops report state that does not match what ran",
   "keywords": [
-    "phase",
-    "deep-loop-state-and-stop-policy"
+    "deep",
+    "loops",
+    "report",
+    "state",
+    "match",
+    "ran"
   ],
-  "lastUpdated": "2026-11-08T23:39:00.100Z",
+  "lastUpdated": "2026-11-13T10:05:23.465Z",
   "specId": "007",
   "folderSlug": "deep-loop-state-and-stop-policy",
   "parentChain": [
@@ -14,6 +19,5 @@
     "004-v4-release-line-research"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

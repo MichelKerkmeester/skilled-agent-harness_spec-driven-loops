@@ -1,0 +1,32 @@
+npm test baseline, captured 2026-11-13 before the first code edit
+Command: cd .skilled/skills/system-spec-kit/runtime/cli && npm test
+Exit status: 0
+
+Summary lines (verbatim from the run):
+263: Test Files  206 passed | 3 skipped (209)
+264:      Tests  2524 passed | 20 skipped (2544)
+930:✅ Passed:  266
+931:❌ Failed:  0
+932:⏭️  Skipped: 5
+933:📝 Total:   271
+1478:  Total:   274
+1479:  Passed:  268
+1480:  Failed:  0
+1481:  Skipped: 6
+1551:Result: passed=51 failed=0
+1584:Result: passed=27 failed=0
+1845:  [PASS]  Passed:  101
+1846:  [FAIL]  Failed:  0
+1847:  [SKIP]  Skipped: 1
+1848:  Total:  102
+1952:  Passed:  31
+1953:  Failed:  0
+1954:  Skipped: 0
+1956:  Total:   31
+2151:  Passed:  84
+2152:  Failed:  0
+2153:  Skipped: 0
+2155:  Total:   84
+2275:Results: 12 passed, 0 failed
+2283:Results: 2 passed, 0 failed
+2327:  Results: 12 passed, 0 failed (of 12)

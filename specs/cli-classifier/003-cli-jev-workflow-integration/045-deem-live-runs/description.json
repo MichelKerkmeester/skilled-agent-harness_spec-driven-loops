@@ -1,11 +1,26 @@
 {
+  "level": "2",
   "specFolder": "cli-classifier/003-cli-jev-workflow-integration/045-deem-live-runs",
-  "description": "Phase 45: deem-live-runs",
+  "description": "Until phase 044 every `noul` and `score` call through `cli-deem` exited 1, so no scorer's Deem arm has a measured result, and the one local run of",
   "keywords": [
+    "until",
     "phase",
-    "deem-live-runs"
+    "every",
+    "noul",
+    "score",
+    "call",
+    "cli-deem",
+    "exited",
+    "scorer",
+    "deem",
+    "arm",
+    "measured",
+    "result",
+    "one",
+    "local",
+    "run"
   ],
-  "lastUpdated": "2026-10-02T07:13:44.735Z",
+  "lastUpdated": "2026-11-13T10:04:36.557Z",
   "specId": "045",
   "folderSlug": "deem-live-runs",
   "parentChain": [
@@ -13,6 +28,5 @@
     "003-cli-jev-workflow-integration"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

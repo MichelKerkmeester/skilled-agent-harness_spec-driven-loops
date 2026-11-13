@@ -26,12 +26,13 @@
     "cpu",
     "behavior"
   ],
-  "lastUpdated": "2026-09-07T16:18:00.539Z",
+  "lastUpdated": "2026-11-13T10:05:09.854Z",
   "specId": "014",
   "folderSlug": "041-llama-cpp-metal-investigation",
   "parentChain": [
     "system-speckit",
-    "026-graph-and-context-optimization",
+    "memory-search-and-knowledge",
+    "001-graph-and-context-optimization",
     "z_archive",
     "wave-2-shallow-medium"
   ],

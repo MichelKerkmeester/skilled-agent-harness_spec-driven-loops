@@ -1,11 +1,22 @@
 {
+  "level": "1",
   "specFolder": "sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/004-conversation-adoption-build/018-runner-gaps",
-  "description": "Phase 18: runner-gaps",
+  "description": "Six scenarios meet Q2 but the runner cannot play them: its runtimes are claude-code, opencode, codex, pi and devin",
   "keywords": [
-    "phase",
-    "runner-gaps"
+    "six",
+    "scenarios",
+    "meet",
+    "runner",
+    "cannot",
+    "play",
+    "them",
+    "runtimes",
+    "claude-code",
+    "opencode",
+    "codex",
+    "devin"
   ],
-  "lastUpdated": "2026-11-02T18:33:59.285Z",
+  "lastUpdated": "2026-11-13T10:04:50.146Z",
   "specId": "018",
   "folderSlug": "runner-gaps",
   "parentChain": [
@@ -15,6 +26,5 @@
     "004-conversation-adoption-build"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

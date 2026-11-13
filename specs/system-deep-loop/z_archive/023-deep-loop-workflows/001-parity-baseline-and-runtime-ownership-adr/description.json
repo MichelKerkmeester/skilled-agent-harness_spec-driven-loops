@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-deep-loop/z_archive/023-deep-loop-workflows/001-parity-baseline-and-runtime-ownership-adr",
   "description": "A structure-only merge can silently change behavior",
   "keywords": [
@@ -8,7 +9,7 @@
     "change",
     "behavior"
   ],
-  "lastUpdated": "2026-08-15T14:41:06.935Z",
+  "lastUpdated": "2026-11-13T13:17:51.473Z",
   "specId": "001",
   "folderSlug": "parity-baseline-and-runtime-ownership-adr",
   "parentChain": [
@@ -17,6 +18,5 @@
     "023-deep-loop-workflows"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

@@ -17,11 +17,12 @@
     "files",
     "code-graph"
   ],
-  "lastUpdated": "2026-09-04T17:50:17.396Z",
+  "lastUpdated": "2026-11-13T10:04:52.180Z",
   "specId": "006",
   "folderSlug": "subheadings-advisor-codegraph",
   "parentChain": [
     "sk-doc",
+    "z_archive",
     "016-create-diff-mode",
     "012-feature-catalog-template-improvements"
   ],

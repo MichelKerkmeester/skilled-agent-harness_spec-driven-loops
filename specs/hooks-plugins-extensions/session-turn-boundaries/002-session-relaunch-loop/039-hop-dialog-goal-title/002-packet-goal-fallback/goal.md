@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-11-13T19:45:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Recorded the packet goal fallback, its tests and the checks run in worktree 366"
-    next_safe_action: "Operator decides on merge and push of worktree 366"
+    next_safe_action: "None. Merged into main and pushed on 2026-11-13"
     blockers: []
     key_files: [".skilled/hooks/session-relaunch/lib/relaunch-core.cjs", ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs"]
     session_dedup:
@@ -83,11 +83,11 @@ and findings belong here.
 | Tests after edit | Done | `scratch/green.txt`: 159 of 159. Rerun 2026-11-13: 159 of 159, exit 0. New CLI test rerun: 1 of 1, exit 0 |
 | Mutation check | Done | Reported by the orchestrator: removing `if (!whole) return none;` fails `a log read only in part` |
 | Whole suites | Done | Run by the orchestrator at the final state: relaunch and OpenCode plugin suites 1536 of 1536, goal hook suites 200 of 200, Pi adapter suite 62 of 62, the node suites with exit 0 |
-| Commit | Done | `c461b79a71` on `worktrees/366-hop-after-question-dialog`. Not merged, not pushed. These documents are committed on the same branch |
+| Commit | Done | `c461b79a71` on `worktrees/366-hop-after-question-dialog`. These documents are committed on the same branch |
 | Packet documents | Done | 2026-11-13: spec, plan, tasks, criteria, summary and goal written from the diff, the saved runs and the orchestrator's facts. Every criterion Met |
 | Validation | Done | 2026-11-13: `repair-derived.cjs --apply` re-derived the graph metadata, then `validate.sh ... --strict` printed `Errors: 0  Warnings: 0` and `RESULT: PASSED` |
 | Goal budget | Not applicable | `goal.cjs packet` prints `packet_durable_chars=2273` and `packet_budget=unknown`. A leaf phase child has no slice budget, as for sibling 001 |
-| Merge and push | Not started | Waits on the operator |
+| Merge and push | Done | 2026-11-13: merged into main as `bc670ffc21` and pushed, on the operator's answers "Merge to main locally (Recommended)" and "Push after tests pass (Recommended)" |
 
 ### Deviations and findings
 

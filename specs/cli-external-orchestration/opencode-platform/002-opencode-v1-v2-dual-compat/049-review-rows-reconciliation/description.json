@@ -1,12 +1,20 @@
 {
+  "level": "1",
   "specFolder": "cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/049-review-rows-reconciliation",
-  "description": "Reconcile the 039 review rows with the 040 to 042 fixes",
+  "description": "On main, `039-sk-code-opencode-alignment-audit/review.md` still marked the 35 findings fixed by phases 040, 041 and 042 as \"held: behaviour change",
   "keywords": [
-    "reconcile",
+    "main",
+    "039-sk-code-opencode-alignment-audit",
     "review",
-    "rows"
+    "still",
+    "marked",
+    "findings",
+    "phases",
+    "held",
+    "behaviour",
+    "change"
   ],
-  "lastUpdated": "2026-10-21T15:44:40.985Z",
+  "lastUpdated": "2026-11-13T10:04:37.625Z",
   "specId": "049",
   "folderSlug": "review-rows-reconciliation",
   "parentChain": [
@@ -15,6 +23,5 @@
     "002-opencode-v1-v2-dual-compat"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

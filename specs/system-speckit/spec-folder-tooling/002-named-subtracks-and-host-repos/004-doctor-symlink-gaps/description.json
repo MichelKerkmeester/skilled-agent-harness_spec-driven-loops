@@ -1,11 +1,20 @@
 {
+  "level": "1",
   "specFolder": "system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/004-doctor-symlink-gaps",
-  "description": "Phase 4: doctor-symlink-gaps",
+  "description": "In `planMergeTree`, the host-relative branch (`symlink-engine.cjs:814-822`) pushes a `link` action and never pushes to `ignoreCandidates`",
   "keywords": [
-    "phase",
-    "doctor-symlink-gaps"
+    "planmergetree",
+    "host-relative",
+    "branch",
+    "symlink-engine",
+    "cjs",
+    "pushes",
+    "link",
+    "action",
+    "never",
+    "ignorecandidates"
   ],
-  "lastUpdated": "2026-11-07T20:27:55.935Z",
+  "lastUpdated": "2026-11-13T10:05:32.328Z",
   "specId": "004",
   "folderSlug": "doctor-symlink-gaps",
   "parentChain": [
@@ -14,6 +23,5 @@
     "002-named-subtracks-and-host-repos"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

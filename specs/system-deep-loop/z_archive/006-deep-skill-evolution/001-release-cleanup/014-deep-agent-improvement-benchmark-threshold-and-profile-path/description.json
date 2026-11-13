@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": "system-deep-loop/z_archive/006-deep-skill-evolution/001-release-cleanup/014-deep-agent-improvement-benchmark-threshold-and-profile-path",
   "description": "Remediation of the two code/config gaps the 005-deep-agent-improvement phase-5 deep-research loop surfaced and escalated: align the dynamic-profile",
   "keywords": [
@@ -16,7 +17,7 @@
     "align",
     "dynamic-profile"
   ],
-  "lastUpdated": "2026-08-15T14:41:05.461Z",
+  "lastUpdated": "2026-11-13T10:04:56.533Z",
   "specId": "014",
   "folderSlug": "deep-agent-improvement-benchmark-threshold-and-profile-path",
   "parentChain": [
@@ -28,6 +29,5 @@
   "memorySequence": 0,
   "memoryNameHistory": [
     "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup/005-deep-agent-improvement/001-benchmark-threshold-and-profile-path"
-  ],
-  "level": "1"
+  ]
 }

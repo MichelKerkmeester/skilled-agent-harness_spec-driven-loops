@@ -1,32 +1,23 @@
 {
+  "level": "1",
   "specFolder": "cli-classifier/005-cli-classifier-quality-fixes",
-  "description": "Fix the confirmed cli-classifier quality findings: cli-jev doc overviews, transport default wording, clarify-default route record, transport edge case",
+  "description": "The research in `specs/cli-classifier/004-cli-classifier-quality-research/research/research.md` confirmed eleven findings in the shipped",
   "keywords": [
-    "confirmed",
+    "research",
+    "specs",
     "cli-classifier",
-    "quality",
+    "004-cli-classifier-quality-research",
+    "confirmed",
+    "eleven",
     "findings",
-    "cli-jev",
-    "doc",
-    "overviews",
-    "transport",
-    "default",
-    "wording",
-    "clarify-default",
-    "route",
-    "record",
-    "edge",
-    "cases",
-    "stale",
-    "docs"
+    "shipped"
   ],
-  "lastUpdated": "2026-10-04T14:13:20.296Z",
+  "lastUpdated": "2026-11-13T10:04:36.933Z",
   "specId": "005",
   "folderSlug": "cli-classifier-quality-fixes",
   "parentChain": [
     "cli-classifier"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

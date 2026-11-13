@@ -1,11 +1,27 @@
 {
+  "level": "3",
   "specFolder": "cli-classifier/001-cli-jev-creation/003-hub-mode-registration",
-  "description": "Phase 3: hub-mode-registration",
+  "description": "Four independent mechanisms decide whether a mode is reachable: the per-hub gate reads the registry, the hub router scores signals, the dispatch audit",
   "keywords": [
-    "phase",
-    "hub-mode-registration"
+    "four",
+    "independent",
+    "mechanisms",
+    "decide",
+    "whether",
+    "mode",
+    "reachable",
+    "per-hub",
+    "gate",
+    "reads",
+    "registry",
+    "hub",
+    "router",
+    "scores",
+    "signals",
+    "dispatch",
+    "audit"
   ],
-  "lastUpdated": "2026-09-20T07:39:07.579Z",
+  "lastUpdated": "2026-11-13T10:04:35.358Z",
   "specId": "003",
   "folderSlug": "hub-mode-registration",
   "parentChain": [
@@ -13,6 +29,5 @@
     "001-cli-jev-creation"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

@@ -1,11 +1,24 @@
 {
+  "level": "1",
   "specFolder": "sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/012-post-merge-deep-review/007-remediation-review-fixes",
-  "description": "Phase 7: remediation-review-fixes",
+  "description": "The sk-git open-stdin test passed against the unfixed preflight hook when a kill-switch was set, because the hook exits before reading stdin and the",
   "keywords": [
-    "phase",
-    "remediation-review-fixes"
+    "sk-git",
+    "open-stdin",
+    "test",
+    "passed",
+    "against",
+    "unfixed",
+    "preflight",
+    "hook",
+    "kill-switch",
+    "set",
+    "because",
+    "exits",
+    "reading",
+    "stdin"
   ],
-  "lastUpdated": "2026-10-10T23:55:14.962Z",
+  "lastUpdated": "2026-11-13T10:04:45.918Z",
   "specId": "007",
   "folderSlug": "remediation-review-fixes",
   "parentChain": [
@@ -15,6 +28,5 @@
     "012-post-merge-deep-review"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

@@ -1,17 +1,23 @@
 {
   "level": "3",
   "specFolder": "sk-design/z_archive/012-sk-design-program/005-reviews-and-remediation/002-session-shipped-work-review",
-  "description": "Spec: Deep Review of Session-Shipped Work (3 commits on skilled/v4.0.0.0)",
+  "description": "Deep-review charter auditing three session-shipped commits on skilled/v4.0.0.0 for correctness, honesty and scope discipline; findings only, no",
   "keywords": [
-    "spec",
-    "deep",
-    "review",
+    "deep-review",
+    "charter",
+    "auditing",
+    "three",
     "session-shipped",
-    "work",
     "commits",
-    "skilled"
+    "skilled",
+    "correctness",
+    "honesty",
+    "scope",
+    "discipline",
+    "findings",
+    "only"
   ],
-  "lastUpdated": "2026-09-11T16:49:40.935Z",
+  "lastUpdated": "2026-11-13T10:04:49.402Z",
   "specId": "002",
   "folderSlug": "session-shipped-work-review",
   "parentChain": [

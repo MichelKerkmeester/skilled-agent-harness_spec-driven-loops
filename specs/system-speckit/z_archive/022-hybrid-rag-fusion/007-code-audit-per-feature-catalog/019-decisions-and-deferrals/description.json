@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/z_archive/022-hybrid-rag-fusion/007-code-audit-per-feature-catalog/019-decisions-and-deferrals",
   "description": "The feature catalog for Decisions and Deferrals has evolved significantly",
   "keywords": [
@@ -9,7 +10,7 @@
     "evolved",
     "significantly"
   ],
-  "lastUpdated": "2026-08-15T14:41:15.212Z",
+  "lastUpdated": "2026-11-13T10:05:33.287Z",
   "specId": "019",
   "folderSlug": "decisions-and-deferrals",
   "parentChain": [
@@ -19,6 +20,5 @@
     "007-code-audit-per-feature-catalog"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

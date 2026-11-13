@@ -1,22 +1,27 @@
 {
+  "level": "1",
   "specFolder": "sk-git/worktree-lifecycle/005-personal-name-scrub",
-  "description": "Remove the operator's personal account name from tracked files outside specs and rename the orphan-sweep launch agent",
+  "description": "Tracked files outside `specs/` named the operator's personal account name, mostly inside absolute paths into one machine's home folder",
   "keywords": [
-    "remove",
-    "operator",
-    "personal",
-    "account",
-    "name",
     "tracked",
     "files",
     "outside",
     "specs",
-    "rename",
-    "orphan-sweep",
-    "launch",
-    "agent"
+    "named",
+    "operator",
+    "personal",
+    "account",
+    "name",
+    "mostly",
+    "inside",
+    "absolute",
+    "paths",
+    "one",
+    "machine",
+    "home",
+    "folder"
   ],
-  "lastUpdated": "2026-10-29T23:23:55.501Z",
+  "lastUpdated": "2026-11-13T10:04:54.340Z",
   "specId": "005",
   "folderSlug": "personal-name-scrub",
   "parentChain": [
@@ -24,6 +29,5 @@
     "worktree-lifecycle"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

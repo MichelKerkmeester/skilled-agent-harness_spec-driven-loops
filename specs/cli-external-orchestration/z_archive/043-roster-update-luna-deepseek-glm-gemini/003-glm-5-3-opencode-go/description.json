@@ -18,11 +18,12 @@
     "gateway",
     "model"
   ],
-  "lastUpdated": "2026-08-15T14:40:55.363Z",
+  "lastUpdated": "2026-11-13T10:04:38.865Z",
   "specId": "003",
   "folderSlug": "glm-5-3-opencode-go",
   "parentChain": [
     "cli-external-orchestration",
+    "z_archive",
     "043-roster-update-luna-deepseek-glm-gemini"
   ],
   "memorySequence": 0,
