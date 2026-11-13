@@ -22,6 +22,26 @@ const ROUTE_GOLD_CANDIDATES = [
   path.join(REPO_ROOT, 'specs', 'sk-doc', 'z_archive', ROUTE_GOLD_REL.replace(/^specs[\\/]sk-doc[\\/]/, '')),
   path.join(REPO_ROOT, ROUTE_GOLD_REL),
 ];
+const HOST_INDEX_MODULE = path.join(SKILLS_ROOT, 'system-spec-kit', 'runtime', 'cli', 'retrieval', 'lib', 'host-index.mjs');
+
+// The route gold lives in Skilled's own spec tree, so a host repository that vendors
+// Skilled under `.skilled` has none by design. The caller's git root decides, never
+// REPO_ROOT, because Node resolves this script's symlink and REPO_ROOT then names the
+// vendored checkout. The helper is an ES module loaded with require(), which an older
+// Node rejects, and a missing gold then stays a problem.
+function callerIsHostRepository() {
+  try {
+    const hostIndex = require(HOST_INDEX_MODULE);
+    const root = hostIndex.callerRepoRoot();
+    return Boolean(root) && hostIndex.isHostRepository(root);
+  } catch {
+    return false;
+  }
+}
+
+// A leg that skips part of its check leaves a note here, and main prints it under the
+// leg's status line.
+const skipNotes = [];
 
 // Each surface reaches the implement, debug and verify doctrine through a symlink, so the
 // symlinked copies stay unrouted. The hub ROUTER routes the canonical debug and verify paths
@@ -290,7 +310,9 @@ function legBijection() {
     problems.push('a wrong packet resolves through qualifiedIdToLeaf (it must fail closed)');
   }
   const goldPath = ROUTE_GOLD_CANDIDATES.find((p) => fs.existsSync(p));
-  if (!goldPath) {
+  if (!goldPath && callerIsHostRepository()) {
+    skipNotes.push("route-gold not checked: host repository; the compiled route gold ships only in Skilled's own checkout");
+  } else if (!goldPath) {
     problems.push(`route-gold not found, tried: ${ROUTE_GOLD_CANDIDATES.map((p) => path.relative(REPO_ROOT, p)).join(', ')}`);
   } else {
     const gold = JSON.parse(fs.readFileSync(goldPath, 'utf8'));
@@ -412,6 +434,7 @@ function main(argv) {
       for (const p of problems.slice(0, 12)) console.log(`  - ${p}`);
       if (problems.length > 12) console.log(`  - ... ${problems.length - 12} more`);
     }
+    for (const note of skipNotes.splice(0)) console.log(`  skip: ${note}`);
   }
   console.log(`router-sync: ${legs.length - failed}/${legs.length} checks passed`);
   return failed === 0 ? 0 : 1;

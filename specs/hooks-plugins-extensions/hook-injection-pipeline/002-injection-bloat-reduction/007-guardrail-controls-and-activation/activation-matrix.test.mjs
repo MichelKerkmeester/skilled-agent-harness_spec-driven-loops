@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { evidenceBindsToCell } from './activation-matrix-evidence.mjs';
+import { evidenceBindsToCell } from '../../../../../.skilled/skills/system-skill-advisor/runtime/tests/helpers/activation-matrix-evidence.mjs';
 
 const phaseDirectory = path.dirname(fileURLToPath(import.meta.url));
 const matrixPath = path.join(phaseDirectory, 'activation-matrix.json');

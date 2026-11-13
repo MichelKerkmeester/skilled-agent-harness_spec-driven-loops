@@ -1064,6 +1064,29 @@ function requireAuthoredRoot() {
   }
 }
 
+const HOST_INDEX_MODULE = path.join(__dirname, '..', 'skills', 'system-spec-kit', 'runtime', 'cli', 'retrieval', 'lib', 'host-index.mjs');
+const HOST_SKIP_MESSAGE = "SKIP: host repository; the authored compiled-routing source ships only in Skilled's own checkout";
+
+// The authored source ships only in Skilled's own checkout, so a host repository
+// that vendors Skilled under `.skilled` has nothing for --check to compare. The
+// caller's git root decides, never REPO_ROOT, because Node resolves this script's
+// symlink and REPO_ROOT then names the vendored checkout. The host helper is an
+// ES module, loaded with require() only when the folder is missing. An older Node
+// rejects that load, and the missing folder then stays an error.
+// Returns 'present', 'host-skip' or 'missing'. callerRoot defaults to the git
+// root of the working directory.
+function authoredRootState(repoRoot, callerRoot) {
+  if (fs.existsSync(path.join(repoRoot, layout.AUTHORED_PROGRAM_DIR))) return 'present';
+  try {
+    const hostIndex = require(HOST_INDEX_MODULE);
+    const root = callerRoot === undefined ? hostIndex.callerRepoRoot() : callerRoot;
+    if (root && hostIndex.isHostRepository(root)) return 'host-skip';
+  } catch {
+    // An unloadable helper or an unreadable host setting leaves the folder missing.
+  }
+  return 'missing';
+}
+
 function main() {
   const args = process.argv.slice(2);
   if (args.includes('--help') || args.includes('-h')) {
@@ -1082,6 +1105,10 @@ function main() {
   }
   if (args.includes('--check')) {
     if (args.length !== 1) { process.stderr.write('usage: compiled-route-sync.cjs --check\n'); process.exit(2); }
+    if (authoredRootState(REPO_ROOT) === 'host-skip') {
+      process.stdout.write(`${HOST_SKIP_MESSAGE}\n`);
+      return;
+    }
     requireAuthoredRoot();
     return check();
   }
@@ -1118,6 +1145,7 @@ if (require.main === module) {
 module.exports = {
   ACTIVATION_ROOT,
   AUTHORED_RESOLVER,
+  authoredRootState,
   build,
   captureExternalActivationManifests,
   check,
