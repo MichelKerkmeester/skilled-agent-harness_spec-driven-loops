@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3b352aef1302186edd48279e659965735797cdbd00b6446659d8417a0061ef32",
+  "manifestHash": "44e5dba94d25045be42ecb6172ebe2b5ff16ab74c02571f51c7e1b6bdaa06745",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10938,6 +10938,9 @@
     "ai systems verification tasks": [
       "ai systems verification tasks"
     ],
+    "ai title session name hop": [
+      "ai-title session name hop"
+    ],
     "ai workflow spec upgrades": [
       "ai workflow spec upgrades"
     ],
@@ -12917,6 +12920,9 @@
     ],
     "askuserquestion capture": [
       "askuserquestion capture"
+    ],
+    "askuserquestion pending hand over": [
+      "askuserquestion pending hand-over"
     ],
     "aspirational threshold audit": [
       "aspirational threshold audit"
@@ -20407,6 +20413,9 @@
     ],
     "claude prompting best practices": [
       "claude prompting best practices"
+    ],
+    "claude receiver starts on packet goal": [
+      "claude receiver starts on packet goal"
     ],
     "claude relaunch acceptance criteria": [
       "Claude relaunch acceptance criteria"
@@ -53704,6 +53713,9 @@
     "generated metadata validator": [
       "generated metadata validator"
     ],
+    "generated session title across a hop": [
+      "generated session title across a hop"
+    ],
     "generated skill copy skip": [
       "generated skill copy skip"
     ],
@@ -53718,6 +53730,24 @@
     ],
     "generated surfaces": [
       "generated surfaces"
+    ],
+    "generated title carry": [
+      "generated title carry"
+    ],
+    "generated title carry acceptance criteria": [
+      "generated title carry acceptance criteria"
+    ],
+    "generated title carry goal": [
+      "generated title carry goal"
+    ],
+    "generated title carry implementation summary": [
+      "generated title carry implementation summary"
+    ],
+    "generated title carry plan": [
+      "generated title carry plan"
+    ],
+    "generated title carry tasks": [
+      "generated title carry tasks"
     ],
     "generatedocumentembedding catch swallow": [
       "generateDocumentEmbedding catch swallow"
@@ -58378,6 +58408,9 @@
     ],
     "hop count name suffix": [
       "hop count name suffix"
+    ],
+    "hop dialog goal title phase parent spec": [
+      "hop dialog goal title phase parent spec"
     ],
     "hop history": [
       "hop history"
@@ -73653,6 +73686,9 @@
     "no go list": [
       "no-go list"
     ],
+    "no goal entry hop": [
+      "no goal entry hop"
+    ],
     "no match diagnostic plan": [
       "no match diagnostic plan"
     ],
@@ -78379,6 +78415,24 @@
     "packet goal blank": [
       "packet goal blank"
     ],
+    "packet goal fallback": [
+      "packet goal fallback"
+    ],
+    "packet goal fallback acceptance criteria": [
+      "packet goal fallback acceptance criteria"
+    ],
+    "packet goal fallback goal": [
+      "packet goal fallback goal"
+    ],
+    "packet goal fallback implementation summary": [
+      "packet goal fallback implementation summary"
+    ],
+    "packet goal fallback plan": [
+      "packet goal fallback plan"
+    ],
+    "packet goal fallback tasks": [
+      "packet goal fallback tasks"
+    ],
     "packet goal frontmatter": [
       "packet goal frontmatter"
     ],
@@ -80246,6 +80300,9 @@
     "phase 1 scenario contract": [
       "phase 1 scenario contract"
     ],
+    "phase 1 sender dialog after prepare": [
+      "phase 1 sender dialog after prepare"
+    ],
     "phase 1 shared and hub docs": [
       "phase 1 shared and hub docs"
     ],
@@ -80936,6 +80993,9 @@
     "phase 2 overlay engine": [
       "phase 2 overlay engine"
     ],
+    "phase 2 packet goal fallback": [
+      "phase 2 packet goal fallback"
+    ],
     "phase 2 parent goal budget": [
       "phase 2 parent goal budget"
     ],
@@ -81310,6 +81370,9 @@
     ],
     "phase 3 fsmonitor daemon lifecycle": [
       "phase 3 fsmonitor daemon lifecycle"
+    ],
+    "phase 3 generated title carry": [
+      "phase 3 generated title carry"
     ],
     "phase 3 goal criteria": [
       "phase 3 goal criteria"
@@ -88151,6 +88214,9 @@
     ],
     "question coverage convergence": [
       "question coverage convergence"
+    ],
+    "question dialog blocks hop": [
+      "question dialog blocks hop"
     ],
     "question entropy": [
       "question entropy"
@@ -101467,6 +101533,24 @@
     ],
     "send chat message": [
       "send chat message"
+    ],
+    "sender dialog after prepare": [
+      "sender dialog after prepare"
+    ],
+    "sender dialog after prepare acceptance criteria": [
+      "sender dialog after prepare acceptance criteria"
+    ],
+    "sender dialog after prepare goal": [
+      "sender dialog after prepare goal"
+    ],
+    "sender dialog after prepare implementation summary": [
+      "sender dialog after prepare implementation summary"
+    ],
+    "sender dialog after prepare plan": [
+      "sender dialog after prepare plan"
+    ],
+    "sender dialog after prepare tasks": [
+      "sender dialog after prepare tasks"
     ],
     "sendsessionaffinityheaders opencode": [
       "sendSessionAffinityHeaders opencode"
