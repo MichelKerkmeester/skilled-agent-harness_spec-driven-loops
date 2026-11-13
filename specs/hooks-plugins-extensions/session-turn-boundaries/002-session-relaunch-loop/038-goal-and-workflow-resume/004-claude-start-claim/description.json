@@ -1,0 +1,20 @@
+{
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/004-claude-start-claim",
+  "description": "Phase 4: claude-start-claim",
+  "keywords": [
+    "phase",
+    "claude-start-claim"
+  ],
+  "lastUpdated": "2026-11-12T22:42:04.774Z",
+  "specId": "004",
+  "folderSlug": "claude-start-claim",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
+    "038-goal-and-workflow-resume"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

@@ -40,7 +40,8 @@
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/034-default-off-opt-in",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/035-known-gap-fixes",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation",
-    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/037-relaunch-test-speed"
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/037-relaunch-test-speed",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume"
   ],
   "manual": {
     "depends_on": [],
@@ -80,6 +81,7 @@
       "review-archive/20261019T144809Z/review-report.md",
       "036-review-remediation/scratch/handover-review.md",
       "037-relaunch-test-speed/scratch/before-relaunch.txt",
+      "038-goal-and-workflow-resume/scratch/verify-1.md",
       "001-claude-relaunch-loop/goal.md",
       "002-pi-opencode-adapters/goal.md",
       "003-command-trigger-runtimes/goal.md",
@@ -91,8 +93,7 @@
       "009-research-fixes-and-core-consolidation/goal.md",
       "010-post-fix-research/goal.md",
       "011-post-fix-remediation/goal.md",
-      "033-research-remediation/goal.md",
-      "034-default-off-opt-in/goal.md"
+      "033-research-remediation/goal.md"
     ],
     "entities": [
       {
@@ -129,6 +130,12 @@
         "name": "before-relaunch.txt",
         "kind": "file",
         "path": "037-relaunch-test-speed/scratch/before-relaunch.txt",
+        "source": "derived"
+      },
+      {
+        "name": "verify-1.md",
+        "kind": "doc",
+        "path": "038-goal-and-workflow-resume/scratch/verify-1.md",
         "source": "derived"
       },
       {
@@ -232,17 +239,11 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
-      },
-      {
-        "name": "Effort Persistence Launch",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-11-12T21:15:22.081Z",
+    "last_save_at": "2026-11-13T00:33:02.998Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -250,10 +251,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:c4d3935e44a8123774aedeab3c7871597e76f81fec8f05d61de23cb2f30e03c6",
+    "source_fingerprint": "sha256:73b693959c935698115b955033bc55965ae5b0633646e0e036cb2517227cc5ed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "807cc5530e31bfc0338d8ca4474c75e20e4373ced4b7661d42fc3c349ba20b32",
+      "spec.md": "0bfc68456b7456d5d90fab0bc9404348930e81cecaa900e326afa18c62b921c2",
       "research/research.md": "cd715f66fe738274ad12d39730f4c477ce7e636d424fd5c75d0c9ad949f3d338"
     },
     "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/037-relaunch-test-speed",

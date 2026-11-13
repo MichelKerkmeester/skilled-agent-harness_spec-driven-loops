@@ -1,0 +1,20 @@
+{
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/002-pi-bind-once",
+  "description": "Phase 2: pi-bind-once",
+  "keywords": [
+    "phase",
+    "pi-bind-once"
+  ],
+  "lastUpdated": "2026-11-12T22:42:02.489Z",
+  "specId": "002",
+  "folderSlug": "pi-bind-once",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
+    "038-goal-and-workflow-resume"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

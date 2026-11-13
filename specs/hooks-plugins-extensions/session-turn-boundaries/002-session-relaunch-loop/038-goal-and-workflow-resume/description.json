@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
+  "description": "Goals and running workflows survive a session hop on every runtime",
+  "keywords": [
+    "goals",
+    "running",
+    "workflows",
+    "survive",
+    "session",
+    "hop",
+    "every",
+    "runtime"
+  ],
+  "lastUpdated": "2026-11-13T00:33:00.905Z",
+  "specId": "038",
+  "folderSlug": "goal-and-workflow-resume",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "13-11-26_01-32__planned-packet-038-seven-phases-that-make-goals.md"
+  ]
+}

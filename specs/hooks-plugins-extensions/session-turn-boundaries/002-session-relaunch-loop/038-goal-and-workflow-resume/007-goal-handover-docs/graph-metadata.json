@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/007-goal-handover-docs",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/007-goal-handover-docs",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal handover docs",
+      "phase 7 goal handover docs",
+      "goal handover docs plan",
+      "goal handover docs tasks",
+      "goal handover docs acceptance criteria",
+      "goal handover docs goal",
+      "goal handover docs implementation summary"
+    ],
+    "key_topics": [
+      "goal",
+      "handover",
+      "docs",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "relaunch",
+      "readme"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/README.md",
+      ".skilled/hooks/hook-flags.env.example",
+      "scratch/finding.md",
+      ".skilled/commands/speckit/handoff.md",
+      ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/killer.test.cjs",
+      ".skilled/hooks/goal/lib/goal-slice.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/goal-handover.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.env.example",
+        "kind": "file",
+        "path": ".skilled/hooks/hook-flags.env.example",
+        "source": "derived"
+      },
+      {
+        "name": "finding.md",
+        "kind": "doc",
+        "path": "scratch/finding.md",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "claude-adapters.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "killer.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/killer.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-slice.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-slice.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-handover.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/goal-handover.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The relaunch README still says the Claude start claim arrives only while the switch is on, which hides the shipped fix in phase 004",
+    "created_at": "2026-11-12T22:42:07Z",
+    "last_save_at": "2026-11-13T00:31:30.957Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7fa3888ec5653bc2e54eed7b4e8112fe7ddc5ab5827b9df497fff1107cc5f821",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "56289d2d305355d5f5c4c8b5ba47cd83ee8c668d10e7421d5f4cdc1c00cf476a",
+      "plan.md": "8961e8ba772762bb8b65fceace5d032a752135eec408790307fa0dda191a8ab1",
+      "tasks.md": "d7b09ee12a6302d048a87296fb2de880ccf389e63a77099877bdf5e228271e50",
+      "implementation-summary.md": "d0e9bec0fa06604f0bf4c16c398ff50d306a5841ae8bfafc58e6a13205fe841d"
+    },
+    "last_active_at": null
+  }
+}

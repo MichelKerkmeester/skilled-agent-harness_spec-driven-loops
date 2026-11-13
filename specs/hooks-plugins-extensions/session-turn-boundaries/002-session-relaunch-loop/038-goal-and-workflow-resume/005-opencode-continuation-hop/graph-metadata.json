@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/005-opencode-continuation-hop",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/005-opencode-continuation-hop",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode continuation hop",
+      "phase 5 opencode continuation hop",
+      "opencode continuation hop plan",
+      "opencode continuation hop tasks",
+      "opencode continuation hop acceptance criteria",
+      "opencode continuation hop goal",
+      "opencode continuation hop implementation summary"
+    ],
+    "key_topics": [
+      "opencode",
+      "continuation",
+      "hop",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "prepared"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/goal/opencode/opencode-goal.js",
+      ".opencode/plugins/opencode-goal.js",
+      ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs",
+      ".opencode/plugins/tests/opencode-goal-handover.test.cjs",
+      ".opencode/plugins/tests/session-relaunch.test.cjs",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".opencode/plugins/session-relaunch.js",
+      ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+      "scratch/finding.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".skilled/hooks/goal/opencode/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal-lifecycle.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal-handover.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/opencode-goal-handover.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/session-relaunch.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-relaunch.js",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "finding.md",
+        "kind": "doc",
+        "path": "scratch/finding.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Change",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Guard",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A prepared OpenCode hop can be withdrawn by the goal continuation",
+    "created_at": "2026-11-12T22:42:05Z",
+    "last_save_at": "2026-11-13T00:04:00.362Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:26269c71a27052580f8a10356f5ba50ac7c72a3170db8f5776fd846842e5ad08",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4e1a4433cf24765a5786c1dade695b0214362829aee958dd0619d0f80bc6660b",
+      "plan.md": "46de71c895e0a667454d5b607e0db9fee149a32644d79b917af1185fe194134b",
+      "tasks.md": "44399248c2e82da20127beca861806b3f22c37ff88db22b99622e049753e33f9",
+      "implementation-summary.md": "7fa13a3ea831ccab5ebe3dc5e9232036f78b914cea412a5aa55fa557eafbb74a"
+    },
+    "last_active_at": null
+  }
+}

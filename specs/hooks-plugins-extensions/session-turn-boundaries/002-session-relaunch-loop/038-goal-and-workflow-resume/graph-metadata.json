@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop",
+  "children_ids": [
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/001-workflow-reentry-seed",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/002-pi-bind-once",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/003-goal-resolver-prepare",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/004-claude-start-claim",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/005-opencode-continuation-hop",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/006-skilled-loop-command",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/007-goal-handover-docs"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal and workflow resume phase parent spec",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "goal",
+      "workflow",
+      "resume",
+      "phase",
+      "parent",
+      "spec",
+      "packet",
+      "durable",
+      "directive",
+      "completion",
+      "criteria",
+      "binding"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+      ".skilled/commands/speckit/handoff.md",
+      ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
+      ".skilled/hooks/goal/pi/goal-context.ts",
+      ".skilled/hooks/goal/pi/goal-pi.test.mjs",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+      ".skilled/hooks/session-relaunch/claude/compact-pointer.mjs",
+      ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+      ".skilled/hooks/goal/opencode/opencode-goal.js",
+      ".opencode/plugins/opencode-goal.js",
+      ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs",
+      ".skilled/bin/skilled-loop-shell.sh",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs",
+      ".skilled/hooks/session-relaunch/README.md",
+      ".skilled/hooks/hook-flags.env.example"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-context.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/goal/pi/goal-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "goal-pi.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/pi/goal-pi.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-cli.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compact-pointer.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/compact-pointer.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "claude-adapters.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal.js",
+        "kind": "code",
+        "path": ".skilled/hooks/goal/opencode/opencode-goal.js",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal-lifecycle.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-shell.sh",
+        "kind": "script",
+        "path": ".skilled/bin/skilled-loop-shell.sh",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-shell.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.env.example",
+        "kind": "file",
+        "path": ".skilled/hooks/hook-flags.env.example",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A review of 2026-11-12, checked by a second reviewer, found that a session hop carries the goal on Claude Code, Pi and OpenCode but loses work around it",
+    "created_at": "2026-11-12T22:42:00Z",
+    "last_save_at": "2026-11-13T00:34:03.311Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:4ce6da75f0a674f00b4eddca9b4079ec5a81369b4ffe28228f2f41be58968050",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "77f2f63460c913c4bc0afd6cf07d2892135abf7e3f385512f7324e96e5f3464b"
+    },
+    "last_active_at": null
+  }
+}

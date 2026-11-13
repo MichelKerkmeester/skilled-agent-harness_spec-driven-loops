@@ -140,6 +140,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 35 | 035-known-gap-fixes/ | Eight known gaps close: the claim-seed parsers agree, a Pi `--provider` switch drops the launch effort, `prepare` refuses whenever the concern is off, the Codex goal paragraph is corrected, the spec validator's git calls skip fsmonitor, the parent goal binds every child goal, the concern switches per runtime and the README stops featuring it | Complete |
 | 36 | 036-review-remediation/ | Seven children fix the eight findings of the 2026-11-12 code review: the shim runs only a trusted wrapper, record reads check the state directory, a hop replays the launch flags, an unconfigured Claude window is unknown, the sub-agent guard denies `cancel`, `consume` and `hand-over`, a stale append lock is reclaimed once and the wrapper clears its leftover record | Complete |
 | 37 | 037-relaunch-test-speed/ | The wrapper test file is split into four files with one shared harness, so the relaunch suite runs the same 868 tests in about 40 seconds instead of 130, and one nudge test no longer reads the loop id of the session that runs it | Complete |
+| 38 | 038-goal-and-workflow-resume/ | Seven children make goals and running workflows survive a hop: the note names the active command, Cursor and Devin keep a handed-over goal, `prepare` says why a goal was not carried, Pi binds once per process, a Claude claim is delivered with the switch off, the OpenCode continuation leaves a prepared hop alone and `skilled-loop` runs as typed | Draft |
 
 ### Phase Transition Rules
 
@@ -188,6 +189,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 034-default-off-opt-in | 035-known-gap-fixes | Phase 34's default-off resolver and test opt-ins are in, because phase 35 changes the same `prepare` check and adds the per-runtime flags beside the global one | `validate.sh 034-default-off-opt-in --strict` RESULT: PASSED, and the relaunch suites exit 0 before the 035 tests land |
 | 035-known-gap-fixes | 036-review-remediation | Phase 35 is Complete and the code review of 2026-11-12 has a report with eight findings | `validate.sh 035-known-gap-fixes --strict` RESULT: PASSED, and `036-review-remediation/scratch/handover-review.md` holds the findings |
 | 036-review-remediation | 037-relaunch-test-speed | Phase 36 is Complete and the relaunch suite passes with 868 tests | `validate.sh 036-review-remediation --recursive --strict` RESULT: PASSED, and `037-relaunch-test-speed/scratch/before-relaunch.txt` holds the baseline run |
+| 037-relaunch-test-speed | 038-goal-and-workflow-resume | Phase 37 is Complete and the review of goal and workflow carry-over is verified | `validate.sh 037-relaunch-test-speed --strict` RESULT: PASSED, and `038-goal-and-workflow-resume/scratch/verify-1.md` holds the verified findings |
 <!-- /ANCHOR:phase-map -->
 
 ---

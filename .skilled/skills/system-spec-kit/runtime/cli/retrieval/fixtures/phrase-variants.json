@@ -1,5 +1,5 @@
 {
-  "manifestHash": "bc2ba76f1c250e3ca260fec28a27a77091b455309c0ba81226e86d94d5bfe1b3",
+  "manifestHash": "6687372481529b9a30f455a00cd8de89020d5401c59532254666e1b6bfd76922",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -20387,6 +20387,24 @@
     ],
     "claude stale build warning": [
       "claude stale build warning"
+    ],
+    "claude start claim": [
+      "claude start claim"
+    ],
+    "claude start claim acceptance criteria": [
+      "claude start claim acceptance criteria"
+    ],
+    "claude start claim goal": [
+      "claude start claim goal"
+    ],
+    "claude start claim implementation summary": [
+      "claude start claim implementation summary"
+    ],
+    "claude start claim plan": [
+      "claude start claim plan"
+    ],
+    "claude start claim tasks": [
+      "claude start claim tasks"
     ],
     "claude start hook goal": [
       "claude start hook goal"
@@ -54055,6 +54073,9 @@
     "goal anatomy contract": [
       "goal anatomy contract"
     ],
+    "goal and workflow resume phase parent spec": [
+      "goal and workflow resume phase parent spec"
+    ],
     "goal archive on replace and clear": [
       "goal archive on replace and clear"
     ],
@@ -54471,6 +54492,24 @@
     ],
     "goal flag tasks": [
       "goal flag tasks"
+    ],
+    "goal handover docs": [
+      "goal handover docs"
+    ],
+    "goal handover docs acceptance criteria": [
+      "goal handover docs acceptance criteria"
+    ],
+    "goal handover docs goal": [
+      "goal handover docs goal"
+    ],
+    "goal handover docs implementation summary": [
+      "goal handover docs implementation summary"
+    ],
+    "goal handover docs plan": [
+      "goal handover docs plan"
+    ],
+    "goal handover docs tasks": [
+      "goal handover docs tasks"
     ],
     "goal hardening plan": [
       "goal hardening plan"
@@ -54924,6 +54963,24 @@
     ],
     "goal research handoff": [
       "goal research handoff"
+    ],
+    "goal resolver prepare": [
+      "goal resolver prepare"
+    ],
+    "goal resolver prepare acceptance criteria": [
+      "goal resolver prepare acceptance criteria"
+    ],
+    "goal resolver prepare goal": [
+      "goal resolver prepare goal"
+    ],
+    "goal resolver prepare implementation summary": [
+      "goal resolver prepare implementation summary"
+    ],
+    "goal resolver prepare plan": [
+      "goal resolver prepare plan"
+    ],
+    "goal resolver prepare tasks": [
+      "goal resolver prepare tasks"
     ],
     "goal resync plan": [
       "goal resync plan"
@@ -75368,6 +75425,24 @@
     "opencode context nudge": [
       "opencode context nudge"
     ],
+    "opencode continuation hop": [
+      "opencode continuation hop"
+    ],
+    "opencode continuation hop acceptance criteria": [
+      "opencode continuation hop acceptance criteria"
+    ],
+    "opencode continuation hop goal": [
+      "opencode continuation hop goal"
+    ],
+    "opencode continuation hop implementation summary": [
+      "opencode continuation hop implementation summary"
+    ],
+    "opencode continuation hop plan": [
+      "opencode continuation hop plan"
+    ],
+    "opencode continuation hop tasks": [
+      "opencode continuation hop tasks"
+    ],
     "opencode conversation scenarios": [
       "OpenCode conversation scenarios"
     ],
@@ -79820,6 +79895,9 @@
     "phase 1 unknowns and baseline": [
       "phase 1 unknowns and baseline"
     ],
+    "phase 1 workflow reentry seed": [
+      "phase 1 workflow reentry seed"
+    ],
     "phase 10 align cli classifier": [
       "phase 10 align cli classifier"
     ],
@@ -80438,6 +80516,9 @@
     "phase 2 path extraction regex fix": [
       "phase 2 path extraction regex fix"
     ],
+    "phase 2 pi bind once": [
+      "phase 2 pi bind once"
+    ],
     "phase 2 pins imports dual export": [
       "phase 2 pins imports dual export"
     ],
@@ -80804,6 +80885,9 @@
     "phase 3 goal exemplars": [
       "phase 3 goal exemplars"
     ],
+    "phase 3 goal resolver prepare": [
+      "phase 3 goal resolver prepare"
+    ],
     "phase 3 hard plugins": [
       "phase 3 hard plugins"
     ],
@@ -80968,6 +81052,9 @@
     ],
     "phase 4 cache optimizer": [
       "phase 4 cache optimizer"
+    ],
+    "phase 4 claude start claim": [
+      "phase 4 claude start claim"
     ],
     "phase 4 claude window unknown": [
       "phase 4 claude window unknown"
@@ -81254,6 +81341,9 @@
     "phase 5 opencode and guards": [
       "phase 5 opencode and guards"
     ],
+    "phase 5 opencode continuation hop": [
+      "phase 5 opencode continuation hop"
+    ],
     "phase 5 optional parent decision record": [
       "phase 5 optional parent decision record"
     ],
@@ -81521,6 +81611,9 @@
     "phase 6 skill package doc findings": [
       "phase 6 skill package doc findings"
     ],
+    "phase 6 skilled loop command": [
+      "phase 6 skilled loop command"
+    ],
     "phase 6 speckit command and agent alignment": [
       "phase 6 speckit command and agent alignment"
     ],
@@ -81601,6 +81694,9 @@
     ],
     "phase 7 gap closure": [
       "phase 7 gap closure"
+    ],
+    "phase 7 goal handover docs": [
+      "phase 7 goal handover docs"
     ],
     "phase 7 handoff gate exemptions": [
       "phase 7 handoff gate exemptions"
@@ -82521,6 +82617,24 @@
     ],
     "pi ask user question capture": [
       "pi ask_user_question capture"
+    ],
+    "pi bind once": [
+      "pi bind once"
+    ],
+    "pi bind once acceptance criteria": [
+      "pi bind once acceptance criteria"
+    ],
+    "pi bind once goal": [
+      "pi bind once goal"
+    ],
+    "pi bind once implementation summary": [
+      "pi bind once implementation summary"
+    ],
+    "pi bind once plan": [
+      "pi bind once plan"
+    ],
+    "pi bind once tasks": [
+      "pi bind once tasks"
     ],
     "pi blackhole auto compacts": [
       "pi-blackhole auto-compacts"
@@ -111596,6 +111710,24 @@
     "skilled loop codex": [
       "skilled-loop codex"
     ],
+    "skilled loop command": [
+      "skilled loop command"
+    ],
+    "skilled loop command acceptance criteria": [
+      "skilled loop command acceptance criteria"
+    ],
+    "skilled loop command goal": [
+      "skilled loop command goal"
+    ],
+    "skilled loop command implementation summary": [
+      "skilled loop command implementation summary"
+    ],
+    "skilled loop command plan": [
+      "skilled loop command plan"
+    ],
+    "skilled loop command tasks": [
+      "skilled loop command tasks"
+    ],
     "skilled loop handoff": [
       "skilled-loop handoff"
     ],
@@ -127827,6 +127959,24 @@
     ],
     "workflow permissions": [
       "workflow permissions"
+    ],
+    "workflow reentry seed": [
+      "workflow reentry seed"
+    ],
+    "workflow reentry seed acceptance criteria": [
+      "workflow reentry seed acceptance criteria"
+    ],
+    "workflow reentry seed goal": [
+      "workflow reentry seed goal"
+    ],
+    "workflow reentry seed implementation summary": [
+      "workflow reentry seed implementation summary"
+    ],
+    "workflow reentry seed plan": [
+      "workflow reentry seed plan"
+    ],
+    "workflow reentry seed tasks": [
+      "workflow reentry seed tasks"
     ],
     "workflow rule index": [
       "workflow rule index"

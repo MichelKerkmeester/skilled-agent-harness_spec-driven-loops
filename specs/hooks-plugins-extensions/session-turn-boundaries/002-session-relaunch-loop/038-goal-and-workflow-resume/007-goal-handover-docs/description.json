@@ -1,0 +1,20 @@
+{
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/007-goal-handover-docs",
+  "description": "Phase 7: goal-handover-docs",
+  "keywords": [
+    "phase",
+    "goal-handover-docs"
+  ],
+  "lastUpdated": "2026-11-12T22:42:08.653Z",
+  "specId": "007",
+  "folderSlug": "goal-handover-docs",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
+    "038-goal-and-workflow-resume"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
