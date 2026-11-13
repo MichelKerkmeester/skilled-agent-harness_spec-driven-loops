@@ -1,0 +1,33 @@
+{
+  "level": "1",
+  "specFolder": "sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth",
+  "description": "Cap the mode-subset size the hub registry compilers enumerate so a compiled route call stays fast as a hub gains modes",
+  "keywords": [
+    "cap",
+    "mode-subset",
+    "size",
+    "hub",
+    "registry",
+    "compilers",
+    "enumerate",
+    "compiled",
+    "route",
+    "call",
+    "stays",
+    "fast",
+    "gains",
+    "modes"
+  ],
+  "lastUpdated": "2026-11-13T16:55:52.806Z",
+  "specId": "006",
+  "folderSlug": "compiled-route-rule-growth",
+  "parentChain": [
+    "sk-doc",
+    "hub-routing-and-surfaces"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "13-11-26_17-11__planned-a-cap-of-four-modes-per-bundle-in-the-sk.md",
+    "13-11-26_17-55__built-the-cap-of-four-modes-per-bundle-in-three.md"
+  ]
+}

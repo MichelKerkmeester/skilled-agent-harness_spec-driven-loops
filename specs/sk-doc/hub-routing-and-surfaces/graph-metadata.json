@@ -8,7 +8,8 @@
     "sk-doc/hub-routing-and-surfaces/002-cli-hub-doc-version-reconciliation",
     "sk-doc/hub-routing-and-surfaces/003-governance-doc-alignment",
     "sk-doc/hub-routing-and-surfaces/004-hub-repo-folder-exemption",
-    "sk-doc/hub-routing-and-surfaces/005-opencode-native-surfaces"
+    "sk-doc/hub-routing-and-surfaces/005-opencode-native-surfaces",
+    "sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth"
   ],
   "manual": {
     "depends_on": [],

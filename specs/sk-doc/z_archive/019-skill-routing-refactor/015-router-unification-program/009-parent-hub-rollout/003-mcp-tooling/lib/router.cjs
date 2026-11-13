@@ -127,9 +127,8 @@ function selectNearTiedModes(scores, ambiguityDelta) {
 }
 
 // Look up the authored bundle kind for an exact, tie-break-ordered mode set.
-// registry-compiler.cjs's buildBundleRules generates one entry for every
-// non-empty 2+ subset of the tie-break order, so a near-tied score set always
-// finds an exact match here.
+// The compiler generates one rule for every subset of two to four modes of the
+// tie-break order, so a tie across more modes finds no match here.
 function exactBundle(routingModel, orderedModes) {
   const candidate = orderedModes.join(' ');
   return routingModel.bundleRules.find((rule) => (
