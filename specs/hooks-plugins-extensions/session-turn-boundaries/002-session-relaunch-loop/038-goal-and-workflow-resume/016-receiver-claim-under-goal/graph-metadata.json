@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/016-receiver-claim-under-goal",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/016-receiver-claim-under-goal",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "receiver claim under goal",
+      "phase 16 receiver claim under goal",
+      "receiver claim under goal plan",
+      "receiver claim under goal tasks",
+      "receiver claim under goal acceptance criteria",
+      "receiver claim under goal goal",
+      "receiver claim under goal implementation summary"
+    ],
+    "key_topics": [
+      "receiver",
+      "claim",
+      "goal",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "claude",
+      "whose"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+      ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+      ".skilled/hooks/session-relaunch/lib/goal-handover.cjs",
+      ".skilled/hooks/session-relaunch/tests/goal-handover.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-claim-goal.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+      ".skilled/hooks/session-relaunch/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-nudge.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "stop-arm.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-handover.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/goal-handover.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-handover.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/goal-handover.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-claim-goal.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-claim-goal.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Measure",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A Claude receiver whose hop carries a goal starts on `/goal <slice>`, and its claim instructions arrive only as `SessionStart` start context (`.skilled/bin/skilled-loop:1213-1220`, `.skilled/hooks/session-relaunch/claude/compact-pointer.mjs:136-158`)",
+    "created_at": "2026-11-13T08:49:38Z",
+    "last_save_at": "2026-11-13T08:59:04.075Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:edb4af7a567d84272fd49ff2e88d951201b23559f52508d96840d076c6e69d06",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a77238318bf91fdb6fa0a051f94952c7303e10f0d9a9393298c743df9e791395",
+      "plan.md": "a7541c600049e2f2e6513086ff733b29b46888b3bb87263e901504f24652c371",
+      "tasks.md": "fe320627891310c78460737f811bbc54006b4cb2f1d5ad2e38e2034ea67e69bb",
+      "implementation-summary.md": "8d0a94f22870792fd19a5bd88d4412267706977d316bb05ac81f5c8ddbf20ffe"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "claude stop notice and crons",
+      "phase 14 claude stop notice and crons",
+      "deferred hop notice",
+      "session crons count",
+      "claude stop notice and crons plan",
+      "claude stop notice and crons tasks",
+      "claude stop notice and crons acceptance criteria",
+      "claude stop notice and crons goal",
+      "claude stop notice and crons implementation summary"
+    ],
+    "key_topics": [
+      "claude",
+      "stop",
+      "notice",
+      "crons",
+      "phase",
+      "deferred",
+      "hop",
+      "session",
+      "count",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+      ".skilled/hooks/session-relaunch/codex/stop-arm.mjs",
+      ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "stop-arm.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "claude-adapters.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Stop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Use Claude Code",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "When background tasks run at Stop, `armPendingRecord` logs `deferred-background-tasks`, marks the record and returns null with no output (`.skilled/hooks/session-relaunch/claude/stop-arm.mjs:119-135`), and `main` then exits with nothing printed (`stop-arm.mjs:179-180`)",
+    "created_at": "2026-11-13T08:49:36Z",
+    "last_save_at": "2026-11-13T09:08:26.684Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:51c3d270135441311c69b5e270e7540cf3a0cf8ebc8b623f14442380b92bbb26",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a2d07e35801608578a51b640e43e07c8b653bb7d3d5ff49a9a0943d98bf3a33a",
+      "plan.md": "ec493d63308ab119bfa36a670b21f9d8159d361c46651608383d482b91568e57",
+      "tasks.md": "546e2e68089b90ce325d87b67231c01c4b6222541eb69401a54a869ad7823dce",
+      "implementation-summary.md": "2018803ba56620b1fe42945a5ad8faa380d478cf38b468beffe478ae501d0497"
+    },
+    "last_active_at": null
+  }
+}

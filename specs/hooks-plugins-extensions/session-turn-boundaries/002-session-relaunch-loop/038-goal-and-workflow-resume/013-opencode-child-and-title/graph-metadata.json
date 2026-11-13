@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/013-opencode-child-and-title",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/013-opencode-child-and-title",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "opencode child and title",
+      "phase 13 opencode child and title",
+      "opencode child and title plan",
+      "opencode child and title tasks",
+      "opencode child and title acceptance criteria",
+      "opencode child and title goal",
+      "opencode child and title implementation summary"
+    ],
+    "key_topics": [
+      "opencode",
+      "child",
+      "title",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "plugin"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/plugins/session-relaunch.js",
+      ".opencode/plugins/lib/v2-bridge.js",
+      ".opencode/plugins/tests/session-relaunch.test.cjs",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-relaunch.js",
+        "source": "derived"
+      },
+      {
+        "name": "v2-bridge.js",
+        "kind": "code",
+        "path": ".opencode/plugins/lib/v2-bridge.js",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/session-relaunch.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Live",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The plugin puts every sub-agent session in a skip set and returns before reading any later event for it (`.opencode/plugins/session-relaunch.js:335`, `:341`), and the parent arms at `session.idle` with no child check (`:418` to `:435`)",
+    "created_at": "2026-11-13T08:49:35Z",
+    "last_save_at": "2026-11-13T08:57:21.905Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6bb5ebd6aaa42582f263a443e092bdf4284ca7578d8d801f7cfbb37bb527cf9f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "693699aa62c91a3bea0f8ab6c45b5a11dd42ca7119c3aa2c1321daa2cfa472db",
+      "plan.md": "bcb426d53318006ff00d7d0e9d718d434a64919669bbb3ac150feb38eeae1774",
+      "tasks.md": "418eb6e7b748a093dca24de0745b0cf65cb0ff7762bf724a09ce7163f146fdff",
+      "implementation-summary.md": "cdec8cd8291d26135dcb25c2db7a453d4e875adfe7171738f481a4dde3cf5589"
+    },
+    "last_active_at": null
+  }
+}

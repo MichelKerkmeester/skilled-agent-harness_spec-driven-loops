@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/011-permission-mode-carry",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/011-permission-mode-carry",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "permission mode carry",
+      "phase 11 permission mode carry",
+      "permission mode carry plan",
+      "permission mode carry tasks",
+      "permission mode carry acceptance criteria",
+      "permission mode carry goal",
+      "permission mode carry implementation summary"
+    ],
+    "key_topics": [
+      "permission",
+      "mode",
+      "carry",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "claude"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-harness.cjs",
+      ".skilled/hooks/session-relaunch/README.md",
+      ".skilled/hooks/session-relaunch/codex/stop-arm.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "stop-arm.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "claude-adapters.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-cli.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-model-effort.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-launch-arguments.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-harness.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-harness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Stop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Carry Claude",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A Claude session moved into another permission mode after launch, for example with Shift+Tab into `acceptEdits`, restarts in the launch mode after a hop",
+    "created_at": "2026-11-13T08:49:33Z",
+    "last_save_at": "2026-11-13T09:17:52.764Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:33044ff4b08a884f8a13565b393659149de0f1133016fef24b7f5aa080cb9920",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5d6def044a3f3c3732bbeb9a60ad3602ca769ddd69215fc06faee2e6aab8fc07",
+      "plan.md": "7e308033cb4799e7f7c8ecc70054b3413ce10d0ff7f101e84b9047f7efbad3d0",
+      "tasks.md": "98bde7497a6737452f2c0817112ba43f90b596b3a4fc4b6a6ee80b301a2268df",
+      "implementation-summary.md": "76a26c10d5c6492ef45dbc68c4706456bca93a5e29f185637a5a63d990f54571"
+    },
+    "last_active_at": null
+  }
+}

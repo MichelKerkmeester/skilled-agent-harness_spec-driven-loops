@@ -1,0 +1,20 @@
+{
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk",
+  "description": "Phase 15: pi-mode-and-descendant-walk",
+  "keywords": [
+    "phase",
+    "pi-mode-and-descendant-walk"
+  ],
+  "lastUpdated": "2026-11-13T08:49:38.029Z",
+  "specId": "015",
+  "folderSlug": "pi-mode-and-descendant-walk",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
+    "038-goal-and-workflow-resume"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

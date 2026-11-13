@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/012-session-name-carry",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/012-session-name-carry",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "session name carry",
+      "phase 12 session name carry",
+      "hop count name suffix",
+      "claude rename across a hop",
+      "session name carry plan",
+      "session name carry tasks",
+      "session name carry acceptance criteria",
+      "session name carry goal",
+      "session name carry implementation summary"
+    ],
+    "key_topics": [
+      "session",
+      "name",
+      "carry",
+      "phase",
+      "hop",
+      "count",
+      "suffix",
+      "claude",
+      "rename",
+      "across",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".skilled/hooks/session-relaunch/tests/context-usage.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-harness.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-claim-goal.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-decline-manual.test.cjs",
+      ".opencode/plugins/session-relaunch.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-usage.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "context-usage.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/context-usage.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-cli.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-harness.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-harness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-launch-arguments.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-claim-goal.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-claim-goal.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-decline-manual.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-decline-manual.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-relaunch.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Claude",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A Claude session renamed with `/rename` loses that name on a hop",
+    "created_at": "2026-11-13T08:49:34Z",
+    "last_save_at": "2026-11-13T08:59:08.197Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:054e170bc3d8fe2f1de9a01402f3e78c465e61b393f631e894b46ee6fb6d25fc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0168ce6b14ccd1d496d463e55775dbe975e7b4b11c8b11a3051fc80b01bad4cc",
+      "plan.md": "406ac6aee3e29661829633f15e136cd14da409a255a63f910adb31ab17d4d5bd",
+      "tasks.md": "cb6ebf1f22b16f2f6d138dd1e9034f6749ae557e57aa6a219b200a54ea712891",
+      "implementation-summary.md": "d1137793f9e8788ba5cc3cc83b10d7baf1b1a7c0c179c9b419214ecd05f93d63"
+    },
+    "last_active_at": null
+  }
+}

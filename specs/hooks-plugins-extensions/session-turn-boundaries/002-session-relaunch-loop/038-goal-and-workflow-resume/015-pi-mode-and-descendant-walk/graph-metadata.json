@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi mode and descendant walk",
+      "phase 15 pi mode and descendant walk",
+      "pi mode and descendant walk plan",
+      "pi mode and descendant walk tasks",
+      "pi mode and descendant walk acceptance criteria",
+      "pi mode and descendant walk goal",
+      "pi mode and descendant walk implementation summary"
+    ],
+    "key_topics": [
+      "mode",
+      "descendant",
+      "walk",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "session"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".pi/types/pi-coding-agent.d.ts",
+      ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+      ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
+      ".skilled/hooks/session-relaunch/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "pi-coding-agent.d.ts",
+        "kind": "code",
+        "path": ".pi/types/pi-coding-agent.d.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/session-relaunch/pi/session-relaunch.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.test.ts",
+        "kind": "test",
+        "path": ".skilled/hooks/session-relaunch/pi/session-relaunch.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-cli.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-launch-arguments.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pi Plan",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Rank",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A Pi session that switched to Plan or Build mode restarts in the mode its first launch named, because `liveSettings` returns only model, provider and effort (`.skilled/hooks/session-relaunch/pi/session-relaunch.ts:419`) and the arm keeps only those three keys (`.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1011`)",
+    "created_at": "2026-11-13T08:49:37Z",
+    "last_save_at": "2026-11-13T09:17:59.724Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c105cbfc9084c3f2f92e9ee8572a9464942462815813cf299b64e05f9cd02d4d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ebe520bc665be8b281f6fa2978e72c8f6b220d959313059fc0a6b85775321d49",
+      "plan.md": "a35466ba02581af5188e3a7ee10745ecd62edbe4bb0cb03d61d9f1dc73d860f6",
+      "tasks.md": "8728104d6fa98ee3838913efe7c4319c4734032fa163c5929bf418b48e21fb47",
+      "implementation-summary.md": "4c61bef09f10fa8aac77cac84ec4275d4600cdfb7d43b9f21aa212862c85c0f6"
+    },
+    "last_active_at": null
+  }
+}

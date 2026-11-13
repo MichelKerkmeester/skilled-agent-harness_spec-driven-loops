@@ -1,0 +1,20 @@
+{
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/013-opencode-child-and-title",
+  "description": "Phase 13: opencode-child-and-title",
+  "keywords": [
+    "phase",
+    "opencode-child-and-title"
+  ],
+  "lastUpdated": "2026-11-13T08:49:35.980Z",
+  "specId": "013",
+  "folderSlug": "opencode-child-and-title",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
+    "038-goal-and-workflow-resume"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

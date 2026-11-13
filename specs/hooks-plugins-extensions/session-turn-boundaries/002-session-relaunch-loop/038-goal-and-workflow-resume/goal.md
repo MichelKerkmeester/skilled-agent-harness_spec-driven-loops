@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume"
-    last_updated_at: "2026-11-12T22:43:16Z"
+    last_updated_at: "2026-11-13T09:07:30Z"
     last_updated_by: "orchestrator"
-    recent_action: "Ran the deep review and closed child 008, which fixes its nine advisories"
-    next_safe_action: "Await the operator's decision on merge and push of worktree 358"
+    recent_action: "Planned children 009 to 017 from the hand-over gap research and bound them here"
+    next_safe_action: "Await the operator's greenlight, then build child 009"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-038-goal-and-workflow-resume"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 47
     open_questions: []
     answered_questions: []
 ---
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** After a session hop the receiver runs the command the sender was running, reads the goal of the phase it works, and every runtime either carries the session goal or says in one line why it did not: Cursor and Devin keep a handed-over goal at their next handoff, Pi binds a hop's goal once per process, a Claude claim is delivered with the relaunch switch off, the OpenCode goal continuation leaves a prepared hop alone, `skilled-loop` runs as typed, and the documents match what shipped.
+**Objective:** After a session hop the receiver runs the command the sender was running, reads its phase goal and claims its note, every runtime carries the session goal or says in one line why not, and the hand-over names or carries what the sender leaves: running workers, schedules, added directories, the session name and the permission or Pi mode.
 
 ### Decisions
 
@@ -44,11 +44,12 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | One child phase per work package of the verified review of 2026-11-12, in the order of the phase map. No file is changed by two phases. Each code change lands with a test that failed before it |
-| D2 | Phases run one at a time, 001 to 006. Phase 007 documents what 003 and 004 shipped and runs last |
-| D3 | No phase changes the relaunch record format or adds a module. The active command travels as a line in the handoff note |
-| D4 | The review's fixes for a cleared Claude goal, the shared goal off switch and the resend reminder are not applied: the verification refuted the first two and the third would switch off a resend the operator needs |
-| D5 | Local commits on the worktree branch only. Nothing is merged into main or pushed without the operator |
+| D1 | One child per work package. Each code change lands with a test that failed first |
+| D2 | Children run one at a time in number order. `spec.md` lists the files several children change |
+| D3 | No child adds a module. Only 011, 012 and 015 touch the relaunch record, with optional keys |
+| D4 | The 2026-11-12 review's fixes for a cleared Claude goal, the shared goal off switch and the resend reminder are not applied |
+| D5 | Nothing is merged or pushed without the operator |
+| D6 | Children 009 to 017 wait for the operator's greenlight. A child whose opening check refutes its claim changes no code and records the decline |
 
 <!-- /ANCHOR:directive -->
 
@@ -70,6 +71,15 @@ phase and binds as if written here.
 | 006-skilled-loop-command | `006-skilled-loop-command/goal.md` |
 | 007-goal-handover-docs | `007-goal-handover-docs/goal.md` |
 | 008-review-advisories | `008-review-advisories/goal.md` |
+| 009-nudge-note-lines | `009-nudge-note-lines/goal.md` |
+| 010-fanout-orphan-liveness | `010-fanout-orphan-liveness/goal.md` |
+| 011-permission-mode-carry | `011-permission-mode-carry/goal.md` |
+| 012-session-name-carry | `012-session-name-carry/goal.md` |
+| 013-opencode-child-and-title | `013-opencode-child-and-title/goal.md` |
+| 014-claude-stop-notice-and-crons | `014-claude-stop-notice-and-crons/goal.md` |
+| 015-pi-mode-and-descendant-walk | `015-pi-mode-and-descendant-walk/goal.md` |
+| 016-receiver-claim-under-goal | `016-receiver-claim-under-goal/goal.md` |
+| 017-handover-docs-and-harness | `017-handover-docs-and-harness/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -83,11 +93,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume --recursive --strict` prints `RESULT: PASSED` for the parent and each of the eight children
-- [x] `rg -c '\| Unmet \|' specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/*/acceptance-criteria.md` prints no line
-- [x] `node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs` exits 0
-- [x] `node --test .skilled/hooks/goal/**/*.test.cjs .skilled/hooks/goal/**/*.test.mjs` exits 0
-- [x] `npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts` exits 0
+- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume --recursive --strict` prints `RESULT: PASSED` for the parent and all seventeen children
+- [ ] `rg -c '\| Unmet \|' specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/*/acceptance-criteria.md` prints no line
+- [ ] `node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs` exits 0
+- [ ] `node --test .skilled/hooks/goal/**/*.test.cjs .skilled/hooks/goal/**/*.test.mjs` exits 0
+- [ ] `npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts` exits 0
 <!-- /ANCHOR:completion -->
 
 ---
@@ -119,7 +129,10 @@ and findings belong here.
 | Live goal hops on Claude Code 2.1.323 | Done | 2026-11-13, playbook GR-1 to GR-3 in a throwaway checkout: goal hop passed (receiver goal_status 3990 chars, goal-start-claim, note done), both controls left the receiver with no goal, suites 573 of 573. The harness ping withdraws an armed hand-over, so it was dropped. Evidence in scratch/live-hops-claude-2026-11-13 |
 | Receiver claim under a carried goal | Open | 2026-11-13: five goal hops with the fixed harness all relaunched and all started the receiver on the goal, but the receiver claimed the note in only two (runs 2 and 9) and replied PONG until the goal paused in three (6, 7, 8). The demo goal forbids other work, so a real goal is untested |
 | Deep research on hand-over gaps | Done | 2026-11-13: three iterations on the native deep-research agent with Opus at medium, after two guards refused Fable 5.2. Every gap in the report is confirmed in code and fourteen changes are ranked in research/research.md section 9. Nothing was run live |
-| Background worker across a hop | Done | 2026-11-13, live: a Claude sender started a node worker with an ampersand and ran prepare itself. Prepare exited 0 with the worker alive, the killer ended the sender 9 s later, and the worker ran on with parent pid 1 for 37 s more until the harness killed it. Evidence in scratch/live-hops-claude-2026-11-13/10-background-worker-orphaned |
+| Background worker across a hop (2026-11-13 live proof) | Done | 2026-11-13, live: a Claude sender started a node worker with an ampersand and ran prepare itself. Prepare exited 0 with the worker alive, the killer ended the sender 9 s later, and the worker ran on with parent pid 1 for 37 s more until the harness killed it. Evidence in scratch/live-hops-claude-2026-11-13/10-background-worker-orphaned |
+| Children 009 to 017 planned | Done | 2026-11-13: the operator asked for phases covering every recommendation, chose this packet as their home and said "Dont implement untill i give greenlight". `create.sh --phase --parent ... --with-goal --level 2` scaffolded nine children, and nine Opus sub-agents wrote spec, plan, tasks, criteria and goal, one child each. The orchestrator read every spec and task list, moved the harness note line into 009, gave research open question 2 to 014 and wrote the build order into `spec.md`. No code, hook, harness or playbook changed |
+| Operator answers for children 010, 011 and 015 | Done | 2026-11-13: "Refusal only" for a reused pid (010), "B: keep launch mode" for a live plan mode (011), "Accept the decline" for the descendant walk (015). Each child records its own answer |
+| Build of children 009 to 017 | Pending | Waits on the operator's greenlight |
 
 ### Deviations and findings
 
@@ -130,5 +143,6 @@ and findings belong here.
 | Goal not set by the operator | The operator cannot run `/goal` while asleep. This session reads this file before each phase, and a session cron re-reads it every 30 minutes and continues the next unfinished phase |
 | Phase 003 builder | Luna stopped after the failing tests because its sandbox blocks `ps`, which fails three older tests there. DeepSeek implemented against those tests |
 | Scope added by the review | Phase 003 gained one search per `prepare`, phase 006 the missing-checkout message and phase 004 a master switch guard test. Phase 005 gained the playbook suite count. None has a new requirement id. Each is recorded in its child's implementation summary |
-| Not run live | No hop was run on any runtime. Every claim rests on the suites and on reading the code |
+| Not run live | No hop was run on any runtime before 2026-11-13. The live rows above replace this for Claude Code |
+| Goal amended for children 009 to 017 | 2026-11-13: the objective gained the state a hop drops. D1 lost "no file is changed by two phases", because four sources are each changed by up to four children. D2 now orders all children by number. D3 allows three optional record keys. D5 no longer names worktree 358, which is removed. D6 is new. The five criteria are open again, and the first counts seventeen children |
 <!-- /ANCHOR:log -->

@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/009-nudge-note-lines",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/009-nudge-note-lines",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "nudge note lines",
+      "phase 9 nudge note lines",
+      "running workers line",
+      "scheduled line handoff note",
+      "added directories line",
+      "nudge note lines plan",
+      "nudge note lines tasks",
+      "nudge note lines acceptance criteria",
+      "nudge note lines goal",
+      "nudge note lines implementation summary"
+    ],
+    "key_topics": [
+      "nudge",
+      "note",
+      "lines",
+      "phase",
+      "running",
+      "workers",
+      "line",
+      "scheduled",
+      "handoff",
+      "directories",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".skilled/commands/speckit/handoff.md",
+      ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-claim-goal.test.cjs",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/run-hop.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-cli.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-claim-goal.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-claim-goal.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-hop.sh",
+        "kind": "script",
+        "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/run-hop.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Text",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The nudge tells a session to release a held deep-loop lock before `prepare` and says nothing about the fan-out runner (`.skilled/hooks/session-relaunch/lib/nudge.cjs:199-203`), so a re-run after the hop can requeue lineages that are still alive",
+    "created_at": "2026-11-13T08:49:30Z",
+    "last_save_at": "2026-11-13T09:08:18.181Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f40fa5b846fe55b901415f31f4977d655d14546c81d977b81157dc7ea183db3e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "68005cb0481b38d285fd8bc4e1911d8bc79421b49259c7c19bbc8ea84fd409dd",
+      "plan.md": "e960935f553f7aed1fd247d7cea95f65e1247b8eeb349467045991d17cf9d377",
+      "tasks.md": "60dbe26cbafe00859170b20294674551d300734cd9ba528e0d9c72747c206a9f",
+      "implementation-summary.md": "d7abb9001c0af862400d8d41413d415631b75109e4960724690d53d27886d20e"
+    },
+    "last_active_at": null
+  }
+}
