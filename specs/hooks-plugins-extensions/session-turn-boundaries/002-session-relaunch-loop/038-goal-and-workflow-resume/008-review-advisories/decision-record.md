@@ -35,6 +35,7 @@ _memory:
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
 | Q001 | SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED stays at 1 in the gitignored hook-flags.env after the live hop test. | Not stated. | None | .skilled/hooks/hook-flags.env |
+| Q002 | The goal carry-over harness and the Claude relaunch playbook text are fixed now, so a Claude sender with a goal gets no ending prompt and prepare runs early. | Not stated. | None | 028-goal-rebind-live-proof-and-docs/scratch/harness/run-hop.sh, session-relaunch-claude.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -61,6 +62,25 @@ Keep at 1
 Answer:
 ```text
 Keep at 1
+```
+
+### Q002
+<!-- source: claude:74f9de05-0121-41a0-9099-52709127e249:toolu_01PVtSsE4tdggxGrKnkLQU5u:1 -->
+
+Question:
+```text
+The playbook harness for check GR-1 fails as written on Claude Code 2.1.323: its 'ping' prompt withdraws a hand-over that is already armed. Shall I fix the harness script and the playbook text?
+```
+
+Options:
+```text
+Fix both now (Recommended)
+Not now
+```
+
+Answer:
+```text
+Fix both now (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

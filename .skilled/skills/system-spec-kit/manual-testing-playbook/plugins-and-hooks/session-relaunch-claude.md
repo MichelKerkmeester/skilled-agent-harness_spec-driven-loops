@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.20.0
+version: 1.0.21.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -765,7 +765,7 @@ bash "$harness/run-hop.sh" claude "$sandbox" "$out" goal
 bash "$harness/finish-run.sh" claude "$out"
 ~~~
 
-`run-hop.sh` starts the sender on `/goal <slice>` under `skilled-loop`, writes a note, runs `prepare`, sends one prompt so Stop arms, and lets the wrapper relaunch. It drops the host session's `SKILLED_LOOP_*`, `CLAUDE*` and `SESSION_RELAUNCH_GOAL*` variables, uses its own tmux socket and `XDG_RUNTIME_DIR`, and kills its tmux server on exit. `finish-run.sh` reduces the transcripts to an extract and deletes the raw files, which hold the operator's instruction files.
+`run-hop.sh` starts the sender on `/goal <slice>` under `skilled-loop`, writes a note, runs `prepare` and lets the wrapper relaunch. A sender under an unmet goal ends turns by itself, so Stop arms without a prompt. The script sends no prompt to such a sender, because a prompt over an armed record withdraws the hand-over, and it runs `prepare` about 10 seconds after launch, because Claude Code pauses a goal after nine blocked turn ends and a paused sender ends no further turn. A sender without a goal gets one prompt so Stop arms. It drops the host session's `SKILLED_LOOP_*`, `CLAUDE*` and `SESSION_RELAUNCH_GOAL*` variables, uses its own tmux socket and `XDG_RUNTIME_DIR`, and kills its tmux server on exit. `finish-run.sh` reduces the transcripts to an extract and deletes the raw files, which hold the operator's instruction files.
 
 Evidence, read from the receiver and not the sender:
 
@@ -821,6 +821,23 @@ Claude Code 2.1.310 with `claude-sonnet-5-5`, live in tmux with a private runtim
 | Switch off (GR-2) | Pass | Note carried the packet, receiver had no `goal_status`, `GOALENV.marker` is `EMPTY`, note `done` | `claude-b-switch-off/` |
 | No goal (GR-2) | Pass | Note had no `goal_packet`, receiver had no `goal_status`, `GOALENV.marker` is `EMPTY`, note `done` | `claude-c-no-goal/` |
 | Over the limit (GR-2) | Pass, recorded earlier | Receiver had no goal and claimed through the seed | `specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/027-goal-rebind-claude-and-codex/scratch/claude-live-c-over-budget/` |
+
+#### Recorded Results, 2026-11-13
+
+Claude Code 2.1.323 with `claude-sonnet-5-5`, live in tmux with a private runtime directory per run. Evidence lives in `specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/scratch/live-hops-claude-2026-11-13/`. The first and third runs used the harness as it stood on 2026-10-25 and showed the two timing faults the script now avoids.
+
+| Run | Result | Receiver | Evidence folder |
+|---|---|---|---|
+| Goal, with the ending prompt | No hop | The prompt withdrew the armed record with reason `user-message`, the killer logged `killer-timeout` and the note stayed `open` | `1-goal-with-ping-withdrawn/` |
+| Goal (GR-1) | Pass | `goal_status` with a 3,990-character condition, `goal-start-claim` logged, note `done`, `GOALENV.marker` is `specs/demo/001-demo` | `2-goal-no-ping-pass/` |
+| Switch off, `prepare` 31 s after launch | No hop | The sender's goal was already paused, nothing armed the pending record and the note stayed `open` | `3-switch-off-late-prepare-no-hop/` |
+| Switch off (GR-2) | Pass | Note carried the packet, receiver had no `goal_status`, `GOALENV.marker` is `EMPTY`, note `done` | `4-switch-off-pass/` |
+| No goal (GR-2) | Pass | Note had no `goal_packet`, receiver had no `goal_status`, `GOALENV.marker` is `EMPTY`, note `done` | `5-no-goal-pass/` |
+| Goal (GR-1), fixed harness, three runs | Fail | Each run relaunched and started the receiver on the goal with `goal-start-claim` logged, but the receiver replied `PONG` until Claude Code paused the goal and never claimed, so the note stayed `open` | `6-…`, `7-…` and `8-goal-fixed-harness-receiver-did-not-claim/` |
+| Goal (GR-1), fixed harness | Pass | Same signals as the passing goal run above | `9-goal-fixed-harness-pass/` |
+| Carry-over suites (GR-3) | Pass | 573 of 573, every named case present | none kept |
+
+Across the five goal runs with correct timing, the hop and the goal carried every time and the receiver claimed the note in two. The harness goal tells the session to reply `PONG` and do nothing else, which competes with the claim delivered as start context, so these runs do not show how a receiver behaves under a goal that allows other work.
 
 ### Expected
 

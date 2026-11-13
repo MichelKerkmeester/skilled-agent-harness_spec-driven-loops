@@ -1,0 +1,3 @@
+2026-11-13T06:16:01.964Z  withdrawn    claude    sandbox by 7a65cec1  Keep the pong keeper running.  [note-goal.md]
+2026-11-13T06:16:32.001Z  timed-out    claude    sandbox  Keep the pong keeper running.  [note-goal.md]
+open notes: 1 handoff note not claimed yet, oldest note-goal.md

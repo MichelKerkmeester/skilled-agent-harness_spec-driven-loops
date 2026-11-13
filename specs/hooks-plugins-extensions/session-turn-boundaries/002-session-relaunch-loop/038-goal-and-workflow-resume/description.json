@@ -12,7 +12,7 @@
     "every",
     "runtime"
   ],
-  "lastUpdated": "2026-11-13T06:11:05.217Z",
+  "lastUpdated": "2026-11-13T07:12:20.944Z",
   "specId": "038",
   "folderSlug": "goal-and-workflow-resume",
   "parentChain": [
@@ -20,7 +20,7 @@
     "session-turn-boundaries",
     "002-session-relaunch-loop"
   ],
-  "memorySequence": 8,
+  "memorySequence": 10,
   "memoryNameHistory": [
     "13-11-26_01-32__planned-packet-038-seven-phases-that-make-goals.md",
     "13-11-26_04-55__closed-packet-038-goals-and-running-workflows.md",
@@ -29,6 +29,8 @@
     "13-11-26_05-58__deep-review-of-the-goal-and-workflow-resume.md",
     "13-11-26_06-44__closed-child-008-of-the-goal-and-workflow-resume.md",
     "13-11-26_07-02__packet-038-is-merged-and-pushed-as-origin-main.md",
-    "13-11-26_07-11__receiving-session-of-the-live-claude-code.md"
+    "13-11-26_07-11__receiving-session-of-the-live-claude-code.md",
+    "13-11-26_07-38__ran-the-claude-goal-carry-over-playbook-checks.md",
+    "13-11-26_08-12__ran-nine-live-claude-code-hops-from-the-goal.md"
   ]
 }

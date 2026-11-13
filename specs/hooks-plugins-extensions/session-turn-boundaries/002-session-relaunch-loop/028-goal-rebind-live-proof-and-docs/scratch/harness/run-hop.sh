@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 # One live hop through the real wrapper, in a private tmux server and a private runtime
 # directory so no shared relaunch state is armed. The sender holds the packet goal (unless
-# NO_GOAL=1), a note is prepared out of band in the throwaway checkout, and the next prompt
-# ends a turn so the adapter arms and the wrapper relaunches. The receiver is asked to report
-# what it sees: the hand-over variable and any goal block in its context.
+# NO_GOAL=1), a note is prepared out of band in the throwaway checkout, and the next turn end
+# lets the adapter arm and the wrapper relaunch. A Claude sender under an unmet goal ends turns
+# by itself, so it gets no ending prompt: a prompt would withdraw the hand-over its own turn end
+# has already armed. Every other sender gets one prompt to end a turn. The receiver is asked to
+# report what it sees: the hand-over variable and any goal block in its context.
 # Usage: run-hop.sh <claude|pi|opencode> <sandbox> <out-dir> <label> [ENV=value ...]
 # Environment: NO_GOAL=1 starts the sender without a goal.
 set -u
@@ -90,7 +92,9 @@ log "sender ready=$ready"
 sleep 4
 
 if [ "$runtime" = claude ]; then
-  sleep 20
+  # Claude pauses a goal after nine blocked turn ends, about 28 s in. Prepare has to land
+  # while the sender still ends turns, or nothing arms the record.
+  if [ -z "${NO_GOAL:-}" ]; then sleep 6; else sleep 20; fi
 elif [ -z "${NO_GOAL:-}" ]; then
   case "$runtime" in
     pi) say "/goal-pi bind specs/demo/001-demo" ;;
@@ -151,8 +155,13 @@ NOTE
 log "prepare exit=$? ; $(head -c 300 "$out/prepare.txt")"
 log "note goal_packet line: $(grep -E '^goal_packet' "$note" || echo '<none>')"
 
-if [ "$runtime" = claude ]; then say "ping"; else say "Reply with the single word PONG again."; fi
-log "sent the ending prompt; waiting for the receiver"
+if [ "$runtime" = claude ] && [ -z "${NO_GOAL:-}" ]; then
+  log "no ending prompt for a Claude sender with a goal; waiting for the receiver"
+elif [ "$runtime" = claude ]; then
+  say "ping"; log "sent the ending prompt; waiting for the receiver"
+else
+  say "Reply with the single word PONG again."; log "sent the ending prompt; waiting for the receiver"
+fi
 for _ in $(seq 1 150); do
   sleep 3
   if grep -qE '^status: (claimed|done)' "$note" && [ -f "$sb/GOALENV.marker" ]; then break; fi

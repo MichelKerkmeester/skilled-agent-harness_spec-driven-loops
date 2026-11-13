@@ -1,0 +1,72 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/MEGA/Development/Skilled
+Every read and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+This task is READ-ONLY. You write no file. The spec folder, for reference only, is:
+  specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+Your task is complete when your final message holds the report described under FORMAT.
+
+ROLE
+You are a senior engineer reviewing the session-relaunch loop of this repository for gaps
+at the moment a session hands over to a fresh one.
+
+CONTEXT
+The loop relaunches a runtime (Claude Code, OpenCode, Pi, Codex, Cursor, Devin) in a fresh
+session when the context window fills. The sending session writes a handoff note, runs
+`prepare`, a detached killer ends it when it goes idle, and the `skilled-loop` wrapper starts
+a receiver that claims the note. Start from these files and follow what they reference:
+- .skilled/hooks/session-relaunch/README.md
+- .skilled/hooks/session-relaunch/bin/session-relaunch.cjs
+- .skilled/hooks/session-relaunch/lib/ (relaunch-core.cjs, killer.cjs, nudge.cjs, withdraw.cjs, goal-handover.cjs)
+- .skilled/hooks/session-relaunch/claude/, codex/, opencode/, pi/
+- .skilled/bin/skilled-loop and .skilled/bin/skilled-loop-shell.sh
+- .skilled/skills/cli-external-orchestration/ (how cli-* workers are dispatched)
+- .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs (fan-out lineages and their locks)
+
+QUESTIONS
+Q1. Running sub-agents at hand-over. A session may have work still running when the context
+threshold triggers a hand-over: native sub-agents (Claude Code Agent tool and background
+tasks, OpenCode task sessions), external CLI workers started from a tool shell (claude -p,
+codex exec, opencode run, pi -p), and deep-loop fan-out lineages. For each kind and each
+runtime, state what the code does today: is the hand-over deferred, is the worker killed with
+the session, does it survive as an orphan, and does the receiver learn that it exists, where
+its output lands and how to collect it? Then name every path where progress is lost or work is
+duplicated, and propose the smallest change that closes each one.
+
+Q2. Session names across a hop. An operator may have named the session (Claude Code
+`--name` or `/rename`, OpenCode session title, Pi, Codex and the others). State what happens
+to that name on a hop today, per runtime. Then say whether the receiver can be given the same
+name with a suffix such as "<name> (2)", "<name> (3)" counting hops, automatically: which
+flag, command or API each runtime offers for it, where in the wrapper or adapters it would be
+set, and what cannot be done on a runtime that offers nothing.
+
+Q3. Other gaps of the same kind. Name up to five further things a session holds that a hop
+drops or mishandles today and that an operator would notice. Examples of the kind meant:
+permission mode, working directory or worktree, added directories, an open plan mode,
+scheduled wakeups or crons, MCP connections, queued prompts, the todo list. Only list a gap
+you confirmed in the code or in the runtime's own help output.
+
+CONSTRAINTS
+- Read-only. Run only commands that read: rg, ls, cat, git log, `<runtime> --help`.
+- Do not start any runtime session and do not run `prepare`, `claim`, `keep` or `cancel`.
+- Every claim about this repository cites `path:line`. Every claim about a runtime's flags
+  cites the help output or binary you read it from. Mark anything you could not confirm as
+  UNCONFIRMED and say what would confirm it.
+- Do not propose a change the README already documents as shipped. Check first.
+
+FORMAT
+One markdown report, at most 1,200 words, in this order:
+1. Verdict: three sentences, one per question.
+2. Q1: one bullet per worker kind, each with "today", "what is lost" and "smallest fix".
+3. Q2: one bullet per runtime, each with "today", "possible" and "where to set it".
+4. Q3: up to five bullets, each with the evidence and a one-line fix.
+5. Ranked list of the proposed changes, most valuable first, each tagged small, medium or large.

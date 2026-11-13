@@ -1,0 +1,2 @@
+2026-11-13T07:02:07.862Z  handed-over  claude    sandbox (hop 1)  Keep the pong keeper running.  [note-goal.md]
+open notes: 1 handoff note not claimed yet, oldest note-goal.md
