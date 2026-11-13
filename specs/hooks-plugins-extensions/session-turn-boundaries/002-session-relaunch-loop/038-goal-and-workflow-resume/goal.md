@@ -143,6 +143,7 @@ and findings belong here.
 | Child 014 Stop notice and crons | Done | 2026-11-13: built by DeepSeek V4.1 Flash max. A live hop in a throwaway checkout confirmed that a scheduled task and the todo list end with the session. Commit 2b38c908a4 |
 | Suites after children 009 to 014 | Done | 2026-11-13, run by the orchestrator from the tree at 2b38c908a4: relaunch and OpenCode plugin suites 1521 of 1521, exit 0, twice in a row |
 | Builder route changed | Done | 2026-11-13: the operator said "Try llmgateway dsh" and "For deepseek flash". A trial brief for phase 016's harness copy ran through `dsh` on the LLM Gateway route in four minutes, exit 0 with a `completed` final event. Children 015 to 017 are built through dsh with one small change per brief |
+| Child 015 Pi mode and descendant walk | Done | 2026-11-13: built through five `dsh` briefs on DeepSeek V4.1 Flash, each diff read and the gates rerun by the orchestrator. One live Pi 1.5.2 launch with `--plan` started in Plan mode before the build. The descendant walk is declined as ADR-002. Pi adapter suite 62 of 62, relaunch and OpenCode plugin suites 1524 of 1524. Commit 10e61ef8d2 |
 
 ### Deviations and findings
 
