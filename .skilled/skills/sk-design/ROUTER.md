@@ -7,7 +7,7 @@ trigger_phrases:
   - "design intent routing"
 importance_tier: important
 contextType: implementation
-version: 3.0.0.0
+version: 3.0.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -95,6 +95,7 @@ RESOURCE_MAP = {
 - Load what a row resolves and nothing more; a resource already in context is not re-read.
 - No keyword match is the hub's UNKNOWN fallback: report the gap and confirm the target mode before
   loading anything.
+- A mode whose `mode-registry.json` row names a `command` has two whole entries: read that command's document in full and follow it under the policy the advisor names, or follow this mode's packet. Pick one and keep to it. A mode whose row has `command: null` has only its packet.
 
 ---
 

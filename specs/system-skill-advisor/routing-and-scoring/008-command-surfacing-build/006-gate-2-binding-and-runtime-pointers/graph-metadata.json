@@ -38,7 +38,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -46,20 +46,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "scratch/measure-policies.mjs",
-      "scratch/hub-commands.mjs",
-      "scratch/advisor-top.sh",
-      "scratch/hook-first-line.sh",
       "scratch/bullet-draft.txt",
       ".cursor/rules/skill-routing.md",
-      ".devin/SYNC.md",
       ".skilled/commands/doctor/assets/agents-md-manifest.json",
       ".skilled/skills/sk-doc/ROUTER.md",
       ".skilled/skills/sk-design/ROUTER.md",
       ".skilled/skills/system-deep-loop/ROUTER.md",
       ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs",
-      ".dsh/plugins/repo-guards/adapters/prompt-advisor.mjs"
+      "scratch/verification-evidence.txt",
+      "scratch/after-check.txt",
+      "scratch/suite-after.txt",
+      "scratch/before.txt",
+      ".skilled/CROSS-CLI.md",
+      ".devin/SYNC.md",
+      "scratch/hook-first-line.sh"
     ],
     "entities": [
       {
@@ -99,30 +99,6 @@
         "source": "derived"
       },
       {
-        "name": "measure-policies.mjs",
-        "kind": "file",
-        "path": "scratch/measure-policies.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "hub-commands.mjs",
-        "kind": "file",
-        "path": "scratch/hub-commands.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "advisor-top.sh",
-        "kind": "script",
-        "path": "scratch/advisor-top.sh",
-        "source": "derived"
-      },
-      {
-        "name": "hook-first-line.sh",
-        "kind": "script",
-        "path": "scratch/hook-first-line.sh",
-        "source": "derived"
-      },
-      {
         "name": "bullet-draft.txt",
         "kind": "file",
         "path": "scratch/bullet-draft.txt",
@@ -132,12 +108,6 @@
         "name": "skill-routing.md",
         "kind": "doc",
         "path": ".cursor/rules/skill-routing.md",
-        "source": "derived"
-      },
-      {
-        "name": "SYNC.md",
-        "kind": "doc",
-        "path": ".devin/SYNC.md",
         "source": "derived"
       },
       {
@@ -159,15 +129,45 @@
         "source": "derived"
       },
       {
-        "name": "sync-gate1-pointers.cjs",
+        "name": "verification-evidence.txt",
         "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs",
+        "path": "scratch/verification-evidence.txt",
         "source": "derived"
       },
       {
-        "name": "prompt-advisor.mjs",
+        "name": "after-check.txt",
         "kind": "file",
-        "path": ".dsh/plugins/repo-guards/adapters/prompt-advisor.mjs",
+        "path": "scratch/after-check.txt",
+        "source": "derived"
+      },
+      {
+        "name": "suite-after.txt",
+        "kind": "file",
+        "path": "scratch/suite-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "CROSS-CLI.md",
+        "kind": "doc",
+        "path": ".skilled/CROSS-CLI.md",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".devin/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-first-line.sh",
+        "kind": "script",
+        "path": "scratch/hook-first-line.sh",
         "source": "derived"
       },
       {
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The advisor now attaches a command to a recommendation, but nothing in `AGENTS.md` says what a model does with it, so a surfaced command is a hint with no rule behind it",
     "created_at": "2026-11-12T12:27:37Z",
-    "last_save_at": "2026-11-12T22:04:57.673Z",
+    "last_save_at": "2026-11-13T01:31:56.477Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:238d0c1252af0dfa4502f158c0380748ff46ef32622d5054945670a112d03f53",
+    "source_fingerprint": "sha256:a5deac7fb218ccff02db30fe36e7f40c18cd5900e4faa6e27f811a1d2478dc35",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e77e45ac69d7f3fab7bd73c9d4b09589dcec834f98e5aad6631e0f9cdcc75ac3",
+      "spec.md": "88282511aaa5431d565dc6e170ce88ce2b0caf96892cdb0b0cfde173bebb3051",
       "plan.md": "256bac48fd888d48ae2af9530424d88aa6a1609978068c4b5eb256481ef93d3a",
-      "tasks.md": "90afc1541bb6f89c8c1384590f9d6d2fdd081c52091952acbd45915c4ef148de",
-      "implementation-summary.md": "d2cde068b2c8fa958bae039fa92cae0c94893dda4f604da42bcfffcaf3866019"
+      "tasks.md": "68e083e3237ee0c6c3d36a8c9a80589b0caa708d2209839ab73a4be489dabb7d",
+      "implementation-summary.md": "9cfdfa39d32a51b6329354ec206b3c5902b7f2b4a853cba4560a89516b9490f0"
     },
     "last_active_at": null
   }

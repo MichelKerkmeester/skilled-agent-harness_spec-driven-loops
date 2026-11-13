@@ -9,7 +9,7 @@ trigger_phrases:
   - "advisor hook smoke tests"
 importance_tier: important
 contextType: implementation
-version: 3.6.6.0
+version: 3.6.7.0
 ---
 
 # Skill Advisor Hook Reference
@@ -36,7 +36,7 @@ On each user-prompt event the adapter:
 2. **Read the prompt + workspace.** Resolves the workspace root (install-anchored walk, not CWD-relative, so the hook stays correct off-root), reads the prompt text (bounded), and resolves the session id.
 3. **Prompt gate.** `skippedAdvisorResultFor` uses `shouldFireAdvisor` to decline skip commands, short acknowledgements and prompts below its length threshold. A declined prompt returns a skipped result and does not spawn the CLI.
 4. **CLI front door.** The hook calls `buildSkillAdvisorBriefFromCli`, which runs `skill-advisor.cjs advisor_recommend --json - --no-warm-only` within the `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` budget (2,500 ms by default). It writes the request to the CLI's stdin, so the prompt never appears in the process table. The request carries at most the prompt's first 10,000 characters, the most `advisor_recommend` accepts, so a longer prompt is routed on its head instead of failing open. The Claude shim sets the child budget to 2,200 ms when the operator has not set the variable. An operator value above about 2,200 ms lets the shim kill the hook at 2,500 ms first, so the turn gets `{}`. The CLI owns the warm-daemon probe, starts the daemon when the socket is cold and falls back to the local Python scorer with a `degraded` result. The request carries `includeCompiledRoute: true`, because the advisor derives a recommendation's slash command from the compiled route. It also carries `compiledRouteTopOnly: true`, because each route lookup is a subprocess inside the hook's budget and the brief leads with the top pick. The hook keeps the `command` field and reads nothing from the route itself. A daemon still running an older build rejects these options with JSON-RPC `-32602`, and the CLI retries once without them.
-5. **Render.** `renderAdvisorBrief` produces the model-visible `Advisor:` text. When there is no brief, the handler emits `renderAdvisorFallbackDirective`: one status line, then the directives block. The line reads `Advisor: outage (<status>)` with the command to route by hand when the advisor failed or timed out, `Advisor: no skill matched.` when it answered with nothing above threshold, and `Advisor: prompt skipped.` when the prompt gate declined. The `/doctor:setup` hint appears on no-match and outage lines for prompts that use set up, set-up or setup wording, install or reinstall wording including installation and installer, configure or configuration wording or `check` followed within three words by environment, env, config, hooks, tools, tooling, toolchain or skilled. The no-match line ends with ` For setup or health checks, run /doctor:setup.` The outage line places `for setup or health checks, run /doctor:setup;` before the hand-route command so it stays last. Raw prompt text is never persisted in diagnostics, cache metadata, status, or attribution.
+5. **Render.** `renderAdvisorBrief` produces the model-visible `Advisor:` text. When there is no brief, the handler emits `renderAdvisorFallbackDirective`: one status line, then the directives block. The line reads `Advisor: outage (<status>)` with the command to route by hand when the advisor failed or timed out, `Advisor: no skill matched.` when it answered with nothing above threshold, and `Advisor: prompt skipped.` when the prompt gate declined. The `/doctor:setup` hint appears on no-match and outage lines for prompts that use set up, set-up or setup wording, install or reinstall wording including installation and installer, configure or configuration wording or `check` followed within three words by environment, env, config, hooks, tools, tooling, toolchain or skilled. The no-match line ends with ` For setup or health checks, run /doctor:setup.` The outage line places `for setup or health checks, run /doctor:setup;` before the hand-route command so it stays last. With `AI_SESSION_CHILD=1`, a surfaced `start` or `ask` command, or a `run` command that is not read-only, renders as `(parent-named only)`. Raw prompt text is never persisted in diagnostics, cache metadata, status, or attribution.
 6. **Directive-lifecycle dedup.** `decideDirectiveLifecycleDelivery` suppresses a re-delivery of the same directive to the same session within its cadence, so a repeated prompt does not re-inject an identical brief. A repeat in a known session keeps the first line, a route or a fallback status, and drops the directives block.
 7. **Emit.** Native adapters emit a `hookSpecificOutput.additionalContext` JSON envelope. OpenCode appends to `output.system` via `experimental.chat.system.transform`. Pi sends a model-visible message.
 
@@ -83,8 +83,23 @@ Every native runtime and Pi run the same hook handler, which gates the prompt, c
 | **Devin** | `system-spec-kit/.../hooks/devin/user-prompt-submit.ts` (shim) → `.../dist/hooks/devin/user-prompt-submit.js` | `UserPromptSubmit` in `.devin/hooks.v1.json`, matcher `""`, timeout 10s | Same shim dispatch. `cd "${DEVIN_PROJECT_DIR:-$PWD}"`. Fallback `printf` envelope | Same `additionalContext` JSON |
 | **Pi** | `system-skill-advisor/hooks/pi/prompt-advisor.ts` (real file, re-exported by its one-line `.pi/extensions/` entry) | `user_input` / prompt event via `.pi/extensions/` | Imports the advisor module **in-process** (not a subprocess). Pi awaits input handlers before agent processing, so the old blocking-spawn bridge stalled every send. In-process calls remove the stall and let the module-level prompt cache work. Captures raw user text (bounded 32 KiB, 64-session LRU). The in-process call passes `runtime: 'pi'` and races a timer of the advisor budget plus 300 ms, delivering the fallback directives if the call hangs | Model-visible message. Delivery-state machine suppresses same-session re-delivery |
 | **OpenCode** | `.opencode/plugins/system-skill-advisor.js` | Plugin, loaded by OpenCode's flat glob over `.opencode/plugins/`. `experimental.chat.system.transform` per prompt, `event` for session lifecycle, `tool` for status | Shells out to the advisor CLI (bounded timeout, stdout cap 256 KiB, grace termination), TTL+LRU prompt cache with in-flight dedup, transform-dedup integration | Brief appended to `output.system`. `spec_kit_skill_advisor_status` tool returns a key=value report (no raw path leakage) |
+| **DSH** | `system-skill-advisor/hooks/dsh/prompt-advisor.mjs`, imported by `.dsh/plugins/repo-guards/adapters/prompt-advisor.mjs` | `agent/pre-step` through the `repo-guards` plugin, on unless the `promptAdvisor` row flag is `false` | Proxies the latest operator prompt through the compiled Claude advisor chain under the runtime label `dsh`. A fan-out leaf, marked by the lineage patch, gets no brief | Brief added to the step |
 
 OpenCode has no source-hook adapter in `system-spec-kit`. Its prompt-time integration is the committed plugin, which shells out to the advisor CLI and inherits the shared render contract. The hooks-tree index at `.skilled/hooks/skill-advisor/` mirrors the per-runtime shims and the OpenCode plugin via relative symlinks. This README is the symlink target.
+
+### Starting a surfaced command
+
+The document behind a surfaced command is `.skilled/commands/<group>/<name>.md`. The model reads that document in full and follows it, on every runtime. It never tells the user to type a slash command, and it asks the user to type one only when it cannot read the file.
+
+| Runtime | Model can start a command itself | Basis |
+|---|---|---|
+| Claude Code | Yes, through the Skill tool, as a shortcut for the names it lists: 33 of the 45 names, including one `create` entry and none of the other twelve `create:*` names | The Skill tool lists names, not files. `create/skill.md` collides with the `SKILL.md` convention on a case-insensitive disk, so the folder reads as one skill |
+| Codex | No | The mirror is a pointer stub that tells the model to read the command file. There is no `.codex/skills` |
+| Cursor | No model path found, and the brief is dormant | The mirror is a pointer stub. Public Cursor docs were not fetched |
+| Devin | No command surface at all | Skills are exposed, commands are not |
+| Pi | No model path found | The mirror is a pointer stub. Public Pi docs were not fetched, so this is unverified beyond the repository |
+| OpenCode | No documented model path. A parent process can start one with `opencode run --command` | Commands are user-triggered templates, while skills are loaded by the model through a skill tool |
+| DSH | No | dsh has no agent-file loader and no command loader |
 
 ---
 
@@ -98,6 +113,9 @@ system-skill-advisor/hooks/
 |   +-- README.md
 |   +-- directive-lifecycle-boundary.ts
 |   `-- user-prompt-submit.ts         # real advisor handler (Claude shape)
++-- dsh/
+|   +-- README.md
+|   `-- prompt-advisor.mjs            # real DSH adapter (.dsh/plugins/repo-guards/adapters/ imports it)
 +-- pi/
 |   +-- README.md
 |   `-- prompt-advisor.ts             # real Pi extension (.pi/extensions/ re-exports it)

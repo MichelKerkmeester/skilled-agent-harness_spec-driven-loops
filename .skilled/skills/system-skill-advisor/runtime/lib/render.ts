@@ -43,6 +43,12 @@ export interface AdvisorBriefRenderOptions {
    * toolchain or skilled. The renderer never reads prompt text.
    */
   readonly setupWording?: boolean;
+  /**
+   * True when a dispatched child renders the brief. A child keeps the skill line
+   * but a command it must not start alone renders as parent-named only. Defaults
+   * to `AI_SESSION_CHILD === '1'`.
+   */
+  readonly childSession?: boolean;
 }
 
 export interface ShadowDeliveryRenderOptions extends DeliveryStateSignals {
@@ -104,6 +110,7 @@ const INSTRUCTION_LABEL_PATTERN =
 const CONTROL_CHAR_PATTERN = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
 const ROUTE_ONLY_SHADOW_ID = 'shadow.route-only.advisor.v1';
 const OBSERVED_ADVISOR_POLICY_CANDIDATE = '004';
+const PARENT_NAMED_POLICY = 'parent-named only';
 export const ROUTE_ONLY_ESTIMATED_BYTES = 43;
 const MAX_SHADOW_ROUTE_ONLY_LOG = 256;
 
@@ -182,11 +189,38 @@ export function doctorCommandString(skillId: string): string | null {
   return command === undefined ? null : sanitizeSkillLabel(command);
 }
 
+// A dispatched child cannot ask its operator whether to start an interactive run
+// or one that writes, so only a read-only run stays fully visible there.
+function parentNamedOnly(policy: string | undefined, mutating: string | undefined): boolean {
+  if (policy === 'start' || policy === 'ask') {
+    return true;
+  }
+  return policy === 'run' && mutating !== 'read-only';
+}
+
+// The policy word is the only part of a command label a child replaces. The
+// command itself and its owner stay visible so the child can report what the
+// parent named.
+function policyWord(
+  policy: string | undefined,
+  mutating: string | undefined,
+  childSession: boolean,
+): string | null {
+  if (policy === undefined) {
+    return null;
+  }
+  const word = sanitizeSkillLabel(policy);
+  if (word === null) {
+    return null;
+  }
+  return childSession && parentNamedOnly(policy, mutating) ? PARENT_NAMED_POLICY : word;
+}
+
 // A recommendation that names a command renders as the skill that owns it, the
 // runnable command and the policy that governs the run. The recommendation's own
 // fields stay authoritative and the generated row fills only what they omit, so a
 // caller that already resolved the command is never second-guessed.
-function commandLabel(recommendation: RenderableRecommendation): string | null {
+function commandLabel(recommendation: RenderableRecommendation, childSession: boolean): string | null {
   const row = commandRowFor(recommendation.skill);
   const command = recommendation.command ?? row?.command;
   const owner = recommendation.ownerSkillId ?? row?.ownerSkillId ?? recommendation.skill;
@@ -196,7 +230,7 @@ function commandLabel(recommendation: RenderableRecommendation): string | null {
   if (!commandPart || !ownerPart) {
     return null;
   }
-  const policyPart = policy === undefined ? null : sanitizeSkillLabel(policy);
+  const policyPart = policyWord(policy, row?.mutating, childSession);
   return policyPart === null
     ? `${ownerPart} → ${commandPart}`
     : `${ownerPart} → ${commandPart} (${policyPart})`;
@@ -204,11 +238,24 @@ function commandLabel(recommendation: RenderableRecommendation): string | null {
 
 // A doctor bridge renders as its runnable command and never as its raw id; an
 // unmapped doctor id renders nothing.
-function recommendationLabel(recommendation: RenderableRecommendation): string | null {
-  return commandLabel(recommendation)
+function recommendationLabel(recommendation: RenderableRecommendation, childSession: boolean): string | null {
+  return commandLabel(recommendation, childSession)
     ?? (isDoctorBridgeId(recommendation.skill)
       ? doctorCommandString(recommendation.skill)
       : sanitizeSkillLabel(recommendation.skill));
+}
+
+// The companion line normally shows only the runnable command. A child gets the
+// downgrade marker appended because that command must not be started there.
+function companionCommandLabel(skillId: string, childSession: boolean): string | null {
+  const command = doctorCommandString(skillId);
+  if (command === null) {
+    return null;
+  }
+  const row = commandRowFor(skillId);
+  return childSession && parentNamedOnly(row?.policy, row?.mutating)
+    ? `${command} (${PARENT_NAMED_POLICY})`
+    : command;
 }
 
 function formatScore(value: number): string {
@@ -472,6 +519,7 @@ export function renderAdvisorBrief(
 
   const tokenCap = clampTokenCap(result.metrics?.tokenCap ?? options.tokenCap);
   const thresholdConfig = options.thresholdConfig;
+  const childSession = options.childSession ?? process.env.AI_SESSION_CHILD === '1';
   const recommendations = result.recommendations.filter((recommendation) => (
     recommendation.passes_threshold === true
     || (
@@ -488,7 +536,7 @@ export function renderAdvisorBrief(
     return null;
   }
 
-  const topLabel = commandLabel(top)
+  const topLabel = commandLabel(top, childSession)
     ?? (isDoctorBridgeId(top.skill)
       ? doctorCommandString(top.skill)
       : sanitizeSkillLabel(metadataSkillLabel(result) ?? top.skill));
@@ -500,7 +548,7 @@ export function renderAdvisorBrief(
   const companion = isDoctorBridgeId(top.skill)
     ? undefined
     : recommendations.slice(1).find((recommendation) => doctorCommandString(recommendation.skill) !== null);
-  const companionLabel = companion ? doctorCommandString(companion.skill) : null;
+  const companionLabel = companion ? companionCommandLabel(companion.skill, childSession) : null;
   const companionLine = (shownSecond: string | undefined): string => (
     companionLabel && companion && companion.skill !== shownSecond ? `\nAlso: ${companionLabel}` : ''
   );
@@ -518,7 +566,7 @@ export function renderAdvisorBrief(
     const vs = (ambiguousWith.length > 0
       ? recommendations.find((recommendation) => ambiguousWith.includes(recommendation.skill))
       : undefined) ?? second;
-    const vsLabel = recommendationLabel(vs);
+    const vsLabel = recommendationLabel(vs, childSession);
     if (!vsLabel && !isDoctorBridgeId(vs.skill)) {
       observeAdvisorPolicy(null, options);
       return null;

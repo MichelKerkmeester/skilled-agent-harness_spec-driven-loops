@@ -1,0 +1,39 @@
+Phase 006 verification evidence, run 2026-11-13 from the worktree root.
+
+T024 manifest: `agents-md-manifest.cjs --write` exit 0, `--check` printed
+  PASS: 44 sections, 31 pins, derived matches AGENTS.md
+  Budget: 16092 / 16384 bytes to the last anchor, 27575 / 32768 bytes total, 21 history bodies
+T025 Cursor rule: sync exit 0, `--check` exit 0 ("PASS: 1 instruction files carry the root Gate 1 and Gate 2 pointers"),
+  "Command in the brief" count 1, "skill-advisor.cjs advisor_recommend" count 1 in .cursor/rules/skill-routing.md
+T027 agents-md check (scratch/after-check.txt): STATUS=OK rows=12 findings=0 unknown=0, A4 44 current, A5 31/31 pins hold,
+  A6 16092 of 16384, A10 6/6 copies as expected
+T028 rule-copy canary: "OK: all rule invariants present (8 exact-string file(s) + 2 Iron Law file(s) + 21 delivery-prefix anchor(s) + 6 extension floor(s) + 2 example output(s))."
+T029 pointer test: 7 passed, sync --check exit 0
+T030 spec gate test: pass 107, fail 0 (run with AI_SESSION_CHILD and SYSTEM_SPEC_GATE_ENFORCE unset)
+T031 advisor: typecheck exit 0. The four named test files: 4 files, 26 passed, 0 failed.
+  `rg copilot` over $ADV .ts files lists only tests/legacy/runtime-label-removal.vitest.ts,
+  tests/hooks/settings-driven-invocation-parity.vitest.ts and stress-test/skill-advisor/hooks-parity-stress.vitest.ts.
+  `npm test`: 173 files passed, 1528 passed, 6 skipped, 0 failed (scratch/suite-after.txt)
+T023 child render test: tests/render-child-session.vitest.ts 7 passed, 0 failed
+T026 hook reference: "parent-named only" count 1 in skill-advisor-hook.md
+T032 hub checks: sk-doc exit=0, sk-design exit=0, system-deep-loop exit=0
+T033 build exit 0. Hook probe on "disable comment hygiene gate":
+  with AI_SESSION_CHILD=1:  Advisor: live; ambiguous: sk-git → /doctor:git hooks (parent-named only) 0.91/0.12 vs sk-code 0.88/0.12 pass.
+  without the variable:     Advisor: live; ambiguous: sk-git → /doctor:git hooks (ask) 0.91/0.12 vs sk-code 0.88/0.12 pass.
+T034 scope and hygiene: the added-line scan for REQ-0, T0nn, specs/ and ADR- in .ts .cjs .mjs .sh printed nothing.
+  Changed files outside spec.md section 3, each a recorded deviation:
+  1. Four compiled-routing activation manifests (sk-design and system-deep-loop, the served copy under
+     .skilled/bin/lib/compiled-routing/013-live-activation/activation/ and the authored copy under
+     specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/).
+     Cause: the one-line handoff bullet added to each hub ROUTER.md made both hubs serve "legacy" with cause
+     stale-manifest, which dropped plain tune recall from 9 of 45 to 6 of 45 (every /design:* row and /deep:ai-council
+     lost its attached command). Fix: `compiled-route-manifest.cjs refresh` for both hubs and the copy the guard names.
+     After: compiled-route-guard exit 0 with no failing hub, `compiled-route-sync.cjs --check` printed
+     "all 7 hubs resolve" and "all 55 served copies match their authored files", and the command capture printed
+     typed 24 of 44, tune combined 9 of 45, holdout combined 0 of 44, false offers 0 of 35 again.
+     sk-doc stayed fresh after the same kind of edit.
+  2. tests/command-brief-golden.vitest.ts and tests/command-offer.vitest.ts belong to phase 005 (re-pin task) and
+     phase 010, not to this phase.
+Floors after the change: scorer [159,50,20,5], policy rollup {"ask":17,"run":7,"start":20}.
+Earlier amendments already in tasks.md: T005 (DSH on unless the flag is false), T014 (mutating class in COMMAND_ROWS),
+create.sh numbering fix 6 to 7 for the goal lines.

@@ -2428,10 +2428,11 @@ else
     else
         echo "    5. Add on-demand docs with --with-lazy-addons when needed"
     fi
+    echo "    6. Plan the work with /speckit:plan, or plan and build with /speckit:complete, unless one of them created this folder"
     if $WITH_GOAL; then
-        echo "    6. Fill goal.md with /create:goal"
+        echo "    7. Fill goal.md with /create:goal"
     else
-        echo "    6. Add goal.md with --with-goal or /create:goal when an operator will set this packet as a session objective"
+        echo "    7. Add goal.md with --with-goal or /create:goal when an operator will set this packet as a session objective"
     fi
     echo ""
     echo "───────────────────────────────────────────────────────────────────"

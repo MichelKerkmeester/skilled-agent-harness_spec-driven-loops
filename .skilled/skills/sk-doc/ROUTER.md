@@ -8,7 +8,7 @@ trigger_phrases:
   - "surface router pattern"
 importance_tier: important
 contextType: implementation
-version: 2.4.5.0
+version: 2.4.6.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -431,6 +431,7 @@ RESOURCE_MAP = {
 - No keyword match is UNKNOWN_FALLBACK: confirm the target artifact and intent
   before loading anything.
 - `FULL_INVENTORY` fires only on an explicit "show the whole toolkit" request.
+- A mode whose `mode-registry.json` row names a `command` has two whole entries: read that command's document in full and follow it under the policy the advisor names, or follow this mode's packet. Pick one and keep to it. A mode whose row has `command: null` has only its packet.
 
 ---
 

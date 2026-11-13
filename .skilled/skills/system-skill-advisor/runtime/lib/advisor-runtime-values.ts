@@ -9,7 +9,6 @@
 
 export const ADVISOR_RUNTIME_VALUES = [
   'claude',
-  'copilot',
   'opencode',
   'pi',
   'codex',

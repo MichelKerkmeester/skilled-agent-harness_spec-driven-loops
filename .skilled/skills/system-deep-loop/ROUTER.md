@@ -8,7 +8,7 @@ trigger_phrases:
   - "deep-loop resource map"
 importance_tier: important
 contextType: general
-version: 1.6.7.0
+version: 1.6.8.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -95,6 +95,7 @@ RESOURCE_MAP = {
   union is deduped by canonical pair and capped at the selected-map union limit.
 - No keyword match is the hub's UNKNOWN fallback: confirm the target deep-loop
   mode before loading anything.
+- A mode whose `mode-registry.json` row names a `command` has two whole entries: read that command's document in full and follow it under the policy the advisor names, or follow this mode's packet. Pick one and keep to it. A mode whose row has `command: null` has only its packet. Where a mode packet names its command as its only entry, as `deep-research/SKILL.md` does, both entries lead to the command.
 
 ---
 

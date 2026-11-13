@@ -1113,11 +1113,12 @@ function entryRunnable(entry) {
   return doctor ? doctor.runnable : entry.command;
 }
 
-// A runnable names its target after the command, so the policy is read from the
+// A runnable names its target after the command, so its row is read from the
 // same string the reader types. A command typed alone takes its route-null
 // record when one exists. A command with several routes and no route-null
-// record offers no way to narrow the run, so the strictest route decides.
-function runnablePolicy(runnable, policies) {
+// record offers no way to narrow the run, so the strictest route decides. The
+// whole record comes back because the class travels with the policy it justifies.
+function runnablePolicyRecord(runnable, policies) {
   const space = runnable.indexOf(' ');
   const command = space === -1 ? runnable : runnable.slice(0, space);
   const target = space === -1 ? null : runnable.slice(space + 1);
@@ -1130,15 +1131,15 @@ function runnablePolicy(runnable, policies) {
     if (!match) {
       throw new Error(`[command-bridges] No policy record for ${runnable}`);
     }
-    return match.policy;
+    return match;
   }
   const bare = records.find((record) => record.route === null);
-  if (bare) return bare.policy;
+  if (bare) return bare;
   return records.reduce((strictest, record) => (
-    POLICY_STRICTNESS.indexOf(record.policy) > POLICY_STRICTNESS.indexOf(strictest)
-      ? record.policy
+    POLICY_STRICTNESS.indexOf(record.policy) > POLICY_STRICTNESS.indexOf(strictest.policy)
+      ? record
       : strictest
-  ), 'run');
+  ));
 }
 
 // Every id a scorer can return gets a row, because the reader sees whichever id
@@ -1152,12 +1153,19 @@ function renderCommandRows(entries, policies) {
     const { typescript, python } = entry.runtime;
     if (!typescript.enabled && !python.enabled) continue;
     const runnable = entryRunnable(entry);
-    const policy = runnablePolicy(runnable, policies);
-    runnablePolicies.set(runnable, policy);
+    const policyRecord = runnablePolicyRecord(runnable, policies);
+    runnablePolicies.set(runnable, policyRecord.policy);
     const ids = new Set([entry.id]);
     if (typescript.enabled) ids.add(typescript.id);
     if (python.enabled) ids.add(python.id);
-    const row = { command: runnable, policy, ownerSkillId: entry.skillId };
+    const row = {
+      command: runnable,
+      policy: policyRecord.policy,
+      // The class travels with the policy that justifies it, so a record that
+      // states no class leaves the field out rather than guessing a default.
+      ...(policyRecord.mutating ? { mutating: policyRecord.mutating } : {}),
+      ownerSkillId: entry.skillId,
+    };
     for (const id of ids) {
       const previous = rows.get(id);
       if (previous && previous !== row) {
@@ -1168,10 +1176,15 @@ function renderCommandRows(entries, policies) {
   }
   const rowLines = [...rows.entries()]
     .sort(([left], [right]) => left.localeCompare(right))
-    .map(([id, row]) => (
-      `  ${tsString(id)}: { command: ${tsString(row.command)}, policy: ${tsString(row.policy)}, `
-        + `ownerSkillId: ${tsString(row.ownerSkillId)} },`
-    ));
+    .map(([id, row]) => {
+      const fields = [
+        `command: ${tsString(row.command)}`,
+        `policy: ${tsString(row.policy)}`,
+      ];
+      if (row.mutating) fields.push(`mutating: ${tsString(row.mutating)}`);
+      fields.push(`ownerSkillId: ${tsString(row.ownerSkillId)}`);
+      return `  ${tsString(id)}: { ${fields.join(', ')} },`;
+    });
   const policyLines = [...runnablePolicies.entries()]
     .sort(([left], [right]) => left.localeCompare(right))
     .map(([runnable, policy]) => `  ${tsString(runnable)}: ${tsString(policy)},`);

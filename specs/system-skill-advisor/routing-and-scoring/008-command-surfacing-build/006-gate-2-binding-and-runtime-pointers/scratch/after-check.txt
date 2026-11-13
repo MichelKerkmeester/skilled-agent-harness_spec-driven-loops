@@ -1,0 +1,15 @@
+A1 install state: pure   (PASS)
+  every shipped section is current and the repository block is empty
+A2 sections present: 44/44 matched   (PASS)
+A3 order and numbering: manifest order and section numbers unchanged   (PASS)
+A4 section currency: 44 current, 0 stale-known, 0 edited, 0 unknown-base   (PASS)
+A5 pins: 31/31 pins hold   (PASS)
+A6 delivery budget: 16092 of 16384 bytes to the last anchor, 27575 of 32768 bytes total   (PASS)
+A7 repo-local block: block 148 bytes, 5193 bytes of headroom   (PASS)
+A8 unmarked repo-unique content: no section outside the block   (PASS)
+A9 unmarked local edits: no edited section   (PASS)
+A10 runtime copies: 6/6 copies as expected   (PASS)
+A11 REPO RULES.md: 0 shipped row(s) missing; [repo-rules-check] RESULT: PASSED (11/11 checks)   (PASS)
+  [repo-rules-check] RESULT: PASSED (11/11 checks)
+A12 template purity: block empty and the derived copy is fresh   (PASS)
+STATUS=OK rows=12 findings=0 unknown=0

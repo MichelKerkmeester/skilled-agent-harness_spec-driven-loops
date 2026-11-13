@@ -1,7 +1,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Hook Brief Signal/Noise Bench
 // ───────────────────────────────────────────────────────────────
-// Invokes the brief renderer per runtime (claude/opencode/copilot),
+// Invokes the brief renderer per runtime (claude/opencode),
 // loads the iter-4 7-axis adapter divergence matrix as a fixture, and
 // asserts non-zero signal counts per runtime. Collector-shape coverage for
 // spec_kit.advisor.recommendation_emitted_total is kept separate from the
@@ -26,7 +26,6 @@ const F22_AXES = [
 const SEVEN_AXIS_MATRIX: Record<typeof ADVISOR_RUNTIME_VALUES[number], Record<typeof F22_AXES[number], string>> = {
   claude:  { inputFieldNames: 'prompt-only', cwdResolution: 'input-or-process', inputSource: 'stdin-only', outputShape: 'hookSpecificOutput', timeoutHandling: 'none', renderThresholdOverride: 'none', sideEffectsBeyondReturn: 'none' },
   opencode:   { inputFieldNames: '3-fallbacks', cwdResolution: 'input-or-request-or-process', inputSource: 'stdin-or-argv', outputShape: 'hookSpecificOutput', timeoutHandling: 'env-3000ms', renderThresholdOverride: 'forced-0.8/0.35', sideEffectsBeyondReturn: 'none' },
-  copilot: { inputFieldNames: '2-fallbacks', cwdResolution: 'input-or-process', inputSource: 'stdin-only', outputShape: 'always-empty-object', timeoutHandling: 'none', renderThresholdOverride: 'none', sideEffectsBeyondReturn: 'writes-custom-instructions' },
 };
 
 function buildRecommendations(runtime: string): readonly AdvisorRecommendation[] {

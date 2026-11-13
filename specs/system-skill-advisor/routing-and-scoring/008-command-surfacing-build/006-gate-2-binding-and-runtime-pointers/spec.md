@@ -21,8 +21,9 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-12 |
+| **Built** | 2026-11-13. AC-001 to AC-009 Met (see `acceptance-criteria.md`) |
 | **Branch** | `worktrees/352-command-surfacing-research` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 6 of 7 |
@@ -260,6 +261,7 @@ Six facts from the code shape the plan. Each was read on 2026-11-12.
 | `ADV/tests/hooks/advisor-runtime-list-parity.vitest.ts` | Create | Hook index, documented table and enum agree |
 | `ADV/lib/render.ts` | Modify | Child-session downgrade on the command line |
 | `ADV/tests/render-child-session.vitest.ts` | Create | Downgrade cases with and without the variable |
+| `.skilled/bin/lib/compiled-routing/013-live-activation/activation/{sk-design,system-deep-loop}/manifest.json` and their authored copies under `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/` | Modify (generated) | Scope amendment of 2026-11-13: refreshed by `compiled-route-manifest.cjs refresh`, because a hub `ROUTER.md` edit makes that hub's compiled route stale and the hub falls back to legacy routing |
 | `ADV/scripts/command-bridges/derive-command-bridges.cjs` and its generated outputs | Modify, only if needed | Emit the `mutating` class from `commandPolicies` into the render map when phase 005's map lacks it |
 <!-- /ANCHOR:scope -->
 

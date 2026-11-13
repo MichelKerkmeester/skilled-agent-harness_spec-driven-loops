@@ -1,0 +1,1 @@
+Advisor: live; use sk-doc → /create:readme (start) 0.95/0.12 pass.
