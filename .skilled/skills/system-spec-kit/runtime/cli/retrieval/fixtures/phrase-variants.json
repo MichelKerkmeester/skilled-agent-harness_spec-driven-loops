@@ -1,5 +1,5 @@
 {
-  "manifestHash": "bc91956709b3bb866bd0cb921aaae0ec5319150e59ea0855b023fe54cd0d58e5",
+  "manifestHash": "06bb5f7b48d07f0e33d0f87c2b7de70db91f0cddf9a9a990ecfabfe35ced4186",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13214,9 +13214,6 @@
     ],
     "audit findings remediation": [
       "audit findings remediation"
-    ],
-    "audit fixes since v4 0 1 0": [
-      "audit fixes since v4.0.1.0"
     ],
     "audit logic invariants": [
       "audit logic invariants"
@@ -27567,9 +27564,6 @@
     ],
     "command row embedding": [
       "command row embedding"
-    ],
-    "command run start ask policy": [
-      "command run start ask policy"
     ],
     "command runtime mirrors": [
       "command runtime mirrors"
@@ -54325,6 +54319,9 @@
     "goal capability probes": [
       "goal capability probes"
     ],
+    "goal carried across a hop": [
+      "goal carried across a hop"
+    ],
     "goal chat send rule": [
       "goal chat send rule"
     ],
@@ -58708,9 +58705,6 @@
     ],
     "hub skill names its command": [
       "hub skill names its command"
-    ],
-    "hub skill names its slash command": [
-      "hub skill names its slash command"
     ],
     "hub smart routing contract": [
       "hub smart-routing contract"
@@ -75274,9 +75268,6 @@
     ],
     "one routing statement": [
       "one routing statement"
-    ],
-    "one row per file": [
-      "one row per file"
     ],
     "one runtime database path documented": [
       "One Runtime Database Path Documented"
@@ -92779,9 +92770,6 @@
     "reply rule pruning tasks": [
       "reply rule pruning tasks"
     ],
-    "reply rules cut to two": [
-      "reply rules cut to two"
-    ],
     "reply to comment": [
       "reply to comment"
     ],
@@ -101458,9 +101446,6 @@
     ],
     "session health schema bypass": [
       "session_health schema bypass"
-    ],
-    "session hop trust checks": [
-      "session hop trust checks"
     ],
     "session id dfs bound": [
       "session id dfs bound"
@@ -114809,9 +114794,6 @@
     ],
     "spec template optimizations plan": [
       "spec template optimizations plan"
-    ],
-    "spec tracks grouped into sub tracks": [
-      "spec tracks grouped into sub-tracks"
     ],
     "spec trailer containment": [
       "spec trailer containment"

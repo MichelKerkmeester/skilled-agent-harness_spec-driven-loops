@@ -1,5 +1,5 @@
 {
-  "manifestHash": "bc91956709b3bb866bd0cb921aaae0ec5319150e59ea0855b023fe54cd0d58e5",
+  "manifestHash": "06bb5f7b48d07f0e33d0f87c2b7de70db91f0cddf9a9a990ecfabfe35ced4186",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -32032,9 +32032,6 @@
     "audit findings remediation": [
       13751
     ],
-    "audit fixes since v4 0 1 0": [
-      62
-    ],
     "audit logic invariants": [
       2593
     ],
@@ -46921,9 +46918,6 @@
     ],
     "command row embedding": [
       2864
-    ],
-    "command run start ask policy": [
-      62
     ],
     "command runtime mirrors": [
       1429
@@ -76667,6 +76661,9 @@
     "goal capability probes": [
       5175
     ],
+    "goal carried across a hop": [
+      62
+    ],
     "goal chat send rule": [
       8057
     ],
@@ -81315,10 +81312,8 @@
       8854
     ],
     "hub skill names its command": [
+      62,
       2822
-    ],
-    "hub skill names its slash command": [
-      62
     ],
     "hub smart routing contract": [
       2347
@@ -98793,7 +98788,6 @@
       17819
     ],
     "one lineage fan out refused": [
-      62,
       2381
     ],
     "one lineage refusal synthesis": [
@@ -98847,9 +98841,6 @@
     ],
     "one routing statement": [
       1267
-    ],
-    "one row per file": [
-      62
     ],
     "one runtime database path documented": [
       3020
@@ -117787,9 +117778,6 @@
     "reply rule pruning tasks": [
       3653
     ],
-    "reply rules cut to two": [
-      62
-    ],
     "reply to comment": [
       911
     ],
@@ -127015,9 +127003,6 @@
     ],
     "session health schema bypass": [
       13630
-    ],
-    "session hop trust checks": [
-      62
     ],
     "session id dfs bound": [
       13584
@@ -140752,9 +140737,6 @@
     "spec template optimizations plan": [
       16379
     ],
-    "spec tracks grouped into sub tracks": [
-      62
-    ],
     "spec trailer containment": [
       9141
     ],
@@ -150814,7 +150796,6 @@
       11197
     ],
     "typed command reaches the model": [
-      62,
       2822
     ],
     "typed command routing": [
