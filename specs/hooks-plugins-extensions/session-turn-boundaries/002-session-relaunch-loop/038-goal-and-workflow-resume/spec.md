@@ -164,7 +164,7 @@ After a hop the receiver runs the sender's command again, reads the goal of the 
 
 ### Build Order For Children 009 To 017
 
-Children 009 to 017 are planned and none is built. The operator's standing constraint of 2026-11-13 reads "Dont implement untill i give greenlight". After the greenlight they run one at a time in number order, each from the tree the one before it left, because these files are changed by more than one child:
+The greenlight came on 2026-11-13 with the words "max parallel", and the operator chose parallel lanes where no file is shared. Children that share a file run in number order, each from the tree the one before it left. The lanes are 009, 011, 012, 015 and 016 in that order with 014 beside 012 once 011 is done, 010 alone and 013 alone. 017 runs last. These files are changed by more than one child:
 
 - `bin/session-relaunch.cjs`: 009 (`prepare` check), then 011, 012 and 015 (`consume` keys), each in a different function.
 - `lib/relaunch-core.cjs`: 011, then 012, then 015.
@@ -215,7 +215,6 @@ Each child that rests on an inferred claim opens with the check that confirms it
 - Answered by the operator on 2026-11-13, child 010: a re-run refused because a pid was reused gets no override. The refusal names the label and the pid.
 - Answered by the operator on 2026-11-13, child 011: a live `plan` mode is not carried. The receiver starts in the launch mode and the wrapper prints one note (option B).
 - Answered by the operator on 2026-11-13, child 015: the decline of the descendant walk is accepted. Child 009's `Running workers:` line is the cover for a worker started with `&`.
-- Open: the greenlight to build children 009 to 017.
 - Under research: verify and deepen the hand-over gap report at `scratch/handover-gaps-research-2026-11-13.md`. For each claim about running workers at hand-over, session names across a hop and other state a hop drops, confirm or refute it against the code and each runtime's own help output, close the items it marks UNCONFIRMED and name the smallest change for each confirmed gap.
 
 **Research Context:** a deep-research run covered the topic above on 2026-11-13. `research/research.md` is the canonical source for its findings.

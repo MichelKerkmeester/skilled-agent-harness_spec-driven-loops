@@ -45,7 +45,7 @@ Frozen choices. Changing one is an amendment.
 | ID | Decision |
 |----|----------|
 | D1 | One child per work package. Each code change lands with a test that failed first |
-| D2 | Children run one at a time in number order. `spec.md` lists the files several children change |
+| D2 | Children sharing a file run in number order, the rest in parallel. `spec.md` lists those files |
 | D3 | No child adds a module. Only 011, 012 and 015 touch the relaunch record, with optional keys |
 | D4 | The 2026-11-12 review's fixes for a cleared Claude goal, the shared goal off switch and the resend reminder are not applied |
 | D5 | Nothing is merged or pushed without the operator |
@@ -132,7 +132,8 @@ and findings belong here.
 | Background worker across a hop (2026-11-13 live proof) | Done | 2026-11-13, live: a Claude sender started a node worker with an ampersand and ran prepare itself. Prepare exited 0 with the worker alive, the killer ended the sender 9 s later, and the worker ran on with parent pid 1 for 37 s more until the harness killed it. Evidence in scratch/live-hops-claude-2026-11-13/10-background-worker-orphaned |
 | Children 009 to 017 planned | Done | 2026-11-13: the operator asked for phases covering every recommendation, chose this packet as their home and said "Dont implement untill i give greenlight". `create.sh --phase --parent ... --with-goal --level 2` scaffolded nine children, and nine Opus sub-agents wrote spec, plan, tasks, criteria and goal, one child each. The orchestrator read every spec and task list, moved the harness note line into 009, gave research open question 2 to 014 and wrote the build order into `spec.md`. No code, hook, harness or playbook changed |
 | Operator answers for children 010, 011 and 015 | Done | 2026-11-13: "Refusal only" for a reused pid (010), "B: keep launch mode" for a live plan mode (011), "Accept the decline" for the descendant walk (015). Each child records its own answer |
-| Build of children 009 to 017 | Pending | Waits on the operator's greenlight |
+| Greenlight | Done | 2026-11-13, the operator's words: "Implement using deepseek v4.1 flash max cli opencode with opencode go provider, max parallel". The operator then chose "A) Create a git worktree" and "Parallel where no file is shared". Worktree `worktrees/363-hop-state-carry` from main `57411c2d6e`. Builders run on OpenCode 1.19.4 with `opencode-go/deepseek-v4.1-flash` at variant max, because OpenCode 2.2.7 lists no opencode-go provider |
+| Build of children 009 to 017 | Started | Three lanes: 009, 011, 012, 015, 016 in that order with 014 beside 012. 010 alone. 013 alone. 017 last |
 
 ### Deviations and findings
 
@@ -145,4 +146,5 @@ and findings belong here.
 | Scope added by the review | Phase 003 gained one search per `prepare`, phase 006 the missing-checkout message and phase 004 a master switch guard test. Phase 005 gained the playbook suite count. None has a new requirement id. Each is recorded in its child's implementation summary |
 | Not run live | No hop was run on any runtime before 2026-11-13. The live rows above replace this for Claude Code |
 | Goal amended for children 009 to 017 | 2026-11-13: the objective gained the state a hop drops. D1 lost "no file is changed by two phases", because four sources are each changed by up to four children. D2 now orders all children by number. D3 allows three optional record keys. D5 no longer names worktree 358, which is removed. D6 is new. The five criteria are open again, and the first counts seventeen children |
+| D2 amended at the greenlight | 2026-11-13: the operator asked for max parallel and chose parallel lanes where no file is shared, so D2 no longer says one at a time |
 <!-- /ANCHOR:log -->
