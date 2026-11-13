@@ -24,7 +24,11 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "hand-over gap report verification",
+      "running workers at hand-over",
+      "session name across a hop",
+      "state a session hop drops"
     ],
     "key_topics": [
       "goal",
@@ -45,6 +49,7 @@
     "key_files": [
       "spec.md",
       "goal.md",
+      "research/research.md",
       ".skilled/hooks/session-relaunch/lib/nudge.cjs",
       ".skilled/commands/speckit/handoff.md",
       ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
@@ -61,8 +66,7 @@
       ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs",
       ".skilled/bin/skilled-loop-shell.sh",
       ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs",
-      ".skilled/hooks/session-relaunch/README.md",
-      ".skilled/hooks/hook-flags.env.example"
+      ".skilled/hooks/session-relaunch/README.md"
     ],
     "entities": [
       {
@@ -75,6 +79,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -174,12 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "hook-flags.env.example",
-        "kind": "file",
-        "path": ".skilled/hooks/hook-flags.env.example",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -212,19 +216,21 @@
     ],
     "causal_summary": "A review of 2026-11-12, checked by a second reviewer, found that a session hop carries the goal on Claude Code, Pi and OpenCode but loses work around it",
     "created_at": "2026-11-12T22:42:00Z",
-    "last_save_at": "2026-11-13T07:12:20.986Z",
+    "last_save_at": "2026-11-13T08:31:34.466Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "goal.md"
+      "goal.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:e67ce56b141966e1d6a9cc9f2e5a44b7099f106fff5adad512674bac50705a4c",
+    "source_fingerprint": "sha256:324ff6cc446d2ee6c4fd8a08e8eabe3222c666cae8b0ed07e49dc1e331089c99",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b1d445912f1bf7ba37648c5bff3c6e9a553b32afa78174841c98cc3d39c6e088"
+      "spec.md": "349964cb3ec95355ee404cd9abe4366cef2105295ef6191703d079c10c43cf6e",
+      "research/research.md": "92204b9299358f635ddc43598d35626ede62378b316b456c7c5c352fddfb8e71"
     },
     "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/008-review-advisories",
-    "last_active_at": "2026-11-13T07:12:20.986Z"
+    "last_active_at": "2026-11-13T08:31:34.466Z"
   }
 }

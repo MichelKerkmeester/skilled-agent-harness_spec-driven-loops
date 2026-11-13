@@ -8,23 +8,23 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/008-review-advisories"
-    last_updated_at: "2026-11-13T07:12:20Z"
+    last_updated_at: "2026-11-13T08:31:34Z"
     last_updated_by: "generate-context"
-    recent_action: "Ran nine live Claude goal hops and fixed the harness timing"
-    next_safe_action: "Run a live goal hop with a goal that allows other work"
+    recent_action: "Ran three deep-research iterations on the hand-over gap report"
+    next_safe_action: "Run a live hop with a background CLI worker to observe the orphan claim"
     blockers: []
     key_files:
       - "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/goal.md"
       - "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/008-review-advisories/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:fbce5b4ac7160095ae8844427ed5e4c98575488b3b36e73d40078d546b6d87b6"
+      fingerprint: "sha256:68170b9a8aa5f848003ae82a9f287bc0833cd37cea3366359eefd44b323e0c7a"
       session_id: "scaffold-008-review-advisories"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "74f9de05-0121-41a0-9099-52709127e249"
       workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
-      savedAt: "2026-11-13T07:12:20Z"
+      savedAt: "2026-11-13T08:31:34Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

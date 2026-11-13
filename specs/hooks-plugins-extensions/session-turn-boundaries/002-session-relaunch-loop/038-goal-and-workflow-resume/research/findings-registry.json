@@ -1,0 +1,1628 @@
+{
+  "sessionId": "2026-11-13T08:00:46Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-running-workers-for-each-worker-kind-the-report-names-claude-background-tasks-cl",
+      "inboxId": null,
+      "text": "Running workers: for each worker kind the report names (Claude background tasks, Claude foreground sub-agents, OpenCode task sessions, external CLI workers, fan-out lineages), does the code at hand-over do what the report says, and what do the two UNCONFIRMED items (an OpenCode child alive at parent idle, pid liveness in markOrphanedLineages) and the inferred orphan claim resolve to?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-2-session-names-what-happens-to-a-session-name-on-a-hop-per-runtime-and-which-flag",
+      "inboxId": null,
+      "text": "Session names: what happens to a session name on a hop per runtime, and which flag, command or API does each runtime's own help output (claude, pi, opencode, codex, cursor-agent, devin) offer for naming a session, including the shape of a Claude /rename entry?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-3-other-dropped-state-are-the-report-s-claims-on-permission-mode-pi-mode-flags-add",
+      "inboxId": null,
+      "text": "Other dropped state: are the report's claims on permission mode, Pi mode flags, added directories and wakeups, crons and the todo list correct in the code, and do scheduled items end with the session?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-report-accuracy-which-claims-or-path-line-citations-in-the-report-are-refuted-or",
+      "inboxId": null,
+      "text": "Report accuracy: which claims or path:line citations in the report are refuted or wrong, and which of its proposed changes does the session-relaunch README already document as shipped?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-5-smallest-changes-for-each-gap-that-survives-verification-what-is-the-smallest-ch",
+      "inboxId": null,
+      "text": "Smallest changes: for each gap that survives verification, what is the smallest change, in which file and function, and how do the report's nine ranked changes re-rank?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-running-workers-for-each-worker-kind-the-report-names-claude-background-tasks-cl",
+      "inboxId": null,
+      "text": "Running workers: for each worker kind the report names (Claude background tasks, Claude foreground sub-agents, OpenCode task sessions, external CLI workers, fan-out lineages), does the code at hand-over do what the report says, and what do the two UNCONFIRMED items (an OpenCode child alive at parent idle, pid liveness in markOrphanedLineages) and the inferred orphan claim resolve to?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-2-session-names-what-happens-to-a-session-name-on-a-hop-per-runtime-and-which-flag",
+      "inboxId": null,
+      "text": "Session names: what happens to a session name on a hop per runtime, and which flag, command or API does each runtime's own help output (claude, pi, opencode, codex, cursor-agent, devin) offer for naming a session, including the shape of a Claude /rename entry?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-3-other-dropped-state-are-the-report-s-claims-on-permission-mode-pi-mode-flags-add",
+      "inboxId": null,
+      "text": "Other dropped state: are the report's claims on permission mode, Pi mode flags, added directories and wakeups, crons and the todo list correct in the code, and do scheduled items end with the session?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-report-accuracy-which-claims-or-path-line-citations-in-the-report-are-refuted-or",
+      "inboxId": null,
+      "text": "Report accuracy: which claims or path:line citations in the report are refuted or wrong, and which of its proposed changes does the session-relaunch README already document as shipped?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-5-smallest-changes-for-each-gap-that-survives-verification-what-is-the-smallest-ch",
+      "inboxId": null,
+      "text": "Smallest changes: for each gap that survives verification, what is the smallest change, in which file and function, and how do the report's nine ranked changes re-rank?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "Q2 session names, Q3 other dropped state, Q4 report accuracy beyond Q1, and Q5 re-ranking.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The OpenCode child alive at parent idle: needs OpenCode runtime evidence.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether fan-out `started` ledger events carry a lineage pid (decides the cost of the fix in finding 20).",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Q3 other dropped state, Q4 report accuracy beyond Q1 and Q2, Q5 re-ranking.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Pi plan-mode extension state readability.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "The `bypassPermissions` replay requirement on Claude.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "OpenCode 2.2.7 traces: a backgrounded child at parent idle, and `session.update` setting a title.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Todo-list persistence across a Claude relaunch.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-6-citation-partly-wrong-readme-130-does-say-the-opencode-killer-runs-without-trans",
+      "text": "**CITATION PARTLY WRONG.** README:130 does say the OpenCode killer runs without `--transcript` and only waits its idle time. [SOURCE: .skilled/hooks/session-relaunch/README.md:130] The \"3 s\" figure is not on that line. It comes from `DEFAULT_IDLE_MS = 3000`. [SOURCE: .skilled/hooks/session-relaunch/lib/killer.cjs:28] The OpenCode `spawnKiller` passes only `--loop-id` and `--target-pid`, so the default applies. [SOURCE: .opencode/plugins/session-relaunch.js:241]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:39, :119-135",
+        ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73-74",
+        ".skilled/hooks/session-relaunch/README.md:124, :130, :132, :160, :211",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151",
+        ".opencode/plugins/session-relaunch.js:158-164, :236-251, :300-341, :418-437",
+        ".opencode/plugins/opencode-goal.js:3038, :3623-3626",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:28, :796",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs:55",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:270-310, :524",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:166-203",
+        ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213",
+        ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258",
+        ".skilled/commands/speckit/handoff.md:132",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:41, :348-353, :386, :589-593, :631-646, :715-730, :2113, :3520, :3525",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176-196, :284-324"
+      ]
+    },
+    {
+      "id": "finding-1-19-confirmed-duplicate-writer-the-re-run-calls-markorphanedlineages-before-spawning",
+      "text": "**CONFIRMED (duplicate writer).** The re-run calls `markOrphanedLineages` before spawning. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3520] The snapshot marks those labels `requeued`. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:386] `readStoredLineageSessionId` reuses the stored session id of any non-complete lineage config. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:640] Two processes can then write one lineage directory under one session id. [INFERENCE: based on fanout-pool.cjs:284-324 and fanout-run.cjs:631-646]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:39, :119-135",
+        ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73-74",
+        ".skilled/hooks/session-relaunch/README.md:124, :130, :132, :160, :211",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151",
+        ".opencode/plugins/session-relaunch.js:158-164, :236-251, :300-341, :418-437",
+        ".opencode/plugins/opencode-goal.js:3038, :3623-3626",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:28, :796",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs:55",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:270-310, :524",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:166-203",
+        ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213",
+        ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258",
+        ".skilled/commands/speckit/handoff.md:132",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:41, :348-353, :386, :589-593, :631-646, :715-730, :2113, :3520, :3525",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176-196, :284-324"
+      ]
+    },
+    {
+      "id": "finding-1-2-confirmed-gap-stands-the-deferral-path-emits-nothing-to-the-session-or-the-opera",
+      "text": "**CONFIRMED (gap stands).** The deferral path emits nothing to the session or the operator. Its only output is a `relaunch.log` line. [SOURCE: .skilled/hooks/session-relaunch/claude/stop-arm.mjs:123] A task that never drains therefore parks the hop with no visible notice. [INFERENCE: based on stop-arm.mjs:119-135 returning null and done() writing nothing]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:39, :119-135",
+        ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73-74",
+        ".skilled/hooks/session-relaunch/README.md:124, :130, :132, :160, :211",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151",
+        ".opencode/plugins/session-relaunch.js:158-164, :236-251, :300-341, :418-437",
+        ".opencode/plugins/opencode-goal.js:3038, :3623-3626",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:28, :796",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs:55",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:270-310, :524",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:166-203",
+        ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213",
+        ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258",
+        ".skilled/commands/speckit/handoff.md:132",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:41, :348-353, :386, :589-593, :631-646, :715-730, :2113, :3520, :3525",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176-196, :284-324"
+      ]
+    },
+    {
+      "id": "finding-1-16-confirmed-as-inference-the-killer-never-signals-the-runner-its-only-target-is-op",
+      "text": "**CONFIRMED as inference.** The killer never signals the runner. Its only target is `options.targetPid`, the runtime. [SOURCE: .skilled/hooks/session-relaunch/lib/killer.cjs:796] Because the lineages are detached, a runtime SIGTERM does not reach their groups. [INFERENCE: based on killer.cjs:796 and fanout-run.cjs:2113]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:39, :119-135",
+        ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73-74",
+        ".skilled/hooks/session-relaunch/README.md:124, :130, :132, :160, :211",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151",
+        ".opencode/plugins/session-relaunch.js:158-164, :236-251, :300-341, :418-437",
+        ".opencode/plugins/opencode-goal.js:3038, :3623-3626",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:28, :796",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs:55",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:270-310, :524",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:166-203",
+        ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213",
+        ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258",
+        ".skilled/commands/speckit/handoff.md:132",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:41, :348-353, :386, :589-593, :631-646, :715-730, :2113, :3520, :3525",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176-196, :284-324"
+      ]
+    },
+    {
+      "id": "finding-1-12-confirmed-but-the-citation-is-weak-the-codex-adapters-have-no-background-task-ch",
+      "text": "**CONFIRMED, but the citation is weak.** The Codex adapters have no background-task check: a search of `codex/*.mjs` for \"background\" matched only a comment. That comment says Codex delivers no background-task completions as prompts. [SOURCE: .skilled/hooks/session-relaunch/codex/shared.mjs:55] The cited line documents the absence; it does not show a missing branch.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:39, :119-135",
+        ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73-74",
+        ".skilled/hooks/session-relaunch/README.md:124, :130, :132, :160, :211",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151",
+        ".opencode/plugins/session-relaunch.js:158-164, :236-251, :300-341, :418-437",
+        ".opencode/plugins/opencode-goal.js:3038, :3623-3626",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:28, :796",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs:55",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:270-310, :524",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:166-203",
+        ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213",
+        ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258",
+        ".skilled/commands/speckit/handoff.md:132",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:41, :348-353, :386, :589-593, :631-646, :715-730, :2113, :3520, :3525",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176-196, :284-324"
+      ]
+    },
+    {
+      "id": "finding-1-3-confirmed-with-a-correction-to-scope-the-nudge-stays-silent-for-a-tool-call-carr",
+      "text": "**CONFIRMED, with a correction to scope.** The nudge stays silent for a tool call carrying `agent_id`. [SOURCE: .skilled/hooks/session-relaunch/README.md:132] The PreToolUse guard denies the call. [SOURCE: .skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73] The report says the guard denies only `prepare` and `claim`. The README lists seven denied commands (`claim`, `complete`, `keep`, `prepare`, `cancel`, `consume`, `hand-over`), with `history` still allowed. [SOURCE: .skilled/hooks/session-relaunch/README.md:211] So the report understates the guard. Its \"nothing lost, no fix\" verdict stands.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:39, :119-135",
+        ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73-74",
+        ".skilled/hooks/session-relaunch/README.md:124, :130, :132, :160, :211",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151",
+        ".opencode/plugins/session-relaunch.js:158-164, :236-251, :300-341, :418-437",
+        ".opencode/plugins/opencode-goal.js:3038, :3623-3626",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:28, :796",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs:55",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:270-310, :524",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:166-203",
+        ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213",
+        ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258",
+        ".skilled/commands/speckit/handoff.md:132",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:41, :348-353, :386, :589-593, :631-646, :715-730, :2113, :3520, :3525",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176-196, :284-324"
+      ]
+    },
+    {
+      "id": "finding-1-9-confirmed-prepare-refuses-only-for-a-direct-child-of-the-runtime-pid-whose-comma",
+      "text": "**CONFIRMED.** `prepare` refuses only for a direct child of the runtime pid whose command name is a known shell (`processInfo.ppid === runtimePid` plus `LIVE_SHELL_NAMES`). [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:277] [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:280] It runs only inside the loop. [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:524] The README says any other child program goes undetected. [SOURCE: .skilled/hooks/session-relaunch/README.md:124]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:39, :119-135",
+        ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73-74",
+        ".skilled/hooks/session-relaunch/README.md:124, :130, :132, :160, :211",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151",
+        ".opencode/plugins/session-relaunch.js:158-164, :236-251, :300-341, :418-437",
+        ".opencode/plugins/opencode-goal.js:3038, :3623-3626",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:28, :796",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs:55",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:270-310, :524",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:166-203",
+        ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213",
+        ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258",
+        ".skilled/commands/speckit/handoff.md:132",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:41, :348-353, :386, :589-593, :631-646, :715-730, :2113, :3520, :3525",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176-196, :284-324"
+      ]
+    },
+    {
+      "id": "finding-1-10-confirmed-both-skills-prescribe-the-pattern-codex-exec-codex-pid-source-skilled-",
+      "text": "**CONFIRMED.** Both skills prescribe the `&` pattern: `codex exec ... & CODEX_PID=$!` [SOURCE: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213] and `devin -p -- \"$PROMPT\" > \"$LOG\" 2>&1 </dev/null &`. [SOURCE: .skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258] Once the tool shell exits, a worker started with `&` is not a direct child of the runtime. It is not a shell either, so the check at :277-281 cannot see it on two counts. [INFERENCE: based on session-relaunch.cjs:277-281]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:39, :119-135",
+        ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73-74",
+        ".skilled/hooks/session-relaunch/README.md:124, :130, :132, :160, :211",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151",
+        ".opencode/plugins/session-relaunch.js:158-164, :236-251, :300-341, :418-437",
+        ".opencode/plugins/opencode-goal.js:3038, :3623-3626",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:28, :796",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs:55",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:270-310, :524",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:166-203",
+        ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213",
+        ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258",
+        ".skilled/commands/speckit/handoff.md:132",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:41, :348-353, :386, :589-593, :631-646, :715-730, :2113, :3520, :3525",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176-196, :284-324"
+      ]
+    },
+    {
+      "id": "finding-1-4-confirmed-children-are-recorded-from-session-created-and-session-updated-events-",
+      "text": "**CONFIRMED.** Children are recorded from `session.created` and `session.updated` events that carry `info.parentID`. Every later event for them is skipped. [SOURCE: .opencode/plugins/session-relaunch.js:326] [SOURCE: .opencode/plugins/session-relaunch.js:341] The child set is a plain skip set and holds no busy or idle status. [SOURCE: .opencode/plugins/session-relaunch.js:158]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:39, :119-135",
+        ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73-74",
+        ".skilled/hooks/session-relaunch/README.md:124, :130, :132, :160, :211",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151",
+        ".opencode/plugins/session-relaunch.js:158-164, :236-251, :300-341, :418-437",
+        ".opencode/plugins/opencode-goal.js:3038, :3623-3626",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:28, :796",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs:55",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:270-310, :524",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:166-203",
+        ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213",
+        ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258",
+        ".skilled/commands/speckit/handoff.md:132",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:41, :348-353, :386, :589-593, :631-646, :715-730, :2113, :3520, :3525",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176-196, :284-324"
+      ]
+    },
+    {
+      "id": "finding-1-15-confirmed-lineages-spawn-with-detached-process-platform-win32-so-each-gets-its-o",
+      "text": "**CONFIRMED.** Lineages spawn with `detached: process.platform !== 'win32'`, so each gets its own process group. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2113] The process-group kill (`process.kill(-child.pid, signal)`) runs only from SIGINT and SIGTERM handlers on the runner. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:348] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:589] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:719]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:39, :119-135",
+        ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73-74",
+        ".skilled/hooks/session-relaunch/README.md:124, :130, :132, :160, :211",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151",
+        ".opencode/plugins/session-relaunch.js:158-164, :236-251, :300-341, :418-437",
+        ".opencode/plugins/opencode-goal.js:3038, :3623-3626",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:28, :796",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs:55",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:270-310, :524",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:166-203",
+        ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213",
+        ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258",
+        ".skilled/commands/speckit/handoff.md:132",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:41, :348-353, :386, :589-593, :631-646, :715-730, :2113, :3520, :3525",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176-196, :284-324"
+      ]
+    },
+    {
+      "id": "finding-1-5-confirmed-on-session-idle-the-parent-arms-when-armablerecord-agrees-and-then-spa",
+      "text": "**CONFIRMED.** On `session.idle`, the parent arms when `armableRecord` agrees and then spawns the killer. No child or busy check sits on that path. [SOURCE: .opencode/plugins/session-relaunch.js:418] [SOURCE: .opencode/plugins/session-relaunch.js:433] [SOURCE: .opencode/plugins/session-relaunch.js:435]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:39, :119-135",
+        ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73-74",
+        ".skilled/hooks/session-relaunch/README.md:124, :130, :132, :160, :211",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151",
+        ".opencode/plugins/session-relaunch.js:158-164, :236-251, :300-341, :418-437",
+        ".opencode/plugins/opencode-goal.js:3038, :3623-3626",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:28, :796",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs:55",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:270-310, :524",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:166-203",
+        ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213",
+        ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258",
+        ".skilled/commands/speckit/handoff.md:132",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:41, :348-353, :386, :589-593, :631-646, :715-730, :2113, :3520, :3525",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176-196, :284-324"
+      ]
+    },
+    {
+      "id": "finding-1-1-confirmed-stop-defers-when-payload-background-tasks-is-non-empty-it-logs-deferre",
+      "text": "**CONFIRMED.** Stop defers when `payload.background_tasks` is non-empty. It logs `deferred-background-tasks`, calls `markDeferred` and returns null without arming. [SOURCE: .skilled/hooks/session-relaunch/claude/stop-arm.mjs:119] [SOURCE: .skilled/hooks/session-relaunch/claude/stop-arm.mjs:135] `done()` exits 0 with no output. [SOURCE: .skilled/hooks/session-relaunch/claude/stop-arm.mjs:39] The `deferredAt` stamp is written in the core. [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151] A pending record silences the nudge. [SOURCE: .skilled/hooks/session-relaunch/README.md:132]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:39, :119-135",
+        ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73-74",
+        ".skilled/hooks/session-relaunch/README.md:124, :130, :132, :160, :211",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151",
+        ".opencode/plugins/session-relaunch.js:158-164, :236-251, :300-341, :418-437",
+        ".opencode/plugins/opencode-goal.js:3038, :3623-3626",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:28, :796",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs:55",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:270-310, :524",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:166-203",
+        ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213",
+        ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258",
+        ".skilled/commands/speckit/handoff.md:132",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:41, :348-353, :386, :589-593, :631-646, :715-730, :2113, :3520, :3525",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176-196, :284-324"
+      ]
+    },
+    {
+      "id": "finding-1-11-confirmed-the-killer-sends-sigterm-to-one-pid-not-a-process-group-source-skilled",
+      "text": "**CONFIRMED.** The killer sends SIGTERM to one pid, not a process group. [SOURCE: .skilled/hooks/session-relaunch/lib/killer.cjs:796]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:39, :119-135",
+        ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73-74",
+        ".skilled/hooks/session-relaunch/README.md:124, :130, :132, :160, :211",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151",
+        ".opencode/plugins/session-relaunch.js:158-164, :236-251, :300-341, :418-437",
+        ".opencode/plugins/opencode-goal.js:3038, :3623-3626",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:28, :796",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs:55",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:270-310, :524",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:166-203",
+        ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213",
+        ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258",
+        ".skilled/commands/speckit/handoff.md:132",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:41, :348-353, :386, :589-593, :631-646, :715-730, :2113, :3520, :3525",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176-196, :284-324"
+      ]
+    },
+    {
+      "id": "finding-1-13-confirmed-the-nudge-asks-only-for-an-active-command-line-plus-active-goal-on-cod",
+      "text": "**CONFIRMED.** The nudge asks only for an `Active command:` line, plus `Active goal:` on Codex. [SOURCE: .skilled/hooks/session-relaunch/lib/nudge.cjs:183] `handoff.md` mentions \"running processes\" in prose only, with no required line. [SOURCE: .skilled/commands/speckit/handoff.md:132] The receiver re-runs `Active command:` with no worker check. [SOURCE: .skilled/hooks/session-relaunch/README.md:160]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:39, :119-135",
+        ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73-74",
+        ".skilled/hooks/session-relaunch/README.md:124, :130, :132, :160, :211",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151",
+        ".opencode/plugins/session-relaunch.js:158-164, :236-251, :300-341, :418-437",
+        ".opencode/plugins/opencode-goal.js:3038, :3623-3626",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:28, :796",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs:55",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:270-310, :524",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:166-203",
+        ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213",
+        ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258",
+        ".skilled/commands/speckit/handoff.md:132",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:41, :348-353, :386, :589-593, :631-646, :715-730, :2113, :3520, :3525",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176-196, :284-324"
+      ]
+    },
+    {
+      "id": "finding-1-17-confirmed-the-nudge-tells-the-session-to-release-the-deep-loop-lock-before-prepa",
+      "text": "**CONFIRMED.** The nudge tells the session to release the deep-loop lock before `prepare`. [SOURCE: .skilled/hooks/session-relaunch/lib/nudge.cjs:199] Nothing in that step stops the runner or waits for its lineages.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:39, :119-135",
+        ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73-74",
+        ".skilled/hooks/session-relaunch/README.md:124, :130, :132, :160, :211",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151",
+        ".opencode/plugins/session-relaunch.js:158-164, :236-251, :300-341, :418-437",
+        ".opencode/plugins/opencode-goal.js:3038, :3623-3626",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:28, :796",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs:55",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:270-310, :524",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:166-203",
+        ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213",
+        ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258",
+        ".skilled/commands/speckit/handoff.md:132",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:41, :348-353, :386, :589-593, :631-646, :715-730, :2113, :3520, :3525",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176-196, :284-324"
+      ]
+    },
+    {
+      "id": "finding-1-8-new-a-cheaper-fix-mechanism-already-exists-in-repo-the-goal-plugin-records-sessi",
+      "text": "**NEW: a cheaper fix mechanism already exists in-repo.** The goal plugin records `session.status` per session and suppresses its continuation while a session is `busy` or `retry`. [SOURCE: .opencode/plugins/opencode-goal.js:3623] [SOURCE: .opencode/plugins/opencode-goal.js:3038] The report's fix (\"skip the arm while a tracked child is busy\") could reuse that event. The relaunch plugin would store `session.status` for ids in `childSessions` instead of discarding child events at :335-336, and `session.idle` would return early while any child is busy. [INFERENCE: based on opencode-goal.js:3623-3626 and session-relaunch.js:335-341]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:39, :119-135",
+        ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73-74",
+        ".skilled/hooks/session-relaunch/README.md:124, :130, :132, :160, :211",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151",
+        ".opencode/plugins/session-relaunch.js:158-164, :236-251, :300-341, :418-437",
+        ".opencode/plugins/opencode-goal.js:3038, :3623-3626",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:28, :796",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs:55",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:270-310, :524",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:166-203",
+        ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213",
+        ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258",
+        ".skilled/commands/speckit/handoff.md:132",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:41, :348-353, :386, :589-593, :631-646, :715-730, :2113, :3520, :3525",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176-196, :284-324"
+      ]
+    },
+    {
+      "id": "finding-1-20-new-a-second-smallest-fix-for-fan-out-the-runner-already-keeps-per-lineage-liven",
+      "text": "**NEW: a second smallest fix for fan-out.** The runner already keeps per-lineage liveness with pids: a `lineageProcessLiveness` map, and pid-carrying liveness records in the pool. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3525] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176] If the `started` ledger event carried the lineage pid, `detectOrphanedLineages` could skip labels whose pid answers `process.kill(pid, 0)`. That would make the re-run safe even when the nudge-step fix (report change 2) is not followed. Whether `started` records already carry a pid is UNCONFIRMED. [INFERENCE: based on fanout-pool.cjs:176-196 and :284-305]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:39, :119-135",
+        ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73-74",
+        ".skilled/hooks/session-relaunch/README.md:124, :130, :132, :160, :211",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151",
+        ".opencode/plugins/session-relaunch.js:158-164, :236-251, :300-341, :418-437",
+        ".opencode/plugins/opencode-goal.js:3038, :3623-3626",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:28, :796",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs:55",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:270-310, :524",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:166-203",
+        ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213",
+        ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258",
+        ".skilled/commands/speckit/handoff.md:132",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:41, :348-353, :386, :589-593, :631-646, :715-730, :2113, :3520, :3525",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176-196, :284-324"
+      ]
+    },
+    {
+      "id": "finding-1-18-resolved-unconfirmed-item-markorphanedlineages-does-not-check-pid-liveness-it-is",
+      "text": "**RESOLVED UNCONFIRMED ITEM: `markOrphanedLineages` does NOT check pid liveness.** It is defined in `fanout-pool.cjs`, not `fanout-run.cjs`. It calls `detectOrphanedLineages`, which builds its list purely from the ledger: a label with a `started` event and no later `completed`, `failed` or `orphan_requeued` counts as orphaned. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:284] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:290] For each one it appends `orphan_requeued` with no process check. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:307] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:314] A lineage that is still running is therefore requeued on a re-run.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:39, :119-135",
+        ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73-74",
+        ".skilled/hooks/session-relaunch/README.md:124, :130, :132, :160, :211",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151",
+        ".opencode/plugins/session-relaunch.js:158-164, :236-251, :300-341, :418-437",
+        ".opencode/plugins/opencode-goal.js:3038, :3623-3626",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:28, :796",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs:55",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:270-310, :524",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:166-203",
+        ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213",
+        ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258",
+        ".skilled/commands/speckit/handoff.md:132",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:41, :348-353, :386, :589-593, :631-646, :715-730, :2113, :3520, :3525",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176-196, :284-324"
+      ]
+    },
+    {
+      "id": "finding-1-14-still-inferred-orphan-claim-no-run-was-observed-so-the-orphan-claim-stays-an-inf",
+      "text": "**STILL INFERRED (orphan claim).** No run was observed, so the orphan claim stays an inference, but the code evidence makes it stronger. A `&` worker leaves its tool shell. The killer's single-pid SIGTERM reaches only the runtime. So nothing in the hop path signals the worker, and it keeps running after the runtime exits. [INFERENCE: based on killer.cjs:796 and session-relaunch.cjs:277-281] To confirm: the process table after a hop that left a `sleep`-style `&` child running.",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:39, :119-135",
+        ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73-74",
+        ".skilled/hooks/session-relaunch/README.md:124, :130, :132, :160, :211",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151",
+        ".opencode/plugins/session-relaunch.js:158-164, :236-251, :300-341, :418-437",
+        ".opencode/plugins/opencode-goal.js:3038, :3623-3626",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:28, :796",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs:55",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:270-310, :524",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:166-203",
+        ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213",
+        ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258",
+        ".skilled/commands/speckit/handoff.md:132",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:41, :348-353, :386, :589-593, :631-646, :715-730, :2113, :3520, :3525",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176-196, :284-324"
+      ]
+    },
+    {
+      "id": "finding-1-7-still-unconfirmed-can-a-child-be-alive-when-the-parent-arms-no-repository-code-a",
+      "text": "**STILL UNCONFIRMED: can a child be alive when the parent arms?** No repository code answers it. The relaunch plugin tracks no child status, so a live child would not block the arm. Whether OpenCode's `task` tool can return, and the parent go idle, while a child session still runs is OpenCode runtime behaviour. The missing evidence is OpenCode's task-tool source or an event trace that shows `session.idle` for the parent before the child's own idle. Iteration 2 can try `command opencode --help` for a background-task option. [INFERENCE: based on session-relaunch.js:158-164 and :418-437]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:39, :119-135",
+        ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs:73-74",
+        ".skilled/hooks/session-relaunch/README.md:124, :130, :132, :160, :211",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1151",
+        ".opencode/plugins/session-relaunch.js:158-164, :236-251, :300-341, :418-437",
+        ".opencode/plugins/opencode-goal.js:3038, :3623-3626",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:28, :796",
+        ".skilled/hooks/session-relaunch/codex/shared.mjs:55",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:270-310, :524",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:166-203",
+        ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md:213",
+        ".skilled/skills/cli-external-orchestration/cli-devin/SKILL.md:258",
+        ".skilled/commands/speckit/handoff.md:132",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:41, :348-353, :386, :589-593, :631-646, :715-730, :2113, :3520, :3525",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:176-196, :284-324"
+      ]
+    },
+    {
+      "id": "finding-2-15-codex-sessions-have-names-but-no-flag-sets-one-codex-resume-help-session-id-uuid",
+      "text": "**Codex:** sessions have names, but no flag sets one. `codex resume --help`: `Session id (UUID) or session name. UUIDs take precedence if it parses.` `codex --help`: `archive Archive a saved session by id or session name`. No launch flag names a session.",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-8-confirmed-citation-the-suffix-change-belongs-in-build-relaunch-arguments-at-skil",
+      "text": "**CONFIRMED (citation).** The suffix change belongs in `build_relaunch_arguments` at skilled-loop:616. Note that the wrapper reads `consume`'s fields only after the name is already in `SKILLED_LOOP_NAME`, so a live name from the record has to be read in the 1220-1256 block to beat the launch value, as model does. [INFERENCE: based on skilled-loop:1223-1238 and :616-617]",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-5-confirmed-by-help-claude-s-help-line-n-name-name-set-a-display-name-for-this-ses",
+      "text": "**CONFIRMED by help.** Claude's help line: `-n, --name <name> Set a display name for this session (shown in the prompt box, /resume picker, and terminal title)`.",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-1-confirmed-n-name-and-name-are-captured-into-skilled-loop-name-source-skilled-bin",
+      "text": "**CONFIRMED.** `-n/--name` and `--name=` are captured into `SKILLED_LOOP_NAME`. [SOURCE: .skilled/bin/skilled-loop:775] [SOURCE: .skilled/bin/skilled-loop:782] The capture sits outside any runtime check, so the name is captured on every runtime, not only Claude and Pi. [INFERENCE: based on skilled-loop:771-788, a plain `case \"$argument\"` with no runtime test]",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-12-confirmed-n-name-is-classed-value-taking-for-codex-cursor-devin-and-opencode-in-",
+      "text": "**CONFIRMED.** `-n/--name` is classed value-taking for codex, cursor, devin and opencode in `skilled_loop_replay_takes_value`. [SOURCE: .skilled/bin/skilled-loop:478] [SOURCE: .skilled/bin/skilled-loop:495] [SOURCE: .skilled/bin/skilled-loop:496] It is also record-backed. [SOURCE: .skilled/bin/skilled-loop:596] [SOURCE: .skilled/bin/skilled-loop:597] Record-backed options are kept out of replay. [SOURCE: .skilled/bin/skilled-loop:940] No arm for the four adds a name. [SOURCE: .skilled/bin/skilled-loop:637] [SOURCE: .skilled/bin/skilled-loop:674]",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-4-confirmed-consume-returns-name-source-skilled-hooks-session-relaunch-bin-session",
+      "text": "**CONFIRMED.** `consume` returns `name`. [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:641] The wrapper calls `consumed_field` only for `model`, `provider` and `effort`. [SOURCE: .skilled/bin/skilled-loop:1226] [SOURCE: .skilled/bin/skilled-loop:1241] [SOURCE: .skilled/bin/skilled-loop:1252] A grep of the wrapper found no other `consumed_field` call.",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-3-confirmed-prepare-takes-the-name-only-from-the-environment-source-skilled-hooks-",
+      "text": "**CONFIRMED.** `prepare` takes the name only from the environment. [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:560]",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-2-confirmed-claude-replays-it-verbatim-inside-build-relaunch-arguments-source-skil",
+      "text": "**CONFIRMED.** Claude replays it verbatim inside `build_relaunch_arguments`. [SOURCE: .skilled/bin/skilled-loop:604] [SOURCE: .skilled/bin/skilled-loop:616] [SOURCE: .skilled/bin/skilled-loop:617]",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-21-confirmed-cursor-and-devin-start-a-hop-only-from-the-printed-claim-command-becau",
+      "text": "**CONFIRMED.** Cursor and Devin start a hop only from the printed claim command, because no arm event exists for them. [SOURCE: .skilled/hooks/session-relaunch/README.md:58]",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-9-confirmed-pi-replays-the-name-the-same-way-source-skilled-bin-skilled-loop-631-s",
+      "text": "**CONFIRMED.** Pi replays the name the same way. [SOURCE: .skilled/bin/skilled-loop:631] [SOURCE: .skilled/bin/skilled-loop:632] Help line: `--name, -n <name> Set session display name`, and the example `pi --name \"Refactor auth module\"`.",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-10-confirmed-the-fixture-has-sessionname-null-so-the-field-exists-in-pi-s-event-and",
+      "text": "**CONFIRMED.** The fixture has `\"sessionName\": null`, so the field exists in Pi's event and was empty in that capture. [SOURCE: .skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:9]",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-11-confirmed-the-pi-adapter-s-arm-settings-hold-only-model-provider-and-effort-no-s",
+      "text": "**CONFIRMED.** The Pi adapter's arm settings hold only `model`, `provider` and `effort`; no `sessionName` read exists in the adapter. [SOURCE: .skilled/hooks/session-relaunch/pi/session-relaunch.ts:423] [SOURCE: .skilled/hooks/session-relaunch/pi/session-relaunch.ts:461] README:42 says the extension hands model, provider and thinking to the record at arm. [SOURCE: .skilled/hooks/session-relaunch/README.md:42]",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-16-cursor-no-name-flag-the-only-nearby-option-is-w-worktree-name-which-names-a-work",
+      "text": "**Cursor:** no name flag. The only nearby option is `-w, --worktree [name]`, which names a worktree, not a session.",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-17-devin-sessions-have-names-rm-delete-a-session-by-id-or-name-but-no-flag-sets-one",
+      "text": "**Devin:** sessions have names (`rm Delete a session by id or name`), but no flag sets one.",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-23-narrowed-still-not-observed-an-opencode-child-can-run-past-its-parent-s-block-th",
+      "text": "**NARROWED, still not observed: an OpenCode child can run past its parent's block.** The installed SDK's v2 client has a `background` call documented as \"Detach any synchronous subagents currently blocking the session and continue them in the background.\" [SOURCE: .opencode/node_modules/@opencode-ai/sdk/dist/v2/gen/sdk.gen.js:284] Its route is `/experimental/session/{sessionID}/background` [SOURCE: .opencode/node_modules/@opencode-ai/sdk/dist/v2/gen/types.gen.d.ts:6710], and a config field `backgroundSubagents: boolean` exists. [SOURCE: .opencode/node_modules/@opencode-ai/sdk/dist/v2/gen/types.gen.d.ts:1747] So OpenCode supports subagents that keep running after the parent is unblocked, and the parent can then reach `session.idle`. That `session.idle` fires for the parent while a backgrounded child is `busy` is inferred, not traced. `SessionStatus` carries `idle`, `retry` and `busy` [SOURCE: .opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts:396], and `session.idle` carries only `sessionID` [SOURCE: .opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts:413], so the plugin must track child status itself, which supports iteration 1's finding 8. Missing evidence: an event trace on 2.2.7 with a backgrounded subagent.",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-7-new-prepare-can-read-it-cheaply-the-cli-already-tails-the-claude-transcript-for-",
+      "text": "**NEW: `prepare` can read it cheaply.** The CLI already tails the Claude transcript for model and effort in `readClaudeSettings`. [SOURCE: .skilled/hooks/session-relaunch/lib/context-usage.cjs:229] The tail window is 256 KiB. [SOURCE: .skilled/hooks/session-relaunch/lib/context-usage.cjs:18] The same pass could take the last `custom-title.customTitle` and hand it to `preparePending` in place of the environment value at session-relaunch.cjs:560. Because the entries repeat through the file, a tail read will usually find one. That last point is inferred from the counts, not from Claude's writer. [INFERENCE: based on the entry counts and context-usage.cjs:229-245] Whether a launch `--name` also writes a `custom-title` entry is UNCONFIRMED; it would take a log from a session started with `--name` and never renamed.",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-19-new-the-name-still-reaches-the-record-on-these-runtimes-because-the-capture-at-s",
+      "text": "**NEW: the name still reaches the record on these runtimes.** Because the capture at skilled-loop:775 is runtime-agnostic and `prepare` reads `SKILLED_LOOP_NAME`, an OpenCode, Codex, Cursor or Devin record carries the launch name; nothing consumes it. [INFERENCE: based on skilled-loop:775-787 and session-relaunch.cjs:560]",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-18-new-the-wrapper-s-flag-lists-claim-more-than-the-help-shows-the-comments-say-the",
+      "text": "**NEW: the wrapper's flag lists claim more than the help shows.** The comments say the lists follow each runtime's `--help` [SOURCE: .skilled/bin/skilled-loop:477] [SOURCE: .skilled/bin/skilled-loop:590], yet `-n/--name` is listed for four runtimes whose help has no such flag. The effect on a hop is harmless, since the option is stripped. A launch that passes `-n` to one of these runtimes is a separate question this iteration did not test. [INFERENCE: based on the help greps and skilled-loop:495-497, :596-597]",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-14-opencode-the-root-command-has-no-name-or-title-flag-opencode-run-help-has-title-",
+      "text": "**OpenCode:** the root command has no name or title flag. `opencode run --help` has `--title string Session title`, but the wrapper starts the root command with `--prompt` [SOURCE: .skilled/bin/skilled-loop:647], so that flag is not reachable on a hop.",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-20-resolved-was-unconfirmed-a-plugin-can-set-an-opencode-title-the-installed-sdk-ty",
+      "text": "**RESOLVED (was UNCONFIRMED): a plugin can set an OpenCode title.** The installed SDK types `SessionUpdateData` with `title?: string` on the `/session/{id}` route. [SOURCE: .opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts:1916] [SOURCE: .opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts:1918] [SOURCE: .opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts:1926] `Session.update` takes it. [SOURCE: .opencode/node_modules/@opencode-ai/sdk/dist/gen/sdk.gen.d.ts:130] Other repo plugins already call `client.session.*`. [SOURCE: .opencode/plugins/ask-surface-guard.js:80] The relaunch plugin makes no `client` call today, so it would need the client from its plugin context. Two limits stay UNCONFIRMED: the SDK is 1.18.34 while the runtime is 2.2.7, so whether that route still sets the title on 2.2.7 needs one live call; and the plugin's seed block [SOURCE: .opencode/plugins/session-relaunch.js:407] [SOURCE: .opencode/plugins/session-relaunch.js:414] has no name in hand, since the note carries none.",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-13-resolved-was-unconfirmed-none-of-the-four-takes-a-name-flag-at-launch-a-grep-of-",
+      "text": "**RESOLVED (was UNCONFIRMED): none of the four takes a name flag at launch.** A grep of each root help for `-n`, `--name`, `--title`, `rename` and `title` matched nothing on opencode, codex, cursor-agent or devin. Per runtime:",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-6-resolved-was-unconfirmed-the-shape-of-a-rename-entry-claude-session-logs-hold-th",
+      "text": "**RESOLVED (was UNCONFIRMED): the shape of a `/rename` entry.** Claude session logs hold three title-like entry types, none with message content. `custom-title` has keys `[\"customTitle\",\"sessionId\",\"type\"]`. `agent-name` has `[\"agentName\",\"sessionId\",\"type\"]`. `ai-title` has `[\"aiTitle\",\"sessionId\",\"type\"]`. Counts across the logs: 33,356 `custom-title`, 37,569 `agent-name`, 54,249 `ai-title`, in 51 files. In logs that hold a `/rename` local command, `custom-title` and `agent-name` entries appear in pairs, repeated through the file. [SOURCE: rg/jq over ~/.claude/projects/**/*.jsonl, type and key names only]",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-2-22-resolved-fan-out-started-events-carry-no-pid-the-pool-emits-event-started-label-",
+      "text": "**RESOLVED: fan-out `started` events carry no pid.** The pool emits `{ event: 'started', label, index, attempt, at }` before the work function runs. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:369] The runner's snapshot handler stores only status and `started_at_iso` from it. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:363] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:364] Because the event fires before the spawn, the pid does not exist yet. Iteration 1's finding 20 therefore costs more than one field: `detectOrphanedLineages` would have to read the pid from the later liveness records (iteration 1, fanout-pool.cjs:176) or from a new post-spawn event. [INFERENCE: based on fanout-pool.cjs:362-372]",
+      "addedAtIteration": 2,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:35-46, :70-81",
+        ".skilled/bin/skilled-loop:178-192, :470-500, :590-680, :770-790, :935-945, :1220-1256",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:552-566, :632-648",
+        ".skilled/hooks/session-relaunch/README.md:36-60",
+        ".skilled/hooks/session-relaunch/tests/fixtures/pi-assistant-message-end.json:1-15",
+        ".skilled/hooks/session-relaunch/pi/session-relaunch.ts:417-461",
+        ".skilled/hooks/session-relaunch/lib/context-usage.cjs:18, :229-245",
+        ".opencode/plugins/session-relaunch.js:400-416; .opencode/plugins/ask-surface-guard.js:80",
+        ".opencode/node_modules/@opencode-ai/sdk/dist/gen/types.gen.d.ts, dist/gen/sdk.gen.d.ts, dist/v2/gen/sdk.gen.js, dist/v2/gen/types.gen.d.ts",
+        ".skilled/skills/system-deep-loop/runtime/scripts/fanout-pool.cjs:360-372; fanout-run.cjs:355-392",
+        "`command <binary> --help` for claude, pi, opencode (+ run, session), codex (+ exec, resume), cursor-agent, devin",
+        "~/.claude/projects/**/*.jsonl (entry types and key names only)"
+      ]
+    },
+    {
+      "id": "finding-3-4-added-directories-confirmed-citation-incomplete-claude-add-dir-is-value-taking-s",
+      "text": "**Added directories, CONFIRMED, citation incomplete.** `claude:--add-dir` is value-taking [SOURCE: .skilled/bin/skilled-loop:480] and many-valued on replay [SOURCE: .skilled/bin/skilled-loop:943]. The grep for `add-dir|addDir` in adapter code matched nothing, so no adapter reads a later addition. The report misses that the wrapper also replays `codex:--add-dir` [SOURCE: .skilled/bin/skilled-loop:511] and `cursor:--add-dir` [SOURCE: .skilled/bin/skilled-loop:516].",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-6-crons-and-wakeups-end-with-the-session-resolved-to-confirmed-was-unconfirmed-the",
+      "text": "**Crons and wakeups end with the session, RESOLVED to CONFIRMED (was UNCONFIRMED).** The official page says: \"Tasks are session-scoped.\" and \"Tasks only fire while Claude Code is running and idle. Closing the terminal or letting the session exit stops them firing.\" It also says `--resume` or `--continue` restores `CronCreate` tasks, but \"A self-paced `/loop` isn't restored\". [SOURCE: https://code.claude.com/docs/en/scheduled-tasks] A hop never resumes, because the wrapper denies `claude:-c`, `--continue`, `-r` and `--resume` on replay. [SOURCE: .skilled/bin/skilled-loop:575] So every `CronCreate` task and every `ScheduleWakeup` wakeup the sender held is gone in the receiver. Claude's help has no schedule, cron or wakeup flag; the grep matched only resume and continue lines. On disk, `~/.claude` has no `todos`, `tasks`, scheduled or cron directory, and this checkout has no `.claude/scheduled_tasks.json`. The page names that file as the store only \"With feature-flag fetching off\".",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-5-grep-for-cron-wakeup-and-todo-confirmed-but-the-report-missed-one-hit-no-adapter",
+      "text": "**Grep for cron, wakeup and todo, CONFIRMED, but the report missed one hit.** No adapter, `lib` or `bin` file mentions them. The Claude Stop fixture does carry `\"session_crons\": []` [SOURCE: .skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:12], so Claude's Stop payload names the session's crons, and `stop-arm.mjs` ignores the field: its only payload array check is `background_tasks`. [SOURCE: .skilled/hooks/session-relaunch/claude/stop-arm.mjs:120]",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-9-launch-flags-per-runtime-from-help-decides-what-a-stamped-value-could-replay-int",
+      "text": "**Launch flags per runtime, from help (decides what a stamped value could replay into).**",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-16-new-a-readme-sentence-contradicts-the-code-readme-83-says-model-effort-name-prov",
+      "text": "**NEW: a README sentence contradicts the code.** README:83 says \"Model, effort, name, provider and Pi extension settings come from the relaunch record\". [SOURCE: .skilled/hooks/session-relaunch/README.md:83] Iteration 2 showed the wrapper reads only `model`, `provider` and `effort` from `consume` and takes the name from `SKILLED_LOOP_NAME` (iteration 2, findings 4 and 8). README:17 and :285 describe the name correctly as the first launch's. The README is wrong at :83 for the name. That matters little today, because the record's name is the same environment value, but it would mislead whoever implements change 6.",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-10-none-of-the-nine-ranked-changes-is-documented-as-shipped-three-are-documented-as",
+      "text": "**None of the nine ranked changes is documented as shipped.** Three are documented as known limits or as the current scope:",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-1-permission-mode-confirmed-both-fixtures-carry-permission-mode-source-skilled-hoo",
+      "text": "**Permission mode, CONFIRMED.** Both fixtures carry `permission_mode`. [SOURCE: .skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:6] [SOURCE: .skilled/hooks/session-relaunch/tests/fixtures/codex-stop.json:8] The record `preparePending` writes has no permission field. [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:946] [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:962] The arm path copies only `model`, `provider` and `effort` from its settings. [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1011] Claude's Stop calls `arm` with no settings at all. [SOURCE: .skilled/hooks/session-relaunch/claude/stop-arm.mjs:152] `claude:--permission-mode` is a value-taking replay option [SOURCE: .skilled/bin/skilled-loop:488] and not record-backed [SOURCE: .skilled/bin/skilled-loop:593], so the launch value is replayed and a mid-session switch is lost. The grep for `permission_mode` matched only test files, never adapter code.",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-3-pi-mode-flags-confirmed-for-the-code-refuted-in-one-label-approve-build-and-plan",
+      "text": "**Pi mode flags, CONFIRMED for the code, REFUTED in one label.** `--approve`, `--build` and `--plan` are no-value options [SOURCE: .skilled/bin/skilled-loop:545] [SOURCE: .skilled/bin/skilled-loop:546] that are not record-backed [SOURCE: .skilled/bin/skilled-loop:594], so they replay from launch only. `--approve` is not a mode flag: Pi's help reads `--approve, -a Trust project-local files for this run`. `--plan` and `--build` come from an extension: `Extensions can register additional flags (e.g., --plan from plan-mode extension).`, `--plan Start in Plan mode`, `--build Start in Build mode`. Whether the relaunch extension can read the plan-mode extension's live state is UNCONFIRMED. The missing evidence is the plan-mode extension's source or Pi's extension API for reading another extension's mode.",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-2-q3-verdict-line-at-report-9-refuted-in-part-it-says-the-record-carries-cwd-model",
+      "text": "**Q3 verdict line at report :9, REFUTED in part.** It says the record carries \"cwd, model, effort and goal only\". The record also carries `name` [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:953], `hops` [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:955], and the Pi arm adds `provider` [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1011]. It does not carry the goal: only a boolean `goalSwitch` [SOURCE: .skilled/hooks/session-relaunch/lib/relaunch-core.cjs:961]. The goal packet travels in the note's `goal_packet` field. [SOURCE: .skilled/hooks/session-relaunch/README.md:169] The conclusion \"anything else reverts to the first launch's flags\" stands.",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-7-same-page-new-background-bash-and-monitors-are-not-restarted-even-on-resume-clau",
+      "text": "**Same page, NEW: background Bash and monitors are not restarted even on resume.** \"Claude Code doesn't restart the background Bash commands and monitors that were running when the session ended.\" [SOURCE: https://code.claude.com/docs/en/scheduled-tasks] This backs iteration 1's finding 2 (a deferred hop waits on background tasks): those tasks cannot be carried, only waited for or written down.",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-8-todo-list-still-unconfirmed-nothing-read-this-iteration-says-where-claude-code-k",
+      "text": "**Todo list, still UNCONFIRMED.** Nothing read this iteration says where Claude Code keeps its todo or task list or whether it survives. `~/.claude` has no `todos` directory; the listed names are `agents`, `jobs`, `plans`, `projects`, `sessions`, `tasks` absent, `teams`, `transcripts` and others. Missing evidence: Claude Code's documentation of the todo or task tools' persistence, or a scratch session that writes a todo and is then relaunched.",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-17-wrong-or-weak-citations-all-three-iterations",
+      "text": "**Wrong or weak citations, all three iterations:**",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-14-change-2-the-readme-documents-the-current-step-it-would-change-release-the-deep-",
+      "text": "Change 2: the README documents the current step it would change: release the deep-loop lock before `prepare`. [SOURCE: .skilled/hooks/session-relaunch/README.md:116]",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-13-change-4-deferred-hop-notice-the-deferral-is-documented-and-the-readme-shows-a-m",
+      "text": "Change 4 (deferred-hop notice): the deferral is documented, and the README shows a mitigation the report missed. An operator prompt withdraws a deferred record, so the hop is not parked for good once the operator types. [SOURCE: .skilled/hooks/session-relaunch/README.md:126]",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-11-change-7-scan-descendants-for-cli-workers-a-known-limit-any-other-child-program-",
+      "text": "Change 7 (scan descendants for CLI workers): a known limit, \"Any other child program is not detected.\" [SOURCE: .skilled/hooks/session-relaunch/README.md:124]",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-12-change-9-names-on-the-other-four-stated-as-scope-claude-and-pi-carry-their-name-",
+      "text": "Change 9 (names on the other four): stated as scope, \"Claude and Pi carry their name.\" [SOURCE: .skilled/hooks/session-relaunch/README.md:32]",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-15-changes-1-3-5-6-and-8-are-absent-the-readme-names-only-goal-done-remaining-work-",
+      "text": "Changes 1, 3, 5, 6 and 8 are absent. The README names only Goal, Done, Remaining work and In-flight state as note sections [SOURCE: .skilled/hooks/session-relaunch/README.md:116] and says the wrapper copies the launch name to later hops. [SOURCE: .skilled/hooks/session-relaunch/README.md:285]",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-19-report-19-says-the-guard-denies-prepare-and-claim-it-denies-seven-commands-sourc",
+      "text": "Report :19 says the guard denies `prepare` and `claim`. It denies seven commands. [SOURCE: .skilled/hooks/session-relaunch/README.md:211] (iteration 1, finding 3)",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-18-report-22-cites-readme-md-130-for-the-3-s-wait-that-line-says-only-that-the-kill",
+      "text": "Report :22 cites `README.md:130` for the 3 s wait. That line says only that the killer waits its idle time; the figure is `DEFAULT_IDLE_MS = 3000` at `lib/killer.cjs:28` and README:141 (iteration 1, finding 6).",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-20-report-26-cites-codex-shared-mjs-55-for-a-missing-background-check-the-line-is-a",
+      "text": "Report :26 cites `codex/shared.mjs:55` for a missing background check. The line is a comment that documents the absence (iteration 1, finding 12).",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-21-report-32-treats-markorphanedlineages-as-a-fanout-run-cjs-symbol-it-is-defined-i",
+      "text": "Report :32 treats `markOrphanedLineages` as a `fanout-run.cjs` symbol. It is defined in `fanout-pool.cjs` and only imported in `fanout-run.cjs` (iteration 1, Ruled Out).",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-23-report-50-calls-approve-a-pi-mode-flag-finding-3-above",
+      "text": "Report :50 calls `--approve` a Pi mode flag (finding 3 above).",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-24-report-51-cites-only-claude-s-add-dir-lines-codex-and-cursor-also-replay-it-find",
+      "text": "Report :51 cites only Claude's `--add-dir` lines; Codex and Cursor also replay it (finding 4 above).",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-25-report-52-s-grep-claim-holds-for-adapter-code-but-it-missed-session-crons-in-the",
+      "text": "Report :52's grep claim holds for adapter code, but it missed `session_crons` in the Stop fixture (finding 5 above).",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-22-report-9-lists-the-record-contents-incorrectly-finding-2-above",
+      "text": "Report :9 lists the record contents incorrectly (finding 2 above).",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    },
+    {
+      "id": "finding-3-26-wrapper-comments-at-skilled-loop-477-and-590-say-the-lists-follow-each-runtime-s",
+      "text": "Wrapper comments at `skilled-loop:477` and `:590` say the lists follow each runtime's help, yet four runtimes list a `-n/--name` their help lacks (iteration 2, finding 14).",
+      "addedAtIteration": 3,
+      "sources": [
+        "scratch/handover-gaps-research-2026-11-13.md:1-81",
+        ".skilled/hooks/session-relaunch/README.md:1-370",
+        ".skilled/hooks/session-relaunch/tests/fixtures/payload-stop.json:1-12; codex-stop.json:1-11",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:940-965, :992-1030",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:120, :136-160",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:630-648",
+        ".skilled/hooks/session-relaunch/lib/nudge.cjs:160-190",
+        ".skilled/bin/skilled-loop:476-602, :936-948",
+        "`command <binary> --help` for claude, pi, opencode, codex, cursor-agent, devin",
+        "~/.claude directory names only",
+        "https://code.claude.com/docs/en/scheduled-tasks"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-c8465661e9b1",
+      "text": "Looking for `markOrphanedLineages` inside `fanout-run.cjs`: it is only imported there, at line 41. The definition is in `fanout-pool.cjs:307`.",
+      "contentHash": "c8465661e9b1",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-613e7395205b",
+      "text": "None yet. The OpenCode child-at-idle question moves to runtime help or source, not to more in-repo reads.",
+      "contentHash": "613e7395205b",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-d82809b87909",
+      "text": "Using repository code to settle the OpenCode child-at-idle question: the behaviour belongs to the OpenCode runtime, not to this repo.",
+      "contentHash": "d82809b87909",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-b0480bc8cf84",
+      "text": "A launch flag for naming on Codex, Cursor, Devin and the OpenCode root command: the help output has none. Candidates for \"Exhausted Approaches\".",
+      "contentHash": "b0480bc8cf84",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-cade0ff5c083",
+      "text": "Reading `opencode session --help` for a rename: it has no title or name option.",
+      "contentHash": "cade0ff5c083",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-e26dea0b91ea",
+      "text": "Using `opencode run --title` on a hop: the wrapper starts the root command, not `run`.",
+      "contentHash": "e26dea0b91ea",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-cfd71550c454",
+      "text": "A Claude launch flag that restores crons: none exists, and `--resume` is deny-listed on a hop.",
+      "contentHash": "cfd71550c454",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-284346436cf7",
+      "text": "A launch flag carrying added directories on OpenCode, Pi or Devin: their help has none.",
+      "contentHash": "284346436cf7",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-1ab4d18f6bd5",
+      "text": "Reading `~/.claude` file content for todo or cron storage: barred by the dispatch, and the names alone showed no such store.",
+      "contentHash": "1ab4d18f6bd5",
+      "addedAtIteration": 3
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 8,
+    "keyFindings": 69,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.7,
+    "coverageBySources": {
+      "code": 43,
+      "code.claude.com": 1,
+      "other": 19
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/research/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

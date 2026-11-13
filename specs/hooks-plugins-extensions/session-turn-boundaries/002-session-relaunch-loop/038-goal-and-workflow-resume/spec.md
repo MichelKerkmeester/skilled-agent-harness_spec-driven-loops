@@ -158,6 +158,22 @@ After a hop the receiver runs the sender's command again, reads the goal of the 
 ## 4. OPEN QUESTIONS
 
 - None
+- Under research: verify and deepen the hand-over gap report at `scratch/handover-gaps-research-2026-11-13.md`. For each claim about running workers at hand-over, session names across a hop and other state a hop drops, confirm or refute it against the code and each runtime's own help output, close the items it marks UNCONFIRMED and name the smallest change for each confirmed gap.
+
+**Research Context:** a deep-research run covered the topic above on 2026-11-13. `research/research.md` is the canonical source for its findings.
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+Findings of the 2026-11-13 deep-research run, abridged from `research/research.md`. Nothing was run against a live runtime, so run-time behaviour is read from code, help output and documentation.
+
+- The gap report holds up: every gap it names is confirmed in the code, with nine wrong or weak citations. None of its nine changes is already shipped.
+- Fan-out lineages outlive a hop, and a re-run requeues them while they are alive, because `markOrphanedLineages` has no process check.
+- A CLI worker started with `&` is invisible at hand-over: `prepare` sees only a direct shell child, and the note has no line for a running worker.
+- Only Claude and Pi take a launch name flag. OpenCode can be titled through the plugin SDK. Codex, Cursor and Devin cannot be named at launch.
+- A Claude `/rename` is a `custom-title` transcript entry that `prepare` could read in the scan it already runs.
+- Crons and wakeups end with the session, and the Stop payload's `session_crons` field is ignored. Permission mode, Pi mode flags and added directories revert to the launch flags.
+- Still unconfirmed, each needing a live runtime or vendor documentation: an OpenCode child busy at parent idle, todo-list persistence, Pi plan-mode state and the OpenCode title call on 2.2.7.
+- These changes fall outside this packet's frozen scope. `research/research.md` section 9 ranks fourteen of them.
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---

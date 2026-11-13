@@ -118,6 +118,7 @@ and findings belong here.
 | Live hop on Claude Code | Done | 2026-11-13: receiver 74f9de05 in loop 50984, SKILLED_LOOP_HOPS=1. The claim seed, the claim instructions and the spec folder arrived without a human, and claim exited 0. The goal was not carried: no goal_packet field in the note, no Goal packet line, SESSION_RELAUNCH_GOAL_PACKET unset, goal.cjs show goal_present=false. The receiver read goal.md from the packet path. Suspected cause: the sender had no goal prepare could prove |
 | Live goal hops on Claude Code 2.1.323 | Done | 2026-11-13, playbook GR-1 to GR-3 in a throwaway checkout: goal hop passed (receiver goal_status 3990 chars, goal-start-claim, note done), both controls left the receiver with no goal, suites 573 of 573. The harness ping withdraws an armed hand-over, so it was dropped. Evidence in scratch/live-hops-claude-2026-11-13 |
 | Receiver claim under a carried goal | Open | 2026-11-13: five goal hops with the fixed harness all relaunched and all started the receiver on the goal, but the receiver claimed the note in only two (runs 2 and 9) and replied PONG until the goal paused in three (6, 7, 8). The demo goal forbids other work, so a real goal is untested |
+| Deep research on hand-over gaps | Done | 2026-11-13: three iterations on the native deep-research agent with Opus at medium, after two guards refused Fable 5.2. Every gap in the report is confirmed in code and fourteen changes are ranked in research/research.md section 9. Nothing was run live |
 
 ### Deviations and findings
 
