@@ -21,7 +21,8 @@
       "durable directive",
       "completion criteria",
       "goal binding",
-      "per runtime behaviour proof implementation summary"
+      "per runtime behaviour proof decision record",
+      "behaviour proof waivers"
     ],
     "key_topics": [
       "per",
@@ -45,15 +46,21 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
-      "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/scratch/incident-chat-started-loop.md",
-      ".skilled/hooks/shared/session-readers/index.mjs",
-      ".skilled/commands/doctor/assets/agents-md-manifest.json",
+      "scratch/summary.json",
+      "scratch/summary-final.json",
+      "scratch/summary.txt",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-policy-derivation.vitest.ts",
+      "scratch/runs-smoke.jsonl",
       "scratch/pre-change-commit.txt",
-      ".pi/settings.json",
-      ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py",
-      ".skilled/hooks/shared/session-readers/dsh.mjs",
-      ".skilled/commands/create/readme.md"
+      "scratch/runs-pre-dsh-rerun.jsonl"
     ],
     "entities": [
       {
@@ -87,27 +94,81 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "incident-chat-started-loop.md",
-        "kind": "doc",
-        "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/001-research-egm-checks-and-chat-path-gaps/scratch/incident-chat-started-loop.md",
-        "source": "derived"
-      },
-      {
-        "name": "index.mjs",
-        "kind": "file",
-        "path": ".skilled/hooks/shared/session-readers/index.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "agents-md-manifest.json",
+        "name": "summary.json",
         "kind": "config",
-        "path": ".skilled/commands/doctor/assets/agents-md-manifest.json",
+        "path": "scratch/summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "summary-final.json",
+        "kind": "config",
+        "path": "scratch/summary-final.json",
+        "source": "derived"
+      },
+      {
+        "name": "summary.txt",
+        "kind": "file",
+        "path": "scratch/summary.txt",
+        "source": "derived"
+      },
+      {
+        "name": "score-command-transcripts.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-command-behaviour.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "prepare-behaviour-arena.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-transcript-score.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "derive-command-bridges.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/derive-command-bridges.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-policy-derivation.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-policy-derivation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "runs-smoke.jsonl",
+        "kind": "file",
+        "path": "scratch/runs-smoke.jsonl",
         "source": "derived"
       },
       {
@@ -117,37 +178,13 @@
         "source": "derived"
       },
       {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".pi/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "measure-rule-compliance.py",
+        "name": "runs-pre-dsh-rerun.jsonl",
         "kind": "file",
-        "path": ".skilled/skills/sk-doc/sk-create-repo-rule/scripts/measure-rule-compliance.py",
-        "source": "derived"
-      },
-      {
-        "name": "dsh.mjs",
-        "kind": "file",
-        "path": ".skilled/hooks/shared/session-readers/dsh.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "readme.md",
-        "kind": "doc",
-        "path": ".skilled/commands/create/readme.md",
+        "path": "scratch/runs-pre-dsh-rerun.jsonl",
         "source": "derived"
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -169,41 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Run",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every check this build has so far reads the advisor's output, never the model's behaviour",
     "created_at": "2026-11-12T12:27:38Z",
-    "last_save_at": "2026-11-13T05:56:24.619Z",
+    "last_save_at": "2026-11-13T18:24:04.277Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,15 +219,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:644f00f3a284c34a7b6700d062753bcb74df1bbc760b48f23ad4146e61e98347",
+    "source_fingerprint": "sha256:d0ad81544f6be41a975ead6e19545a1ee50867a1fe4cbbeeeec77dd861b73882",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1e3b84b3c1ceee11dfa7bdc957e2af9ddfa02bffc50356be98956333690654a2",
+      "spec.md": "88fb662445b05bf708fdccf2efd11b50c44aaafe52d18400e4e7df6143b5dfa2",
       "plan.md": "59e666ba7da15ddd3bc9290f8b88f3df08651651d27e0c476ca103c06994f831",
-      "tasks.md": "f729b8bf1a13610501c1d5d9ffe5e10645c5905266759d4ac7ee6aa0ef9bb33c",
-      "implementation-summary.md": "a0c2ba05bc657547a2e6a5cf89a04236d748aeca7213674526464d1ca1f6524f"
+      "tasks.md": "49151b0392624769c3c17cb38685aaab0c8285aff0a3fdf6a1f0711f66292a35",
+      "decision-record.md": "1d49f76b2d364ad73cb841d7dcb70fc0bc9842c5a148c0824f1a5472618a6330",
+      "implementation-summary.md": "e45b939647d148facbcf00fbcd638dfbd8314233a8036d71df063d67fdb889d1"
     },
     "last_active_at": null
   }

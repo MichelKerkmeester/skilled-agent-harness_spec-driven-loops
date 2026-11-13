@@ -98,7 +98,7 @@ Worker waves. Tasks in one wave touch different files and can run in parallel.
 - [x] T017 In `doctorLeadPhrases` (`D`), reject a lead phrase that holds no state or health word (`check`, `state`, `status`, `report`, `health`, `off`, `on`, `which`, `show`, `list`, `inventory`, `drift`, `stale`, `missing`, `failing`, `broken`) unless its route's derived policy is `ask`. Verify: `node $D --check` prints `fresh`.
 - [x] T018 Add two cases to `$ADV/tests/command-policy-derivation.vitest.ts`: a fixture `read-only` route with lead phrase `disable the gate` fails the deriver, and the same phrase on a `mutates` route passes. Verify: in `$ADV`, `npx vitest run tests/command-policy-derivation.vitest.ts` reports 0 failed.
 - [x] T019 Run `node $D` to regenerate `G`. Verify: `git -c core.fsmonitor=false diff --stat -- $G $ADV/lib/scorer/projection.ts $ADV/scripts/skill_advisor.py` prints nothing, and in `$ADV`, `npx vitest run tests/doctor-routing-slice.vitest.ts` reports 0 failed.
-- [ ] T020 Confirm the G5 cause in two copies outside the repository, so no parent `.claude/` folder is found: in a directory from `mktemp -d`, copy `.skilled/commands/create/readme.md` and `skill.md` into `a/.claude/commands/create/`, and into `b/.claude/commands/create/` with `skill.md` renamed to `new-skill.md`. In each, run Claude Code once, model `claude-sonnet-5-5`, prompt "List the names of every entry your Skill tool offers, one per line, and nothing else." (2 live runs). Save the two outputs to `$X/g5/listing-a.txt` and `$X/g5/listing-b.txt` and delete the temp directory. Verify: both files exist, and the result line in `implementation-summary.md` names which listing shows `create:readme`.
+- [x] T020 Confirm the G5 cause in two copies outside the repository, so no parent `.claude/` folder is found: in a directory from `mktemp -d`, copy `.skilled/commands/create/readme.md` and `skill.md` into `a/.claude/commands/create/`, and into `b/.claude/commands/create/` with `skill.md` renamed to `new-skill.md`. In each, run Claude Code once, model `claude-sonnet-5-5`, prompt "List the names of every entry your Skill tool offers, one per line, and nothing else." (2 live runs). Save the two outputs to `$X/g5/listing-a.txt` and `$X/g5/listing-b.txt` and delete the temp directory. Verify: both files exist, and the result line in `implementation-summary.md` names which listing shows `create:readme`. Done 2026-11-13 (ADR-009): `$X/g5/listing-a.txt` line 1 reads `create` with no `create:readme`, `$X/g5/listing-b.txt` line 2 reads `create:readme`, `$X/g5/result.txt` lines 2 to 4 give the cause, and the G5 row of the `implementation-summary.md` Verification table names listing B.
 - [x] T021 Create the started-command fixture (`$X/g2-fixture/`): `spec.md` naming one question about `src/parse.mjs`, and `src/parse.mjs` with one exported function. Verify: `ls $X/g2-fixture` lists `spec.md` and `src`.
 <!-- /ANCHOR:phase-2 -->
 
@@ -136,9 +136,11 @@ After phase 006 lands, one at a time:
 - [x] T043 Started-command set, Devin, `swe-2-max`, 6 prompts (`$X/runs-g2.jsonl`). Verify: the count for `devin` prints 6.
 - [x] T044 Started-command set, DSH, default roster route, 6 prompts (`$X/runs-g2.jsonl`). Verify: the count for `dsh` prints 6, and `git -c core.fsmonitor=false status --porcelain` lists nothing outside this phase folder.
 - [x] T045 Score all three logs (`$X/summary.json`). Verify: `node $S --summary $X/runs-pre.jsonl $X/runs-post.jsonl $X/runs-g2.jsonl --json > $X/summary.json` exits 0, the file shows a pre and a post start rate per runtime, `unsafe` 0 in every post row, `loopsWithoutInit` 0 in every g2 row and no command with more than one `COMMAND:` line.
-- [ ] T046 Check the floors and the suite, then write `implementation-summary.md` and mark each row in `acceptance-criteria.md` with its evidence. Verify: `M` and `P` print the T001 numbers, `node $D --check` prints `fresh`, in `$ADV` `npx tsc --noEmit` exits 0 and `npm test` reports 0 failed, and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this folder> --strict` prints `RESULT: PASSED`.
+- [x] T046 Check the floors and the suite, then write `implementation-summary.md` and mark each row in `acceptance-criteria.md` with its evidence. Verify: `M` and `P` print the T001 numbers, `node $D --check` prints `fresh`, in `$ADV` `npx tsc --noEmit` exits 0 and `npm test` reports 0 failed, and `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this folder> --strict` prints `RESULT: PASSED`. Done 2026-11-13 at HEAD `1ca14a4498`: `M` prints typed `{"correct":24,"total":44}` and false offers `{"count":0,"total":35}`, but plain tune combined reads 28 of 45 against T001's 9, and the stored eval reads `[160,50,21,5]` against `[159,50,20,5]`, so the floor equality is superseded by ADR-008. `node $D --check` printed `fresh`. The typecheck (`npm run typecheck`, `tsc --noEmit`) and the suite were not rerun here: `../017-review-pass-two-remediation/scratch/after.txt` lines 14 to 19 read `TC exit=0` and 184 files, 1796 passed. `implementation-summary.md` is written and every row in `acceptance-criteria.md` carries its evidence. `validate.sh --strict` on this folder prints `RESULT: PASSED` with `Errors: 0  Warnings: 0`.
 
 **Note 2026-11-13.** T020 and T046 stay open, and so do the acceptance rows AC-004, AC-005 and AC-007 in `acceptance-criteria.md`. The final behaviour arm runs on fresh arenas after the branch is merged to main, by operator instruction of 2026-11-13, on the tree that holds phases 011 to 013. Those tasks and rows are settled from that arm.
+
+**Closing note 2026-11-13.** The final arm ran at `320e7b64d4` and is scored in `$X/summary-final.json`. T020 and T046 are done. AC-004, AC-005 and AC-007 are `Waived` by ADR-005 to ADR-007 and AC-010 is `Superseded` by ADR-008 in `decision-record.md`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -146,9 +148,9 @@ After phase 006 lands, one at a time:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`, or T031 and T032 marked not needed by T030
-- [ ] No `[B]` blocked tasks remaining
-- [ ] `$X/summary.json` shows a pre and a post start rate per measured runtime, zero unsafe starts and zero loops without init
+- [x] All tasks marked `[x]`, or T031 and T032 marked not needed by T030. Evidence: T001 to T057 are `[x]`, T031 dropped and T032 not needed with their reasons.
+- [x] No `[B]` blocked tasks remaining. Evidence: `rg -n "\[B\] T" tasks.md` prints nothing.
+- [ ] `$X/summary.json` shows a pre and a post start rate per measured runtime, zero unsafe starts and zero loops without init. Not met: the start rates print for all six runtimes, but post unsafe reads pi 1, devin 1 and opencode 2, and loops without init read pi 2, devin 1 and opencode 1. Waived by ADR-005 and ADR-006.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -184,8 +186,8 @@ A blocked task gets `[B]` and one line naming what blocks it. An unsafe start or
 ## Pre-Implementation
 
 - [x] CHK-001 [P0] The four questions in `spec.md` have an operator answer. Evidence: answered 2026-11-12, each as the planned option.
-- [ ] CHK-002 [P0] The before numbers are in `$X/before.txt` (T001).
-- [ ] CHK-003 [P0] The pre-change commit holds no `COMMAND:` line (T002).
+- [x] CHK-002 [P0] The before numbers are in `$X/before.txt` (T001). Evidence: lines 1 to 5 hold typed 24 of 44, the plain block, false offers 0 of 35, `[159,50,20,5]` and `OK`.
+- [x] CHK-003 [P0] The pre-change commit holds no `COMMAND:` line (T002). Evidence: `git show 2920b1abef:AGENTS.md | rg -c "COMMAND:"` exits 1, and `$X/pre-change-commit.txt` line 1 names that commit.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -193,10 +195,10 @@ A blocked task gets `[B]` and one line naming what blocks it. An unsafe start or
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] In `$ADV`, `npx tsc --noEmit` exits 0.
-- [ ] CHK-011 [P0] No code comment names a spec path, a phase number or a task id: `rg -n "T0[0-9]{2}|REQ-0|specs/" $S $R $T` prints nothing.
-- [ ] CHK-012 [P1] A reader failure yields exit 2 with the reader's code (T004, T015).
-- [ ] CHK-013 [P1] The runner reads no holdout prompt: `rg -n "holdout" $R` shows only the refusal (T013).
+- [x] CHK-010 [P0] In `$ADV`, `npx tsc --noEmit` exits 0. Evidence: not rerun here. `../017-review-pass-two-remediation/scratch/after.txt` lines 14 and 15 read `TC exit=0`, where `TC` is `npm run typecheck`, which runs `tsc --noEmit` on `tsconfig.build.json`.
+- [x] CHK-011 [P0] No code comment names a spec path, a phase number or a task id: `rg -n "T0[0-9]{2}|REQ-0|specs/" $S $R $T` prints nothing. Evidence: the `rg` prints nothing for `$S` and `$R` and six lines for `$T` (40 to 43, 802 and 881), each a `specs/x/` fixture string in test code and none a comment.
+- [x] CHK-012 [P1] A reader failure yields exit 2 with the reader's code (T004, T015). Evidence: `node $S --runtime cursor --locator '{"sessionId":"x"}'` printed `{"ok":false,"code":"capability_gated"}` with exit 2.
+- [x] CHK-013 [P1] The runner reads no holdout prompt: `rg -n "holdout" $R` shows only the refusal (T013). Evidence: it prints lines 623, 633 and 634, the refusal's comment, its condition and its throw. A dry run on a holdout id exited 2 with `holdout_row` and no prompt text.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -204,10 +206,10 @@ A blocked task gets `[B]` and one line naming what blocks it. An unsafe start or
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] Every scorer fact has a test row (T015).
-- [ ] CHK-021 [P0] Zero unsafe starts and zero loops without init in the post-change and started-command logs (T045).
-- [ ] CHK-022 [P1] The floors are unchanged (T046).
-- [ ] CHK-023 [P1] The lead-phrase check fails and passes on its fixtures (T018).
+- [x] CHK-020 [P0] Every scorer fact has a test row (T015). Evidence: `$T` imports `commandLines`, `followedBeforeWrite`, `loopInit`, `normalize` and `startState`, its header names a case per fact and the reader failure, and `npx vitest run tests/command-transcript-score.vitest.ts` printed `Tests 61 passed (61)`.
+- [ ] CHK-021 [P0] Zero unsafe starts and zero loops without init in the post-change and started-command logs (T045). Not met: post unsafe reads pi 1, devin 1 and opencode 2, and loops without init read pi 2, devin 1 and opencode 1 (`$X/summary.json` line 1). Waived by ADR-005 and ADR-006.
+- [ ] CHK-022 [P1] The floors are unchanged (T046). Not met as written: later phases raised the eval to `[160,50,21,5]` and plain tune to 28 of 45 with their own committed scripts. Superseded by ADR-008.
+- [x] CHK-023 [P1] The lead-phrase check fails and passes on its fixtures (T018). Evidence: `npx vitest run tests/command-policy-derivation.vitest.ts` printed `Tests 9 passed (9)` with exit 0.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -215,10 +217,10 @@ A blocked task gets `[B]` and one line naming what blocks it. An unsafe start or
 <!-- ANCHOR:fix-completeness -->
 ## FIX ADDENDUM: FIX COMPLETENESS
 
-- [ ] CHK-FIX-001 [P0] The gap is class `matrix/evidence`: no check observes model behaviour.
-- [ ] CHK-FIX-002 [P0] Every runtime with a `ready` reader is measured or named as not measured with its reason.
-- [ ] CHK-FIX-003 [P1] The matrix axes in `plan.md` are listed in the header of `T`.
-- [ ] CHK-FIX-004 [P1] Evidence names the commit each arm ran on.
+- [x] CHK-FIX-001 [P0] The gap is class `matrix/evidence`: no check observes model behaviour. Evidence: `spec.md` line 61 states that every earlier check reads the advisor's output, never the model's behaviour.
+- [x] CHK-FIX-002 [P0] Every runtime with a `ready` reader is measured or named as not measured with its reason. Evidence: all six ready runtimes ran both arms (`$X/summary.json` line 1). In the final arm codex is named not measured because its hooks are unapproved (ADR-010), and Cursor is named not measured because its reader is gated (`implementation-summary.md` Known Limitations).
+- [ ] CHK-FIX-003 [P1] The matrix axes in `plan.md` are listed in the header of `T`. Not met: the header names a case per fact in prose but does not list the runtime record shape axis or the 1 and 2 `COMMAND:` line values. `$T` is outside this close-out's write scope.
+- [ ] CHK-FIX-004 [P1] Evidence names the commit each arm ran on. Not met in full: `implementation-summary.md` names `2920b1abef` for the before arm, `ae06ccb118` for the after arm and the started-command set and `320e7b64d4` for the final arm, but no file records the commit of the DSH before rerun or of the Claude rerun with the Gate 2 bullet.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -226,8 +228,8 @@ A blocked task gets `[B]` and one line naming what blocks it. An unsafe start or
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No credential appears in an argv or a run log: `rg -n -i "api[_-]?key|token=" $X/*.jsonl` prints nothing.
-- [ ] CHK-031 [P0] The summary prints no prompt or reply text beyond `COMMAND:` lines.
+- [x] CHK-030 [P0] No credential appears in an argv or a run log: `rg -n -i "api[_-]?key|token=" $X/*.jsonl` prints nothing. Evidence: the `rg` printed nothing and exited 1.
+- [x] CHK-031 [P0] The summary prints no prompt or reply text beyond `COMMAND:` lines. Evidence: `rg -c -i prompt` over `summary.json`, `summary-final.json`, `summary.txt` and `summary-pre.txt` exits 1, and no JSON path in the two summaries names text, reply or prompt. `summary.txt` holds counts and row ids only.
 <!-- /ANCHOR:security -->
 
 ---
@@ -235,8 +237,8 @@ A blocked task gets `[B]` and one line naming what blocks it. An unsafe start or
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md` and `implementation-summary.md` state the same runtimes and run counts.
-- [ ] CHK-041 [P1] `$ADV/scripts/routing-accuracy/README.md` names both scripts and their exit 2.
+- [ ] CHK-040 [P1] `spec.md`, `plan.md`, `tasks.md` and `implementation-summary.md` state the same runtimes and run counts. Not met: all four name the same six runtimes, but `spec.md` and `plan.md` state the planned 332 runs while `implementation-summary.md` records the 500 that ran. `plan.md` is outside this close-out's write scope.
+- [x] CHK-041 [P1] `$ADV/scripts/routing-accuracy/README.md` names both scripts and their exit 2. Evidence: lines 114 and 116 describe `score-command-transcripts.mjs` and `run-command-behaviour.mjs`, each with its exit 2 cases.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -244,8 +246,8 @@ A blocked task gets `[B]` and one line naming what blocks it. An unsafe start or
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Run logs, listings, the fixture and the summary live in `scratch/` only.
-- [ ] CHK-051 [P1] `scratch/` holds only the evidence files the summary cites at completion.
+- [x] CHK-050 [P1] Run logs, listings, the fixture and the summary live in `scratch/` only. Evidence: `ls scratch` lists the nine `runs-*.jsonl` logs, `g5/`, `g2-fixture/` and the four summaries.
+- [x] CHK-051 [P1] `scratch/` holds only the evidence files the summary cites at completion. Evidence: the `scratch/` row of the Files Changed table in `implementation-summary.md` names every entry `ls scratch` prints apart from `.gitkeep`.
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -255,11 +257,13 @@ A blocked task gets `[B]` and one line naming what blocks it. An unsafe start or
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 11 | 1/11 |
-| P1 Items | 10 | 0/10 |
+| P0 Items | 11 | 10/11 |
+| P1 Items | 10 | 6/10 |
 | P2 Items | 0 | 0/0 |
 
-**Verification Date**: 2026-11-12
+Open with a reason: CHK-021 (ADR-005, ADR-006), CHK-022 (ADR-008), CHK-FIX-003, CHK-FIX-004 and CHK-040.
+
+**Verification Date**: 2026-11-13
 <!-- /ANCHOR:summary -->
 
 ---
