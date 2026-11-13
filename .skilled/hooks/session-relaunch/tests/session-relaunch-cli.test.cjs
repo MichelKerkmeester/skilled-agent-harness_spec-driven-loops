@@ -109,6 +109,7 @@ function handoffText(
   status = 'open',
   specFolder = SPEC_FOLDER,
   claimedBy,
+  runningWorkersLine = 'Running workers: none',
 ) {
   return [
     '---',
@@ -129,6 +130,7 @@ function handoffText(
     'Implement the core and adapters.',
     '## In-flight state',
     'No child process is running.',
+    ...(runningWorkersLine === null ? [] : [runningWorkersLine]),
   ].join('\n');
 }
 
@@ -149,10 +151,11 @@ function writeHandoff(sandbox, {
   specFolder = SPEC_FOLDER,
   claimedBy,
   createSpecFolder = true,
+  runningWorkersLine = 'Running workers: none',
 } = {}) {
   const handoffPath = path.join(handoffDirectory(sandbox), fileName);
   fs.mkdirSync(path.dirname(handoffPath), { recursive: true });
-  fs.writeFileSync(handoffPath, handoffText(status, specFolder, claimedBy));
+  fs.writeFileSync(handoffPath, handoffText(status, specFolder, claimedBy, runningWorkersLine));
   // prepare and keep refuse a packet the repository does not hold, so a note names a real one.
   if (createSpecFolder && core.validSpecFolder(specFolder)) {
     fs.mkdirSync(path.join(sandbox.repoRoot, specFolder), { recursive: true });
@@ -658,6 +661,64 @@ test('prepare exits two for an invalid handoff note', (t) => {
   const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
   assert.equal(result.status, 2, result.stderr);
   assert.match(result.stderr, /handoff status must be open, found claimed/);
+});
+
+test('prepare exits two for a note with no Running workers line', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox, { runningWorkersLine: null });
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+  sandbox.env.CLAUDE_PID = String(process.pid);
+
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+  assert.equal(result.status, 2, result.stderr);
+  assert.match(result.stderr, /Running workers:/);
+  assert.equal(fs.existsSync(relaunchPath(sandbox)), false);
+});
+
+test('prepare refuses a Running workers line with neither none nor a pid', (t) => {
+  for (const runningWorkersLine of ['Running workers:', 'Running workers: some job']) {
+    const sandbox = createSandbox(t);
+    const handoffPath = writeHandoff(sandbox, { runningWorkersLine });
+    sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+    sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+    sandbox.env.CLAUDE_PID = String(process.pid);
+
+    const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+    assert.equal(result.status, 2, `${runningWorkersLine}: ${result.stdout}`);
+    assert.match(result.stderr, /Running workers:/);
+    assert.equal(fs.existsSync(relaunchPath(sandbox)), false);
+  }
+});
+
+test('prepare accepts Running workers none and a line that names a pid', (t) => {
+  for (const runningWorkersLine of [
+    'Running workers: none',
+    '- Running workers: pid 4242 log /tmp/w.log collect read the log',
+  ]) {
+    const sandbox = createSandbox(t);
+    const handoffPath = writeHandoff(sandbox, { runningWorkersLine });
+    sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+    sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+    sandbox.env.CLAUDE_PID = String(process.pid);
+
+    const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
+
+    assert.equal(result.status, 0, `${runningWorkersLine}: ${result.stderr}`);
+    assert.equal(JSON.parse(fs.readFileSync(relaunchPath(sandbox), 'utf8')).status, 'pending');
+  }
+});
+
+test('keep accepts a note with no Running workers line', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox, { runningWorkersLine: null });
+
+  const result = runCli(sandbox, ['keep', '--handoff', handoffPath, '--session', SESSION_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /note kept/);
 });
 
 test('prepare exits two for an invalid CLAUDE_PID under the loop', (t) => {

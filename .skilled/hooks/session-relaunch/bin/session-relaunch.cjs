@@ -411,8 +411,26 @@ function recordGoalPacket({ handoffPath, noteCwd, specFolder, runtime, sessionId
   }
 }
 
+// A receiver re-runs the note's active command, so a worker its `Running workers:` line never
+// names is started a second time: prepare refuses a note that leaves the question unanswered.
+// A kept note goes back to the session that wrote it, which owns whatever it left behind, so
+// keep does not ask.
+const RUNNING_WORKERS_LINE = /^[ \t]*(?:-[ \t]+)?Running workers:(.*)$/m;
+const RUNNING_WORKERS_PID = /\bpid[ \t]+\d+/;
+
+function runningWorkersReason(inFlightState) {
+  const match = RUNNING_WORKERS_LINE.exec(inFlightState);
+  if (match === null) {
+    return 'handoff In-flight state needs a Running workers: line:'
+      + ' list each worker as pid <pid> log <path> collect <step>, or write Running workers: none';
+  }
+  const value = match[1].trim();
+  if (value.toLowerCase() === 'none' || RUNNING_WORKERS_PID.test(value)) return null;
+  return 'handoff Running workers: line must say none or name a pid <digits> entry';
+}
+
 // prepare and keep accept the same note, so they share one check of it.
-function validatedNote(options, runtime) {
+function validatedNote(options, runtime, { requireRunningWorkers = false } = {}) {
   if (!options['--handoff']) throw new Error('--handoff is required');
   const handoffPath = handoffPathWithinRepo(options['--handoff']);
   const sessionId = sessionIdFor(options, runtime);
@@ -422,12 +440,16 @@ function validatedNote(options, runtime) {
   // An answer the note cannot carry forward would drop silently downstream.
   let specFolder = '';
   let noteCwd = '';
+  let inFlightState = '';
   try {
     const note = core.parseHandoff(fs.readFileSync(handoffPath, 'utf8'));
     specFolder = typeof note.frontmatter.spec_folder === 'string'
       ? note.frontmatter.spec_folder
       : '';
     noteCwd = typeof note.frontmatter.cwd === 'string' ? note.frontmatter.cwd : '';
+    inFlightState = typeof note.sections['In-flight state'] === 'string'
+      ? note.sections['In-flight state']
+      : '';
   } catch {}
   if (specFolder !== '' && specFolder !== 'none' && !core.validSpecFolder(specFolder)) {
     throw new Error(
@@ -452,6 +474,10 @@ function validatedNote(options, runtime) {
     if (!isDirectory) {
       throw new Error(`spec_folder ${specFolder} does not exist in this repository`);
     }
+  }
+  if (requireRunningWorkers) {
+    const reason = runningWorkersReason(inFlightState);
+    if (reason !== null) throw new Error(reason);
   }
   recordGoalPacket({ handoffPath, noteCwd, specFolder, runtime, sessionId });
   return { handoffPath, sessionId, specFolder };
@@ -513,7 +539,11 @@ function prepare(args) {
   const decision = hookFlagDecision('session-relaunch', undefined, undefined, { runtime });
   if (!decision.enabled) throw new Error(relaunchRefusal(decision, runtime));
 
-  const { handoffPath, sessionId, specFolder } = validatedNote(options, runtime);
+  const { handoffPath, sessionId, specFolder } = validatedNote(
+    options,
+    runtime,
+    { requireRunningWorkers: true },
+  );
 
   if (!loopId) {
     supersedeClaimedNotes(handoffPath, { sessionId });

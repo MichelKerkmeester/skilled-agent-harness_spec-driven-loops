@@ -131,6 +131,7 @@ test('wrapper and CLI both print the manual command on stdout', (t) => {
     'Nothing.',
     '## In-flight state',
     'No child process is running.',
+    'Running workers: none',
     '',
   ].join('\n'));
   const cliResult = spawnSync(process.execPath, [

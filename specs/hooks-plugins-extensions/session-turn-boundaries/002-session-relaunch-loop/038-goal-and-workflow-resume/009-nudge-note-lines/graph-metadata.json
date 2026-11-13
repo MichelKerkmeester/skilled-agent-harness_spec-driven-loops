@@ -37,7 +37,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,11 +47,13 @@
       "implementation-summary.md",
       ".skilled/hooks/session-relaunch/lib/nudge.cjs",
       ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
-      ".skilled/commands/speckit/handoff.md",
       ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
       ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
       ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-claim-goal.test.cjs",
-      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/run-hop.sh"
+      ".skilled/commands/speckit/handoff.md",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/run-hop.sh",
+      "scratch/red.txt",
+      "scratch/green.txt"
     ],
     "entities": [
       {
@@ -103,12 +105,6 @@
         "source": "derived"
       },
       {
-        "name": "handoff.md",
-        "kind": "doc",
-        "path": ".skilled/commands/speckit/handoff.md",
-        "source": "derived"
-      },
-      {
         "name": "nudge.test.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
@@ -127,9 +123,27 @@
         "source": "derived"
       },
       {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
         "name": "run-hop.sh",
         "kind": "script",
         "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/run-hop.sh",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
         "source": "derived"
       },
       {
@@ -185,23 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Text",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The nudge tells a session to release a held deep-loop lock before `prepare` and says nothing about the fan-out runner (`.skilled/hooks/session-relaunch/lib/nudge.cjs:199-203`), so a re-run after the hop can requeue lineages that are still alive",
     "created_at": "2026-11-13T08:49:30Z",
-    "last_save_at": "2026-11-13T09:08:18.181Z",
+    "last_save_at": "2026-11-13T10:13:14.328Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f40fa5b846fe55b901415f31f4977d655d14546c81d977b81157dc7ea183db3e",
+    "source_fingerprint": "sha256:65d801a903a1384a424a8bf260439dfad6624569446b1f678705d11301ad8f96",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "68005cb0481b38d285fd8bc4e1911d8bc79421b49259c7c19bbc8ea84fd409dd",
+      "spec.md": "f4f2e037262c3e0f1c3890a8b94af028928664d582d25e91dff912b859a94c90",
       "plan.md": "e960935f553f7aed1fd247d7cea95f65e1247b8eeb349467045991d17cf9d377",
-      "tasks.md": "60dbe26cbafe00859170b20294674551d300734cd9ba528e0d9c72747c206a9f",
-      "implementation-summary.md": "d7abb9001c0af862400d8d41413d415631b75109e4960724690d53d27886d20e"
+      "tasks.md": "170aa6205ab27e447428c4527eecf256a861e508ed9bcb4dd7d274d5c114e34f",
+      "implementation-summary.md": "b75fa477366c0df6baed05b5032ff197534a16adc1c6433bcb468aeefd1064cf"
     },
     "last_active_at": null
   }

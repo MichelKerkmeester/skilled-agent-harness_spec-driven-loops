@@ -209,6 +209,70 @@ test('handoff text releases a deep-loop lock before prepare', () => {
   );
 });
 
+test('handoff text stops a running fan-out runner and waits for it before releasing the lock', () => {
+  const text = handoffText({
+    notePath: NOTE_PATH,
+    sessionId: SESSION_ID,
+    specFolder: SPEC_FOLDER,
+    runtime: 'pi',
+    cliPath: CLI_PATH,
+    loopId: LOOP_ID,
+  });
+  const lines = text.split('\n');
+  const stepIndex = lines.findIndex((line) => line.includes('fanout-run.cjs'));
+  const prepareIndex = lines.findIndex((line) => line.includes('prepare --handoff'));
+
+  assert.ok(stepIndex >= 0, `missing the kill -TERM runner stop: ${text}`);
+  assert.equal(
+    Number.parseInt(lines[stepIndex], 10) + 1,
+    Number.parseInt(lines[prepareIndex], 10),
+    text,
+  );
+  const stepLine = lines[stepIndex];
+  const termIndex = stepLine.indexOf('kill -TERM <runner-pid>');
+  const checkIndex = stepLine.indexOf('kill -0 <runner-pid>');
+  const releaseIndex = stepLine.indexOf('loop-lock.cjs release');
+  assert.ok(termIndex >= 0, stepLine);
+  assert.ok(checkIndex > termIndex, stepLine);
+  assert.ok(releaseIndex > checkIndex, stepLine);
+  assert.match(stepLine, /--lock-path <path> --owner-pid <pid> --nonce <nonce>/);
+});
+
+test('handoff text asks for a Running workers line with none as the empty value', () => {
+  const text = handoffText({
+    notePath: NOTE_PATH,
+    sessionId: SESSION_ID,
+    specFolder: SPEC_FOLDER,
+    runtime: 'pi',
+    cliPath: CLI_PATH,
+    loopId: LOOP_ID,
+  });
+  const instruction = text.split('\n').find((line) => line.includes('`Running workers:` line'));
+
+  assert.ok(instruction, `missing the Running workers: instruction: ${text}`);
+  assert.match(instruction, /pid <pid> log <path> collect <step>/, instruction);
+  assert.ok(text.includes('Running workers: none'), text);
+  assert.match(instruction, /prepare refuses a note that has no/, instruction);
+});
+
+test('handoff text asks for Scheduled and Added directories lines', () => {
+  const text = handoffText({
+    notePath: NOTE_PATH,
+    sessionId: SESSION_ID,
+    specFolder: SPEC_FOLDER,
+    runtime: 'pi',
+    cliPath: CLI_PATH,
+    loopId: LOOP_ID,
+  });
+  const instruction = text.split('\n').find((line) => line.includes('`Scheduled:` line'));
+
+  assert.ok(instruction, `missing the Scheduled: instruction: ${text}`);
+  assert.match(instruction, /cron or wakeup with its schedule and prompt/, instruction);
+  assert.ok(instruction.includes('`Added directories:` line'), instruction);
+  assert.ok(text.includes('Scheduled: none'), text);
+  assert.ok(text.includes('Added directories: none'), text);
+});
+
 test('handoff text opens the ratio nudge imperatively and keeps the exception last', () => {
   const text = handoffText({
     notePath: NOTE_PATH,
@@ -399,6 +463,54 @@ test('seed text runs the active command again', () => {
   assert.ok(commandIndex >= 0 && commandIndex < remainingIndex, text);
   assert.match(lines[commandIndex], /same mode and arguments/);
   assert.match(lines[commandIndex], /state detection picks the step/);
+});
+
+test('seed text checks running workers before running the active command again', () => {
+  for (const afterCompaction of [false, true]) {
+    const text = seedText({
+      notePath: NOTE_PATH,
+      specFolder: SPEC_FOLDER,
+      sessionId: SESSION_ID,
+      cliPath: CLI_PATH,
+      afterCompaction,
+    });
+    const lines = text.split('\n');
+    const workerIndex = lines.findIndex(
+      (line) => line.includes('Running workers:') && line.includes('kill -0'),
+    );
+    const commandIndex = lines.findIndex((line) => line.includes('run it again'));
+
+    assert.ok(workerIndex >= 0, `missing the Running workers: kill -0 step: ${text}`);
+    assert.ok(workerIndex < commandIndex, text);
+    assert.match(lines[workerIndex], /kill -0 <pid>/, lines[workerIndex]);
+    assert.match(lines[workerIndex], /collect step/, lines[workerIndex]);
+    assert.equal(lines[workerIndex].includes(NOTE_PATH), false, lines[workerIndex]);
+  }
+});
+
+test('seed text after a hop recreates scheduled tasks and re-adds directories, and a compaction pointer does not', () => {
+  const options = {
+    notePath: NOTE_PATH,
+    specFolder: SPEC_FOLDER,
+    sessionId: SESSION_ID,
+    cliPath: CLI_PATH,
+  };
+  const hop = seedText(options);
+  const hopLines = hop.split('\n');
+  const workerIndex = hopLines.findIndex((line) => line.includes('run it again'));
+
+  assert.match(hop, /recreate each `Scheduled:` entry/, hop);
+  assert.match(hop, /re-add each `Added directories:` entry/, hop);
+  assert.ok(hop.includes('/add-dir'), hop);
+  assert.ok(
+    hopLines.findIndex((line) => line.includes('`Scheduled:` entry')) > workerIndex,
+    hop,
+  );
+
+  const pointer = seedText({ ...options, afterCompaction: true });
+  assert.equal(pointer.includes('Scheduled:'), false, pointer);
+  assert.equal(pointer.includes('Added directories:'), false, pointer);
+  assert.equal(pointer.includes('/add-dir'), false, pointer);
 });
 
 test('seed text reads the spec folder goal before remaining work', () => {
