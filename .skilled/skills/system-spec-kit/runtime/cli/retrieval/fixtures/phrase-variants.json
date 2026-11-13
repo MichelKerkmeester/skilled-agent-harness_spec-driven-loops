@@ -1,5 +1,5 @@
 {
-  "manifestHash": "b65009f6e185b15c0fb54c840ee4ca9e3cf09c841d828a2b3fa5a09360e18fc7",
+  "manifestHash": "7a0aa0e145fd836738ce7d30054deac3d8098404382bad193b33eef719012297",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1662,6 +1662,9 @@
     ],
     "006 playbook run and remediation rollup": [
       "006-playbook-run-and-remediation rollup"
+    ],
+    "006 purpose retention across handovers operator decisions": [
+      "006-purpose-retention-across-handovers operator decisions"
     ],
     "006 redundancy decision record": [
       "006 redundancy decision record"
@@ -8140,6 +8143,9 @@
     ],
     "add task to list": [
       "add task to list"
+    ],
+    "add the nine hub router json phrases": [
+      "add the nine hub router json phrases"
     ],
     "add union alpha": [
       "add union alpha"
@@ -58985,8 +58991,20 @@
     "hub vocabulary check": [
       "hub vocabulary check"
     ],
+    "hub vocabulary drift": [
+      "hub vocabulary drift"
+    ],
     "hub vocabulary drift check": [
       "hub vocabulary drift check"
+    ],
+    "hub vocabulary drift implementation summary": [
+      "hub vocabulary drift implementation summary"
+    ],
+    "hub vocabulary drift plan": [
+      "hub vocabulary drift plan"
+    ],
+    "hub vocabulary drift tasks": [
+      "hub vocabulary drift tasks"
     ],
     "hub vocabulary source": [
       "hub vocabulary source"
@@ -61846,6 +61864,9 @@
     ],
     "kebab to snake convention": [
       "kebab-to-snake convention"
+    ],
+    "keep a packet s core purpose across handovers": [
+      "keep a packet s core purpose across handovers"
     ],
     "keep a published release in step": [
       "keep a published release in step"
@@ -87656,6 +87677,21 @@
     ],
     "purpose first readme rewrite on the refined skill readme template": [
       "purpose-first README rewrite on the refined skill README template"
+    ],
+    "purpose retention across handovers": [
+      "purpose retention across handovers"
+    ],
+    "purpose retention across handovers implementation summary": [
+      "purpose retention across handovers implementation summary"
+    ],
+    "purpose retention across handovers plan": [
+      "purpose retention across handovers plan"
+    ],
+    "purpose retention across handovers tasks": [
+      "purpose retention across handovers tasks"
+    ],
+    "purpose row in the resume brief": [
+      "purpose row in the resume brief"
     ],
     "push and create a pull request": [
       "push and create a pull request"
@@ -128783,6 +128819,9 @@
     ],
     "why are repo rules ignored": [
       "why are repo rules ignored"
+    ],
+    "why compaction loses the purpose": [
+      "why compaction loses the purpose"
     ],
     "why did council recommend plan": [
       "why did council recommend plan"
