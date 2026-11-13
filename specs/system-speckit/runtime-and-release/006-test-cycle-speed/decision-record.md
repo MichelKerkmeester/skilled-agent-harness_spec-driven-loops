@@ -59,6 +59,9 @@ _memory:
 | Q023 | A pull request branch that conflicts with main only in the generated trigger-index files is rebased onto main and the index is regenerated, then force-pushed with a lease. | Not stated. | None | 020-test-speed-followups/implementation-summary.md |
 | Q024 | Operator answers that no decision record holds yet are recorded through a docs pull request. | Not stated. | None | decision-record.md |
 | Q025 | After phase 20 the checks on main are read, the speckit-test-db leak is traced and fixed, and the leftover test folders in the OS temp folder are deleted by known prefix. | Not stated. | None | 021-test-db-temp-leak/spec.md |
+| Q026 | Phase 17 stayed deferred after one slow checkout failed a job on pull request 102. The next answer in this record supersedes it. | Not stated. | None | 017-specs-artifact-tracking-decision/decision-record.md |
+| Q027 | Everything under specs/ stays tracked. CI jobs that do not read loop state skip the research, review, scratch and archive folders with a sparse checkout. None of the three options phase 17 recorded is taken. | Not stated. | None | 022-ci-sparse-loop-state/spec.md, 017-specs-artifact-tracking-decision/decision-record.md |
+| Q028 | The sparse checkout is planned and built in one pass in a new worktree with a pull request, with a stop before anything irreversible. | Not stated. | None | 022-ci-sparse-loop-state/plan.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -563,6 +566,66 @@ Nothing more
 Answer:
 ```text
 Read main's checks, Trace speckit-test-db leak, Clean the temp folder
+```
+
+### Q026
+<!-- source: claude:af05cd33-c1ff-46c9-825e-70281e3ca6f1:toolu_015NgopGyT4Z47VtnGFCct6M:1 -->
+
+Question:
+```text
+The one red check on pull request 102 came from a full repository checkout that took 8 minutes 39 seconds and hit the job's 10-minute limit. Phase 017 (88,151 tracked research and scratch files, 1.67 GB) is the cause of slow full checkouts and you deferred it twice. Do you want to act on that now?
+```
+
+Options:
+```text
+Keep deferring (Recommended)
+Sparse checkout for that job
+Reopen phase 017
+```
+
+Answer:
+```text
+Keep deferring (Recommended)
+```
+
+### Q027
+<!-- source: claude:af05cd33-c1ff-46c9-825e-70281e3ca6f1:toolu_0116yi6GMbMpsUfX2UtH2Tqk:0 -->
+
+Question:
+```text
+Phase 017: the repository tracks 88,151 files (1.67 GB) in research, review, scratch and z_archive folders under specs/, and every full checkout pays for them. Which option do you want for these files?
+```
+
+Options:
+```text
+Sparse checkout in CI only
+B: stop tracking new loop state
+C: move z_archive out
+A: keep everything tracked
+```
+
+Answer:
+```text
+Sparse checkout in CI only
+```
+
+### Q028
+<!-- source: claude:af05cd33-c1ff-46c9-825e-70281e3ca6f1:toolu_0116yi6GMbMpsUfX2UtH2Tqk:1 -->
+
+Question:
+```text
+How far should I go in this session once you have picked?
+```
+
+Options:
+```text
+Plan first, then ask (Recommended)
+Plan and build
+```
+
+Answer:
+```text
+Plan and build
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

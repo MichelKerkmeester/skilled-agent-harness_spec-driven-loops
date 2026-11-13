@@ -93,6 +93,8 @@ The phase stops catching no regression: it changes no test, workflow, hook or so
 
 The decision needs one answer: which option becomes the tracking policy, and for option B, which variant. Until that answer exists, every option carries `Proposed` and the inventory stands as the evidence.
 
+**Operator answer, 2026-11-13**: none of the three options. Everything stays tracked, and CI jobs that do not read loop state skip the four folder kinds with a sparse checkout. Phase 22 builds that. Options A, B and C keep `Proposed`, because the tracking policy itself is unchanged.
+
 Two questions stay open beside the decision. Under option B, the variant question above must be answered first. Under option C, the destination must be named before any file moves.
 
 <!-- /ANCHOR:decision-point -->

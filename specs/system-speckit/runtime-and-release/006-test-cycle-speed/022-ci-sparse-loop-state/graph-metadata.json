@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/runtime-and-release/006-test-cycle-speed/022-ci-sparse-loop-state",
+  "spec_folder": "system-speckit/runtime-and-release/006-test-cycle-speed/022-ci-sparse-loop-state",
+  "parent_id": "system-speckit/runtime-and-release/006-test-cycle-speed",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ci sparse loop state",
+      "phase 22 ci sparse loop state",
+      "sparse checkout loop state folders",
+      "ci sparse loop state plan",
+      "ci sparse loop state tasks",
+      "ci sparse loop state implementation summary"
+    ],
+    "key_topics": [
+      "sparse",
+      "loop",
+      "state",
+      "phase",
+      "checkout",
+      "folders",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "tracked",
+      "files"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".github/workflows/opencode-plugin-tests.yml",
+      ".github/workflows/README.md",
+      ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
+      ".github/workflows/hook-vitest-suites.yml",
+      ".github/workflows/sk-git-script-tests.yml",
+      ".github/workflows/skill-advisor-stress.yml",
+      ".github/workflows/opencode-dual-version.yml",
+      ".github/workflows/command-tree-parity.yml",
+      ".github/workflows/playbook-operator-contract.yml",
+      ".skilled/skills/system-deep-loop/runtime/tests/helpers/legacy-real-log.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-plugin-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-plugin-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".github/workflows/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "job-shape-rules.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-ci/references/job-shape-rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-vitest-suites.yml",
+        "kind": "config",
+        "path": ".github/workflows/hook-vitest-suites.yml",
+        "source": "derived"
+      },
+      {
+        "name": "sk-git-script-tests.yml",
+        "kind": "config",
+        "path": ".github/workflows/sk-git-script-tests.yml",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-stress.yml",
+        "kind": "config",
+        "path": ".github/workflows/skill-advisor-stress.yml",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-dual-version.yml",
+        "kind": "config",
+        "path": ".github/workflows/opencode-dual-version.yml",
+        "source": "derived"
+      },
+      {
+        "name": "command-tree-parity.yml",
+        "kind": "config",
+        "path": ".github/workflows/command-tree-parity.yml",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-operator-contract.yml",
+        "kind": "config",
+        "path": ".github/workflows/playbook-operator-contract.yml",
+        "source": "derived"
+      },
+      {
+        "name": "legacy-real-log.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/helpers/legacy-real-log.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Cycle Speed",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Nine",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "88,151 of the 134,068 tracked files are loop state under `specs/`, and a full checkout fetches all of them",
+    "created_at": "2026-11-13T04:37:34Z",
+    "last_save_at": "2026-11-13T05:02:58.646Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8ebf965bb4f8dee9e04635d8e9189d09e737af2ac3567487836da88010fb7790",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "86e881fd52b3f5b1a154e5f0fe51afa689f06bf0102027188fe033bee1ae0198",
+      "plan.md": "7c6ccabf6b75a0ff7c434331cf5ccdc63b64798042bd2af816da66790a77d2cf",
+      "tasks.md": "80965484a2d6fd3554a5c8c891870b5ef59cb7c09279196324fac095590351f5",
+      "implementation-summary.md": "465965ba2f73202a0ab993d5189b2175b3510e525ae48e99f6557ecd25563e7c"
+    },
+    "last_active_at": null
+  }
+}
