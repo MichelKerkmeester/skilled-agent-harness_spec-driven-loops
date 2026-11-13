@@ -32,7 +32,7 @@
       "seven"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -195,8 +195,8 @@
     ],
     "causal_summary": "Phase 22 excluded the loop-state folders from seven workflows and left the largest suites alone, because a search found 30 files in them that name a loop-state path",
     "created_at": "2026-11-13T05:52:09Z",
-    "last_save_at": "2026-11-13T05:54:17.408Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-13T05:55:22.951Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6a6e1ec642dc3e4d78cef88ce8169cb2703c699a8c7c26949965dae429e95a37",
+    "source_fingerprint": "sha256:85d789fbe2f18ba7e07991084852362fad01fb4182ee5449a5b167b441d482f8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "62ee2214def27567c5a0d0eb80b1c5c9247364997bb4f2f3696f3597538648de",
       "plan.md": "c1ee12381c9047f05d5a3f690902775435f3d19f4c84e8a626d46eb8884a9893",
       "tasks.md": "3c699fc64072383a20c4fd71dc31e31a8e299d5f293f157faefbb9f89298bf64",
-      "implementation-summary.md": "ce8c5add5b072bdbe47cc4f69595cc054d1a20350bfed64724e32d7f83365aa6"
+      "implementation-summary.md": "6b80ec1efde3cfb75125d5173e5a4867f5ec631a5c2ea5cf43f49895f58a80a3"
     },
     "last_active_at": null
   }

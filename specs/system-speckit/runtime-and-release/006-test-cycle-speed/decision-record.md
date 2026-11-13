@@ -62,6 +62,8 @@ _memory:
 | Q026 | Phase 17 stayed deferred after one slow checkout failed a job on pull request 102. The next answer in this record supersedes it. | Not stated. | None | 017-specs-artifact-tracking-decision/decision-record.md |
 | Q027 | Everything under specs/ stays tracked. CI jobs that do not read loop state skip the research, review, scratch and archive folders with a sparse checkout. None of the three options phase 17 recorded is taken. | Not stated. | None | 022-ci-sparse-loop-state/spec.md, 017-specs-artifact-tracking-decision/decision-record.md |
 | Q028 | The sparse checkout is planned and built in one pass in a new worktree with a pull request, with a stop before anything irreversible. | Not stated. | None | 022-ci-sparse-loop-state/plan.md |
+| Q029 | The loop-state reads of Spec-Kit Check, deep-loop and the sk-doc suites are mapped by a read-only run before any of their checkouts changes. | Not stated. | None | 023-ci-sparse-big-suites/spec.md |
+| Q030 | The mapping is recorded in phase 23 and built: the runtime vitest job gets the sparse checkout, and the CLI and deep-loop jobs get one that names the few paths they read again. | Not stated. | None | 023-ci-sparse-big-suites/spec.md, 023-ci-sparse-big-suites/implementation-summary.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -626,6 +628,45 @@ Plan and build
 Answer:
 ```text
 Plan and build
+```
+
+### Q029
+<!-- source: claude:af05cd33-c1ff-46c9-825e-70281e3ca6f1:toolu_01D2x427Dt2oYZfYjdpYbgK9:1 -->
+
+Question:
+```text
+The sparse checkout could not be applied to Spec-Kit Check, deep-loop and the sk-doc suites, because their tests read real loop-state files. Those are your longest waits. Do you want a follow-up on them?
+```
+
+Options:
+```text
+Stop here (Recommended)
+Map what those suites read
+```
+
+Answer:
+```text
+Map what those suites read
+```
+
+### Q030
+<!-- source: claude:af05cd33-c1ff-46c9-825e-70281e3ca6f1:toolu_01Vg9ah4JgSohcXqFmuG2dJR:0 -->
+
+Question:
+```text
+The mapping shows only six test files in spec-kit, deep-loop and sk-doc need loop-state folders (three archived packets, one scratch fixture, one research log, and the sk-doc README walk). What should I do with this result?
+```
+
+Options:
+```text
+Record it, stop there (Recommended)
+Record it and build
+Do not record it
+```
+
+Answer:
+```text
+Record it and build
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
