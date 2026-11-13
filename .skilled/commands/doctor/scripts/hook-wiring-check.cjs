@@ -226,6 +226,16 @@ const NODE_FLAGS_WITH_ARGUMENT = new Set([
 const NODE_FLAGS_WITHOUT_RUN = new Set([
   '-c', '--check', '-e', '--eval', '-p', '--print', '-v', '--version', '-h', '--help',
 ]);
+// A flag can carry its value in the same word, after an equals sign for a long
+// flag and directly after the letter for a short one, so the name is read first.
+function nodeFlagSkipsScript(flag) {
+  if (flag.startsWith('--')) return NODE_FLAGS_WITHOUT_RUN.has(flag.split('=')[0]);
+  if (NODE_FLAGS_WITHOUT_RUN.has(flag)) return true;
+  // A short preload flag takes the rest of its word as the module name.
+  if (/^-[rC]/.test(flag)) return false;
+  return /^-[a-zA-Z]*[cepvh]/.test(flag);
+}
+
 // Words that open a group or hand over the shell and leave the command after them.
 const COMMAND_PREFIXES = new Set(['{', 'exec']);
 
@@ -263,7 +273,7 @@ function runsNodeOnMarker(words, marker) {
   let index = 1;
   while (index < rest.length && rest[index].text.startsWith('-')) {
     const flag = rest[index].text;
-    if (NODE_FLAGS_WITHOUT_RUN.has(flag)) return false;
+    if (nodeFlagSkipsScript(flag)) return false;
     index += NODE_FLAGS_WITH_ARGUMENT.has(flag) ? 2 : 1;
   }
   return index < rest.length && rest[index].text.endsWith(marker);

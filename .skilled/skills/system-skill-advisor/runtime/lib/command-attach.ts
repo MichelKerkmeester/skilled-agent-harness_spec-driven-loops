@@ -286,7 +286,7 @@ const DEPTH_REQUEST = new RegExp(`\\b(?:${DEPTH_WORDING.map(escapePhrase).join('
 
 // Wording that asks for an answer and rules out a change. One pattern serves
 // every gate that has to honour it, so a new gate cannot drift from the first.
-export const NO_EDIT_REQUEST = /\b(no edits?|make no changes|no changes yet|without making changes|(?:do not|don't) (change|edit|modify|touch)|read-only only|no edits yet|only; do not|just show|just list)\b/;
+export const NO_EDIT_REQUEST = /\b(no edits?|make no changes(?! (?:to|in)\b)|no changes yet|without making changes|(?:do not|don't) (change|edit|modify|touch)|read-only only|no edits yet|only; do not|just show|just list)\b/;
 
 // Many keyboards type the contraction with a curly apostrophe, so the text is
 // folded to the straight form before the pattern reads it.

@@ -70,6 +70,8 @@ describe('command attach on a no-edit prompt', () => {
     'refactor the parser so there are no changes to its public api',
     'fix the flaky test and make sure there are no changes in behaviour',
     'create an agent called invoice-parser with no changes to existing agents',
+    'refactor the parser and make no changes to its public api',
+    'rename the helper but make no changes in the tests',
   ])('keeps a change request that limits its scope: %s', (prompt) => {
     expect(isNoEditRequest(prompt)).toBe(false);
   });

@@ -226,6 +226,7 @@ test('skips a runtime whose folder is absent', (t) => {
 for (const [label, build] of [
   ['env unsets a variable first', (m) => `env -u AI_SESSION_CHILD node ${m}`],
   ['node preloads a module', (m) => `node -r ./preload.cjs ${m}`],
+  ['node preloads a module attached to the flag', (m) => `node -r./preload.cjs ${m}`],
   ['the command runs in a subshell', (m) => `(node ${m})`],
   ['the command runs in a brace group', (m) => `{ node ${m}; }`],
   ['exec replaces the shell', (m) => `exec node ${m}`],
@@ -248,6 +249,9 @@ for (const [label, build] of [
   ['a quote never closes', (m) => `echo "x; node ${m}`],
   ['node only checks the syntax', (m) => `node --check ${m}`],
   ['node evaluates inline code', (m) => `node -e "1" ${m}`],
+  ['node evaluates code attached to the flag', (m) => `node -e1 ${m}`],
+  ['node evaluates code given with an equals sign', (m) => `node --eval=1 ${m}`],
+  ['node prints an expression given with an equals sign', (m) => `node --print=1 ${m}`],
   ['the launch sits in a comment', (m) => `true # ; node ${m}`],
   ['a shell script takes its own -c argument', (m) => `bash ./x.sh -c "node ${m}"`],
 ]) {
