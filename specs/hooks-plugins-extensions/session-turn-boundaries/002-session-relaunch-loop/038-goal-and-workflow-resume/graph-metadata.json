@@ -10,7 +10,8 @@
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/004-claude-start-claim",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/005-opencode-continuation-hop",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/006-skilled-loop-command",
-    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/007-goal-handover-docs"
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/007-goal-handover-docs",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/008-review-advisories"
   ],
   "manual": {
     "depends_on": [],
@@ -211,19 +212,19 @@
     ],
     "causal_summary": "A review of 2026-11-12, checked by a second reviewer, found that a session hop carries the goal on Claude Code, Pi and OpenCode but loses work around it",
     "created_at": "2026-11-12T22:42:00Z",
-    "last_save_at": "2026-11-13T03:59:56.123Z",
+    "last_save_at": "2026-11-13T05:44:32.474Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:38cc37dc512e2dc205d7fdf58988fe59622ce3f556aece0ff8f2d0031383d7e5",
+    "source_fingerprint": "sha256:1335f4151e19bfdab0e1f4f33ffebd6a70ce6a02aca66fdcaf5dc812e8f9434f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2c171ec88b344a4834915d48d06ab618b0c8c21c730582737c089c035318774b"
+      "spec.md": "b1d445912f1bf7ba37648c5bff3c6e9a553b32afa78174841c98cc3d39c6e088"
     },
-    "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/007-goal-handover-docs",
-    "last_active_at": "2026-11-13T03:56:30.910Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/008-review-advisories",
+    "last_active_at": "2026-11-13T05:44:30.373Z"
   }
 }

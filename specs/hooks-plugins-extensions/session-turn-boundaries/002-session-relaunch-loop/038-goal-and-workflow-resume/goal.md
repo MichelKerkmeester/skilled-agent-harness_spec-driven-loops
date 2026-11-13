@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume"
     last_updated_at: "2026-11-12T22:43:16Z"
     last_updated_by: "orchestrator"
-    recent_action: "Closed all seven children and ran the goal gate"
+    recent_action: "Ran the deep review and closed child 008, which fixes its nine advisories"
     next_safe_action: "Await the operator's decision on merge and push of worktree 358"
     blockers: []
     key_files: []
@@ -69,6 +69,7 @@ phase and binds as if written here.
 | 005-opencode-continuation-hop | `005-opencode-continuation-hop/goal.md` |
 | 006-skilled-loop-command | `006-skilled-loop-command/goal.md` |
 | 007-goal-handover-docs | `007-goal-handover-docs/goal.md` |
+| 008-review-advisories | `008-review-advisories/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -82,7 +83,7 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume --recursive --strict` prints `RESULT: PASSED` for the parent and each of the seven children
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume --recursive --strict` prints `RESULT: PASSED` for the parent and each of the eight children
 - [x] `rg -c '\| Unmet \|' specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/*/acceptance-criteria.md` prints no line
 - [x] `node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs` exits 0
 - [x] `node --test .skilled/hooks/goal/**/*.test.cjs .skilled/hooks/goal/**/*.test.mjs` exits 0
@@ -111,6 +112,8 @@ and findings belong here.
 | Phase 007 documents | Done | 2026-11-13: DeepSeek V4.1 Flash max updated the session-relaunch README and the flags example from scratch/build.diff |
 | Review of the diff | Done | 2026-11-13: an Opus 5.5 review stalled after an hour and was stopped. The orchestrator finished it from the experiments left in the scratchpad and by reading each change. Three fixes followed in one DeepSeek pass: one goal search per prepare, a message and exit 127 when the shim does not know its checkout, a guard test under the master switch. The orchestrator also made the goal bring-back step... |
 | Goal gate | Done | 2026-11-13, from the final working tree, run by the orchestrator: validate.sh --recursive --strict printed RESULT: PASSED eight times and RESULT: FAILED never, the Unmet search printed no line, the relaunch and OpenCode plugin suites ran 1471 of 1471, the goal hook suites 200 of 200 and the Pi suite 59 of 59, each exit 0 |
+| Deep review | Done | 2026-11-13: three iterations by DeepSeek V4.1 Flash max through the deep review workflow, all four dimensions, stop reason maxIterationsReached. Verdict PASS with nine P2 advisories. One reviewer P1 on the Claude start claim event name was downgraded by the orchestrator, because Claude hook payloads name their event. Report in review/review-report.md, commit a3293de363 |
+| Child 008 review advisories | Done | 2026-11-13: the operator answered Sure to a follow-up phase. One child with four work packages, built by DeepSeek V4.1 Flash max, test first. Relaunch and OpenCode plugin suites 1480 of 1480, goal hook suites 200 of 200, Pi suite 59 of 59, each exit 0, run by the orchestrator from the final tree |
 
 ### Deviations and findings
 

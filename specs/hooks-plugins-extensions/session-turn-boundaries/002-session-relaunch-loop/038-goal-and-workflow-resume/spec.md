@@ -52,7 +52,7 @@ _memory:
 | **Parent Packet** | hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop |
 | **Predecessor** | 037-relaunch-test-speed |
 | **Successor** | None |
-| **Handoff Criteria** | All seven children Complete, the relaunch, OpenCode plugin, goal hook and Pi suites pass, and recursive strict validation prints PASSED for every folder |
+| **Handoff Criteria** | All eight children Complete, the relaunch, OpenCode plugin, goal hook and Pi suites pass, and recursive strict validation prints PASSED for every folder |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -130,6 +130,7 @@ After a hop the receiver runs the sender's command again, reads the goal of the 
 | 5 | 005-opencode-continuation-hop/ | The OpenCode goal continuation does not fire while a relaunch record names the session, and the packet variable is dropped after one bind attempt | Complete |
 | 6 | 006-skilled-loop-command/ | `skilled-loop` is a shell function, so the printed manual command runs as typed | Complete |
 | 7 | 007-goal-handover-docs/ | The README and the flags example describe the shipped goal carry-over, the known race and the child goal difference | Complete |
+| 8 | 008-review-advisories/ | The nine P2 advisories of the deep review are fixed, each with a test that failed first or a contract test | Complete |
 
 ### Phase Transition Rules
 
@@ -148,6 +149,7 @@ After a hop the receiver runs the sender's command again, reads the goal of the 
 | 004-claude-start-claim | 005-opencode-continuation-hop | Phase 004 is Complete and its suites pass | `validate.sh 004-claude-start-claim --strict` RESULT: PASSED and every row of `004-claude-start-claim/acceptance-criteria.md` is Met |
 | 005-opencode-continuation-hop | 006-skilled-loop-command | Phase 005 is Complete and its suites pass | `validate.sh 005-opencode-continuation-hop --strict` RESULT: PASSED and every row of `005-opencode-continuation-hop/acceptance-criteria.md` is Met |
 | 006-skilled-loop-command | 007-goal-handover-docs | Phase 006 is Complete and its suites pass | `validate.sh 006-skilled-loop-command --strict` RESULT: PASSED and every row of `006-skilled-loop-command/acceptance-criteria.md` is Met |
+| 007-goal-handover-docs | 008-review-advisories | Phase 007 is Complete and the deep review report exists | `validate.sh 007-goal-handover-docs --strict` RESULT: PASSED and `review/review-report.md` is present |
 <!-- /ANCHOR:phase-map -->
 
 ---

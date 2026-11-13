@@ -1,0 +1,216 @@
+✔ stateDir and relaunchFilePath use the isolated runtime directory (1.639583ms)
+✔ stateDir falls back to a per-user temp directory without a runtime dir (0.774875ms)
+✔ ensureStateDir refuses a state path that is a symlink (1.174583ms)
+✔ ensureStateDir refuses a state path that is a regular file (1.009875ms)
+✔ ensureStateDir refuses a state directory owned by another user (0.982958ms)
+✔ parseHandoff returns flat frontmatter and the four section bodies (1.343542ms)
+✔ parseHandoff rejects text without frontmatter fences (0.775709ms)
+✔ validateHandoff reports the path of a missing note (0.777ms)
+✔ validateHandoff rejects a note whose status is not open (1.691958ms)
+✔ validateHandoff rejects a note from another session (2.036458ms)
+✔ validateHandoff rejects a missing Goal section (1.649334ms)
+✔ validateHandoff rejects a blank Goal section (1.54925ms)
+✔ validateHandoff rejects a missing Done section (1.69075ms)
+✔ validateHandoff rejects a blank Done section (1.442209ms)
+✔ validateHandoff rejects a missing Remaining work section (1.384167ms)
+✔ validateHandoff rejects a blank Remaining work section (1.410875ms)
+✔ validateHandoff rejects a missing In-flight state section (1.479042ms)
+✔ validateHandoff rejects a blank In-flight state section (1.496375ms)
+✔ validateHandoff accepts a valid open note for the matching session (1.34ms)
+✔ claimHandoff moves an open note to claimed with claim metadata (8.533333ms)
+✔ claimHandoff reports the path of a missing note (1.122542ms)
+✔ claimHandoff throws when the note has already been claimed (2.124375ms)
+✔ claim of a done note says the work is finished (1.874542ms)
+✔ claim of a done note names the note that superseded it (1.631333ms)
+✔ claim of a claimed note names its owner (3.512709ms)
+✔ claim of a note with no status says it is not a handoff note (1.743667ms)
+✔ claim of a note with an unknown status keeps the prefix only (1.734625ms)
+✔ completeHandoff moves a claimed note to done with completion metadata (6.137542ms)
+✔ completeHandoff reports the path of a missing note (0.882208ms)
+✔ completeHandoff throws when the note is still open (1.545958ms)
+✔ supersedeClaimed completes this session note and names its replacement (5.206208ms)
+✔ supersedeClaimed continues when one claimed note cannot be written (13.427792ms)
+✔ supersedeClaimed rejects a empty session id (1.293375ms)
+✔ supersedeClaimed rejects a missing session id (1.2465ms)
+✔ supersedeClaimed rejects a multi-line session id (1.379417ms)
+✔ supersedeClaimed completes an open note this session wrote but never prepared (5.593292ms)
+✔ claim and complete pin a permissive note to owner-only access (6.276458ms)
+✔ supersedeClaimed leaves unrelated and malformed notes untouched (2.492292ms)
+✔ supersedeClaimed reads and rewrites each candidate note under its lock (13.520583ms)
+✔ preparePending writes the exact pending record shape (6.174166ms)
+✔ arm changes pending to armed, records the live cwd, and a re-arm restamps both (9.373958ms)
+✔ arm stamps a fresh armId on every arm even in the same millisecond (9.955917ms)
+✔ arm with a new model and no effort clears the recorded effort (8.951ms)
+✔ a re-arm makes an armed record older than the age limit relaunchable again (9.12875ms)
+✔ markSignalled stamps only the armed record it was given, and a re-arm clears it (18.646625ms)
+✔ arm returns null when no pending record exists (1.151209ms)
+✔ arm returns null for every status except pending and armed (2.18875ms)
+✔ arm returns null when the record cannot be read (1.335208ms)
+✔ unarm records disarmed status and the supplied reason (6.29475ms)
+✔ unarm leaves the record armed when expectedArmId is stale (1.865041ms)
+✔ unarm disarms the record when expectedArmId matches (5.750083ms)
+✔ readRelaunchFile returns the parsed record or null when absent (1.241083ms)
+✔ readRelaunchFile reads no record from a symlinked state directory (2.286916ms)
+✔ readRelaunchFile treats invalid JSON as absent and logs the loop id (6.093833ms)
+✔ readRelaunchFile still returns null when the corruption log write fails (2.064208ms)
+✔ shouldRelaunch declines when there is no record (0.859417ms)
+✔ shouldRelaunch declines a pending record (0.758334ms)
+✔ shouldRelaunch accepts an armed record at exactly ten minutes old (1.049417ms)
+✔ shouldRelaunch declines a record armed in the future as stale (0.693375ms)
+✔ shouldRelaunch declines an armed record one millisecond beyond ten minutes (0.711209ms)
+✔ shouldRelaunch accepts hop nine below the default cap (0.747375ms)
+✔ shouldRelaunch declines hop ten at the default cap (0.736917ms)
+▶ shouldRelaunch declines malformed persisted hops
+  ✔ negative (0.036ms)
+  ✔ fractional (0.016917ms)
+  ✔ null (0.014333ms)
+  ✔ numeric string (0.011833ms)
+  ✔ NaN (0.010708ms)
+  ✔ Infinity (0.009416ms)
+  ✔ missing (0.0095ms)
+✔ shouldRelaunch declines malformed persisted hops (0.984458ms)
+✔ shouldRelaunch accepts hop zero below the default cap (0.688458ms)
+✔ appendLog writes exactly one formatted line for every call (10.761083ms)
+✔ appendLog restores private mode on an existing permissive log file (6.867334ms)
+✔ manualClaimCommand places the quoted seed where each runtime expects it (0.310458ms)
+✔ manualClaimCommand carries packet and skip answers in the seed (0.473375ms)
+✔ validSpecFolder requires a numbered leaf and rejects traversal and line breaks (0.05075ms)
+✔ manualClaimCommand omits an unnumbered spec-folder answer (0.034083ms)
+✔ manualClaimCommand omits empty and invalid spec-folder answers (0.038583ms)
+✔ manualClaimCommand escapes shell-sensitive characters in the handoff path (0.153459ms)
+✔ manualClaimCommand ignores inherited Object properties as runtime names (0.025625ms)
+✔ manualClaimCommand closes double quotes around a single-quoted bang (0.017708ms)
+✔ manualClaimCommand preserves a bang path in interactive bash (20.866167ms)
+✔ manualClaimCommand uses a single-token template and keeps its default otherwise (0.263208ms)
+✔ manualClaimCommand keeps dollar sequences literal inside the template fill (0.103375ms)
+✔ appendLog keeps every line when eight processes append concurrently (1590.901541ms)
+✔ appendLog waits for an in-flight append before peeking the last byte (512.281583ms)
+✔ appendLog starts the next event on its own line after a partial line (9.529708ms)
+✔ appendLog rejects a short write instead of reporting success (1.552458ms)
+✔ findLoopChildPid selects the ancestor directly below the loop (15.712625ms)
+✔ hostRuntimePid skips shells above the caller (0.216042ms)
+✔ hostRuntimePid returns the direct parent when it is not a shell (0.037709ms)
+✔ hostRuntimePid returns null for a missing table or a broken chain (0.039125ms)
+✔ nestedUnderLoop is false for the loop child and a shim grandchild (0.05375ms)
+✔ nestedUnderLoop is true for a runtime started from the loop runtime shell (0.021958ms)
+✔ nestedUnderLoop is false for an unrelated or invalid loop id (0.036125ms)
+✔ dropNestedLoop removes the loop variables for a nested run (5.060208ms)
+✔ dropNestedLoop keeps the loop variables for the loop own runtime (0.070584ms)
+✔ dropNestedLoop does nothing outside the loop (0.039208ms)
+✔ dropNestedLoop resolves the host from pid when hostPid is omitted (5.057583ms)
+✔ readProcessTable returns null instead of blocking on a stuck ps (2003.259959ms)
+✔ readProcessTable bounds the ps spawn with a timeout (0.425542ms)
+✔ liveKillerPid returns a live lock owner and null otherwise (22.463458ms)
+✔ liveKillerPid ignores a lock whose recorded expiry has passed (1.309333ms)
+✔ liveKillerPid ages out a legacy lock without an expiry field (1.219ms)
+✔ liveKillerPid reads the killer lock once so a vanished lock reports no owner (0.860375ms)
+✔ readLockState reports the owner and expiry from one read (1.164208ms)
+✔ lockIsExpired keeps an unparseable lock (0.904458ms)
+✔ manual claim commands balance their parentheses for every spec answer (0.056792ms)
+✔ shouldRelaunch declines a fresh armed record that names no handoff or no cwd (0.719042ms)
+✔ claimHandoff updates a status key written with a space before the colon (8.500125ms)
+✔ noteState classifies a note as missing, invalid, open, claimed or done (2.106792ms)
+✔ resolveKillerTarget keeps a preferred pid inside the loop or walks to its child (0.08225ms)
+✔ armableRecord gives every arm path one verdict, ownership before state (1.096375ms)
+✔ the core owns the handoff sections and the runtime list as frozen exports (0.054083ms)
+✔ readProcessTable asks for the command column on request and honors a shorter bound (323.085083ms)
+✔ manualClaimCommand reads the template from the environment it is given (0.122375ms)
+✔ manualTemplateProblem names a template the manual command has to fall back from (0.037375ms)
+✔ payloadEventName applies each runtime's rule for a payload that names no event (0.067833ms)
+✔ isEntrypoint matches a directly run or linked module and nothing else (1.444625ms)
+✔ shouldRelaunch reads a Date clock the way it reads epoch milliseconds (0.780833ms)
+✔ shouldRelaunch reports a hand-over the session called off as withdrawn (0.691792ms)
+✔ dropNestedLoop removes every loop variable, manual template included (6.975667ms)
+✔ arm, unarm and markDeferred each take the record lock once and release it (15.061167ms)
+✔ preparePending writes the record under the record lock (5.225042ms)
+✔ withdrawRecord takes the record lock once and disarms only a record it accepts (4.99ms)
+✔ claimHandoff and completeHandoff each take the note lock and release it (9.197167ms)
+✔ two concurrent claims have one winner (61.897167ms)
+✔ two waiters never hold the append lock together (2543.931167ms)
+[session-relaunch] relaunch state directory is not a real directory owned by the current user: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-core-wGXoNI/runtime/skilled-relaunch
+✔ eight waiters never hold the append lock together (1754.100875ms)
+✔ an unsafe state directory gets no lock directory (1.370125ms)
+✔ arm takes no lock in an unsafe state directory (1.324542ms)
+✔ arm returns null when the state directory cannot be inspected (0.847ms)
+✔ goalPacketProblem accepts a packet whose goal.md is real and refuses everything else (3.024625ms)
+✔ goalPacketProblem accepts a packet that only a second root holds (1.725042ms)
+✔ goalSwitchOn is on unless the operator turns it off (0.063833ms)
+✔ resolveGoalPacket reads the opencode goal record (6.035792ms)
+✔ resolveGoalPacket reads the pi goal record (3.308833ms)
+✔ resolveGoalPacket reads the devin goal record (3.207042ms)
+✔ resolveGoalPacket reads the cursor goal record (3.106041ms)
+✔ resolveGoalPacket keys a record by the session, so another session finds nothing (2.479583ms)
+✔ resolveGoalPacket gives a Codex sender no packet, whatever the spec folder holds (1.698416ms)
+✔ resolveGoalPacket follows the Claude session log goal entries (3.779333ms)
+✔ resolveGoalPacket answers empty when no Claude log can be read (2.199833ms)
+✔ resolveGoalPacket widens the Claude log tail past one large entry (2.478958ms)
+✔ resolveGoalPacket answers empty for an unknown runtime or a missing session (1.349ms)
+✔ the resolver result carries the packet and the reason together (2.170458ms)
+✔ hands a devin or cursor session the hand-over packet (5.167917ms)
+✔ keeps the hand-over packet off (8.772292ms)
+✔ finds a goal headline outside the packet lineage (3.655084ms)
+✔ recordGoalPacket writes, replaces and removes the field and skips an unchanged note (20.741125ms)
+✔ recordGoalPacket removes an empty field the note holds (6.263042ms)
+✖ recordGoalPacket leaves a note that is not open untouched (5.672334ms)
+✖ an active goal with no text names the empty goal, not a missing packet (1.573916ms)
+✔ claim seed parser inverts the seed suffix (0.133666ms)
+✔ usableGoalPacket is exported by the core (2.519625ms)
+ℹ tests 155
+ℹ suites 0
+ℹ pass 153
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9299.566458
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2811:1
+✖ recordGoalPacket leaves a note that is not open untouched (5.672334ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/358-handover-goal-resume/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2816:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2820:1
+✖ an active goal with no text names the empty goal, not a missing packet (1.573916ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      packet: '',
+  +   reason: 'the active goal names no packet this hand-over can find'
+  -   reason: 'the active goal has no text to match a packet by'
+    }
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/358-handover-goal-resume/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2824:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { packet: '', reason: 'the active goal names no packet this hand-over can find' },
+    expected: { packet: '', reason: 'the active goal has no text to match a packet by' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

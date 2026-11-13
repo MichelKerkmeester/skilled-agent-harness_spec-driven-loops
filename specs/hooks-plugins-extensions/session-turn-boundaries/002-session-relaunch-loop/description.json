@@ -16,14 +16,14 @@
     "same",
     "terminal"
   ],
-  "lastUpdated": "2026-11-13T04:01:09.384Z",
+  "lastUpdated": "2026-11-13T05:44:34.598Z",
   "specId": "002",
   "folderSlug": "session-relaunch-loop",
   "parentChain": [
     "hooks-plugins-extensions",
     "session-turn-boundaries"
   ],
-  "memorySequence": 7,
+  "memorySequence": 8,
   "memoryNameHistory": [
     "25-10-26_13-14__ten-iteration-deep-research-cli-codex-gpt-6-luna.md",
     "12-11-26_22-15__added-phase-37-which-splits-the-slow-relaunch.md",
@@ -31,6 +31,7 @@
     "13-11-26_04-55__closed-packet-038-goals-and-running-workflows.md",
     "13-11-26_04-56__closed-packet-038-goals-and-running-workflows.md",
     "13-11-26_04-59__closed-the-goal-and-workflow-resume-packet-seven.md",
-    "13-11-26_05-01__closed-child-038-goal-and-workflow-resume-and.md"
+    "13-11-26_05-01__closed-child-038-goal-and-workflow-resume-and.md",
+    "13-11-26_06-44__closed-child-008-of-the-goal-and-workflow-resume.md"
   ]
 }
