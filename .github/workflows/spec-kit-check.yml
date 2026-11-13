@@ -154,7 +154,22 @@ jobs:
       matrix:
         shard: [1, 2, 3]
     steps:
+      # The checkout skips the research, review, scratch and archive folders under specs/:
+      # about two thirds of the tracked files. Three CLI suites read an archived packet or
+      # fixture, so those three folders are named again after the exclusions.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /*
+            !/specs/**/research/
+            !/specs/**/review/
+            !/specs/**/scratch/
+            !/specs/**/z_archive/
+            /specs/system-deep-loop/z_archive/025-deep-loop-gpt-reliability/006-reliability-fixes/002-gate3-precedence-and-validator/
+            /specs/system-deep-loop/z_archive/021-multi-ai-council-write-protocol/002-multi-ai-council-persistence/
+            /specs/system-speckit/z_archive/001-fix-command-dispatch/z_archive/044-speckit-test-suite/scratch/001-test-agent-08/
+          sparse-checkout-cone-mode: false
 
       - name: Setup Node
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
@@ -235,7 +250,18 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 51
     steps:
+      # No runtime suite reads loop state, so the checkout skips the research, review,
+      # scratch and archive folders under specs/: about two thirds of the tracked files.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            /*
+            !/specs/**/research/
+            !/specs/**/review/
+            !/specs/**/scratch/
+            !/specs/**/z_archive/
+          sparse-checkout-cone-mode: false
 
       - name: Setup Node
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
