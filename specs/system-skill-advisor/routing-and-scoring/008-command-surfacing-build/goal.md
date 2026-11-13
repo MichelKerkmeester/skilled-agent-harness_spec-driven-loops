@@ -163,6 +163,9 @@ and findings belong here.
 | Child environment allowlist check (completes the row above) | Decided, no change | The operator shell sets no proxy or certificate variable: a search of env for proxy, CA_CERTS and SSL_CERT exits 1 with no line |
 | WAITING ON OPERATOR: AGENTS.md Gate 2 direct-call example | Waiting | Review finding R4-P2-003 at AGENTS.md line 65: show the direct advisor call with --json - and the request on stdin. AGENTS.md is the shared framework document, so the edit is the operator's |
 | Phase 014 review remediation | Complete, committed b3b5ae8314 | 64 worker tasks, each checked by an independent Opus verifier (64 of 64 PASS). Suite 182 files 1744 passed 0 failed, doctor tests 1188, reader tests 93, floors unchanged (24 of 44, 0 of 35, eval 160 50 21 5), holdout rows published 44 to 0, strict PASSED. Review pass two still to run |
+| Phase 015 health default and brief refinements | Complete, committed (see git log) | Builds segment three ranks 1, 2, 3, 4, 5, 9 and 11. 20 planned tasks verified 20 of 20 PASS by three Opus verifiers, five follow-ups checked by the coordinator. Suite 183 files 1755 passed 0 failed, floors unchanged, strict PASSED. Open: live brief cost not measured, the script refused with degraded_brief |
+| Final arm rescored with the phase 015 scorer | Measured | unsafe and of those no changed path: claude 0 and 0, devin 2 and 1, dsh 2 and 2, opencode 2 and 0, pi 1 and 1. Evidence 015 scratch/summary-final-after.json |
+| Review pass two and research segment four | Launched side by side | Review: four lineages, 7 iterations, threshold 0.10, scope the committed diff 35c3188681..HEAD. Research: three lineages (embed text for rank 10, in-process timing for rank 6, residual limits), 8 iterations, threshold 0.05. Phase 015 is commit 3b48f0e5f1 |
 
 ### Deviations and findings
 
