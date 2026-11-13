@@ -1,5 +1,5 @@
 {
-  "corpusHash": "272df3d6e33edb0ae77a9b4aafb2204b8415a3234c81e942baae807152eb538a",
+  "corpusHash": "3a5cf2f792b9b4d135aab4baa1d294edd7a9884a59948fcc06785c2b27477dae",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26613,
+  "includedPathCount": 26621,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8720,6 +8720,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.7.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.8.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.9.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.13.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.2.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.3.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.4.0.0.md",
@@ -8766,6 +8767,7 @@
     ".skilled/skills/system-spec-kit/feature-catalog/memory-quality-and-indexing/post-save-quality-review.md",
     ".skilled/skills/system-spec-kit/feature-catalog/memory-quality-and-indexing/spec-doc-structure-validator.md",
     ".skilled/skills/system-spec-kit/feature-catalog/memory-quality-and-indexing/spec-folder-description-discovery.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/retrieval/rg-archive-search.md",
     ".skilled/skills/system-spec-kit/feature-catalog/retrieval/rg-flood-control.md",
     ".skilled/skills/system-spec-kit/feature-catalog/retrieval/session-recovery-spec-kit-resume.md",
     ".skilled/skills/system-spec-kit/feature-catalog/retrieval/stale-index-fallback.md",
@@ -8810,8 +8812,10 @@
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-folder-literal-naming-ai-derived-slugs.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-packet-relocation.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/sub-track-proposal.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-compliance-contract-enforcement.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-composition-system.md",
     ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/template-phrase-lint-commit-gate.md",
@@ -8858,6 +8862,7 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/spec-mutation-gate-enforce.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/speckit-completion-exposer.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/rg-archive-search.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/rg-flood-control.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/session-recovery-spec-kit-resume.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/stale-index-fallback.md",
@@ -8923,8 +8928,11 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-folder-literal-naming-remediation-rule.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-lifecycle-automation.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-packet-relocation.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-validation-archive-reach.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-validation-rule-engine.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/sub-track-proposal.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-compliance-contract-enforcement-blocks-non-compliant.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-compliance-contract-enforcement-produces-compliant.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/template-composition-system.md",
@@ -26645,7 +26653,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a921b6bd1c6bdacbe39db463aff7ccef83c25f8715202efbafaa4a211fa98f80",
+  "manifestHash": "a9cd56233bf7d4d951ab4229c696f77aa3b8c0de7f50247ec4a097ac2f8ba440",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "a921b6bd1c6bdacbe39db463aff7ccef83c25f8715202efbafaa4a211fa98f80",
+  "manifestHash": "a9cd56233bf7d4d951ab4229c696f77aa3b8c0de7f50247ec4a097ac2f8ba440",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12521,6 +12521,9 @@
     ],
     "archive sh track": [
       "archive.sh track"
+    ],
+    "archived label in ripgrep results": [
+      "archived label in ripgrep results"
     ],
     "archived opt in": [
       "archived opt-in"
@@ -34248,6 +34251,9 @@
     ],
     "declaration module header alignment": [
       "declaration module header alignment"
+    ],
+    "declare a sub track": [
+      "declare a sub-track"
     ],
     "declare an sk code surface": [
       "declare an sk-code surface"
@@ -72576,6 +72582,9 @@
     "move a page": [
       "Move a page"
     ],
+    "move a spec packet": [
+      "move a spec packet"
+    ],
     "move containment primitive": [
       "move containment primitive"
     ],
@@ -72605,6 +72614,9 @@
     ],
     "move or rename a note": [
       "Move or rename a note"
+    ],
+    "move or renumber a spec packet": [
+      "move or renumber a spec packet"
     ],
     "move reconciliation packet id identity": [
       "move reconciliation packet_id identity"
@@ -87116,6 +87128,12 @@
     "propagate enhances": [
       "propagate enhances"
     ],
+    "propose sub tracks": [
+      "propose sub-tracks"
+    ],
+    "propose sub tracks for a track": [
+      "propose sub-tracks for a track"
+    ],
     "proposed qualifier removal": [
       "(proposed) qualifier removal"
     ],
@@ -88409,6 +88427,9 @@
     ],
     "re election integration test plan": [
       "re-election integration test plan"
+    ],
+    "re parent packets into a sub track": [
+      "re-parent packets into a sub-track"
     ],
     "re pin after frontmatter move": [
       "re-pin after frontmatter move"
@@ -91985,6 +92006,9 @@
     ],
     "relocate and suggest subtracks vitest suites": [
       "relocate and suggest-subtracks vitest suites"
+    ],
+    "relocate mjs": [
+      "relocate.mjs"
     ],
     "relocate mjs move renumber re parent": [
       "relocate.mjs move renumber re-parent"
@@ -96672,11 +96696,17 @@
     "rg wrapper flood control design": [
       "rg wrapper flood control design"
     ],
+    "rg wrapper include archive": [
+      "rg-wrapper --include-archive"
+    ],
     "rg wrapper structured file limit": [
       "rg-wrapper structured file limit"
     ],
     "right hooks honest reverts": [
       "Right Hooks, Honest Reverts"
+    ],
+    "ripgrep archive search": [
+      "Ripgrep archive search"
     ],
     "ripgrep conventions": [
       "ripgrep conventions"
@@ -100723,6 +100753,12 @@
     ],
     "search append citation probe": [
       "search append citation probe"
+    ],
+    "search archived packets": [
+      "search archived packets"
+    ],
+    "search archived spec packets": [
+      "search archived spec packets"
     ],
     "search behavior benchmark": [
       "search behavior benchmark"
@@ -115029,6 +115065,9 @@
     "spec packet path leak fix": [
       "spec packet path leak fix"
     ],
+    "spec packet relocation": [
+      "Spec packet relocation"
+    ],
     "spec path cleanup": [
       "spec path cleanup"
     ],
@@ -117664,6 +117703,9 @@
     "sub track predicate implementation": [
       "sub-track predicate implementation"
     ],
+    "sub track proposal": [
+      "Sub-track proposal"
+    ],
     "sub track rule parity plan": [
       "sub-track rule parity plan"
     ],
@@ -117924,6 +117966,9 @@
     ],
     "suggest repo rules": [
       "suggest repo rules"
+    ],
+    "suggest subtracks mjs": [
+      "suggest-subtracks.mjs"
     ],
     "suggest subtracks mjs whole track map": [
       "suggest-subtracks.mjs whole-track map"
@@ -120062,6 +120107,9 @@
     "system spec kit 2 12 9 0": [
       "system-spec-kit 2.12.9.0"
     ],
+    "system spec kit 2 13 0 0": [
+      "system-spec-kit 2.13.0.0"
+    ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
     ],
@@ -120688,6 +120736,9 @@
     ],
     "system spec kit v2 12 9 0": [
       "system-spec-kit v2.12.9.0"
+    ],
+    "system spec kit v2 13 0 0": [
+      "system-spec-kit v2.13.0.0"
     ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"
@@ -128435,6 +128486,9 @@
     ],
     "which spec was worked on first": [
       "which spec was worked on first"
+    ],
+    "which sub track fits this packet": [
+      "which sub-track fits this packet"
     ],
     "which system uses cocoindex or mk spec memory": [
       "which system uses cocoindex or mk-spec-memory"
