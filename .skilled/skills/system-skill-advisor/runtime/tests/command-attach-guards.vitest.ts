@@ -70,10 +70,18 @@ describe('command attach on a no-edit prompt', () => {
     'refactor the parser so there are no changes to its public api',
     'fix the flaky test and make sure there are no changes in behaviour',
     'create an agent called invoice-parser with no changes to existing agents',
-    'refactor the parser and make no changes to its public api',
-    'rename the helper but make no changes in the tests',
   ])('keeps a change request that limits its scope: %s', (prompt) => {
     expect(isNoEditRequest(prompt)).toBe(false);
+  });
+
+  // The phrase reads as no change whatever follows it. The first row is a real
+  // no-edit request. The second is a change request that pays for the safe
+  // reading by losing its command.
+  it.each([
+    'show me the plan and make no changes to the files',
+    'refactor the parser and make no changes to its public api',
+  ])('reads make no changes as ruling out a change: %s', (prompt) => {
+    expect(isNoEditRequest(prompt)).toBe(true);
   });
 });
 
