@@ -179,6 +179,28 @@ describe('suggest-subtracks', () => {
     expect(readMapping(lowered.stdout)).toHaveLength(6);
   });
 
+  it('prints no map for a track that holds no packets', () => {
+    // A track root can be created before its first packet lands, so an empty
+    // answer must be explained rather than padded with an empty proposal or
+    // rejected as a missing track.
+    const trackDir = writeTrack('demo', []);
+    writeJson(path.join(trackDir, 'description.json'), {
+      level: 'track',
+      specFolder: 'demo',
+      description: 'Fixture track with no packets yet.',
+      keywords: ['demo'],
+    });
+    const before = snapshotTree(root);
+    const result = run('--track', 'demo');
+    expect(result.status, result.stderr).toBe(0);
+    expect(result.stdout).toContain('no map');
+    expect(result.stdout).not.toContain('"from"');
+
+    // Advice without packets is still advice: the tool must leave the folder
+    // exactly as the fixture built it.
+    expect(snapshotTree(root)).toEqual(before);
+  });
+
   it('names the best-fitting declared sub-track and says when none fits', () => {
     buildGroupedDemo();
     const fit = run('--track', 'demo', '--describe', 'render window rules');

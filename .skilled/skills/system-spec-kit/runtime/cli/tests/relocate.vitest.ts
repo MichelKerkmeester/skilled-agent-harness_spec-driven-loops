@@ -324,6 +324,21 @@ describe('relocate safety', () => {
     expect(snapshot()).toEqual(applied);
   });
 
+  // An empty map names no move at all. It is a valid plan with nothing left to
+  // do, so the run must succeed and leave the checkout exactly as it found it.
+  it('treats an empty map as nothing to do', () => {
+    track('mu', ['mu/001-a']);
+    const map = writeMap([]);
+    commitFixture();
+    const before = snapshot();
+
+    const result = relocate(['--map', map, '--apply']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(result.stdout).toContain('nothing to do');
+    expect(snapshot()).toEqual(before);
+  });
+
   it('rewrites a moved id in another packet without touching a longer id that starts with it', () => {
     track('kappa', ['kappa/001-alpha', 'kappa/001-alpha-two', 'kappa/002-beta']);
     track('lambda', []);
