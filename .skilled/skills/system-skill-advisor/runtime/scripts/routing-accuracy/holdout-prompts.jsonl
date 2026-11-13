@@ -63,4 +63,3 @@
 {"id":"direct-alias-cli-claude-code-literal","prompt":"Use cli-claude-code to delegate the refactor to Claude Code CLI.","skill_top_1":"cli-external-orchestration","source_type":"holdout-delegation","origin_fixture":"tests/parity/fixtures/executor-delegation-cases.json"}
 {"id":"direct-alias-anthropic-second-opinion","prompt":"get an anthropic cli second opinion","skill_top_1":"cli-external-orchestration","source_type":"holdout-delegation","origin_fixture":"tests/parity/fixtures/executor-delegation-cases.json"}
 {"id":"negative-guard-following-opencode-standards","prompt":"update the python script following opencode standards","skill_top_1":"sk-code","source_type":"holdout-delegation","origin_fixture":"tests/parity/fixtures/executor-delegation-cases.json"}
-{"id":"suppressed-codex-abstain","prompt":"delegate to codex","skill_top_1":"none","source_type":"holdout-delegation","origin_fixture":"tests/parity/fixtures/executor-delegation-cases.json"}
