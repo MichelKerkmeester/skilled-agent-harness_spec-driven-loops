@@ -205,7 +205,7 @@
     ],
     "causal_summary": "A Claude session moved into another permission mode after launch, for example with Shift+Tab into `acceptEdits`, restarts in the launch mode after a hop",
     "created_at": "2026-11-13T08:49:33Z",
-    "last_save_at": "2026-11-13T11:05:32.487Z",
+    "last_save_at": "2026-11-13T12:18:14.378Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8756ba2334da6017228c4a4112f1ae619a26583c7d1239702faaa0663d7b5217",
+    "source_fingerprint": "sha256:3f0d33cc309ad27c80cf4b7caa106601a63847376ca965d1c5c67591b6db37f3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d50ba6b32e73f14d47f07c440039893103a2a0d6e64c139d79ee95a19ea68f40",

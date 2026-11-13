@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** 013-opencode-child-and-title
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-13
 <!-- /ANCHOR:metadata -->
 
@@ -86,7 +86,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-008 is unmet: its bridge unit test passes, but its live half needs a claim seed on OpenCode 2.2.7 that a builder may not start, so T017 stays blocked and the status stays Draft.
+Every row is Met. The live half of AC-008 ran on OpenCode 2.2.7 after the build, and the row records it.
 <!-- /ANCHOR:closure -->

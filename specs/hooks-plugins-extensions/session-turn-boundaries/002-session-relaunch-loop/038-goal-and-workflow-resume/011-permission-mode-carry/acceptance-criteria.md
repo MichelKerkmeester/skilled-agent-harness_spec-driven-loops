@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** 011-permission-mode-carry
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-13
 <!-- /ANCHOR:metadata -->
 
@@ -88,7 +88,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-The build is complete except the two live checks. AC-001 stays Unmet because T001 and T002 are blocked on a live Claude session, so the packet cannot close until those facts are recorded; every other criterion is Met with observed evidence.
+Every row is Met. The two live checks that held AC-001 open ran on Claude Code 2.1.323 after the build, and the row records them.
 <!-- /ANCHOR:closure -->

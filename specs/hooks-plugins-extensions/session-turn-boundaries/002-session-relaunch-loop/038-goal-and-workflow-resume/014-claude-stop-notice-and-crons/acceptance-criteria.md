@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** 014-claude-stop-notice-and-crons
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-13
 <!-- /ANCHOR:metadata -->
 
@@ -80,9 +80,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Four criteria are Met from the build and its test evidence. AC-001 stays Unmet until the
-orchestrator runs the live Claude hop that fills `scratch/live-crons.txt`; nothing built
-here depends on its outcome.
+Every row is Met. The live Claude hop that held AC-001 open ran after the build and is recorded in `scratch/live-crons.txt`.
 <!-- /ANCHOR:closure -->
