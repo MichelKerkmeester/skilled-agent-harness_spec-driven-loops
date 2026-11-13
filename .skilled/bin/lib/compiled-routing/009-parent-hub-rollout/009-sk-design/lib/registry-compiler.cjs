@@ -356,7 +356,7 @@ function assertSourceIdentity(input) {
 // of the two dictionaries is sufficient and keeps the parser independent of
 // any Python runtime.
 function parseIntentLayer(routerMarkdown) {
-  const signalsBlock = /INTENT_SIGNALS\s*=\s*\{([\s\S]*?)\n\}/m.exec(routerMarkdown);
+  const signalsBlock = /INTENT_SIGNALS\s*=\s*\{([^\n]*(?=\}[ \t]*$)|[\s\S]*?(?=\n\}))/m.exec(routerMarkdown);
   if (!signalsBlock) fail('ROOT_ROUTER_INTENTS_MISSING', 'the intent signals block is absent from the root router');
   const intents = [];
   const entryPattern = /"([A-Z]+)":\s*\{\s*"weight":\s*(\d+)\s*,\s*"keywords":\s*\[([^\]]*)\]/g;
@@ -369,7 +369,7 @@ function parseIntentLayer(routerMarkdown) {
   }
   if (intents.length === 0) fail('ROOT_ROUTER_INTENTS_EMPTY', 'no intent entries parsed from the root router');
 
-  const mapBlock = /RESOURCE_MAP\s*=\s*\{([\s\S]*?)\n\}/m.exec(routerMarkdown);
+  const mapBlock = /RESOURCE_MAP\s*=\s*\{([^\n]*(?=\}[ \t]*$)|[\s\S]*?(?=\n\}))/m.exec(routerMarkdown);
   if (!mapBlock) fail('ROOT_ROUTER_RESOURCE_MAP_MISSING', 'the resource map block is absent from the root router');
   const resourcePaths = new Map();
   const rowPattern = /"([A-Z]+)":\s*\[([^\]]*)\]/g;

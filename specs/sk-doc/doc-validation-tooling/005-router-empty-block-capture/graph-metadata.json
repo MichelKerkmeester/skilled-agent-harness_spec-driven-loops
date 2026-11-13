@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/doc-validation-tooling/005-router-empty-block-capture",
+  "spec_folder": "sk-doc/doc-validation-tooling/005-router-empty-block-capture",
+  "parent_id": "sk-doc/doc-validation-tooling",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "router empty block capture",
+      "intent signals generator empty block",
+      "INTENT_SIGNALS one line block",
+      "router empty block capture plan",
+      "router empty block capture tasks",
+      "router empty block capture implementation summary"
+    ],
+    "key_topics": [
+      "router",
+      "empty",
+      "block",
+      "capture",
+      "intent",
+      "signals",
+      "generator",
+      "one",
+      "line",
+      "plan",
+      "tasks",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/009-sk-design/lib/registry-compiler.cjs",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/009-sk-design/lib/registry-compiler.cjs",
+      ".skilled/bin/lib/compiled-routing/009-parent-hub-rollout/002-system-deep-loop/lib/registry-compiler.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-router-intent-signals-orphans.test.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-router-vocabulary-reach.test.cjs",
+      ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-hub-vocabulary-source.test.cjs",
+      "scratch/compare-captures.cjs",
+      ".skilled/bin/compiled-route-sync.cjs",
+      "specs/sk-doc/doc-validation-tooling/005-router-empty-block-capture/scratch/compare-captures.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "generate-router-intent-signals.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci-router-vocabulary-reach.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci-hub-vocabulary-source.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "registry-compiler.cjs",
+        "kind": "file",
+        "path": "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/009-parent-hub-rollout/009-sk-design/lib/registry-compiler.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "generate-router-intent-signals-orphans.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/generate-router-intent-signals-orphans.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci-router-vocabulary-reach.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-router-vocabulary-reach.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ci-hub-vocabulary-source.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/scripts/tests/ci-hub-vocabulary-source.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compare-captures.cjs",
+        "kind": "file",
+        "path": "scratch/compare-captures.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Four",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Change",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Four scripts read a router's `INTENTSIGNALS` block with the pattern `/INTENTSIGNALS\\s=\\s\\{([\\s\\S]?)\\n\\}/`, which ends only at a closing brace that starts a line",
+    "created_at": "2026-11-13T10:38:29Z",
+    "last_save_at": "2026-11-13T12:03:24.098Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7348b49610ec22ccb6027b1271e3b18b796c4575cf5ff9a84f94cf31f4375688",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d70c1a597529be317b5891f21353258ee3195ce3bdbcb00a0d5bcc4ec7a35971",
+      "plan.md": "433e68219b8eb664ef55d5fed991a469bf25775add8b033ca0c19fa458ba01d1",
+      "tasks.md": "628dfeb3928db43c5bed32b0ef2e21ca6a7cc4b0dc212973e4c269a6809604c9",
+      "implementation-summary.md": "745f69c8a5d924f9da3c122389c0a81457d6e6f1e729a8ef8e501a6045879bdd"
+    },
+    "last_active_at": null
+  }
+}

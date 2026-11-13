@@ -106,7 +106,7 @@ function authoredVocabulary(router, mode) {
 // replay and generator use so the gate and the writers cannot disagree.
 function parseRouter(text) {
   const intents = new Map();
-  const signals = /INTENT_SIGNALS\s*=\s*\{([\s\S]*?)\n\}/.exec(text);
+  const signals = /INTENT_SIGNALS\s*=\s*\{([^\n]*(?=\}[ \t]*$)|[\s\S]*?(?=\n\}))/m.exec(text);
   if (signals) {
     for (const m of signals[1].matchAll(/"([A-Z0-9_]+)"\s*:\s*\{[^}]*?"keywords"\s*:\s*\[([^\]]*)\]/g)) {
       const entry = intents.get(m[1]) || { keywords: [], paths: [] };
@@ -114,7 +114,7 @@ function parseRouter(text) {
       intents.set(m[1], entry);
     }
   }
-  const map = /RESOURCE_MAP\s*=\s*\{([\s\S]*?)\n\}/.exec(text);
+  const map = /RESOURCE_MAP\s*=\s*\{([^\n]*(?=\}[ \t]*$)|[\s\S]*?(?=\n\}))/m.exec(text);
   if (map) {
     for (const m of map[1].matchAll(/"([A-Z0-9_]+)"\s*:\s*\[([^\]]*)\]/g)) {
       const entry = intents.get(m[1]) || { keywords: [], paths: [] };

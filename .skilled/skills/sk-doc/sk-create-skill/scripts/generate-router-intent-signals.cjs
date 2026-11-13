@@ -52,7 +52,7 @@ function hubs() {
 // the gate and the generator can never disagree about what a router declared.
 function declaredPhrases(hub) {
   const text = fs.readFileSync(path.join(SKILLS, hub, 'ROUTER.md'), 'utf8');
-  const block = /INTENT_SIGNALS\s*=\s*\{([\s\S]*?)\n\}/.exec(text);
+  const block = /INTENT_SIGNALS\s*=\s*\{([^\n]*(?=\}[ \t]*$)|[\s\S]*?(?=\n\}))/m.exec(text);
   if (!block) return [];
   const found = [...block[1].matchAll(/"([^"]{3,60})"/g)].map((m) => m[1]);
   return [...new Set(found.filter((k) => (

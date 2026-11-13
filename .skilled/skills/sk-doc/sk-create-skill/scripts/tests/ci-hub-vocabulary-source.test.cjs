@@ -232,6 +232,40 @@ test('the reverse stage-two leg lists an intent keyword the vocabulary does not 
   assert.match(result.stdout, /RESULT: PASSED/, detail(result));
 });
 
+test('one-line empty router blocks do not absorb later literals', () => {
+  const root = fixture();
+  const routerPath = path.join(root, HUB, 'ROUTER.md');
+  write(routerPath, [
+    '# fixture-hub Surface Router',
+    '',
+    '```python',
+    'INTENT_SIGNALS = {}',
+    '',
+    'RESOURCE_MAP = {}',
+    '',
+    'LATER_SIGNALS = {',
+    '    "LEAKED": {"weight": 4, "keywords": ["leaked keyword"]},',
+    '}',
+    '',
+    'LATER_MAP = {',
+    '    "LEAKED": ["references/leaked.md"],',
+    '}',
+    '```',
+    '',
+  ].join('\n'));
+
+  const router = require(CHECK).parseRouter(fs.readFileSync(routerPath, 'utf8'));
+  assert.deepEqual({
+    hasIntent: router.has('LEAKED'),
+    keywords: router.get('LEAKED')?.keywords || [],
+    paths: router.get('LEAKED')?.paths || [],
+  }, {
+    hasIntent: false,
+    keywords: [],
+    paths: [],
+  });
+});
+
 test('an unknown hub id is a usage error', () => {
   const result = runCheck(fixture(), ['--hub', 'nope']);
   assert.equal(result.status, 2, detail(result));

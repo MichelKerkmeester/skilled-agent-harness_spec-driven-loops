@@ -246,3 +246,49 @@ test('an empty intent_signals with no provenance arrays reports nothing', () => 
     repo.remove();
   }
 });
+
+test('--write does not read past an empty one-line INTENT_SIGNALS block', () => {
+  const repo = makeRepo();
+  try {
+    addHub(repo, 'alpha-hub', {
+      declared: [],
+      metadata: {
+        skill_id: 'alpha-hub',
+        intent_signals: [],
+        intent_signals_generated: [],
+      },
+    });
+    fs.writeFileSync(path.join(repo.skills, 'alpha-hub', 'ROUTER.md'), [
+      '```python',
+      'INTENT_SIGNALS = {}',
+      '',
+      'RESOURCE_MAP = {}',
+      '',
+      'UNKNOWN_FALLBACK_CHECKLIST = [',
+      '    "Was the session opened here?",',
+      '    "Which repository will the command act on?",',
+      ']',
+      '',
+      'LATER = {',
+      '    "kind": "leaked two words",',
+      '}',
+      '```',
+      '',
+    ].join('\n'));
+
+    const result = run(repo, '--write');
+    assert.equal(result.status, 0, result.stdout + result.stderr);
+    const meta = metadataOf(repo, 'alpha-hub');
+    const leaked = [
+      'Was the session opened here?',
+      'Which repository will the command act on?',
+      'leaked two words',
+    ];
+    for (const phrase of leaked) {
+      assert.ok(!meta.intent_signals.includes(phrase), `${phrase} leaked into intent_signals`);
+      assert.ok(!meta.intent_signals_generated.includes(phrase), `${phrase} leaked into intent_signals_generated`);
+    }
+  } finally {
+    repo.remove();
+  }
+});

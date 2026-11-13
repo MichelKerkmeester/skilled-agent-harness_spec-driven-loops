@@ -166,11 +166,55 @@ function testForeignCommandRowIsOutranked() {
   assert.match(result.stdout, /outranked +\S.* command-doctor-git-hooks=0\.8600, sk-doc=0\.8200/, detail(result));
 }
 
+function testEmptyIntentSignalsDoesNotCaptureFallbackQuestions() {
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'router-reach-'));
+  try {
+    const advisor = path.join(tmpDir, 'advisor.cjs');
+    const scenario = path.join(tmpDir, 'scenario.json');
+    const router = [
+      '# Router fixture',
+      '```python',
+      'INTENT_SIGNALS = {}',
+      '',
+      'RESOURCE_MAP = {}',
+      '',
+      'UNKNOWN_FALLBACK_CHECKLIST = [',
+      '    "Was the session opened here?",',
+      '    "Which repository will the command act on?",',
+      ']',
+      '',
+      'ROUTER_RESULT = {',
+      '    "load_level": "UNKNOWN_FALLBACK",',
+      '}',
+      '```',
+    ].join('\n');
+    fs.writeFileSync(advisor, FAKE_ADVISOR);
+    fs.writeFileSync(scenario, JSON.stringify([]));
+    fs.writeFileSync(path.join(tmpDir, 'ROUTER.md'), router);
+    const env = { ...process.env, ROUTER_REACH_ADVISOR: advisor, REACH_TEST_SCENARIO: scenario };
+    delete env.CI;
+    const result = spawnSync(process.execPath, [CHECK, '--skill', tmpDir], {
+      cwd: REPO,
+      encoding: 'utf8',
+      env,
+      timeout: SPAWN_TIMEOUT_MS,
+    });
+    const output = `${result.stdout}\n${result.stderr}`;
+    assert.doesNotMatch(output, /Was the session opened here\?|Which repository will the command act on\?/, detail(result));
+    assert.equal(result.status, 1, detail(result));
+    assert.match(result.stdout, /declared=\s+0/, detail(result));
+    assert.match(result.stdout, /router declared no multi-word phrases/, detail(result));
+  } finally {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  }
+}
+
 testPrivateTieIsANote();
 testPrivateTieInJson();
 testPrivateSurfaceCannotMaskAShippedWinner();
 testPrivateSurfaceBehindIsSilent();
 testCommandRowOwnerCountsAsAHit();
 testForeignCommandRowIsOutranked();
+testEmptyIntentSignalsDoesNotCaptureFallbackQuestions();
 
 console.log('[sk-doc] router reach shipped-fleet ranking passed');

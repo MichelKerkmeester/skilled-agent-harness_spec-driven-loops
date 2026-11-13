@@ -409,7 +409,7 @@ function compileManifestResources(leafManifest, registry, skillRoot) {
 }
 
 function parseRouteResourceMap(smartRoutingMarkdown) {
-  const block = /RESOURCE_MAP\s*=\s*\{([\s\S]*?)\n\}/m.exec(smartRoutingMarkdown);
+  const block = /RESOURCE_MAP\s*=\s*\{([^\n]*(?=\}[ \t]*$)|[\s\S]*?(?=\n\}))/m.exec(smartRoutingMarkdown);
   if (!block) {
     fail('ROUTER_RESOURCE_MAP_MISSING', 'surface router must declare RESOURCE_MAP');
   }
