@@ -56,7 +56,7 @@
       ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
       ".skilled/skills/system-spec-kit/runtime/lib/search/README.md",
       "scratch/baseline.txt",
-      "specs/sk-doc/z_archive/019-skill-routing-refactor/spec.md"
+      "tests/validate-archive-recursive.vitest.ts"
     ],
     "entities": [
       {
@@ -174,6 +174,12 @@
         "source": "derived"
       },
       {
+        "name": "validate-archive-recursive.vitest.ts",
+        "kind": "test",
+        "path": "tests/validate-archive-recursive.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -196,17 +202,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "An archived packet cannot be found or checked with the standard tools",
     "created_at": "2026-11-13T10:07:35Z",
-    "last_save_at": "2026-11-13T14:01:01.673Z",
+    "last_save_at": "2026-11-13T14:19:59.897Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:703bd87ea318654a07c09970c43ba891e2afaddbdba5c2c2c91a281d61e76ccf",
+    "source_fingerprint": "sha256:541dba8ce6fbf4abd60edc7d51ac2f527653b57c40faa9d32ace46fdc141809e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6af44577bcb2defd541e380348de57010d338093964a14cb1dbe7e3cb4ce8cdb",
-      "plan.md": "e09c788bd3ec623abac097cacea09e846479f3225e4336c16f6f8c02e1fdc8b9",
-      "tasks.md": "75baad33d48879ce66727a2ca50206c3bd1d586ca6b4d2ad5ba657d7d47e2bad",
-      "implementation-summary.md": "9e4c672c35572b89524561e0ca7245ae1c0b1be7bef9e7b55b055b77ce06594a"
+      "spec.md": "93ccbbc16e8539ac5b6f477bb8f4e646578b72f3255d30715a8c83a615362d3f",
+      "plan.md": "2235db559938fc018ea71d865cf9d18bce933fad40d4a84ae734b337bbdb3f6c",
+      "tasks.md": "1d7ca4e594858e4158a2eea5e65f833fc258e089257cf44c8b7212a028aed7a3",
+      "implementation-summary.md": "42ae65c60dd3dd59658eea24f16ccbedde91cc35863bf641aff51d24c0af99a1"
     },
     "last_active_at": null
   }

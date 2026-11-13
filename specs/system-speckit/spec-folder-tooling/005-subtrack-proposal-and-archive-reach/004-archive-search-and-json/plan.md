@@ -40,7 +40,7 @@ This phase changes `rg-wrapper.mjs`, `rg-lane.mjs`, `validate.sh` and `archive.s
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met. Open: AC-002, AC-004 and AC-006 are `Unmet`, each for one missing run named in `acceptance-criteria.md`
+- [ ] All acceptance criteria met. Open: AC-002 is `Unmet` until the regenerated trigger index makes `generate-trigger-index.mjs --check` exit 0. The other seven rows of `acceptance-criteria.md` are `Met`
 - [x] `cd .skilled/skills/system-spec-kit/runtime/cli && npm test` exits 0 with no failure that the baseline run did not have
 - [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
@@ -135,7 +135,7 @@ Setup measures the stale `parent_id` records and the dead rows in `specs/descrip
 ## 7. ROLLBACK PLAN
 
 - **Trigger**: A default search returns an archived hit, or `generate-trigger-index.mjs --check` exits non-zero.
-- **Procedure**: Revert commit `05a83a7d88`, which carries the eleven code and reference doc files of this phase. The archive metadata repair and the cache regeneration are not in that commit. When the closeout worker checked on 2026-11-13 they were uncommitted changes in the worktree, so they are discarded before their commit or reverted with it afterwards.
+- **Procedure**: Revert commit `05a83a7d88`, which carries the eleven code and reference doc files of this phase. The archive metadata repair and the cache regeneration are not in that commit. They are committed as `55e73d37b5`, which holds 5397 files: 5145 `description.json`, 218 `graph-metadata.json`, 32 archived documents with a rewritten packet pointer and `specs/descriptions.json`. Revert that commit to undo them.
 <!-- /ANCHOR:rollback -->
 
 ---

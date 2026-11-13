@@ -91,6 +91,11 @@ and findings belong here.
 | Deviation: rows reworded | Done | T006 names the [archived] label. T009 says one level only. T011 names ensureDescriptionCache. CHK-041: only search.md shows a command line. CHK-051: scratch keeps baseline.txt because T004 and T022 cite it |
 | Limits and out of scope | Open | Archive validation reads one level only. The hook costs one producer run per move and can rewrite per-packet description.json files. The doc comment on isExcludedFromGeneratedMetadata in index-scope.ts still says z_* staging or archive segment and was left alone |
 | spec.md status | Open | Left at Draft, as in phases 001 to 003. Set it when the three open criteria close |
+| AC-004 subtrack and phase depth | Done | tests/validate-archive-recursive.vitest.ts runs the real validate.sh in temp trees. The sub-track case and the phase parent case pass, 5 of 5 in the file, each asserting the archived folder is reported with the flag and absent without it. CHK-022 closed with it |
+| AC-006 restore run | Done | Throwaway clone, after archive.sh --force on specs/cli-classifier/006-jev-feature-auto-enable: archive.sh --restore on the archived path exited 0. The cache held a row for cli-classifier/006-jev-feature-auto-enable, no row for the archived path and 0 dead rows |
+| CHK-010 and T012 follow-up checks | Done | node --check exits 0 for rg-wrapper.mjs and rg-lane.mjs. npx vitest run tests/archive-track.vitest.ts alone: 60 passed |
+| Regenerated metadata committed | Done | Commit 55e73d37b5, 5397 files: 5145 description.json, 218 graph-metadata.json, 32 archived documents with a rewritten packet pointer and specs/descriptions.json. Phase documents are in a637944644. Nothing pushed |
+| Phase state after the second closeout | Open | 7 of 8 acceptance criteria Met. AC-002, T020 and the trigger index criterion stay open until the orchestrator regenerates the index and generate-trigger-index.mjs --check exits 0. spec.md stays at Draft until then |
 
 ### Deviations and findings
 

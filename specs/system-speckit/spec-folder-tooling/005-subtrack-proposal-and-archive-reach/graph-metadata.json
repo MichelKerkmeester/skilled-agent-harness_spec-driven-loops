@@ -213,7 +213,7 @@
     ],
     "causal_summary": "Subtracks exist in system-spec-kit only as a hand-written declaration, one level deep, and three gaps follow from that",
     "created_at": "2026-11-13T10:07:28Z",
-    "last_save_at": "2026-11-13T12:20:41.581Z",
+    "last_save_at": "2026-11-13T15:00:54.317Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,13 +221,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:e67fe6d796a826da781f8998889c18e774730f0c3382c963b5b2a83ea6f89c07",
+    "source_fingerprint": "sha256:1a6d4d431eb149aebea356d21d2d2f3471bb014a67ea0bbac49731fe543a53fc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "06611571210f658c65e4123a3d99b587abd7ad741c56f0e2f95f9094441de231",
+      "spec.md": "81bd2efca687a6b9c53e0e576ee01e44f6fe0b6c5106d1e0c2cee7b5158e58a4",
       "decision-record.md": "23aceabe4b5fe9ed85b46f6585800071618763eb9278a36a1b076368a593adf0"
     },
-    "last_active_child_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/003-subtrack-archive-and-numbering",
-    "last_active_at": "2026-11-13T12:20:41.581Z"
+    "last_active_child_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout",
+    "last_active_at": "2026-11-13T15:00:54.317Z"
   }
 }

@@ -132,11 +132,11 @@ Audit summary only. Per-phase detail lives in each child's `plan.md`. Paths with
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-relocation-engine/ | `relocate.mjs`: move, renumber and re-parent packets and rewrite every store, plus `--declare-subtrack` | Pending |
-| 2 | 002-subtrack-proposal/ | `suggest-subtracks.mjs` and the wording and docs that raise a subtrack as a choice | Pending |
-| 3 | 003-subtrack-archive-and-numbering/ | `z_archive/` on every declared subtrack and numbering that counts archived packets | Pending |
-| 4 | 004-archive-search-and-json/ | Opt-in archive search, recursive archive validation and archived JSON health | Pending |
-| 5 | 005-tests-and-closeout/ | Vitest suites for phases 1 to 4, real-tree checks and packet closeout | Pending |
+| 1 | 001-relocation-engine/ | `relocate.mjs`: move, renumber and re-parent packets and rewrite every store, plus `--declare-subtrack` | Closeable. Code in `fc218a0d48` |
+| 2 | 002-subtrack-proposal/ | `suggest-subtracks.mjs` and the wording and docs that raise a subtrack as a choice | Closeable. Code in `b8912b831c` |
+| 3 | 003-subtrack-archive-and-numbering/ | `z_archive/` on every declared subtrack and numbering that counts archived packets | Closeable. Code in `5f3e19712e` |
+| 4 | 004-archive-search-and-json/ | Opt-in archive search, recursive archive validation and archived JSON health | Open. Code in `05a83a7d88`, metadata in `55e73d37b5`. AC-002 waits for the trigger index |
+| 5 | 005-tests-and-closeout/ | Vitest suites for phases 1 to 4, real-tree checks and packet closeout | Open. Suites in `5fefd819e1`. AC-008 and AC-009 are `Unmet` |
 
 ### Phase Transition Rules
 

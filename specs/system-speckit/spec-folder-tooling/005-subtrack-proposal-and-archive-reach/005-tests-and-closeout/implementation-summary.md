@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Five vitest suites with 31 cases now cover the relocation engine, the sub-track proposal, archive numbering and the two archive modes. The full suite passes with 5 files and 32 tests more than the baseline and no failure. Two acceptance criteria stay open."
 trigger_phrases:
   - "tests and closeout implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout"
-    last_updated_at: "2026-11-13T10:07:38Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-13T15:00:54Z"
+    last_updated_by: "generate-context"
+    recent_action: "Built and verified phases 003 to 005 and recorded three operator decisions"
+    next_safe_action: "Review the branch, then decide on push and merge"
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/tasks.md"
+      - "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/acceptance-criteria.md"
+      - "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/decision-record.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-005-tests-and-closeout"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "ea5a4165-ad5f-43b5-9127-8fda5eee165b"
+      workspace: "/Users/michelkerkmeester/worktrees/public/364-subtrack-proposal-archive-reach"
+      savedAt: "2026-11-13T15:00:54Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +47,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-tests-and-closeout |
-| **Completed** | 2026-11-13 |
+| **Completed** | Built 2026-11-13, suites committed as `5fefd819e1`. Not closed: AC-008 names a real flat track and AC-009 waits for the regenerated trigger index |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -47,18 +57,25 @@ _memory:
 ## What Was Built
 <!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+Five new vitest suites with 31 cases now fail when the relocation engine, the sub-track proposal, archive numbering, archive search or archive validation breaks. The full `npm test` run exits 0 with 211 files and 2556 tests passed, which is 5 files and 32 tests more than the baseline, and 0 failed in both runs.
 
 ### Phase 5: tests-and-closeout
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+You can now change `relocate.mjs`, `suggest-subtracks.mjs`, the numbering in `create.sh`, `rg-wrapper.mjs` or `validate.sh` and get a red test when the behavior of phases 001 to 004 breaks. Each suite builds its own tree in a temp directory and removes it, so no run moves or writes a file in the real repository.
+
+The phase also ran the checks of the approved plan outside vitest. The sample map passed as a dry run on the real tree and applied in a throwaway clone, where a second apply had nothing to do. The sweep is clean, and the archive-only phrase is found only with `--include-archive`. No production file changed in this phase.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts` | Created | 11 cases: move, renumber, re-parent, five refusals each asserting exit 2 and an unchanged tree, dry run by default, a second apply that changes nothing and an inbound reference rewrite with the prefix-id pair |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/suggest-subtracks.vitest.ts` | Created | 5 cases: the whole-track map, the threshold, the present-time fit, a missing track and an unchanged tree |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/archive-numbering.vitest.ts` | Created | 4 cases: specs root, track, sub-track and a lower-only archive |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/rg-include-archive.vitest.ts` | Created | 6 cases: the default vector, the archive vector in parity with the shared lane, the archive-only phrase, the label beside a live hit, the metadata lane and the argument parsing |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/validate-archive-recursive.vitest.ts` | Created | 5 cases: an archived packet at track, sub-track and phase depth, the flag without `--recursive` and a symlinked `z_archive` |
+| `scratch/final-npm-test.txt` | Created | The summary lines of the final `npm test` run |
+| The documents of this phase and of phase 004, the parent `spec.md` phase map and the `goal.md` logs | Modified | Evidence, open rows and phase states |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +84,13 @@ Explain what the user gains, not what files you touched.]
 ## How It Was Delivered
 <!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+DeepSeek V4.1 Flash wrote the five suites through the dsh harness, one file per dispatch. Each worker changed one expected value, saw its suite fail with 1 failed, restored it and saw it pass, with the failing output in its report. The orchestrator then ran the five files together, 31 passed and exit 0, and did not repeat the break. `subtrack-tree.mjs` was not changed. The suites are in commit `5fefd819e1`.
+
+The orchestrator ran the full `npm test` next and saved its summary in `scratch/final-npm-test.txt`. It then ran the real-tree checks in this order: the sample map as a dry run on the real tree, the same map with `--apply` twice in a throwaway clone of the final commit, the proposal on a 10-packet fixture track in that clone, the sweep on this worktree and the archive-only phrase with and without `--include-archive`. A Fable 5.2 documents worker recorded the evidence and ran the strict recursive validation last.
+
+The branch `worktrees/364-subtrack-proposal-archive-reach` holds ten commits, in order: `fc218a0d48` for the phase 001 code, `1dab14c217` for the plan, `b8912b831c` for the phase 002 code, `3f2c1f9d61` for the phase 002 documents, `5f3e19712e` for the phase 003 code and 40 keep files, `ccfb6a5313` for the phase 002 and 003 documents, `05a83a7d88` for the phase 004 code, `55e73d37b5` for the regenerated metadata, `a637944644` for the phase 004 documents and `5fefd819e1` for these suites. Nothing is pushed or merged.
+
+Two operator decisions of this session shaped phase 004 and are part of the state these suites test. Both were asked through the question tool: "Commit everything, add hook" for the description cache and "Fix repair-derived" for the archived parent ids. The orchestrator records them in `decision-record.md` with the continuity writer.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -78,7 +101,13 @@ Explain what the user gains, not what files you touched.]
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| One file per dispatch | Each worker owned one suite, so a failing case pointed at one file and one report |
+| Stub the follow-up tools in `relocate.vitest.ts` | As built: the temp repository runs the real `relocate.mjs`, `refresh-track-roots.mjs` and `lib/track-roots.mjs`. The six other tools the engine calls afterwards are stubs there. Why the worker chose stubs was not recorded. The clone run covers the full chain |
+| Leave `subtrack-tree.mjs` unchanged | No suite needed an archived packet option in the shared builder. Four suites build their trees with their own helpers |
+| Run the proposal check on a fixture track | No real flat track holds more than eight live packets. The largest, `cli-classifier`, holds 6. Phase 002 used the same 10-packet fixture |
+| Keep AC-008 `Unmet` | The row says a real flat track, and `decision-record.md` holds no decision that accepts a fixture for it. Marking it `Met` would change the criterion without the operator |
+| Leave the "deeper than one sub-track" message alone | The worker noted that this message in `checkDestinationShape` looks unreachable because an earlier check refuses first. It is an observation and no case fails on it. This phase changes no production code |
+| Check the search through the wrapper | `rg-wrapper.mjs` is the wrapper `/speckit:search` documents, so it was run directly. The slash command itself was not run |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -87,9 +116,29 @@ Explain what the user gains, not what files you touched.]
 ## Verification
 <!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
+Every row is an orchestrator run of 2026-11-13 unless it names another source.
+
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| Baseline before the packet's first edit, `../001-relocation-engine/scratch/baseline.txt` | Exit 0. 206 files passed and 3 skipped, 2524 tests passed and 20 skipped, 0 failed |
+| The five new files run together | 31 passed, exit 0: 11, 5, 4, 6 and 5 cases |
+| Build dispatches: each suite seen failing once | Each worker changed one expected value, saw 1 failed, restored it and saw the pass. Reported by the workers with the failing output. Not repeated by the orchestrator |
+| `npm test`, final, in `scratch/final-npm-test.txt` | Exit 0. 211 files passed and 3 skipped, 2556 tests passed and 20 skipped, 0 failed in every legacy stage. Delta: 5 files and 32 tests more, 0 failures in both |
+| Real tree: `relocate.mjs --map 001-relocation-engine/scratch/sample-map.json` | Exit 1 with `moves=1 moved=0 rewrites=33 identity=1 roots=3 ledger=1`. `git status --porcelain` identical before and after |
+| Clone with its own runtime build: the same map with `--apply` | Exit 0 with "applied 1 move(s)", sweep ok and validate `RESULT: PASSED` for the moved packet |
+| Clone: a second `--apply` | Exit 0 with "nothing to do" |
+| Earlier clone that borrowed the worktree's build | Failed at the repair step with "dist is stale". The same map rerun after a build finished the move with "finished 1 earlier move(s)", which also shows the resume path |
+| Clone: `suggest-subtracks.mjs --track demo` on a committed 10-packet fixture track | Exit 0 with a 10-entry map |
+| Clone: `relocate.mjs --map` on that map | Exit 1, not 2, with `moves=10 moved=0 rewrites=11 identity=10 roots=3 ledger=10` |
+| `sweep-track-roots.mjs` on this worktree | Exit 0 with "all track roots match their declared children" and no missing-archive line |
+| `rg-wrapper.mjs path "skill routing refactor"` | Exit 1 with 0 paths |
+| The same with `--include-archive` | Exit 0 with 2 paths under `specs/sk-doc/z_archive/019-skill-routing-refactor/`, each ending `[archived]` |
+| Goal criterion 3: the `find` for sub-track archives | 40 paths |
+| Goal criterion 4, in the clone: `create.sh --track demo --skip-branch` beside a live `specs/demo/001-a` and an archived `specs/demo/z_archive/007-b` | Created `008-next-one`. `archive-numbering.vitest.ts` asserts the same |
+| `generate-trigger-index.mjs --check` | Open. The orchestrator regenerates the index after these documents are written |
+| Closeout worker: a search of the five test files | No `git mv`, no spec path, no task id and no requirement id. The one `.env` string is a path to an absent file in the temp root. A reading, not a run |
+| Closeout worker: the unfilled-token search of `tasks.md` T016 over the five `implementation-summary.md` files | Printed nothing |
+| Closeout worker: `validate.sh` on the packet with `--strict --recursive` | `RESULT: PASSED` six times |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -98,9 +147,14 @@ Explain what the user gains, not what files you touched.]
 ## Known Limitations
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **`relocate.vitest.ts` does not run the full chain.** Its temp repository runs the real `relocate.mjs`, `refresh-track-roots.mjs` and `lib/track-roots.mjs`. `repair-derived.cjs`, `sweep-track-roots.mjs`, `validate.sh`, `migrate-generated-json`, `generate-trigger-index.mjs` and `cite-drift-scan.mjs` are stubs there. After a change to one of them, apply a sample map in a throwaway clone with its own runtime build.
+2. **No real track has exercised the proposal.** The whole-track map was checked on a 10-packet fixture, so AC-008 is `Unmet`. It closes when the operator accepts the fixture through a decision record or a real flat track grows past eight packets.
+3. **The trigger index check is still open.** T014, AC-009 and the goal criterion on it wait for the index the orchestrator regenerates after these documents are written.
+4. **No case covers an empty map or a track with no packets.** The spec planned one case each and CHK-022 stays open. The nearest case is the missing-track refusal in `suggest-subtracks.vitest.ts`.
+5. **The break-and-restore check was not repeated.** Each worker reported its suite failing once with the output. The orchestrator ran only the passing state.
+6. **A clone needs its own runtime build.** A clone that borrowed the worktree's build failed at the repair step with "dist is stale". Run the build in the clone before `--apply`.
+7. **One message in `relocate.mjs` looks unreachable.** The "deeper than one sub-track" message in `checkDestinationShape` sits behind an earlier refusal. It was left alone and no case targets it.
+8. **Three checklist rows were not confirmed.** CHK-012 needs every assertion read, CHK-041 waits for the status of phases 001 to 003 and CHK-051 needs someone to confirm the clone is removed.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

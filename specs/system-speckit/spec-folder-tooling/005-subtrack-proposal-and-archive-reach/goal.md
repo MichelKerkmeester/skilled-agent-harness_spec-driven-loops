@@ -109,6 +109,12 @@ and findings belong here.
 | 004-archive-search-and-json | Pending | Not started |
 | 005-tests-and-closeout | Pending | Not started |
 | Planning docs for parent and five phases | done | validate.sh --strict --recursive RESULT: PASSED x6, check-goal 5/5 |
+| 001-relocation-engine | Closeable | Code in fc218a0d48. acceptance-criteria.md says Closeable: Yes. Real tree dry run of the sample map exit 1 with git status identical, and in a clone --apply exit 0 and a second --apply exit 0 with nothing to do |
+| 002-subtrack-proposal | Closeable | Code in b8912b831c, documents in 3f2c1f9d61 and ccfb6a5313. acceptance-criteria.md says Closeable: Yes. The whole-track map was proven on a 10-packet fixture track in a clone |
+| 003-subtrack-archive-and-numbering | Closeable | Code and 40 keep files in 5f3e19712e, documents in ccfb6a5313. acceptance-criteria.md says Closeable: Yes. The goal find prints 40 paths, and in a clone 001-a live beside z_archive/007-b gave 008-next-one |
+| 004-archive-search-and-json | Open | Code in 05a83a7d88, regenerated metadata in 55e73d37b5, documents in a637944644. 7 of 8 criteria Met. AC-004 and AC-006 closed in this pass. AC-002 and T020 wait for the regenerated trigger index |
+| 005-tests-and-closeout | Open | Suites in 5fefd819e1, 31 passed. npm test exit 0 with 211 files and 2556 tests passed, 5 files and 32 tests above the baseline, 0 failed in both. 9 of 11 criteria Met. AC-008 names a real flat track and only a fixture was run. AC-009 waits for the trigger index |
+| Completion criteria as observed 2026-11-13 | Open | 1 relocate apply twice in a clone: observed. 2 proposal map: observed on a fixture only, no real flat track holds more than 8 packets. 3 find prints 40: observed. 4 create.sh gives 008: observed. 5 archive-only phrase: observed. 6 npm test exit 0: observed. 7 six RESULT: PASSED lines: observed by the closeout worker. Nothing is pushed or merged |
 
 ### Deviations and findings
 
@@ -118,4 +124,8 @@ and findings belong here.
 | Open question: `speckit-implement.yaml` line 71 | It carries the option C wording that phase 002 changes elsewhere. The approved plan does not name it. |
 | Open question: sweep exit code | Whether a subtrack without `z_archive/` changes the `sweep-track-roots.mjs` exit code is undecided. Phase 003 plans an advisory line. |
 | Level and phases | `recommend-level.sh --loc 2500 --files 35` returned Level 2 and `recommended_phases: false`. The operator approved five phases anyway. |
+| Answered: description cache command | No CLI regenerates `specs/descriptions.json`. The producer is `ensureDescriptionCache` in `runtime/lib/search/folder-discovery.ts`, called from the compiled module. Since phase 004 `archive.sh` calls it after each archive and each restore, on the operator's decision "Commit everything, add hook". The regenerated cache is in commit `55e73d37b5`. |
+| Answered: `speckit-implement.yaml` line 71 | Phase 002 changed it. Option C was changed on every surface by operator decision, `speckit-implement.yaml` included, and the phase 002 summary lists the file as modified. |
+| Answered: sweep exit code | Phase 003 kept the planned default. The missing-archive line of `sweep-track-roots.mjs` is an advisory diagnostic on the working tree and leaves the exit code alone. The operator has not ruled on it. On this worktree the sweep exits 0 with no missing-archive line. |
+| Open question: fixture for the proposal check | Phase 005 AC-008 and completion criterion 2 name a real flat track with more than eight packets. None exists, and the largest holds 6. The check passed on a 10-packet fixture track in a clone. Does the operator accept the fixture through a decision record? |
 <!-- /ANCHOR:log -->

@@ -26,7 +26,7 @@ contextType: "general"
 | **Testing** | `cd .skilled/skills/system-spec-kit/runtime/cli && npm test` |
 
 ### Overview
-This phase adds five test files under `.skilled/skills/system-spec-kit/runtime/cli/tests/`. Each builds a temp repository with `buildSubtrackTree` and runs the real script as a child process. Proof is the five suites passing, the full `npm test` run compared with the baseline, and six `RESULT: PASSED` lines from strict recursive validation of the packet.
+This phase adds five test files under `.skilled/skills/system-spec-kit/runtime/cli/tests/`. Each builds a tree in its own temp directory and runs the real script. As built only `validate-archive-recursive.vitest.ts` uses `buildSubtrackTree`, and the other four build their trees with their own helpers. Proof is the five suites passing, the full `npm test` run compared with the baseline and six `RESULT: PASSED` lines from strict recursive validation of the packet.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -35,14 +35,14 @@ This phase adds five test files under `.skilled/skills/system-spec-kit/runtime/c
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `cd .skilled/skills/system-spec-kit/runtime/cli && npm test` exits 0 with no failure that the baseline run did not have
-- [ ] Docs updated (spec/plan/tasks)
+- [ ] All acceptance criteria met. Open: AC-008 names a real flat track and none is large enough. AC-009 waits for the regenerated trigger index. The other nine rows of `acceptance-criteria.md` are `Met`
+- [x] `cd .skilled/skills/system-spec-kit/runtime/cli && npm test` exits 0 with no failure that the baseline run did not have
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -59,10 +59,15 @@ Temp-repo process tests
 - **`archive-numbering.vitest.ts`** (new file): `create-root-numbering.vitest.ts` covers one folder kind, and the specs root and subtrack depths need their own tree.
 - **`rg-include-archive.vitest.ts`** (new file): pins the default argument vector, which no current suite asserts beside an archive variant.
 - **`validate-archive-recursive.vitest.ts`** (new file): `validate-subtrack.vitest.ts` builds no archived packet.
-- **`fixtures/subtrack-tree.mjs`** (extended in place only if needed): gains an archived packet option when a suite needs one.
+- **`fixtures/subtrack-tree.mjs`** (unchanged): planned to gain an archived packet option when a suite needed one. None did.
 
 ### Data Flow
-Each suite builds a tree in a temp directory, initializes git when the script needs it, runs the script with `execFileSync` or `spawnSync`, and asserts on the exit code, the output and the files on disk. The temp directory is removed after each case.
+Each suite builds a tree in a temp directory, initializes git when the script needs it, runs the script and asserts on the exit code, the output and the files on disk. The temp directory is removed after each case.
+
+### As Built
+- DeepSeek V4.1 Flash wrote the five suites through the dsh harness, one file per dispatch. They are in commit `5fefd819e1`.
+- In `relocate.vitest.ts` the temp repository runs the real `relocate.mjs`, `refresh-track-roots.mjs` and `lib/track-roots.mjs`. The other follow-up tools, `repair-derived.cjs`, `sweep-track-roots.mjs`, `validate.sh`, `migrate-generated-json`, `generate-trigger-index.mjs` and `cite-drift-scan.mjs`, are stubs there. The full chain is covered only by the clone run in `tasks.md` T012.
+- The proposal check ran on a 10-packet fixture track in a throwaway clone, because no real flat track holds more than eight live packets.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -70,11 +75,11 @@ Each suite builds a tree in a temp directory, initializes git when the script ne
 <!-- ANCHOR:affected-surfaces -->
 ## FIX ADDENDUM: AFFECTED SURFACES
 
-N/A: this phase adds tests and closes the packet. It changes no producer, policy or consumer. The one shared file it may touch is the test fixture below.
+N/A: this phase adds tests and closes the packet. It changes no producer, policy or consumer. The one shared file it could have touched is the test fixture below, and it was left unchanged.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `runtime/cli/tests/fixtures/subtrack-tree.mjs` `buildSubtrackTree` | Helper: builds the tree for the subtrack suites | update only if a suite needs an archived packet | `rg -l "buildSubtrackTree" .skilled/skills/system-spec-kit/runtime/cli/tests` lists the consumers, and each still passes |
+| `runtime/cli/tests/fixtures/subtrack-tree.mjs` `buildSubtrackTree` | Helper: builds the tree for the subtrack suites | unchanged, no suite needed an archived packet option | The full `npm test` run exits 0 with 0 failed |
 | Existing suites that import the fixture | Consumer: `track-roots`, `validate-subtrack` and the parity suite | unchanged | `npx vitest run tests/subtrack-predicate-parity.vitest.ts` exits 0 |
 <!-- /ANCHOR:affected-surfaces -->
 
@@ -97,7 +102,7 @@ Setup reads the baseline from phase 001 and the temp-repo pattern in `archive-tr
 |-----------|-------|-------|
 | Unit | None. The new tools are tested through their CLI | vitest |
 | Integration | The five new suites, each running the real script in a temp repository | vitest, `git` |
-| Manual | The six verification steps of the approved plan on the real tree and a throwaway copy | `node`, `bash`, `/speckit:search` |
+| Manual | The six verification steps of the approved plan on the real tree and a throwaway clone. The search step ran `rg-wrapper.mjs` directly, the wrapper `/speckit:search` documents | `node`, `bash` |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -107,9 +112,9 @@ Setup reads the baseline from phase 001 and the temp-repo pattern in `archive-tr
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phases 001 to 004 | Internal | Yellow | No behavior to test |
+| Phases 001 to 004 | Internal | Yellow | No behavior to test. The code of all four is committed. Phase 004 keeps one open row for the trigger index |
 | `runtime/cli/tests/fixtures/subtrack-tree.mjs` | Internal | Green | Each suite would build its own tree |
-| `scratch/baseline.txt` in `001-relocation-engine` | Internal | Yellow | No before-number for the regression claim |
+| `scratch/baseline.txt` in `001-relocation-engine` | Internal | Green | No before-number for the regression claim |
 | `vitest` 4.x in `runtime/cli/package.json` | External | Green | No runner |
 <!-- /ANCHOR:dependencies -->
 

@@ -95,12 +95,12 @@ $ grep -c "z_archive" .skilled/skills/system-spec-kit/runtime/cli/tests/create-r
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts` | Create | Move, renumber, re-parent, refusals, idempotence, inbound references |
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/suggest-subtracks.vitest.ts` | Create | Cluster map, threshold, present-time fit |
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/archive-numbering.vitest.ts` | Create | Numbering beside an archive at specs root, track and subtrack depth |
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/rg-include-archive.vitest.ts` | Create | Default vector frozen, archive mode, `archived` label, JSON lane |
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/validate-archive-recursive.vitest.ts` | Create | `--recursive --include-archive` at track, subtrack and phase depth |
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/subtrack-tree.mjs` | Modify | Only if a suite needs an archived packet in the built tree |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts` | Create | Move, renumber, re-parent, refusals, idempotence, inbound references. Built with 11 cases |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/suggest-subtracks.vitest.ts` | Create | Cluster map, threshold, present-time fit. Built with 5 cases |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/archive-numbering.vitest.ts` | Create | Numbering beside an archive at specs root, track and subtrack depth. Built with 4 cases |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/rg-include-archive.vitest.ts` | Create | Default vector frozen, archive mode, `archived` label, JSON lane. Built with 6 cases |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/validate-archive-recursive.vitest.ts` | Create | `--recursive --include-archive` at track, subtrack and phase depth. Built with 5 cases |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/subtrack-tree.mjs` | Unchanged | Planned as a change only if a suite needed an archived packet in the built tree. None did |
 | `00N-*/implementation-summary.md` in this packet | Modify | Filled at closeout, one per child |
 <!-- /ANCHOR:scope -->
 
@@ -179,7 +179,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
 
-- Empty input: an empty map and a track with no packets each have one case.
+- Empty input: planned as one case each for an empty map and a track with no packets. Not built. The nearest case is the missing-track refusal in `suggest-subtracks.vitest.ts`, and CHK-022 in `tasks.md` stays open for it.
 - Maximum input: N/A. The suites use small built trees and do not load-test.
 - Failure path: each preflight refusal asserts exit 2 and an unchanged tree.
 <!-- /ANCHOR:edge-cases -->
@@ -204,6 +204,11 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - The approved plan lists the suites by subject and does not name the files. This spec names them `relocate`, `suggest-subtracks`, `archive-numbering`, `rg-include-archive` and `validate-archive-recursive`, each with the `.vitest.ts` suffix.
 - Phase 003 adds one archive case to `create-root-numbering.vitest.ts`. The archive numbering suite here covers the specs root and subtrack depths that case does not. Decision needed only if the operator prefers one file.
+- Open: REQ-008 names a real flat track with more than eight packets. None exists, and the largest, `cli-classifier`, holds 6. The check passed on a 10-packet fixture track `demo` in a throwaway clone, as in phase 002. `acceptance-criteria.md` AC-008 stays `Unmet` until the operator accepts the fixture through a decision record.
+- Open: `generate-trigger-index.mjs --check` waits for the index the orchestrator regenerates after these documents are written. REQ-009 and AC-009 stay open until it exits 0.
+- Answered: in `relocate.vitest.ts` the temp repository runs the real `relocate.mjs`, `refresh-track-roots.mjs` and `lib/track-roots.mjs`. The other follow-up tools are stubs there, so the full chain is covered only by the clone run of REQ-007.
+- Answered: REQ-010 was checked by running `rg-wrapper.mjs` directly. It is the wrapper `/speckit:search` documents. The slash command itself was not run.
+- Observation, left alone: the build worker noted that the "deeper than one sub-track" message in `checkDestinationShape` of `relocate.mjs` looks unreachable, because an earlier check refuses first. No case fails on it.
 <!-- /ANCHOR:questions -->
 
 ---
