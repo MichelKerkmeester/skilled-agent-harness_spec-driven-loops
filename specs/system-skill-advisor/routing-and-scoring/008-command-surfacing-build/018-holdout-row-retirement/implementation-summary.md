@@ -8,25 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/018-holdout-row-retirement"
-    last_updated_at: "2026-11-13T20:21:47Z"
+    last_updated_at: "2026-11-13T22:04:29Z"
     last_updated_by: "generate-context"
-    recent_action: "Ran the alignment battery and lanes on the rebased branch"
-    next_safe_action: "Rerun alignment lanes A, C and D, then the critic and the report"
-    blockers: []
+    recent_action: "Merged origin/main and recaptured the routing corpus pin"
+    next_safe_action: "Run the alignment recheck"
+    blockers:
+      - "Root release note waits on the operator"
     key_files:
-      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/018-holdout-row-retirement/implementation-summary.md"
+      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md"
+      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md"
     session_dedup:
-      fingerprint: "sha256:386cebebf64962cec5026ce16aaeef7d19c6dbae8cd9d0af66ac5292ca99517b"
+      fingerprint: "sha256:5665df72612882d37eaafdd58ffaa5880aafb8e9df140b4343302b66c9d30a0a"
       session_id: "scaffold-018-holdout-row-retirement"
       parent_session_id: null
     session_ref:
       runtime: "claude"
-      sessionId: "c9fe91ef-9b85-4bdc-88fb-4d6f766eaecf"
+      sessionId: "b2f21765-98d5-42ba-9b2c-af31769e43e6"
       workspace: "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research"
-      savedAt: "2026-11-13T20:21:47Z"
+      savedAt: "2026-11-13T22:04:29Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 100
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---

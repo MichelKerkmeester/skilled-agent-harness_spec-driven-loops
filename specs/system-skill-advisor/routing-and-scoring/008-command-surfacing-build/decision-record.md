@@ -91,6 +91,7 @@ _memory:
 | Q055 | Phase 018 retires only suppressed-codex-abstain, and the eight other rows the leak scan names are an advisory for a separate decision. | Not stated. | None | 018-holdout-row-retirement spec.md Q6, task T002 |
 | Q056 | The final hand-over of this branch reaches main through a pull request, not a direct push. | Not stated. | None | goal.md log |
 | Q057 | The write discipline misses on Devin and OpenCode are tracked for a separate packet and get no work in this one. | Not stated. | None | goal.md log |
+| Q058 | This branch recaptures the routing corpus pin, so the pull request carries a pin that matches the corpus it merges. | Not stated. | None | goal.md log, commit 0238274ed8 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -1219,6 +1220,25 @@ Drop it
 Answer:
 ```text
 Track for a separate packet (Recommended)
+```
+
+### Q058
+<!-- source: claude:b2f21765-98d5-42ba-9b2c-af31769e43e6:toolu_01CMWF7yxaqJC7B2a8zXhmuq:0 -->
+
+Question:
+```text
+Another session relayed that you chose this 008 session to recapture the routing corpus pin (routing-baseline.json in the system-deep-loop drift-guard packet) on the 008 branch, so the pull request carries a matching pin. Should I do that after my rebase?
+```
+
+Options:
+```text
+Yes, recapture on 008 (Recommended)
+No, leave the pin alone
+```
+
+Answer:
+```text
+Yes, recapture on 008 (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
