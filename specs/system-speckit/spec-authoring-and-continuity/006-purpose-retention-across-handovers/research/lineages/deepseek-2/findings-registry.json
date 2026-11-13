@@ -1,0 +1,1206 @@
+{
+  "sessionId": "fanout-deepseek-2-1794603759690-pm09h3",
+  "parentSessionId": "dr-1794603751398",
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-13T21:09:55.568Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-where-are-a-packet-s-problem-purpose-and-user-need-written-today-per-level-and-f",
+      "inboxId": null,
+      "text": "Where are a packet's problem, purpose and user need written today, per level and for a phase parent, and which of those places is required and validated?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-for-each-hop-surface-what-does-it-read-and-what-does-it-emit-and-does-the-purpos",
+      "inboxId": null,
+      "text": "For each hop surface, what does it read and what does it emit, and does the purpose travel? Surfaces: the Claude compaction hooks (`runtime/hooks/claude/compact-inject.ts`, `session-prime.ts`) and their counterparts for other runtimes under `runtime/hooks/`, `/speckit:resume`, `/speckit:handoff` and the session relaunch, `/speckit:save` with `generate-context.js`, the deep-loop iteration prompts and child-dispatch briefs.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-in-real-packets-under-specs-that-have-a-handover-md-or-several-continuity-saves-",
+      "inboxId": null,
+      "text": "In real packets under `specs/` that have a `handover.md` or several continuity saves, is the purpose restated, shortened or absent? Do phase children restate the parent's purpose or drift from it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-candidate-change-closes-the-measured-gap-at-the-lowest-cost-the-operator-s",
+      "inboxId": null,
+      "text": "Which candidate change closes the measured gap at the lowest cost? The operator's candidates, to be tested and not assumed: acceptance criteria at the parent spec level, a user story or purpose and problem section at the parent level and an improved parent-specific spec template. Add any other candidate the evidence supports, for example a purpose field in the continuity block or in the compaction brief.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-is-ruled-out-and-why",
+      "inboxId": null,
+      "text": "What is ruled out, and why?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-where-are-a-packet-s-problem-purpose-and-user-need-written-today-per-level-and-f",
+      "inboxId": null,
+      "text": "Where are a packet's problem, purpose and user need written today, per level and for a phase parent, and which of those places is required and validated?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-for-each-hop-surface-what-does-it-read-and-what-does-it-emit-and-does-the-purpos",
+      "inboxId": null,
+      "text": "For each hop surface, what does it read and what does it emit, and does the purpose travel? Surfaces: the Claude compaction hooks (`runtime/hooks/claude/compact-inject.ts`, `session-prime.ts`) and their counterparts for other runtimes under `runtime/hooks/`, `/speckit:resume`, `/speckit:handoff` and the session relaunch, `/speckit:save` with `generate-context.js`, the deep-loop iteration prompts and child-dispatch briefs.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-in-real-packets-under-specs-that-have-a-handover-md-or-several-continuity-saves-",
+      "inboxId": null,
+      "text": "In real packets under `specs/` that have a `handover.md` or several continuity saves, is the purpose restated, shortened or absent? Do phase children restate the parent's purpose or drift from it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-which-candidate-change-closes-the-measured-gap-at-the-lowest-cost-the-operator-s",
+      "inboxId": null,
+      "text": "Which candidate change closes the measured gap at the lowest cost? The operator's candidates, to be tested and not assumed: acceptance criteria at the parent spec level, a user story or purpose and problem section at the parent level and an improved parent-specific spec template. Add any other candidate the evidence supports, for example a purpose field in the continuity block or in the compaction brief.",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-what-is-ruled-out-and-why",
+      "inboxId": null,
+      "text": "What is ruled out, and why?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-4-a-phase-parent-is-a-weaker-contract-file-exists-accepts-only-the-lean-trio-spec-",
+      "text": "A phase parent is a weaker contract: `FILE_EXISTS` accepts only the lean trio `spec.md`, `description.json`, `graph-metadata.json`, and heavy docs live in the children. The parent therefore has exactly one prose document in which purpose could live. [SOURCE: .skilled/skills/system-spec-kit/references/structure/phase-definitions.md:144-146] [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:226-228]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:100-112",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,65-71,80",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md:158-199",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md:144-146",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:212-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:74-83",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73",
+        "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/description.json:2-9",
+        "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md:36"
+      ]
+    },
+    {
+      "id": "finding-1-3-file-level-requirements-rise-with-level-while-the-purpose-carrier-stays-the-same",
+      "text": "File-level requirements rise with level while the purpose carrier stays the same single section: Level 1 requires `spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md`; Level 2 adds `acceptance-criteria.md`; Level 3 keeps that set with `decision-record.md` as a lazy add-on. No level requires a separate problem, purpose or user-story document. [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:218-223]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:100-112",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,65-71,80",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md:158-199",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md:144-146",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:212-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:74-83",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73",
+        "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/description.json:2-9",
+        "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md:36"
+      ]
+    },
+    {
+      "id": "finding-1-1-for-a-standard-packet-the-only-authored-purpose-carrier-is-spec-md-2-problem-pur",
+      "text": "For a standard packet the only authored purpose carrier is `spec.md` §2 \"PROBLEM & PURPOSE\", which holds a Problem Statement and a one-sentence Purpose. The core template ships the `problem` anchor, and Level 2 requires the anchors `metadata, problem, scope, requirements, success-criteria, risks, questions`. [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:100-112] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:74-83]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:100-112",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,65-71,80",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md:158-199",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md:144-146",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:212-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:74-83",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73",
+        "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/description.json:2-9",
+        "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md:36"
+      ]
+    },
+    {
+      "id": "finding-1-8-no-template-or-validator-surface-uses-the-term-user-need-a-repository-wide-searc",
+      "text": "No template or validator surface uses the term \"user need\". A repository-wide search over templates, commands, runtime and the research packet found the phrase only in this packet's own spec and tasks; the nearest authored slot is the one-sentence Purpose, and the nearest machine-readable slot is the one-line `description.json` description. [INFERENCE: based on a case-insensitive search of .skilled/skills/system-spec-kit, .skilled/commands/speckit, .skilled/skills/system-deep-loop and specs/system-speckit for \"user need\", \"whom it serves\" and \"who it serves\", which returned hits only in packet 006 and its baseline copies] [SOURCE: specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md:36]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:100-112",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,65-71,80",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md:158-199",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md:144-146",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:212-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:74-83",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73",
+        "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/description.json:2-9",
+        "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md:36"
+      ]
+    },
+    {
+      "id": "finding-1-6-that-parent-purpose-requirement-is-not-validated-phase-parents-are-explicitly-ex",
+      "text": "That parent purpose requirement is not validated. Phase parents are explicitly exempt from anchor checks, and the phase-parent template is stamped v2.2, so the v2.3+ required-anchor rule never fires for a parent. A parent can therefore ship with an empty or stale Problem & Purpose and still pass `--strict`. [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:443] [SOURCE: .skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:80]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:100-112",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,65-71,80",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md:158-199",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md:144-146",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:212-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:74-83",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73",
+        "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/description.json:2-9",
+        "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md:36"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-problem-anchor-is-enforced-only-as-a-structural-presence-check-a-document-st",
+      "text": "The `problem` anchor is enforced only as a structural presence check. A document stamped `SPECKIT_TEMPLATE_SOURCE` v2.3 or later fails with `required anchor '<id>' is missing` for each anchor its rendered template requires; a v2.2 or unstamped document keeps integrity-only checking. Content inside the anchor is never graded beyond unfilled template tokens. [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:449] [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:57]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:100-112",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,65-71,80",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md:158-199",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md:144-146",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:212-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:74-83",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73",
+        "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/description.json:2-9",
+        "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md:36"
+      ]
+    },
+    {
+      "id": "finding-1-9-the-continuity-record-that-every-save-writes-has-no-purpose-field-at-all-thincon",
+      "text": "The continuity record that every save writes has no purpose field at all. `ThinContinuityRecord` is exactly `packet_pointer`, `last_updated_at`, `last_updated_by`, `recent_action`, `next_safe_action`, `blockers`, `key_files`, `session_dedup`, `session_ref`, `completion_pct`, `open_questions`, `answered_questions`; the closest purpose-like slot is `next_safe_action`, which is an action, not a reason. [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:100-112",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,65-71,80",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md:158-199",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md:144-146",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:212-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:74-83",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73",
+        "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/description.json:2-9",
+        "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md:36"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-phase-parent-spec-template-does-demand-purpose-at-authoring-time-its-authori",
+      "text": "The phase-parent spec template does demand purpose at authoring time: its authoring contract lists \"Root purpose: what problem does this entire phased decomposition solve?\" as REQUIRED parent content, and its body has Problem Statement and Purpose subsections plus a note that this spec is the only authored parent document. [SOURCE: .skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37] [SOURCE: .skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:65-71]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:100-112",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,65-71,80",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md:158-199",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md:144-146",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:212-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:74-83",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73",
+        "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/description.json:2-9",
+        "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md:36"
+      ]
+    },
+    {
+      "id": "finding-1-7-two-secondary-purpose-carriers-exist-but-neither-is-required-goal-md-s-durable-d",
+      "text": "Two secondary purpose carriers exist but neither is required. `goal.md`'s \"Durable Directive\" asks for one sentence on \"What this packet is for\", yet `goal.md` is absent from every level's required-file list and is authored only on request through the goal workflow. `description.json` carries a one-line `description`, which is the only purpose-shaped field present at every level including a phase parent. [SOURCE: .skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41] [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:218-228] [SOURCE: specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/description.json:2-9]",
+      "addedAtIteration": 1,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:100-112",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,65-71,80",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41",
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/references/structure/folder-structure.md:158-199",
+        ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md:144-146",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:212-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/tests/template-structure.vitest.ts:74-83",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73",
+        "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/description.json:2-9",
+        "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md:36"
+      ]
+    },
+    {
+      "id": "finding-2-6-speckit-handoff-and-the-session-relaunch-are-the-one-hop-with-a-purpose-shaped-s",
+      "text": "`/speckit:handoff` and the session relaunch are the one hop with a purpose-shaped slot. The note format is fixed as `## Goal`, `## Done`, `## Remaining work`, `## In-flight state`, and the instruction defines Goal as \"states what the work is for\". The note is hand-authored; `prepare` only adds an optional `goal_packet` pointer when it can prove the packet's `goal.md` holds the active goal. Purpose therefore travels only when the writer restates it or a `goal.md` exists to be pointed at. [SOURCE: .skilled/commands/speckit/handoff.md:104-131] [SOURCE: .skilled/hooks/session-relaunch/bin/session-relaunch.cjs:822]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:230-251",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384,613",
+        ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-compact-context.mjs:126-142",
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts:148-165",
+        ".skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs:265-285",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:289-313",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-110,159-174",
+        ".skilled/commands/speckit/handoff.md:104-131",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:822",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:76-80,133-146,610-680",
+        ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:10-20",
+        ".skilled/repo-rules/delegation-and-orchestration.md:80,96-100"
+      ]
+    },
+    {
+      "id": "finding-2-5-speckit-resume-emits-a-resume-packet-with-the-slots-now-last-next-blockers-artif",
+      "text": "`/speckit:resume` emits a resume packet with the slots `now|last|next|blockers|artifact`, and its recovery ladder is handover.md (<24h) → `_memory.continuity` → supporting spec docs → ripgrep recipes. The ladder names spec.md among supporting docs, but the `context_loading_priority` order and the step-2 activity list substitute `tasks/plan/decision-record/resource-map` and omit spec.md. The intent-carrying document is therefore read only on the branch the workflow contradicts itself about, and even when read it maps to no purpose slot. [SOURCE: .skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-93] [SOURCE: .skilled/commands/speckit/assets/speckit-resume-auto.yaml:106-110] [SOURCE: .skilled/commands/speckit/assets/speckit-resume-auto.yaml:159-174]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:230-251",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384,613",
+        ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-compact-context.mjs:126-142",
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts:148-165",
+        ".skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs:265-285",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:289-313",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-110,159-174",
+        ".skilled/commands/speckit/handoff.md:104-131",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:822",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:76-80,133-146,610-680",
+        ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:10-20",
+        ".skilled/repo-rules/delegation-and-orchestration.md:80,96-100"
+      ]
+    },
+    {
+      "id": "finding-2-7-speckit-save-through-generate-context-js-writes-action-and-state-never-purpose-i",
+      "text": "`/speckit:save` through `generate-context.js` writes action and state, never purpose. Its `--full-auto` continuity fields are `recent_action`, `next_safe_action`, `blockers`, `key_files`, `completion_pct`, `open_questions` and `answered_questions`, and the writer upserts them into the leaf's `implementation-summary.md` or a research record's `spec.md`. A save aimed at a phase parent descends one level per save to the leaf, so the parent's Problem & Purpose is neither refreshed nor checked by the save path. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:133-146] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:76-80] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:610-680]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:230-251",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384,613",
+        ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-compact-context.mjs:126-142",
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts:148-165",
+        ".skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs:265-285",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:289-313",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-110,159-174",
+        ".skilled/commands/speckit/handoff.md:104-131",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:822",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:76-80,133-146,610-680",
+        ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:10-20",
+        ".skilled/repo-rules/delegation-and-orchestration.md:80,96-100"
+      ]
+    },
+    {
+      "id": "finding-2-9-child-dispatch-briefs-have-a-documented-content-contract-and-it-carries-no-purpo",
+      "text": "Child-dispatch briefs have a documented content contract and it carries no purpose. The brief must name the files and symbols to read, what has already been tried, the frozen scope and the question, and must exclude the dispatcher's preferred conclusion. The packet's problem, purpose and user need are absent from both the required and the forbidden lists. [SOURCE: .skilled/repo-rules/delegation-and-orchestration.md:80] [SOURCE: .skilled/repo-rules/delegation-and-orchestration.md:96-100]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:230-251",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384,613",
+        ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-compact-context.mjs:126-142",
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts:148-165",
+        ".skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs:265-285",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:289-313",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-110,159-174",
+        ".skilled/commands/speckit/handoff.md:104-131",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:822",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:76-80,133-146,610-680",
+        ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:10-20",
+        ".skilled/repo-rules/delegation-and-orchestration.md:80,96-100"
+      ]
+    },
+    {
+      "id": "finding-2-3-every-runtime-adapter-follows-the-same-post-compaction-shape-a-summary-plus-acti",
+      "text": "Every runtime adapter follows the same post-compaction shape: a summary plus `Active Spec Folder`, an optional history lookup and a `Recovery` pointer instructing `/speckit:resume`. The dsh adapter composes base context + lookup + recovery pointer; the pi adapter composes `Post-Compaction Summary`, `Active Spec Folder`, lookup and recovery pointer; devin has the same recovery-pointer builder. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/dsh/session-compact-context.mjs:126-142] [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts:148-165] [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs:265-285]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:230-251",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384,613",
+        ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-compact-context.mjs:126-142",
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts:148-165",
+        ".skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs:265-285",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:289-313",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-110,159-174",
+        ".skilled/commands/speckit/handoff.md:104-131",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:822",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:76-80,133-146,610-680",
+        ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:10-20",
+        ".skilled/repo-rules/delegation-and-orchestration.md:80,96-100"
+      ]
+    },
+    {
+      "id": "finding-2-10-net-travel-of-purpose-across-the-seven-hop-surfaces-startup-carries-none-compact",
+      "text": "Net travel of purpose across the seven hop surfaces: startup carries none; compaction carries none except an action mislabeled \"Goal\"; resume has no purpose slot and inconsistently reads spec.md; handoff has a Goal slot but depends on the writer restating it; save carries none and descends past a phase parent; the deep-loop prompt carries a free-text topic; the child brief carries none. Only the handoff Goal and the compaction \"Goal\" facet use a purpose vocabulary, and neither reads `spec.md`'s Problem & Purpose. [INFERENCE: derived from findings 1-9 above]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:230-251",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384,613",
+        ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-compact-context.mjs:126-142",
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts:148-165",
+        ".skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs:265-285",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:289-313",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-110,159-174",
+        ".skilled/commands/speckit/handoff.md:104-131",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:822",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:76-80,133-146,610-680",
+        ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:10-20",
+        ".skilled/repo-rules/delegation-and-orchestration.md:80,96-100"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-authored-continuity-snapshot-injected-at-compaction-has-a-facet-labeled-goal",
+      "text": "The authored-continuity snapshot injected at compaction has a facet labeled \"Goal\", but the builder fills that facet from `next_safe_action`. The rendered block is therefore `### Goal` followed by an imperative action, not by the packet's purpose; the other facets are answers, progress and blockers. [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:289-303] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:307-313] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:230-251",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384,613",
+        ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-compact-context.mjs:126-142",
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts:148-165",
+        ".skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs:265-285",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:289-313",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-110,159-174",
+        ".skilled/commands/speckit/handoff.md:104-131",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:822",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:76-80,133-146,610-680",
+        ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:10-20",
+        ".skilled/repo-rules/delegation-and-orchestration.md:80,96-100"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-claude-pre-compaction-hook-s-transcript-analysis-emits-exactly-three-section",
+      "text": "The Claude pre-compaction hook's transcript analysis emits exactly three sections: `## Active Files`, `## Recent Topics` and `## Recent Context` (the last five meaningful transcript lines). Nothing reconstructs the project's why from the packet. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:230-251",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384,613",
+        ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-compact-context.mjs:126-142",
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts:148-165",
+        ".skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs:265-285",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:289-313",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-110,159-174",
+        ".skilled/commands/speckit/handoff.md:104-131",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:822",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:76-80,133-146,610-680",
+        ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:10-20",
+        ".skilled/repo-rules/delegation-and-orchestration.md:80,96-100"
+      ]
+    },
+    {
+      "id": "finding-2-8-the-deep-loop-iteration-prompt-carries-research-topic-focus-area-remaining-key-q",
+      "text": "The deep-loop iteration prompt carries `Research Topic`, `Focus Area`, `Remaining Key Questions`, carried-forward questions, last-three-iteration summaries, pivot lineage and saturated directions. There is no purpose field; the free-text research topic is the only channel that can carry a why, and a caller may pass a bare topic label. [SOURCE: .skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:10-20]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:230-251",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384,613",
+        ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-compact-context.mjs:126-142",
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts:148-165",
+        ".skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs:265-285",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:289-313",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-110,159-174",
+        ".skilled/commands/speckit/handoff.md:104-131",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:822",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:76-80,133-146,610-680",
+        ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:10-20",
+        ".skilled/repo-rules/delegation-and-orchestration.md:80,96-100"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-startup-hop-carries-no-purpose-when-no-cached-brief-exists-session-prime-ret",
+      "text": "The startup hop carries no purpose. When no cached brief exists, `session-prime` returns a fixed surface whose only state line is \"Continuity: recover on demand from the packet docs\", plus two recovery tools (`/speckit:resume`, a ripgrep over `specs/`). No packet field is read and no purpose is emitted. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:230-251]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts:230-251",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384,613",
+        ".skilled/skills/system-spec-kit/runtime/hooks/dsh/session-compact-context.mjs:126-142",
+        ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts:148-165",
+        ".skilled/skills/system-spec-kit/runtime/hooks/devin/post-compaction.cjs:265-285",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:289-313",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-110,159-174",
+        ".skilled/commands/speckit/handoff.md:104-131",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:822",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:76-80,133-146,610-680",
+        ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl:10-20",
+        ".skilled/repo-rules/delegation-and-orchestration.md:80,96-100"
+      ]
+    },
+    {
+      "id": "finding-3-2-across-96-packet-handovers-under-specs-excluding-archives-containment-baselines-",
+      "text": "Across 96 packet handovers under `specs/` (excluding archives, containment baselines and scratch), 71 contain no occurrence of \"purpose\", \"problem statement\", \"objective\", \"user need\" or \"why this\" at all, and only 9 carry an explicit Purpose/Problem/Objective heading. Purpose is therefore absent from most handovers, not shortened in them. [INFERENCE: based on a recursive grep over specs/**/handover.md, excluding research_archive, containment and scratch copies, run 2026-11-13]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149",
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:100-112",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,71",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:449",
+        ".skilled/commands/speckit/handoff.md:28-37",
+        "Recursive grep over specs/**/handover.md (96 files, 2026-11-13)",
+        "Recursive scan of specs/**/implementation-summary.md (2,870 files, 2026-11-13)",
+        "Parent/child ### Purpose comparison over specs/**/spec.md (297 parents, 1,029 pairs, 2026-11-13)"
+      ]
+    },
+    {
+      "id": "finding-3-3-continuity-saves-are-near-universal-and-uniformly-purpose-blind-2-857-of-2-870-i",
+      "text": "Continuity saves are near-universal and uniformly purpose-blind. 2,857 of 2,870 `implementation-summary.md` files carry a `_memory.continuity` block, while the implementation-summary template has no Purpose section at all; its headings are Metadata, What Was Built, Files Changed, How It Was Delivered, Key Decisions, Verification and Known Limitations. [SOURCE: .skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149] [INFERENCE: based on a recursive count of `_memory:`/`continuity:` in specs/**/implementation-summary.md, run 2026-11-13]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149",
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:100-112",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,71",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:449",
+        ".skilled/commands/speckit/handoff.md:28-37",
+        "Recursive grep over specs/**/handover.md (96 files, 2026-11-13)",
+        "Recursive scan of specs/**/implementation-summary.md (2,870 files, 2026-11-13)",
+        "Parent/child ### Purpose comparison over specs/**/spec.md (297 parents, 1,029 pairs, 2026-11-13)"
+      ]
+    },
+    {
+      "id": "finding-3-7-drift-is-structurally-expected-not-an-authoring-lapse-the-child-spec-md-is-scaff",
+      "text": "Drift is structurally expected, not an authoring lapse: the child `spec.md` is scaffolded with a local Problem & Purpose, the parent `spec.md` is the only place the cross-phase why exists, and nothing in the child template or the save path reads the parent document. [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:100-112] [SOURCE: .skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:71] [INFERENCE: based on the absence of any parent-purpose read in the child scaffold and save paths traced in iterations 1-2]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149",
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:100-112",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,71",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:449",
+        ".skilled/commands/speckit/handoff.md:28-37",
+        "Recursive grep over specs/**/handover.md (96 files, 2026-11-13)",
+        "Recursive scan of specs/**/implementation-summary.md (2,870 files, 2026-11-13)",
+        "Parent/child ### Purpose comparison over specs/**/spec.md (297 parents, 1,029 pairs, 2026-11-13)"
+      ]
+    },
+    {
+      "id": "finding-3-4-no-implementation-summary-restates-the-packet-s-purpose-of-2-315-packets-that-ha",
+      "text": "No implementation summary restates the packet's purpose. Of 2,315 packets that have both a non-placeholder Purpose in `spec.md` and an `implementation-summary.md`, zero carry the first 80 characters of the purpose sentence verbatim, and zero carry any Purpose heading. The save target records delivery mechanics, so the why never enters the continuity document it refreshes. [INFERENCE: based on an exact-string and heading scan over 2,315 packet pairs, run 2026-11-13]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149",
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:100-112",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,71",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:449",
+        ".skilled/commands/speckit/handoff.md:28-37",
+        "Recursive grep over specs/**/handover.md (96 files, 2026-11-13)",
+        "Recursive scan of specs/**/implementation-summary.md (2,870 files, 2026-11-13)",
+        "Parent/child ### Purpose comparison over specs/**/spec.md (297 parents, 1,029 pairs, 2026-11-13)"
+      ]
+    },
+    {
+      "id": "finding-3-1-packet-level-handover-md-uses-the-handover-addon-shape-1-handover-summary-2-cont",
+      "text": "Packet-level `handover.md` uses the handover addon shape (`## 1. Handover Summary`, `## 2. Context Transfer`, `## 3. For Next Session`), not the relaunch-note shape with a `## Goal` section. Its heading set has no slot for the problem or purpose: it records what shipped, decisions, blockers, files, traps, a starting point and remaining tasks. [SOURCE: .skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149",
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:100-112",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,71",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:449",
+        ".skilled/commands/speckit/handoff.md:28-37",
+        "Recursive grep over specs/**/handover.md (96 files, 2026-11-13)",
+        "Recursive scan of specs/**/implementation-summary.md (2,870 files, 2026-11-13)",
+        "Parent/child ### Purpose comparison over specs/**/spec.md (297 parents, 1,029 pairs, 2026-11-13)"
+      ]
+    },
+    {
+      "id": "finding-3-6-phase-children-drift-from-the-parent-s-purpose-rather-than-restating-it-among-1-",
+      "text": "Phase children drift from the parent's purpose rather than restating it. Among 1,029 parent-child pairs where both purposes are real text, zero children repeat the parent's purpose (no shared 60-character run), and the median four-letter-word Jaccard overlap is 0.067; 700 of 1,029 pairs sit below 0.10. Children write a local outcome instead: for a parent purpose about deciding what should surface repo rules, one child purpose is \"CI fails when a rule's Fires-when bullet has no counterpart in its router row\" and another is \"The corpus shrinks by 20% to 28% while every norm, test, exception ... survives\". [INFERENCE: based on a parent/child ### Purpose comparison across 297 phase parents in specs/, run 2026-11-13]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149",
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:100-112",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,71",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:449",
+        ".skilled/commands/speckit/handoff.md:28-37",
+        "Recursive grep over specs/**/handover.md (96 files, 2026-11-13)",
+        "Recursive scan of specs/**/implementation-summary.md (2,870 files, 2026-11-13)",
+        "Parent/child ### Purpose comparison over specs/**/spec.md (297 parents, 1,029 pairs, 2026-11-13)"
+      ]
+    },
+    {
+      "id": "finding-3-5-phase-parents-rarely-carry-a-real-purpose-either-of-297-phase-parents-found-unde",
+      "text": "Phase parents rarely carry a real purpose either: of 297 phase parents found under `specs/` (excluding archives and containment), 76 have a placeholder or empty `### Purpose` in their `spec.md` despite the template's REQUIRED root-purpose instruction. [INFERENCE: based on a scan of ### Purpose paragraphs across phase parents in specs/, run 2026-11-13] [SOURCE: .skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149",
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:100-112",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,71",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:449",
+        ".skilled/commands/speckit/handoff.md:28-37",
+        "Recursive grep over specs/**/handover.md (96 files, 2026-11-13)",
+        "Recursive scan of specs/**/implementation-summary.md (2,870 files, 2026-11-13)",
+        "Parent/child ### Purpose comparison over specs/**/spec.md (297 parents, 1,029 pairs, 2026-11-13)"
+      ]
+    },
+    {
+      "id": "finding-3-9-purpose-drift-scales-with-the-corpus-2-912-spec-md-files-exist-outside-archives-",
+      "text": "Purpose drift scales with the corpus: 2,912 `spec.md` files exist outside archives and containment, 2,622 have a non-empty Purpose, and 53 still hold the placeholder text `[One-sentence outcome statement. What does success look like?]`. A placeholder passes validation because the parent's purpose anchor is not graded for content and a v2.2 stamp skips the required-anchor check. [INFERENCE: based on a recursive scan of specs/**/spec.md, run 2026-11-13] [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:449]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149",
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:100-112",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,71",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:449",
+        ".skilled/commands/speckit/handoff.md:28-37",
+        "Recursive grep over specs/**/handover.md (96 files, 2026-11-13)",
+        "Recursive scan of specs/**/implementation-summary.md (2,870 files, 2026-11-13)",
+        "Parent/child ### Purpose comparison over specs/**/spec.md (297 parents, 1,029 pairs, 2026-11-13)"
+      ]
+    },
+    {
+      "id": "finding-3-8-the-relaunch-note-cannot-compensate-at-packet-scale-the-note-lives-only-in-skill",
+      "text": "The relaunch note cannot compensate at packet scale: the note lives only in `.skilled/skills/.state/session-relaunch/handoffs/`, which is runtime state, and no notes were present in the checkout at measurement time. Unlike `handover.md`, a relaunch note is not a packet artifact, so it neither accumulates a history nor is validated by `validate.sh`. [SOURCE: .skilled/commands/speckit/handoff.md:28-37] [INFERENCE: based on an empty handoffs directory listing on 2026-11-13]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149",
+        ".skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:100-112",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,71",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:449",
+        ".skilled/commands/speckit/handoff.md:28-37",
+        "Recursive grep over specs/**/handover.md (96 files, 2026-11-13)",
+        "Recursive scan of specs/**/implementation-summary.md (2,870 files, 2026-11-13)",
+        "Parent/child ### Purpose comparison over specs/**/spec.md (297 parents, 1,029 pairs, 2026-11-13)"
+      ]
+    },
+    {
+      "id": "finding-4-2-candidate-a-parent-level-acceptance-criteria-does-not-carry-purpose-acceptance-c",
+      "text": "Candidate A, parent-level acceptance criteria, does not carry purpose. `acceptance-criteria.md` holds METADATA, Given/When/Then CRITERIA and a CLOSURE STATEMENT, so it measures done, not why. Adding it to the parent also contradicts the lean-trio contract (`spec.md`, `description.json`, `graph-metadata.json`) and would require `FILE_EXISTS` and `AC_CLOSURE` changes plus a migration for 297 existing parents. Cost is high and purpose coverage is zero. [SOURCE: .skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83] [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:226-228]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,63-68,80",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:226-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:133-146,610-624",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:106-110,169-174",
+        "Iteration 3 parent-purpose scan (297 parents: 68 empty, 8 placeholder, 4 generic)"
+      ]
+    },
+    {
+      "id": "finding-4-3-candidate-b-a-parent-level-user-story-or-purpose-and-problem-section-already-exi",
+      "text": "Candidate B, a parent-level user story or purpose and problem section, already exists in form. The phase-parent template ships §2 PROBLEM & PURPOSE with Problem Statement and Purpose and marks root purpose as REQUIRED parent content. What is missing is a real value and a reader: 68 parents have an empty Purpose, 8 hold the scaffold placeholder, and 4 hold create.sh's generic text, so 80 of 297 parents carry no real why. A new section would duplicate the existing one; the useful change is to make the existing section real. [SOURCE: .skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37] [SOURCE: .skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:63-68] [INFERENCE: based on the 297-parent Purpose scan in iteration 3]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,63-68,80",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:226-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:133-146,610-624",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:106-110,169-174",
+        "Iteration 3 parent-purpose scan (297 parents: 68 empty, 8 placeholder, 4 generic)"
+      ]
+    },
+    {
+      "id": "finding-4-4-candidate-c-an-improved-parent-specific-spec-template-cannot-close-the-gap-alone",
+      "text": "Candidate C, an improved parent-specific spec template, cannot close the gap alone. The template already demands root purpose; the failure is that a parent is exempt from anchor checks and its stamp is v2.2, so neither the missing section nor the placeholder is caught. Worse, `create.sh` substitutes a generic sentence for the parent purpose (\"Keep parent documentation lean while child phases own detailed plans, tasks, verification, and continuity\"), which is a statement about documentation layout rather than about the work. A template edit without a stamp and validation change is authoring intent only. [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:443] [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:449] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,63-68,80",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:226-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:133-146,610-624",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:106-110,169-174",
+        "Iteration 3 parent-purpose scan (297 parents: 68 empty, 8 placeholder, 4 generic)"
+      ]
+    },
+    {
+      "id": "finding-4-5-candidate-d-a-purpose-field-in-the-memory-continuity-block-reaches-more-hops-per",
+      "text": "Candidate D, a purpose field in the `_memory.continuity` block, reaches more hops per unit of change than any other candidate. The block is already present in 2,857 of 2,870 implementation summaries, is the second rung of the resume ladder, and is rendered into the compaction snapshot by `buildContinuityFacets`. One added field therefore travels on save, resume and compaction at once, and the existing `Goal` facet can render the purpose instead of `next_safe_action`. [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73] [SOURCE: .skilled/commands/speckit/assets/speckit-resume-auto.yaml:106-110] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,63-68,80",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:226-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:133-146,610-624",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:106-110,169-174",
+        "Iteration 3 parent-purpose scan (297 parents: 68 empty, 8 placeholder, 4 generic)"
+      ]
+    },
+    {
+      "id": "finding-4-6-candidate-d-s-cost-is-bounded-to-one-subsystem-and-has-no-corpus-migration-the-t",
+      "text": "Candidate D's cost is bounded to one subsystem and has no corpus migration. The touch points are the `ThinContinuityRecord` interface and validator, the `generate-context.js` payload/help fields and carry path, the `buildContinuityFacets` source, and their tests. The field can be optional with a fallback, so no existing packet fails validation and no new required file appears. The value can be sourced from the packet's own `spec.md` Purpose, or from the nearest ancestor with a real purpose when the packet is a phase child, using the same parent walk the save path already performs for phase-parent pointers. [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:133-146] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:610-624]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,63-68,80",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:226-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:133-146,610-624",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:106-110,169-174",
+        "Iteration 3 parent-purpose scan (297 parents: 68 empty, 8 placeholder, 4 generic)"
+      ]
+    },
+    {
+      "id": "finding-4-7-candidate-e-a-purpose-line-in-the-resume-or-compaction-payload-is-cheaper-per-fi",
+      "text": "Candidate E, a purpose line in the resume or compaction payload, is cheaper per file but weaker in coverage: the compaction brief is built from transcript analysis and would need a disk read inside a hook with a tight budget, while the resume output contract is a presentation change that only helps the resume hop. It is a complement to D, not a substitute: once the continuity block carries purpose, both surfaces can read it with no extra packet read. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384] [SOURCE: .skilled/commands/speckit/assets/speckit-resume-auto.yaml:169-174]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,63-68,80",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:226-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:133-146,610-624",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:106-110,169-174",
+        "Iteration 3 parent-purpose scan (297 parents: 68 empty, 8 placeholder, 4 generic)"
+      ]
+    },
+    {
+      "id": "finding-4-9-ranked-by-coverage-per-unit-of-migration-risk-d-first-the-generator-stamp-fix-se",
+      "text": "Ranked by coverage per unit of migration risk: D first, the generator/stamp fix second, E third, B as the content prerequisite it always was, and A last. The evidence does not support any candidate that adds a new parent-level document; it supports making the existing parent purpose real and making the existing continuity block carry it. [INFERENCE: ranking from findings 1-8 and the measured failure points]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,63-68,80",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:226-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:133-146,610-624",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:106-110,169-174",
+        "Iteration 3 parent-purpose scan (297 parents: 68 empty, 8 placeholder, 4 generic)"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-measured-failure-has-three-distinct-points-not-one-the-parent-purpose-is-unv",
+      "text": "The measured failure has three distinct points, not one: the parent purpose is unvalidated and often empty, the save target has no purpose slot, and every recovery hop has no purpose slot. A candidate that fixes only authoring cannot close the hop gap, and a candidate that fixes only a hop has no reliable value to read. [INFERENCE: derived from iteration 3 findings 4-7 and iteration 2 findings 1-9]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,63-68,80",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:226-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:133-146,610-624",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:106-110,169-174",
+        "Iteration 3 parent-purpose scan (297 parents: 68 empty, 8 placeholder, 4 generic)"
+      ]
+    },
+    {
+      "id": "finding-4-8-the-smallest-authoring-side-fix-that-pairs-with-d-is-a-two-line-generator-change",
+      "text": "The smallest authoring-side fix that pairs with D is a two-line generator change: stop substituting a generic parent purpose in `create.sh` and let the template placeholder reach the file, so `PLACEHOLDER_FILLED` fails a Draft parent until a real why is authored; bump the phase-parent stamp to v2.4 in the same change so the parent gains the required `problem` anchor, grandfathering existing parents under the documented tolerant policy. This closes the 80-of-297 authoring gap without a new document and without retrofitting the backlog. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876] [SOURCE: .skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:80] [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:228]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:35-37,63-68,80",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:226-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts:104-115",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:133-146,610-624",
+        ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:106-110,169-174",
+        "Iteration 3 parent-purpose scan (297 parents: 68 empty, 8 placeholder, 4 generic)"
+      ]
+    },
+    {
+      "id": "finding-5-6-ruled-out-speckit-resume-as-a-purpose-carrier-in-its-current-contract-its-resume",
+      "text": "Ruled out: `/speckit:resume` as a purpose carrier in its current contract. Its resume packet has `now|last|next|blockers|artifact` and no purpose slot, and the workflow contradicts itself on whether `spec.md` is read at all. Reason: even a full spec read cannot surface purpose through the current output contract. [SOURCE: .skilled/commands/speckit/assets/speckit-resume-auto.yaml:159-174] [SOURCE: .skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-93]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:57,226-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73,289-303",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:610-624",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-93,159-174",
+        ".skilled/commands/speckit/handoff.md:28-37",
+        "specs/**/spec.md (2,866 Purpose paragraphs, 2,884 Problem Statements, 889 goal.md files, 854 objective/purpose pairs)"
+      ]
+    },
+    {
+      "id": "finding-5-8-ruled-out-goal-md-as-the-general-purpose-carrier-889-of-2-912-spec-folders-30-5-",
+      "text": "Ruled out: `goal.md` as the general-purpose carrier. 889 of 2,912 spec folders (30.5%) carry a `goal.md`, 884 of those have a real Objective, and where both exist the Objective and the spec Purpose overlap at a median Jaccard of 0.256, with 132 of 854 pairs below 0.10. Reason: coverage is a minority and the two statements often say different things, so a goal pointer is a supplement for the packets that have one, not the fix. [SOURCE: .skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41] [INFERENCE: based on a goals-vs-purposes comparison over specs/, run 2026-11-13]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:57,226-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73,289-303",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:610-624",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-93,159-174",
+        ".skilled/commands/speckit/handoff.md:28-37",
+        "specs/**/spec.md (2,866 Purpose paragraphs, 2,884 Problem Statements, 889 goal.md files, 854 objective/purpose pairs)"
+      ]
+    },
+    {
+      "id": "finding-5-3-ruled-out-handover-md-as-the-purpose-carrier-across-saves-its-template-has-no-pu",
+      "text": "Ruled out: `handover.md` as the purpose carrier across saves. Its template has no purpose or problem slot, and 71 of 96 real packet handovers never use purpose, problem, objective or user-need vocabulary; only 9 carry a purpose-like heading. Reason: the document most associated with continuation does not carry the why. [SOURCE: .skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84] [INFERENCE: based on the 96-handover scan in iteration 3]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:57,226-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73,289-303",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:610-624",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-93,159-174",
+        ".skilled/commands/speckit/handoff.md:28-37",
+        "specs/**/spec.md (2,866 Purpose paragraphs, 2,884 Problem Statements, 889 goal.md files, 854 objective/purpose pairs)"
+      ]
+    },
+    {
+      "id": "finding-5-1-ruled-out-a-new-parent-level-document-acceptance-criteria-or-a-dedicated-purpose",
+      "text": "Ruled out: a new parent-level document (acceptance criteria or a dedicated purpose file). `acceptance-criteria.md` has no why slot (METADATA, Given/When/Then CRITERIA, CLOSURE STATEMENT), and any new required parent document breaks the lean-trio contract and forces `FILE_EXISTS` and `AC_CLOSURE` migrations across 297 existing parents. Reason: high cost, zero purpose coverage. [SOURCE: .skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83] [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:226-228]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:57,226-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73,289-303",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:610-624",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-93,159-174",
+        ".skilled/commands/speckit/handoff.md:28-37",
+        "specs/**/spec.md (2,866 Purpose paragraphs, 2,884 Problem Statements, 889 goal.md files, 854 objective/purpose pairs)"
+      ]
+    },
+    {
+      "id": "finding-5-9-ruled-out-a-validator-only-fix-anchors-valid-grades-anchor-presence-and-placehol",
+      "text": "Ruled out: a validator-only fix. `ANCHORS_VALID` grades anchor presence and `PLACEHOLDER_FILLED` grades unfilled template tokens; neither judges whether the purpose says anything, and hard enforcement would fail the 80 parents whose purpose is empty, placeholder or generic unless the existing corpus is grandfathered. Reason: a validator can force a non-empty string, not a real reason, and a fail-closed rule has a 297-packet migration cost. [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:449] [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:57]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:57,226-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73,289-303",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:610-624",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-93,159-174",
+        ".skilled/commands/speckit/handoff.md:28-37",
+        "specs/**/spec.md (2,866 Purpose paragraphs, 2,884 Problem Statements, 889 goal.md files, 854 objective/purpose pairs)"
+      ]
+    },
+    {
+      "id": "finding-5-2-ruled-out-an-improved-parent-template-on-its-own-the-template-already-requires-r",
+      "text": "Ruled out: an improved parent template on its own. The template already requires root purpose; a parent is exempt from anchor checks and stamped v2.2, so the requirement has no enforcement, and `create.sh` fills the section with a generic sentence about documentation layout. Reason: it changes authoring intent, not the measured absence or the hop read. [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:443] [SOURCE: .skilled/skills/system-spec-kit/references/validation/validation-rules.md:449] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:57,226-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73,289-303",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:610-624",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-93,159-174",
+        ".skilled/commands/speckit/handoff.md:28-37",
+        "specs/**/spec.md (2,866 Purpose paragraphs, 2,884 Problem Statements, 889 goal.md files, 854 objective/purpose pairs)"
+      ]
+    },
+    {
+      "id": "finding-5-5-ruled-out-the-compaction-goal-facet-as-a-purpose-path-buildcontinuityfacets-fill",
+      "text": "Ruled out: the compaction `Goal` facet as a purpose path. `buildContinuityFacets` fills the `goal` facet from `next_safe_action`, so the injected `### Goal` is an imperative action. Reason: the label is a false positive for purpose and must not be counted as coverage. [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:289-303]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:57,226-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73,289-303",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:610-624",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-93,159-174",
+        ".skilled/commands/speckit/handoff.md:28-37",
+        "specs/**/spec.md (2,866 Purpose paragraphs, 2,884 Problem Statements, 889 goal.md files, 854 objective/purpose pairs)"
+      ]
+    },
+    {
+      "id": "finding-5-4-ruled-out-the-continuity-block-as-it-exists-today-it-is-present-in-2-857-of-2-87",
+      "text": "Ruled out: the continuity block as it exists today. It is present in 2,857 of 2,870 implementation summaries, but its schema is action-and-state only and the save target has no purpose heading. Reason: ubiquity without a purpose field carries nothing; the block is the right carrier, not a current carrier. [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73] [SOURCE: .skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:57,226-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73,289-303",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:610-624",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-93,159-174",
+        ".skilled/commands/speckit/handoff.md:28-37",
+        "specs/**/spec.md (2,866 Purpose paragraphs, 2,884 Problem Statements, 889 goal.md files, 854 objective/purpose pairs)"
+      ]
+    },
+    {
+      "id": "finding-5-7-ruled-out-the-relaunch-note-as-the-durable-compensation-the-note-is-written-to-s",
+      "text": "Ruled out: the relaunch note as the durable compensation. The note is written to `.skilled/skills/.state/session-relaunch/handoffs/`, which is runtime state, not a packet artifact; no notes existed in the checkout, and `validate.sh` never sees them. Reason: it cannot accumulate a purpose history or be validated, and it depends on free-authored Goal text. [SOURCE: .skilled/commands/speckit/handoff.md:28-37]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:57,226-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73,289-303",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:610-624",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-93,159-174",
+        ".skilled/commands/speckit/handoff.md:28-37",
+        "specs/**/spec.md (2,866 Purpose paragraphs, 2,884 Problem Statements, 889 goal.md files, 854 objective/purpose pairs)"
+      ]
+    },
+    {
+      "id": "finding-5-11-stress-test-of-the-recommendation-a-continuity-purpose-field-survives-the-failur",
+      "text": "Stress test of the recommendation: a continuity `purpose` field survives the failure modes if (a) the writer always attempts population with a leaf → nearest-ancestor fallback, using the parent walk the save already performs; (b) an unset value renders as an explicit \"not recorded\" marker rather than a generic sentence; (c) the field is optional, so no existing record fails validation; and (d) the authoring fix lands, because a phase child whose parent purpose is empty has nothing to inherit. Counter-evidence that would overturn it is a ubiquitous surface already read by every hop; the measurements found none: handover is often purpose-free, `goal.md` covers 30.5%, the continuity block is ubiquitous but currently purpose-blind, and the compaction and resume surfaces have no purpose slot. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:610-624] [INFERENCE: derived from findings 1-10 and iterations 2-4]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:57,226-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73,289-303",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:610-624",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-93,159-174",
+        ".skilled/commands/speckit/handoff.md:28-37",
+        "specs/**/spec.md (2,866 Purpose paragraphs, 2,884 Problem Statements, 889 goal.md files, 854 objective/purpose pairs)"
+      ]
+    },
+    {
+      "id": "finding-5-10-the-user-need-half-of-the-problem-is-absent-even-where-purpose-is-written-of-2-8",
+      "text": "The user-need half of the problem is absent even where purpose is written. Of 2,866 real Purpose paragraphs, 333 (11.6%) mention a user, operator, reader or other beneficiary; Problem Statements do better at 623 of 2,884 (21.6%) but still leave four in five silent about whom the work serves. Any carried value must therefore include the Problem Statement, not only the Purpose sentence, or the who is still lost. [INFERENCE: based on beneficiary-word scans over specs/**/spec.md, run 2026-11-13]",
+      "addedAtIteration": 5,
+      "sources": [
+        ".skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83",
+        ".skilled/skills/system-spec-kit/templates/addons/handover.md.tmpl:37-84",
+        ".skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41",
+        ".skilled/skills/system-spec-kit/templates/core/implementation-summary.md.tmpl:85-149",
+        ".skilled/skills/system-spec-kit/references/validation/validation-rules.md:57,226-228,443,449",
+        ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876",
+        ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:60-73,289-303",
+        ".skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js:610-624",
+        ".skilled/commands/speckit/assets/speckit-resume-auto.yaml:92-93,159-174",
+        ".skilled/commands/speckit/handoff.md:28-37",
+        "specs/**/spec.md (2,866 Purpose paragraphs, 2,884 Problem Statements, 889 goal.md files, 854 objective/purpose pairs)"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-f5fc4a1b355e",
+      "text": "None at the Q1 level. The mechanism is fully described above.",
+      "contentHash": "f5fc4a1b355e",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-694b420cdb21",
+      "text": "Searching for a dedicated \"user need\" template: none exists, so the answer must name the nearest existing carrier rather than a purpose field. Recorded as finding 8 rather than an unanswered question.",
+      "contentHash": "694b420cdb21",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-b75c01d40618",
+      "text": "Treating `acceptance-criteria.md` as a purpose carrier: its sections are METADATA, CRITERIA (Given/When/Then rows) and CLOSURE STATEMENT, so it measures completion and carries no why. [SOURCE: .skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:41-83]",
+      "contentHash": "b75c01d40618",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-a7cec56c4543",
+      "text": "Searching `runtime/hooks/` for a runtime adapter that injects `spec.md` content at compaction or startup found none; every adapter emits summary, folder pointer, lookup and recovery instruction. Candidate for \"Exhausted Approaches\": per-runtime hook search for a purpose field.",
+      "contentHash": "a7cec56c4543",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-885c56759100",
+      "text": "Treating `/speckit:resume` as a purpose carrier: its output contract has no purpose field, so even a full read of spec.md cannot surface one through the resume packet. [SOURCE: .skilled/commands/speckit/assets/speckit-resume-auto.yaml:174]",
+      "contentHash": "885c56759100",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-3cac69f1394e",
+      "text": "Treating the compaction \"Goal\" facet as a purpose carrier: the code fills it from `next_safe_action`, so the label is misleading rather than a path. [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:299]",
+      "contentHash": "3cac69f1394e",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-86cc4a514eb9",
+      "text": "Explaining child drift as a few bad packets: 700 of 1,029 measured pairs fall below 0.10 overlap, so drift is the corpus-wide default.",
+      "contentHash": "86cc4a514eb9",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-35d592716d87",
+      "text": "Searching packet-level artifacts for the relaunch note format (`## Goal` / `## Done` / `## Remaining work` / `## In-flight state`) returned zero files. The relaunch note is runtime state under `.skilled/skills/.state/`, not a packet document. Candidate for \"Exhausted Approaches\": looking for relaunch notes inside packets.",
+      "contentHash": "35d592716d87",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-231a8f38e0ee",
+      "text": "Treating `handover.md` as the purpose carrier across saves: the template has no purpose slot and 71 of 96 real handovers never mention purpose, problem, objective or user need.",
+      "contentHash": "231a8f38e0ee",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-5fe60ed630e3",
+      "text": "Treating the continuity block as a purpose carrier: the block is present in 99.5% of summaries, yet the save target has no purpose section and no summary restates the purpose sentence.",
+      "contentHash": "5fe60ed630e3",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-f34f850984cb",
+      "text": "Adding a new parent-level document to carry purpose: the parent already has exactly one prose document, and the measured problem is that its purpose is empty or generic, not that a document is missing.",
+      "contentHash": "f34f850984cb",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-18f42cc45da7",
+      "text": "Candidate A as a purpose mechanism: acceptance criteria measure completion and have no why slot; adding them at the parent also breaks the lean-trio contract.",
+      "contentHash": "18f42cc45da7",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-a40895fabd21",
+      "text": "Candidate C as a standalone fix: the parent template already requires root purpose; without a stamp/validation change and a real value, a template edit changes nothing measured.",
+      "contentHash": "a40895fabd21",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-21cdaeb61a10",
+      "text": "Looking for a validator rule that grades the content of a purpose statement: `ANCHORS_VALID` grades presence, and `PLACEHOLDER_FILLED` grades only template tokens. No rule judges whether the sentence says anything. Candidate for \"Exhausted Approaches\": searching for semantic purpose validation.",
+      "contentHash": "21cdaeb61a10",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-3204be503768",
+      "text": "`/speckit:resume` as it stands: no purpose slot, contradictory spec.md read.",
+      "contentHash": "3204be503768",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-bbbdc4ecd92d",
+      "text": "`goal.md` as the general carrier: 30.5% coverage and a median 0.256 overlap with Purpose.",
+      "contentHash": "bbbdc4ecd92d",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-b69323a07cbb",
+      "text": "`handover.md` as the carrier: no slot, 71/96 real handovers omit purpose vocabulary.",
+      "contentHash": "b69323a07cbb",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-fbe0e4b53dfd",
+      "text": "A validator-only fix: presence and token checks cannot grade meaning, and fail-closed enforcement has a 297-packet migration cost.",
+      "contentHash": "fbe0e4b53dfd",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-4e6b652f84ad",
+      "text": "New parent-level document (acceptance criteria or dedicated purpose file): no purpose slot, lean-trio conflict, 297-parent migration.",
+      "contentHash": "4e6b652f84ad",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-928e2f538ba9",
+      "text": "Parent template alone: already requires root purpose; no enforcement and a generic generator default.",
+      "contentHash": "928e2f538ba9",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-55988ea20055",
+      "text": "Relying on children to restate the parent naturally: 0 of 1,029 pairs share a 60-character run and the median overlap is 0.067.",
+      "contentHash": "55988ea20055",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-8dd20f7cf110",
+      "text": "Searching for a real relaunch note to sample: the handoffs directory is empty and gitignored; there is no packet-level history to measure.",
+      "contentHash": "8dd20f7cf110",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-09020ce63cef",
+      "text": "Searching for a semantic purpose validator: none exists; `ANCHORS_VALID` and `PLACEHOLDER_FILLED` are structural only. This is the second iteration on this path; promote to \"Exhausted Approaches\".",
+      "contentHash": "09020ce63cef",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-072a58d83433",
+      "text": "The compaction `Goal` facet: it is `next_safe_action`.",
+      "contentHash": "072a58d83433",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-e1d13bb4cbf4",
+      "text": "The continuity block as it stands: ubiquitous but purpose-blind.",
+      "contentHash": "e1d13bb4cbf4",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-d63a85e87d01",
+      "text": "The relaunch note: ephemeral, gitignored runtime state, unvalidated.",
+      "contentHash": "d63a85e87d01",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 48,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.87,
+    "coverageBySources": {
+      "code": 41,
+      "other": 9
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/371-purpose-retention-research/specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research/lineages/deepseek-2/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

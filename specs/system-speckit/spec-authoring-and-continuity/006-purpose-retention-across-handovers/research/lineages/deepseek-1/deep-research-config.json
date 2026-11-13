@@ -1,0 +1,76 @@
+{
+  "topic": "Where a spec packet's problem, purpose and user need are dropped across session handovers, relaunch hops and context compactions in system-spec-kit, and which smallest change to its logic or templates keeps them. Answer the five numbered questions in section 7 OPEN QUESTIONS of specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md. Read-only research over .skilled/skills/system-spec-kit, .skilled/commands/speckit, .skilled/skills/system-deep-loop and specs. Cite every claim as [SOURCE: path:line]. The operator's candidate changes (parent-level acceptance criteria, a parent-level user story or purpose and problem section, an improved parent-specific spec template) are hypotheses to test against evidence, not conclusions.",
+  "maxIterations": 5,
+  "minIterations": 3,
+  "convergenceThreshold": 0.05,
+  "antiConvergence": {
+    "minIterations": 3,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 24,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers",
+  "createdAt": "2026-11-13T22:05:00.000Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "stopPolicy": "max-iterations",
+  "fanout_lineage_artifact_dir": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research/lineages/deepseek-1",
+  "executor": {
+    "kind": "cli-deepseek-harness",
+    "model": "deepseek-v4.1-flash-1017",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 1800
+  },
+  "lineage": {
+    "sessionId": "fanout-deepseek-1-1794603759690-pm09h3",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "divergence-frontier",
+      "next-focus"
+    ]
+  },
+  "resource_map": {
+    "emit": true
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  },
+  "completedAt": "2026-11-13T21:11:01.214Z"
+}
