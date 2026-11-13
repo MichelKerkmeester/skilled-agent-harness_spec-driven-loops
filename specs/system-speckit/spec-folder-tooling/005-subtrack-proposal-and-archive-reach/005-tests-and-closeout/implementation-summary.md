@@ -166,3 +166,23 @@ Every row is an orchestrator run of 2026-11-13 unless it names another source.
 <!-- /ANCHOR:limitations -->
 
 ---
+
+## Post-Review Fixes
+
+Every line is as observed by the orchestrator on 2026-11-13, after the closeout above. No status field changed.
+
+A full alignment review of the branch found 33 findings. It ran four review lanes and a critic. The branch-caused findings were fixed.
+
+| Change | What it holds |
+|--------|---------------|
+| Commit `ffbead5bec` | `relocate.mjs` refuses a map that names one source twice. Nine new test cases: 4 in `relocate.vitest.ts`, 1 in `archive-track.vitest.ts` and 4 in `track-roots.vitest.ts`. The eslint `no-explicit-any` error in `relocate.vitest.ts` is gone. The `validate.sh` help states the real reach of `--include-archive`. The new refusal test fails against the old script and passes against the new one |
+| Commit `17b8e6c208` | Eight advisor intent signals for the new tools and a rebuilt skill graph. Nine routing probes pass, where two failed before. `skill-graph-freshness.cjs --strict` exits 0 |
+| Documentation | The option C wording in `quick-reference.md` and the root README. `--include-archive` in the READMEs and `search-presentation.txt`. Three new feature catalog entries and four new playbook scenarios. Changelog `v2.13.0.0`, with `SKILL.md` at 2.13.0.0 |
+| `npm test` after the fixes, in `scratch/post-review-npm-test.txt` | Exit 0. 211 files passed, 2567 tests passed and 0 failed. Before the fixes 2558 tests passed |
+
+Two things were left as they are:
+
+1. **A stopped `--renumber` run does not finish on a rerun.** When an applied `relocate.mjs --renumber` run stops at a later step, a rerun of `--renumber` finds no moves and exits 0 without finishing the remaining steps. Run `repair-derived.cjs` and `refresh-track-roots.mjs` on the moved packets by hand. This was observed once, on a fixture with invalid graph metadata. It is not fixed.
+2. **Two `archive.sh` text defects predate the branch.** The help still says `archive-spec.sh`, and the exit code comment for code 1 is the second. Both were left alone.
+
+---
