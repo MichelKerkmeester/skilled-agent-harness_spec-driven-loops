@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d10c7b2e9c471f2b950c82ad27655d39e97b57ab0bea923c72b6ce0667ed10d9",
+  "corpusHash": "2647b6767cecd7dbbcd583555cdc8abca6f1836776f5606381e9f8e15c4483f7",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26417,
+  "includedPathCount": 26429,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -26461,7 +26461,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "d71a0243cfd8ebf3fcd03ce9d346ce021f4e918ddd06d316f8e17314cd44eeb4",
+  "manifestHash": "397de77801d3a8064862e98e12f023e591c0f5cdf05b51d8cfb87a148e80dd44",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

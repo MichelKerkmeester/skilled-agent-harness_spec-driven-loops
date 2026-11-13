@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6744,
-    "ok": 18044,
+    "ok": 18056,
     "valid-empty-list": 1580
   },
-  "documentsScanned": 26417,
+  "documentsScanned": 26429,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "d71a0243cfd8ebf3fcd03ce9d346ce021f4e918ddd06d316f8e17314cd44eeb4",
+  "manifestHash": "397de77801d3a8064862e98e12f023e591c0f5cdf05b51d8cfb87a148e80dd44",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42620,
+      "ok": 42638,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
