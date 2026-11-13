@@ -43,7 +43,7 @@ This is **Phase 4** of the Subtrack proposal, deterministic packet relocation, z
 **Dependencies**:
 - Phase 003, so every declared subtrack has a `z_archive/` to search and validate
 - `repair-derived.cjs --roots`, which already walks archived packets
-- The command that regenerates `specs/descriptions.json`, identified in phase 001 task T002
+- The producer of `specs/descriptions.json`, `ensureDescriptionCache` in `runtime/lib/search/folder-discovery.ts`. Phase 001 task T002 named it and found that no CLI calls it
 
 **Deliverables**:
 - `--include-archive` in `rg-wrapper.mjs` and `rg-lane.mjs`, with an `archived` label and a JSON lane
@@ -58,7 +58,7 @@ This is **Phase 4** of the Subtrack proposal, deterministic packet relocation, z
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-An archived packet cannot be found or checked with the standard tools. Both ripgrep recipe files carry the glob `!**/z_archive/**`, and `validate.sh --recursive` only globs `[0-9][0-9][0-9]-*/`, so it never enters an archive. The approved plan also records 35 archived packets with a stale `parent_id` and 1,334 rows in `specs/descriptions.json` for folders that no longer exist. Those two counts were not re-measured for this spec, and tasks T001 and T002 measure them before the first edit.
+An archived packet cannot be found or checked with the standard tools. Both ripgrep recipe files carry the glob `!**/z_archive/**`, and `validate.sh --recursive` only globs `[0-9][0-9][0-9]-*/`, so it never enters an archive. The approved plan also records 35 archived packets with a stale `parent_id` and 1,334 rows in `specs/descriptions.json` for folders that no longer exist. Tasks T001 and T002 measured both before the first edit and confirmed them: 35 of 267 packets directly in a `z_archive/` recorded a non-null `parent_id`, and 1334 of 3916 cache rows named a folder missing on disk.
 
 ### Purpose
 An operator can search and validate archives on request at track, subtrack and phase depth, and archived metadata is correct, while every default path behaves as it does today.
@@ -85,6 +85,7 @@ $ grep -c "include-archive" .skilled/skills/system-spec-kit/runtime/cli/spec/val
 - Add a JSON lane that searches `description.json` and `graph-metadata.json` under archives.
 - Add `--include-archive` to `validate.sh --recursive` so it descends into `z_archive` at track, subtrack and phase depth.
 - Run one `repair-derived.cjs --roots` pass over archives, regenerate `specs/descriptions.json` and make `archive.sh` refresh it after each move.
+- Fix `repair-derived.cjs` so the pass also clears an archived packet's stale `parent_id` when the validator report holds no derivable rule. Added during the build on the operator's decision, because the first pass left 31 such records.
 - Document the mode in `/speckit:search` and `retrieval-conventions.md`, and correct the comments that say archives are excluded from the description cache.
 
 ### Out of Scope
@@ -92,6 +93,8 @@ $ grep -c "include-archive" .skilled/skills/system-spec-kit/runtime/cli/spec/val
 - Any change to the default search, the trigger index walker in `retrieval/lib/corpus.mjs` or CI - the mode is opt-in.
 - Archives in resume - resume keeps excluding them.
 - Recursive validation reaching phase children from a track root - the parent spec excludes it.
+- The doc comment on `isExcludedFromGeneratedMetadata` in `runtime/lib/utils/index-scope.ts`, which still says "z_* staging or archive segment" - the file is not in this phase's list and was left alone.
+- A new vitest case for the changes of this phase - phase 005 owns the suites.
 
 ### Files to Change
 
@@ -102,9 +105,11 @@ $ grep -c "include-archive" .skilled/skills/system-spec-kit/runtime/cli/spec/val
 | `.skilled/commands/speckit/search.md` | Modify | Documents the mode and one recipe |
 | `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` | Modify | Documents the mode beside the glob rules at lines 83 and 250 and the coverage row at line 315 |
 | `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` | Modify | Flag parsing near line 102 and `collect_phase_dirs` at lines 348 to 393 |
-| `.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh` | Modify | `archive_spec` and `restore_spec` refresh `specs/descriptions.json` after the move |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh` | Modify | `archive_spec` and `restore_spec` refresh `specs/descriptions.json` after the move, through the new `refresh_description_cache` |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs` | Modify | Added during the build on the operator's decision. `repairFolder` returned before `fixRecordedLocation` when the validator report held no derivable rule, and the validator does not flag an archived packet's stale parent, so 31 packets kept their archive as `parent_id` after the first pass. The new `recordsArchiveParent` keeps such a packet in the repair |
 | `specs/**/z_archive/*/graph-metadata.json` | Modify | Written only by `repair-derived.cjs --roots <archive> --apply` |
 | `specs/descriptions.json` | Modify | Regenerated by its producer, never by hand |
+| `specs/**/description.json` | Modify | Rewritten by the same producer run wherever a file mtime makes a folder look stale, with a new `lastUpdated` and no trailing newline. Kept on the operator's decision to commit everything the producer rewrites |
 | `.skilled/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts` | Modify | Doc comment at lines 469 to 475 |
 | `.skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md` | Modify | Lines 49 and 206 |
 | `.skilled/skills/system-spec-kit/runtime/lib/search/README.md` | Modify | Line 150 |
@@ -155,7 +160,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | The producer of `specs/descriptions.json` | REQ-006 cannot close without the command | Phase 001 task T002 names it. Until then REQ-006 is blocked, not guessed |
+| Dependency | The producer of `specs/descriptions.json` | REQ-006 cannot close without it | Resolved: the producer is `ensureDescriptionCache`, called from the compiled module because no CLI regenerates the cache |
+| Risk | The producer rewrites per-packet `description.json` files it did not need to | Med: 5147 files in a fresh clone, because staleness compares file mtimes and a fresh checkout makes every file look stale | The operator chose to commit everything it rewrites. The `archive.sh` hook carries the same cost on each move |
 | Risk | The default recipe changes by accident | High: every search and Gate 1 lookup shifts | Keep the frozen `GLOBS` constant and build the archive variant from it. Assert the default vector in a test |
 | Risk | Recursive archive validation fails on old packets and floods the report | Med: thousands of archived docs predate current rules | The flag is opt-in and its failures never run in CI |
 | Risk | The repair pass rewrites more than `parent_id` in archives | Med: a large diff in frozen packets | Run the dry run first and read the planned writes before `--apply` |
@@ -195,9 +201,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 18/25 | Four scripts, two docs, four comment fixes and two data refreshes |
+| Scope | 18/25 | Five scripts, two docs, four comment fixes and two data refreshes |
 | Risk | 14/25 | The default search path is shared by Gate 1 |
-| Research | 8/20 | The description cache producer is not yet named |
+| Research | 8/20 | The description cache producer had no CLI and had to be called from the compiled module |
 | **Total** | **40/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
@@ -206,8 +212,12 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- UNKNOWN: which command regenerates `specs/descriptions.json`. Phase 001 task T002 resolves it, and REQ-006 waits for that answer.
-- The findings point at `folder-discovery.ts` lines 470 to 486. The misleading doc comment is at lines 469 to 475, and lines 485 to 487 route through `index-scope.ts`, which keeps `z_archive` on purpose. Only the doc comment is planned to change.
+- Answered: no CLI regenerates `specs/descriptions.json`. The producer is `ensureDescriptionCache` in `runtime/lib/search/folder-discovery.ts`, called from the compiled module. In a throwaway clone it took 81 seconds and also rewrote 5147 per-packet `description.json` files, with a new `lastUpdated` and no trailing newline, because per-folder staleness compares file mtimes and a fresh checkout makes every file look stale. On the real tree it ran in 30 seconds.
+- Decided by the operator: commit everything the producer rewrites, and add the `archive.sh` hook that calls the producer after each archive and each restore.
+- Decided by the operator: fix `repair-derived.cjs`, a file that was not in this phase's list. After the first `--apply` 31 archived packets still recorded their archive as `parent_id`. The cause, read in the code: `repairFolder` returned before `fixRecordedLocation` when the validator report held no derivable rule, and the validator does not flag an archived packet's stale parent.
+- Answered: the findings point at `folder-discovery.ts` lines 470 to 486. The misleading doc comment was at lines 469 to 475 and was corrected. The inline comment beside the route through `index-scope.ts` was corrected with it, and the route itself, which keeps `z_archive` on purpose, did not change.
+- Open: the archive validation reads one level only. A run appends the `z_archive/` packets of the folder it is given and of each subtrack of a track root. It does not enter the archive of a packet it visits or the phase children of an archived packet. REQ-004 is observed at track depth only, and `acceptance-criteria.md` AC-004 names the two runs still needed.
+- Open: `generate-trigger-index.mjs --check` exited 1 during the build, because 33 documents of this packet are new since the index was last built. SC-002 stays open until the orchestrator regenerates and commits the index.
 <!-- /ANCHOR:questions -->
 
 ---

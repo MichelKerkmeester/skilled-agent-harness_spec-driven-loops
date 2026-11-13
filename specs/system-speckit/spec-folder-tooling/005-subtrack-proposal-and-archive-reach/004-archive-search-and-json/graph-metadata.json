@@ -44,19 +44,19 @@
       "goal.md",
       "implementation-summary.md",
       "specs/descriptions.json",
-      "retrieval/lib/corpus.mjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs",
-      ".skilled/commands/speckit/search.md",
-      ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
       ".skilled/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts",
+      ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+      ".skilled/commands/speckit/search.md",
+      ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
       ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
       ".skilled/skills/system-spec-kit/runtime/lib/search/README.md",
-      ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
-      "runtime/lib/search/README.md",
-      "runtime/cli/retrieval/lib/rg-lane.mjs"
+      "scratch/baseline.txt",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/spec.md"
     ],
     "entities": [
       {
@@ -102,33 +102,15 @@
         "source": "derived"
       },
       {
-        "name": "corpus.mjs",
-        "kind": "file",
-        "path": "retrieval/lib/corpus.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "rg-wrapper.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs",
-        "source": "derived"
-      },
-      {
         "name": "rg-lane.mjs",
         "kind": "file",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/lib/rg-lane.mjs",
         "source": "derived"
       },
       {
-        "name": "search.md",
-        "kind": "doc",
-        "path": ".skilled/commands/speckit/search.md",
-        "source": "derived"
-      },
-      {
-        "name": "retrieval-conventions.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        "name": "rg-wrapper.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs",
         "source": "derived"
       },
       {
@@ -144,9 +126,33 @@
         "source": "derived"
       },
       {
+        "name": "repair-derived.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs",
+        "source": "derived"
+      },
+      {
         "name": "folder-discovery.ts",
         "kind": "code",
         "path": ".skilled/skills/system-spec-kit/runtime/lib/search/folder-discovery.ts",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrator.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
         "source": "derived"
       },
       {
@@ -162,9 +168,9 @@
         "source": "derived"
       },
       {
-        "name": "orchestrator.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts",
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
         "source": "derived"
       },
       {
@@ -196,17 +202,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement An",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "An archived packet cannot be found or checked with the standard tools",
     "created_at": "2026-11-13T10:07:35Z",
-    "last_save_at": "2026-11-13T10:27:26.834Z",
+    "last_save_at": "2026-11-13T14:01:01.673Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:146ea353710c9cc6ad7a79e31e0f639b5a65215651c8db5fb74ca41d5f61d7b2",
+    "source_fingerprint": "sha256:703bd87ea318654a07c09970c43ba891e2afaddbdba5c2c2c91a281d61e76ccf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b59afd173a39f727c0f3b8b8b20f5e4725a3075a6a2f8d1c42c3cc3d42c856bd",
-      "plan.md": "2cb4edf2443d95f9ef3d49145140ad1c90f98c95d2058c6af1fdb0f8b2d534b7",
-      "tasks.md": "cfaf2e91ca55d4df80e122cdbe7189c6f11fccb7e7136c16f3651101caf88f6a",
-      "implementation-summary.md": "7d47e0b6ef6cc9e1437ce98d9b16501b6a1ad8dbdc47bd45b6b4d9853a1ea2e2"
+      "spec.md": "6af44577bcb2defd541e380348de57010d338093964a14cb1dbe7e3cb4ce8cdb",
+      "plan.md": "e09c788bd3ec623abac097cacea09e846479f3225e4336c16f6f8c02e1fdc8b9",
+      "tasks.md": "75baad33d48879ce66727a2ca50206c3bd1d586ca6b4d2ad5ba657d7d47e2bad",
+      "implementation-summary.md": "9e4c672c35572b89524561e0ca7245ae1c0b1be7bef9e7b55b055b77ce06594a"
     },
     "last_active_at": null
   }
