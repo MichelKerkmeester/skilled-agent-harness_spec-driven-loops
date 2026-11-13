@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/004-archive-search-and-json"
     last_updated_at: "2026-11-13T10:07:30Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Closed AC-002, all eight criteria are Met"
+    next_safe_action: "Review the branch, then decide on push and merge"
     blockers: []
     key_files: []
     session_dedup:
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/004-archive-search-and-json
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-13
 <!-- /ANCHOR:metadata -->
 
@@ -54,7 +54,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
 | AC-001 | REQ-001 | Given `PHRASE`, When `node W --include-archive` searches it, Then the run exits 0 and every row is labeled `archived` | `PHRASE` is "skill routing refactor". The path recipe with `--include-archive` exited 0 and printed 2 paths, both ending `[archived]`. The structured recipe with `--json` returned 2 rows, both `archived: true`, and `includeArchive: true` | Met | - |
-| AC-002 | REQ-002 | Given `PHRASE`, When `node W` searches it without the flag, Then the run exits 1, and `generate-trigger-index.mjs --check` exits 0 | First half observed: without the flag the argument vector still holds `--glob '!**/z_archive/**'`, the run exits 1 with 0 paths and the JSON record holds no `jsonLane` and no `archived` field. Second half open: `generate-trigger-index.mjs --check` exited 1 during the build, because 33 documents of this packet are new since the index was last built and not because of the code of this phase. The row closes when the orchestrator regenerates the index and the check exits 0 | Unmet | - |
+| AC-002 | REQ-002 | Given `PHRASE`, When `node W` searches it without the flag, Then the run exits 1, and `generate-trigger-index.mjs --check` exits 0 | Without the flag the argument vector still holds `--glob '!**/z_archive/**'`, the run exits 1 with 0 paths and the JSON record holds no `jsonLane` and no `archived` field. `generate-trigger-index.mjs --check` exited 1 during the build, because 33 documents of this packet were new since the index was last built and not because of the code of this phase. The orchestrator regenerated the index and committed it as `f1cfed3d20`, and the check then exited 0 with 0 untrusted docs | Met | - |
 | AC-003 | REQ-003 | Given the `packet_id` of an archived packet, When `node W --include-archive` searches it, Then the report holds a `graph-metadata.json` or `description.json` path under `z_archive` | `node W path "sk-doc/z_archive/019-skill-routing-refactor" --include-archive --limit 2` exited 0 and printed a `json    : 308 archived metadata file(s)` section. 154 of its lines are `graph-metadata.json` paths ending `[archived]`. A phrase that exists nowhere exited 1 with `json    : 0 archived metadata file(s)` | Met | - |
 | AC-004 | REQ-004 | Given `specs/sk-doc`, a subtrack with one archived packet and a phase parent with one archived phase, When `validate.sh <folder> --recursive --include-archive` runs on each, Then each archived packet gets its own `RESULT:` line, and without the flag none does | Track depth observed: `validate.sh specs/sk-doc --recursive --include-archive` printed 73 `RESULT:` lines, one of them for `specs/sk-doc/z_archive/019-skill-routing-refactor`. Without the flag the run printed 25 `RESULT:` lines, none holding `z_archive`, exit 0, and its output with timings stripped was identical to the run with the script from before the change. Subtrack and phase depth observed through `tests/validate-archive-recursive.vitest.ts`, which runs the real `validate.sh` in temp trees and not on the real tree: its cases "visits an archived sub-track packet only with --include-archive" and "visits an archived phase beside a phase parent only with --include-archive" pass, 5 of 5 in the file, and each asserts that the archived folder is reported with the flag and absent without it | Met | - |
 | AC-005 | REQ-005 | Given every `z_archive/` under `specs`, When `repair-derived.cjs --roots <archive>` runs as a dry run after the apply, Then it exits 0 and the measured count of non-null `parent_id` records is 0 | After the fix to `repair-derived.cjs` and `--apply` on the 31 packets that still recorded their archive as parent, the dry run exits 0 for all 53 `z_archive/` folders and 0 of 267 archived packets record a non-null `parent_id`. The T001 count before the phase was 35 of 267 | Met | - |
@@ -85,11 +85,11 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-7 of the 8 criteria are Met with evidence the orchestrator observed on 2026-11-13. One stays Unmet, for a missing run and not for a failed one.
+All 8 criteria are Met with evidence the orchestrator observed on 2026-11-13.
 
-- AC-002 waits for `generate-trigger-index.mjs --check` to exit 0. It exited 1 during the build because 33 documents of this packet are new since the index was last built. The orchestrator regenerates and commits the index after these documents are written.
+- AC-002 closed last. `generate-trigger-index.mjs --check` exited 1 during the build because 33 documents of this packet were new since the index was last built. The orchestrator regenerated the index and committed it as `f1cfed3d20`, and the check then exited 0 with 0 untrusted docs.
 
 AC-004 closed on the two vitest cases at subtrack and phase depth, and AC-006 closed on the restore run in a throwaway clone. `npm test` after the build exits 0 with counts identical to `scratch/baseline.txt`. The suites that cover this phase were written in phase 005 and are in commit `5fefd819e1`.
 <!-- /ANCHOR:closure -->

@@ -108,3 +108,35 @@ Accept the fixture (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
+
+---
+
+## ADR-001: A fixture track stands in for a real flat track
+
+**Status:** Accepted
+
+**Date:** 2026-11-13
+
+**Deciders:** The operator, through the answer recorded as Q003
+
+### Context
+
+`acceptance-criteria.md` AC-008 and `tasks.md` T013 ask for `suggest-subtracks.mjs` to run on a real flat track with more than eight live packets. No real flat track is that large. The largest, `cli-classifier`, holds 6. The row could not be met as written without growing a real track for the sake of the check.
+
+### Decision
+
+A committed 10-packet fixture track in a throwaway clone stands in for the real flat track. AC-008 is superseded by this decision and is not reworded. T013 closes with this reference.
+
+### Evidence
+
+- In the clone, `suggest-subtracks.mjs --track demo` on the committed 10-packet track `demo` exited 0 and printed a 10-entry map.
+- `relocate.mjs --map` on that map, as a dry run, exited 1 and not 2 with "moves=10 moved=0 rewrites=11 identity=10 roots=3 ledger=10". Exit 1 is the dry run result after an accepted preflight. Exit 2 would be a refusal.
+
+### Consequences
+
+- The proposal has not run on a real track. The first real flat track that grows past eight live packets is the first real run.
+- Phase 002 accepted the same fixture in its own rows, so the two phases now agree.
+
+### Source
+
+The operator answered "Accept the fixture (Recommended)". The question, the three options and the answer are recorded verbatim as Q003 above.

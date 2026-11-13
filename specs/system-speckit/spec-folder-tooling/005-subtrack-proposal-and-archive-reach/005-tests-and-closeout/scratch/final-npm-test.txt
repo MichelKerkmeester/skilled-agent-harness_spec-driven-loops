@@ -1,9 +1,9 @@
-npm test final run for the packet, 2026-11-13, after commit 5fefd819e1
+npm test final run for the packet, 2026-11-13, at commit f1cfed3d20
 Command: cd .skilled/skills/system-spec-kit/runtime/cli && npm test
 Exit status: 0
 
 263: Test Files  211 passed | 3 skipped (214)
-264:      Tests  2556 passed | 20 skipped (2576)
+264:      Tests  2558 passed | 20 skipped (2578)
 931:❌ Failed:  0
 1480:  Failed:  0
 1846:  [FAIL]  Failed:  0

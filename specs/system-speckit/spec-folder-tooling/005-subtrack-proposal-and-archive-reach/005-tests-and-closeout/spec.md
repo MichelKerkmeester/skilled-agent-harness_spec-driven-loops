@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-13 |
 | **Branch** | `worktrees/364-subtrack-proposal-archive-reach` |
 | **Parent Spec** | ../spec.md |
@@ -95,8 +95,8 @@ $ grep -c "z_archive" .skilled/skills/system-spec-kit/runtime/cli/tests/create-r
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts` | Create | Move, renumber, re-parent, refusals, idempotence, inbound references. Built with 11 cases |
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/suggest-subtracks.vitest.ts` | Create | Cluster map, threshold, present-time fit. Built with 5 cases |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts` | Create | Move, renumber, re-parent, refusals, idempotence, inbound references. Built with 11 cases, 12 since the empty-map case of commit `36b3a68ab7` |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/suggest-subtracks.vitest.ts` | Create | Cluster map, threshold, present-time fit. Built with 5 cases, 6 since the empty-track case of commit `36b3a68ab7` |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/archive-numbering.vitest.ts` | Create | Numbering beside an archive at specs root, track and subtrack depth. Built with 4 cases |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/rg-include-archive.vitest.ts` | Create | Default vector frozen, archive mode, `archived` label, JSON lane. Built with 6 cases |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/validate-archive-recursive.vitest.ts` | Create | `--recursive --include-archive` at track, subtrack and phase depth. Built with 5 cases |
@@ -179,7 +179,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:edge-cases -->
 ## L2: EDGE CASES
 
-- Empty input: planned as one case each for an empty map and a track with no packets. Not built. The nearest case is the missing-track refusal in `suggest-subtracks.vitest.ts`, and CHK-022 in `tasks.md` stays open for it.
+- Empty input: one case each for an empty map and a track with no packets. Commit `36b3a68ab7` added "treats an empty map as nothing to do" to `relocate.vitest.ts` and "prints no map for a track that holds no packets" to `suggest-subtracks.vitest.ts`. Both pass, and CHK-022 in `tasks.md` is closed.
 - Maximum input: N/A. The suites use small built trees and do not load-test.
 - Failure path: each preflight refusal asserts exit 2 and an unchanged tree.
 <!-- /ANCHOR:edge-cases -->
@@ -204,8 +204,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - The approved plan lists the suites by subject and does not name the files. This spec names them `relocate`, `suggest-subtracks`, `archive-numbering`, `rg-include-archive` and `validate-archive-recursive`, each with the `.vitest.ts` suffix.
 - Phase 003 adds one archive case to `create-root-numbering.vitest.ts`. The archive numbering suite here covers the specs root and subtrack depths that case does not. Decision needed only if the operator prefers one file.
-- Open: REQ-008 names a real flat track with more than eight packets. None exists, and the largest, `cli-classifier`, holds 6. The check passed on a 10-packet fixture track `demo` in a throwaway clone, as in phase 002. `acceptance-criteria.md` AC-008 stays `Unmet` until the operator accepts the fixture through a decision record.
-- Open: `generate-trigger-index.mjs --check` waits for the index the orchestrator regenerates after these documents are written. REQ-009 and AC-009 stay open until it exits 0.
+- Decided by the operator: REQ-008 names a real flat track with more than eight packets. None exists, and the largest, `cli-classifier`, holds 6. The check passed on a 10-packet fixture track `demo` in a throwaway clone, as in phase 002. The operator answered "Accept the fixture (Recommended)", recorded as Q003 and ADR-001 in `decision-record.md`, and `acceptance-criteria.md` AC-008 is `Superseded` by ADR-001.
+- Answered: the trigger index was regenerated and committed as `f1cfed3d20`, and `generate-trigger-index.mjs --check` then exited 0 with 0 untrusted docs. REQ-009 is met and AC-009 is `Met`.
 - Answered: in `relocate.vitest.ts` the temp repository runs the real `relocate.mjs`, `refresh-track-roots.mjs` and `lib/track-roots.mjs`. The other follow-up tools are stubs there, so the full chain is covered only by the clone run of REQ-007.
 - Answered: REQ-010 was checked by running `rg-wrapper.mjs` directly. It is the wrapper `/speckit:search` documents. The slash command itself was not run.
 - Observation, left alone: the build worker noted that the "deeper than one sub-track" message in `checkDestinationShape` of `relocate.mjs` looks unreachable, because an earlier check refuses first. No case fails on it.

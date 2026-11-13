@@ -96,6 +96,7 @@ and findings belong here.
 | CHK-010 and T012 follow-up checks | Done | node --check exits 0 for rg-wrapper.mjs and rg-lane.mjs. npx vitest run tests/archive-track.vitest.ts alone: 60 passed |
 | Regenerated metadata committed | Done | Commit 55e73d37b5, 5397 files: 5145 description.json, 218 graph-metadata.json, 32 archived documents with a rewritten packet pointer and specs/descriptions.json. Phase documents are in a637944644. Nothing pushed |
 | Phase state after the second closeout | Open | 7 of 8 acceptance criteria Met. AC-002, T020 and the trigger index criterion stay open until the orchestrator regenerates the index and generate-trigger-index.mjs --check exits 0. spec.md stays at Draft until then |
+| Phase state after the final closeout | Complete | 8 of 8 acceptance criteria Met. T020, AC-002 and CHK-020 closed: the trigger index was regenerated and committed as f1cfed3d20 and generate-trigger-index.mjs --check exited 0 with 0 untrusted docs. spec.md says Complete |
 
 ### Deviations and findings
 

@@ -40,7 +40,7 @@ This phase changes `rg-wrapper.mjs`, `rg-lane.mjs`, `validate.sh` and `archive.s
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met. Open: AC-002 is `Unmet` until the regenerated trigger index makes `generate-trigger-index.mjs --check` exit 0. The other seven rows of `acceptance-criteria.md` are `Met`
+- [x] All acceptance criteria met. All eight rows of `acceptance-criteria.md` are `Met`. AC-002 closed when `generate-trigger-index.mjs --check` exited 0 after the index was committed as `f1cfed3d20`
 - [x] `cd .skilled/skills/system-spec-kit/runtime/cli && npm test` exits 0 with no failure that the baseline run did not have
 - [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->

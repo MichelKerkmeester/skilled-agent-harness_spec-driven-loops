@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-13 |
 | **Branch** | `worktrees/364-subtrack-proposal-archive-reach` |
 | **Parent Spec** | ../spec.md |
@@ -217,7 +217,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - Decided by the operator: fix `repair-derived.cjs`, a file that was not in this phase's list. After the first `--apply` 31 archived packets still recorded their archive as `parent_id`. The cause, read in the code: `repairFolder` returned before `fixRecordedLocation` when the validator report held no derivable rule, and the validator does not flag an archived packet's stale parent.
 - Answered: the findings point at `folder-discovery.ts` lines 470 to 486. The misleading doc comment was at lines 469 to 475 and was corrected. The inline comment beside the route through `index-scope.ts` was corrected with it, and the route itself, which keeps `z_archive` on purpose, did not change.
 - Answered: the archive validation reads one level only. A run appends the `z_archive/` packets of the folder it is given and of each subtrack of a track root. It does not enter the archive of a packet it visits or the phase children of an archived packet. REQ-004 is observed at track depth on the real tree, and at subtrack and phase depth through `tests/validate-archive-recursive.vitest.ts`, which runs the real `validate.sh` in temp trees. `acceptance-criteria.md` AC-004 is `Met`.
-- Open: `generate-trigger-index.mjs --check` exited 1 during the build, because 33 documents of this packet are new since the index was last built. SC-002 stays open until the orchestrator regenerates and commits the index.
+- Answered: `generate-trigger-index.mjs --check` exited 1 during the build, because 33 documents of this packet were new since the index was last built. The orchestrator regenerated the index and committed it as `f1cfed3d20`, and the check then exited 0 with 0 untrusted docs. SC-002 is met on that exit. The committed index did change, for the new documents of this packet and not for the code of this phase.
 <!-- /ANCHOR:questions -->
 
 ---

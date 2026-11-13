@@ -35,7 +35,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "An archived packet cannot be found or checked with the standard tools",
     "created_at": "2026-11-13T10:07:35Z",
-    "last_save_at": "2026-11-13T14:19:59.897Z",
+    "last_save_at": "2026-11-13T16:03:52.913Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:541dba8ce6fbf4abd60edc7d51ac2f527653b57c40faa9d32ace46fdc141809e",
+    "source_fingerprint": "sha256:77aa2e8f77a8a7b0fe918caa6068c48b047520f2450637d7e6b8ddd069b81f9f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "93ccbbc16e8539ac5b6f477bb8f4e646578b72f3255d30715a8c83a615362d3f",
-      "plan.md": "2235db559938fc018ea71d865cf9d18bce933fad40d4a84ae734b337bbdb3f6c",
-      "tasks.md": "1d7ca4e594858e4158a2eea5e65f833fc258e089257cf44c8b7212a028aed7a3",
-      "implementation-summary.md": "42ae65c60dd3dd59658eea24f16ccbedde91cc35863bf641aff51d24c0af99a1"
+      "spec.md": "b59d12b69548682ae3e048412a2a20aca7aeceb5f167c8c05942a3276228434e",
+      "plan.md": "eb47343fedadb17921ac0cda35bf0c9a30079efa231ff7f353da64b2d2a9e772",
+      "tasks.md": "34ab26c2ce0bc46008c724ec72eac94a2ecce707c3cb470e7336284fe8733704",
+      "implementation-summary.md": "e3651e6a02e7da4f8c07e34773d28981764c72eb9d8d63ce376ac4d8cfda897b"
     },
     "last_active_at": null
   }

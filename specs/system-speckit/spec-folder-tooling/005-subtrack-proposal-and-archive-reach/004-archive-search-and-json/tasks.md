@@ -66,7 +66,7 @@ contextType: "general"
 ## Phase 3: Verification
 
 - [x] T019 Search `PHRASE` with and without the mode (`$W`). Verify: without the flag the run exits 1, and with `--include-archive` it exits 0 and every row is labeled `archived`. [EVIDENCE: without the flag the argument vector still holds `--glob '!**/z_archive/**'` and the run exits 1. With the flag the path recipe exits 0 with 2 paths, both ending `[archived]`, and the structured recipe returns 2 rows, both `archived: true`]
-- [ ] T020 Confirm the trigger index is unchanged (`$K/runtime/cli/retrieval/generate-trigger-index.mjs`). Verify: `node $K/runtime/cli/retrieval/generate-trigger-index.mjs --check` exits 0. Open: the check exited 1 during the build because 33 documents of this packet are new since the index was last built, not because of the code of this phase. The orchestrator regenerates and commits the index after these documents are written, and this task stays open until that check exits 0.
+- [x] T020 Confirm the trigger index is unchanged (`$K/runtime/cli/retrieval/generate-trigger-index.mjs`). Verify: `node $K/runtime/cli/retrieval/generate-trigger-index.mjs --check` exits 0. [EVIDENCE: the check exited 1 during the build because 33 documents of this packet were new since the index was last built, not because of the code of this phase. The orchestrator regenerated the index and committed it as `f1cfed3d20`, and the check then exited 0 with 0 untrusted docs. Reworded: the index changed, for the new documents of this packet. The code of this phase changed nothing in it]
 - [x] T021 Confirm the default recursive run visits the same folders (`$K/runtime/cli/spec/validate.sh`). Verify: `bash $K/runtime/cli/spec/validate.sh specs/sk-doc --recursive` prints no folder path that holds `z_archive`. [EVIDENCE: the run printed 25 `RESULT:` lines, none holding `z_archive`, and exited 0. With timings stripped its output was identical to the same run with the script from before the change]
 - [x] T022 Rerun the full suite and compare with the baseline (`scratch/baseline.txt`). Verify: `cd $K/runtime/cli && npm test` exits 0 and its fail count is not above the baseline. [EVIDENCE: `npm test` exited 0. 206 files passed and 3 skipped, 2525 tests passed and 20 skipped, 0 failed. The counts are identical to `scratch/baseline.txt`, so the delta is zero]
 - [x] T023 Validate this phase folder (`spec.md`). Verify: `bash $K/runtime/cli/spec/validate.sh . --strict` prints `RESULT: PASSED`. [EVIDENCE: run by the closeout worker on 2026-11-13 after the last document edit, with `spec.md` at status Draft. It printed `RESULT: PASSED`]
@@ -77,7 +77,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`. Open: T020 waits for the regenerated trigger index
+- [x] All tasks marked `[x]`. T020 closed when the trigger index check exited 0 at `f1cfed3d20`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed. The subtrack and phase parent runs AC-004 names passed through `tests/validate-archive-recursive.vitest.ts`, and the restore run AC-006 names exited 0 in `CLONE` with 0 dead rows
 - [x] `PHRASE` is found only with `--include-archive`
@@ -135,7 +135,7 @@ A blocked task is marked `[B]` with its reason in `goal.md` section 4.
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met. Open: 7 of the 8 rows of `acceptance-criteria.md` are `Met`. AC-002 is `Unmet` until the regenerated trigger index makes `generate-trigger-index.mjs --check` exit 0
+- [x] CHK-020 [P0] All acceptance criteria met. [EVIDENCE: all 8 rows of `acceptance-criteria.md` are `Met`. AC-002 closed when `generate-trigger-index.mjs --check` exited 0 with 0 untrusted docs after the index was committed as `f1cfed3d20`]
 - [x] CHK-021 [P0] The default argument vector is byte-identical to the one before this phase. [EVIDENCE: without the flag the vector still holds `--glob '!**/z_archive/**'`, the JSON record holds no `jsonLane` and no `archived` field, and `tests/rg-wrapper-recipes.vitest.ts` and `tests/retrieval-coverage-parity.vitest.ts` passed 44 tests. By reading: both `GLOBS` constants are untouched and every builder takes `GLOBS` unless `includeArchive` is true. No dump of the vector from before the phase was compared byte for byte]
 - [x] CHK-022 [P1] An archive at subtrack depth and one at phase depth are both reached. [EVIDENCE: `tests/validate-archive-recursive.vitest.ts` runs the real `validate.sh` in temp trees. Its sub-track case and its phase parent case pass, 5 of 5 in the file, and each asserts the archived folder is reported with the flag and absent without it. The real-tree runs sit in `specs/sk-doc/z_archive/`, an archive at track depth]
 - [x] CHK-023 [P1] The repair pass dry run was read before `--apply`. [EVIDENCE: the first dry run over all 53 archives gave 43 exit 0 and 10 exit 1, with 187 packets to re-derive, and `--apply` ran after it]
@@ -185,7 +185,7 @@ N/A: this phase adds an opt-in mode and fixes no reported finding.
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | 7/8 |
+| P0 Items | 8 | 8/8 |
 | P1 Items | 10 | 10/10 |
 | P2 Items | 1 | 1/1 |
 

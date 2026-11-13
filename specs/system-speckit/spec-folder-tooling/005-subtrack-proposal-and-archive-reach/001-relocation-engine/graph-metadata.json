@@ -35,7 +35,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "A packet that moves or changes number keeps stale records in most of the stores that name it",
     "created_at": "2026-11-13T10:07:29Z",
-    "last_save_at": "2026-11-13T11:40:26.166Z",
+    "last_save_at": "2026-11-13T16:05:16.637Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,11 +217,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1447fac6aa7404a0dc12b27ce467a8a0ee7a323c625cc5d66a0fdf1ddcbbe043",
+    "source_fingerprint": "sha256:2fc5ef9c48e54f1e9bc42da142afbd07a79f7dd5be7f4c9ac60084426f1573fe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c96f5183b4cb65c8a2b136fe13cbfbde4198545b2f6200ecc73a5b7d86a2a0f3",
-      "plan.md": "6a77db9df7f6e229f718f55a634a4e8e814a57d707289534e8a9d7591034c194",
+      "spec.md": "d83048dccc5700b22024073f056237e39b2511692b49082af62ebeb6f3cda06e",
+      "plan.md": "0d74ff1f553af13ff8b56bb20b8cfd634b33f6b45d752c06e3dbbfdb67cd2a3f",
       "tasks.md": "a9c0b68c62157cda71b1e062b26535e5dfa5ccd8a9064373f28f56fcd6e02006",
       "implementation-summary.md": "6142660f24e10f76d3c73fdc9dde47d7559d15d1c6fe442c9532561d87bca578"
     },

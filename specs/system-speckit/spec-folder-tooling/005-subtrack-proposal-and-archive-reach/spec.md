@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-13 |
 | **Branch** | `worktrees/364-subtrack-proposal-archive-reach` |
 | **Parent Spec** | None. This packet sits directly in the declared subtrack `system-speckit/spec-folder-tooling` |
@@ -132,11 +132,11 @@ Audit summary only. Per-phase detail lives in each child's `plan.md`. Paths with
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-relocation-engine/ | `relocate.mjs`: move, renumber and re-parent packets and rewrite every store, plus `--declare-subtrack` | Closeable. Code in `fc218a0d48` |
-| 2 | 002-subtrack-proposal/ | `suggest-subtracks.mjs` and the wording and docs that raise a subtrack as a choice | Closeable. Code in `b8912b831c` |
-| 3 | 003-subtrack-archive-and-numbering/ | `z_archive/` on every declared subtrack and numbering that counts archived packets | Closeable. Code in `5f3e19712e` |
-| 4 | 004-archive-search-and-json/ | Opt-in archive search, recursive archive validation and archived JSON health | Open. Code in `05a83a7d88`, metadata in `55e73d37b5`. AC-002 waits for the trigger index |
-| 5 | 005-tests-and-closeout/ | Vitest suites for phases 1 to 4, real-tree checks and packet closeout | Open. Suites in `5fefd819e1`. AC-008 and AC-009 are `Unmet` |
+| 1 | 001-relocation-engine/ | `relocate.mjs`: move, renumber and re-parent packets and rewrite every store, plus `--declare-subtrack` | Complete. Code in `fc218a0d48` |
+| 2 | 002-subtrack-proposal/ | `suggest-subtracks.mjs` and the wording and docs that raise a subtrack as a choice | Complete. Code in `b8912b831c` |
+| 3 | 003-subtrack-archive-and-numbering/ | `z_archive/` on every declared subtrack and numbering that counts archived packets | Complete. Code in `5f3e19712e` |
+| 4 | 004-archive-search-and-json/ | Opt-in archive search, recursive archive validation and archived JSON health | Complete. Code in `05a83a7d88`, metadata in `55e73d37b5`. All eight criteria `Met` |
+| 5 | 005-tests-and-closeout/ | Vitest suites for phases 1 to 4, real-tree checks and packet closeout | Complete. Suites in `5fefd819e1` and `36b3a68ab7`. Ten criteria `Met`, AC-008 `Superseded` by ADR-001 |
 
 ### Phase Transition Rules
 
@@ -160,8 +160,8 @@ Audit summary only. Per-phase detail lives in each child's `plan.md`. Paths with
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- Which command regenerates `specs/descriptions.json`? Phases 001 and 004 both need it. The approved plan names the cache and not the command.
-- `.skilled/commands/speckit/assets/speckit-implement.yaml` line 71 carries the same option C wording as the two presentation assets. The approved plan names only the plan and complete assets. Should phase 002 also change it?
+- Answered: which command regenerates `specs/descriptions.json`? None. The producer is `ensureDescriptionCache` in `runtime/lib/search/folder-discovery.ts`, called from the compiled module. Since phase 004 `archive.sh` calls it after each archive and each restore, on the operator's decision.
+- Answered: `.skilled/commands/speckit/assets/speckit-implement.yaml` line 71 carried the same option C wording as the two presentation assets, and the approved plan named only the plan and complete assets. Phase 002 changed it with the others, by operator decision.
 <!-- /ANCHOR:questions -->
 
 ---

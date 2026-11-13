@@ -40,7 +40,7 @@ This phase adds five test files under `.skilled/skills/system-spec-kit/runtime/c
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met. Open: AC-008 names a real flat track and none is large enough. AC-009 waits for the regenerated trigger index. The other nine rows of `acceptance-criteria.md` are `Met`
+- [x] All acceptance criteria met. Ten rows of `acceptance-criteria.md` are `Met`. AC-008 names a real flat track, none is large enough, and it is `Superseded` by ADR-001 in `decision-record.md`. AC-009 closed when `generate-trigger-index.mjs --check` exited 0 at `f1cfed3d20`
 - [x] `cd .skilled/skills/system-spec-kit/runtime/cli && npm test` exits 0 with no failure that the baseline run did not have
 - [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
@@ -65,9 +65,9 @@ Temp-repo process tests
 Each suite builds a tree in a temp directory, initializes git when the script needs it, runs the script and asserts on the exit code, the output and the files on disk. The temp directory is removed after each case.
 
 ### As Built
-- DeepSeek V4.1 Flash wrote the five suites through the dsh harness, one file per dispatch. They are in commit `5fefd819e1`.
+- DeepSeek V4.1 Flash wrote the five suites through the dsh harness, one file per dispatch. They are in commit `5fefd819e1`. Commit `36b3a68ab7` added one empty-input case each to `relocate.vitest.ts` and `suggest-subtracks.vitest.ts`, so the five files hold 33 cases.
 - In `relocate.vitest.ts` the temp repository runs the real `relocate.mjs`, `refresh-track-roots.mjs` and `lib/track-roots.mjs`. The other follow-up tools, `repair-derived.cjs`, `sweep-track-roots.mjs`, `validate.sh`, `migrate-generated-json`, `generate-trigger-index.mjs` and `cite-drift-scan.mjs`, are stubs there. The full chain is covered only by the clone run in `tasks.md` T012.
-- The proposal check ran on a 10-packet fixture track in a throwaway clone, because no real flat track holds more than eight live packets.
+- The proposal check ran on a 10-packet fixture track in a throwaway clone, because no real flat track holds more than eight live packets. The operator accepted the fixture, recorded as ADR-001 in `decision-record.md`.
 <!-- /ANCHOR:architecture -->
 
 ---
@@ -112,7 +112,7 @@ Setup reads the baseline from phase 001 and the temp-repo pattern in `archive-tr
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phases 001 to 004 | Internal | Yellow | No behavior to test. The code of all four is committed. Phase 004 keeps one open row for the trigger index |
+| Phases 001 to 004 | Internal | Green | No behavior to test. The code of all four is committed, and all four are closeable since the trigger index check exited 0 at `f1cfed3d20` |
 | `runtime/cli/tests/fixtures/subtrack-tree.mjs` | Internal | Green | Each suite would build its own tree |
 | `scratch/baseline.txt` in `001-relocation-engine` | Internal | Green | No before-number for the regression claim |
 | `vitest` 4.x in `runtime/cli/package.json` | External | Green | No runner |

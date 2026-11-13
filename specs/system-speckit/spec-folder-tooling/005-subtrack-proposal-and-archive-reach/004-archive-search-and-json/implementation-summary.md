@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Archived packets can now be searched and validated on request with --include-archive, and the default search and the default recursive run are unchanged. No archived packet records a stale parent and the description cache holds no dead row. One acceptance criterion waits for the regenerated trigger index."
+description: "Archived packets can now be searched and validated on request with --include-archive, and the default search and the default recursive run are unchanged. No archived packet records a stale parent and the description cache holds no dead row. All eight acceptance criteria are Met."
 trigger_phrases:
   - "archive search and json implementation summary"
 importance_tier: "normal"
@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/004-archive-search-and-json"
     last_updated_at: "2026-11-13T13:58:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Closed AC-004 and AC-006, seven of eight acceptance criteria are Met"
-    next_safe_action: "Regenerate the trigger index, then close AC-002 and T020"
+    recent_action: "Closed AC-002 and T020, all eight acceptance criteria are Met"
+    next_safe_action: "Review the branch, then decide on push and merge"
     blockers: []
     key_files:
       - "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/004-archive-search-and-json/acceptance-criteria.md"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-004-archive-search-and-json"
       parent_session_id: null
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 004-archive-search-and-json |
-| **Completed** | Built 2026-11-13, code committed as `05a83a7d88`, regenerated metadata as `55e73d37b5`. Not closed: AC-002 waits for the regenerated trigger index |
+| **Completed** | 2026-11-13. Code committed as `05a83a7d88`, regenerated metadata as `55e73d37b5`. Closed with all eight criteria `Met` after the trigger index check exited 0 at `f1cfed3d20` |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -154,7 +154,8 @@ Every row is an orchestrator run of 2026-11-13 unless it names another source.
 | `rg -c -e "--include-archive"` on `search.md` and `retrieval-conventions.md` | 1 or more for each file |
 | The two `ENV-REFERENCE.md` rows and the `README.md` row | Each names only z-future as excluded |
 | `npm test` after the build | Exit 0. 206 files passed and 3 skipped, 2525 tests passed and 20 skipped, 0 failed. Identical to `scratch/baseline.txt` |
-| `generate-trigger-index.mjs --check` | Exit 1 during the build. 33 documents of this packet are new since the index was last built. Not caused by the code of this phase, and open until the orchestrator regenerates the index |
+| `generate-trigger-index.mjs --check`, during the build | Exit 1. 33 documents of this packet were new since the index was last built. Not caused by the code of this phase |
+| `generate-trigger-index.mjs --check`, after the index was regenerated and committed as `f1cfed3d20` | Exit 0 with 0 untrusted docs |
 | Closeout worker: diff of commit `05a83a7d88` read for comments, credentials and search roots | No comment names a spec path, a task id or a requirement id. No credential or `.env` read. No new search root. A reading, not a run |
 | Closeout worker: `validate.sh` on this phase folder with `--strict` | `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
@@ -168,7 +169,7 @@ Every row is an orchestrator run of 2026-11-13 unless it names another source.
 1. **The archive validation reads one level only.** A run adds the `z_archive/` packets of the folder it is given and of each subtrack of a track root. It does not enter the archive of a packet it visits or the phase children of an archived packet. Run `validate.sh` on that packet with the flag to reach them.
 2. **On the real tree archive validation is observed at track depth only.** The subtrack and phase depths are observed through `tests/validate-archive-recursive.vitest.ts`, which runs the real `validate.sh` in temp trees. No real subtrack archive or phase parent archive was validated with the flag.
 3. **The restore through the new hook was run once, in a clone.** It exited 0 and left 0 dead rows. No vitest case asserts the cache after a restore, so rerun the restore by hand after a change to `refresh_description_cache`.
-4. **The trigger index check is still red.** `generate-trigger-index.mjs --check` exits 1 until the index is regenerated with the new documents of this packet. T020, AC-002 and the goal criterion on it stay open until then.
+4. **The trigger index goes stale when a document changes.** The check exited 0 at `f1cfed3d20`, which closed T020 and AC-002. It was not rerun after the final closeout edits to the documents of this packet. Run `generate-trigger-index.mjs --check` before the branch is pushed, and regenerate the index when it exits 1.
 5. **The vitest cover for this phase lives in phase 005.** `rg-include-archive.vitest.ts` and `validate-archive-recursive.vitest.ts` are in commit `5fefd819e1`. No suite covers the description cache hook or the `repair-derived.cjs` fix beyond the suites that existed before.
 6. **The `archive.sh` hook costs one producer run per move.** That was 13 seconds in the clone and 30 seconds on the full tree. The run can also rewrite per-packet `description.json` files whose mtime makes them look stale, so check `git status` after a move and commit or discard those rewrites on purpose.
 7. **One stale comment is left outside the scope.** The doc comment on `isExcludedFromGeneratedMetadata` in `runtime/lib/utils/index-scope.ts` still says "z_* staging or archive segment". The file was not in this phase's list.

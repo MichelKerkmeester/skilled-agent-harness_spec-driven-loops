@@ -83,6 +83,7 @@ and findings belong here.
 | T014 and AC-009 sweep and trigger index | Open | sweep-track-roots.mjs on this worktree exit 0 with all track roots match their declared children and no missing-archive line. generate-trigger-index.mjs --check waits for the index the orchestrator regenerates after these documents |
 | T015 archive-only phrase | Done | rg-wrapper.mjs path with skill routing refactor exits 1 with 0 paths. With --include-archive it exits 0 with 2 paths under specs/sk-doc/z_archive/019-skill-routing-refactor, each ending [archived]. The wrapper was run directly, not the slash command |
 | Limits and open checklist rows | Open | relocate.vitest.ts stubs six follow-up tools, so the full chain is covered only by the clone run. The deeper than one sub-track message in checkDestinationShape looks unreachable and was left alone. No case covers an empty map, CHK-022. CHK-012, CHK-041, CHK-051 and CHK-003 are not confirmed. spec.md stays at Draft |
+| Phase state after the final closeout | Complete | 10 of 11 acceptance criteria Met and AC-008 Superseded by ADR-001 on operator answer Q003. T013, T014 and T017 closed. CHK-003, CHK-012, CHK-020, CHK-022, CHK-041 and CHK-051 closed. Commit 36b3a68ab7 added the two empty-input cases, 33 cases in the five files. npm test at f1cfed3d20 exit 0 with 211 files and 2558 tests passed, 5 files and 34 tests above the baseline, 0 failed in both. Trigger index check exit 0 at f1cfed3d20. Clone deleted. spec.md says Complete |
 
 ### Deviations and findings
 

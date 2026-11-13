@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/002-subtrack-proposal
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-13
 <!-- /ANCHOR:metadata -->
 
