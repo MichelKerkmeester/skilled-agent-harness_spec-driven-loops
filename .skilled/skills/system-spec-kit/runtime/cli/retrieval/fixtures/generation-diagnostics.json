@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6750,
-    "ok": 18301,
+    "ok": 18321,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 26681,
+  "documentsScanned": 26701,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "5ec77f5ae3adda41a1257f4447685fea3374ab983cccc706769e341acc9f1586",
+  "manifestHash": "5ca857eb9fd02cf7829e6f6fef790bbd4f19343d7500b1646fd33a029ce75ae2",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42983,
+      "ok": 43013,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -63011,6 +63011,26 @@
     },
     {
       "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/001-parent-purpose-scaffold/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/002-resume-purpose-row/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/003-relaunch-goal-quote/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/004-compaction-purpose-line/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/005-continuity-purpose-field/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "manifestHash": "5ec77f5ae3adda41a1257f4447685fea3374ab983cccc706769e341acc9f1586",
+  "manifestHash": "5ca857eb9fd02cf7829e6f6fef790bbd4f19343d7500b1646fd33a029ce75ae2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -28264,6 +28264,18 @@
     "compaction pointer staleness tasks": [
       "compaction pointer staleness tasks"
     ],
+    "compaction purpose line": [
+      "compaction purpose line"
+    ],
+    "compaction purpose line implementation summary": [
+      "compaction purpose line implementation summary"
+    ],
+    "compaction purpose line plan": [
+      "compaction purpose line plan"
+    ],
+    "compaction purpose line tasks": [
+      "compaction purpose line tasks"
+    ],
     "compaction recall census": [
       "compaction recall census"
     ],
@@ -30106,6 +30118,18 @@
     ],
     "continuity producer boundary": [
       "continuity producer boundary"
+    ],
+    "continuity purpose field": [
+      "continuity purpose field"
+    ],
+    "continuity purpose field implementation summary": [
+      "continuity purpose field implementation summary"
+    ],
+    "continuity purpose field plan": [
+      "continuity purpose field plan"
+    ],
+    "continuity purpose field tasks": [
+      "continuity purpose field tasks"
     ],
     "continuity reader flow lists": [
       "continuity reader flow lists"
@@ -54832,6 +54856,9 @@
     "goal exemplars": [
       "goal exemplars"
     ],
+    "goal facet packet purpose": [
+      "goal facet packet purpose"
+    ],
     "goal file addon": [
       "goal file addon"
     ],
@@ -78586,6 +78613,12 @@
     "packet pointer two segment requirement": [
       "packet_pointer two segment requirement"
     ],
+    "packet purpose after compaction": [
+      "packet purpose after compaction"
+    ],
+    "packet purpose continuity field": [
+      "packet_purpose continuity field"
+    ],
     "packet registration": [
       "packet registration"
     ],
@@ -78861,6 +78894,18 @@
     ],
     "parent packet template leftovers": [
       "parent packet template leftovers"
+    ],
+    "parent purpose scaffold": [
+      "parent purpose scaffold"
+    ],
+    "parent purpose scaffold implementation summary": [
+      "parent purpose scaffold implementation summary"
+    ],
+    "parent purpose scaffold plan": [
+      "parent purpose scaffold plan"
+    ],
+    "parent purpose scaffold tasks": [
+      "parent purpose scaffold tasks"
     ],
     "parent rollup summary": [
       "parent rollup summary"
@@ -80351,6 +80396,9 @@
     "phase 1 package strict": [
       "phase 1 package strict"
     ],
+    "phase 1 parent purpose scaffold": [
+      "phase 1 parent purpose scaffold"
+    ],
     "phase 1 per doc versions": [
       "phase 1 per doc versions"
     ],
@@ -81134,6 +81182,9 @@
     "phase 2 removal plan": [
       "phase 2 removal plan"
     ],
+    "phase 2 resume purpose row": [
+      "phase 2 resume purpose row"
+    ],
     "phase 2 retrieval lessons research": [
       "phase 2 retrieval lessons research"
     ],
@@ -81527,6 +81578,9 @@
     "phase 3 refuse single lineage fanout run": [
       "phase 3 refuse single lineage fanout run"
     ],
+    "phase 3 relaunch goal quote": [
+      "phase 3 relaunch goal quote"
+    ],
     "phase 3 repin": [
       "phase 3 repin"
     ],
@@ -81679,6 +81733,9 @@
     ],
     "phase 4 commit id in every toolchain repo": [
       "phase 4 commit id in every toolchain repo"
+    ],
+    "phase 4 compaction purpose line": [
+      "phase 4 compaction purpose line"
     ],
     "phase 4 conversation adoption build": [
       "phase 4 conversation adoption build"
@@ -81892,6 +81949,9 @@
     ],
     "phase 5 consumers and routing": [
       "phase 5 consumers and routing"
+    ],
+    "phase 5 continuity purpose field": [
+      "phase 5 continuity purpose field"
     ],
     "phase 5 deep review remediation": [
       "phase 5 deep review remediation"
@@ -87663,6 +87723,9 @@
     "purpose first readme rewrite on the refined skill readme template": [
       "purpose-first README rewrite on the refined skill README template"
     ],
+    "purpose line in the handoff note goal": [
+      "purpose line in the handoff note goal"
+    ],
     "purpose retention across handovers": [
       "purpose retention across handovers"
     ],
@@ -91192,6 +91255,18 @@
     ],
     "relaunch gap register": [
       "relaunch gap register"
+    ],
+    "relaunch goal quote": [
+      "relaunch goal quote"
+    ],
+    "relaunch goal quote implementation summary": [
+      "relaunch goal quote implementation summary"
+    ],
+    "relaunch goal quote plan": [
+      "relaunch goal quote plan"
+    ],
+    "relaunch goal quote tasks": [
+      "relaunch goal quote tasks"
     ],
     "relaunch loop after phase 009": [
       "relaunch loop after phase 009"
@@ -94790,6 +94865,9 @@
     "resolveopencodebinary version probe": [
       "resolveOpencodeBinary version probe"
     ],
+    "resolvepacketpurpose helper": [
+      "resolvePacketPurpose helper"
+    ],
     "resolveprovider cloud fallback": [
       "resolveProvider cloud fallback"
     ],
@@ -95209,6 +95287,18 @@
     ],
     "resume parity non vacuity": [
       "resume parity non-vacuity"
+    ],
+    "resume purpose row": [
+      "resume purpose row"
+    ],
+    "resume purpose row implementation summary": [
+      "resume purpose row implementation summary"
+    ],
+    "resume purpose row plan": [
+      "resume purpose row plan"
+    ],
+    "resume purpose row tasks": [
+      "resume purpose row tasks"
     ],
     "resume terminal proof work": [
       "resume terminal proof work"
