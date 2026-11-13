@@ -1,0 +1,131 @@
+✖ a parent session.idle does not arm while its sub-agent is busy (186.669542ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 267.15675
+
+✖ failing tests:
+
+test at .opencode/plugins/tests/session-relaunch.test.cjs:1458:1
+✖ a parent session.idle does not arm while its sub-agent is busy (186.669542ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'armed' !== 'pending'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.opencode/plugins/tests/session-relaunch.test.cjs:1470:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'armed',
+    expected: 'pending',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+✖ a deferred parent arm runs when its last busy sub-agent goes idle (131.640958ms)
+✖ a parent with two sub-agents stays unarmed until both are idle (15.443667ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 240.631583
+
+✖ failing tests:
+
+test at .opencode/plugins/tests/session-relaunch.test.cjs:1474:1
+✖ a deferred parent arm runs when its last busy sub-agent goes idle (131.640958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'armed' !== 'pending'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.opencode/plugins/tests/session-relaunch.test.cjs:1485:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'armed',
+    expected: 'pending',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/session-relaunch.test.cjs:1493:1
+✖ a parent with two sub-agents stays unarmed until both are idle (15.443667ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'armed' !== 'pending'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.opencode/plugins/tests/session-relaunch.test.cjs:1509:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'armed',
+    expected: 'pending',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+✖ client session update passes the title to the native session update (35.845416ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 77.515084
+
+✖ failing tests:
+
+test at .opencode/plugins/tests/v2-bridge.test.cjs:277:1
+✖ client session update passes the title to the native session update (35.845416ms)
+  TypeError [Error]: client.session.update is not a function
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.opencode/plugins/tests/v2-bridge.test.cjs:291:41)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+✖ the claim seed sets the session title to SKILLED_LOOP_NAME (80.197583ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 177.435333
+
+✖ failing tests:
+
+test at .opencode/plugins/tests/session-relaunch.test.cjs:920:1
+✖ the claim seed sets the session title to SKILLED_LOOP_NAME (80.197583ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + []
+  - [
+  -   {
+  -     body: {
+  -       title: 'hop-title-check'
+  -     },
+  -     path: {
+  -       id: 'ses-seed-title-0001'
+  -     }
+  -   }
+  - ]
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.opencode/plugins/tests/session-relaunch.test.cjs:953:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [],
+    expected: [ { path: [Object], body: [Object] } ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

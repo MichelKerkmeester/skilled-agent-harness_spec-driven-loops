@@ -653,6 +653,13 @@ test('manual commands preserve carried flags and match automatic relaunch argv',
     const manualRecords = readRecords(recordPath);
     assert.equal(manualResult.status, 0, manualResult.stderr);
     assert.equal(manualRecords.length, 2, runtime);
-    assert.deepEqual(manualRecords[1].args, automaticRecords[1].args, runtime);
+    // The manual command starts a new wrapper at hop 0, so its launch line carries the stem
+    // alone; the automatic hop carries the same stem with the receiver's number.
+    const manualEquivalent = automaticRecords[1].args.map((argument, index, all) => (
+      all[index - 1] === '--name' && argument.endsWith(' (2)')
+        ? argument.slice(0, -4)
+        : argument
+    ));
+    assert.deepEqual(manualRecords[1].args, manualEquivalent, runtime);
   }
 });

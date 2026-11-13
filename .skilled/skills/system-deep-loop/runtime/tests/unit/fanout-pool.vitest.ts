@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { createRequire } from 'node:module';
+import { spawn } from 'node:child_process';
 import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -14,6 +15,8 @@ const {
   runCappedPool,
   buildPoolSummary,
   detectOrphanedLineages,
+  detectLiveLineages,
+  isLineageAlive,
   createWavePlannerInterface,
   markOrphanedLineages,
   appendStatusLedger,
@@ -75,6 +78,11 @@ const {
     planWave: () => never;
   };
   detectOrphanedLineages: (records: Array<Record<string, unknown>>) => Array<{ label: string }>;
+  detectLiveLineages: (
+    records: Array<Record<string, unknown>>,
+    options?: { isAlive?: (pid: number) => boolean },
+  ) => Array<{ label: string; pid: number; started_at_iso: string | null }>;
+  isLineageAlive: (pid: unknown, options?: { kill?: (target: number, signal: number) => void }) => boolean;
   markOrphanedLineages: (ledgerPath: string, options?: { now?: () => Date | string }) => Array<{ label: string }>;
   appendStatusLedger: (ledgerPath: string, entry: Record<string, unknown>) => void;
   readRetryCountsFromLedger: (ledgerPath: string) => Record<string, number>;
@@ -122,6 +130,56 @@ function freshTmpDir(): string {
   const dir = mkdtempSync(join(tmpdir(), 'fanout-pool-'));
   tmpDirs.push(dir);
   return dir;
+}
+
+function processIsAlive(pid: number): boolean {
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function waitForAlive(pid: number): Promise<void> {
+  const deadline = Date.now() + 1_000;
+  while (Date.now() < deadline) {
+    if (processIsAlive(pid)) return;
+    await new Promise((resolve) => setTimeout(resolve, 10));
+  }
+  throw new Error(`pid ${pid} never became alive`);
+}
+
+function spawnIdleChild(): ReturnType<typeof spawn> {
+  return spawn(process.execPath, ['-e', 'setInterval(() => {}, 1000)'], {
+    stdio: 'ignore',
+    detached: process.platform !== 'win32',
+  });
+}
+
+function killChildTree(child: ReturnType<typeof spawn>): void {
+  if (child.pid === undefined) return;
+  try {
+    if (process.platform !== 'win32') {
+      process.kill(-child.pid, 'SIGKILL');
+    } else {
+      child.kill('SIGKILL');
+    }
+  } catch {
+    // The child already exited.
+  }
+}
+
+function spawnExitedPid(): Promise<number> {
+  return new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, ['-e', ''], { stdio: 'ignore' });
+    if (child.pid === undefined) {
+      reject(new Error('child has no pid'));
+      return;
+    }
+    child.once('exit', () => resolve(child.pid as number));
+    child.once('error', reject);
+  });
 }
 
 afterEach(() => {
@@ -1012,5 +1070,109 @@ describe('status ledger helpers', () => {
     writeOrchestrationSummary(summaryPath, { total: 4, succeeded: 3, failed: 1, salvaged: 1 });
     const parsed = JSON.parse(readFileSync(summaryPath, 'utf8'));
     expect(parsed).toEqual({ total: 4, succeeded: 3, failed: 1, salvaged: 1 });
+  });
+});
+
+describe('lineage liveness', () => {
+  it('isLineageAlive reads ESRCH as dead and EPERM as alive', () => {
+    const failingKill = (code: string) => () => {
+      throw Object.assign(new Error(code), { code });
+    };
+    const probes: number[] = [];
+
+    expect(isLineageAlive(4321, { kill: () => undefined })).toBe(true);
+    expect(isLineageAlive(4321, { kill: failingKill('EPERM') })).toBe(true);
+    expect(isLineageAlive(4321, { kill: failingKill('ESRCH') })).toBe(false);
+    expect(isLineageAlive(4321, {
+      kill: (target) => {
+        probes.push(target);
+        if (target < 0) throw Object.assign(new Error('ESRCH'), { code: 'ESRCH' });
+      },
+    })).toBe(true);
+    expect(probes).toEqual([-4321, 4321]);
+    for (const pid of [0, -5, 'x', null, undefined, 1.5]) {
+      expect(isLineageAlive(pid, { kill: () => { throw new Error('not probed'); } })).toBe(false);
+    }
+  });
+
+  it('detectLiveLineages returns a started label whose spawned pid is alive', () => {
+    const rows = [
+      { event: 'started', label: 'open', at: '2026-11-13T00:00:00.000Z' },
+      { event: 'spawned', label: 'open', attempt: 1, pid: 4101, at: '2026-11-13T00:00:01.000Z' },
+      { event: 'started', label: 'retried', at: '2026-11-13T00:00:02.000Z' },
+      { event: 'spawned', label: 'retried', attempt: 1, pid: 9001, at: '2026-11-13T00:00:03.000Z' },
+      { event: 'failed', label: 'retried', terminal: false, at: '2026-11-13T00:00:04.000Z' },
+      { event: 'retry_scheduled', label: 'retried', at: '2026-11-13T00:00:04.000Z' },
+      { event: 'started', label: 'retried', at: '2026-11-13T00:00:05.000Z' },
+      { event: 'spawned', label: 'retried', attempt: 2, pid: 9002, at: '2026-11-13T00:00:06.000Z' },
+      { event: 'started', label: 'closed', at: '2026-11-13T00:00:07.000Z' },
+      { event: 'spawned', label: 'closed', attempt: 1, pid: 4300, at: '2026-11-13T00:00:08.000Z' },
+      { event: 'completed', label: 'closed', at: '2026-11-13T00:00:09.000Z' },
+      { event: 'started', label: 'unspawned', at: '2026-11-13T00:00:10.000Z' },
+    ];
+    const alivePids = new Set([4101, 4300, 9001, 9002]);
+
+    expect(detectLiveLineages(rows, { isAlive: (pid) => alivePids.has(pid) })).toEqual([
+      { label: 'open', pid: 4101, started_at_iso: '2026-11-13T00:00:00.000Z' },
+      { label: 'retried', pid: 9002, started_at_iso: '2026-11-13T00:00:05.000Z' },
+    ]);
+  });
+
+  it('markOrphanedLineages leaves a live lineage unmarked', async () => {
+    const dir = freshTmpDir();
+    const ledger = join(dir, 'orchestration-status.log');
+    const child = spawnIdleChild();
+    try {
+      if (child.pid === undefined) throw new Error('child has no pid');
+      await waitForAlive(child.pid);
+      appendStatusLedger(ledger, { event: 'started', label: 'live', index: 0, at: '2026-11-13T00:00:00.000Z' });
+      appendStatusLedger(ledger, {
+        event: 'spawned',
+        label: 'live',
+        attempt: 1,
+        pid: child.pid,
+        at: '2026-11-13T00:00:01.000Z',
+      });
+
+      expect(markOrphanedLineages(ledger, { now: () => '2026-11-13T00:00:02.000Z' })).toEqual([]);
+
+      const events = readFileSync(ledger, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+      expect(events.filter((event) => event.event === 'orphan_requeued')).toEqual([]);
+    } finally {
+      killChildTree(child);
+    }
+  });
+
+  it('markOrphanedLineages requeues a lineage whose spawned pid has exited', async () => {
+    const dir = freshTmpDir();
+    const ledger = join(dir, 'orchestration-status.log');
+    const exitedPid = await spawnExitedPid();
+    expect(processIsAlive(exitedPid)).toBe(false);
+    appendStatusLedger(ledger, { event: 'started', label: 'gone', index: 0, at: '2026-11-13T00:00:00.000Z' });
+    appendStatusLedger(ledger, {
+      event: 'spawned',
+      label: 'gone',
+      attempt: 1,
+      pid: exitedPid,
+      at: '2026-11-13T00:00:01.000Z',
+    });
+
+    expect(markOrphanedLineages(ledger, { now: () => '2026-11-13T00:00:02.000Z' })).toEqual([
+      { label: 'gone', index: 0, started_at_iso: '2026-11-13T00:00:00.000Z' },
+    ]);
+    const events = readFileSync(ledger, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+    expect(events.filter((event) => event.event === 'orphan_requeued')).toHaveLength(1);
+  });
+
+  it('a label with no spawned record is still an orphan', () => {
+    const dir = freshTmpDir();
+    const ledger = join(dir, 'orchestration-status.log');
+    appendStatusLedger(ledger, { event: 'started', label: 'legacy', index: 0, at: '2026-11-13T00:00:00.000Z' });
+
+    expect(markOrphanedLineages(ledger, { now: () => '2026-11-13T00:00:02.000Z' })).toEqual([
+      { label: 'legacy', index: 0, started_at_iso: '2026-11-13T00:00:00.000Z' },
+    ]);
+    const events = readFileSync(ledger, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+    expect(events.filter((event) => event.event === 'orphan_requeued')).toHaveLength(1);
   });
 });

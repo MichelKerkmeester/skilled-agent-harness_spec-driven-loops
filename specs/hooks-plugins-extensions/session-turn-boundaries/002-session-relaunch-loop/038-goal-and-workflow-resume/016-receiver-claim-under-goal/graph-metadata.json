@@ -17,6 +17,8 @@
       "receiver claim under goal tasks",
       "receiver claim under goal acceptance criteria",
       "receiver claim under goal goal",
+      "receiver claim under goal decisions",
+      "claim line not built",
       "receiver claim under goal implementation summary"
     ],
     "key_topics": [
@@ -28,19 +30,20 @@
       "tasks",
       "acceptance",
       "criteria",
+      "decisions",
+      "line",
       "implementation",
-      "summary",
-      "claude",
-      "whose"
+      "summary"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/hooks/session-relaunch/claude/context-nudge.mjs",
       ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
@@ -79,6 +82,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -188,17 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A Claude receiver whose hop carries a goal starts on `/goal <slice>`, and its claim instructions arrive only as `SessionStart` start context (`.skilled/bin/skilled-loop:1213-1220`, `.skilled/hooks/session-relaunch/claude/compact-pointer.mjs:136-158`)",
     "created_at": "2026-11-13T08:49:38Z",
-    "last_save_at": "2026-11-13T08:59:04.075Z",
+    "last_save_at": "2026-11-13T13:06:17.708Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,15 +210,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:edb4af7a567d84272fd49ff2e88d951201b23559f52508d96840d076c6e69d06",
+    "source_fingerprint": "sha256:b0b6c4005c6b72448c7d8f5dab05bc4fdb86b2fdefc0eeb0be298385968ba519",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a77238318bf91fdb6fa0a051f94952c7303e10f0d9a9393298c743df9e791395",
+      "spec.md": "ff19284609a3a227f2350b45697ef52b5d83e3a8e6c65682b2717913174f6ae4",
       "plan.md": "a7541c600049e2f2e6513086ff733b29b46888b3bb87263e901504f24652c371",
-      "tasks.md": "fe320627891310c78460737f811bbc54006b4cb2f1d5ad2e38e2034ea67e69bb",
-      "implementation-summary.md": "8d0a94f22870792fd19a5bd88d4412267706977d316bb05ac81f5c8ddbf20ffe"
+      "tasks.md": "15744682b07ff280901660ecf18fc6f34f10481eb98c3cc702d98d6ab1df5a90",
+      "decision-record.md": "aa5f934c4c31f045d17db30ad04e04ef46619fa34cf4d9be1bbfb5fac1a47cd9",
+      "implementation-summary.md": "69ba02f05f13fefc64e129101cc00a984e1588461a9d2843ce80adf9b951df5c"
     },
     "last_active_at": null
   }

@@ -275,6 +275,10 @@ function createV1Client(ctx) {
         const remove = requireV2SessionMethod(ctx, 'remove');
         await remove.call(ctx.session, { sessionID: path.id });
       },
+      update: async ({ path, body } = {}) => {
+        const update = requireV2SessionMethod(ctx, 'update');
+        await update.call(ctx.session, { sessionID: path.id, title: body.title });
+      },
     },
   };
 }

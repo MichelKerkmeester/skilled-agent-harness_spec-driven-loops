@@ -1,0 +1,21 @@
+# T001, run by the orchestrator on 2026-11-13
+# The extension checkout is git-ignored and absent from the build worktree, so the two source
+# checks read the primary checkout's copy at /Users/michelkerkmeester/MEGA/Development/Skilled/.pi/git/github.com/janvitos/pi-plan-build.
+$ git -C <primary>/.pi/git/github.com/janvitos/pi-plan-build rev-parse HEAD
+51a97327ed4749c48150241ae5b29eb7b3354ffe
+$ rg -n "pi.appendEntry\(STATE_TYPE|selectedMode = decoded\?\.selectedMode" <primary>/.pi/git/github.com/janvitos/pi-plan-build/index.ts
+228:		pi.appendEntry(STATE_TYPE, JSON.parse(snapshot));
+1379:		selectedMode = decoded?.selectedMode ?? flagMode ?? defaultMode ?? "build";
+$ rg -l "\"selectedMode\":\"plan\"" ~/.pi/agent/sessions | wc -l
+      50
+
+# T002, run by the orchestrator on 2026-11-13
+# Pi 1.5.2, launched once in a private tmux server with a private XDG_RUNTIME_DIR and every
+# inherited SKILLED_LOOP_* variable removed. The working directory was the primary checkout,
+# because the plan-build extension is git-ignored and absent from the build worktree.
+# --no-session was added so the probe left no session file.
+$ <primary>/.skilled/bin/skilled-loop pi --plan --no-session
+composer status line: "plan · deepseek-v4.1-flash-1017 [llmgateway] · max"
+The launch showed no error and the composer started in Plan mode. The session was closed with
+Ctrl+D and the tmux server was killed.
+rank 13: build

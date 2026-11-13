@@ -1,0 +1,34 @@
+$ cd /Users/michelkerkmeester/worktrees/public/363-hop-state-carry && env -u AI_SESSION_CHILD node --test --test-name-pattern 'replaces the launch mode flag with the consumed mode' .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs
+
+✖ pi relaunch replaces the launch mode flag with the consumed mode (2690.084333ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2785.320125
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:589:1
+✖ pi relaunch replaces the launch mode flag with the consumed mode (2690.084333ms)
+  AssertionError [ERR_ASSERTION]: plan: [session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-EDhg5k/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md --build
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:607:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+EXIT_STATUS=1

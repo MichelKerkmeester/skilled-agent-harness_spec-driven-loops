@@ -1,0 +1,645 @@
+T006 red run, 2026-11-13
+TAP version 13
+# Subtest: readClaudeSettings returns the last custom title
+not ok 1 - readClaudeSettings returns the last custom title
+  ---
+  duration_ms: 4.16375
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/context-usage.test.cjs:497:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+        effort: 'high',
+        model: 'claude-opus-5-5',
+    -   name: 'second title'
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    model: 'claude-opus-5-5'
+    effort: 'high'
+    name: 'second title'
+  actual:
+    model: 'claude-opus-5-5'
+    effort: 'high'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/context-usage.test.cjs:504:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: readClaudeSettings finds a custom title past the default tail
+not ok 2 - readClaudeSettings finds a custom title past the default tail
+  ---
+  duration_ms: 2.531083
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/context-usage.test.cjs:521:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + undefined
+    - 'early title'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'early title'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/context-usage.test.cjs:527:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 0
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 58.578291
+
+T008 red run, 2026-11-13
+TAP version 13
+# Subtest: prepare records the Claude custom title over SKILLED_LOOP_NAME
+not ok 1 - prepare records the Claude custom title over SKILLED_LOOP_NAME
+  ---
+  duration_ms: 234.677291
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2792:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'launch'
+    - 'renamed'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'renamed'
+  actual: 'launch'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2802:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 288.490708
+
+T011 red run, 2026-11-13
+TAP version 13
+# Subtest: consume reports the record name
+not ok 1 - consume reports the record name
+  ---
+  duration_ms: 41.990542
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2952:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+        handoff: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-cli-uCnx9h/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md',
+    -   name: 'Work',
+        note: 'open',
+        spec_folder: 'specs/hooks/023-session-relaunch-loop'
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    handoff: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-cli-uCnx9h/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    spec_folder: 'specs/hooks/023-session-relaunch-loop'
+    note: 'open'
+    name: 'Work'
+  actual:
+    handoff: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-cli-uCnx9h/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    spec_folder: 'specs/hooks/023-session-relaunch-loop'
+    note: 'open'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2965:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 98.743084
+
+T014 red run, 2026-11-13
+TAP version 13
+# Subtest: a Claude hop numbers the replayed name
+not ok 1 - a Claude hop numbers the replayed name
+  ---
+  duration_ms: 812.54975
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:564:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-6RjeZV/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md',
+        '--name',
+    +   'X'
+    -   'X (2)'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-6RjeZV/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    1: '--name'
+    2: 'X (2)'
+  actual:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-6RjeZV/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    1: '--name'
+    2: 'X'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:571:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: a hop replays the sender's live name with the next number
+not ok 2 - a hop replays the sender's live name with the next number
+  ---
+  duration_ms: 834.678042
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:576:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-NBOpLB/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md',
+    -   '--name',
+    -   'Renamed (2)'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-NBOpLB/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    1: '--name'
+    2: 'Renamed (2)'
+  actual:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-NBOpLB/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:586:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: a second hop replaces the sender's number instead of stacking it
+not ok 3 - a second hop replaces the sender's number instead of stacking it
+  ---
+  duration_ms: 735.45875
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:590:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-fJs6Cn/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md',
+    -   '--name',
+    -   'X (3)'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-fJs6Cn/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    1: '--name'
+    2: 'X (3)'
+  actual:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-fJs6Cn/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:601:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: a name that ends in another number keeps it
+not ok 4 - a name that ends in another number keeps it
+  ---
+  duration_ms: 806.052042
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:606:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-khW37Q/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md',
+    -   '--name',
+    -   'Phase (7) (2)'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-khW37Q/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    1: '--name'
+    2: 'Phase (7) (2)'
+  actual:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-khW37Q/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:616:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: a consumed name that fails the check falls back to the launch name
+not ok 5 - a consumed name that fails the check falls back to the launch name
+  ---
+  duration_ms: 1018.539375
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:620:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-DHAyM1/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md',
+        '--name',
+    +   'X'
+    -   'X (2)'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-DHAyM1/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    1: '--name'
+    2: 'X (2)'
+  actual:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-DHAyM1/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    1: '--name'
+    2: 'X'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:631:12)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: a Pi hop numbers the replayed name
+not ok 6 - a Pi hop numbers the replayed name
+  ---
+  duration_ms: 797.703
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:636:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        '--name',
+    +   'N',
+    -   'N (2)',
+        '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-tkidjL/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: '--name'
+    1: 'N (2)'
+    2: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-tkidjL/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+  actual:
+    0: '--name'
+    1: 'N'
+    2: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-tkidjL/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:643:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: the manual command carries the name stem without a number
+ok 7 - the manual command carries the name stem without a number
+  ---
+  duration_ms: 298.554
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 1
+# fail 6
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5361.318709
+
+T014 red run (manual case uses the record name), 2026-11-13
+TAP version 13
+# Subtest: a Claude hop numbers the replayed name
+not ok 1 - a Claude hop numbers the replayed name
+  ---
+  duration_ms: 728.409333
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:564:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-chRqK5/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md',
+        '--name',
+    +   'X'
+    -   'X (2)'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-chRqK5/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    1: '--name'
+    2: 'X (2)'
+  actual:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-chRqK5/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    1: '--name'
+    2: 'X'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:571:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+# Subtest: a hop replays the sender's live name with the next number
+not ok 2 - a hop replays the sender's live name with the next number
+  ---
+  duration_ms: 655.810958
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:576:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-hpz3EU/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md',
+    -   '--name',
+    -   'Renamed (2)'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-hpz3EU/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    1: '--name'
+    2: 'Renamed (2)'
+  actual:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-hpz3EU/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:586:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: a second hop replaces the sender's number instead of stacking it
+not ok 3 - a second hop replaces the sender's number instead of stacking it
+  ---
+  duration_ms: 633.458375
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:590:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-V40aFZ/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md',
+    -   '--name',
+    -   'X (3)'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-V40aFZ/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    1: '--name'
+    2: 'X (3)'
+  actual:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-V40aFZ/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:601:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: a name that ends in another number keeps it
+not ok 4 - a name that ends in another number keeps it
+  ---
+  duration_ms: 763.699917
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:606:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-QQHbGO/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md',
+    -   '--name',
+    -   'Phase (7) (2)'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-QQHbGO/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    1: '--name'
+    2: 'Phase (7) (2)'
+  actual:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-QQHbGO/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:616:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: a consumed name that fails the check falls back to the launch name
+not ok 5 - a consumed name that fails the check falls back to the launch name
+  ---
+  duration_ms: 628.781292
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:620:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-RVOvWH/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md',
+        '--name',
+    +   'X'
+    -   'X (2)'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-RVOvWH/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    1: '--name'
+    2: 'X (2)'
+  actual:
+    0: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-RVOvWH/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+    1: '--name'
+    2: 'X'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:631:12)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: a Pi hop numbers the replayed name
+not ok 6 - a Pi hop numbers the replayed name
+  ---
+  duration_ms: 610.747584
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:636:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        '--name',
+    +   'N',
+    -   'N (2)',
+        '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-jy6S7Y/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: '--name'
+    1: 'N (2)'
+    2: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-jy6S7Y/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+  actual:
+    0: '--name'
+    1: 'N'
+    2: '[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-jy6S7Y/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:643:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: the manual command carries the name stem without a number
+not ok 7 - the manual command carries the name stem without a number
+  ---
+  duration_ms: 259.9315
+  type: 'test'
+  location: '/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:647:1'
+  failureType: 'testCodeFailure'
+  error: 'skilled-loop claude "[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-k0fhlN/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md"'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: 'skilled-loop claude "[session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-k0fhlN/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md"'
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:661:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 0
+# fail 7
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4322.387541

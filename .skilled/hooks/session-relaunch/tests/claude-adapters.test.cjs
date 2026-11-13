@@ -607,6 +607,49 @@ test('stop-arm leaves a pending record alone when the relaunch concern is disabl
   }
 });
 
+async function armStopPayload(t, overrides = {}) {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  fs.writeFileSync(handoffPath, 'handoff');
+  const { stateDir, recordPath } = createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
+  const transcriptPath = writeTranscript(sandbox, 10);
+  const target = startTarget(sandbox);
+  await new Promise((resolve) => target.once('spawn', resolve));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  sandbox.env.CLAUDE_PID = String(target.pid);
+  const payload = {
+    session_id: SESSION_ID,
+    transcript_path: transcriptPath,
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+    ...overrides,
+  };
+  try {
+    const result = await runAdapter(sandbox, STOP_ARM_PATH, payload);
+    assert.equal(result.code, 0, result.stderr);
+    assert.equal(result.stdout, '');
+    return { record: JSON.parse(fs.readFileSync(recordPath, 'utf8')) };
+  } finally {
+    killChild(target);
+    await waitFor(() => !fs.existsSync(path.join(stateDir, `killer-${loopId}.lock`)), 2500);
+  }
+}
+
+test('stop-arm stamps the payload permission mode on the armed record', async (t) => {
+  const { record } = await armStopPayload(t, { permission_mode: 'acceptEdits' });
+
+  assert.equal(record.status, 'armed');
+  assert.equal(record.permissionMode, 'acceptEdits');
+});
+
+test('stop-arm arms without a permission mode when the payload has none', async (t) => {
+  const { record } = await armStopPayload(t);
+
+  assert.equal(record.status, 'armed');
+  assert.equal(Object.hasOwn(record, 'permissionMode'), false);
+});
+
 test("stop-arm leaves a nested run's pending record untouched", async (t) => {
   const sandbox = createSandbox(t);
   const loopId = String(process.pid);
@@ -650,7 +693,14 @@ test('stop-arm defers pending state when background tasks exist and logs the rea
   };
   const result = await runAdapter(sandbox, STOP_ARM_PATH, payload);
   assert.equal(result.code, 0, result.stderr);
-  assert.equal(result.stdout, '');
+  assert.notEqual(result.stdout, '', 'a deferred Stop tells the operator why it waits');
+  const lines = result.stdout.trim().split('\n');
+  assert.equal(lines.length, 1);
+  const notice = JSON.parse(lines[0]);
+  assert.equal(typeof notice.systemMessage, 'string');
+  assert.match(notice.systemMessage, /1 background task\b/);
+  assert.match(notice.systemMessage, /session-relaunch\.cjs cancel/);
+  assert.equal(Object.hasOwn(notice, 'decision'), false);
   // The record stays pending for the next Stop and gains only the deferral mark.
   const { deferredAt, ...unchanged } = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
   assert.deepEqual(unchanged, record);
@@ -659,6 +709,39 @@ test('stop-arm defers pending state when background tasks exist and logs the rea
     fs.readFileSync(path.join(stateDir, 'relaunch.log'), 'utf8'),
     /deferred-background-tasks/,
   );
+});
+
+test('stop-arm logs the cron count of a session whose hop is armable', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
+  fs.writeFileSync(handoffPath, 'handoff');
+  const { stateDir, recordPath } = createPendingRecord(sandbox, loopId, SESSION_ID, handoffPath);
+  const spawns = installKillerRecorder(sandbox);
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+
+  const result = await runAdapter(sandbox, STOP_ARM_PATH, {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 10),
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+    session_crons: [
+      { id: 'cron-1', schedule: '*/10 * * * *', recurring: true, prompt: 'echo ping' },
+      { id: 'cron-2', schedule: '0 9 * * *', recurring: false, prompt: 'echo pong' },
+    ],
+  });
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(spawns().length, 1);
+  assert.equal(JSON.parse(fs.readFileSync(recordPath, 'utf8')).status, 'armed');
+  const cronLines = fs.readFileSync(path.join(stateDir, 'relaunch.log'), 'utf8')
+    .split('\n')
+    .filter((line) => line.includes('session-crons'));
+  assert.equal(cronLines.length, 1, cronLines.join('\n'));
+  assert.match(cronLines[0], new RegExp(`loopId=${loopId}`));
+  assert.match(cronLines[0], new RegExp(`sessionId=${SESSION_ID}`));
+  assert.match(cronLines[0], /crons=2/);
 });
 
 function deferredPromptCase(t, { prompt, deferred = true, armed = false }) {

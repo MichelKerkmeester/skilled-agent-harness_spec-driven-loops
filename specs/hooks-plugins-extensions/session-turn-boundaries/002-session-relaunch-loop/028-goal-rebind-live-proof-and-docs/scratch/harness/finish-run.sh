@@ -15,3 +15,23 @@ for f in "$out"/transcript-*.jsonl; do
 done
 [ -f "$out/project-dir.txt" ] && rm -rf "$(cat "$out/project-dir.txt")"
 rm -rf "$out/run"
+# The runtime can still be shutting down and write its project folder back after the first
+# removal. Watch the folder for a settle window and remove it again on each late write, so a
+# sandbox run cannot leave runtime state behind.
+if [ -f "$out/project-dir.txt" ]; then
+  proj="$(cat "$out/project-dir.txt")"
+  if [ -n "$proj" ]; then
+    settle="${FINISH_SETTLE_S:-15}"
+    for _ in $(seq 1 "$settle"); do
+      sleep 1
+      if [ -e "$proj" ]; then
+        rm -rf "$proj"
+        echo "finish-run: removed $proj again after a late write" >&2
+      fi
+    done
+    if [ -e "$proj" ]; then
+      echo "finish-run: $proj is still present" >&2
+      exit 1
+    fi
+  fi
+fi

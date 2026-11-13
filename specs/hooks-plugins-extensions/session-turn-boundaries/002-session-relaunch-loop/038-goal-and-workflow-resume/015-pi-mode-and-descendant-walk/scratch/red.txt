@@ -1,0 +1,142 @@
+# Sandbox note: Vite bundle-mode cannot write its config temp under .skilled/node_modules here, so --configLoader runner is added; selector and test file are unchanged. The dispatch env still exports AI_SESSION_CHILD for this red run, which the focused selector does not exercise.
+$ npx vitest run --configLoader runner --config .skilled/hooks/vitest.config.ts -t 'arms with the plan-build mode from the session branch' .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts
+
+ RUN  v5.1.0 /Users/michelkerkmeester/worktrees/public/363-hop-state-carry
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts (60 tests | 1 failed | 59 skipped) 43ms
+   ❯ session-relaunch Pi extension (41)
+     × agent_settled arms with the plan-build mode from the session branch 42ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > agent_settled arms with the plan-build mode from the session branch
+AssertionError: expected { version: 1, status: 'armed', …(10) } to match object { status: 'armed', mode: 'plan' }
+(11 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "mode": "plan",
+    "status": "armed",
+  }
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:466:51
+    464|     });
+    465|
+    466|     expect(readRelaunchFile(loopId, process.env)).toMatchObject({
+       |                                                   ^
+    467|       status: 'armed',
+    468|       mode: 'plan',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 59 skipped (60)
+   Start at  12:58:41
+   Duration  316ms (transform 60%, tests 22%, import 16%, worker 2%)
+
+EXIT_STATUS=1
+✖ arm keeps a plan or build mode and drops any other value (10.146625ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 63.533167
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:747:1
+✖ arm keeps a plan or build mode and drops any other value (10.146625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'plan'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:769:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'plan',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+✖ consume prints the recorded Pi mode (60.520125ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 119.407959
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2952:1
+✖ consume prints the recorded Pi mode (60.520125ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      handoff: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-cli-1tYmWz/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md',
+  -   mode: 'plan',
+      note: 'open',
+      spec_folder: 'specs/hooks/023-session-relaunch-loop'
+    }
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2965:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { handoff: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-cli-1tYmWz/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md', spec_folder: 'specs/hooks/023-session-relaunch-loop', note: 'open' },
+    expected: { handoff: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-cli-1tYmWz/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md', spec_folder: 'specs/hooks/023-session-relaunch-loop', note: 'open', mode: 'plan' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+$ cd /Users/michelkerkmeester/worktrees/public/363-hop-state-carry && env -u AI_SESSION_CHILD node --test --test-name-pattern 'replaces the launch mode flag with the consumed mode' .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs
+
+✖ pi relaunch replaces the launch mode flag with the consumed mode (2690.084333ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2785.320125
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:589:1
+✖ pi relaunch replaces the launch mode flag with the consumed mode (2690.084333ms)
+  AssertionError [ERR_ASSERTION]: plan: [session-relaunch] claim and continue handoff /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-EDhg5k/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md --build
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:607:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+EXIT_STATUS=1

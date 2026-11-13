@@ -155,12 +155,25 @@ function stateFor(sessionStates, sessionID) {
   return state;
 }
 
-function trackChildSession(sessionStates, childSessions, sessionID) {
+function trackChildSession(sessionStates, childSessions, sessionID, parentID) {
   if (!childSessions.has(sessionID) && childSessions.size >= MAX_SESSIONS) {
     childSessions.delete(childSessions.keys().next().value);
   }
-  childSessions.add(sessionID);
+  const tracked = childSessions.get(sessionID);
+  childSessions.set(sessionID, {
+    parentID,
+    busy: tracked?.parentID === parentID ? tracked.busy : true,
+  });
   sessionStates.delete(sessionID);
+}
+
+// Only a busy child of this session can still need the runtime the parent would end, so
+// the busy flag gates the arm and lets the child that finishes last run the deferral.
+function hasBusyChild(childSessions, parentID) {
+  for (const child of childSessions.values()) {
+    if (child.parentID === parentID && child.busy) return true;
+  }
+  return false;
 }
 
 function queueNudge(state, sessionID, fillTokens, windowTokens, directory) {
@@ -250,6 +263,21 @@ function spawnKiller(loopId) {
   }
 }
 
+// A hand-off record is already gone when its receiver starts, so the launch name reaches
+// this session only through the environment the wrapper exports. The event path must not
+// wait on the server, and a failed title may never stop the seed, so every error is caught.
+function titleSeedSession(client, sessionID) {
+  const title = process.env.SKILLED_LOOP_NAME;
+  if (!title) return;
+  if (typeof client?.session?.update !== 'function') return;
+  try {
+    Promise.resolve(client.session.update({
+      path: { id: sessionID },
+      body: { title },
+    })).catch(() => {});
+  } catch {}
+}
+
 // The killer runs without a transcript, so it never sees the operator's next turn arrive;
 // the arm is withdrawn here, before its fixed idle wait ends and it signals a relaunch.
 // Returns whether an arm was withdrawn, so the caller can drop what the hand-over made stale.
@@ -301,7 +329,10 @@ function sessionRelaunchPlugin(ctx = {}) {
   const sessionStates = new Map();
   // A sub-agent runs as a child session with its own id and its own fill, so its nudge,
   // seed or idle would hand off or end the parent's runtime.
-  const childSessions = new Set();
+  const childSessions = new Map();
+  // A child can outlive the parent's idle, and a child event is the only later trigger
+  // the parent gets, so a deferred arm waits here for the child that finishes last.
+  const deferredArms = new Set();
 
   // A runtime started from inside another loop's process inherits that loop's variables, so a
   // nested run would arm and relaunch a runtime that is not its own.
@@ -317,6 +348,31 @@ function sessionRelaunchPlugin(ctx = {}) {
     }
   }
 
+  function armOnIdle(sessionID) {
+    const loopId = process.env.SKILLED_LOOP_ID;
+    if (!loopId) return;
+    const record = core.readRelaunchFile(loopId, process.env);
+    const verdict = core.armableRecord(record, {
+      loopId,
+      sessionId: sessionID,
+      runtime: 'opencode',
+      env: process.env,
+    });
+    if (!verdict.armable) return;
+
+    if (hasBusyChild(childSessions, sessionID)) {
+      deferredArms.add(sessionID);
+      return;
+    }
+
+    const directory = typeof ctx.directory === 'string'
+      ? ctx.directory
+      : process.cwd();
+    const armed = core.arm({ loopId, cwd: directory, env: process.env });
+    if (armed?.status !== 'armed') return;
+    spawnKiller(loopId);
+  }
+
   return {
     async event(payload) {
       try {
@@ -325,20 +381,39 @@ function sessionRelaunchPlugin(ctx = {}) {
         const properties = event?.properties;
         if (event?.type === 'session.created' || event?.type === 'session.updated') {
           const info = properties?.info;
-          if (
-            info
-            && typeof info === 'object'
-            && typeof info.parentID === 'string'
-            && info.parentID
-            && nudge.validSessionId(info.id)
-          ) {
-            trackChildSession(sessionStates, childSessions, info.id);
+          const topParentID = properties?.parentID;
+          const infoParentID = info?.parentID;
+          const parentID = typeof topParentID === 'string' && topParentID
+            ? topParentID
+            : (typeof infoParentID === 'string' ? infoParentID : null);
+          const childID = nudge.validSessionId(info?.id)
+            ? info.id
+            : (nudge.validSessionId(properties?.sessionID) ? properties.sessionID : null);
+          if (parentID && childID) {
+            trackChildSession(sessionStates, childSessions, childID, parentID);
             return;
           }
         }
 
         const sessionID = properties?.sessionID;
-        if (!nudge.validSessionId(sessionID) || childSessions.has(sessionID)) return;
+        if (!nudge.validSessionId(sessionID)) return;
+        if (childSessions.has(sessionID)) {
+          const child = childSessions.get(sessionID);
+          // A tracked child is working until it reports an end, so any other event keeps
+          // the parent's runtime needed. Idle and deletion are the ends the bridge sends.
+          if (event.type === 'session.idle' || event.type === 'session.deleted') {
+            child.busy = false;
+            const parentID = child.parentID;
+            if (event.type === 'session.deleted') childSessions.delete(sessionID);
+            if (deferredArms.has(parentID) && !hasBusyChild(childSessions, parentID)) {
+              deferredArms.delete(parentID);
+              armOnIdle(parentID);
+            }
+          } else {
+            child.busy = true;
+          }
+          return;
+        }
 
         if (event.type === 'message.updated') {
           const info = properties.info;
@@ -406,6 +481,9 @@ function sessionRelaunchPlugin(ctx = {}) {
 
           const seedText = nudge.seedInstructions({ prompt: part.text, sessionId: sessionID });
           if (seedText !== null) {
+            if (state.activeSeed?.messageID !== part.messageID) {
+              titleSeedSession(ctx.client, sessionID);
+            }
             state.activeSeed = {
               messageID: part.messageID,
               notePath: nudge.notePathFromSeed(part.text),
@@ -416,23 +494,7 @@ function sessionRelaunchPlugin(ctx = {}) {
         }
 
         if (event.type === 'session.idle') {
-          const loopId = process.env.SKILLED_LOOP_ID;
-          if (!loopId) return;
-          const record = core.readRelaunchFile(loopId, process.env);
-          const verdict = core.armableRecord(record, {
-            loopId,
-            sessionId: sessionID,
-            runtime: 'opencode',
-            env: process.env,
-          });
-          if (!verdict.armable) return;
-
-          const directory = typeof ctx.directory === 'string'
-            ? ctx.directory
-            : process.cwd();
-          const armed = core.arm({ loopId, cwd: directory, env: process.env });
-          if (armed?.status !== 'armed') return;
-          spawnKiller(loopId);
+          armOnIdle(sessionID);
           return;
         }
 

@@ -50,6 +50,18 @@ const OUTSIDE_LOOP_INSTRUCTION = ' This session runs outside the skilled-loop wr
   + ' cannot relaunch; a handoff note keeps the exact decisions auto-compaction would summarize.'
   + ' If the remaining work fits in a few more steps, finish it instead and skip these steps.'
   + ' Otherwise do these steps now, before any other work:';
+// A receiver re-runs the note's active command, so it checks every worker the note names
+// first: a live worker already owns that work.
+const WORKER_CHECK_INSTRUCTION = ' Before you run the active command again, run `kill -0 <pid>`'
+  + ' for each worker the note\'s `Running workers:` line names; when a pid is alive, collect'
+  + ' its worker with the collect step from that line instead of starting the same work again,'
+  + ' and do not re-run the active command while a listed worker runs.';
+// A hop ends the runtime that held the schedules and the added directories; a compaction kept
+// both, so only a hop seed rebuilds them.
+const HOP_RESTORE_INSTRUCTION = ' After a hop, recreate each `Scheduled:` entry the note lists,'
+  + ' or tell the operator which to recreate when this runtime has no scheduler, and re-add'
+  + ' each `Added directories:` entry, or ask the operator to (on Claude Code,'
+  + ' `/add-dir <path>`).';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -183,6 +195,15 @@ function handoffText({
     '   Under ## In-flight state include an `Active command:` line with the command, mode and '
       + 'arguments; use `Active command: none` when no command runs.'
       + activeGoalInstruction,
+    // The receiver re-runs the active command, so the note has to say what that command must
+    // not start again; prepare refuses a note that leaves the question unanswered.
+    '   Also include a `Running workers:` line: each worker as `pid <pid> log <path> collect '
+      + '<step>`, workers separated by ` | `, or `Running workers: none` when none runs. '
+      + 'prepare refuses a note that has no `Running workers:` line.',
+    // A hop ends the runtime that held these, so the receiver must rebuild both from the note.
+    '   Also include a `Scheduled:` line for each cron or wakeup with its schedule and prompt, '
+      + 'or `Scheduled: none`; and an `Added directories:` line for each directory added after '
+      + 'launch, or `Added directories: none`.',
   ];
 
   let step = 2;
@@ -196,10 +217,13 @@ function handoffText({
     step += 1;
   }
   lines.push(
-    `${step}. If this command holds a deep-loop lock, release it before prepare with `
-      + '`node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release '
-      + '--lock-path <path> --owner-pid <pid> --nonce <nonce>`, using the values the command '
-      + 'captured. The `release --owner-pid` form also requires the captured lock path and nonce.',
+    `${step}. Stop a running fan-out runner before prepare: when a `
+      + '`fanout-run.cjs` runner still runs, send it `kill -TERM <runner-pid>` and wait until `kill -0 <runner-pid>` '
+      + 'fails, so its lineages end with it. Then, if this command holds a deep-loop lock, '
+      + 'release it with `node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs '
+      + 'release --lock-path <path> --owner-pid <pid> --nonce <nonce>`, using the values the '
+      + 'command captured. The `release --owner-pid` form also requires the captured lock path '
+      + 'and nonce.',
   );
   step += 1;
   const noteArguments = `--handoff ${shellQuote(pathValue)}`
@@ -246,10 +270,11 @@ function seedText({
   const completeCommand = completeCommandFor(pathValue, cliPath);
   const gateWasSkipped = specFolder === 'none';
   let continueStep = gateWasSkipped ? 4 : 3;
-  let readInstruction = '2. Read the note.';
+  let readInstruction = '2. Read the note.' + WORKER_CHECK_INSTRUCTION;
   if (typeof specFolder === 'string' && specFolder && !gateWasSkipped) {
     readInstruction = '2. Read the note. When its frontmatter spec_folder is set, run '
-      + `\`/speckit:resume ${specFolder}\`; skip that step when spec_folder is empty.`;
+      + `\`/speckit:resume ${specFolder}\`; skip that step when spec_folder is empty.`
+      + WORKER_CHECK_INSTRUCTION;
   }
 
   const lines = [
@@ -300,7 +325,8 @@ function seedText({
       + 'its handoff is already done. If Remaining work names only handoff steps, '
       + 'treat it as empty.',
     `${continueStep + 1}. When the remaining work is done, run `
-      + `\`${completeCommand}\` to close the note.`,
+      + `\`${completeCommand}\` to close the note.`
+      + (afterCompaction ? '' : HOP_RESTORE_INSTRUCTION),
   );
   return lines.join('\n');
 }

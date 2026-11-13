@@ -1,0 +1,8 @@
+# dcd5aef5-fb77-4622-a788-814ba21ae4e1
+line=15 ts=2026-11-13T12:19:15.910Z goal_status met=false failed=false condition_chars=3990 head="# Goal: Open work keeper\n\nPacket: specs/"
+line=17 ts=2026-11-13T12:19:15.911Z user_prompt#1 chars=4118 head="<command-name>/goal</command-name>\n            <command-message>goal</command-me"
+line=18 ts=2026-11-13T12:19:15.911Z user_prompt#2 chars=4045 head="<local-command-stdout>Goal set: # Goal: Open work keeper\n\nPacket: specs/demo/001"
+line=19 ts=2026-11-13T12:19:15.911Z user_prompt#3 chars=4422 head="A session-scoped Stop hook is now active with condition: \"# Goal: Open work keep"
+line=49 ts=2026-11-13T12:19:24.436Z goal_status met=false failed=false condition_chars=3990 head="# Goal: Open work keeper\n\nPacket: specs/"
+line=56 ts=2026-11-13T12:19:29.151Z tool_use Bash {"command":"ls -la never-created-completion.flag 2>&1; pwd","description":"Check whether the flag file exists"}
+line=91 ts=2026-11-13T12:19:35.057Z goal_status met=false failed=false condition_chars=3990 head="# Goal: Open work keeper\n\nPacket: specs/"

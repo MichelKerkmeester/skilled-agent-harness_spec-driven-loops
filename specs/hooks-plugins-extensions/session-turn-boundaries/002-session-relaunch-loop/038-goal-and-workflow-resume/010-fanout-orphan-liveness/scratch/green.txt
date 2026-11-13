@@ -1,0 +1,19 @@
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/skills/system-deep-loop/runtime
+
+
+ Test Files  1 passed (1)
+      Tests  42 passed (42)
+   Start at  11:00:26
+   Duration  522ms (transform 30ms, setup 21ms, import 24ms, tests 390ms, environment 0ms)
+
+=== second run ===
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/skills/system-deep-loop/runtime
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 20 skipped (21)
+   Start at  11:00:27
+   Duration  1.17s (transform 65ms, setup 23ms, import 132ms, tests 924ms, environment 0ms)
+

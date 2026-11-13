@@ -274,6 +274,30 @@ test('session create, prompt, and delete map to v2 session methods', async () =>
   await cleanup();
 });
 
+test('client session update passes the title to the native session update', async () => {
+  const { dualPlugin } = await import('../lib/v2-bridge.js');
+  const { context } = createV2Context();
+  let receivedInput;
+  let client;
+  context.session.update = async (input) => {
+    receivedInput = input;
+  };
+  const plugin = dualPlugin('session-update-client-test', async (input) => {
+    client = input.client;
+    return {};
+  });
+  const cleanup = await plugin.setup(context);
+
+  const response = await client.session.update({
+    path: { id: 'session_1' },
+    body: { title: 'hop-title-check' },
+  });
+
+  assert.equal(response, undefined);
+  assert.deepEqual(receivedInput, { sessionID: 'session_1', title: 'hop-title-check' });
+  await cleanup();
+});
+
 test('session client methods reject when their v2 session member is missing', async () => {
   const { dualPlugin } = await import('../lib/v2-bridge.js');
   const { context } = createV2Context();
@@ -297,6 +321,7 @@ test('session client methods reject when their v2 session member is missing', as
       { path: { id: 'session_1' }, body: { parts: [{ type: 'text', text: 'Generate' }] } },
     ],
     ['delete', 'remove', { path: { id: 'session_1' } }],
+    ['update', 'update', { path: { id: 'session_1' }, body: { title: 'hop-title-check' } }],
   ];
 
   for (const [clientMethod, v2Method, input] of missingMethods) {
@@ -1024,6 +1049,7 @@ test('setup bridges mapped hooks, counts skipped keys, and cleans up registratio
       'create',
       'prompt',
       'delete',
+      'update',
     ]);
     return {
       event: async ({ event: v1Event }) => {

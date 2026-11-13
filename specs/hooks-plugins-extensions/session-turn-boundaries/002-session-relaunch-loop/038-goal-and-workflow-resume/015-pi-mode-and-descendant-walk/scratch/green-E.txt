@@ -1,0 +1,29 @@
+# Sandbox notes: AI_SESSION_CHILD is unset because the dispatch env exports it and a child
+# session is never nudged; --configLoader runner is added because Vite bundle-mode cannot write
+# its config temp under .skilled/node_modules here; npm --prefix .skilled with --no-install
+# points npx at the repo's installed vitest because a bare root npx hits the denied ~/.npm
+# cache. Selectors and test file are unchanged.
+
+$ env -u AI_SESSION_CHILD npm_config_cache=/tmp/npm-cache-dsh015E npx --no-install --prefix .skilled vitest run --configLoader runner --config .skilled/hooks/vitest.config.ts -t 'plan-build mode' .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts
+
+ RUN  v5.1.0 /Users/michelkerkmeester/worktrees/public/363-hop-state-carry
+
+
+ Test Files  1 passed (1)
+      Tests  3 passed | 59 skipped (62)
+   Start at  13:07:24
+   Duration  1.02s (transform 79%, tests 11%, import 9%, worker 1%)
+
+EXIT_STATUS=0
+
+$ env -u AI_SESSION_CHILD npm_config_cache=/tmp/npm-cache-dsh015E npx --no-install --prefix .skilled vitest run --configLoader runner --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts
+
+ RUN  v5.1.0 /Users/michelkerkmeester/worktrees/public/363-hop-state-carry
+
+
+ Test Files  1 passed (1)
+      Tests  62 passed (62)
+   Start at  13:07:29
+   Duration  2.81s (tests 71%, transform 22%, import 7%)
+
+EXIT_STATUS=0

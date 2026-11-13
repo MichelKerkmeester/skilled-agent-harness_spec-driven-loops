@@ -1,0 +1,55 @@
+=== T005 red: node --test --test-name-pattern "stop-arm defers pending state" ===
+✖ stop-arm defers pending state when background tasks exist and logs the reason (75.840083ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 124.745041
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:679:1
+✖ stop-arm defers pending state when background tasks exist and logs the reason (75.840083ms)
+  AssertionError [ERR_ASSERTION]: a deferred Stop tells the operator why it waits
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:696:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: '',
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }
+exit=1
+=== T006 red: node --test --test-name-pattern "stop-arm logs the cron count" ===
+✖ stop-arm logs the cron count of a session whose hop is armable (114.329ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 160.31825
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:714:1
+✖ stop-arm logs the cron count of a session whose hop is armable (114.329ms)
+  Error: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-adapter-4yQev0/runtime/skilled-relaunch/relaunch.log'
+      at Object.readFileSync (node:fs:624:20)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:738:24)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-adapter-4yQev0/runtime/skilled-relaunch/relaunch.log'
+  }
+exit=1

@@ -1,0 +1,25 @@
+Passing runs, 2026-11-13
+
+T007 context-usage suite: tests 29, pass 29, fail 0, exit 0
+Command: env -u AI_SESSION_CHILD node --test .skilled/hooks/session-relaunch/tests/context-usage.test.cjs
+
+T009 relaunch-core suite: tests 156, pass 156, fail 0, exit 0
+Command: env -u AI_SESSION_CHILD node --test .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
+
+T010 prepare name tests: tests 2, pass 2, fail 0, exit 0
+Command: env -u AI_SESSION_CHILD node --test --test-name-pattern 'custom title over SKILLED_LOOP_NAME|keeps SKILLED_LOOP_NAME' .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs
+
+T012 consume name tests: tests 7, pass 7, fail 0, exit 0
+Command: env -u AI_SESSION_CHILD node --test --test-name-pattern 'consume reports' .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs
+
+T013 launch-arguments file after the harness stub change: tests 45, pass 45, fail 0, exit 0
+
+T015 hop-name tests: tests 7, pass 7, fail 0, exit 0
+Command: env -u AI_SESSION_CHILD node --test --test-name-pattern 'numbers the replayed name|live name with the next number|instead of stacking|ends in another number|fails the check falls back|name stem without a number' .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs
+
+T016 wrapper suites: tests 199, pass 199, fail 0, exit 0
+Command: env -u AI_SESSION_CHILD node --test .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-*.test.cjs
+
+T018 full relaunch suite: tests 928, pass 928, fail 0, cancelled 0, skipped 0, exit 0
+Command: env -u AI_SESSION_CHILD node --test .skilled/hooks/session-relaunch/tests/*.test.cjs
+Baseline was 915, so 13 new tests passed.

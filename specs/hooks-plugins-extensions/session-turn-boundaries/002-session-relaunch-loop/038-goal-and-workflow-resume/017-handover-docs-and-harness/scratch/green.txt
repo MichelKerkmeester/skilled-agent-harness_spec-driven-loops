@@ -1,0 +1,22 @@
+$ bash /Users/michelkerkmeester/worktrees/public/363-hop-state-carry/specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/test-finish-run.sh
+finish-run: removed /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//finish-run-test.uwqcUs/project again after a late write
+ok
+exit=0
+
+$ bash -n /Users/michelkerkmeester/worktrees/public/363-hop-state-carry/specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/finish-run.sh
+exit=0
+
+$ bash -n /Users/michelkerkmeester/worktrees/public/363-hop-state-carry/specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/test-finish-run.sh
+exit=0
+
+# two cases
+
+$ bash /Users/michelkerkmeester/worktrees/public/363-hop-state-carry/specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/test-finish-run.sh
+finish-run: removed /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//finish-run-test.naVWFo/late-write/project again after a late write
+ok - a late write after finish-run leaves no project folder
+ok - an empty project-dir.txt removes nothing and exits 0
+ok
+exit=0
+
+$ bash -n /Users/michelkerkmeester/worktrees/public/363-hop-state-carry/specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/test-finish-run.sh
+exit=0

@@ -1,0 +1,40 @@
+# Sandbox note: Vite bundle-mode cannot write its config temp under .skilled/node_modules here, so --configLoader runner is added; selector and test file are unchanged. The dispatch env still exports AI_SESSION_CHILD for this red run, which the focused selector does not exercise.
+$ npx vitest run --configLoader runner --config .skilled/hooks/vitest.config.ts -t 'arms with the plan-build mode from the session branch' .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts
+
+ RUN  v5.1.0 /Users/michelkerkmeester/worktrees/public/363-hop-state-carry
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts (60 tests | 1 failed | 59 skipped) 43ms
+   ❯ session-relaunch Pi extension (41)
+     × agent_settled arms with the plan-build mode from the session branch 42ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts > session-relaunch Pi extension > agent_settled arms with the plan-build mode from the session branch
+AssertionError: expected { version: 1, status: 'armed', …(10) } to match object { status: 'armed', mode: 'plan' }
+(11 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "mode": "plan",
+    "status": "armed",
+  }
+
+ ❯ .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts:466:51
+    464|     });
+    465|
+    466|     expect(readRelaunchFile(loopId, process.env)).toMatchObject({
+       |                                                   ^
+    467|       status: 'armed',
+    468|       mode: 'plan',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 59 skipped (60)
+   Start at  12:58:41
+   Duration  316ms (transform 60%, tests 22%, import 16%, worker 2%)
+
+EXIT_STATUS=1

@@ -34,7 +34,7 @@
       "phases"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -44,7 +44,12 @@
       "implementation-summary.md",
       ".skilled/hooks/session-relaunch/README.md",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
-      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/finish-run.sh"
+      "scratch/hs-checks.txt",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/finish-run.sh",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/test-finish-run.sh",
+      "scratch/late-write.txt",
+      "scratch/red.txt",
+      "scratch/green.txt"
     ],
     "entities": [
       {
@@ -96,9 +101,39 @@
         "source": "derived"
       },
       {
+        "name": "hs-checks.txt",
+        "kind": "file",
+        "path": "scratch/hs-checks.txt",
+        "source": "derived"
+      },
+      {
         "name": "finish-run.sh",
         "kind": "script",
         "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/finish-run.sh",
+        "source": "derived"
+      },
+      {
+        "name": "test-finish-run.sh",
+        "kind": "script",
+        "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness/test-finish-run.sh",
+        "source": "derived"
+      },
+      {
+        "name": "late-write.txt",
+        "kind": "file",
+        "path": "scratch/late-write.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
         "source": "derived"
       },
       {
@@ -160,41 +195,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Over State Checks",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Goal In",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phases 009 to 016 change what a hand-over note asks for, what a hop carries and when a hop is refused or deferred, and neither the README nor the Claude playbook mentions any of it",
     "created_at": "2026-11-13T08:49:39Z",
-    "last_save_at": "2026-11-13T09:08:32.541Z",
+    "last_save_at": "2026-11-13T13:42:20.550Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:48ac777d08a22b3972f662672b279c51337a7d124e64bd7a580efe96abaea193",
+    "source_fingerprint": "sha256:3280bfcaeb2c54eb6e466d112416eec1badc9ea16dc50f2bfeb758f6f205fce2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1c7a3546c02c6f66e109bae5adbbcdc211cf18d14244ea2b6a52587d45ea6bac",
+      "spec.md": "a102a5407f42049f30aa642b40aaaed64db353c7124b1f1009f5056934cfce04",
       "plan.md": "f94552e1d482f2bccc9b0c0f278bcd3a1cd48faab6d1c208c6df3dea9b531ad7",
-      "tasks.md": "125c879e9029dd9cc3f32743167c4868076ed7912471adb07cbfff0266a55c21",
-      "implementation-summary.md": "f798d20ae973b0c1de046fb745564728d06e34f20050a0dcefececfd1e4ca5d2"
+      "tasks.md": "4f1560cb11e5f101e6a13ec47697a81cc75620c117497fbe62de67cbf5d3a3cb",
+      "implementation-summary.md": "383190876b9214a950f4009b262792d790c91456bda8cbba3541b1ab0290f611"
     },
     "last_active_at": null
   }

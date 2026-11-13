@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-13 |
 | **Branch** | `main` (the build branch is chosen at the operator's greenlight) |
 | **Parent Spec** | ../spec.md |

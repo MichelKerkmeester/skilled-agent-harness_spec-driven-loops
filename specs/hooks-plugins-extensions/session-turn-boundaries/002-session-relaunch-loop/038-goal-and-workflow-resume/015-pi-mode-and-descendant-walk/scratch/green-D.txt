@@ -1,0 +1,153 @@
+$ cd /Users/michelkerkmeester/worktrees/public/363-hop-state-carry && env -u AI_SESSION_CHILD node --test --test-name-pattern 'replaces the launch mode flag with the consumed mode' .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs
+
+✔ pi relaunch replaces the launch mode flag with the consumed mode (2352.934458ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2465.548542
+
+EXIT_STATUS=0
+
+$ cd /Users/michelkerkmeester/worktrees/public/363-hop-state-carry && bash -n .skilled/bin/skilled-loop
+
+
+EXIT_STATUS=0
+
+$ cd /Users/michelkerkmeester/worktrees/public/363-hop-state-carry && rg -c 'consumed_field mode' .skilled/bin/skilled-loop
+
+1
+
+EXIT_STATUS=0
+
+$ cd /Users/michelkerkmeester/worktrees/public/363-hop-state-carry && env -u AI_SESSION_CHILD node --test .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs
+
+✔ second invocation uses only the seed and name, recorded cwd, and the same loop id (2020.468583ms)
+✔ Claude first launch arguments are replayed with --permission-mode and --add-dir (1129.695125ms)
+✔ Pi first launch arguments are replayed (1125.407167ms)
+✔ OpenCode first launch arguments are replayed (1137.722292ms)
+✔ Codex first launch arguments are replayed (1050.472625ms)
+✔ Cursor first launch arguments are replayed (1126.953583ms)
+✔ an attached short option value keeps the next word as the prompt (1509.708916ms)
+✔ Devin first launch arguments are replayed (1243.640209ms)
+✔ deny list flags are absent from a hop (7274.351166ms)
+✔ a hop keeps a dash-leading value and stops at the separator (941.774333ms)
+✔ an optional value never swallows the next option (1481.439ms)
+✔ an unknown option that carries its value is not ambiguous (1066.437791ms)
+✔ a joined short resume option is not replayed (1155.251292ms)
+✔ Codex takes its model from a config setting when no model flag is given (3279.611083ms)
+✔ a hop replaces the start prompt and the record settings (1931.294667ms)
+✔ an unknown option before a bare word declines the hop (496.331542ms)
+✔ an unknown option with no bare word after it is replayed (1235.8875ms)
+✔ devin runtime dispatch does not fall through to claude (271.275959ms)
+✔ wrapper carries a valid spec folder in the relaunch seed (1123.13925ms)
+✔ wrapper carries Gate 3 Skip in the relaunch seed (1037.418708ms)
+✔ wrapper builds the relaunch seed suffix through the shared core formatter (1561.069ms)
+✔ wrapper relaunches without a spec-folder suffix when the core formatter throws (1529.520042ms)
+✔ wrapper leaves an empty spec folder unanswered without logging a drop (1047.538625ms)
+✔ wrapper drops parent traversal spec folders and logs them (855.207375ms)
+✔ wrapper drops spec-folder parent traversal spec folders and logs them (1181.525375ms)
+✔ wrapper drops trailing parent traversal spec folders and logs them (1824.143167ms)
+✔ wrapper drops shell metacharacters spec folders and logs them (1304.637625ms)
+✔ wrapper drops absolute spec folders and logs them (859.966666ms)
+✔ wrapper drops carriage return spec folders and logs them (1274.696792ms)
+✔ wrapper stops the hop and prints the manual command when consumed JSON cannot be parsed (781.663ms)
+✔ name scanning stops at -- and relaunch omits the name option (1017.191458ms)
+✔ wrapper starts claude with no arguments under /bin/bash (440.738584ms)
+✔ wrapper defaults to claude when it has no arguments (277.544125ms)
+✔ wrapper passes a single prompt argument to the default claude runtime (255.354958ms)
+✔ wrapper exports runtime identity for each supported runtime (1848.408917ms)
+✔ Claude carries --model value before the seed and name on relaunch (1351.996125ms)
+✔ Claude carries --model=value as a normalized model flag on relaunch (1828.007834ms)
+✔ wrapper exports the selected model to Claude across relaunches (1666.649084ms)
+✔ Claude does not inherit model or provider env without a model argument (1018.156959ms)
+✔ model scanning stops at -- while carrying the model selected before it (961.503917ms)
+✔ Claude keeps a multiword model as one relaunch argument (931.920542ms)
+✔ Claude ignores --model when it has no value (1127.817042ms)
+✔ second invocation omits --name when the first launch had no name (1211.545375ms)
+✔ pi relaunch carries provider and model before name and seed (964.096458ms)
+✔ Pi normalizes extension aliases and preserves selection order on relaunch (1198.847916ms)
+✔ pi relaunch replaces the launch mode flag with the consumed mode (1894.935375ms)
+✔ a Claude hop numbers the replayed name (872.985333ms)
+✔ a hop replays the sender's live name with the next number (1037.278ms)
+✔ a second hop replaces the sender's number instead of stacking it (970.165583ms)
+✔ a name that ends in another number keeps it (1444.084208ms)
+✔ a consumed name that fails the check falls back to the launch name (2143.362208ms)
+✔ a Pi hop numbers the replayed name (1684.135875ms)
+✔ the manual command carries the name stem without a number (433.782417ms)
+✔ Pi extension scanning stops at -- (1985.232083ms)
+✔ Pi does not carry -e when it has no value (1122.901084ms)
+✔ wrapper exports the selected provider and model to Pi across relaunches (1115.679167ms)
+✔ opencode carries -m before --prompt and never passes a resume flag (1152.994458ms)
+✔ opencode normalizes --model m before --prompt on relaunch (1035.712083ms)
+✔ opencode normalizes --model=m before --prompt on relaunch (1164.835875ms)
+✔ opencode 2 starts standalone on the first launch and on every relaunch (2362.955209ms)
+✔ opencode 2 does not duplicate an operator-supplied --standalone (970.157875ms)
+✔ opencode 2 relaunch drops -m because its root command has no model flag (1297.900708ms)
+✔ opencode 2 on --server leaves the launch alone and warns the loop cannot arm (265.663541ms)
+✔ opencode 2 equals-form server warns and keeps the launch (260.042042ms)
+✔ missing runtime binary exits 127 (202.765167ms)
+✔ opencode without --standalone in its help keeps the launch and the -m replay (1801.431583ms)
+✔ wrapper removes its own leftover relaunch record before the first launch (350.214917ms)
+✔ a leftover relaunch record for another loop is kept (617.872667ms)
+✔ an own leftover record that is a symlink is removed and its target is kept (267.070959ms)
+✔ wrapper declines a stale armed record and logs the decline (368.504208ms)
+✔ wrapper pending print carries the consumed packet answer (394.5465ms)
+✔ wrapper pending print carries the consumed skip answer (404.323042ms)
+✔ wrapper pending print carries the consumed empty answer (346.62025ms)
+✔ wrapper prints a manual command when the hop cap declines a record (351.419708ms)
+✔ declined relaunch warns when the handoff path contains a line break (242.824292ms)
+✔ codex disables the daemon on the first launch and each relaunch (2034.945708ms)
+✔ codex does not duplicate an operator-supplied --no-daemon option (1118.48775ms)
+✔ relaunch replays the launch effort: claude --effort (1025.678209ms)
+✔ relaunch replays the launch effort: claude --effort= (1049.022416ms)
+✔ relaunch replays the launch effort: codex quoted -c model_reasoning_effort (984.107041ms)
+✔ relaunch replays the launch effort: codex bare --config model_reasoning_effort (1454.369375ms)
+✔ relaunch replays the launch effort: pi --thinking (1734.572792ms)
+✔ relaunch drops a launch effort its runtime would reject (1273.773333ms)
+✔ relaunch does not invent an effort for a runtime with no effort flag (971.21275ms)
+✔ the sender live model and effort replace the launch values for that hop (1115.042375ms)
+✔ a Pi sender live provider, model and thinking level replace the launch values (1082.592292ms)
+✔ a live model with no live effort drops the launch effort: claude (1500.516542ms)
+✔ a live model with its live effort renders that effort: claude (1387.451833ms)
+✔ a live model with no live effort drops the launch effort: codex (1006.274167ms)
+✔ a live model with its live effort renders that effort: codex (807.914625ms)
+✔ a live model with no live effort drops the launch effort: pi (1182.500916ms)
+✔ a live model with its live effort renders that effort: pi (1865.231084ms)
+✔ a live model equal to the launch model keeps the launch effort (1261.566666ms)
+✔ a launch with no model keeps its launch effort beside a live model (861.482458ms)
+✔ a Pi live model matching the provider-prefixed launch model keeps the launch thinking (2524.592959ms)
+✔ a Pi live provider that differs from the launch provider drops the launch thinking (3418.51875ms)
+✔ every launch carries the time it started, so a hop can tell its own changes apart (1302.015458ms)
+✔ a Cursor live model keeps its bracketed parameters on the relaunch (1765.329875ms)
+✔ a live provider is ignored on a runtime that does not take one (1771.257833ms)
+✔ a live model or effort the runtime would reject falls back to the launch value (1030.750417ms)
+✔ a live value is the next hop launch value when that hop records none (1537.309875ms)
+✔ manual command carries the live model and effort (423.263041ms)
+✔ Cursor manual command carries the live Cursor model (594.460875ms)
+✔ manual command keeps the launch model for an invalid live model (375.659667ms)
+✔ manual command reports a live model that holds the placeholder (392.562958ms)
+✔ manual command after a model-switching hop carries the current hop's model (1197.787083ms)
+✔ the sender live permission mode replaces the launch mode for that hop (963.442583ms)
+✔ a live permission mode the CLI would reject falls back to the launch mode (1116.569417ms)
+✔ a live default permission mode replaces the launch mode (912.4465ms)
+✔ a live plan mode keeps the launch mode (950.783334ms)
+✔ a live bypass mode with no unlocking launch flag keeps the launch mode (898.456209ms)
+✔ a hop with no live permission mode replays the launch mode before the seed (1047.256042ms)
+✔ manual command carries the live permission mode (426.400625ms)
+✔ multi-hop relaunches carry each runtime model and provider on every invocation (10012.04175ms)
+ℹ tests 114
+ℹ suites 0
+ℹ pass 114
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 74542.934875
+
+EXIT_STATUS=0
+
+SUMMARY focused=0 syntax=0 count=0 whole=0

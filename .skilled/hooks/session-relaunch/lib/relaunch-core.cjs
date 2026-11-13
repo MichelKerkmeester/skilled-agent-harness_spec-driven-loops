@@ -723,10 +723,11 @@ function safeDirectory(directory) {
  * @param {string} options.runtime - Runtime that owns the session.
  * @param {string} options.sessionId - The session's identifier.
  * @param {NodeJS.ProcessEnv} [options.env=process.env] - Environment carrying the log location.
- * @returns {{model: string, effort: string}} The values the log proves, '' for the rest.
+ * @returns {{model: string, effort: string, name: string}} The values the log proves, `''`
+ * for the rest, and the live session name when the log carries one.
  */
 function resolveSessionSettings({ runtime, sessionId, env = process.env } = {}) {
-  const none = { model: '', effort: '' };
+  const none = { model: '', effort: '', name: '' };
   try {
     if (!nonEmptyString(sessionId)) return none;
     const usage = require('./context-usage.cjs');
@@ -740,7 +741,12 @@ function resolveSessionSettings({ runtime, sessionId, env = process.env } = {}) 
     } else if (runtime === 'cursor') {
       found = { model: cursorSelectedModel(env), effort: '' };
     }
-    return found ?? none;
+    if (found === null) return none;
+    return {
+      model: found.model ?? '',
+      effort: found.effort ?? '',
+      name: typeof found.name === 'string' ? found.name : '',
+    };
   } catch {
     return none;
   }
@@ -975,9 +981,10 @@ function preparePending({
  * @param {Object} options - Loop state transition inputs.
  * @param {string} options.loopId - Wrapper process identifier.
  * @param {string} [options.cwd=process.cwd()] - Live working directory.
- * @param {{model?: string, provider?: string, effort?: string}} [options.settings] - The
- *   session's current model, provider and effort, from an adapter whose host exposes them;
- *   each non-empty value replaces what prepare recorded.
+ * @param {{model?: string, provider?: string, effort?: string, permissionMode?: string,
+ *   mode?: string}} [options.settings] - The session's current model, provider, effort,
+ *   permission mode and mode, from an adapter whose host exposes them; each accepted value
+ *   replaces what prepare recorded, and a mode counts only as `plan` or `build`.
  * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
  * @param {Date|number|string} [options.now] - Clock value for deterministic records.
  * @returns {Object|null} The armed record, or null when absent, unreadable, or not armable.
@@ -1008,9 +1015,12 @@ function armLocked({ loopId, cwd, settings = {}, env, now }) {
   // A signal stamp belongs to the arm its killer watched, so a new arm starts without one.
   const { signalledAt: _signalledAt, ...unsignalled } = record;
   const liveSettings = {};
-  for (const key of ['model', 'provider', 'effort']) {
+  for (const key of ['model', 'provider', 'effort', 'permissionMode']) {
     if (nonEmptyString(settings?.[key])) liveSettings[key] = settings[key];
   }
+  // Only a plan or build mode names a loop the wrapper can resume; an adapter's other modes
+  // must not ride along into the record it replays.
+  if (settings?.mode === 'plan' || settings?.mode === 'build') liveSettings.mode = settings.mode;
   // An effort belongs to the model it was chosen for, so a new model that brings no effort
   // leaves the record without one rather than beside the old model's effort.
   const { effort: _recordedEffort, ...withoutEffort } = unsignalled;

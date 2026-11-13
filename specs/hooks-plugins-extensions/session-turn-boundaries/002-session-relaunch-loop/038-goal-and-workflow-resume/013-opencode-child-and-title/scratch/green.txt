@@ -1,0 +1,166 @@
+✔ a sub-agent session.idle never arms a pending record (42.3385ms)
+✔ a parent session.idle does not arm while its sub-agent is busy (5.755459ms)
+✔ a deferred parent arm runs when its last busy sub-agent goes idle (9.671667ms)
+✔ a parent with two sub-agents stays unarmed until both are idle (9.901625ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 108.001041
+✔ session.created adds v1 session info while preserving v2 event data (37.594458ms)
+✔ session events keep an existing info payload unchanged (0.273833ms)
+✔ message events do not gain session info (0.105542ms)
+✔ session.messages adapts v2 context entries to the v1 data envelope (0.188583ms)
+✔ session.promptAsync queues v1 text through v2 session.prompt (0.174875ms)
+✔ session create, prompt, and delete map to v2 session methods (0.231ms)
+✔ client session update passes the title to the native session update (0.118208ms)
+✔ session client methods reject when their v2 session member is missing (0.247333ms)
+✔ execution and compaction events emit their v1 aliases once (0.212042ms)
+✔ session.idle alias then native event delivers one idle event (0.158875ms)
+✔ native session.idle then alias delivers one idle event (0.101417ms)
+✔ session.idle alias state resets for each execution turn and remains session-scoped (0.108709ms)
+✔ session.compacted aliases deduplicate and reset for each compaction (0.094666ms)
+✔ session.deleted clears the session event alias state (0.070667ms)
+✔ a session event before session.created announces the session first (0.105583ms)
+✔ a later session.created does not announce an already announced session (0.078333ms)
+✔ a leading session.created is delivered once without a synthesized duplicate (0.068083ms)
+✔ a system transform before the stream announces its session once (0.159042ms)
+✔ a system transform waits for an announcement the stream already started (3.701833ms)
+✔ a system transform waits for a real session.created already being delivered (0.390833ms)
+✔ session.deleted waits for an in-flight announcement of the same session (0.421209ms)
+✔ an event failure during context announcement is reported at cleanup (0.217792ms)
+✔ a tool named constructor reaches the plugin as a plain string (0.145958ms)
+✔ a transform without an event hook does not synthesize an event (0.067667ms)
+✔ session.deleted allows the same session to be announced again (0.06775ms)
+✔ session.text.ended maps to a v1 assistant text-part event (0.075042ms)
+✔ session.step.ended maps to a v1 message update with token usage fields (0.098709ms)
+✔ session.step.ended carries created as the completed time (0.065583ms)
+✔ session.step.ended without a created time omits info.time (0.045625ms)
+✔ a user inbox item emits the user message then its text part in order (0.083583ms)
+✔ a non-user inbox item maps to nothing beyond the original event (0.051292ms)
+✔ setup bridges mapped hooks, counts skipped keys, and cleans up registrations and events (2.232667ms)
+✔ the v2 handler rejects when the v1 hook throws so the host denies the tool call (0.132416ms)
+✔ execute.after maps a v2 error result to v1 output (0.303584ms)
+✔ execute.after maps title, output, and metadata from a v2 result (0.102291ms)
+✔ execute.after defaults output fields when the v2 result is absent (0.070917ms)
+✔ v1 tool string results convert to v2 content results (0.230167ms)
+✔ v1 tool object results convert output and title metadata to v2 results (0.217042ms)
+✔ v1 tool execute receives adapted context fields and preserved v2 fields (0.238708ms)
+✔ system transform receives the model when the v2 context event includes one (0.082334ms)
+✔ cleanup returns the same promise when called more than once (0.052125ms)
+✔ cleanup rejects when a registered dispose rejects (0.083333ms)
+✔ setup failure cleans registered hooks and rethrows the original error (0.098084ms)
+✔ execute.before leaves the original args untouched when the v1 hook does not change them (0.067166ms)
+✔ tool identity preserves the v1 helper contract (1.131625ms)
+✔ execute.before presents a v2 shell call to the plugin as bash (0.168041ms)
+✔ execute.before leaves a non-aliased tool and its args unchanged (0.093ms)
+✔ execute.before presents a v2 subagent call as task with subagent_type (0.147542ms)
+✔ execute.before writes a changed subagent_type back to agent (0.269208ms)
+✔ execute.after gives a v2 shell call the v1 string output (0.230416ms)
+✔ execute.after presents a v2 subagent call as task with subagent_type (0.337042ms)
+✔ a v1 hook refusal for bash reaches the host for a v2 shell call (0.1245ms)
+ℹ tests 52
+ℹ suites 0
+ℹ pass 52
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 142.221166
+✔ the claim seed sets the session title to SKILLED_LOOP_NAME (134.589625ms)
+✔ no title call without SKILLED_LOOP_NAME or a client update method (4.024ms)
+✔ a rejected title call leaves the seed in place (2.181875ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 222.846375
+✔ a sub-agent session.idle never arms a pending record (46.514667ms)
+✔ a parent session.idle does not arm while its sub-agent is busy (6.615291ms)
+✔ a deferred parent arm runs when its last busy sub-agent goes idle (10.500958ms)
+✔ a parent with two sub-agents stays unarmed until both are idle (9.920291ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 138.703042
+✔ the claim seed sets the session title to SKILLED_LOOP_NAME (37.084916ms)
+✔ no title call without SKILLED_LOOP_NAME or a client update method (2.988ms)
+✔ a rejected title call leaves the seed in place (1.755666ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 89.705917
+✔ session.created adds v1 session info while preserving v2 event data (18.253292ms)
+✔ session events keep an existing info payload unchanged (0.17525ms)
+✔ message events do not gain session info (0.100208ms)
+✔ session.messages adapts v2 context entries to the v1 data envelope (0.190125ms)
+✔ session.promptAsync queues v1 text through v2 session.prompt (0.125458ms)
+✔ session create, prompt, and delete map to v2 session methods (0.196375ms)
+✔ client session update passes the title to the native session update (0.100583ms)
+✔ session client methods reject when their v2 session member is missing (0.262459ms)
+✔ execution and compaction events emit their v1 aliases once (0.212042ms)
+✔ session.idle alias then native event delivers one idle event (0.134583ms)
+✔ native session.idle then alias delivers one idle event (0.084833ms)
+✔ session.idle alias state resets for each execution turn and remains session-scoped (0.103291ms)
+✔ session.compacted aliases deduplicate and reset for each compaction (0.08325ms)
+✔ session.deleted clears the session event alias state (0.071375ms)
+✔ a session event before session.created announces the session first (0.110875ms)
+✔ a later session.created does not announce an already announced session (0.09575ms)
+✔ a leading session.created is delivered once without a synthesized duplicate (0.06775ms)
+✔ a system transform before the stream announces its session once (0.143917ms)
+✔ a system transform waits for an announcement the stream already started (3.08ms)
+✔ a system transform waits for a real session.created already being delivered (0.323ms)
+✔ session.deleted waits for an in-flight announcement of the same session (0.229792ms)
+✔ an event failure during context announcement is reported at cleanup (0.1275ms)
+✔ a tool named constructor reaches the plugin as a plain string (0.1175ms)
+✔ a transform without an event hook does not synthesize an event (0.063ms)
+✔ session.deleted allows the same session to be announced again (0.07025ms)
+✔ session.text.ended maps to a v1 assistant text-part event (0.103209ms)
+✔ session.step.ended maps to a v1 message update with token usage fields (0.098333ms)
+✔ session.step.ended carries created as the completed time (0.063459ms)
+✔ session.step.ended without a created time omits info.time (0.048584ms)
+✔ a user inbox item emits the user message then its text part in order (0.085417ms)
+✔ a non-user inbox item maps to nothing beyond the original event (0.060875ms)
+✔ setup bridges mapped hooks, counts skipped keys, and cleans up registrations and events (2.032334ms)
+✔ the v2 handler rejects when the v1 hook throws so the host denies the tool call (0.087875ms)
+✔ execute.after maps a v2 error result to v1 output (0.061292ms)
+✔ execute.after maps title, output, and metadata from a v2 result (0.051333ms)
+✔ execute.after defaults output fields when the v2 result is absent (0.046042ms)
+✔ v1 tool string results convert to v2 content results (0.127167ms)
+✔ v1 tool object results convert output and title metadata to v2 results (0.129333ms)
+✔ v1 tool execute receives adapted context fields and preserved v2 fields (0.169875ms)
+✔ system transform receives the model when the v2 context event includes one (0.054834ms)
+✔ cleanup returns the same promise when called more than once (0.034208ms)
+✔ cleanup rejects when a registered dispose rejects (0.055834ms)
+✔ setup failure cleans registered hooks and rethrows the original error (0.057333ms)
+✔ execute.before leaves the original args untouched when the v1 hook does not change them (0.046875ms)
+✔ tool identity preserves the v1 helper contract (1.246709ms)
+✔ execute.before presents a v2 shell call to the plugin as bash (0.070084ms)
+✔ execute.before leaves a non-aliased tool and its args unchanged (0.045958ms)
+✔ execute.before presents a v2 subagent call as task with subagent_type (0.048875ms)
+✔ execute.before writes a changed subagent_type back to agent (0.047666ms)
+✔ execute.after gives a v2 shell call the v1 string output (0.064584ms)
+✔ execute.after presents a v2 subagent call as task with subagent_type (0.044666ms)
+✔ a v1 hook refusal for bash reaches the host for a v2 shell call (0.054083ms)
+ℹ tests 52
+ℹ suites 0
+ℹ pass 52
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 76.180458

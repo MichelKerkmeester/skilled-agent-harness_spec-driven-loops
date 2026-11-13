@@ -199,12 +199,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -221,11 +215,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "A review of 2026-11-12, checked by a second reviewer, found that a session hop carries the goal on Claude Code, Pi and OpenCode but loses work around it",
     "created_at": "2026-11-12T22:42:00Z",
-    "last_save_at": "2026-11-13T09:17:33.938Z",
+    "last_save_at": "2026-11-13T13:47:05.662Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -233,10 +233,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:1e59ea59c51a5c8dbae84435f18145fb28bccb4bacd89ef7091954b9b41650dc",
+    "source_fingerprint": "sha256:68e10d065b8bc4bb787ad9c3780daf9296367d6a40d414abf21c1956677fab5c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "510a938067fa2e0754972c5209daf7db3738a4798749ffb1213d96bbed89342e",
+      "spec.md": "97421d9fb29fb880b99598df0500b876cb3d32d482f07ce84af91a366a3cf4ae",
       "research/research.md": "92204b9299358f635ddc43598d35626ede62378b316b456c7c5c352fddfb8e71"
     },
     "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/008-review-advisories",

@@ -131,6 +131,7 @@ test('wrapper and CLI both print the manual command on stdout', (t) => {
     'Nothing.',
     '## In-flight state',
     'No child process is running.',
+    'Running workers: none',
     '',
   ].join('\n'));
   const cliResult = spawnSync(process.execPath, [
@@ -651,7 +652,7 @@ test('a Claude hop with a goal starts on the goal command and carries the claim 
   const records = readRecords(recordPath);
   assert.equal(records.length, 2);
   assert.equal(records[0].env.hasClaimSeed, false);
-  assert.deepEqual(records[1].args, ['--model', 'opus', `/goal ${GOAL_SLICE}`, '--name', 'Work']);
+  assert.deepEqual(records[1].args, ['--model', 'opus', `/goal ${GOAL_SLICE}`, '--name', 'Work (2)']);
   assert.equal(records[1].env.SKILLED_LOOP_CLAIM_SEED, claimSeedFor(handoffPath));
   assert.equal(records[1].env.SESSION_RELAUNCH_GOAL_PACKET, GOAL_PACKET);
   assert.deepEqual(warningLines(result), []);

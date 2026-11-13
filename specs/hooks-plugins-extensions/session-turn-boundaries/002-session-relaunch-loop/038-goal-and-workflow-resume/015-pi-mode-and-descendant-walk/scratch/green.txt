@@ -1,0 +1,633 @@
+# Sandbox notes: AI_SESSION_CHILD is unset because the dispatch env exports it and a child session is never nudged; --configLoader runner is added because Vite bundle-mode cannot write its config temp under .skilled/node_modules here. Selectors and test file are unchanged.
+$ env -u AI_SESSION_CHILD npx vitest run --configLoader runner --config .skilled/hooks/vitest.config.ts -t 'arms with the plan-build mode from the session branch' .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts
+
+ RUN  v5.1.0 /Users/michelkerkmeester/worktrees/public/363-hop-state-carry
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 59 skipped (60)
+   Start at  12:59:38
+   Duration  156ms (transform 58%, tests 23%, import 18%, worker 2%)
+
+EXIT_STATUS=0
+
+$ env -u AI_SESSION_CHILD npx vitest run --configLoader runner --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts
+
+ RUN  v5.1.0 /Users/michelkerkmeester/worktrees/public/363-hop-state-carry
+
+
+ Test Files  1 passed (1)
+      Tests  60 passed (60)
+   Start at  12:59:40
+   Duration  575ms (tests 82%, transform 14%, import 4%)
+
+EXIT_STATUS=0
+$ env -u AI_SESSION_CHILD node --test --test-name-pattern 'arm keeps a plan or build mode' .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
+✔ arm keeps a plan or build mode and drops any other value (18.75625ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 76.3005
+EXIT:0
+
+$ env -u AI_SESSION_CHILD node --test .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
+✔ stateDir and relaunchFilePath use the isolated runtime directory (2.348041ms)
+✔ stateDir falls back to a per-user temp directory without a runtime dir (1.341958ms)
+✔ ensureStateDir refuses a state path that is a symlink (1.327167ms)
+✔ ensureStateDir refuses a state path that is a regular file (1.295208ms)
+✔ ensureStateDir refuses a state directory owned by another user (1.229792ms)
+✔ parseHandoff returns flat frontmatter and the four section bodies (1.508375ms)
+✔ parseHandoff rejects text without frontmatter fences (0.863042ms)
+✔ validateHandoff reports the path of a missing note (0.837333ms)
+✔ validateHandoff rejects a note whose status is not open (2.043625ms)
+✔ validateHandoff rejects a note from another session (2.705916ms)
+✔ validateHandoff rejects a missing Goal section (2.170375ms)
+✔ validateHandoff rejects a blank Goal section (2.133042ms)
+✔ validateHandoff rejects a missing Done section (1.932709ms)
+✔ validateHandoff rejects a blank Done section (1.819542ms)
+✔ validateHandoff rejects a missing Remaining work section (1.934959ms)
+✔ validateHandoff rejects a blank Remaining work section (1.954875ms)
+✔ validateHandoff rejects a missing In-flight state section (2.053667ms)
+✔ validateHandoff rejects a blank In-flight state section (2.054292ms)
+✔ validateHandoff accepts a valid open note for the matching session (2.089458ms)
+✔ claimHandoff moves an open note to claimed with claim metadata (9.215417ms)
+✔ claimHandoff reports the path of a missing note (1.217917ms)
+✔ claimHandoff throws when the note has already been claimed (2.2515ms)
+✔ claim of a done note says the work is finished (3.056333ms)
+✔ claim of a done note names the note that superseded it (2.228ms)
+✔ claim of a claimed note names its owner (4.321834ms)
+✔ claim of a note with no status says it is not a handoff note (2.375791ms)
+✔ claim of a note with an unknown status keeps the prefix only (1.831875ms)
+✔ completeHandoff moves a claimed note to done with completion metadata (7.100542ms)
+✔ completeHandoff reports the path of a missing note (1.132917ms)
+✔ completeHandoff throws when the note is still open (1.813584ms)
+✔ supersedeClaimed completes this session note and names its replacement (6.486375ms)
+✔ supersedeClaimed continues when one claimed note cannot be written (16.408083ms)
+✔ supersedeClaimed rejects a empty session id (2.086709ms)
+✔ supersedeClaimed rejects a missing session id (2.763458ms)
+✔ supersedeClaimed rejects a multi-line session id (2.509833ms)
+✔ supersedeClaimed completes an open note this session wrote but never prepared (10.781708ms)
+✔ claim and complete pin a permissive note to owner-only access (6.634792ms)
+✔ supersedeClaimed leaves unrelated and malformed notes untouched (4.639959ms)
+✔ supersedeClaimed reads and rewrites each candidate note under its lock (16.228291ms)
+✔ preparePending writes the exact pending record shape (10.674958ms)
+✔ arm changes pending to armed, records the live cwd, and a re-arm restamps both (10.485333ms)
+✔ arm stamps a fresh armId on every arm even in the same millisecond (12.516167ms)
+✔ arm with a new model and no effort clears the recorded effort (10.502083ms)
+✔ arm keeps a live permission mode and a later arm without one keeps it (11.755375ms)
+✔ arm keeps a plan or build mode and drops any other value (16.077042ms)
+✔ a re-arm makes an armed record older than the age limit relaunchable again (13.994041ms)
+✔ markSignalled stamps only the armed record it was given, and a re-arm clears it (21.262625ms)
+✔ arm returns null when no pending record exists (0.949ms)
+✔ arm returns null for every status except pending and armed (3.32725ms)
+✔ arm returns null when the record cannot be read (2.264042ms)
+✔ unarm records disarmed status and the supplied reason (6.281ms)
+✔ unarm leaves the record armed when expectedArmId is stale (2.258125ms)
+✔ unarm disarms the record when expectedArmId matches (5.829875ms)
+✔ readRelaunchFile returns the parsed record or null when absent (1.961167ms)
+✔ readRelaunchFile reads no record from a symlinked state directory (4.10575ms)
+✔ readRelaunchFile treats invalid JSON as absent and logs the loop id (6.694291ms)
+✔ readRelaunchFile still returns null when the corruption log write fails (2.217375ms)
+✔ shouldRelaunch declines when there is no record (1.428917ms)
+✔ shouldRelaunch declines a pending record (1.122291ms)
+✔ shouldRelaunch accepts an armed record at exactly ten minutes old (1.231041ms)
+✔ shouldRelaunch declines a record armed in the future as stale (0.895917ms)
+✔ shouldRelaunch declines an armed record one millisecond beyond ten minutes (0.940541ms)
+✔ shouldRelaunch accepts hop nine below the default cap (0.803458ms)
+✔ shouldRelaunch declines hop ten at the default cap (0.722208ms)
+▶ shouldRelaunch declines malformed persisted hops
+  ✔ negative (0.068542ms)
+  ✔ fractional (0.027833ms)
+  ✔ null (0.017834ms)
+  ✔ numeric string (0.014792ms)
+  ✔ NaN (0.01225ms)
+  ✔ Infinity (0.011208ms)
+  ✔ missing (0.011209ms)
+✔ shouldRelaunch declines malformed persisted hops (1.154459ms)
+✔ shouldRelaunch accepts hop zero below the default cap (1.192ms)
+✔ appendLog writes exactly one formatted line for every call (13.790416ms)
+✔ appendLog restores private mode on an existing permissive log file (6.188959ms)
+✔ manualClaimCommand places the quoted seed where each runtime expects it (0.414792ms)
+✔ manualClaimCommand carries packet and skip answers in the seed (0.054208ms)
+✔ validSpecFolder requires a numbered leaf and rejects traversal and line breaks (0.042709ms)
+✔ manualClaimCommand omits an unnumbered spec-folder answer (0.026375ms)
+✔ manualClaimCommand omits empty and invalid spec-folder answers (0.034458ms)
+✔ manualClaimCommand escapes shell-sensitive characters in the handoff path (0.020125ms)
+✔ manualClaimCommand ignores inherited Object properties as runtime names (0.024708ms)
+✔ manualClaimCommand closes double quotes around a single-quoted bang (0.017792ms)
+✔ manualClaimCommand preserves a bang path in interactive bash (7.173333ms)
+✔ manualClaimCommand uses a single-token template and keeps its default otherwise (0.2445ms)
+✔ manualClaimCommand keeps dollar sequences literal inside the template fill (0.115375ms)
+✔ appendLog keeps every line when eight processes append concurrently (1691.9315ms)
+✔ appendLog waits for an in-flight append before peeking the last byte (530.699708ms)
+✔ appendLog starts the next event on its own line after a partial line (16.529417ms)
+✔ appendLog rejects a short write instead of reporting success (10.612584ms)
+✔ findLoopChildPid selects the ancestor directly below the loop (2.892792ms)
+✔ hostRuntimePid skips shells above the caller (0.469292ms)
+✔ hostRuntimePid returns the direct parent when it is not a shell (0.080833ms)
+✔ hostRuntimePid returns null for a missing table or a broken chain (0.059ms)
+✔ nestedUnderLoop is false for the loop child and a shim grandchild (0.073541ms)
+✔ nestedUnderLoop is true for a runtime started from the loop runtime shell (0.361875ms)
+✔ nestedUnderLoop is false for an unrelated or invalid loop id (0.076875ms)
+✔ dropNestedLoop removes the loop variables for a nested run (12.747958ms)
+✔ dropNestedLoop keeps the loop variables for the loop own runtime (0.129166ms)
+✔ dropNestedLoop does nothing outside the loop (0.045625ms)
+✔ dropNestedLoop resolves the host from pid when hostPid is omitted (13.182583ms)
+✔ readProcessTable returns null instead of blocking on a stuck ps (2005.858167ms)
+✔ readProcessTable bounds the ps spawn with a timeout (0.543083ms)
+✔ liveKillerPid returns a live lock owner and null otherwise (30.216541ms)
+✔ liveKillerPid ignores a lock whose recorded expiry has passed (2.260125ms)
+✔ liveKillerPid ages out a legacy lock without an expiry field (2.123084ms)
+✔ liveKillerPid reads the killer lock once so a vanished lock reports no owner (1.437417ms)
+✔ readLockState reports the owner and expiry from one read (1.653625ms)
+✔ lockIsExpired keeps an unparseable lock (1.397584ms)
+✔ manual claim commands balance their parentheses for every spec answer (0.123125ms)
+✔ shouldRelaunch declines a fresh armed record that names no handoff or no cwd (1.435625ms)
+✔ claimHandoff updates a status key written with a space before the colon (10.424042ms)
+✔ noteState classifies a note as missing, invalid, open, claimed or done (2.486834ms)
+✔ resolveKillerTarget keeps a preferred pid inside the loop or walks to its child (0.133583ms)
+✔ armableRecord gives every arm path one verdict, ownership before state (1.581584ms)
+✔ the core owns the handoff sections and the runtime list as frozen exports (0.074583ms)
+✔ readProcessTable asks for the command column on request and honors a shorter bound (330.724125ms)
+✔ manualClaimCommand reads the template from the environment it is given (0.140167ms)
+✔ manualTemplateProblem names a template the manual command has to fall back from (0.045292ms)
+✔ payloadEventName applies each runtime's rule for a payload that names no event (0.079542ms)
+✔ isEntrypoint matches a directly run or linked module and nothing else (3.890292ms)
+✔ shouldRelaunch reads a Date clock the way it reads epoch milliseconds (1.100417ms)
+✔ shouldRelaunch reports a hand-over the session called off as withdrawn (2.050542ms)
+✔ dropNestedLoop removes every loop variable, manual template included (8.268709ms)
+✔ arm, unarm and markDeferred each take the record lock once and release it (23.019666ms)
+✔ preparePending writes the record under the record lock (10.094833ms)
+✔ withdrawRecord takes the record lock once and disarms only a record it accepts (11.085083ms)
+✔ claimHandoff and completeHandoff each take the note lock and release it (14.103291ms)
+✔ two concurrent claims have one winner (51.1515ms)
+✔ two waiters never hold the append lock together (2539.796083ms)
+[session-relaunch] relaunch state directory is not a real directory owned by the current user: /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-core-xqUh96/runtime/skilled-relaunch
+✔ eight waiters never hold the append lock together (1770.424125ms)
+✔ an unsafe state directory gets no lock directory (1.310875ms)
+✔ arm takes no lock in an unsafe state directory (1.613042ms)
+✔ arm returns null when the state directory cannot be inspected (1.446417ms)
+✔ goalPacketProblem accepts a packet whose goal.md is real and refuses everything else (3.099958ms)
+✔ goalPacketProblem accepts a packet that only a second root holds (1.833459ms)
+✔ goalSwitchOn is on unless the operator turns it off (0.105125ms)
+✔ resolveGoalPacket reads the opencode goal record (4.979125ms)
+✔ resolveGoalPacket reads the pi goal record (4.00525ms)
+✔ resolveGoalPacket reads the devin goal record (2.986542ms)
+✔ resolveGoalPacket reads the cursor goal record (3.493708ms)
+✔ resolveGoalPacket keys a record by the session, so another session finds nothing (2.3435ms)
+✔ resolveGoalPacket gives a Codex sender no packet, whatever the spec folder holds (1.607667ms)
+✔ resolveGoalPacket follows the Claude session log goal entries (4.050334ms)
+✔ resolveGoalPacket answers empty when no Claude log can be read (2.523833ms)
+✔ resolveGoalPacket widens the Claude log tail past one large entry (3.265666ms)
+✔ resolveGoalPacket answers empty for an unknown runtime or a missing session (1.565ms)
+✔ the resolver result carries the packet and the reason together (2.57925ms)
+✔ hands a devin or cursor session the hand-over packet (6.765208ms)
+✔ keeps the hand-over packet off (6.00575ms)
+✔ finds a goal headline outside the packet lineage (5.579833ms)
+✔ recordGoalPacket writes, replaces and removes the field and skips an unchanged note (17.956292ms)
+✔ recordGoalPacket removes an empty field the note holds (5.807625ms)
+✔ recordGoalPacket leaves a note that is not open untouched (2.409958ms)
+✔ an active goal with no text names the empty goal, not a missing packet (1.42225ms)
+✔ claim seed parser inverts the seed suffix (0.2285ms)
+✔ usableGoalPacket is exported by the core (2.507834ms)
+ℹ tests 157
+ℹ suites 0
+ℹ pass 157
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9581.742833
+EXIT:0
+$ env -u AI_SESSION_CHILD node --test --test-name-pattern 'consume prints the recorded Pi mode' .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs
+✔ consume prints the recorded Pi mode (52.0175ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 124.599333
+EXIT_STATUS=0
+
+$ env -u AI_SESSION_CHILD node --test .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs
+✔ window names the missing settings when no window is configured (396.95875ms)
+✔ window rejects an argument (121.3235ms)
+✔ prepare exits zero under the loop with a Claude process that has no children (350.132833ms)
+✔ prepare under the loop prints the prepared handoff and the stop instruction (74.758292ms)
+✔ prepare declines at the hop limit without writing a relaunch record (69.08925ms)
+✔ prepare still arms a pending record below the hop limit (80.145208ms)
+✔ prepare arms nothing under the loop when nothing enables the relaunch concern (41.048459ms)
+✔ prepare refuses with one message inside and outside the loop when the concern is off (77.860708ms)
+✔ prepare refusal names the flag that turned session relaunch off (144.846709ms)
+✔ prepare arms a record when the flags file opts in to the relaunch concern (73.091458ms)
+✔ prepare records the runtime from SKILLED_LOOP_RUNTIME (106.939916ms)
+✔ prepare requires --session for Codex despite a Claude session env (63.758375ms)
+✔ prepare accepts every runtime the wrapper can launch (552.451042ms)
+✔ prepare exits two for an unknown SKILLED_LOOP_RUNTIME (35.189917ms)
+✔ prepare succeeds when its result log cannot be written (63.777875ms)
+✔ prepare exits two for an invalid handoff note (39.196625ms)
+✔ prepare exits two for a note with no Running workers line (38.344708ms)
+✔ prepare refuses a Running workers line with neither none nor a pid (83.1135ms)
+✔ prepare accepts Running workers none and a line that names a pid (210.499125ms)
+✔ keep accepts a note with no Running workers line (68.833541ms)
+✔ prepare exits two for an invalid CLAUDE_PID under the loop (76.008666ms)
+✔ prepare exits two when CLAUDE_PID has a live bash child (212.857542ms)
+✔ prepare exits two for a live fish child of the Claude process (53.798ms)
+✔ prepare exits two for a live -zsh child of the Claude process (57.740375ms)
+✔ prepare checks the loop child, not a CLAUDE_PID outside the loop (71.890833ms)
+✔ prepare refuses a live shell child when CLAUDE_PID is outside the loop (59.465417ms)
+✔ prepare warns and prints the plain command when the template cannot be filled (37.673875ms)
+✔ prepare prints a usable manual template without a warning (33.100042ms)
+✔ prepare ignores an inherited Claude shell child for a Codex loop (171.0745ms)
+✔ prepare refuses a live shell child of the Codex loop runtime (182.694458ms)
+✔ prepare refuses a live shell child of the Pi loop runtime (131.746042ms)
+✔ prepare refuses a live shell child of the OpenCode loop runtime (131.231291ms)
+✔ prepare names the runtime when ps fails (55.890291ms)
+✔ prepare gives up on a hung ps instead of stalling the hook (2039.074ms)
+✔ prepare refuses a live shell child without CLAUDE_PID (133.201292ms)
+✔ prepare logs running-work-check-skipped when SKILLED_LOOP_ID has no ancestor (110.407792ms)
+✔ prepare exits three outside the loop and prints the manual claim command (55.937458ms)
+✔ prepare and keep refuse a spec folder the repository does not hold (150.498083ms)
+✔ prepare and keep accept a spec folder that only the note cwd checkout holds (166.391834ms)
+✔ prepare refuses a spec folder that is a file, and accepts the real folder (106.733875ms)
+✖ prepare from a nested run prints the manual command and exits 3 (102.274458ms)
+✖ keep from a nested run behaves as outside the loop (100.270542ms)
+✔ prepare carries the none answer in the exit-three command (37.57275ms)
+✔ prepare carries the empty answer in the exit-three command (39.832125ms)
+✔ prepare outside the loop refuses a spec folder it cannot carry (39.174875ms)
+✔ prepare under the loop refuses a spec folder it cannot carry (41.096417ms)
+✔ prepare under the loop accepts a parent packet path spec folder answer (73.917083ms)
+✔ prepare under the loop accepts a child packet path spec folder answer (71.583041ms)
+✔ prepare under the loop accepts a none spec folder answer (70.38375ms)
+✔ prepare under the loop accepts a empty spec folder answer (79.642292ms)
+✔ nudge and CLI agree on the spec folder specs/hooks/001-example (79.219458ms)
+✔ nudge and CLI agree on the spec folder specs/hooks/023-session-relaunch-loop/001-claude-relaunch-loop (73.22625ms)
+✔ nudge and CLI agree on the spec folder specs/hooks/session-relaunch (39.529292ms)
+✔ nudge and CLI agree on the spec folder specs/hooks/../001-example (35.011834ms)
+✔ prepare under the loop rejects specs/hooks/session-relaunch (35.3605ms)
+✔ prepare under the loop rejects specs/hooks (38.607375ms)
+✔ prepare under the loop rejects specs/hooks/23-x (40.253125ms)
+✔ prepare resolves an absolute note under the CLI repository from a subdirectory (49.933583ms)
+✔ prepare supersedes claimed notes under the loop and exits zero (93.682625ms)
+✔ prepare supersedes claimed notes outside the loop and exits three (58.466ms)
+✔ prepare refusal leaves claimed notes untouched (45.870542ms)
+✔ prepare names the selected runtime in its exit-three command (46.102375ms)
+✔ prepare prints the devin seed form as its exit-three command (44.417208ms)
+✔ prepare --runtime devin prints the devin manual claim command (46.92375ms)
+✔ prepare exits two for an unknown --runtime value (41.971417ms)
+✔ prepare exits two when --runtime conflicts with the loop runtime (51.939458ms)
+✔ should-relaunch exits zero and prints JSON for an armed fresh record (273.395042ms)
+✔ should-relaunch exits one and prints the pending decline reason as JSON (75.835209ms)
+✔ should-relaunch prints no-file JSON when the runtime directory is a file (54.011084ms)
+✔ should-relaunch and consume refuse a symlinked state directory (105.667292ms)
+✔ claim exits zero and prints the claimed note body (95.608ms)
+✔ claim requires --session for Codex despite a Claude session env (64.938584ms)
+✔ complete exits zero for a claimed note (79.306375ms)
+✔ claim --help prints the claim usage on stdout and exits zero (52.442125ms)
+✔ -h after a subcommand prints the full usage listing (76.531875ms)
+✔ prepare usage names the outside-a-loop and hop-limit declines (44.062916ms)
+✔ no subcommand prints every subcommand syntax on stdout and exits zero (44.232ms)
+✔ an unknown subcommand exits two and lists the commands on stderr (42.984375ms)
+✔ complete names its usage line for an option it does not take (40.857958ms)
+✔ should-relaunch prints one no-file JSON line for a corrupt record (50.638417ms)
+✔ should-relaunch accepts zero max hops and defaults invalid values (216.374083ms)
+✔ should-relaunch accepts zero max age and defaults invalid values (223.014583ms)
+✔ cancel disarms the loop prepared hand-over named by the loop environment (61.646542ms)
+✔ cancel exits one when the loop has no prepared hand-over (40.632916ms)
+✖ cancel from a nested run without a loop id refuses and leaves the outer hand-over armed (126.734416ms)
+✔ cancel from a nested run honors an explicit loop id (148.493333ms)
+✔ cancel records a withdrawn hop and grants the session one more nudge (54.868292ms)
+✔ a cancel that finds nothing to cancel records no withdrawn hop (42.189917ms)
+✔ consume exits zero and removes the relaunch file (40.624042ms)
+✔ consume removes the relaunch file under the record lock (36.765166ms)
+✔ consume reports withdrawn for a record cancelled before it (40.034709ms)
+✔ consume reports withdrawn for a record user-message before it (38.8795ms)
+✔ consume reads the record under the same lock as its unlink (38.5405ms)
+✔ consume output has no withdrawn key for an armed record or another disarm reason (102.616208ms)
+✔ consume returns the handoff path and its spec folder (65.001833ms)
+✔ consume refuses a handoff outside the handoffs directory (50.387708ms)
+✔ consume preserves a Gate 3 Skip as a valid spec-folder value (41.784417ms)
+✔ consume leaves an empty spec folder unanswered without logging a drop (44.789583ms)
+✔ consume drops a spec folder invalidated after prepare (161.256166ms)
+✔ consume logs a spec folder carried by any frontmatter line (94.402041ms)
+✔ prepare logs supersede-failed when the handoffs directory cannot be read (99.911125ms)
+✔ consume prints JSON and exits zero when dropped-folder logging fails (46.544291ms)
+✔ claim names a missing handoffs directory (39.948167ms)
+✔ claim reports a missing note inside the handoffs directory (47.462667ms)
+✔ claim refuses a ../ handoff path outside the handoffs directory (46.431291ms)
+✔ consume keeps a valid answer from a note whose frontmatter no longer parses (88.434583ms)
+✔ consume reports a missing note and a note that is no longer open (120.019917ms)
+✔ claim refuses a note reached through a symlinked handoffs directory (39.9765ms)
+✔ claim refuses a handoffs directory whose parent links outside the repository (38.101666ms)
+✔ one goal reason on stderr for a Claude free-text goal (83.15275ms)
+✔ one goal reason on stderr for a Codex sender (80.587542ms)
+✔ manual route for a cursor or devin session (162.016417ms)
+✔ prepare records the opencode sender's goal packet in the note (61.411875ms)
+✔ prepare records the pi sender's goal packet in the note (59.490958ms)
+✔ prepare records the devin sender's goal packet in the note (50.611959ms)
+✔ prepare records the cursor sender's goal packet in the note (52.487834ms)
+✔ prepare records the claude sender's goal packet in the note (54.950125ms)
+✔ prepare leaves goal_packet out when the sender had no goal (88.649084ms)
+✔ prepare leaves the field empty for a sender whose goal record is unreadable (86.806834ms)
+✔ prepare writes no goal_packet when SESSION_RELAUNCH_GOAL is 0 (54.201709ms)
+✔ prepare reads the goal switch from the hook flags file too (39.81375ms)
+✔ prepare writes no goal_packet for a Codex sender, whatever the spec folder holds (43.8835ms)
+✔ prepare writes no goal_packet for a Claude sender whose log is missing (43.67575ms)
+✔ prepare replaces a goal_packet the note holds with the one the sender has (53.034917ms)
+✔ prepare drops a goal_packet the note holds when the sender has no goal (49.242583ms)
+✔ prepare drops the goal_packet once the goal that set it has ended (102.504041ms)
+✔ prepare takes a goal packet that only the note cwd checkout holds (52.015334ms)
+✔ prepare replaces a goal_packet that is no repo packet holding goal.md (253.343042ms)
+✔ prepare treats an empty goal_packet like an absent one (50.77725ms)
+✔ keep records the opencode sender's goal packet in the note (59.591875ms)
+✔ keep records the pi sender's goal packet in the note (49.5525ms)
+✔ keep records the devin sender's goal packet in the note (51.502125ms)
+✔ keep records the cursor sender's goal packet in the note (51.828584ms)
+✔ keep records the claude sender's goal packet in the note (48.453875ms)
+✔ keep leaves goal_packet out when the sender had no goal (79.299042ms)
+✔ keep leaves the field empty for a sender whose goal record is unreadable (46.56875ms)
+✔ keep writes no goal_packet when SESSION_RELAUNCH_GOAL is 0 (43.781208ms)
+✔ keep reads the goal switch from the hook flags file too (45.487375ms)
+✔ keep writes no goal_packet for a Codex sender, whatever the spec folder holds (48.913ms)
+✔ keep writes no goal_packet for a Claude sender whose log is missing (51.733209ms)
+✔ keep replaces a goal_packet the note holds with the one the sender has (61.565125ms)
+✔ keep drops a goal_packet the note holds when the sender has no goal (74.991417ms)
+✔ keep drops the goal_packet once the goal that set it has ended (158.295083ms)
+✔ keep takes a goal packet that only the note cwd checkout holds (60.112625ms)
+✔ keep replaces a goal_packet that is no repo packet holding goal.md (274.855542ms)
+✔ keep treats an empty goal_packet like an absent one (49.106083ms)
+✔ a refused prepare leaves the note bytes unchanged (73.093709ms)
+✔ prepare under the loop records the goal packet and still arms the record (90.613167ms)
+✔ prepare records the Claude sender latest model and effort on the relaunch record (112.130583ms)
+✔ prepare falls back to the response model when the Claude entry names no requested model (247.618625ms)
+✔ prepare records the Claude custom title over SKILLED_LOOP_NAME (307.040875ms)
+✔ prepare keeps SKILLED_LOOP_NAME when the log holds no title (172.572125ms)
+✔ prepare records the Codex sender latest turn model and effort (137.014459ms)
+✔ prepare records neither value when the sender log is missing or holds no turn (194.431542ms)
+✔ prepare records a Cursor model selected during this hop, with its parameters (86.363167ms)
+✔ prepare records the current Cursor model when the parameterized selection names another (79.989167ms)
+✔ prepare ignores a Cursor selection made before this hop launched (80.386458ms)
+✔ prepare records no live values for a runtime with no session log to read (104.772833ms)
+✔ consume reports the model and effort the record holds and nothing it lacks (104.293709ms)
+✔ consume reports the permission mode the record holds (91.755584ms)
+✔ consume prints the recorded Pi mode (74.376667ms)
+✔ consume reports the record name (46.40925ms)
+✔ claim prints the goal packet after the note body (53.463708ms)
+✔ claim prints no goal packet for an older note, a switch that is off or a lost goal.md (179.973958ms)
+✔ consume reports the goal packet only while the switch is on and the packet holds goal.md (147.812ms)
+✔ a reused note with the goal switch off hands on no packet (166.596917ms)
+✔ the usage text names the goal packet on claim and consume (36.691834ms)
+ℹ tests 167
+ℹ suites 0
+ℹ pass 164
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17041.291708
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1064:1
+✖ prepare from a nested run prints the manual command and exits 3 (102.274458ms)
+  AssertionError [ERR_ASSERTION]: [session-relaunch] could not inspect Claude child processes: spawnSync ps EPERM
+  
+  
+  2 !== 3
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1080:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 3,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1085:1
+✖ keep from a nested run behaves as outside the loop (100.270542ms)
+  AssertionError [ERR_ASSERTION]: [session-relaunch] this session runs under skilled-loop; run prepare instead
+  
+  
+  2 !== 0
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1093:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1801:1
+✖ cancel from a nested run without a loop id refuses and leaves the outer hand-over armed (126.734416ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 2
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:1818:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+EXIT_STATUS=1
+$ cd /Users/michelkerkmeester/worktrees/public/363-hop-state-carry && env -u AI_SESSION_CHILD node --test --test-name-pattern 'replaces the launch mode flag with the consumed mode' .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs
+
+✔ pi relaunch replaces the launch mode flag with the consumed mode (2352.934458ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2465.548542
+
+EXIT_STATUS=0
+
+$ cd /Users/michelkerkmeester/worktrees/public/363-hop-state-carry && bash -n .skilled/bin/skilled-loop
+
+
+EXIT_STATUS=0
+
+$ cd /Users/michelkerkmeester/worktrees/public/363-hop-state-carry && rg -c 'consumed_field mode' .skilled/bin/skilled-loop
+
+1
+
+EXIT_STATUS=0
+
+$ cd /Users/michelkerkmeester/worktrees/public/363-hop-state-carry && env -u AI_SESSION_CHILD node --test .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-model-effort.test.cjs
+
+✔ second invocation uses only the seed and name, recorded cwd, and the same loop id (2020.468583ms)
+✔ Claude first launch arguments are replayed with --permission-mode and --add-dir (1129.695125ms)
+✔ Pi first launch arguments are replayed (1125.407167ms)
+✔ OpenCode first launch arguments are replayed (1137.722292ms)
+✔ Codex first launch arguments are replayed (1050.472625ms)
+✔ Cursor first launch arguments are replayed (1126.953583ms)
+✔ an attached short option value keeps the next word as the prompt (1509.708916ms)
+✔ Devin first launch arguments are replayed (1243.640209ms)
+✔ deny list flags are absent from a hop (7274.351166ms)
+✔ a hop keeps a dash-leading value and stops at the separator (941.774333ms)
+✔ an optional value never swallows the next option (1481.439ms)
+✔ an unknown option that carries its value is not ambiguous (1066.437791ms)
+✔ a joined short resume option is not replayed (1155.251292ms)
+✔ Codex takes its model from a config setting when no model flag is given (3279.611083ms)
+✔ a hop replaces the start prompt and the record settings (1931.294667ms)
+✔ an unknown option before a bare word declines the hop (496.331542ms)
+✔ an unknown option with no bare word after it is replayed (1235.8875ms)
+✔ devin runtime dispatch does not fall through to claude (271.275959ms)
+✔ wrapper carries a valid spec folder in the relaunch seed (1123.13925ms)
+✔ wrapper carries Gate 3 Skip in the relaunch seed (1037.418708ms)
+✔ wrapper builds the relaunch seed suffix through the shared core formatter (1561.069ms)
+✔ wrapper relaunches without a spec-folder suffix when the core formatter throws (1529.520042ms)
+✔ wrapper leaves an empty spec folder unanswered without logging a drop (1047.538625ms)
+✔ wrapper drops parent traversal spec folders and logs them (855.207375ms)
+✔ wrapper drops spec-folder parent traversal spec folders and logs them (1181.525375ms)
+✔ wrapper drops trailing parent traversal spec folders and logs them (1824.143167ms)
+✔ wrapper drops shell metacharacters spec folders and logs them (1304.637625ms)
+✔ wrapper drops absolute spec folders and logs them (859.966666ms)
+✔ wrapper drops carriage return spec folders and logs them (1274.696792ms)
+✔ wrapper stops the hop and prints the manual command when consumed JSON cannot be parsed (781.663ms)
+✔ name scanning stops at -- and relaunch omits the name option (1017.191458ms)
+✔ wrapper starts claude with no arguments under /bin/bash (440.738584ms)
+✔ wrapper defaults to claude when it has no arguments (277.544125ms)
+✔ wrapper passes a single prompt argument to the default claude runtime (255.354958ms)
+✔ wrapper exports runtime identity for each supported runtime (1848.408917ms)
+✔ Claude carries --model value before the seed and name on relaunch (1351.996125ms)
+✔ Claude carries --model=value as a normalized model flag on relaunch (1828.007834ms)
+✔ wrapper exports the selected model to Claude across relaunches (1666.649084ms)
+✔ Claude does not inherit model or provider env without a model argument (1018.156959ms)
+✔ model scanning stops at -- while carrying the model selected before it (961.503917ms)
+✔ Claude keeps a multiword model as one relaunch argument (931.920542ms)
+✔ Claude ignores --model when it has no value (1127.817042ms)
+✔ second invocation omits --name when the first launch had no name (1211.545375ms)
+✔ pi relaunch carries provider and model before name and seed (964.096458ms)
+✔ Pi normalizes extension aliases and preserves selection order on relaunch (1198.847916ms)
+✔ pi relaunch replaces the launch mode flag with the consumed mode (1894.935375ms)
+✔ a Claude hop numbers the replayed name (872.985333ms)
+✔ a hop replays the sender's live name with the next number (1037.278ms)
+✔ a second hop replaces the sender's number instead of stacking it (970.165583ms)
+✔ a name that ends in another number keeps it (1444.084208ms)
+✔ a consumed name that fails the check falls back to the launch name (2143.362208ms)
+✔ a Pi hop numbers the replayed name (1684.135875ms)
+✔ the manual command carries the name stem without a number (433.782417ms)
+✔ Pi extension scanning stops at -- (1985.232083ms)
+✔ Pi does not carry -e when it has no value (1122.901084ms)
+✔ wrapper exports the selected provider and model to Pi across relaunches (1115.679167ms)
+✔ opencode carries -m before --prompt and never passes a resume flag (1152.994458ms)
+✔ opencode normalizes --model m before --prompt on relaunch (1035.712083ms)
+✔ opencode normalizes --model=m before --prompt on relaunch (1164.835875ms)
+✔ opencode 2 starts standalone on the first launch and on every relaunch (2362.955209ms)
+✔ opencode 2 does not duplicate an operator-supplied --standalone (970.157875ms)
+✔ opencode 2 relaunch drops -m because its root command has no model flag (1297.900708ms)
+✔ opencode 2 on --server leaves the launch alone and warns the loop cannot arm (265.663541ms)
+✔ opencode 2 equals-form server warns and keeps the launch (260.042042ms)
+✔ missing runtime binary exits 127 (202.765167ms)
+✔ opencode without --standalone in its help keeps the launch and the -m replay (1801.431583ms)
+✔ wrapper removes its own leftover relaunch record before the first launch (350.214917ms)
+✔ a leftover relaunch record for another loop is kept (617.872667ms)
+✔ an own leftover record that is a symlink is removed and its target is kept (267.070959ms)
+✔ wrapper declines a stale armed record and logs the decline (368.504208ms)
+✔ wrapper pending print carries the consumed packet answer (394.5465ms)
+✔ wrapper pending print carries the consumed skip answer (404.323042ms)
+✔ wrapper pending print carries the consumed empty answer (346.62025ms)
+✔ wrapper prints a manual command when the hop cap declines a record (351.419708ms)
+✔ declined relaunch warns when the handoff path contains a line break (242.824292ms)
+✔ codex disables the daemon on the first launch and each relaunch (2034.945708ms)
+✔ codex does not duplicate an operator-supplied --no-daemon option (1118.48775ms)
+✔ relaunch replays the launch effort: claude --effort (1025.678209ms)
+✔ relaunch replays the launch effort: claude --effort= (1049.022416ms)
+✔ relaunch replays the launch effort: codex quoted -c model_reasoning_effort (984.107041ms)
+✔ relaunch replays the launch effort: codex bare --config model_reasoning_effort (1454.369375ms)
+✔ relaunch replays the launch effort: pi --thinking (1734.572792ms)
+✔ relaunch drops a launch effort its runtime would reject (1273.773333ms)
+✔ relaunch does not invent an effort for a runtime with no effort flag (971.21275ms)
+✔ the sender live model and effort replace the launch values for that hop (1115.042375ms)
+✔ a Pi sender live provider, model and thinking level replace the launch values (1082.592292ms)
+✔ a live model with no live effort drops the launch effort: claude (1500.516542ms)
+✔ a live model with its live effort renders that effort: claude (1387.451833ms)
+✔ a live model with no live effort drops the launch effort: codex (1006.274167ms)
+✔ a live model with its live effort renders that effort: codex (807.914625ms)
+✔ a live model with no live effort drops the launch effort: pi (1182.500916ms)
+✔ a live model with its live effort renders that effort: pi (1865.231084ms)
+✔ a live model equal to the launch model keeps the launch effort (1261.566666ms)
+✔ a launch with no model keeps its launch effort beside a live model (861.482458ms)
+✔ a Pi live model matching the provider-prefixed launch model keeps the launch thinking (2524.592959ms)
+✔ a Pi live provider that differs from the launch provider drops the launch thinking (3418.51875ms)
+✔ every launch carries the time it started, so a hop can tell its own changes apart (1302.015458ms)
+✔ a Cursor live model keeps its bracketed parameters on the relaunch (1765.329875ms)
+✔ a live provider is ignored on a runtime that does not take one (1771.257833ms)
+✔ a live model or effort the runtime would reject falls back to the launch value (1030.750417ms)
+✔ a live value is the next hop launch value when that hop records none (1537.309875ms)
+✔ manual command carries the live model and effort (423.263041ms)
+✔ Cursor manual command carries the live Cursor model (594.460875ms)
+✔ manual command keeps the launch model for an invalid live model (375.659667ms)
+✔ manual command reports a live model that holds the placeholder (392.562958ms)
+✔ manual command after a model-switching hop carries the current hop's model (1197.787083ms)
+✔ the sender live permission mode replaces the launch mode for that hop (963.442583ms)
+✔ a live permission mode the CLI would reject falls back to the launch mode (1116.569417ms)
+✔ a live default permission mode replaces the launch mode (912.4465ms)
+✔ a live plan mode keeps the launch mode (950.783334ms)
+✔ a live bypass mode with no unlocking launch flag keeps the launch mode (898.456209ms)
+✔ a hop with no live permission mode replays the launch mode before the seed (1047.256042ms)
+✔ manual command carries the live permission mode (426.400625ms)
+✔ multi-hop relaunches carry each runtime model and provider on every invocation (10012.04175ms)
+ℹ tests 114
+ℹ suites 0
+ℹ pass 114
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 74542.934875
+
+EXIT_STATUS=0
+
+SUMMARY focused=0 syntax=0 count=0 whole=0
+# Sandbox notes: AI_SESSION_CHILD is unset because the dispatch env exports it and a child
+# session is never nudged; --configLoader runner is added because Vite bundle-mode cannot write
+# its config temp under .skilled/node_modules here; npm --prefix .skilled with --no-install
+# points npx at the repo's installed vitest because a bare root npx hits the denied ~/.npm
+# cache. Selectors and test file are unchanged.
+
+$ env -u AI_SESSION_CHILD npm_config_cache=/tmp/npm-cache-dsh015E npx --no-install --prefix .skilled vitest run --configLoader runner --config .skilled/hooks/vitest.config.ts -t 'plan-build mode' .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts
+
+ RUN  v5.1.0 /Users/michelkerkmeester/worktrees/public/363-hop-state-carry
+
+
+ Test Files  1 passed (1)
+      Tests  3 passed | 59 skipped (62)
+   Start at  13:07:24
+   Duration  1.02s (transform 79%, tests 11%, import 9%, worker 1%)
+
+EXIT_STATUS=0
+
+$ env -u AI_SESSION_CHILD npm_config_cache=/tmp/npm-cache-dsh015E npx --no-install --prefix .skilled vitest run --configLoader runner --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts
+
+ RUN  v5.1.0 /Users/michelkerkmeester/worktrees/public/363-hop-state-carry
+
+
+ Test Files  1 passed (1)
+      Tests  62 passed (62)
+   Start at  13:07:29
+   Duration  2.81s (tests 71%, transform 22%, import 7%)
+
+EXIT_STATUS=0
