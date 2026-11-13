@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6746,
-    "ok": 18144,
+    "ok": 18148,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 26520,
+  "documentsScanned": 26524,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "142cab1cc80fc1b1af6622a2ac8b22628fc0af583cde8bdae58cca10d45557b8",
+  "manifestHash": "bc91956709b3bb866bd0cb921aaae0ec5319150e59ea0855b023fe54cd0d58e5",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42755,
+      "ok": 42760,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -62467,6 +62467,10 @@
     },
     {
       "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/022-ci-sparse-loop-state/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/023-ci-sparse-big-suites/scratch",
       "reason": "excluded directory"
     },
     {

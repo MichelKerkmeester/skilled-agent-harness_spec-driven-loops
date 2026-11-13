@@ -1,5 +1,5 @@
 {
-  "manifestHash": "142cab1cc80fc1b1af6622a2ac8b22628fc0af583cde8bdae58cca10d45557b8",
+  "manifestHash": "bc91956709b3bb866bd0cb921aaae0ec5319150e59ea0855b023fe54cd0d58e5",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -19440,6 +19440,18 @@
     ],
     "ci shared package resolution": [
       "ci shared package resolution"
+    ],
+    "ci sparse big suites": [
+      "ci sparse big suites"
+    ],
+    "ci sparse big suites implementation summary": [
+      "ci sparse big suites implementation summary"
+    ],
+    "ci sparse big suites plan": [
+      "ci sparse big suites plan"
+    ],
+    "ci sparse big suites tasks": [
+      "ci sparse big suites tasks"
     ],
     "ci sparse loop state": [
       "ci sparse loop state"
@@ -80920,6 +80932,9 @@
     ],
     "phase 22 tasks": [
       "phase 22 tasks"
+    ],
+    "phase 23 ci sparse big suites": [
+      "phase 23 ci sparse big suites"
     ],
     "phase 23 deep review remediation": [
       "phase 23 deep review remediation"

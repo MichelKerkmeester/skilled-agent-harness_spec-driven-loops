@@ -1,5 +1,5 @@
 {
-  "corpusHash": "eac2e6882f5a6a1989975f5e2d248870c46beebb45e1e5c12e3c5ddbc457f3b2",
+  "corpusHash": "25bf50917f57f4350a63636f1c3d4ce4b25900c690c9999f11730232d2c29b66",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26520,
+  "includedPathCount": 26524,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -25780,6 +25780,10 @@
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/022-ci-sparse-loop-state/plan.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/022-ci-sparse-loop-state/spec.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/022-ci-sparse-loop-state/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/023-ci-sparse-big-suites/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/023-ci-sparse-big-suites/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/023-ci-sparse-big-suites/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/023-ci-sparse-big-suites/tasks.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/decision-record.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/implementation-summary.md",
@@ -26552,7 +26556,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "142cab1cc80fc1b1af6622a2ac8b22628fc0af583cde8bdae58cca10d45557b8",
+  "manifestHash": "bc91956709b3bb866bd0cb921aaae0ec5319150e59ea0855b023fe54cd0d58e5",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -37088,6 +37092,10 @@
     },
     {
       "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/022-ci-sparse-loop-state/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/023-ci-sparse-big-suites/scratch",
       "reason": "excluded directory"
     },
     {
