@@ -100,7 +100,15 @@
     "relaunch my session with the same flags",
     "relaunch my claude session",
     "relaunch loop wrapper",
-    "relaunch wrapper declined a hop"
+    "relaunch wrapper declined a hop",
+    "propose a sub-track map",
+    "suggest sub-tracks for a track",
+    "which sub-track should this packet go into",
+    "relocate a spec packet",
+    "renumber a spec packet",
+    "validate the archived spec packets",
+    "packets under z_archive",
+    "search archived spec packets"
   ],
   "derived": {
     "trigger_phrases": [
