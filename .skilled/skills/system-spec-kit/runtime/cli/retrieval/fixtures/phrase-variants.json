@@ -1,5 +1,5 @@
 {
-  "manifestHash": "716689d79bf02302106d26e491d00a577158d040d66a36179034c54bee5d05a1",
+  "manifestHash": "36f9d7fb9732c679ea0b2cee68f071b3dd7b8fe489da49bf5c71470cc82d4053",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -19858,6 +19858,9 @@
     "claim guard anchors": [
       "claim guard anchors"
     ],
+    "claim line not built": [
+      "claim line not built"
+    ],
     "claim relationship event tasks": [
       "claim relationship event tasks"
     ],
@@ -39619,6 +39622,9 @@
     "derivestatus tasks": [
       "deriveStatus tasks"
     ],
+    "descendant walk decline": [
+      "descendant walk decline"
+    ],
     "describe cdp domain": [
       "describe cdp domain"
     ],
@@ -53851,6 +53857,18 @@
     "git finish guided workflow": [
       "git-finish guided workflow"
     ],
+    "git history lift": [
+      "git history lift"
+    ],
+    "git history lift implementation summary": [
+      "git history lift implementation summary"
+    ],
+    "git history lift plan": [
+      "git history lift plan"
+    ],
+    "git history lift tasks": [
+      "git history lift tasks"
+    ],
     "git history reconciliation": [
       "git history reconciliation"
     ],
@@ -60500,6 +60518,12 @@
     "intent signals dictionary": [
       "intent signals dictionary"
     ],
+    "intent signals generator empty block": [
+      "intent signals generator empty block"
+    ],
+    "intent signals one line block": [
+      "INTENT_SIGNALS one line block"
+    ],
     "intent signals populate": [
       "intent signals populate"
     ],
@@ -63429,6 +63453,9 @@
     ],
     "let a second pi cache optimizer copy stand": [
       "let a second pi cache optimizer copy stand"
+    ],
+    "let read only git history questions route": [
+      "let read only git history questions route"
     ],
     "let the continuity writer save into a research": [
       "let the continuity writer save into a research"
@@ -83636,6 +83663,9 @@
     "pi mode and descendant walk acceptance criteria": [
       "pi mode and descendant walk acceptance criteria"
     ],
+    "pi mode and descendant walk decisions": [
+      "pi mode and descendant walk decisions"
+    ],
     "pi mode and descendant walk goal": [
       "pi mode and descendant walk goal"
     ],
@@ -89205,6 +89235,9 @@
     "readmes tone consistency": [
       "readmes tone consistency"
     ],
+    "readonlyrouteallowed sk git": [
+      "readOnlyRouteAllowed sk-git"
+    ],
     "ready once latch cache into reindex": [
       "ready-once latch cache-into-reindex"
     ],
@@ -89498,6 +89531,9 @@
     ],
     "receiver claim under goal acceptance criteria": [
       "receiver claim under goal acceptance criteria"
+    ],
+    "receiver claim under goal decisions": [
+      "receiver claim under goal decisions"
     ],
     "receiver claim under goal goal": [
       "receiver claim under goal goal"
@@ -97260,6 +97296,18 @@
     ],
     "router edit freshness": [
       "router edit freshness"
+    ],
+    "router empty block capture": [
+      "router empty block capture"
+    ],
+    "router empty block capture implementation summary": [
+      "router empty block capture implementation summary"
+    ],
+    "router empty block capture plan": [
+      "router empty block capture plan"
+    ],
+    "router empty block capture tasks": [
+      "router empty block capture tasks"
     ],
     "router fallback pattern": [
       "router fallback pattern"

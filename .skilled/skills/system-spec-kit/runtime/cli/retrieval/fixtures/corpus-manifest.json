@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9c2188d115df8e03bcfe5aadb06d9bf9ed03ca7dbfa56d18dc7a5dfcc6657f3c",
+  "corpusHash": "d239db51f56056e3e33bea17b63d61bb2fa89fdb1be766ee9b7228c58e6f05e9",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26579,
+  "includedPathCount": 26589,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -11946,12 +11946,14 @@
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons/tasks.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk/decision-record.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk/goal.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk/implementation-summary.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk/plan.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk/tasks.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/016-receiver-claim-under-goal/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/016-receiver-claim-under-goal/decision-record.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/016-receiver-claim-under-goal/goal.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/016-receiver-claim-under-goal/implementation-summary.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/016-receiver-claim-under-goal/plan.md",
@@ -14927,6 +14929,10 @@
     "specs/sk-doc/doc-validation-tooling/004-doc-tooling-prose-and-release-amend/plan.md",
     "specs/sk-doc/doc-validation-tooling/004-doc-tooling-prose-and-release-amend/spec.md",
     "specs/sk-doc/doc-validation-tooling/004-doc-tooling-prose-and-release-amend/tasks.md",
+    "specs/sk-doc/doc-validation-tooling/005-router-empty-block-capture/implementation-summary.md",
+    "specs/sk-doc/doc-validation-tooling/005-router-empty-block-capture/plan.md",
+    "specs/sk-doc/doc-validation-tooling/005-router-empty-block-capture/spec.md",
+    "specs/sk-doc/doc-validation-tooling/005-router-empty-block-capture/tasks.md",
     "specs/sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/001-inventory-and-contract/acceptance-criteria.md",
     "specs/sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/001-inventory-and-contract/implementation-summary.md",
     "specs/sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/001-inventory-and-contract/inventory/consumer-inventory.md",
@@ -18016,6 +18022,10 @@
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/implementation-summary.md",
+    "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/tasks.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/implementation-summary.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/plan.md",
     "specs/system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment/spec.md",
@@ -26611,7 +26621,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "716689d79bf02302106d26e491d00a577158d040d66a36179034c54bee5d05a1",
+  "manifestHash": "36f9d7fb9732c679ea0b2cee68f071b3dd7b8fe489da49bf5c71470cc82d4053",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -32202,6 +32212,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/doc-validation-tooling/005-router-empty-block-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/001-inventory-and-contract/scratch",
       "reason": "excluded directory"
     },
@@ -33787,6 +33801,10 @@
     },
     {
       "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/scratch",
       "reason": "excluded directory"
     },
     {

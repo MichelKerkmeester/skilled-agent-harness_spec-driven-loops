@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6746,
-    "ok": 18203,
+    "ok": 18213,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 26579,
+  "documentsScanned": 26589,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "716689d79bf02302106d26e491d00a577158d040d66a36179034c54bee5d05a1",
+  "manifestHash": "36f9d7fb9732c679ea0b2cee68f071b3dd7b8fe489da49bf5c71470cc82d4053",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 42830,
+      "ok": 42846,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -57522,6 +57522,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-doc/doc-validation-tooling/005-router-empty-block-capture/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-doc/document-standards/001-frontmatter-and-description-budget/001-sk-create-frontmatter/001-inventory-and-contract/scratch",
       "reason": "excluded directory"
     },
@@ -59107,6 +59111,10 @@
     },
     {
       "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/scratch",
       "reason": "excluded directory"
     },
     {
