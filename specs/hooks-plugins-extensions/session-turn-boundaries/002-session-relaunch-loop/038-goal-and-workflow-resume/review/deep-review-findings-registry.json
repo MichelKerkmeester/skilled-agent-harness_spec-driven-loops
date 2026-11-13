@@ -1,0 +1,563 @@
+{
+  "sessionId": "2026-11-13T04:30:08Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Startup claim is emitted under an inferred, demonstrably wrong hook event name",
+      "file": ".skilled/hooks/session-relaunch/claude/compact-pointer.mjs",
+      "line": 198,
+      "description": "",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-002",
+      "severity": "P2",
+      "title": "recordGoalPacket rewrites note frontmatter with no open-status guard",
+      "file": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      "line": 892,
+      "description": "",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "Active goal with no condition text is reported as a packet-resolution failure",
+      "file": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      "line": 624,
+      "description": "",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-004",
+      "severity": "P2",
+      "title": "OpenCode goal record layout is re-derived instead of using the shared resolver",
+      "file": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      "line": 526,
+      "description": "",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Handoff-note frontmatter is templated with unescaped session_id and cwd values",
+      "file": "nudge.cjs",
+      "line": 154,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "commandPrefix returns a caller-supplied cliPath starting with node verbatim",
+      "file": "nudge.cjs",
+      "line": 64,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-003",
+      "severity": "P2",
+      "title": "OpenCode deletes the hand-over packet env var without a finally, unlike Pi",
+      "file": "opencode-goal.js",
+      "line": 3016,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-001",
+      "severity": "P2",
+      "title": "Switch-resolution and hop-cap rules are implemented twice, and already disagree on an invalid SKILLED_LOOP_HOPS",
+      "file": ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+      "line": 459,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-002",
+      "severity": "P2",
+      "title": "The README trigger matrix still describes SessionStart as compaction-only, omitting the new startup claim route",
+      "file": ".skilled/hooks/session-relaunch/README.md",
+      "line": 19,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 8
+  },
+  "openFindingsCount": 9,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.85,
+  "graphConvergenceScore": 0.764,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "count": 7,
+      "description": "Dimension coverage (57%) is below threshold (80%). 7 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+      "severity": "blocking",
+      "type": "uncovered_dimensions"
+    }
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 0.5714285714285714,
+    "evidenceDensity": 0.14285714285714285,
+    "findingStability": 1,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.764
+  },
+  "candidateCoverage": {
+    "covered": [
+      "contract_drift",
+      "error_handling",
+      "injection",
+      "race_condition",
+      "state_transition"
+    ],
+    "ruledOut": [
+      "injection",
+      "state_transition"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "state_transition": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "race_condition": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "error_handling": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "contract_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "data_loss": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "Guards are explicit and non-coercing",
+      "evidenceRefs": [
+        "relaunch-core.cjs:1245-1267"
+      ],
+      "reason": "verified by direct read of every branch"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "Seed parsing and escaping both reject the class",
+      "evidenceRefs": [
+        "relaunch-core.cjs:111-131",
+        "relaunch-core.cjs:1437-1441"
+      ],
+      "reason": "validated path shape and escaping inspected"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop-shell.sh"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "no cwd-derived trust decision; 006 NFR-S01 holds",
+      "evidenceRefs": [
+        "skilled-loop-shell.sh:63-66",
+        "skilled-loop-shell.sh:328"
+      ],
+      "reason": "verified by direct read of the trust derivation"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-205",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "no goal or packet text reaches the stderr reason",
+      "evidenceRefs": [
+        "relaunch-core.cjs:645-647",
+        "session-relaunch.cjs:410"
+      ],
+      "reason": "fixed vocabulary confirmed"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
+      ],
+      "bugClass": "state_transition",
+      "disposition": "ruled_out",
+      "rationale": "Guards are explicit and non-coercing",
+      "evidenceRefs": [
+        "relaunch-core.cjs:1245-1267"
+      ],
+      "proof": "verified by direct read of every branch"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "Seed parsing and escaping both reject the class",
+      "evidenceRefs": [
+        "relaunch-core.cjs:111-131",
+        "relaunch-core.cjs:1437-1441"
+      ],
+      "proof": "validated path shape and escaping inspected"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-204",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop-shell.sh"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "no cwd-derived trust decision; 006 NFR-S01 holds",
+      "evidenceRefs": [
+        "skilled-loop-shell.sh:63-66",
+        "skilled-loop-shell.sh:328"
+      ],
+      "proof": "verified by direct read of the trust derivation"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-205",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
+      ],
+      "bugClass": "injection",
+      "disposition": "ruled_out",
+      "rationale": "no goal or packet text reaches the stderr reason",
+      "evidenceRefs": [
+        "relaunch-core.cjs:645-647",
+        "session-relaunch.cjs:410"
+      ],
+      "proof": "fixed vocabulary confirmed"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "injection",
+      "error_handling",
+      "contract_drift",
+      "data_loss",
+      "race_condition"
+    ],
+    "covered": [
+      "injection",
+      "error_handling",
+      "contract_drift"
+    ],
+    "ruledOut": [
+      "injection"
+    ],
+    "deferred": [
+      "data_loss",
+      "race_condition"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}
