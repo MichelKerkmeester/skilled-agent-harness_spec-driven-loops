@@ -1,6 +1,6 @@
 ---
 title: Skill Advisor Hook Reference
-description: Operator contract for the maintained Skill Advisor adapters across Claude, Codex, Cursor, Devin, Pi, and the OpenCode plugin. Surfaces a prompt-safe routing brief on each user prompt; advisory only and fail-open.
+description: Operator contract for the maintained Skill Advisor adapters across Claude, Codex, Cursor, Devin, Pi, DSH and the OpenCode plugin. Surfaces a prompt-safe routing brief on each user prompt; advisory only and fail-open.
 trigger_phrases:
   - "skill advisor hook reference"
   - "native-first advisor hooks"
@@ -9,7 +9,7 @@ trigger_phrases:
   - "advisor hook smoke tests"
 importance_tier: important
 contextType: implementation
-version: 3.6.10.0
+version: 3.6.11.0
 ---
 
 # Skill Advisor Hook Reference
@@ -20,7 +20,7 @@ version: 3.6.10.0
 
 The Skill Advisor concern surfaces prompt-safe routing context at the moment a user submits a prompt: it scores the prompt against the maintained skill graph and, when a match clears the confidence threshold, injects a brief recommending the matching skill(s). The brief is advisory: it never replaces explicit skill loading, never persists raw prompt text, and never blocks the prompt on an advisor failure.
 
-The maintained advisor implementation lives in `system-skill-advisor/runtime/`. The four editor runtimes (Claude, Codex, Cursor, Devin) each carry a thin `user-prompt-submit` shim in `system-spec-kit/runtime/hooks/<runtime>/` that resolves and spawns the compiled advisor in `system-skill-advisor`. The real brief-building, scoring, freshness, and rendering logic lives in the advisor package. Pi carries a native TypeScript extension that imports the same advisor module in-process (Pi awaits input handlers before agent processing, so the old two-process blocking-spawn bridge stalled every send). OpenCode integrates through the committed plugin at `.opencode/plugins/system-skill-advisor.js`, which shells out to the advisor CLI.
+The maintained advisor implementation lives in `system-skill-advisor/runtime/`. The four editor runtimes (Claude, Codex, Cursor, Devin) each carry a thin `user-prompt-submit` shim in `system-spec-kit/runtime/hooks/<runtime>/` that resolves and spawns the compiled advisor in `system-skill-advisor`. The real brief-building, scoring, freshness, and rendering logic lives in the advisor package. Pi carries a native TypeScript extension that imports the same advisor module in-process (Pi awaits input handlers before agent processing, so the old two-process blocking-spawn bridge stalled every send). DSH carries a `repo-guards` adapter that imports the same compiled handler in-process. OpenCode integrates through the committed plugin at `.opencode/plugins/system-skill-advisor.js`, which shells out to the advisor CLI.
 
 The single most important property is that it **fails open**: the prompt always proceeds. When the advisor call times out, fails or finds no route, the handler and the OpenCode plugin emit the directives fallback instead of a brief. An unparseable payload, an unhandled error or a shim that cannot relay its child resolves to `{}`. Every adapter honors the `skill-advisor` kill-switch, default-on.
 
@@ -81,7 +81,7 @@ Rows below the threshold are discarded before either rule applies. The degraded 
 
 ## 3. PER-RUNTIME DELIVERY
 
-Every native runtime and Pi run the same hook handler, which gates the prompt, calls the advisor CLI and renders with `renderAdvisorBrief`. The OpenCode plugin calls the CLI itself. The native adapters differ in prompt event, transport and delivery channel.
+Every native runtime, Pi and DSH run the same hook handler, which gates the prompt, calls the advisor CLI and renders with `renderAdvisorBrief`. The OpenCode plugin calls the CLI itself. The native adapters differ in prompt event, transport and delivery channel.
 
 | Runtime | Adapter | Event / wiring | Payload difference it handles | Delivery |
 |---|---|---|---|---|
@@ -91,7 +91,7 @@ Every native runtime and Pi run the same hook handler, which gates the prompt, c
 | **Devin** | `system-spec-kit/.../hooks/devin/user-prompt-submit.ts` (shim) → `.../dist/hooks/devin/user-prompt-submit.js` | `UserPromptSubmit` in `.devin/hooks.v1.json`, matcher `""`, timeout 10s | Same shim dispatch. `cd "${DEVIN_PROJECT_DIR:-$PWD}"`. Fallback `printf` envelope | Same `additionalContext` JSON |
 | **Pi** | `system-skill-advisor/hooks/pi/prompt-advisor.ts` (real file, re-exported by its one-line `.pi/extensions/` entry) | `user_input` / prompt event via `.pi/extensions/` | Imports the advisor module **in-process** (not a subprocess). Pi awaits input handlers before agent processing, so the old blocking-spawn bridge stalled every send. In-process calls remove the stall and let the module-level prompt cache work. Captures raw user text (bounded 32 KiB, 64-session LRU). The in-process call passes `runtime: 'pi'` and races a timer of the advisor budget plus 300 ms, delivering the fallback directives if the call hangs | Model-visible message. Delivery-state machine suppresses same-session re-delivery |
 | **OpenCode** | `.opencode/plugins/system-skill-advisor.js` | Plugin, loaded by OpenCode's flat glob over `.opencode/plugins/`. `experimental.chat.system.transform` per prompt, `event` for session lifecycle, `tool` for status | Shells out to the advisor CLI (bounded timeout, stdout cap 256 KiB, grace termination), TTL+LRU prompt cache with in-flight dedup, transform-dedup integration | Brief appended to `output.system`. `spec_kit_skill_advisor_status` tool returns a key=value report (no raw path leakage) |
-| **DSH** | `system-skill-advisor/hooks/dsh/prompt-advisor.mjs`, imported by `.dsh/plugins/repo-guards/adapters/prompt-advisor.mjs` | `agent/pre-step` through the `repo-guards` plugin, on unless the `promptAdvisor` row flag is `false` | Proxies the latest operator prompt through the compiled Claude advisor chain under the runtime label `dsh`. A fan-out leaf, marked by the lineage patch, gets no brief | Brief added to the step |
+| **DSH** | `system-skill-advisor/hooks/dsh/prompt-advisor.mjs` (real file, reached through the `.dsh/plugins/repo-guards/adapters/prompt-advisor.mjs` symlink) | `agent/pre-step` through the `repo-guards` plugin, on unless the `promptAdvisor` row flag is `false` | Proxies the latest operator prompt through the compiled Claude advisor chain under the runtime label `dsh`. A fan-out leaf, marked by the lineage patch, gets no brief | Brief added to the step |
 
 OpenCode has no source-hook adapter in `system-spec-kit`. Its prompt-time integration is the committed plugin, which shells out to the advisor CLI and inherits the shared render contract. The hooks-tree index at `.skilled/hooks/skill-advisor/` mirrors the per-runtime shims and the OpenCode plugin via relative symlinks. This README is the symlink target.
 

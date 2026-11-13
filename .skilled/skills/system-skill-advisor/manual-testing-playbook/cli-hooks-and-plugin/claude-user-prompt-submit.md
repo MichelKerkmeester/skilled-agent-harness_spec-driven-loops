@@ -6,7 +6,7 @@ trigger_phrases:
   - "claude code userpromptsubmit hook"
   - "claude code"
   - "claude"
-version: 0.8.0.11
+version: 0.8.1.0
 id: CL-001
 category: cli_hooks_and_plugin
 stage: routing
@@ -47,7 +47,7 @@ Validate the Claude Code `UserPromptSubmit` adapter returns `hookSpecificOutput.
 npm --prefix .skilled/skills/system-spec-kit/runtime run build
 ```
 
-2. Run the hook through the shipped spec-kit shim with `SKILL_ADVISOR_DEBUG=1`, and count the diagnostics JSONL lines before and after the call. The shim runs the advisor hook as a child process and never forwards that child's stderr, so the diagnostic record is read from the JSONL file the advisor hook appends to when `SKILL_ADVISOR_DEBUG` is set:
+2. Run the hook through the shipped spec-kit shim with `SKILL_ADVISOR_DEBUG=1`, and count the diagnostics JSONL lines before and after the call. The shim runs the advisor hook as a child process and never forwards that child's stderr, so the diagnostic record is read from the JSONL file the advisor hook appends to on every run. The debug flag only adds the skill label and any error text to that record. With it set, the JSONL record has the same shape as the record the inner hook prints in step 3:
 
 ```bash
 mkdir -p /tmp/skill-advisor-playbook
@@ -98,7 +98,7 @@ grep -c 'help me commit my changes' /tmp/skill-advisor-playbook/cl-001.inner-std
 | Script missing | Node reports module not found | Rebuild the advisor runtime. |
 | No brief for obvious prompt | `additionalContext` starts with `Advisor: no skill matched.` or `Advisor: outage (` | Inspect diagnostic `freshness` and run `advisor_status`. |
 | Stdout is `{}` | Shim diagnostic `CHILD_TIMEOUT` or `SPAWN_ERROR` on stderr | Check that `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` is unset or below 2200 and rebuild the runtime. |
-| No new diagnostics line | `AFTER` equals `BEFORE` | Confirm `SKILL_ADVISOR_DEBUG=1` reached the shim call and that `DIAG` resolved from the repository root. |
+| No new diagnostics line | `AFTER` equals `BEFORE` | The hook appends a record on every run, so confirm that `DIAG` resolved from the repository root the hook ran in. |
 | Prompt text in diagnostics | Grep the JSONL and the inner hook's stderr for the prompt literal | Treat as privacy failure. |
 
 ---

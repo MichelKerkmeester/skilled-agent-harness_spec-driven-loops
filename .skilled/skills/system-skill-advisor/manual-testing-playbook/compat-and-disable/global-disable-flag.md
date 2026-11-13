@@ -6,7 +6,7 @@ trigger_phrases:
   - "global disable flag"
   - "global disable"
   - "global"
-version: 0.8.2.0
+version: 0.8.3.0
 id: CP-003
 category: compat_and_disable
 stage: routing
@@ -78,7 +78,7 @@ SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .skilled/skills/system-skill-advis
 npm --prefix .skilled/skills/system-skill-advisor/runtime run test -- tests/system-skill-advisor-plugin.vitest.ts -t "opt-out"
 ```
 
-4. One hook adapter. The spec-kit shim never forwards its child's stderr, so read the skipped record from the diagnostics JSONL that `SKILL_ADVISOR_DEBUG=1` turns on:
+4. One hook adapter. The spec-kit shim never forwards its child's stderr, so read the skipped record from the diagnostics JSONL. The hook appends that record on every run, disabled or not, and `SKILL_ADVISOR_DEBUG=1` adds nothing to a skipped record:
 
 ```bash
 DIAG=$(node --input-type=module -e "const m = await import('./.skilled/skills/system-skill-advisor/runtime/dist/runtime/lib/metrics.js'); console.log(m.advisorHookDiagnosticsPath(process.cwd()))")

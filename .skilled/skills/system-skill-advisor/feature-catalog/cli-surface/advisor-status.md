@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor freshness status"
   - "trust state status"
   - "semanticLaneHealth"
-version: 0.8.0.15
+version: 0.8.1.0
 ---
 
 # advisor_status Command
@@ -25,6 +25,8 @@ Give operators and runtimes a single diagnostic read that summarizes whether adv
 Every successful read also carries `indexStaleness`, the content-hash comparison that `skill_graph_status` reports as `staleness`. Its shape is `{ state, reason, trackedSkills, freshSourceFiles, changedSourceFiles, missingSourceFiles, staleSkillIds }`, where `state` is `fresh`, `stale` or `unavailable` and `staleSkillIds` is capped at 25 ids. The check opens the SQLite `skill_nodes` rows read-only and compares each stored `content_hash` with the indexer's sanitizer-versioned hash recipe applied to the file on disk, so a source edited after the last indexing pass counts as a changed source file. When `state` is `stale`, a `live` freshness is downgraded to `stale`, `trustState` stops being live, and `errors` gains an entry that names the skill count and points at `advisor_rebuild`. When `state` is `unavailable`, freshness keeps the generation verdict; the reasons are `database_absent`, `index_rows_absent` and `index_read_failed`. The read never creates, migrates or writes the database.
 
 `skillCount` counts skill roots, not metadata files: non-dot directories directly under `.skilled/skills` that hold a `graph-metadata.json`. Nested metadata such as test fixtures is not counted, so the number matches `skill_graph_status.totalSkills` on a clean checkout. `maxMetadataFiles` still caps the scan, and a capped scan adds an `advisor_status metadata scan capped at N files` entry to `errors`.
+
+`hookHealth` appears once a prompt hook has written at least one health record for the workspace, and the key is absent before that. It summarizes the newest 30 records as `{ invocations, rollingP95Ms, rollingFailOpenRate, rollingCacheHitRate, rollingDegradedRate, lastRecordAt }`. `rollingP95Ms` counts cache-hit runs only. `rollingDegradedRate` is the share of answers that came from the CLI's local scorer. `lastRecordAt` is the time of the newest record, so a runtime that stopped writing shows its age.
 
 When callers pass `includeSemanticHealth` or `debug`, the status envelope also includes `semanticLaneHealth`. That opt-in diagnostic reports active embedder identity, vector coverage, dimension mismatch state, last vector refresh timestamp, disabled reason and whether the semantic lane is enabled. The semantic-shadow lane records degraded-vector reasons such as database absence, adapter unavailability, dimension mismatch, prompt embedding failure, skill-vector load failure and empty vector coverage.
 
