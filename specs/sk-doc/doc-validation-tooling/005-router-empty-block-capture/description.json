@@ -12,15 +12,17 @@
     "one-line",
     "empty"
   ],
-  "lastUpdated": "2026-11-13T12:03:24.098Z",
+  "lastUpdated": "2026-11-13T13:57:59.585Z",
   "specId": "005",
   "folderSlug": "router-empty-block-capture",
   "parentChain": [
     "sk-doc",
     "doc-validation-tooling"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "13-11-26_13-03__replaced-the-lazy-router-block-pattern-at-seven.md"
+    "13-11-26_13-03__replaced-the-lazy-router-block-pattern-at-seven.md",
+    "13-11-26_14-57__the-router-empty-block-capture-fix-was-committed.md",
+    "13-11-26_14-57__the-router-empty-block-capture-fix-was-committed.md"
   ]
 }

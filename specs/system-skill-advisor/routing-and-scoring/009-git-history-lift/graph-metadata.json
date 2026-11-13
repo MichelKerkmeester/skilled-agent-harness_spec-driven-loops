@@ -16,6 +16,7 @@
       "readOnlyRouteAllowed sk-git",
       "git history lift plan",
       "git history lift tasks",
+      "009-git-history-lift operator decisions",
       "git history lift implementation summary"
     ],
     "key_topics": [
@@ -38,6 +39,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/scorer/route-gates.vitest.ts"
@@ -59,6 +61,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -180,32 +188,28 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A prompt that opens with show, list, explain or compare is a read-only explainer, and the advisor holds every skill at its floor on such a prompt unless `readOnlyRouteAllowed` lifts one",
     "created_at": "2026-11-13T10:38:28Z",
-    "last_save_at": "2026-11-13T12:03:15.767Z",
+    "last_save_at": "2026-11-13T13:57:55.434Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e38d8b3327cc9134c8cfa006f822b2dd7fa06af67dece24a91d0637785b5a01d",
+    "source_fingerprint": "sha256:beab961ce49ea8ff18c34ea13ca8e44cf745eaaf01fbcc76467985e3ed0b9c01",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6f50882f348d7ad4c50300a365312064b3568b9c76c9d085552918e72a9f05e7",
       "plan.md": "b5fd2e3d829811ec675f0c2be2a8e2bb05c1db591e5416d1b88d676f9724eac6",
       "tasks.md": "72117c16b7fa25ef591eb32cdeeae57a81246b6e838b23d951c3adcfdbcf83b0",
-      "implementation-summary.md": "279d823c8f9f0d79fdfc25704b6054291b3b777db53770517fa07bd1b094498f"
+      "decision-record.md": "a0791a81fe0aede90d9b575df92ef705fea1d07a76a54230e0111adfa4404428",
+      "implementation-summary.md": "61b7eb08131aff2a66c11eced2be18c4a343008e7986ee36eb95aac4998edd9c"
     },
     "last_active_at": null
   }

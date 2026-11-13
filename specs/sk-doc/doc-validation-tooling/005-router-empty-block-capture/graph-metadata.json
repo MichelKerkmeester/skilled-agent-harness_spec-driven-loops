@@ -16,6 +16,7 @@
       "INTENT_SIGNALS one line block",
       "router empty block capture plan",
       "router empty block capture tasks",
+      "005-router-empty-block-capture operator decisions",
       "router empty block capture implementation summary"
     ],
     "key_topics": [
@@ -30,7 +31,7 @@
       "line",
       "plan",
       "tasks",
-      "implementation"
+      "005-router-empty-block-capture"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -38,6 +39,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs",
       ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs",
@@ -70,6 +72,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -191,32 +199,28 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Four scripts read a router's `INTENTSIGNALS` block with the pattern `/INTENTSIGNALS\\s=\\s\\{([\\s\\S]?)\\n\\}/`, which ends only at a closing brace that starts a line",
     "created_at": "2026-11-13T10:38:29Z",
-    "last_save_at": "2026-11-13T12:03:24.098Z",
+    "last_save_at": "2026-11-13T13:57:59.585Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7348b49610ec22ccb6027b1271e3b18b796c4575cf5ff9a84f94cf31f4375688",
+    "source_fingerprint": "sha256:5d708bba688c4ff21380998929f52b40cf095db9f290feb303c9d3acd696b630",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d70c1a597529be317b5891f21353258ee3195ce3bdbcb00a0d5bcc4ec7a35971",
       "plan.md": "433e68219b8eb664ef55d5fed991a469bf25775add8b033ca0c19fa458ba01d1",
       "tasks.md": "628dfeb3928db43c5bed32b0ef2e21ca6a7cc4b0dc212973e4c269a6809604c9",
-      "implementation-summary.md": "745f69c8a5d924f9da3c122389c0a81457d6e6f1e729a8ef8e501a6045879bdd"
+      "decision-record.md": "5cea00d89dbce0488b6cea42dc5a8b4ed08c61d692e7a11f25dc86d1e9ad0bb4",
+      "implementation-summary.md": "7241ac73a495019fad71bda519542bbed4c314a31e65209a9a3c1150301b3e90"
     },
     "last_active_at": null
   }

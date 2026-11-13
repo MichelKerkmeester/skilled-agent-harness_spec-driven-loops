@@ -8,19 +8,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/doc-validation-tooling/005-router-empty-block-capture"
-    last_updated_at: "2026-11-13T12:03:24Z"
+    last_updated_at: "2026-11-13T13:57:59Z"
     last_updated_by: "generate-context"
-    recent_action: "Implemented and verified the router block pattern fix, uncommitted"
-    next_safe_action: "Review the diff in worktree 365 and commit it"
+    recent_action: "Committed 1ed484f3f6, merged to main and pushed; recorded operator decision"
+    next_safe_action: "Verify CI rebuilt the trigger index after the push"
     blockers: []
     key_files:
       - ".skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs"
       - ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs"
       - ".skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs"
     session_dedup:
-      fingerprint: "sha256:72311a11ef7d91aed4b8d00a542c784da5f89138155f7344eeb9c9fde7049309"
+      fingerprint: "sha256:0cfc4a856186ddb88e9a94b649b59d1497ebd6b2e218b8150ea78b37bed4ef8c"
       session_id: "scaffold-005-router-empty-block-capture"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "af01c830-4ea5-4abe-b6ed-dd0c4d9b1b45"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-13T13:57:59Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []
