@@ -818,9 +818,9 @@ function consume(args) {
   // A note with no goal packet keeps the output it always had.
   const consumed = { handoff: handoffPath, spec_folder: specFolder, note };
   if (goalPacket !== '') consumed.goal_packet = goalPacket;
-  // The sender's own latest model, provider, effort, permission mode and name, which the
-  // wrapper checks before it uses them.
-  for (const key of ['model', 'provider', 'effort', 'permissionMode', 'name']) {
+  // The sender's own latest model, provider, effort, permission mode, name and Pi mode,
+  // which the wrapper checks before it uses them.
+  for (const key of ['model', 'provider', 'effort', 'permissionMode', 'name', 'mode']) {
     if (typeof record?.[key] === 'string' && record[key] !== '') consumed[key] = record[key];
   }
   // Only a withdrawn record carries the key, so every other consume prints what it always did.

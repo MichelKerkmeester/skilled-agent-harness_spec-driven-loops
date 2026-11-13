@@ -34,7 +34,7 @@ interface CoreModule {
   arm(options: {
     loopId: string;
     cwd: string;
-    settings?: { model?: string; provider?: string; effort?: string };
+    settings?: { model?: string; provider?: string; effort?: string; mode?: string };
     env: NodeJS.ProcessEnv;
   }): RelaunchRecord | null;
   armableRecord(
@@ -419,8 +419,8 @@ async function spawnKiller(
 function liveSettings(
   pi: ExtensionAPI,
   ctx: ExtensionContext,
-): { model?: string; provider?: string; effort?: string } {
-  const settings: { model?: string; provider?: string; effort?: string } = {};
+): { model?: string; provider?: string; effort?: string; mode?: string } {
+  const settings: { model?: string; provider?: string; effort?: string; mode?: string } = {};
   const model = (ctx as { model?: { id?: unknown; provider?: unknown } }).model;
   if (typeof model?.id === 'string') settings.model = model.id;
   if (typeof model?.provider === 'string') settings.provider = model.provider;
@@ -431,6 +431,31 @@ function liveSettings(
     if (typeof level === 'string') settings.effort = level;
   } catch {
     // An unreadable level is an unproven one.
+  }
+  // The plan-build extension appends a state entry whenever the mode changes, so the last
+  // such entry on the branch is the mode the session runs in now. The branch surface is not
+  // typed here, and only the two modes the launch flags accept are carried; a branch the
+  // host cannot read leaves the flags in charge.
+  try {
+    const sessionManager = ctx.sessionManager as unknown as {
+      getBranch?: () => unknown;
+    };
+    const branch = sessionManager.getBranch?.();
+    if (Array.isArray(branch)) {
+      for (let index = branch.length - 1; index >= 0; index -= 1) {
+        const entry = branch[index] as {
+          type?: unknown;
+          customType?: unknown;
+          data?: { selectedMode?: unknown };
+        };
+        if (entry?.type !== 'custom' || entry.customType !== 'pi-plan-build-state') continue;
+        const mode = entry.data?.selectedMode;
+        if (mode === 'plan' || mode === 'build') settings.mode = mode;
+        break;
+      }
+    }
+  } catch {
+    // An unreadable branch is an unproven mode.
   }
   return settings;
 }

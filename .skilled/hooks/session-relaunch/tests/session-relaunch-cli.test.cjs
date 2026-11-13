@@ -2949,6 +2949,27 @@ test('consume reports the permission mode the record holds', (t) => {
   });
 });
 
+test('consume prints the recorded Pi mode', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  writeRelaunchRecord(sandbox, {
+    loopId: LOOP_ID,
+    status: 'armed',
+    handoff: handoffPath,
+    mode: 'plan',
+  });
+
+  const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(JSON.parse(result.stdout), {
+    handoff: handoffPath,
+    spec_folder: SPEC_FOLDER,
+    note: 'open',
+    mode: 'plan',
+  });
+});
+
 test('consume reports the record name', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox);

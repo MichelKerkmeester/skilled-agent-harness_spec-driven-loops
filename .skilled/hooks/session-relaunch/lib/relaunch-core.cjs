@@ -981,10 +981,10 @@ function preparePending({
  * @param {Object} options - Loop state transition inputs.
  * @param {string} options.loopId - Wrapper process identifier.
  * @param {string} [options.cwd=process.cwd()] - Live working directory.
- * @param {{model?: string, provider?: string, effort?: string, permissionMode?: string}}
- *   [options.settings] - The session's current model, provider, effort and permission mode,
- *   from an adapter whose host exposes them; each non-empty value replaces what prepare
- *   recorded.
+ * @param {{model?: string, provider?: string, effort?: string, permissionMode?: string,
+ *   mode?: string}} [options.settings] - The session's current model, provider, effort,
+ *   permission mode and mode, from an adapter whose host exposes them; each accepted value
+ *   replaces what prepare recorded, and a mode counts only as `plan` or `build`.
  * @param {NodeJS.ProcessEnv} [options.env=process.env] - Runtime environment.
  * @param {Date|number|string} [options.now] - Clock value for deterministic records.
  * @returns {Object|null} The armed record, or null when absent, unreadable, or not armable.
@@ -1018,6 +1018,9 @@ function armLocked({ loopId, cwd, settings = {}, env, now }) {
   for (const key of ['model', 'provider', 'effort', 'permissionMode']) {
     if (nonEmptyString(settings?.[key])) liveSettings[key] = settings[key];
   }
+  // Only a plan or build mode names a loop the wrapper can resume; an adapter's other modes
+  // must not ride along into the record it replays.
+  if (settings?.mode === 'plan' || settings?.mode === 'build') liveSettings.mode = settings.mode;
   // An effort belongs to the model it was chosen for, so a new model that brings no effort
   // leaves the record without one rather than beside the old model's effort.
   const { effort: _recordedEffort, ...withoutEffort } = unsignalled;

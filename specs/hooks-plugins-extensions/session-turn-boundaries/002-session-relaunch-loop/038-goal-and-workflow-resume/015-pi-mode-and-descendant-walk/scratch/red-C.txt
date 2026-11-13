@@ -1,0 +1,36 @@
+✖ consume prints the recorded Pi mode (60.520125ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 119.407959
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2952:1
+✖ consume prints the recorded Pi mode (60.520125ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      handoff: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-cli-1tYmWz/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md',
+  -   mode: 'plan',
+      note: 'open',
+      spec_folder: 'specs/hooks/023-session-relaunch-loop'
+    }
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/363-hop-state-carry/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2965:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { handoff: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-cli-1tYmWz/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md', spec_folder: 'specs/hooks/023-session-relaunch-loop', note: 'open' },
+    expected: { handoff: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-cli-1tYmWz/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md', spec_folder: 'specs/hooks/023-session-relaunch-loop', note: 'open', mode: 'plan' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

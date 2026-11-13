@@ -41,6 +41,7 @@ consumed_live_provider=''
 consumed_live_effort=''
 consumed_live_permission_mode=''
 consumed_live_name=''
+pi_hop_mode=''
 
 # Prints the manual claim command on stdout, as the CLI does: it is the result an
 # operator copies, and stderr stays for diagnostics. The core fills the template, so the
@@ -705,6 +706,7 @@ skilled_loop_replay_recorded() {
 build_relaunch_arguments() {
   local seed="$1"
   local mode="${2:-hop}"
+  local argument
   launch_arguments=()
   case "$runtime" in
     claude)
@@ -729,6 +731,11 @@ build_relaunch_arguments() {
       append_effort_arguments
       if ((pi_extension_arguments_set == 1)); then
         launch_arguments+=("${pi_extension_arguments[@]}")
+      fi
+      if [[ "$mode" == 'hop' ]]; then
+        case "$pi_hop_mode" in
+          plan|build) launch_arguments+=("--$pi_hop_mode") ;;
+        esac
       fi
       append_name_arguments "$mode"
       launch_arguments+=("$seed")
@@ -775,7 +782,16 @@ build_relaunch_arguments() {
   esac
   if [[ "$mode" == 'hop' && "$runtime" != 'devin' ]] \
     && [[ ${#replayed_extra_arguments[@]} -gt 0 ]]; then
-    launch_arguments+=("${replayed_extra_arguments[@]}")
+    if [[ "$runtime" == 'pi' ]] && [[ -n "$pi_hop_mode" ]]; then
+      for argument in "${replayed_extra_arguments[@]}"; do
+        case "$argument" in
+          --plan|--build) ;;
+          *) launch_arguments+=("$argument") ;;
+        esac
+      done
+    else
+      launch_arguments+=("${replayed_extra_arguments[@]}")
+    fi
   fi
 }
 
@@ -1402,6 +1418,15 @@ while true; do
               "$live_permission_mode" >&2
           fi
         fi
+      fi
+      # The sender's Pi mode outranks the mode flag the launch line carried, and only the
+      # two literals are launch arguments; any other value leaves the replay untouched.
+      pi_hop_mode=''
+      if [[ "$runtime" == 'pi' ]]; then
+        live_mode=$(consumed_field mode)
+        case "$live_mode" in
+          plan|build) pi_hop_mode="$live_mode" ;;
+        esac
       fi
       # The sender's record holds the name its session really carries, which a /rename never
       # wrote back to the launch line. The stem drops the number this wrapper wrote for the

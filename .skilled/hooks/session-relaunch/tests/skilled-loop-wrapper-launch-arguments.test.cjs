@@ -10,7 +10,8 @@ const path = require('node:path');
 const { RUNTIMES } = require('../lib/relaunch-core.cjs');
 const {
   SEED, SPEC_FOLDER, SPEC_FOLDER_SUFFIX, SKIP_SPEC_FOLDER_SUFFIX, LOOP_ID_PATTERN,
-  expectedClaudeManualCommand, createSandbox, installRuntimeStub, writeSpecFolderNote,
+  RUNTIME_SOURCE, expectedClaudeManualCommand, createSandbox, installRuntimeStub,
+  writeSpecFolderNote,
   runWrapperScript, runWrapper, handOverLines, installWrapperCopyWithChangedSuffix,
   installWrapperWithThrowingSuffix, installMalformedConsumeStub, readRecords, readLog,
 } = require('./skilled-loop-wrapper-harness.cjs');
@@ -557,6 +558,64 @@ test('Pi normalizes extension aliases and preserves selection order on relaunch'
     '-e', absoluteExtension,
     `${SEED} ${handoffPath}`,
   ]);
+});
+
+// The shared runtime stub arms a record from the fields its environment names. This adds the
+// consumed mode to that same stub, so each runtime invocation keeps a single Node process
+// inside the wrapper's launch window.
+function installPiModeStub(sandbox, mode) {
+  const stubPath = path.join(sandbox.binDir, 'pi');
+  const source = fs.readFileSync(stubPath, 'utf8').replace(
+    RUNTIME_SOURCE,
+    `${RUNTIME_SOURCE}
+if (process.env.RECORD_MODE) {
+  const modePath = path.join(
+    process.env.XDG_RUNTIME_DIR,
+    "skilled-relaunch",
+    "relaunch-" + process.env.SKILLED_LOOP_ID + ".json",
+  );
+  if (fs.existsSync(modePath)) {
+    const modeRecord = JSON.parse(fs.readFileSync(modePath, "utf8"));
+    modeRecord.mode = process.env.RECORD_MODE;
+    fs.writeFileSync(modePath, JSON.stringify(modeRecord));
+  }
+}
+`,
+  );
+  fs.writeFileSync(stubPath, source, { mode: 0o755 });
+  sandbox.env.RECORD_MODE = mode;
+}
+
+test('pi relaunch replaces the launch mode flag with the consumed mode', (t) => {
+  const cases = [
+    { consumedMode: 'plan', presentFlag: '--plan', absentFlag: '--build' },
+    { consumedMode: 'auto', presentFlag: '--build', absentFlag: '--plan' },
+  ];
+
+  for (const { consumedMode, presentFlag, absentFlag } of cases) {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+    installPiModeStub(sandbox, consumedMode);
+    const result = runWrapper(sandbox, ['pi', '--build', 'first prompt']);
+    assert.equal(result.status, 0, `${consumedMode}: ${result.stderr}`);
+
+    const records = readRecords(recordPath);
+    assert.equal(records.length, 2, consumedMode);
+    assert.deepEqual(records[0].args, ['--build', 'first prompt'], consumedMode);
+    const hopArguments = records[1].args;
+    const hopLine = hopArguments.join(' ');
+    assert.equal(
+      hopArguments.filter((argument) => argument === presentFlag).length,
+      1,
+      `${consumedMode}: ${hopLine}`,
+    );
+    assert.equal(
+      hopArguments.filter((argument) => argument === absentFlag).length,
+      0,
+      `${consumedMode}: ${hopLine}`,
+    );
+    assert.ok(hopArguments.includes(`${SEED} ${handoffPath}`), hopLine);
+  }
 });
 
 // A named loop hands the receiver the sender's live name plus the receiver's session
