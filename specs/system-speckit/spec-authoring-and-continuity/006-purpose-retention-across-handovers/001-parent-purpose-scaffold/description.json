@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/001-parent-purpose-scaffold",
+  "description": "Phase 1: parent-purpose-scaffold",
+  "keywords": [
+    "phase",
+    "parent-purpose-scaffold"
+  ],
+  "lastUpdated": "2026-11-13T21:41:50.739Z",
+  "specId": "001",
+  "folderSlug": "parent-purpose-scaffold",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "006-purpose-retention-across-handovers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

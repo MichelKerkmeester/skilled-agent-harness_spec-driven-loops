@@ -51,12 +51,12 @@ The purpose is written once, in `spec.md` section 2, and no automatic hop reads 
 2. **The "Goal" facet is the next action.** `buildContinuityFacets` sets `goal: uniqueFacetItems([nextSafeAction], 2)`. [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts:299]
 3. **The default Claude compaction brief is transcript-only.** It emits Active Files, Recent Topics and Recent Context. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384]
 4. **The resume brief has no purpose row.** [SOURCE: .skilled/commands/speckit/assets/speckit-resume-auto.yaml:138]
-5. **Phase parents often carry no real purpose**, because `create.sh` writes generic layout text and the validator exempts parents from anchor checks. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:976]
+5. **Phase parents often carry no real purpose**, because nothing flags an unfilled parent purpose and the validator exempts parents from anchor checks. This line first blamed generic text written by `create.sh`. That was wrong, see the correction in section 9. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:976]
 
 ### Recommendations
 
 **Primary Recommendation** (orchestrator adjudication, section 10):
-- Carry the purpose on the read side first, in three small parts that all quote one existing text, and pair that with stopping `create.sh` from writing a generic parent purpose.
+- Carry the purpose on the read side first, in three small parts that all quote one existing text, and pair that with making an unfilled parent purpose fail a check. This line first said to stop `create.sh` writing a generic purpose, which it no longer does, see the correction in section 9.
 
 **Alternative Approaches**:
 - deepseek-1: a Purpose row in the `/speckit:resume` brief only. Smallest change, reaches one hop.
@@ -96,7 +96,7 @@ The two lineages agree on that diagnosis and disagree on the fix. deepseek-1 wan
 - The phase level requires `spec.md` alone and has no optional addon. [SOURCE: .skilled/skills/system-spec-kit/templates/spec-kit-docs.json:1844-1848]
 - The only "As a ... I want" surface is User Stories, emitted at Level 3 and above. [SOURCE: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl:340] deepseek-2 found no template or validator that uses the term "user need" at all. [SOURCE: specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research/lineages/deepseek-2/research.md:53]
 - `goal.md` asks for a one-sentence Objective, and no level requires the file. [SOURCE: .skilled/skills/system-spec-kit/templates/addons/goal.md.tmpl:38-41]
-- New phase parents get generic text from the generator: problem "This phased decomposition tracks ... across independently executable child phase folders" and purpose "Keep parent documentation lean while child phases own detailed plans, tasks, verification, and continuity." That sentence describes document layout, not the work. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876]
+- Corrected 2026-11-13, see section 9: the generator defines this generic text and no longer writes it. As first reported, new phase parents get generic text from the generator: problem "This phased decomposition tracks ... across independently executable child phase folders" and purpose "Keep parent documentation lean while child phases own detailed plans, tasks, verification, and continuity." That sentence describes document layout, not the work. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876]
 
 ---
 
@@ -144,7 +144,7 @@ The lineages disagree here. Both positions are set out in section 10 with the or
 |---|---|---|
 | Parent-level acceptance criteria | Ruled out by both lineages | The schema has no purpose column (AC-ID, REQ, Given/When/Then, Verification, Status, Waiver) [SOURCE: .skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl:58] and a required parent file breaks the lean parent [SOURCE: .skilled/skills/system-spec-kit/templates/spec-kit-docs.json:1844-1848] |
 | A parent-level user story or purpose section | Already exists | The phase-parent template ships Problem & Purpose [SOURCE: .skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:62-71] |
-| An improved parent template | Half right | The template already asks for a root purpose. The defect is the generator's generic text and the validator exemption [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:976] |
+| An improved parent template | Half right | The template already asks for a root purpose. The defect is that nothing flags an unfilled parent purpose. The generator's generic text is dead code, see the correction in section 9 [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876] [SOURCE: .skilled/skills/system-spec-kit/runtime/lib/validation/orchestrator.ts:976] |
 
 Other candidates the evidence raised: a Purpose row in the resume brief (deepseek-1), a purpose value in the continuity record (deepseek-2), a purpose line in the compaction brief (both, as a complement) and a purpose quote in the relaunch note's Goal (orchestrator).
 
@@ -175,7 +175,7 @@ The orchestrating session opened these citations and counts itself. Paths under 
 | `runtime/lib/continuity/thin-continuity-record.ts` builds the `goal` facet from `next_safe_action` (`goal: uniqueFacetItems([nextSafeAction], 2)`), and the record interface at lines 60-73 has no purpose field | CONFIRMED. The orchestrator recorded line 298. In this worktree the facet line is 299 (the `return {` is 298), and the body cites 299 |
 | `runtime/hooks/claude/compact-inject.ts:365-384` builds the default compaction brief from transcript lines only (Active Files, Recent Topics, Recent Context). The authored continuity snapshot is opt-in at lines 348-352 | CONFIRMED |
 | `.skilled/commands/speckit/assets/speckit-resume-auto.yaml:138` `reply_format` is Confidence, Context source, Now, Last confirmed, Next safe action, with no purpose row. The continuity ladder at line 110 lists `spec.md`, while `context_loading_priority` at line 92 and the step 2 activity list at line 164 omit it | CONFIRMED |
-| `runtime/cli/spec/create.sh:1875-1876` fills a new phase parent's problem and purpose with generic text | CONFIRMED |
+| `runtime/cli/spec/create.sh:1875-1876` fills a new phase parent's problem and purpose with generic text | WRONG AS FIRST STATED. The two lines exist, and the substitution at lines 1902-1903 no longer matches the template, so the text is not written. See the correction below the table |
 | Phase-parent template stamped v2.2 at `templates/packet-types/phase-parent.spec.md.tmpl:28`, root purpose REQUIRED at lines 35-36 | CONFIRMED with a corrected line. deepseek-2 cited line 80 for the stamp |
 | Validator passes a phase parent's anchors at `runtime/lib/validation/orchestrator.ts:976` with "Phase parent lean document set accepted" | CONFIRMED with a corrected line. deepseek-1 cited 963-970 |
 | `.skilled/commands/speckit/handoff.md:110-111` gives the relaunch note a free-authored `## Goal` section | CONFIRMED |
@@ -185,6 +185,20 @@ The orchestrating session opened these citations and counts itself. Paths under 
 | Parents with the generic `create.sh` purpose | NOT REPRODUCED EXACTLY. deepseek-2: 4. Orchestrator: 5 live `spec.md` files carry the sentence |
 | Parent-child overlap figures, the 3,294 and 2,870 corpus totals, the `goal.md` coverage figures and the beneficiary percentages | NOT CHECKED. Lineage-reported |
 | deepseek-2 state log timestamps | WARNING. 4 of 7 state rows carry timestamps after the run window, and the runner flagged a timestamp anomaly. Its iteration files exist and its content citations checked out where opened. Its timestamps are unreliable and its findings are usable |
+
+### Correction after planning (2026-11-13)
+
+The row above on `create.sh:1875-1876` was wrong as first stated. The orchestrating session confirmed that the two lines define the generic text. It did not check that the text is written. Planning child `001-parent-purpose-scaffold` then showed that it is not. The substitutions look for `[YOUR_VALUE_HERE: one-paragraph ...]` tokens, and the template carries `[One-paragraph ...]` hints, so nothing matches. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1902-1903] [SOURCE: .skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl:66-69] The orchestrating session reopened both files and agrees. The planning agent dates the change to commit `e2712403ea` of 2026-09-07.
+
+What stays true: a new phase parent ships with a bare hint in its Problem Statement and Purpose, no check flags it and the validator exempts the parent from anchor checks. The 5 live `spec.md` files that carry the generic sentence are stamped `spec-core | v2.2` and come from an older scaffold path.
+
+What changes: the fix is not to stop `create.sh` writing generic text. It is to make the parent purpose a token that a check flags. Child `001-parent-purpose-scaffold` plans that. Every earlier line in this report that names the generic text as the live defect is superseded by this correction.
+
+### Second correction after planning (2026-11-13)
+
+The row above on `compact-inject.ts:365-384` names the wrong function as the default brief. `buildCompactContext` builds the fallback. `buildMergedCompactResult` calls it only as a fallback and otherwise produces the merged brief, which is the one the reporting session saw, with the headings "Active Files & Structural Context" and "Session State". [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:443] [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:536] The finding stands: neither brief carries the purpose. Planning child `004-compaction-purpose-line` found this and the orchestrating session reopened the file.
+
+Two further facts from that planning, both lineage reports were wrong on them. Devin does not pass its post-compaction output to the model, by its own README, so a purpose line there would not be read. OpenCode does inject text after a compaction, and that text does not know the spec folder.
 
 ---
 
@@ -208,11 +222,11 @@ Recommend the read-side carry first, in three small parts that all quote one exi
 2. **Compaction.** Add a purpose line to the compaction brief. On Claude the hook can open the spec folder its state already records. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:365-384] [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts:345]
 3. **Relaunch.** Have the relaunch note's `## Goal` quote the packet's purpose when a packet is bound. [SOURCE: .skilled/commands/speckit/handoff.md:110-111] A Goal that each hop rewrites from its own memory degrades with every hop. That reason is the orchestrator's inference, not a lineage finding.
 
-Pair it with deepseek-2's scaffold fix: `create.sh` stops writing the generic parent purpose, so the placeholder reaches the file and an author has to replace it. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876]
+Pair it with deepseek-2's scaffold fix: `create.sh` stops writing the generic parent purpose, so the placeholder reaches the file and an author has to replace it. Corrected in section 9: the hint already reaches the file, and the fix is to make it a token that a check flags. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh:1875-1876]
 
 Hold the continuity field. It is the larger change, and the default Claude compaction brief does not render the continuity facets, so without the opt-in it would not reach that hop. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts:348-352]
 
-**Cost.** Text edits to two resume assets and the handoff command. One function in the Claude compaction hook plus the matching surface on the other runtimes. Two lines in `create.sh`. No schema change and no migration.
+**Cost.** Text edits to two resume assets and the handoff command. One function in the Claude compaction hook plus the matching surface on the other runtimes. A template stamp and two tokens for the parent purpose, see the correction in section 9. No schema change and no migration.
 
 **How to validate.** Run `/speckit:resume` on this packet and confirm the brief shows its Purpose sentence. Run it on a phase child with an empty Purpose and confirm the parent's purpose appears, labelled as the parent's. Trigger a Claude compaction and confirm the injected brief carries the purpose line. Run `/speckit:handoff` on a bound packet and confirm the note's Goal quotes the purpose. Scaffold a new phase parent and confirm `validate.sh --strict` flags the unfilled purpose.
 

@@ -36,6 +36,8 @@ _memory:
 |----|---------|-----|------------|------------|
 | Q001 | The research ran as two DeepSeek lineages of five iterations each, ten in total. | Not stated. | None | plan.md, research/deep-research-config.json |
 | Q002 | The research loop ran autonomously with every iteration forced to run. | Not stated. | None | plan.md, research/deep-research-config.json |
+| Q003 | The build is planned as five parts, with the purpose field in the continuity block included. | Not stated. | None | spec.md phase map, 005-continuity-purpose-field |
+| Q004 | The research packet was committed, merged to main and pushed. | Not stated. | None | research/research.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -82,6 +84,46 @@ Interactive
 Answer:
 ```text
 Autonomous (Recommended)
+```
+
+### Q003
+<!-- source: claude:af01c830-4ea5-4abe-b6ed-dd0c4d9b1b45:toolu_01X27AL9EkFdG7E4Mav3x2t5:0 -->
+
+Question:
+```text
+The deep research on lost packet purpose is done. It recommends making the resume brief, the compaction brief and the relaunch note quote the purpose already written in spec.md, plus stopping create.sh from writing a generic purpose into new phase parents. What should happen next?
+```
+
+Options:
+```text
+Plan that change (Recommended)
+Plan it with the continuity field
+Stop here
+```
+
+Answer:
+```text
+Plan it with the continuity field
+```
+
+### Q004
+<!-- source: claude:af01c830-4ea5-4abe-b6ed-dd0c4d9b1b45:toolu_01X27AL9EkFdG7E4Mav3x2t5:1 -->
+
+Question:
+```text
+The research packet (specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers) is uncommitted in worktree 371. What should happen to it?
+```
+
+Options:
+```text
+Commit, merge, push (Recommended)
+Commit only
+Leave uncommitted
+```
+
+Answer:
+```text
+Commit, merge, push (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

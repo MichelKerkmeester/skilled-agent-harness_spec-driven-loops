@@ -17,7 +17,7 @@ _memory:
       - "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research/research.md"
       - "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md"
     session_dedup:
-      fingerprint: "sha256:c337aad6bf8c37e463a61a2dbd385ce0b9fc12c5821a7108d8719a4a2ee6df97"
+      fingerprint: "sha256:a9e090cc0814231b3d53fff7965df883b1cf4deb229defddd01a4611f2bc8af6"
       session_id: "scaffold-006-purpose-retention-across-handovers"
       parent_session_id: null
     session_ref:
@@ -60,7 +60,7 @@ No code was built. This is a research packet. The run found that the purpose of 
 
 ### Keep a packet's core purpose across handovers and compactions
 
-The recommended change is to quote the purpose on the read side, in the resume brief, the compaction brief and the relaunch note, and to stop `create.sh` writing a generic purpose into a new phase parent. You get `research/research.md`, which says where a packet's problem, purpose and user need drop on each hop and names one change that keeps them. A later packet plans and builds that change.
+The recommended change is to quote the purpose on the read side, in the resume brief, the compaction brief and the relaunch note, and to make an unfilled purpose in a new phase parent fail a check. The first version of this summary said to stop `create.sh` writing a generic purpose. Planning showed that text is dead code, and `research/research.md` section 9 records the correction. You get `research/research.md`, which says where a packet's problem, purpose and user need drop on each hop and names one change that keeps them. A later packet plans and builds that change.
 
 ### Files Changed
 
