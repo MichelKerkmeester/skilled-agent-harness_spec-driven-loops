@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7c0f42577e9e2cc30196547a419ab1f820e44b86d19ece72c70cf0b8f3a847d5",
+  "manifestHash": "716689d79bf02302106d26e491d00a577158d040d66a36179034c54bee5d05a1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8128,6 +8128,9 @@
     ],
     "add your own surface path": [
       "add your own surface path"
+    ],
+    "added directories line": [
+      "added directories line"
     ],
     "adding new mcp server": [
       "adding new mcp server"
@@ -20399,6 +20402,9 @@
     "claude relaunch verification checklist": [
       "Claude relaunch verification checklist"
     ],
+    "claude rename across a hop": [
+      "claude rename across a hop"
+    ],
     "claude session cleanup": [
       "claude session cleanup"
     ],
@@ -20447,6 +20453,24 @@
     ],
     "claude start hook goal": [
       "claude start hook goal"
+    ],
+    "claude stop notice and crons": [
+      "claude stop notice and crons"
+    ],
+    "claude stop notice and crons acceptance criteria": [
+      "claude stop notice and crons acceptance criteria"
+    ],
+    "claude stop notice and crons goal": [
+      "claude stop notice and crons goal"
+    ],
+    "claude stop notice and crons implementation summary": [
+      "claude stop notice and crons implementation summary"
+    ],
+    "claude stop notice and crons plan": [
+      "claude stop notice and crons plan"
+    ],
+    "claude stop notice and crons tasks": [
+      "claude stop notice and crons tasks"
     ],
     "claude stop sentinel": [
       "claude stop sentinel"
@@ -38872,6 +38896,9 @@
     "deferred followups decisions": [
       "deferred followups decisions"
     ],
+    "deferred hop notice": [
+      "deferred hop notice"
+    ],
     "deferred orca implementation": [
       "deferred Orca implementation"
     ],
@@ -48798,6 +48825,9 @@
     "fan out lineage reducer path": [
       "fan-out lineage reducer path"
     ],
+    "fan out lineage requeued while alive": [
+      "fan-out lineage requeued while alive"
+    ],
     "fan out lineage resume": [
       "fan-out lineage resume"
     ],
@@ -49094,6 +49124,24 @@
     ],
     "fanout mirror parity test": [
       "fanout mirror parity test"
+    ],
+    "fanout orphan liveness": [
+      "fanout orphan liveness"
+    ],
+    "fanout orphan liveness acceptance criteria": [
+      "fanout orphan liveness acceptance criteria"
+    ],
+    "fanout orphan liveness goal": [
+      "fanout orphan liveness goal"
+    ],
+    "fanout orphan liveness implementation summary": [
+      "fanout orphan liveness implementation summary"
+    ],
+    "fanout orphan liveness plan": [
+      "fanout orphan liveness plan"
+    ],
+    "fanout orphan liveness tasks": [
+      "fanout orphan liveness tasks"
     ],
     "fanout pair replay plan": [
       "fanout pair replay plan"
@@ -56649,6 +56697,24 @@
     "handover bound freshness": [
       "handover bound freshness"
     ],
+    "handover docs and harness": [
+      "handover docs and harness"
+    ],
+    "handover docs and harness acceptance criteria": [
+      "handover docs and harness acceptance criteria"
+    ],
+    "handover docs and harness goal": [
+      "handover docs and harness goal"
+    ],
+    "handover docs and harness implementation summary": [
+      "handover docs and harness implementation summary"
+    ],
+    "handover docs and harness plan": [
+      "handover docs and harness plan"
+    ],
+    "handover docs and harness tasks": [
+      "handover docs and harness tasks"
+    ],
     "handover docs promotion": [
       "handover docs promotion"
     ],
@@ -58249,6 +58315,9 @@
     ],
     "hop count constant replacement": [
       "hop count constant replacement"
+    ],
+    "hop count name suffix": [
+      "hop count name suffix"
     ],
     "hop history": [
       "hop history"
@@ -74238,6 +74307,24 @@
     "ntime": [
       "ntime"
     ],
+    "nudge note lines": [
+      "nudge note lines"
+    ],
+    "nudge note lines acceptance criteria": [
+      "nudge note lines acceptance criteria"
+    ],
+    "nudge note lines goal": [
+      "nudge note lines goal"
+    ],
+    "nudge note lines implementation summary": [
+      "nudge note lines implementation summary"
+    ],
+    "nudge note lines plan": [
+      "nudge note lines plan"
+    ],
+    "nudge note lines tasks": [
+      "nudge note lines tasks"
+    ],
     "numbered all caps sections": [
       "numbered all caps sections"
     ],
@@ -75550,6 +75637,24 @@
     ],
     "opencode bridge native route fix": [
       "opencode bridge native route fix"
+    ],
+    "opencode child and title": [
+      "opencode child and title"
+    ],
+    "opencode child and title acceptance criteria": [
+      "opencode child and title acceptance criteria"
+    ],
+    "opencode child and title goal": [
+      "opencode child and title goal"
+    ],
+    "opencode child and title implementation summary": [
+      "opencode child and title implementation summary"
+    ],
+    "opencode child and title plan": [
+      "opencode child and title plan"
+    ],
+    "opencode child and title tasks": [
+      "opencode child and title tasks"
     ],
     "opencode circular dispatch refusal": [
       "opencode circular dispatch refusal"
@@ -79394,6 +79499,24 @@
     "permission level cells": [
       "permission level cells"
     ],
+    "permission mode carry": [
+      "permission mode carry"
+    ],
+    "permission mode carry acceptance criteria": [
+      "permission mode carry acceptance criteria"
+    ],
+    "permission mode carry goal": [
+      "permission mode carry goal"
+    ],
+    "permission mode carry implementation summary": [
+      "permission mode carry implementation summary"
+    ],
+    "permission mode carry plan": [
+      "permission mode carry plan"
+    ],
+    "permission mode carry tasks": [
+      "permission mode carry tasks"
+    ],
     "permission mode normalization": [
       "permission-mode normalization"
     ],
@@ -80114,6 +80237,9 @@
     "phase 10 dsh mcp code mode": [
       "phase 10 dsh mcp code mode"
     ],
+    "phase 10 fanout orphan liveness": [
+      "phase 10 fanout orphan liveness"
+    ],
     "phase 10 final gate ledger": [
       "phase 10 final gate ledger"
     ],
@@ -80204,6 +80330,9 @@
     "phase 11 hub registration and routing": [
       "phase 11 hub registration and routing"
     ],
+    "phase 11 permission mode carry": [
+      "phase 11 permission mode carry"
+    ],
     "phase 11 post fix remediation": [
       "phase 11 post fix remediation"
     ],
@@ -80291,6 +80420,9 @@
     "phase 12 review findings tasks": [
       "phase 12 review findings tasks"
     ],
+    "phase 12 session name carry": [
+      "phase 12 session name carry"
+    ],
     "phase 12 sk create readme": [
       "phase 12 sk create readme"
     ],
@@ -80351,6 +80483,9 @@
     "phase 13 mcp tooling routing canon": [
       "phase 13 mcp tooling routing canon"
     ],
+    "phase 13 opencode child and title": [
+      "phase 13 opencode child and title"
+    ],
     "phase 13 python advisor native and parity": [
       "phase 13 python advisor native and parity"
     ],
@@ -80368,6 +80503,9 @@
     ],
     "phase 14 align mcp tooling": [
       "phase 14 align mcp tooling"
+    ],
+    "phase 14 claude stop notice and crons": [
+      "phase 14 claude stop notice and crons"
     ],
     "phase 14 closure gate": [
       "phase 14 closure gate"
@@ -80453,6 +80591,9 @@
     "phase 15 lane rules as heal modes": [
       "phase 15 lane rules as heal modes"
     ],
+    "phase 15 pi mode and descendant walk": [
+      "phase 15 pi mode and descendant walk"
+    ],
     "phase 15 plan": [
       "phase 15 plan"
     ],
@@ -80498,6 +80639,9 @@
     "phase 16 plan": [
       "phase 16 plan"
     ],
+    "phase 16 receiver claim under goal": [
+      "phase 16 receiver claim under goal"
+    ],
     "phase 16 research recommendations": [
       "phase 16 research recommendations"
     ],
@@ -80527,6 +80671,9 @@
     ],
     "phase 17 gold checker": [
       "phase 17 gold checker"
+    ],
+    "phase 17 handover docs and harness": [
+      "phase 17 handover docs and harness"
     ],
     "phase 17 hop history": [
       "phase 17 hop history"
@@ -82178,6 +82325,9 @@
     "phase 9 mirror and template fixes": [
       "phase 9 mirror and template fixes"
     ],
+    "phase 9 nudge note lines": [
+      "phase 9 nudge note lines"
+    ],
     "phase 9 open items ledger": [
       "phase 9 open items ledger"
     ],
@@ -83479,6 +83629,24 @@
     ],
     "pi mcp route guard": [
       "pi mcp route guard"
+    ],
+    "pi mode and descendant walk": [
+      "pi mode and descendant walk"
+    ],
+    "pi mode and descendant walk acceptance criteria": [
+      "pi mode and descendant walk acceptance criteria"
+    ],
+    "pi mode and descendant walk goal": [
+      "pi mode and descendant walk goal"
+    ],
+    "pi mode and descendant walk implementation summary": [
+      "pi mode and descendant walk implementation summary"
+    ],
+    "pi mode and descendant walk plan": [
+      "pi mode and descendant walk plan"
+    ],
+    "pi mode and descendant walk tasks": [
+      "pi mode and descendant walk tasks"
     ],
     "pi model provider mapping": [
       "pi model provider mapping"
@@ -89324,6 +89492,24 @@
     ],
     "receipts seals adjudication budgets gauges locks continuity": [
       "receipts seals adjudication budgets gauges locks continuity"
+    ],
+    "receiver claim under goal": [
+      "receiver claim under goal"
+    ],
+    "receiver claim under goal acceptance criteria": [
+      "receiver claim under goal acceptance criteria"
+    ],
+    "receiver claim under goal goal": [
+      "receiver claim under goal goal"
+    ],
+    "receiver claim under goal implementation summary": [
+      "receiver claim under goal implementation summary"
+    ],
+    "receiver claim under goal plan": [
+      "receiver claim under goal plan"
+    ],
+    "receiver claim under goal tasks": [
+      "receiver claim under goal tasks"
     ],
     "recency load bearing ranking": [
       "recency load-bearing ranking"
@@ -98195,6 +98381,9 @@
     "running workers at hand over": [
       "running workers at hand-over"
     ],
+    "running workers line": [
+      "running workers line"
+    ],
     "runs failed emails": [
       "runs failed emails"
     ],
@@ -99607,6 +99796,9 @@
     ],
     "scheduled graph refresh": [
       "scheduled graph refresh"
+    ],
+    "scheduled line handoff note": [
+      "scheduled line handoff note"
     ],
     "scheduled process cleanup": [
       "scheduled process cleanup"
@@ -101417,6 +101609,9 @@
     "session created stale dist warning": [
       "session.created stale dist warning"
     ],
+    "session crons count": [
+      "session crons count"
+    ],
     "session data interface": [
       "session data interface"
     ],
@@ -101497,6 +101692,24 @@
     ],
     "session name across a hop": [
       "session name across a hop"
+    ],
+    "session name carry": [
+      "session name carry"
+    ],
+    "session name carry acceptance criteria": [
+      "session name carry acceptance criteria"
+    ],
+    "session name carry goal": [
+      "session name carry goal"
+    ],
+    "session name carry implementation summary": [
+      "session name carry implementation summary"
+    ],
+    "session name carry plan": [
+      "session name carry plan"
+    ],
+    "session name carry tasks": [
+      "session name carry tasks"
     ],
     "session notes": [
       "session-notes"
@@ -113105,6 +113318,9 @@
     ],
     "spawned launcher socketpath verified": [
       "spawned launcher socketPath verified"
+    ],
+    "spawned ledger row with pid": [
+      "spawned ledger row with pid"
     ],
     "spawnsync codex etimedout": [
       "spawnSync codex ETIMEDOUT"
