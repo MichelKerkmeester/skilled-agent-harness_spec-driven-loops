@@ -151,6 +151,20 @@ describe('typed command boundaries', () => {
     expect(attachCommand('system-deep-loop', SINGLE('review'), '/deep:review:auto review the diff')).toBe('/deep:review');
   });
 
+  it('reads a retired command name as the command that replaced it', () => {
+    expect(typedCommandIn('/create:skill')).toBe('/create:sk-skill');
+    expect(typedCommandIn('/create:skill make a linting skill')).toBe('/create:sk-skill');
+    expect(typedCommandForTop('sk-doc', '/create:skill')).toEqual({
+      command: '/create:sk-skill',
+      policy: 'start',
+      ownerSkillId: 'sk-doc',
+    });
+  });
+
+  it('does not read a retired name inside a path', () => {
+    expect(typedCommandIn('open docs/create:skill.md')).toBeUndefined();
+  });
+
   it('carries no command when the prompt only names a file', () => {
     expect(typedCommandForTop('sk-doc', 'open /create:readme.md and summarise it')).toBeUndefined();
   });

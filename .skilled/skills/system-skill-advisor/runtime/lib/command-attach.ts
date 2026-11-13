@@ -207,10 +207,18 @@ const COMMAND_CONTINUATION = /[a-z0-9_:-]/;
 const WORD_CHARACTER = /[a-z0-9_]/;
 const MODE_SUFFIX = /^:(?:auto|confirm|autopilot)(?![a-z0-9_:-])/;
 
+// A command that was renamed is still typed from habit. Its old name reads as
+// the command that replaced it, so the reader lands on the live workflow and
+// not on whatever skill the leftover words happen to score for. The old name
+// gets no command file of its own: this table is the only place it lives.
+const RETIRED_COMMANDS: Readonly<Record<string, string>> = {
+  '/create:skill': '/create:sk-skill',
+};
+
 export function typedCommandIn(prompt: string): string | undefined {
   const lowered = prompt.toLowerCase();
   let found: string | undefined;
-  for (const key of Object.keys(TRACKED_COMMANDS)) {
+  for (const key of [...Object.keys(TRACKED_COMMANDS), ...Object.keys(RETIRED_COMMANDS)]) {
     let index = lowered.indexOf(key);
     while (index !== -1) {
       const before = index === 0 ? '' : lowered[index - 1];
@@ -229,6 +237,7 @@ export function typedCommandIn(prompt: string): string | undefined {
       index = lowered.indexOf(key, index + 1);
     }
   }
+  if (found !== undefined && Object.hasOwn(RETIRED_COMMANDS, found)) return RETIRED_COMMANDS[found];
   return found;
 }
 
