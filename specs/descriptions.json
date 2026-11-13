@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-11-13T19:56:47.534Z",
+  "generated": "2026-11-13T20:44:59.785Z",
   "folders": [
     {
       "specFolder": "agents-md/agent-behavior/001-terminal-proof-discipline",
@@ -12226,7 +12226,7 @@
         "same",
         "terminal"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.260Z"
+      "lastUpdated": "2026-11-13T10:04:42.341Z"
     },
     {
       "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/001-claude-relaunch-loop",
@@ -13204,7 +13204,7 @@
         "work",
         "around"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.226Z"
+      "lastUpdated": "2026-11-13T10:04:42.025Z"
     },
     {
       "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/001-workflow-reentry-seed",
@@ -13360,7 +13360,7 @@
         "fan-out",
         "runner"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.192Z"
+      "lastUpdated": "2026-11-13T10:04:41.900Z"
     },
     {
       "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/010-fanout-orphan-liveness",
@@ -13377,7 +13377,7 @@
         "failed",
         "orphanrequeued"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.194Z"
+      "lastUpdated": "2026-11-13T10:04:41.905Z"
     },
     {
       "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/011-permission-mode-carry",
@@ -13395,7 +13395,7 @@
         "tab",
         "acceptedits"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.198Z"
+      "lastUpdated": "2026-11-13T10:04:41.910Z"
     },
     {
       "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/012-session-name-carry",
@@ -13409,7 +13409,7 @@
         "name",
         "hop"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.200Z"
+      "lastUpdated": "2026-11-13T10:04:41.914Z"
     },
     {
       "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/013-opencode-child-and-title",
@@ -13430,7 +13430,7 @@
         "plugins",
         "session-relaunch"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.202Z"
+      "lastUpdated": "2026-11-13T10:04:41.918Z"
     },
     {
       "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons",
@@ -13444,7 +13444,7 @@
         "logs",
         "deferred-background-tasks"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.204Z"
+      "lastUpdated": "2026-11-13T10:04:41.921Z"
     },
     {
       "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/015-pi-mode-and-descendant-walk",
@@ -13464,7 +13464,7 @@
         "only",
         "model"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.208Z"
+      "lastUpdated": "2026-11-13T10:04:41.927Z"
     },
     {
       "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/016-receiver-claim-under-goal",
@@ -13486,7 +13486,7 @@
         "start",
         "context"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.220Z"
+      "lastUpdated": "2026-11-13T10:04:41.933Z"
     },
     {
       "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/017-handover-docs-and-harness",
@@ -13502,78 +13502,55 @@
         "refused",
         "deferred"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.223Z"
+      "lastUpdated": "2026-11-13T10:04:41.937Z"
     },
     {
       "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title",
-      "description": "Three gaps showed on 2026-11-13 in Claude Code sessions that hand over near the context limit",
+      "description": "A Claude Code hop refuses a question dialog after prepare, starts the receiver on the packet goal and keeps the generated session title",
       "keywords": [
-        "three",
-        "gaps",
-        "showed",
         "claude",
         "code",
-        "sessions",
-        "hand",
-        "near",
-        "context",
-        "limit"
+        "hop",
+        "refuses",
+        "question",
+        "dialog",
+        "prepare",
+        "starts",
+        "receiver",
+        "packet",
+        "goal",
+        "keeps",
+        "session",
+        "title"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.259Z"
+      "lastUpdated": "2026-11-13T18:47:10.139Z"
     },
     {
       "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare",
-      "description": "On Claude Code, `prepare` leaves the relaunch record `pending` and only the Stop hook `stop-arm.mjs` arms it",
+      "description": "Phase 1: sender-dialog-after-prepare",
       "keywords": [
-        "claude",
-        "code",
-        "prepare",
-        "leaves",
-        "relaunch",
-        "record",
-        "pending",
-        "only",
-        "stop",
-        "hook",
-        "stop-arm",
-        "mjs",
-        "arms"
+        "phase",
+        "sender-dialog-after-prepare"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.248Z"
+      "lastUpdated": "2026-11-13T15:46:09.641Z"
     },
     {
       "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback",
-      "description": "A hop carried a goal only when the Claude sender had set one itself",
+      "description": "Phase 2: packet-goal-fallback",
       "keywords": [
-        "hop",
-        "carried",
-        "goal",
-        "only",
-        "claude",
-        "sender",
-        "set",
-        "one",
-        "itself"
+        "phase",
+        "packet-goal-fallback"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.252Z"
+      "lastUpdated": "2026-11-13T16:59:14.405Z"
     },
     {
       "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry",
-      "description": "A Claude hop carried only a launch `--name` or a `/rename` title, which Claude logs as a `custom-title` entry",
+      "description": "Phase 3: generated-title-carry",
       "keywords": [
-        "claude",
-        "hop",
-        "carried",
-        "only",
-        "launch",
-        "name",
-        "rename",
-        "title",
-        "logs",
-        "custom-title",
-        "entry"
+        "phase",
+        "generated-title-carry"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.257Z"
+      "lastUpdated": "2026-11-13T16:59:16.164Z"
     },
     {
       "specFolder": "hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement",
@@ -20839,24 +20816,23 @@
     },
     {
       "specFolder": "sk-code/verification-guards/005-surface-intent-fold-declaration",
-      "description": "`legSurfaceMap` in `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` builds one intent set from the parent `RESOURCEMAP`",
+      "description": "Let a hub declare that a surface folds its child intents into one hub intent so the router sync check accepts it",
       "keywords": [
-        "legsurfacemap",
-        "skilled",
-        "skills",
-        "sk-code",
-        "sk-code-skilled",
-        "assets",
-        "scripts",
-        "verify-router-sync",
-        "cjs",
+        "let",
+        "hub",
+        "declare",
+        "surface",
+        "folds",
+        "child",
+        "intents",
         "one",
         "intent",
-        "set",
-        "parent",
-        "resourcemap"
+        "router",
+        "sync",
+        "check",
+        "accepts"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.265Z"
+      "lastUpdated": "2026-11-13T18:46:09.164Z"
     },
     {
       "specFolder": "sk-code/z_archive/001-sk-code-review-creation",
@@ -28788,17 +28764,18 @@
     },
     {
       "specFolder": "sk-doc/doc-validation-tooling/005-router-empty-block-capture",
-      "description": "Four scripts read a router's `INTENTSIGNALS` block with the pattern `/INTENTSIGNALS\\s=\\s\\{([\\s\\S]?)\\n\\}/`",
+      "description": "Stop the router block patterns from capturing past a one-line empty INTENT_SIGNALS or RESOURCE_MAP block",
       "keywords": [
-        "four",
-        "scripts",
-        "read",
+        "stop",
         "router",
-        "intentsignals",
         "block",
-        "pattern"
+        "patterns",
+        "capturing",
+        "past",
+        "one-line",
+        "empty"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.271Z"
+      "lastUpdated": "2026-11-13T13:57:59.585Z"
     },
     {
       "specFolder": "sk-doc/document-standards/001-frontmatter-and-description-budget",
@@ -30313,36 +30290,44 @@
     },
     {
       "specFolder": "sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth",
-      "description": "The registry compilers of sk-code, mcp-tooling and sk-design emit one composition rule for every subset of two or more modes in the hub's tie-break",
+      "description": "Cap the mode-subset size the hub registry compilers enumerate so a compiled route call stays fast as a hub gains modes",
       "keywords": [
+        "cap",
+        "mode-subset",
+        "size",
+        "hub",
         "registry",
         "compilers",
-        "sk-code",
-        "mcp-tooling",
-        "sk-design",
-        "emit",
-        "one",
-        "composition",
-        "rule",
-        "every",
-        "subset",
-        "two",
-        "modes",
-        "hub",
-        "tie-break"
+        "enumerate",
+        "compiled",
+        "route",
+        "call",
+        "stays",
+        "fast",
+        "gains",
+        "modes"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.277Z"
+      "lastUpdated": "2026-11-13T18:11:43.023Z"
     },
     {
       "specFolder": "sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers",
-      "description": "Skilled is vendored into host repositories",
+      "description": "Let the route sync check, the route-gold check and one advisor test run in a host that has no Skilled spec tree",
       "keywords": [
-        "skilled",
-        "vendored",
+        "let",
+        "route",
+        "sync",
+        "check",
+        "route-gold",
+        "one",
+        "advisor",
+        "test",
+        "run",
         "host",
-        "repositories"
+        "skilled",
+        "spec",
+        "tree"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.280Z"
+      "lastUpdated": "2026-11-13T18:46:08.257Z"
     },
     {
       "specFolder": "sk-doc/z_archive/001-sk-doc-rename",
@@ -42330,26 +42315,20 @@
     },
     {
       "specFolder": "sk-git/commit-standards/008-doctor-host-hook-acceptance",
-      "description": "`checkHooks` in `.skilled/commands/doctor/scripts/git-setup-check.cjs` accepts an installed hook only when its real path equals a hook source file",
+      "description": "Let the doctor git check accept a hand-over hook and a hook the host declares omitted",
       "keywords": [
-        "checkhooks",
-        "skilled",
-        "commands",
+        "let",
         "doctor",
-        "scripts",
-        "git-setup-check",
-        "cjs",
-        "accepts",
-        "installed",
+        "git",
+        "check",
+        "accept",
+        "hand-over",
         "hook",
-        "only",
-        "real",
-        "path",
-        "equals",
-        "source",
-        "file"
+        "host",
+        "declares",
+        "omitted"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.293Z"
+      "lastUpdated": "2026-11-13T18:46:10.001Z"
     },
     {
       "specFolder": "sk-git/live-sync-and-publishing/001-live-sync-harden-default-on",
@@ -60468,23 +60447,25 @@
     },
     {
       "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
-      "description": "The repository ships 44 tracked slash commands that own complete workflows, but the skill advisor reaches the model with skills",
+      "description": "Build command surfacing in the skill advisor so every tracked slash command reaches the model with a run-or-ask policy and a chat-only request reaches",
       "keywords": [
-        "repository",
-        "ships",
-        "tracked",
-        "slash",
-        "commands",
-        "own",
-        "complete",
-        "workflows",
+        "command",
+        "surfacing",
         "skill",
         "advisor",
+        "every",
+        "tracked",
+        "slash",
         "reaches",
         "model",
-        "skills"
+        "run-or-ask",
+        "policy",
+        "chat-only",
+        "request",
+        "proper",
+        "workflow"
       ],
-      "lastUpdated": "2026-11-13T10:05:02.431Z"
+      "lastUpdated": "2026-11-12T20:58:41.808Z"
     },
     {
       "specFolder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/001-command-routing-baseline-corpus",
@@ -60715,18 +60696,21 @@
     },
     {
       "specFolder": "system-skill-advisor/routing-and-scoring/009-git-history-lift",
-      "description": "A prompt that opens with show, list, explain or compare is a read-only explainer",
+      "description": "Let read-only git history questions route to sk-git by lifting them off the advisor's read-only floor",
       "keywords": [
-        "prompt",
-        "opens",
-        "show",
-        "list",
-        "explain",
-        "compare",
+        "let",
         "read-only",
-        "explainer"
+        "git",
+        "history",
+        "questions",
+        "route",
+        "sk-git",
+        "lifting",
+        "them",
+        "advisor",
+        "floor"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.296Z"
+      "lastUpdated": "2026-11-13T18:11:49.444Z"
     },
     {
       "specFolder": "system-skill-advisor/runtime-lifecycle/001-codex-node-runtime-alignment",
@@ -60984,23 +60968,17 @@
     },
     {
       "specFolder": "system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution",
-      "description": "`.skilled/bin/skill-advisor.cjs` spawns the advisor CLI with `process.execPath`, and the CLI and the launcher pass that Node on to the daemon",
+      "description": "Start the skill advisor on the Node its native database module was built for",
       "keywords": [
-        "skilled",
-        "bin",
-        "skill-advisor",
-        "cjs",
-        "spawns",
+        "start",
+        "skill",
         "advisor",
-        "cli",
-        "process",
-        "execpath",
-        "launcher",
-        "pass",
         "node",
-        "daemon"
+        "native",
+        "database",
+        "module"
       ],
-      "lastUpdated": "2026-11-13T19:56:11.300Z"
+      "lastUpdated": "2026-11-13T18:11:46.521Z"
     },
     {
       "specFolder": "system-skill-advisor/z_archive/001-skill-advisor-refinement",
@@ -87964,22 +87942,19 @@
     },
     {
       "specFolder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach",
-      "description": "Subtracks exist in system-spec-kit only as a hand-written declaration, one level deep, and three gaps follow from that",
+      "description": "Subtrack proposal, deterministic packet relocation, z_archive on every subtrack and opt-in archive search",
       "keywords": [
-        "subtracks",
-        "exist",
-        "system-spec-kit",
-        "only",
-        "hand-written",
-        "declaration",
-        "one",
-        "level",
-        "deep",
-        "three",
-        "gaps",
-        "follow"
+        "subtrack",
+        "proposal",
+        "deterministic",
+        "packet",
+        "relocation",
+        "every",
+        "opt-in",
+        "archive",
+        "search"
       ],
-      "lastUpdated": "2026-11-13T16:01:32.227Z"
+      "lastUpdated": "2026-11-13T15:00:54.264Z"
     },
     {
       "specFolder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/001-relocation-engine",
@@ -87995,7 +87970,7 @@
         "stores",
         "name"
       ],
-      "lastUpdated": "2026-11-13T16:04:46.802Z"
+      "lastUpdated": "2026-11-13T11:40:22.957Z"
     },
     {
       "specFolder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/002-subtrack-proposal",
@@ -88009,7 +87984,7 @@
         "only",
         "noticing"
       ],
-      "lastUpdated": "2026-11-13T16:01:11.130Z"
+      "lastUpdated": "2026-11-13T12:53:33.014Z"
     },
     {
       "specFolder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/003-subtrack-archive-and-numbering",
@@ -88024,7 +87999,7 @@
         "script",
         "folder"
       ],
-      "lastUpdated": "2026-11-13T16:01:12.664Z"
+      "lastUpdated": "2026-11-13T12:56:38.709Z"
     },
     {
       "specFolder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/004-archive-search-and-json",
@@ -88038,7 +88013,7 @@
         "standard",
         "tools"
       ],
-      "lastUpdated": "2026-11-13T16:00:54.359Z"
+      "lastUpdated": "2026-11-13T10:27:26.633Z"
     },
     {
       "specFolder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout",
@@ -88049,7 +88024,7 @@
         "automated",
         "coverage"
       ],
-      "lastUpdated": "2026-11-13T19:33:51.138Z"
+      "lastUpdated": "2026-11-13T10:27:32.193Z"
     },
     {
       "specFolder": "system-speckit/z_archive/001-fix-command-dispatch",
