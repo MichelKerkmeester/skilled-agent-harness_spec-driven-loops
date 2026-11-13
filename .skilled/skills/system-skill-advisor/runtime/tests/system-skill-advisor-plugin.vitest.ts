@@ -260,6 +260,26 @@ describe('system-skill-advisor OpenCode plugin', () => {
     expect(result.output.system[0]).toContain('sk-code');
   });
 
+  it.each([
+    {
+      name: 'a skill row keeps the command and policy the advisor attached',
+      recommendation: { skillId: 'sk-doc', kind: 'skill', command: '/create:readme', policy: 'start', ownerSkillId: 'sk-doc', confidence: 0.95, uncertainty: 0.12 },
+      expectedHead: 'Advisor: live; use sk-doc → /create:readme (start) 0.95/0.12 pass.',
+    },
+    {
+      name: 'a hub row keeps the flag that says it needs a mode',
+      recommendation: { skillId: 'system-deep-loop', confidence: 0.82, uncertainty: 0.2, needsMode: true },
+      expectedHead: 'Advisor: live; use system-deep-loop (needs a mode) 0.82/0.20 pass.',
+    },
+  ])('$name', async ({ recommendation, expectedHead }) => {
+    mockBridgeSuccess(cliResponse([recommendation]));
+    const hooks = await makePlugin();
+
+    const result = await runPrompt(hooks, { prompt: `route ${recommendation.skillId} for the utils folder` });
+
+    expect(result.additionalContext?.split('\n')[0]).toBe(expectedHead);
+  });
+
   it('pushes the standalone hygiene context when advisor returns an empty brief', async () => {
     mockBridgeSuccess(cliResponse([]));
     const hooks = await makePlugin();

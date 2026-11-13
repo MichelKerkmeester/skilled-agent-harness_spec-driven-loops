@@ -1,0 +1,13 @@
+  24 {"r":"claude","b":true}
+  24 {"r":"codex","b":"unknown"}
+  24 {"r":"devin","b":"unknown"}
+  24 {"r":"dsh","b":"unknown"}
+  24 {"r":"opencode","b":"unknown"}
+  24 {"r":"pi","b":"unknown"}
+present /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skilled-behaviour-arenas/post-claude
+present /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skilled-behaviour-arenas/post-codex
+present /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skilled-behaviour-arenas/post-devin
+present /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skilled-behaviour-arenas/post-dsh
+present /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skilled-behaviour-arenas/post-opencode
+present /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skilled-behaviour-arenas/post-pi
+WARN codex-hooks-unapproved /private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/skilled-behaviour-arenas/post-codex

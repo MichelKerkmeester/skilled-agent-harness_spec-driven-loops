@@ -44,6 +44,13 @@ const {
 } = require('./fixtures/agents-md/compose-fixture.cjs');
 
 const ENGINE = path.join(SCRIPTS_DIR, 'agents-md-check.cjs');
+// The composer writes the Gate 1 mirror only, so a case that reads a whole runtime-copy row
+// finishes the mirrors with the generator that owns them, as a repository that ran its own
+// generators would.
+const POINTER_SYNC = path.join(
+  REPO_ROOT,
+  '.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-gate1-pointers.cjs',
+);
 
 const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, 'utf8'));
 
@@ -466,6 +473,25 @@ test('A10 reports a pointer-only CLAUDE.md and an absent .codex/AGENTS.md withou
   const codex = copies.entries.find((entry) => entry.path === '.codex/AGENTS.md');
   assert.equal(codex.kind, 'absent');
   assert.equal(codex.state, 'PASS');
+});
+
+// Claude Code reads only CLAUDE.md, so a tree without one leaves Claude with no route to
+// the root document. That is a missing route, not a copy that is wrong, so the row stays a
+// pass and the line still prints what Claude never loads.
+test('a pure tree with no CLAUDE.md reports a missing pointer and keeps A10 a pass', (t) => {
+  const fixture = buildFixture(t, 'pure');
+  assert.equal(fs.existsSync(path.join(fixture.dir, 'CLAUDE.md')), false, 'the composed template carries no CLAUDE.md');
+  const mirrors = spawnSync(process.execPath, [POINTER_SYNC, '--root', fixture.dir], { encoding: 'utf8' });
+  assert.equal(mirrors.status, 0, `the pointer sync completes the fixture's mirrors: ${mirrors.stderr}`);
+
+  const report = buildReport({ root: fixture.dir });
+  const copies = report.rows.find((row) => row.id === 'A10');
+  const claude = copies.entries.find((entry) => entry.path === 'CLAUDE.md');
+  assert.equal(claude.kind, 'pointer missing');
+  assert.equal(claude.state, 'INFO');
+  assert.equal(copies.state, 'PASS');
+  assert.ok(copies.lines.some((line) => line.startsWith('CLAUDE.md: pointer missing')),
+    `the missing pointer is printed, not only recorded: ${JSON.stringify(copies.lines)}`);
 });
 
 // A copy whose own tool is missing was not checked. Recorded only in the JSON entries, it

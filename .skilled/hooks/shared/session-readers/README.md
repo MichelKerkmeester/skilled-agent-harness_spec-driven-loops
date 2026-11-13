@@ -28,6 +28,13 @@ The six decision-capture sweeps keep their own inline readers and remain the wri
 - **One envelope.** `readSession` returns `{ ok: true, source, items }` or `{ ok: false, code }`. It never throws across the boundary and never returns a partial list.
 - **Capability is the caller's gate.** `index.mjs` exports `capabilities`, one row per runtime with its `status`, locator kind and store root, plus a `reason` when the runtime is gated. The dispatcher does not consult it. The compaction hooks and the lookup CLI check that a runtime is `ready` before they offer or read history.
 
+`loadSession` returns the raw neutral records. Claude, Pi, Devin and DSH also return `injected`, a list of `{ source, text }` for context a hook or harness put into the session, which `records` never carries. `loadSession` passes `injected` through and `readSession` ignores it, so only a caller on the raw path sees what the harness added.
+
+- Claude's `injected` source is `hook_additional_context`, one entry per hook context attachment.
+- Pi's `injected` source is the entry's custom type, such as `session-start-context`, or `custom_message` when it carries none.
+- Devin's `injected` source is `system` for a harness node and `unflagged-user` for a user node the harness wrote. The transcript fallback uses the step's own source.
+- DSH's `injected` source is the event's source kind, such as `repo-guards`, or `unknown` when it names none.
+
 Failure codes:
 
 | Code | Meaning |

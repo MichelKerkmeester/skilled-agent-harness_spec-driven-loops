@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "attribution and install reach",
+      "phase 13 attribution and install reach",
+      "attribution and install reach plan",
+      "attribution and install reach tasks",
+      "attribution and install reach acceptance criteria",
+      "attribution and install reach implementation summary"
+    ],
+    "key_topics": [
+      "attribution",
+      "install",
+      "reach",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "committed",
+      "arm"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scratch/after.txt",
+      "scratch/runs-post-attributed.jsonl",
+      "scratch/delivery-leg.txt",
+      ".opencode/plugins/system-skill-advisor.js",
+      ".opencode/plugins/README.md",
+      "scratch/before.txt",
+      "scratch/summary-post-after.json",
+      ".opencode/SYNC.md",
+      ".skilled/commands/doctor/scripts/agents-md-embed.cjs",
+      ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+      ".skilled/commands/doctor/agents-md.md",
+      ".skilled/commands/doctor/assets/doctor-setup.yaml",
+      ".codex/hooks.json",
+      ".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml",
+      ".skilled/commands/doctor/assets/doctor-setup-presentation.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "runs-post-attributed.jsonl",
+        "kind": "file",
+        "path": "scratch/runs-post-attributed.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "delivery-leg.txt",
+        "kind": "file",
+        "path": "scratch/delivery-leg.txt",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/plugins/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "summary-post-after.json",
+        "kind": "config",
+        "path": "scratch/summary-post-after.json",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".opencode/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-embed.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/agents-md-embed.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/agents-md.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-setup.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-agents-md-embed.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-setup-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The committed after arm answers `briefDelivered` on 24 of 144 lines, Claude only, although Pi, Devin and DSH stored the brief in every session and Codex received none because its hooks were unapproved",
+    "created_at": "2026-11-13T03:31:06Z",
+    "last_save_at": "2026-11-13T05:46:34.260Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:a5d7c30a1efc7f872f2d2a5eba894caf1d81d32336d11e71d4aad5184aee6c1b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b7e85b74728cd74f33ed528b20f6b514ea61a67e9103d8c8c29231eb044eee94",
+      "plan.md": "9ffc3f38858707fc7470c84651a2d7050109f2319d271cb5b1f41f322e411d49",
+      "tasks.md": "5d0b4e12ecdccd29cc7532673f534c5501036ee8153950b0be921f1299aafa3c",
+      "implementation-summary.md": "15ec3a72101a0be15beab37980912cbbd75a0604bfd124196f3ea326d364310b"
+    },
+    "last_active_at": null
+  }
+}

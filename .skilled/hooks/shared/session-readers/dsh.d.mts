@@ -18,5 +18,9 @@ export function loadDshSession({ sessionId, projectDir, sessionPath, ...options 
         storePath: string | undefined;
     };
     records: any[];
+    injected: {
+        source: any;
+        text: string;
+    }[];
 };
 //# sourceMappingURL=dsh.d.mts.map

@@ -635,7 +635,7 @@ test('restore recreates a removed file and deletes a file the run created', (t) 
   const applied = planAndApply(dir).applied;
   const backup = trackBackup(t, applied.out);
   assert.equal(applied.code, 0, `${applied.err}${applied.out}`);
-  assert.equal(existsInside(dir, 'CLAUDE.md'), false, 'the folded copy is gone');
+  assert.equal(readInside(dir, 'CLAUDE.md'), '@AGENTS.md\n', 'the folded copy became a pointer');
   assert.equal(existsInside(dir, manifest.root_file), true, 'the root document was created');
 
   const restored = run(['restore', `--run=${backup}`, '--root', dir], { input: 'yes\n' });
@@ -839,7 +839,7 @@ test('claude-only creates the root document and removes the copy', (t) => {
   trackBackup(t, applied.out);
   assert.equal(applied.code, 0, `${applied.err}${applied.out}`);
   assert.equal(existsInside(dir, manifest.root_file), true);
-  assert.equal(existsInside(dir, 'CLAUDE.md'), false);
+  assert.equal(readInside(dir, 'CLAUDE.md'), '@AGENTS.md\n');
 
   const composed = readInside(dir, manifest.root_file);
   const block = blockIn(composed);
@@ -858,6 +858,19 @@ test('--keep-claude-md keeps the copy it folded', (t) => {
   assert.equal(readInside(dir, 'CLAUDE.md'), claude, 'the copy is untouched');
   const block = blockIn(readInside(dir, manifest.root_file));
   assert.ok(block.includes('Run `make check` before you open a pull request.'), 'and its lines still reached the block');
+});
+
+// Claude Code reads only CLAUDE.md, so a tree that has no copy at all still needs one line
+// pointing at the root document this run writes.
+test('an adopted tree with no CLAUDE.md gains the pointer', (t) => {
+  const dir = composeTree(t, 'adopted');
+  fs.rmSync(path.join(dir, 'CLAUDE.md'));
+
+  const applied = planAndApply(dir).applied;
+  trackBackup(t, applied.out);
+  assert.equal(applied.code, 0, `${applied.err}${applied.out}`);
+  assert.match(applied.out, /wrote AGENTS\.md/u, 'the run writes the root document');
+  assert.equal(readInside(dir, 'CLAUDE.md'), '@AGENTS.md\n');
 });
 
 // ─────────────────────────────────────────────────────────────────────────────

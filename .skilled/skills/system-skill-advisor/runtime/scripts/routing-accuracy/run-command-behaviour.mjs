@@ -43,16 +43,18 @@
 //   node run-command-behaviour.mjs --list <set>
 //   node run-command-behaviour.mjs --runtime <runtime> (--set <set> | --row-id <id>...)
 //     --out <run-log> [--arm <arm>] [--fixture <dir>] [--dry-run]
-//   node run-command-behaviour.mjs --backfill <run-log> --out <new-log>
+//   node run-command-behaviour.mjs --backfill <run-log> --out <new-log> [--brief-only]
 
-import { appendFileSync, mkdirSync, readdirSync, readFileSync, realpathSync, rmSync } from 'node:fs';
+import { appendFileSync, mkdirSync, readdirSync, readFileSync, realpathSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { homedir } from 'node:os';
 import { randomUUID } from 'node:crypto';
 import { spawn, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { dshProjectKey, dshStoreRoot } from '../../../../../hooks/shared/session-readers/dsh.mjs';
-import { backfillRunLog, briefDelivered, replayOffer } from './command-offer.mjs';
+import { loadSession as loadSharedSession } from '../../../../../hooks/shared/session-readers/index.mjs';
+import { backfillRunLog, briefDelivered, codexHookApproval, replayOffer } from './command-offer.mjs';
+import { restoreTurn, statusSnapshot } from './worktree-restore.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(HERE, '../../../../../..');
@@ -503,15 +505,7 @@ function gitText(args) {
 }
 
 function statusPaths() {
-  const paths = new Map();
-  for (const line of gitText(['status', '--porcelain']).split('\n')) {
-    if (line.length < 4) continue;
-    // A rename carries both sides, and both have to be put back.
-    for (const path of line.slice(3).split(' -> ')) {
-      paths.set(path, line.slice(0, 2));
-    }
-  }
-  return paths;
+  return statusSnapshot(REPO_ROOT);
 }
 
 // The out folder is this arm's own output area. Git is asked for that folder's path
@@ -567,32 +561,6 @@ function remoteNames() {
     .split('\n')
     .map((name) => name.trim())
     .filter((name) => name !== '');
-}
-
-function pathIsTracked(path) {
-  return git(['ls-files', '--error-unmatch', '--', path]).status === 0;
-}
-
-function restorePath(path) {
-  if (pathIsTracked(path)) {
-    const result = git(['checkout', '--', path]);
-    return result.status === 0 ? null : `checkout ${path}: ${(result.stderr ?? '').trim()}`;
-  }
-  try {
-    rmSync(resolve(REPO_ROOT, path), { recursive: true, force: true });
-    return null;
-  } catch (error) {
-    return `delete ${path}: ${error.message}`;
-  }
-}
-
-function restorePaths(paths) {
-  const failures = [];
-  for (const path of paths) {
-    const failure = restorePath(path);
-    if (failure !== null) failures.push(failure);
-  }
-  return failures;
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -881,7 +849,7 @@ const USAGE = [
   `       ${SCRIPT_NAME} --list <set>`,
   `       ${SCRIPT_NAME} --runtime <runtime> (--set <set> | --row-id <id>...)`,
   '         --out <run-log> [--arm <arm>] [--fixture <dir>] [--dry-run]',
-  `       ${SCRIPT_NAME} --backfill <run-log> --out <new-log>`,
+  `       ${SCRIPT_NAME} --backfill <run-log> --out <new-log> [--brief-only]`,
 ].join('\n');
 
 function resolveRuntime(name) {
@@ -921,6 +889,7 @@ function parseOptions(argv) {
     backfill: null,
     fixture: null,
     dryRun: false,
+    briefOnly: false,
   };
   for (let index = 0; index < argv.length; index += 1) {
     const token = argv[index];
@@ -957,6 +926,8 @@ function parseOptions(argv) {
       options.fixture = resolve(valueAfter(argv, index, '--fixture'));
     } else if (token === '--dry-run') {
       options.dryRun = true;
+    } else if (token === '--brief-only') {
+      options.briefOnly = true;
     } else {
       throw new UsageError(`unknown option: ${token}`);
     }
@@ -967,6 +938,11 @@ function parseOptions(argv) {
 // One mode per invocation. Asking for an argv and a run at once would hide which
 // one the operator meant, and a run with no log has nowhere to record its proof.
 function selectMode(options) {
+  // Only a backfill rewrites delivery, so the flag on any other invocation would
+  // parse and then quietly change nothing.
+  if (options.briefOnly && options.backfill === null) {
+    throw new UsageError('--brief-only needs --backfill');
+  }
   if (options.printArgv !== null) return 'print-argv';
   if (options.list !== null) return 'list';
   if (options.backfill !== null) {
@@ -1062,21 +1038,27 @@ async function runTurn(job, options, exempt, isFirst) {
 
   // A dry run spawns nothing, so an unchanged worktree is the only thing it can
   // honestly report as left as found.
-  const restored = options.dryRun ? changed.length === 0 : restorePaths(changed).length === 0;
+  const restore = options.dryRun ? null : restoreTurn({ cwd: REPO_ROOT, before: before.status });
+  const restored = options.dryRun ? changed.length === 0 : restore.restored;
   // The head the reader saw is the only place the offer was named, and not every
   // runtime keeps it, so the offer is replayed after the turn. A dry run still
   // replays it, which lets an operator read the offer without paying for a model
   // call, while the brief stays `unknown` because no session exists to read.
   const offer = replayOffer({ checkoutDir: PROJECT_DIR, prompt: job.prompt, sessionId });
+  // Pi, Devin and DSH keep the brief in their session store rather than in the
+  // turn records, so the delivery check needs the reader that opens that store.
   const delivered = options.dryRun
     ? 'unknown'
-    : await briefDelivered({ runtime: job.runtimeName, locator });
+    : await briefDelivered({ runtime: job.runtimeName, locator, loadSession: loadSharedSession });
   appendRunLine(options.out, {
     ...line,
     offeredCommand: offer.offeredCommand,
     offeredPolicy: offer.offeredPolicy,
     briefDelivered: delivered,
     restored,
+    ...(restore !== null && restore.leftoverPaths.length > 0
+      ? { leftoverPaths: restore.leftoverPaths }
+      : {}),
   });
 
   if (turn.error !== null) {
@@ -1084,7 +1066,16 @@ async function runTurn(job, options, exempt, isFirst) {
     return { status: 1, refusal: { ok: false, code: 'spawn_failed', runtime: job.runtimeName, detail } };
   }
   if (!restored) {
-    return { status: 1, refusal: { ok: false, code: 'restore_failed', rowId: job.rowId, paths: changed } };
+    return {
+      status: 1,
+      refusal: {
+        ok: false,
+        code: 'restore_failed',
+        rowId: job.rowId,
+        paths: changed,
+        ...(restore === null ? {} : { leftoverPaths: restore.leftoverPaths }),
+      },
+    };
   }
   return { status: 0, refusal: null };
 }
@@ -1117,6 +1108,7 @@ async function backfillLog(options) {
     inPath: options.backfill,
     outPath: options.out,
     promptFor: (rowId) => promptFor(rowId, fixture),
+    briefOnly: options.briefOnly,
   });
   writeJson(result);
   return result.ok ? 0 : EXIT_REFUSED;
@@ -1141,6 +1133,22 @@ async function main(argv) {
     }
     if (mode === 'backfill') {
       return await backfillLog(options);
+    }
+    // An unapproved project hook makes a Codex arm produce zeros that read like
+    // refusals, so that arm is not measurable. No turn decides this answer, so a
+    // dry run is refused here too and nothing writes the approval.
+    if (
+      options.runtime === 'codex'
+      && codexHookApproval({ projectDir: PROJECT_DIR }) === 'unapproved'
+    ) {
+      writeJson({
+        ok: false,
+        code: 'codex-hooks-unapproved',
+        runtime: 'codex',
+        measurable: false,
+        repair: `open /hooks in a Codex session at ${PROJECT_DIR} and approve each entry`,
+      });
+      return EXIT_REFUSED;
     }
     return await runArm(options, rowIds);
   } catch (error) {

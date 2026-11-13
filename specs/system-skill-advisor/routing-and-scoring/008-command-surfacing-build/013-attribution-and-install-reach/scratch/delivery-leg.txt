@@ -1,0 +1,26 @@
+$ shasum -a 256 ~/.codex/config.toml
+ac6ef2b5ae149b9d3bca93ee83fba01cef434f014dbebb463f57eaa0ec385d52  /Users/michelkerkmeester/.codex/config.toml
+$ node hook-wiring-check.cjs --root .
+ok claude
+ok codex
+ok cursor
+ok devin
+exit=0
+$ node codex-hook-approval-check.cjs --root .
+WARN codex-hooks-unapproved .
+repair: open /hooks in a Codex session at . and approve each entry
+exit=1
+$ shasum -a 256 ~/.codex/config.toml
+ac6ef2b5ae149b9d3bca93ee83fba01cef434f014dbebb463f57eaa0ec385d52  /Users/michelkerkmeester/.codex/config.toml
+$ node scratch/planning/probe-opencode-brief.mjs
+[real] advisor top: {"skillId":"sk-doc","command":"/create:readme","policy":"start","ownerSkillId":"sk-doc"}
+[real] opencode plugin head: Advisor: live; use sk-doc → /create:readme (start) 0.95/0.12 pass.
+[real] opencode plugin names command=true names policy=true
+[real] renderer with fields kept: Advisor: live; use sk-doc → /create:readme (start) 0.95/0.12 pass.
+[real] renderer with fields kept names command=true names policy=true
+[fixture] advisor top: {"skillId":"sk-doc","command":"/create:readme","policy":"start","ownerSkillId":"sk-doc"}
+[fixture] opencode plugin head: Advisor: live; use sk-doc → /create:readme (start) 0.95/0.12 pass.
+[fixture] opencode plugin names command=true names policy=true
+[fixture] renderer with fields kept: Advisor: live; use sk-doc → /create:readme (start) 0.95/0.12 pass.
+[fixture] renderer with fields kept names command=true names policy=true
+exit=0

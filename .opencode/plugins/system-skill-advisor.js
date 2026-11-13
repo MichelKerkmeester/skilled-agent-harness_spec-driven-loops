@@ -575,6 +575,13 @@ function cliRecommendations(data, options) {
         ...(Array.isArray(recommendation.ambiguousWith)
           ? { ambiguousWith: recommendation.ambiguousWith.filter((value) => typeof value === 'string') }
           : {}),
+        // The renderer prints a command, its policy and its owner only from these
+        // fields. A skill row such as sk-doc has no generated command row to refill
+        // them, so a dropped field hides the command the advisor attached.
+        ...(typeof recommendation.command === 'string' && recommendation.command.trim() !== '' ? { command: recommendation.command } : {}),
+        ...(recommendation.policy === 'run' || recommendation.policy === 'start' || recommendation.policy === 'ask' ? { policy: recommendation.policy } : {}),
+        ...(typeof recommendation.ownerSkillId === 'string' && recommendation.ownerSkillId.trim() !== '' ? { ownerSkillId: recommendation.ownerSkillId } : {}),
+        ...(recommendation.needsMode === true ? { needsMode: true } : {}),
       };
     });
 }

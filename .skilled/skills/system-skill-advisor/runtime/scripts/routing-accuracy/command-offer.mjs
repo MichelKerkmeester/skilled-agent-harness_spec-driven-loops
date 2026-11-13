@@ -25,6 +25,7 @@
 import { spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { loadSession as loadSharedSession } from '../../../../../hooks/shared/session-readers/index.mjs';
 
@@ -36,6 +37,8 @@ const BRIEF_PATTERN = /Advisor: [a-z]+[;. ]/;
 const CLAUDE_ATTACHMENT_EVENT = 'UserPromptSubmit';
 const DEFAULT_TIMEOUT_MS = 30_000;
 const MAX_OUTPUT_BYTES = 1024 * 1024;
+const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../../..');
+const CODEX_CHECK = join(REPO_ROOT, '.skilled/commands/doctor/scripts/codex-hook-approval-check.cjs');
 
 function failedOffer(offerError) {
   return { offeredCommand: null, offeredPolicy: null, offerError };
@@ -144,22 +147,77 @@ function recordsHaveBrief(records) {
     BRIEF_PATTERN.test(JSON.stringify(record ?? null)));
 }
 
+// Injected context sits beside the records rather than inside them, so a reader
+// that reports it gives the brief a second place to be found.
+function injectedHasBrief(injected) {
+  return (Array.isArray(injected) ? injected : []).some(
+    (entry) => typeof entry?.text === 'string' && BRIEF_PATTERN.test(entry.text),
+  );
+}
+
+/**
+ * Ask the project's Codex approval check whether its advisor hook can run.
+ *
+ * Codex skips an unapproved project hook without a warning, so a wired hook can
+ * still deliver nothing. The check reports the approval recorded in the config
+ * file it reads, and this wrapper turns that verdict into the answer the
+ * delivery decision needs.
+ *
+ * @param {object} [options]
+ * @param {string} [options.projectDir] - Project root whose hooks file is read.
+ * @param {string} [options.configPath] - Codex config file, defaulting to the
+ *   environment's Codex home.
+ * @returns {'approved' | 'unapproved' | 'absent' | 'no-hooks' | 'unknown'}
+ */
+export function codexHookApproval({ projectDir, configPath } = {}) {
+  if (typeof projectDir !== 'string' || projectDir === '') return 'unknown';
+
+  const args = [CODEX_CHECK, '--root', projectDir, '--json'];
+  if (configPath) args.push('--config', configPath);
+  const result = spawnSync('node', args, { encoding: 'utf8', timeout: 10_000 });
+  if (result.error || typeof result.stdout !== 'string') return 'unknown';
+
+  let verdict;
+  try {
+    verdict = JSON.parse(result.stdout);
+  } catch {
+    return 'unknown';
+  }
+
+  switch (verdict?.code) {
+    case 'codex-hooks-approved':
+      return 'approved';
+    case 'codex-hooks-unapproved':
+      return 'unapproved';
+    case 'codex-advisor-hook-absent':
+      return 'absent';
+    case 'no-codex-hooks':
+      return 'no-hooks';
+    default:
+      return 'unknown';
+  }
+}
+
 /**
  * Decide whether the advisor brief reached the session that ran the turn.
  *
  * A Claude transcript records the hook context as its own attachment line, so a
- * missing attachment is a real miss. Pi keeps delivery in its session records
- * and needs the caller's reader. Every other runtime has no confirmed record of
- * delivery, so its answer stays `unknown` and never counts as a miss.
+ * missing attachment is a real miss. Pi, Devin and DSH keep the brief in their
+ * session store, either as a record or as injected context beside it, and Codex
+ * answers from its approval plus whatever its store holds. OpenCode stays
+ * `unknown`, because its plugin adds the brief in memory and the store keeps no
+ * copy.
  *
  * @param {object} options
  * @param {string} options.runtime - The measured runtime.
  * @param {object|null} [options.locator] - The locator the run line recorded.
  * @param {Function} [options.loadSession] - Reader for a runtime whose brief
  *   lives in session records rather than a transcript file.
+ * @param {string} [options.codexConfig] - Codex config file the approval is
+ *   read from, defaulting to the environment's Codex home.
  * @returns {Promise<boolean | 'unknown'>}
  */
-export async function briefDelivered({ runtime, locator, loadSession } = {}) {
+export async function briefDelivered({ runtime, locator, loadSession, codexConfig } = {}) {
   if (runtime === 'claude') {
     const transcriptPath = locator?.transcriptPath;
     if (typeof transcriptPath !== 'string' || transcriptPath.length === 0) {
@@ -190,7 +248,7 @@ export async function briefDelivered({ runtime, locator, loadSession } = {}) {
     return false;
   }
 
-  if (runtime === 'pi') {
+  if (runtime === 'pi' || runtime === 'devin' || runtime === 'dsh') {
     if (typeof loadSession !== 'function') return 'unknown';
     let loaded;
     try {
@@ -199,7 +257,27 @@ export async function briefDelivered({ runtime, locator, loadSession } = {}) {
       return 'unknown';
     }
     if (!loaded?.ok) return 'unknown';
-    return recordsHaveBrief(loaded.records);
+    return recordsHaveBrief(loaded.records) || injectedHasBrief(loaded.injected);
+  }
+
+  if (runtime === 'codex') {
+    // An unapproved project hook never runs, so the brief cannot have arrived.
+    // An approved one may store its context where no reader looks yet.
+    if (codexHookApproval({ projectDir: locator?.projectDir, configPath: codexConfig }) === 'unapproved') {
+      return false;
+    }
+
+    if (typeof loadSession !== 'function') return 'unknown';
+    let loaded;
+    try {
+      loaded = await loadSession({ ...locator, runtime });
+    } catch {
+      return 'unknown';
+    }
+    if (!loaded?.ok) return 'unknown';
+    return recordsHaveBrief(loaded.records) || injectedHasBrief(loaded.injected)
+      ? true
+      : 'unknown';
   }
 
   return 'unknown';
@@ -245,6 +323,8 @@ function refused(code, detail) {
  * @param {string} options.outPath - New run log to write.
  * @param {(rowId: string) => string} options.promptFor - Prompt lookup. It
  *   refuses an unknown or holdout row by throwing an error with a `code`.
+ * @param {boolean} [options.briefOnly] - Write only the delivery answer and
+ *   leave every offer field exactly as the input line holds it.
  * @param {Function} [options.replay] - Offer replay, injectable for tests.
  * @param {Function} [options.brief] - Brief delivery reader, injectable for tests.
  * @param {(checkoutDir: string) => unknown} [options.warm] - Daemon warm-up,
@@ -256,6 +336,7 @@ export async function backfillRunLog({
   inPath,
   outPath,
   promptFor,
+  briefOnly = false,
   replay = replayOffer,
   brief = briefDelivered,
   warm = warmCheckout,
@@ -290,21 +371,24 @@ export async function backfillRunLog({
     const projectDir = locator?.projectDir;
     const checkoutDir = typeof projectDir === 'string' && projectDir !== '' ? projectDir : null;
 
-    let offer = { offeredCommand: null, offeredPolicy: null, offerError: 'no_checkout' };
-    if (checkoutDir !== null) {
-      if (!warmed.has(checkoutDir)) {
-        warmed.add(checkoutDir);
-        try {
-          await warm(checkoutDir);
-        } catch {
-          // A failed warm-up still lets the replay report its own miss.
+    let offer = null;
+    if (!briefOnly) {
+      offer = { offeredCommand: null, offeredPolicy: null, offerError: 'no_checkout' };
+      if (checkoutDir !== null) {
+        if (!warmed.has(checkoutDir)) {
+          warmed.add(checkoutDir);
+          try {
+            await warm(checkoutDir);
+          } catch {
+            // A failed warm-up still lets the replay report its own miss.
+          }
         }
+        offer = await replay({
+          checkoutDir,
+          prompt: prompts[index],
+          sessionId: `backfill-${rowId}`,
+        });
       }
-      offer = await replay({
-        checkoutDir,
-        prompt: prompts[index],
-        sessionId: `backfill-${rowId}`,
-      });
     }
 
     // Pi keeps its brief in a session store rather than a transcript, so the
@@ -312,14 +396,23 @@ export async function backfillRunLog({
     // its store ignores it and answers `unknown`.
     const delivered = await brief({ runtime: line.runtime, locator, loadSession: loadSharedSession });
 
-    output.push({
-      ...line,
-      offeredCommand: offer.offeredCommand ?? null,
-      offeredPolicy: offer.offeredPolicy ?? null,
-      offerError: offer.offerError ?? null,
-      briefDelivered: delivered,
-      offerBackfilled: true,
-    });
+    // A recorded offer belongs to the head the turn saw, so recomputing
+    // delivery must not replay it. A brief-only pass copies the line forward
+    // untouched, so a present offer stays and an absent one stays absent.
+    let nextLine;
+    if (briefOnly) {
+      nextLine = { ...line, briefDelivered: delivered, briefBackfilled: true };
+    } else {
+      nextLine = {
+        ...line,
+        offeredCommand: offer.offeredCommand ?? null,
+        offeredPolicy: offer.offeredPolicy ?? null,
+        offerError: offer.offerError ?? null,
+        briefDelivered: delivered,
+        offerBackfilled: true,
+      };
+    }
+    output.push(nextLine);
   }
 
   mkdirSync(dirname(outPath), { recursive: true });

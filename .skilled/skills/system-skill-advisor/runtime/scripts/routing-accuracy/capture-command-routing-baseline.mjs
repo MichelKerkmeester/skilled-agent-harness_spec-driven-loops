@@ -487,6 +487,9 @@ export async function scoreCommandCorpus(options = {}) {
       const expected = row.expected_command ?? null;
       const top1Hit = expected !== null && landed[0] === expected;
       const top3Hit = expected !== null && landed.includes(expected);
+      // True when any of the top three recommendations maps to a command bridge,
+      // so this is a reach measure. It is not whether a brief head offered the
+      // command, which the behaviour run line records as `offeredCommand`.
       const offered = landed.some((command) => command !== null);
       const isPlainSplit = row.row_type === 'plain' && (row.split === 'tune' || row.split === 'holdout');
 

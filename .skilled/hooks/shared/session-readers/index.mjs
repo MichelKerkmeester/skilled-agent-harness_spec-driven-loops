@@ -135,7 +135,12 @@ export async function loadSession(input) {
   try {
     const loaded = await load(options);
     if (!loaded.ok) return loaded;
-    return { ok: true, source: loaded.source, records: loaded.records };
+    return {
+      ok: true,
+      source: loaded.source,
+      records: loaded.records,
+      ...(Array.isArray(loaded.injected) ? { injected: loaded.injected } : {}),
+    };
   } catch {
     return failure('store_unreadable');
   }

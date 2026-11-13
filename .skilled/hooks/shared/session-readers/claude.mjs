@@ -158,6 +158,30 @@ function recordsFromEntries(entries) {
   return records;
 }
 
+// Claude records the context a hook adds as an attachment entry rather than a
+// message, so the history never carried it. A caller that asks whether the
+// advisor brief reached the turn needs that text, and it has to stay apart from
+// the operator and assistant records.
+function attachmentText(content) {
+  if (typeof content === 'string') return content;
+  if (!Array.isArray(content)) return '';
+  return content
+    .map((item) => (typeof item === 'string' ? item : item?.text))
+    .filter((text) => typeof text === 'string' && text.length > 0)
+    .join('\n');
+}
+
+function injectedFromEntries(entries) {
+  const injected = [];
+  for (const entry of entries) {
+    if (!entry || typeof entry !== 'object') continue;
+    if (entry.type !== 'attachment' || entry?.attachment?.type !== 'hook_additional_context') continue;
+    const text = attachmentText(entry.attachment.content);
+    if (text) injected.push({ source: 'hook_additional_context', text });
+  }
+  return injected;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. LOADER
 // ─────────────────────────────────────────────────────────────────────────────
@@ -220,5 +244,6 @@ export function loadClaudeSession({ sessionId, transcriptPath, ...options } = {}
       storePath,
     },
     records: recordsFromEntries(entries),
+    injected: injectedFromEntries(entries),
   };
 }

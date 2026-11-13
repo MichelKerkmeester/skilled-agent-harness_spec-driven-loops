@@ -26,7 +26,7 @@ mutation_boundaries:
   read_only: false
   allowed_targets:
     - "AGENTS.md, the root document: created when the repository has none, replaced with the shipped sections plus the composed block, and left alone when it already matches"
-    - "CLAUDE.md, folded into the block and removed by default; kept, with its lines still moved into the block, when --keep-claude-md was given"
+    - "CLAUDE.md, folded into the block and replaced by a one-line @AGENTS.md pointer by default. Kept as it is, with its lines still moved into the block, when --keep-claude-md was given. Created as that pointer when it is absent and the run writes another file."
     - ".codex/AGENTS.md, folded into the block and removed"
     - ".cursor/rules/repo-local.md, the generated mirror of a non-empty block; removed when the block is empty"
     - ".cursor/rules/skill-routing.md, rewritten by its own generator, sync-gate1-pointers.cjs, which this engine calls and never composes a byte of"
@@ -61,7 +61,7 @@ inputs:
   dry_run: "--dry-run prints the plan and its digest, then STATUS=OK without asking a question (default false). The plan call writes nothing either way; the flag only removes the question and the write."
   plan_digest: "The plan digest the plan printed. It is what makes the approved bytes checkable: the apply recomposes and refuses any digest that no longer matches."
   digest_confirmation: "true once the operator has answered yes to the plan whose digest was on screen. A plan approved at one tree is never applied at another, because the digest would not match."
-  keep_claude_md: "--keep-claude-md folds a divergent CLAUDE.md into the block and keeps the file; --remove-claude-md folds it and removes it, which is the default (default false, so removal)."
+  keep_claude_md: "--keep-claude-md folds a divergent CLAUDE.md into the block and keeps the file. --remove-claude-md folds it and leaves a one-line @AGENTS.md pointer, which is the default (default false, so the pointer)."
   create_router: "--create-router creates REPO RULES.md from the shipped rows when it is missing (default false, so a missing router is a note and a finding)."
 
 # ─────────────────────────────────────────────────────────────────

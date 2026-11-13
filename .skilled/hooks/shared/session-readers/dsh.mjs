@@ -238,6 +238,23 @@ function recordsFromEvents(events) {
   return records;
 }
 
+// A hook notice arrives as a user-role message whose source is not the operator.
+// It never becomes a record, because the operator did not write it, and the text
+// is kept here so a caller can still tell what the harness put into the turn.
+function injectedFromEvents(events) {
+  const injected = [];
+  for (const event of events) {
+    if (event?.type !== 'user/message') continue;
+    const data = event.data;
+    if (!data || typeof data !== 'object') continue;
+    if (data.source?.kind === OPERATOR_SOURCE) continue;
+    const text = contentText(data.content);
+    if (!text) continue;
+    injected.push({ source: data.source?.kind ?? 'unknown', text });
+  }
+  return injected;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 6. LOADER
 // ─────────────────────────────────────────────────────────────────────────────
@@ -311,5 +328,6 @@ export function loadDshSession({ sessionId, projectDir, sessionPath, ...options 
       storePath,
     },
     records: recordsFromEvents(events),
+    injected: injectedFromEvents(events),
   };
 }

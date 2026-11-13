@@ -159,6 +159,20 @@ function recordsFromLines(lines) {
   return records;
 }
 
+// A `custom_message` is context a hook or harness put into the session rather
+// than a turn the operator wrote, so it stays out of `records` and travels as
+// its own list. The custom type names the producer when the entry carries one.
+function injectedFromLines(lines) {
+  const injected = [];
+  for (const line of lines) {
+    if (line?.type !== 'custom_message') continue;
+    const text = contentText(line.content);
+    if (!text) continue;
+    injected.push({ source: line.customType ?? 'custom_message', text });
+  }
+  return injected;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. LOADER
 // ─────────────────────────────────────────────────────────────────────────────
@@ -179,6 +193,7 @@ function liveResult({ sessionId, sessionManager, options }) {
         : piStoreRoot(options),
     },
     records: recordsFromLines(entries),
+    injected: injectedFromLines(entries),
   };
 }
 
@@ -260,6 +275,7 @@ function diskResult({ sessionId, projectDir, options }) {
       storePath: guard.path,
     },
     records: recordsFromLines(lines),
+    injected: injectedFromLines(lines),
   };
 }
 

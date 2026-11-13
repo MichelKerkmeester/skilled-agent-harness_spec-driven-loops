@@ -13,6 +13,7 @@ export function loadPiSession({ sessionId, projectDir, sessionManager, ...option
     code: string;
     source?: undefined;
     records?: undefined;
+    injected?: undefined;
 } | {
     ok: boolean;
     source: {
@@ -23,6 +24,10 @@ export function loadPiSession({ sessionId, projectDir, sessionManager, ...option
         storePath: any;
     };
     records: any[];
+    injected: {
+        source: any;
+        text: string;
+    }[];
     code?: undefined;
 } | {
     ok: boolean;
@@ -34,5 +39,9 @@ export function loadPiSession({ sessionId, projectDir, sessionManager, ...option
         storePath: string | undefined;
     };
     records: any[];
+    injected: {
+        source: any;
+        text: string;
+    }[];
 };
 //# sourceMappingURL=pi.d.mts.map

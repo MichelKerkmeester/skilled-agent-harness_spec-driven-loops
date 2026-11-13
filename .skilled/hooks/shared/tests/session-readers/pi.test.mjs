@@ -7,14 +7,18 @@
 // is part of the identity.
 
 import assert from 'node:assert/strict';
-import { mkdirSync } from 'node:fs';
+import { appendFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { test } from 'node:test';
 
 import { capabilities, readSession } from '../../session-readers/index.mjs';
-import { piProjectDirectory } from '../../session-readers/pi.mjs';
+import { loadPiSession, piProjectDirectory } from '../../session-readers/pi.mjs';
 import { DECOY, piSession, SESSION, T0 } from './fixtures.mjs';
 import { withTempAsync } from './helpers.mjs';
+
+// The head of a live advisor brief, used as the text a harness injects into a
+// session through an entry that is not a turn.
+const BRIEF = 'Advisor: live; use sk-doc → /create:readme (start) 0.82/0.12 pass.';
 
 // The fixtures build store folders with the reader's own key helper, so this
 // pins the helper to a folder name a real Pi install wrote.
@@ -106,5 +110,27 @@ test('a missing store is a store_unreadable', async () => {
     });
     assert.equal(result.ok, false);
     assert.equal(result.code, 'store_unreadable');
+  });
+});
+
+test('a custom_message entry is injected context, not a turn', async () => {
+  await withTempAsync('pi-injected', async (root) => {
+    const projectDir = join(root, 'project');
+    mkdirSync(projectDir, { recursive: true });
+    const fixture = piSession({ root, projectDir });
+    appendFileSync(
+      fixture.filePath,
+      JSON.stringify({
+        type: 'custom_message',
+        customType: 'session-start-context',
+        id: 'pi-context',
+        content: BRIEF,
+      }) + '\n',
+    );
+
+    const result = await loadPiSession({ sessionId: SESSION, ...fixture.options });
+    assert.equal(result.ok, true);
+    assert.deepEqual(result.injected, [{ source: 'session-start-context', text: BRIEF }]);
+    assert.equal(result.records.some((record) => record.id === 'pi-context'), false);
   });
 });

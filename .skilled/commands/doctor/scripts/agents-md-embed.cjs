@@ -83,6 +83,7 @@ const BACKUP_NAME_CHARS = 16;
 const BACKUP_ATTEMPTS = 64;
 const MIRROR_FILE = '.cursor/rules/repo-local.md';
 const POINTER_FILE = '.cursor/rules/skill-routing.md';
+const CLAUDE_POINTER_PATH = 'CLAUDE.md';
 
 // The whole write boundary, in one place. `skill-routing.md` is here because the run
 // invokes the generator that owns it; this engine never composes a byte of it. Every write
@@ -109,7 +110,7 @@ const USAGE = [
   'Options:',
   '  --root <dir>               compose for this repository instead of the one this script ships in',
   '  --keep-claude-md           fold a divergent CLAUDE.md into the block but keep the file',
-  '  --remove-claude-md         fold it and remove it (the default)',
+  '  --remove-claude-md         fold it and leave an @AGENTS.md pointer in its place (the default)',
   '  --create-router            create REPO RULES.md from the shipped rows when it is missing',
   '  --dry-run                  print the plan and write nothing',
   '  --yes                      take the restore confirmation as given',
@@ -644,6 +645,7 @@ function compose({ root, manifest, keepClaudeMd = false, createRouter = false })
 
   const markers = manifest.markers;
   const rootFile = manifest.root_file;
+  const claudePointer = `@${manifest.root_file}\n`;
   const rootPath = path.join(root, rootFile);
   // Writing through a link would change a file this repository does not own, and the backup
   // could not put the link back.
@@ -821,7 +823,21 @@ function compose({ root, manifest, keepClaudeMd = false, createRouter = false })
   }
 
   for (const copy of removedCopies) {
+    if (copy.path === CLAUDE_POINTER_PATH) {
+      files.push({ path: copy.path, action: 'replace', content: claudePointer, before: copy.content });
+      continue;
+    }
     files.push({ path: copy.path, action: 'remove', content: null, before: copy.content });
+  }
+
+  // Claude Code reads only CLAUDE.md, so the pointer is its one route to the root document.
+  const claudePath = path.join(root, CLAUDE_POINTER_PATH);
+  if (
+    files.some((file) => ['create', 'replace', 'remove'].includes(file.action))
+    && !fs.existsSync(claudePath)
+    && !isSymlink(claudePath)
+  ) {
+    files.push({ path: CLAUDE_POINTER_PATH, action: 'create', content: claudePointer, before: null });
   }
 
   const composition = {

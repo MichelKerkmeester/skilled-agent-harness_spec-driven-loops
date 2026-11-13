@@ -57,7 +57,7 @@ Load the presentation contract before showing the menu, a plan, a digest, a resu
 | `--dry-run` | `embed`, `restore` | Print the plan and the digest, ask nothing and write nothing |
 | `--plan-digest <digest>` | `embed` | The digest the plan printed; the apply refuses any bytes it does not match |
 | `--keep-claude-md` | `embed` | Fold a divergent `CLAUDE.md` into the block and keep the file |
-| `--remove-claude-md` | `embed` | Fold it and remove it, which is the default |
+| `--remove-claude-md` | `embed` | Fold it and leave a one-line @AGENTS.md pointer in its place, which is the default |
 | `--create-router` | `embed` | Create `REPO RULES.md` from the shipped rows when it is missing |
 | `--run <dir>` | `restore` | The backup directory one apply printed, whose `manifest.json` records what to put back |
 | `--yes` | `restore` | Take the confirmation as given, which the workflow passes only after its own yes |

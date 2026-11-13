@@ -16,7 +16,7 @@ Render this table first, before any leg runs.
 
 | Command | What it checks |
 |---------|----------------|
-| `/doctor:setup` | This overview: the doctor target list and the six read-only setup legs |
+| `/doctor:setup` | This overview: the doctor target list and the seven read-only setup legs |
 | `/doctor:helper [<problem in plain words>] [--json]` | Rank the doctor commands that fit a described problem, with the class and the reason on every line |
 | `/doctor:env list` | The documented environment switches and where each value comes from |
 | `/doctor:update` | Whether a newer spec-kit release is available (bare runs the read-only check) |
@@ -60,6 +60,7 @@ Render one row per leg, in the workflow's order.
 | runtime-mirrors | `/doctor:runtime-mirrors` |
 | advisor | Stale build: `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`. Other FAIL or DEGRADED results: `/doctor:skill-advisor rebuild`. |
 | embedder | `/doctor:skill-advisor embedder` |
+| delivery | Missing hook: /doctor:runtime-mirrors, or /doctor:symlink check in a linked project. Unapproved Codex hook: the repair line the check prints, which opens /hooks in a Codex session |
 
 ## 4. Result Templates
 
@@ -104,6 +105,7 @@ STATUS=ERROR ERROR="[message]"
 | The advisor leg reports DEGRADED | Exit 0 has `data.freshness` other than `live`. The skill graph is not live. Run `/doctor:skill-advisor rebuild` |
 | The sk-git leg reports DEGRADED | No sk-git check failed, but one is unknown or a gate is saved off. Run `/doctor:git setup` to see which. On a runtime the battery cannot name, the AI-tool check stays unknown |
 | The trigger-index leg reports stale documents | Run `/doctor:speckit` to see which documents are stale |
+| The delivery leg reports DEGRADED | A runtime cannot receive the advisor brief. Run the repair the leg names, then rerun /doctor:setup. The install still works without it |
 | Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
 
 End interactive presentations with: `What would you like to do next?`

@@ -1,0 +1,33 @@
+# T001 before numbers
+# HEAD at capture: 99b68d8b3d
+# Captured: 2026-11-13 05:45 +0100
+# Format: <name>: <command> -> <last output line or exit code>
+
+FLOOR: node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs | jq -c '.metrics.typed_recall_at_1, .metrics.false_offer' -> {"correct":24,"total":44} and {"count":0,"total":35}, exit 0
+EVAL: node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-scorer-eval-baseline.mjs | jq -c '[.metrics.full_corpus_top1.correct,.metrics.holdout_top1.correct,.metrics.ambiguity_top1.correct,.metrics.gold_none_false_fire.value]' -> [160,50,21,5], exit 0
+TC: npm run typecheck (in .skilled/skills/system-skill-advisor/runtime) -> exit 0, no diagnostics
+VALL: npx vitest run (in .skilled/skills/system-skill-advisor/runtime) -> "Test Files  2 failed | 176 passed (178)", "Tests  10 failed | 1681 passed | 6 skipped (1697)", exit 1
+VSR: node --test .skilled/hooks/shared/tests/session-readers/*.test.mjs -> "pass 85", "fail 0", exit 0
+SRD --check: node .skilled/hooks/shared/session-reader-declarations.mjs --check -> "STATUS=OK session-reader-declarations: 20 file(s) current", exit 0
+DALL: node --test .skilled/commands/doctor/scripts/tests/*.test.cjs -> "tests 1162", "pass 1162", "fail 0", exit 0
+RV: bash .skilled/commands/doctor/scripts/route-validate.sh -> "OK: route-validate — 32 routes validated, 11 warnings", exit 0
+SRM: node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check -> "[runtime-mirror-sync] PASS: 256 mirrors across 10 trees are in sync.", exit 0
+VO: npx vitest run tests/command-offer.vitest.ts (in .skilled/skills/system-skill-advisor/runtime) -> "Tests  11 passed (11)", 0 failed, exit 0
+VT: npx vitest run tests/command-transcript-score.vitest.ts (in .skilled/skills/system-skill-advisor/runtime) -> "Tests  49 passed (49)", 0 failed, exit 0
+HEAD: git rev-parse --short HEAD -> 99b68d8b3d, exit 0
+
+# RED GATE: VALL reports 10 failed tests, so the before number cannot be held.
+# VALL failures: tests/command-brief-golden.vitest.ts (9) and tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts (1).
+# Expected "(start)", received "(parent-named only)": uncommitted phase 012 policy-rendering work is in the tree.
+# First FLOOR attempt at 05:37 refused with: "@spec-kit/system-skill-advisor dist is stale (source content differs
+# from the attested build)." The advisor dist was rebuilt at 05:41:40 and the capture above is from the fresh build.
+# @spec-kit/cli is still stale (same freshness status). RV and SRM pass, so no listed command is blocked by it.
+# Wave 0 is read-only for the repository, so no dist was rebuilt by this task.
+
+# COORDINATOR CORRECTION, 2026-11-13: the RED GATE above is the worker's environment, not the tree.
+# The worker runs with AI_SESSION_CHILD=1, and the renderer labels a child session "(parent-named only)".
+# Checked: AI_SESSION_CHILD=1 npx vitest run tests/command-brief-golden.vitest.ts tests/hooks/skill-advisor-cli-fallback-envelope.vitest.ts
+#   -> "Test Files 2 failed (2)", "Tests 10 failed | 5 passed (15)"
+# and env -u AI_SESSION_CHILD with the same files -> "Test Files 2 passed (2)", "Tests 15 passed (15)".
+VALL (coordinator, no child marker, at the phase 012 wave E floor check): "Test Files 178 passed (178)", "Tests 1691 passed | 6 skipped (1697)", exit 0
+# The gate is green. The two test files not isolating themselves from AI_SESSION_CHILD is queued for the review remediation phase.

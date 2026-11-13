@@ -68,6 +68,8 @@ DSH loads the repository's guards and the skill advisor only from the patches a 
 
 Codex runs a project hook only after you approve it, so open `/hooks` in a Codex session at the repository root and approve each entry it lists. Codex keeps each approval as a `trusted_hash` in `~/.codex/config.toml`, so a changed entry needs approving again, and `/doctor:runtime-mirrors` prints `PASS codex-hooks-approved` once the advisor's entry is approved.
 
+`/doctor:setup` also reports a delivery leg, which reads DEGRADED with the repair step when a runtime's prompt hook is missing or Codex has not approved it.
+
 To see the advisor answer a prompt, run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"create a readme for the utils folder"}' --format json | jq -r '.data.recommendations[0].skillId'`, which prints one skill id such as `sk-doc`, and when it prints nothing or `null`, run `/doctor:skill-advisor rebuild`.
 
 ### Meaning Matching for Commands
@@ -130,7 +132,7 @@ It asks four questions in one prompt:
 1. **Target repo:** the absolute path of your project.
 2. **Runtimes:** the AI coding tools you use. Pick any of `claude`, `opencode`, `codex`, `cursor`, `devin` and `pi`.
 3. **Link shape:** choose `auto`. [What Gets Linked](#what-gets-linked) explains the shapes.
-4. **Instruction file:** `embed` adds the shipped sections to your project's own `AGENTS.md`. `link` points `AGENTS.md`, `CLAUDE.md` and `REPO RULES.md` at the checkout's copies.
+4. **Instruction file:** `embed` adds the shipped sections to your project's own `AGENTS.md` and leaves a one-line `CLAUDE.md` reading `@AGENTS.md`, because Claude Code reads only `CLAUDE.md`. `link` points `AGENTS.md`, `CLAUDE.md` and `REPO RULES.md` at the checkout's copies.
 
 <!-- readme-check
 allow-ref CLAUDE.md | the instruction file in the operator's target repo, which this checkout does not ship
@@ -143,7 +145,7 @@ The guide writes nothing. It prints the steps below with your paths filled in.
 | Step | Command | Run it from | What it does |
 | --- | --- | --- | --- |
 | 1 | `/doctor:symlink link --root <dir> --runtimes <list> --mode auto` | the checkout | Links `.skilled` and your runtime folders into the project |
-| 2 | `/doctor:agents-md embed --root <dir>` | the checkout | Adds the shipped sections to your `AGENTS.md`. Skip it if you chose `link` |
+| 2 | `/doctor:agents-md embed --root <dir>` | the checkout | Adds the shipped sections to your `AGENTS.md` and leaves the CLAUDE.md pointer. Skip it if you chose `link` |
 | 3 | `/doctor:mcp install` | the checkout | Builds and registers Code Mode, the bridge your runtime uses to call MCP tools |
 | 4 | `/doctor:git setup` | your project | Checks the git hooks and sk-git settings. Run `/doctor:git standards` afterwards to write repo-owned commit, PR and branch rules; until then the shipped defaults apply |
 | 5 | `/doctor:skill-advisor embedder` | your project | Sets up meaning matching for commands. It shows the cost and asks before it pulls the model or starts the server |

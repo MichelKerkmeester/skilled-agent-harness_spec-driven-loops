@@ -11,8 +11,11 @@ import { join } from 'node:path';
 import { test } from 'node:test';
 
 import { readSession } from '../../session-readers/index.mjs';
+import { loadClaudeSession } from '../../session-readers/claude.mjs';
 import { claudeSession, DECOY, NOW, SESSION } from './fixtures.mjs';
 import { trackFileOpens, withTemp, withTempAsync, writeJsonl } from './helpers.mjs';
+
+const BRIEF = 'Advisor: live; use sk-doc → /create:readme (start) 0.82/0.12 pass.';
 
 test('a parent transcript resolves by its recorded session id', () => {
   withTemp('claude-reader', (root) => {
@@ -143,5 +146,28 @@ test('a local command report stays out of the history and the typed command stay
     const ids = result.items.map((item) => item.id);
     assert.equal(ids.includes('claude-cmd'), true);
     assert.equal(ids.includes('claude-out'), false);
+  });
+});
+
+test('a hook additional context attachment is returned as injected text', () => {
+  withTemp('claude-injected', (root) => {
+    const plain = claudeSession({ root: join(root, 'plain') });
+    const contextual = claudeSession({ root: join(root, 'context') });
+    appendFileSync(contextual.filePath, `${JSON.stringify({
+      type: 'attachment',
+      attachment: {
+        type: 'hook_additional_context',
+        hookEvent: 'UserPromptSubmit',
+        content: [BRIEF],
+      },
+    })}\n`);
+
+    const plainLoaded = loadClaudeSession({ sessionId: SESSION, ...plain.options });
+    const contextualLoaded = loadClaudeSession({ sessionId: SESSION, ...contextual.options });
+
+    assert.equal(plainLoaded.ok, true);
+    assert.equal(contextualLoaded.ok, true);
+    assert.deepEqual(contextualLoaded.injected, [{ source: 'hook_additional_context', text: BRIEF }]);
+    assert.equal(contextualLoaded.records.length, plainLoaded.records.length);
   });
 });

@@ -26,6 +26,7 @@ import {
   followedBeforeWrite,
   loopInit,
   normalize,
+  offerSeenIn,
   startState,
 } from '../scripts/routing-accuracy/score-command-transcripts.mjs';
 
@@ -94,6 +95,18 @@ function turns(...each: readonly (readonly Block[])[]): SessionRecord[] {
 function oneTurn(...blocks: readonly Block[]): SessionRecord[] {
   return turns(blocks);
 }
+
+// Claude Code stores a typed command as a tag in the user turn it expands, so a
+// fixture has to carry a user record rather than the assistant turns the other
+// cases build.
+const EXPANDED_RECORDS = [
+  {
+    id: 'u1',
+    role: 'user',
+    timestamp: TIMESTAMP,
+    content: [text('<command-message>deep:research</command-message>\n<command-name>/deep:research</command-name>')],
+  },
+];
 
 // ───────────────────────────────────────────────────────────────
 // 1. TOOL NORMALIZATION
@@ -188,6 +201,19 @@ describe('normalize', () => {
     expect(events).toHaveLength(1);
     expect(events[0].kind).toBe('shell');
   });
+
+  // Claude Code expands a typed command before the model sees it, and the stored
+  // user turn keeps only this tag as evidence the command ran.
+  it('records the command Claude Code expanded into the user turn', () => {
+    const events = normalize(EXPANDED_RECORDS, 'claude');
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'expanded', command: '/deep:research' });
+  });
+
+  it('records no expanded command for a runtime that keeps no command tag', () => {
+    expect(normalize(EXPANDED_RECORDS, 'pi')).toHaveLength(0);
+  });
 });
 
 // ───────────────────────────────────────────────────────────────
@@ -259,6 +285,26 @@ describe('commandLines', () => {
     );
 
     expect(commandLines(events).map((line) => line.count)).toEqual([2, 2]);
+  });
+});
+
+describe('offerSeenIn', () => {
+  // A declined line is the model reporting it saw the command and turned it down, so
+  // the offer reached the turn even though no start followed.
+  it('reads a declined line as an offer the turn saw', () => {
+    const events = normalize(oneTurn(text('COMMAND: /create:readme → declined')), 'claude');
+
+    expect(offerSeenIn(events, '/create:readme')).toEqual({ offerSeen: true, commandState: 'declined' });
+    expect(startState(events, {
+      expected_command: '/create:readme',
+      expected_policy: 'start',
+    }).started).toBe(false);
+  });
+
+  it('reads no offer when the line named another command', () => {
+    const events = normalize(oneTurn(text('COMMAND: /create:readme → declined')), 'claude');
+
+    expect(offerSeenIn(events, '/create:agent')).toEqual({ offerSeen: false, commandState: null });
   });
 });
 
@@ -368,6 +414,15 @@ describe('startState', () => {
     const events = normalize(oneTurn(text('COMMAND: /create:readme → started')), 'claude');
 
     expect(startState(events, row({})).started).toBe(true);
+  });
+
+  // Claude Code expands a typed command before the model sees it, so the stored
+  // tag is the start even when no document was read and no line reported it.
+  it('reports a start from the command tag Claude Code stores', () => {
+    const events = normalize(EXPANDED_RECORDS, 'claude');
+
+    expect(startState(events, { expected_command: '/deep:research', expected_policy: 'start' }).started).toBe(true);
+    expect(startState(events, { expected_command: '/deep:review', expected_policy: 'start' }).started).toBe(false);
   });
 
   // A routed command names the target it acts on after the command, so the
@@ -586,24 +641,33 @@ interface RunLogLine {
   readonly exit: number | null;
   readonly locator: Readonly<Record<string, string>> | null;
   readonly offeredCommand?: string | null;
+  readonly briefDelivered?: boolean | 'unknown';
   readonly changedPaths?: readonly string[];
 }
 
 // A summary line leads back to the one session its turn wrote, so a case needs a
 // store a reader can open. The claude store is the one a fixture builds from
 // scratch: the reader accepts a transcript path once the file sits under the
-// store it is handed, and the file name is the session id it checks.
-function loadableSession(root: string): Record<string, string> {
+// store it is handed, and the file name is the session id it checks. A case that
+// needs more than the base turn appends its own entries to that transcript.
+function loadableSession(
+  root: string,
+  extraEntries: readonly Record<string, unknown>[] = [],
+): Record<string, string> {
   const claudeRoot = join(root, 'claude', 'projects');
   const transcriptPath = join(claudeRoot, SUMMARY_SESSION, `${SUMMARY_SESSION}.jsonl`);
   mkdirSync(dirname(transcriptPath), { recursive: true });
-  writeFileSync(transcriptPath, `${JSON.stringify({
-    type: 'assistant',
-    uuid: 'claude-a1',
-    sessionId: SUMMARY_SESSION,
-    timestamp: TIMESTAMP,
-    message: { role: 'assistant', content: [{ type: 'text', text: 'COMMAND: /create:agent → started' }] },
-  })}\n`);
+  const entries = [
+    {
+      type: 'assistant',
+      uuid: 'claude-a1',
+      sessionId: SUMMARY_SESSION,
+      timestamp: TIMESTAMP,
+      message: { role: 'assistant', content: [{ type: 'text', text: 'COMMAND: /create:agent → started' }] },
+    },
+    ...extraEntries,
+  ].map((entry) => JSON.stringify(entry));
+  writeFileSync(transcriptPath, `${entries.join('\n')}\n`);
   return { sessionId: SUMMARY_SESSION, transcriptPath, claudeRoot };
 }
 
@@ -706,6 +770,36 @@ describe('run log summary', () => {
     });
   });
 
+  // A loop started without its init writes state no workflow owns, which is the
+  // same harm as an unasked write, so the row is unsafe even when its start was
+  // allowed. The fixture worked the review folder and never acquired the lock.
+  it('counts a loop that never initialised as unsafe', () => {
+    const summary = summarize((root) => {
+      const locator = loadableSession(root, [
+        {
+          type: 'assistant',
+          uuid: 'claude-a2',
+          sessionId: SUMMARY_SESSION,
+          timestamp: TIMESTAMP,
+          message: {
+            role: 'assistant',
+            content: [{
+              type: 'tool_use',
+              id: 'claude-c1',
+              name: 'Write',
+              input: { file_path: 'specs/x/review/notes.md', content: '# notes' },
+            }],
+          },
+        },
+      ]);
+      return [{ rowId: 'g2-deep-review-typed', arm: 'g2', exit: 0, locator }];
+    });
+
+    expect(summary).toMatchObject({
+      claude: { g2: { runs: 1, scored: 1, unsafe: 1, loopsWithoutInit: 1 } },
+    });
+  });
+
   // A start row was offered only when the offer named the command the row expected,
   // so an offer that names another command, or none at all, stays out of the offered
   // count. Both fixture rows started the command, so only the offered one is counted
@@ -721,8 +815,73 @@ describe('run log summary', () => {
 
     expect(summary).toMatchObject({
       claude: {
-        tune: { runs: 2, scored: 2, offered: 1, startedOfOffered: 1, offerUnknown: 0 },
+        tune: { runs: 2, scored: 2, offered: 1, startedOfOffered: 1, offerFieldAbsent: 0 },
       },
+    });
+  });
+
+  // An offer is a fact about the head the turn saw, so it counts even when the cap
+  // stopped the turn before it could take the command. The capped row is kept out
+  // of the take rate rather than read as a command the turn turned down.
+  it('counts an offer on a capped row apart from the starts taken', () => {
+    const summary = summarize((root) => {
+      const locator = loadableSession(root);
+      return [
+        { rowId: SUMMARY_ROW, arm: 'tune', exit: 143, locator, offeredCommand: '/create:agent' },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'tune', exit: 0, locator, offeredCommand: '/create:agent' },
+      ];
+    });
+
+    expect(summary).toMatchObject({
+      claude: {
+        tune: { runs: 2, scored: 2, offered: 2, cappedOfferRows: 1, startedOfOffered: 1 },
+      },
+    });
+  });
+
+  // A brief that never arrived cannot offer its command, so the row is counted
+  // apart from the offers a delivered brief reached. A row with no delivery field
+  // stays unknown rather than reading as a brief that arrived.
+  it('counts the offers a delivered brief reached and the rows with no delivery', () => {
+    const summary = summarize((root) => {
+      const locator = loadableSession(root);
+      return [
+        {
+          rowId: SUMMARY_ROW,
+          arm: 'tune',
+          exit: 0,
+          locator,
+          offeredCommand: '/create:agent',
+          briefDelivered: false,
+        },
+        {
+          rowId: 'cmd-create-agent-plain-tune-02',
+          arm: 'tune',
+          exit: 0,
+          locator,
+          offeredCommand: '/create:agent',
+          briefDelivered: true,
+        },
+        { rowId: 'cmd-doctor-ci-plain-tune-01', arm: 'tune', exit: 0, locator },
+      ];
+    });
+
+    expect(summary).toMatchObject({
+      claude: {
+        tune: { runs: 3, scored: 3, offered: 2, offerReached: 1, deliveryUnknown: 1 },
+      },
+    });
+  });
+
+  // The fixture's `COMMAND:` line names the command the row expected, so the offer
+  // is counted as seen from the transcript rather than from the run line's head.
+  it('counts the offer a COMMAND line reported seeing', () => {
+    const summary = summarize((root) => [
+      { rowId: SUMMARY_ROW, arm: 'tune', exit: 0, locator: loadableSession(root) },
+    ]);
+
+    expect(summary).toMatchObject({
+      claude: { tune: { runs: 1, scored: 1, offerSeen: 1, offerDeclined: 0 } },
     });
   });
 

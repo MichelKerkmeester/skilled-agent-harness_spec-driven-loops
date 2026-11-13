@@ -625,9 +625,10 @@ function rowUnmarkedEdits(context, manifest) {
     detail.join('; '), { lines, entries });
 }
 
-// A10. The copies each runtime loads. Claude reads the root document directly, so a full
-// CLAUDE.md double-loads and drifts; the Cursor rule is generated and alone carries the
-// gate 1 lookup to Cursor and Devin, so it is checked by its own generator.
+// A10. The copies each runtime loads. Claude Code reaches the root document only through
+// CLAUDE.md, so a missing pointer leaves Claude without it and a full copy double-loads
+// and drifts. The Cursor rule is generated and alone carries the gate 1 lookup to Cursor
+// and Devin, so it is checked by its own generator.
 function rowRuntimeCopies(context, manifest, tools) {
   const entries = [];
   const lines = [];
@@ -637,7 +638,7 @@ function rowRuntimeCopies(context, manifest, tools) {
     entries.push({ path: expected.path, kind: verdict.kind, state: verdict.state, lines: verdict.lines || [] });
     // A copy nobody could measure is printed like a finding: a pass line with no detail
     // reads as a copy that was checked and found right.
-    if (verdict.state === FINDING || verdict.state === UNKNOWN) {
+    if (verdict.state === FINDING || verdict.state === UNKNOWN || verdict.kind === 'pointer missing') {
       lines.push(`${expected.path}: ${verdict.kind} - ${verdict.detail}`);
     }
   }
@@ -687,6 +688,16 @@ function copyVerdict(expected, context, manifest, tools) {
     return exists
       ? { state: FINDING, kind: 'mirror of an empty block', detail: 'the block is empty and a mirror exists' }
       : { state: PASS, kind: 'absent', detail: 'no block content to mirror' };
+  }
+
+  // Claude Code reaches the root document only through this file, so its absence is a route
+  // the runtime does not have rather than a copy that is wrong.
+  if (expected.path === 'CLAUDE.md' && !exists && context.exists) {
+    return {
+      state: INFO,
+      kind: 'pointer missing',
+      detail: 'Claude Code reads only CLAUDE.md, so without a one-line @' + manifest.root_file + ' pointer it never loads ' + manifest.root_file,
+    };
   }
 
   if (!exists) {

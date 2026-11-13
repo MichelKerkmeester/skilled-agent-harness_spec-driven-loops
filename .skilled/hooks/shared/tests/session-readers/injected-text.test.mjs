@@ -11,7 +11,7 @@ import { join } from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
 import { test } from 'node:test';
 
-import { readSession } from '../../session-readers/index.mjs';
+import { loadSession, readSession } from '../../session-readers/index.mjs';
 import {
   codexSession,
   devinSession,
@@ -23,6 +23,10 @@ import {
   T0,
 } from './fixtures.mjs';
 import { withTempAsync, writeJson } from './helpers.mjs';
+
+// The head of a live advisor brief, used as the text a harness injects into a
+// session through an entry that is not a turn.
+const BRIEF = 'Advisor: live; use sk-doc → /create:readme (start) 0.82/0.12 pass.';
 
 function appendJsonLines(filePath, rows) {
   appendFileSync(filePath, rows.map((row) => `${JSON.stringify(row)}\n`).join(''));
@@ -109,6 +113,31 @@ test('Pi keeps operator text that opens with a tag and ignores custom messages',
     assert.equal(result.ok, true);
     assert.equal(result.items.some((item) => item.id === 'pi-context'), false);
     assert.equal(result.items.find((item) => item.id === 'pi-div')?.content[0].text, '<div>hello</div>');
+  });
+});
+
+test('loadSession carries the Pi custom message while readSession leaves it out', async () => {
+  await withTempAsync('pi-load-session-injected', async (root) => {
+    const projectDir = join(root, 'project');
+    mkdirSync(projectDir, { recursive: true });
+    const fixture = piSession({ root, projectDir });
+    appendJsonLines(fixture.filePath, [
+      {
+        type: 'custom_message',
+        customType: 'session-start-context',
+        id: 'pi-context',
+        timestamp: NOW,
+        content: BRIEF,
+      },
+    ]);
+
+    const loaded = await loadSession({ runtime: 'pi', sessionId: SESSION, ...fixture.options });
+    assert.equal(loaded.ok, true);
+    assert.deepEqual(loaded.injected, [{ source: 'session-start-context', text: BRIEF }]);
+
+    const projected = await readSession({ runtime: 'pi', sessionId: SESSION, ...fixture.options });
+    assert.equal(projected.ok, true);
+    assert.equal(projected.items.some((item) => item.id === 'pi-context'), false);
   });
 });
 

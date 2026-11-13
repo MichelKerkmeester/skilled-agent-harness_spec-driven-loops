@@ -182,6 +182,35 @@ function recordsFromChain(chain) {
   return records;
 }
 
+// A system node carries the harness context a compaction or a session start
+// injected. A user node without the input flag is prompt context the harness
+// wrote, not text the operator typed, so it is injected context too and never
+// a conversation record.
+function injectedFromChain(chain) {
+  const injected = [];
+
+  for (const node of chain) {
+    const message = parseJsonObject(node.chat_message);
+    if (!message) continue;
+
+    const text = typeof message.content === 'string' ? message.content : '';
+    if (!text) continue;
+
+    if (message.role === 'system') {
+      injected.push({ source: message.role, text });
+      continue;
+    }
+
+    if (message.role === 'user') {
+      const isInput = message.metadata?.is_user_input;
+      if (isInput === true || isInput === 1) continue;
+      injected.push({ source: 'unflagged-user', text });
+    }
+  }
+
+  return injected;
+}
+
 function summarizedFrom(node) {
   const value = parseJsonObject(node.metadata)?.summarized_from;
   return Number.isInteger(value) ? value : null;
@@ -212,10 +241,10 @@ function recordsFromDatabase(database, sessionId, headId) {
     .prepare('SELECT node_id, parent_node_id, chat_message, metadata, created_at FROM message_nodes WHERE session_id = ? ORDER BY node_id')
     .all(sessionId);
 
-  if (nodes.length === 0) return [];
+  if (nodes.length === 0) return { records: [], injected: [] };
 
   const chain = chainWithEarlierThreads(nodes, headId);
-  return chain ? recordsFromChain(chain) : null;
+  return chain ? { records: recordsFromChain(chain), injected: injectedFromChain(chain) } : null;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -283,6 +312,21 @@ function recordsFromSteps(steps) {
   return records;
 }
 
+// Harness and system steps are not conversation records, but they are context
+// the next turn saw, kept apart so a caller can tell what the operator typed.
+function injectedFromSteps(steps) {
+  const injected = [];
+
+  for (const step of steps) {
+    if (!step || typeof step !== 'object') continue;
+    if (step.source === 'user' || step.source === 'agent') continue;
+    if (typeof step.message !== 'string' || !step.message) continue;
+    injected.push({ source: step.source, text: step.message });
+  }
+
+  return injected;
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 6. LOADER
 // ─────────────────────────────────────────────────────────────────────────────
@@ -333,6 +377,7 @@ function loadTranscript(sessionId, dataDirectory, options) {
       storePath,
     },
     records: recordsFromSteps(steps),
+    injected: injectedFromSteps(steps),
   };
 }
 
@@ -371,9 +416,10 @@ export function loadDevinSession({ sessionId, projectDir, ...options } = {}) {
         // transcript files, so a database with no message rows for this
         // session, or no chain head to walk, falls through.
         if (tableColumns(database, 'message_nodes').size > 0) {
-          const records = recordsFromDatabase(database, sessionId, row.main_chain_id);
-          if (!records) return { ok: false, code: 'store_unreadable' };
+          const projection = recordsFromDatabase(database, sessionId, row.main_chain_id);
+          if (!projection) return { ok: false, code: 'store_unreadable' };
 
+          const { records, injected } = projection;
           if (records.length > 0) {
             return {
               ok: true,
@@ -384,6 +430,7 @@ export function loadDevinSession({ sessionId, projectDir, ...options } = {}) {
                 storePath: dbContainment.path,
               },
               records,
+              injected,
             };
           }
         }

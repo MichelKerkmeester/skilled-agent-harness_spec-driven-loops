@@ -18,5 +18,9 @@ export function loadDevinSession({ sessionId, projectDir, ...options }?: {}): {
         storePath: string | undefined;
     };
     records: any[];
+    injected: {
+        source: any;
+        text: any;
+    }[];
 };
 //# sourceMappingURL=devin.d.mts.map

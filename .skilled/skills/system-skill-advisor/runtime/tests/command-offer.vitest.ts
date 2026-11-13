@@ -14,17 +14,31 @@
 // when its checkout is gone, that a refused row leaves no output behind, and
 // that the new log never replaces the one it reads.
 
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
-import { backfillRunLog, briefDelivered, parseOffer, replayOffer } from '../scripts/routing-accuracy/command-offer.mjs';
+import {
+  backfillRunLog,
+  briefDelivered,
+  codexHookApproval,
+  parseOffer,
+  replayOffer,
+} from '../scripts/routing-accuracy/command-offer.mjs';
 
 const OFFERED_HEAD = 'Advisor: live; use sk-git → /doctor:git hooks (ask) 0.82/0.12 pass.';
+const BRIEF = 'Advisor: live; use sk-doc → /create:readme (start) 0.82/0.12 pass.';
 const AMBIGUOUS_HEAD = 'Advisor: live; ambiguous: /doctor:git hooks 0.82/0.12 vs sk-git 0.86/0.16 pass.';
 const NO_COMMAND_HEAD = 'Advisor: live; use command-speckit-plan 0.82/0.16 pass.';
+const CODEX_HOOKS = {
+  hooks: {
+    UserPromptSubmit: [
+      { hooks: [{ command: 'node x/hooks/codex/user-prompt-submit.js' }] },
+    ],
+  },
+};
 
 function writeTranscript(lines: unknown[]): { dir: string; transcriptPath: string } {
   const dir = mkdtempSync(join(tmpdir(), 'command-offer-'));
@@ -37,6 +51,22 @@ function writeRunLog(dir: string, lines: unknown[]): string {
   const inPath = join(dir, 'runs.jsonl');
   writeFileSync(inPath, lines.map((line) => JSON.stringify(line)).join('\n') + '\n');
   return inPath;
+}
+
+function writeCodexRoot(withHooks: boolean): { dir: string; hooksPath: string } {
+  const dir = mkdtempSync(join(tmpdir(), 'command-offer-codex-'));
+  const hooksPath = join(dir, '.codex', 'hooks.json');
+  if (withHooks) {
+    mkdirSync(join(dir, '.codex'), { recursive: true });
+    writeFileSync(hooksPath, JSON.stringify(CODEX_HOOKS));
+  }
+  return { dir, hooksPath };
+}
+
+function writeCodexConfig(dir: string, lines: string[]): string {
+  const configPath = join(dir, 'config.toml');
+  writeFileSync(configPath, lines.map((line) => `${line}\n`).join(''));
+  return configPath;
 }
 
 describe('parseOffer', () => {
@@ -73,6 +103,40 @@ describe('replayOffer', () => {
       });
     } finally {
       rmSync(checkoutDir, { recursive: true, force: true });
+    }
+  });
+});
+
+describe('codexHookApproval', () => {
+  it('reports an advisor hook that no config entry approves as unapproved', () => {
+    const { dir } = writeCodexRoot(true);
+    try {
+      const configPath = writeCodexConfig(dir, []);
+      expect(codexHookApproval({ projectDir: dir, configPath })).toBe('unapproved');
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it('reports an advisor hook approved by a trusted hash as approved', () => {
+    const { dir, hooksPath } = writeCodexRoot(true);
+    try {
+      const configPath = writeCodexConfig(dir, [
+        `[hooks.state."${realpathSync(hooksPath)}:user_prompt_submit:0:0"]`,
+        'trusted_hash = "x"',
+      ]);
+      expect(codexHookApproval({ projectDir: dir, configPath })).toBe('approved');
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it('reports a root with no hooks file as no-hooks', () => {
+    const { dir } = writeCodexRoot(false);
+    try {
+      expect(codexHookApproval({ projectDir: dir })).toBe('no-hooks');
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
     }
   });
 });
@@ -114,6 +178,48 @@ describe('briefDelivered', () => {
       runtime: 'devin',
       locator: { transcriptPath: join(tmpdir(), 'command-offer-devin.jsonl') },
     })).resolves.toBe('unknown');
+  });
+
+  it('finds the advisor context in Devin injected nodes', async () => {
+    await expect(briefDelivered({
+      runtime: 'devin',
+      locator: {},
+      loadSession: async () => ({ ok: true, records: [], injected: [{ source: 'system', text: BRIEF }] }),
+    })).resolves.toBe(true);
+  });
+
+  it('returns false for a DSH session whose injected context holds no brief', async () => {
+    await expect(briefDelivered({
+      runtime: 'dsh',
+      locator: {},
+      loadSession: async () => ({
+        ok: true,
+        records: [],
+        injected: [{ source: 'repo-guards', text: 'Repository guard rules apply.' }],
+      }),
+    })).resolves.toBe(false);
+  });
+
+  it('stays unknown for an OpenCode session that holds the brief in its records', async () => {
+    await expect(briefDelivered({
+      runtime: 'opencode',
+      locator: {},
+      loadSession: async () => ({ ok: true, records: [{ role: 'system', content: BRIEF }], injected: [] }),
+    })).resolves.toBe('unknown');
+  });
+
+  it('returns false for a Codex hook the config never approved', async () => {
+    const { dir } = writeCodexRoot(true);
+    try {
+      const configPath = writeCodexConfig(dir, []);
+      await expect(briefDelivered({
+        runtime: 'codex',
+        locator: { projectDir: dir },
+        codexConfig: configPath,
+      })).resolves.toBe(false);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
   });
 });
 
@@ -164,6 +270,65 @@ describe('backfillRunLog', () => {
       expect(replayed[0]).toMatchObject({ checkoutDir: '/checkout-one', prompt: 'prompt for row-one' });
       expect(seen).toHaveLength(2);
       expect(readFileSync(inPath, 'utf8')).toBe(before);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it('recomputes only the brief when the offers are already recorded', async () => {
+    const dir = mkdtempSync(join(tmpdir(), 'command-offer-'));
+    const outPath = join(dir, 'runs-out.jsonl');
+    const inPath = writeRunLog(dir, [
+      {
+        runtime: 'claude',
+        rowId: 'row-with-offer',
+        arm: 'post',
+        locator: { projectDir: '/checkout-one' },
+        exit: 0,
+        changedPaths: [],
+        offeredCommand: '/create:readme',
+        offeredPolicy: 'start',
+        offerBackfilled: true,
+      },
+      { runtime: 'codex', rowId: 'row-without-offer', arm: 'post', locator: null, exit: 0, changedPaths: [] },
+    ]);
+    let warmed = 0;
+    let replayed = 0;
+    try {
+      const result = await backfillRunLog({
+        inPath,
+        outPath,
+        briefOnly: true,
+        promptFor: () => 'prompt',
+        warm: async () => {
+          warmed += 1;
+        },
+        replay: async () => {
+          replayed += 1;
+          return { offeredCommand: '/create:readme', offeredPolicy: 'start', offerError: null };
+        },
+        brief: async () => true,
+      });
+
+      expect(result).toEqual({ ok: true, lines: 2, outPath });
+      const written = readFileSync(outPath, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+      expect(written[0]).toMatchObject({
+        rowId: 'row-with-offer',
+        offeredCommand: '/create:readme',
+        offeredPolicy: 'start',
+        briefDelivered: true,
+        briefBackfilled: true,
+      });
+      expect(written[0]).not.toHaveProperty('offerError');
+      expect(written[1]).toMatchObject({
+        rowId: 'row-without-offer',
+        briefDelivered: true,
+        briefBackfilled: true,
+      });
+      expect(written[1]).not.toHaveProperty('offeredCommand');
+      expect(written[1]).not.toHaveProperty('offerError');
+      expect(warmed).toBe(0);
+      expect(replayed).toBe(0);
     } finally {
       rmSync(dir, { recursive: true, force: true });
     }

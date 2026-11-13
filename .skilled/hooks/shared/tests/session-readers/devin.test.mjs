@@ -12,6 +12,7 @@ import { join } from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
 import { test } from 'node:test';
 
+import { loadDevinSession } from '../../session-readers/devin.mjs';
 import { readSession } from '../../session-readers/index.mjs';
 import { DECOY, devinSession, NOW, SESSION } from './fixtures.mjs';
 import { trackFileOpens, withTempAsync, writeJson } from './helpers.mjs';
@@ -97,6 +98,23 @@ test('a compacted session keeps the turns from before the compaction', async () 
     assert.equal(result.ok, true);
     const users = result.items.filter((item) => item.role === 'user').map((item) => item.content[0].text);
     assert.deepEqual(users, ['Read the file.', 'Where were we?']);
+  });
+});
+
+test('a compacted session reports its continuation prompt as injected context', async () => {
+  await withTempAsync('devin-injected', async (root) => {
+    const projectDir = join(root, 'project');
+    mkdirSync(projectDir, { recursive: true });
+    const fixture = devinSession({ root, projectDir, compacted: true });
+    const result = await loadDevinSession({ sessionId: SESSION, ...fixture.options });
+    assert.equal(result.ok, true);
+    const continuation = result.injected.find((entry) => entry.source === 'system');
+    assert.ok(continuation, 'the continuation prompt is missing from injected context');
+    assert.ok(continuation.text.startsWith('You are continuing work'));
+    assert.deepEqual(
+      result.records.map((record) => record.role),
+      ['user', 'assistant', 'toolResult', 'assistant', 'user'],
+    );
   });
 });
 

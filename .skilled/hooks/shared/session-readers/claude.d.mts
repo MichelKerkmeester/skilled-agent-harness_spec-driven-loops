@@ -12,5 +12,9 @@ export function loadClaudeSession({ sessionId, transcriptPath, ...options }?: {}
         storePath: string | undefined;
     };
     records: any[];
+    injected: {
+        source: string;
+        text: string;
+    }[];
 };
 //# sourceMappingURL=claude.d.mts.map

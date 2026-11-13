@@ -6,15 +6,17 @@
 // is checked before any event is trusted. Logs may be compressed frame chains.
 
 import assert from 'node:assert/strict';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { appendFileSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { test } from 'node:test';
 import { zstdCompressSync } from 'node:zlib';
 
 import { readSession } from '../../session-readers/index.mjs';
-import { dshProjectKey } from '../../session-readers/dsh.mjs';
+import { dshProjectKey, loadDshSession } from '../../session-readers/dsh.mjs';
 import { DECOY, dshSession, NOW, SESSION } from './fixtures.mjs';
 import { trackFileOpens, withTempAsync, writeJsonl } from './helpers.mjs';
+
+const BRIEF = 'Advisor: live; use sk-doc → /create:readme (start) 0.82/0.12 pass.';
 
 // The fixtures build store folders with the reader's own key helper, so this
 // pins the helper to a folder name a real DSH install wrote.
@@ -35,6 +37,28 @@ test('a session log resolves by header id and matching cwd', async () => {
     assert.equal(result.source.locatorKind, 'session_log');
     assert.deepEqual(result.items.map((item) => item.role), ['user', 'assistant', 'toolResult', 'assistant']);
     assert.equal(result.items[2].toolCallId, 'dsh-call-1');
+  });
+});
+
+test('an injected notice is returned apart from the records', async () => {
+  await withTempAsync('dsh-injected', async (root) => {
+    const projectDir = join(root, 'project');
+    mkdirSync(projectDir, { recursive: true });
+    const fixture = dshSession({ root, projectDir });
+    appendFileSync(fixture.filePath, `${JSON.stringify({
+      type: 'user/message',
+      seq: 5,
+      data: {
+        role: 'user',
+        id: 'dsh-injected-1',
+        source: { kind: 'repo-guards' },
+        content: [{ type: 'text', text: BRIEF }],
+      },
+    })}\n`);
+
+    const result = await loadDshSession({ sessionId: SESSION, ...fixture.options });
+    assert.equal(result.ok, true);
+    assert.deepEqual(result.injected, [{ source: 'repo-guards', text: BRIEF }]);
   });
 });
 
