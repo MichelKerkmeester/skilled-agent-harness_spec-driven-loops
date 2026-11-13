@@ -1,0 +1,22 @@
+Background-worker hop (T020), run once with the NEW finish-run.sh. Commands ran from the worktree root.
+
+H    = specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness
+DIFF = $P/scratch/live-hops-claude-2026-11-13/10-background-worker-orphaned/run-hop-variant.diff
+out  = this folder; sandbox and a temp harness copy lived in a temp folder outside the repository.
+
+$ patch -o "$out/run-hop-worker.sh" $H/run-hop.sh $DIFF      -> exit 0; bash -n exit 0; $H/run-hop.sh unchanged
+The variant finds goal-records.cjs through its own directory ($here). To supply it without editing $H:
+$ cp -R $H "$tmp/harness"; cp "$out/run-hop-worker.sh" "$tmp/harness/run-hop-worker.sh"   (cmp identical)
+$ bash $H/build-sandbox.sh claude "$sandbox" 3990 "$W"       -> exit 0; project folder absent before the hop
+$ NO_GOAL=1 bash "$tmp/harness/run-hop-worker.sh" claude "$sandbox" "$out" t020-worker   -> exit 0
+relaunch.log and history.txt were already copied into $out by the harness (relaunch.log cmp identical to run/skilled-relaunch/relaunch.log).
+$ bash $H/finish-run.sh claude "$out"     -> 13:14:21Z to 13:14:37Z, exit 0, stderr empty
+$ sleep 15; ls -d "$(cat "$out/project-dir.txt")"   at 2026-11-13T13:14:52Z
+ls: /Users/michelkerkmeester/.claude/projects/-private-tmp-claude-501--Users-michelkerkmeester-MEGA-Development-Skilled-b8ee8a81-e316-4f1a-ba26-b9481c493496-scratchpad-t020-sandbox: No such file or directory
+exit=1
+$ ps -p 87472   (WORKER.pid)
+  PID TTY           TIME CMD
+exit=1
+The worker was already gone; it was not stopped by hand. The variant's last line kills it, and worker.log ends at 2026-11-13T13:14:08.372Z.
+tmux -L ev028-claude-t020-worker ls: no server running (exit 1). Wrapper 36335 and receiver claude 33708: ps -p exit 1.
+Socket file and sandbox removed. No .jsonl remains in this folder.

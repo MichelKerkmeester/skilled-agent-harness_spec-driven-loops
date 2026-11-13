@@ -1,0 +1,23 @@
+Late-write check (T002): does Claude write its project folder back after the OLD finish-run.sh removed it?
+Run once, not repeated.
+
+H    = specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/028-goal-rebind-live-proof-and-docs/scratch/harness (worktree copy)
+HOLD = the same harness exported from git HEAD, outside the repository (finish-run.sh without the settle loop)
+sandbox and out lived in a temp folder outside the repository; commands ran from the worktree root.
+
+$ bash $H/build-sandbox.sh claude "$sandbox" 3990 "$W"
+build exit=0  (2026-11-13T13:09:49Z)
+$ ls -d "$HOME/.claude/projects/<flattened sandbox path>"   (before the hop)
+No such file or directory, exit=1
+$ NO_GOAL=1 bash $H/run-hop.sh claude "$sandbox" "$out" late-write
+run-hop exit=0; note status: done; history: handed-over 13:10:31Z, claimed by 5e6f092b 13:10:49Z, done 13:10:58Z
+$ bash $HOLD/finish-run.sh claude "$out"
+exit=0 at 2026-11-13T13:11:29Z (project-dir.txt was kept)
+$ sleep 15
+$ ls -d "$(cat "$out/project-dir.txt")"
+ls: /Users/michelkerkmeester/.claude/projects/-private-tmp-claude-501--Users-michelkerkmeester-MEGA-Development-Skilled-b8ee8a81-e316-4f1a-ba26-b9481c493496-scratchpad-t002-sandbox: No such file or directory
+exit=1 at 2026-11-13T13:11:44Z
+
+Result: No such file. The late write was not seen in this run (cause unconfirmed).
+Second look at 2026-11-13T13:11:52Z: still No such file, exit=1. No manual removal was needed.
+After the run: tmux -L ev028-claude-late-write ls printed "no server running"; the receiver claude (pid 49588) and the wrapper (pid 80195) were gone (ps -p exit=1). Socket file and sandbox removed.
