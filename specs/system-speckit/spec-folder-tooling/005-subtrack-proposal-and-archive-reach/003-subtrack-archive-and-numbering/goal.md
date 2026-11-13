@@ -75,6 +75,18 @@ and findings belong here.
 |------|-------|----------|
 | Planning documents authored | Done | `spec.md`, `plan.md`, `tasks.md` and `acceptance-criteria.md` in this folder |
 | Implementation | Pending | Not started |
+| T001 declared sub-tracks and archive folders counted | Done | Before the change the find of section 3 printed 0 paths and the sweep listed 40 declared sub-tracks, exit 0, saved in scratch/sweep-before.txt. scratch/baseline.txt is a copy of the phase 001 baseline because the first edit of this phase predates this session |
+| Build: archive-aware numbering, ensureArchive and the sweep advisory | Done | DeepSeek V4.1 Flash through the dsh harness on the LLM Gateway route, four dispatches, the fourth a fix. Orchestrator read every diff. Clone: 001-a live and z_archive/007-b gave 008-next-one, 005-c live and z_archive/002-low gave 006-lower. Scratch tree demo/sub: dry run exit 1 nothing written, apply exit 0 .gitkeep present, second apply up to date exit 0, symlink refused exit 2. Sweep advisory... |
+| Real tree seeded | Done | refresh-track-roots.mjs --apply wrote 40 .gitkeep files, exit 0. find prints 40 paths. Second apply left git status --porcelain byte-identical. Sweep printed no missing-archive line, exit 0 as in scratch/sweep-before.txt. pre-push tests PASS=50 FAIL=0 |
+| Full suite | Done | First npm test exit 1, 3 failures in tests/track-roots.vitest.ts because seeding wrote into a fixture z_archive that holds a packet. Fix: seed only when the z_archive directory is absent. Rerun exit 0, 206 files and 2525 tests passed, baseline 2524, delta is the new numbering test |
+| Reference docs | Done | spec-lifecycle-automation.md line 41 and the archive.sh row of runtime/cli/spec/README.md name the sub-track's own z_archive. The refresh and sweep rows describe the seeding and the advisory |
+| Decision: sweep exit code | Decided | Planned default kept: the missing-archive line is an advisory diagnostic, working tree only, exit code unchanged. The operator has not ruled on it |
+| AC-003 and T012 tracked files | Open | Pre-commit state: git status --porcelain specs listed 40 z_archive entries and git ls-files printed 40 with the files staged. Both rows name the count after the operator's commit, so they stay open until that run |
+| CHK-051 scratch cleaned | Open | sweep-before.txt and baseline.txt stay in scratch because T011 and T014 cite them. Remove them when the phase closes |
+| Finding: failing run of the new numbering case | Open | The failure before the create.sh change is the report of the build dispatch, not an orchestrator run. AC-005 and CHK-021 say so |
+| Deviation: T003 and CHK-003 reworded | Done | Both asked for a baseline captured before the first edit. That edit predates this session, so they now name the reused phase 001 baseline |
+| spec.md status | Open | Left at Draft, as in phase 001. A status other than Draft needs repair-derived.cjs --apply after the last edit, and that command was not permitted in the closeout session. Set it when AC-003 closes |
+| AC-003 and T012 tracked files | Done | After commit 5f3e19712e git ls-files 'specs/*/*/z_archive/.gitkeep' printed 40 lines |
 
 ### Deviations and findings
 

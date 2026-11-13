@@ -9,16 +9,16 @@ _memory:
   continuity:
     packet_pointer: "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/002-subtrack-proposal"
     last_updated_at: "2026-11-13T10:07:32Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_by: "markdown-agent"
+    recent_action: "Closed AC-007 on the create.sh json run and listed the tool in the README"
+    next_safe_action: "Start phase 003-subtrack-archive-and-numbering closeout"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-002-subtrack-proposal"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -78,6 +78,7 @@ When you create a packet, `create.sh` prints one advisory line on stderr if the 
 | `.skilled/skills/system-spec-kit/references/structure/phase-definitions.md` | Modified | Pointer to that section |
 | `.skilled/skills/system-spec-kit/SKILL.md` | Modified | Documents `--track <track>/<sub>` |
 | `.skilled/skills/system-spec-kit/references/workflows/quick-reference.md` | Modified | Documents `--track <track>/<sub>` |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/README.md` | Modified | Lists `suggest-subtracks.mjs` in the tree and in the key-files table |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -86,7 +87,7 @@ When you create a packet, `create.sh` prints one advisory line on stderr if the 
 ## How It Was Delivered
 <!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-DeepSeek V4.1 Flash wrote `suggest-subtracks.mjs` and `advise_sub_track` through the dsh harness on the LLM Gateway route, one change per dispatch. The orchestrator made the wording and doc edits. On the real tree the tool ran in both modes with `git status --porcelain` compared before and after each run: a missing track, `cli-classifier` at the default threshold and at `--threshold 3`, and two `--describe` runs on `system-speckit`. The whole-track proof then ran on a 10-packet fixture track `demo` in a throwaway `git clone --shared` under `/private/tmp`, which was deleted afterwards. Last came `npm test` and the suites that pin the gate wording. The phase baseline is the one phase 001 saved in `../001-relocation-engine/scratch/baseline.txt`.
+DeepSeek V4.1 Flash wrote `suggest-subtracks.mjs` and `advise_sub_track` through the dsh harness on the LLM Gateway route, one change per dispatch. The orchestrator made the wording and doc edits. On the real tree the tool ran in both modes with `git status --porcelain` compared before and after each run: a missing track, `cli-classifier` at the default threshold and at `--threshold 3`, and two `--describe` runs on `system-speckit`. The whole-track proof then ran on a 10-packet fixture track `demo` in a throwaway `git clone --shared` under `/private/tmp`, which was deleted afterwards. Then came `npm test` and the suites that pin the gate wording. The phase baseline is the one phase 001 saved in `../001-relocation-engine/scratch/baseline.txt`. The last proof was a `create.sh --json --skip-branch` run on a 10-packet fixture track `demo` in a throwaway clone at commit 3f2c1f9d61, which closed AC-007. The README entry for the tool was written after that.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -129,7 +130,9 @@ DeepSeek V4.1 Flash wrote `suggest-subtracks.mjs` and `advise_sub_track` through
 | agents-md tests and manifest check | 71 pass, manifest check PASS |
 | skill-advisor policy-plan parity tests | 32 pass |
 | deep-loop contract tests | 23 pass |
-| `create.sh --json --skip-branch` in a scratch tree | NOT RUN. AC-007 stays Unmet until its exit code, stdout and stderr are recorded |
+| `bash -n create.sh` | Exit 0 |
+| Clone at commit 3f2c1f9d61: `create.sh --json --skip-branch --track demo --short-name probe-json "Probe json"` | Exit 0. stdout parsed with `node -e JSON.parse` and held no `suggest-subtracks` text. stderr line 1 was `[speckit] Track demo has grown into clusters. Consider sub-tracks: node .skilled/skills/system-spec-kit/runtime/cli/spec/suggest-subtracks.mjs --track demo`. `specs/demo/011-probe-json` was created |
+| `rg -c "suggest-subtracks.mjs"` on `runtime/cli/spec/README.md` | Printed 2, the tree line and the key-files row |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -138,10 +141,9 @@ DeepSeek V4.1 Flash wrote `suggest-subtracks.mjs` and `advise_sub_track` through
 ## Known Limitations
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **The `create.sh --json` criterion is not proven.** The advisory line was seen once in the clone, without `--json`. Run `create.sh --json --skip-branch --track <track>` in a scratch tree at the threshold, record the exit code, parse stdout and read stderr, then close AC-007, T009, CHK-011 and CHK-023.
-2. **No real track has exercised the whole-track map.** The proof is a fixture, so the clustering constants are untuned against a real crowded track. Read the proposed names before approving a map and rename the ones that read badly.
-3. **The tool has no test suite yet.** Phase 005 writes it. Until then the checks above are the only cover.
-4. **`runtime/cli/spec/README.md` does not list the tool.** That is the deferred P2 row CHK-042. The usage line is in the header of `suggest-subtracks.mjs` and in `folder-structure.md`.
+1. **No real track has exercised the whole-track map.** The proof is a fixture, so the clustering constants are untuned against a real crowded track. Read the proposed names before approving a map and rename the ones that read badly.
+2. **The tool has no test suite yet.** Phase 005 writes it. Until then the checks above are the only cover.
+3. **The `create.sh` advisory was proven for one of its three cases.** The recorded run covers a track that has grown into clusters. The lines for a packet that fits no sub-track and for one that fits another sub-track better have no recorded run. Phase 005 owns the suite that should cover them.
 <!-- /ANCHOR:limitations -->
 
 ---

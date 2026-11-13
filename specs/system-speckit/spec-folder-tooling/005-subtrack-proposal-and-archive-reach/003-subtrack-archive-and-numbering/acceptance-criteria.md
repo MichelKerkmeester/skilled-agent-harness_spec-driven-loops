@@ -53,12 +53,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a scratch tree with a declared subtrack `demo/sub` and no archive folder, When `node C/refresh-track-roots.mjs --track demo/sub --apply` runs, Then `demo/sub/z_archive/.gitkeep` exists, a second run changes nothing and a run without `--apply` writes nothing | `ls` of the scratch tree after each of the three runs | Unmet | - |
-| AC-002 | REQ-002 | Given the same scratch tree before seeding, When `node C/sweep-track-roots.mjs` runs, Then it prints one line that names `demo/sub` as lacking `z_archive/`, and no such line after seeding | The sweep output before and after | Unmet | - |
-| AC-003 | REQ-003 | Given the real tree after seeding and the operator's commit, When `git ls-files 'specs/*/*/z_archive/.gitkeep'` runs, Then it prints 40 lines | The command output piped to `wc -l` prints 40 | Unmet | - |
-| AC-004 | REQ-004 | Given `specs/demo/001-a` live and `specs/demo/z_archive/007-b` archived in a scratch tree, When `create.sh --track demo --skip-branch` runs, Then the new folder is `specs/demo/008-*` | `ls <scratch>/specs/demo` lists a folder that starts with `008-` | Unmet | - |
-| AC-005 | REQ-005 | Given `create-root-numbering.vitest.ts`, When the suite runs before and after the `create.sh` change, Then the archive case fails before and passes after | `npx vitest run tests/create-root-numbering.vitest.ts` output for both runs | Unmet | - |
-| AC-006 | REQ-006 | Given the two docs, When they are searched for the subtrack archive, Then each names it | `rg -c -i "sub-track" .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md` and the line 112 text of `C/README.md` | Unmet | - |
+| AC-001 | REQ-001 | Given a scratch tree with a declared subtrack `demo/sub` and no archive folder, When `node C/refresh-track-roots.mjs --track demo/sub --apply` runs, Then `demo/sub/z_archive/.gitkeep` exists, a second run changes nothing and a run without `--apply` writes nothing | Scratch tree with declared sub-track `demo/sub`. Dry run: printed `demo/sub: create z_archive/.gitkeep`, exit 1, nothing written. `--apply`: printed `demo/sub: create z_archive/.gitkeep (written)`, exit 0, `.gitkeep` present. Second `--apply`: printed only `demo/sub: up to date`, exit 0. With `z_archive` a symlink: printed `demo/sub: z_archive is a symlink, not written`, exit 2, and the link target stayed empty | Met | - |
+| AC-002 | REQ-002 | Given the same scratch tree before seeding, When `node C/sweep-track-roots.mjs` runs, Then it prints one line that names `demo/sub` as lacking `z_archive/`, and no such line after seeding | Same scratch tree. Before seeding the sweep printed `demo/sub: sub-track has no z_archive/; seed it with refresh-track-roots.mjs --apply`, exit 0. After seeding it printed no such line, exit 0. Real tree after seeding: no missing-archive line, exit 0, the exit code in `scratch/sweep-before.txt` | Met | - |
+| AC-003 | REQ-003 | Given the real tree after seeding and the operator's commit, When `git ls-files 'specs/*/*/z_archive/.gitkeep'` runs, Then it prints 40 lines | Real tree: `refresh-track-roots.mjs --apply` wrote 40 `.gitkeep` files, exit 0. After commit `5f3e19712e`, `git ls-files 'specs/*/*/z_archive/.gitkeep' | wc -l` printed 40 | Met | - |
+| AC-004 | REQ-004 | Given `specs/demo/001-a` live and `specs/demo/z_archive/007-b` archived in a scratch tree, When `create.sh --track demo --skip-branch` runs, Then the new folder is `specs/demo/008-*` | Throwaway clone with `specs/demo/001-a` live and `specs/demo/z_archive/007-b` archived: `create.sh --track demo --skip-branch --short-name next-one "Next one"` exit 0 and created `specs/demo/008-next-one`. With `005-c` live and `z_archive/002-low` archived it created `006-lower`. `bash -n create.sh` exit 0 | Met | - |
+| AC-005 | REQ-005 | Given `create-root-numbering.vitest.ts`, When the suite runs before and after the `create.sh` change, Then the archive case fails before and passes after | Before: the build dispatch of the earlier session reported that the case `numbers after an archived packet so its number is not reused` failed before the `create.sh` change. The orchestrator did not rerun that failure. After: the dispatch reported the 17 tests of the file passing, and the orchestrator's full `npm test` rerun exited 0 with 2525 tests passed against a baseline of 2524 | Met | - |
+| AC-006 | REQ-006 | Given the two docs, When they are searched for the subtrack archive, Then each names it | `rg -c -i "sub-track"` on `spec-lifecycle-automation.md` printed 1, and its line 41 names the sub-track's own `z_archive/`. The `archive.sh` row of `C/README.md`, at line 114 since the phase 002 row was added above it, names the sub-track's own `z_archive/` beside the track and phase archives | Met | - |
 
 ### Status values
 
@@ -83,7 +83,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-No work has started, so every criterion is unmet.
+All 6 criteria are Met with evidence the orchestrator observed on 2026-11-13, in a scratch tree and a throwaway clone for the fixture runs and on the real tree for the seeding. AC-003 was observed after commit `5f3e19712e`. AC-005 rests in part on a report: the failure of the new case before the fix was reported by the build dispatch and was not rerun. `npm test` after the change exits 0 with one test more than the baseline in `scratch/baseline.txt`, the new numbering case.
 <!-- /ANCHOR:closure -->

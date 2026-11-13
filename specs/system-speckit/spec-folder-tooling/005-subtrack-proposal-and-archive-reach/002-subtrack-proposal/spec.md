@@ -217,7 +217,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - Answered: `speckit-implement.yaml` line 71 gained the clause. The operator decided during the build that option C changes on every surface that carries it, not only the five files this spec first listed.
 - Answered: the flags are `--threshold <n>` and `--describe "<text>"`, as built.
 - Answered: no real flat track holds 8 or more live packets. The largest is `cli-classifier` with 6. The whole-track proof ran on a 10-packet fixture track in a throwaway clone.
-- Open: AC-007 has no recorded `create.sh --json --skip-branch` run. It needs one run in a scratch tree that records the exit code, the parsed stdout and the stderr line.
+- Answered: the `create.sh --json --skip-branch` run for AC-007 is on record. In a throwaway clone with the 10-packet track `demo` it exited 0, its stdout parsed as JSON and the advisory line was line 1 of stderr.
 <!-- /ANCHOR:questions -->
 
 ---

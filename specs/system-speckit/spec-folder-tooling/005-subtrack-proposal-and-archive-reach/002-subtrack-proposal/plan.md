@@ -40,7 +40,7 @@ This phase adds `suggest-subtracks.mjs` in `.skilled/skills/system-spec-kit/runt
 - [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
+- [x] All acceptance criteria met
 - [x] `cd .skilled/skills/system-spec-kit/runtime/cli && npm test` exits 0 with no failure that the baseline run did not have
 - [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->

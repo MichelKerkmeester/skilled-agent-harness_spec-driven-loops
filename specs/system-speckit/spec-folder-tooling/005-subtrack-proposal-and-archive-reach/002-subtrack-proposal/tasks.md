@@ -48,7 +48,7 @@ contextType: "general"
 - [x] T006 Add the whole-track map output with candidate subtrack names from shared terms and one remainder cluster named `general` (`$S`). Verify: in `CLONE`, the map holds 10 `from` entries for the 10 live packets of `demo`.
 - [x] T007 Add the threshold of 8 and the `--threshold <n>` override (`$S`). Verify: `node $S --track cli-classifier` prints that the track is below the threshold of 8 and no map, and `--threshold 3` prints a 6-entry map.
 - [x] T008 Add present mode for `--track <track> --describe "<text>"` (`$S`). Verify: `node $S --track system-speckit --describe "archive a spec folder"` prints one existing subtrack name or `none fits`.
-- [ ] T009 Add the advisory stderr line as `advise_sub_track`, called right after `list_recent_track_packets` (`$K/runtime/cli/spec/create.sh`). Verify: `bash -n $K/runtime/cli/spec/create.sh` exits 0 and a `--json` run in a scratch tree prints stdout that `node -e` parses.
+- [x] T009 Add the advisory stderr line as `advise_sub_track`, called right after `list_recent_track_packets` (`$K/runtime/cli/spec/create.sh`). Verify: `bash -n $K/runtime/cli/spec/create.sh` exits 0 and a `--json` run in a scratch tree prints stdout that `node -e` parses. [EVIDENCE: orchestrator run, 2026-11-13. `bash -n` exited 0. In a throwaway clone at commit 3f2c1f9d61 with the 10-packet track `demo`, `create.sh --json --skip-branch --track demo --short-name probe-json "Probe json"` exited 0, its stdout parsed with `node -e JSON.parse` and the advisory line was line 1 of stderr]
 - [x] T010 Add the subtrack clause to `GATE_3_CHOICE_RELATED`, `GATE_3_QUESTION` and `GATE_3_MUTATION_NOTICE` (`$K/runtime/hooks/lib/spec-gate/spec-gate-core.mjs`). Verify: `rg -c -i "subtrack|sub-track" $K/runtime/hooks/lib/spec-gate/spec-gate-core.mjs` prints 3 or more.
 - [x] T011 [P] Add the clause to option C (`.skilled/commands/speckit/assets/speckit-plan-presentation.txt`). Verify: `rg -c -i "subtrack|sub-track" .skilled/commands/speckit/assets/speckit-plan-presentation.txt` prints 1 or more.
 - [x] T012 [P] Add the clause to option C (`.skilled/commands/speckit/assets/speckit-complete-presentation.txt`). Verify: `rg -c -i "subtrack|sub-track" .skilled/commands/speckit/assets/speckit-complete-presentation.txt` prints 1 or more.
@@ -76,9 +76,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`. T009 was the last open task and closed on the `create.sh --json --skip-branch` run of 2026-11-13
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] Manual verification passed. The real-tree runs, the `CLONE` fixture runs and the `create.sh --json --skip-branch` run are recorded in `acceptance-criteria.md`
 - [x] The `demo` fixture map passed the `relocate.mjs` preflight in `CLONE`
 <!-- /ANCHOR:completion -->
 
@@ -124,7 +124,7 @@ A blocked task is marked `[B]` with its reason in `goal.md` section 4.
 ## Code Quality
 
 - [x] CHK-010 [P0] `$S` parses: node ran it to exit 0 in the map, threshold and present-mode runs
-- [ ] CHK-011 [P0] `bash -n $K/runtime/cli/spec/create.sh` exits 0. Not observed: no run of this command is on record
+- [x] CHK-011 [P0] `bash -n $K/runtime/cli/spec/create.sh` exits 0. [EVIDENCE: orchestrator run, 2026-11-13, exit 0]
 - [x] CHK-012 [P1] A missing track exits 2 with the track name
 - [x] CHK-013 [P1] No code comment names a spec path, a task id or a requirement id
 <!-- /ANCHOR:code-quality -->
@@ -134,10 +134,10 @@ A blocked task is marked `[B]` with its reason in `goal.md` section 4.
 <!-- ANCHOR:testing -->
 ## Testing Checklist
 
-- [ ] CHK-020 [P0] All acceptance criteria met. Open: AC-007 is `Unmet`
+- [x] CHK-020 [P0] All acceptance criteria met. [EVIDENCE: the 10 rows of `acceptance-criteria.md` are `Met`, AC-007 last, on the `create.sh --json --skip-branch` run of 2026-11-13]
 - [x] CHK-021 [P0] The `FLAT` map passed the `relocate.mjs` preflight in `CLONE` with exit 1
 - [x] CHK-022 [P1] A track below the threshold prints no map
-- [ ] CHK-023 [P1] `create.sh --json` stdout still parses with the advisory line present. Not observed: the recorded `create.sh --track demo` run did not use `--json`
+- [x] CHK-023 [P1] `create.sh --json` stdout still parses with the advisory line present. [EVIDENCE: `CLONE` at commit 3f2c1f9d61, `create.sh --json --skip-branch --track demo --short-name probe-json "Probe json"` exited 0. stdout parsed with `node -e JSON.parse` and held no `suggest-subtracks` text. The advisory was line 1 of stderr]
 <!-- /ANCHOR:testing -->
 
 ---
@@ -165,7 +165,7 @@ N/A: this phase builds a new tool and fixes no reported finding.
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized
 - [x] CHK-041 [P1] The option C clause `new or existing sub-track` reads the same in `spec-gate-core.mjs`, `speckit-implement.yaml` and both presentation assets. `AGENTS.md` option C names a sub-track in its own longer sentence
-- [ ] CHK-042 [P2] `$K/runtime/cli/spec/README.md` lists `suggest-subtracks.mjs`. Deferred: the README does not name the tool
+- [x] CHK-042 [P2] `$K/runtime/cli/spec/README.md` lists `suggest-subtracks.mjs`. [EVIDENCE: `rg -c "suggest-subtracks.mjs" $K/runtime/cli/spec/README.md` printed 2, the tree line and the key-files row]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -184,9 +184,9 @@ N/A: this phase builds a new tool and fixes no reported finding.
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 8 | 6/8 |
-| P1 Items | 10 | 9/10 |
-| P2 Items | 1 | 0/1 |
+| P0 Items | 8 | 8/8 |
+| P1 Items | 10 | 10/10 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-11-13
 <!-- /ANCHOR:summary -->

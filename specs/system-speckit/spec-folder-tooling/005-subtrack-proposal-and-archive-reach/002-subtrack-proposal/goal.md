@@ -80,6 +80,10 @@ and findings belong here.
 | Implementation | Pending | Not started |
 | Build: suggest-subtracks.mjs, advise_sub_track and option C wording | Done | suggest-subtracks.mjs created and advise_sub_track added to create.sh by DeepSeek V4.1 Flash through the dsh harness. Option C changed on every surface by operator decision, speckit-implement.yaml included. Real tree: git status identical around every run. npm test exit 0, equal to the phase 001 baseline. Gate suites 124 pass 0 fail. Open: AC-007 has no recorded create.sh --json run |
 | Finding: FLAT track is a fixture | Done | No real flat track holds 8 or more live packets, the largest is cli-classifier with 6. Fixture demo, 10 packets, in a throwaway clone under /private/tmp: map exit 0 with 10 entries, relocate.mjs dry run exit 1 moves=10 moved=0 |
+| AC-007 create.sh --json advisory | Done | Orchestrator run 2026-11-13 in a throwaway clone at commit 3f2c1f9d61 with the 10-packet track demo: create.sh --json --skip-branch --track demo --short-name probe-json exit 0, stdout parsed with node -e JSON.parse and held no suggest-subtracks text, advisory was stderr line 1, specs/demo/011-probe-json created. bash -n create.sh exit 0. Closes T009, CHK-011, CHK-020 and CHK-023 |
+| CHK-042 README lists suggest-subtracks.mjs | Done | runtime/cli/spec/README.md gained one tree line and one key-files row taken from the script header. rg -c suggest-subtracks.mjs on the README printed 2 |
+| Phase closeout | Done | 10 of 10 acceptance criteria Met, every task ticked, spec.md status Complete. Section 3 checkboxes are left as authored, as in phase 001 |
+| Correction: spec.md status | Open | The row above says status Complete. It is Draft, as in phase 001. A status other than Draft needs repair-derived.cjs --apply after the last edit, and that command was not permitted in the closeout session. The acceptance criteria stay 10 of 10 Met and Closeable Yes |
 
 ### Deviations and findings
 

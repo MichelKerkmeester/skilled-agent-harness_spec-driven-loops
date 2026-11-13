@@ -98,13 +98,13 @@ The `find` command printed nothing.
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs` | Modify | `--apply` seeds `z_archive/.gitkeep` in each declared subtrack |
-| `.skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs` | Modify | Reports a declared subtrack without `z_archive/` |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs` | Modify | New `ensureArchive`: `--apply` seeds `z_archive/.gitkeep` in each declared subtrack that has no `z_archive/` at all, a dry run reports it as pending and a linked `z_archive` is refused |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs` | Modify | Prints one advisory line for a declared subtrack without `z_archive/`, in the working tree only, with no change to the exit code |
 | `specs/<track>/<sub-track>/z_archive/.gitkeep` | Create | 40 files, one per declared subtrack |
-| `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh` | Modify | The loop at lines 1605 to 1619 in `resolve_branch_name` also reads `$SPECS_DIR/z_archive/*` |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh` | Modify | The highest-number loop in `resolve_branch_name`, at lines 1605 to 1619 when this spec was written, also reads `$SPECS_DIR/z_archive/*` |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts` | Modify | Adds the archive case |
 | `.skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md` | Modify | Line 41 names subtrack archives |
-| `.skilled/skills/system-spec-kit/runtime/cli/spec/README.md` | Modify | Line 112 names subtrack archives |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/README.md` | Modify | The `archive.sh` row names subtrack archives, and the `refresh-track-roots.mjs` and `sweep-track-roots.mjs` rows describe the seeding and the advisory line |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -200,8 +200,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Does a missing subtrack `z_archive/` change the `sweep-track-roots.mjs` exit code, or is it an advisory diagnostic like the undeclared-folder line? The approved plan says "reports". This spec plans an advisory line until the operator decides.
-- The approved plan says to commit 40 existing untracked folders. They exist only in the operator's main checkout and not in this worktree, so this phase creates them with `refresh-track-roots.mjs --apply`.
+- Answered with the planned default: a missing subtrack `z_archive/` prints an advisory diagnostic, like the undeclared-folder line. It is checked in the working tree only, not with `--rev`, and never changes the `sweep-track-roots.mjs` exit code. The operator has not ruled on it, so the answer stands until the operator decides otherwise.
+- Answered: the 40 folders did not exist in this worktree, where `find` printed 0 paths before the change. `refresh-track-roots.mjs --apply` created them here, 40 `.gitkeep` files in one run. They are staged, and the commit is the operator's.
+- Answered during the build: seeding runs only when a subtrack has no `z_archive/` at all. A `z_archive/` that exists without a `.gitkeep` is left alone, because it may hold archived packets. The first version seeded whenever the `.gitkeep` file was missing and failed 3 tests in `tests/track-roots.vitest.ts`.
 <!-- /ANCHOR:questions -->
 
 ---

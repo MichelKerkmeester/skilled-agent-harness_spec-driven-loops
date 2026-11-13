@@ -35,14 +35,14 @@ This phase changes three existing scripts in `.skilled/skills/system-spec-kit/ru
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `cd .skilled/skills/system-spec-kit/runtime/cli && npm test` exits 0 with no failure that the baseline run did not have
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `cd .skilled/skills/system-spec-kit/runtime/cli && npm test` exits 0 with no failure that the baseline run did not have
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -54,8 +54,8 @@ This phase changes three existing scripts in `.skilled/skills/system-spec-kit/ru
 In-place script extension
 
 ### Key Components
-- **`refresh-track-roots.mjs`** (extended in place): the `--apply` path that writes a subtrack's `graph-metadata.json` also creates `z_archive/.gitkeep`. No new file is needed, because this script already visits every declared subtrack with write intent.
-- **`sweep-track-roots.mjs`** (extended in place): prints one line per declared subtrack without the folder.
+- **`refresh-track-roots.mjs`** (extended in place): a new function, `ensureArchive`, runs for every declared subtrack the script visits. Under `--apply` it creates `z_archive/.gitkeep` when the subtrack has no `z_archive/` at all. A dry run prints the pending creation and counts it toward exit 1. A `z_archive` that is a symlink is refused and counts toward exit 2. An existing `z_archive/` is left alone, with or without a `.gitkeep`. No new file is needed, because this script already visits every declared subtrack with write intent.
+- **`sweep-track-roots.mjs`** (extended in place): prints one advisory line per declared subtrack without the folder. The check runs in the working tree only, not with `--rev`, and never changes the exit code.
 - **`create.sh` `resolve_branch_name`** (extended in place): the loop over `"$SPECS_DIR"/*` gains a second glob over `"$SPECS_DIR"/z_archive/*`.
 
 ### Data Flow
@@ -71,7 +71,7 @@ This phase changes a script that the pre-push gate reads, so the surfaces are li
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `runtime/cli/spec/refresh-track-roots.mjs` | Producer: writes track and subtrack `children_ids` | update | `create-track-refresh.vitest.ts` passes |
+| `runtime/cli/spec/refresh-track-roots.mjs` | Producer: writes track and subtrack `children_ids` | update | `create-track-refresh.vitest.ts` and `track-roots.vitest.ts` pass. The second pins the refresh stdout and failed 3 tests on the first version of the seeding |
 | `runtime/cli/spec/sweep-track-roots.mjs` | Policy: read-only drift report | update | `track-roots.vitest.ts` passes |
 | `.skilled/scripts/git-hooks/pre-push` `gate:track-roots` | Consumer: blocks a push on sweep drift | unchanged | `bash .skilled/scripts/git-hooks/tests/pre-push.test.sh` exits 0 |
 | `runtime/cli/spec/create.sh` `resolve_branch_name` | Producer: allocates the packet number | update | `create-root-numbering.vitest.ts` passes |
@@ -91,7 +91,7 @@ Required inventories:
 
 Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state.
 
-Setup counts the declared subtracks and their archive folders. Implementation edits `refresh-track-roots.mjs`, `sweep-track-roots.mjs` and `create.sh`, seeds the 40 folders and adds the test case. Verification counts 40 tracked `.gitkeep` files and runs `create-root-numbering.vitest.ts`.
+Setup counts the declared subtracks and their archive folders, saves the sweep output and reuses the phase 001 test baseline. Implementation edits `refresh-track-roots.mjs`, `sweep-track-roots.mjs` and `create.sh`, seeds the 40 folders and adds the test case. Verification counts 40 `.gitkeep` files, staged until the operator's commit, and runs the full suite, which holds the new case of `create-root-numbering.vitest.ts`.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -103,7 +103,7 @@ Setup counts the declared subtracks and their archive folders. Implementation ed
 |-----------|-------|-------|
 | Unit | The archive case in `create-root-numbering.vitest.ts` | vitest |
 | Integration | `track-roots.vitest.ts`, `create-track-refresh.vitest.ts` and `archive-track.vitest.ts` stay green | vitest |
-| Manual | `sweep-track-roots.mjs` before and after seeding, and `git ls-files 'specs/*/*/z_archive/.gitkeep'` | `node`, `git` |
+| Manual | `sweep-track-roots.mjs` before and after seeding, the refresh dry run, `--apply`, second `--apply` and symlink case in a scratch tree, the two `create.sh` cases in a throwaway clone, and `git ls-files 'specs/*/*/z_archive/.gitkeep'` | `node`, `bash`, `git` |
 <!-- /ANCHOR:testing -->
 
 ---

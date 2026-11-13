@@ -43,20 +43,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs",
       ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md",
       ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+      "scratch/sweep-before.txt",
+      "scratch/baseline.txt",
+      "tests/track-roots.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
       "feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md",
       "runtime/cli/spec/README.md",
       "runtime/cli/spec/refresh-track-roots.mjs",
-      "runtime/cli/spec/sweep-track-roots.mjs",
-      "runtime/cli/spec/create.sh",
-      "runtime/cli/spec/archive.sh",
-      "runtime/cli/lib/track-roots.mjs"
+      "runtime/cli/spec/sweep-track-roots.mjs"
     ],
     "entities": [
       {
@@ -96,24 +96,6 @@
         "source": "derived"
       },
       {
-        "name": "track-roots.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "refresh-track-roots.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/refresh-track-roots.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "sweep-track-roots.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs",
-        "source": "derived"
-      },
-      {
         "name": "create.sh",
         "kind": "script",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
@@ -123,6 +105,18 @@
         "name": "create-root-numbering.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/create-root-numbering.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "refresh-track-roots.mjs",
+        "kind": "key_phrase",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "sweep-track-roots.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/sweep-track-roots.mjs",
         "source": "derived"
       },
       {
@@ -138,9 +132,27 @@
         "source": "derived"
       },
       {
-        "name": "archive.sh",
-        "kind": "script",
-        "path": "runtime/cli/spec/archive.sh",
+        "name": "sweep-before.txt",
+        "kind": "file",
+        "path": "scratch/sweep-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "track-roots.vitest.ts",
+        "kind": "test",
+        "path": "tests/track-roots.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "track-roots.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/lib/track-roots.mjs",
         "source": "derived"
       },
       {
@@ -190,23 +202,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern In",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`archive.sh` moves a subtrack's packet into that subtrack's own `zarchive/`, but no script creates the folder, so this worktree holds 40 declared subtracks and no subtrack archive folder",
     "created_at": "2026-11-13T10:07:33Z",
-    "last_save_at": "2026-11-13T12:20:41.534Z",
+    "last_save_at": "2026-11-13T12:56:44.376Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:53d9efc65d81c680f48588e540f5050f1f5345839bf62ec701d742b4af4c05ed",
+    "source_fingerprint": "sha256:21622f8be3f11c89bb01fbac435017d80401857c802f35b36fed8aba315d807e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d10b69df56a615f3308e2b23dba47c312e4ed62874f8557f9cea5761d3090cab",
-      "plan.md": "3211012abb22123f03820433af2722f67c5ca64d94e1082171208ec2df1c7349",
-      "tasks.md": "fbd41f588cf7336ecb925180a03740173d15bca45e94b5ffe9700a273d8d6d43",
-      "implementation-summary.md": "613d235afc32963ba98da5e39de44a3f155071e97d4831f77e029087e5dd805e"
+      "spec.md": "6b2719895b7bb873b46fa98b3d6f4d6d3f58c7863c9a994b5cd46d448ab77655",
+      "plan.md": "8b480958bedec1d899e0bb59ad63dd72bf104afb337afe148c8d6555b1bb687c",
+      "tasks.md": "f48a6e90075f24f32b2e171b6d6fa0d9b3b81b0e24d1518609dbbe6ed404fb72",
+      "implementation-summary.md": "984a8054ccc27203662ec4217ac80fd55b3fe97f5a1b584d882bfc692c89652e"
     },
     "last_active_at": null
   }

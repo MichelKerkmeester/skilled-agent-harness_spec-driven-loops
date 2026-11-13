@@ -206,7 +206,7 @@
     ],
     "causal_summary": "An operator learns that a flat track should be grouped only by noticing it",
     "created_at": "2026-11-13T10:07:31Z",
-    "last_save_at": "2026-11-13T12:24:47.638Z",
+    "last_save_at": "2026-11-13T12:53:51.743Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:86b438c1b11d127d6a7f7e90a7c62609fb76827ac411246f0a137ff285aa9e7d",
+    "source_fingerprint": "sha256:cc27e80ec700937e3cbe457c578aee30d4f2cd63518a8cf8e33c6ff7265a5a4a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f0d8e75cebffa8230d390aef1d4843f5a1ad98c1b9e3558ae29ba34e77028ad1",
-      "plan.md": "3e71f96f6da1675493c288cd0c8e779c0d760c177a9d3474ab868689b8437051",
-      "tasks.md": "a3f3bce0f32c18296b0dfce9717823dd3e4c083165975a00986228611bd41038",
-      "implementation-summary.md": "d8bba41b7b048437e534a1101083cdc6eeb9ed3fe7e02bd8e3d03306aae669ec"
+      "spec.md": "bc2b521373b19d8c3665828386cfea65979ae4238f9c4036902cf5cef88d6d31",
+      "plan.md": "f5a9d7c6dc3d269f172d9b08a22ee78e89e99dcad0edae32ff89d86fa81b517b",
+      "tasks.md": "4147fdc2268c8373be9e354a331e9d7d06fa3c5e39f029da0d635225c64f9167",
+      "implementation-summary.md": "0bc531fb4910a7fed783ef7b6fb3491b42ceee1e20bc09b6044f31b44b5412a7"
     },
     "last_active_at": null
   }
