@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The repository ships 44 tracked slash commands that own complete workflows, but the skill advisor reaches the model with skills",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-13T17:03:57.074Z",
+    "last_save_at": "2026-11-13T19:32:21.415Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,10 +207,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:ee601c7fa757822db5b567453bd46138e42715955ce43ab550c108b041357190",
+    "source_fingerprint": "sha256:9767289961eeb727668cae7ede0a0c4f5e3b3e91dbf018d29daf4ba21a1b2dbe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ae7c16cb6358565e7b8e25399e70959c81a669a1371dd5456b814ed1fd84ccca",
+      "spec.md": "610fb2966aeb7a49f13fbecdf4d516760dfe4feb82a914c3f84b03490be236b0",
       "decision-record.md": "e28f9a3e6e67a4e30088b79cb51b7fde9db5540f722392b1c45efac7392e30f9"
     },
     "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation",
