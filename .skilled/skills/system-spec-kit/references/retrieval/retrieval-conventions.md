@@ -12,7 +12,7 @@ trigger_phrases:
   - "coverage and exclusion policy"
 importance_tier: important
 contextType: implementation
-version: 1.0.8.0
+version: 1.0.9.0
 ---
 
 # Ripgrep Retrieval Conventions
@@ -81,6 +81,7 @@ Every recipe below is literal. Copy the flags rather than paraphrasing them, bec
 - `--no-config` is mandatory. Without it `RIPGREP_CONFIG_PATH` can inject arguments the caller never wrote.
 - `--hidden` is mandatory. The `.skilled` root holds dotted directories with live documentation, and without the flag ripgrep skips them without a word, so a miss there reads as a clean no-match. The `.git` exclusion glob keeps the flag from reaching repository internals.
 - `--glob '!**/z_archive/**'`, `--glob '!**/node_modules/**'` and `--glob '!**/.git/**'` keep archived packets, vendored trees and repository internals out of the result set; the last one exists because `--hidden` would otherwise let ripgrep into `.git`.
+- `--include-archive` is the wrapper's opt-in archive mode, and the default is unchanged: without the flag every recipe keeps `--glob '!**/z_archive/**'`. With it `rg-wrapper.mjs` drops that one glob and keeps the other three exclusions. Every printed hit under a `z_archive` segment ends with `[archived]`, and the JSON rows of the structured and count recipes carry `archived: true|false`. A second invocation, the JSON lane, lists the `description.json` and `graph-metadata.json` files of archived packets that hold the phrase under a `json    :` section, reported as `jsonLane` in the JSON record. It is its own invocation because of Section 2.5. The exit is `0` when either lane matches.
 - `--glob '!**/scratch/**'` keeps ephemeral working files out of the result set. The trigger-index corpus walker already excludes `scratch/` unconditionally, and this repository's own convention treats every `scratch/` tree as temporary output cleaned before completion, never canonical content — see Section 9 for the full coverage decision.
 - `-- 'phrase'` separates the pattern from the flags, so a phrase beginning with a hyphen is a pattern and not a parse error.
 - `--fixed-strings` treats the phrase literally. `--ignore-case` applies Unicode simple case folding.
@@ -247,7 +248,7 @@ Ripgrep reads state the caller did not pass on the command line. For a reproduci
 | `.ignore` | Same, ripgrep-and-friends specific | Same |
 | `.rgignore` | Same, ripgrep specific | Same |
 
-**Glob order matters.** Later globs override earlier ones. `--glob '*.md'` selects Markdown, and the exclusion globs that follow it remove `z_archive`, `node_modules`, `.git` and `scratch` from that selection. Reversing the order re-admits what the exclusions were there to remove. When a recipe is edited, keep the positive glob first and the exclusions last, and document any override a caller adds.
+**Glob order matters.** Later globs override earlier ones. `--glob '*.md'` selects Markdown, and the exclusion globs that follow it remove `z_archive`, `node_modules`, `.git` and `scratch` from that selection. Reversing the order re-admits what the exclusions were there to remove. When a recipe is edited, keep the positive glob first and the exclusions last, and document any override a caller adds. The wrapper's `--include-archive` mode is the one documented override: it removes the `z_archive` exclusion and leaves the positive glob and the other three exclusions in place and in order.
 
 ---
 
@@ -312,7 +313,7 @@ The lookup applies its own two limits to the prompt, not to declared phrases: a 
 
 | Excluded tree | Trigger index | Ripgrep | Reason |
 |------|:---:|:---:|--------|
-| `z_archive` | Yes | Yes | Shared |
+| `z_archive` | Yes | Yes (default) | Shared by default, and the default is unchanged. The trigger index always prunes it and resume excludes it. The ripgrep wrapper searches it only on request, with `--include-archive` (Section 2) |
 | `node_modules` | Yes | Yes | Shared |
 | `.git` | Yes (never walked) | Yes (`--glob '!**/.git/**'`) | Shared |
 | `scratch` | Yes | Yes | Converged in the retrieval-coverage-alignment phase. Unconditional in both: this repository's convention treats every `scratch/` tree as temporary output cleaned before completion, and the sibling `sweep-memory-residue.mjs` tool already excluded it for the same reason |

@@ -606,13 +606,32 @@ function failureKind(err) {
   return err.code || err.message;
 }
 
+// The validator does not flag an archived packet's stale parent, so the report
+// alone would never plan that repair.
+function recordsArchiveParent(folder) {
+  const text = readIfPresent(path.join(folder, 'graph-metadata.json'));
+  if (text === null) return false;
+  let data = null;
+  try {
+    data = JSON.parse(text);
+  } catch {
+    return false;
+  }
+  if (!data || typeof data !== 'object' || Array.isArray(data)) return false;
+  const recorded = typeof data.parent_id === 'string' && data.parent_id.trim().toLowerCase() === 'null'
+    ? null
+    : data.parent_id ?? null;
+  const expected = expectedParentId(folder, recorded);
+  return expected.known === true && expected.archived === true && recorded !== null;
+}
+
 async function repairFolder(folder, apply) {
   const { report, reason } = await validate(folder);
   if (!report) return { folder, unreadable: true, reason };
 
   const rules = new Set(findings(report).map((f) => f.rule).filter(Boolean));
   const authored = [...rules].filter((rule) => !DERIVABLE.has(rule));
-  if (authored.length === rules.size) return { folder, planned: [], authored };
+  if (authored.length === rules.size && !recordsArchiveParent(folder)) return { folder, planned: [], authored };
 
   const edits = [];
   const levelFix = fixDescriptionLevel(folder);

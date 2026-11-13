@@ -328,6 +328,33 @@ rederive_moved() {
     fi
 }
 
+# The description cache lists every spec folder by path, so a move into or out
+# of an archive leaves a row for the folder that is gone. Only the cache's own
+# producer may rewrite it, so the move asks that producer to rebuild it and
+# reports a failure rather than undoing the move. A tree without the cache keeps
+# none: an archive move never creates it.
+refresh_description_cache() {
+    local specs_root="$1"
+    local cache="$specs_root/descriptions.json"
+    local discovery_module="$SCRIPT_DIR/../../dist/lib/search/folder-discovery.js"
+    [[ -f "$cache" ]] || return 0
+    if [[ ! -f "$discovery_module" ]]; then
+        log_warning "descriptions.json was not refreshed: $discovery_module is missing. Restore it, then run ensureDescriptionCache."
+        return 0
+    fi
+    if ! command -v node >/dev/null 2>&1; then
+        log_warning "descriptions.json was not refreshed: node is not on PATH, so $discovery_module cannot run. Restore node, then run ensureDescriptionCache."
+        return 0
+    fi
+    if ! node --input-type=module -e '
+import { pathToFileURL } from "node:url";
+const { ensureDescriptionCache } = await import(pathToFileURL(process.argv[1]).href);
+if (ensureDescriptionCache([process.argv[2]]) === null) process.exit(1);
+' "$discovery_module" "$specs_root" >/dev/null; then
+        log_warning "descriptions.json may still list the old folder. Rerun ensureDescriptionCache on $specs_root."
+    fi
+}
+
 # The next number after every one already used in a packet home, live or
 # archived, so the restored packet cannot collide with either. relocate.mjs then
 # moves it and rewrites every record that names it, from its own preflight on.
@@ -522,6 +549,7 @@ archive_spec() {
 
     log_success "Archived: $resolved_spec -> $archive_root/$basename"
     rederive_moved "$archive_root/$basename"
+    refresh_description_cache "$specs_root"
     refresh_track_levels "$specs_root" "$track"
 
     # A phase parent's children_ids is not rewritten here. Its writer only adds
@@ -683,6 +711,7 @@ restore_spec() {
 
     log_success "Restored: $resolved_archived -> $destination"
     rederive_moved "$destination"
+    refresh_description_cache "$specs_root"
     refresh_track_levels "$specs_root" "$track"
 }
 

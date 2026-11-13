@@ -31,7 +31,7 @@ readonly VERSION="3.0.0"
 
 FOLDER_PATH=""
 JSON_MODE=false STRICT_MODE=false VERBOSE=false QUIET_MODE=false
-RECURSIVE=false RECURSIVE_OPT_OUT=false
+RECURSIVE=false RECURSIVE_OPT_OUT=false INCLUDE_ARCHIVE=false
 CHILD_MANIFEST_ACTIVE=false CHILD_MANIFEST_HASH="" CHILD_MANIFEST_ENTRIES=() PHASE_DIRS=()
 
 # ───────────────────────────────────────────────────────────────
@@ -68,6 +68,8 @@ OPTIONS:
     --json         JSON output   --strict       Run strict-only rules
     --verbose      Detailed      --quiet, -q    Results only
     --recursive    Validate parent + all [0-9][0-9][0-9]-*/ child phase folders
+    --include-archive  With --recursive, also validate packets in each z_archive/ beside
+                       the folders a recursive run visits
     --no-recursive Disable auto-recursive validation when phase children exist
 
 ENVIRONMENT:
@@ -100,11 +102,17 @@ parse_args() {
             --verbose) VERBOSE=true; shift ;;
             --quiet|-q) QUIET_MODE=true; shift ;;
             --recursive) RECURSIVE=true; shift ;;
+            --include-archive) INCLUDE_ARCHIVE=true; shift ;;
             --no-recursive) RECURSIVE=false; RECURSIVE_OPT_OUT=true; shift ;;
             -*) echo "ERROR: Unknown option '$1'" >&2; exit 1 ;;
             *) [[ -z "$FOLDER_PATH" ]] && FOLDER_PATH="$1" || { echo "ERROR: Multiple paths" >&2; exit 1; }; shift ;;
         esac
     done
+    if $INCLUDE_ARCHIVE && ! $RECURSIVE; then
+        echo "ERROR: --include-archive requires --recursive" >&2
+        echo "Usage: ./validate.sh <folder-path> --recursive --include-archive" >&2
+        exit 2
+    fi
     [[ -z "$FOLDER_PATH" ]] && { echo "ERROR: Folder path required" >&2; exit 1; }
     FOLDER_PATH="${FOLDER_PATH%/}"
     [[ ! -d "$FOLDER_PATH" ]] && { echo "ERROR: Folder not found: $FOLDER_PATH" >&2; exit 3; }
@@ -345,6 +353,19 @@ load_child_manifest() {
     return 0
 }
 
+# Archived packets are validated only on request, so a default recursive run is unchanged.
+append_archived_packets() {
+    local folder="$1"
+    local archive_dir="$folder/z_archive"
+    local packet_dir=""
+
+    [[ -d "$archive_dir" && ! -L "$archive_dir" ]] || return 0
+    for packet_dir in "$archive_dir"/[0-9][0-9][0-9]*/; do
+        [[ "$(basename "$packet_dir")" =~ ^[0-9]{3}([-_].+)?$ ]] || continue
+        [[ -d "$packet_dir" && ! -L "${packet_dir%/}" ]] && PHASE_DIRS+=("${packet_dir%/}")
+    done
+}
+
 collect_phase_dirs() {
     local parent_folder="$1"
     local manifest_rc=0
@@ -367,6 +388,10 @@ collect_phase_dirs() {
         done
     fi
 
+    if $INCLUDE_ARCHIVE; then
+        append_archived_packets "$parent_folder"
+    fi
+
     if ! $CHILD_MANIFEST_ACTIVE && is_track_root_folder "$parent_folder"; then
         for subtrack_folder in "$parent_folder"/*/; do
             [[ -d "$subtrack_folder" ]] || continue
@@ -387,6 +412,9 @@ collect_phase_dirs() {
                 [[ "$(basename "$packet_dir")" =~ ^[0-9]{3}([-_].+)?$ ]] || continue
                 [[ -d "$packet_dir" && ! -L "${packet_dir%/}" ]] && PHASE_DIRS+=("${packet_dir%/}")
             done
+            if $INCLUDE_ARCHIVE; then
+                append_archived_packets "$subtrack_folder"
+            fi
         done
     fi
     return 0

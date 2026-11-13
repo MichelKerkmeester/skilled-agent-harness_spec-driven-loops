@@ -1287,9 +1287,9 @@ function loadRecordedFindings(folder: string): Map<string, Map<string, number>> 
   }
 }
 
-// An archived or future snapshot keeps its old recorded location on purpose,
-// and nothing re-derives it, so its metadata findings are permanent facts of
-// the snapshot and may be recorded like any other.
+// An archived packet is re-derived when archive.sh moves it, but a snapshot
+// archived before that step existed, or kept under z_future, can still record
+// an old location, so its metadata findings may be recorded like any other.
 // Measured below the last `specs` directory, so a checkout that happens to
 // sit inside a folder named z_archive does not turn every packet into a
 // snapshot.
