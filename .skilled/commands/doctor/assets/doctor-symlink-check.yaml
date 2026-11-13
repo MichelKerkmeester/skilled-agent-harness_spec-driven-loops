@@ -25,7 +25,7 @@ mutation_boundaries:
   allowed_targets: []
   forbidden_targets:
     - "**/*"
-  invariant: "This route runs the check subcommand only. It never runs plan, apply or unlink, and it never writes a link, directory, ignore line or run record. Findings describe the target repository and do not change its state."
+  invariant: "This route runs the check subcommand only. It never runs plan, apply or unlink, and it never writes a link, directory, ignore line or run record. Findings describe the target repository and do not change its state. The route also runs the read-only hook-wiring check, which reads each installed runtime's prompt hook entry and never writes."
 
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS
@@ -34,6 +34,7 @@ upstream_assets:
   engine: ".skilled/commands/doctor/scripts/symlink-engine.cjs"
   manifest: ".skilled/commands/doctor/assets/symlink-manifest.json"
   presentation: ".skilled/commands/doctor/assets/doctor-symlink-presentation.txt"
+  hook_wiring: ".skilled/commands/doctor/scripts/hook-wiring-check.cjs"
 
 # ─────────────────────────────────────────────────────────────────
 # INPUTS
@@ -56,6 +57,7 @@ execution:
     - 'Run node .skilled/commands/doctor/scripts/symlink-engine.cjs check --root "{root}", adding --runtimes "{runtimes}" when supplied, --include "{include}" when supplied, --link-instructions when requested and --json when requested.'
     - "The engine reports one status for each selected manifest entry, with detail lines for missing children, broken links and local conflicts. It also reports detected runtimes, tracked absolute links, Git state and applicable warnings."
     - "Exit 0 means no drift was found. Exit 1 means drift was found: broken links, foreign links, broken links inside merged folders, a missing source, or tracked absolute links. Missing children in a partial merge do not count as drift. Show the report and end with STATUS=WARN. Exit 2 means the invocation or target root was refused. Quote the engine message and end with STATUS=FAIL."
+    - 'After the engine report, run node .skilled/commands/doctor/scripts/hook-wiring-check.cjs --root "{root}" to read the prompt hook entry each installed runtime loads. It skips a runtime whose folder is absent. Show every hook-missing <runtime> line as printed. Exit 0 leaves the status unchanged. Exit 1 ends the run with STATUS=WARN and names the repair: copy the prompt hook entry from the matching file in the Skilled checkout into the target file for that runtime. Exit 2 means the check was refused: quote its message and end with STATUS=FAIL.'
     - "Render the engine output through .skilled/commands/doctor/assets/doctor-symlink-presentation.txt. When --json was requested, print the engine's JSON object alone."
 
 # ─────────────────────────────────────────────────────────────────

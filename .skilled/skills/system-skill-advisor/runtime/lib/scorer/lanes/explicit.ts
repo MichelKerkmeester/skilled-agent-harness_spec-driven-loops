@@ -96,7 +96,7 @@ export const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>
   '/speckit:save': [['command-speckit-save', 1.6], ['system-spec-kit', 0.45]],
   '/deep:research': [['system-deep-loop', 1.6]],
   '/deep:review': [['system-deep-loop', 1.6]],
-  '/speckit:resume': [['system-spec-kit', 0.9], ['command-spec-kit-resume', 0.75]],
+  '/speckit:resume': [['system-spec-kit', 0.9], ['command-speckit-resume', 0.75]],
   'auto review release readiness': [['system-deep-loop', 1]],
   // Colon-command syntax (":review:auto") is a deep-review LOOP invocation,
   // distinct from natural-language "auto review this PR" (which routes to
@@ -345,7 +345,7 @@ export function scoreExplicitLane(
   }
   if (lower.includes('/speckit:resume')) {
     push(scores, 'system-spec-kit', 0.4, 'speckit-resume-skill-disambiguation');
-    push(scores, 'command-spec-kit-resume', -1.0, 'speckit-resume-skill-disambiguation');
+    push(scores, 'command-speckit-resume', -1.0, 'speckit-resume-skill-disambiguation');
   }
   // Review-plus-write intent. When the prompt contains the word `review`
   // AND an explicit write/edit verb (`update|edit|fix|modify`), the request

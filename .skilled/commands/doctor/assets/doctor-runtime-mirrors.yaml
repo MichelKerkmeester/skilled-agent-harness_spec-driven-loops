@@ -38,6 +38,7 @@ upstream_assets:
   agent_body_parity: ".skilled/bin/check-agent-mirror-sync.cjs"
   command_catalog: ".skilled/commands/doctor/scripts/command-catalog-mirror-check.cjs"
   codex_hooks_installer: ".skilled/bin/install-codex-hooks.mjs"
+  codex_hook_approval: ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs"
   pi_agents: ".skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs"
   pi_prompts: ".skilled/skills/system-spec-kit/runtime/cli/pi/sync-prompts-pi.cjs"
   dsh_skills: ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs"
@@ -146,6 +147,7 @@ execution:
     - "Run upstream_assets.agent_body_parity with --all. Compares each agent body across the runtime trees; same-file mirrors and non-comparable formats are reported, not counted as matches. Exit 0 = all comparable mirrors in sync, 1 = drift or comparison failure, 2 = checker invocation error (unknown option), 3 = not checkable (frontmatter parser unavailable)."
     - "Run upstream_assets.command_catalog. Compare command frontmatter with the root and family indexes and hub metadata. Exit 0 = in sync, 1 = drift, 2 = checker error."
     - "Run upstream_assets.codex_hooks_installer with --check --allow-worktree. Covers the user-global ~/.codex/hooks.json against the repo's .codex/hooks.json, including orphaned entries whose .skilled adapter no longer exists on disk. Explicit OK output = in sync; a drift report = drift; refusal, error, or missing affirmative output = error."
+    - 'Run upstream_assets.codex_hook_approval with --root "$PWD". Covers the Codex approval that lets the project advisor hook run at all, since Codex skips an unapproved entry without a warning. PASS = in sync. WARN sets STATUS to WARN and shows the repair line it prints without counting as drift. SKIP leaves STATUS unchanged. Exit 0 = approved or no Codex hooks file, 1 = absent or unapproved, 2 = checker error.'
     - "Run upstream_assets.pi_agents with --check. Covers the generated .pi/agents/*.md. Exit 0 = in sync, 1 = drift."
     - "Run upstream_assets.pi_prompts with --check. Covers the generated .pi/prompts/*.md stubs. Exit 0 = in sync, 1 = drift."
     - "Run upstream_assets.dsh_skills, the command node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-skills-dsh.cjs --check. Covers the generated .dsh/skills/ links. When .dsh/ is absent, report the row as n/a (no .dsh/ tree) without running the check; an n/a row leaves STATUS unchanged, and this run never creates that directory. Exit 0 = in sync, 1 = drift."
@@ -158,7 +160,10 @@ execution:
 # OUTPUT
 # ─────────────────────────────────────────────────────────────────
 output: |
-  STATUS=OK when every checker reports in sync, or n/a for a DSH row while its runtime tree is absent.
+  STATUS=OK when every checker reports in sync, or n/a for a DSH row while its runtime tree is absent, and the
+  Codex hook approval check reports in sync or skip.
+  STATUS=WARN when the Codex hook approval check reports an unapproved or absent advisor entry and no checker
+  reports drift: show its lines, including the repair line it prints, without adding a drift surface.
   STATUS=DRIFT when any checker reports drift, listing each drifting surface and the repair command for it:
     runtime mirrors  -> node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs
     codex agents     -> node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs

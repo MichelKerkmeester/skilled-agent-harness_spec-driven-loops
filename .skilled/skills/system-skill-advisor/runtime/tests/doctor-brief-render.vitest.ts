@@ -51,7 +51,7 @@ describe('doctor command brief', () => {
       { skill: 'command-doctor-setup', kind: 'command', confidence: 0.85, uncertainty: 0.2 },
     ]));
 
-    expect(rendered).toBe(expectedBrief('Advisor: live; use /doctor:setup 0.85/0.20 pass.'));
+    expect(rendered).toBe(expectedBrief('Advisor: live; use system-skilled-doctor → /doctor:setup (run) 0.85/0.20 pass.'));
   });
 
   it('keeps the complete companion before directives under the default cap', () => {

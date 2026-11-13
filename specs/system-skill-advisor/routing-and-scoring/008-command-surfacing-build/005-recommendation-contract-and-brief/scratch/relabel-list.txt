@@ -1,0 +1,5 @@
+holdout-prompts.jsonl P0-CMD-002 skill_top_1
+gate2-golden-prompts.jsonl golden-speckit-plan-changelog expectedSkillAny[0]
+skill-advisor-regression-cases.jsonl P0-CMD-002 expected_top_any[0]
+local-native-approved-divergences.json rr-iter3-070 localTop
+local-native-approved-divergences.json rr-iter3-070 reason

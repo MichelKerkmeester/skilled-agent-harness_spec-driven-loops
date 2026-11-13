@@ -110,7 +110,7 @@ Context adapters call `agent.inject` or return `additionalContexts`. Their core 
 
 ## 5. CONFIGURATION
 
-The guards patch turns the prompt advisor on. The lineage patch keeps it off for a fan-out leaf through its marker row, so the flag stays `true` in both compositions.
+The bundle registers the prompt advisor unless its row flag `false` is set. The guards patch still writes `true`, which leaves the advisor on in both compositions. The lineage patch does not change the flag. It mounts its marker row, and a lineage leaf stays without a brief because the adapter returns before it asks the advisor.
 
 ```yaml
 - id: repo-guards

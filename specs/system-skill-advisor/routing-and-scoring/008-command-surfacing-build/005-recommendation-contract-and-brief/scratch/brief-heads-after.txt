@@ -1,0 +1,6 @@
+Advisor: live; use system-spec-kit → /speckit:plan (start) 0.82/0.16 pass.
+Advisor: live; use system-spec-kit → /speckit:save (start) 0.89/0.12 pass.
+Advisor: live; use sk-prompt 0.89/0.12 pass.
+Advisor: live; use sk-doc → /create:readme (start) 0.95/0.12 pass.
+Advisor: live; ambiguous: sk-git → /doctor:git hooks (ask) 0.82/0.12 vs sk-git 0.86/0.16 pass.
+Advisor: live; use system-deep-loop 0.82/0.16 pass.

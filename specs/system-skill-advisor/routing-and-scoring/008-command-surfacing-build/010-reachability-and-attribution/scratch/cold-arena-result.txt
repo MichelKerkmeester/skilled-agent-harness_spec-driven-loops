@@ -1,0 +1,8 @@
+True cold first prompt, 2026-11-13, clone at 2920b1abef with no advisor daemon alive before each run (checked with pgrep), embedding model loaded.
+cold-1: 742 ms | Advisor: live; use sk-doc 0.95/0.12 pass.
+cold-2: 611 ms | Advisor: live; use sk-doc 0.95/0.12 pass.
+cold-3: 844 ms | Advisor: live; use sk-doc 0.95/0.12 pass.
+cold-4: 752 ms | Advisor: live; use sk-doc 0.95/0.12 pass.
+cold-5: 645 ms | Advisor: live; use sk-doc 0.95/0.12 pass.
+warm-1: 251 ms | warm-2: 300 ms
+fail-open 0 of 5, cold median 742 ms against a 2,500 ms hook budget. Each cold run left a new daemon pair behind, so the hook starts the daemon itself.

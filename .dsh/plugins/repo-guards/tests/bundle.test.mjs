@@ -49,7 +49,7 @@ test('the lineage leaf plugin marks the process as a fan-out leaf', () => {
   }
 });
 
-test('prompt advisor stays off unless its row flag is true', () => {
+test('prompt advisor stays on unless its row flag is false', () => {
   const preStepCount = (config) => {
     const registrations = [];
     const ctx = {
@@ -59,7 +59,8 @@ test('prompt advisor stays off unless its row flag is true', () => {
     apply(ctx, config);
     return registrations.filter((name) => name === 'agent/pre-step').length;
   };
-  assert.equal(preStepCount({ adapters: { promptAdvisor: true } }) - preStepCount(), 1);
+  assert.equal(preStepCount({ adapters: { promptAdvisor: true } }), preStepCount());
+  assert.equal(preStepCount({ adapters: { promptAdvisor: false } }), preStepCount() - 1);
 });
 
 test('every adapter loads the harness message helpers through the anchored loader', () => {

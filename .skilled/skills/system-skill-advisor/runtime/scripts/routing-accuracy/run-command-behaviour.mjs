@@ -43,6 +43,7 @@
 //   node run-command-behaviour.mjs --list <set>
 //   node run-command-behaviour.mjs --runtime <runtime> (--set <set> | --row-id <id>...)
 //     --out <run-log> [--arm <arm>] [--fixture <dir>] [--dry-run]
+//   node run-command-behaviour.mjs --backfill <run-log> --out <new-log>
 
 import { appendFileSync, mkdirSync, readdirSync, readFileSync, realpathSync, rmSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
@@ -51,6 +52,7 @@ import { randomUUID } from 'node:crypto';
 import { spawn, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { dshProjectKey, dshStoreRoot } from '../../../../../hooks/shared/session-readers/dsh.mjs';
+import { backfillRunLog, briefDelivered, replayOffer } from './command-offer.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(HERE, '../../../../../..');
@@ -238,8 +240,9 @@ const RUNTIMES = {
       'headless',
       '--patch',
       resolve(DSH_PATCH_DIR, 'route-llmgateway-deepseek.patch.yml'),
-      '--patch',
-      resolve(DSH_PATCH_DIR, 'lineage.patch.yml'),
+      // No lineage patch: it marks the run as a fan-out leaf, and the repo
+      // guards keep the prompt advisor off for a leaf. A chat turn has to
+      // receive the brief like a person's session would.
       '--patch',
       resolve(DSH_PATCH_DIR, 'guards.patch.yml'),
       '--json',
@@ -878,6 +881,7 @@ const USAGE = [
   `       ${SCRIPT_NAME} --list <set>`,
   `       ${SCRIPT_NAME} --runtime <runtime> (--set <set> | --row-id <id>...)`,
   '         --out <run-log> [--arm <arm>] [--fixture <dir>] [--dry-run]',
+  `       ${SCRIPT_NAME} --backfill <run-log> --out <new-log>`,
 ].join('\n');
 
 function resolveRuntime(name) {
@@ -914,6 +918,7 @@ function parseOptions(argv) {
     rowIds: [],
     arm: null,
     out: null,
+    backfill: null,
     fixture: null,
     dryRun: false,
   };
@@ -944,6 +949,9 @@ function parseOptions(argv) {
     } else if (token === '--out') {
       index += 1;
       options.out = resolve(valueAfter(argv, index, '--out'));
+    } else if (token === '--backfill') {
+      index += 1;
+      options.backfill = resolve(valueAfter(argv, index, '--backfill'));
     } else if (token === '--fixture') {
       index += 1;
       options.fixture = resolve(valueAfter(argv, index, '--fixture'));
@@ -961,6 +969,10 @@ function parseOptions(argv) {
 function selectMode(options) {
   if (options.printArgv !== null) return 'print-argv';
   if (options.list !== null) return 'list';
+  if (options.backfill !== null) {
+    if (options.out === null) throw new UsageError('--out is required');
+    return 'backfill';
+  }
   if (options.runtime === null) throw new UsageError('--runtime is required');
   if (options.set === null && options.rowIds.length === 0) {
     throw new UsageError('--set or --row-id is required');
@@ -1029,11 +1041,14 @@ async function runTurn(job, options, exempt, isFirst) {
   const after = { status: statusPaths(), ...gitSnapshot() };
   const headMoved = before.head !== after.head || before.stash !== after.stash;
   const changed = changedPaths(before.status, after.status);
+  // The locator is kept in hand because the brief reader opens the same session
+  // the line records, and resolving it twice could name a different file.
+  const locator = locatorFor(job.runtime, sessionId, reportedId);
   const line = {
     runtime: job.runtimeName,
     rowId: job.rowId,
     arm: options.arm,
-    locator: locatorFor(job.runtime, sessionId, reportedId),
+    locator,
     exit: turn.exit,
     changedPaths: changed,
   };
@@ -1048,7 +1063,21 @@ async function runTurn(job, options, exempt, isFirst) {
   // A dry run spawns nothing, so an unchanged worktree is the only thing it can
   // honestly report as left as found.
   const restored = options.dryRun ? changed.length === 0 : restorePaths(changed).length === 0;
-  appendRunLine(options.out, { ...line, restored });
+  // The head the reader saw is the only place the offer was named, and not every
+  // runtime keeps it, so the offer is replayed after the turn. A dry run still
+  // replays it, which lets an operator read the offer without paying for a model
+  // call, while the brief stays `unknown` because no session exists to read.
+  const offer = replayOffer({ checkoutDir: PROJECT_DIR, prompt: job.prompt, sessionId });
+  const delivered = options.dryRun
+    ? 'unknown'
+    : await briefDelivered({ runtime: job.runtimeName, locator });
+  appendRunLine(options.out, {
+    ...line,
+    offeredCommand: offer.offeredCommand,
+    offeredPolicy: offer.offeredPolicy,
+    briefDelivered: delivered,
+    restored,
+  });
 
   if (turn.error !== null) {
     const detail = turn.error.message;
@@ -1079,6 +1108,20 @@ async function runArm(options, rowIds) {
   return 0;
 }
 
+// A finished log is rewritten from its recorded lines alone, and the fixture folder
+// still sits beside the log the arm wrote. The corpus lookup runs before the first
+// line is written, so a row the dataset guard refuses leaves no output file behind.
+async function backfillLog(options) {
+  const fixture = resolve(dirname(options.backfill), G2_FIXTURE_DIRNAME);
+  const result = await backfillRunLog({
+    inPath: options.backfill,
+    outPath: options.out,
+    promptFor: (rowId) => promptFor(rowId, fixture),
+  });
+  writeJson(result);
+  return result.ok ? 0 : EXIT_REFUSED;
+}
+
 async function main(argv) {
   try {
     const options = parseOptions(argv);
@@ -1095,6 +1138,9 @@ async function main(argv) {
     if (mode === 'list') {
       writeRowIds(rowIds);
       return 0;
+    }
+    if (mode === 'backfill') {
+      return await backfillLog(options);
     }
     return await runArm(options, rowIds);
   } catch (error) {

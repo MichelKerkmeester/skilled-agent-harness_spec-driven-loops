@@ -1,0 +1,27 @@
+# Socket key: how the daemon socket name is derived
+
+## .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts (ADV)
+
+- `DEFAULT_SOCKET_DIR = '/tmp/system-skill-advisor'` at line 31.
+- `ensureSocketEnvironment()` at line 1089 sets `process.env.SPECKIT_IPC_SOCKET_DIR = DEFAULT_SOCKET_DIR` when it is unset (line 1091). It is called from the tool runner at line 1360.
+- `getIpcSocketPath('system-skill-advisor', { dbDir: paths.dbDir })` at line 1363 derives the socket path, through the checkout's own bridge loaded by `loadBridge()` at line 244.
+- `paths.dbDir` is `<checkout>/.skilled/skills/system-skill-advisor/runtime/database` (line 229), unless `SYSTEM_SKILL_ADVISOR_DB_DIR` overrides it.
+
+## .skilled/bin/system-skill-advisor-launcher.cjs (LCH)
+
+- `createChildEnv()` at line 312 derives the daemon socket dir at line 336: `filtered.SPECKIT_IPC_SOCKET_DIR = bridge.resolveIpcSocketDir('system-skill-advisor', { dbDir: resolvedAdvisorDbDir(), env: sourceEnv })`.
+- `resolveSessionProxySocketPath()` at line 1058 calls `getIpcSocketPath('system-skill-advisor', { dbDir: resolvedAdvisorDbDir() })` at line 1060.
+- `resolvedAdvisorDbDir()` at line 383 resolves to the checkout's `runtime/database`, unless `SYSTEM_SKILL_ADVISOR_DB_DIR` overrides it.
+
+## .skilled/bin/lib/launcher-ipc-bridge.cjs (shared derivation both call)
+
+- `resolveIpcSocketDir()` at line 139 and `getIpcSocketPath()` at line 162 joins `daemon-ipc.sock`.
+- `shouldScopeIpcSocket()` at line 103 returns true for `system-skill-advisor` when the socket dir resolves to `/tmp/system-skill-advisor`, or when `SPECKIT_IPC_SOCKET_SCOPE=database`.
+- When scoped, line 152 hashes the canonical database directory with `sha256(dbDir).slice(0, 12)`, and line 153 joins that digest under the socket dir.
+- When the derived path exceeds the sun_path limit, `withinLimitOrRelocated()` at line 157 relocates it to `/tmp/system-skill-advisor/<sha256(intended dir).slice(0, 12)>`, still keyed by the intended directory.
+
+## Two checkouts
+
+The scoped digest is taken over the checkout's own database directory, so two checkouts derive two different socket directories and start two daemons. An explicit `SPECKIT_IPC_SOCKET_DIR` other than the default skips that database scope unless `SPECKIT_IPC_SOCKET_SCOPE=database`, so every checkout pointed at that same directory would share one daemon.
+
+per-checkout

@@ -1,0 +1,6 @@
+run 1: 468 ms | Advisor: stale; use sk-doc 0.95/0.15 pass.
+run 2: 431 ms | Advisor: stale; use sk-doc 0.95/0.15 pass.
+run 3: 424 ms | Advisor: stale; use sk-doc 0.95/0.15 pass.
+run 4: 431 ms | Advisor: stale; use sk-doc 0.95/0.15 pass.
+run 5: 585 ms | Advisor: stale; use sk-doc 0.95/0.15 pass.
+fail-open 0 of 5

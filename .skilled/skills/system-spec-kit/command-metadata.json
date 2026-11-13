@@ -224,6 +224,7 @@
         "/speckit:search",
         "find the spec packet",
         "which spec covers this",
+        "which packets mention",
         "search the spec docs",
         "is this already documented"
       ]

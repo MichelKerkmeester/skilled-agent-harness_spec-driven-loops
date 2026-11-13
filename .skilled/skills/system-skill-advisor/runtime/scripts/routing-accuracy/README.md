@@ -60,6 +60,25 @@ Run individual scripts from the repository root with the documented arguments.
 | sk-code alignment | Points reviewers at OpenCode naming, header, error-handling and type-discipline checks. |
 | Verification handoff | Records the expected owner and audit packet for follow-up work. |
 
+### Attribution on every run line
+
+Each line a behaviour run appends carries three fields beside the locator, exit and changed paths:
+
+- `offeredCommand` is the slash command the advisor head named, or `null` when the head named none.
+- `offeredPolicy` is the policy that directly follows that command, one of `run`, `start` or `ask`, or `null` when no policy follows it.
+- `briefDelivered` says whether the advisor brief reached the session. It is `true` or `false` where the runtime keeps a readable record, and `unknown` where none exists or cannot be read, so a gap in the record never reads as a miss.
+
+The offer is a replay of the Claude prompt hook after the turn instead of a copy of the live session head. The head is the only text that names both the command and the policy, and not every runtime keeps it, so `replayOffer` runs the checkout's own hook and records what that checkout would have offered at the time of the run. A replay that finds no hook, a failing hook or a head without an offer writes null fields plus an `offerError` of `hook_missing`, `hook_failed` or `no_head`, so one bad line never aborts a run.
+
+### Backfill a finished log
+
+`run-command-behaviour.mjs --backfill <run-log> --out <new-log>` adds those three fields to a log written before they existed, and a `--backfill` run without `--out` is a usage error that exits 2. The mode refuses with exit 2 and a JSON body holding its `code`:
+
+- `same_path` when `--out` resolves to the input log, because the backfill writes a new file.
+- `holdout_row` or `unknown_row` when the corpus refuses a row id, because every prompt is resolved before the first line is written and a refused row leaves no output file behind.
+
+A line whose locator names no checkout keeps null offer fields and `offerError` `no_checkout`, and the rest of the log is still written with `offerBackfilled: true`.
+
 ---
 
 ## 4. STRUCTURE
@@ -70,8 +89,9 @@ Run individual scripts from the repository root with the documented arguments.
 | `score-routing-corpus.py` | PY source file in this folder. |
 | `command-prompts.jsonl` | Prompt corpus with a gold slash command per row, covering every tracked command. |
 | `capture-command-routing-baseline.mjs` | Scores `command-prompts.jsonl` under the pinned regime and prints or writes the baseline. Its `attachedMetrics` key holds own-row, attached and combined plain reach per split and per command family, attached false offers, the typed rows where a command and its owner skill read as ambiguous, and the command attached to each row. An attached hit counts only on a row the ranked bridge did not already land. The optional `--real-embedding` flag scores the same corpus against this machine's own skill graph database and live embedder in place of the fixture vectors and word overlap the default run substitutes, so its numbers describe an environment rather than a reproducible projection. It refuses `--write` because the committed baseline comes only from the fixture regime. Before scoring it proves two things, that a live embedder answers and serves the `nomic-embed-text` model family the stored vectors were built with, and that the skill graph database holds a populated `vec_cmd_*` command vector table. A missing piece exits 2 with a message that names it. |
-| `score-command-transcripts.mjs` | Scores captured sessions through the shared session readers. `--summary <run-log> [<run-log>...]` scores every row one or more run logs list, per runtime and arm, and `--runtime <name> --locator '<json>'` scores the one session a locator names. `--row-id <id>` narrows either mode to one row and `--json` prints machine-readable output. Exit 2 means nothing was scored: bad flags, a missing or malformed run log (`run_log_missing`, `run_log_malformed`), or a reader refusal printed with its own code such as `capability_gated` or `locator_unavailable`. |
-| `run-command-behaviour.mjs` | Runs one live turn per row and records the locator, exit and changed paths. `--print-argv <runtime>` prints a runtime's argv, `--list <set>` prints a set's row ids, and a run takes `--runtime` with `--set` or repeated `--row-id`, `--out <run-log>`, optional `--arm`, `--fixture` and `--dry-run`. Exit 2 refuses instead of running: bad flags, an unknown runtime or set, a holdout or unknown row, a set with fewer rows than it needs (`set_short`), a dirty worktree outside the run log's folder (`worktree_dirty`), or a checkout with a git remote (`remote_present`). |
+| `score-command-transcripts.mjs` | Scores captured sessions through the shared session readers. `--summary <run-log> [<run-log>...]` scores every row one or more run logs list, per runtime and arm, and `--runtime <name> --locator '<json>'` scores the one session a locator names. `--row-id <id>` narrows either mode to one row and `--json` prints machine-readable output. Each per-arm block reports `startRate`, `cappedStartRows`, `offered`, `startedOfOffered`, `offerUnknown`, `armIncomplete` and `byPolicy`, where `byPolicy` holds a `run`, `start` and `ask` tally of rows, capped rows, started rows and rows that wrote. The text output prints one `policy` line per policy under each arm. Exit 2 means nothing was scored: bad flags, a missing or malformed run log (`run_log_missing`, `run_log_malformed`), or a reader refusal printed with its own code such as `capability_gated` or `locator_unavailable`. |
+| `command-offer.mjs` | Recovers the attribution fields for a run line. `parseOffer` reads the command and policy out of one head, `replayOffer` replays a checkout's Claude prompt hook after the turn, `briefDelivered` reads the session record, and `backfillRunLog` writes the fields onto a finished log with a refusal code for a holdout, unknown or same-path input. |
+| `run-command-behaviour.mjs` | Runs one live turn per row and records the locator, exit and changed paths. `--print-argv <runtime>` prints a runtime's argv, `--list <set>` prints a set's row ids, and a run takes `--runtime` with `--set` or repeated `--row-id`, `--out <run-log>`, optional `--arm`, `--fixture` and `--dry-run`. `--backfill <run-log> --out <new-log>` rewrites a finished log with `offeredCommand`, `offeredPolicy` and `briefDelivered` instead of running a turn, and prints a JSON refusal with `same_path`, `holdout_row` or `unknown_row` when it cannot. Exit 2 refuses instead of running: bad flags, an unknown runtime or set, a holdout or unknown row, a set with fewer rows than it needs (`set_short`), a dirty worktree outside the run log's folder (`worktree_dirty`), or a checkout with a git remote (`remote_present`). |
 | `command-routing-baseline.json` | Captured command routing numbers that `tests/command-routing-slice.vitest.ts` holds the scorer to. |
 
 ---
@@ -113,6 +133,15 @@ node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-c
 ```
 
 Exit 2 means the run was refused before or during its first prompt: bad flags, an unknown runtime or set, a holdout row, a dirty worktree outside the run log's folder, or a checkout that still has a git remote.
+
+**Backfill a finished log**
+
+```bash
+node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs \
+  --backfill scratch/runs-pre.jsonl --out scratch/runs-pre-attributed.jsonl
+```
+
+The output log holds the same lines plus `offeredCommand`, `offeredPolicy`, `offerError`, `briefDelivered` and `offerBackfilled`. Exit 2 means the output was refused, and the printed JSON names why: `same_path`, `holdout_row`, `unknown_row` or a missing `--out`.
 
 ---
 

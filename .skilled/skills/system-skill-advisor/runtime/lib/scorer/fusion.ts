@@ -783,10 +783,10 @@ function primaryIntentBonus(
   }
   if (promptLower.includes('/speckit:resume')) {
     if (recommendation.skill === 'system-spec-kit') return R.speckitResumeSpecKitBonus;
-    if (recommendation.skill === 'command-spec-kit-resume') return R.speckitResumeCommandPenalty;
+    if (recommendation.skill === 'command-speckit-resume') return R.speckitResumeCommandPenalty;
   }
   if (promptLower.includes('/speckit:plan')) {
-    if (recommendation.skill === 'command-spec-kit-plan') return R.speckitPlanCommandBonus;
+    if (recommendation.skill === 'command-speckit-plan') return R.speckitPlanCommandBonus;
     if (recommendation.skill === 'sk-doc') return R.speckitPlanSkDocPenalty;
   }
   // External-tool-chain ("call_tool_chain") vocabulary belongs to mcp-code-mode,

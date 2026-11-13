@@ -96,8 +96,8 @@ function rankShippedFleet(above, hub) {
   const shipped = above.filter((r) => !isOperatorLocal(r.skillId));
   const leaderAt = shipped.length ? above.indexOf(shipped[0]) : above.length;
   return {
-    hit: shipped.length > 0 && shipped[0].skillId === hub,
-    present: shipped.some((r) => r.skillId === hub),
+    hit: shipped.length > 0 && (shipped[0].skillId === hub || shipped[0].ownerSkillId === hub),
+    present: shipped.some((r) => r.skillId === hub || r.ownerSkillId === hub),
     top: shipped.slice(0, 2),
     localAhead: above.slice(0, leaderAt).filter((r) => isOperatorLocal(r.skillId)),
   };

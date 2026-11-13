@@ -11,7 +11,10 @@
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof",
-    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost"
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/010-reachability-and-attribution",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards"
   ],
   "manual": {
     "depends_on": [],
@@ -156,8 +159,8 @@
         "source": "derived"
       },
       {
-        "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
+        "name": "the",
+        "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
@@ -194,7 +197,7 @@
     ],
     "causal_summary": "The repository ships 44 tracked slash commands that own complete workflows, but the skill advisor reaches the model with skills",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-12T22:42:07.019Z",
+    "last_save_at": "2026-11-13T00:41:00.138Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,10 +205,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:f5a33614c3e601fd9bda9392e9a31decbfa7daf2b74142b9fa78ad526c8983c4",
+    "source_fingerprint": "sha256:7652af38c6d5d3ffadc5f685ecc50b220f939d4398933ee3899b9230fc01c5c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6f47b0d41bc9a7b2fffb046dfc348df976161d3876416a4ef1ebddd93955be6b",
+      "spec.md": "fbf28328fd116a0d121a9b9a8fdaf362c3c9705707e8275500ba2f0ac7d7e81a",
       "decision-record.md": "b1b6c95eb8cf4a0ececb8a27b3c092307e7d5f10cf663453493c894278245bce"
     },
     "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof",

@@ -2,8 +2,7 @@
   "schemaVersion": 2,
   "generatedBy": "scripts/command-bridges/derive-command-bridges.cjs",
   "counts": {
-    "commandMetadata": 23,
-    "allowList": 4,
+    "commandMetadata": 27,
     "doctorRoutes": 35,
     "generated": 62,
     "typescriptActive": 45,
@@ -2189,19 +2188,28 @@
       }
     },
     {
-      "id": "command-spec-kit-complete",
+      "id": "command-speckit-complete",
       "command": "/speckit:complete",
       "skillId": "system-spec-kit",
       "ownerMode": "system-spec-kit",
-      "source": "scripts/command-bridges/allow-list.json",
+      "description": "End-to-end SpecKit workflow, 14+ steps. Modes :auto, :confirm, :autopilot; :with-* workflow modifiers.",
+      "ownedSignals": [
+        "/speckit:complete",
+        "the whole spec workflow",
+        "take it all the way",
+        "everything from spec to code"
+      ],
+      "standalone": true,
+      "mutating": "mutates",
+      "source": ".skilled/skills/system-spec-kit/command-metadata.json",
       "embeddingText": "I want the whole spec-driven change carried end to end, from spec through plan to verified implementation. the whole spec workflow. take it all the way. everything from spec to code",
       "runtime": {
         "typescript": {
           "enabled": true,
-          "inventoryId": "command-spec-kit-complete",
+          "inventoryId": "command-speckit-complete",
           "order": 41,
-          "id": "command-spec-kit-complete",
-          "name": "command-spec-kit-complete",
+          "id": "command-speckit-complete",
+          "name": "command-speckit-complete",
           "description": "End-to-end SpecKit workflow, 14+ steps. Modes :auto, :confirm, :autopilot; :with-* workflow modifiers.",
           "keywords": [
             "/speckit:complete",
@@ -2222,161 +2230,13 @@
         },
         "python": {
           "enabled": true,
-          "inventoryId": "command-spec-kit-complete",
+          "inventoryId": "command-speckit-complete",
           "order": 1,
-          "id": "command-spec-kit-complete",
+          "id": "command-speckit-complete",
           "description": "Run the full SpecKit 14+ step lifecycle using /speckit:complete.",
           "slashMarkers": [
             "/speckit:complete",
             "spec_kit:complete"
-          ],
-          "owningSkill": "system-spec-kit"
-        }
-      }
-    },
-    {
-      "id": "command-spec-kit-implement",
-      "command": "/speckit:implement",
-      "skillId": "system-spec-kit",
-      "ownerMode": "system-spec-kit",
-      "source": "scripts/command-bridges/allow-list.json",
-      "embeddingText": "I want the already-planned work in plan.md executed and verified. execute the plan. implement the plan. start the implementation. build what was planned",
-      "runtime": {
-        "typescript": {
-          "enabled": true,
-          "inventoryId": "command-spec-kit-implement",
-          "order": 42,
-          "id": "command-spec-kit-implement",
-          "name": "command-spec-kit-implement",
-          "description": "Implementation workflow, 9 steps: execute pre-planned work from plan.md. Modes :auto, :confirm, :autopilot.",
-          "keywords": [
-            "/speckit:implement",
-            "execute the plan",
-            "implement the plan",
-            "start the implementation",
-            "build what was planned"
-          ],
-          "domains": [
-            "speckit",
-            "command"
-          ],
-          "intentSignals": [
-            "/speckit:implement",
-            "execute the plan",
-            "implement the plan",
-            "start the implementation",
-            "build what was planned"
-          ]
-        },
-        "python": {
-          "enabled": true,
-          "inventoryId": "command-spec-kit-implement",
-          "order": 2,
-          "id": "command-spec-kit-implement",
-          "description": "Run the SpecKit 9-step implementation workflow using /speckit:implement.",
-          "slashMarkers": [
-            "/speckit:implement",
-            "spec_kit:implement"
-          ],
-          "owningSkill": "system-spec-kit"
-        }
-      }
-    },
-    {
-      "id": "command-spec-kit-plan",
-      "command": "/speckit:plan",
-      "skillId": "system-spec-kit",
-      "ownerMode": "system-spec-kit",
-      "source": "scripts/command-bridges/allow-list.json",
-      "embeddingText": "I want the spec and plan documents written for a feature before any code is touched. write a spec first. spec out this feature. write the spec and plan. plan before coding",
-      "runtime": {
-        "typescript": {
-          "enabled": true,
-          "inventoryId": "command-spec-kit-plan",
-          "order": 43,
-          "id": "command-spec-kit-plan",
-          "name": "command-spec-kit-plan",
-          "description": "Planning workflow, 8 steps: spec through plan only. Modes :auto, :confirm, :autopilot; :with-* modifiers.",
-          "keywords": [
-            "/speckit:plan",
-            "write a spec first",
-            "spec out this feature",
-            "write the spec and plan",
-            "plan before coding"
-          ],
-          "domains": [
-            "speckit",
-            "command"
-          ],
-          "intentSignals": [
-            "/speckit:plan",
-            "write a spec first",
-            "spec out this feature",
-            "write the spec and plan",
-            "plan before coding"
-          ]
-        },
-        "python": {
-          "enabled": true,
-          "inventoryId": "command-spec-kit-plan",
-          "order": 0,
-          "id": "command-spec-kit-plan",
-          "description": "Run the SpecKit 8-step planning workflow using /speckit:plan.",
-          "slashMarkers": [
-            "/speckit:plan",
-            "spec_kit:plan"
-          ],
-          "owningSkill": "system-spec-kit"
-        }
-      }
-    },
-    {
-      "id": "command-spec-kit-resume",
-      "command": "/speckit:resume",
-      "skillId": "system-spec-kit",
-      "ownerMode": "system-spec-kit",
-      "source": "scripts/command-bridges/allow-list.json",
-      "embeddingText": "I want to pick up where a spec packet left off, recovered from its own documents. where did we leave off. where we left off. pick up the work. where did we stop. continue the previous work. what was i doing",
-      "runtime": {
-        "typescript": {
-          "enabled": true,
-          "inventoryId": "command-spec-kit-resume",
-          "order": 44,
-          "id": "command-spec-kit-resume",
-          "name": "command-spec-kit-resume",
-          "description": "Resume or recover work on a spec folder: canonical continuity recovery with one next step.",
-          "keywords": [
-            "/speckit:resume",
-            "where did we leave off",
-            "where we left off",
-            "pick up the work",
-            "where did we stop",
-            "continue the previous work",
-            "what was i doing"
-          ],
-          "domains": [
-            "speckit",
-            "command"
-          ],
-          "intentSignals": [
-            "/speckit:resume",
-            "where did we leave off",
-            "where we left off",
-            "pick up the work",
-            "where did we stop",
-            "continue the previous work",
-            "what was i doing"
-          ]
-        },
-        "python": {
-          "enabled": true,
-          "inventoryId": "command-spec-kit-resume",
-          "order": 5,
-          "id": "command-spec-kit-resume",
-          "description": "Resume an existing spec folder using /speckit:resume.",
-          "slashMarkers": [
-            "/speckit:resume",
-            "spec_kit:resume"
           ],
           "owningSkill": "system-spec-kit"
         }
@@ -2403,7 +2263,7 @@
         "typescript": {
           "enabled": true,
           "inventoryId": "command-speckit-handoff",
-          "order": 45,
+          "order": 42,
           "id": "command-speckit-handoff",
           "name": "command-speckit-handoff",
           "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
@@ -2435,6 +2295,186 @@
           "slashMarkers": [
             "/speckit:handoff",
             "speckit:handoff"
+          ],
+          "owningSkill": "system-spec-kit"
+        }
+      }
+    },
+    {
+      "id": "command-speckit-implement",
+      "command": "/speckit:implement",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "description": "Implementation workflow, 9 steps: execute pre-planned work from plan.md. Modes :auto, :confirm, :autopilot.",
+      "ownedSignals": [
+        "/speckit:implement",
+        "execute the plan",
+        "implement the plan",
+        "start the implementation",
+        "build what was planned"
+      ],
+      "standalone": true,
+      "mutating": "mutates",
+      "source": ".skilled/skills/system-spec-kit/command-metadata.json",
+      "embeddingText": "I want the already-planned work in plan.md executed and verified. execute the plan. implement the plan. start the implementation. build what was planned",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-speckit-implement",
+          "order": 43,
+          "id": "command-speckit-implement",
+          "name": "command-speckit-implement",
+          "description": "Implementation workflow, 9 steps: execute pre-planned work from plan.md. Modes :auto, :confirm, :autopilot.",
+          "keywords": [
+            "/speckit:implement",
+            "execute the plan",
+            "implement the plan",
+            "start the implementation",
+            "build what was planned"
+          ],
+          "domains": [
+            "speckit",
+            "command"
+          ],
+          "intentSignals": [
+            "/speckit:implement",
+            "execute the plan",
+            "implement the plan",
+            "start the implementation",
+            "build what was planned"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-speckit-implement",
+          "order": 2,
+          "id": "command-speckit-implement",
+          "description": "Run the SpecKit 9-step implementation workflow using /speckit:implement.",
+          "slashMarkers": [
+            "/speckit:implement",
+            "spec_kit:implement"
+          ],
+          "owningSkill": "system-spec-kit"
+        }
+      }
+    },
+    {
+      "id": "command-speckit-plan",
+      "command": "/speckit:plan",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "description": "Planning workflow, 8 steps: spec through plan only. Modes :auto, :confirm, :autopilot; :with-* modifiers.",
+      "ownedSignals": [
+        "/speckit:plan",
+        "write a spec first",
+        "spec out this feature",
+        "write the spec and plan",
+        "plan before coding"
+      ],
+      "standalone": true,
+      "mutating": "mutates",
+      "source": ".skilled/skills/system-spec-kit/command-metadata.json",
+      "embeddingText": "I want the spec and plan documents written for a feature before any code is touched. write a spec first. spec out this feature. write the spec and plan. plan before coding",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-speckit-plan",
+          "order": 44,
+          "id": "command-speckit-plan",
+          "name": "command-speckit-plan",
+          "description": "Planning workflow, 8 steps: spec through plan only. Modes :auto, :confirm, :autopilot; :with-* modifiers.",
+          "keywords": [
+            "/speckit:plan",
+            "write a spec first",
+            "spec out this feature",
+            "write the spec and plan",
+            "plan before coding"
+          ],
+          "domains": [
+            "speckit",
+            "command"
+          ],
+          "intentSignals": [
+            "/speckit:plan",
+            "write a spec first",
+            "spec out this feature",
+            "write the spec and plan",
+            "plan before coding"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-speckit-plan",
+          "order": 0,
+          "id": "command-speckit-plan",
+          "description": "Run the SpecKit 8-step planning workflow using /speckit:plan.",
+          "slashMarkers": [
+            "/speckit:plan",
+            "spec_kit:plan"
+          ],
+          "owningSkill": "system-spec-kit"
+        }
+      }
+    },
+    {
+      "id": "command-speckit-resume",
+      "command": "/speckit:resume",
+      "skillId": "system-spec-kit",
+      "ownerMode": "system-spec-kit",
+      "description": "Resume or recover work on a spec folder: canonical continuity recovery with one next step.",
+      "ownedSignals": [
+        "/speckit:resume",
+        "where did we leave off",
+        "where we left off",
+        "pick up the work",
+        "where did we stop",
+        "continue the previous work",
+        "what was i doing"
+      ],
+      "standalone": true,
+      "mutating": "mutates",
+      "source": ".skilled/skills/system-spec-kit/command-metadata.json",
+      "embeddingText": "I want to pick up where a spec packet left off, recovered from its own documents. where did we leave off. where we left off. pick up the work. where did we stop. continue the previous work. what was i doing",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-speckit-resume",
+          "order": 45,
+          "id": "command-speckit-resume",
+          "name": "command-speckit-resume",
+          "description": "Resume or recover work on a spec folder: canonical continuity recovery with one next step.",
+          "keywords": [
+            "/speckit:resume",
+            "where did we leave off",
+            "where we left off",
+            "pick up the work",
+            "where did we stop",
+            "continue the previous work",
+            "what was i doing"
+          ],
+          "domains": [
+            "speckit",
+            "command"
+          ],
+          "intentSignals": [
+            "/speckit:resume",
+            "where did we leave off",
+            "where we left off",
+            "pick up the work",
+            "where did we stop",
+            "continue the previous work",
+            "what was i doing"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-speckit-resume",
+          "order": 5,
+          "id": "command-speckit-resume",
+          "description": "Resume an existing spec folder using /speckit:resume.",
+          "slashMarkers": [
+            "/speckit:resume",
+            "spec_kit:resume"
           ],
           "owningSkill": "system-spec-kit"
         }
@@ -2517,13 +2557,14 @@
         "/speckit:search",
         "find the spec packet",
         "which spec covers this",
+        "which packets mention",
         "search the spec docs",
         "is this already documented"
       ],
       "standalone": true,
       "mutating": "read-only",
       "source": ".skilled/skills/system-spec-kit/command-metadata.json",
-      "embeddingText": "I want to find which spec packet or skill doc already covers what I am asking about. find the spec packet. which spec covers this. search the spec docs. is this already documented",
+      "embeddingText": "I want to find which spec packet or skill doc already covers what I am asking about. find the spec packet. which spec covers this. which packets mention. search the spec docs. is this already documented",
       "runtime": {
         "typescript": {
           "enabled": true,
@@ -2536,6 +2577,7 @@
             "/speckit:search",
             "find the spec packet",
             "which spec covers this",
+            "which packets mention",
             "search the spec docs",
             "is this already documented"
           ],
@@ -2547,6 +2589,7 @@
             "/speckit:search",
             "find the spec packet",
             "which spec covers this",
+            "which packets mention",
             "search the spec docs",
             "is this already documented"
           ],

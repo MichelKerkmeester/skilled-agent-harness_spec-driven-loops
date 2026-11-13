@@ -9,7 +9,7 @@ trigger_phrases:
   - "advisor hook smoke tests"
 importance_tier: important
 contextType: implementation
-version: 3.6.5.0
+version: 3.6.6.0
 ---
 
 # Skill Advisor Hook Reference
@@ -40,7 +40,34 @@ On each user-prompt event the adapter:
 6. **Directive-lifecycle dedup.** `decideDirectiveLifecycleDelivery` suppresses a re-delivery of the same directive to the same session within its cadence, so a repeated prompt does not re-inject an identical brief. A repeat in a known session keeps the first line, a route or a fallback status, and drops the directives block.
 7. **Emit.** Native adapters emit a `hookSpecificOutput.additionalContext` JSON envelope. OpenCode appends to `output.system` via `experimental.chat.system.transform`. Pi sends a model-visible message.
 
-The injected brief begins with `Advisor:` and names the recommended skill(s) with their confidence. A doctor command appears as its runnable `/doctor:` string on the top line or under a skill as an `Also:` second line. The handler returns `{}` when the hook is disabled, input cannot be parsed or an unhandled exception occurs. A shim also returns `{}` when it cannot resolve or relay valid child output, including on timeout. When the handler has no brief, it emits the directives fallback.
+The injected brief begins with `Advisor:` and names the routed skill or, when the recommendation resolves to a command, the skill that owns it and the runnable command. A doctor command appears as its runnable `/doctor:` string on the top line or under a skill as an `Also:` second line. The handler returns `{}` when the hook is disabled, input cannot be parsed or an unhandled exception occurs. A shim also returns `{}` when it cannot resolve or relay valid child output, including on timeout. When the handler has no brief, it emits the directives fallback.
+
+### Brief head form
+
+A recommendation that resolves to a command renders one label, shared by the `use` and `ambiguous` heads:
+
+```text
+<ownerSkillId or skill> → <command> (<policy>)
+```
+
+The recommendation's own `ownerSkillId`, `command` and `policy` are authoritative, and the generated command row fills only what they omit. The policy parenthesis is dropped when no policy is known. A recommendation with no command row keeps its skill label rather than a command label.
+
+The `use` head reads `Advisor: <freshness>; use <label> <confidence>/<uncertainty> pass.` For example:
+
+```text
+Advisor: live; use system-spec-kit → /speckit:save (start) 0.89/0.12 pass.
+```
+
+The ambiguous head applies the same label to both sides: `Advisor: <freshness>; ambiguous: <label> <confidence>/<uncertainty> vs <label> <confidence>/<uncertainty> pass.` Each label part passes `sanitizeSkillLabel`, so a control character, a line break or an instruction-shaped label renders nothing rather than reaching the model. The `Also:` line still names a doctor command by its runnable string.
+
+### Degraded contract
+
+When the daemon is unreachable, the CLI runs the local Python scorer and returns `status: ok` with `degraded: true` and `source: local-scorer`. The local scorer returns command row ids, which a reader cannot type, so the CLI rewrites each row before the brief renders:
+
+- A row whose bare slash command appears in the prompt (the row's `command` text before the first space) keeps its command fields: `skillId` is the row id, `kind` is `command`, `command` is the runnable string, `policy` is present when the row has one and `ownerSkillId` names the owning skill. A typed `/speckit:save this session` renders `system-spec-kit → /speckit:save (start)`.
+- Every other row collapses to its owner skill: `skillId` is `ownerSkillId` and `kind` is `skill`. It is dropped when that skill is already offered, so the degraded brief never repeats a skill.
+
+Rows below the threshold are discarded before either rule applies. The degraded brief therefore keeps the same head form and names a skill that exists rather than a raw row id.
 
 ---
 

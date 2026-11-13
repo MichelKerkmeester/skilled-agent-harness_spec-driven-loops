@@ -11,6 +11,7 @@ import { join, resolve } from 'node:path';
 
 import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
 import {
+  AdvisorRecommendationSchema,
   AdvisorRecommendInputSchema,
   AdvisorRecommendOutputSchema,
   AdvisorValidateInputSchema,
@@ -88,6 +89,37 @@ describe('AdvisorRecommendOutputSchema runtime lane health', () => {
     });
 
     expect(parsed.runtimeLaneHealth?.degradedLanes).toEqual(['graph_causal']);
+  });
+});
+
+describe('AdvisorRecommendationSchema command contract fields', () => {
+  const commandRecommendation = {
+    skillId: 'command-speckit-save',
+    score: 0.91,
+    confidence: 0.91,
+    uncertainty: 0.08,
+    dominantLane: null,
+    command: '/speckit:save',
+    kind: 'command',
+    policy: 'start',
+    ownerSkillId: 'system-spec-kit',
+  } as const;
+
+  it('accepts a recommendation carrying command, kind, policy and ownerSkillId', () => {
+    const parsed = AdvisorRecommendationSchema.parse(commandRecommendation);
+    expect(parsed.command).toBe('/speckit:save');
+    expect(parsed.kind).toBe('command');
+    expect(parsed.policy).toBe('start');
+    expect(parsed.ownerSkillId).toBe('system-spec-kit');
+  });
+
+  it('rejects an unknown key such as consequence', () => {
+    // The schema is strict so a field a reader depends on cannot arrive under a
+    // name the contract never declared.
+    expect(() => AdvisorRecommendationSchema.parse({
+      ...commandRecommendation,
+      consequence: 'x',
+    })).toThrow();
   });
 });
 

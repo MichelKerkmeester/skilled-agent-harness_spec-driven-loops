@@ -19,6 +19,7 @@ import {
   type SkillAdvisorCliToolDefinition,
 } from './skill-advisor-cli-manifest.js';
 
+import { commandRowFor } from './lib/command-attach.js';
 import { SKILL_ADVISOR_COMPAT_CONTRACT } from './lib/compat/contract.js';
 import { runAdvisorSubprocess, type AdvisorRecommendation } from './lib/subprocess.js';
 
@@ -1473,15 +1474,55 @@ async function runLocalScorer(prompt: string): Promise<readonly AdvisorRecommend
   }
 }
 
-function degradedRecommendations(entries: readonly AdvisorRecommendation[]): Array<Record<string, unknown>> {
-  return entries
-    .filter((entry) => entry.passes_threshold === true)
-    .map((entry) => ({
-      skillId: entry.skill,
+// The local scorer names command ids, but a reader can only act on a command they
+// typed or on the skill that owns it. A row whose bare slash command appears in
+// the prompt keeps its command fields, and every other row collapses to its owner
+// skill so the degraded brief names a skill that exists instead of a raw row id.
+export function degradedRecommendations(
+  entries: readonly AdvisorRecommendation[],
+  prompt: string,
+): Array<Record<string, unknown>> {
+  const offeredSkills = new Set<string>();
+  const recommendations: Array<Record<string, unknown>> = [];
+
+  for (const entry of entries) {
+    if (entry.passes_threshold !== true) continue;
+    const base = {
       confidence: entry.confidence,
       uncertainty: entry.uncertainty,
       reason: entry.reason ?? '',
-    }));
+    };
+    const row = commandRowFor(entry.skill);
+
+    if (row && prompt.includes(row.command.split(' ')[0])) {
+      recommendations.push({
+        skillId: entry.skill,
+        kind: 'command',
+        command: row.command,
+        ...(row.policy ? { policy: row.policy } : {}),
+        ownerSkillId: row.ownerSkillId,
+        ...base,
+      });
+      offeredSkills.add(entry.skill);
+      continue;
+    }
+
+    if (row) {
+      if (offeredSkills.has(row.ownerSkillId)) continue;
+      recommendations.push({
+        skillId: row.ownerSkillId,
+        kind: 'skill',
+        ...base,
+      });
+      offeredSkills.add(row.ownerSkillId);
+      continue;
+    }
+
+    recommendations.push({ skillId: entry.skill, ...base });
+    offeredSkills.add(entry.skill);
+  }
+
+  return recommendations;
 }
 
 // Request options added after the daemon protocol was fixed, oldest first.
@@ -1536,7 +1577,7 @@ async function invokeAdvisorRecommendPayload(
         degraded: true,
         source: LOCAL_SCORER_SOURCE,
         data: {
-          recommendations: degradedRecommendations(recommendations),
+          recommendations: degradedRecommendations(recommendations, prompt),
           effectiveThresholds: LOCAL_SCORER_THRESHOLDS,
         },
       },

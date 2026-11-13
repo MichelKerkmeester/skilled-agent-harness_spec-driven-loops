@@ -148,8 +148,8 @@ describe('advisor 195-prompt corpus regression-protection parity', () => {
       }
 
       // On the current 195-row corpus the Python reference scorer (built-in
-      // semantic disabled for determinism) makes 116 gold-correct top-1 calls;
-      // the native/hook scorer preserves 111 of them (re-baselined 2026-09-07
+      // semantic disabled for determinism) makes 117 gold-correct top-1 calls;
+      // the native/hook scorer preserves 112 of them (re-baselined 2026-09-07
       // after the deep-loop and design consolidations moved both numbers up). The remaining
       // Python-correct rows the native scorer diverges on are enumerated and
       // reviewed-accepted above.
@@ -174,8 +174,9 @@ describe('advisor 195-prompt corpus regression-protection parity', () => {
       // Seventeen gold labels moved to the surviving names and the Python
       // reference follows them, so it answers two more prompts correctly and the
       // native scorer keeps one of them; rr-iter3-105 is the row it loses.
-      expect(pythonCorrect).toBe(116);
-      expect(hookPreservedPythonCorrect).toBe(111);
+      // The Python fallback now also answers rr-iter3-076 correctly.
+      expect(pythonCorrect).toBe(117);
+      expect(hookPreservedPythonCorrect).toBe(112);
       expect(hookGoldNoneFalseFire).toBeLessThanOrEqual(pythonGoldNoneFalseFire);
       expect(
         regressions.map((regression) => regression.id),

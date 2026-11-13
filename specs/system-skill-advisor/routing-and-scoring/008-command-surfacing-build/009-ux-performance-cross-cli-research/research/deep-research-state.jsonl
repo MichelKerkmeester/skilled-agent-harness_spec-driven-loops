@@ -1,0 +1,2 @@
+{"type":"event","event":"synthesis_complete","stem":"deep_research.synthesis_complete","lineageId":"research","runId":"research","answeredCount":14,"stopReason":"maxIterationsReached","totalIterations":13,"totalQuestions":15,"timestamp":"2026-11-12T23:20:23.644Z"}
+{"type":"spec_mutation","event":"spec_synthesis_deferred","reason":"Fan-out path skips phase_init, so spec.md was never seeded and the host anchor is absent; findings stay canonical in research/research.md.","generatedFence":"deep-research/spec-findings","timestamp":"2026-11-12T23:20:43Z"}

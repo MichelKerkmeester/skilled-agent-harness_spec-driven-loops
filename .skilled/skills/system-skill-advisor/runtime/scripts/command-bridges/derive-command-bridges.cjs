@@ -21,7 +21,6 @@ const SKILLS_ROOT = join(REPO_ROOT, '.skilled', 'skills');
 // One folder per command group, one Markdown file per command: the tree the
 // inventory identity check reads.
 const COMMANDS_ROOT = join(REPO_ROOT, '.skilled', 'commands');
-const ALLOW_LIST_PATH = join(COMMAND_BRIDGES_DIR, 'allow-list.json');
 const DOCTOR_COMMANDS_DIR = join(COMMANDS_ROOT, 'doctor');
 const DOCTOR_ROUTES_PATH = join(DOCTOR_COMMANDS_DIR, '_routes.yaml');
 const COMPATIBILITY_PATH = join(COMMAND_BRIDGES_DIR, 'scoring-compatibility.json');
@@ -54,6 +53,9 @@ const DOCTOR_MCP_COMMAND = '/doctor:mcp';
 const MUTATING_CLASSES = ['read-only', 'add-only', 'mutates'];
 const ASK_FIRST_REASONS = ['settings', 'outside-repo', 'spend', 'relaunch'];
 const WRITE_SCOPES = ['spec-folder'];
+// A command with several routes and no target typed answers for its strictest
+// route, because the reader gave the bridge no way to narrow the run.
+const POLICY_STRICTNESS = ['run', 'start', 'ask'];
 // A lead phrase outranks a passing skill, which is only safe when the prompt asks
 // about the state of something. A phrase that names no state or health word could
 // outrank the skill on an ordinary task, so it belongs only on a route that
@@ -76,9 +78,6 @@ const LEAD_PHRASE_STATE_WORDS = [
   'failing',
   'broken',
 ];
-const RENDER_PATH = join(SKILLS_ROOT, 'system-skill-advisor', 'runtime', 'lib', 'render.ts');
-const RENDER_GENERATED_START = '// BEGIN GENERATED DOCTOR COMMANDS';
-const RENDER_GENERATED_END = '// END GENERATED DOCTOR COMMANDS';
 const COMMAND_ATTACH_PATH = join(
   SKILLS_ROOT,
   'system-skill-advisor',
@@ -88,15 +87,15 @@ const COMMAND_ATTACH_PATH = join(
 );
 const COMMAND_ATTACH_GENERATED_START = '// BEGIN GENERATED MODE COMMANDS';
 const COMMAND_ATTACH_GENERATED_END = '// END GENERATED MODE COMMANDS';
+const COMMAND_ROWS_GENERATED_START = '// BEGIN GENERATED COMMAND ROWS';
+const COMMAND_ROWS_GENERATED_END = '// END GENERATED COMMAND ROWS';
 
 // Manifest-derived runnable strings, trigger phrases and precedence phrases per doctor bridge id.
 // The inventory entries keep their five-key shape; the projection merge reads here.
 const DOCTOR_DETAILS = new Map();
 
 // Meaning text per command, taken from the metadata record that already states
-// what the command does in the words a person uses. Keyed by command rather than
-// by id because an allow-list row keeps its own historical id while the metadata
-// it came from still names the command.
+// what the command does in the words a person uses.
 const METADATA_MEANING = new Map();
 
 // ───────────────────────────────────────────────────────────────────
@@ -187,31 +186,6 @@ function metadataEntries(skillsRoot = SKILLS_ROOT) {
     }
   }
   return entries;
-}
-
-function allowListEntries() {
-  const allowList = readJson(ALLOW_LIST_PATH);
-  if (!Array.isArray(allowList)) {
-    throw new Error('[command-bridges] allow-list.json must contain a JSON array');
-  }
-  return allowList.map((entry, index) => {
-    if (!entry || typeof entry !== 'object') {
-      throw new Error(`[command-bridges] allow-list.json[${index}] must be an object`);
-    }
-    const { id, command, skillId, ownerMode, reason } = entry;
-    if ([id, command, skillId, ownerMode, reason].some((value) => typeof value !== 'string' || !value)) {
-      throw new Error(
-        `[command-bridges] allow-list.json[${index}] requires id, command, skillId, ownerMode, and reason`,
-      );
-    }
-    return {
-      id,
-      command,
-      skillId,
-      ownerMode,
-      source: 'scripts/command-bridges/allow-list.json',
-    };
-  });
 }
 
 function doctorSkillAgent(name) {
@@ -1132,18 +1106,82 @@ function replaceMarkedBlock(content, startMarker, endMarker, replacement, filePa
   return `${content.slice(0, bodyStart)}\n${replacement}\n${content.slice(end)}`;
 }
 
-function renderDoctorCommandStrings(entries) {
-  const lines = entries
-    .filter((entry) => entry.id.startsWith(DOCTOR_PREFIX))
-    .sort((left, right) => left.id.localeCompare(right.id))
-    .map((entry) => {
-      const { runnable } = DOCTOR_DETAILS.get(entry.id);
-      return `  ${tsString(entry.id)}: ${tsString(runnable)},`;
-    });
+// The command a reader can type for an entry: a doctor bridge runs under the
+// runnable its manifest names, while a metadata command is typed as declared.
+function entryRunnable(entry) {
+  const doctor = DOCTOR_DETAILS.get(entry.id);
+  return doctor ? doctor.runnable : entry.command;
+}
+
+// A runnable names its target after the command, so the policy is read from the
+// same string the reader types. A command typed alone takes its route-null
+// record when one exists. A command with several routes and no route-null
+// record offers no way to narrow the run, so the strictest route decides.
+function runnablePolicy(runnable, policies) {
+  const space = runnable.indexOf(' ');
+  const command = space === -1 ? runnable : runnable.slice(0, space);
+  const target = space === -1 ? null : runnable.slice(space + 1);
+  const records = policies.filter((record) => record.command === command);
+  if (records.length === 0) {
+    throw new Error(`[command-bridges] No policy record for ${runnable}`);
+  }
+  if (target !== null) {
+    const match = records.find((record) => record.route === target);
+    if (!match) {
+      throw new Error(`[command-bridges] No policy record for ${runnable}`);
+    }
+    return match.policy;
+  }
+  const bare = records.find((record) => record.route === null);
+  if (bare) return bare.policy;
+  return records.reduce((strictest, record) => (
+    POLICY_STRICTNESS.indexOf(record.policy) > POLICY_STRICTNESS.indexOf(strictest)
+      ? record.policy
+      : strictest
+  ), 'run');
+}
+
+// Every id a scorer can return gets a row, because the reader sees whichever id
+// the active runtime produced. The two runtime ids and the inventory id can all
+// differ, so all three are emitted and an id repeated within one entry collapses
+// to a single row.
+function renderCommandRows(entries, policies) {
+  const rows = new Map();
+  const runnablePolicies = new Map();
+  for (const entry of entries) {
+    const { typescript, python } = entry.runtime;
+    if (!typescript.enabled && !python.enabled) continue;
+    const runnable = entryRunnable(entry);
+    const policy = runnablePolicy(runnable, policies);
+    runnablePolicies.set(runnable, policy);
+    const ids = new Set([entry.id]);
+    if (typescript.enabled) ids.add(typescript.id);
+    if (python.enabled) ids.add(python.id);
+    const row = { command: runnable, policy, ownerSkillId: entry.skillId };
+    for (const id of ids) {
+      const previous = rows.get(id);
+      if (previous && previous !== row) {
+        throw new Error(`[command-bridges] Duplicate command row id ${id}`);
+      }
+      rows.set(id, row);
+    }
+  }
+  const rowLines = [...rows.entries()]
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([id, row]) => (
+      `  ${tsString(id)}: { command: ${tsString(row.command)}, policy: ${tsString(row.policy)}, `
+        + `ownerSkillId: ${tsString(row.ownerSkillId)} },`
+    ));
+  const policyLines = [...runnablePolicies.entries()]
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([runnable, policy]) => `  ${tsString(runnable)}: ${tsString(policy)},`);
   return [
-    'const DOCTOR_COMMAND_STRINGS: Readonly<Record<string, string>> = Object.freeze({',
-    ...lines,
-    '});',
+    'export const COMMAND_ROWS: Readonly<Record<string, CommandRow>> = {',
+    ...rowLines,
+    '};',
+    "export const COMMAND_POLICIES: Readonly<Record<string, 'run' | 'start' | 'ask'>> = {",
+    ...policyLines,
+    '};',
   ].join('\n');
 }
 
@@ -1167,11 +1205,20 @@ function renderModeCommands(records) {
   return lines.join('\n');
 }
 
-function generatedSources(entries, pythonOwnerNormalization, modeCommands) {
+function generatedSources(entries, pythonOwnerNormalization, modeCommands, policies) {
   const typescript = readFileSync(TS_PROJECTION_PATH, 'utf8');
   const python = readFileSync(PY_ADVISOR_PATH, 'utf8');
-  const render = readFileSync(RENDER_PATH, 'utf8');
   const commandAttach = readFileSync(COMMAND_ATTACH_PATH, 'utf8');
+  // Two blocks share this file, so the second replacement starts from the first
+  // one's output rather than the file on disk, or one block would overwrite the
+  // other's fresh render.
+  const commandAttachWithRows = replaceMarkedBlock(
+    commandAttach,
+    COMMAND_ROWS_GENERATED_START,
+    COMMAND_ROWS_GENERATED_END,
+    renderCommandRows(entries, policies),
+    COMMAND_ATTACH_PATH,
+  );
   return [
     {
       path: TS_PROJECTION_PATH,
@@ -1196,21 +1243,10 @@ function generatedSources(entries, pythonOwnerNormalization, modeCommands) {
       ),
     },
     {
-      path: RENDER_PATH,
-      current: render,
-      next: replaceMarkedBlock(
-        render,
-        RENDER_GENERATED_START,
-        RENDER_GENERATED_END,
-        renderDoctorCommandStrings(entries),
-        RENDER_PATH,
-      ),
-    },
-    {
       path: COMMAND_ATTACH_PATH,
       current: commandAttach,
       next: replaceMarkedBlock(
-        commandAttach,
+        commandAttachWithRows,
         COMMAND_ATTACH_GENERATED_START,
         COMMAND_ATTACH_GENERATED_END,
         renderModeCommands(modeCommands),
@@ -1237,11 +1273,7 @@ function main() {
   }
   const checkOnly = process.argv.includes('--check');
   const metadata = metadataEntries();
-  const allowList = allowListEntries();
   const doctor = doctorRouteEntries();
-  // The identity check compares command names against the declarations that make
-  // a command real; an allow-list row only repeats an ownership id for a command
-  // the tree and the metadata already name, so it adds nothing there.
   const tree = commandTreeNames();
   const metadataRisk = metadataRiskRecords();
   const doctorRisk = doctorRiskRecords();
@@ -1254,11 +1286,7 @@ function main() {
   if (violations.length > 0) {
     throw new Error(`[command-bridges] command inventory mismatch:\n${violations.join('\n')}`);
   }
-  // A command the allow-list already carries keeps that row's id: both scorers
-  // know it, and a second id for one command would be a second bridge.
-  const allowListCommands = new Set(allowList.map((entry) => entry.command));
-  const bridgedMetadata = metadata.filter((entry) => !allowListCommands.has(entry.command));
-  const inventory = [...bridgedMetadata, ...allowList, ...doctor]
+  const inventory = [...metadata, ...doctor]
     .sort((left, right) => left.id.localeCompare(right.id));
   assertUniqueIds(inventory);
   const compatibility = runtimeCompatibility(inventory, metadata);
@@ -1289,22 +1317,27 @@ function main() {
     };
   });
 
+  const policies = commandPolicies();
   const projection = {
     schemaVersion: 2,
     generatedBy: 'scripts/command-bridges/derive-command-bridges.cjs',
     counts: {
-      commandMetadata: bridgedMetadata.length,
-      allowList: allowList.length,
+      commandMetadata: metadata.length,
       doctorRoutes: doctor.length,
       generated: entries.length,
       typescriptActive: compatibility.typescript.size,
       pythonActive: compatibility.python.size,
     },
     entries,
-    commandPolicies: commandPolicies(),
+    commandPolicies: policies,
   };
   const output = `${JSON.stringify(projection, null, 2)}\n`;
-  const sources = generatedSources(entries, compatibility.pythonOwnerNormalization, modeCommands);
+  const sources = generatedSources(
+    entries,
+    compatibility.pythonOwnerNormalization,
+    modeCommands,
+    policies,
+  );
   const changed = [
     ...(readFileSync(OUTPUT_PATH, 'utf8') === output ? [] : [OUTPUT_PATH]),
     ...sources.filter(({ current, next }) => current !== next).map(({ path }) => path),

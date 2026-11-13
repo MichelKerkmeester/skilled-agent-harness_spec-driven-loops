@@ -39,6 +39,9 @@ export interface CompiledRouteSummary {
 export interface AdvisorRecommendation {
   readonly skill: string;
   readonly kind?: string;
+  readonly command?: string;
+  readonly policy?: string;
+  readonly ownerSkillId?: string;
   readonly confidence: number;
   readonly uncertainty: number;
   readonly passes_threshold?: boolean;

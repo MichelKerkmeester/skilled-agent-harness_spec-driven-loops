@@ -1,0 +1,632 @@
+{
+  "sessionId": "fanout-ux-1794523629654-v541y3",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "answeredCount": 4,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-12T23:14:45.114Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-what-does-the-hook-brief-actually-put-in-front-of-a-model-today-and-can-a-model-",
+      "inboxId": null,
+      "text": "What does the hook brief actually put in front of a model today, and can a model on each of the six CLIs act on it without guessing the command id, its policy, the document to read and whether it was already offered?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-2-which-before-arm-runtime-behaviour-explains-the-start-rates-claude-3-of-12-codex",
+      "inboxId": null,
+      "text": "Which before-arm runtime behaviour explains the start rates (claude 3 of 12, codex 0 of 12, pi 0 of 12, devin 2 of 12 or 12, opencode 4 of 9, dsh 3 of 8), and what stops a model from starting an offered command?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-which-command-discovery-surface-defects-the-g5-skill-md-collision-and-its-siblin",
+      "inboxId": null,
+      "text": "Which command-discovery surface defects (the g5 `skill.md` collision and its siblings) keep a command from being offered or found on each runtime, and what detects them before a user hits one?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null,
+      "resolved": false
+    },
+    {
+      "id": "question-4-what-does-a-person-installing-skilled-into-an-external-repository-see-on-first-r",
+      "inboxId": null,
+      "text": "What does a person installing Skilled into an external repository see on first run, and where does the setup path still fail silently after the embedder work phase 008 plans?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-is-the-measured-cost-of-the-brief-and-of-the-hook-latency-tokens-cold-start",
+      "inboxId": null,
+      "text": "What is the measured cost of the brief and of the hook (latency, tokens, cold start, embedder), and which part of that cost is invisible to the person paying it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "question-1-what-does-the-hook-brief-actually-put-in-front-of-a-model-today-and-can-a-model-",
+      "inboxId": null,
+      "text": "What does the hook brief actually put in front of a model today, and can a model on each of the six CLIs act on it without guessing the command id, its policy, the document to read and whether it was already offered?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-which-command-discovery-surface-defects-the-g5-skill-md-collision-and-its-siblin",
+      "inboxId": null,
+      "text": "Which command-discovery surface defects (the g5 `skill.md` collision and its siblings) keep a command from being offered or found on each runtime, and what detects them before a user hits one?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-2-which-before-arm-runtime-behaviour-explains-the-start-rates-claude-3-of-12-codex",
+      "inboxId": null,
+      "text": "Which before-arm runtime behaviour explains the start rates (claude 3 of 12, codex 0 of 12, pi 0 of 12, devin 2 of 12 or 12, opencode 4 of 9, dsh 3 of 8), and what stops a model from starting an offered command?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-4-what-does-a-person-installing-skilled-into-an-external-repository-see-on-first-r",
+      "inboxId": null,
+      "text": "What does a person installing Skilled into an external repository see on first run, and where does the setup path still fail silently after the embedder work phase 008 plans?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-what-is-the-measured-cost-of-the-brief-and-of-the-hook-latency-tokens-cold-start",
+      "inboxId": null,
+      "text": "What is the measured cost of the brief and of the hook (latency, tokens, cold start, embedder), and which part of that cost is invisible to the person paying it?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [
+    "What does the hook brief actually put in front of a model today, and can a model on each of the six CLIs act on it without guessing the command id, its policy, the document to read and whether it was already offered?",
+    "Which command-discovery surface defects (the g5 `skill.md` collision and its siblings) keep a command from being offered or found on each runtime, and what detects them before a user hits one?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-5-a-doctor-sub-route-s-start-can-never-be-scored-from-its-document-read-commandpar",
+      "text": "**A doctor sub-route's start can never be scored from its document read.** `commandParts('/doctor:git hooks')` keeps `git hooks` as the name, and `documentTails` then looks for `/commands/doctor/git hooks.md`, which cannot exist. Reproduced with a synthetic read of `.skilled/commands/doctor/git.md`: `startState` says `started: false` for `/doctor:git hooks` and `started: true` for `/doctor:git`. 28 of the 35 doctor command strings in the renderer carry an argument. The current behaviour corpus uses base commands, so the before arm is unaffected; any future doctor row or a model that prints the argued string is affected. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:449] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:468] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:140]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:97,140,162,168,557`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:50,85`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:189,415`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:449,468`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/scratch/bullet-draft.txt:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt:2`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md:71`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/steer.md`",
+        "Live hook probe: 7 prompts through `.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js`",
+        "Synthetic scorer probe: `startState` with a `.skilled/commands/doctor/git.md` read"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-brief-is-a-3-line-240-296-character-payload-about-60-74-tokens-at-4-chars-pe",
+      "text": "**The brief is a 3-line, 240-296 character payload (about 60-74 tokens at 4 chars per token), and most of it is prompt-independent.** Probes 1 to 6 measured 258 to 296 characters; the greeting probe measured 240 characters with `Advisor: prompt skipped.` as its head. The static `Directives:` block plus the comment-hygiene line is 233 characters of every payload, so 79 to 90 percent of a short brief is identical on every prompt. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:162] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:168]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:97,140,162,168,557`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:50,85`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:189,415`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:449,468`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/scratch/bullet-draft.txt:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt:2`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md:71`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/steer.md`",
+        "Live hook probe: 7 prompts through `.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js`",
+        "Synthetic scorer probe: `startState` with a `.skilled/commands/doctor/git.md` read"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-brief-names-a-command-but-never-the-document-that-starts-it-and-on-claude-th",
+      "text": "**The brief names a command but never the document that starts it, and on Claude the document is the only route for the 13 `create:*` commands.** Phase 006's bullet tells the model to \"read its document in full\" but gives only the convention `.skilled/commands/<group>/<name>.md`; the head carries no path. Meanwhile `g5/result.txt` records that with `.claude/commands/create/skill.md` present the Skill tool lists one entry, `create`, and `create:readme` is absent, so the skill-load route is closed for that whole folder. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/scratch/bullet-draft.txt:1] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt:2]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:97,140,162,168,557`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:50,85`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:189,415`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:449,468`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/scratch/bullet-draft.txt:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt:2`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md:71`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/steer.md`",
+        "Live hook probe: 7 prompts through `.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js`",
+        "Synthetic scorer probe: `startState` with a `.skilled/commands/doctor/git.md` read"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-harness-cannot-see-an-offer-the-hook-diagnostic-record-is-a-closed-prompt-fr",
+      "text": "**The harness cannot see an offer.** The hook diagnostic record is a closed, prompt-free schema with `skillLabel`, `emittedBytes` and `directivesSuppressed`, and no field for the command or its policy. `skillLabelFor` returns the metadata label or the top recommendation's skill id, so even a command-bearing brief records only its skill. The only offer evidence today is the model's own `COMMAND:` narration, which was 0 of 24 on five runtimes and 1 of 8 on dsh in the before arm. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:50] [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:189] [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:415]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:97,140,162,168,557`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:50,85`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:189,415`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:449,468`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/scratch/bullet-draft.txt:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt:2`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md:71`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/steer.md`",
+        "Live hook probe: 7 prompts through `.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js`",
+        "Synthetic scorer probe: `startState` with a `.skilled/commands/doctor/git.md` read"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-head-uses-at-most-96-of-its-320-available-characters-the-head-is-capped-at-8",
+      "text": "**The head uses at most 96 of its 320 available characters.** The head is capped at 80 tokens (`DEFAULT_TOKEN_CAP = 80`, 4 chars per token, so 320 characters), and the longest measured head was the ambiguous line at 96 characters. The command-bearing head phase 005 plans is about 72 characters. There is roughly 225 characters of unused head budget on every prompt. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:97] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:557] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md:71]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:97,140,162,168,557`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:50,85`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:189,415`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:449,468`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/scratch/bullet-draft.txt:1`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt:2`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md:71`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/steer.md`",
+        "Live hook probe: 7 prompts through `.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js`",
+        "Synthetic scorer probe: `startState` with a `.skilled/commands/doctor/git.md` read"
+      ]
+    },
+    {
+      "id": "finding-2-4-no-start-in-the-before-arm-is-attributable-to-the-advisor-the-before-brief-never",
+      "text": "**No start in the before arm is attributable to the advisor.** The before brief never names a command, and `COMMAND:` narration is 0 of 24 on claude, codex, pi and opencode and 1 of 12 on dsh, so every observed start came from the prompt's own affinity with a command document. A post-arm jump will not separate \"the offer worked\" from \"the same affinity\", unless the arm records what was offered per row. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:557]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:587,640`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune split, projected fields only)",
+        "`AGENTS.md:63`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/scratch/bullet-draft.txt:1`",
+        "`.skilled/hooks/shared/session-readers/index.mjs:133`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:557`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/steer.md`",
+        "Per-row re-score of 50 before-arm sessions through `loadSession`, `normalize` and `startState`"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-aggregate-start-rate-hides-a-policy-split-that-inverts-per-runtime-claude-s-",
+      "text": "**The aggregate start rate hides a policy split that inverts per runtime.** Claude's 3 of 12 is **3 of 4 read-only `run` rows and 0 of 8 mutating `start` rows**; opencode's 5 of 12 is 3 of 8 `start` and 2 of 4 `run`; dsh's 4 of 12 is 3 of 8 `start` and 1 of 4 `run`; codex is 0 of 8 and 0 of 4. The same number therefore describes opposite behaviour: claude adopts only checks it cannot improvise, while opencode and dsh adopt creation workflows. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:640]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:587,640`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune split, projected fields only)",
+        "`AGENTS.md:63`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/scratch/bullet-draft.txt:1`",
+        "`.skilled/hooks/shared/session-readers/index.mjs:133`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:557`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/steer.md`",
+        "Per-row re-score of 50 before-arm sessions through `loadSession`, `normalize` and `startState`"
+      ]
+    },
+    {
+      "id": "finding-2-3-the-run-or-ask-policy-does-not-reach-the-skill-path-gate-2-today-carries-no-comm",
+      "text": "**The run-or-ask policy does not reach the skill path.** Gate 2 today carries no command clause at all, and phase 006's bullet binds the policy words to a command that is in the brief. On an `ask` row with no command in the brief, devin's `/deep:ai-council` run created `specs/sk-prompt/010-sk-prompt-improvements/scratch/council/` and pi's `/deep:research` run wrote a retrieval fixture, both without asking and without the command's setup. The workflow a command owns is reachable through its skill, and that path carries no policy. [SOURCE: AGENTS.md:63] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/scratch/bullet-draft.txt:1]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:587,640`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune split, projected fields only)",
+        "`AGENTS.md:63`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/scratch/bullet-draft.txt:1`",
+        "`.skilled/hooks/shared/session-readers/index.mjs:133`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:557`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/steer.md`",
+        "Per-row re-score of 50 before-arm sessions through `loadSession`, `normalize` and `startState`"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-start-rate-measures-the-path-not-the-outcome-devin-s-two-create-agent-runs-w",
+      "text": "**The start rate measures the path, not the outcome.** Devin's two `/create:agent` runs wrote `.skilled/agents/dependency-audit.md`, `.claude/agents/dependency-audit.md` and `.devin/agents/dependency-audit/` — the exact artifacts the command exists to produce — yet score `started: false` because they never read the document. The same holds for `/create:command` writing `.skilled/skills/prompt-shortcut/`: 5 of devin's 8 mutating rows wrote, while 0 of 8 scored started. A run that does the work its own way and a run that does nothing are indistinguishable in the headline number, and the declared \"write target per command\" from phase 002 is prose in `gate3_location` (\"a new or updated OpenCode skill package at --path\"), not a path prefix any check can match. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:587] [SOURCE: .skilled/skills/sk-doc/command-metadata.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:587,640`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl` (tune split, projected fields only)",
+        "`AGENTS.md:63`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/scratch/bullet-draft.txt:1`",
+        "`.skilled/hooks/shared/session-readers/index.mjs:133`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:557`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/steer.md`",
+        "Per-row re-score of 50 before-arm sessions through `loadSession`, `normalize` and `startState`"
+      ]
+    },
+    {
+      "id": "finding-3-1-claude-s-skill-tool-surface-loses-12-of-the-44-tracked-commands-claude-commands-",
+      "text": "**Claude's Skill-tool surface loses 12 of the 44 tracked commands.** `.claude/commands/create/skill.md` collapses the 13-file `create` folder into one entry named `create`, so the visible set is 44 - 13 + 1 = **32 of 44**. The same file is mirrored into `.opencode/commands/create/skill.md`, because OpenCode mirrors each top-level directory, and whether OpenCode applies the same folder rule has never been tested; the g5 probe ran Claude Code only. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt:2] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:48]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:48,53,202,207`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt`",
+        "`.skilled/commands/doctor/_routes.yaml:227`",
+        "Directory counts for `.claude/commands`, `.cursor/commands`, `.opencode/commands`, `.codex/prompts`, `.pi/prompts`, `.devin/skills`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/steer.md`"
+      ]
+    },
+    {
+      "id": "finding-3-3-no-committed-check-measures-per-runtime-command-visibility-sync-runtime-mirrors-",
+      "text": "**No committed check measures per-runtime command visibility.** `sync-runtime-mirrors.cjs --check` verifies that the Claude and OpenCode roots are real filtered directories and that links resolve; it never asks whether a folder collapses, how many commands a runtime exposes, or whether a runtime has a surface at all. The `REAL_COMMAND_ROOTS` list covers two of the six runtimes. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:53]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:48,53,202,207`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt`",
+        "`.skilled/commands/doctor/_routes.yaml:227`",
+        "Directory counts for `.claude/commands`, `.cursor/commands`, `.opencode/commands`, `.codex/prompts`, `.pi/prompts`, `.devin/skills`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/steer.md`"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-same-command-has-three-different-native-spellings-and-the-brief-carries-only",
+      "text": "**The same command has three different native spellings, and the brief carries only one.** Claude and OpenCode use a folder tree (`create/readme.md`), so the command reads `/create:readme`; Cursor, Codex and Pi get flat dash-joined files (`create-readme.md`), so the native prompt is `create-readme`; Devin has no command surface at all (14 skills, no prompts). A person who learns `/create:readme` from the brief cannot type it on three runtimes, and a model told to \"read its document\" has to ignore the native name and use the canonical path. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:202] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:207]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:48,53,202,207`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt`",
+        "`.skilled/commands/doctor/_routes.yaml:227`",
+        "Directory counts for `.claude/commands`, `.cursor/commands`, `.opencode/commands`, `.codex/prompts`, `.pi/prompts`, `.devin/skills`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/steer.md`"
+      ]
+    },
+    {
+      "id": "finding-4-2-a-hung-embedder-provider-on-first-start-can-outlast-the-whole-hook-budget-the-fi",
+      "text": "**A hung embedder provider on first start can outlast the whole hook budget.** The first daemon start calls `ensureActiveEmbedder()`, which runs the shared cascade; each provider probe may take `DEFAULT_TIMEOUT_MS = 2_500` ms. The Claude shim gives the child 2,200 ms by default inside a 2,500 ms hook. One slow probe therefore exceeds the hook's entire child budget, and the first prompt of a new install is the one that loses its brief. [SOURCE: .skilled/skills/system-spec-kit/shared/embeddings/auto-select.ts:117] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:38] [SOURCE: .skilled/skills/system-skill-advisor/INSTALL-GUIDE.md:315]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`INSTALL-SKILLED.md:55,63,65,118,143`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:57`",
+        "`.skilled/skills/system-spec-kit/shared/embeddings/auto-select.ts:117`",
+        "`.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:38`",
+        "`.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md:315`",
+        "`.skilled/commands/doctor/scripts/symlink-engine.cjs:821`",
+        "`.claude/settings.json` and `.codex/hooks.json` hook entries",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/steer.md`"
+      ]
+    },
+    {
+      "id": "finding-4-3-a-project-with-its-own-hook-config-never-gets-the-advisor-hook-and-nothing-check",
+      "text": "**A project with its own hook config never gets the advisor hook, and nothing checks.** The link engine's merge keeps every local path, and the guide says a folder the project already has keeps its own files. A repo with an existing `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json` or `.devin/hooks.v1.json` therefore keeps it and never receives the `UserPromptSubmit` entry the checkout carries. `/doctor:symlink check` validates link shape, and no `/doctor:setup` leg reads the target's hook config, so the result is a silent no-brief install reported healthy. [SOURCE: .skilled/commands/doctor/scripts/symlink-engine.cjs:821] [SOURCE: INSTALL-SKILLED.md:143]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`INSTALL-SKILLED.md:55,63,65,118,143`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:57`",
+        "`.skilled/skills/system-spec-kit/shared/embeddings/auto-select.ts:117`",
+        "`.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:38`",
+        "`.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md:315`",
+        "`.skilled/commands/doctor/scripts/symlink-engine.cjs:821`",
+        "`.claude/settings.json` and `.codex/hooks.json` hook entries",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/steer.md`"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-first-run-confirmation-skips-the-advisor-exactly-when-it-is-cold-doctor-setu",
+      "text": "**The first-run confirmation skips the advisor exactly when it is cold.** `/doctor:setup`'s advisor leg is `advisor_status --warm-only`; exit 75 with no dist warning is **SKIP because the daemon is not running**, and phase 008's embedder leg copies that shape. The install guide calls step 5 \"Confirms the whole setup works\", but on a fresh install the daemon has never started, so the two legs that matter for command surfacing are skipped rather than passed. The user gets a green line for a check that did not run. [SOURCE: .skilled/commands/doctor/assets/doctor-setup.yaml:57] [SOURCE: INSTALL-SKILLED.md:118]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`INSTALL-SKILLED.md:55,63,65,118,143`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:57`",
+        "`.skilled/skills/system-spec-kit/shared/embeddings/auto-select.ts:117`",
+        "`.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:38`",
+        "`.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md:315`",
+        "`.skilled/commands/doctor/scripts/symlink-engine.cjs:821`",
+        "`.claude/settings.json` and `.codex/hooks.json` hook entries",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/steer.md`"
+      ]
+    },
+    {
+      "id": "finding-4-4-the-spelling-gap-is-narrower-than-iteration-3-recorded-install-skilled-md-alread",
+      "text": "**The spelling gap is narrower than iteration 3 recorded.** `INSTALL-SKILLED.md` already tells the reader that Codex, Cursor and Pi spell commands with a hyphen and that Devin reaches the spec-kit workflows through its `/system-spec-kit` skill. The person-facing problem is therefore not missing documentation but that the model-visible brief carries only the canonical spelling and has no per-runtime form to offer; the install guide's sentence is read once, not at prompt time. [SOURCE: INSTALL-SKILLED.md:65]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`INSTALL-SKILLED.md:55,63,65,118,143`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:57`",
+        "`.skilled/skills/system-spec-kit/shared/embeddings/auto-select.ts:117`",
+        "`.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:38`",
+        "`.skilled/skills/system-skill-advisor/INSTALL-GUIDE.md:315`",
+        "`.skilled/commands/doctor/scripts/symlink-engine.cjs:821`",
+        "`.claude/settings.json` and `.codex/hooks.json` hook entries",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/steer.md`"
+      ]
+    },
+    {
+      "id": "finding-5-4-no-session-total-cost-is-recorded-the-pieces-are-measured-separately-hook-per-ca",
+      "text": "**No session-total cost is recorded.** The pieces are measured separately — hook per call, embedder per call, CLI per call — and no committed script reports a session-shaped total of N prompts plus one daemon start plus one embedder load. At the measured mean, twenty prompts cost about 5,460 bytes (about 1,365 tokens) of injected context and 3.9 seconds of hook time, but that number is an inference from two means, not a recorded measurement. [INFERENCE: 20 × 273 bytes and 20 × 196.2 ms from the 40-sample run]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Live 40-sample hook probe through `.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:97,162`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:472`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts:624`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:162`",
+        "`.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:38`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-{1,2,3}.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/steer.md`"
+      ]
+    },
+    {
+      "id": "finding-5-1-steady-state-cost-is-small-enough-that-latency-is-not-the-constraint-over-40-sam",
+      "text": "**Steady-state cost is small enough that latency is not the constraint.** Over 40 samples the hook measured a **196.2 ms median, 352.4 ms p95, 94.8 ms minimum and 371.2 ms maximum**, with a **273-byte mean payload** (242 to 298 bytes, about 61 to 75 tokens). The Claude shim gives the child 2,200 ms inside a 2,500 ms hook, so the p95 uses 16 percent of the budget and the worst sample uses 17 percent. The advisor CLI alone measured 62.7 to 71.3 ms and a warm prompt embedding 6.57 ms median. The expensive prompt is the cold first one, not the steady state. [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:38] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Live 40-sample hook probe through `.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:97,162`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:472`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts:624`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:162`",
+        "`.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:38`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-{1,2,3}.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/steer.md`"
+      ]
+    },
+    {
+      "id": "finding-5-3-the-cost-is-measured-but-never-shown-each-invocation-records-durationms-cachehit",
+      "text": "**The cost is measured but never shown.** Each invocation records `durationMs`, `cacheHit` and `emittedBytes`, and `buildAdvisorHookHealth` rolls them into `advisor-hook-health` with a rolling p95, cache-hit rate and fail-open rate. `advisor_status` returns freshness, generation, staleness, lane weights, skill count and trust state — no hook health, no bytes. The only tool that returns the health section is `advisor_validate`, which just `/doctor:skill-advisor tune` calls, and no `/doctor:setup` leg prints it. A person cannot see that a prompt costs 196 ms and 273 bytes. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:472] [SOURCE: .skilled/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts:624]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Live 40-sample hook probe through `.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:97,162`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:472`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts:624`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:162`",
+        "`.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:38`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-{1,2,3}.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/steer.md`"
+      ]
+    },
+    {
+      "id": "finding-5-2-the-payload-is-dominated-by-a-block-that-has-nothing-to-do-with-the-prompt-the-c",
+      "text": "**The payload is dominated by a block that has nothing to do with the prompt.** The comment-hygiene directive is 233 bytes; the measured payload is 242 to 298 bytes, so the directive is 78 to 96 percent of a short brief and the command-bearing head is the remaining 25 percent or less. The head cap is 320 bytes (80 tokens) and the longest measured head is 96 bytes, so three quarters of the allowed head is unused on every prompt. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:97] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:162]",
+      "addedAtIteration": 5,
+      "sources": [
+        "Live 40-sample hook probe through `.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:97,162`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:472`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-validate.ts:624`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:162`",
+        "`.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:38`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-{1,2,3}.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/steer.md`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-070e8ece92d9",
+      "text": "**Renaming `.skilled/commands/create/skill.md`.** It would restore the 12 hidden siblings, but operator answer Q025 explicitly leaves the create ids as a recorded limitation, so the rename is out of scope for this lineage. The document-path and discovery-check recommendations reach the same commands without the rename.",
+      "contentHash": "070e8ece92d9",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-3fcb2a2c587e",
+      "text": "**Trimming the directive block to reduce tokens.** It carries the repo's comment-hygiene hard block, which is deliberately injected beside every brief; a research pass may not remove it. Recorded as a cost, not a recommendation.",
+      "contentHash": "3fcb2a2c587e",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-0d60f4ecaa6a",
+      "text": "Measuring a cold-daemon first prompt: would require stopping the running daemon, which the lineage rules forbid. Recorded as a gap for iteration 5.",
+      "contentHash": "0d60f4ecaa6a",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-59635496cdd8",
+      "text": "Searching for a per-offer ledger outside the diagnostic record: none exists. `advisor_status` aggregates the existing diagnostics only, and `AdvisorHookOutcomeRecord` is an accepted/corrected/ignored skill signal with no command field. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:85]",
+      "contentHash": "59635496cdd8",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-30e718fc36e0",
+      "text": "**Re-running the before arm to stabilise the numbers.** The arm is still growing (devin 16, opencode 14, dsh 12 at 23:01) and phase 007 owns the 24-per-runtime freeze; a research pass must not start CLI runs.",
+      "contentHash": "30e718fc36e0",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-2a5b291ef734",
+      "text": "**Treating the low claude start rate as a briefing failure.** The per-row split shows claude starts every read-only doctor row it meets (3 of 4) and no mutating one; a wording change would have to explain why the same brief works for one class and not the other, so the cause is the model's judgment about its own capability, not the text alone.",
+      "contentHash": "2a5b291ef734",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-7d85c277744d",
+      "text": "Looking for a per-policy figure in the existing summary: `--summary` prints one aggregate per arm and no policy breakdown, so the split had to be recomputed per session in this iteration. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:640]",
+      "contentHash": "7d85c277744d",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-9e756cb7060b",
+      "text": "Looking for a rule that binds a command's policy to its skill path: Gate 2 has no command clause today, and the phase 006 bullet draft binds only \"a brief or advisor result that names a command\". [SOURCE: AGENTS.md:63]",
+      "contentHash": "9e756cb7060b",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-8d4210b81f06",
+      "text": "**Renaming the `create` ids to flat names across all runtimes.** It would unify the spelling and remove the collision, but operator answer Q025 leaves the create ids as a recorded limitation. The visibility count and the spelling column reach the same operational goal without the rename.",
+      "contentHash": "8d4210b81f06",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-92552565a899",
+      "text": "**Treating the OpenCode mirror as safe because its command syntax differs.** The mirror is built from the same canonical tree and includes the same `skill.md`; the difference in syntax is a hypothesis, not a measurement, and the g5 probe has not run there.",
+      "contentHash": "92552565a899",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-3a4ab3751d72",
+      "text": "Looking for a command-visibility metric in the existing doctor routes: `/doctor:runtime-mirrors` reports link and directory drift, and no route reports how many commands a runtime exposes. [SOURCE: .skilled/commands/doctor/_routes.yaml:227]",
+      "contentHash": "3a4ab3751d72",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-fe8f8693f0b8",
+      "text": "Looking for a native command root for Devin: `.devin` holds agents, hooks, skills and repo rules; there is no command or prompt directory.",
+      "contentHash": "fe8f8693f0b8",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-1bbd7a9c874d",
+      "text": "**Adding a recommendation leg to `/doctor:setup`.** The route's own invariant forbids starting the advisor daemon, and a leg that starts it would make the read-only diagnostic write runtime state. The \"Prove it\" step belongs in the install guide, where starting the daemon is the point.",
+      "contentHash": "1bbd7a9c874d",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-f0efac8c1542",
+      "text": "**Showing a degraded-lane line in the hook brief.** Operator answer Q037 keeps the hook brief unchanged for a switched-off meaning lane; the setup check, the status tool and the JSON warning are the chosen surfaces, and phase 008 already adds them.",
+      "contentHash": "f0efac8c1542",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-8b3a3d3b55e4",
+      "text": "Looking for a first-prompt cold-start number in the packet: the measured files record warm embeddings, warm CLI calls and warm hook latency, and no recorded cold daemon start. The gap is stated rather than guessed.",
+      "contentHash": "8b3a3d3b55e4",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-37a55b767ee4",
+      "text": "Looking for a setup leg that reads the target's hook config: the five legs (six after 008) cover sk-code, sk-git, trigger index, runtime mirrors, the advisor and the embedder, and all run in the checkout or against the checkout's store.",
+      "contentHash": "37a55b767ee4",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-cf81669de9a0",
+      "text": "**Lowering the 250 ms CLI fallback default.** `resolveSkillAdvisorCliFallbackTimeoutMs` already returns the caller's 2,200 ms budget when one is passed, so the 250 ms default never applies to the Claude hook; lowering it would fix nothing. [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:162]",
+      "contentHash": "cf81669de9a0",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-241241199985",
+      "text": "**Reducing the hook's process count to save latency.** The shim, handler and CLI are three Node starts inside a 196 ms median, but the p95 uses 16 percent of the budget; a refactor would buy milliseconds the person cannot feel while touching the process boundary that owns the timeout. Recorded as an available gain, not a recommendation.",
+      "contentHash": "241241199985",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-b41e62a38071",
+      "text": "**Trimming the directive block to cut tokens.** Same reason as iteration 1: it carries a repo hard block and is deliberately injected.",
+      "contentHash": "b41e62a38071",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-9f6919770e39",
+      "text": "Looking for a cold-start measurement: the running daemon cannot be stopped under the lineage rules, so the cold number stays a gap and iteration 4's bound stands.",
+      "contentHash": "9f6919770e39",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-21579429f672",
+      "text": "Looking for a committed session-cost script: none exists; the hook probe in the phase 004 scratch prints latency only, and its row file is not part of the checkout.",
+      "contentHash": "21579429f672",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 2,
+    "resolvedQuestions": 3,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 20,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.88,
+    "coverageBySources": {
+      "code": 47,
+      "other": 17
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

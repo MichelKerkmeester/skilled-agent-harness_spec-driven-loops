@@ -1,0 +1,799 @@
+{
+  "sessionId": "fanout-performance-1794523629654-v541y3",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "max_iterations",
+    "totalIterations": 5,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-12T23:09:02.109Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-where-does-the-205-ms-claude-hook-wall-time-go-and-which-part-can-be-removed-wit",
+      "inboxId": null,
+      "text": "Where does the ~205 ms Claude hook wall time go, and which part can be removed without changing the recommendation?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-2-what-does-command-surfacing-cost-in-tokens-per-prompt-per-session-and-per-starte",
+      "inboxId": null,
+      "text": "What does command surfacing cost in tokens per prompt, per session and per started command, and where is the largest avoidable cost?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-3-which-cold-start-paths-daemon-embedder-first-prompt-of-a-session-can-exceed-the-",
+      "inboxId": null,
+      "text": "Which cold-start paths (daemon, embedder, first prompt of a session) can exceed the runtime's hook budget, and what removes the stall?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-caching-or-precompute-change-pays-for-itself-across-the-six-clis-and-which",
+      "inboxId": null,
+      "text": "Which caching or precompute change pays for itself across the six CLIs, and which does not?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-which-per-runtime-architecture-spends-the-least-per-prompt-and-what-should-the-o",
+      "inboxId": null,
+      "text": "Which per-runtime architecture spends the least per prompt, and what should the other runtimes copy?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-where-does-the-205-ms-claude-hook-wall-time-go-and-which-part-can-be-removed-wit",
+      "inboxId": null,
+      "text": "Where does the ~205 ms Claude hook wall time go, and which part can be removed without changing the recommendation?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-2-what-does-command-surfacing-cost-in-tokens-per-prompt-per-session-and-per-starte",
+      "inboxId": null,
+      "text": "What does command surfacing cost in tokens per prompt, per session and per started command, and where is the largest avoidable cost?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-3-which-cold-start-paths-daemon-embedder-first-prompt-of-a-session-can-exceed-the-",
+      "inboxId": null,
+      "text": "Which cold-start paths (daemon, embedder, first prompt of a session) can exceed the runtime's hook budget, and what removes the stall?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    },
+    {
+      "id": "question-4-which-caching-or-precompute-change-pays-for-itself-across-the-six-clis-and-which",
+      "inboxId": null,
+      "text": "Which caching or precompute change pays for itself across the six CLIs, and which does not?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-which-per-runtime-architecture-spends-the-least-per-prompt-and-what-should-the-o",
+      "inboxId": null,
+      "text": "Which per-runtime architecture spends the least per prompt, and what should the other runtimes copy?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-2-one-of-those-three-processes-is-removable-without-touching-scoring-the-hook-coul",
+      "text": "One of those three processes is removable without touching scoring: the hook could speak the existing JSON-RPC to the daemon in-process through the launcher bridge it already locates, instead of spawning the CLI. The CLI remains the cold-start launcher and the local-scorer fallback. The expected saving is the measured process start plus the CLI's argument and schema work, so the 205.09 ms median should land near 165 to 170 ms. The exact files are `.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts` (add a direct bridge path beside `runCliRecommend`) and `.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts` (keep the CLI entry for cold start and fallback). [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:253] [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1326] [INFERENCE: 36.85 ms measured start plus the gap between the 205.09 ms hook median and the 62.7 to 71.3 ms measured CLI call]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance/steer.md",
+        ".claude/settings.json:143-160",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js:17-167",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:253-291",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:34,1326-1360",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16-19",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-3.json",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12-45",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/evidence/goal-reverify/reports/pi-433.md",
+        "Command output: `node -e 0` x15, median 36.85 ms, min 22.90, max 47.31"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-cheapest-fix-for-finding-3-is-not-a-bigger-timeout-it-is-moving-the-cold-dae",
+      "text": "The cheapest fix for finding 3 is not a bigger timeout: it is moving the cold daemon start off the prompt path. A Claude `SessionStart` group already exists with eight adapters, and none of them warms the advisor. Adding one detached `advisor_status --warm-only` call there should cost the session about 65 ms once, and remove the first-prompt cold penalty entirely. The exact files are `.claude/settings.json` (one detached SessionStart command) and, for the other runtimes, the equivalent session-start surface in `.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md` section 2. The measurable gain is the first-prompt p95 moving from the 2500 ms timeout ceiling to the warm ~205 ms, with zero first-prompt `fail_open` outage briefs. [SOURCE: .claude/settings.json:143] [SOURCE: .claude/settings.json:149] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:18]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance/steer.md",
+        ".claude/settings.json:143-160",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js:17-167",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:253-291",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:34,1326-1360",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16-19",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-3.json",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12-45",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/evidence/goal-reverify/reports/pi-433.md",
+        "Command output: `node -e 0` x15, median 36.85 ms, min 22.90, max 47.31"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-claude-prompt-path-starts-three-node-processes-per-prompt-before-any-scoring",
+      "text": "The Claude prompt path starts three Node processes per prompt before any scoring: the `bash -c` wrapper starts the spec-kit shim, the shim `spawnSync`s the advisor hook, and the advisor hook spawns `.skilled/bin/skill-advisor.cjs`. One bare `node -e 0` start measured 36.85 ms median (min 22.90, max 47.31, n=15) on the same machine that recorded a 205.09 ms hook median. Three starts therefore account for roughly 100 to 110 ms of that median, before any hook or scorer work. [SOURCE: .claude/settings.json:149] [SOURCE: .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js:143] [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:253] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-3.json:1] [INFERENCE: 3 x 36.85 ms measured node start against the measured 205.09 ms hook median]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance/steer.md",
+        ".claude/settings.json:143-160",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js:17-167",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:253-291",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:34,1326-1360",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16-19",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-3.json",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12-45",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/evidence/goal-reverify/reports/pi-433.md",
+        "Command output: `node -e 0` x15, median 36.85 ms, min 22.90, max 47.31"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-cold-start-caps-on-the-two-sides-of-the-shim-disagree-and-the-tighter-one-wi",
+      "text": "The cold-start caps on the two sides of the shim disagree, and the tighter one wins. The shim passes the advisor child a 2200 ms budget (`CHILD_TIMEOUT_MS` 2500 minus a 300 ms start margin) and kills it at 2500 ms, while the CLI may wait up to 5000 ms for a cold daemon before its local fallback answers. A daemon cold start between 2.2 s and 5 s therefore produces a fail-open prompt even though the CLI was still working correctly. A recorded sandbox run already shows the failure shape at 2508 ms. [SOURCE: .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js:137] [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:34] [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/evidence/goal-reverify/reports/pi-433.md:1]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance/steer.md",
+        ".claude/settings.json:143-160",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js:17-167",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:253-291",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:34,1326-1360",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16-19",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-3.json",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12-45",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/evidence/goal-reverify/reports/pi-433.md",
+        "Command output: `node -e 0` x15, median 36.85 ms, min 22.90, max 47.31"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-phase-004-meaning-lane-moved-the-hook-median-by-5-9-ms-but-its-p95-by-30-6-m",
+      "text": "The phase 004 meaning lane moved the hook median by 5.9 ms but its p95 by 30.6 ms (middle run 199.16 to 205.09 ms median, 231.35 to 261.92 ms p95), and the warm query embedding it adds is only 6.57 ms median and 10.99 ms p95. The tail therefore belongs to something other than the steady embed, most plausibly SQLite open plus adapter variance, and no existing packet measures a cold-model prompt with the probe. That is a measurement gap, not a proven cause: the phase 008 script records the embedder's cold first call but never times a prompt against an unloaded model. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:39] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:45] [INFERENCE: warm embed p95 10.99 ms cannot by itself explain a +30.6 ms p95 move]",
+      "addedAtIteration": 1,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance/steer.md",
+        ".claude/settings.json:143-160",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js:17-167",
+        ".skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:253-291",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:34,1326-1360",
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16-19",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-3.json",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12-45",
+        "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/evidence/goal-reverify/reports/pi-433.md",
+        "Command output: `node -e 0` x15, median 36.85 ms, min 22.90, max 47.31"
+      ]
+    },
+    {
+      "id": "finding-2-3-holding-the-model-loaded-is-not-free-274-302-450-bytes-on-disk-335-733-063-bytes",
+      "text": "Holding the model loaded is not free: 274,302,450 bytes on disk, 335,733,063 bytes loaded (the VRAM figure equals the model size), plus a 46,256 KB `ollama serve` resident set and a 352,144 KB model runner. A keep-alive recommendation has to price that memory, not just the saved milliseconds. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:3] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:5] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:9]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts:125-149,343",
+        ".skilled/skills/system-spec-kit/shared/embeddings/registry.ts:83",
+        ".skilled/skills/system-skill-advisor/runtime/lib/embedders/registry.ts:17",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:3-45",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/spec.md:130,174",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/tasks.md:49"
+      ]
+    },
+    {
+      "id": "finding-2-4-phase-008-s-deadline-should-be-passed-into-the-adapter-not-raced-around-it-the-a",
+      "text": "Phase 008's deadline should be passed into the adapter, not raced around it. The adapter already builds an `AbortController` per request and takes an instance `timeoutMs`, but the advisor's registry shim re-exports a `getAdapter(name)` factory with no options, so today the wrapper can only abandon a 5000 ms request. Adding an options argument to the shared `getAdapter` and constructing the prompt-time adapter with `timeoutMs: 750` makes the abort real and frees the socket for the next prompt. This refines 008's planned wrapper deadline rather than repeating it. [SOURCE: .skilled/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts:129] [SOURCE: .skilled/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts:137] [SOURCE: .skilled/skills/system-spec-kit/shared/embeddings/registry.ts:83] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/embedders/registry.ts:17]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts:125-149,343",
+        ".skilled/skills/system-spec-kit/shared/embeddings/registry.ts:83",
+        ".skilled/skills/system-skill-advisor/runtime/lib/embedders/registry.ts:17",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:3-45",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/spec.md:130,174",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/tasks.md:49"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-30-6-ms-p95-tail-is-not-the-cold-model-a-cold-call-costs-271-to-277-ms-so-ev",
+      "text": "The 30.6 ms p95 tail is not the cold model. A cold call costs 271 to 277 ms, so even three cold calls inside a 44-prompt set would push p95 to roughly 470 ms, not the observed 262 ms. The tail is steady-state variance around a 6.57 ms median embed, bounded at tens of milliseconds, and the 100 to 110 ms process-start share from iteration 1 is five times larger. The tail is therefore not the optimization target. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:45] [INFERENCE: a 271 ms call cannot produce a 262 ms p95 in a 44-sample set unless it appears fewer than three times, and three would exceed the observed value]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts:125-149,343",
+        ".skilled/skills/system-spec-kit/shared/embeddings/registry.ts:83",
+        ".skilled/skills/system-skill-advisor/runtime/lib/embedders/registry.ts:17",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:3-45",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/spec.md:130,174",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/tasks.md:49"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-cold-embed-is-a-latency-tax-not-a-fail-open-phase-008-plans-a-750-ms-prompt-",
+      "text": "The cold embed is a latency tax, not a fail-open. Phase 008 plans a 750 ms prompt deadline, and a 271 to 277 ms cold call fits it with about 475 ms of headroom, so the prompt still gets its cosine. What the person pays is one slower prompt after every idle gap, not a lost recommendation. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/spec.md:130] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/spec.md:174]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts:125-149,343",
+        ".skilled/skills/system-spec-kit/shared/embeddings/registry.ts:83",
+        ".skilled/skills/system-skill-advisor/runtime/lib/embedders/registry.ts:17",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:3-45",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/spec.md:130,174",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/tasks.md:49"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-ollama-adapter-never-sends-keep-alive-so-the-server-s-default-5-minute-unloa",
+      "text": "The Ollama adapter never sends `keep_alive`, so the server's default 5-minute unload applies. The measured file confirms it: at 21:25:08 the loaded model's `expires_at` was 21:29:57, four minutes and 49 seconds later. After that gap the next prompt pays a cold embed of 271 to 277 ms against a 6.57 ms warm median, roughly a 40x tax on that call. [SOURCE: .skilled/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts:343] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:36]",
+      "addedAtIteration": 2,
+      "sources": [
+        ".skilled/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts:125-149,343",
+        ".skilled/skills/system-spec-kit/shared/embeddings/registry.ts:83",
+        ".skilled/skills/system-skill-advisor/runtime/lib/embedders/registry.ts:17",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:3-45",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/spec.md:130,174",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/tasks.md:49"
+      ]
+    },
+    {
+      "id": "finding-3-3-one-started-command-costs-far-more-than-the-brief-the-44-tracked-command-documen",
+      "text": "One started command costs far more than the brief: the 44 tracked command documents have a median of 4,524 bytes (about 1,131 tokens), a p95 of 12,573 bytes (about 3,143 tokens) and a maximum of 13,682 bytes (about 3,421 tokens). The five heaviest are `/deep:research` 13,682 B, `/speckit:handoff` 13,476 B, `/doctor:overlay` 12,573 B, `/speckit:save` 12,453 B and `/deep:review` 11,113 B. Three starts in a session cost about 3,393 tokens, 4.6 times that session's whole brief cost. [SOURCE: .skilled/commands/deep/research.md:1] [SOURCE: .skilled/commands/speckit/handoff.md:1] [SOURCE: .skilled/commands/doctor/overlay.md:1] [SOURCE: .skilled/commands/speckit/save.md:1]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:100,162,557",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:373-427",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md:67-79",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/spec.md:94",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md:65-69",
+        "Command output: rendered brief 257 chars, 41-char head, 216-char directive block",
+        "Command output: 44 command docs, median 4,524 B, p95 12,573 B, max 13,682 B, total 254,463 B"
+      ]
+    },
+    {
+      "id": "finding-3-2-phase-005-s-command-head-grows-the-line-from-about-41-to-about-68-characters-so-",
+      "text": "Phase 005's command head grows the line from about 41 to about 68 characters, so a full brief goes from 257 to 284 characters and from 64 to 71 tokens. A 40-prompt session with one full brief and 39 reduced heads costs about 466 tokens today and about 734 with the command, a 268-token delta or 0.37% of a 200,000-token context. The token cost of the surfaced command itself is not a performance problem. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md:71] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:557]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:100,162,557",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:373-427",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md:67-79",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/spec.md:94",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md:65-69",
+        "Command output: rendered brief 257 chars, 41-char head, 216-char directive block",
+        "Command output: 44 command docs, median 4,524 B, p95 12,573 B, max 13,682 B, total 254,463 B"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-honest-token-conclusion-is-a-negative-result-the-brief-is-64-to-71-tokens-th",
+      "text": "The honest token conclusion is a negative result: the brief is 64 to 71 tokens, the dedup already removes 84% of it, and a started command's document read is the real cost at about 1,131 tokens median. The only token guard worth building is visibility of that read cost, so a future command document cannot silently ship at three times the p95. [INFERENCE: findings 1 to 4 compared against finding 3]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:100,162,557",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:373-427",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md:67-79",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/spec.md:94",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md:65-69",
+        "Command output: rendered brief 257 chars, 41-char head, 216-char directive block",
+        "Command output: 44 command docs, median 4,524 B, p95 12,573 B, max 13,682 B, total 254,463 B"
+      ]
+    },
+    {
+      "id": "finding-3-4-the-largest-token-win-in-the-brief-is-already-built-the-directive-lifecycle-dedu",
+      "text": "The largest token win in the brief is already built: the directive-lifecycle dedup delivers the full brief on the first message and after a lifecycle boundary or transcript shrink, then keeps the head and drops the constant block on proven repeats. That is the 84% saving, not a future optimization. A recommendation that trims the head would win at most 54 tokens per session. [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:373] [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:397]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:100,162,557",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:373-427",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md:67-79",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/spec.md:94",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md:65-69",
+        "Command output: rendered brief 257 chars, 41-char head, 216-char directive block",
+        "Command output: 44 command docs, median 4,524 B, p95 12,573 B, max 13,682 B, total 254,463 B"
+      ]
+    },
+    {
+      "id": "finding-3-5-the-policy-mix-is-20-start-17-ask-and-7-run-an-ask-costs-one-extra-model-turn-pe",
+      "text": "The policy mix is 20 `start`, 17 `ask` and 7 `run`. An `ask` costs one extra model turn per offered command: the model asks, the user answers, then the document read happens. That turn is the only material per-start cost, and it is a wall-time and attention cost rather than a token one. Phase 007 counts `COMMAND:` states but not the turn count, so the cost is currently invisible. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/spec.md:94] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md:68]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:100,162,557",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:373-427",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md:67-79",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/spec.md:94",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md:65-69",
+        "Command output: rendered brief 257 chars, 41-char head, 216-char directive block",
+        "Command output: 44 command docs, median 4,524 B, p95 12,573 B, max 13,682 B, total 254,463 B"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-shipped-renderer-produces-a-257-character-brief-at-the-normal-cap-a-41-chara",
+      "text": "The shipped renderer produces a 257-character brief at the normal cap: a 41-character head plus a 216-character directive block. At the repository's own 4-characters-per-token estimate that is 64 tokens, and 54 of them are the constant comment-hygiene block. The constant block is 84% of the brief. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:100] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:162] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:557]",
+      "addedAtIteration": 3,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/render.ts:100,162,557",
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:373-427",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md:67-79",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/spec.md:94",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md:65-69",
+        "Command output: rendered brief 257 chars, 41-char head, 216-char directive block",
+        "Command output: 44 command docs, median 4,524 B, p95 12,573 B, max 13,682 B, total 254,463 B"
+      ]
+    },
+    {
+      "id": "finding-4-3-a-semantic-or-near-duplicate-cache-does-not-pay-deciding-a-hit-costs-one-query-e",
+      "text": "A semantic or near-duplicate cache does not pay: deciding a hit costs one query embedding (6.57 ms median, 10.99 ms p95) and then saves the scorer work, not the embedding it just paid, while a wrong near-duplicate hit changes the recommendation. The exact cache already covers retries, and the daemon recycles on a build-staleness check rather than per prompt, so persistence across restarts buys little. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16-160",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:557-587",
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:319,487",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/shared.js:54-76",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js:12",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:54-56",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:269-329",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:122",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12,23"
+      ]
+    },
+    {
+      "id": "finding-4-4-all-four-host-hook-runtimes-run-three-node-processes-per-prompt-the-host-registr",
+      "text": "All four host-hook runtimes run three Node processes per prompt: the host registration starts an adapter or shim, that adapter `spawnSync`s the Claude advisor hook, and the advisor hook spawns the CLI. Codex's adapter passes a 2800 ms timeout and Devin and Cursor pass 10 s host budgets, while Claude's shim passes 2200 ms and Codex's host kills at 3 s. [SOURCE: .skilled/skills/system-spec-kit/runtime/dist/hooks/codex/shared.js:54] [SOURCE: .skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js:12] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:54]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16-160",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:557-587",
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:319,487",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/shared.js:54-76",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js:12",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:54-56",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:269-329",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:122",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12,23"
+      ]
+    },
+    {
+      "id": "finding-4-8-nothing-further-is-worth-precomputing-the-45-command-vectors-and-14-skill-vector",
+      "text": "Nothing further is worth precomputing: the 45 command vectors and 14 skill vectors are already built, the brief's directive block is a constant, and the only remaining precompute is the once-per-session warm call. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:23]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16-160",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:557-587",
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:319,487",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/shared.js:54-76",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js:12",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:54-56",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:269-329",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:122",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12,23"
+      ]
+    },
+    {
+      "id": "finding-4-2-the-cache-s-value-cannot-be-measured-from-field-data-today-diagnostic-persistenc",
+      "text": "The cache's value cannot be measured from field data today: diagnostic persistence is gated behind `SKILL_ADVISOR_DEBUG` and the cache hit/miss counters behind the metrics enable flag, and the per-workspace diagnostics file for this checkout is absent. Any recommendation to change the cache would rest on no evidence, which is itself the finding. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:319] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:487] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:131]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16-160",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:557-587",
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:319,487",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/shared.js:54-76",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js:12",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:54-56",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:269-329",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:122",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12,23"
+      ]
+    },
+    {
+      "id": "finding-4-7-the-cold-daemon-headroom-is-not-uniform-the-5000-ms-cold-wait-fits-under-devin-s",
+      "text": "The cold-daemon headroom is not uniform: the 5000 ms cold wait fits under Devin's and Cursor's 10 s budgets but not under Claude's 2200 ms child budget or Codex's 2800 ms adapter timeout. The fail-open risk is therefore specific to Claude and Codex, and a single SessionStart warm call removes it on both. [SOURCE: .skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js:12] [SOURCE: .skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:56] [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:34]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16-160",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:557-587",
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:319,487",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/shared.js:54-76",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js:12",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:54-56",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:269-329",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:122",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12,23"
+      ]
+    },
+    {
+      "id": "finding-4-6-the-common-removable-unit-across-the-six-runtimes-is-the-delegated-advisor-hook-",
+      "text": "The common removable unit across the six runtimes is the delegated advisor-hook spawn in the four host-hook adapters, not the CLI spawn. Replacing each `spawnSync(...advisor hook...)` with an in-process import of the same exported handler saves one measured Node start (36.85 ms median) per prompt on Claude, Codex, Devin and Cursor, and leaves the adapter's payload translation intact. [SOURCE: .skilled/skills/system-spec-kit/runtime/dist/hooks/codex/shared.js:59] [SOURCE: .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js:143] [INFERENCE: the Pi path imports the same handler without a spawn, so the delegation is not required by the handler]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16-160",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:557-587",
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:319,487",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/shared.js:54-76",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js:12",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:54-56",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:269-329",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:122",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12,23"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-exact-prompt-cache-is-in-memory-in-the-daemon-capped-at-1000-entries-with-a-",
+      "text": "The exact prompt cache is in-memory in the daemon, capped at 1000 entries, with a 5-minute TTL and a key over the canonical prompt, source signature, workspace root, runtime label, token cap and thresholds. A unique prompt misses by construction, and the only dataset in this packet is the 44-distinct-prompt latency probe, where the hit rate is zero by design. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:81] [SOURCE: .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:557]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16-160",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:557-587",
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:319,487",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/shared.js:54-76",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js:12",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:54-56",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:269-329",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:122",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12,23"
+      ]
+    },
+    {
+      "id": "finding-4-5-the-three-plugin-runtimes-run-two-processes-the-host-process-imports-the-advisor",
+      "text": "The three plugin runtimes run two processes: the host process imports the advisor hook and only the CLI is an extra process. Pi already calls the exported `handleClaudeUserPromptSubmit` in-process with its own deadline, so the in-process path is proven in production, not hypothetical. [SOURCE: .skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:269] [SOURCE: .skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:122]",
+      "addedAtIteration": 4,
+      "sources": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16-160",
+        ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:557-587",
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:319,487",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/shared.js:54-76",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js:12",
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:54-56",
+        ".skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts:269-329",
+        ".skilled/skills/system-skill-advisor/hooks/dsh/prompt-advisor.mjs:122",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12,23"
+      ]
+    },
+    {
+      "id": "finding-5-7-declined-with-reasons-a-semantic-cache-pays-an-embedding-to-decide-a-hit-and-ris",
+      "text": "Declined with reasons: a semantic cache (pays an embedding to decide a hit and risks a wrong route), cache persistence (the daemon recycles on build staleness), new precompute (both vector sets exist), brief trimming (54 tokens a session), a per-prompt token budget (the 80-token cap binds at 64), and a longer cold timeout (trades a fast fail-open for a 5 s stall). [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/prompt-cache.ts:16] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:23]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/plan.md,spec.md:157",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-3.json",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl (summary only)",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js:137",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js:12",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:34"
+      ]
+    },
+    {
+      "id": "finding-5-6-performance-does-not-explain-the-cross-cli-behaviour-gap-the-growing-pre-arm-log",
+      "text": "Performance does not explain the cross-CLI behaviour gap. The growing pre-arm log scores claude 3 of 12, codex 0 of 12, pi 0 of 12, devin 2 of 12, opencode 4 of 9 and dsh 3 of 8, with one `COMMAND:` line in total, on a hook path whose cost is the same order on every runtime. The gap is a routing and instruction-following gap, which the cross-CLI lineage owns; this lineage records only that no latency explanation fits. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl:1]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/plan.md,spec.md:157",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-3.json",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl (summary only)",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js:137",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js:12",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:34"
+      ]
+    },
+    {
+      "id": "finding-5-2-the-aggregate-per-prompt-gain-is-two-removed-process-starts-on-claude-205-09-ms-",
+      "text": "The aggregate per-prompt gain is two removed process starts on Claude: 205.09 ms median minus about 73.7 ms is roughly 131 ms, a 36% cut. Codex, Devin and Cursor lose one of their three starts, and OpenCode, Pi and DSH lose one of two. At the measured 36.85 ms per start, every runtime gains at least that much per prompt once the advisor hook is imported in-process and the CLI call becomes a direct bridge call. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-3.json:1] [INFERENCE: 205.09 minus two measured 36.85 ms starts]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/plan.md,spec.md:157",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-3.json",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl (summary only)",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js:137",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js:12",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:34"
+      ]
+    },
+    {
+      "id": "finding-5-4-the-one-measurement-gap-is-that-cold-daemon-start-its-procedure-is-a-sandbox-soc",
+      "text": "The one measurement gap is that cold daemon start. Its procedure is a sandbox socket directory and a sandbox database, as the launcher tests already use, then five timed starts and a `hook-latency.mjs` run against a cold socket. That measurement belongs in an arena, not on the live daemon, and it is the first task of any phase that takes the warm-up recommendation. [SOURCE: specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/011-observation-fixes/evidence/goal-reverify/reports/pi-433.md:1]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/plan.md,spec.md:157",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-3.json",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl (summary only)",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js:137",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js:12",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:34"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-overlap-audit-finds-no-duplicate-phase-005-changes-fields-and-the-brief-head",
+      "text": "The overlap audit finds no duplicate: phase 005 changes fields and the brief head, phase 006 changes the Gate 2 text and pointers, phase 007 measures behaviour, and phase 008 adds embedder visibility, a 750 ms wrapper deadline, doctor routes and guide text. None changes the hook transport, warms the daemon, adds `keep_alive`, or reports a command document's read cost. Phase 008 says outright that nothing preloads the model, so the keep-alive is a genuine miss rather than a repeat. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/spec.md:157] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/plan.md:76] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md:58]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/plan.md,spec.md:157",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-3.json",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl (summary only)",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js:137",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js:12",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:34"
+      ]
+    },
+    {
+      "id": "finding-5-5-the-performance-work-is-upstream-of-command-surfacing-the-command-head-adds-abou",
+      "text": "The performance work is upstream of command surfacing: the command head adds about 7 tokens and one start costs about 1,131 tokens, so no change in phases 005 to 008 is needed for cost. The only command-surfacing cost lever is the `ask` turn, and that is a UX decision the parent already made. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:557] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/spec.md:94]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/plan.md,spec.md:157",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-3.json",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl (summary only)",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js:137",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js:12",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:34"
+      ]
+    },
+    {
+      "id": "finding-5-3-warming-the-daemon-at-session-start-removes-the-only-fail-open-path-this-lineage",
+      "text": "Warming the daemon at session start removes the only fail-open path this lineage found: the 2200 ms Claude child budget and the 2800 ms Codex adapter timeout are both shorter than the CLI's 5000 ms cold wait. The gain is bounded by the cap, not by a measured cold-start time, because no packet records how long a cold daemon start takes. [SOURCE: .skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js:137] [SOURCE: .skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js:12] [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:34]",
+      "addedAtIteration": 5,
+      "sources": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/plan.md,spec.md:157",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/004-command-meaning-matching/scratch/hook-latency-after-3.json",
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl (summary only)",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js:137",
+        ".skilled/skills/system-spec-kit/runtime/dist/hooks/codex/user-prompt-submit.js:12",
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:34"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-c99aac2e77d8",
+      "text": "No live cold-daemon measurement was taken. Starting or stopping the advisor daemon writes outside this lineage and the hard rules forbid process control. The cap mismatch in finding 3 is read from source and corroborated by an existing sandbox record, and the missing number is recorded as a gap with its verification path: a sandbox socket and DB, as the launcher tests already do, then `hook-latency.mjs` once cold.",
+      "contentHash": "c99aac2e77d8",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-9217fd16d91d",
+      "text": "Raising the shim timeout to the CLI's 5000 ms cold wait. It would trade a fast fail-open for a 5 s stall on the first prompt, which is worse for the person than a brief that arrives on the second prompt.",
+      "contentHash": "9217fd16d91d",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-9317de278889",
+      "text": "Replacing the exact prompt cache with a longer TTL as a first fix. The cache is process-local and keyed on the exact prompt, so unique prompts miss regardless of TTL; the lever is process count, not TTL.",
+      "contentHash": "9317de278889",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-9ff90b68c508",
+      "text": "Treating the brief length as the first performance lever. The measured full brief is about 85 tokens and a reduced head about 17 tokens, while one command document read costs about 1,131 tokens at the median. Trimming the brief is noise beside the document read; that comparison moves to iteration 2.",
+      "contentHash": "9ff90b68c508",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-e81aea3f132d",
+      "text": "No live idle-and-reload measurement was taken. Forcing the model to unload needs a 5-minute wait with no prompt or an ollama lifecycle action, and the steer forbids touching ollama. The measured `expires_at` plus the adapter's missing `keep_alive` is the evidence; the live check is named in the recommendation's verification.",
+      "contentHash": "e81aea3f132d",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-4dad5ca72c47",
+      "text": "Preloading the model once at daemon start *instead of* a keep-alive. A preload is itself a cold call, and the server still unloads after five idle minutes, so a session that pauses mid-way pays the tax anyway. Keep-alive plus a session-start warm covers both.",
+      "contentHash": "4dad5ca72c47",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-11bc0d4a90e0",
+      "text": "Recommending a blanket longer deadline to absorb a cold load. It would spend the hook budget on a call that already fits inside 750 ms.",
+      "contentHash": "11bc0d4a90e0",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-c9c976de34d8",
+      "text": "Treating the p95 tail as an embedding-lane regression to be engineered away. Its absolute size is tens of milliseconds and its cause is variance, not a cold branch.",
+      "contentHash": "c9c976de34d8",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-16d9c914da68",
+      "text": "A per-prompt token budget mechanism. The 80-token cap already binds and the measured brief is 64 tokens.",
+      "contentHash": "16d9c914da68",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-c00b5a949282",
+      "text": "Caching rendered briefs to save tokens. Rendering costs well under a millisecond and tokens are charged for context, not render time.",
+      "contentHash": "c00b5a949282",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-68cc258ad932",
+      "text": "Following the reducer's p95-tail pointer again. Iteration 2 answered it with a bounded variance claim; re-investigating it would repeat exhausted work.",
+      "contentHash": "68cc258ad932",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-a40276b385be",
+      "text": "No per-start token measurement exists in any phase packet. Phase 007 measures whether a command starts, never what the start costs. The doc-size measurement here stands in for it; a live token count from a started session would need a runtime run, which the steer forbids.",
+      "contentHash": "a40276b385be",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-a238833183e6",
+      "text": "Trimming the brief head or the directive block as a token saving. The head is 41 characters and the block is already suppressed on repeats; the ceiling is 54 tokens per session.",
+      "contentHash": "a238833183e6",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-4fb2941f903a",
+      "text": "A semantic or near-duplicate prompt cache. It pays one embedding to decide a hit and risks a wrong recommendation.",
+      "contentHash": "4fb2941f903a",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-1bd14bf6ab64",
+      "text": "Any new precompute of command or skill vectors. Both are already built and the brief's constant block is already deduped.",
+      "contentHash": "1bd14bf6ab64",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-06257a05040d",
+      "text": "No field cache hit rate exists to report. The diagnostics and metrics surfaces are opt-in and this checkout has no persisted diagnostics file, so the hit-rate question is closed as unmeasured rather than answered with a guess.",
+      "contentHash": "06257a05040d",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-75bcb22c778f",
+      "text": "Persisting the exact cache across daemon restarts. The daemon recycles on build staleness, not per prompt, so the saving is rare.",
+      "contentHash": "75bcb22c778f",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-a1399916ff6d",
+      "text": "Treating all six runtimes as one cold-start risk. Only Claude and Codex have a budget tighter than the CLI's cold wait.",
+      "contentHash": "a1399916ff6d",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-962090b6c386",
+      "text": "A performance explanation for the uneven start rates across runtimes. The same hook cost applies to every runtime and the spread is behavioural.",
+      "contentHash": "962090b6c386",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-ae678e8fd3b0",
+      "text": "Any further cache or precompute project. The evidence does not support a payoff and the telemetry needed to justify one is off by default.",
+      "contentHash": "ae678e8fd3b0",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-321c29881e4d",
+      "text": "Cold daemon start remains unmeasured inside the hard rules. Starting or stopping the live daemon is out of scope, and no existing packet records the number. The procedure is named instead of guessed.",
+      "contentHash": "321c29881e4d",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-142b639573d9",
+      "text": "Re-opening the brief's token budget. The measured brief is below the cap and the constant block is already suppressed.",
+      "contentHash": "142b639573d9",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 31,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.45,
+    "coverageBySources": {
+      "code": 35,
+      "other": 9
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

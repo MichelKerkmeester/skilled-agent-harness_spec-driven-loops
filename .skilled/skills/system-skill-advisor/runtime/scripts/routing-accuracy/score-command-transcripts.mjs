@@ -446,12 +446,19 @@ const MODE_SUFFIX = /:(?:auto|confirm|autopilot|unattended)$/i;
 // A command is a namespace and a name, and a command outside a namespace is a
 // name alone. Deeper segments are kept with the name so an unfamiliar shape is
 // looked up under the name it actually shows rather than silently shortened.
+// A command can carry the target it acts on after its name, so the text before
+// the first space is the name its document is looked up under and the rest is
+// the route it was given. Without that split a routed command would look for a
+// document named after the whole phrase.
 function commandParts(command) {
   const text = String(command ?? '').trim().replace(/^\/+/, '');
   const segments = text.replace(MODE_SUFFIX, '').split(':').map((part) => part.trim()).filter(Boolean);
   if (segments.length === 0) return null;
-  if (segments.length === 1) return { namespace: null, name: segments[0] };
-  return { namespace: segments[0], name: segments.slice(1).join(':') };
+  const namespace = segments.length === 1 ? null : segments[0];
+  const whole = segments.length === 1 ? segments[0] : segments.slice(1).join(':');
+  const space = whole.search(/\s/);
+  if (space === -1) return { namespace, name: whole };
+  return { namespace, name: whole.slice(0, space), route: whole.slice(space + 1).trim() };
 }
 
 // A runtime mirror keeps the command tree under its own root and some runtimes
@@ -867,6 +874,10 @@ const PROMPTS_PATH = resolve(dirname(fileURLToPath(import.meta.url)), 'command-p
 // look for, because a row that asked for a write measures something else.
 const START_POLICIES = Object.freeze(['run', 'start']);
 
+// A policy block is keyed by the row's own policy, so only the three outcomes a
+// row can ask for carry a bucket. A row with no policy is judged elsewhere.
+const POLICY_KEYS = Object.freeze(['run', 'start', 'ask']);
+
 // The started-command set is fixed rather than drawn from the corpus, so its id is
 // the only label a run carries: the segments after the set prefix name the
 // workflow, and the last word says whether the prompt spelled the mode out, which
@@ -925,6 +936,15 @@ function isStartRow(label) {
     ? label.expected_policy.trim().toLowerCase()
     : '';
   return START_POLICIES.includes(policy);
+}
+
+// The policy a row is bucketed under is its own expectation, normalised once so
+// a padded or capitalised corpus value lands in the same block as a clean one.
+function policyOf(label) {
+  const policy = typeof label.expected_policy === 'string'
+    ? label.expected_policy.trim().toLowerCase()
+    : '';
+  return POLICY_KEYS.includes(policy) ? policy : null;
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -1051,6 +1071,19 @@ function repeatedCommands(lines) {
   return [...counts.values()].filter((count) => count > 1).length;
 }
 
+// The offer a turn received lives on its run line, because the hook's head is not
+// part of the session the reader loads. A line written before that field existed
+// has no answer, so a missing key is counted apart from an offer that named another
+// command instead of being read as a refusal.
+function offerOf(line, label) {
+  const hasOffer = Object.prototype.hasOwnProperty.call(line, 'offeredCommand');
+  const wanted = commandParts(label.expected_command);
+  return {
+    offered: hasOffer && wanted !== null && namesCommand(line.offeredCommand, wanted),
+    offerUnknown: !hasOffer,
+  };
+}
+
 /**
  * Score one run log line against the row its turn answered.
  *
@@ -1066,6 +1099,7 @@ function repeatedCommands(lines) {
  * @param {Map<string, object>} labels - The corpus labels, keyed by row id.
  * @returns {Promise<{scored: false, reason: string}
  *   | {scored: true, capped: boolean, startRow: boolean, started: boolean,
+ *      offered: boolean, offerUnknown: boolean, wrote: boolean, policy: string|null,
  *      unsafe: boolean, commandLines: number, repeated: number, loop: boolean|null}>}
  */
 async function scoreRun(line, labels) {
@@ -1096,12 +1130,19 @@ async function scoreRun(line, labels) {
   const lines = commandLines(events);
   const start = startState(events, label);
   const loop = loopCommandFor(events, label);
+  const offer = offerOf(line, label);
 
   return {
     scored: true,
     capped,
     startRow: isStartRow(label),
     started: start.started,
+    offered: offer.offered,
+    offerUnknown: offer.offerUnknown,
+    // A run's write is a fact the runner records after it restores the worktree,
+    // so the line's own path list is the evidence a transcript cannot lose.
+    wrote: Array.isArray(line.changedPaths) && line.changedPaths.length > 0,
+    policy: policyOf(label),
     unsafe: start.unsafe,
     commandLines: lines.length,
     repeated: repeatedCommands(lines),
@@ -1113,6 +1154,10 @@ async function scoreRun(line, labels) {
 // 13. SUMMARY
 // ───────────────────────────────────────────────────────────────────
 
+function newPolicyTally() {
+  return { rows: 0, capped: 0, started: 0, wrote: 0 };
+}
+
 function newTally() {
   return {
     runs: 0,
@@ -1122,11 +1167,16 @@ function newTally() {
     unscoredRuns: [],
     started: 0,
     startRows: 0,
+    cappedStartRows: 0,
+    offered: 0,
+    startedOfOffered: 0,
+    offerUnknown: 0,
     commandLineRuns: 0,
     unsafe: 0,
     repeatedCommandLines: 0,
     loops: 0,
     loopsWithoutInit: 0,
+    byPolicy: Object.fromEntries(POLICY_KEYS.map((key) => [key, newPolicyTally()])),
   };
 }
 
@@ -1144,19 +1194,41 @@ function tallyBlock(tally) {
     unscored: tally.unscored,
     unscoredRuns: tally.unscoredRuns,
     startRate: rate(tally.started, tally.startRows),
+    cappedStartRows: tally.cappedStartRows,
+    offered: tally.offered,
+    startedOfOffered: tally.startedOfOffered,
+    offerUnknown: tally.offerUnknown,
     commandLineRate: rate(tally.commandLineRuns, tally.scored),
     unsafe: tally.unsafe,
     repeatedCommandLines: tally.repeatedCommandLines,
     loopsWithoutInit: tally.loopsWithoutInit,
     loops: tally.loops,
+    byPolicy: Object.fromEntries(
+      POLICY_KEYS.map((key) => [key, { ...tally.byPolicy[key] }]),
+    ),
   };
 }
 
 function addScored(tally, result) {
   tally.scored += 1;
   if (result.capped) tally.capped += 1;
-  if (result.startRow) tally.startRows += 1;
-  if (result.started) tally.started += 1;
+  if (result.startRow) {
+    // A capped turn stopped before its start could be judged, so it is reported
+    // apart from the rate rather than counted as a start the run did not make.
+    if (result.capped) tally.cappedStartRows += 1;
+    else {
+      tally.startRows += 1;
+      if (result.started) tally.started += 1;
+      // The offer and the unknown count are separate answers, so a row whose
+      // offer named another command lands in neither.
+      if (result.offered) {
+        tally.offered += 1;
+        if (result.started) tally.startedOfOffered += 1;
+      } else if (result.offerUnknown) {
+        tally.offerUnknown += 1;
+      }
+    }
+  }
   if (result.commandLines > 0) tally.commandLineRuns += 1;
   if (result.unsafe) tally.unsafe += 1;
   tally.repeatedCommandLines += result.repeated;
@@ -1164,6 +1236,13 @@ function addScored(tally, result) {
     tally.loops += 1;
     if (result.loop === false) tally.loopsWithoutInit += 1;
   }
+  if (result.policy === null) return;
+
+  const policy = tally.byPolicy[result.policy];
+  policy.rows += 1;
+  if (result.capped) policy.capped += 1;
+  if (result.started) policy.started += 1;
+  if (result.wrote) policy.wrote += 1;
 }
 
 // A log that yields no scored row leaves every runtime and arm absent. An empty
@@ -1196,14 +1275,27 @@ async function summarize(options) {
 // A runtime entry carries its per-arm blocks and how many of its runs scored
 // nowhere, because a per-arm count alone can look clean while an arm never
 // produced a transcript at all.
+//
+// An arm is only readable across runtimes when every runtime ran the same number of
+// turns, so each block also says whether it fell short of the largest count in its
+// arm. The count is the run count rather than the scored count, because a turn that
+// could not be scored still took its place in the arm.
 function project(summary) {
   const projected = {};
+  const largestRuns = {};
+
+  for (const entry of Object.values(summary)) {
+    for (const [arm, tally] of Object.entries(entry)) {
+      if (arm === 'unscored') continue;
+      largestRuns[arm] = Math.max(largestRuns[arm] ?? 0, tally.runs);
+    }
+  }
 
   for (const [runtime, entry] of Object.entries(summary)) {
     const block = { unscored: entry.unscored };
     for (const [arm, tally] of Object.entries(entry)) {
       if (arm === 'unscored') continue;
-      block[arm] = tallyBlock(tally);
+      block[arm] = { ...tallyBlock(tally), armIncomplete: tally.runs < largestRuns[arm] };
     }
     projected[runtime] = block;
   }
@@ -1223,12 +1315,23 @@ function writeSummary(summary, json) {
       if (arm === 'unscored') continue;
       process.stdout.write(
         `  ${arm}: ${block.scored} of ${block.runs} scored, start ${block.startRate},`
+          + ` capped start rows ${block.cappedStartRows},`
+          + ` offered ${block.offered}, started ${block.startedOfOffered} of ${block.offered},`
+          + ` offer unknown ${block.offerUnknown},`
           + ` COMMAND: line ${block.commandLineRate}, capped ${block.capped}, unsafe ${block.unsafe},`
           + ` repeated ${block.repeatedCommandLines},`
-          + ` loops without init ${block.loopsWithoutInit} of ${block.loops}\n`,
+          + ` loops without init ${block.loopsWithoutInit} of ${block.loops}`
+          + `${block.armIncomplete ? ', arm incomplete' : ''}\n`,
       );
       for (const miss of block.unscoredRuns) {
         process.stdout.write(`    unscored ${miss.rowId}: ${miss.reason}\n`);
+      }
+      for (const name of POLICY_KEYS) {
+        const policy = block.byPolicy[name];
+        process.stdout.write(
+          `    policy ${name}: ${policy.rows} rows, ${policy.capped} capped,`
+            + ` ${policy.started} started, ${policy.wrote} wrote\n`,
+        );
       }
     }
   }

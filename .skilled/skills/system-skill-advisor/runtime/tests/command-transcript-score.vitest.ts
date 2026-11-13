@@ -370,6 +370,20 @@ describe('startState', () => {
     expect(startState(events, row({})).started).toBe(true);
   });
 
+  // A routed command names the target it acts on after the command, so the
+  // document it loads is still the command's own file.
+  it('reports a start for a routed command whose document names only the command', () => {
+    const events = normalize(
+      oneTurn(
+        toolCall('Read', { file_path: '.skilled/commands/doctor/git.md' }),
+        toolCall('Write', { file_path: OUTSIDE_SPECS, content: 'export const parse = () => {};' }),
+      ),
+      'claude',
+    );
+
+    expect(startState(events, { expected_command: '/doctor:git hooks', expected_policy: 'run' }).started).toBe(true);
+  });
+
   it('reports no start for a session that never read, loaded or reported the command', () => {
     const events = normalize(oneTurn(toolCall('Read', { file_path: 'src/parse.mjs' })), 'claude');
 
@@ -566,10 +580,13 @@ const SUMMARY_ROW = 'cmd-create-agent-plain-tune-01';
 const SUMMARY_SESSION = 'aaaaaaaa-1111-4111-8111-111111111111';
 
 interface RunLogLine {
+  readonly runtime?: string;
   readonly rowId: string;
   readonly arm: string;
   readonly exit: number | null;
   readonly locator: Readonly<Record<string, string>> | null;
+  readonly offeredCommand?: string | null;
+  readonly changedPaths?: readonly string[];
 }
 
 // A summary line leads back to the one session its turn wrote, so a case needs a
@@ -588,6 +605,28 @@ function loadableSession(root: string): Record<string, string> {
     message: { role: 'assistant', content: [{ type: 'text', text: 'COMMAND: /create:agent → started' }] },
   })}\n`);
   return { sessionId: SUMMARY_SESSION, transcriptPath, claudeRoot };
+}
+
+// Codex names its rollout by the path the runner captured rather than by a session
+// folder, so a case that needs a second runtime builds the store under its own root.
+function loadableCodexSession(root: string): Record<string, string> {
+  const codexRoot = join(root, 'codex', 'sessions');
+  const transcriptPath = join(codexRoot, 'rollout-2026-01-01T00-00-00-codex-1.jsonl');
+  mkdirSync(dirname(transcriptPath), { recursive: true });
+  writeFileSync(transcriptPath, `${[
+    { timestamp: TIMESTAMP, type: 'session_meta', payload: { id: 'codex-1' } },
+    {
+      timestamp: TIMESTAMP,
+      type: 'response_item',
+      payload: {
+        type: 'message',
+        id: 'codex-a1',
+        role: 'assistant',
+        content: [{ type: 'output_text', text: 'COMMAND: /create:agent → started' }],
+      },
+    },
+  ].map((line) => JSON.stringify(line)).join('\n')}\n`);
+  return { sessionId: 'codex-1', transcriptPath, codexRoot };
 }
 
 // The summary reads the log a runner leaves behind, so a case supplies the lines
@@ -621,6 +660,72 @@ describe('run log summary', () => {
     });
   });
 
+  // A capped start stopped before it could be judged, so it is reported apart from
+  // the rate rather than counted as a start the run never made.
+  it('keeps a capped start row out of the start rate and counts it apart', () => {
+    const summary = summarize((root) => {
+      const locator = loadableSession(root);
+      return [
+        { rowId: SUMMARY_ROW, arm: 'tune', exit: 143, locator },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'tune', exit: 0, locator },
+      ];
+    });
+
+    expect(summary).toMatchObject({
+      claude: {
+        tune: { runs: 2, scored: 2, capped: 1, startRate: '1 of 1', cappedStartRows: 1 },
+      },
+    });
+  });
+
+  // The runner records what a turn changed after it restores the worktree, so the
+  // policy block reads its write fact from the line rather than from a transcript
+  // that may stop before the write it made.
+  it('buckets a scored run by its policy and counts a write from the changed paths', () => {
+    const summary = summarize((root) => {
+      const locator = loadableSession(root);
+      return [
+        { rowId: SUMMARY_ROW, arm: 'tune', exit: 0, locator, changedPaths: ['src/readme.md'] },
+        { rowId: 'cmd-doctor-ci-plain-tune-01', arm: 'tune', exit: 0, locator, changedPaths: [] },
+        { rowId: 'cmd-doctor-git-plain-tune-01', arm: 'tune', exit: 0, locator },
+      ];
+    });
+
+    expect(summary).toMatchObject({
+      claude: {
+        tune: {
+          runs: 3,
+          scored: 3,
+          byPolicy: {
+            run: { rows: 1, capped: 0, started: 0, wrote: 0 },
+            start: { rows: 1, capped: 0, started: 1, wrote: 1 },
+            ask: { rows: 1, capped: 0, started: 0, wrote: 0 },
+          },
+        },
+      },
+    });
+  });
+
+  // A start row was offered only when the offer named the command the row expected,
+  // so an offer that names another command, or none at all, stays out of the offered
+  // count. Both fixture rows started the command, so only the offered one is counted
+  // as a start of an offer.
+  it('counts the offer a start row answered and the start it took', () => {
+    const summary = summarize((root) => {
+      const locator = loadableSession(root);
+      return [
+        { rowId: SUMMARY_ROW, arm: 'tune', exit: 0, locator, offeredCommand: '/create:agent' },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'tune', exit: 0, locator, offeredCommand: null },
+      ];
+    });
+
+    expect(summary).toMatchObject({
+      claude: {
+        tune: { runs: 2, scored: 2, offered: 1, startedOfOffered: 1, offerUnknown: 0 },
+      },
+    });
+  });
+
   // A run whose log captured no session id names no transcript to read, so the
   // reader's own code is the reason the summary reports, never the exit code the
   // turn happened to end with.
@@ -640,6 +745,26 @@ describe('run log summary', () => {
           unscoredRuns: [{ rowId: SUMMARY_ROW, reason: 'locator_unavailable' }],
         },
       },
+    });
+  });
+
+  // A runtime that answered fewer turns than its peers in the same arm has a smaller
+  // denominator behind every rate, so the arm says it is short instead of reading as
+  // a complete arm that happened to score less.
+  it('marks a runtime that ran fewer turns in an arm as incomplete', () => {
+    const summary = summarize((root) => {
+      const claude = loadableSession(root);
+      const codex = loadableCodexSession(root);
+      return [
+        { rowId: SUMMARY_ROW, arm: 'tune', exit: 0, locator: claude },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'tune', exit: 0, locator: claude },
+        { runtime: 'codex', rowId: SUMMARY_ROW, arm: 'tune', exit: 0, locator: codex },
+      ];
+    });
+
+    expect(summary).toMatchObject({
+      claude: { tune: { runs: 2, armIncomplete: false } },
+      codex: { tune: { runs: 1, armIncomplete: true } },
     });
   });
 });

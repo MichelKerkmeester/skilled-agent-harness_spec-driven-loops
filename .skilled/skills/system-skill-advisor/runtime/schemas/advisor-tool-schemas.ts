@@ -311,6 +311,12 @@ export const AdvisorRecommendationSchema = z.object({
   compiledRoute: z.record(z.string(), z.unknown()).optional(),
   // Names the slash command that runs the recommended skill's resolved mode.
   command: z.string().min(1).optional(),
+  // A command-bearing recommendation also says which face it is (a skill or a
+  // command row), how a caller may run it, and which skill owns it. Each stays
+  // optional so output from a runtime that predates the fields still parses.
+  kind: z.enum(['skill', 'command']).optional(),
+  policy: z.enum(['run', 'start', 'ask']).optional(),
+  ownerSkillId: z.string().min(1).optional(),
 }).strict();
 
 export const AdvisorRecommendOutputSchema = z.object({

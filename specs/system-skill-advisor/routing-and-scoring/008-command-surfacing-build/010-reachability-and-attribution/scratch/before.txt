@@ -1,0 +1,10 @@
+# Before numbers
+Date: 2026-11-13. Taken while phase 005 was being built, so the floors are the ones phase 005 recorded and kept.
+
+FLOOR (capture-command-routing-baseline.mjs): {"correct":24,"total":44} and {"count":0,"total":35}, see ../../005-recommendation-contract-and-brief/scratch/before.txt
+TC (npm run typecheck in the advisor runtime): exit 0
+VT (tests/command-transcript-score.vitest.ts) before this phase: 44 passed, 0 failed
+DCT (doctor symlink and runtime-mirrors contract tests): 43 pass, 0 fail
+bundle test in .dsh/plugins/repo-guards: fail 0
+sync-hook-registrations.cjs --check: PASS, 4 registration files match the 35-hook registry
+summary-before.json: the before arm scored with the scorer as it stood before this phase (commit f8a7f6fc10)

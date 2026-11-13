@@ -41,6 +41,135 @@ export const MODE_COMMANDS: Readonly<Record<string, Readonly<Record<string, stri
 };
 // END GENERATED MODE COMMANDS
 
+// One row of the command table: the runnable slash command, the policy that says
+// whether it runs, asks or starts a session, and the skill that owns it. The
+// rows are generated, so only the shape lives here.
+export interface CommandRow {
+  readonly command: string;
+  readonly policy?: 'run' | 'start' | 'ask';
+  readonly ownerSkillId: string;
+}
+
+// BEGIN GENERATED COMMAND ROWS
+export const COMMAND_ROWS: Readonly<Record<string, CommandRow>> = {
+  'command-create-agent': { command: '/create:agent', policy: 'start', ownerSkillId: 'sk-doc' },
+  'command-create-changelog': { command: '/create:changelog', policy: 'ask', ownerSkillId: 'sk-doc' },
+  'command-create-feature-catalog': { command: '/create:feature-catalog', policy: 'start', ownerSkillId: 'sk-doc' },
+  'command-create-manual-testing-playbook': { command: '/create:manual-testing-playbook', policy: 'start', ownerSkillId: 'sk-doc' },
+  'command-create-readme': { command: '/create:readme', policy: 'start', ownerSkillId: 'sk-doc' },
+  'command-create-skill': { command: '/create:skill', policy: 'start', ownerSkillId: 'sk-doc' },
+  'command-deep-research': { command: '/deep:research', policy: 'ask', ownerSkillId: 'system-deep-loop' },
+  'command-deep-review': { command: '/deep:review', policy: 'ask', ownerSkillId: 'system-deep-loop' },
+  'command-doctor-agents-md-check': { command: '/doctor:agents-md check', policy: 'run', ownerSkillId: 'system-skilled-doctor' },
+  'command-doctor-agents-md-embed': { command: '/doctor:agents-md embed', policy: 'ask', ownerSkillId: 'system-skilled-doctor' },
+  'command-doctor-agents-md-restore': { command: '/doctor:agents-md restore', policy: 'ask', ownerSkillId: 'system-skilled-doctor' },
+  'command-doctor-ci-report': { command: '/doctor:ci report', policy: 'run', ownerSkillId: 'sk-code' },
+  'command-doctor-ci-scaffold': { command: '/doctor:ci scaffold', policy: 'ask', ownerSkillId: 'sk-code' },
+  'command-doctor-ci-toggle': { command: '/doctor:ci toggle', policy: 'ask', ownerSkillId: 'sk-code' },
+  'command-doctor-deep-loop': { command: '/doctor:deep-loop', policy: 'run', ownerSkillId: 'system-deep-loop' },
+  'command-doctor-env': { command: '/doctor:env list', policy: 'run', ownerSkillId: 'system-skilled-doctor' },
+  'command-doctor-git-hooks': { command: '/doctor:git hooks', policy: 'ask', ownerSkillId: 'sk-git' },
+  'command-doctor-git-setup': { command: '/doctor:git setup', policy: 'run', ownerSkillId: 'sk-git' },
+  'command-doctor-git-standards': { command: '/doctor:git standards', policy: 'ask', ownerSkillId: 'sk-git' },
+  'command-doctor-helper': { command: '/doctor:helper', policy: 'run', ownerSkillId: 'system-skilled-doctor' },
+  'command-doctor-install': { command: '/doctor:install', policy: 'run', ownerSkillId: 'system-skilled-doctor' },
+  'command-doctor-mcp-debug': { command: '/doctor:mcp debug', policy: 'ask', ownerSkillId: 'system-skilled-doctor' },
+  'command-doctor-mcp-install': { command: '/doctor:mcp install', policy: 'ask', ownerSkillId: 'system-skilled-doctor' },
+  'command-doctor-overlay-apply': { command: '/doctor:overlay apply', policy: 'ask', ownerSkillId: 'system-skilled-doctor' },
+  'command-doctor-overlay-repin': { command: '/doctor:overlay repin', policy: 'ask', ownerSkillId: 'system-skilled-doctor' },
+  'command-doctor-overlay-status': { command: '/doctor:overlay status', policy: 'run', ownerSkillId: 'system-skilled-doctor' },
+  'command-doctor-runtime-mirrors': { command: '/doctor:runtime-mirrors', policy: 'run', ownerSkillId: 'system-skilled-doctor' },
+  'command-doctor-setup': { command: '/doctor:setup', policy: 'run', ownerSkillId: 'system-skilled-doctor' },
+  'command-doctor-sk-code-quality': { command: '/doctor:sk-code quality', policy: 'ask', ownerSkillId: 'sk-code' },
+  'command-doctor-sk-code-setup': { command: '/doctor:sk-code setup', policy: 'run', ownerSkillId: 'sk-code' },
+  'command-doctor-sk-skill-check': { command: '/doctor:sk-skill check', policy: 'run', ownerSkillId: 'sk-doc' },
+  'command-doctor-sk-skill-convert': { command: '/doctor:sk-skill convert', policy: 'ask', ownerSkillId: 'sk-doc' },
+  'command-doctor-skill-advisor-parent-skill': { command: '/doctor:skill-advisor parent-skill', policy: 'run', ownerSkillId: 'system-skill-advisor' },
+  'command-doctor-skill-advisor-rebuild': { command: '/doctor:skill-advisor rebuild', policy: 'ask', ownerSkillId: 'system-skill-advisor' },
+  'command-doctor-skill-advisor-router-reach': { command: '/doctor:skill-advisor router-reach', policy: 'run', ownerSkillId: 'system-skill-advisor' },
+  'command-doctor-skill-advisor-skill-budget': { command: '/doctor:skill-advisor skill-budget', policy: 'run', ownerSkillId: 'system-skill-advisor' },
+  'command-doctor-skill-advisor-skill-graph-freshness': { command: '/doctor:skill-advisor skill-graph-freshness', policy: 'run', ownerSkillId: 'system-skill-advisor' },
+  'command-doctor-skill-advisor-tune': { command: '/doctor:skill-advisor tune', policy: 'ask', ownerSkillId: 'system-skill-advisor' },
+  'command-doctor-speckit': { command: '/doctor:speckit', policy: 'run', ownerSkillId: 'system-skilled-doctor' },
+  'command-doctor-symlink-check': { command: '/doctor:symlink check', policy: 'run', ownerSkillId: 'system-skilled-doctor' },
+  'command-doctor-symlink-link': { command: '/doctor:symlink link', policy: 'ask', ownerSkillId: 'system-skilled-doctor' },
+  'command-doctor-symlink-unlink': { command: '/doctor:symlink unlink', policy: 'ask', ownerSkillId: 'system-skilled-doctor' },
+  'command-doctor-update': { command: '/doctor:update', policy: 'ask', ownerSkillId: 'system-skilled-doctor' },
+  'command-prompt-improve': { command: '/prompt:improve', policy: 'start', ownerSkillId: 'sk-prompt' },
+  'command-spec-kit-deep-research': { command: '/deep:research', policy: 'ask', ownerSkillId: 'system-deep-loop' },
+  'command-spec-kit-deep-review': { command: '/deep:review', policy: 'ask', ownerSkillId: 'system-deep-loop' },
+  'command-speckit-complete': { command: '/speckit:complete', policy: 'start', ownerSkillId: 'system-spec-kit' },
+  'command-speckit-handoff': { command: '/speckit:handoff', policy: 'ask', ownerSkillId: 'system-spec-kit' },
+  'command-speckit-implement': { command: '/speckit:implement', policy: 'start', ownerSkillId: 'system-spec-kit' },
+  'command-speckit-plan': { command: '/speckit:plan', policy: 'start', ownerSkillId: 'system-spec-kit' },
+  'command-speckit-resume': { command: '/speckit:resume', policy: 'start', ownerSkillId: 'system-spec-kit' },
+  'command-speckit-save': { command: '/speckit:save', policy: 'start', ownerSkillId: 'system-spec-kit' },
+  'command-speckit-search': { command: '/speckit:search', policy: 'run', ownerSkillId: 'system-spec-kit' },
+  'create:agent': { command: '/create:agent', policy: 'start', ownerSkillId: 'sk-doc' },
+  'create:manual-testing-playbook': { command: '/create:manual-testing-playbook', policy: 'start', ownerSkillId: 'sk-doc' },
+};
+export const COMMAND_POLICIES: Readonly<Record<string, 'run' | 'start' | 'ask'>> = {
+  '/create:agent': 'start',
+  '/create:changelog': 'ask',
+  '/create:feature-catalog': 'start',
+  '/create:manual-testing-playbook': 'start',
+  '/create:readme': 'start',
+  '/create:skill': 'start',
+  '/deep:research': 'ask',
+  '/deep:review': 'ask',
+  '/doctor:agents-md check': 'run',
+  '/doctor:agents-md embed': 'ask',
+  '/doctor:agents-md restore': 'ask',
+  '/doctor:ci report': 'run',
+  '/doctor:ci scaffold': 'ask',
+  '/doctor:ci toggle': 'ask',
+  '/doctor:deep-loop': 'run',
+  '/doctor:env list': 'run',
+  '/doctor:git hooks': 'ask',
+  '/doctor:git setup': 'run',
+  '/doctor:git standards': 'ask',
+  '/doctor:helper': 'run',
+  '/doctor:install': 'run',
+  '/doctor:mcp debug': 'ask',
+  '/doctor:mcp install': 'ask',
+  '/doctor:overlay apply': 'ask',
+  '/doctor:overlay repin': 'ask',
+  '/doctor:overlay status': 'run',
+  '/doctor:runtime-mirrors': 'run',
+  '/doctor:setup': 'run',
+  '/doctor:sk-code quality': 'ask',
+  '/doctor:sk-code setup': 'run',
+  '/doctor:sk-skill check': 'run',
+  '/doctor:sk-skill convert': 'ask',
+  '/doctor:skill-advisor parent-skill': 'run',
+  '/doctor:skill-advisor rebuild': 'ask',
+  '/doctor:skill-advisor router-reach': 'run',
+  '/doctor:skill-advisor skill-budget': 'run',
+  '/doctor:skill-advisor skill-graph-freshness': 'run',
+  '/doctor:skill-advisor tune': 'ask',
+  '/doctor:speckit': 'run',
+  '/doctor:symlink check': 'run',
+  '/doctor:symlink link': 'ask',
+  '/doctor:symlink unlink': 'ask',
+  '/doctor:update': 'ask',
+  '/prompt:improve': 'start',
+  '/speckit:complete': 'start',
+  '/speckit:handoff': 'ask',
+  '/speckit:implement': 'start',
+  '/speckit:plan': 'start',
+  '/speckit:resume': 'start',
+  '/speckit:save': 'start',
+  '/speckit:search': 'run',
+};
+// END GENERATED COMMAND ROWS
+
+// The row for an id a recommendation carries, or undefined when that id names no
+// command. Own-key lookup because the table is generated data, so an inherited
+// name such as `constructor` must not resolve to a row nobody declared.
+export function commandRowFor(id: string): CommandRow | undefined {
+  return Object.hasOwn(COMMAND_ROWS, id) ? COMMAND_ROWS[id] : undefined;
+}
+
 // Deep-loop commands open a long, multi-pass run, so one attached to a prompt
 // that merely mentions the topic spends the reader's budget on work they never
 // asked for. The list below is the vocabulary that counts as asking for it, and

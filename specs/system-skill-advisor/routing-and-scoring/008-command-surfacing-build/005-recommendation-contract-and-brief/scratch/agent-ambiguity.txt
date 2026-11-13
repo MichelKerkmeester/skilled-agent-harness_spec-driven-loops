@@ -1,0 +1,7 @@
+prompt /create:agent dependency-auditor for release checks
+ambiguous true
+1. create:agent confidence=0.82 score=0.4840 confidenceFloored=true ambiguousWith=8
+2. sk-doc confidence=0.82 score=0.4317 confidenceFloored=true ambiguousWith=0
+3. system-spec-kit confidence=0.82 score=0.1997 confidenceFloored=true ambiguousWith=8
+4. sk-code confidence=0.82 score=0.1639 confidenceFloored=true ambiguousWith=8
+cluster size=8 flooredMembers=6

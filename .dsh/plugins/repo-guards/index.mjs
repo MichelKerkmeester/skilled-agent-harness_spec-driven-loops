@@ -50,7 +50,7 @@ export function apply(ctx, config = {}) {
   registerGoalContext(ctx, options.goalContext);
   registerMcpRouteGuard(ctx, options.mcpRouteGuard);
   registerSpecGateClassify(ctx, options.specGateClassify);
-  registerPromptAdvisor(ctx, { enabled: options.promptAdvisor === true });
+  registerPromptAdvisor(ctx, { enabled: options.promptAdvisor !== false });
   registerSessionStartContext(ctx, options.sessionStartContext);
   registerSpecGateEnforce(ctx, options.specGateEnforce);
   registerCompletionEvidence(ctx, options.completionEvidence);

@@ -1,0 +1,57 @@
+const fs = require("fs");
+const dir = "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance";
+const S = "fanout-performance-1794523629654-v541y3";
+const ts = new Date().toISOString();
+const graphEvents = [
+  { type: "node", id: "q-cold", kind: "QUESTION", label: "Which cold paths exceed the hook budget" },
+  { type: "node", id: "f-keepalive-absent", kind: "FINDING", label: "Ollama adapter sends no keep_alive so the model unloads after five minutes" },
+  { type: "node", id: "f-deadline-abort", kind: "FINDING", label: "A 750 ms deadline must be an adapter timeout to abort" },
+  { type: "node", id: "s-measured", kind: "SOURCE", label: "Measured embedder costs 2026-11-12", path: "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt" },
+  { type: "edge", id: "e-003", source: "f-keepalive-absent", target: "q-cold", relation: "ANSWERS" },
+  { type: "edge", id: "e-004", source: "f-deadline-abort", target: "s-measured", relation: "DERIVED_FROM" },
+];
+const rec = {
+  type: "iteration",
+  iteration: 2,
+  mode: "research",
+  run: 2,
+  target_agent: "deep-research",
+  agent_definition_loaded: true,
+  resolved_route: "Resolved route: mode=research target_agent=deep-research",
+  runId: S,
+  sessionId: S,
+  lineageId: S,
+  status: "complete",
+  focus: "Cold embedder, keep-alive and the p95 tail",
+  findingsCount: 5,
+  newInfoRatio: 0.85,
+  noveltyJustification: "3 of 5 findings are new measurements or code readings and 2 sharpen prior numbers; the tail follow-up is closed.",
+  keyQuestions: ["Which cold-start paths (daemon, embedder, first prompt of a session) can exceed the runtime's hook budget, and what removes the stall?"],
+  answeredQuestions: [],
+  ruledOut: ["Preload the model at daemon start instead of a keep-alive", "Engineer the p95 tail as an embedding regression", "Raise the 750 ms deadline to absorb a cold load"],
+  focusTrack: "performance",
+  edgeCase: "missing-dependency",
+  toolsUsed: ["Read", "Grep"],
+  sourcesQueried: [
+    ".skilled/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts:125-149,343",
+    ".skilled/skills/system-spec-kit/shared/embeddings/registry.ts:83",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:3-45",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/spec.md:130,174",
+  ],
+  timestamp: ts,
+  durationMs: 360000,
+  graphEvents,
+};
+const rows = [
+  { type: "finding", id: "f-iter002-001", label: "The Ollama adapter sends no keep_alive, so the model unloads after the five-minute default; the measured expiry is four minutes forty-nine seconds after the reading, and the next prompt then pays 271 to 277 ms against a 6.57 ms warm median.", iteration: 2, sources: [".skilled/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts:343", "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12", "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:36"] },
+  { type: "finding", id: "f-iter002-002", label: "A cold embed of 271 to 277 ms fits the planned 750 ms prompt deadline with about 475 ms of headroom, so it is a latency tax on one prompt after an idle gap, not a fail-open.", iteration: 2, sources: ["specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/spec.md:130", "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/spec.md:174"] },
+  { type: "finding", id: "f-iter002-003", label: "Holding the model costs 335,733,063 bytes loaded plus a 46,256 KB server and a 352,144 KB runner, so a keep-alive must be priced against about 335 MB of held memory.", iteration: 2, sources: ["specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:3", "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:5", "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:9"] },
+  { type: "finding", id: "f-iter002-004", label: "The adapter already supports an instance timeout and an AbortController, but getAdapter(name) takes no options, so phase 008's 750 ms wrapper deadline should thread timeoutMs through the shared factory to abort the real request instead of abandoning a 5000 ms one.", iteration: 2, sources: [".skilled/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts:129", ".skilled/skills/system-spec-kit/shared/embeddings/adapters/ollama.ts:137", ".skilled/skills/system-spec-kit/shared/embeddings/registry.ts:83", ".skilled/skills/system-skill-advisor/runtime/lib/embedders/registry.ts:17"] },
+  { type: "finding", id: "f-iter002-005", label: "The 30.6 ms p95 move is not a cold model, which would cost 271 to 277 ms and push p95 to about 470 ms; it is bounded steady-state variance and five times smaller than the process-start share.", iteration: 2, sources: ["specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12", "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:45"] },
+  { type: "ruled_out", id: "ro-iter002-001", direction: "Preload the model at daemon start instead of a keep-alive", reason: "A preload is itself a cold call and the server still unloads after five idle minutes.", iteration: 2 },
+  { type: "ruled_out", id: "ro-iter002-002", direction: "Engineer the p95 tail as an embedding regression", reason: "Its absolute size is tens of milliseconds and the cause is variance, not a cold branch.", iteration: 2 },
+  { type: "ruled_out", id: "ro-iter002-003", direction: "Raise the 750 ms deadline to absorb a cold load", reason: "The cold call already fits inside 750 ms, so a longer deadline spends hook budget for nothing.", iteration: 2 },
+];
+fs.writeFileSync(`${dir}/.gateway-events/iteration-002.json`, JSON.stringify(rec));
+fs.writeFileSync(`${dir}/deltas/iter-002.jsonl`, `${[rec, ...rows].map((r) => JSON.stringify(r)).join("\n")}\n`);
+console.log("wrote", ts);

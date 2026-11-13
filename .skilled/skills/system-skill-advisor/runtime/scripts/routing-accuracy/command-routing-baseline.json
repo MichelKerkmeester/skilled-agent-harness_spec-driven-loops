@@ -1,11 +1,10 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "873ce08382",
+  "capturedAtSha": "f8a7f6fc10",
   "corpusSha256": "sha256:698da57b02159a756dbba5d6a2c9a3c6d14588d07e96be268567835cf36448b8",
   "bridgeCounts": {
-    "commandMetadata": 23,
-    "allowList": 4,
+    "commandMetadata": 27,
     "doctorRoutes": 35,
     "generated": 62,
     "typescriptActive": 45,
@@ -1699,7 +1698,7 @@
     },
     "cmd-speckit-complete-typed-01": {
       "expected_command": "/speckit:complete",
-      "top": "command-spec-kit-complete",
+      "top": "command-speckit-complete",
       "top1": true,
       "top3": true,
       "offered": true
@@ -1741,7 +1740,7 @@
     },
     "cmd-speckit-implement-typed-01": {
       "expected_command": "/speckit:implement",
-      "top": "command-spec-kit-implement",
+      "top": "command-speckit-implement",
       "top1": true,
       "top3": true,
       "offered": true
@@ -1762,7 +1761,7 @@
     },
     "cmd-speckit-plan-typed-01": {
       "expected_command": "/speckit:plan",
-      "top": "command-spec-kit-plan",
+      "top": "command-speckit-plan",
       "top1": true,
       "top3": true,
       "offered": true
@@ -1790,7 +1789,7 @@
     },
     "cmd-speckit-resume-plain-tune-01": {
       "expected_command": "/speckit:resume",
-      "top": "command-spec-kit-resume",
+      "top": "command-speckit-resume",
       "top1": true,
       "top3": true,
       "offered": true
@@ -2014,7 +2013,7 @@
     },
     "nm-sk-doc-01": {
       "expected_command": null,
-      "top": "system-skilled-doctor",
+      "top": "sk-doc",
       "top1": false,
       "top3": false,
       "offered": false
@@ -2098,7 +2097,7 @@
     },
     "sv-06": {
       "expected_command": "/speckit:plan",
-      "top": "command-spec-kit-plan",
+      "top": "command-speckit-plan",
       "top1": true,
       "top3": true,
       "offered": true
@@ -2251,9 +2250,7 @@
       "count": 0,
       "total": 35
     },
-    "typed_same_owner_ambiguous": [
-      "cmd-create-agent-typed-01"
-    ],
+    "typed_same_owner_ambiguous": [],
     "attachedRows": {
       "cmd-create-benchmark-typed-01": "/create:benchmark",
       "cmd-create-benchmark-plain-tune-01": "/create:benchmark",

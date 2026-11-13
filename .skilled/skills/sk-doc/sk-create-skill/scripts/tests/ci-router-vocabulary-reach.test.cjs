@@ -12,7 +12,9 @@
  * check against a stand-in advisor and assert three things: a private surface
  * ranked ahead of the declaring hub is a non-failing note, a private surface
  * cannot hide a shipped hub that really takes the phrase, and the private
- * surface's id never reaches the output.
+ * surface's id never reaches the output. Two further cases cover the owner field
+ * a command row carries: a command row owned by the declaring hub counts as a
+ * hit, and a command row owned by another hub stays an outrank.
  */
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -33,6 +35,7 @@ const REPO = path.resolve(__dirname, '..', '..', '..', '..', '..', '..');
 const CHECK = path.join(REPO, '.skilled', 'skills', 'sk-doc', 'sk-create-skill', 'scripts', 'ci-router-vocabulary-reach.cjs');
 const HUB = 'mcp-tooling';
 const RIVAL = 'sk-code';
+const DOC_HUB = 'sk-doc';
 // Assembled at run time from the private-skill prefix, so this file names no
 // private skill. The id only has to look like one to the check.
 const PRIVATE_ID = ['local', 'fixture-surface'].join('-');
@@ -58,7 +61,7 @@ process.stdout.write(JSON.stringify({
 // 3. TEST HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
-function runCheck(recommendations, extraArgs = []) {
+function runCheck(recommendations, extraArgs = [], hub = HUB) {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'router-reach-'));
   try {
     const advisor = path.join(tmpDir, 'advisor.cjs');
@@ -67,7 +70,7 @@ function runCheck(recommendations, extraArgs = []) {
     fs.writeFileSync(scenario, JSON.stringify(recommendations));
     const env = { ...process.env, ROUTER_REACH_ADVISOR: advisor, REACH_TEST_SCENARIO: scenario };
     delete env.CI;
-    return spawnSync(process.execPath, [CHECK, '--hub', HUB, ...extraArgs], {
+    return spawnSync(process.execPath, [CHECK, '--hub', hub, ...extraArgs], {
       cwd: REPO,
       encoding: 'utf8',
       env,
@@ -138,9 +141,36 @@ function testPrivateSurfaceBehindIsSilent() {
   assert.match(result.stdout, /operator-local=0\n/, detail(result));
 }
 
+// A command surface answers under its own row id, so the hub that owns it is
+// named only by ownerSkillId. Reading the row id alone would report a hub whose
+// own command takes the phrase as unreachable.
+function testCommandRowOwnerCountsAsAHit() {
+  const result = runCheck([
+    { skillId: 'create:agent', confidence: 0.86, ownerSkillId: DOC_HUB },
+    { skillId: DOC_HUB, confidence: 0.84 },
+  ], [], DOC_HUB);
+  assert.equal(result.status, 0, `a command row owned by the hub must count as a hit\n${detail(result)}`);
+  assert.match(result.stdout, /RESULT: PASSED/, detail(result));
+  assert.match(result.stdout, /outranked=0,/, detail(result));
+}
+
+// The owner field must not launder a command that belongs to another hub: the
+// declaring hub is present but second, which is the outrank this check reports.
+function testForeignCommandRowIsOutranked() {
+  const result = runCheck([
+    { skillId: 'command-doctor-git-hooks', confidence: 0.86, ownerSkillId: 'sk-git' },
+    { skillId: DOC_HUB, confidence: 0.82 },
+  ], [], DOC_HUB);
+  assert.equal(result.status, 1, `a foreign command row must still fail the run\n${detail(result)}`);
+  assert.match(result.stdout, /RESULT: FAILED/, detail(result));
+  assert.match(result.stdout, /outranked +\S.* command-doctor-git-hooks=0\.8600, sk-doc=0\.8200/, detail(result));
+}
+
 testPrivateTieIsANote();
 testPrivateTieInJson();
 testPrivateSurfaceCannotMaskAShippedWinner();
 testPrivateSurfaceBehindIsSilent();
+testCommandRowOwnerCountsAsAHit();
+testForeignCommandRowIsOutranked();
 
 console.log('[sk-doc] router reach shipped-fleet ranking passed');

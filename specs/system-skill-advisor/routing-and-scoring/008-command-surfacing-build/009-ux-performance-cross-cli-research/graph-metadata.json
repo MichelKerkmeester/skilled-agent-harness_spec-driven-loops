@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ux performance cross cli research",
+      "phase 9 command surfacing research",
+      "command surfacing further gains research",
+      "ux performance cross cli research plan",
+      "ux performance cross cli research tasks",
+      "ux performance cross cli research implementation summary"
+    ],
+    "key_topics": [
+      "performance",
+      "cross",
+      "cli",
+      "research",
+      "phase",
+      "command",
+      "surfacing",
+      "gains",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/fanout-attribution.md",
+      "research/deep-research-config.json",
+      "research/orchestration-summary.json",
+      ".codex/README.md",
+      ".dsh/plugins/repo-guards/index.mjs",
+      "research/findings-registry.json",
+      ".claude/settings.json",
+      ".skilled/commands/create/skill.md",
+      "shared/embeddings/adapters/ollama.ts",
+      "hooks/claude/user-prompt-submit.ts",
+      ".codex/hooks.json",
+      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      ".dsh/plugins/repo-guards/README.md",
+      "runtime/hooks/codex/shared.ts",
+      ".pi/extensions/prompt-advisor.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-attribution.md",
+        "kind": "doc",
+        "path": "research/fanout-attribution.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
+        "kind": "config",
+        "path": "research/deep-research-config.json",
+        "source": "derived"
+      },
+      {
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "research/orchestration-summary.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".codex/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.mjs",
+        "kind": "file",
+        "path": ".dsh/plugins/repo-guards/index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "findings-registry.json",
+        "kind": "config",
+        "path": "research/findings-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill.md",
+        "kind": "doc",
+        "path": ".skilled/commands/create/skill.md",
+        "source": "derived"
+      },
+      {
+        "name": "ollama.ts",
+        "kind": "code",
+        "path": "shared/embeddings/adapters/ollama.ts",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.ts",
+        "kind": "code",
+        "path": "hooks/claude/user-prompt-submit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "shared.ts",
+        "kind": "code",
+        "path": "runtime/hooks/codex/shared.ts",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-advisor.ts",
+        "kind": "code",
+        "path": ".pi/extensions/prompt-advisor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 005 to 008 plan the recommendation contract, the Gate 2 binding, the per-runtime proof and the embedder setup",
+    "created_at": "2026-11-12T23:26:03.950Z",
+    "last_save_at": "2026-11-12T23:26:03.950Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:9519f2526d9b0a353b58ced0570582f38acc68120b0e710a523d03fd01fb507d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cb49cf15402a87842de17a484ebc7438ff89b57373bba8d8f8a1b7f8d651b83d",
+      "plan.md": "32af73c918105774362fa2a98db6d8cfd9014e444dd859a6d25b7407ca96ca56",
+      "tasks.md": "0ef7e4c4e2758fd1497f467ea08c9c6e0f42c8a21e21ed6f0a19b56114bfa76f",
+      "implementation-summary.md": "9d3492c32c0fd2e731c436927e801f06c9a566f2bf0925f4d00adcf4106809f5",
+      "research/research.md": "072a00b3bcd9252c7a3852f3935e96760c9c2036a45b9ef9bd48de992c8df8f5"
+    },
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

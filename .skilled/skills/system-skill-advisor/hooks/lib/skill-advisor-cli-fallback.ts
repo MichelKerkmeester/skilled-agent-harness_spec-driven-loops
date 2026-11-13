@@ -365,7 +365,9 @@ function recommendationFromCli(value: unknown, thresholds: { readonly confidence
   const uncertainty = typeof value.uncertainty === 'number' ? value.uncertainty : 1;
   return {
     skill: value.skillId,
-    kind: 'skill',
+    // A command row names the mode it runs, so the reader must keep that kind
+    // rather than having every CLI row flattened back to a skill.
+    kind: value.kind === 'skill' || value.kind === 'command' ? value.kind : 'skill',
     confidence,
     uncertainty,
     passes_threshold: confidence >= thresholds.confidenceThreshold && uncertainty <= thresholds.uncertaintyThreshold,
@@ -378,6 +380,10 @@ function recommendationFromCli(value: unknown, thresholds: { readonly confidence
     // Kept only when it names something: an empty command would render a blank
     // prompt where the reader expects a slash command to type.
     ...(typeof value.command === 'string' && value.command.trim() !== '' ? { command: value.command } : {}),
+    // An unknown policy or a blank owner would render as if it were real, so each
+    // is kept only when its value is one a renderer knows how to print.
+    ...(value.policy === 'run' || value.policy === 'start' || value.policy === 'ask' ? { policy: value.policy } : {}),
+    ...(typeof value.ownerSkillId === 'string' && value.ownerSkillId.trim() !== '' ? { ownerSkillId: value.ownerSkillId } : {}),
   };
 }
 

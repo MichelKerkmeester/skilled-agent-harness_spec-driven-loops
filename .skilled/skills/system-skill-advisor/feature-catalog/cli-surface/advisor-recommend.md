@@ -7,7 +7,7 @@ trigger_phrases:
   - "native recommend"
   - "skill recommendation tool"
   - "compiledRoute enrichment"
-version: 0.9.2.0
+version: 0.9.3.0
 ---
 
 # advisor_recommend Command
@@ -36,7 +36,15 @@ The request option `options.includeCompiledRoute` is an optional boolean that de
 
 The request option `options.compiledRouteTopOnly` is an optional boolean that defaults to false. When a caller passes `true`, `enrichCompiledRoutes()` runs the route lookup for the first recommendation only and returns every later one unchanged, so only the top pick can carry `compiledRoute` or `command`. Each lookup is a `compiled-route.cjs` subprocess, so this saves one subprocess for each further eligible hub. The prompt hooks pass `true` with `includeCompiledRoute: true`, because the brief leads with the top pick. The option is declared in the zod schema (`schemas/advisor-tool-schemas.ts:290`), the tool descriptor (`tools/advisor-recommend.ts:24`) and the CLI manifest (`skill-advisor-cli-manifest.ts:58`).
 
-A hub also leaves `command` off when the same command already ranks in the result through its own command row. `enrichCompiledRoutes()` reads each row's slash string from `BRIDGE_COMMAND_BY_ID`, so one command never takes two slots.
+A hub also leaves `command` off when the same command already ranks in the result through its own command row. `enrichCompiledRoutes()` takes the `command` fields present in the result as the commands already offered, so one command never takes two slots.
+
+### Recommendation Contract (`kind`, `command`, `policy`, `ownerSkillId`)
+
+Each recommendation carries up to four optional fields that let a reader act on it without a second lookup. `kind` is `'skill'` or `'command'` and says which face the pick is, so a caller can tell a skill entry from a command row that scored as a candidate. `command` is the runnable slash string, such as `/speckit:save`. `policy` is `'run'`, `'start'` or `'ask'` and says how a caller may run that command. `ownerSkillId` names the skill that owns the command, which is the grouping key when several commands belong to one hub. All four stay optional in `AdvisorRecommendationSchema` so a response from a runtime that predates them still parses.
+
+`lib/command-attach.ts` is the single source for the values. Its generated `COMMAND_ROWS` block maps each id a scorer can return, whether the TypeScript id, the Python id or the entry id, to `{ command, policy?, ownerSkillId }`, and `commandRowFor(id)` reads it with an own-key check so an inherited name such as `constructor` never resolves to a row. `publicRecommendation()` in `handlers/advisor-recommend.ts` looks one up for the recommendation's own id and copies its `command`, its `policy` when present and its `ownerSkillId`, and it forwards the scorer's `kind`. An id with no row adds none of the three. A command attached through the compiled route takes its `policy` from `COMMAND_POLICIES[command]` because that generated table is keyed by runnable string, and it takes no `ownerSkillId` because the recommendation already names the hub.
+
+The renderer and the degraded path read the same contract. `lib/render.ts` builds the brief label `<ownerSkillId or skill> → <command> (<policy>)` from the recommendation's own fields first and falls back to the generated row for anything omitted, so a hook that predates the fields still prints a runnable command. The CLI degraded path in `skill-advisor-cli.ts` emits a `kind: 'command'` entry with all four fields when the prompt contains the row's bare slash command, and otherwise emits the row's `ownerSkillId` as a `kind: 'skill'` entry so the fallback brief names a real skill instead of a raw row id.
 
 ---
 

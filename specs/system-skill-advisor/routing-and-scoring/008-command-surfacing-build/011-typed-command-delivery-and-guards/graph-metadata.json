@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "typed command delivery and guards",
+      "phase 11 typed command delivery",
+      "typed command delivery plan",
+      "typed command delivery tasks",
+      "typed command delivery acceptance criteria"
+    ],
+    "key_topics": [
+      "typed",
+      "command",
+      "delivery",
+      "guards",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "user",
+      "types",
+      "tracked"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      ".skilled/commands/create/skill.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs",
+      ".skilled/commands/doctor/assets/doctor-setup.yaml",
+      ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-runtime-mirrors.test.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill.md",
+        "kind": "doc",
+        "path": ".skilled/commands/create/skill.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-runtime-mirrors.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-setup.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "user-prompt-submit.js",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js",
+        "source": "derived"
+      },
+      {
+        "name": "sync-runtime-mirrors.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-runtime-mirrors.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A user who types a tracked slash command has already chosen the workflow, yet 7 of the 44 typed corpus rows reach the model with no command in the head at all",
+    "created_at": "2026-11-13T00:30:46Z",
+    "last_save_at": "2026-11-13T00:41:05.525Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md"
+    ],
+    "source_fingerprint": "sha256:ed47879501f772c77f45bbd8b311974f7623d5f72efc43ba5f0949d309538561",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c075a4f272d9a2650d01a4b08235c3deb56ea113aad420fb477f9e7859da1db8",
+      "plan.md": "a3440925edecdf6727bad4e6c47e5a01cb127d59b4a3354d43ccdc0c461acaa7",
+      "tasks.md": "40525e5a915b852c9af69856ec27b5194047c53fb2d3d1c0967e05b5eb117f82"
+    },
+    "last_active_at": null
+  }
+}

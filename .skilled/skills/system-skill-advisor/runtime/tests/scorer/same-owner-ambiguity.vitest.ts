@@ -16,11 +16,11 @@ import type { AdvisorScoredRecommendation } from '../../lib/scorer/types.js';
 
 function resolveOwnedBridge(): { readonly bridgeId: string; readonly ownerSkill: string } {
   const [bridge] = COMMAND_BRIDGES.filter(
-    (entry) => entry.id === 'command-spec-kit-plan' && entry.ownerSkill,
+    (entry) => entry.id === 'command-speckit-plan' && entry.ownerSkill,
   );
   if (!bridge?.ownerSkill) {
     throw new Error(
-      'no owning skill is recorded for command-spec-kit-plan in the bridge data; '
+      'no owning skill is recorded for command-speckit-plan in the bridge data; '
       + 'the fixture cannot resolve an owner pair',
     );
   }

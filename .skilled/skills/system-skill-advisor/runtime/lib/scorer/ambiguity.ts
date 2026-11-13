@@ -26,9 +26,11 @@ export const AMBIGUITY_CONFIDENCE_MARGIN = 0.05;
 // a tie would report the explicit command as a coin flip. Two skills close on
 // their own evidence still cluster.
 //
-// The confidence margin has one exception of its own: when the top earned its
-// confidence from its own evidence, a member whose confidence only reached a
-// floor clusters on the score margin alone.
+// The confidence margin has one exception of its own. A confidence floor pins
+// many unrelated skills to the same confidence, so a floored member never ties
+// on confidence alone. When the top is not floored, the member clusters on the
+// score margin alone. When both are floored, the equal confidence carries no
+// evidence either, so the score margin alone decides there too.
 
 // A command bridge row and the skill that owns that command are one answer, so
 // their near-tie is a single route rather than a choice between two. Two
@@ -66,12 +68,10 @@ function clustersWithTop(
   if (recommendation !== top && recommendation.heldBelow === top.skill) return false;
   const scoreGap = Math.abs(top.score - recommendation.score);
   if (scoreGap <= AMBIGUITY_MARGIN + Number.EPSILON) return true;
-  // A floor pins many unrelated skills to the same confidence, which is not a
-  // tie with a top that earned its confidence from its own evidence.
-  const floorOnlyMember = applyFloorException
-    && recommendation.confidenceFloored === true
-    && top.confidenceFloored !== true;
-  if (floorOnlyMember) return false;
+  // The score margin already failed, so a floored member has nothing left to
+  // cluster on. Its confidence is the floor, not its own evidence.
+  const flooredMember = applyFloorException && recommendation.confidenceFloored === true;
+  if (flooredMember) return false;
   return Math.abs(top.confidence - recommendation.confidence)
     <= AMBIGUITY_CONFIDENCE_MARGIN + Number.EPSILON;
 }

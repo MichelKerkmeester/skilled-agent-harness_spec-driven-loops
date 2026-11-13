@@ -54,7 +54,7 @@ node .skilled/bin/skill-advisor.cjs list-tools --format json
 
 ### Check the Install
 
-Open the repository in any of the six runtimes: OpenCode, Claude Code, Codex, Cursor, Devin or Pi. Then run:
+Open the repository in any of the seven runtimes: OpenCode, Claude Code, Codex, Cursor, Devin, Pi or DeepSeek Harness (DSH). Then run:
 
 ```
 /doctor:setup
@@ -62,7 +62,11 @@ Open the repository in any of the six runtimes: OpenCode, Claude Code, Codex, Cu
 
 It checks the install without changing anything. It names one repair command for each failure.
 
-Codex, Cursor and Pi spell commands with a hyphen, as in `/doctor-setup`. Devin reaches the spec-kit workflows through its `/system-spec-kit` skill.
+Codex, Cursor, Pi and DSH spell commands with a hyphen, as in `/doctor-setup`. Devin reaches the spec-kit workflows through its `/system-spec-kit` skill.
+
+DSH loads the repository's guards and the skill advisor only from the patches a run names, so start it with `--patch .dsh/patches/guards.patch.yml`.
+
+Codex runs a project hook only after you approve it, so open `/hooks` in a Codex session at the repository root and approve each entry it lists. Codex keeps each approval as a `trusted_hash` in `~/.codex/config.toml`, so a changed entry needs approving again, and `/doctor:runtime-mirrors` prints `PASS codex-hooks-approved` once the advisor's entry is approved.
 
 ### Add Code Mode
 

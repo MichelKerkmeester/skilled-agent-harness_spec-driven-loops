@@ -7,8 +7,14 @@
 // reordered branch would quietly promote a mutating command past the operator. The
 // real-tree tests read the repository once and assert the inventory agrees with
 // itself, which is the property a stale generated projection would break.
+//
+// A standalone skill declares its commands without a hub, so nothing but the
+// deriver's activation rule keeps them reachable. That rule lives in the main
+// path rather than an exported helper, so one case stages the folder layout the
+// deriver resolves from its own location and runs the real generator over it.
 
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import { copyFileSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -16,6 +22,11 @@ import { join } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
 const require = createRequire(import.meta.url);
+
+const RUNTIME_ROOT = join(import.meta.dirname, '..');
+// The deriver loads its YAML parser from the workspace's shared module folder,
+// which a staged copy no longer sits under.
+const SHARED_MODULES = join(RUNTIME_ROOT, '..', '..', '..', 'node_modules');
 
 const bridges = require('../scripts/command-bridges/derive-command-bridges.cjs') as {
   commandTreeNames(commandsRoot?: string): string[];
@@ -61,6 +72,61 @@ function createFixtureRoot(): string {
 function writeFile(path: string, body = '# command\n'): void {
   mkdirSync(join(path, '..'), { recursive: true });
   writeFileSync(path, body);
+}
+
+interface GeneratedBridge {
+  readonly command: string;
+  readonly standalone: boolean;
+  readonly runtime: {
+    readonly typescript: { readonly enabled: boolean };
+    readonly python: { readonly enabled: boolean };
+  };
+}
+
+interface StagedDeriverRepo {
+  readonly script: string;
+  readonly output: string;
+}
+
+// The deriver resolves every source and output path from its own location, so a
+// copy six levels below a temp root reads the fixture tree rather than the
+// repository, and nothing outside that tree is written.
+function stageDeriverRepo(root: string): StagedDeriverRepo {
+  const runtime = join(root, '.skilled', 'skills', 'system-skill-advisor', 'runtime');
+  const bridges = join(runtime, 'scripts', 'command-bridges');
+  const staged = {
+    script: join(bridges, 'derive-command-bridges.cjs'),
+    output: join(bridges, 'command-bridges.generated.json'),
+  };
+
+  mkdirSync(bridges, { recursive: true });
+  mkdirSync(join(runtime, 'lib', 'scorer'), { recursive: true });
+  copyFileSync(join(RUNTIME_ROOT, 'scripts', 'command-bridges', 'derive-command-bridges.cjs'), staged.script);
+  copyFileSync(
+    join(RUNTIME_ROOT, 'lib', 'scorer', 'projection.ts'),
+    join(runtime, 'lib', 'scorer', 'projection.ts'),
+  );
+  copyFileSync(
+    join(RUNTIME_ROOT, 'scripts', 'skill_advisor.py'),
+    join(runtime, 'scripts', 'skill_advisor.py'),
+  );
+  copyFileSync(
+    join(RUNTIME_ROOT, 'lib', 'command-attach.ts'),
+    join(runtime, 'lib', 'command-attach.ts'),
+  );
+  writeFileSync(join(bridges, 'scoring-compatibility.json'), JSON.stringify({
+    schemaVersion: 1,
+    typescript: [],
+    python: [],
+    pythonOwnerNormalization: {},
+  }));
+  writeFile(join(bridges, 'command-bridges.generated.json'), '{}\n');
+  writeFile(join(root, '.skilled', 'commands', 'gamma', 'one.md'));
+  writeFile(
+    join(root, '.skilled', 'commands', 'doctor', '_routes.yaml'),
+    'routes: []\nmcp_subroutes: []\nstandalone: []\n',
+  );
+  return staged;
 }
 
 beforeAll(() => {
@@ -171,6 +237,42 @@ describe('command policy derivation', () => {
 
   it('fails a metadata entry that states no class', () => {
     expect(() => bridges.metadataRiskRecords(skillsRoot)).toThrow(/\/a:one/);
+  });
+
+  it('activates a standalone metadata command with no compatibility row in both runtimes', () => {
+    const root = createFixtureRoot();
+    try {
+      const staged = stageDeriverRepo(root);
+      writeFile(
+        join(root, '.skilled', 'skills', 'gamma', 'command-metadata.json'),
+        JSON.stringify([{
+          command: '/gamma:one',
+          ownerMode: 'gamma',
+          description: 'Run the fixture command',
+          mutating: 'read-only',
+          gate3_location: 'nothing outside the fixture',
+          userIntent: { ownedSignals: ['run the fixture', 'fixture command'] },
+        }]),
+      );
+
+      execFileSync(process.execPath, [staged.script], {
+        cwd: root,
+        encoding: 'utf8',
+        env: { ...process.env, NODE_PATH: SHARED_MODULES },
+      });
+
+      const generated = JSON.parse(readFileSync(staged.output, 'utf8')) as {
+        readonly entries: readonly GeneratedBridge[];
+      };
+      const entry = generated.entries.find((row) => row.command === '/gamma:one');
+
+      expect(entry, 'the fixture command is derived').toBeDefined();
+      expect(entry?.standalone).toBe(true);
+      expect(entry?.runtime.typescript.enabled).toBe(true);
+      expect(entry?.runtime.python.enabled).toBe(true);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 
   it('emits a policy for every command file in the repository', () => {

@@ -35,10 +35,6 @@ interface CommandBridgeDump {
   readonly entries: readonly CommandBridgeEntry[];
 }
 
-interface AllowListEntry extends Omit<CommandBridgeEntry, 'source'> {
-  readonly reason: string;
-}
-
 type Runtime = 'typescript' | 'python';
 
 interface CompatibilityRow {
@@ -111,7 +107,6 @@ const COMMAND_BRIDGES_DIR = join(
   'command-bridges',
 );
 const GENERATED_PATH = join(COMMAND_BRIDGES_DIR, 'command-bridges.generated.json');
-const ALLOW_LIST_PATH = join(COMMAND_BRIDGES_DIR, 'allow-list.json');
 const COMPATIBILITY_PATH = join(COMMAND_BRIDGES_DIR, 'scoring-compatibility.json');
 const ADVISOR_SCRIPT = join(COMMAND_BRIDGES_DIR, '..', 'skill_advisor.py');
 
@@ -231,25 +226,10 @@ function inventoryEntry(entry: CommandBridgeEntry): CommandBridgeEntry {
   return inventory;
 }
 
-function allowListEntries(): readonly AllowListEntry[] {
-  return JSON.parse(readFileSync(ALLOW_LIST_PATH, 'utf8')) as readonly AllowListEntry[];
-}
-
-// Every bridge the generated file holds: one per declaration, plus the residual
-// allow-list rows and the doctor routes the same inventory is built from.
+// Every bridge the generated file holds: one per metadata declaration, plus the
+// doctor routes the same inventory is built from.
 function inventoryProjection(): CommandBridgeEntry[] {
-  const allowList = allowListEntries();
-  // A command the allow-list already carries keeps that row's id, so its
-  // metadata entry adds no second bridge for the same command.
-  const allowListCommands = new Set(allowList.map((entry) => entry.command));
-  return sorted([
-    ...metadataProjection().filter((entry) => !allowListCommands.has(entry.command)),
-    ...allowList.map(({ reason: _reason, ...entry }) => ({
-      ...entry,
-      source: 'scripts/command-bridges/allow-list.json',
-    })),
-    ...doctorProjection(),
-  ]);
+  return sorted([...metadataProjection(), ...doctorProjection()]);
 }
 
 function compatibilitySnapshot(): CompatibilitySnapshot {
@@ -391,7 +371,7 @@ function pythonEvidence(): Array<[string, Record<string, unknown>]> {
 }
 
 describe('command-bridges drift guard', () => {
-  it('generated projection exactly equals JSON-derived ids union the residual allow-list and the doctor routes', () => {
+  it('generated projection exactly equals the metadata-derived ids union the doctor routes', () => {
     const generated = JSON.parse(readFileSync(GENERATED_PATH, 'utf8')) as CommandBridgeDump;
     const expected = inventoryProjection();
     const expectedIds = new Set(expected.map((entry) => entry.id));

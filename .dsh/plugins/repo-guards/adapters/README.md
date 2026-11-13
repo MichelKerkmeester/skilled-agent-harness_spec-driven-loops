@@ -36,7 +36,7 @@ version: 1.0.1.0
 | `mcp-route-guard.mjs` | `tools/pre-execute` on `mcp__*` | Enforces MCP routing and denies a `code_mode` tool outside `call_tool_chain`, `list_tools`, `search_tools` and `tool_info`. | Fails closed. |
 | `overlay-guard.mjs` | `tools/pre-execute` on `write`, `edit` and `apply_patch` | Denies a path an overlay owns and allows a path it cannot judge. | Fails open. |
 | `post-edit-quality.mjs` | `tools/post-execute` on `write`, `edit` and `apply_patch` | Runs the post-edit quality router and adds its findings to the result. | Fails open. |
-| `prompt-advisor.mjs` | `agent/created`, `session/event`, `agent/pre-step` | Runs the Skill Advisor and adds the brief to the step. Off unless the `promptAdvisor` row flag is true. | Fails open. |
+| `prompt-advisor.mjs` | `agent/created`, `session/event`, `agent/pre-step` | Runs the Skill Advisor and adds the brief to the step. The bundle registers it unless its row flag `false` is set, the guards patch still writes `true`, and a lineage leaf stays without a brief. | Fails open. |
 | `session-compact-context.mjs` | `session/event` (`compaction/end`) | Re-primes the agent after a completed compaction with the session-prime `compact` source. | Fails open. A failed compaction gets nothing. |
 | `session-role.mjs` | Shared helper, no event | Reads and writes the process-wide lineage-leaf marker on `Symbol.for('skilled.repo-guards.lineage-leaf')`. | No error path. A missing marker reads as false. |
 | `session-start-advisories.mjs` | `agent/created` (`startup`) | Runs the warn-only session-start guards from this checkout and injects one notice with their warnings. | Fails open per guard. |

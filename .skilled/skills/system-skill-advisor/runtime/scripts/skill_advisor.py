@@ -522,8 +522,6 @@ def _command_bridge_owner(command_name: str, command: str) -> Dict[str, str]:
         return {"skillId": "system-spec-kit", "ownerMode": "system-spec-kit"}
     if command.startswith("/create:"):
         return {"skillId": "sk-doc", "ownerMode": f"sk-create-{command.split(':', 1)[1]}"}
-    if command == "/prompt":
-        return {"skillId": "sk-prompt", "ownerMode": "sk-prompt"}
     return {
         "skillId": str(owner or ""),
         "ownerMode": "",
@@ -2199,7 +2197,6 @@ PHRASE_INTENT_BOOSTERS = {
     "iterative research": [("deep-research", 2.5)],
     "multi-round research": [("deep-research", 2.0)],
     "overnight research": [("deep-research", 2.0)],
-    "/prompt": [("sk-prompt", 3.2)],
     # --- Code discovery and structural search ---
     "webflow cms": [("mcp-code-mode", 2.2)],
     "cms collection": [("mcp-code-mode", 2.0)],
@@ -2301,113 +2298,33 @@ PHRASE_INTENT_BOOSTERS = {
 DEFAULT_CONFIDENCE_THRESHOLD = NATIVE_DEFAULT_CONFIDENCE_THRESHOLD
 DEFAULT_UNCERTAINTY_THRESHOLD = NATIVE_DEFAULT_UNCERTAINTY_THRESHOLD
 
-HAND_AUTHORED_COMMAND_BRIDGES = {
-    # ─────────────────────────────────────────────────────────────────
-    # Per-subcommand bridges for the /spec_kit family.
-    # Each /speckit:* subcommand keeps its own bridge instead of collapsing into
-    # one family id at `kind_priority=2`, because the owning skill is the signal:
-    # `/deep:research` must route to `deep-research`, not to a spec-kit command.
-    # `detect_explicit_command_intent()` lets a matching marker replace the
-    # current best only when it contains it, so a specific subcommand marker
-    # beats a shorter marker it contains. Keep the specific markers first for
-    # markers that do not contain each other, where dict insertion order decides.
-    # Execution-mode suffixes (:auto, :confirm, :with-phases, :with-research)
-    # are substring-matched inside each bridge and do NOT need separate entries.
-    # ─────────────────────────────────────────────────────────────────
-    "command-spec-kit-plan": {
-        "description": "Run the SpecKit 8-step planning workflow using /speckit:plan.",
-        "slash_markers": ["/speckit:plan", "spec_kit:plan"],
-        "owning_skill": "system-spec-kit",
-    },
-    "command-spec-kit-complete": {
-        "description": "Run the full SpecKit 14+ step lifecycle using /speckit:complete.",
-        "slash_markers": ["/speckit:complete", "spec_kit:complete"],
-        "owning_skill": "system-spec-kit",
-    },
-    "command-spec-kit-implement": {
-        "description": "Run the SpecKit 9-step implementation workflow using /speckit:implement.",
-        "slash_markers": ["/speckit:implement", "spec_kit:implement"],
-        "owning_skill": "system-spec-kit",
-    },
-    "command-spec-kit-deep-research": {
-        "description": "Run the autonomous deep-research loop using /deep:research.",
-        "slash_markers": ["/deep:research", "deep:research"],
-        "owning_skill": "deep-research",
-    },
-    "command-spec-kit-deep-review": {
-        "description": "Run the autonomous deep-review loop using /deep:review.",
-        "slash_markers": ["/deep:review", "deep:review"],
-        "owning_skill": "deep-review",
-    },
-    "command-spec-kit-resume": {
-        "description": "Resume an existing spec folder using /speckit:resume.",
-        "slash_markers": ["/speckit:resume", "spec_kit:resume"],
-        "owning_skill": "system-spec-kit",
-    },
-    "command-create-agent": {
-        "description": "Create a new OpenCode agent using /create:agent.",
-        "slash_markers": ["/create:agent", "create:agent"],
-    },
-    "command-create-changelog": {
-        "description": "Create a changelog entry using /create:changelog.",
-        "slash_markers": ["/create:changelog", "create:changelog"],
-    },
-    "command-create-skill": {
-        "description": "Create or update an OpenCode skill using /create:skill.",
-        "slash_markers": ["/create:skill", "create:skill"],
-    },
-    "command-create-feature-catalog": {
-        "description": "Create or update a feature catalog using /create:feature-catalog.",
-        "slash_markers": ["/create:feature-catalog", "create:feature-catalog"],
-    },
-    "command-create-manual-testing-playbook": {
-        "description": "Create or update a testing playbook using /create:manual-testing-playbook.",
-        "slash_markers": ["/create:manual-testing-playbook", "create:manual-testing-playbook"],
-        "owning_skill": "create:manual-testing-playbook",
-    },
-    "command-create-readme": {
-        "description": "Create folder README documentation using /create:readme.",
-        "slash_markers": ["/create:readme", "create:readme"],
-    },
-}
-
-HAND_AUTHORED_COMMAND_BRIDGE_OWNER_NORMALIZATION = {
-    # An explicit /X:y slash command routes to the skill that OWNS the workflow,
-    # not to a command-bridge alias.
-    "command-create-agent": "create:agent",
-    "command-create-manual-testing-playbook": "create:manual-testing-playbook",
-    "command-spec-kit-resume": "system-spec-kit",
-    "command-spec-kit-deep-research": "deep-research",
-    "command-spec-kit-deep-review": "deep-review",
-}
-
 # BEGIN GENERATED COMMAND BRIDGES
 GENERATED_COMMAND_BRIDGES = {
-    "command-spec-kit-plan": {
+    "command-speckit-plan": {
         "description": "Run the SpecKit 8-step planning workflow using /speckit:plan.",
         "slash_markers": ["/speckit:plan", "spec_kit:plan"],
         "owning_skill": "system-spec-kit",
-        "inventory_id": "command-spec-kit-plan",
+        "inventory_id": "command-speckit-plan",
         "command": "/speckit:plan",
         "skill_id": "system-spec-kit",
         "owner_mode": "system-spec-kit",
         "routing_enabled": True,
     },
-    "command-spec-kit-complete": {
+    "command-speckit-complete": {
         "description": "Run the full SpecKit 14+ step lifecycle using /speckit:complete.",
         "slash_markers": ["/speckit:complete", "spec_kit:complete"],
         "owning_skill": "system-spec-kit",
-        "inventory_id": "command-spec-kit-complete",
+        "inventory_id": "command-speckit-complete",
         "command": "/speckit:complete",
         "skill_id": "system-spec-kit",
         "owner_mode": "system-spec-kit",
         "routing_enabled": True,
     },
-    "command-spec-kit-implement": {
+    "command-speckit-implement": {
         "description": "Run the SpecKit 9-step implementation workflow using /speckit:implement.",
         "slash_markers": ["/speckit:implement", "spec_kit:implement"],
         "owning_skill": "system-spec-kit",
-        "inventory_id": "command-spec-kit-implement",
+        "inventory_id": "command-speckit-implement",
         "command": "/speckit:implement",
         "skill_id": "system-spec-kit",
         "owner_mode": "system-spec-kit",
@@ -2433,11 +2350,11 @@ GENERATED_COMMAND_BRIDGES = {
         "owner_mode": "review",
         "routing_enabled": True,
     },
-    "command-spec-kit-resume": {
+    "command-speckit-resume": {
         "description": "Resume an existing spec folder using /speckit:resume.",
         "slash_markers": ["/speckit:resume", "spec_kit:resume"],
         "owning_skill": "system-spec-kit",
-        "inventory_id": "command-spec-kit-resume",
+        "inventory_id": "command-speckit-resume",
         "command": "/speckit:resume",
         "skill_id": "system-spec-kit",
         "owner_mode": "system-spec-kit",
@@ -2960,7 +2877,7 @@ GENERATED_COMMAND_BRIDGES = {
 GENERATED_COMMAND_BRIDGE_OWNER_NORMALIZATION = {
     "command-create-agent": "create:agent",
     "command-create-manual-testing-playbook": "create:manual-testing-playbook",
-    "command-spec-kit-resume": "system-spec-kit",
+    "command-speckit-resume": "system-spec-kit",
     "command-spec-kit-deep-research": "deep-research",
     "command-spec-kit-deep-review": "deep-review",
 }

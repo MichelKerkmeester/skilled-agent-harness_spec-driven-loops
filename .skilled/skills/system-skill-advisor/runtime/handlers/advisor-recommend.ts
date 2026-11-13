@@ -10,13 +10,12 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync, realpathSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-import { attachCommand } from '../lib/command-attach.js';
+import { COMMAND_POLICIES, attachCommand, commandRowFor } from '../lib/command-attach.js';
 import { advisorPromptCache } from '../lib/prompt-cache.js';
 import {
   resolveAdvisorThresholdConfig,
 } from '../lib/skill-advisor-brief.js';
 import { scoreAdvisorPrompt } from '../lib/scorer/fusion.js';
-import { COMMAND_BRIDGES } from '../lib/scorer/projection.js';
 import {
   DEEP_ROUTING_PROJECTION_HASH,
   MERGED_DEEP_SKILL_ID,
@@ -312,6 +311,7 @@ function publicRecommendation(
 ) {
   const skillId = sanitizeSkillLabel(recommendation.skill);
   if (!skillId) return null;
+  const commandRow = commandRowFor(recommendation.skill);
   const matchedDocs = matchedDocsFromContributions(recommendation);
   const redirectFrom = safeMany(recommendation.redirectFrom);
   const redirectTo = sanitizeSkillLabel(recommendation.redirectTo ?? '');
@@ -326,6 +326,7 @@ function publicRecommendation(
   const workflowMode = workflowModeForRecommendation(recommendation, prompt);
   return {
     skillId,
+    kind: recommendation.kind,
     score: recommendation.score,
     confidence: recommendation.confidence,
     uncertainty: recommendation.uncertainty,
@@ -348,6 +349,13 @@ function publicRecommendation(
     ...(heldBelow ? { heldBelow } : {}),
     ...(status ? { status } : {}),
     ...(workflowMode ? { workflowMode } : {}),
+    // A command row is the contract a reader acts on, so its runnable string,
+    // policy and owner travel with the pick. An id with no row adds nothing.
+    ...(commandRow ? {
+      command: commandRow.command,
+      ...(commandRow.policy ? { policy: commandRow.policy } : {}),
+      ownerSkillId: commandRow.ownerSkillId,
+    } : {}),
   };
 }
 
@@ -414,15 +422,6 @@ function compiledRouteForRecommendation(
   }
 }
 
-// Every command row lists its slash string among its keywords, which is the one
-// place the row states what a reader types.
-const BRIDGE_COMMAND_BY_ID: ReadonlyMap<string, string> = new Map(
-  COMMAND_BRIDGES.flatMap((bridge) => {
-    const command = bridge.keywords.find((keyword) => keyword.startsWith('/'));
-    return command ? [[bridge.id, command] as const] : [];
-  }),
-);
-
 function enrichCompiledRoutes(
   output: AdvisorRecommendOutput,
   prompt: string,
@@ -448,8 +447,7 @@ function enrichCompiledRoutes(
   // so the owning hub must not offer the same one again and spend a second slot on it.
   const alreadyOffered = new Set<string>();
   for (const recommendation of output.recommendations) {
-    const command = BRIDGE_COMMAND_BY_ID.get(recommendation.skillId);
-    if (command) alreadyOffered.add(command);
+    if (recommendation.command) alreadyOffered.add(recommendation.command);
   }
   return AdvisorRecommendOutputSchema.parse({
     ...output,
@@ -470,7 +468,12 @@ function enrichCompiledRoutes(
       // that has a command. A broader route leaves the key off rather than guessing.
       const command = attachCommand(recommendation.skillId, compiledRoute, prompt);
       return command && !alreadyOffered.has(command)
-        ? { ...recommendation, compiledRoute, command }
+        ? {
+          ...recommendation,
+          compiledRoute,
+          command,
+          ...(Object.hasOwn(COMMAND_POLICIES, command) ? { policy: COMMAND_POLICIES[command] } : {}),
+        }
         : { ...recommendation, compiledRoute };
     }),
   });

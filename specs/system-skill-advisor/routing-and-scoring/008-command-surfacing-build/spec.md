@@ -121,6 +121,9 @@ Audit trail only. Each child's `plan.md` holds the detail, and phases 5 to 7 are
 | 6 | 006-gate-2-binding-and-runtime-pointers/ | Gate 2 sentence, typed override, static pointer, child authority (R6, L5, R5, L4, G1, G3, L10) | Pending |
 | 7 | 007-per-runtime-behaviour-proof/ | Transcript proof per runtime and the started-command-is-followed check (R8 transcripts, G2, G5) | Pending |
 | 8 | 008-embedder-setup-and-cost/ | The embedder for external repositories: visible state, a plan-first doctor route, the measured memory and latency cost in the install guides and defined absent, cold and slow behaviour (operator requirement, 2026-11-12) | Pending |
+| 9 | 009-ux-performance-cross-cli-research/ | Research only: further gains in user experience, performance and cross-CLI use after phases 005 to 008, 14 ranked recommendations each to be built in a new phase or declined with a reason (research/research.md section 9) | In Progress |
+| 10 | 010-reachability-and-attribution/ | Offer and brief delivery on every run line with a backfill of the before arm, an attributable scorer summary, the Codex and DSH install steps with read-only doctor checks and a measured cold first prompt (research ranks 1 to 6 and 10) | Pending |
+| 11 | 011-typed-command-delivery-and-guards/ | Every typed tracked command reaches the model on the top recommendation with its command and policy, measured as 44 of 44 typed rows in the command capture, plus a command visibility guard in the mirror check, hook health in the advisor status and a head length test with a brief cost script (research ranks 9, 12 and 14 in part) | Pending |
 
 ### Phase Transition Rules
 

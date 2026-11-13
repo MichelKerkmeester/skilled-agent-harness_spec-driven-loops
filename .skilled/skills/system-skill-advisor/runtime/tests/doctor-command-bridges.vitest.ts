@@ -8,20 +8,12 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { parse as parseYaml } from 'yaml';
 
+import { COMMAND_ROWS } from '../lib/command-attach.js';
 import { GENERATED_COMMAND_BRIDGES } from '../lib/scorer/projection.js';
 import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
 
 const REPO_ROOT = findAdvisorWorkspaceRoot(import.meta.dirname);
 const DOCTOR_ROUTES_PATH = join(REPO_ROOT, '.skilled', 'commands', 'doctor', '_routes.yaml');
-const RENDER_PATH = join(
-  REPO_ROOT,
-  '.skilled',
-  'skills',
-  'system-skill-advisor',
-  'runtime',
-  'lib',
-  'render.ts',
-);
 const GENERATED_PATH = join(
   REPO_ROOT,
   '.skilled',
@@ -132,19 +124,9 @@ function manifestDoctorBridges(): Map<string, DoctorBridgeExpectation> {
 }
 
 function renderedDoctorStrings(): Map<string, string> {
-  const render = readFileSync(RENDER_PATH, 'utf8');
-  const startMarker = '// BEGIN GENERATED DOCTOR COMMANDS';
-  const endMarker = '// END GENERATED DOCTOR COMMANDS';
-  const start = render.indexOf(startMarker);
-  const end = render.indexOf(endMarker);
-  if (start < 0 || end < start) {
-    throw new Error(`Missing generated doctor markers in ${RENDER_PATH}`);
-  }
-
   const strings = new Map<string, string>();
-  for (const line of render.slice(start + startMarker.length, end).split('\n')) {
-    const match = /^\s*'([^']+)': '([^']+)',$/.exec(line);
-    if (match) strings.set(match[1] as string, match[2] as string);
+  for (const [id, row] of Object.entries(COMMAND_ROWS)) {
+    if (id.startsWith(DOCTOR_PREFIX)) strings.set(id, row.command);
   }
   return strings;
 }

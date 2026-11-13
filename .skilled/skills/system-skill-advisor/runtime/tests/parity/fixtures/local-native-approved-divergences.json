@@ -242,9 +242,9 @@
       "corpus": "labeled",
       "promptHash": "sha256:d6f003a119d87306020a4b1ac54baed0fc551262b4a5159181699d94b07b6259",
       "gold": "sk-code",
-      "localTop": "command-spec-kit-resume",
+      "localTop": "command-speckit-resume",
       "nativeTop": "sk-code",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=command-spec-kit-resume, native=sk-code)",
+      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=command-speckit-resume, native=sk-code)",
       "approvedAt": "2026-06-13"
     },
     {
@@ -277,17 +277,6 @@
       "nativeTop": "sk-code",
       "reason": "baseline divergence captured 2026-06-13: local abstains at strict thresholds where native routes to sk-code",
       "approvedAt": "2026-06-13"
-    },
-    {
-      "id": "rr-iter3-076",
-      "corpus": "labeled",
-      "prompt": "Could you update the routing packet plan so it says iteration 4 covers full-corpus Gate 3 scoring?",
-      "gold": "system-spec-kit",
-      "promptHash": "sha256:433b2a8def53d97bc86523b18cd64dd722c3001fb57b7620b548884d4b1e26df",
-      "localTop": "none",
-      "nativeTop": "system-spec-kit",
-      "reason": "current-state capture after the merged skill inventory and command-bridge reconciliation",
-      "approvedAt": "2026-08-15"
     },
     {
       "id": "rr-iter3-078",

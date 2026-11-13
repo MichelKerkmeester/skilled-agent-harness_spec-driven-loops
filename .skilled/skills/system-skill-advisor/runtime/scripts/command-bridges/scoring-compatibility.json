@@ -265,9 +265,9 @@
   ],
   "python": [
     {
-      "inventoryId": "command-spec-kit-plan",
+      "inventoryId": "command-speckit-plan",
       "order": 0,
-      "id": "command-spec-kit-plan",
+      "id": "command-speckit-plan",
       "description": "Run the SpecKit 8-step planning workflow using /speckit:plan.",
       "slashMarkers": [
         "/speckit:plan",
@@ -276,9 +276,9 @@
       "owningSkill": "system-spec-kit"
     },
     {
-      "inventoryId": "command-spec-kit-complete",
+      "inventoryId": "command-speckit-complete",
       "order": 1,
-      "id": "command-spec-kit-complete",
+      "id": "command-speckit-complete",
       "description": "Run the full SpecKit 14+ step lifecycle using /speckit:complete.",
       "slashMarkers": [
         "/speckit:complete",
@@ -287,9 +287,9 @@
       "owningSkill": "system-spec-kit"
     },
     {
-      "inventoryId": "command-spec-kit-implement",
+      "inventoryId": "command-speckit-implement",
       "order": 2,
-      "id": "command-spec-kit-implement",
+      "id": "command-speckit-implement",
       "description": "Run the SpecKit 9-step implementation workflow using /speckit:implement.",
       "slashMarkers": [
         "/speckit:implement",
@@ -320,9 +320,9 @@
       "owningSkill": "deep-review"
     },
     {
-      "inventoryId": "command-spec-kit-resume",
+      "inventoryId": "command-speckit-resume",
       "order": 5,
-      "id": "command-spec-kit-resume",
+      "id": "command-speckit-resume",
       "description": "Resume an existing spec folder using /speckit:resume.",
       "slashMarkers": [
         "/speckit:resume",
@@ -605,7 +605,7 @@
   "pythonOwnerNormalization": {
     "command-create-agent": "create:agent",
     "command-create-manual-testing-playbook": "create:manual-testing-playbook",
-    "command-spec-kit-resume": "system-spec-kit",
+    "command-speckit-resume": "system-spec-kit",
     "command-spec-kit-deep-research": "deep-research",
     "command-spec-kit-deep-review": "deep-review"
   }

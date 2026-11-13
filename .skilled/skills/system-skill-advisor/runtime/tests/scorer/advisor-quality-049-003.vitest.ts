@@ -300,7 +300,7 @@ describe('F-012-C2-04 ambiguity tie-cluster computation', () => {
     expect(isAmbiguousTopTwo(recommendations)).toBe(false);
   });
 
-  it('clusters the same pair when the top cleared a floor too', () => {
+  it('does not cluster two floored candidates whose scores are outside the margin', () => {
     const recommendations: AdvisorScoredRecommendation[] = [
       recommendation({
         skill: 'top',
@@ -318,7 +318,7 @@ describe('F-012-C2-04 ambiguity tie-cluster computation', () => {
       }),
     ];
 
-    expect(isAmbiguousTopTwo(recommendations)).toBe(true);
+    expect(isAmbiguousTopTwo(recommendations)).toBe(false);
   });
 
   it('still clusters a floor-only member whose score is inside the score margin', () => {

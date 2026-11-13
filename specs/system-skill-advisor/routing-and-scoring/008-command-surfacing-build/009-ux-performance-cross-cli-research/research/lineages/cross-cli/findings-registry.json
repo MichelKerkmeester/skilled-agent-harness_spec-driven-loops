@@ -1,0 +1,525 @@
+{
+  "sessionId": "fanout-cross-cli-1794523629654-v541y3",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 3,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-11-12T23:07:38.399Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-which-hook-or-pointer-surface-must-each-of-the-six-runtimes-have-before-an-advis",
+      "inboxId": null,
+      "text": "Which hook or pointer surface must each of the six runtimes have before an advisor recommendation is even offered, and which runtimes are unwired in the pre-arm log?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-why-does-the-model-start-so-few-offered-commands-on-each-runtime-claude-3-12-cod",
+      "inboxId": null,
+      "text": "Why does the model start so few offered commands on each runtime (claude 3/12, codex 0/12, pi 0/12, devin 2/11, opencode 3/7, dsh 2/7), and what does the missing COMMAND line prove about the brief?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-3-which-change-to-the-brief-contract-or-hook-wiring-raises-start-rate-per-runtime-",
+      "inboxId": null,
+      "text": "Which change to the brief contract or hook wiring raises start rate per runtime, and how does it extend rather than duplicate planned phases 005-008?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-how-must-command-files-be-laid-out-and-installed-so-a-fresh-external-repository-",
+      "inboxId": null,
+      "text": "How must command files be laid out and installed so a fresh external repository exposes every command on every runtime, given the g5 skill.md folder-shadowing result?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-is-the-cheapest-reliable-way-to-measure-start-rate-across-six-runtimes-with",
+      "inboxId": null,
+      "text": "What is the cheapest reliable way to measure start rate across six runtimes without running pi, ollama, or the full test suite?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-hook-or-pointer-surface-must-each-of-the-six-runtimes-have-before-an-advis",
+      "inboxId": null,
+      "text": "Which hook or pointer surface must each of the six runtimes have before an advisor recommendation is even offered, and which runtimes are unwired in the pre-arm log?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-why-does-the-model-start-so-few-offered-commands-on-each-runtime-claude-3-12-cod",
+      "inboxId": null,
+      "text": "Why does the model start so few offered commands on each runtime (claude 3/12, codex 0/12, pi 0/12, devin 2/11, opencode 3/7, dsh 2/7), and what does the missing COMMAND line prove about the brief?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-3-which-change-to-the-brief-contract-or-hook-wiring-raises-start-rate-per-runtime-",
+      "inboxId": null,
+      "text": "Which change to the brief contract or hook wiring raises start rate per runtime, and how does it extend rather than duplicate planned phases 005-008?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-how-must-command-files-be-laid-out-and-installed-so-a-fresh-external-repository-",
+      "inboxId": null,
+      "text": "How must command files be laid out and installed so a fresh external repository exposes every command on every runtime, given the g5 skill.md folder-shadowing result?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-5-what-is-the-cheapest-reliable-way-to-measure-start-rate-across-six-runtimes-with",
+      "inboxId": null,
+      "text": "What is the cheapest reliable way to measure start rate across six runtimes without running pi, ollama, or the full test suite?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-3-capped-runs-sit-inside-the-start-denominator-and-depress-it-by-an-unknown-amount",
+      "text": "**Capped runs sit inside the start denominator and depress it by an unknown amount.** The scorer flags a run capped when its exit is 143 or null, keeps it scored, and counts it in `startRows`. The live log has pi 2, devin 4, opencode 4 capped. The real range is wide: opencode 5/10 could be 5/6 if every capped run failed before a start, devin 2/12 could be 2/8, pi 0/12 could be 0/10. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1082] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1158] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl:1]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/plan.md`, `tasks.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/plan.md`, `scratch/measured-2026-11-12.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`, `scratch/g5/result.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`",
+        "`.claude/settings.json`, `.codex/hooks.json`, `.devin/hooks.v1.json`, `.pi/extensions/prompt-advisor.ts`, `.opencode/plugins/system-skill-advisor.js`, `.dsh/plugins/repo-guards/index.mjs`",
+        "`steer.md`"
+      ]
+    },
+    {
+      "id": "finding-1-4-five-runtimes-have-an-in-repo-delivery-path-dsh-is-conditional-and-unconfigured-",
+      "text": "**Five runtimes have an in-repo delivery path; DSH is conditional and unconfigured here.** Claude runs the advisor through the spec-kit shim (2,500 ms budget), Codex and Devin through their own shims calling the same Claude adapter (2,800 ms), Pi through an auto-loaded extension that calls the compiled advisor in-process, and OpenCode through its plugin. DSH's `prompt-advisor` adapter returns immediately unless `options.promptAdvisor === true`, and no repo-side DSH config enables that flag. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/codex/user-prompt-submit.ts:22] [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/devin/user-prompt-submit.ts:28] [SOURCE: .pi/extensions/prompt-advisor.ts:1] [SOURCE: .dsh/plugins/repo-guards/index.mjs:53] [SOURCE: .dsh/plugins/repo-guards/adapters/prompt-advisor.mjs:147]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/plan.md`, `tasks.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/plan.md`, `scratch/measured-2026-11-12.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`, `scratch/g5/result.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`",
+        "`.claude/settings.json`, `.codex/hooks.json`, `.devin/hooks.v1.json`, `.pi/extensions/prompt-advisor.ts`, `.opencode/plugins/system-skill-advisor.js`, `.dsh/plugins/repo-guards/index.mjs`",
+        "`steer.md`"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-dispatched-baseline-is-stale-because-the-log-is-still-growing-and-the-arms-a",
+      "text": "**The dispatched baseline is stale because the log is still growing, and the arms are unequal.** Live scoring on 2026-11-12T22:5xZ prints claude 3/12, codex 0/12, pi 0/12, devin 2/12, opencode 5/10, dsh 3/10 with one DSH `COMMAND:` line. Row counts are claude 24, codex 24, pi 24, devin 13, opencode 10, dsh 10, while the phase plan expects 24 chat runs per runtime. A before/after comparison over different row sets cannot attribute a delta. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl:1] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md:73] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1146]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/plan.md`, `tasks.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/plan.md`, `scratch/measured-2026-11-12.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`, `scratch/g5/result.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`",
+        "`.claude/settings.json`, `.codex/hooks.json`, `.devin/hooks.v1.json`, `.pi/extensions/prompt-advisor.ts`, `.opencode/plugins/system-skill-advisor.js`, `.dsh/plugins/repo-guards/index.mjs`",
+        "`steer.md`"
+      ]
+    },
+    {
+      "id": "finding-1-6-the-g5-shadowing-defect-is-documented-by-phase-006-but-fixed-by-no-phase-claude-",
+      "text": "**The G5 shadowing defect is documented by phase 006 but fixed by no phase.** `.claude/commands/create/skill.md` is a symlink to the canonical command file; with a `skill.md` present Claude Code lists the whole folder as one Skill entry named `create` and hides the other twelve `create:*` names. Phase 006's T018 writes that fact into the hook doc and stops there. [SOURCE: .claude/commands/create/skill.md:1] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt:2] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/tasks.md:69]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/plan.md`, `tasks.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/plan.md`, `scratch/measured-2026-11-12.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`, `scratch/g5/result.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`",
+        "`.claude/settings.json`, `.codex/hooks.json`, `.devin/hooks.v1.json`, `.pi/extensions/prompt-advisor.ts`, `.opencode/plugins/system-skill-advisor.js`, `.dsh/plugins/repo-guards/index.mjs`",
+        "`steer.md`"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-host-command-name-is-not-the-canonical-command-name-on-three-runtimes-codex-",
+      "text": "**The host command name is not the canonical command name on three runtimes.** Codex, Pi and DSH generate flat prompt entries named `/create-readme` from the canonical `/create:readme`. Phase 006 adds a \"Starting a surfaced command\" table and tells the model to read the command document, which covers the intended path, but no phase maps the canonical label to the host entry or measures an attempted host invocation that fails. [SOURCE: .codex/prompts/create-readme.md:2] [SOURCE: .pi/prompts/create-readme.md:2] [SOURCE: .dsh/prompts/create-readme.md:2] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/tasks.md:69]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/plan.md`, `tasks.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/plan.md`, `scratch/measured-2026-11-12.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`, `scratch/g5/result.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`",
+        "`.claude/settings.json`, `.codex/hooks.json`, `.devin/hooks.v1.json`, `.pi/extensions/prompt-advisor.ts`, `.opencode/plugins/system-skill-advisor.js`, `.dsh/plugins/repo-guards/index.mjs`",
+        "`steer.md`"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-pre-arm-start-rate-is-not-a-surfacing-baseline-phase-005-is-planned-not-buil",
+      "text": "**The pre-arm start rate is not a surfacing baseline.** Phase 005 is planned, not built, so no brief in the pre-arm names a command; `started` is defined as a read of the expected command document *or* a `COMMAND:` line, not as a response to a brief. The 3/12, 0/12, and similar numbers therefore measure spontaneous document reads, not whether a model starts an offered command. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md:67] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md:194] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:646]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/005-recommendation-contract-and-brief/plan.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/006-gate-2-binding-and-runtime-pointers/plan.md`, `tasks.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/plan.md`, `scratch/measured-2026-11-12.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`, `scratch/g5/result.txt`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`",
+        "`.claude/settings.json`, `.codex/hooks.json`, `.devin/hooks.v1.json`, `.pi/extensions/prompt-advisor.ts`, `.opencode/plugins/system-skill-advisor.js`, `.dsh/plugins/repo-guards/index.mjs`",
+        "`steer.md`"
+      ]
+    },
+    {
+      "id": "finding-2-3-codex-s-pre-arm-is-missing-its-brief-for-a-harness-reason-not-a-model-reason-the",
+      "text": "**Codex's pre-arm is missing its brief for a harness reason, not a model reason.** The repo turns hooks on, but Codex runs a project hook only after the exact entry is approved and stored as `trusted_hash` in `~/.codex/config.toml`; the arena paths under `/private/var/folders/.../skilled-behaviour-arenas/` have no project entry there. The runner passes no `CODEX_HOME` and no trust setting. Six of six raw Codex transcripts contain no `Advisor:` line, so Codex's 0/12 measures a session with no advisor, and it cannot be compared with a runtime that got one. [SOURCE: .codex/config.toml:3] [SOURCE: .codex/README.md:54] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:136]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/listing-a.txt`, `listing-b.txt`, `result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/tasks.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`",
+        "`.skilled/hooks/shared/session-readers/index.mjs`",
+        "`.codex/config.toml`, `.codex/README.md`, `~/.codex/config.toml`",
+        "`.claude/commands/create/skill.md`, `.skilled/commands/create/skill.md`",
+        "`steer.md`"
+      ]
+    },
+    {
+      "id": "finding-2-1-g5-s-blast-radius-is-exactly-one-namespace-and-twelve-commands-only-create-carri",
+      "text": "**G5's blast radius is exactly one namespace and twelve commands.** Only `create` carries a lowercase `skill.md` under `.skilled/commands`; its mirror is a folder-preserving symlink at `.claude/commands/create/skill.md` created by `sync-runtime-mirrors.cjs`. The folder holds 12 sibling commands, so the shadow costs all 12 Claude names, not one. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:202] [SOURCE: .claude/commands/create/skill.md:1] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt:3]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/listing-a.txt`, `listing-b.txt`, `result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/tasks.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`",
+        "`.skilled/hooks/shared/session-readers/index.mjs`",
+        "`.codex/config.toml`, `.codex/README.md`, `~/.codex/config.toml`",
+        "`.claude/commands/create/skill.md`, `.skilled/commands/create/skill.md`",
+        "`steer.md`"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-g5-experiment-does-not-prove-the-defect-on-the-real-mirror-path-its-listing-",
+      "text": "**The G5 experiment does not prove the defect on the real mirror path.** Its listing mixes built-in skills (`dataviz`, `init`, `security-review`) with the `create` entries, so the tested folder behaved as a skill folder; whether `.claude/commands/create/skill.md` shadows the same 12 names is not established by the artifact. The cheap decisive test is one throwaway repo with `CLAUDE_CONFIG_DIR=$(mktemp -d)` and two listings, with and without the basename. Reproduce before changing layout. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/listing-a.txt:1] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/listing-b.txt:1]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/listing-a.txt`, `listing-b.txt`, `result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/tasks.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`",
+        "`.skilled/hooks/shared/session-readers/index.mjs`",
+        "`.codex/config.toml`, `.codex/README.md`, `~/.codex/config.toml`",
+        "`.claude/commands/create/skill.md`, `.skilled/commands/create/skill.md`",
+        "`steer.md`"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-pre-arm-log-is-still-being-written-while-it-is-being-scored-in-the-minutes-b",
+      "text": "**The pre-arm log is still being written while it is being scored.** In the minutes between iteration 1 and this check the row counts moved from 24/24/24/13/10/10 to 24/24/24/15/13/11 (claude/codex/pi/devin/opencode/dsh). Any `--summary` number is a snapshot of a moving arm, and a before/after comparison built now would compare different row sets. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl:1] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/tasks.md:113]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/listing-a.txt`, `listing-b.txt`, `result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/tasks.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`",
+        "`.skilled/hooks/shared/session-readers/index.mjs`",
+        "`.codex/config.toml`, `.codex/README.md`, `~/.codex/config.toml`",
+        "`.claude/commands/create/skill.md`, `.skilled/commands/create/skill.md`",
+        "`steer.md`"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-scorer-cannot-see-the-brief-on-the-runtimes-that-inject-it-out-of-band-the-r",
+      "text": "**The scorer cannot see the brief on the runtimes that inject it out of band.** The raw Claude transcripts contain `Advisor:` in 6 of 6 sampled sessions, while the normalized records the scorer reads contain it in 0 of 6; Pi's in-prompt injection is visible in 6 of 6, and OpenCode's hook context in 1 of 6. So a `started` fact is attributable to the brief on no runtime, and a `declined` judgment is unsupported everywhere. A start rate can move for reasons other than surfacing and the current summary would not show it. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:325] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:646]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/listing-a.txt`, `listing-b.txt`, `result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/tasks.md`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`",
+        "`.skilled/hooks/shared/session-readers/index.mjs`",
+        "`.codex/config.toml`, `.codex/README.md`, `~/.codex/config.toml`",
+        "`.claude/commands/create/skill.md`, `.skilled/commands/create/skill.md`",
+        "`steer.md`"
+      ]
+    },
+    {
+      "id": "finding-3-3-a-per-runtime-brief-head-is-a-small-localized-change-advisorbriefrenderoptions-a",
+      "text": "**A per-runtime brief head is a small, localized change.** `AdvisorBriefRenderOptions` already carries `readonly runtime?: string`, and the Claude hook already passes its runtime through the lifecycle path; the head simply ignores it. That makes a runtime-specific suffix (the canonical document path for hosts with no command registry) a change inside one function rather than a new data flow. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:48] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:478] [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:293]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`INSTALL-SKILLED.md`",
+        "`.codex/README.md`, `.codex/config.toml`, `~/.codex/config.toml`",
+        "`.dsh/plugins/repo-guards/index.mjs`, `README.md`, `adapters/prompt-advisor.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts`, `.pi/extensions/README.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`, `run-command-behaviour.mjs`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`",
+        "`steer.md`"
+      ]
+    },
+    {
+      "id": "finding-3-1-codex-surfacing-depends-on-a-per-entry-approval-that-the-install-path-never-ment",
+      "text": "**Codex surfacing depends on a per-entry approval that the install path never mentions.** Codex runs a project hook only after that exact entry is approved, stored as `trusted_hash` in `~/.codex/config.toml`; the only place this is written down is the repo-internal `.codex/README.md`. `INSTALL-SKILLED.md` tells a new user to build Spec Kit and register Code Mode, and never says to approve hooks. A fresh external repository therefore reaches Codex with no advisor brief, which is the same state the arena is in. [SOURCE: .codex/README.md:54] [SOURCE: INSTALL-SKILLED.md:40] [SOURCE: INSTALL-SKILLED.md:75]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`INSTALL-SKILLED.md`",
+        "`.codex/README.md`, `.codex/config.toml`, `~/.codex/config.toml`",
+        "`.dsh/plugins/repo-guards/index.mjs`, `README.md`, `adapters/prompt-advisor.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts`, `.pi/extensions/README.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`, `run-command-behaviour.mjs`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`",
+        "`steer.md`"
+      ]
+    },
+    {
+      "id": "finding-3-2-dsh-has-two-independent-install-blockers-not-one-its-prompt-advisor-adapter-is-o",
+      "text": "**DSH has two independent install blockers, not one.** Its prompt-advisor adapter is off unless the `promptAdvisor` row flag is true, and `INSTALL-SKILLED.md` lists the supported runtimes as claude, opencode, codex, cursor, devin and pi without dsh, so a DSH user is never told to install the surface that carries the flag. The flag's existence is documented only inside the plugin's own README. [SOURCE: .dsh/plugins/repo-guards/index.mjs:53] [SOURCE: .dsh/plugins/repo-guards/README.md:120] [SOURCE: INSTALL-SKILLED.md:100]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`INSTALL-SKILLED.md`",
+        "`.codex/README.md`, `.codex/config.toml`, `~/.codex/config.toml`",
+        "`.dsh/plugins/repo-guards/index.mjs`, `README.md`, `adapters/prompt-advisor.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts`, `.pi/extensions/README.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`, `run-command-behaviour.mjs`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`",
+        "`steer.md`"
+      ]
+    },
+    {
+      "id": "finding-3-5-every-claimed-gain-is-conditional-on-two-scorer-facts-that-do-not-exist-yet-arm-",
+      "text": "**Every claimed gain is conditional on two scorer facts that do not exist yet: arm completeness and brief attribution.** The log is still growing (24/24/24/15/13/11 rows at the last check), and the normalized records the scorer reads carry no `Advisor:` line for Claude. A before/after delta without `armComplete` and an offered-command join can be produced by row-set drift or by delivery failure and still look like a model-behaviour change. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1146] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:325]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`INSTALL-SKILLED.md`",
+        "`.codex/README.md`, `.codex/config.toml`, `~/.codex/config.toml`",
+        "`.dsh/plugins/repo-guards/index.mjs`, `README.md`, `adapters/prompt-advisor.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts`, `.pi/extensions/README.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`, `run-command-behaviour.mjs`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`",
+        "`steer.md`"
+      ]
+    },
+    {
+      "id": "finding-3-4-pi-is-the-clean-test-bed-for-a-head-change-and-the-only-runtime-where-it-is-pi-s",
+      "text": "**Pi is the clean test bed for a head change, and the only runtime where it is.** Pi's brief is delivered in the prompt itself (6 of 6 sampled sessions), while Claude injects out of band and Codex is unapproved in the arena. A Pi-only A/B on the six started rows therefore isolates the head change from delivery and trust confounds. [SOURCE: .pi/extensions/prompt-advisor.ts:1] [SOURCE: .pi/extensions/README.md:93]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`INSTALL-SKILLED.md`",
+        "`.codex/README.md`, `.codex/config.toml`, `~/.codex/config.toml`",
+        "`.dsh/plugins/repo-guards/index.mjs`, `README.md`, `adapters/prompt-advisor.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/pi/prompt-advisor.ts`, `.pi/extensions/README.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`, `run-command-behaviour.mjs`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/runs-pre.jsonl`",
+        "`steer.md`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-8fde42a70fc1",
+      "text": "**\"The hook is not wired on most runtimes.\"** False: five of six have a live delivery path in the repo, and Codex/Devin proxy the same adapter as Claude. Wiring alone does not explain the rates. [SOURCE: .skilled/skills/system-spec-kit/runtime/hooks/codex/user-prompt-submit.ts:22]",
+      "contentHash": "8fde42a70fc1",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-66bc1f512d30",
+      "text": "**\"The hook is too slow, so the brief is dropped.\"** Not supported by the measured data: median hook latency is about 200 ms against a 2,500 ms budget, and a warm embed is 6.57 ms median. Cold-start cost is real but unmeasured; it is not the observed cause. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:40] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/008-embedder-setup-and-cost/scratch/measured-2026-11-12.txt:12]",
+      "contentHash": "66bc1f512d30",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-d4fb966d5041",
+      "text": "Cursor is out of scope: its reader is gated, so it is reported as not measured by design. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/plan.md:81]",
+      "contentHash": "d4fb966d5041",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-0ffe5c965016",
+      "text": "Recounting starts from run-log rows alone cannot separate capped from started per row, because the scorer's per-run result is not exported. The honest output is the bound in Finding 3, not an exact uncapped rate.",
+      "contentHash": "0ffe5c965016",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-f4ec883c7035",
+      "text": "**\"A `COMMAND:` line proves the model saw an offer.\"** DSH emitted two `COMMAND:` tokens in six sampled sessions with no advisor row enabled, so the token can appear without a brief. [SOURCE: .dsh/plugins/repo-guards/index.mjs:53]",
+      "contentHash": "f4ec883c7035",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-15865c9d85e6",
+      "text": "**\"Codex declined the command.\"** It never received a brief in the arena: hooks are unapproved there and no `Advisor:` line exists in any sampled Codex transcript. [SOURCE: .codex/README.md:54]",
+      "contentHash": "15865c9d85e6",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-98f75b991998",
+      "text": "A G5 fix cannot be verified from the existing artifacts; the definitive listing needs a throwaway repo and a temporary `CLAUDE_CONFIG_DIR`. Recording it as the verification step is more honest than treating the stand-in folder as the real path.",
+      "contentHash": "98f75b991998",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-4a3d8846c10f",
+      "text": "The scorer's `normalize` discards hook context for Claude, so post-processing transcripts cannot recover \"was it offered\" without either reading raw prompt records (runtime-specific) or recording the brief at hook time.",
+      "contentHash": "4a3d8846c10f",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-9106886193e3",
+      "text": "**\"Add the document path to every runtime's brief.\"** Unnecessary token cost on Claude and OpenCode, which can resolve the command through their own surfaces; the change is worth it only on hosts with no registry.",
+      "contentHash": "9106886193e3",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-39b83be5fbed",
+      "text": "**\"Ship 005 and 006 and the start rate rises.\"** That is the planned path and cannot be recommended; it is also unverifiable until the two measurement facts exist. The recommendations above are what remains after those phases.",
+      "contentHash": "39b83be5fbed",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-7c5726b5ae7f",
+      "text": "No existing artifact measures a failed host-command invocation (for example a Codex `/create:readme` typed into an exec turn). The scorer sees tool calls and text, not a rejected slash token, so this gap is recorded rather than guessed.",
+      "contentHash": "7c5726b5ae7f",
+      "addedAtIteration": 3
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 16,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.7,
+    "coverageBySources": {
+      "other": 55
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}
