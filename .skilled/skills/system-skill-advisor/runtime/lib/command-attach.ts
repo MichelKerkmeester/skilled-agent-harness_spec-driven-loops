@@ -120,60 +120,6 @@ export const COMMAND_ROWS: Readonly<Record<string, CommandRow>> = {
   'create:agent': { command: '/create:agent', policy: 'start', mutating: 'mutates', ownerSkillId: 'sk-doc' },
   'create:manual-testing-playbook': { command: '/create:manual-testing-playbook', policy: 'start', mutating: 'mutates', ownerSkillId: 'sk-doc' },
 };
-export const COMMAND_POLICIES: Readonly<Record<string, 'run' | 'start' | 'ask'>> = {
-  '/create:agent': 'start',
-  '/create:changelog': 'ask',
-  '/create:feature-catalog': 'start',
-  '/create:manual-testing-playbook': 'start',
-  '/create:readme': 'start',
-  '/create:skill': 'start',
-  '/deep:research': 'ask',
-  '/deep:review': 'ask',
-  '/doctor:agents-md check': 'run',
-  '/doctor:agents-md embed': 'ask',
-  '/doctor:agents-md restore': 'ask',
-  '/doctor:ci report': 'run',
-  '/doctor:ci scaffold': 'ask',
-  '/doctor:ci toggle': 'ask',
-  '/doctor:deep-loop': 'run',
-  '/doctor:env list': 'run',
-  '/doctor:git hooks': 'ask',
-  '/doctor:git setup': 'run',
-  '/doctor:git standards': 'ask',
-  '/doctor:helper': 'run',
-  '/doctor:install': 'run',
-  '/doctor:mcp debug': 'ask',
-  '/doctor:mcp install': 'ask',
-  '/doctor:overlay apply': 'ask',
-  '/doctor:overlay repin': 'ask',
-  '/doctor:overlay status': 'run',
-  '/doctor:runtime-mirrors': 'run',
-  '/doctor:setup': 'run',
-  '/doctor:sk-code quality': 'ask',
-  '/doctor:sk-code setup': 'run',
-  '/doctor:sk-skill check': 'run',
-  '/doctor:sk-skill convert': 'ask',
-  '/doctor:skill-advisor embedder': 'ask',
-  '/doctor:skill-advisor parent-skill': 'run',
-  '/doctor:skill-advisor rebuild': 'ask',
-  '/doctor:skill-advisor router-reach': 'run',
-  '/doctor:skill-advisor skill-budget': 'run',
-  '/doctor:skill-advisor skill-graph-freshness': 'run',
-  '/doctor:skill-advisor tune': 'ask',
-  '/doctor:speckit': 'run',
-  '/doctor:symlink check': 'run',
-  '/doctor:symlink link': 'ask',
-  '/doctor:symlink unlink': 'ask',
-  '/doctor:update': 'ask',
-  '/prompt:improve': 'start',
-  '/speckit:complete': 'start',
-  '/speckit:handoff': 'ask',
-  '/speckit:implement': 'start',
-  '/speckit:plan': 'start',
-  '/speckit:resume': 'start',
-  '/speckit:save': 'start',
-  '/speckit:search': 'run',
-};
 export const TRACKED_COMMANDS: Readonly<Record<string, TrackedCommand>> = {
   '/create:agent': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: true },
   '/create:benchmark': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
@@ -252,9 +198,11 @@ export function commandRowFor(id: string): CommandRow | undefined {
 // can start and where it ends on a boundary. That keeps a path such as
 // `docs/create:goal.md` and a prefix such as `/create:sk` from reading as a
 // command, and the longest key wins so `/create:skill-parent` is never reduced to
-// its `/create:skill` prefix.
+// its `/create:skill` prefix. A dot or a slash followed by a word character
+// continues a file name or a path, while a sentence-ending period does not.
 const COMMAND_START_BOUNDARY = /[\s`'"(]/;
 const COMMAND_CONTINUATION = /[a-z0-9_:-]/;
+const WORD_CHARACTER = /[a-z0-9_]/;
 
 export function typedCommandIn(prompt: string): string | undefined {
   const lowered = prompt.toLowerCase();
@@ -264,8 +212,11 @@ export function typedCommandIn(prompt: string): string | undefined {
     while (index !== -1) {
       const before = index === 0 ? '' : lowered[index - 1];
       const after = lowered[index + key.length] ?? '';
+      const next = lowered[index + key.length + 1] ?? '';
       const startsAtBoundary = before === '' || COMMAND_START_BOUNDARY.test(before);
-      const endsAtBoundary = after === '' || !COMMAND_CONTINUATION.test(after);
+      const continuesName =
+        COMMAND_CONTINUATION.test(after) || ((after === '/' || after === '.') && WORD_CHARACTER.test(next));
+      const endsAtBoundary = after === '' || !continuesName;
       if (startsAtBoundary && endsAtBoundary) {
         if (found === undefined || key.length > found.length) found = key;
         break;
@@ -333,6 +284,10 @@ function escapePhrase(phrase: string): string {
 // multi-word phrase still has to match as a whole.
 const DEPTH_REQUEST = new RegExp(`\\b(?:${DEPTH_WORDING.map(escapePhrase).join('|')})\\b`);
 
+// Wording that asks for an answer and rules out a change. One pattern serves
+// every gate that has to honour it, so a new gate cannot drift from the first.
+export const NO_EDIT_REQUEST = /\b(no edits?|without making changes|do not (change|edit|modify|touch)|read-only only|no edits yet|only; do not|just show|just list)\b/;
+
 // A compiled route arrives as unvalidated JSON from a separate process, so the
 // shape is narrowed here rather than trusted. Arrays count as objects in
 // JavaScript and would let `action` read off an unrelated field, so they are
@@ -369,6 +324,10 @@ export function attachCommand(
   const workflowMode = onlyTarget.workflowMode;
   if (typeof workflowMode !== 'string' || workflowMode === '') return undefined;
 
+  // A reader who rules out a change gets no command from either path, so the hub
+  // route never offers what the scorer already withholds.
+  if (NO_EDIT_REQUEST.test(prompt.toLowerCase())) return undefined;
+
   // Own-key lookup on both levels: the table is data read from a generated
   // object, so an inherited name such as `constructor` must not resolve to a
   // command the hub never declared.
@@ -378,11 +337,12 @@ export function attachCommand(
 
   // Deep-loop commands are the ones that commit the reader to a long, multi-pass
   // run, so they are offered only when the prompt asks for that effort. Typing
-  // the slash command is itself the ask, and every other hub answers a short
+  // the command being attached is itself the ask, while typing another deep-loop
+  // command asks for that command, not this one. Every other hub answers a short
   // question with a short answer, so no other skill consults the wording list.
   if (skillId === 'system-deep-loop') {
-    const lowered = prompt.toLowerCase();
-    if (!lowered.includes('/deep:') && !DEPTH_REQUEST.test(lowered)) return undefined;
+    const typesThisCommand = typedCommandIn(prompt) === commands[workflowMode];
+    if (!typesThisCommand && !DEPTH_REQUEST.test(prompt.toLowerCase())) return undefined;
   }
 
   return commands[workflowMode];

@@ -6,7 +6,7 @@ trigger_phrases:
   - "command row embedding"
   - "vec_cmd table"
   - "command meaning anchor"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Command Meaning Matching
@@ -23,7 +23,7 @@ A command row used to pass only on one of its own phrases or its slash string. A
 
 ### Command Vectors
 
-`derive-command-bridges.cjs` writes an `embeddingText` for each command row the TypeScript scorer serves, 45 rows in all. A metadata row leads with its `userIntent.job` sentence and adds its owned phrases. The `description` stands in only when the record states no job. A doctor row uses its router's frontmatter `description` and the route's trigger phrases. Slash command strings are stripped from the text.
+`derive-command-bridges.cjs` writes an `embeddingText` for each command row the TypeScript scorer serves, 46 rows in all. A metadata row leads with its `userIntent.job` sentence and adds its owned phrases. The `description` stands in only when the record states no job. A doctor row uses its router's frontmatter `description` and the route's trigger phrases. Slash command strings are stripped from the text.
 
 `skill_graph_scan` embeds that text into a separate `vec_cmd_<dim>` table. The table carries no foreign key, and the skill vector table is left untouched. A row whose text hash has not changed is skipped. A stored row that the deriver no longer generates is pruned.
 

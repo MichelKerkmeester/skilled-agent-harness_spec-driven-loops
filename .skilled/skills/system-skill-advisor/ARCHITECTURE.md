@@ -8,7 +8,7 @@ trigger_phrases:
   - "advisor daemon"
   - "skill graph"
 importance_tier: "important"
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Architecture: system-skill-advisor
@@ -139,7 +139,7 @@ The daemon is composed of focused subsystems that share the IPC layer and the SQ
 
 ## 5. HOOK AND PLUGIN INTEGRATION
 
-The advisor ships prompt-submit adapters for Claude, Codex, Cursor, Devin and Pi, plus the OpenCode plugin at `.opencode/plugins/system-skill-advisor.js`. The native adapters and Pi run the same hook handler, which gates the prompt, calls the advisor CLI and renders with `renderAdvisorBrief`; the OpenCode plugin calls the CLI itself. When the handler has no brief, including after a timeout or a no-route result, it emits the directives fallback and lets the prompt proceed. The Claude adapter applies `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` to its advisor subprocess. When the operator leaves it unset, the Claude shim sets 2,200 ms for the hook under its own 2,500 ms kill so the fallback prints in time. Pi runs the handler in-process and races it against the budget plus 300 ms. The hook's request sends `includeCompiledRoute: true`, because the advisor derives a recommendation's slash command from the compiled route. The hook keeps that `command` field and reads nothing from the route itself. The OpenCode plugin does not send the option and gets the default of true. The plugin appends the brief to the system prompt and exposes the advisor status tool.
+The advisor ships prompt-submit adapters for Claude, Codex, Cursor, Devin, DSH and Pi, plus the OpenCode plugin at `.opencode/plugins/system-skill-advisor.js`. The DSH adapter at `hooks/dsh/prompt-advisor.mjs` runs the Claude handler from `runtime/dist/hooks/claude/user-prompt-submit.js`. The native adapters and Pi run the same hook handler, which gates the prompt, calls the advisor CLI and renders with `renderAdvisorBrief`; the OpenCode plugin calls the CLI itself. When the handler has no brief, including after a timeout or a no-route result, it emits the directives fallback and lets the prompt proceed. The Claude adapter applies `SPECKIT_CLAUDE_HOOK_TIMEOUT_MS` to its advisor subprocess. When the operator leaves it unset, the Claude shim sets 2,200 ms for the hook under its own 2,500 ms kill so the fallback prints in time. Pi runs the handler in-process and races it against the budget plus 300 ms. The hook's request sends `includeCompiledRoute: true`, because the advisor derives a recommendation's slash command from the compiled route. The hook keeps that `command` field and reads nothing from the route itself. The OpenCode plugin does not send the option and gets the default of true. The plugin appends the brief to the system prompt and exposes the advisor status tool.
 
 ---
 

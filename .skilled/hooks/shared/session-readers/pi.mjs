@@ -17,6 +17,7 @@ import {
   guardSessionPath,
   homeDir,
   isSafeSessionId,
+  resolveInside,
   samePath,
 } from './identity.mjs';
 import {
@@ -229,9 +230,14 @@ function diskResult({ sessionId, projectDir, options }) {
   if (candidates.length > 1) return { ok: false, code: 'session_ambiguous' };
 
   const filePath = join(directory, candidates[0]);
+  const contained = resolveInside({ path: filePath, root });
+  if (!contained.ok) return contained;
+
   let header;
   try {
-    header = headerOf(filePath);
+    // The header is read from the path the containment check resolved, so a
+    // link out of the store is refused before any byte of it is read.
+    header = headerOf(contained.path);
   } catch {
     return { ok: false, code: 'store_unreadable' };
   }
@@ -244,7 +250,7 @@ function diskResult({ sessionId, projectDir, options }) {
   }
 
   const guard = guardSessionPath({
-    path: filePath,
+    path: contained.path,
     root,
     sessionId,
     recordedId: header.id,
@@ -253,7 +259,9 @@ function diskResult({ sessionId, projectDir, options }) {
 
   let raw;
   try {
-    raw = readFileSync(filePath, 'utf8');
+    // The file read is the path the containment check resolved, so a path
+    // swapped after the check is not followed.
+    raw = readFileSync(guard.path, 'utf8');
   } catch {
     return { ok: false, code: 'store_unreadable' };
   }

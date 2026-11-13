@@ -25,6 +25,7 @@ The six decision-capture sweeps keep their own inline readers and remain the wri
 
 - **Exact id only.** A caller names a runtime and one session id. No reader guesses the newest session or lists a store.
 - **Read-only.** Files are read and SQLite stores are opened with read-only flags. The side-effect suite checks that no read changes a store's bytes or modification time.
+- **Contained open.** A reader resolves its store path against the runtime's root before opening it, and opens the path its containment check resolved, so a path swapped after the check is not followed.
 - **One envelope.** `readSession` returns `{ ok: true, source, items }` or `{ ok: false, code }`. It never throws across the boundary and never returns a partial list.
 - **Capability is the caller's gate.** `index.mjs` exports `capabilities`, one row per runtime with its `status`, locator kind and store root, plus a `reason` when the runtime is gated. The dispatcher does not consult it. The compaction hooks and the lookup CLI check that a runtime is `ready` before they offer or read history.
 
@@ -33,7 +34,7 @@ The six decision-capture sweeps keep their own inline readers and remain the wri
 - Claude's `injected` source is `hook_additional_context`, one entry per hook context attachment.
 - Pi's `injected` source is the entry's custom type, such as `session-start-context`, or `custom_message` when it carries none.
 - Devin's `injected` source is `system` for a harness node and `unflagged-user` for a user node the harness wrote. The transcript fallback uses the step's own source.
-- DSH's `injected` source is the event's source kind, such as `repo-guards`, or `unknown` when it names none.
+- DSH's `injected` source is the event's source kind, such as `repo-guards`, or `unknown` when it names none. A `user/message` with no source stays injected and never becomes a record.
 
 Failure codes:
 
@@ -44,7 +45,7 @@ Failure codes:
 | `session_not_found` | No store record matches the id |
 | `session_mismatch` | A record was found, but its recorded id or path does not match |
 | `session_ambiguous` | More than one record claims the id |
-| `store_unreadable` | The store could not be read or projected |
+| `store_unreadable` | The store could not be read or projected. For Devin, an open or projection failure falls back to the transcript first, so the code means the transcript failed too |
 
 ---
 

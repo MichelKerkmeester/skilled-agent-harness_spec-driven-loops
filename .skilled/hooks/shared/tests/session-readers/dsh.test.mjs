@@ -62,6 +62,34 @@ test('an injected notice is returned apart from the records', async () => {
   });
 });
 
+// A message that names no source cannot be proven operator-written, so the
+// reader fails closed: the text is kept as an injected notice and never becomes
+// a record the session history reports as the operator's.
+test('an event with no source is injected as unknown', async () => {
+  await withTempAsync('dsh-unsourced', async (root) => {
+    const projectDir = join(root, 'project');
+    mkdirSync(projectDir, { recursive: true });
+    const fixture = dshSession({ root, projectDir });
+    appendFileSync(fixture.filePath, `${JSON.stringify({
+      type: 'user/message',
+      seq: 5,
+      data: {
+        role: 'user',
+        id: 'dsh-unsourced-1',
+        content: [{ type: 'text', text: 'notice' }],
+      },
+    })}\n`);
+
+    const result = await loadDshSession({ sessionId: SESSION, ...fixture.options });
+    assert.equal(result.ok, true);
+    assert.deepEqual(result.injected, [{ source: 'unknown', text: 'notice' }]);
+    assert.equal(
+      result.records.some((record) => record.content.some((block) => block.text === 'notice')),
+      false,
+    );
+  });
+});
+
 test('a session path outside the store is refused without reading it', async () => {
   await withTempAsync('dsh-outside', async (root) => {
     const projectDir = join(root, 'project');

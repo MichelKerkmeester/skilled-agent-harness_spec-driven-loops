@@ -91,10 +91,12 @@ describe('command routing slice', () => {
   it('matches the captured baseline row by row', () => {
     // Corpus ids come first because a prompt added to the corpus but never
     // captured is absent from both sides and would be invisible to a comparison
-    // of the two row maps alone.
+    // of the two row maps alone. A holdout id is left out on both sides: its
+    // outcome is withheld from publication, so it has no row to compare.
+    const holdoutIds = new Set(corpus.filter((row) => row.split === 'holdout').map((row) => row.id));
     const ids = [
       ...new Set([...corpus.map((row) => row.id), ...Object.keys(baseline.rows), ...Object.keys(live.rows)]),
-    ];
+    ].filter((id) => !holdoutIds.has(id));
     const drifted: string[] = [];
     for (const id of ids) {
       const baselineJson = rowJson(baseline.rows, id);
@@ -105,6 +107,33 @@ describe('command routing slice', () => {
       drifted,
       `command routing rows drifted from the committed baseline; re-capture with \`${RECAPTURE}\` when the change is intended`,
     ).toEqual([]);
+  });
+
+  it('publishes no holdout row', () => {
+    // The split exists to keep a holdout prompt's outcome unseen, so the
+    // published maps may carry its counts but never the row they were counted
+    // from.
+    const holdoutIds = new Set(corpus.filter((row) => row.split === 'holdout').map((row) => row.id));
+    // An empty set would make the check pass on a corpus that no longer marks
+    // its holdout rows.
+    expect(
+      holdoutIds.size,
+      'the corpus marks no holdout row, so this check would pass without testing anything',
+    ).toBeGreaterThan(0);
+    const attached = baseline.attachedMetrics as {
+      readonly attachedRows: Readonly<Record<string, string>>;
+      readonly typedRows: Readonly<Record<string, unknown>>;
+    };
+    const published = [
+      ...new Set(
+        [
+          ...Object.keys(baseline.rows),
+          ...Object.keys(attached.attachedRows),
+          ...Object.keys(attached.typedRows),
+        ].filter((id) => holdoutIds.has(id)),
+      ),
+    ];
+    expect(published, `the baseline publishes a per-row outcome for ${published.length} holdout ids`).toEqual([]);
   });
 
   it('matches the captured totals', () => {

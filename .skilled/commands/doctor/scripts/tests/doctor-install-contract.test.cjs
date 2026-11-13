@@ -230,6 +230,13 @@ test('the presentation prints writing commands for the operator and closes on th
   assert.ok(PRESENTATION.includes(`\n${SAVE_CAVEAT}\n`), SAVE_CAVEAT);
 });
 
+test('the presentation and the workflow name the accepted runtimes instead of a count', () => {
+  assert.doesNotMatch(PRESENTATION, /outside the seven/);
+  assert.ok(PRESENTATION.includes('outside claude, opencode, codex, cursor, devin and pi or the ones already there'));
+  assert.ok(PRESENTATION.includes('DSH is not offered, because the link manifest has no DSH row.'));
+  assert.match(WORKFLOW.inputs.runtimes, /DSH is not offered/);
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 4. THE READ-ONLY WORKFLOW
 // ─────────────────────────────────────────────────────────────────────────────

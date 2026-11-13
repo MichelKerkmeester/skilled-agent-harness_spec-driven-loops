@@ -66,4 +66,7 @@ execution:
 output: |
   STATUS=OK when the engine exits 0. Show the check report through the presentation contract.
   STATUS=WARN when the engine exits 1. Show the check report through the presentation contract.
+  STATUS=WARN when the engine exits 0 and the hook-wiring check exits 1. Show each hook-missing line and the repair the step names.
   STATUS=FAIL when the engine exits 2 or cannot run. Name the accepted invocation (/doctor:symlink check --root <dir> [flags]) and quote the engine message.
+  STATUS=FAIL when the hook-wiring check exits 2. Quote its message.
+  When the engine and the hook-wiring check end on different statuses, the worse one wins: FAIL over WARN over OK.

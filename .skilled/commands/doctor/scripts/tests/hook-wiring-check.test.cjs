@@ -57,7 +57,7 @@ test('passes a runtime whose prompt entry is wired', (t) => {
   const f = fixture(t);
   writeClaudeSettings(f.root, {
     UserPromptSubmit: [{
-      hooks: [{ type: 'command', command: `node ${CLAUDE_MARKER}` }],
+      hooks: [{ type: 'command', command: `bash -c 'cd "$PWD" && node ${CLAUDE_MARKER}'` }],
     }],
   });
   const text = f.run();
@@ -66,6 +66,70 @@ test('passes a runtime whose prompt entry is wired', (t) => {
   const json = f.run('--json');
   assert.equal(json.code, 0);
   assert.equal(JSON.parse(json.out).checks.find((check) => check.runtime === 'claude').status, 'ok');
+});
+
+test('passes a prompt entry that starts node on the script path', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{
+      hooks: [{ type: 'command', command: `node ${CLAUDE_MARKER}` }],
+    }],
+  });
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok claude');
+});
+
+test('passes a prompt entry that starts node by its absolute path', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{
+      hooks: [{ type: 'command', command: `/opt/homebrew/bin/node ${CLAUDE_MARKER}` }],
+    }],
+  });
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok claude');
+});
+
+test('names a runtime whose entry only names node as an argument', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{
+      hooks: [{ type: 'command', command: `echo node ${CLAUDE_MARKER}` }],
+    }],
+  });
+  const result = f.run();
+  assert.equal(result.code, 1);
+  assert.match(result.out, /^hook-missing claude \.claude\/settings\.json$/m);
+});
+
+test('names a runtime whose entry only echoes the script path', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{
+      hooks: [{ type: 'command', command: 'echo hooks/claude/user-prompt-submit.js' }],
+    }],
+  });
+  const result = f.run();
+  assert.equal(result.code, 1);
+  assert.match(result.out, /^hook-missing claude \.claude\/settings\.json$/m);
+});
+
+test('names a runtime whose entry only describes the script', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{
+      hooks: [{
+        type: 'command',
+        command: 'node some-other-hook.js',
+        description: 'hooks/claude/user-prompt-submit.js',
+      }],
+    }],
+  });
+  const result = f.run();
+  assert.equal(result.code, 1);
+  assert.match(result.out, /^hook-missing claude \.claude\/settings\.json$/m);
 });
 
 test('skips a runtime whose folder is absent', (t) => {

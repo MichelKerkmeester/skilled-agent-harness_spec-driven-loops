@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review remediation",
+      "phase 14 review remediation",
+      "review remediation plan",
+      "review remediation tasks",
+      "review remediation acceptance criteria",
+      "review remediation implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "remediation",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "write",
+      "throws",
+      "inside"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      "scratch/after.txt",
+      "scratch/repro-after.txt",
+      "scratch/arena-smoke.txt",
+      "scratch/boundaries.txt",
+      ".skilled/commands/doctor/setup.md",
+      "scratch/before.txt",
+      ".skilled/commands/doctor/scripts/agents-md-embed.cjs",
+      ".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml",
+      ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+      ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs",
+      ".skilled/commands/doctor/assets/doctor-setup.yaml",
+      ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
+      ".skilled/skills/system-skill-advisor/README.md",
+      "scratch/repro-before.txt",
+      ".codex/hooks.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "repro-after.txt",
+        "kind": "file",
+        "path": "scratch/repro-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "arena-smoke.txt",
+        "kind": "file",
+        "path": "scratch/arena-smoke.txt",
+        "source": "derived"
+      },
+      {
+        "name": "boundaries.txt",
+        "kind": "file",
+        "path": "scratch/boundaries.txt",
+        "source": "derived"
+      },
+      {
+        "name": "setup.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/setup.md",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-embed.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/agents-md-embed.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-agents-md-embed.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-agents-md-embed.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "agents-md-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "codex-hook-approval-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-setup.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-install-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "repro-before.txt",
+        "kind": "file",
+        "path": "scratch/repro-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "hooks.json",
+        "kind": "config",
+        "path": ".codex/hooks.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A write that throws inside an embed apply escapes `main`, prints no backup or undo line and leaves `AGENTS.md` written beside the old `CLAUDE.md`, while the workflow reads the exit as \"nothing was written\"",
+    "created_at": "2026-11-13T07:46:59Z",
+    "last_save_at": "2026-11-13T09:52:52.679Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:90e16d9ffe067c6af9c8f0bbef69606ed3463d57adc5b4e4ba01df3c83f4c7d6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "5f0ba0f019273fdb64b92791cad0f91d9674dd3937fb485453ad136fb955e0f9",
+      "plan.md": "f078a0eca162156063cf6e6eabf05e9ada543da665b5e215c69589d0c26552ce",
+      "tasks.md": "14490677a2951ca9d2f15f363a82610db5316b255d35df0dbbe7d9643f33ec1d",
+      "implementation-summary.md": "f53f93072c9627bdfac65199751edc96ef21595d07c7ddcedbd15d04a9928336"
+    },
+    "last_active_at": null
+  }
+}

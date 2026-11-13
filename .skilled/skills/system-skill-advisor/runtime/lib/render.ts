@@ -18,7 +18,7 @@ import {
   type DeliveryStateName,
   type DeliveryStateSignals,
 } from './policy-plan.js';
-import { commandRowFor } from './command-attach.js';
+import { COMMAND_ROWS, commandRowFor } from './command-attach.js';
 import { isAmbiguousTopTwo } from './scorer/ambiguity.js';
 import type { AdvisorRecommendation } from './subprocess.js';
 import type { AdvisorScoredRecommendation } from './scorer/types.js';
@@ -221,7 +221,9 @@ function policyWord(
 // fields stay authoritative and the generated row fills only what they omit, so a
 // caller that already resolved the command is never second-guessed.
 function commandLabel(recommendation: RenderableRecommendation, childSession: boolean): string | null {
-  const row = commandRowFor(recommendation.skill);
+  // A hub that withheld its mode must not regress to the command its generated
+  // row names, because that command is the mode the reader has not chosen yet.
+  const row = recommendation.needsMode === true ? undefined : commandRowFor(recommendation.skill);
   const command = recommendation.command ?? row?.command;
   const owner = recommendation.ownerSkillId ?? row?.ownerSkillId ?? recommendation.skill;
   const policy = recommendation.policy ?? row?.policy;
@@ -230,7 +232,12 @@ function commandLabel(recommendation: RenderableRecommendation, childSession: bo
   if (!commandPart || !ownerPart) {
     return null;
   }
-  const policyPart = policyWord(policy, row?.mutating, childSession);
+  // The class belongs to the command printed, not to the skill that carried it,
+  // so a recommendation that names another command takes that command's class.
+  const mutating = row !== undefined && row.command === commandPart
+    ? row.mutating
+    : Object.values(COMMAND_ROWS).find((candidate) => candidate.command === commandPart)?.mutating;
+  const policyPart = policyWord(policy, mutating, childSession);
   return policyPart === null
     ? `${ownerPart} → ${commandPart}`
     : `${ownerPart} → ${commandPart} (${policyPart})`;
@@ -536,10 +543,12 @@ export function renderAdvisorBrief(
     return null;
   }
 
+  // A recommendation that needs a mode is named by the skill that owns its row,
+  // because the row id is an internal key the reader cannot run.
   const topLabel = commandLabel(top, childSession)
     ?? (isDoctorBridgeId(top.skill)
       ? doctorCommandString(top.skill)
-      : sanitizeSkillLabel(metadataSkillLabel(result) ?? top.skill));
+      : sanitizeSkillLabel(metadataSkillLabel(result) ?? (top.needsMode === true ? commandRowFor(top.skill)?.ownerSkillId : undefined) ?? top.skill));
   if (!topLabel) {
     observeAdvisorPolicy(null, options);
     return null;
@@ -547,7 +556,7 @@ export function renderAdvisorBrief(
 
   // A hub that withheld its command because the prompt names no single mode says
   // so, so the reader asks for the mode instead of improvising one.
-  const headLabel = top.needsMode === true && top.command === undefined && commandRowFor(top.skill) === undefined
+  const headLabel = top.needsMode === true && top.command === undefined
     ? `${topLabel} (needs a mode)`
     : topLabel;
 

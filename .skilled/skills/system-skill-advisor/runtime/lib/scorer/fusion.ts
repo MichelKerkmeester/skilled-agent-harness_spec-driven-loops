@@ -17,7 +17,7 @@ import {
   speckitMetrics,
 } from '../metrics.js';
 import { normalize } from '../affordance-normalizer.js';
-import { COMMAND_ROWS, TRACKED_COMMANDS, typedCommandIn } from '../command-attach.js';
+import { COMMAND_ROWS, NO_EDIT_REQUEST, TRACKED_COMMANDS, typedCommandIn } from '../command-attach.js';
 import { scoreDerivedLane } from './lanes/derived.js';
 import { scoreExplicitLane } from './lanes/explicit.js';
 import { scoreGraphCausalLaneSplit } from './lanes/graph-causal.js';
@@ -672,10 +672,6 @@ function hasExplicitWorkflowSignal(contributions: readonly LaneContribution[], s
   ));
 }
 
-// Wording that asks for an answer and rules out a change. One pattern serves
-// every gate that has to honour it, so a new gate cannot drift from the first.
-const NO_EDIT_REQUEST = /\b(no edits?|without making changes|do not (change|edit|modify|touch)|read-only only|no edits yet|only; do not|just show|just list)\b/;
-
 export function readOnlyRouteAllowed(promptLower: string, skill: SkillProjection): boolean {
   const skillId = skill.id;
   if (NO_EDIT_REQUEST.test(promptLower)) {
@@ -754,8 +750,6 @@ function primaryIntentBonus(
   recommendation: AdvisorScoredRecommendation,
 ): number {
   const R = SCORING_CALIBRATION.routing;
-  if (/\bsemantic (code )?search\b/.test(promptLower)) {
-  }
   if (/\bdeep[- ]review\b/.test(promptLower)) {
     if (recommendation.skill === 'sk-code') {
       return AUTHORS_CODE.test(promptLower) ? R.deepReviewCodeAuthoringSkCodeBonus : R.deepReviewSkCodeReviewPenalty;

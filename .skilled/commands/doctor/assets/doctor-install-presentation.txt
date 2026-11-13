@@ -75,7 +75,9 @@ The example carries all four answers so the shape of a full reply is visible. Ne
 | `embed` | step 2 stays | The repo keeps its own `AGENTS.md` and the shipped sections are refreshed into it |
 | `link` | step 1 gains `--link-instructions`, step 2 is dropped | `AGENTS.md`, `CLAUDE.md` and `REPO RULES.md` become links into the checkout |
 
-A runtime name outside the seven, a shape outside the three, or an instruction word outside the two is not guessed. Ask that one question again with the accepted values. When the engine refuses a root, show its `ERROR:` line as it printed and ask question 1 again.
+A runtime name outside claude, opencode, codex, cursor, devin and pi or the ones already there, a shape outside the three, or an instruction word outside the two is not guessed. Ask that one question again with the accepted values. When the engine refuses a root, show its `ERROR:` line as it printed and ask question 1 again.
+
+DSH is not offered, because the link manifest has no DSH row.
 
 ## 5. The Symlink Check
 

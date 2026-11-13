@@ -13,6 +13,7 @@ import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { ADVISOR_RUNTIME_VALUES } from '../../lib/advisor-runtime-values.js';
 import { findAdvisorWorkspaceRoot } from '../../lib/utils/workspace-root.js';
+import { capabilities } from '../../../../../hooks/shared/session-readers/index.mjs';
 
 // ───────────────────────────────────────────────────────────────
 // 1. COMPARISON
@@ -124,5 +125,12 @@ describe('advisor runtime list parity', () => {
     expect(gaps.missingFromIndex).toEqual([]);
     expect(gaps.missingFromTable).toContain('aider');
     expect(gaps.missingFromEnum).toContain('aider');
+  });
+
+  // The readers' table is a fourth hand-spelled runtime list, and no compiler
+  // ties it to the enum either. It agrees today and fails the day one list
+  // gains a runtime alone.
+  it('names the same runtimes as the session readers table', () => {
+    expect(Object.keys(capabilities).sort()).toEqual([...ADVISOR_RUNTIME_VALUES].sort());
   });
 });

@@ -40,7 +40,7 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────
 
-import { existsSync, lstatSync, lutimesSync, mkdirSync, readdirSync, rmSync, utimesSync } from 'node:fs';
+import { existsSync, lstatSync, lutimesSync, mkdirSync, readdirSync, rmSync, utimesSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -57,6 +57,8 @@ const USAGE = `usage: node ${SCRIPT_NAME} --source <repo root> --dest <dir>`;
 // A filesystem monitor that decides a path is unchanged makes the clone and the
 // clean-tree check disagree about what the checkout holds.
 const GIT_PREFIX = ['-c', 'core.fsmonitor=false'];
+
+const MARK = 'skilled-behaviour-arena';
 
 // The two ignored trees a build writes and a clone never carries.
 const BUILD_DIR_NAMES = new Set(['dist', 'node_modules']);
@@ -306,6 +308,10 @@ function buildArena(source, dest, head) {
     if (basename(relPath) === 'dist') stampBuildTree(destPath);
   }
   assertHead(dest, head);
+  // The runner refuses a live arm in a checkout without this file, because only a
+  // checkout built here has no remote, no outer repository and no dotenv file in
+  // its copied build trees.
+  writeFileSync(join(dest, '.git', MARK), `${head}\n`);
   return copied;
 }
 

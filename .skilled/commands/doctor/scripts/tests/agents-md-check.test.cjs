@@ -140,6 +140,55 @@ function writeManifest(t, patch) {
   return target;
 }
 
+// The router a fixture case reads, built from the rows the manifest ships so the case
+// stays a statement about the template and not a copy of it. A router whose trigger row
+// or index row is absent would make A11 report a missing row rather than the shape a
+// case plants, which is the one thing every router case below needs to keep apart.
+function routerRow(cells) {
+  return `| ${cells.join(' | ')} |`;
+}
+
+function completeRouter() {
+  const shipped = (manifest.derived && manifest.derived.repo_rules) || { trigger_rows: [], index_rows: [] };
+  return [
+    '# REPO RULES',
+    '',
+    '---',
+    '',
+    '## 1. HOW TO USE THIS',
+    '',
+    'Read the rule the action fires.',
+    '',
+    '---',
+    '',
+    '## 2. TRIGGER TABLE',
+    '',
+    routerRow(['You are about to…', 'Load', 'It settles']),
+    '|---|---|---|',
+    ...shipped.trigger_rows.map(routerRow),
+    '',
+    '---',
+    '',
+    '## 3. INDEX',
+    '',
+    routerRow(['Rule', 'Summary']),
+    '|---|---|',
+    ...shipped.index_rows.map(routerRow),
+    '',
+  ].join('\n');
+}
+
+// A checker stand-in that prints the one line A11 carries through. The cases below ask
+// what the row says about the document it read, and a stub keeps the answer from
+// depending on a rule corpus the fixture does not carry.
+function writeRouterChecker(t) {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'agents-md-check-router-tool-'));
+  t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
+  const target = path.join(dir, 'check-repo-rules.cjs');
+  fs.writeFileSync(target, "console.log('[repo-rules-check] RESULT: PASSED (11/11 checks)');\n", 'utf8');
+  return target;
+}
+
 function treeDigest(dir) {
   const hash = crypto.createHash('sha256');
   for (const file of listFiles(dir).sort()) {
@@ -475,6 +524,39 @@ test('A10 reports a pointer-only CLAUDE.md and an absent .codex/AGENTS.md withou
   assert.equal(codex.state, 'PASS');
 });
 
+// A pointer names the root document on one line and carries no shipped line of its own.
+// Its other lines are prose the author wrote, so a verdict claiming every line names the
+// root would describe a shape the file never had to hold.
+test('A10 describes a pointer by what it does, not by what every line holds', (t) => {
+  const fixture = buildFixture(t, 'pure');
+  fs.writeFileSync(
+    path.join(fixture.dir, 'CLAUDE.md'),
+    '@AGENTS.md\n\nUse the house style.\n',
+    'utf8',
+  );
+  const report = buildReport({ root: fixture.dir });
+
+  const copies = report.rows.find((row) => row.id === 'A10');
+  const claude = copies.entries.find((entry) => entry.path === 'CLAUDE.md');
+  assert.equal(claude.kind, 'pointer');
+  assert.equal(claude.detail, 'names AGENTS.md and carries no shipped line');
+});
+
+// A path the checklist expects to be absent is one no runtime should load. A symlink is
+// still a file at that path, so the root document reaches the runtime a second time under
+// a name the checklist says nothing belongs at, which reads the same as a hand-kept copy.
+test('a symlinked copy where the checklist expects no file is a finding', (t) => {
+  const fixture = buildFixture(t, 'pure');
+  fs.mkdirSync(path.join(fixture.dir, '.codex'));
+  fs.symlinkSync('../AGENTS.md', path.join(fixture.dir, '.codex/AGENTS.md'));
+
+  const report = buildReport({ root: fixture.dir });
+  const copies = report.rows.find((row) => row.id === 'A10');
+  const codex = copies.entries.find((entry) => entry.path === '.codex/AGENTS.md');
+  assert.equal(codex.state, 'FINDING', 'a link at an absent-only path is not a pass');
+  assert.equal(codex.kind, 'symlink where none belongs');
+});
+
 // Claude Code reads only CLAUDE.md, so a tree without one leaves Claude with no route to
 // the root document. That is a missing route, not a copy that is wrong, so the row stays a
 // pass and the line still prints what Claude never loads.
@@ -492,6 +574,23 @@ test('a pure tree with no CLAUDE.md reports a missing pointer and keeps A10 a pa
   assert.equal(copies.state, 'PASS');
   assert.ok(copies.lines.some((line) => line.startsWith('CLAUDE.md: pointer missing')),
     `the missing pointer is printed, not only recorded: ${JSON.stringify(copies.lines)}`);
+});
+
+// A missing pointer is a route the runtime does not have, not a copy that was checked.
+// Counting it among the copies as expected reports a full set from a tree that leaves
+// Claude with no route to the root document, so the count leaves it out and names it after.
+test('A10 leaves a missing pointer out of the count and names it after the copies', (t) => {
+  const fixture = buildFixture(t, 'pure');
+  assert.equal(fs.existsSync(path.join(fixture.dir, 'CLAUDE.md')), false, 'the composed template carries no CLAUDE.md');
+  const mirrors = spawnSync(process.execPath, [POINTER_SYNC, '--root', fixture.dir], { encoding: 'utf8' });
+  assert.equal(mirrors.status, 0, `the pointer sync completes the fixture's mirrors: ${mirrors.stderr}`);
+
+  const report = buildReport({ root: fixture.dir });
+  const copies = report.rows.find((row) => row.id === 'A10');
+  assert.ok(copies.detail.endsWith(', 1 pointer missing'),
+    `the detail names the missing pointer after the count: ${copies.detail}`);
+  assert.match(copies.detail, /^5\/6 copies as expected/u,
+    `the count leaves the CLAUDE.md entry out: ${copies.detail}`);
 });
 
 // A copy whose own tool is missing was not checked. Recorded only in the JSON entries, it
@@ -635,6 +734,32 @@ test('A11 embeds the repo-rules checker\'s own summary line instead of re-derivi
   const row = report.rows.find((entry) => entry.id === 'A11');
   assert.equal(row.state, 'PASS');
   assert.match(row.detail, /\[repo-rules-check\] RESULT: PASSED \(\d+\/\d+ checks\)/);
+});
+
+// A table row of another width is a defect in the document a reader has to be sent to,
+// and the rule it names still arrives as a row. Dropping it above the row comparison
+// reports the one thing the document does not have, a missing row, and hides the reason.
+test('A11 reports a router row of the wrong width as malformed', (t) => {
+  const fixture = buildFixture(t, 'pure');
+  const router = completeRouter();
+  const rows = router.split('\n');
+  const at = rows.findIndex((line) => line.startsWith('| Add a file, module, class'));
+  assert.notEqual(at, -1, 'the shipped prevent-overengineering row is in the trigger table');
+  const cells = rows[at].replace(/^\|/u, '').replace(/\|$/u, '').split('|').map((cell) => cell.trim());
+  rows[at] = `| ${cells.slice(0, -1).join(' | ')} | a | b |`;
+  fs.writeFileSync(path.join(fixture.dir, 'REPO RULES.md'), rows.join('\n'), 'utf8');
+
+  const report = buildReport({
+    root: fixture.dir,
+    tools: { repoRules: writeRouterChecker(t) },
+  });
+  const routerRow = report.rows.find((entry) => entry.id === 'A11');
+  assert.equal(routerRow.state, 'FINDING', `a malformed row is a finding: ${JSON.stringify(routerRow.lines)}`);
+  const malformed = routerRow.lines.find((line) => line.startsWith('malformed trigger row at line '));
+  assert.ok(malformed, `A11 names the malformed row: ${JSON.stringify(routerRow.lines)}`);
+  assert.match(malformed, new RegExp(`^malformed trigger row at line ${at + 1}: 4 cells where the header has 3$`, 'u'));
+  assert.ok(!routerRow.lines.some((line) => line.includes('missing trigger row for prevent-overengineering.md')),
+    'the row still names its rule, so it is not reported missing');
 });
 
 test('A12 reports INFO outside the source repository and runs inside it', (t) => {

@@ -2,7 +2,7 @@
 // MODULE: Skill Advisor CLI Fallback Envelope Tests
 // ───────────────────────────────────────────────────────────────
 
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
   resultFromCliData,
@@ -11,6 +11,16 @@ import {
 import { renderAdvisorBrief } from '../../lib/render.js';
 
 describe('skill advisor CLI fallback envelope', () => {
+  // The expected heads are the interactive ones, so a run inside a dispatched
+  // child must not turn them into the child form.
+  beforeEach(() => {
+    vi.stubEnv('AI_SESSION_CHILD', '');
+  });
+
+  afterEach(() => {
+    vi.unstubAllEnvs();
+  });
+
   it('normalizes advisor fallback outcomes to the shared warm-fallback shape', () => {
     const skipped = skillAdvisorCliFallbackEnvelope({ status: 'skipped', reason: 'CLI_SOCKET_ABSENT', exitCode: 75 });
     const failed = skillAdvisorCliFallbackEnvelope({ status: 'fail_open', reason: 'CLI_EXIT_1', exitCode: 1 });

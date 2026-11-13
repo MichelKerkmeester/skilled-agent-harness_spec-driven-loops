@@ -34,7 +34,8 @@
 //
 // Usage: agents-md-embed.cjs <plan|apply|restore> [options]
 // Exit codes: 0 nothing to do or done, 1 the proof failed or the run was cancelled,
-//             2 a precondition failed or a path fell outside the allowlist
+//             2 a precondition failed or a path fell outside the allowlist,
+//             3 a write failed after the backup, and the run was undone or the restore said why not
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -115,7 +116,8 @@ const USAGE = [
   '  --dry-run                  print the plan and write nothing',
   '  --yes                      take the restore confirmation as given',
   'Exit codes: 0 nothing to do or done, 1 the proof failed or the run was cancelled,',
-  '            2 a precondition failed or a path fell outside the allowlist',
+  '            2 a precondition failed or a path fell outside the allowlist,',
+  '            3 a write failed after the backup, and the run was undone or the restore said why not',
 ].join('\n');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -648,7 +650,8 @@ function compose({ root, manifest, keepClaudeMd = false, createRouter = false })
   const claudePointer = `@${manifest.root_file}\n`;
   const rootPath = path.join(root, rootFile);
   // Writing through a link would change a file this repository does not own, and the backup
-  // could not put the link back.
+  // could not put the link back. The root document, the router and the Cursor mirror are the
+  // three paths a run may write, and each is refused when it is a link.
   if (isSymlink(rootPath)) {
     throw new PreconditionError(`${rootFile} is a symlink to ${fs.readlinkSync(rootPath)}; writing through it would change a file outside this repository`);
   }
@@ -812,6 +815,17 @@ function compose({ root, manifest, keepClaudeMd = false, createRouter = false })
     else if (fs.readFileSync(mirrorPath, 'utf8') !== mirrorText) mirrorAction = 'replace';
   } else if (mirrorExists) {
     mirrorAction = 'remove';
+  }
+  // The router and the mirror are both decided by now, so the same refusal covers the two
+  // paths the root-document check above could not see yet.
+  for (const target of [
+    { path: manifest.router_file, action: routerAction },
+    { path: MIRROR_FILE, action: mirrorAction },
+  ]) {
+    if (!['create', 'replace', 'remove'].includes(target.action)) continue;
+    const absolute = path.join(root, target.path);
+    if (!isSymlink(absolute)) continue;
+    throw new PreconditionError(`${target.path} is a symlink to ${fs.readlinkSync(absolute)}, and writing through it would change the file it points at`);
   }
   if (mirrorAction !== 'unchanged') {
     files.push({
@@ -1236,6 +1250,10 @@ function renderDropped(dropped) {
   return dropped.map((entry) => `dropped: ${entry.line} (part ${entry.part}, from ${entry.from}: ${entry.after} of ${entry.before} kept)`);
 }
 
+function renderForeign(foreign) {
+  return foreign.map((entry) => `foreign: ${entry.line} (outside the block and not a shipped line)`);
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 15. PLAN
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1260,9 +1278,15 @@ function commandPlan(options, output, hooks) {
 
   const plan = planFor(composition);
   for (const line of renderPlan(composition, plan)) output.log(line);
-  if (checked.dropped.length > 0) {
+  if (checked.dropped.length > 0 || checked.foreign.length > 0) {
     for (const line of renderDropped(checked.dropped)) output.warn(line);
-    output.warn(`${TAG} the composition drops ${checked.dropped.length} line(s), so it will not be offered for writing`);
+    for (const line of renderForeign(checked.foreign)) output.warn(line);
+    if (checked.dropped.length > 0) {
+      output.warn(`${TAG} the composition drops ${checked.dropped.length} line(s), so it will not be offered for writing`);
+    }
+    if (checked.foreign.length > 0) {
+      output.warn(`${TAG} the composition carries ${checked.foreign.length} line(s) outside the block that no shipped section carries, so it will not be offered for writing`);
+    }
     output.warn('STATUS=FAIL');
     return 1;
   }
@@ -1283,6 +1307,18 @@ function runTool(script, args) {
 
 function restoreFromBackup({ root, dir, output }) {
   const record = JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8'));
+  // A rollback that put a damaged copy back would replace the fault it exists to undo with
+  // one the run never made, so every entry is proved against the hash recorded beside it
+  // before the first path moves.
+  for (const entry of record.paths) {
+    assertWritable(root, entry.path);
+    if (!entry.existed) continue;
+    const source = path.join(dir, entry.backup);
+    if (!fs.existsSync(source) || sha256(fs.readFileSync(source, 'utf8')) !== entry.sha256) {
+      output.warn(`${TAG} ERROR: the backup copy of ${entry.path} does not match its recorded hash, so nothing was restored. The backup is kept at ${dir}`);
+      return null;
+    }
+  }
   let restored = 0;
   const deleted = new Set();
   for (const entry of record.paths) {
@@ -1338,9 +1374,15 @@ function commandApply(options, output, hooks) {
   // never reach a backup, let alone the tree.
   const checked = preflight(composition, manifest);
   composition.ledger.dropped = checked.dropped.length;
-  if (checked.dropped.length > 0) {
+  if (checked.dropped.length > 0 || checked.foreign.length > 0) {
     for (const line of renderDropped(checked.dropped)) output.warn(line);
-    output.warn(`${TAG} the composition drops ${checked.dropped.length} line(s); nothing was written`);
+    for (const line of renderForeign(checked.foreign)) output.warn(line);
+    if (checked.dropped.length > 0) {
+      output.warn(`${TAG} the composition drops ${checked.dropped.length} line(s); nothing was written`);
+    }
+    if (checked.foreign.length > 0) {
+      output.warn(`${TAG} the composition carries ${checked.foreign.length} line(s) outside the block that no shipped section carries; nothing was written`);
+    }
     output.warn('STATUS=FAIL');
     return 1;
   }
@@ -1362,15 +1404,39 @@ function commandApply(options, output, hooks) {
   output.log(`${TAG} apply on ${composition.root} (state: ${composition.state})`);
 
   const write = hooks.write || ((file, content) => fs.writeFileSync(file, content, 'utf8'));
-  for (const target of targets) {
-    if (target.file.action === 'remove') {
-      if (fs.existsSync(target.absolute)) fs.rmSync(target.absolute);
-      output.log(`removed ${target.file.path} (backed up first)`);
-      continue;
+  let writing = null;
+
+  // A write that throws partway through is neither a run that wrote nothing nor a finished
+  // run, because the targets before it already hold bytes and the failed one may hold a
+  // partial one. The backup exists by then, so the failure restores it and ends on an exit
+  // of its own rather than borrowing one the usage already spends on another meaning.
+  try {
+    for (const target of targets) {
+      writing = target.file.path;
+      if (target.file.action === 'remove') {
+        if (fs.existsSync(target.absolute)) fs.rmSync(target.absolute);
+        output.log(`removed ${target.file.path} (backed up first)`);
+        continue;
+      }
+      fs.mkdirSync(path.dirname(target.absolute), { recursive: true });
+      write(target.absolute, target.file.content);
+      output.log(`wrote ${target.file.path}`);
     }
-    fs.mkdirSync(path.dirname(target.absolute), { recursive: true });
-    write(target.absolute, target.file.content);
-    output.log(`wrote ${target.file.path}`);
+  } catch (error) {
+    // The backup is the only copy of every target as the plan found it, so a throw here is
+    // undone from it rather than reported as a run that never started.
+    output.warn(`${TAG} ERROR: writing ${writing} failed: ${error.message}`);
+    // The backup and undo lines are the operator's only way back once the restore itself
+    // fails, so a second fault must not swallow them.
+    try {
+      restoreFromBackup({ root: options.root, dir: plan.dir, output });
+    } catch (restoreError) {
+      output.warn(`${TAG} ERROR: the restore failed: ${restoreError.message}`);
+    }
+    output.log(`backup: ${plan.dir}`);
+    output.log(`undo: ${undoCommand(plan.dir, options.root)}`);
+    output.warn('STATUS=FAIL');
+    return 3;
   }
 
   // The pointer block belongs to its generator, and the router verdict to its checker.
@@ -1392,10 +1458,25 @@ function commandApply(options, output, hooks) {
   const after = preservationCheck(composition.oldText, onDisk, manifest, { removed: composition.removedCopies });
   const report = buildReport({ root: options.root, manifestPath: MANIFEST_PATH });
 
-  if (after.dropped.length > 0) {
+  if (after.dropped.length > 0 || after.foreign.length > 0) {
     for (const line of renderDropped(after.dropped)) output.warn(line);
-    restoreFromBackup({ root: options.root, dir: plan.dir, output });
-    output.warn(`${TAG} the write dropped ${after.dropped.length} line(s), so the run was undone; the backup is kept at ${plan.dir}`);
+    for (const line of renderForeign(after.foreign)) output.warn(line);
+    const restored = restoreFromBackup({ root: options.root, dir: plan.dir, output });
+    if (restored === null) {
+      if (after.dropped.length > 0) {
+        output.warn(`${TAG} the write dropped ${after.dropped.length} line(s) and the backup could not be restored, so the tree is as the write left it`);
+      }
+      if (after.foreign.length > 0) {
+        output.warn(`${TAG} the write left ${after.foreign.length} line(s) outside the block that no shipped section carries and the backup could not be restored, so the tree is as the write left it`);
+      }
+    } else {
+      if (after.dropped.length > 0) {
+        output.warn(`${TAG} the write dropped ${after.dropped.length} line(s), so the run was undone; the backup is kept at ${plan.dir}`);
+      }
+      if (after.foreign.length > 0) {
+        output.warn(`${TAG} the write left ${after.foreign.length} line(s) outside the block that no shipped section carries, so the run was undone; the backup is kept at ${plan.dir}`);
+      }
+    }
     output.warn('STATUS=FAIL');
     return 1;
   }

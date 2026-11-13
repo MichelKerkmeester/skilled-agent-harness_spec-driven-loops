@@ -45,7 +45,7 @@
 //     --out <run-log> [--arm <arm>] [--fixture <dir>] [--dry-run]
 //   node run-command-behaviour.mjs --backfill <run-log> --out <new-log> [--brief-only]
 
-import { appendFileSync, mkdirSync, readdirSync, readFileSync, realpathSync } from 'node:fs';
+import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, realpathSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { homedir } from 'node:os';
 import { randomUUID } from 'node:crypto';
@@ -487,6 +487,10 @@ function locatorFor(runtime, sessionId, reportedId) {
 // lie, and the restore step trusts that snapshot.
 const GIT_PREFIX = ['-c', 'core.fsmonitor=false'];
 
+// The arena builder writes this file into the checkout it made. Its absence is the
+// proof that a root is an operator's working tree rather than a disposable arena.
+const MARK = 'skilled-behaviour-arena';
+
 function git(args) {
   const result = spawnSync('git', [...GIT_PREFIX, ...args], {
     cwd: REPO_ROOT,
@@ -554,13 +558,29 @@ function gitSnapshot() {
   };
 }
 
-// A remote is the one piece of git state a turn could use to reach outside the
-// checkout, so its presence is read rather than the branch's tracking state.
-function remoteNames() {
-  return gitText(['remote'])
+// A remote is the one way a turn reaches outside the checkout, so a live arm
+// refuses to start when one is listed. The builder's marker then proves the root
+// came from the arena builder, because only that checkout has no remote, no outer
+// repository and no dotenv file in its copied build trees.
+export function liveArmRefusal(root) {
+  const gitAt = (args) => {
+    const result = spawnSync('git', ['-C', root, ...GIT_PREFIX, ...args], {
+      encoding: 'utf8',
+    });
+    if (result.error) throw result.error;
+    if (result.status !== 0) {
+      throw new Error(`git -C ${root} ${args.join(' ')} failed: ${(result.stderr ?? '').trim()}`);
+    }
+    return result.stdout;
+  };
+  const remotes = gitAt(['remote'])
     .split('\n')
     .map((name) => name.trim())
     .filter((name) => name !== '');
+  if (remotes.length > 0) return { ok: false, code: 'remote_present', remotes };
+  const marker = resolve(root, gitAt(['rev-parse', '--git-path', MARK]).trim());
+  if (!existsSync(marker)) return { ok: false, code: 'arena_unprepared', marker };
+  return null;
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -673,29 +693,41 @@ const G2_SET = 'g2';
 const G2_FIXTURE_DIRNAME = 'g2-fixture';
 const FIXTURE_TOKEN = '{fixture}';
 
-const G2_ROWS = Object.freeze([
+export const G2_ROWS = Object.freeze([
   {
     id: 'g2-deep-research-ask',
+    command: '/deep:research',
+    variant: 'ask',
     prompt: 'look into how other teams harden a parse function like the one under {fixture} and write up what you find, one iteration is enough',
   },
   {
     id: 'g2-deep-research-typed',
+    command: '/deep:research',
+    variant: 'typed',
     prompt: '/deep:research how other teams harden a parse function like the one under {fixture} :auto --max-iterations=1',
   },
   {
     id: 'g2-deep-review-ask',
+    command: '/deep:review',
+    variant: 'ask',
     prompt: 'review the parser under {fixture} for correctness gaps and write up what you find, one iteration is enough',
   },
   {
     id: 'g2-deep-review-typed',
+    command: '/deep:review',
+    variant: 'typed',
     prompt: '/deep:review the parser under {fixture} for correctness gaps :auto --max-iterations=1',
   },
   {
     id: 'g2-speckit-complete-ask',
+    command: '/speckit:complete',
+    variant: 'ask',
     prompt: 'finish the work described in {fixture}/spec.md end to end and write up what you changed',
   },
   {
     id: 'g2-speckit-complete-typed',
+    command: '/speckit:complete',
+    variant: 'typed',
     prompt: '/speckit:complete {fixture}/spec.md :auto',
   },
 ]);
@@ -755,17 +787,54 @@ function capForRow(rowId) {
 // One turn
 // ───────────────────────────────────────────────────────────────
 
-// A dispatched worker's marker makes a CLI answer as a child session, and a child
-// session is not the chat start an arm measures. The rest of the environment stays,
-// so each CLI finds its own home, account and route.
+// A turn runs with bypassed permissions, so it gets only what a runtime needs to
+// start and authenticate, and every other credential in the operator's shell stays
+// out. The shell basics and each runtime's own prefixes are enough for a CLI to
+// find its home, account and route, while a dispatched worker's marker is not
+// passed at all, because a CLI that answers as a child session is not the chat
+// start an arm measures.
 //
-// The network credentials are the exception, because a turn that reaches a forge
-// with the operator's identity is a side effect no transcript can undo. The token
-// variables go, the GitHub CLI is pointed at an empty folder beside the run log
-// rather than the operator's authenticated one, and an empty credential helper
-// replaces whatever a global git config would have offered. A missing credential
-// then fails at once instead of waiting on a terminal nobody is sitting at.
-const GITHUB_TOKEN_VARS = Object.freeze(['GH_TOKEN', 'GITHUB_TOKEN', 'GH_ENTERPRISE_TOKEN']);
+// The network credentials stay out of the allowlist for the same reason: a turn
+// that reaches a forge with the operator's identity is a side effect no transcript
+// can undo. The GitHub CLI is pointed at an empty folder beside the run log rather
+// than the operator's authenticated one, and an empty credential helper replaces
+// whatever a global git config would have offered. A missing credential then fails
+// at once instead of waiting on a terminal nobody is sitting at.
+const CHILD_ENV_NAMES = Object.freeze([
+  'PATH',
+  'HOME',
+  'USER',
+  'LOGNAME',
+  'SHELL',
+  'TMPDIR',
+  'TMP',
+  'TEMP',
+  'LANG',
+  'TERM',
+  'TERM_PROGRAM',
+  'COLORTERM',
+  'NO_COLOR',
+]);
+
+const CHILD_ENV_PREFIXES = Object.freeze([
+  'LC_',
+  'XDG_',
+  'ANTHROPIC_',
+  'CLAUDE_',
+  'CODEX_',
+  'OPENAI_',
+  'OPENCODE_',
+  'LLMGATEWAY_',
+  'PI_',
+  'DEVIN_',
+  'DSH_',
+  'DEEPSEEK_',
+  'OLLAMA_',
+  'SPECKIT_',
+  'SKILL_ADVISOR_',
+  'SYSTEM_SPEC_GATE_',
+  'MK_',
+]);
 
 const GIT_CREDENTIAL_OVERRIDES = Object.freeze({
   GIT_CONFIG_COUNT: '1',
@@ -779,10 +848,15 @@ function ghConfigDir(outPath) {
   return join(dirname(outPath), 'gh-config-empty');
 }
 
-function childEnv(ghConfig) {
-  const env = { ...process.env };
-  delete env.AI_SESSION_CHILD;
-  for (const name of GITHUB_TOKEN_VARS) delete env[name];
+export function childEnv(ghConfig) {
+  const env = {};
+  for (const [name, value] of Object.entries(process.env)) {
+    if (value === undefined) continue;
+    const keep =
+      CHILD_ENV_NAMES.includes(name) ||
+      CHILD_ENV_PREFIXES.some((prefix) => name.startsWith(prefix));
+    if (keep) env[name] = value;
+  }
   env.GH_CONFIG_DIR = ghConfig;
   env.GIT_TERMINAL_PROMPT = '0';
   Object.assign(env, GIT_CREDENTIAL_OVERRIDES);
@@ -980,15 +1054,13 @@ function writeArgv(runtimeName) {
 async function runTurn(job, options, exempt, isFirst) {
   const before = { status: statusPaths(), ...gitSnapshot() };
   if (isFirst) {
-    // A live turn can push, so it may only start where there is no remote to push
-    // to. A dry run spawns nothing and keeps running in this checkout.
+    // A live turn can push, so it may only start in the arena the builder made: no
+    // remote to push to and the builder's marker in place. A dry run spawns nothing
+    // and keeps running in this checkout.
     if (!options.dryRun) {
-      const remotes = remoteNames();
-      if (remotes.length > 0) {
-        return {
-          status: EXIT_REFUSED,
-          refusal: { ok: false, code: 'remote_present', remotes },
-        };
+      const refusal = liveArmRefusal(REPO_ROOT);
+      if (refusal !== null) {
+        return { status: EXIT_REFUSED, refusal };
       }
     }
     const dirty = dirtyPaths(before.status, exempt);
@@ -1164,13 +1236,28 @@ async function main(argv) {
   }
 }
 
-try {
-  process.exitCode = await main(process.argv.slice(2));
-} catch (error) {
-  if (error instanceof UsageError) {
-    process.stderr.write(`${SCRIPT_NAME}: ${error.message}\n`);
-    process.exitCode = EXIT_REFUSED;
-  } else {
-    throw error;
+// The runner's tables are exported for direct tests, so the CLI runs only when
+// this file is the entry point. An imported module that parsed the host's argv
+// would refuse on flags it never received. The entry path is compared after
+// resolving links, because Node names a linked entry by its real path.
+const invokedDirectly = (() => {
+  if (typeof process.argv[1] !== 'string') return false;
+  try {
+    return realpathSync(process.argv[1]) === realpathSync(fileURLToPath(import.meta.url));
+  } catch {
+    return false;
+  }
+})();
+
+if (invokedDirectly) {
+  try {
+    process.exitCode = await main(process.argv.slice(2));
+  } catch (error) {
+    if (error instanceof UsageError) {
+      process.stderr.write(`${SCRIPT_NAME}: ${error.message}\n`);
+      process.exitCode = EXIT_REFUSED;
+    } else {
+      throw error;
+    }
   }
 }

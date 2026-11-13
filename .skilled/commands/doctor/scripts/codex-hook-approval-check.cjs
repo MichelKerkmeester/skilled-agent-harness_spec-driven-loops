@@ -45,7 +45,9 @@ const USAGE = 'Usage: codex-hook-approval-check.cjs [--root <dir>] [--config <pa
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
-// A misspelled or value-less flag must fail loudly rather than read another root.
+// A misspelled or value-less flag must fail loudly rather than read another root,
+// and a value that is itself a flag means the value was left out, so taking it
+// would swallow the next option and read a root nobody named.
 function parseArgs(argv) {
   const options = { root: process.cwd(), config: null, json: false };
   for (let index = 0; index < argv.length; index += 1) {
@@ -56,7 +58,7 @@ function parseArgs(argv) {
     }
     if (arg === '--root' || arg === '--config') {
       const value = argv[index + 1];
-      if (value === undefined || value === '') return null;
+      if (value === undefined || value === '' || value.startsWith('-')) return null;
       options[arg.slice(2)] = value;
       index += 1;
       continue;
@@ -169,12 +171,16 @@ function main(argv) {
   }
 
   if (entry.kind === 'absent') {
+    // An absent entry has no approval to offer yet, so the repair starts with the
+    // copy that creates it and ends with the approval that lets it run.
+    const repair = `repair: copy the advisor UserPromptSubmit entry from the Skilled checkout's .codex/hooks.json into ${hooksFile}, then approve it with /hooks in a Codex session`;
     report(options, {
       status: 'warn',
       code: 'codex-advisor-hook-absent',
       root,
       hooksFile,
-    }, ['WARN codex-advisor-hook-absent']);
+      repair,
+    }, ['WARN codex-advisor-hook-absent', repair]);
     return 1;
   }
 

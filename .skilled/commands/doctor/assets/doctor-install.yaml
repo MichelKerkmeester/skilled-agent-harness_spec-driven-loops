@@ -43,7 +43,7 @@ upstream_assets:
 inputs:
   target: "The command takes no positional target. A whole argument of list, ? or menu prints the ordered install steps and stops."
   root: "The target repository's absolute path, supplied with --root or in the consolidated prompt."
-  runtimes: "The runtime list, supplied with --runtimes or in the consolidated prompt; the operator can choose the runtimes already there."
+  runtimes: "The runtime list, supplied with --runtimes or in the consolidated prompt; the operator can choose the runtimes already there. DSH is not offered, because the link manifest has no dsh row."
   link_shape: "The operator's choice of auto, whole or merge; auto is recommended."
   instruction_choice: "The operator's choice of embed or link; embed is recommended and keeps the repo's own AGENTS.md."
   json_output: "True when --json is passed; print one JSON object and nothing else."

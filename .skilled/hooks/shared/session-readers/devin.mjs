@@ -351,7 +351,9 @@ function loadTranscript(sessionId, dataDirectory, options) {
 
   let raw;
   try {
-    raw = readFileSync(transcriptPath, 'utf8');
+    // The file read is the path the containment check resolved, so a path
+    // swapped after the check is not followed.
+    raw = readFileSync(storePath, 'utf8');
   } catch {
     try {
       statSync(dataDirectory);
@@ -392,6 +394,16 @@ export function loadDevinSession({ sessionId, projectDir, ...options } = {}) {
   const dataDirectory = devinDataDirectory(options);
   const dbPath = devinDatabasePath(options);
 
+  // A damaged or older database must not hide a transcript the store still
+  // holds, so a failure here falls back to the file. A transcript that also
+  // fails keeps the store unreadable.
+  const transcriptFallback = () => {
+    const transcript = loadTranscript(sessionId, dataDirectory, options);
+    return transcript.ok || transcript.code === 'session_mismatch'
+      ? transcript
+      : { ok: false, code: 'store_unreadable' };
+  };
+
   if (existsSync(dbPath)) {
     const dbContainment = resolveInside({ path: dbPath, root: dataDirectory });
     if (!dbContainment.ok) return dbContainment;
@@ -400,7 +412,7 @@ export function loadDevinSession({ sessionId, projectDir, ...options } = {}) {
     try {
       database = openDatabase(dbContainment.path);
     } catch {
-      return { ok: false, code: 'store_unreadable' };
+      return transcriptFallback();
     }
 
     try {
@@ -417,7 +429,7 @@ export function loadDevinSession({ sessionId, projectDir, ...options } = {}) {
         // session, or no chain head to walk, falls through.
         if (tableColumns(database, 'message_nodes').size > 0) {
           const projection = recordsFromDatabase(database, sessionId, row.main_chain_id);
-          if (!projection) return { ok: false, code: 'store_unreadable' };
+          if (!projection) return transcriptFallback();
 
           const { records, injected } = projection;
           if (records.length > 0) {
@@ -436,7 +448,7 @@ export function loadDevinSession({ sessionId, projectDir, ...options } = {}) {
         }
       }
     } catch {
-      return { ok: false, code: 'store_unreadable' };
+      return transcriptFallback();
     } finally {
       database.close();
     }

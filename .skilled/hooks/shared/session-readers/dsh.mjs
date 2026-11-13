@@ -307,7 +307,10 @@ export function loadDshSession({ sessionId, projectDir, sessionPath, ...options 
 
   let events;
   try {
-    events = parseEvents(decodeSessionLog(readFileSync(logPath), logPath));
+    // The file read is the path the containment check resolved, so a path
+    // swapped after the check is not followed. The decoder still takes the
+    // locator name, because it picks the format from the extension.
+    events = parseEvents(decodeSessionLog(readFileSync(storePath), logPath));
   } catch {
     return { ok: false, code: 'store_unreadable' };
   }

@@ -100,8 +100,9 @@ function parseArgs(argv) {
 
 // Hook files either wrap their events in a `hooks` object or place them at the
 // top level, and the cursor file omits the nested hook array the others carry.
-// Searching the event payload's JSON text covers all three shapes without
-// teaching this check each dialect.
+// A mention is not a wired hook, so only a command that runs the script counts:
+// the event's entries and their nested hooks arrays are walked for command
+// entries, and a runtime is wired when one starts node on the marker path.
 function eventPayload(document, event) {
   if (!document || typeof document !== 'object') return undefined;
   if (document.hooks && typeof document.hooks === 'object' && event in document.hooks) {
@@ -109,6 +110,42 @@ function eventPayload(document, event) {
   }
   if (event in document) return document[event];
   return undefined;
+}
+
+function stripQuotes(token) {
+  return token.replace(/^['"]+|['"]+$/g, '');
+}
+
+function collectCommands(node, commands) {
+  if (Array.isArray(node)) {
+    for (const entry of node) collectCommands(entry, commands);
+  } else if (node && typeof node === 'object') {
+    if (node.type === 'command' && typeof node.command === 'string') commands.push(node.command);
+    if (Array.isArray(node.hooks)) collectCommands(node.hooks, commands);
+  }
+  return commands;
+}
+
+function isNodeExecutable(token) {
+  return token === 'node' || token.endsWith('/node');
+}
+
+function startsCommand(tokens, index) {
+  if (index === 0) return true;
+  const previous = tokens[index - 1];
+  if (previous === '&&' || previous === '||' || previous === ';' || previous === '|') return true;
+  return previous === '-c'
+    && index >= 2
+    && (tokens[index - 2] === 'bash' || tokens[index - 2] === 'sh');
+}
+
+// An argument that only names node, as `echo node <script>` does, runs
+// nothing, so node must stand where a shell starts a command.
+function runsMarker(command, marker) {
+  const tokens = command.split(/\s+/).filter(Boolean).map(stripQuotes);
+  return tokens.some((token, index) => isNodeExecutable(token)
+    && startsCommand(tokens, index)
+    && (tokens[index + 1] || '').endsWith(marker));
 }
 
 function inspect(runtime, root) {
@@ -120,7 +157,7 @@ function inspect(runtime, root) {
     return { runtime: runtime.id, file: runtime.file, status: 'hook-missing' };
   }
   const payload = eventPayload(document, runtime.event);
-  const wired = payload !== undefined && JSON.stringify(payload).includes(runtime.marker);
+  const wired = collectCommands(payload, []).some((command) => runsMarker(command, runtime.marker));
   return { runtime: runtime.id, file: runtime.file, status: wired ? 'ok' : 'hook-missing' };
 }
 

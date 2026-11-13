@@ -122,8 +122,9 @@ workflow:
     runs_when: "phase_3_approval approved"
     activities:
       - "When the install step is missing, print the Ollama install command the install guide prints and stop with STATUS=FAIL, naming that command as the next step. Never install or upgrade Ollama from this route."
-      - "When the start step is missing, run `ollama serve` in the background with a readable log, record the pid this run started and poll `/api/version` until it answers or a short deadline passes. A server that never answers is STATUS=FAIL naming the start and the log path, and the pull and scan steps do not run."
-      - "When the pull step is missing, run `ollama pull nomic-embed-text:v1.5` only once the server answers. A non-zero exit is STATUS=FAIL naming the pull, and the scan step does not run."
+      - "When the resolved URL's host is not 127.0.0.1, localhost or ::1, start and pull nothing. That server is the operator's, so end with STATUS=FAIL naming the URL and the install guide's start and pull commands."
+      - "When the start step is missing, run `OLLAMA_HOST=<host:port of the resolved URL> ollama serve` in the background with a readable log, record the pid this run started and poll `/api/version` until it answers or a short deadline passes. A server that never answers is STATUS=FAIL naming the start and the log path, and the pull and scan steps do not run."
+      - "When the pull step is missing, run `OLLAMA_HOST=<host:port of the resolved URL> ollama pull nomic-embed-text:v1.5` only once the server answers. A non-zero exit is STATUS=FAIL naming the pull, and the scan step does not run."
       - "Never pull a model the plan did not list, never remove a model and never restart a server this run did not start."
 
   phase_5_scan:

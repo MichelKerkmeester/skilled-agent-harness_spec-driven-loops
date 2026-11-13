@@ -63,6 +63,19 @@ test('a sessions row whose turns are not in the database falls through to its tr
   });
 });
 
+test('a damaged sessions database falls back to its transcript', async () => {
+  await withTempAsync('devin-db-damaged', async (root) => {
+    const projectDir = join(root, 'project');
+    mkdirSync(projectDir, { recursive: true });
+    const fixture = devinSession({ root, projectDir });
+    writeFileSync(fixture.dbPath, 'not a database');
+    const result = await readSession({ runtime: 'devin', sessionId: SESSION, ...fixture.options });
+    assert.equal(result.ok, true);
+    assert.equal(result.source.locatorKind, 'transcript_file');
+    assert.equal(result.items[0].content[0].text, 'Read the file.');
+  });
+});
+
 test('a transcript outside the store is refused without reading it', async () => {
   await withTempAsync('devin-outside', async (root) => {
     const projectDir = join(root, 'project');

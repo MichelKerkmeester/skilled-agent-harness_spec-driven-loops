@@ -612,6 +612,177 @@ test('a planted drop restores the backup and ends STATUS=FAIL', (t) => {
   assert.equal(readInside(dir, manifest.root_file), original, 'the backup put the file back');
 });
 
+// A line the write leaves outside the block, one no shipped section carries, is a byte the
+// template never put there. The proof has to read it as a violation and undo the run,
+// because a document that keeps it says the write changed something the plan never showed.
+test('a planted foreign line restores the backup and ends STATUS=FAIL', (t) => {
+  const dir = composeTree(t, 'foreign');
+  const original = readInside(dir, manifest.root_file);
+  const planted = 'A line no template ships.';
+  const out = [];
+  const hooks = {
+    log: (line) => out.push(line),
+    warn: (line) => out.push(line),
+    write: (file, content) => {
+      const bytes = Buffer.isBuffer(content) ? content : Buffer.from(String(content), 'utf8');
+      const text = bytes.toString('utf8');
+      const written = file.endsWith(manifest.root_file) ? `${planted}\n${text}` : text;
+      fs.writeFileSync(file, written, 'utf8');
+    },
+  };
+
+  assert.equal(embed.main(['plan', '--root', dir], hooks), 0);
+  const planned = out.join('\n');
+  const backup = field(planned, 'backup');
+  assert.ok(backup, 'the plan prints the backup location');
+  trackBackup(t, planned);
+  const digest = field(planned, 'plan-digest');
+  assert.match(digest || '', /^[0-9a-f]{64}$/u);
+  out.length = 0;
+
+  const code = embed.main(['apply', '--root', dir, '--plan-digest', digest], hooks);
+  const text = out.join('\n');
+
+  assert.equal(code, 1, `a foreign line is a failed run\n${text}`);
+  assert.match(text, /^foreign: A line no template ships\. \(outside the block and not a shipped line\)$/mu);
+  assert.match(text, /STATUS=FAIL/u);
+  assert.equal(readInside(dir, manifest.root_file), original, 'the backup put the file back');
+});
+
+// A backup that no longer matches the hash the run recorded is the one thing a restore must
+// refuse: copying it over the tree would replace the fault it exists to undo with a worse
+// one. The write hook damages the copy first, so the post-write proof has to stop before
+// the first file goes back and leave the tree as the failed write left it.
+test('a damaged backup copy stops the restore and leaves the tree as the write left it', (t) => {
+  const dir = composeTree(t, 'foreign');
+  const damaged = 'a backup copy the run did not record\n';
+  const out = [];
+  let backup = null;
+  let first = true;
+  const hooks = {
+    log: (line) => out.push(line),
+    warn: (line) => out.push(line),
+    write: (file, content) => {
+      if (first) {
+        first = false;
+        fs.writeFileSync(path.join(backup, 'files', manifest.root_file), damaged, 'utf8');
+      }
+      const bytes = Buffer.isBuffer(content) ? content : Buffer.from(String(content), 'utf8');
+      const text = bytes.toString('utf8');
+      const written = file.endsWith(manifest.root_file)
+        ? text.replace('- Never commit a generated file.\n', '')
+        : text;
+      fs.writeFileSync(file, written, 'utf8');
+    },
+  };
+
+  assert.equal(embed.main(['plan', '--root', dir], hooks), 0);
+  const planned = out.join('\n');
+  backup = field(planned, 'backup');
+  assert.ok(backup, 'the plan prints the backup location');
+  trackBackup(t, planned);
+  const digest = field(planned, 'plan-digest');
+  out.length = 0;
+
+  const code = embed.main(['apply', '--root', dir, '--plan-digest', digest], hooks);
+  const text = out.join('\n');
+
+  assert.equal(code, 1, 'a failed restore is still a failed run');
+  assert.ok(
+    text.includes(`ERROR: the backup copy of ${manifest.root_file} does not match its recorded hash, so nothing was restored. The backup is kept at ${backup}`),
+    `the mismatch is named with the backup it kept\n${text}`,
+  );
+  assert.match(text, /the write dropped 1 line\(s\) and the backup could not be restored, so the tree is as the write left it/u);
+  assert.ok(!readInside(dir, manifest.root_file).includes(damaged.trim()), 'the damaged backup copy was not written over the tree');
+});
+
+// A writer that throws partway through is neither a run that wrote nothing nor one that
+// finished: the targets before it already hold bytes, and the failed target may hold a
+// partial one. The backup exists by then, so the only ending that keeps the tree truthful
+// is to put it back, name the backup, and report the failure on an exit of its own.
+test('a write that throws mid-apply restores the backup and exits 3', (t) => {
+  const dir = composeTree(t, 'claude-only');
+  const before = treeDigest(dir);
+  const out = [];
+  let calls = 0;
+  const hooks = {
+    log: (line) => out.push(line),
+    warn: (line) => out.push(line),
+    write: (file, content) => {
+      calls += 1;
+      if (calls === 2) {
+        const error = new Error(`EACCES: permission denied, open ${path.basename(file)}`);
+        error.code = 'EACCES';
+        throw error;
+      }
+      fs.writeFileSync(file, content, 'utf8');
+    },
+  };
+
+  assert.equal(embed.main(['plan', '--root', dir, '--create-router'], hooks), 0);
+  const digest = field(out.join('\n'), 'plan-digest');
+  assert.match(digest || '', /^[0-9a-f]{64}$/u);
+  out.length = 0;
+
+  const code = embed.main(['apply', '--root', dir, '--plan-digest', digest, '--create-router'], hooks);
+  const text = out.join('\n');
+  trackBackup(t, text);
+
+  assert.equal(calls, 2, 'the second write is the one that throws');
+  assert.equal(code, 3, `a write that throws after the backup is undone\n${text}`);
+  assert.match(text, /EACCES/u, 'the failure names the write it could not make');
+  assert.match(text, /restored:/u);
+  assert.match(text, /^backup:/mu);
+  assert.match(text, /^undo:/mu);
+  assert.match(text, /STATUS=FAIL/u);
+  assert.equal(treeDigest(dir), before, 'the tree is byte for byte what it was before the apply');
+});
+
+// The backup and undo lines are the operator's only way back once the restore itself fails,
+// so a second fault in the undo must not escape the run and leave them unsaid. The write
+// hook damages the record the restore reads, so the undo throws before it can put a file back.
+test('a restore that throws is reported with the backup and undo lines and exits 3', (t) => {
+  const dir = composeTree(t, 'claude-only');
+  const out = [];
+  let backup = null;
+  let calls = 0;
+  const hooks = {
+    log: (line) => out.push(line),
+    warn: (line) => out.push(line),
+    write: (file, content) => {
+      calls += 1;
+      if (calls === 2) {
+        fs.writeFileSync(path.join(backup, 'manifest.json'), 'not json', 'utf8');
+        const error = new Error(`EACCES: permission denied, open ${path.basename(file)}`);
+        error.code = 'EACCES';
+        throw error;
+      }
+      fs.writeFileSync(file, content, 'utf8');
+    },
+  };
+
+  assert.equal(embed.main(['plan', '--root', dir, '--create-router'], hooks), 0);
+  const planned = out.join('\n');
+  backup = field(planned, 'backup');
+  assert.ok(backup, 'the plan prints the backup location');
+  trackBackup(t, planned);
+  const digest = field(planned, 'plan-digest');
+  assert.match(digest || '', /^[0-9a-f]{64}$/u);
+  out.length = 0;
+
+  const code = embed.main(['apply', '--root', dir, '--plan-digest', digest, '--create-router'], hooks);
+  const text = out.join('\n');
+
+  assert.equal(calls, 2, 'the second write is the one that throws');
+  assert.equal(code, 3, `a failed restore does not escape the run\n${text}`);
+  assert.match(text, /ERROR: writing/u, 'the failure names the write it could not make');
+  assert.match(text, /ERROR: the restore failed: /u, 'the undo failure is named');
+  assert.match(text, /^backup:/mu);
+  assert.match(text, /^undo:/mu);
+  assert.match(text, /STATUS=FAIL/u);
+  assert.doesNotMatch(text, /restored:/u, 'nothing was restored, so nothing claims it was');
+});
+
 test('restore puts every recorded file back byte for byte', (t) => {
   const dir = composeTree(t, 'foreign');
   const before = treeDigest(dir);
@@ -767,6 +938,52 @@ test('a symlinked root document is refused', (t) => {
   assert.equal(refused.code, 2, refused.out);
   assert.match(refused.err, /symlink/u);
   assert.equal(fs.readFileSync(target, 'utf8'), shared, 'the linked file is untouched');
+});
+
+// The mirror is a write target too, so a link at its path is the same hazard as one at the
+// root document: the write would land on a file this repository does not own.
+test('a symlinked Cursor mirror is refused and its target is untouched', (t) => {
+  const dir = composeTree(t, 'foreign');
+  const ci = path.join(dir, '.github/ci.yml');
+  const ciText = 'name: ci\non: push\n';
+  fs.mkdirSync(path.dirname(ci), { recursive: true });
+  fs.writeFileSync(ci, ciText, 'utf8');
+  fs.mkdirSync(path.join(dir, '.cursor/rules'), { recursive: true });
+  fs.symlinkSync('../../.github/ci.yml', path.join(dir, '.cursor/rules/repo-local.md'));
+
+  const refused = plan(dir);
+  assert.equal(refused.code, 2, `${refused.out}${refused.err}`);
+  assert.match(refused.err, /\.cursor\/rules\/repo-local\.md is a symlink/u, 'the refusal names the link');
+  assert.match(refused.err, /\.\.\/\.\.\/\.github\/ci\.yml/u, 'and the file it points at');
+  assert.equal(fs.readFileSync(ci, 'utf8'), ciText, 'the linked CI file is untouched');
+});
+
+test('a symlinked router that would gain rows is refused', (t) => {
+  const dir = composeTree(t, 'foreign');
+  seedRuleCorpus(dir);
+  fs.mkdirSync(path.join(dir, 'docs'), { recursive: true });
+  fs.writeFileSync(path.join(dir, 'docs/router.md'), partialRouter(2), 'utf8');
+  fs.symlinkSync('docs/router.md', path.join(dir, manifest.router_file));
+
+  const refused = plan(dir);
+  assert.equal(refused.code, 2, `${refused.out}${refused.err}`);
+  assert.match(refused.err, /REPO RULES\.md is a symlink/u, 'the refusal names the link');
+  assert.match(refused.err, /docs\/router\.md/u, 'and the file it points at');
+});
+
+// A link the run would leave alone is not a write, so the same tree plans as it would with a
+// real file there: only a link the run would write through is refused.
+test('a symlinked router the run would leave alone is not refused', (t) => {
+  const dir = composeTree(t, 'foreign');
+  seedRuleCorpus(dir);
+  const count = Math.max(shippedRows().trigger_rows.length, shippedRows().index_rows.length);
+  fs.mkdirSync(path.join(dir, 'docs'), { recursive: true });
+  fs.writeFileSync(path.join(dir, 'docs/router.md'), partialRouter(count), 'utf8');
+  fs.symlinkSync('docs/router.md', path.join(dir, manifest.router_file));
+
+  const planned = plan(dir);
+  assert.equal(planned.code, 0, `${planned.out}${planned.err}`);
+  assert.match(planned.out, /^target REPO RULES\.md: unchanged$/mu);
 });
 
 test('.codex/AGENTS.md is folded into the block and then removed', (t) => {

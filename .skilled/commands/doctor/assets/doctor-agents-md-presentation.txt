@@ -253,7 +253,7 @@ Next: [the repair, or the accepted invocation]
 STATUS=FAIL ERROR="[code]"
 ```
 
-A check that exits 2 prints its message and ends `STATUS=ERROR ERROR="[message]"`. An embed that exits 1 after its proof found a dropped line restored from the backup by itself, so its `Changed:` is `none` and its `Next:` names the file whose line went missing.
+A check that exits 2 prints its message and ends `STATUS=ERROR ERROR="[message]"`. An embed that exits 1 after its proof found a dropped line restored from the backup by itself, so its `Changed:` is `none` and its `Next:` names the file whose line went missing. An embed that exits 3 had a write fail after its backup. Its Changed: is none when the output holds restored:, and otherwise the reply says the tree is partly written and its Next: is the undo command the engine printed.
 
 ## 7. Troubleshooting Display
 

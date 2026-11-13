@@ -492,6 +492,9 @@ export async function scoreCommandCorpus(options = {}) {
       // command, which the behaviour run line records as `offeredCommand`.
       const offered = landed.some((command) => command !== null);
       const isPlainSplit = row.row_type === 'plain' && (row.split === 'tune' || row.split === 'holdout');
+      // A holdout row's outcome is what the split exists to keep unseen, so
+      // only its counts are published.
+      const publishRow = row.split !== 'holdout';
 
       // A hub can name the slash command its route would take, which is reach a
       // reader otherwise gets only by translating the workflow mode by hand.
@@ -509,13 +512,15 @@ export async function scoreCommandCorpus(options = {}) {
       if (row.row_type === 'typed') {
         addRow(typed, top1Hit, top3Hit);
         addAttachedRow(typedAttached, top1Hit, deliveredHit);
-        typedRowResults[row.id] = {
-          expected_command: expected,
-          top: ids[0] ?? null,
-          carried: top1Hit ? 'own' : deliveredHit ? 'attached' : null,
-          command: delivered ?? null,
-          policy: deliveredPolicy,
-        };
+        if (publishRow) {
+          typedRowResults[row.id] = {
+            expected_command: expected,
+            top: ids[0] ?? null,
+            carried: top1Hit ? 'own' : deliveredHit ? 'attached' : null,
+            command: delivered ?? null,
+            policy: deliveredPolicy,
+          };
+        }
       }
       if (isPlainSplit) {
         addRow(plain[row.split], top1Hit, top3Hit);
@@ -523,7 +528,7 @@ export async function scoreCommandCorpus(options = {}) {
         const family = attachedFamilyTally(plainAttachedByFamily, expected);
         if (family) addAttachedRow(family[row.split], top1Hit, attachedHit);
       }
-      if (attached !== undefined) attachedRows[row.id] = attached;
+      if (publishRow && attached !== undefined) attachedRows[row.id] = attached;
       if (row.row_type === 'typed' && result?.ambiguous === true && isBridgeOwnerPair(idToCommand, ids, expected)) {
         sameOwnerAmbiguous.push(row.id);
       }
@@ -534,7 +539,9 @@ export async function scoreCommandCorpus(options = {}) {
         else if (isPlainSplit) addRow(commandTally.plain[row.split], top1Hit, top3Hit);
       }
 
-      rows[row.id] = { expected_command: expected, top: ids[0] ?? null, top1: top1Hit, top3: top3Hit, offered };
+      if (publishRow) {
+        rows[row.id] = { expected_command: expected, top: ids[0] ?? null, top1: top1Hit, top3: top3Hit, offered };
+      }
 
       const isSlashVariant = row.row_type === 'slash-variant';
       // Silence is the requirement for a near miss, a prompt that must not

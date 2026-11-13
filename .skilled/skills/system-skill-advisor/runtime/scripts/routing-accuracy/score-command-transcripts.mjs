@@ -24,10 +24,11 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 
-import { readFileSync } from 'node:fs';
+import { readFileSync, realpathSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadSession } from '../../../../../hooks/shared/session-readers/index.mjs';
+import { G2_ROWS } from './run-command-behaviour.mjs';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -922,12 +923,6 @@ const START_POLICIES = Object.freeze(['run', 'start']);
 // row can ask for carry a bucket. A row with no policy is judged elsewhere.
 const POLICY_KEYS = Object.freeze(['run', 'start', 'ask']);
 
-// The started-command set is fixed rather than drawn from the corpus, so its id is
-// the only label a run carries: the segments after the set prefix name the
-// workflow, and the last word says whether the prompt spelled the mode out, which
-// is the one prompt fact a start judgment reads.
-const STARTED_ROW = /^g2-([a-z]+)-([a-z]+(?:-[a-z]+)*)-(typed|ask)$/;
-
 function rowLabel(row) {
   return {
     holdout: false,
@@ -951,19 +946,23 @@ function loadRowLabels() {
   return labels;
 }
 
-function startedLabel(rowId) {
-  const match = STARTED_ROW.exec(rowId);
-  if (match === null) return null;
+// The started-command set is fixed rather than drawn from the corpus, so the
+// runner's table is the only place a row's command and mode variant are written
+// down. A label read from that table cannot drift from the prompt the run sent,
+// while an id parsed for its segments would claim a workflow the row never ran.
+export function startedLabel(rowId, rows = G2_ROWS) {
+  const row = rows.find((entry) => entry.id === rowId);
+  if (row === undefined) return null;
 
-  const [, namespace, name, variant] = match;
   return {
     holdout: false,
-    expected_command: `/${namespace}:${name}`,
+    expected_command: row.command,
     // The set exists to watch a heavy workflow begin, so a start is its outcome.
-    // Its two variants differ only in whether the prompt spelled the command out.
+    // Its two variants differ only in whether the prompt spelled the command out,
+    // and only that fact reaches the judgment.
     expected_policy: 'start',
     row_type: null,
-    prompt: variant === 'typed' ? ':auto' : '',
+    prompt: row.variant === 'typed' ? ':auto' : '',
   };
 }
 
@@ -1449,9 +1448,15 @@ async function main(argv) {
 
 // The scorer's facts are exported for direct tests, so the CLI runs only when
 // this file is the entry point. An imported module that parsed the host's argv
-// would refuse on flags it never received.
-const invokedDirectly =
-  typeof process.argv[1] === 'string'
-  && resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+// would refuse on flags it never received. The entry path is compared after
+// resolving links, because Node names a linked entry by its real path.
+const invokedDirectly = (() => {
+  if (typeof process.argv[1] !== 'string') return false;
+  try {
+    return realpathSync(process.argv[1]) === realpathSync(fileURLToPath(import.meta.url));
+  } catch {
+    return false;
+  }
+})();
 
 if (invokedDirectly) process.exitCode = await main(process.argv.slice(2));
