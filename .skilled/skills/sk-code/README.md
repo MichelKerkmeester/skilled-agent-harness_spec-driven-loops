@@ -5,7 +5,7 @@ trigger_phrases:
   - "code skill"
   - "code mode router"
   - "sk-code hub"
-version: 2.2.44.0
+version: 2.2.45.0
 ---
 
 # sk-code
@@ -213,7 +213,7 @@ A: The request stays at the hub. The hub orders the routing and asks for disambi
 | [`ROUTER.md`](./ROUTER.md) | Active stage-two surface router, leaf map, and explicit shared-control declaration |
 | [`mode-registry.json`](./mode-registry.json) | The mode-to-packet routing map |
 | [`leaf-manifest.json`](./leaf-manifest.json) | The generated inventory of routed leaves, regenerated when packets change |
-| [`hub-router.json`](./hub-router.json) | Hub-local routing vocabulary and mode signals |
+| [`hub-router.json`](./hub-router.json) | Hub-local routing vocabulary and mode signals, plus an optional `surfaceIntentFolds` map, keyed by surface packet, that lets a host hub fold all intents of a surface into one parent intent for the router sync check |
 | [`shared/README.md`](./shared/README.md) | Shared surface detection and cross-mode helpers, plus the implement/debug/verify workflow doctrine |
 | [`feature-catalog/feature-catalog.md`](./feature-catalog/feature-catalog.md) | Current-state inventory of every mode, surface and routing capability |
 | [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate routing and disambiguation |

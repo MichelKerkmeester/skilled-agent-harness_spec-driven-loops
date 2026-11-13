@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/verification-guards/005-surface-intent-fold-declaration",
+  "spec_folder": "sk-code/verification-guards/005-surface-intent-fold-declaration",
+  "parent_id": "sk-code/verification-guards",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "surface intent fold declaration",
+      "let a hub declare that a surface folds",
+      "surface intent folds key",
+      "router sync fold",
+      "surface intent fold declaration plan",
+      "surface intent fold declaration tasks",
+      "surface intent fold declaration implementation summary"
+    ],
+    "key_topics": [
+      "surface",
+      "intent",
+      "fold",
+      "declaration",
+      "let",
+      "hub",
+      "declare",
+      "folds",
+      "key",
+      "router",
+      "sync",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs",
+      ".skilled/skills/sk-code/README.md",
+      ".skilled/skills/sk-code/hub-router.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "verify-router-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "verify-router-sync.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Declared",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`legSurfaceMap` in `.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs` builds one intent set from the parent `RESOURCEMAP` and every surface child, then requires each child intent's paths under the same intent name in the parent map",
+    "created_at": "2026-11-13T18:46:09Z",
+    "last_save_at": "2026-11-13T19:06:41.618Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:005f88f9638a6d7e9f03b2bf5afa2cdf9bb8d480bef34b0ceeff4d2b769535bb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a1025c3def9fb21e750c2fc7e5f4c08fe0258511305a9b3244161492c7cfcaff",
+      "plan.md": "7861bff1a8ca94369e14f8e27197c6c86e587f75f55488c2f87e38083f7551e2",
+      "tasks.md": "69d688b4a140636b27325d4a982f7ca1aabf70462ef53cd2636bbb4ac97fc8b5",
+      "implementation-summary.md": "8d2b313ff70479fe5d676642d4cce9687e4fcff5437387ce2f812d922998e48c"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "specFolder": "sk-code/verification-guards/005-surface-intent-fold-declaration",
+  "description": "Let a hub declare that a surface folds its child intents into one hub intent so the router sync check accepts it",
+  "keywords": [
+    "let",
+    "hub",
+    "declare",
+    "surface",
+    "folds",
+    "child",
+    "intents",
+    "one",
+    "intent",
+    "router",
+    "sync",
+    "check",
+    "accepts"
+  ],
+  "lastUpdated": "2026-11-13T18:46:09.164Z",
+  "specId": "005",
+  "folderSlug": "surface-intent-fold-declaration",
+  "parentChain": [
+    "sk-code",
+    "verification-guards"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
