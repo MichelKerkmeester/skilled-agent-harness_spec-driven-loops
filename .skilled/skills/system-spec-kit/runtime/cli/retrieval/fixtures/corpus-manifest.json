@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d239db51f56056e3e33bea17b63d61bb2fa89fdb1be766ee9b7228c58e6f05e9",
+  "corpusHash": "437180005f56528b62bf8ccc82faf4ab915f55fe9a4330f2547d79412b645787",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26589,
+  "includedPathCount": 26591,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -14929,6 +14929,7 @@
     "specs/sk-doc/doc-validation-tooling/004-doc-tooling-prose-and-release-amend/plan.md",
     "specs/sk-doc/doc-validation-tooling/004-doc-tooling-prose-and-release-amend/spec.md",
     "specs/sk-doc/doc-validation-tooling/004-doc-tooling-prose-and-release-amend/tasks.md",
+    "specs/sk-doc/doc-validation-tooling/005-router-empty-block-capture/decision-record.md",
     "specs/sk-doc/doc-validation-tooling/005-router-empty-block-capture/implementation-summary.md",
     "specs/sk-doc/doc-validation-tooling/005-router-empty-block-capture/plan.md",
     "specs/sk-doc/doc-validation-tooling/005-router-empty-block-capture/spec.md",
@@ -18022,6 +18023,7 @@
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/decision-record.md",
     "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/implementation-summary.md",
     "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/009-git-history-lift/spec.md",
@@ -26621,7 +26623,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "36f9d7fb9732c679ea0b2cee68f071b3dd7b8fe489da49bf5c71470cc82d4053",
+  "manifestHash": "9c00899bc8b8e601655b3dc9f2177fa92b278bdb7134eedaa45193bb2b19aa07",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

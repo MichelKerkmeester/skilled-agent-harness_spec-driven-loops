@@ -1,5 +1,5 @@
 {
-  "manifestHash": "36f9d7fb9732c679ea0b2cee68f071b3dd7b8fe489da49bf5c71470cc82d4053",
+  "manifestHash": "9c00899bc8b8e601655b3dc9f2177fa92b278bdb7134eedaa45193bb2b19aa07",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1474,6 +1474,9 @@
     "005 review 015 pt 01": [
       "005 review 015 pt 01"
     ],
+    "005 router empty block capture operator decisions": [
+      "005-router-empty-block-capture operator decisions"
+    ],
     "005 skill advisor documentation changelog index": [
       "005-skill-advisor-documentation changelog index"
     ],
@@ -2296,6 +2299,9 @@
     ],
     "009 fp16 tasks": [
       "009 fp16 tasks"
+    ],
+    "009 git history lift operator decisions": [
+      "009-git-history-lift operator decisions"
     ],
     "009 implementation summary": [
       "009 implementation summary"
