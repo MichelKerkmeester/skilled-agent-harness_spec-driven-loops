@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume"
     last_updated_at: "2026-11-13T09:07:30Z"
     last_updated_by: "orchestrator"
-    recent_action: "Planned children 009 to 017 from the hand-over gap research and bound them here"
-    next_safe_action: "Await the operator's greenlight, then build child 009"
+    recent_action: "Closed children 009 to 017 and ran the five criteria"
+    next_safe_action: "Ask the operator before merging or pushing"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-038-goal-and-workflow-resume"
       parent_session_id: null
-    completion_pct: 47
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -93,11 +93,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume --recursive --strict` prints `RESULT: PASSED` for the parent and all seventeen children
-- [ ] `rg -c '\| Unmet \|' specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/*/acceptance-criteria.md` prints no line
-- [ ] `node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs` exits 0
-- [ ] `node --test .skilled/hooks/goal/**/*.test.cjs .skilled/hooks/goal/**/*.test.mjs` exits 0
-- [ ] `npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts` exits 0
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume --recursive --strict` prints `RESULT: PASSED` for the parent and all seventeen children
+- [x] `rg -c '\| Unmet \|' specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/*/acceptance-criteria.md` prints no line
+- [x] `node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs` exits 0
+- [x] `node --test .skilled/hooks/goal/**/*.test.cjs .skilled/hooks/goal/**/*.test.mjs` exits 0
+- [x] `npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts` exits 0
 <!-- /ANCHOR:completion -->
 
 ---
@@ -146,6 +146,8 @@ and findings belong here.
 | Child 015 Pi mode and descendant walk | Done | 2026-11-13: built through five `dsh` briefs on DeepSeek V4.1 Flash, each diff read and the gates rerun by the orchestrator. One live Pi 1.5.2 launch with `--plan` started in Plan mode before the build. The descendant walk is declined as ADR-002. Pi adapter suite 62 of 62, relaunch and OpenCode plugin suites 1524 of 1524. Commit 10e61ef8d2 |
 | Child 016 receiver claim under a goal | Done | 2026-11-13: ten live hops on Claude Code 2.1.323 under a goal that allows other work, run by an Opus sub-agent and recounted by the orchestrator. Ten of ten counted receivers claimed and closed their note, so the gate closed the phase with no code change and the claim line is waived by ADR-001. Four further attempts never hopped because the sender opened a question dialog after `prepare`. Commit f7b6a3973c |
 | Closure statements of 011, 013 and 014 | Done | 2026-11-13: each read No while every row was Met. Corrected to Yes, strict validation passed for all three. Commit 1cb78d9b66 |
+| Child 017 hand-over docs and harness | Done | 2026-11-13: README sections and eight playbook checks written through `dsh` briefs and checked against the source, the harness late write fixed test first, two live checks on Claude Code 2.1.323 by an Opus sub-agent. The planned look with the old script did not reproduce the late write, and three of child 016's ten hops had shown it. Commits 06f67b755c and 02f7b9a494 |
+| Five criteria after children 009 to 017 | Done | 2026-11-13, run by the orchestrator from the worktree at 02f7b9a494 plus the parent's own rows: recursive strict validation `RESULT: PASSED` for the parent and all seventeen children, no `Unmet` row in any child, relaunch and OpenCode plugin suites 1524 of 1524, goal suites 200 of 200, Pi adapter suite 62 of 62, each exit 0. Nothing is merged or pushed |
 
 ### Deviations and findings
 
