@@ -108,7 +108,7 @@
     "renumber a spec packet",
     "validate the archived spec packets",
     "packets under z_archive",
-    "search archived spec packets"
+    "find a phrase in archived spec packets"
   ],
   "derived": {
     "trigger_phrases": [
