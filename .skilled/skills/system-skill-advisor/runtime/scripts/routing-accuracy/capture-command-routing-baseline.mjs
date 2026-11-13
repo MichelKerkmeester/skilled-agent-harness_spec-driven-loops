@@ -403,7 +403,7 @@ export async function scoreCommandCorpus(options = {}) {
     // build is reported as such rather than as a module-resolution failure.
     const { scoreAdvisorPrompt } = await import(pathToFileURL(FUSION_MODULE).href);
     const { findAdvisorWorkspaceRoot } = await import(pathToFileURL(WORKSPACE_ROOT_MODULE).href);
-    const { attachCommand } = await import(pathToFileURL(COMMAND_ATTACH_MODULE).href);
+    const { attachCommand, typedCommandForTop, TRACKED_COMMANDS } = await import(pathToFileURL(COMMAND_ATTACH_MODULE).href);
     const { COMPILED_ROUTING_HUBS } = await import(pathToFileURL(COMPILED_ROUTING_FLAG_MODULE).href);
     const workspaceRoot = findAdvisorWorkspaceRoot(HERE, { maxDepth: 14, sentinel: SENTINEL });
 
@@ -464,6 +464,12 @@ export async function scoreCommandCorpus(options = {}) {
     // same way, plus the rows that had to stay silent and the ties a bridge
     // leaves with its own owner.
     const attachedRows = {};
+    // A typed command reaches the reader through the recommendation that leads,
+    // so it is tallied apart from hub-attached reach: `own` is a row the scorer
+    // already landed and `attached` is one delivered by the reader's own typed
+    // command. Its resolution follows the recommend handler exactly.
+    const typedAttached = emptyAttachedTally();
+    const typedRowResults = {};
     const plainAttached = { tune: emptyAttachedTally(), holdout: emptyAttachedTally() };
     const plainAttachedByFamily = new Map();
     const sameOwnerAmbiguous = [];
@@ -491,8 +497,23 @@ export async function scoreCommandCorpus(options = {}) {
         ? attachCommand(topId, readCompiledRoute(workspaceRoot, topId, row.prompt), row.prompt)
         : undefined;
       const attachedHit = attached !== undefined && attached === expected && !top1Hit;
+      // A typed command is the reader's own wording, so it outranks the hub's
+      // route in the delivered command, the same precedence the handler applies.
+      const delivered = typedCommandForTop(topId, row.prompt)?.command ?? attached;
+      const deliveredPolicy = delivered === undefined ? null : TRACKED_COMMANDS[delivered]?.policy ?? null;
+      const deliveredHit = !top1Hit && delivered === expected && deliveredPolicy !== null;
 
-      if (row.row_type === 'typed') addRow(typed, top1Hit, top3Hit);
+      if (row.row_type === 'typed') {
+        addRow(typed, top1Hit, top3Hit);
+        addAttachedRow(typedAttached, top1Hit, deliveredHit);
+        typedRowResults[row.id] = {
+          expected_command: expected,
+          top: ids[0] ?? null,
+          carried: top1Hit ? 'own' : deliveredHit ? 'attached' : null,
+          command: delivered ?? null,
+          policy: deliveredPolicy,
+        };
+      }
       if (isPlainSplit) {
         addRow(plain[row.split], top1Hit, top3Hit);
         addAttachedRow(plainAttached[row.split], top1Hit, attachedHit);
@@ -551,6 +572,13 @@ export async function scoreCommandCorpus(options = {}) {
       commands[command] = perCommand.get(command);
     }
 
+    // Row ids are keyed in sorted order so a diff between two captures reads as
+    // the rows that changed rather than as reordered output.
+    const typedRows = {};
+    for (const id of Object.keys(typedRowResults).sort()) {
+      typedRows[id] = typedRowResults[id];
+    }
+
     const reachableCommands = new Set();
     for (const value of idToCommand.values()) reachableCommands.add(value.command);
     const unreachable = commandNames.filter((command) => !reachableCommands.has(command)).sort();
@@ -600,6 +628,8 @@ export async function scoreCommandCorpus(options = {}) {
         },
         plain_by_family: plainByFamily,
         false_offer_attached: { count: falseOfferAttached, total: falseOfferTotal },
+        typed: attachedTallyJson(typedAttached),
+        typedRows,
         typed_same_owner_ambiguous: sameOwnerAmbiguous.sort(),
         attachedRows,
       },

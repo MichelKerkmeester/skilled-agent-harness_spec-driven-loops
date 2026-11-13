@@ -68,6 +68,8 @@ DSH loads the repository's guards and the skill advisor only from the patches a 
 
 Codex runs a project hook only after you approve it, so open `/hooks` in a Codex session at the repository root and approve each entry it lists. Codex keeps each approval as a `trusted_hash` in `~/.codex/config.toml`, so a changed entry needs approving again, and `/doctor:runtime-mirrors` prints `PASS codex-hooks-approved` once the advisor's entry is approved.
 
+To see the advisor answer a prompt, run `node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{"prompt":"create a readme for the utils folder"}' --format json | jq -r '.data.recommendations[0].skillId'`, which prints one skill id such as `sk-doc`, and when it prints nothing or `null`, run `/doctor:skill-advisor rebuild`.
+
 ### Meaning Matching for Commands
 
 Until a local embedder model runs, the advisor matches a typed request to a command by phrase alone. With the model loaded, a command can also match by meaning, even when your request uses none of its words. The model is `nomic-embed-text:v1.5`, served by Ollama on your machine, and the advisor calls it once per recommendation.

@@ -1,0 +1,266 @@
+[
+  {
+    "id": "cmd-create-agent-typed-01",
+    "top": "create:agent",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-create-benchmark-typed-01",
+    "top": "sk-doc",
+    "top1": false,
+    "attached": "/create:benchmark"
+  },
+  {
+    "id": "cmd-create-changelog-typed-01",
+    "top": "sk-doc",
+    "top1": false,
+    "attached": "/create:changelog"
+  },
+  {
+    "id": "cmd-create-command-typed-01",
+    "top": "sk-doc",
+    "top1": false,
+    "attached": "/create:command"
+  },
+  {
+    "id": "cmd-create-diff-typed-01",
+    "top": "sk-doc",
+    "top1": false,
+    "attached": "/create:diff"
+  },
+  {
+    "id": "cmd-create-feature-catalog-typed-01",
+    "top": "sk-doc",
+    "top1": false,
+    "attached": "/create:feature-catalog"
+  },
+  {
+    "id": "cmd-create-goal-typed-01",
+    "top": "system-spec-kit",
+    "top1": false,
+    "attached": null
+  },
+  {
+    "id": "cmd-create-manual-testing-playbook-typed-01",
+    "top": "create:manual-testing-playbook",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-create-readme-typed-01",
+    "top": "sk-doc",
+    "top1": false,
+    "attached": "/create:readme"
+  },
+  {
+    "id": "cmd-create-repo-rule-typed-01",
+    "top": "sk-doc",
+    "top1": false,
+    "attached": "/create:repo-rule"
+  },
+  {
+    "id": "cmd-create-skill-parent-typed-01",
+    "top": "mcp-tooling",
+    "top1": false,
+    "attached": null
+  },
+  {
+    "id": "cmd-create-skill-typed-01",
+    "top": "sk-doc",
+    "top1": false,
+    "attached": "/create:skill"
+  },
+  {
+    "id": "cmd-create-with-human-voice-typed-01",
+    "top": "sk-doc",
+    "top1": false,
+    "attached": "/create:with-human-voice"
+  },
+  {
+    "id": "cmd-doctor-agents-md-typed-01",
+    "top": "command-doctor-agents-md-check",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-doctor-ci-typed-01",
+    "top": "command-doctor-ci-report",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-doctor-deep-loop-typed-01",
+    "top": "command-doctor-deep-loop",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-doctor-env-typed-01",
+    "top": "command-doctor-env",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-doctor-git-typed-01",
+    "top": "command-doctor-git-setup",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-doctor-helper-typed-01",
+    "top": "command-doctor-helper",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-doctor-install-typed-01",
+    "top": "command-doctor-install",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-doctor-mcp-typed-01",
+    "top": "command-doctor-mcp-debug",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-doctor-overlay-typed-01",
+    "top": "command-doctor-overlay-status",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-doctor-runtime-mirrors-typed-01",
+    "top": "command-doctor-runtime-mirrors",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-doctor-setup-typed-01",
+    "top": "command-doctor-setup",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-doctor-sk-code-typed-01",
+    "top": "command-doctor-sk-code-setup",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-doctor-sk-skill-typed-01",
+    "top": "command-doctor-sk-skill-convert",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-doctor-skill-advisor-typed-01",
+    "top": "command-doctor-skill-advisor-rebuild",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-doctor-speckit-typed-01",
+    "top": "command-doctor-speckit",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-doctor-symlink-typed-01",
+    "top": "command-doctor-symlink-check",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-doctor-update-typed-01",
+    "top": "command-doctor-update",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-deep-ai-council-typed-01",
+    "top": "system-deep-loop",
+    "top1": false,
+    "attached": "/deep:ai-council"
+  },
+  {
+    "id": "cmd-deep-research-typed-01",
+    "top": "system-deep-loop",
+    "top1": false,
+    "attached": null
+  },
+  {
+    "id": "cmd-deep-review-typed-01",
+    "top": "system-deep-loop",
+    "top1": false,
+    "attached": null
+  },
+  {
+    "id": "cmd-design-chart-typed-01",
+    "top": "sk-design",
+    "top1": false,
+    "attached": "/design:chart"
+  },
+  {
+    "id": "cmd-design-diagram-typed-01",
+    "top": "sk-design",
+    "top1": false,
+    "attached": "/design:diagram"
+  },
+  {
+    "id": "cmd-design-extract-typed-01",
+    "top": "sk-design",
+    "top1": false,
+    "attached": "/design:extract"
+  },
+  {
+    "id": "cmd-prompt-improve-typed-01",
+    "top": "sk-prompt",
+    "top1": false,
+    "attached": null
+  },
+  {
+    "id": "cmd-speckit-complete-typed-01",
+    "top": "command-speckit-complete",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-speckit-handoff-typed-01",
+    "top": "command-speckit-handoff",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-speckit-implement-typed-01",
+    "top": "command-speckit-implement",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-speckit-plan-typed-01",
+    "top": "command-speckit-plan",
+    "top1": true,
+    "attached": null
+  },
+  {
+    "id": "cmd-speckit-resume-typed-01",
+    "top": "system-spec-kit",
+    "top1": false,
+    "attached": null
+  },
+  {
+    "id": "cmd-speckit-save-typed-01",
+    "top": "system-spec-kit",
+    "top1": false,
+    "attached": null
+  },
+  {
+    "id": "cmd-speckit-search-typed-01",
+    "top": "command-speckit-search",
+    "top1": true,
+    "attached": null
+  }
+]

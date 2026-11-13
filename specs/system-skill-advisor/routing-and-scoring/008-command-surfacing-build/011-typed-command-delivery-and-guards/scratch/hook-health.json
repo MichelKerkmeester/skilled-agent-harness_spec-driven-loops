@@ -1,0 +1,39 @@
+{
+  "status": "ok",
+  "data": {
+    "freshness": "live",
+    "generation": 144,
+    "trustState": {
+      "state": "live",
+      "reason": null,
+      "generation": 144,
+      "checkedAt": "2026-11-13T04:01:03.435Z",
+      "lastLiveAt": "2026-11-13T04:00:42.965Z"
+    },
+    "lastGenerationBump": "2026-11-13T04:00:42.965Z",
+    "lastScanAt": "2026-11-13T04:00:42.965Z",
+    "skillCount": 14,
+    "indexStaleness": {
+      "state": "fresh",
+      "reason": null,
+      "trackedSkills": 14,
+      "freshSourceFiles": 14,
+      "changedSourceFiles": 0,
+      "missingSourceFiles": 0,
+      "staleSkillIds": []
+    },
+    "laneWeights": {
+      "explicit_author": 0.42,
+      "lexical": 0.28,
+      "graph_causal": 0.13,
+      "derived_generated": 0.12,
+      "semantic_shadow": 0.05
+    },
+    "hookHealth": {
+      "invocations": 3,
+      "rollingP95Ms": 68,
+      "rollingFailOpenRate": 0,
+      "rollingCacheHitRate": 0.6666666666666666
+    }
+  }
+}

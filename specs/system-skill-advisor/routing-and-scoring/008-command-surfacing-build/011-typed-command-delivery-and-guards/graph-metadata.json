@@ -15,7 +15,8 @@
       "phase 11 typed command delivery",
       "typed command delivery plan",
       "typed command delivery tasks",
-      "typed command delivery acceptance criteria"
+      "typed command delivery acceptance criteria",
+      "typed command delivery implementation summary"
     ],
     "key_topics": [
       "typed",
@@ -27,22 +28,31 @@
       "tasks",
       "acceptance",
       "criteria",
-      "user",
-      "types",
-      "tracked"
+      "implementation",
+      "summary",
+      "user"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-runtime-mirrors.test.mjs",
+      ".skilled/commands/doctor/assets/doctor-setup.yaml",
+      "scratch/after.txt",
+      "scratch/before.txt",
+      "scratch/suite-after.txt",
+      "scratch/typed-heads.json",
+      "scratch/brief-cost.json",
+      "scratch/hook-health.json",
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
       ".skilled/commands/create/skill.md",
       ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs",
-      ".skilled/commands/doctor/assets/doctor-setup.yaml",
+      "scratch/typed-heads.mjs",
       ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-runtime-mirrors.test.mjs",
       ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/README.md"
     ],
     "entities": [
@@ -71,6 +81,66 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-runtime-mirrors.test.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-runtime-mirrors.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-setup.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/doctor/assets/doctor-setup.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "suite-after.txt",
+        "kind": "file",
+        "path": "scratch/suite-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "typed-heads.json",
+        "kind": "config",
+        "path": "scratch/typed-heads.json",
+        "source": "derived"
+      },
+      {
+        "name": "brief-cost.json",
+        "kind": "config",
+        "path": "scratch/brief-cost.json",
+        "source": "derived"
+      },
+      {
+        "name": "hook-health.json",
+        "kind": "config",
+        "path": "scratch/hook-health.json",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-recommend.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+        "source": "derived"
+      },
+      {
         "name": "skill.md",
         "kind": "doc",
         "path": ".skilled/commands/create/skill.md",
@@ -83,21 +153,15 @@
         "source": "derived"
       },
       {
-        "name": "doctor-setup.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/doctor/assets/doctor-setup.yaml",
+        "name": "typed-heads.mjs",
+        "kind": "file",
+        "path": "scratch/typed-heads.mjs",
         "source": "derived"
       },
       {
         "name": "user-prompt-submit.js",
         "kind": "code",
         "path": ".skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js",
-        "source": "derived"
-      },
-      {
-        "name": "sync-runtime-mirrors.test.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/sync-runtime-mirrors.test.mjs",
         "source": "derived"
       },
       {
@@ -135,79 +199,27 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A user who types a tracked slash command has already chosen the workflow, yet 7 of the 44 typed corpus rows reach the model with no command in the head at all",
     "created_at": "2026-11-13T00:30:46Z",
-    "last_save_at": "2026-11-13T00:41:05.525Z",
+    "last_save_at": "2026-11-13T04:06:36.717Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed47879501f772c77f45bbd8b311974f7623d5f72efc43ba5f0949d309538561",
+    "source_fingerprint": "sha256:f4d383110f27a14fc3b5df3b6df81c9b9b5aecf36f175e3184b78d654d127035",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c075a4f272d9a2650d01a4b08235c3deb56ea113aad420fb477f9e7859da1db8",
-      "plan.md": "a3440925edecdf6727bad4e6c47e5a01cb127d59b4a3354d43ccdc0c461acaa7",
-      "tasks.md": "40525e5a915b852c9af69856ec27b5194047c53fb2d3d1c0967e05b5eb117f82"
+      "spec.md": "3e5e1095ad7da3aab653992c60677eb216f9d3f1342c45c71e2d400a25e57f5d",
+      "plan.md": "3fe1d28a07e81457e2e0001c7f9d17cc36d39dd2704e461b992b48b22a8aef81",
+      "tasks.md": "ed1b28465a38405152907102a0a0211e39df0443cd1799fc9e1c525196497d8d",
+      "implementation-summary.md": "84179197dc5281a1461b54c1ee8022f6b06d0be32a6eb8d08249f49e025d2e76"
     },
     "last_active_at": null
   }

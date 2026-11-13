@@ -18,7 +18,13 @@ import { join } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
-import { attachCommand, DEPTH_WORDING, MODE_COMMANDS } from '../lib/command-attach.js';
+import {
+  attachCommand,
+  DEPTH_WORDING,
+  MODE_COMMANDS,
+  typedCommandForTop,
+  typedCommandIn,
+} from '../lib/command-attach.js';
 import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
 import { AdvisorRecommendationSchema } from '../schemas/advisor-tool-schemas.js';
 
@@ -159,5 +165,24 @@ describe('command attach for a single routed mode', () => {
     expect(AdvisorRecommendationSchema.safeParse(minimal).success).toBe(true);
     expect(AdvisorRecommendationSchema.safeParse({ ...minimal, command: '/create:readme' }).success).toBe(true);
     expect(AdvisorRecommendationSchema.safeParse({ ...minimal, command: '' }).success).toBe(false);
+  });
+});
+
+// A typed command is the reader's own wording, so the match runs on boundaries
+// and prefers the longest key, and it is delivered only through the skill that
+// owns it or through a recommendation carrying the same command row.
+describe('typed command on the leading recommendation', () => {
+  it('reads the longest typed command at a command boundary', () => {
+    expect(typedCommandIn('/create:skill-parent deploy-hub with three modes')).toBe('/create:skill-parent');
+    expect(typedCommandIn('/create:sk')).toBeUndefined();
+    expect(typedCommandIn('see docs/create:goal.md')).toBeUndefined();
+  });
+
+  it('delivers a typed command through its owner or through the same command row', () => {
+    const expected = { command: '/speckit:resume', policy: 'start', ownerSkillId: 'system-spec-kit' };
+
+    expect(typedCommandForTop('system-spec-kit', '/speckit:resume cache work')).toEqual(expected);
+    expect(typedCommandForTop('command-speckit-resume', '/speckit:resume cache work')).toEqual(expected);
+    expect(typedCommandForTop('sk-doc', '/speckit:resume cache work')).toBeUndefined();
   });
 });

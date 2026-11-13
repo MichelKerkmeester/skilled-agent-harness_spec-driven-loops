@@ -29,6 +29,7 @@ import { readEmbeddingsHealth } from '../lib/embedders/embeddings-health.js';
 import { getSemanticShadowRuntimeHealth } from '../lib/scorer/lanes/semantic-shadow.js';
 import { readAdvisorEmbeddingStaleness } from '../lib/scorer/projection.js';
 import { DEFAULT_SCORER_WEIGHTS } from '../lib/scorer/weights-config.js';
+import { readAdvisorHookHealthSection } from '../lib/metrics.js';
 import { errorMessage } from '../lib/utils/error-format.js';
 import { redactDiagnosticText } from './skill-graph/response-envelope.js';
 import {
@@ -483,6 +484,7 @@ export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutpu
       && (sourceChanged || artifactCorrupt || (!generation.sourceSignature && sourcesNewerThanArtifact))
       ? 'stale'
       : state;
+    const hookHealthSection = readAdvisorHookHealthSection(workspaceRoot);
     const output: AdvisorStatusOutput = {
       freshness: freshnessOutput,
       generation: generation.generation,
@@ -492,6 +494,18 @@ export function readAdvisorStatus(input: AdvisorStatusInput): AdvisorStatusOutpu
       skillCount: sourceScan.count,
       indexStaleness,
       laneWeights: DEFAULT_SCORER_WEIGHTS,
+      // The p95 counts cache-hit invocations only, because a miss pays the
+      // child-process cost that the alert thresholds are not set against.
+      ...(hookHealthSection.lastInvocations.length > 0
+        ? {
+            hookHealth: {
+              invocations: hookHealthSection.lastInvocations.length,
+              rollingP95Ms: hookHealthSection.rollingP95Ms,
+              rollingFailOpenRate: hookHealthSection.rollingFailOpenRate,
+              rollingCacheHitRate: hookHealthSection.rollingCacheHitRate,
+            },
+          }
+        : {}),
       ...((args.includeSemanticHealth || args.debug) ? { semanticLaneHealth: readSemanticLaneHealth(dbPath) } : {}),
       ...(daemonPid ? { daemonPid } : {}),
       ...(errors.length > 0 ? { errors } : {}),

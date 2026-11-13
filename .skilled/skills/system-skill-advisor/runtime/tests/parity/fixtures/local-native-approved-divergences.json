@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "scoringInstant": "2026-11-05T00:00:00Z",
+  "scoringInstant": "2026-11-13T00:00:00Z",
   "entries": [
     {
       "id": "harder:4798f04a4216",
@@ -157,12 +157,13 @@
     {
       "id": "rr-iter2-046",
       "corpus": "labeled",
-      "promptHash": "sha256:cf84a4ca158f68c875f8acae58c1357948c57e20e75044f42226abeeb9d4c5b2",
+      "prompt": "`/deep:review :auto` the current phase folder for 10 iterations.",
       "gold": "system-deep-loop",
+      "promptHash": "sha256:cf84a4ca158f68c875f8acae58c1357948c57e20e75044f42226abeeb9d4c5b2",
       "localTop": "deep-review",
-      "nativeTop": "system-spec-kit",
-      "reason": "baseline divergence captured 2026-06-13: local/native lexical-mis-route disagreement (local=deep-review, native=system-spec-kit); promptHash re-approved 2026-07-08 for the WU11 dead-id migration (/deep:start-*-loop -> /deep:*)",
-      "approvedAt": "2026-06-13"
+      "nativeTop": "system-deep-loop",
+      "reason": "recaptured 2026-11-13: a typed slash command now puts its owning skill first, so native answers system-deep-loop (the gold label) where it answered system-spec-kit; local still answers the legacy alias deep-review",
+      "approvedAt": "2026-11-13"
     },
     {
       "id": "rr-iter2-058",

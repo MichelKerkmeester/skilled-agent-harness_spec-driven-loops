@@ -17,6 +17,7 @@ import {
   speckitMetrics,
 } from '../metrics.js';
 import { normalize } from '../affordance-normalizer.js';
+import { TRACKED_COMMANDS, typedCommandIn } from '../command-attach.js';
 import { scoreDerivedLane } from './lanes/derived.js';
 import { scoreExplicitLane } from './lanes/explicit.js';
 import { scoreGraphCausalLaneSplit } from './lanes/graph-causal.js';
@@ -1151,6 +1152,29 @@ export function applyDoctorHelperHandoff(
   return keepPassingSkillsAboveDoctorBridges(withHandoff, context.promptLower, context.leadPhrasesById);
 }
 
+// A typed command with no scorer row of its own can only reach the reader through
+// its owner, so the owner must lead. With no row the scorer already orders the
+// list, and a command that does have a row competes on its own evidence.
+export function rankTypedCommandOwnerFirst(
+  ranked: readonly AdvisorScoredRecommendation[],
+  promptLower: string,
+): AdvisorScoredRecommendation[] {
+  const command = typedCommandIn(promptLower);
+  if (command === undefined || !Object.hasOwn(TRACKED_COMMANDS, command)) return [...ranked];
+  const row = TRACKED_COMMANDS[command];
+  if (row.scorerRow) return [...ranked];
+  const ownerIndex = ranked.findIndex((recommendation) => (
+    recommendation.skill === row.ownerSkillId && recommendation.passes_threshold
+  ));
+  const owner = ranked[ownerIndex];
+  if (!owner || ownerIndex === 0) return [...ranked];
+  return [
+    owner,
+    ...ranked.slice(0, ownerIndex),
+    ...ranked.slice(ownerIndex + 1),
+  ];
+}
+
 export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOptions): AdvisorScoringResult {
   const projection = projectionWithUsableSkillIds(
     options.projection ?? loadAdvisorProjection(options.workspaceRoot),
@@ -1505,6 +1529,7 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
     uncertaintyThreshold: options.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD,
     leadPhrasesById,
   });
+  ranked = rankTypedCommandOwnerFirst(ranked, promptLower);
 
   const passing = ranked.filter((recommendation) => recommendation.passes_threshold);
   const visible = options.includeAllCandidates ? ranked : passing;

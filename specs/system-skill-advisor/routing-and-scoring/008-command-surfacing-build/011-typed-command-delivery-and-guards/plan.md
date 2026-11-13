@@ -38,13 +38,13 @@ The deriver emits a `TRACKED_COMMANDS` table that gives every tracked runnable i
 - [x] The cause of each of the seven rows is read in code and recorded in `spec.md`.
 - [x] Each research claim is checked in code and its verdict is in `spec.md`.
 - [x] Every design question has an autonomous answer under the goal's D1, recorded in `spec.md` section 10.
-- [ ] The coordinator confirms phases 005, 008 and 010 are committed. No wave 1 task starts before it.
-- [ ] The before numbers are recorded (T001, T002).
+- [x] The coordinator confirms phases 005, 008 and 010 are committed. No wave 1 task starts before it. Phase 008's code landed in `c909693acb` at 04:08 and the first wave 1 log is from 04:09.
+- [x] The before numbers are recorded (T001, T002).
 
 ### Definition of Done
-- [ ] Every row in `acceptance-criteria.md` is `Met`.
-- [ ] The baseline reads `attachedMetrics.typed.combined` 44 of 44 and every floor holds against `scratch/before.txt`.
-- [ ] `spec.md`, `plan.md`, `tasks.md` and `implementation-summary.md` agree.
+- [x] Every row in `acceptance-criteria.md` is `Met`.
+- [x] The baseline reads `attachedMetrics.typed.combined` 44 of 44 and every floor holds against `scratch/before.txt`.
+- [x] `spec.md`, `plan.md`, `tasks.md` and `implementation-summary.md` agree.
 <!-- /ANCHOR:quality-gates -->
 
 ---

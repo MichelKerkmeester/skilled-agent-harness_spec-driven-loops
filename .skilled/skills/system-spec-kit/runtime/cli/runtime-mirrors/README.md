@@ -61,6 +61,8 @@ Run the non-mutating check from the repository root:
 node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check
 ```
 
+The check also prints how many tracked commands each runtime shows. It fails when a command folder other than `create/` holds a `skill.md`, because Claude Code would then hide that folder's other commands.
+
 ---
 
 ## 6. RELATED

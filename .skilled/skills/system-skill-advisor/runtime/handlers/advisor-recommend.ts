@@ -10,7 +10,7 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync, realpathSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-import { COMMAND_POLICIES, attachCommand, commandRowFor } from '../lib/command-attach.js';
+import { TRACKED_COMMANDS, attachCommand, commandRowFor, typedCommandForTop } from '../lib/command-attach.js';
 import { advisorPromptCache } from '../lib/prompt-cache.js';
 import {
   resolveAdvisorThresholdConfig,
@@ -475,10 +475,36 @@ function enrichCompiledRoutes(
           ...recommendation,
           compiledRoute,
           command,
-          ...(Object.hasOwn(COMMAND_POLICIES, command) ? { policy: COMMAND_POLICIES[command] } : {}),
+          ...(Object.hasOwn(TRACKED_COMMANDS, command) ? { policy: TRACKED_COMMANDS[command].policy } : {}),
         }
         : { ...recommendation, compiledRoute };
     }),
+  });
+}
+
+// A typed command is the reader's own choice, so it outranks a routed mode: the
+// reader already named the command, and a compiled route only guesses which mode
+// they meant. The top recommendation carries it because that is the row a reader
+// acts on, and an unrelated top keeps the output it had.
+export function attachTypedCommand(
+  output: AdvisorRecommendOutput,
+  prompt: string,
+): AdvisorRecommendOutput {
+  const top = output.recommendations[0];
+  if (!top) return output;
+  const typed = typedCommandForTop(top.skillId, prompt);
+  if (!typed) return output;
+  return AdvisorRecommendOutputSchema.parse({
+    ...output,
+    recommendations: [
+      {
+        ...top,
+        command: typed.command,
+        policy: typed.policy,
+        ownerSkillId: typed.ownerSkillId,
+      },
+      ...output.recommendations.slice(1),
+    ],
   });
 }
 
@@ -595,9 +621,12 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
         hit: true,
       },
     });
-    return input.options?.includeCompiledRoute === false
-      ? parsedCachedOutput
-      : enrichCompiledRoutes(parsedCachedOutput, input.prompt, workspaceRoot, input.options?.surfaceHint, input.options?.compiledRouteTopOnly === true);
+    return attachTypedCommand(
+      input.options?.includeCompiledRoute === false
+        ? parsedCachedOutput
+        : enrichCompiledRoutes(parsedCachedOutput, input.prompt, workspaceRoot, input.options?.surfaceHint, input.options?.compiledRouteTopOnly === true),
+      input.prompt,
+    );
   }
 
   const topK = input.options?.topK ?? 3;
@@ -667,9 +696,12 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
     value: parsed,
     skillLabels: recommendationLabels(parsed),
   });
-  return input.options?.includeCompiledRoute === false
-    ? parsed
-    : enrichCompiledRoutes(parsed, input.prompt, workspaceRoot, input.options?.surfaceHint, input.options?.compiledRouteTopOnly === true);
+  return attachTypedCommand(
+    input.options?.includeCompiledRoute === false
+      ? parsed
+      : enrichCompiledRoutes(parsed, input.prompt, workspaceRoot, input.options?.surfaceHint, input.options?.compiledRouteTopOnly === true),
+    input.prompt,
+  );
 }
 
 // ───────────────────────────────────────────────────────────────────

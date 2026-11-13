@@ -1,0 +1,354 @@
+[
+  {
+    "id": "cmd-create-agent-typed-01",
+    "offeredCommand": "/create:agent",
+    "offeredPolicy": "start",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-create-benchmark-typed-01",
+    "offeredCommand": "/create:benchmark",
+    "offeredPolicy": "start",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-create-changelog-typed-01",
+    "offeredCommand": "/create:changelog",
+    "offeredPolicy": "ask",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-create-command-typed-01",
+    "offeredCommand": "/create:command",
+    "offeredPolicy": "start",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-create-diff-typed-01",
+    "offeredCommand": "/create:diff",
+    "offeredPolicy": "start",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-create-feature-catalog-typed-01",
+    "offeredCommand": "/create:feature-catalog",
+    "offeredPolicy": "start",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-create-goal-typed-01",
+    "offeredCommand": "/create:goal",
+    "offeredPolicy": "start",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-create-manual-testing-playbook-typed-01",
+    "offeredCommand": "/create:manual-testing-playbook",
+    "offeredPolicy": "start",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-create-readme-typed-01",
+    "offeredCommand": "/create:readme",
+    "offeredPolicy": "start",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-create-repo-rule-typed-01",
+    "offeredCommand": "/create:repo-rule",
+    "offeredPolicy": "start",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-create-skill-parent-typed-01",
+    "offeredCommand": "/create:skill-parent",
+    "offeredPolicy": "start",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-create-skill-typed-01",
+    "offeredCommand": "/create:skill",
+    "offeredPolicy": "start",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-create-with-human-voice-typed-01",
+    "offeredCommand": "/create:with-human-voice",
+    "offeredPolicy": "start",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-deep-ai-council-typed-01",
+    "offeredCommand": "/deep:ai-council",
+    "offeredPolicy": "ask",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-deep-research-typed-01",
+    "offeredCommand": "/deep:research",
+    "offeredPolicy": "ask",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-deep-review-typed-01",
+    "offeredCommand": "/deep:review",
+    "offeredPolicy": "ask",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-design-chart-typed-01",
+    "offeredCommand": "/design:chart",
+    "offeredPolicy": "start",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-design-diagram-typed-01",
+    "offeredCommand": "/design:diagram",
+    "offeredPolicy": "start",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-design-extract-typed-01",
+    "offeredCommand": "/design:extract",
+    "offeredPolicy": "ask",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": false
+  },
+  {
+    "id": "cmd-doctor-agents-md-typed-01",
+    "offeredCommand": "/doctor:agents-md check",
+    "offeredPolicy": "run",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-doctor-ci-typed-01",
+    "offeredCommand": "/doctor:ci report",
+    "offeredPolicy": "run",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-doctor-deep-loop-typed-01",
+    "offeredCommand": "/doctor:deep-loop",
+    "offeredPolicy": "run",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-doctor-env-typed-01",
+    "offeredCommand": "/doctor:env list",
+    "offeredPolicy": "run",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": false
+  },
+  {
+    "id": "cmd-doctor-git-typed-01",
+    "offeredCommand": "/doctor:git setup",
+    "offeredPolicy": "run",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-doctor-helper-typed-01",
+    "offeredCommand": "/doctor:helper",
+    "offeredPolicy": "run",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-doctor-install-typed-01",
+    "offeredCommand": "/doctor:install",
+    "offeredPolicy": "run",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-doctor-mcp-typed-01",
+    "offeredCommand": "/doctor:mcp debug",
+    "offeredPolicy": "ask",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-doctor-overlay-typed-01",
+    "offeredCommand": "/doctor:overlay status",
+    "offeredPolicy": "run",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-doctor-runtime-mirrors-typed-01",
+    "offeredCommand": "/doctor:runtime-mirrors",
+    "offeredPolicy": "run",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-doctor-setup-typed-01",
+    "offeredCommand": "/doctor:setup",
+    "offeredPolicy": "run",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-doctor-sk-code-typed-01",
+    "offeredCommand": "/doctor:sk-code setup",
+    "offeredPolicy": "run",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-doctor-sk-skill-typed-01",
+    "offeredCommand": "/doctor:sk-skill convert",
+    "offeredPolicy": "ask",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-doctor-skill-advisor-typed-01",
+    "offeredCommand": "/doctor:skill-advisor rebuild",
+    "offeredPolicy": "ask",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-doctor-speckit-typed-01",
+    "offeredCommand": "/doctor:speckit",
+    "offeredPolicy": "run",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-doctor-symlink-typed-01",
+    "offeredCommand": "/doctor:symlink check",
+    "offeredPolicy": "run",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-doctor-update-typed-01",
+    "offeredCommand": "/doctor:update",
+    "offeredPolicy": "ask",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": false
+  },
+  {
+    "id": "cmd-prompt-improve-typed-01",
+    "offeredCommand": "/prompt:improve",
+    "offeredPolicy": "start",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-speckit-complete-typed-01",
+    "offeredCommand": "/speckit:complete",
+    "offeredPolicy": "start",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-speckit-handoff-typed-01",
+    "offeredCommand": "/speckit:handoff",
+    "offeredPolicy": "ask",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-speckit-implement-typed-01",
+    "offeredCommand": "/speckit:implement",
+    "offeredPolicy": "start",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-speckit-plan-typed-01",
+    "offeredCommand": "/speckit:plan",
+    "offeredPolicy": "start",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-speckit-resume-typed-01",
+    "offeredCommand": "/speckit:resume",
+    "offeredPolicy": "start",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-speckit-save-typed-01",
+    "offeredCommand": "/speckit:save",
+    "offeredPolicy": "start",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  },
+  {
+    "id": "cmd-speckit-search-typed-01",
+    "offeredCommand": "/speckit:search",
+    "offeredPolicy": "run",
+    "commandMatches": true,
+    "policyPresent": true,
+    "labelAgrees": true
+  }
+]

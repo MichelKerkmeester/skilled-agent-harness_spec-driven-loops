@@ -1174,6 +1174,23 @@ function renderCommandRows(entries, policies) {
       rows.set(id, row);
     }
   }
+  // Every tracked command gets a row whether or not a bridge is active, because a
+  // reader can type a command no scorer offers and still needs its policy and its
+  // owner. Two entries may share one runnable only while they agree on both.
+  const tracked = new Map();
+  for (const entry of entries) {
+    const runnable = entryRunnable(entry);
+    const policy = runnablePolicyRecord(runnable, policies).policy;
+    const previous = tracked.get(runnable);
+    if (previous && (previous.policy !== policy || previous.ownerSkillId !== entry.skillId)) {
+      throw new Error(`[command-bridges] Conflicting tracked command ${runnable}`);
+    }
+    tracked.set(runnable, {
+      policy,
+      ownerSkillId: entry.skillId,
+      scorerRow: entry.runtime.typescript.enabled === true,
+    });
+  }
   const rowLines = [...rows.entries()]
     .sort(([left], [right]) => left.localeCompare(right))
     .map(([id, row]) => {
@@ -1188,12 +1205,21 @@ function renderCommandRows(entries, policies) {
   const policyLines = [...runnablePolicies.entries()]
     .sort(([left], [right]) => left.localeCompare(right))
     .map(([runnable, policy]) => `  ${tsString(runnable)}: ${tsString(policy)},`);
+  const trackedLines = [...tracked.entries()]
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([runnable, row]) => (
+      `  ${tsString(runnable)}: { policy: ${tsString(row.policy)}, `
+        + `ownerSkillId: ${tsString(row.ownerSkillId)}, scorerRow: ${row.scorerRow} },`
+    ));
   return [
     'export const COMMAND_ROWS: Readonly<Record<string, CommandRow>> = {',
     ...rowLines,
     '};',
     "export const COMMAND_POLICIES: Readonly<Record<string, 'run' | 'start' | 'ask'>> = {",
     ...policyLines,
+    '};',
+    'export const TRACKED_COMMANDS: Readonly<Record<string, TrackedCommand>> = {',
+    ...trackedLines,
     '};',
   ].join('\n');
 }

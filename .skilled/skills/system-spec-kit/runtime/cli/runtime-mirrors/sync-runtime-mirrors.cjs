@@ -33,6 +33,10 @@ const { isCanonicalMirrorExcluded, isRuntimeNativeCommand } = require('./command
 const { findRepoRoot } = require('@spec-kit/shared/workspace/repo-root.mjs');
 const REPO_ROOT = findRepoRoot(__dirname);
 const EXCLUDED_COMMAND_DIRS = new Set(['assets', 'scripts', 'fixtures']);
+// Claude Code reads a command folder holding skill.md as one skill and hides
+// its sibling commands. The existing case stays allowlisted until those
+// commands are renamed.
+const COLLAPSE_ALLOWLIST = new Set(['create/skill.md']);
 
 // Cursor and Devin parse the Claude agent dialect (`tools:`), not OpenCode's
 // `permission:` block, so agents deliberately source from .claude/agents.
@@ -227,6 +231,51 @@ function expectedTarget(mirrorRelative, sourceRelative, repoRoot = REPO_ROOT) {
   );
 }
 
+/**
+ * Count the commands each runtime actually shows. Claude Code resolves a folder
+ * holding skill.md as one skill, so its siblings disappear. Cursor reads every
+ * command under a flat name, so nothing is hidden there.
+ */
+function commandVisibility(expectedLinks) {
+  const folders = new Map();
+  for (const link of expectedLinks) {
+    if (link.tree !== 'claude-commands') continue;
+    const relativePath = link.mirror.slice(`${CLAUDE_COMMANDS}/`.length);
+    const folder = path.posix.dirname(relativePath);
+    // A command at the root belongs to no folder, so Claude Code cannot collapse it.
+    if (folder === '.') continue;
+    if (!folders.has(folder)) folders.set(folder, []);
+    folders.get(folder).push(path.posix.basename(relativePath));
+  }
+  let visible = 0;
+  let total = 0;
+  for (const names of folders.values()) {
+    total += names.length;
+    visible += names.includes('skill.md') ? 1 : names.length;
+  }
+  return { claude: { visible, total }, cursor: { visible: total, total } };
+}
+
+/** Folders where a skill.md hides the folder's other commands from Claude Code. */
+function collapseDrift(expectedLinks) {
+  const folders = new Map();
+  for (const link of expectedLinks) {
+    if (link.tree !== 'claude-commands') continue;
+    const relativePath = link.mirror.slice(`${CLAUDE_COMMANDS}/`.length);
+    const folder = path.posix.dirname(relativePath);
+    if (folder === '.') continue;
+    if (!folders.has(folder)) folders.set(folder, []);
+    folders.get(folder).push(path.posix.basename(relativePath));
+  }
+  const drift = [];
+  for (const [folder, names] of folders) {
+    if (!names.includes('skill.md')) continue;
+    if (COLLAPSE_ALLOWLIST.has(`${folder}/skill.md`)) continue;
+    drift.push(`COLLAPSE ${folder}/skill.md hides ${names.length - 1} sibling commands on Claude Code`);
+  }
+  return drift;
+}
+
 /** Build output is regenerated, never committed, so its absence is not drift. */
 function isBuildArtifact(target) {
   return target.split('/').includes('dist');
@@ -332,6 +381,7 @@ function checkMirrors(expectedLinks, repoRoot = REPO_ROOT) {
     else if (result.state === 'STALE') drift.push(`STALE ${link.mirror} — ${result.why}`);
   }
   for (const orphan of findOrphans(expectedLinks, repoRoot)) drift.push(`EXTRA ${orphan}`);
+  for (const collapse of collapseDrift(expectedLinks)) drift.push(collapse);
 
   if (drift.length > 0) {
     console.error('[runtime-mirror-sync] Drift detected:');
@@ -339,7 +389,9 @@ function checkMirrors(expectedLinks, repoRoot = REPO_ROOT) {
     return false;
   }
 
+  const visibility = commandVisibility(expectedLinks);
   const trees = new Set(expectedLinks.map((l) => l.tree));
+  console.log(`[runtime-mirror-sync] visibility claude ${visibility.claude.visible}/${visibility.claude.total}, cursor ${visibility.cursor.visible}/${visibility.cursor.total}`);
   console.log(`[runtime-mirror-sync] PASS: ${expectedLinks.length} mirrors across ${trees.size} trees are in sync.`);
   return true;
 }
@@ -410,4 +462,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = { buildExpectedLinks, checkMirrors, dshAdapterLinks, findOrphans, writeMirrors };
+module.exports = { buildExpectedLinks, checkMirrors, collapseDrift, commandVisibility, dshAdapterLinks, findOrphans, writeMirrors };

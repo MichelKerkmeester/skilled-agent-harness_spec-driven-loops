@@ -29,6 +29,8 @@ const fixtureRoot = join(resolve(scratchRoot), 'sync-runtime-mirrors-fixtures');
 const {
   buildExpectedLinks,
   checkMirrors,
+  collapseDrift,
+  commandVisibility,
   dshAdapterLinks,
   findOrphans,
   writeMirrors,
@@ -257,4 +259,27 @@ test('derives each DSH adapter link from the hook library and flags a real file 
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
+});
+
+test('counts what each runtime shows and allows the known create collapse', () => {
+  const expected = [
+    { tree: 'claude-commands', mirror: '.claude/commands/create/skill.md', source: '.skilled/commands/create/skill.md' },
+    { tree: 'claude-commands', mirror: '.claude/commands/create/readme.md', source: '.skilled/commands/create/readme.md' },
+    { tree: 'claude-commands', mirror: '.claude/commands/deep/review.md', source: '.skilled/commands/deep/review.md' },
+  ];
+  assert.deepEqual(commandVisibility(expected), {
+    claude: { visible: 2, total: 3 },
+    cursor: { visible: 3, total: 3 },
+  });
+  assert.deepEqual(collapseDrift(expected), []);
+});
+
+test('flags a command folder whose skill.md hides its siblings on Claude Code', () => {
+  const expected = [
+    { tree: 'claude-commands', mirror: '.claude/commands/design/skill.md', source: '.skilled/commands/design/skill.md' },
+    { tree: 'claude-commands', mirror: '.claude/commands/design/chart.md', source: '.skilled/commands/design/chart.md' },
+  ];
+  assert.deepEqual(collapseDrift(expected), [
+    'COLLAPSE design/skill.md hides 1 sibling commands on Claude Code',
+  ]);
 });

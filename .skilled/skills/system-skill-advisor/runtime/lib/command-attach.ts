@@ -52,6 +52,15 @@ export interface CommandRow {
   readonly ownerSkillId: string;
 }
 
+// The table below covers every tracked command, whether or not its bridge is
+// active, so a typed command always has a policy and an owner. `scorerRow` says
+// whether a scorer can also return the command on its own.
+export interface TrackedCommand {
+  readonly policy: 'run' | 'start' | 'ask';
+  readonly ownerSkillId: string;
+  readonly scorerRow: boolean;
+}
+
 // BEGIN GENERATED COMMAND ROWS
 export const COMMAND_ROWS: Readonly<Record<string, CommandRow>> = {
   'command-create-agent': { command: '/create:agent', policy: 'start', mutating: 'mutates', ownerSkillId: 'sk-doc' },
@@ -165,6 +174,71 @@ export const COMMAND_POLICIES: Readonly<Record<string, 'run' | 'start' | 'ask'>>
   '/speckit:save': 'start',
   '/speckit:search': 'run',
 };
+export const TRACKED_COMMANDS: Readonly<Record<string, TrackedCommand>> = {
+  '/create:agent': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: true },
+  '/create:benchmark': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
+  '/create:changelog': { policy: 'ask', ownerSkillId: 'sk-doc', scorerRow: false },
+  '/create:command': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
+  '/create:diff': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
+  '/create:feature-catalog': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
+  '/create:goal': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
+  '/create:manual-testing-playbook': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: true },
+  '/create:readme': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
+  '/create:repo-rule': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
+  '/create:skill': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
+  '/create:skill-parent': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
+  '/create:with-human-voice': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
+  '/deep:ai-council': { policy: 'ask', ownerSkillId: 'system-deep-loop', scorerRow: false },
+  '/deep:research': { policy: 'ask', ownerSkillId: 'system-deep-loop', scorerRow: false },
+  '/deep:review': { policy: 'ask', ownerSkillId: 'system-deep-loop', scorerRow: false },
+  '/design:chart': { policy: 'start', ownerSkillId: 'sk-design', scorerRow: false },
+  '/design:diagram': { policy: 'start', ownerSkillId: 'sk-design', scorerRow: false },
+  '/design:extract': { policy: 'ask', ownerSkillId: 'sk-design', scorerRow: false },
+  '/doctor:agents-md check': { policy: 'run', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
+  '/doctor:agents-md embed': { policy: 'ask', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
+  '/doctor:agents-md restore': { policy: 'ask', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
+  '/doctor:ci report': { policy: 'run', ownerSkillId: 'sk-code', scorerRow: true },
+  '/doctor:ci scaffold': { policy: 'ask', ownerSkillId: 'sk-code', scorerRow: true },
+  '/doctor:ci toggle': { policy: 'ask', ownerSkillId: 'sk-code', scorerRow: true },
+  '/doctor:deep-loop': { policy: 'run', ownerSkillId: 'system-deep-loop', scorerRow: true },
+  '/doctor:env list': { policy: 'run', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
+  '/doctor:git hooks': { policy: 'ask', ownerSkillId: 'sk-git', scorerRow: true },
+  '/doctor:git setup': { policy: 'run', ownerSkillId: 'sk-git', scorerRow: true },
+  '/doctor:git standards': { policy: 'ask', ownerSkillId: 'sk-git', scorerRow: true },
+  '/doctor:helper': { policy: 'run', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
+  '/doctor:install': { policy: 'run', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
+  '/doctor:mcp debug': { policy: 'ask', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
+  '/doctor:mcp install': { policy: 'ask', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
+  '/doctor:overlay apply': { policy: 'ask', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
+  '/doctor:overlay repin': { policy: 'ask', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
+  '/doctor:overlay status': { policy: 'run', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
+  '/doctor:runtime-mirrors': { policy: 'run', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
+  '/doctor:setup': { policy: 'run', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
+  '/doctor:sk-code quality': { policy: 'ask', ownerSkillId: 'sk-code', scorerRow: true },
+  '/doctor:sk-code setup': { policy: 'run', ownerSkillId: 'sk-code', scorerRow: true },
+  '/doctor:sk-skill check': { policy: 'run', ownerSkillId: 'sk-doc', scorerRow: true },
+  '/doctor:sk-skill convert': { policy: 'ask', ownerSkillId: 'sk-doc', scorerRow: true },
+  '/doctor:skill-advisor embedder': { policy: 'ask', ownerSkillId: 'system-skill-advisor', scorerRow: true },
+  '/doctor:skill-advisor parent-skill': { policy: 'run', ownerSkillId: 'system-skill-advisor', scorerRow: true },
+  '/doctor:skill-advisor rebuild': { policy: 'ask', ownerSkillId: 'system-skill-advisor', scorerRow: true },
+  '/doctor:skill-advisor router-reach': { policy: 'run', ownerSkillId: 'system-skill-advisor', scorerRow: true },
+  '/doctor:skill-advisor skill-budget': { policy: 'run', ownerSkillId: 'system-skill-advisor', scorerRow: true },
+  '/doctor:skill-advisor skill-graph-freshness': { policy: 'run', ownerSkillId: 'system-skill-advisor', scorerRow: true },
+  '/doctor:skill-advisor tune': { policy: 'ask', ownerSkillId: 'system-skill-advisor', scorerRow: true },
+  '/doctor:speckit': { policy: 'run', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
+  '/doctor:symlink check': { policy: 'run', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
+  '/doctor:symlink link': { policy: 'ask', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
+  '/doctor:symlink unlink': { policy: 'ask', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
+  '/doctor:update': { policy: 'ask', ownerSkillId: 'system-skilled-doctor', scorerRow: true },
+  '/prompt:improve': { policy: 'start', ownerSkillId: 'sk-prompt', scorerRow: true },
+  '/speckit:complete': { policy: 'start', ownerSkillId: 'system-spec-kit', scorerRow: true },
+  '/speckit:handoff': { policy: 'ask', ownerSkillId: 'system-spec-kit', scorerRow: true },
+  '/speckit:implement': { policy: 'start', ownerSkillId: 'system-spec-kit', scorerRow: true },
+  '/speckit:plan': { policy: 'start', ownerSkillId: 'system-spec-kit', scorerRow: true },
+  '/speckit:resume': { policy: 'start', ownerSkillId: 'system-spec-kit', scorerRow: true },
+  '/speckit:save': { policy: 'start', ownerSkillId: 'system-spec-kit', scorerRow: true },
+  '/speckit:search': { policy: 'run', ownerSkillId: 'system-spec-kit', scorerRow: true },
+};
 // END GENERATED COMMAND ROWS
 
 // The row for an id a recommendation carries, or undefined when that id names no
@@ -172,6 +246,52 @@ export const COMMAND_POLICIES: Readonly<Record<string, 'run' | 'start' | 'ask'>>
 // name such as `constructor` must not resolve to a row nobody declared.
 export function commandRowFor(id: string): CommandRow | undefined {
   return Object.hasOwn(COMMAND_ROWS, id) ? COMMAND_ROWS[id] : undefined;
+}
+
+// A typed command is the reader's own wording, so it counts only where a command
+// can start and where it ends on a boundary. That keeps a path such as
+// `docs/create:goal.md` and a prefix such as `/create:sk` from reading as a
+// command, and the longest key wins so `/create:skill-parent` is never reduced to
+// its `/create:skill` prefix.
+const COMMAND_START_BOUNDARY = /[\s`'"(]/;
+const COMMAND_CONTINUATION = /[a-z0-9_:-]/;
+
+export function typedCommandIn(prompt: string): string | undefined {
+  const lowered = prompt.toLowerCase();
+  let found: string | undefined;
+  for (const key of Object.keys(TRACKED_COMMANDS)) {
+    let index = lowered.indexOf(key);
+    while (index !== -1) {
+      const before = index === 0 ? '' : lowered[index - 1];
+      const after = lowered[index + key.length] ?? '';
+      const startsAtBoundary = before === '' || COMMAND_START_BOUNDARY.test(before);
+      const endsAtBoundary = after === '' || !COMMAND_CONTINUATION.test(after);
+      if (startsAtBoundary && endsAtBoundary) {
+        if (found === undefined || key.length > found.length) found = key;
+        break;
+      }
+      index = lowered.indexOf(key, index + 1);
+    }
+  }
+  return found;
+}
+
+// A typed command travels on the recommendation that leads, so it is delivered
+// only when the leading skill owns the command or carries the same command row.
+// A leading skill unrelated to the command must not carry it.
+export interface TypedCommand {
+  readonly command: string;
+  readonly policy: 'run' | 'start' | 'ask';
+  readonly ownerSkillId: string;
+}
+
+export function typedCommandForTop(topSkillId: string, prompt: string): TypedCommand | undefined {
+  const command = typedCommandIn(prompt);
+  if (command === undefined || !Object.hasOwn(TRACKED_COMMANDS, command)) return undefined;
+  const row = TRACKED_COMMANDS[command];
+  const sameCommandRow = commandRowFor(topSkillId)?.command === command;
+  if (topSkillId !== row.ownerSkillId && !sameCommandRow) return undefined;
+  return { command, policy: row.policy, ownerSkillId: row.ownerSkillId };
 }
 
 // Deep-loop commands open a long, multi-pass run, so one attached to a prompt

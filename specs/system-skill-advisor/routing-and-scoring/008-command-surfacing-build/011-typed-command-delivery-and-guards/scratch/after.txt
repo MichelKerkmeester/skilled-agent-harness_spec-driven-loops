@@ -1,0 +1,29 @@
+# phase 011 after numbers, 2026-11-13, working tree on 731967bc25
+FLOOR typed: {"correct":24,"total":44}
+FLOOR false offers: {"count":0,"total":35}
+typed delivery: {"own":24,"attached":20,"combined":44,"total":44}
+slash_variant.reached_top3: 5
+typed_reach_top3: {"correct":27,"total":44}
+agreement: {"correct":7,"total":9}
+false_offer_attached: {"count":0,"total":35}
+plain: {"tune":{"own":2,"attached":7,"combined":9,"total":45},"holdout":{"own":0,"attached":0,"combined":0,"total":44}}
+EVAL: [160,50,21,5]
+TC exit: 0
+PY exit: 0
+DBC: fresh
+RS:  Tests 4 passed (4)
+PAR:  Tests 2 passed (2)
+VCA:  Tests 8 passed (8)
+VFT:  Tests 4 passed (4)
+VART:  Tests 4 passed (4)
+VHT:  Tests 120 passed (120)
+VST:  Tests 49 passed (49)
+SRMT: ℹ pass 8 ℹ fail 0 
+SRM --check exit: 0
+DCT: ℹ pass 10 ℹ fail 0 
+
+# after the two ratchet recaptures, same day
+scorer eval baseline recaptured with capture-scorer-eval-baseline.mjs --write: [160,50,21,5] (was [159,50,20,5])
+divergence ledger recaptured with capture-local-native-divergence-ledger.mjs --write --summary: {"corpusSize":221,"currentDivergences":73,"priorEntries":73,"added":[],"resolved":[],"changed":["rr-iter2-046"]}
+npm test in ADV: Test Files 177 passed (177), Tests 1672 passed | 6 skipped (1678), exit 0
+hook health: three Claude hook runs with SKILL_ADVISOR_DEBUG=1 wrote 3 diagnostic records, advisor_status printed rollingP95Ms type number, {"invocations":3,"rollingP95Ms":68,"rollingFailOpenRate":0,"rollingCacheHitRate":0.6666666666666666}

@@ -445,6 +445,12 @@ export const AdvisorStatusOutputSchema = z.object({
   laneWeights: z.record(AdvisorLaneSchema, z.number().min(0)),
   semanticLaneHealth: semanticLaneHealthSchema.optional(),
   embeddingsHealth: embeddingsHealthSchema.optional(),
+  hookHealth: z.object({
+    invocations: z.number().int().positive(),
+    rollingP95Ms: z.number().nonnegative(),
+    rollingFailOpenRate: z.number().min(0).max(1),
+    rollingCacheHitRate: z.number().min(0).max(1),
+  }).strict().optional(),
   daemonPid: z.number().int().positive().optional(),
   errors: z.array(z.string()).optional(),
 }).strict();

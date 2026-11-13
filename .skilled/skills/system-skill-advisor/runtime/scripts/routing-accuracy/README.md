@@ -79,6 +79,23 @@ The offer is a replay of the Claude prompt hook after the turn instead of a copy
 
 A line whose locator names no checkout keeps null offer fields and `offerError` `no_checkout`, and the rest of the log is still written with `offerBackfilled: true`.
 
+### The typed attachment block
+
+`capture-command-routing-baseline.mjs` reports typed reach twice under `attachedMetrics`:
+
+- `attachedMetrics.typed` counts `own`, `attached`, `combined` and `total` across the typed rows. `own` is a row the ranked bridge already landed, `attached` is a row the typed command itself delivered, and `combined` is their sum.
+- `attachedMetrics.typedRows` keys one record per typed row id in sorted order with `expected_command`, `top`, `carried`, `command` and `policy`. `carried` is `own`, `attached` or null, so a missed row names the command it did carry instead of only lowering a count.
+
+A typed command travels on its owner. It is delivered only when the leading recommendation is that command's owner skill or carries the same command row, so an unrelated leading skill never presents it. A typed command with no scorer row of its own has no other path to the reader, so its owner is ranked first.
+
+### Measure the brief cost
+
+`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs` reports what the Claude prompt hook actually sends the model for a typed row.
+
+- Flags: `node measure-brief-cost.mjs [--rows <id,id>] [--root <dir>]` keeps every typed row on the `none` split, `--rows` narrows the run to named corpus ids and `--root` names the checkout the corpus and hook are read from, defaulting to the current directory. A holdout or unknown id exits 2 before anything is spawned, and no prompt is ever printed.
+- Output keys: one JSON object holds `rows`, then `totalBytes`, `medianBytes` and `maxBytes`. Each entry of `rows` carries `id`, `bytes` and `estimatedTokens`, where bytes are the UTF-8 length of `hookSpecificOutput.additionalContext` and tokens divide that by four, the renderer's own characters per token.
+- Sandbox: the run makes one `ssa-cost-` directory under the OS temp dir and sets `SPECKIT_IPC_SOCKET_DIR` to it for every hook process, so the operator's warm daemon is never reached. At the end it stops only a process whose command line names that directory and removes it.
+
 ---
 
 ## 4. STRUCTURE

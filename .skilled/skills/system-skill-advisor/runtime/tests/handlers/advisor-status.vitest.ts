@@ -28,6 +28,10 @@ vi.mock('../../lib/embedders/adapters/ollama.js', async (importOriginal) => {
 import { handleAdvisorStatus, readAdvisorStatus } from '../../handlers/advisor-status.js';
 import { computeAdvisorSourceSignature } from '../../lib/freshness.js';
 import {
+  createAdvisorHookDiagnosticRecord,
+  persistAdvisorHookDiagnosticRecord,
+} from '../../lib/metrics.js';
+import {
   computeSkillMetadataContentHash,
   readCommandEmbeddingSources,
 } from '../../lib/skill-graph/skill-graph-db.js';
@@ -503,6 +507,38 @@ describe('advisor_status handler', () => {
     const status = AdvisorStatusOutputSchema.parse(envelope.data);
 
     expect(status).not.toHaveProperty('embeddingsHealth');
+  });
+
+  it('reports hook health from durable diagnostic records', async () => {
+    const root = workspace('hook-health');
+    const previousDebug = process.env.SKILL_ADVISOR_DEBUG;
+    process.env.SKILL_ADVISOR_DEBUG = '1';
+    try {
+      for (const durationMs of [10, 30]) {
+        await persistAdvisorHookDiagnosticRecord(root, createAdvisorHookDiagnosticRecord({
+          runtime: 'claude',
+          status: 'ok',
+          freshness: 'live',
+          durationMs,
+          cacheHit: true,
+        }));
+      }
+
+      const status = readAdvisorStatus({ workspaceRoot: root });
+
+      expect(status.hookHealth?.invocations).toBe(2);
+    } finally {
+      if (previousDebug === undefined) delete process.env.SKILL_ADVISOR_DEBUG;
+      else process.env.SKILL_ADVISOR_DEBUG = previousDebug;
+    }
+  });
+
+  it('omits hook health when no diagnostic records exist', () => {
+    const root = workspace('hook-health-absent');
+
+    const status = readAdvisorStatus({ workspaceRoot: root });
+
+    expect(status).not.toHaveProperty('hookHealth');
   });
 
   it('returns a schema-valid unavailable model-server state when requested', async () => {
