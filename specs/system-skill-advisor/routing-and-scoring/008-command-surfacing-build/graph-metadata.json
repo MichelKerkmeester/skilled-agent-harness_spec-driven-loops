@@ -16,7 +16,9 @@
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/010-reachability-and-attribution",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach",
-    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach"
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements"
   ],
   "manual": {
     "depends_on": [],
@@ -54,6 +56,7 @@
       "decision-record.md",
       ".skilled/commands/doctor/_routes.yaml",
       ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+      "review/review-report.md",
       "001-command-routing-baseline-corpus/goal.md",
       "002-command-inventory-and-risk-metadata/goal.md",
       "003-plain-chat-command-reach/goal.md",
@@ -92,6 +95,12 @@
         "name": "advisor-tool-schemas.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
         "source": "derived"
       },
       {
@@ -193,7 +202,7 @@
     ],
     "causal_summary": "The repository ships 44 tracked slash commands that own complete workflows, but the skill advisor reaches the model with skills",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-13T05:56:24.621Z",
+    "last_save_at": "2026-11-13T09:53:53.376Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +210,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:cda40600439bbf7df41ec0109c409c63d286fad5947a29f3679acc7e1645a086",
+    "source_fingerprint": "sha256:462bfba059c4539c7022ac9e85d5286d4de69a60ad84091a9d1b6ba5100efb72",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d2a57869e646a24bb0a084b9e999c034f6a69de5016b0cb27575c9796cc68858",
+      "spec.md": "221376e413fbac34c4b07354a3bb8c5b9007b9f97eb43ff38a623ec9135a568a",
       "decision-record.md": "b1b6c95eb8cf4a0ececb8a27b3c092307e7d5f10cf663453493c894278245bce"
     },
-    "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof",
-    "last_active_at": "2026-11-12T20:58:41.856Z"
+    "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation",
+    "last_active_at": "2026-11-13T09:04:30.237Z"
   }
 }

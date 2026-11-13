@@ -8,20 +8,31 @@ contextType: "research"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research"
-    last_updated_at: "2026-11-13T08:00:00Z"
-    last_updated_by: "markdown"
-    recent_action: "Recorded the merged segment two research and its dispositions"
-    next_safe_action: "Run segment three after the branch is merged to main"
-    blockers: []
+    last_updated_at: "2026-11-13T06:58:23Z"
+    last_updated_by: "generate-context"
+    recent_action: "Merged phases 011 to 013 to main and ran review pass one and research segment three"
+    next_safe_action: "Review the segment three draft, then plan the review remediation phase"
+    blockers:
+      - "Review pass one has 2 open P1 findings"
+      - "Research segment three stopped above the 0.05 threshold"
+      - "Final behaviour arm still running"
     key_files:
-      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md"
-      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research-segment-2.md"
-      - "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/tasks.md"
+      - "research/research-segment-3.md"
+      - "research/research-segment-2.md"
+      - "spec.md"
+      - "tasks.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-009-ux-performance-cross-cli-research"
       parent_session_id: null
-    completion_pct: 50
+    session_ref:
+      runtime: "claude"
+      sessionId: "fddcf466-8e1f-44cf-a132-6f846b676c18"
+      workspace: "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research"
+      savedAt: "2026-11-13T06:58:23Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 70
     open_questions: []
     answered_questions: []
 ---

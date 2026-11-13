@@ -1,0 +1,992 @@
+{
+  "sessionId": "fanout-cross-cli-3-1794550139177-nft9c6",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "keyQuestions": [
+    {
+      "id": "question-1-d-after-the-plugin-mapper-fix-what-still-differs-between-the-opencode-plugin-bri",
+      "inboxId": null,
+      "text": "(d) After the plugin mapper fix, what still differs between the OpenCode plugin brief and the hook brief for the same prompt — wording, fields, order, bytes, command line, policy, fail-open path — rendered side by side from code or a renderer run?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-e-claude-code-lists-32-of-44-commands-because-a-command-file-named-skill-md-coll",
+      "inboxId": null,
+      "text": "(e) Claude Code lists 32 of 44 commands because a command file named `skill.md` collapses its folder: which options keep every operator-facing command name intact, what does each cost per runtime (claude, codex, opencode, pi, devin, dsh), and what check proves 44 of 44?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6,
+      "resolved": true
+    },
+    {
+      "id": "question-3-does-phase-013-s-delivery-and-attribution-now-read-true-per-runtime-on-the-commi",
+      "inboxId": null,
+      "text": "Does phase 013's delivery and attribution now read true per runtime on the committed after arm, and where does it still overstate or understate reach?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-remaining-cross-cli-gap-ranks-first-by-started-when-useful-gain-per-unit-o",
+      "inboxId": null,
+      "text": "Which remaining cross-CLI gap ranks first by started-when-useful gain per unit of floor risk, and what file does each fix change?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4,
+      "resolved": true
+    },
+    {
+      "id": "question-5-what-does-the-degraded-daemon-unreachable-path-lose-per-runtime-that-the-live-pa",
+      "inboxId": null,
+      "text": "What does the degraded (daemon-unreachable) path lose per runtime that the live path keeps, and what is the smallest change that makes the fallback carry the same command?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-d-after-the-plugin-mapper-fix-what-still-differs-between-the-opencode-plugin-bri",
+      "inboxId": null,
+      "text": "(d) After the plugin mapper fix, what still differs between the OpenCode plugin brief and the hook brief for the same prompt — wording, fields, order, bytes, command line, policy, fail-open path — rendered side by side from code or a renderer run?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-e-claude-code-lists-32-of-44-commands-because-a-command-file-named-skill-md-coll",
+      "inboxId": null,
+      "text": "(e) Claude Code lists 32 of 44 commands because a command file named `skill.md` collapses its folder: which options keep every operator-facing command name intact, what does each cost per runtime (claude, codex, opencode, pi, devin, dsh), and what check proves 44 of 44?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 6
+    },
+    {
+      "id": "question-3-does-phase-013-s-delivery-and-attribution-now-read-true-per-runtime-on-the-commi",
+      "inboxId": null,
+      "text": "Does phase 013's delivery and attribution now read true per runtime on the committed after arm, and where does it still overstate or understate reach?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    },
+    {
+      "id": "question-4-which-remaining-cross-cli-gap-ranks-first-by-started-when-useful-gain-per-unit-o",
+      "inboxId": null,
+      "text": "Which remaining cross-CLI gap ranks first by started-when-useful gain per unit of floor risk, and what file does each fix change?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 4
+    },
+    {
+      "id": "question-5-what-does-the-degraded-daemon-unreachable-path-lose-per-runtime-that-the-live-pa",
+      "inboxId": null,
+      "text": "What does the degraded (daemon-unreachable) path lose per runtime that the live path keeps, and what is the smallest change that makes the fallback carry the same command?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 5
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-after-the-mapper-fix-the-two-heads-are-byte-identical-not-merely-similar-nine-pr",
+      "text": "**After the mapper fix the two heads are byte-identical, not merely similar.** Nine prompt classes produced the same first line and the same total brief length on both paths: typed 286 B, plain 286 B, ambiguous 305 B, doctor 298 B, no-match 244 B, `/deep:research` plain 294 B, `/deep:review` plain 292 B, `/deep:ai-council` plain 296 B, doctor-deep-loop plain 293 B. The command, the policy word and the owner all match. This is the check phase 013 promised and it now passes on real CLI payloads, not a fixture. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/render-parity.json]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`.opencode/plugins/lib/skill-advisor-render.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/planning/probe-opencode-brief.mjs`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/render-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/repeat-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent at the time of this iteration; recorded because the dispatch requires listing it when present)"
+      ]
+    },
+    {
+      "id": "finding-1-6-delivery-channel-and-position-differ-even-when-the-bytes-do-not-the-hook-returns",
+      "text": "**Delivery channel and position differ even when the bytes do not.** The hook returns `hookSpecificOutput.additionalContext` on the user-prompt event; the plugin pushes a string onto `output.system` in `experimental.chat.system.transform`. Same text, different position in the model's context, and the OpenCode copy exists only in memory — which is why the 24 OpenCode rows of the committed arm still read `briefDelivered: unknown`. [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:429] [SOURCE: .opencode/plugins/system-skill-advisor.js:1448]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`.opencode/plugins/lib/skill-advisor-render.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/planning/probe-opencode-brief.mjs`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/render-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/repeat-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent at the time of this iteration; recorded because the dispatch requires listing it when present)"
+      ]
+    },
+    {
+      "id": "finding-1-3-repeat-reduction-has-the-same-shape-but-a-different-reset-trigger-the-plugin-s-f",
+      "text": "**Repeat reduction has the same shape but a different reset trigger.** The plugin's first transform emits 286 B; the second transform in the same session and message emits 68 B, the head only, with the directive block dropped. The hook's `decideDirectiveLifecycleDelivery` reduces the same way — head kept, constant directives dropped. The triggers differ: the plugin resets on `startup`, `resume`, `compact`, a generation change or an epoch change; the hook also resets when the transcript file shrinks (`transcriptBytes`), which the plugin cannot see. [SOURCE: .opencode/plugins/system-skill-advisor.js:223] [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:397] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/repeat-parity.json]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`.opencode/plugins/lib/skill-advisor-render.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/planning/probe-opencode-brief.mjs`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/render-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/repeat-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent at the time of this iteration; recorded because the dispatch requires listing it when present)"
+      ]
+    },
+    {
+      "id": "finding-1-9-the-child-session-rewrite-is-shared-and-correctly-applied-by-both-with-ai-sessio",
+      "text": "**The child-session rewrite is shared and correctly applied by both.** With `AI_SESSION_CHILD=1`, both paths rendered `/create:readme` with `(parent-named only)` instead of `(start)`; without the marker both rendered `(start)`. The difference is the process environment, not the caller. This is also the cause of the two failing brief test files the phase-013 summary records. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/planning/probe-opencode-brief.mjs] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md:154]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`.opencode/plugins/lib/skill-advisor-render.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/planning/probe-opencode-brief.mjs`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/render-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/repeat-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent at the time of this iteration; recorded because the dispatch requires listing it when present)"
+      ]
+    },
+    {
+      "id": "finding-1-7-the-fail-open-text-is-a-second-implementation-not-a-shared-one-the-plugin-import",
+      "text": "**The fail-open text is a second implementation, not a shared one.** The plugin imports `renderPluginFallbackDirective` from `.opencode/plugins/lib/skill-advisor-render.js`, a plugin-local copy held equal by a parity test; the hook uses `renderAdvisorFallbackDirective` from the shared renderer. Measured no-match fallback: 244 bytes on both. The text matches today; the risk is that a future edit to one copy is only caught by the parity test. A missing prompt produces `Advisor: prompt skipped.` on both. [SOURCE: .opencode/plugins/lib/skill-advisor-render.js:51] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:627]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`.opencode/plugins/lib/skill-advisor-render.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/planning/probe-opencode-brief.mjs`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/render-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/repeat-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent at the time of this iteration; recorded because the dispatch requires listing it when present)"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-opencode-brief-carries-a-second-block-the-hook-never-emits-after-the-brief-t",
+      "text": "**The OpenCode brief carries a second block the hook never emits.** After the brief, the plugin pushes `Compiled routing (served=compiled): hub=sk-doc outcome=route targets=none` as its own `output.system` entry — 73 bytes, present on the first prompt and on every repeat. The hook asks for the same compiled route (`includeCompiledRoute: true, compiledRouteTopOnly: true`) and renders no summary line at all. So an OpenCode prompt receives 73 more bytes than a Claude prompt for the same routing decision, and in this measurement the line's `targets` list is `none`, so it adds no routing information. [SOURCE: .opencode/plugins/system-skill-advisor.js:1586] [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:238]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`.opencode/plugins/lib/skill-advisor-render.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/planning/probe-opencode-brief.mjs`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/render-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/repeat-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent at the time of this iteration; recorded because the dispatch requires listing it when present)"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-request-shapes-differ-in-three-fields-the-hook-sends-includecompiledroute-tr",
+      "text": "**The request shapes differ in three fields.** The hook sends `includeCompiledRoute: true` and `compiledRouteTopOnly: true`; the plugin sends neither, and adds a `surfaceHint` the hook does not send. Measured effect on the nine prompts: none — the handler attaches the command before the compiled route is consulted, so `/deep:research`, `/deep:review` and `/deep:ai-council` reach the plugin head without the flag. The difference is latent: a command that only the compiled route can supply would reach Claude and not OpenCode. [SOURCE: .opencode/plugins/system-skill-advisor.js:867] [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:228]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`.opencode/plugins/lib/skill-advisor-render.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/planning/probe-opencode-brief.mjs`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/render-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/repeat-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent at the time of this iteration; recorded because the dispatch requires listing it when present)"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-two-paths-read-their-pass-thresholds-from-different-places-the-hook-recomput",
+      "text": "**The two paths read their pass thresholds from different places.** The hook recomputes `passes_threshold` from `data.effectiveThresholds` echoed by the CLI, falling back to its own options. The plugin ignores `effectiveThresholds` entirely and hardcodes `DEFAULT_THRESHOLD_UNCERTAINTY = 0.35` beside its own confidence option. With the workspace defaults the CLI echoed `{\"confidenceThreshold\":0.8,\"uncertaintyThreshold\":0.35,\"confidenceOnly\":false}` on every probe prompt, so the outputs agreed; a workspace that sets a different uncertainty threshold would make the plugin show a row the hook hides, or hide one the hook shows. [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:341] [SOURCE: .opencode/plugins/system-skill-advisor.js:573]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`.opencode/plugins/lib/skill-advisor-render.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/planning/probe-opencode-brief.mjs`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/render-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/repeat-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent at the time of this iteration; recorded because the dispatch requires listing it when present)"
+      ]
+    },
+    {
+      "id": "finding-1-8-three-smaller-asymmetries-all-inert-today-the-plugin-drops-kind-and-heldbelow-fr",
+      "text": "**Three smaller asymmetries, all inert today.** The plugin drops `kind` and `heldBelow` from the recommendation it forwards; the shared renderer copies both into its renderable shape and reads neither for the label. The plugin clamps the final brief at 2048 characters while the hook relies on the 120-token (480-character) renderer cap; at 244-305 bytes neither binds. The plugin caches the brief for five minutes per session and prompt, so a route change inside the TTL is invisible to OpenCode and visible to Claude. [SOURCE: .opencode/plugins/system-skill-advisor.js:56] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:274] [SOURCE: .opencode/plugins/system-skill-advisor.js:41]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`.opencode/plugins/lib/skill-advisor-render.js`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/planning/probe-opencode-brief.mjs`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/render-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/repeat-parity.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent at the time of this iteration; recorded because the dispatch requires listing it when present)"
+      ]
+    },
+    {
+      "id": "finding-2-10-excluded-by-the-question-recorded-so-it-is-not-re-proposed-renaming-the-canonica",
+      "text": "**Excluded by the question, recorded so it is not re-proposed: renaming the canonical file.** Any rename of `.skilled/commands/create/skill.md` changes the command name on all six runtimes at once — the largest possible rename — and the 011 allowlist already names this as the reason the case stays open. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:36]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/command-scope.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/README.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/spec.md`",
+        "`.claude/skills` (symlink target), `.claude/commands/create/`",
+        "`node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` output",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-2-2-no-other-runtime-hides-a-command-so-every-claude-side-option-costs-them-nothing-",
+      "text": "**No other runtime hides a command, so every Claude-side option costs them nothing.** Of the 45 canonical command files (44 tracked plus the private root file), each tree resolves 45 of 45: cursor and codex and pi and dsh through flat `<folder>-<name>.md` files, opencode through a top-level folder entry, Claude through the folder path. Only Claude's `create/` entry reads as one. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:200] [per-runtime resolution count run 2026-11-13]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/command-scope.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/README.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/spec.md`",
+        "`.claude/skills` (symlink target), `.claude/commands/create/`",
+        "`node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` output",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-2-5-option-1-skill-mirror-beside-the-command-tree-recommended-skip-the-create-skill-",
+      "text": "**Option 1 — skill mirror beside the command tree (recommended).** Skip the `create/skill.md` command link in the Claude tree and generate `.claude/skills/create/SKILL.md` from the canonical file's frontmatter with `name: create`. Claude then shows the twelve `create:*` commands that g5 proved visible plus the `create` skill it shows today: 44 of 44 with every displayed name unchanged. Cost: `.claude/skills` is currently a single symlink to `../.skilled/skills`, so the tree must become a managed directory (or the skill must be added to the canonical inventory, where all six runtimes and the advisor graph would index it and where the floors could move). Other runtimes: 0, because neither their trees nor the canonical command folder changes. Check: `commandVisibility` counts command links plus skill links and asserts 44, and one fixture listing shows `create:readme` and `create` together. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:206] [SOURCE: .claude/skills (symlink to ../.skilled/skills)]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/command-scope.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/README.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/spec.md`",
+        "`.claude/skills` (symlink target), `.claude/commands/create/`",
+        "`node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` output",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-2-6-option-2-case-only-mirror-name-skill-md-emit-the-one-claude-link-as-claude-comma",
+      "text": "**Option 2 — case-only mirror name `SKILL.md`.** Emit the one Claude link as `.claude/commands/create/SKILL.md` instead of `skill.md`. Cheapest possible change (one special case in `buildExpectedLinks`, no canonical edit, no other runtime). Unmeasured: g5 tested `skill.md` against `new-skill.md`, never the uppercase spelling, so whether Claude's collapse rule is case-sensitive is UNKNOWN. If it is not, the script would print a false 44/44. Check: one throwaway Claude folder listing, exactly the g5 harness, before the rule changes. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt] (inference for the case sensitivity)",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/command-scope.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/README.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/spec.md`",
+        "`.claude/skills` (symlink target), `.claude/commands/create/`",
+        "`node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` output",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-2-7-option-3-nested-entrypoint-create-skill-index-md-if-claude-resolves-a-folder-s-i",
+      "text": "**Option 3 — nested entrypoint `create/skill/index.md`.** If Claude resolves a folder's `index.md` as the command for that folder, `/create:skill` survives and the collapse disappears with no new surface. UNKNOWN resolution: it may render as `/create:skill:index`. Cost: one path special case, 0 elsewhere. Check: the same listing. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:239] (inference)",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/command-scope.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/README.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/spec.md`",
+        "`.claude/skills` (symlink target), `.claude/commands/create/`",
+        "`node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` output",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-2-8-option-4-colon-named-flat-mirror-create-skill-md-at-the-command-root-a-root-leve",
+      "text": "**Option 4 — colon-named flat mirror `create:skill.md` at the command root.** A root-level file needs no folder and therefore cannot collapse. UNKNOWN whether Claude derives `/create:skill` from that filename, and a colon is illegal on Windows, so the mirror would not survive a Windows checkout. Cost: 1 file, 0 elsewhere if it works. Check: listing plus a path-portability test. (inference)",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/command-scope.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/README.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/spec.md`",
+        "`.claude/skills` (symlink target), `.claude/commands/create/`",
+        "`node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` output",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-2-9-option-5-drop-the-collapsed-file-from-the-claude-mirror-claude-then-shows-the-tw",
+      "text": "**Option 5 — drop the collapsed file from the Claude mirror.** Claude then shows the twelve siblings and no `create` entry: 43 of 44, an honest loss of one surface rather than a false 44. Cost: 1 link removed; 0 elsewhere. Check: the count prints 43/44 and the check must fail the 44 assertion, which is the point. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:273]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/command-scope.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/README.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/spec.md`",
+        "`.claude/skills` (symlink target), `.claude/commands/create/`",
+        "`node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` output",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-2-1-the-32-of-44-number-is-reproduced-exactly-and-the-whole-gap-is-one-folder-check-",
+      "text": "**The 32-of-44 number is reproduced exactly, and the whole gap is one folder.** `--check` prints `visibility claude 32/44, cursor 44/44` and passes with `256 mirrors across 10 trees`. `.claude/commands/create/` holds 13 command files and Claude shows one entry for the folder; the other 31 foldered commands sit outside `create/` and all show. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:254] [output of `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check`, 2026-11-13]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/command-scope.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/README.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/spec.md`",
+        "`.claude/skills` (symlink target), `.claude/commands/create/`",
+        "`node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` output",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-count-function-undercounts-by-design-and-would-certify-a-false-44-commandvis",
+      "text": "**The count function undercounts by design and would certify a false 44.** `commandVisibility` skips any command whose folder is `.`, so the root-level `local-skilled-alignment.md` is in neither the numerator nor the denominator, and the \"44\" is the foldered set only. It also counts a folder holding `skill.md` as exactly one, whatever Claude does with it — so a case-only rename would print 44/44 from the script whether or not Claude still collapses. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:246] [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:254]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/command-scope.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/README.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/spec.md`",
+        "`.claude/skills` (symlink target), `.claude/commands/create/`",
+        "`node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` output",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-2-3-the-trigger-is-the-exact-basename-and-today-s-single-visible-entry-is-the-skill-",
+      "text": "**The trigger is the exact basename, and today's single visible entry is the skill `create`.** The g5 measurement put `create/readme.md` beside `create/skill.md` and Claude listed one entry, `create`; with `create/new-skill.md` instead of `skill.md` it listed `create:new-skill` and `create:readme`. So the name that must survive is `create`, and the twelve names to restore are `create:agent`, `create:benchmark`, `create:changelog`, `create:command`, `create:diff`, `create:feature-catalog`, `create:goal`, `create:manual-testing-playbook`, `create:readme`, `create:repo-rule`, `create:skill-parent`, `create:with-human-voice`. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/command-scope.cjs`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/README.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/spec.md`",
+        "`.claude/skills` (symlink target), `.claude/commands/create/`",
+        "`node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` output",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-3-4-true-proves-the-store-holds-the-brief-not-that-the-model-saw-it-for-claude-the-e",
+      "text": "**`true` proves the store holds the brief, not that the model saw it.** For Claude the evidence is the transcript's `hook_additional_context`, which is as close to proof as the arm gets. For pi, devin and dsh the evidence is a session-store entry the harness wrote, so `briefDelivered: true` means \"the runtime stored the injected text\" — the same text the shared readers previously dropped. The field name promises slightly more than the evidence carries. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/implementation-summary.md:117] [SOURCE: .skilled/hooks/shared/session-readers/README.md]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/runs-post-attributed.jsonl`",
+        "`.../scratch/summary-post-before.json`, `.../scratch/summary-post-after.json`",
+        "`.../013-attribution-and-install-reach/implementation-summary.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs`",
+        "`.skilled/hooks/shared/session-readers/README.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-3-7-attribution-changed-no-behaviour-which-is-the-correct-result-start-rates-on-the-",
+      "text": "**Attribution changed no behaviour, which is the correct result.** Start rates on the attributed arm equal the pre-013 arm: claude 4 of 12, codex 0 of 12, pi 2 of 10, devin 3 of 9, opencode 1 of 5, dsh 6 of 12. `--brief-only` replays no offer and writes no brief, so the arm is the same measurement with a better label. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/summary-post-before.json] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/summary-post-after.json]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/runs-post-attributed.jsonl`",
+        "`.../scratch/summary-post-before.json`, `.../scratch/summary-post-after.json`",
+        "`.../013-attribution-and-install-reach/implementation-summary.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs`",
+        "`.skilled/hooks/shared/session-readers/README.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-3-3-codex-s-false-is-an-approval-fact-not-a-delivery-failure-the-line-carries-briefd",
+      "text": "**Codex's `false` is an approval fact, not a delivery failure.** The line carries `briefDelivered:false` with `briefBackfilled:true` and `offeredCommand:null`, and the value comes from the Codex hook-approval check rather than from a session read. The arm is now honest that nothing arrived, but it still cannot separate \"the host refused the hook\" from \"the hook was never approved\" — both read `false`. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/runs-post-attributed.jsonl] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/runs-post-attributed.jsonl`",
+        "`.../scratch/summary-post-before.json`, `.../scratch/summary-post-after.json`",
+        "`.../013-attribution-and-install-reach/implementation-summary.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs`",
+        "`.skilled/hooks/shared/session-readers/README.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-3-1-delivery-is-answered-on-119-of-144-lines-and-the-split-is-exactly-the-one-the-ph",
+      "text": "**Delivery is answered on 119 of 144 lines, and the split is exactly the one the phase claims.** From the file: claude `true` 24, pi `true` 24, devin `true` 24, dsh `true` 23 plus `unknown` 1, codex `false` 24, opencode `unknown` 24. That is 95 true, 24 false, 25 unknown. The 013 summary's \"119 of 144, up from 24\" reproduces exactly, and the offer fields on every line are unchanged. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/runs-post-attributed.jsonl] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/summary-post-after.json]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/runs-post-attributed.jsonl`",
+        "`.../scratch/summary-post-before.json`, `.../scratch/summary-post-after.json`",
+        "`.../013-attribution-and-install-reach/implementation-summary.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs`",
+        "`.skilled/hooks/shared/session-readers/README.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-3-5-one-unknown-is-invisible-in-the-summary-because-the-same-row-cannot-be-scored-ds",
+      "text": "**One unknown is invisible in the summary because the same row cannot be scored.** DSH's single `unknown` belongs to `cmd-deep-review-plain-tune-01`, whose locator has no `sessionId`; the scorer records it `locator_unavailable`. `deliveryUnknown` is counted inside `addScored`, so a row that never scores contributes no `delivery unknown`. DSH therefore prints `delivery unknown 0` while its log holds one. The denominator for delivery unknown is scored rows, not run lines. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/runs-post-attributed.jsonl] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1300]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/runs-post-attributed.jsonl`",
+        "`.../scratch/summary-post-before.json`, `.../scratch/summary-post-after.json`",
+        "`.../013-attribution-and-install-reach/implementation-summary.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs`",
+        "`.skilled/hooks/shared/session-readers/README.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-3-2-the-new-summary-counters-read-the-field-they-were-added-for-opencode-prints-deli",
+      "text": "**The new summary counters read the field they were added for.** OpenCode prints `delivery unknown 24`, Codex prints `offer reached 0`, and the other four print `offer reached 3`; `offer field absent` is 0 on all six where the pre-arm read 24. So the rename from `offerUnknown` to `offerFieldAbsent` and the new `deliveryUnknown` are live, not decorative. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1293] [scorer output 2026-11-13]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/runs-post-attributed.jsonl`",
+        "`.../scratch/summary-post-before.json`, `.../scratch/summary-post-after.json`",
+        "`.../013-attribution-and-install-reach/implementation-summary.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs`",
+        "`.skilled/hooks/shared/session-readers/README.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-3-6-the-safety-fold-landed-and-devin-s-unsafe-count-rose-as-rank-5-of-segment-two-in",
+      "text": "**The safety fold landed and Devin's unsafe count rose, as rank 5 of segment two intended.** The scored after arm reads unsafe: devin 2, pi 1, opencode 2, dsh 0, claude 0, codex 0, with `loops without init 1 of 1` on Devin. The goal log's after-arm row says Devin 1; the extra one is the loop-without-init row now counted unsafe, so \"unsafe 0\" again means what it says on the other runtimes. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/summary-post-after.json] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md:132]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/runs-post-attributed.jsonl`",
+        "`.../scratch/summary-post-before.json`, `.../scratch/summary-post-after.json`",
+        "`.../013-attribution-and-install-reach/implementation-summary.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs`",
+        "`.skilled/hooks/shared/session-readers/README.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-4-3-no-workspace-overrides-the-threshold-pair-the-only-values-in-the-tree-are-the-co",
+      "text": "**No workspace overrides the threshold pair.** The only values in the tree are the compat-contract defaults, 0.8 and 0.35, so the plugin's hardcoded 0.35 and the hook's `effectiveThresholds` read agree today. The divergence is a latent hazard, not a current defect, and building a reader for it now would be building for a hypothetical. [SOURCE: .skilled/skills/system-skill-advisor/runtime/schemas/compat-contract.json:6] [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/skill-advisor-cli-fallback.ts:341]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/render-entries.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/compat-contract.json`",
+        "`.opencode/plugins/system-skill-advisor.js`, `.opencode/plugins/lib/skill-advisor-render.js`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-4-5-ranked-because-of-what-moves-not-because-of-what-is-tidy-rank-1-moves-twelve-ope",
+      "text": "**Ranked because of what moves, not because of what is tidy.** Rank 1 moves twelve operator-visible names on one runtime and touches no scoring input. Rank 2 moves 561 bytes and buys byte parity with the hook. Ranks 3-5 move single rows or single fields and exist so the next arm's numbers cannot be misread. Nothing here re-recommends a built item: rank 1 is the fix half of segment-one rank 9, the others are new. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md:135]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/render-entries.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/compat-contract.json`",
+        "`.opencode/plugins/system-skill-advisor.js`, `.opencode/plugins/lib/skill-advisor-render.js`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-4-4-ranked-set-highest-gain-per-unit-of-risk-first-all-floor-risk-is-stated-against-",
+      "text": "**Ranked set, highest gain per unit of risk first.** All floor risk is stated against typed recall 24/44, false offers 0/35 and EVAL [160,50,21,5].",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/render-entries.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/compat-contract.json`",
+        "`.opencode/plugins/system-skill-advisor.js`, `.opencode/plugins/lib/skill-advisor-render.js`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-4-2-segment-one-s-rank-9-may-be-reopened-and-this-is-the-measurement-that-changes-it",
+      "text": "**Segment one's rank 9 may be reopened, and this is the measurement that changes it.** Rank 9 asked to settle G5 on the real path, \"also on OpenCode\", and to add a visibility count. The count shipped in 011; the fix was left as an operator rename, and the canonical rename is blocked by Q025. Iteration 2 supplies three facts rank 9 did not have: every non-Claude runtime resolves 45 of 45 commands, so OpenCode does not collapse; `commandVisibility` cannot certify a collapse it did not model (it counts a `skill.md` folder as one, and skips root commands); and `.claude/skills` is a single symlink to the canonical tree, which prices the skill-mirror route. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:112] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md:61]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/render-entries.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/compat-contract.json`",
+        "`.opencode/plugins/system-skill-advisor.js`, `.opencode/plugins/lib/skill-advisor-render.js`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-4-1-the-compiled-routing-block-is-emitted-on-7-of-9-prompts-and-always-says-targets-",
+      "text": "**The compiled-routing block is emitted on 7 of 9 prompts and always says `targets=none`.** It is 73 bytes for the sk-doc hub and 83 for system-deep-loop, 561 bytes across the nine prompts. It appears on typed, plain, ambiguous (`outcome=defer`), the three deep plain rows and the doctor-deep-loop row; it is absent on the doctor-setup and no-match prompts, where no compiled route is served. The hook emits no equivalent line on any of the nine. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/render-entries.json] [SOURCE: .opencode/plugins/system-skill-advisor.js:1586]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/render-entries.json`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/implementation-summary.md`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/compat-contract.json`",
+        "`.opencode/plugins/system-skill-advisor.js`, `.opencode/plugins/lib/skill-advisor-render.js`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-5-5-everything-the-attach-step-needs-is-available-with-no-daemon-compiled-route-cjs-",
+      "text": "**Everything the attach step needs is available with no daemon.** `compiled-route.cjs` answers locally: `sk-doc` plus the readme prompt returns `action: route, selectionKind: single, workflowMode: sk-create-readme`; `system-deep-loop` plus the deep-research prompt returns `research`; `system-deep-loop` plus \"use the system-deep-loop skill\" returns `defer`. `MODE_COMMANDS['sk-doc']['sk-create-readme']` is `/create:readme` and `MODE_COMMANDS['system-deep-loop']['research']` is `/deep:research`, and `typedCommandIn('/create:readme …')` already returns `/create:readme`. The fallback simply never calls any of them. [command output 2026-11-13] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts:15]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/compat-contract.json`",
+        "`.skilled/bin/compiled-route.cjs` (three route lookups, output recorded in this iteration)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/live-heads.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/degraded-parity.json`",
+        "Claude transcripts under `~/.claude/projects/*behaviour-arenas*`, Codex sessions under `~/.codex/sessions/2026/11/13`, the Pi and DSH stores (counts only)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-5-6-in-the-committed-arms-the-path-was-taken-zero-times-where-it-could-be-observed-a",
+      "text": "**In the committed arms the path was taken zero times, where it could be observed.** `Advisor: stale` appears in 0 of 107 Claude transcripts (pre 25, post 62, smoke 4, fin 16), 0 of 33 Codex session files dated 2026-11-13, 0 of 36 Pi files touched on the arm date, and 0 in the DSH store. Codex's zero is uninformative because its hooks were unapproved and no brief was ever produced, and OpenCode keeps no store, so its rate is unmeasurable. [grep output 2026-11-13]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/compat-contract.json`",
+        "`.skilled/bin/compiled-route.cjs` (three route lookups, output recorded in this iteration)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/live-heads.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/degraded-parity.json`",
+        "Claude transcripts under `~/.claude/projects/*behaviour-arenas*`, Codex sessions under `~/.codex/sessions/2026/11/13`, the Pi and DSH stores (counts only)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-5-4-only-the-doctor-prompt-s-top-differs-live-names-the-command-row-command-doctor-s",
+      "text": "**Only the doctor prompt's top differs.** Live names the command row `command-doctor-setup` and prints `/doctor:setup (run)`; the local scorer names `system-skilled-doctor` with no command. That is a ranking difference in the bridge rows, not a shaping difference, so it needs an owner-to-command lookup as well as the attach step. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/degraded-parity.json]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/compat-contract.json`",
+        "`.skilled/bin/compiled-route.cjs` (three route lookups, output recorded in this iteration)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/live-heads.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/degraded-parity.json`",
+        "Claude transcripts under `~/.claude/projects/*behaviour-arenas*`, Codex sessions under `~/.codex/sessions/2026/11/13`, the Pi and DSH stores (counts only)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-5-8-smallest-change-give-the-degraded-branch-the-handler-s-own-attach-step-in-skill-",
+      "text": "**Smallest change: give the degraded branch the handler's own attach step.** In `skill-advisor-cli.ts`, before shaping, call the shared `compiledRouteForRecommendation` plus `attachCommand` for a hub top, `typedCommandIn`/`typedCommandForTop` for a typed prompt, `MODE_COMMANDS` membership for a `defer`, and an owner-to-command lookup for `system-skilled-doctor`; then let `degradedRecommendations` shape the enriched rows. Measured feasibility is finding 5; the expected effect is inference from the measured tops: five of the six non-empty prompts regain the same command and policy as live, and the doctor prompt matches once the owner lookup is added. Verify with a test that forces `invokeToolPayload` to throw the retryable exit and asserts the degraded head equals the live head for the seven probe prompts. Floor risk: none — the branch is the daemon-unreachable path and feeds no scoring input; the cost is one local `compiled-route.cjs` subprocess per degraded prompt, inside the existing five-second fallback budget. [SOURCE: .skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts:583] [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1572]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/compat-contract.json`",
+        "`.skilled/bin/compiled-route.cjs` (three route lookups, output recorded in this iteration)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/live-heads.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/degraded-parity.json`",
+        "Claude transcripts under `~/.claude/projects/*behaviour-arenas*`, Codex sessions under `~/.codex/sessions/2026/11/13`, the Pi and DSH stores (counts only)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-5-3-the-012-note-s-a-plain-readme-request-goes-to-another-skill-no-longer-reproduces",
+      "text": "**The 012 note's \"a plain readme request goes to another skill\" no longer reproduces.** The local scorer ranks `sk-doc` 0.95/0.12 first for `write a readme for the utils folder`, the same top the live answer has. The remaining gap on that row is the command and policy, not the routing — so phase 012's aliases reached the scorer that the fallback uses. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/degraded-parity.json]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/compat-contract.json`",
+        "`.skilled/bin/compiled-route.cjs` (three route lookups, output recorded in this iteration)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/live-heads.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/degraded-parity.json`",
+        "Claude transcripts under `~/.claude/projects/*behaviour-arenas*`, Codex sessions under `~/.codex/sessions/2026/11/13`, the Pi and DSH stores (counts only)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-5-2-the-012-note-s-a-typed-command-is-kept-does-not-reproduce-at-head-for-create-rea",
+      "text": "**The 012 note's \"a typed command is kept\" does not reproduce at HEAD.** For `/create:readme for the utils folder` the scorer's top is `sk-doc` with no command; `commandRowFor('sk-doc')` returns `undefined`, so the typed branch never fires and the degraded head is `Advisor: stale; use sk-doc 0.95/0.12 pass.` The typed command is lost as well. The carried question understated the loss by one class. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/degraded-parity.json] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/live-heads.txt:23]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/compat-contract.json`",
+        "`.skilled/bin/compiled-route.cjs` (three route lookups, output recorded in this iteration)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/live-heads.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/degraded-parity.json`",
+        "Claude transcripts under `~/.claude/projects/*behaviour-arenas*`, Codex sessions under `~/.codex/sessions/2026/11/13`, the Pi and DSH stores (counts only)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-5-1-the-degraded-answer-is-the-bare-scorer-plus-a-lossy-shaper-not-a-degraded-copy-o",
+      "text": "**The degraded answer is the bare scorer plus a lossy shaper, not a degraded copy of the handler's answer.** The fallback spawns `skill_advisor.py` (whose own rows say `\"source\":\"native\"`), then passes them through `degradedRecommendations`, which has no attach step at all. On the seven probe prompts the local top equals the live top on six, and every resulting head loses the command, the policy and the mode label. [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1455] [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1481] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/degraded-parity.json]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/compat-contract.json`",
+        "`.skilled/bin/compiled-route.cjs` (three route lookups, output recorded in this iteration)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/live-heads.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/degraded-parity.json`",
+        "Claude transcripts under `~/.claude/projects/*behaviour-arenas*`, Codex sessions under `~/.codex/sessions/2026/11/13`, the Pi and DSH stores (counts only)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-5-7-the-trigger-conditions-are-narrower-than-no-daemon-the-cli-starts-the-daemon-and",
+      "text": "**The trigger conditions are narrower than \"no daemon\".** The CLI starts the daemon and waits, so a cold daemon alone does not reach the fallback; it takes a failed spawn, a crashed daemon, or a socket the process cannot connect to. The Claude hook imports the CLI fallback reader and the OpenCode plugin spawns the same CLI; whether the Pi, Devin and DSH adapters inherit this fallback is UNKNOWN — no import of the reader was found in their trees. [SOURCE: .skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1368] [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:347]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/compat-contract.json`",
+        "`.skilled/bin/compiled-route.cjs` (three route lookups, output recorded in this iteration)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/live-heads.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/scratch/degraded-parity.json`",
+        "Claude transcripts under `~/.claude/projects/*behaviour-arenas*`, Codex sessions under `~/.codex/sessions/2026/11/13`, the Pi and DSH stores (counts only)",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-6-5-one-assertion-in-the-ranked-set-is-still-unproven-rank-1-s-mechanism-a-generated",
+      "text": "**One assertion in the ranked set is still unproven.** Rank 1's mechanism — a generated `.claude/skills/create/SKILL.md` rendering as the skill `create` while the twelve `create:*` commands reappear — is the same mechanism the 12 existing Claude skills use, and g5 proved the command side, but no listing shows the two together. It is the only item whose gain rests on a Claude behaviour not measured in this lineage. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/floorcheck.sh`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/after.txt`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/iterations/iteration-002.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-6-6-question-e-is-answered-and-its-exact-text-is-restated-here-for-the-exact-match-t",
+      "text": "**Question (e) is answered, and its exact text is restated here for the exact-match tick.** The options that keep every operator-facing name are: a generated Claude skill beside the command tree (rank 1, 44 of 44, zero cost on the other five runtimes), a case-only `SKILL.md` mirror (unverified), a nested `create/skill/index.md` (unverified), a colon-named root mirror (unverified and Windows-hostile), and dropping the collapsed entry (43 of 44). The check that proves it must count command links and the skill link, and must stop certifying a `skill.md` folder as one without modelling the collapse. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/iterations/iteration-002.md]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/floorcheck.sh`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/after.txt`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/iterations/iteration-002.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-6-2-rank-1-cannot-move-a-floor-because-it-changes-only-the-claude-mirror-tree-the-ca",
+      "text": "**Rank 1 cannot move a floor because it changes only the Claude mirror tree.** The capture reads `.skilled/commands` through the handler and the scorer; the mirror tree under `.claude/commands` is not an input to it, and the change adds no row and no alias. The one residual path — adding the skill to the canonical `.skilled/skills` inventory — was ruled out in iteration 4 for exactly this reason. [SOURCE: .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs:200]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/floorcheck.sh`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/after.txt`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/iterations/iteration-002.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-6-3-rank-2-cannot-move-a-floor-because-it-changes-only-the-plugin-s-system-prompt-te",
+      "text": "**Rank 2 cannot move a floor because it changes only the plugin's system-prompt text.** `capture-command-routing-baseline.mjs` calls the handler, not the OpenCode plugin; the plugin's `output.system` entries never enter a scored run. [SOURCE: .opencode/plugins/system-skill-advisor.js:1586]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/floorcheck.sh`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/after.txt`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/iterations/iteration-002.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-6-4-ranks-3-to-5-cannot-move-a-floor-either-and-the-reason-is-the-same-one-that-made",
+      "text": "**Ranks 3 to 5 cannot move a floor either, and the reason is the same one that made phase 013 safe.** They touch the behaviour runner's locator, the transcript scorer's counters and the delivery field. `score-command-transcripts.mjs` is the arm's reader, not a floor input; the floor scripts read the handler and the scorer over the corpus. So the unsafe count can rise and the delivery field can split without touching a pinned number — exactly what happened when the loop-without-init fold landed in 013. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/after.txt]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/floorcheck.sh`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/after.txt`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/iterations/iteration-002.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    },
+    {
+      "id": "finding-6-1-the-floors-are-two-capture-scripts-over-the-prompt-corpus-and-the-scorer-and-no-",
+      "text": "**The floors are two capture scripts over the prompt corpus and the scorer, and no ranked change is an input to either.** `FLOOR` and `TYPED` and `PLAIN` come from `capture-command-routing-baseline.mjs`; `EVAL` comes from `capture-scorer-eval-baseline.mjs`. The gates are typed recall ≥ 24 of 44, `false_offer` exactly 0 of 35, `false_offer_attached` exactly 0 of 35, typed combined ≥ 44, and the eval tuple ≥ [159,50,20,5]. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/floorcheck.sh:20]",
+      "addedAtIteration": 6,
+      "sources": [
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach/scratch/floorcheck.sh`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach/scratch/after.txt`",
+        "`.skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs`",
+        "`.opencode/plugins/system-skill-advisor.js`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch/g5/result.txt`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/iterations/iteration-002.md`",
+        "`specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/steer.md` (absent; not present at the time of this iteration)"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-8c53e91c7935",
+      "text": "Comparing against the `~/.claude` transcript brief. That is a delivered brief after host formatting, so a difference could be the host rather than the caller.",
+      "contentHash": "8c53e91c7935",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-7c0772912b44",
+      "text": "Looking for a wording or field difference in the head: there is none left after the mapper fix. Any further gain in this area is in the extra block, the channel, or the threshold source, not in the brief text.",
+      "contentHash": "7c0772912b44",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-ab75bb39e176",
+      "text": "Rendering the plugin brief from a fixture alone. The committed probe offered a fixture case, but the mapper fix is only proven against a real CLI payload, so the nine-prompt real run carried the conclusion and the fixture was used only as a control.",
+      "contentHash": "ab75bb39e176",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-4bbf483a462f",
+      "text": "Counting the private root command in the 44. `local-skilled-alignment.md` is untracked and outside the foldered set; including it would change every published number.",
+      "contentHash": "4bbf483a462f",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-ec5ec6c75ead",
+      "text": "Looking for a runtime that already solves this by a second namespace: none of the six has a folder-plus-`skill.md` layout, because only Claude mirrors the canonical folder structure.",
+      "contentHash": "ec5ec6c75ead",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-88ff9ee6e8c3",
+      "text": "Treating the cursor 44/44 line as proof for all runtimes. It is computed as `visible = total` for cursor regardless of tree content, so it proves the cursor path only.",
+      "contentHash": "88ff9ee6e8c3",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-261c4c4f1d19",
+      "text": "Re-running the arm to answer OpenCode delivery. The brief never becomes a session part, so a rerun would produce the same 24 `unknown`; the only fix is a written marker, which the phase deliberately declined because a plugin-written marker proves the plugin ran, not that the host delivered.",
+      "contentHash": "261c4c4f1d19",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-46cac7376c5b",
+      "text": "Reading `briefDelivered: true` as obedience. It is a delivery fact; every start rate in this iteration is computed from the scorer's own start rows.",
+      "contentHash": "46cac7376c5b",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-ba8023953738",
+      "text": "Trying to derive the DSH unknown from the store: the row has no session id, so there is nothing to open. The row needs the runner to record a session id, not the reader to guess one.",
+      "contentHash": "ba8023953738",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-8042dd97324c",
+      "text": "Building a reader for `effectiveThresholds` in the plugin. No override exists in the tree; the restraint rule says not to build for a hypothetical. Recorded as a latent hazard in iteration 1 finding 4 instead.",
+      "contentHash": "8042dd97324c",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-9d1b959f90d9",
+      "text": "Pricing rank 2 by tokens rather than bytes: at four characters per token the block is 18-21 tokens, which no cap binds; the gain is parity and noise, not budget.",
+      "contentHash": "9d1b959f90d9",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-a193f3b89069",
+      "text": "Putting the `create` skill in the canonical `.skilled/skills` tree. It would add a fifteenth skill to every runtime and to the advisor graph, which is the one route by which rank 1 could move the floors.",
+      "contentHash": "a193f3b89069",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-16f7fb963612",
+      "text": "Looking for an OpenCode-side fallback record: the plugin's answer is in memory only, so a degraded OpenCode prompt leaves no trace at all. Its rate can only be inferred from an operator's own session, never from an arm.",
+      "contentHash": "16f7fb963612",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-d560ac3d8ebf",
+      "text": "Starting a daemon or a second socket directory to measure the fallback live. The reproduction above reaches the same two functions without one, and a second daemon is forbidden in this lane.",
+      "contentHash": "d560ac3d8ebf",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-07f44185c30d",
+      "text": "Treating the 012 note as the current behaviour. Two of its three claims do not reproduce at HEAD, and the third (mode label and doctor hand-off lost) does.",
+      "contentHash": "07f44185c30d",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-e6acee9d6d91",
+      "text": "None. The floor-input trace is short and conclusive.",
+      "contentHash": "e6acee9d6d91",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-0c373abb2694",
+      "text": "Running the floor scripts to re-measure. They write into the phase scratch directories, which are outside this lineage; the committed after files are the evidence, and the input trace answers the risk question without a run.",
+      "contentHash": "0c373abb2694",
+      "addedAtIteration": 6
+    },
+    {
+      "id": "ruled-out-fa165a781a04",
+      "text": "Treating the missing tick on (e) as a research gap. It is an exact-match bookkeeping difference — the record omitted the backticks around `skill.md` — and is corrected by this iteration's record, not by new evidence.",
+      "contentHash": "fa165a781a04",
+      "addedAtIteration": 6
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 6,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 45,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.3,
+    "coverageBySources": {
+      "other": 71
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "INITIALIZED",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

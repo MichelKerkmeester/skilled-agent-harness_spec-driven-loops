@@ -204,8 +204,8 @@
     ],
     "causal_summary": "Phases 005 to 008 plan the recommendation contract, the Gate 2 binding, the per-runtime proof and the embedder setup",
     "created_at": "2026-11-12T23:26:03.950Z",
-    "last_save_at": "2026-11-13T05:56:26.509Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-13T06:58:23.997Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -214,13 +214,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:4484a0cea5dc89a877b6d5b319cda8a7a7dd695dbbf6d73a746ff1edde9380cf",
+    "source_fingerprint": "sha256:cb009cd1b944047c8910dbc172ea4e130a47cdd9dc0021313205c765dc0d7851",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6930565b79f51de37738783a14f9cc9206b2d04d9257df4b2213dc1d2eb29d16",
       "plan.md": "68bf8676855da71b184886d9a88d53d021dd51c668f57da6438ca51c011bee4f",
       "tasks.md": "2c384e15730bcdaa0847e8fb814dae372d798b232def56a3f5bab022ddb810cb",
-      "implementation-summary.md": "654f5b7945029746e87b4f787bc287270bf93e7a27f94e19f08dcaf69ce050dd",
+      "implementation-summary.md": "7d7f42fe3a687a54954efcbe5b94041efa0bb418c3c3c85a209a72a632c46d0f",
       "research/research.md": "072a00b3bcd9252c7a3852f3935e96760c9c2036a45b9ef9bd48de992c8df8f5"
     },
     "last_active_child_id": null,

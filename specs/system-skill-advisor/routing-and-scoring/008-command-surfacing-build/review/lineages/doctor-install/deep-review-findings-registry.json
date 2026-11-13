@@ -1,0 +1,910 @@
+{
+  "sessionId": "fanout-doctor-install-1794550137809-1ecgc7",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-11-13T06:26:18.368Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "DR1-P1-001",
+      "severity": "P1",
+      "title": "A failed write mid-apply leaves a half-embedded tree and prints no undo",
+      "file": ".skilled/commands/doctor/scripts/agents-md-embed.cjs",
+      "line": 1364,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR4-P1-001",
+      "severity": "P1",
+      "title": "A symlinked REPO RULES.md or .cursor/rules/repo-local.md is written through, so apply mutates a file its plan never named",
+      "file": ".skilled/commands/doctor/scripts/agents-md-embed.cjs",
+      "line": 783,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR1-P2-001",
+      "severity": "P2",
+      "title": "A symlinked .codex/AGENTS.md reports PASS while the manifest declares that path absent",
+      "file": ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+      "line": 709,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR1-P2-002",
+      "severity": "P2",
+      "title": "The CLAUDE.md pointer verdict claims every line names AGENTS.md while only one line must",
+      "file": ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+      "line": 731,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR1-P2-003",
+      "severity": "P2",
+      "title": "The preservation proof fourth claim is computed and never enforced",
+      "file": ".skilled/commands/doctor/scripts/agents-md-embed.cjs",
+      "line": 598,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR2-P2-001",
+      "severity": "P2",
+      "title": "The install guide offers six runtimes while calling the accepted set seven, and never names dsh",
+      "file": ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
+      "line": 78,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR2-P2-002",
+      "severity": "P2",
+      "title": "The embedder route probes OLLAMA_BASE_URL but starts and pulls against the default local host",
+      "file": ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml",
+      "line": 89,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR2-P2-003",
+      "severity": "P2",
+      "title": "setup.md documents one out-of-repository write while the workflow declares an empty allowlist",
+      "file": ".skilled/commands/doctor/setup.md",
+      "line": 75,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR3-P2-001",
+      "severity": "P2",
+      "title": "A10 reports copies as expected for a tree whose CLAUDE.md is missing",
+      "file": ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+      "line": 649,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR3-P2-002",
+      "severity": "P2",
+      "title": "An absent Codex advisor entry is routed to a command that cannot repair it and a promised repair line is never printed",
+      "file": ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+      "line": 165,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR3-P2-003",
+      "severity": "P2",
+      "title": "The symlink check output contract says OK on engine exit 0 though its hook step can end the run as WARN",
+      "file": ".skilled/commands/doctor/assets/doctor-symlink-check.yaml",
+      "line": 67,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR3-P2-004",
+      "severity": "P2",
+      "title": "The scripts README says the check runs three owner tools as children while it runs four",
+      "file": ".skilled/commands/doctor/scripts/README.markdown",
+      "line": 102,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR4-P2-001",
+      "severity": "P2",
+      "title": "Automatic rollback restores the backup without the allowlist and hash checks the manual restore enforces",
+      "file": ".skilled/commands/doctor/scripts/agents-md-embed.cjs",
+      "line": 1289,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR5-P2-001",
+      "severity": "P2",
+      "title": "The two sibling hook checks disagree on a value flag whose next token starts with a dash",
+      "file": ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs",
+      "line": 59,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR5-P2-002",
+      "severity": "P2",
+      "title": "Hook wiring counts a marker anywhere in the event payload so a mention is read as a wired entry",
+      "file": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+      "line": 123,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DR5-P2-003",
+      "severity": "P2",
+      "title": "The check and the embed engines read the same router table by different rules so a malformed row is missing to one and present to the other",
+      "file": ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+      "line": 809,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 14
+  },
+  "openFindingsCount": 16,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.875,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "count_accuracy",
+      "docs_code_disagreement",
+      "environment_boundary",
+      "false_clean_diagnostic",
+      "marker_structural_match",
+      "misleading_evidence",
+      "partial_write",
+      "proof_contract",
+      "repair_path_closure",
+      "rollback_integrity",
+      "runtime_parity",
+      "shared_grammar_drift",
+      "sibling_argument_parity",
+      "write_containment"
+    ],
+    "ruledOut": [
+      "holdout_isolation",
+      "mutation_authorization",
+      "runtime_branch_coverage",
+      "runtime_coverage",
+      "secret_emission"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "false_clean_diagnostic": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "misleading_evidence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "partial_write": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "proof_contract": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "runtime_branch_coverage": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "runtime_parity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "environment_boundary": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "docs_code_disagreement": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2,
+          3
+        ]
+      },
+      "mutation_authorization": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "repair_path_closure": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "count_accuracy": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "runtime_coverage": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "write_containment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "rollback_integrity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "holdout_isolation": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "secret_emission": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "sibling_argument_parity": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "marker_structural_match": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      },
+      "shared_grammar_drift": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          5
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+        ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs"
+      ],
+      "bugClass": "runtime_branch_coverage",
+      "disposition": "ruled_out",
+      "rationale": "the four-runtime table matches the advisor hook's actual reach in this repository",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/hook-wiring-check.cjs:39",
+        ".opencode/hooks/skill-advisor"
+      ],
+      "reason": "no advisor hook entry exists for opencode, pi or dsh here"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-mcp-install.yaml"
+      ],
+      "bugClass": "mutation_authorization",
+      "disposition": "ruled_out",
+      "rationale": "every printed writing step carries its own plan or approval phase",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-mcp-install.yaml:84"
+      ],
+      "reason": "mcp install uses approval per mutation; the other four writing steps own plan or approval phases"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        "INSTALL-SKILLED.md"
+      ],
+      "bugClass": "runtime_coverage",
+      "disposition": "ruled_out",
+      "rationale": "dsh is accepted by the setup and git batteries; the gap is confined to the install guide and already recorded",
+      "evidenceRefs": [
+        "INSTALL-SKILLED.md:57",
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs:64"
+      ],
+      "reason": "duplicate of DR2-P2-001"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy"
+      ],
+      "bugClass": "holdout_isolation",
+      "disposition": "ruled_out",
+      "rationale": "no doctor path reads holdout rows and the runner refuses them before reading prompt text",
+      "evidenceRefs": [
+        ".skilled/commands/doctor",
+        "routing-accuracy/command-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:588"
+      ],
+      "reason": "file-name search plus count-only inspection found no consumer in this lineage and an explicit refusal in the runner"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-018",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs"
+      ],
+      "bugClass": "secret_emission",
+      "disposition": "ruled_out",
+      "rationale": "no hash is printed in text or JSON",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs:184"
+      ],
+      "reason": "the approvalFound helper returns a boolean and the report builds no hash field"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+        ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs"
+      ],
+      "bugClass": "runtime_branch_coverage",
+      "disposition": "ruled_out",
+      "rationale": "the four-runtime table matches the advisor hook's actual reach in this repository",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/hook-wiring-check.cjs:39",
+        ".opencode/hooks/skill-advisor"
+      ],
+      "proof": "no advisor hook entry exists for opencode, pi or dsh here"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
+        ".skilled/commands/doctor/assets/doctor-mcp-install.yaml"
+      ],
+      "bugClass": "mutation_authorization",
+      "disposition": "ruled_out",
+      "rationale": "every printed writing step carries its own plan or approval phase",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/assets/doctor-mcp-install.yaml:84"
+      ],
+      "proof": "mcp install uses approval per mutation; the other four writing steps own plan or approval phases"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-014",
+      "dimension": "traceability",
+      "targetRefs": [
+        "INSTALL-SKILLED.md"
+      ],
+      "bugClass": "runtime_coverage",
+      "disposition": "ruled_out",
+      "rationale": "dsh is accepted by the setup and git batteries; the gap is confined to the install guide and already recorded",
+      "evidenceRefs": [
+        "INSTALL-SKILLED.md:57",
+        ".skilled/commands/doctor/scripts/git-setup-check.cjs:64"
+      ],
+      "proof": "duplicate of DR2-P2-001"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-017",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy"
+      ],
+      "bugClass": "holdout_isolation",
+      "disposition": "ruled_out",
+      "rationale": "no doctor path reads holdout rows and the runner refuses them before reading prompt text",
+      "evidenceRefs": [
+        ".skilled/commands/doctor",
+        "routing-accuracy/command-prompts.jsonl",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:588"
+      ],
+      "proof": "file-name search plus count-only inspection found no consumer in this lineage and an explicit refusal in the runner"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-018",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs"
+      ],
+      "bugClass": "secret_emission",
+      "disposition": "ruled_out",
+      "rationale": "no hash is printed in text or JSON",
+      "evidenceRefs": [
+        ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs:184"
+      ],
+      "proof": "the approvalFound helper returns a boolean and the report builds no hash field"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "sibling_argument_parity",
+      "marker_structural_match",
+      "shared_grammar_drift"
+    ],
+    "covered": [
+      "sibling_argument_parity",
+      "marker_structural_match",
+      "shared_grammar_drift"
+    ],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

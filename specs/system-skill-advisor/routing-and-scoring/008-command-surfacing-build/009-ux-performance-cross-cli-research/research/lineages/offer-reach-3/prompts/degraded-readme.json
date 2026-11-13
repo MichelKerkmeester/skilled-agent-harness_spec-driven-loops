@@ -1,0 +1,20 @@
+{
+  "status": "ok",
+  "degraded": true,
+  "source": "local-scorer",
+  "data": {
+    "recommendations": [
+      {
+        "skillId": "system-spec-kit",
+        "confidence": 0.95,
+        "uncertainty": 0.2,
+        "reason": "Matched: !folder, !graph:enhances(sk-doc,0.5), folder, spec(name)"
+      }
+    ],
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    }
+  }
+}

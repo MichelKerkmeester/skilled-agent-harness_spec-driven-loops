@@ -1,0 +1,45 @@
+cmd-create-agent-plain-tune-01	/create:agent	sk-doc	-	route-without-command
+cmd-create-agent-plain-tune-02	/create:agent	sk-doc	/create:agent	command-offered
+cmd-create-benchmark-plain-tune-01	/create:benchmark	sk-doc	/create:benchmark	command-offered
+cmd-create-changelog-plain-tune-01	/create:changelog	sk-doc	/create:changelog	command-offered
+cmd-create-command-plain-tune-01	/create:command	sk-doc	/create:command	command-offered
+cmd-create-diff-plain-tune-01	/create:diff	sk-doc	/create:diff	command-offered
+cmd-create-feature-catalog-plain-tune-01	/create:feature-catalog	sk-doc	/create:feature-catalog	command-offered
+cmd-create-goal-plain-tune-01	/create:goal	sk-doc	/create:goal	command-offered
+cmd-create-manual-testing-playbook-plain-tune-01	/create:manual-testing-playbook	create:manual-testing-playbook	/create:manual-testing-playbook	command-offered
+cmd-create-readme-plain-tune-01	/create:readme	sk-doc	-	route-without-command
+cmd-create-repo-rule-plain-tune-01	/create:repo-rule	sk-doc	-	hub-defers-needs-mode
+cmd-create-skill-parent-plain-tune-01	/create:skill-parent	-	-	no-recommendation
+cmd-create-skill-plain-tune-01	/create:skill	sk-doc	/create:skill	command-offered
+cmd-create-with-human-voice-plain-tune-01	/create:with-human-voice	sk-doc	-	route-without-command
+cmd-doctor-agents-md-plain-tune-01	/doctor:agents-md	command-doctor-agents-md-check	/doctor:agents-md check	command-offered
+cmd-doctor-ci-plain-tune-01	/doctor:ci	command-doctor-ci-report	/doctor:ci report	command-offered
+cmd-doctor-deep-loop-plain-tune-01	/doctor:deep-loop	system-deep-loop	-	route-without-command
+cmd-doctor-env-plain-tune-01	/doctor:env	command-doctor-env	/doctor:env list	command-offered
+cmd-doctor-git-plain-tune-01	/doctor:git	command-doctor-git-hooks	/doctor:git hooks	command-offered
+cmd-doctor-helper-plain-tune-01	/doctor:helper	command-doctor-helper	/doctor:helper	command-offered
+cmd-doctor-install-plain-tune-01	/doctor:install	-	-	no-recommendation
+cmd-doctor-mcp-plain-tune-01	/doctor:mcp	mcp-code-mode	-	top-skill-has-no-command
+cmd-doctor-overlay-plain-tune-01	/doctor:overlay	command-doctor-overlay-status	/doctor:overlay status	command-offered
+cmd-doctor-runtime-mirrors-plain-tune-01	/doctor:runtime-mirrors	command-doctor-runtime-mirrors	/doctor:runtime-mirrors	command-offered
+cmd-doctor-setup-plain-tune-01	/doctor:setup	-	-	no-recommendation
+cmd-doctor-sk-code-plain-tune-01	/doctor:sk-code	sk-code	-	route-without-command
+cmd-doctor-sk-skill-plain-tune-01	/doctor:sk-skill	sk-doc	-	hub-defers-needs-mode
+cmd-doctor-skill-advisor-plain-tune-01	/doctor:skill-advisor	system-skill-advisor	-	top-skill-has-no-command
+cmd-doctor-speckit-plain-tune-01	/doctor:speckit	-	-	no-recommendation
+cmd-doctor-symlink-plain-tune-01	/doctor:symlink	command-doctor-symlink-link	/doctor:symlink link	command-offered
+cmd-doctor-update-plain-tune-01	/doctor:update	-	-	no-recommendation
+cmd-deep-ai-council-plain-tune-01	/deep:ai-council	system-deep-loop	/deep:ai-council	command-offered
+cmd-deep-research-plain-tune-01	/deep:research	system-deep-loop	/deep:research	command-offered
+cmd-deep-review-plain-tune-01	/deep:review	system-deep-loop	/deep:review	command-offered
+cmd-design-chart-plain-tune-01	/design:chart	sk-design	/design:chart	command-offered
+cmd-design-diagram-plain-tune-01	/design:diagram	sk-design	/design:diagram	command-offered
+cmd-design-extract-plain-tune-01	/design:extract	sk-design	/design:extract	command-offered
+cmd-prompt-improve-plain-tune-01	/prompt:improve	command-prompt-improve	/prompt:improve	command-offered
+cmd-speckit-complete-plain-tune-01	/speckit:complete	sk-doc	-	hub-defers-needs-mode
+cmd-speckit-handoff-plain-tune-01	/speckit:handoff	command-speckit-handoff	/speckit:handoff	command-offered
+cmd-speckit-implement-plain-tune-01	/speckit:implement	sk-code	-	hub-defers-needs-mode
+cmd-speckit-plan-plain-tune-01	/speckit:plan	command-speckit-plan	/speckit:plan	command-offered
+cmd-speckit-resume-plain-tune-01	/speckit:resume	command-speckit-resume	/speckit:resume	command-offered
+cmd-speckit-save-plain-tune-01	/speckit:save	sk-doc	-	hub-defers-needs-mode
+cmd-speckit-search-plain-tune-01	/speckit:search	-	-	no-recommendation

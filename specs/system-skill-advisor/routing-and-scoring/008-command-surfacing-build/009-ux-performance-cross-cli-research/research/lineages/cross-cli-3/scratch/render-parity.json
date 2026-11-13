@@ -1,0 +1,284 @@
+{
+  "sessionChild": false,
+  "rows": [
+    {
+      "label": "typed",
+      "prompt": "/create:readme for the utils folder",
+      "top": {
+        "skillId": "sk-doc",
+        "kind": "skill",
+        "command": "/create:readme",
+        "policy": "start",
+        "ownerSkillId": "sk-doc",
+        "needsMode": false,
+        "confidence": 0.95,
+        "uncertainty": 0.12
+      },
+      "effectiveThresholds": {
+        "confidenceThreshold": 0.8,
+        "uncertaintyThreshold": 0.35,
+        "confidenceOnly": false
+      },
+      "ambiguous": false,
+      "freshness": "live",
+      "degraded": false,
+      "plugin": {
+        "bytes": 286,
+        "text": "Advisor: live; use sk-doc → /create:readme (start) 0.95/0.12 pass.\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations."
+      },
+      "hook": {
+        "bytes": 286,
+        "text": "Advisor: live; use sk-doc → /create:readme (start) 0.95/0.12 pass.\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations."
+      },
+      "same": true
+    },
+    {
+      "label": "plain",
+      "prompt": "write a readme for the utils folder",
+      "top": {
+        "skillId": "sk-doc",
+        "kind": "skill",
+        "command": "/create:readme",
+        "policy": "start",
+        "ownerSkillId": null,
+        "needsMode": false,
+        "confidence": 0.95,
+        "uncertainty": 0.12
+      },
+      "effectiveThresholds": {
+        "confidenceThreshold": 0.8,
+        "uncertaintyThreshold": 0.35,
+        "confidenceOnly": false
+      },
+      "ambiguous": false,
+      "freshness": "live",
+      "degraded": false,
+      "plugin": {
+        "bytes": 286,
+        "text": "Advisor: live; use sk-doc → /create:readme (start) 0.95/0.12 pass.\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations."
+      },
+      "hook": {
+        "bytes": 286,
+        "text": "Advisor: live; use sk-doc → /create:readme (start) 0.95/0.12 pass.\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations."
+      },
+      "same": true
+    },
+    {
+      "label": "ambiguous",
+      "prompt": "use the system-deep-loop skill on this packet",
+      "top": {
+        "skillId": "system-spec-kit",
+        "kind": "skill",
+        "command": null,
+        "policy": null,
+        "ownerSkillId": null,
+        "needsMode": false,
+        "confidence": 0.9138,
+        "uncertainty": 0.16
+      },
+      "effectiveThresholds": {
+        "confidenceThreshold": 0.8,
+        "uncertaintyThreshold": 0.35,
+        "confidenceOnly": false
+      },
+      "ambiguous": true,
+      "freshness": "live",
+      "degraded": false,
+      "plugin": {
+        "bytes": 305,
+        "text": "Advisor: live; ambiguous: system-spec-kit 0.91/0.16 vs system-deep-loop 0.91/0.12 pass.\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations."
+      },
+      "hook": {
+        "bytes": 305,
+        "text": "Advisor: live; ambiguous: system-spec-kit 0.91/0.16 vs system-deep-loop 0.91/0.12 pass.\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations."
+      },
+      "same": true
+    },
+    {
+      "label": "doctor",
+      "prompt": "run doctor setup for my install",
+      "top": {
+        "skillId": "command-doctor-setup",
+        "kind": "command",
+        "command": "/doctor:setup",
+        "policy": "run",
+        "ownerSkillId": "system-skilled-doctor",
+        "needsMode": false,
+        "confidence": 0.82,
+        "uncertainty": 0.16
+      },
+      "effectiveThresholds": {
+        "confidenceThreshold": 0.8,
+        "uncertaintyThreshold": 0.35,
+        "confidenceOnly": false
+      },
+      "ambiguous": false,
+      "freshness": "live",
+      "degraded": false,
+      "plugin": {
+        "bytes": 298,
+        "text": "Advisor: live; use system-skilled-doctor → /doctor:setup (run) 0.82/0.16 pass.\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations."
+      },
+      "hook": {
+        "bytes": 298,
+        "text": "Advisor: live; use system-skilled-doctor → /doctor:setup (run) 0.82/0.16 pass.\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations."
+      },
+      "same": true
+    },
+    {
+      "label": "no-match",
+      "prompt": "what is the weather today",
+      "top": {
+        "skillId": null,
+        "kind": null,
+        "command": null,
+        "policy": null,
+        "ownerSkillId": null,
+        "needsMode": false,
+        "confidence": null,
+        "uncertainty": null
+      },
+      "effectiveThresholds": {
+        "confidenceThreshold": 0.8,
+        "uncertaintyThreshold": 0.35,
+        "confidenceOnly": false
+      },
+      "ambiguous": false,
+      "freshness": "live",
+      "degraded": false,
+      "plugin": {
+        "bytes": 244,
+        "text": "Advisor: no skill matched.\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations."
+      },
+      "hook": {
+        "bytes": 244,
+        "text": "Advisor: no skill matched.\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations."
+      },
+      "same": true
+    },
+    {
+      "label": "deep-research-plain",
+      "prompt": "Go find out everything you can about incremental indexing approaches and report back",
+      "top": {
+        "skillId": "system-deep-loop",
+        "kind": "skill",
+        "command": "/deep:research",
+        "policy": "ask",
+        "ownerSkillId": null,
+        "needsMode": false,
+        "confidence": 0.82,
+        "uncertainty": 0.12
+      },
+      "effectiveThresholds": {
+        "confidenceThreshold": 0.8,
+        "uncertaintyThreshold": 0.35,
+        "confidenceOnly": false
+      },
+      "ambiguous": false,
+      "freshness": "live",
+      "degraded": false,
+      "plugin": {
+        "bytes": 294,
+        "text": "Advisor: live; use system-deep-loop → /deep:research (ask) 0.82/0.12 pass.\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations."
+      },
+      "hook": {
+        "bytes": 294,
+        "text": "Advisor: live; use system-deep-loop → /deep:research (ask) 0.82/0.12 pass.\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations."
+      },
+      "same": true
+    },
+    {
+      "label": "deep-review-plain",
+      "prompt": "Audit this codebase over many passes until the findings stop changing",
+      "top": {
+        "skillId": "system-deep-loop",
+        "kind": "skill",
+        "command": "/deep:review",
+        "policy": "ask",
+        "ownerSkillId": null,
+        "needsMode": false,
+        "confidence": 0.82,
+        "uncertainty": 0.12
+      },
+      "effectiveThresholds": {
+        "confidenceThreshold": 0.8,
+        "uncertaintyThreshold": 0.35,
+        "confidenceOnly": false
+      },
+      "ambiguous": false,
+      "freshness": "live",
+      "degraded": false,
+      "plugin": {
+        "bytes": 292,
+        "text": "Advisor: live; use system-deep-loop → /deep:review (ask) 0.82/0.12 pass.\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations."
+      },
+      "hook": {
+        "bytes": 292,
+        "text": "Advisor: live; use system-deep-loop → /deep:review (ask) 0.82/0.12 pass.\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations."
+      },
+      "same": true
+    },
+    {
+      "label": "deep-council-plain",
+      "prompt": "Get several models to debate the tradeoffs and give us a final verdict",
+      "top": {
+        "skillId": "system-deep-loop",
+        "kind": "skill",
+        "command": "/deep:ai-council",
+        "policy": "ask",
+        "ownerSkillId": null,
+        "needsMode": false,
+        "confidence": 0.82,
+        "uncertainty": 0.24
+      },
+      "effectiveThresholds": {
+        "confidenceThreshold": 0.8,
+        "uncertaintyThreshold": 0.35,
+        "confidenceOnly": false
+      },
+      "ambiguous": false,
+      "freshness": "live",
+      "degraded": false,
+      "plugin": {
+        "bytes": 296,
+        "text": "Advisor: live; use system-deep-loop → /deep:ai-council (ask) 0.82/0.24 pass.\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations."
+      },
+      "hook": {
+        "bytes": 296,
+        "text": "Advisor: live; use system-deep-loop → /deep:ai-council (ask) 0.82/0.24 pass.\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations."
+      },
+      "same": true
+    },
+    {
+      "label": "doctor-deep-loop-plain",
+      "prompt": "my research loop stopped converging and I cannot see why",
+      "top": {
+        "skillId": "system-deep-loop",
+        "kind": "skill",
+        "command": null,
+        "policy": null,
+        "ownerSkillId": null,
+        "needsMode": false,
+        "confidence": 0.8875,
+        "uncertainty": 0.12
+      },
+      "effectiveThresholds": {
+        "confidenceThreshold": 0.8,
+        "uncertaintyThreshold": 0.35,
+        "confidenceOnly": false
+      },
+      "ambiguous": false,
+      "freshness": "live",
+      "degraded": false,
+      "plugin": {
+        "bytes": 293,
+        "text": "Advisor: live; use system-deep-loop 0.89/0.12 pass.\nAlso: /doctor:deep-loop\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations."
+      },
+      "hook": {
+        "bytes": 293,
+        "text": "Advisor: live; use system-deep-loop 0.89/0.12 pass.\nAlso: /doctor:deep-loop\nDirectives:\n- Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations."
+      },
+      "same": true
+    }
+  ]
+}

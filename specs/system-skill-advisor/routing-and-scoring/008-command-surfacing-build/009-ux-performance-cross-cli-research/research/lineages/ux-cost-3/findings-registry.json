@@ -1,0 +1,829 @@
+{
+  "sessionId": "fanout-ux-cost-3-1794550139177-nft9c6",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "all_questions_answered",
+    "totalIterations": 5,
+    "answeredCount": 3,
+    "totalQuestions": 3,
+    "timestamp": "2026-11-13T06:36:21.037Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-kq1-what-should-the-hook-health-default-be-and-what-does-a-default-on-record-cos",
+      "inboxId": null,
+      "text": "KQ1: What should the hook-health default be, and what does a default-on record cost per prompt in bytes written, latency, file growth and privacy of what is recorded?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-kq2-what-do-the-brief-and-the-cold-path-cost-per-prompt-at-head-and-which-brief-",
+      "inboxId": null,
+      "text": "KQ2: What do the brief and the cold path cost per prompt at HEAD, and which brief bytes can be cut with the same command, policy and skill still reaching the model?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2,
+      "resolved": true
+    },
+    {
+      "id": "question-3-kq3-which-ranked-changes-follow-from-the-answers-by-expected-gain-per-unit-of-ri",
+      "inboxId": null,
+      "text": "KQ3: Which ranked changes follow from the answers, by expected gain per unit of risk to the floors (typed recall 24 of 44, false offers 0 of 35, scorer [160,50,21,5])?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-kq1-what-should-the-hook-health-default-be-and-what-does-a-default-on-record-cos",
+      "inboxId": null,
+      "text": "KQ1: What should the hook-health default be, and what does a default-on record cost per prompt in bytes written, latency, file growth and privacy of what is recorded?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-kq2-what-do-the-brief-and-the-cold-path-cost-per-prompt-at-head-and-which-brief-",
+      "inboxId": null,
+      "text": "KQ2: What do the brief and the cold path cost per prompt at HEAD, and which brief bytes can be cut with the same command, policy and skill still reaching the model?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 2
+    },
+    {
+      "id": "question-3-kq3-which-ranked-changes-follow-from-the-answers-by-expected-gain-per-unit-of-ri",
+      "inboxId": null,
+      "text": "KQ3: Which ranked changes follow from the answers, by expected gain per unit of risk to the floors (typed recall 24 of 44, false offers 0 of 35, scorer [160,50,21,5])?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 3
+    }
+  ],
+  "carriedForwardOpenQuestions": [
+    {
+      "text": "KQ3: ranking and floor risk.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "KQ2: brief and cold-path cost at HEAD, and which bytes can be cut with no information lost.",
+      "addedAtIteration": 1,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "KQ3: the ranking, the floor risk, and the verification each change needs.",
+      "addedAtIteration": 2,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None in this lane's two carried questions. The cold-embedder sample stays a recorded gap, not an open question.",
+      "addedAtIteration": 3,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "Whether the plugin-shaped runtimes (OpenCode, Pi, DSH) can carry any health signal at all, and what the brief costs per runtime rather than per Claude prompt.",
+      "addedAtIteration": 4,
+      "source": "iteration-markdown"
+    },
+    {
+      "text": "None in this lane. The cold-embedder sample stays a recorded gap.",
+      "addedAtIteration": 5,
+      "source": "iteration-markdown"
+    }
+  ],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-3-doctor-setup-shows-nothing-at-all-on-a-default-install-and-it-is-the-only-surfac",
+      "text": "**`/doctor:setup` shows nothing at all on a default install, and it is the only surface that would.** The advisor leg prints the section only when `data.hookHealth` exists, and `advisor-status.ts` emits it only when the diagnostics file holds at least one valid record. Measured uptake on this machine: 17 `-diagnostics.jsonl` files against 119 `-outcomes.jsonl` files in the same metrics root, so 86% of workspace keys have never written a diagnostic record and can never show hook health. [SOURCE: .skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:487-510] [SOURCE: .skilled/commands/doctor/assets/doctor-setup.yaml:59] [COMMAND: `ls $TMPDIR/speckit-skill-advisor-metrics | grep -c -- '-diagnostics.jsonl'` → 17; the same with `-outcomes.jsonl` → 119]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:175-194, 281-334, 420-489, 524-530`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:487-510`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:238-273, 415-427`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:59`",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md:20`",
+        "`INSTALL-SKILLED.md:73`",
+        "`scratch/diagnostic-write-cost.mjs`, `scratch/hook-latency-paired.mjs`, `scratch/hook-health-cost.mjs`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/` file counts (17 diagnostics, 119 outcomes)"
+      ]
+    },
+    {
+      "id": "finding-1-4-a-record-costs-about-200-bytes-and-a-health-only-record-would-cost-about-120-mea",
+      "text": "**A record costs about 200 bytes, and a health-only record would cost about 120.** Measured over 240 gated writes in one process: 47,040 bytes for 240 lines, 196 bytes per record, against a minimal hook record of 107 bytes. The live hook's 24 records averaged 201.7 bytes because they carry `skillLabel`, `emittedBytes` and `directivesSuppressed`. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-cost-3/scratch/diagnostic-write-cost.mjs] [COMMAND output: medianMs 0.26, bytesPerRecord 196]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:175-194, 281-334, 420-489, 524-530`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:487-510`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:238-273, 415-427`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:59`",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md:20`",
+        "`INSTALL-SKILLED.md:73`",
+        "`scratch/diagnostic-write-cost.mjs`, `scratch/hook-latency-paired.mjs`, `scratch/hook-health-cost.mjs`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/` file counts (17 diagnostics, 119 outcomes)"
+      ]
+    },
+    {
+      "id": "finding-1-6-growth-is-bounded-at-200-records-and-the-bound-is-already-in-code-max-durable-di",
+      "text": "**Growth is bounded at 200 records, and the bound is already in code.** `MAX_DURABLE_DIAGNOSTIC_RECORDS` is 200, and the writer trims only after the file passes 300 lines, so steady state is 40 KB and the worst transient is 60 KB, per workspace, in the OS temp directory. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:187-188] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:322-334]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:175-194, 281-334, 420-489, 524-530`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:487-510`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:238-273, 415-427`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:59`",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md:20`",
+        "`INSTALL-SKILLED.md:73`",
+        "`scratch/diagnostic-write-cost.mjs`, `scratch/hook-latency-paired.mjs`, `scratch/hook-health-cost.mjs`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/` file counts (17 diagnostics, 119 outcomes)"
+      ]
+    },
+    {
+      "id": "finding-1-8-only-the-claude-hook-adapter-writes-these-records-no-opencode-plugin-pi-extensio",
+      "text": "**Only the Claude hook adapter writes these records.** No OpenCode plugin, Pi extension or DSH plugin path references the diagnostic writer, so a default flip covers the hook-shaped runtimes (Claude, Codex, Cursor, Devin through the shared adapter) and leaves 2 of the 6 measured runtimes with no health at all. [COMMAND: `grep -rln \"createAdvisorHookDiagnosticRecord|emitDiagnostic\" .skilled/skills/system-skill-advisor/hooks` → only `claude/user-prompt-submit.ts`]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:175-194, 281-334, 420-489, 524-530`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:487-510`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:238-273, 415-427`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:59`",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md:20`",
+        "`INSTALL-SKILLED.md:73`",
+        "`scratch/diagnostic-write-cost.mjs`, `scratch/hook-latency-paired.mjs`, `scratch/hook-health-cost.mjs`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/` file counts (17 diagnostics, 119 outcomes)"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-gate-is-one-early-return-not-a-sampling-policy-writeboundedjsonl-returns-bef",
+      "text": "**The gate is one early return, not a sampling policy.** `writeBoundedJsonl` returns before any write unless `process.env.SKILL_ADVISOR_DEBUG` is set, and `persistAdvisorHookDiagnosticRecord` calls it with the default (gated) options, while outcome records are written with `requireDebug: false`. So today the only choice is \"one full record per prompt\" or \"nothing\". [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:319-321] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:524-530]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:175-194, 281-334, 420-489, 524-530`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:487-510`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:238-273, 415-427`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:59`",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md:20`",
+        "`INSTALL-SKILLED.md:73`",
+        "`scratch/diagnostic-write-cost.mjs`, `scratch/hook-latency-paired.mjs`, `scratch/hook-health-cost.mjs`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/` file counts (17 diagnostics, 119 outcomes)"
+      ]
+    },
+    {
+      "id": "finding-1-9-the-gate-s-original-premise-no-longer-holds-which-is-what-reopens-it-the-changel",
+      "text": "**The gate's original premise no longer holds, which is what reopens it.** The changelog says diagnostics were made opt-in because they \"previously flushed on every invocation, even when no one was reading them\". Since phase 011 `advisor_status` and `/doctor:setup` read them, and the install guide's prove-it step (`INSTALL-SKILLED.md:73`) does not set the variable, so a fresh install can never produce the thing the doctor reads. [SOURCE: .skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md:20] [SOURCE: INSTALL-SKILLED.md:73]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:175-194, 281-334, 420-489, 524-530`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:487-510`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:238-273, 415-427`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:59`",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md:20`",
+        "`INSTALL-SKILLED.md:73`",
+        "`scratch/diagnostic-write-cost.mjs`, `scratch/hook-latency-paired.mjs`, `scratch/hook-health-cost.mjs`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/` file counts (17 diagnostics, 119 outcomes)"
+      ]
+    },
+    {
+      "id": "finding-1-5-the-latency-cost-is-below-the-hook-s-own-noise-floor-the-append-itself-is-0-26-m",
+      "text": "**The latency cost is below the hook's own noise floor.** The append itself is 0.26 ms median and 1.96 ms p95 over 240 writes. On the hook path, 30 alternating pairs on one prompt gave a paired delta median of -4.69 ms with p25 -57.57 and p75 53.5; a first block design over six prompts read +40 ms, which the paired design shows was a slow daemon spell rather than the write. The hook also caps the wait for pending diagnostic writes at 100 ms, so no prompt can wait longer than that. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-cost-3/scratch/hook-latency-paired.mjs] [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:258-273]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:175-194, 281-334, 420-489, 524-530`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:487-510`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:238-273, 415-427`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:59`",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md:20`",
+        "`INSTALL-SKILLED.md:73`",
+        "`scratch/diagnostic-write-cost.mjs`, `scratch/hook-latency-paired.mjs`, `scratch/hook-health-cost.mjs`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/` file counts (17 diagnostics, 119 outcomes)"
+      ]
+    },
+    {
+      "id": "finding-1-7-the-privacy-cost-is-the-skill-id-not-the-prompt-the-schema-forbids-prompt-prompt",
+      "text": "**The privacy cost is the skill id, not the prompt.** The schema forbids `prompt`, `promptFingerprint`, `promptExcerpt`, `stdout` and `stderr`, and both the file and its directory are created 0600/0700. What a default-on record would newly persist is `skillLabel` — which skill the person's prompt routed to — plus `emittedBytes`, under a file named by a truncated sha256 of the workspace path. The code comment states the reason for the mode: \"The logs record which skills a user works with, so only that user may read them\". [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:175-181] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:188-194] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:281-289]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:175-194, 281-334, 420-489, 524-530`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:487-510`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:238-273, 415-427`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:59`",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md:20`",
+        "`INSTALL-SKILLED.md:73`",
+        "`scratch/diagnostic-write-cost.mjs`, `scratch/hook-latency-paired.mjs`, `scratch/hook-health-cost.mjs`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/` file counts (17 diagnostics, 119 outcomes)"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-reader-needs-four-fields-not-the-record-s-nine-buildadvisorhookhealthsection",
+      "text": "**The reader needs four fields, not the record's nine.** `buildAdvisorHookHealthSection` computes `rollingP95Ms` from `durationMs` on cache hits, `rollingCacheHitRate` from `cacheHit`, and `rollingFailOpenRate` from `status`; it never reads `skillLabel`, `emittedBytes`, `directivesSuppressed`, `generation` or `errorDetails`. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:456-481]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:175-194, 281-334, 420-489, 524-530`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:487-510`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:238-273, 415-427`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:59`",
+        "`.skilled/skills/system-skill-advisor/changelog/v0.3.0.0.md:20`",
+        "`INSTALL-SKILLED.md:73`",
+        "`scratch/diagnostic-write-cost.mjs`, `scratch/hook-latency-paired.mjs`, `scratch/hook-health-cost.mjs`",
+        "`$TMPDIR/speckit-skill-advisor-metrics/` file counts (17 diagnostics, 119 outcomes)"
+      ]
+    },
+    {
+      "id": "finding-2-1-measure-brief-cost-mjs-now-reports-a-failure-message-as-the-brief-cost-at-head-i",
+      "text": "**`measure-brief-cost.mjs` now reports a failure message as the brief cost.** At HEAD it prints 44 rows, median 361 bytes, min 361, max 408, total 16,072. Every row's emitted text begins `Advisor: outage (fail_open); route by hand: …`, so the number describes the fail-open directive, not a brief; the four 408-byte rows carry exactly the 47-byte setup hint on top. [COMMAND: `TMPDIR=<lineage>/scratch/tmp-brief node .skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs` → `{\"rows\":44,\"totalBytes\":16072,\"medianBytes\":361,\"maxBytes\":408}`] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-cost-3/scratch/brief-cost-head.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs:37-38, 241-251`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:127-133, 594-600`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:148-150`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-embedder-cost.mjs`",
+        "`scratch/brief-cost-head.json`, `scratch/brief-ab.mjs`, `scratch/live-brief-cost.json`, `scratch/embedder-cost-head.json`",
+        "`specs/.../011-typed-command-delivery-and-guards/scratch/brief-cost.json`",
+        "`specs/.../009-ux-performance-cross-cli-research/research/research.md:83`",
+        "`specs/.../008-command-surfacing-build/goal.md:123`"
+      ]
+    },
+    {
+      "id": "finding-2-7-embedder-cost-at-head-warm-median-7-89-ms-30-samples-p95-9-85-ms-model-loaded-at",
+      "text": "**Embedder cost at HEAD: warm median 7.89 ms.** 30 samples, p95 9.85 ms, model loaded at 335.7 MB VRAM against 274.3 MB on disk, `ollama serve` 26.6 MB RSS and its runner 257.8 MB. The cold number is unavailable because the model was already loaded (`coldReason: \"model already loaded\"`) and unloading it would be an ollama control action this run may not take. The five end-to-end `advisor_recommend` calls read 90.15, 145.96, 159.06, 193.39 and 322.84 ms. [COMMAND: `node .skilled/skills/system-skill-advisor/runtime/scripts/measure-embedder-cost.mjs` → `{\"warm\":{\"n\":30,\"medianMs\":7.89,\"p95Ms\":9.85},\"cold\":null,\"coldReason\":\"model already loaded\"}`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs:37-38, 241-251`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:127-133, 594-600`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:148-150`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-embedder-cost.mjs`",
+        "`scratch/brief-cost-head.json`, `scratch/brief-ab.mjs`, `scratch/live-brief-cost.json`, `scratch/embedder-cost-head.json`",
+        "`specs/.../011-typed-command-delivery-and-guards/scratch/brief-cost.json`",
+        "`specs/.../009-ux-performance-cross-cli-research/research/research.md:83`",
+        "`specs/.../008-command-surfacing-build/goal.md:123`"
+      ]
+    },
+    {
+      "id": "finding-2-6-the-cost-that-dominates-a-prompt-is-the-started-command-s-document-not-the-brief",
+      "text": "**The cost that dominates a prompt is the started command's document, not the brief.** Segment one measured the 44 command documents at a median 4,524 bytes (about 1,131 tokens) and p95 12,573 bytes. At 78 bytes steady state the brief is 1.7% of that median, and at 296 bytes on a first prompt it is 6.5%. A brief cut of 22 bytes cannot change a start decision that a 4.5 KB document does not. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/research.md:83]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs:37-38, 241-251`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:127-133, 594-600`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:148-150`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-embedder-cost.mjs`",
+        "`scratch/brief-cost-head.json`, `scratch/brief-ab.mjs`, `scratch/live-brief-cost.json`, `scratch/embedder-cost-head.json`",
+        "`specs/.../011-typed-command-delivery-and-guards/scratch/brief-cost.json`",
+        "`specs/.../009-ux-performance-cross-cli-research/research/research.md:83`",
+        "`specs/.../008-command-surfacing-build/goal.md:123`"
+      ]
+    },
+    {
+      "id": "finding-2-4-the-first-message-brief-is-74-constant-and-steady-state-is-the-head-alone-the-co",
+      "text": "**The first-message brief is 74% constant, and steady state is the head alone.** The constant block is 218 bytes: 12 for `\\nDirectives:` and 206 for the comment-hygiene line. The head is 78 bytes at the median and 118 at the maximum. A session's first prompt therefore pays 296 bytes (74 estimated tokens) and every later prompt pays the head only (20 tokens), because the dedup path returns `reducedContext = parts.head`. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:127-133] [SOURCE: .skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:148-150] [COMMAND: node byte count of the two renderer strings → hygiene 206, label 12, constant 218]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs:37-38, 241-251`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:127-133, 594-600`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:148-150`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-embedder-cost.mjs`",
+        "`scratch/brief-cost-head.json`, `scratch/brief-ab.mjs`, `scratch/live-brief-cost.json`, `scratch/embedder-cost-head.json`",
+        "`specs/.../011-typed-command-delivery-and-guards/scratch/brief-cost.json`",
+        "`specs/.../009-ux-performance-cross-cli-research/research/research.md:83`",
+        "`specs/.../008-command-surfacing-build/goal.md:123`"
+      ]
+    },
+    {
+      "id": "finding-2-5-the-head-s-six-fields-are-each-load-bearing-and-the-cuts-are-6-to-10-bytes-measu",
+      "text": "**The head's six fields are each load-bearing, and the cuts are 6 to 10 bytes.** Measured heads carry provenance (`Advisor: `, 10 bytes), freshness (`live; `, 6), skill, command, policy (` (start)`, 8) and the score pair (`0.94/0.12`, 10) plus ` pass.` (6). Dropping freshness, the score pair and ` pass.` would save 22 bytes, 7.4% of the live brief, and each removal deletes a distinction the renderer and the hook guide rely on: live versus stale, certainty, and whether the entry passed the threshold. No subset is information-free. The one truly redundant token is the 12-byte `Directives:` label, and it is paid once per session. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/render.ts:594-600]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs:37-38, 241-251`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:127-133, 594-600`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:148-150`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-embedder-cost.mjs`",
+        "`scratch/brief-cost-head.json`, `scratch/brief-ab.mjs`, `scratch/live-brief-cost.json`, `scratch/embedder-cost-head.json`",
+        "`specs/.../011-typed-command-delivery-and-guards/scratch/brief-cost.json`",
+        "`specs/.../009-ux-performance-cross-cli-research/research/research.md:83`",
+        "`specs/.../008-command-surfacing-build/goal.md:123`"
+      ]
+    },
+    {
+      "id": "finding-2-3-the-live-brief-has-not-grown-since-phase-011-all-44-typed-rows-live-daemon-44-of",
+      "text": "**The live brief has not grown since phase 011.** All 44 typed rows, live daemon: 44 of 44 carry their command and a policy, total 13,173 bytes, median 296, min 284, max 336. Phase 011's committed file read 12,771 total and 299 median, so the brief moved -3 bytes at the median while the script's number moved +62. The +21% is the measurement path changing, not the brief. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-cost-3/scratch/live-brief-cost.json] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/scratch/brief-cost.json]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs:37-38, 241-251`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:127-133, 594-600`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:148-150`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-embedder-cost.mjs`",
+        "`scratch/brief-cost-head.json`, `scratch/brief-ab.mjs`, `scratch/live-brief-cost.json`, `scratch/embedder-cost-head.json`",
+        "`specs/.../011-typed-command-delivery-and-guards/scratch/brief-cost.json`",
+        "`specs/.../009-ux-performance-cross-cli-research/research/research.md:83`",
+        "`specs/.../008-command-surfacing-build/goal.md:123`"
+      ]
+    },
+    {
+      "id": "finding-2-2-the-script-s-fresh-socket-directory-is-the-cause-and-the-daemon-decides-the-resu",
+      "text": "**The script's fresh socket directory is the cause, and the daemon decides the result.** The script gives the hook a `mkdtemp` socket (`SANDBOX_PREFIX = 'ssa-cost-'`) so it \"never reaches the operator's warm daemon\"; with a workspace daemon running, no second daemon starts and the hook fails open. Four typed rows measured both ways: sandboxed 361 bytes and an outage head on every row; live 286 to 308 bytes, each carrying its command and policy. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs:37-38] [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs:241-251] [COMMAND: `node scratch/brief-ab.mjs` → sandboxed 361 `Advisor: outage (fail_open)`; live 286 `Advisor: live; use sk-doc → /create:readme (start) 0.94/0.12 pass.`]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs:37-38, 241-251`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:127-133, 594-600`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:148-150`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-embedder-cost.mjs`",
+        "`scratch/brief-cost-head.json`, `scratch/brief-ab.mjs`, `scratch/live-brief-cost.json`, `scratch/embedder-cost-head.json`",
+        "`specs/.../011-typed-command-delivery-and-guards/scratch/brief-cost.json`",
+        "`specs/.../009-ux-performance-cross-cli-research/research/research.md:83`",
+        "`specs/.../008-command-surfacing-build/goal.md:123`"
+      ]
+    },
+    {
+      "id": "finding-2-8-true-cold-start-is-not-measurable-under-this-run-s-rules-and-the-committed-bound",
+      "text": "**True cold start is not measurable under this run's rules, and the committed bounds stand.** The hook costs 333.95 ms median and 547.86 ms p95 on 44 distinct typed prompts with a cold prompt cache, all inside the 2,500 ms hook budget. The cold figures on record are the embedder's 538.53 ms first call and the 611 to 844 ms true first prompt from phase 010; both are below the 750 ms embedder deadline and both failed open 0 of 5. A fresh cold number needs a daemon start, which this run may not perform, so it is recorded as a gap rather than replaced by inference. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-cost-3/scratch/live-brief-cost.json] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md:123]",
+      "addedAtIteration": 2,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs:37-38, 241-251`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/render.ts:127-133, 594-600`",
+        "`.skilled/skills/system-skill-advisor/hooks/lib/directive-lifecycle.ts:148-150`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-embedder-cost.mjs`",
+        "`scratch/brief-cost-head.json`, `scratch/brief-ab.mjs`, `scratch/live-brief-cost.json`, `scratch/embedder-cost-head.json`",
+        "`specs/.../011-typed-command-delivery-and-guards/scratch/brief-cost.json`",
+        "`specs/.../009-ux-performance-cross-cli-research/research/research.md:83`",
+        "`specs/.../008-command-surfacing-build/goal.md:123`"
+      ]
+    },
+    {
+      "id": "finding-3-2-change-1-the-default-write-a-health-only-record-keep-the-content-fields-behind-t",
+      "text": "**Change 1, the default: write a health-only record, keep the content fields behind the debug gate.** File: `.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts` gains a `requireDebug` pass-through on `persistAdvisorHookDiagnosticRecord`, and `.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts` passes `skillLabel` and `errorDetails` only when `SKILL_ADVISOR_DEBUG` is set. The writer already supports the ungated path (`requireDebug: false`, used by outcome records), so no new file writer is needed. Gain: `advisor_status` and `/doctor:setup` show hook health on every install instead of the 17 of 136 workspace keys that have a diagnostics file today. Cost: about 120 bytes and 0.26 ms per prompt, capped at 200 records. Privacy: the default record carries no skill id. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:319-321] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:524-530] [SOURCE: .skilled/skills/system-skill-advisor/runtime/hooks/claude/user-prompt-submit.ts:415-427]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`scratch/floor-baseline-head.txt` (read-only capture, exit 0)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:319-321, 483-489, 524-530`",
+        "`.skilled/skills/system-skill-advisor/runtime/hooks/claude/user-prompt-submit.ts:415-427`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:487-510`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:451`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:59`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs`",
+        "`scratch/brief-cost-head.json`, `scratch/live-brief-cost.json`"
+      ]
+    },
+    {
+      "id": "finding-3-3-change-1-s-gain-has-a-hard-bound-worth-stating-the-doctor-still-needs-a-running-",
+      "text": "**Change 1's gain has a hard bound worth stating: the doctor still needs a running daemon.** The advisor leg runs `advisor_status --warm-only` and exits 75 (SKIP) when the daemon is not running, so a default-on record makes health visible whenever the daemon answers, not on a cold install. The record is the missing half, not the whole fix. [SOURCE: .skilled/commands/doctor/assets/doctor-setup.yaml:59]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`scratch/floor-baseline-head.txt` (read-only capture, exit 0)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:319-321, 483-489, 524-530`",
+        "`.skilled/skills/system-skill-advisor/runtime/hooks/claude/user-prompt-submit.ts:415-427`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:487-510`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:451`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:59`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs`",
+        "`scratch/brief-cost-head.json`, `scratch/live-brief-cost.json`"
+      ]
+    },
+    {
+      "id": "finding-3-4-change-2-make-the-brief-cost-script-refuse-a-degraded-arm-and-report-the-head-se",
+      "text": "**Change 2: make the brief-cost script refuse a degraded arm, and report the head separately.** File: `.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs`. It should classify each emitted head and exit 2 with `{\"error\":\"degraded_brief\",\"liveRows\":0}` when every row is an outage or stale line, and add `medianHeadBytes` so the steady-state number is visible beside the first-message one. Gain: the committed check stops reporting 361 bytes (the outage line) where the live brief is 296, a 22% error, and the number becomes reproducible across daemon states. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-cost-3/scratch/brief-cost-head.json] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-cost-3/scratch/live-brief-cost.json]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`scratch/floor-baseline-head.txt` (read-only capture, exit 0)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:319-321, 483-489, 524-530`",
+        "`.skilled/skills/system-skill-advisor/runtime/hooks/claude/user-prompt-submit.ts:415-427`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:487-510`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:451`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:59`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs`",
+        "`scratch/brief-cost-head.json`, `scratch/live-brief-cost.json`"
+      ]
+    },
+    {
+      "id": "finding-3-5-change-3-carry-the-health-section-s-age-file-skilled-skills-system-skill-advisor",
+      "text": "**Change 3: carry the health section's age.** File: `.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts` plus `schemas/advisor-tool-schemas.ts`. `hookHealth` today carries `invocations`, `rollingP95Ms`, `rollingFailOpenRate` and `rollingCacheHitRate`, and no timestamp, so three records from install day read exactly like three from a minute ago. Adding `lastRecordAt` from the newest record's `timestamp` costs zero bytes per prompt and makes the one case change 1 does not cover — a workspace whose hook never runs, such as an unapproved Codex install — read honestly instead of green. [SOURCE: .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:451] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:483-489]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`scratch/floor-baseline-head.txt` (read-only capture, exit 0)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:319-321, 483-489, 524-530`",
+        "`.skilled/skills/system-skill-advisor/runtime/hooks/claude/user-prompt-submit.ts:415-427`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:487-510`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:451`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:59`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs`",
+        "`scratch/brief-cost-head.json`, `scratch/live-brief-cost.json`"
+      ]
+    },
+    {
+      "id": "finding-3-8-one-observation-outside-the-lane-recorded-because-it-is-a-floor-adjacent-number-",
+      "text": "**One observation outside the lane, recorded because it is a floor-adjacent number.** The same read-only capture reports `agreement {\"correct\":8,\"total\":10}` where phase 011 recorded `{\"correct\":7,\"total\":9}`. The denominator moved, so this is a corpus or pin change rather than a scoring gain; it is named here so the next floor check does not read it as a regression, and it is not a recommendation. [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/011-typed-command-delivery-and-guards/implementation-summary.md:121]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`scratch/floor-baseline-head.txt` (read-only capture, exit 0)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:319-321, 483-489, 524-530`",
+        "`.skilled/skills/system-skill-advisor/runtime/hooks/claude/user-prompt-submit.ts:415-427`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:487-510`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:451`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:59`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs`",
+        "`scratch/brief-cost-head.json`, `scratch/live-brief-cost.json`"
+      ]
+    },
+    {
+      "id": "finding-3-6-ranking-by-expected-gain-per-unit-of-risk-first-change-1-it-is-the-only-one-that",
+      "text": "**Ranking by expected gain per unit of risk.** First, change 1: it is the only one that turns a surface from always-empty to populated, and it touches neither the scorer nor the renderer. Second, change 2: it repairs a published measurement with a 22% error and no product risk. Third, change 3: it costs nothing and prevents a stale green, but it only matters after change 1. All three are additive and none changes a behaviour the floors measure.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`scratch/floor-baseline-head.txt` (read-only capture, exit 0)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:319-321, 483-489, 524-530`",
+        "`.skilled/skills/system-skill-advisor/runtime/hooks/claude/user-prompt-submit.ts:415-427`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:487-510`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:451`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:59`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs`",
+        "`scratch/brief-cost-head.json`, `scratch/live-brief-cost.json`"
+      ]
+    },
+    {
+      "id": "finding-3-1-the-floors-hold-at-head-measured-now-the-read-only-capture-prints-typed-recall-a",
+      "text": "**The floors hold at HEAD, measured now.** The read-only capture prints `typed_recall_at_1 {\"correct\":24,\"total\":44}`, `false_offer {\"count\":0,\"total\":35}`, `attachedMetrics.typed {\"own\":24,\"attached\":20,\"combined\":44,\"total\":44}`, plain tune `23` of 45, holdout `1` of 44, `typed_reach_top3` 27 of 44. Any change this lane recommends must leave those identical. [COMMAND: `node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs` (no `--write`), exit 0] [SOURCE: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-cost-3/scratch/floor-baseline-head.txt]",
+      "addedAtIteration": 3,
+      "sources": [
+        "`scratch/floor-baseline-head.txt` (read-only capture, exit 0)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:319-321, 483-489, 524-530`",
+        "`.skilled/skills/system-skill-advisor/runtime/hooks/claude/user-prompt-submit.ts:415-427`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:487-510`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:451`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:59`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs`",
+        "`scratch/brief-cost-head.json`, `scratch/live-brief-cost.json`"
+      ]
+    },
+    {
+      "id": "finding-3-7-what-this-lane-does-not-recommend-with-the-measurement-that-closes-it-no-brief-c",
+      "text": "**What this lane does not recommend, with the measurement that closes it.** No brief cut: the head is 78 bytes of six load-bearing fields and the constant block is once per session (iteration 2). No directive trim: eliminated in segment one and re-confirmed at 218 bytes, all of it suppressed after a session's first message. No embedder warm-up or keep-alive: declined at segment-two ranks 16 and 18, and this run's warm median 7.89 ms against a 750 ms deadline gives no new fact that changes it.",
+      "addedAtIteration": 3,
+      "sources": [
+        "`scratch/floor-baseline-head.txt` (read-only capture, exit 0)",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:319-321, 483-489, 524-530`",
+        "`.skilled/skills/system-skill-advisor/runtime/hooks/claude/user-prompt-submit.ts:415-427`",
+        "`.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:487-510`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:451`",
+        "`.skilled/commands/doctor/assets/doctor-setup.yaml:59`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs`",
+        "`scratch/brief-cost-head.json`, `scratch/live-brief-cost.json`"
+      ]
+    },
+    {
+      "id": "finding-4-3-a-health-only-record-is-schema-legal-without-any-type-change-createadvisorhookdi",
+      "text": "**A health-only record is schema-legal without any type change.** `createAdvisorHookDiagnosticRecord` adds `skillLabel` and `errorDetails` only when they are present, and the validator accepts their absence. So the default record is the same type with two optional fields omitted, which means no migration and no reader change. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:377-423]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:238-256, 301-329, 415-449, 512`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:179-180, 314-316, 377-423, 445-452, 468-475`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:451-457`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts:512-541`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs:64-84`"
+      ]
+    },
+    {
+      "id": "finding-4-6-both-of-change-1-s-shapes-already-have-a-home-in-the-status-tests-advisor-status",
+      "text": "**Both of change 1's shapes already have a home in the status tests.** `advisor-status.vitest.ts` holds \"reports hook health from durable diagnostic records\", which sets `SKILL_ADVISOR_DEBUG=1` and expects two invocations, and \"omits hook health when no diagnostic records exist\". Change 1 adds one case between them: with the variable unset, one write produces a record, `hookHealth.invocations` is 1, and the record carries no `skillLabel`. Change 3 adds one assertion on the same fixture. [SOURCE: .skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts:512-541]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:238-256, 301-329, 415-449, 512`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:179-180, 314-316, 377-423, 445-452, 468-475`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:451-457`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts:512-541`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs:64-84`"
+      ]
+    },
+    {
+      "id": "finding-4-1-change-1-lands-in-one-function-not-six-call-sites-emitdiagnostic-is-the-single-f",
+      "text": "**Change 1 lands in one function, not six call sites.** `emitDiagnostic` is the single funnel: the hook calls it at lines 301, 313, 329, 415, 449 and 512, and every call goes through the same `persistDiagnostic` call. So the default-on health record is a change inside `emitDiagnostic` and one new optional parameter on `persistAdvisorHookDiagnosticRecord`, not six edits. [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:238-256] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:445-452]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:238-256, 301-329, 415-449, 512`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:179-180, 314-316, 377-423, 445-452, 468-475`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:451-457`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts:512-541`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs:64-84`"
+      ]
+    },
+    {
+      "id": "finding-4-5-change-3-is-a-strict-schema-change-not-an-additive-one-and-the-ranking-must-say-",
+      "text": "**Change 3 is a strict-schema change, not an additive one, and the ranking must say so.** `AdvisorStatusOutputSchema` is `.strict()` at the top level and `hookHealth` is `.strict()` inside it, so a reader built from an older `dist` throws on an unknown `lastRecordAt`. The CLI and the schema ship in the same build, so the risk is the known stale-`dist` hazard rather than a wire-format one, but it is a contract change: it must land with a rebuild and with a test that parses the new field. This downgrades change 3 from \"no risk\" to \"no runtime risk, one build-coupling risk\". [SOURCE: .skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:451-457]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:238-256, 301-329, 415-449, 512`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:179-180, 314-316, 377-423, 445-452, 468-475`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:451-457`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts:512-541`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs:64-84`"
+      ]
+    },
+    {
+      "id": "finding-4-7-the-brief-cost-script-can-be-tested-without-a-daemon-which-makes-change-2-cheap-",
+      "text": "**The brief-cost script can be tested without a daemon, which makes change 2 cheap to prove.** `measure-brief-cost.mjs` accepts `--root`, and it reads both the corpus and the hook from that root, so a temporary fixture with a two-row corpus and a stub hook that prints an outage envelope exercises the refusal path with no daemon and no real corpus. That is the same fixture shape the head-length and golden tests already use. [SOURCE: .skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs:64-84]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:238-256, 301-329, 415-449, 512`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:179-180, 314-316, 377-423, 445-452, 468-475`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:451-457`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts:512-541`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs:64-84`"
+      ]
+    },
+    {
+      "id": "finding-4-4-the-health-window-is-30-invocations-which-is-the-real-gain-of-a-default-flip-bui",
+      "text": "**The health window is 30 invocations, which is the real gain of a default flip.** `buildAdvisorHookHealthSection` keeps only `records.slice(-MAX_HEALTH_RECORDS)` with `MAX_HEALTH_RECORDS = 30`, and `invocations` is that slice's length, so `/doctor:setup` can never say more than \"over 30 prompts\". Today a debug session's three records produce \"over 3 prompts\"; default-on turns the same field into a rolling window of the last 30 prompts, which is the number the field's name implies. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:179] [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:468-475]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:238-256, 301-329, 415-449, 512`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:179-180, 314-316, 377-423, 445-452, 468-475`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:451-457`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts:512-541`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs:64-84`"
+      ]
+    },
+    {
+      "id": "finding-4-2-the-writer-already-has-the-ungated-path-only-the-persist-wrapper-lacks-a-pass-th",
+      "text": "**The writer already has the ungated path; only the persist wrapper lacks a pass-through.** `writeBoundedJsonl` takes `options.requireDebug` and skips the gate only when it is explicitly `false`. So change 1 needs no new writer, no new file and no new trim logic — one parameter threaded through one function. [SOURCE: .skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:314-316]",
+      "addedAtIteration": 4,
+      "sources": [
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:238-256, 301-329, 415-449, 512`",
+        "`.skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:179-180, 314-316, 377-423, 445-452, 468-475`",
+        "`.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:451-457`",
+        "`.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts:512-541`",
+        "`.skilled/skills/system-skill-advisor/runtime/scripts/measure-brief-cost.mjs:64-84`"
+      ]
+    },
+    {
+      "id": "finding-5-6-change-1-s-coverage-is-four-of-six-runtimes-and-the-limitation-belongs-in-its-ow",
+      "text": "**Change 1's coverage is four of six runtimes, and the limitation belongs in its own description.** Claude, Codex, Cursor and Devin share the hook adapter that emits diagnostics; OpenCode, Pi and DSH do not. An OpenCode-only user would still see no hook health after change 1, so the change removes the silent-empty case for the hook-shaped majority and not for everyone. [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:292-296]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/plugins/system-skill-advisor.js:47-56, 73-80, 388-395, 638-685`",
+        "`.pi/extensions/prompt-advisor.ts:1`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:292-296, 415-427`",
+        "`.dsh/plugins/repo-guards/index.mjs` (no renderer match)"
+      ]
+    },
+    {
+      "id": "finding-5-1-every-runtime-renders-the-same-string-from-the-same-function-the-opencode-plugin",
+      "text": "**Every runtime renders the same string from the same function.** The OpenCode plugin resolves the canonical renderer (`loadShadowRenderer`) and calls `renderAdvisorBrief` with the same options the hook passes, including the token cap and the threshold config; Pi re-exports the shared extension from the same skill; so for the same recommendation and freshness the emitted brief is byte-identical across runtimes. The per-runtime byte difference is zero, not a small number. [SOURCE: .opencode/plugins/system-skill-advisor.js:638-668] [SOURCE: .pi/extensions/prompt-advisor.ts:1]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/plugins/system-skill-advisor.js:47-56, 73-80, 388-395, 638-685`",
+        "`.pi/extensions/prompt-advisor.ts:1`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:292-296, 415-427`",
+        "`.dsh/plugins/repo-guards/index.mjs` (no renderer match)"
+      ]
+    },
+    {
+      "id": "finding-5-2-no-runtime-truncates-a-live-brief-the-plugin-s-caps-are-80-requested-tokens-120-",
+      "text": "**No runtime truncates a live brief.** The plugin's caps are 80 requested tokens (120 when ambiguous) and 2,048 brief characters, against a measured 296-byte median and an 80-token cap in the renderer, so a clamping path cannot fire on today's briefs. [SOURCE: .opencode/plugins/system-skill-advisor.js:47-56] [SOURCE: .opencode/plugins/system-skill-advisor.js:388-395]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/plugins/system-skill-advisor.js:47-56, 73-80, 388-395, 638-685`",
+        "`.pi/extensions/prompt-advisor.ts:1`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:292-296, 415-427`",
+        "`.dsh/plugins/repo-guards/index.mjs` (no renderer match)"
+      ]
+    },
+    {
+      "id": "finding-5-5-the-claude-hook-is-the-only-adapter-whose-result-already-carries-the-timing-emit",
+      "text": "**The Claude hook is the only adapter whose result already carries the timing.** `emitDiagnostic` receives `result.metrics.durationMs` and `result.metrics.cacheHit` directly, which is why change 1 is two lines there and a new subsystem on the plugin runtimes. [SOURCE: .skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:415-427]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/plugins/system-skill-advisor.js:47-56, 73-80, 388-395, 638-685`",
+        "`.pi/extensions/prompt-advisor.ts:1`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:292-296, 415-427`",
+        "`.dsh/plugins/repo-guards/index.mjs` (no renderer match)"
+      ]
+    },
+    {
+      "id": "finding-5-4-the-plugin-already-has-most-of-what-health-needs-and-not-the-two-fields-that-mat",
+      "text": "**The plugin already has most of what health needs, and not the two fields that matter.** Its brief envelope carries `freshness`, `cacheHit`, `skillLabel` and `recommendationCount`, but no `durationMs`, and it has no writer at all. A health record there needs a timer around the CLI spawn plus a writer call — a new subsystem rather than a pass-through. [SOURCE: .opencode/plugins/system-skill-advisor.js:668-685]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/plugins/system-skill-advisor.js:47-56, 73-80, 388-395, 638-685`",
+        "`.pi/extensions/prompt-advisor.ts:1`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:292-296, 415-427`",
+        "`.dsh/plugins/repo-guards/index.mjs` (no renderer match)"
+      ]
+    },
+    {
+      "id": "finding-5-3-the-steady-state-cost-is-runtime-wide-not-claude-only-the-plugin-carries-its-own",
+      "text": "**The steady-state cost is runtime-wide, not Claude-only.** The plugin carries its own copy of the directive-lifecycle rule: full brief on the first message of a session and after a lifecycle boundary, the dynamic `Advisor:` route line only on a same-content repeat. So OpenCode also pays 218 bytes once and the 78-byte head afterwards. [SOURCE: .opencode/plugins/system-skill-advisor.js:73-80]",
+      "addedAtIteration": 5,
+      "sources": [
+        "`.opencode/plugins/system-skill-advisor.js:47-56, 73-80, 388-395, 638-685`",
+        "`.pi/extensions/prompt-advisor.ts:1`",
+        "`.skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:292-296, 415-427`",
+        "`.dsh/plugins/repo-guards/index.mjs` (no renderer match)"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-f9c00e92a9c0",
+      "text": "**Default-on with the full record as it stands.** It works (200 bytes, 0.26 ms) but it makes the skill id persist for every prompt on every install, and no reader uses that field. Rejected on privacy cost with no measured benefit.",
+      "contentHash": "f9c00e92a9c0",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-ea62bb8dfc57",
+      "text": "**Recording only fail-open and non-ok invocations.** Rejected: `rollingCacheHitRate` and `rollingP95Ms` need the ok population, so the health section would reduce to a fail-open count.",
+      "contentHash": "ea62bb8dfc57",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-da0986dcb1aa",
+      "text": "**Seeding one record at install time** (set `SKILL_ADVISOR_DEBUG=1` in the prove-it step). Rejected: the section would then show `p95 68 ms over 1 prompt` from install day forever, because `hookHealth` carries no age. A stale health number that never changes is worse than a missing one, and `advisor_status` has no field to express it.",
+      "contentHash": "da0986dcb1aa",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-5ae05958afae",
+      "text": "A block design (N runs off, then N runs on) cannot measure this: daemon variance over seconds is 10x the write. Any reproduction must alternate pairs and report the paired delta.",
+      "contentHash": "5ae05958afae",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-60bcf74c2d96",
+      "text": "Reading the record's own `emittedBytes` as a brief-cost measurement is valid (it is the byte count the hook emitted) but it includes the directive block, so it measures the first message of a session, not the steady state.",
+      "contentHash": "60bcf74c2d96",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-f73b15a8beaa",
+      "text": "**Dropping the score pair or the freshness word to save 22 bytes.** Rejected as a recommendation: 22 bytes is 7.4% of a first-message brief and 28% of a steady-state one, but each field carries a distinction the model or the guide uses, so it fails the \"loses no information\" test the question sets.",
+      "contentHash": "f73b15a8beaa",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-179b319fa30e",
+      "text": "**Reporting the script's 361 as the brief cost.** Rejected: it is the outage line. Any brief-cost figure from this script must be labelled with the arm that produced it.",
+      "contentHash": "179b319fa30e",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-c2bb64bd895b",
+      "text": "**Trimming the comment-hygiene directive.** Re-confirmed as eliminated, not reopened: it is 206 of the 218 constant bytes, it is suppressed after a session's first message, and it is the only carrier of the repo hard block in a brief-only session. The new measurement (218 not 233 bytes) does not change that disposition because the cost is once per session.",
+      "contentHash": "c2bb64bd895b",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-3b126732d708",
+      "text": "Asking the cost script for a live number by unsetting `SPECKIT_IPC_SOCKET_DIR` inside it is not possible without editing the script; the script sets the variable per row. A live measurement needs a second entry point, which is what `scratch/live-brief-cost.mjs` is.",
+      "contentHash": "3b126732d708",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-7c050cbae022",
+      "text": "Comparing 011's 299 to today's 296 as \"the brief shrank\" is not supportable: both are within one renderer revision of each other and neither run pinned the same daemon state. The supportable claim is that the live brief is 284 to 336 bytes at HEAD.",
+      "contentHash": "7c050cbae022",
+      "addedAtIteration": 2
+    },
+    {
+      "id": "ruled-out-06fb9cf648b9",
+      "text": "**A new writer for health records.** Rejected: `writeBoundedJsonl` already takes `requireDebug: false` and the outcome records use it, so a second sink would duplicate the trim, the private modes and the queue.",
+      "contentHash": "06fb9cf648b9",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-1d33a7754223",
+      "text": "**Putting the skill id back behind a separate opt-in flag.** Rejected: no reader consumes it for health, and the diagnostics file's own comment names the privacy reason it is sensitive.",
+      "contentHash": "1d33a7754223",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-08d1a569220e",
+      "text": "**Sampling health records (one in N prompts).** Rejected on arithmetic: at 120 bytes and 0.26 ms, sampling saves nothing measurable while making `rollingP95Ms` a sample of a sample and `invocations` no longer a prompt count.",
+      "contentHash": "08d1a569220e",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-7556d13b6d4e",
+      "text": "Reading the doctor leg as proof that a default flip is sufficient: the leg SKIPs without a daemon, so health visibility has two preconditions, not one.",
+      "contentHash": "7556d13b6d4e",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-daf89be5428a",
+      "text": "Treating the capture's `agreement` change as evidence about this lane: the denominator changed, which no change here can cause.",
+      "contentHash": "daf89be5428a",
+      "addedAtIteration": 3
+    },
+    {
+      "id": "ruled-out-d00436366773",
+      "text": "**Adding `lastRecordAt` beside the field instead of inside `hookHealth`.** Rejected: it would still be a strict-schema addition, and it would separate the age from the number it qualifies.",
+      "contentHash": "d00436366773",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-f17e194af079",
+      "text": "**Threading the gate decision through all six `emitDiagnostic` call sites.** Rejected: the funnel already exists and six edits would be six places to drift.",
+      "contentHash": "f17e194af079",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-8c17b7b0906f",
+      "text": "Looking for a doctor presentation line for hook health outside the leg text: `doctor-setup-presentation.txt` and `setup.md` carry no hook-health string, so the leg text in `doctor-setup.yaml` is the only display contract. Any wording change for change 3 lives there.",
+      "contentHash": "8c17b7b0906f",
+      "addedAtIteration": 4
+    },
+    {
+      "id": "ruled-out-ea28314cb127",
+      "text": "**A per-runtime head to save bytes on hosts that resolve commands themselves.** Rejected again on the measurement: every host already gets the same 78-byte head, and segment one's rank 7 (a document path in the head) is the opposite direction, an addition rather than a cut.",
+      "contentHash": "ea28314cb127",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-d8c464ab11ea",
+      "text": "**Extending change 1 to the plugin runtimes in the same change.** Rejected as scope: it needs a timer, a writer and a new test surface on three adapters, and it would turn a two-line default flip into a multi-adapter build.",
+      "contentHash": "d8c464ab11ea",
+      "addedAtIteration": 5
+    },
+    {
+      "id": "ruled-out-be605329c1b3",
+      "text": "Looking for a DSH renderer or an `Advisor:` emitter in `.dsh/plugins/repo-guards/index.mjs` printed nothing, so DSH's brief arrives through the shared CLI path rather than a local renderer. That is consistent with the plugin finding and adds no separate cost.",
+      "contentHash": "be605329c1b3",
+      "addedAtIteration": 5
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 3,
+    "carriedForwardOpenQuestions": 6,
+    "keyFindings": 38,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.58,
+    "coverageBySources": {
+      "code": 30,
+      "other": 32
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research/specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-cost-3/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}
