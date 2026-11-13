@@ -2733,6 +2733,15 @@ GENERATED_COMMAND_BRIDGES = {
         "owner_mode": "system-skilled-doctor",
         "routing_enabled": True,
     },
+    "command-doctor-skill-advisor-embedder": {
+        "description": "",
+        "slash_markers": ["/doctor:skill-advisor embedder"],
+        "inventory_id": "command-doctor-skill-advisor-embedder",
+        "command": "/doctor:skill-advisor",
+        "skill_id": "system-skill-advisor",
+        "owner_mode": "system-skill-advisor",
+        "routing_enabled": True,
+    },
     "command-prompt-improve": {
         "description": "Improve or create AI prompts via sk-prompt: one-pass checklist, CLEAR screening. Modes :auto, :confirm.",
         "slash_markers": ["/prompt:improve", "prompt:improve"],

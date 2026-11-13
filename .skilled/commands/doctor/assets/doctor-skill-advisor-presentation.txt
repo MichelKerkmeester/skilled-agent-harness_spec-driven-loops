@@ -13,8 +13,9 @@ What do you want to do with the skill advisor?
    2) Rebuild the skill graph            (skill-graph.sqlite from graph-metadata.json)
    3) Check skill-graph freshness        (compiled vs sqlite vs disk drift)
    4) Check router reach                 (declared phrases reach their hub)
-   5) Audit description budget           (char counts, CI-friendly)
-   6) Audit parent-skill structure       (mode registry, graph metadata)
+   5) Set up meaning matching            (embedder for commands, asks before any change)
+   6) Audit description budget           (char counts, CI-friendly)
+   7) Audit parent-skill structure       (mode registry, graph metadata)
    H) Help me decide
    X) Cancel
 ```
@@ -27,8 +28,9 @@ Accepted answers:
 | `2` | target = `rebuild` |
 | `3` | target = `skill-graph-freshness` |
 | `4` | target = `router-reach` |
-| `5` | target = `skill-budget` |
-| `6` | target = `parent-skill` |
+| `5` | target = `embedder` |
+| `6` | target = `skill-budget` |
+| `7` | target = `parent-skill` |
 | `H` | Show the help block, then ask the startup prompt again |
 | `X`, empty, `cancel` | `STATUS=CANCEL` |
 
@@ -44,13 +46,14 @@ Pick by symptom:
    advisor_status reports stale, absent or unavailable -> 2  Rebuild
    Compiled/sqlite/disk skill-graph disagree           -> 3  Skill-graph freshness
    Declared router phrase reaches the wrong hub        -> 4  Router reach
-   Description char-count over hard cap                -> 5  Description budget
-   Parent skill graph-metadata or mode registry drift  -> 6  Parent-skill structure
+   A plain request never gets its command offered      -> 5  Meaning matching setup
+   Description char-count over hard cap                -> 6  Description budget
+   Parent skill graph-metadata or mode registry drift  -> 7  Parent-skill structure
 
 Quick reference for confusable pairs:
    Re-tune (1) edits scoring lanes after per-skill review; Rebuild (2) only re-derives the graph
    Freshness (3) reports drift; Rebuild (2) repairs it
-   Description budget (5) audits CHAR COUNTS, not routing quality
+   Description budget (6) audits CHAR COUNTS, not routing quality
 
 Press 1-6, H, or X.
 ```
@@ -59,7 +62,7 @@ Press 1-6, H, or X.
 
 ```text
 Unknown target: [target]
-Valid targets: tune, rebuild, skill-graph-freshness, router-reach, skill-budget, parent-skill
+Valid targets: tune, rebuild, skill-graph-freshness, router-reach, embedder, skill-budget, parent-skill
 Try: /doctor:skill-advisor list
 STATUS=FAIL ERROR="unknown_target"
 ```
@@ -81,6 +84,7 @@ Render this table for `list`, `?`, or `--list`. Values should mirror `_routes.ya
 | `rebuild` | `doctor-skill-advisor-rebuild.yaml` | mutates | Rebuild skill-graph.sqlite from graph-metadata.json through the advisor CLI, behind a backup |
 | `skill-graph-freshness` | `doctor-skill-graph-freshness.yaml` | read-only | Diagnose skill-graph representation drift across compiled, sqlite, and disk sources |
 | `router-reach` | `doctor-router-reach.yaml` | read-only | Ask the live advisor whether every phrase a hub's router advertises actually reaches it |
+| `embedder` | `doctor-skill-advisor-embedder.yaml` | mutates | Set up meaning matching for commands: probe Ollama and the model, show each step's cost and undo, and change nothing before a yes |
 | `skill-budget` | `doctor-skill-budget.yaml` | read-only | Audit skill, command, and agent description budgets |
 | `parent-skill` | `doctor-parent-skill.yaml` | read-only | Audit parent-skill structure, routing manifests, root metadata, router contract, and version consistency |
 
@@ -199,5 +203,98 @@ STATUS=FAIL ERROR="[message]"
 | Rebuild failed and was rolled back | Read the failing command's output, fix the named graph-metadata.json, rerun `/doctor:skill-advisor rebuild` |
 | Cross-target flag rejected | Use the suggested target from the error |
 | Route manifest parse error | Run `bash .skilled/commands/doctor/scripts/route-validate.sh` |
+
+## 8. Embedder Setup Presentation
+
+Render these blocks for `/doctor:skill-advisor embedder`. The probe runs first and changes nothing. Every value is printed as the probe or the cost script returned it, and an unread value stays unread.
+
+### Probe Dashboard
+
+Render after the read-only probe and before the plan.
+
+```text
+EMBEDDER SETUP PROBE
+Ollama binary: [present at <path>|missing]
+Server: [answering at <url>, version <version>|absent at <url>]
+Model: [nomic-embed-text:v1.5 present, <size> on disk|missing]
+Advisor daemon: [present|absent]
+Active embedder: [<backend> <model>|none|unread, the daemon is absent]
+Command vectors: [<embedded> of <total>|unread, the daemon is absent]
+Semantic lane: [enabled|off ([disabledReason])|unread, the daemon is absent]
+```
+
+A missing binary, an absent server and a missing model are findings, not failures of the route. An exit 75 from `advisor_status` means the daemon is absent, so the active embedder, the command vectors and the lane state stay `unread`.
+
+### Plan Table
+
+Render one row per missing step, in dependency order. A step the probe found present is not listed and is not run. Each cost comes from `measure-embedder-cost.mjs` or, when the cost script cannot run, from the install guide with a note that the live measurement was unavailable.
+
+```text
+EMBEDDER SETUP PLAN
+Missing: [comma-separated steps, or none]
+
+| Step | Cost | Undo |
+|------|------|------|
+| Install Ollama (printed only, never run by this route) | [the install guide's cost] | [the package manager's uninstall command] |
+| Start ollama serve in the background | [.memory.serveRssKb from the cost script] resident | Stop the pid this run started |
+| Pull nomic-embed-text:v1.5 | [.model.sizeBytes from the cost script] on disk | ollama rm nomic-embed-text:v1.5 |
+| Run skill_graph_scan to write the command vectors | [the scan's own runtime] plus [.warm.medianMs from the cost script] per embedded prompt | None, the database is derived state and a rerun rewrites it |
+
+Will run after approval:
+   [the listed steps, in dependency order, or none]
+```
+
+When the probe found no missing step, skip the table and render the final result as already set up.
+
+### Approval Prompt
+
+Ask once, after the plan is on screen. Nothing is pulled, started or written before the answer, and approve is the only answer that proceeds.
+
+```text
+Set up meaning matching now? Only the steps in the plan run.
+Steps:
+   [one line per approved step with its cost]
+Writes: .skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite, through skill_graph_scan only
+Never: an Ollama install or upgrade, a model the plan did not list, a model removal, a second server
+Reply approve to continue, or no to cancel.
+```
+
+Anything other than approve renders the cancelled result and stops.
+
+```text
+EMBEDDER SETUP CANCELLED
+Nothing was pulled, started or written.
+Next: /doctor:skill-advisor embedder
+STATUS=CANCELLED ACTION=cancelled
+```
+
+### Dry-Run Result
+
+With `--dry-run`, stop after the plan, before the approval, and render this block.
+
+```text
+EMBEDDER SETUP DRY RUN
+[the probe dashboard]
+[the plan table, with each missing step's cost and undo]
+
+Dry run: nothing was pulled, started or written.
+STATUS=OK
+```
+
+### Final Result
+
+Render after the post-scan probe. When the probe found nothing missing, render the same block from the probe values, ask nothing and run nothing.
+
+```text
+EMBEDDER SETUP RESULT
+Server: [answering at <url>, version <version>|absent at <url>]
+Model: [nomic-embed-text:v1.5, <size> on disk|missing]
+Command vectors: [<embedded> of <total>|0 of <total>]
+Semantic lane: [enabled|off ([disabledReason])]
+Next: [none|restart the advisor daemon, the active embedder is resolved at startup|the repair the failed check names]
+STATUS=[OK|FAIL]
+```
+
+Report `STATUS=OK` only when the lane is enabled and the embedded count is above zero. Otherwise report `STATUS=FAIL` and name the check that did not pass. When the active embedder is null, name a daemon restart, then rerun the probe.
 
 End interactive presentations with: `What would you like to do next?`

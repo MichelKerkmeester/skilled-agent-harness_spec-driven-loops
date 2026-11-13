@@ -68,6 +68,31 @@ DSH loads the repository's guards and the skill advisor only from the patches a 
 
 Codex runs a project hook only after you approve it, so open `/hooks` in a Codex session at the repository root and approve each entry it lists. Codex keeps each approval as a `trusted_hash` in `~/.codex/config.toml`, so a changed entry needs approving again, and `/doctor:runtime-mirrors` prints `PASS codex-hooks-approved` once the advisor's entry is approved.
 
+### Meaning Matching for Commands
+
+Until a local embedder model runs, the advisor matches a typed request to a command by phrase alone. With the model loaded, a command can also match by meaning, even when your request uses none of its words. The model is `nomic-embed-text:v1.5`, served by Ollama on your machine, and the advisor calls it once per recommendation.
+
+Run the setup from the repository you are setting up:
+
+```
+/doctor:skill-advisor embedder
+```
+
+It probes Ollama, the server and the model first, and changes nothing. It then lists each missing step with its cost and its undo, and asks before it acts. Only `approve` proceeds. From the approved plan it pulls the model, starts `ollama serve` in the background and runs `skill_graph_scan` to write a vector for every command entry. It never installs or upgrades Ollama. When Ollama is missing, the plan prints the install command for you to run.
+
+Measured on 2026-11-13 with Ollama 0.40.15:
+
+| What it costs | Measured |
+| --- | --- |
+| Disk for `nomic-embed-text:v1.5` | 274302450 bytes, about 262 MB |
+| Memory while `ollama serve` is idle | 25776 KB resident, about 25 MB |
+| Memory while the model is loaded | 32208 KB for the server plus 279520 KB for the model runner, about 304 MB together |
+| Unload when idle | after five idle minutes without a request |
+| Warm embedding latency | 4.8 ms median and 8.9 ms p95 over 30 calls |
+| Cold embedding latency | 538.53 ms for the first call |
+
+Meaning matching is optional. A no at the prompt changes nothing. The install keeps working on phrases alone, and each recommendation that ran without a prompt vector carries `semantic_lane_off:<reason>` in its `warnings`.
+
 ### Add Code Mode
 
 Code Mode is the bridge your runtime uses to call external MCP tools. It builds separately from the two builds above. Run:
@@ -119,7 +144,8 @@ The guide writes nothing. It prints the steps below with your paths filled in.
 | 2 | `/doctor:agents-md embed --root <dir>` | the checkout | Adds the shipped sections to your `AGENTS.md`. Skip it if you chose `link` |
 | 3 | `/doctor:mcp install` | the checkout | Builds and registers Code Mode, the bridge your runtime uses to call MCP tools |
 | 4 | `/doctor:git setup` | your project | Checks the git hooks and sk-git settings. Run `/doctor:git standards` afterwards to write repo-owned commit, PR and branch rules; until then the shipped defaults apply |
-| 5 | `/doctor:setup` | your project | Confirms the whole setup works |
+| 5 | `/doctor:skill-advisor embedder` | your project | Sets up meaning matching for commands. It shows the cost and asks before it pulls the model or starts the server |
+| 6 | `/doctor:setup` | your project | Confirms the whole setup works |
 
 If you chose `link` for the instruction file, step 1 also carries `--link-instructions` and step 2 drops out.
 
@@ -325,6 +351,7 @@ Already keep overlays with a script of your own? The engine reads the same manif
 | `refusing to inspect a protected path` | An overlay walks a file with `token` in its name | Add that file to the overlay's `protectedPaths`, as the line says |
 | `refuse: unowned <path> differs from the old pin` | Someone edited a file in place that no overlay owns | Move the edit into an overlay, or restore the file from your pin |
 | A held `.build-lock` | Another `apply` is running, or one crashed | Once no run is active, delete the lock file the message names |
+| `semantic_lane_off` in a recommendation's `warnings` | The advisor answered on phrases alone. The reason after the colon names why, such as `prompt_embedding_unreachable` when Ollama is not answering or `prompt_embedding_model_missing` when the model is not loaded | Run `/doctor:skill-advisor embedder` from the project. If the warning stays, restart the advisor daemon, which resolves its embedder at startup |
 
 ---
 

@@ -16,7 +16,7 @@ Render this table first, before any leg runs.
 
 | Command | What it checks |
 |---------|----------------|
-| `/doctor:setup` | This overview: the doctor target list and the five read-only setup legs |
+| `/doctor:setup` | This overview: the doctor target list and the six read-only setup legs |
 | `/doctor:helper [<problem in plain words>] [--json]` | Rank the doctor commands that fit a described problem, with the class and the reason on every line |
 | `/doctor:env list` | The documented environment switches and where each value comes from |
 | `/doctor:update` | Whether a newer spec-kit release is available (bare runs the read-only check) |
@@ -37,6 +37,7 @@ Render this table first, before any leg runs.
 | `/doctor:skill-advisor parent-skill` | A parent skill hub's structure and registry |
 | `/doctor:skill-advisor skill-graph-freshness` | Drift between the compiled, SQLite and on-disk skill graph |
 | `/doctor:skill-advisor router-reach` | Whether each declared routing phrase reaches its hub |
+| `/doctor:skill-advisor embedder` | Meaning matching for commands: whether the local embedder answers, what it costs, and the plan that pulls the model and starts the server after a yes |
 | `/doctor:deep-loop` | Deep-loop coverage graphs and convergence for research, review and council runs |
 | `/doctor:mcp` | Code Mode install and debug, its UTCP configuration and runtime registration |
 | `/doctor:install [--root <dir>] [--runtimes <list>] [--json]` | Putting Skilled into your own project repo: the build check, what is already linked, and the ordered setup commands to run |
@@ -58,6 +59,7 @@ Render one row per leg, in the workflow's order.
 | trigger-index | `/doctor:speckit` |
 | runtime-mirrors | `/doctor:runtime-mirrors` |
 | advisor | Stale build: `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`. Other FAIL or DEGRADED results: `/doctor:skill-advisor rebuild`. |
+| embedder | `/doctor:skill-advisor embedder` |
 
 ## 4. Result Templates
 

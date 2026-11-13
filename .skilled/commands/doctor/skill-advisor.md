@@ -1,6 +1,6 @@
 ---
 description: "Tune and rebuild the skill advisor, and audit graph freshness, router reach, budgets and parent hubs."
-argument-hint: "<tune|rebuild|skill-graph-freshness|router-reach|skill-budget|parent-skill> [flags] | list | ?"
+argument-hint: "<tune|rebuild|skill-graph-freshness|router-reach|embedder|skill-budget|parent-skill> [flags] | list | ?"
 allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 ---
 <!-- skill_agent: system-skill-advisor -->
@@ -58,6 +58,7 @@ These existing YAML assets are referenced only. The router must not modify them.
 | `rebuild` | `.skilled/commands/doctor/assets/doctor-skill-advisor-rebuild.yaml` |
 | `skill-graph-freshness` | `.skilled/commands/doctor/assets/doctor-skill-graph-freshness.yaml` |
 | `router-reach` | `.skilled/commands/doctor/assets/doctor-router-reach.yaml` |
+| `embedder` | `.skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml` |
 | `skill-budget` | `.skilled/commands/doctor/assets/doctor-skill-budget.yaml` |
 | `parent-skill` | `.skilled/commands/doctor/assets/doctor-parent-skill.yaml` |
 

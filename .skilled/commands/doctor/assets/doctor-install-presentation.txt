@@ -119,7 +119,10 @@ The class column is the manifest's `mutating` value for the route that owns the 
 4) /doctor:git setup   [class]
    Why: checks the git hooks and sk-git settings, and names the repair for each one that is off. Run it from the target repo.
 
-5) /doctor:setup   [class]
+5) /doctor:skill-advisor embedder   [class]
+   Why: sets up meaning matching for commands. It shows the cost and asks before it pulls the model or starts the server. Run it from the target repo.
+
+6) /doctor:setup   [class]
    Why: confirms the result. Run it from the target repo.
 ```
 

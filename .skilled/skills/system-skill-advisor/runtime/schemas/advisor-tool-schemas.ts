@@ -255,6 +255,14 @@ const semanticLaneHealthSchema = z.object({
   lastRefresh: z.string().nullable(),
   disabledReason: z.string().nullable(),
   laneEnabled: z.boolean(),
+  backend: z.object({
+    state: z.enum(['reachable', 'unreachable', 'model_missing', 'probe_not_implemented']),
+    reason: z.string().nullable(),
+  }).strict().optional(),
+  commandVectorCoverage: z.object({
+    embedded: z.number().int().nonnegative(),
+    total: z.number().int().nonnegative(),
+  }).strict().optional(),
   checkedAt: z.string().datetime(),
 }).strict();
 

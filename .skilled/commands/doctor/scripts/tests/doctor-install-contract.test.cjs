@@ -80,6 +80,12 @@ const CHECKLIST_STEPS = [
     mutating: 'read-only',
   },
   {
+    command: '/doctor:skill-advisor embedder',
+    owner: '/doctor:skill-advisor',
+    target: 'embedder',
+    mutating: 'mutates',
+  },
+  {
     command: '/doctor:setup',
     owner: '/doctor:setup',
     target: 'setup',
@@ -126,11 +132,15 @@ test('the install route phrases and declared commands agree with the workflow co
 });
 
 test('the printed checklist names each route owner with its mutation class and reason', () => {
-  for (const step of CHECKLIST_STEPS) {
+  for (const [index, step] of CHECKLIST_STEPS.entries()) {
     const owner = checklistOwner(step);
     assert.ok(owner, `${step.owner} ${step.target} has no manifest entry`);
     assert.equal(owner.mutating, step.mutating, step.command);
     assert.ok(WORKFLOW_TEXT.includes(step.command), step.command);
+
+    const numbered = `${index + 1}) ${step.command}`;
+    assert.ok(PRESENTATION.includes(numbered), numbered);
+    assert.ok(WORKFLOW_TEXT.includes(numbered), numbered);
 
     const lineIndex = PRESENTATION.indexOf(step.command);
     assert.notEqual(lineIndex, -1, step.command);

@@ -261,6 +261,12 @@
       "order": 39,
       "id": "command-doctor-overlay-repin",
       "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-skill-advisor-embedder",
+      "order": 40,
+      "id": "command-doctor-skill-advisor-embedder",
+      "description": ""
     }
   ],
   "python": [
@@ -599,6 +605,12 @@
       "inventoryId": "command-doctor-overlay-repin",
       "order": 50,
       "id": "command-doctor-overlay-repin",
+      "description": ""
+    },
+    {
+      "inventoryId": "command-doctor-skill-advisor-embedder",
+      "order": 51,
+      "id": "command-doctor-skill-advisor-embedder",
       "description": ""
     }
   ],

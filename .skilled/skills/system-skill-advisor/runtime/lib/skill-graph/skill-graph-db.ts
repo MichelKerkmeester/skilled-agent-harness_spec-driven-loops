@@ -750,7 +750,7 @@ function skillDescriptionForEmbedding(sourcePath: string): string {
  * than expected. A regenerated artifact must never be able to fail a skill
  * refresh, so every one of those cases reads as "no commands to embed".
  */
-function readCommandEmbeddingSources(): CommandEmbeddingSource[] | null {
+export function readCommandEmbeddingSources(): CommandEmbeddingSource[] | null {
   const filePath = COMMAND_BRIDGES_DIR_CANDIDATES
     .map((dir) => join(dir, COMMAND_BRIDGES_FILENAME))
     .find((candidate) => existsSync(candidate));

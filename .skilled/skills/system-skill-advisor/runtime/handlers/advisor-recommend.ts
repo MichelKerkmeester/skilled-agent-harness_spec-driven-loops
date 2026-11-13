@@ -22,7 +22,10 @@ import {
   modeForAlias,
   modeForPromptAlias,
 } from '../lib/scorer/aliases.js';
-import { withSemanticShadowPromptEmbedding } from '../lib/scorer/lanes/semantic-shadow.js';
+import {
+  getSemanticShadowRuntimeHealth,
+  withSemanticShadowPromptEmbedding,
+} from '../lib/scorer/lanes/semantic-shadow.js';
 import { DEFAULT_SHADOW_SCORER_LANE_WEIGHTS } from '../lib/scorer/lane-registry.js';
 import { sanitizeSkillLabel } from '../lib/render.js';
 import { recordShadowDelta, shadowDeltaSinkEnabled } from '../lib/shadow/shadow-sink.js';
@@ -509,9 +512,16 @@ function roundScore(value: number): number {
   return Math.round(value * 1_000_000) / 1_000_000;
 }
 
+// A semantic lane that fell back to phrase scoring still answers, so the reason
+// it declined travels as a warning rather than changing the recommendation.
+export function semanticLaneOffWarning(reason: string | null): string[] {
+  return reason ? [`semantic_lane_off:${reason}`] : [];
+}
+
 function outputWarnings(
   status: AdvisorStatus,
   result: ReturnType<typeof scoreAdvisorPrompt>,
+  semanticLaneOffReason: string | null,
 ): string[] {
   const degradedLanes = result.metrics.degradedLanes ?? [];
   return [
@@ -519,6 +529,7 @@ function outputWarnings(
     ...(degradedLanes.length > 0
       ? [`runtime_degraded_lanes:${degradedLanes.join(',')}`]
       : []),
+    ...semanticLaneOffWarning(semanticLaneOffReason),
   ];
 }
 
@@ -596,6 +607,9 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
     uncertaintyThreshold: input.options?.uncertaintyThreshold,
     runtimeLaneHealth: runtimeLaneHealthForStatus(status),
   }));
+  // The lane records its health while the scored call runs, so the reason is
+  // read right after that call settles to describe this call's own fallback.
+  const semanticLaneOffReason = getSemanticShadowRuntimeHealth().disabledReason;
   const recommendations = result.recommendations
     .map((recommendation) => publicRecommendation(
       recommendation,
@@ -605,7 +619,7 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
     .filter((recommendation): recommendation is NonNullable<typeof recommendation> => Boolean(recommendation))
     .slice(0, topK);
   const degradedLanes = result.metrics.degradedLanes ?? [];
-  const warnings = outputWarnings(status, result);
+  const warnings = outputWarnings(status, result, semanticLaneOffReason);
   const abstainReasons = outputAbstainReasons(input, result);
   const output: AdvisorRecommendOutput = {
     workspaceRoot,

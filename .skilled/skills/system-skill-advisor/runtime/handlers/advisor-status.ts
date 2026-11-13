@@ -17,11 +17,14 @@ import { createPrivateSkillLinkCheck } from '../lib/private-skill-target.js';
 import {
   computeSkillMetadataContentHash,
   isGenuineCorruptionReason,
+  readCommandEmbeddingSources,
   resolveSkillGraphDbDir,
   DB_FILENAME,
 } from '../lib/skill-graph/skill-graph-db.js';
 import { createTrustState } from '../lib/freshness/trust-state.js';
-import { getAdapter } from '../lib/embedders/registry.js';
+import { getAdapter, getManifest } from '../lib/embedders/registry.js';
+import { probeOllamaModel, resolveOllamaBaseUrl } from '../lib/embedders/adapters/ollama.js';
+import { commandVecTableNameForDim } from '../lib/embedders/schema.js';
 import { readEmbeddingsHealth } from '../lib/embedders/embeddings-health.js';
 import { getSemanticShadowRuntimeHealth } from '../lib/scorer/lanes/semantic-shadow.js';
 import { readAdvisorEmbeddingStaleness } from '../lib/scorer/projection.js';
@@ -156,8 +159,14 @@ function baseSemanticLaneHealth(disabledReason: string | null): SemanticLaneHeal
 
 function readSemanticLaneHealth(dbPath: string): SemanticLaneHealth {
   const runtime = getSemanticShadowRuntimeHealth();
+  // The command projection's size does not depend on the database, so the
+  // denominator is known even when the artifact is missing or unreadable.
+  const commandTotal = readCommandEmbeddingSources()?.length ?? 0;
   if (!existsSync(dbPath)) {
-    return baseSemanticLaneHealth(runtime.disabledReason ?? 'database_absent');
+    return {
+      ...baseSemanticLaneHealth(runtime.disabledReason ?? 'database_absent'),
+      commandVectorCoverage: { embedded: 0, total: commandTotal },
+    };
   }
 
   let database: Database.Database | null = null;
@@ -180,6 +189,10 @@ function readSemanticLaneHealth(dbPath: string): SemanticLaneHealth {
       ? countRows(database, `SELECT COUNT(*) AS c FROM ${tableName} WHERE embedding IS NOT NULL`)
       : (tableExists(database, 'skill_nodes') ? countRows(database, 'SELECT COUNT(*) AS c FROM skill_nodes WHERE embedding IS NOT NULL') : 0);
     const lastRefresh = hasVecTable && tableName ? maxUpdatedAt(database, tableName) : null;
+    const commandTable = hasActive ? commandVecTableNameForDim(activeDim) : null;
+    const commandEmbedded = commandTable && tableExists(database, commandTable)
+      ? countRows(database, `SELECT COUNT(*) AS c FROM ${commandTable}`)
+      : 0;
     const dimMismatch = Boolean(activeEmbedder && activeEmbedder.adapterDim !== null && activeEmbedder.dim !== activeEmbedder.adapterDim);
     const staleness = readAdvisorEmbeddingStaleness(database);
     const disabledReason = dimMismatch
@@ -200,6 +213,7 @@ function readSemanticLaneHealth(dbPath: string): SemanticLaneHealth {
         total,
         ratio: total > 0 ? Math.round((embedded / total) * 1_000_000) / 1_000_000 : 0,
       },
+      commandVectorCoverage: { embedded: commandEmbedded, total: commandTotal },
       dimMismatch,
       lastRefresh,
       disabledReason,
@@ -207,7 +221,10 @@ function readSemanticLaneHealth(dbPath: string): SemanticLaneHealth {
       checkedAt: new Date().toISOString(),
     };
   } catch {
-    return baseSemanticLaneHealth(runtime.disabledReason ?? 'health_unavailable');
+    return {
+      ...baseSemanticLaneHealth(runtime.disabledReason ?? 'health_unavailable'),
+      commandVectorCoverage: { embedded: 0, total: commandTotal },
+    };
   } finally {
     database?.close();
   }
@@ -338,6 +355,44 @@ function scanSkillMetadataFiles(
     newest = Math.max(newest, metadataStat.mtimeMs);
   }
   return { count, maxMtimeMs: newest, truncated };
+}
+
+// The status reader stays synchronous so the recommend path can call it, which
+// puts the only network probe here on the async command path. Reading /api/tags
+// is the only signal that separates a stopped server or a missing model from a
+// healthy lane: the pointer and the vectors survive both, so a lane that
+// reports enabled through an outage sends operators to rebuild a fine index
+// instead of starting the server.
+async function probeSemanticLaneBackend(health: SemanticLaneHealth): Promise<SemanticLaneHealth> {
+  const activeName = health.activeEmbedder?.name;
+  const manifest = activeName ? getManifest(activeName) : undefined;
+  if (!manifest) {
+    return health;
+  }
+  if (manifest.backend !== 'ollama') {
+    return {
+      ...health,
+      backend: { state: 'probe_not_implemented', reason: `no readiness probe for the ${manifest.backend} backend` },
+      laneEnabled: false,
+    };
+  }
+  const probe = await probeOllamaModel(
+    resolveOllamaBaseUrl(),
+    manifest.ollamaName ?? manifest.name,
+    500,
+  );
+  if (probe.available) {
+    return { ...health, backend: { state: 'reachable', reason: null } };
+  }
+  const reason = probe.reason ?? null;
+  return {
+    ...health,
+    backend: {
+      state: reason && /not loaded/i.test(reason) ? 'model_missing' : 'unreachable',
+      reason,
+    },
+    laneEnabled: false,
+  };
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -478,10 +533,13 @@ export async function handleAdvisorStatus(args: unknown): Promise<HandlerRespons
   // so operators see on-disk corruption; explicit input can still override it.
   const parsed = AdvisorStatusInputSchema.parse(args);
   const status = readAdvisorStatus({ ...parsed, checkArtifactIntegrity: parsed.checkArtifactIntegrity ?? true });
+  const withBackend = parsed.includeSemanticHealth === true && status.semanticLaneHealth
+    ? { ...status, semanticLaneHealth: await probeSemanticLaneBackend(status.semanticLaneHealth) }
+    : status;
   // Keep the bounded probe on this async command path, away from the synchronous recommend reader.
   const data = parsed.includeEmbeddingsHealth === true
-    ? AdvisorStatusOutputSchema.parse({ ...status, embeddingsHealth: await readEmbeddingsHealth() })
-    : status;
+    ? AdvisorStatusOutputSchema.parse({ ...withBackend, embeddingsHealth: await readEmbeddingsHealth() })
+    : withBackend;
   return {
     content: [{
       type: 'text',

@@ -59,7 +59,7 @@ The argument failure wording, the doctor target list, the per-leg result table, 
 ## 6. WORKFLOW SUMMARY
 
 The workflow prints the doctor target list.
-It then runs five read-only legs once: the sk-code setup battery, the sk-git setup battery, the trigger index freshness check, the runtime mirror check and the advisor status probe with `--warm-only`.
+It then runs six read-only legs once: the sk-code setup battery, the sk-git setup battery, the trigger index freshness check, the runtime mirror check, the advisor status probe with `--warm-only` and the embedder check, which reads the semantic lane and the command vectors.
 It reports each leg as passing, skipped, degraded or failing.
 For a failing leg, it names the runnable doctor command that repairs it.
 The sk-git leg passes `--tool=<name>` for the AI tool running the command.

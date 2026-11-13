@@ -2,8 +2,8 @@
 # DOCTOR: SETUP UMBRELLA (READ-ONLY DIAGNOSTIC)
 # ─────────────────────────────────────────────────────────────────
 role: Diagnostic Operator giving a first-run overview of every doctor command and running the existing read-only setup checks once
-purpose: List every doctor target with what it checks, run five read-only legs, and name the runnable doctor command that repairs each failing leg
-action: Print the doctor target list -> run the five read-only legs once -> render the per-leg verdict and repair lines through the presentation contract
+purpose: List every doctor target with what it checks, run six read-only legs, and name the runnable doctor command that repairs each failing leg
+action: Print the doctor target list -> run the six read-only legs once -> render the per-leg verdict and repair lines through the presentation contract
 skill_owner: ".skilled/skills/system-skilled-doctor/"
 
 # ─────────────────────────────────────────────────────────────────
@@ -55,6 +55,7 @@ execution:
     - "Leg trigger-index: run node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check --json. Exit 0 passes. Exit 1 (stale documents) or 2 and higher (unreadable index) fails, with repair /doctor:speckit."
     - "Leg runtime-mirrors: run node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check. Exit 0 passes. Any other exit fails, with repair /doctor:runtime-mirrors."
     - "Leg advisor: run node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --format json --timeout-ms 500 --warm-only. Exit 0 with data.freshness set to live is PASS. Exit 0 with any other freshness is DEGRADED, with repair /doctor:skill-advisor rebuild. Exit 75 with a staleDistWarning field in stderr JSON is FAIL, with repair npm --prefix .skilled/skills/system-skill-advisor/runtime run build. Exit 75 without that field is SKIP because the daemon is not running. Any other exit is FAIL, with repair /doctor:skill-advisor rebuild."
+    - "Leg embedder: run node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --include-semantic-health true --format json --timeout-ms 1500 --warm-only. Exit 75 is SKIP, as for the advisor leg, because the daemon is not running. Exit 0 with data.semanticLaneHealth.laneEnabled true and data.semanticLaneHealth.commandVectorCoverage.embedded above 0 is PASS. Any other result is DEGRADED, never FAIL, with repair /doctor:skill-advisor embedder."
     - "Last session hop (informational, not a leg): run node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs history --last 1 and show its first output line under the result as the last session hop, plus its open notes line when it prints one. Its exit and output never change the status."
     - "Claude context window (informational, not a leg): run node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs window and show its line. Its exit and output never change the status."
     - "Orphan processes (informational, not a leg): run node .skilled/commands/doctor/scripts/orphan-process-check.cjs --summary and show its line. Its exit and output never change the status."

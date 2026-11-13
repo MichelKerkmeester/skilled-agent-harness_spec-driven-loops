@@ -59,8 +59,11 @@ scripts/
 | `check-skill-doc-frontmatter.mjs` | Checks skill document frontmatter coverage. |
 | `check-skill-doc-frontmatter.sh` | Shell wrapper for skill document frontmatter checks. |
 | `check-prompt-quality-card-sync.sh` | Checks prompt quality-card sync state. |
+| `measure-embedder-cost.mjs` | Prints one JSON object with the embedder's cost. It reads `/api/version`, `/api/tags` and `/api/ps` at `OLLAMA_BASE_URL` or `http://127.0.0.1:11434`, the `ollama serve` and model runner rows of `ps -axo`, 30 query embeddings and five end-to-end `advisor_recommend` calls. It writes, starts and unloads nothing, so the loaded model leaves on Ollama's own idle timer. Exits 2 when `/api/version` does not answer, naming the URL it tried. |
 | `verify-zombie-soak.sh` | Runs zombie process soak verification. |
 | `skill-graph.json` | Diagnostic JSON export for inspection; runtime routing consumes SQLite instead. |
+
+For a cold sample, leave the model unloaded: wait until `curl -s localhost:11434/api/ps | jq '.models | length'` prints `0`, then run the script. The first embedding then pays the load and is reported as `cold.firstCallMs`, with the idle `ollama serve` memory as `idle.serveRssKb`.
 
 ---
 

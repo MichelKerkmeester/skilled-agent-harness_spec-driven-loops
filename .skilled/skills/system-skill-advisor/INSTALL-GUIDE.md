@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor Install + Setup Guide"
 description: "Bootstrap, verification, runtime hooks, local scorer, rollback, operator notes and reference commands for the daemon-backed skill advisor CLI."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Skill Advisor Install + Setup Guide
@@ -51,6 +51,7 @@ The advisor is a TypeScript package under `.skilled/skills/system-skill-advisor/
 - No runtime configuration: the prompt-time hooks and the OpenCode plugin are committed, and there is no MCP registration step.
 - `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` is unset unless you are intentionally testing rollback.
 - The local shared package at `.skilled/skills/system-spec-kit/shared` is present; `npm install` links it into `runtime/node_modules/@spec-kit/shared`.
+- `/doctor:install` sets up the embedder by default: its checklist includes `/doctor:skill-advisor embedder`, which prints the cost and asks before it pulls the model or starts the server, so answering no leaves a phrase-only install.
 
 ---
 
@@ -365,6 +366,23 @@ If you need MPS-style auto-detect for a local model, the Ollama backend already 
 - Shared cascade: [`@spec-kit/shared/embeddings/auto-select.ts`](../system-spec-kit/shared/embeddings/auto-select.ts) — file-locked Ollama → hf-local → OpenAI → Voyage probe chain (ADR-014 local-first). Accepts optional `contentType: 'text' \| 'code'` parameter (default `'text'`).
 - Skill-advisor schema helpers: [`runtime/lib/embedders/schema.ts`](./runtime/lib/embedders/schema.ts).
 - Architecture-gap follow-on: packet `003/006-shared-embedder-logic-with-spec-memory` (shipped phase 003/006).
+
+### 12.7 Setup route and cost
+
+`/doctor:install` includes the embedder setup by default, and the setup itself runs as `/doctor:skill-advisor embedder` from inside the target repo. The route probes `command -v ollama`, `/api/version`, `/api/tags` and `advisor_status --include-semantic-health true`, prints one plan row per missing step with its cost and its undo, and asks once before it runs anything. A no stops with `STATUS=CANCELLED` and changes nothing. `--dry-run` prints the plan and stops with `STATUS=OK`. The route never installs or upgrades Ollama: it prints the install command for the operator, and the install guide owns that cost. The two health flags split the diagnosis: `includeEmbeddingsHealth` probes only the hf-local model server, while `includeSemanticHealth` reports the active embedder and probes its backend.
+
+What the embedder costs on this machine, measured 2026-11-13 with `runtime/scripts/measure-embedder-cost.mjs`:
+
+| Measure | Value |
+| --- | ---: |
+| Disk for `nomic-embed-text:v1.5` | 274302450 bytes (261.6 MiB) |
+| Idle memory, `ollama serve` with no model loaded | 25776 KB (25.2 MiB) |
+| Loaded memory, model runner resident | 279520 KB (273.0 MiB) |
+| Unload after the last call | 5 minutes, Ollama keep-alive |
+| Warm embed latency, model loaded | 4.8 ms median, 8.9 ms p95 |
+| Cold first call after the unload | 538.53 ms |
+
+Once the approved steps ran, the route runs `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json`. That scan is what writes the command vectors into the `vec_cmd_<dim>` table: without it `commandVectorCoverage.embedded` stays at zero and the semantic lane reports off. The database is derived state and gitignored, since `.gitignore` ignores `runtime/database/*.sqlite`, so the scan costs its own runtime plus the warm latency per embedded prompt and leaves nothing for git.
 
 ---
 

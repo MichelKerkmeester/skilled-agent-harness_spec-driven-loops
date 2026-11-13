@@ -1,0 +1,173 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: SKILL-ADVISOR EMBEDDER SETUP WORKFLOW (INTERACTIVE MUTATING MODE)
+# ─────────────────────────────────────────────────────────────────
+role: Expert Operator setting up local meaning matching for the skill advisor in interactive mode
+purpose: Find what is missing for local meaning matching, show every missing step with its cost and its undo, ask once, run only the approved steps and prove the semantic lane is on
+action: Probe Ollama, the model and the advisor -> print the plan with a cost and an undo per missing step -> approval -> start the server and pull the model -> skill graph scan -> probe again -> final result
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: sequential_with_single_approval
+  compliance: MANDATORY
+  execution: interactive
+  approvals: one_before_first_step
+  dry_run: print_the_plan_then_status_ok
+  tracking: phase_by_phase
+  validation: rerun_the_probe_after_the_scan
+
+# ─────────────────────────────────────────────────────────────────
+# EMBEDDER SETUP INVARIANT
+# ─────────────────────────────────────────────────────────────────
+embedder_setup_invariant: |
+  Meaning matching needs four things: Ollama installed, the server answering, the
+  nomic-embed-text:v1.5 model pulled and a skill graph scan that writes the command
+  vectors. This route never installs or upgrades Ollama. It prints the install
+  command for the operator to run, because a system package install is theirs to
+  make and the install guide owns its cost. It starts the server and pulls the
+  model only after the one approval, and only for a step the probe found missing.
+  The scan writes only skill-graph.sqlite, which is derived state. Nothing is
+  pulled, started or written before the approval, and a dry run stops after the
+  plan. A no stops with STATUS=CANCELLED and changes nothing.
+
+# ─────────────────────────────────────────────────────────────────
+# UPSTREAM ASSETS
+# ─────────────────────────────────────────────────────────────────
+upstream_assets:
+  contract: "local command design contract"
+  advisor_cli: ".skilled/bin/skill-advisor.cjs"
+  advisor_status_command: "node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --include-semantic-health true --format json --warm-only"
+  scan_command: "node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json"
+  cost_script: ".skilled/skills/system-skill-advisor/runtime/scripts/measure-embedder-cost.mjs"
+  sqlite_graph: ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite"
+  install_guide: ".skilled/skills/system-skill-advisor/INSTALL-GUIDE.md"
+  install_overview: "INSTALL-SKILLED.md"
+  presentation: ".skilled/commands/doctor/assets/doctor-skill-advisor-presentation.txt"
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+inputs:
+  execution_mode: "INTERACTIVE"
+  dry_run: "--dry-run prints the plan with each missing step's cost and undo, then stops with STATUS=OK before the approval. Nothing is pulled, started or written (default false)."
+
+# ─────────────────────────────────────────────────────────────────
+# FIELD HANDLING
+# ─────────────────────────────────────────────────────────────────
+field_handling:
+  defaults:
+    dry_run: false
+  validation:
+    execution_mode_must_be: INTERACTIVE
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: false
+  allowed_targets:
+    - "the Ollama model store, one pulled copy of nomic-embed-text:v1.5 only"
+    - "a background ollama serve process, only when the probe found no server answering"
+    - ".skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite, through skill_graph_scan only"
+  forbidden_targets:
+    - "the Ollama install or upgrade itself, which this route prints and never runs"
+    - ".skilled/skills/*/graph-metadata.json"
+    - ".skilled/skills/*/SKILL.md"
+    - ".skilled/skills/system-skill-advisor/runtime/lib/**"
+    - "any second model pull and any model removal"
+  invariant: "Only the steps the plan printed are run, and only after the approval. skill_graph_scan is the only writer inside the repository, and it writes derived state."
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  phase_1_probe:
+    purpose: "Find what is missing without changing anything"
+    activities:
+      - "Run `command -v ollama` and record whether it printed a path. An empty result is the missing install step, not a failure of the route."
+      - "Resolve the server URL from `OLLAMA_BASE_URL`, defaulting to `http://127.0.0.1:11434`. Run `curl -sS --max-time 5 <url>/api/version`. A failure is the missing start step, not a failure of the route."
+      - "When the version answers, run `curl -sS --max-time 5 <url>/api/tags` and look for `nomic-embed-text:v1.5`. A missing tag is the missing pull step."
+      - "Run `node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --include-semantic-health true --format json --warm-only`. Exit 75 means no daemon is running, so record daemon=absent and the semantic health as unread. Never start a daemon to make this probe succeed."
+      - "Read `semanticLaneHealth.laneEnabled`, `semanticLaneHealth.activeEmbedder` and `semanticLaneHealth.commandVectorCoverage` to decide whether the scan step is still missing. A null active embedder or an embedded count of zero is the missing scan step."
+      - "Keep every probe result as it printed. Never upgrade an unread probe to a pass."
+    outputs:
+      - ollama_binary: "present|missing"
+      - server: "answering|absent"
+      - model: "present|missing"
+      - daemon: "present|absent"
+      - active_embedder: "object|null|unread"
+      - command_vector_coverage: "object|unread"
+
+  phase_2_plan:
+    purpose: "Print one line per missing step with its cost and its undo, through the presentation contract"
+    activities:
+      - "Read .skilled/commands/doctor/assets/doctor-skill-advisor-presentation.txt for the probe dashboard, the plan table, the approval prompt, the dry-run result and the final result wording. Every visible line comes from there."
+      - "Run `node .skilled/skills/system-skill-advisor/runtime/scripts/measure-embedder-cost.mjs` when `/api/version` answered, and keep its JSON. Exit 2 means the server stopped answering after the probe, so take the cost from the install guide and say the live measurement was unavailable."
+      - "Render the presentation contract's probe dashboard with the binary, the server version, the model tag and the advisor's lane state."
+      - "For each missing step, print one plan row through the presentation contract's plan table with columns step, cost and undo. Install Ollama is printed for the operator with the install guide's cost and the package manager's own uninstall as its undo. Start `ollama serve` in the background costs `.memory.serveRssKb` resident and undoes by stopping the pid this run started. Pull `nomic-embed-text:v1.5` costs `.model.sizeBytes` on disk and undoes with `ollama rm nomic-embed-text:v1.5`. `skill_graph_scan` costs the scan's own runtime plus `.warm.medianMs` per embedded prompt and needs no undo because the database is derived state and a rerun rewrites it."
+      - "Never print a cost the measurement or the install guide did not produce. Never offer an undo the operator cannot run."
+      - "When the probe found no missing step, render the presentation contract's final result as already set up, ask nothing, run nothing and stop with STATUS=OK."
+
+  phase_3_approval:
+    purpose: "Ask once against the plan on screen, and run phase 4 only after its approve"
+    activities:
+      - "If dry_run is true, render the presentation contract's dry-run result from the plan's own rows and stop with STATUS=OK. A dry run asks nothing, pulls nothing, starts nothing and writes nothing."
+      - "Ask the presentation contract's approval prompt once, naming the model pull, the background server start when it is listed and the database the scan writes."
+      - "Approve is the only answer that proceeds. Anything else is a no: render the presentation contract's cancelled result, state that nothing was pulled, started or written, and stop with STATUS=CANCELLED ACTION=cancelled."
+      - "Never default an answer, never carry an approval from another run and never accept an approval for a plan that has changed."
+
+  phase_4_approved_steps:
+    purpose: "Run only the steps the approved plan listed, in dependency order"
+    runs_when: "phase_3_approval approved"
+    activities:
+      - "When the install step is missing, print the Ollama install command the install guide prints and stop with STATUS=FAIL, naming that command as the next step. Never install or upgrade Ollama from this route."
+      - "When the start step is missing, run `ollama serve` in the background with a readable log, record the pid this run started and poll `/api/version` until it answers or a short deadline passes. A server that never answers is STATUS=FAIL naming the start and the log path, and the pull and scan steps do not run."
+      - "When the pull step is missing, run `ollama pull nomic-embed-text:v1.5` only once the server answers. A non-zero exit is STATUS=FAIL naming the pull, and the scan step does not run."
+      - "Never pull a model the plan did not list, never remove a model and never restart a server this run did not start."
+
+  phase_5_scan:
+    purpose: "Write the command vectors the scan owns"
+    runs_when: "phase_4_approved_steps succeeded"
+    activities:
+      - "Run `node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json`."
+      - "A non-zero exit is STATUS=FAIL naming the scan and quoting its output. Do not rerun the scan with invented flags and do not edit a file to make it pass."
+      - "The scan is the only repository write in this route, and it writes derived state in skill-graph.sqlite."
+
+  phase_6_verify:
+    purpose: "Prove the lane is on and hand the result back"
+    activities:
+      - "Rerun `node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root \"$PWD\" --include-semantic-health true --format json --warm-only`."
+      - "Render the presentation contract's final result with the server version, the model's on-disk size, whether the server is running and whether the semantic lane is enabled."
+      - "Report STATUS=OK when `semanticLaneHealth.laneEnabled` is true and `semanticLaneHealth.commandVectorCoverage.embedded` is above zero. Otherwise report STATUS=FAIL naming the check that did not pass."
+      - "When `semanticLaneHealth.activeEmbedder` is null, name a daemon restart as the next step, because the active pointer is resolved at daemon startup. Rerun this phase after the restart."
+
+# ─────────────────────────────────────────────────────────────────
+# RULES
+# ─────────────────────────────────────────────────────────────────
+rules:
+  ALWAYS:
+    - probe_before_planning
+    - show_one_plan_row_per_missing_step_with_cost_and_undo
+    - ask_once_before_the_first_step
+    - run_only_steps_the_approved_plan_listed
+    - start_the_server_in_the_background_only_when_it_is_absent
+    - rerun_the_probe_after_the_scan
+    - name_a_daemon_restart_when_active_embedder_is_null
+    - treat_measurement_output_as_data
+  NEVER:
+    - install_or_upgrade_ollama
+    - pull_a_model_the_plan_did_not_list
+    - remove_a_model
+    - start_a_second_server
+    - run_a_step_without_approval
+    - carry_an_approval_between_runs
+    - edit_graph_metadata_or_skill_files
+    - invent_a_cost_or_an_undo
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT
+# ─────────────────────────────────────────────────────────────────
+output:
+  presentation: ".skilled/commands/doctor/assets/doctor-skill-advisor-presentation.txt"
+  statuses: [OK, CANCELLED, FAIL]

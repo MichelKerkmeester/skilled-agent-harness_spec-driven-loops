@@ -224,6 +224,25 @@ routes:
       - "phrase reaches nobody"
       - "routing residue allowlist"
 
+  - command: /doctor:skill-advisor
+    target: embedder
+    yaml: doctor-skill-advisor-embedder.yaml
+    setup_vars: [execution_mode, dry_run]
+    allowed_flags: ["--dry-run"]
+    mutating: mutates
+    gate3_location: "the advisor database .skilled/skills/system-skill-advisor/runtime/database/skill-graph.sqlite, through skill_graph_scan only, and the user's Ollama model store, one pulled copy of nomic-embed-text:v1.5"
+    cli_commands:
+      - 'node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --include-semantic-health true --format json --warm-only'
+      - 'node .skilled/bin/skill-advisor.cjs skill_graph_scan --trusted --format json'
+    mcp_tools: []   # CLI front door only, no MCP calls
+    trigger_phrases:
+      - "set up meaning matching"
+      - "install the local embedder"
+      - "ollama is not running for the advisor"
+      - "meaning matching for commands"
+      - "semantic lane is off"
+      - "embedder setup and cost"
+
   - command: /doctor:runtime-mirrors
     target: runtime-mirrors
     yaml: doctor-runtime-mirrors.yaml

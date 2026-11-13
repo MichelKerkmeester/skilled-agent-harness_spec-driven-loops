@@ -7,11 +7,30 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import Database from 'better-sqlite3';
 
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+const ollamaMocks = vi.hoisted(() => ({
+  probeOllamaModel: vi.fn(),
+  resolveOllamaBaseUrl: vi.fn(() => 'http://127.0.0.1:11434'),
+}));
+
+// The handler is the only caller that probes a backend, so the mock keeps
+// every other status case free of network access.
+vi.mock('../../lib/embedders/adapters/ollama.js', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('../../lib/embedders/adapters/ollama.js')>();
+  return {
+    ...actual,
+    probeOllamaModel: ollamaMocks.probeOllamaModel,
+    resolveOllamaBaseUrl: ollamaMocks.resolveOllamaBaseUrl,
+  };
+});
 
 import { handleAdvisorStatus, readAdvisorStatus } from '../../handlers/advisor-status.js';
 import { computeAdvisorSourceSignature } from '../../lib/freshness.js';
-import { computeSkillMetadataContentHash } from '../../lib/skill-graph/skill-graph-db.js';
+import {
+  computeSkillMetadataContentHash,
+  readCommandEmbeddingSources,
+} from '../../lib/skill-graph/skill-graph-db.js';
 import { AdvisorStatusOutputSchema } from '../../schemas/advisor-tool-schemas.js';
 
 const ADVISOR_DB_RELATIVE_PATH = join(
@@ -104,6 +123,30 @@ function writeHealthDb(root: string): void {
   }
 }
 
+function writeCommandVectorTable(root: string, rows: number): void {
+  const database = new Database(join(root, ADVISOR_DB_RELATIVE_PATH));
+  try {
+    database.exec(`
+      CREATE TABLE vec_cmd_768 (
+        command_id TEXT PRIMARY KEY,
+        embedding BLOB NOT NULL,
+        model_id TEXT NOT NULL,
+        content_hash TEXT NOT NULL,
+        updated_at TEXT DEFAULT (datetime('now'))
+      );
+    `);
+    const insert = database.prepare(`
+      INSERT INTO vec_cmd_768 (command_id, embedding, model_id, content_hash)
+      VALUES (?, ?, ?, ?)
+    `);
+    for (let index = 0; index < rows; index += 1) {
+      insert.run(`command-${index}`, Buffer.from([1, 2, 3]), 'nomic-embed-text-v1.5', `hash-${index}`);
+    }
+  } finally {
+    database.close();
+  }
+}
+
 function writeDimMismatchHealthDb(root: string): void {
   const database = new Database(join(root, ADVISOR_DB_RELATIVE_PATH));
   try {
@@ -127,6 +170,12 @@ function writeDimMismatchHealthDb(root: string): void {
 }
 
 describe('advisor_status handler', () => {
+  beforeEach(() => {
+    ollamaMocks.probeOllamaModel.mockReset();
+    ollamaMocks.resolveOllamaBaseUrl.mockReset();
+    ollamaMocks.resolveOllamaBaseUrl.mockReturnValue('http://127.0.0.1:11434');
+  });
+
   it('includes a private skill linked from inside the skills root in the source signature', () => {
     const root = workspace('linked');
     const skills = join(root, '.skilled', 'skills');
@@ -285,6 +334,84 @@ describe('advisor_status handler', () => {
       disabledReason: 'dim_mismatch',
       laneEnabled: false,
     }));
+  });
+
+  it('reports zero command-vector coverage when no command table exists', () => {
+    const root = workspace('command-coverage-absent');
+    writeHealthDb(root);
+    writeGeneration(root, 'live', 10);
+
+    const status = readAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
+    const sourceTotal = readCommandEmbeddingSources()?.length ?? 0;
+
+    expect(status.semanticLaneHealth?.commandVectorCoverage).toEqual({
+      embedded: 0,
+      total: sourceTotal,
+    });
+  });
+
+  it('counts command-vector rows when the command table exists', () => {
+    const root = workspace('command-coverage-present');
+    writeHealthDb(root);
+    writeCommandVectorTable(root, 3);
+    writeGeneration(root, 'live', 10);
+
+    const status = readAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
+    const sourceTotal = readCommandEmbeddingSources()?.length ?? 0;
+
+    expect(status.semanticLaneHealth?.commandVectorCoverage).toEqual({
+      embedded: 3,
+      total: sourceTotal,
+    });
+  });
+
+  it('reports a reachable backend when the model is loaded', async () => {
+    const root = workspace('backend-reachable');
+    writeHealthDb(root);
+    writeGeneration(root, 'live', 14);
+    ollamaMocks.probeOllamaModel.mockResolvedValue({ available: true });
+
+    const response = await handleAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
+    const envelope = JSON.parse(response.content[0].text) as { data: unknown };
+    const status = AdvisorStatusOutputSchema.parse(envelope.data);
+
+    expect(ollamaMocks.probeOllamaModel).toHaveBeenCalledWith(
+      'http://127.0.0.1:11434',
+      'nomic-embed-text:v1.5',
+      500,
+    );
+    expect(status.semanticLaneHealth?.backend).toEqual({ state: 'reachable', reason: null });
+    expect(status.semanticLaneHealth?.laneEnabled).toBe(true);
+  });
+
+  it('reports an unreachable backend when the probe cannot connect', async () => {
+    const root = workspace('backend-unreachable');
+    writeHealthDb(root);
+    writeGeneration(root, 'live', 14);
+    const reason = 'Ollama backend unreachable at http://127.0.0.1:11434: fetch failed';
+    ollamaMocks.probeOllamaModel.mockResolvedValue({ available: false, reason });
+
+    const response = await handleAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
+    const envelope = JSON.parse(response.content[0].text) as { data: unknown };
+    const status = AdvisorStatusOutputSchema.parse(envelope.data);
+
+    expect(status.semanticLaneHealth?.backend).toEqual({ state: 'unreachable', reason });
+    expect(status.semanticLaneHealth?.laneEnabled).toBe(false);
+  });
+
+  it('reports a missing model when the server answers without it', async () => {
+    const root = workspace('backend-model-missing');
+    writeHealthDb(root);
+    writeGeneration(root, 'live', 14);
+    const reason = 'Ollama model is not loaded: nomic-embed-text:v1.5';
+    ollamaMocks.probeOllamaModel.mockResolvedValue({ available: false, reason });
+
+    const response = await handleAdvisorStatus({ workspaceRoot: root, includeSemanticHealth: true });
+    const envelope = JSON.parse(response.content[0].text) as { data: unknown };
+    const status = AdvisorStatusOutputSchema.parse(envelope.data);
+
+    expect(status.semanticLaneHealth?.backend).toEqual({ state: 'model_missing', reason });
+    expect(status.semanticLaneHealth?.laneEnabled).toBe(false);
   });
 
   // drift: verified against shipped behavior during Unit H

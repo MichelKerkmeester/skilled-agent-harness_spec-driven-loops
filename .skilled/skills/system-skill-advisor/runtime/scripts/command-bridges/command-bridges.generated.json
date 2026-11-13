@@ -3,10 +3,10 @@
   "generatedBy": "scripts/command-bridges/derive-command-bridges.cjs",
   "counts": {
     "commandMetadata": 27,
-    "doctorRoutes": 35,
-    "generated": 62,
-    "typescriptActive": 45,
-    "pythonActive": 51
+    "doctorRoutes": 36,
+    "generated": 63,
+    "typescriptActive": 46,
+    "pythonActive": 52
   },
   "entries": [
     {
@@ -1647,6 +1647,49 @@
       }
     },
     {
+      "id": "command-doctor-skill-advisor-embedder",
+      "command": "/doctor:skill-advisor",
+      "skillId": "system-skill-advisor",
+      "ownerMode": "system-skill-advisor",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "embeddingText": "Tune and rebuild the skill advisor, and audit graph freshness, router reach, budgets and parent hubs. set up meaning matching. install the local embedder. ollama is not running for the advisor. meaning matching for commands. semantic lane is off. embedder setup and cost",
+      "runtime": {
+        "typescript": {
+          "enabled": true,
+          "inventoryId": "command-doctor-skill-advisor-embedder",
+          "order": 40,
+          "id": "command-doctor-skill-advisor-embedder",
+          "description": "",
+          "name": "/doctor:skill-advisor embedder",
+          "keywords": [
+            "set up meaning matching",
+            "install the local embedder",
+            "ollama is not running for the advisor",
+            "meaning matching for commands",
+            "semantic lane is off",
+            "embedder setup and cost"
+          ],
+          "intentSignals": [
+            "/doctor:skill-advisor embedder"
+          ],
+          "domains": [
+            "doctor",
+            "command"
+          ]
+        },
+        "python": {
+          "enabled": true,
+          "inventoryId": "command-doctor-skill-advisor-embedder",
+          "order": 51,
+          "id": "command-doctor-skill-advisor-embedder",
+          "description": "",
+          "slashMarkers": [
+            "/doctor:skill-advisor embedder"
+          ]
+        }
+      }
+    },
+    {
       "id": "command-doctor-skill-advisor-parent-skill",
       "command": "/doctor:skill-advisor",
       "skillId": "system-skill-advisor",
@@ -2144,7 +2187,7 @@
         "typescript": {
           "enabled": true,
           "inventoryId": "command-prompt-improve",
-          "order": 40,
+          "order": 41,
           "id": "command-prompt-improve",
           "name": "command-prompt-improve",
           "description": "Improve or create AI prompts via sk-prompt: one-pass checklist, CLEAR screening. Modes :auto, :confirm.",
@@ -2176,7 +2219,7 @@
         "python": {
           "enabled": true,
           "inventoryId": "command-prompt-improve",
-          "order": 51,
+          "order": 52,
           "id": "command-prompt-improve",
           "description": "Improve or create AI prompts via sk-prompt: one-pass checklist, CLEAR screening. Modes :auto, :confirm.",
           "slashMarkers": [
@@ -2207,7 +2250,7 @@
         "typescript": {
           "enabled": true,
           "inventoryId": "command-speckit-complete",
-          "order": 41,
+          "order": 42,
           "id": "command-speckit-complete",
           "name": "command-speckit-complete",
           "description": "End-to-end SpecKit workflow, 14+ steps. Modes :auto, :confirm, :autopilot; :with-* workflow modifiers.",
@@ -2263,7 +2306,7 @@
         "typescript": {
           "enabled": true,
           "inventoryId": "command-speckit-handoff",
-          "order": 42,
+          "order": 43,
           "id": "command-speckit-handoff",
           "name": "command-speckit-handoff",
           "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
@@ -2289,7 +2332,7 @@
         "python": {
           "enabled": true,
           "inventoryId": "command-speckit-handoff",
-          "order": 52,
+          "order": 53,
           "id": "command-speckit-handoff",
           "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
           "slashMarkers": [
@@ -2321,7 +2364,7 @@
         "typescript": {
           "enabled": true,
           "inventoryId": "command-speckit-implement",
-          "order": 43,
+          "order": 44,
           "id": "command-speckit-implement",
           "name": "command-speckit-implement",
           "description": "Implementation workflow, 9 steps: execute pre-planned work from plan.md. Modes :auto, :confirm, :autopilot.",
@@ -2379,7 +2422,7 @@
         "typescript": {
           "enabled": true,
           "inventoryId": "command-speckit-plan",
-          "order": 44,
+          "order": 45,
           "id": "command-speckit-plan",
           "name": "command-speckit-plan",
           "description": "Planning workflow, 8 steps: spec through plan only. Modes :auto, :confirm, :autopilot; :with-* modifiers.",
@@ -2439,7 +2482,7 @@
         "typescript": {
           "enabled": true,
           "inventoryId": "command-speckit-resume",
-          "order": 45,
+          "order": 46,
           "id": "command-speckit-resume",
           "name": "command-speckit-resume",
           "description": "Resume or recover work on a spec folder: canonical continuity recovery with one next step.",
@@ -2504,7 +2547,7 @@
         "typescript": {
           "enabled": true,
           "inventoryId": "command-speckit-save",
-          "order": 46,
+          "order": 47,
           "id": "command-speckit-save",
           "name": "command-speckit-save",
           "description": "Save current conversation context into canonical spec-doc continuity surfaces",
@@ -2536,7 +2579,7 @@
         "python": {
           "enabled": true,
           "inventoryId": "command-speckit-save",
-          "order": 53,
+          "order": 54,
           "id": "command-speckit-save",
           "description": "Save current conversation context into canonical spec-doc continuity surfaces",
           "slashMarkers": [
@@ -2569,7 +2612,7 @@
         "typescript": {
           "enabled": true,
           "inventoryId": "command-speckit-search",
-          "order": 47,
+          "order": 48,
           "id": "command-speckit-search",
           "name": "command-speckit-search",
           "description": "Continuity retrieval front door: trigger-index lookup plus the ripgrep recipes over spec docs and skill docs.",
@@ -2598,7 +2641,7 @@
         "python": {
           "enabled": true,
           "inventoryId": "command-speckit-search",
-          "order": 54,
+          "order": 55,
           "id": "command-speckit-search",
           "description": "Continuity retrieval front door: trigger-index lookup plus the ripgrep recipes over spec docs and skill docs.",
           "slashMarkers": [
@@ -2926,6 +2969,13 @@
     {
       "command": "/doctor:sk-skill",
       "route": "convert",
+      "mutating": "mutates",
+      "askFirst": [],
+      "policy": "ask"
+    },
+    {
+      "command": "/doctor:skill-advisor",
+      "route": "embedder",
       "mutating": "mutates",
       "askFirst": [],
       "policy": "ask"

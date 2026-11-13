@@ -71,6 +71,15 @@ const REQUIRED_COMMAND_FLAGS = {
   skill_graph_status: ['--warm-only'],
 };
 
+// /doctor:skill-advisor is a multi-target command, so every embedder lookup pins
+// the target as well as the command and can never resolve the tune or rebuild
+// route by accident.
+const EMBEDDER_TARGET = 'embedder';
+const EMBEDDER_ASSET = 'doctor-skill-advisor-embedder.yaml';
+const EMBEDDER_APPROVAL_PHASE = 'phase_3_approval';
+// The three steps the route may take only after the operator approves the plan.
+const EMBEDDER_APPROVED_COMMANDS = ['ollama pull', 'ollama serve', 'skill_graph_scan'];
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
@@ -139,11 +148,15 @@ function cliCommandName(entry) {
   return command;
 }
 
-function skillAdvisorRouteCliCommands() {
+function skillAdvisorRoute(target) {
   const routes = parseYaml(read(ROUTES_PATH));
-  const route = routes.routes.find(
-    (entry) => entry.command === '/doctor:skill-advisor' && entry.target === 'tune',
+  return routes.routes.find(
+    (entry) => entry.command === '/doctor:skill-advisor' && entry.target === target,
   );
+}
+
+function skillAdvisorRouteCliCommands() {
+  const route = skillAdvisorRoute('tune');
   assert.ok(route, '_routes.yaml must declare the /doctor:skill-advisor tune route');
   assert.ok(
     Array.isArray(route.cli_commands),
@@ -175,6 +188,42 @@ function allowedTools(markdown) {
   if (Array.isArray(value)) return value.map((tool) => String(tool).trim());
   if (typeof value === 'string') return value.split(',').map((tool) => tool.trim()).filter(Boolean);
   return [];
+}
+
+function embedderRoute() {
+  const route = skillAdvisorRoute(EMBEDDER_TARGET);
+  assert.ok(
+    route,
+    `_routes.yaml must declare the /doctor:skill-advisor ${EMBEDDER_TARGET} route`,
+  );
+  return route;
+}
+
+function embedderWorkflow() {
+  const route = embedderRoute();
+  const workflowPath = path.join(ASSETS_DIR, route.yaml);
+  assert.ok(fs.existsSync(workflowPath), `${route.yaml} must exist`);
+  return parseYaml(read(workflowPath));
+}
+
+// Every string a phase carries, so a command is found whether the workflow
+// states it in the purpose, an activity or an output.
+function yamlStrings(node, out = []) {
+  if (Array.isArray(node)) {
+    for (const value of node) yamlStrings(value, out);
+  } else if (node && typeof node === 'object') {
+    for (const [key, value] of Object.entries(node)) {
+      out.push(key);
+      yamlStrings(value, out);
+    }
+  } else if (typeof node === 'string') {
+    out.push(node);
+  }
+  return out;
+}
+
+function phaseText(workflow, phase) {
+  return yamlStrings(workflow.workflow[phase]).join('\n');
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -271,4 +320,142 @@ test('the route does not silently claim full-registry equality — this stays a 
     'expected the live registry to contain at least one command the doctor route '
       + `legitimately does not require; found none (declared: ${[...declaredCommands].join(', ')})`,
   );
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. THE EMBEDDER SETUP ROUTE
+// ─────────────────────────────────────────────────────────────────────────────
+
+test('the embedder setup route is in the manifest with its own workflow asset and dry run', () => {
+  const routes = parseYaml(read(ROUTES_PATH)).routes.filter(
+    (entry) => entry.command === '/doctor:skill-advisor' && entry.target === EMBEDDER_TARGET,
+  );
+  assert.equal(routes.length, 1, '/doctor:skill-advisor must own exactly one embedder route');
+
+  const route = routes[0];
+  assert.equal(route.yaml, EMBEDDER_ASSET);
+  assert.ok(fs.existsSync(path.join(ASSETS_DIR, route.yaml)), route.yaml);
+  assert.deepEqual(route.setup_vars, ['execution_mode', 'dry_run']);
+  assert.deepEqual(route.allowed_flags, ['--dry-run']);
+  assert.equal(route.mutating, 'mutates');
+  assert.equal(route.default_target, undefined);
+  assert.deepEqual(route.mcp_tools, []);
+  assert.match(route.gate3_location, /skill-graph\.sqlite/u);
+  assert.match(route.gate3_location, /Ollama model store/u);
+
+  assert.ok(Array.isArray(route.cli_commands));
+  assert.ok(
+    route.cli_commands.some((entry) => entry.includes('advisor_status')
+      && entry.includes('--include-semantic-health true')
+      && entry.includes('--warm-only')),
+    'the embedder route must probe the semantic lane without starting a daemon',
+  );
+  assert.ok(
+    route.cli_commands.some((entry) => entry.includes('skill_graph_scan')
+      && entry.includes('--trusted')),
+    'the embedder route must declare the scan and its --trusted flag',
+  );
+
+  assert.ok(route.trigger_phrases.length >= 3, 'the embedder route needs at least three phrases');
+  for (const phrase of route.trigger_phrases) {
+    assert.ok(
+      String(phrase).trim().split(/\s+/u).length >= 3,
+      `an embedder trigger phrase must name three or more words: ${phrase}`,
+    );
+  }
+});
+
+test('the embedder workflow stops at one approval before any pull, server start or scan', () => {
+  const workflow = embedderWorkflow();
+  const phases = Object.keys(workflow.workflow);
+  assert.deepEqual(phases, [
+    'phase_1_probe',
+    'phase_2_plan',
+    'phase_3_approval',
+    'phase_4_approved_steps',
+    'phase_5_scan',
+    'phase_6_verify',
+  ]);
+  assert.equal(workflow.operating_mode.approvals, 'one_before_first_step');
+
+  const approvalIndex = phases.indexOf(EMBEDDER_APPROVAL_PHASE);
+  const approvedPhases = [];
+  for (const [name, phase] of Object.entries(workflow.workflow)) {
+    if (!phase.runs_when) continue;
+    approvedPhases.push(name);
+    assert.ok(
+      phases.indexOf(name) > approvalIndex,
+      `${name} declares runs_when before ${EMBEDDER_APPROVAL_PHASE}`,
+    );
+  }
+  assert.ok(approvedPhases.length > 0, 'the embedder workflow must declare its gated phases');
+  assert.match(
+    workflow.workflow[approvedPhases[0]].runs_when,
+    new RegExp(`${EMBEDDER_APPROVAL_PHASE} approved`, 'u'),
+  );
+
+  // Each step that changes the machine lives in a phase gated behind the
+  // approval, so the plan can be read and refused before any of them runs.
+  const gatedText = approvedPhases.map((name) => phaseText(workflow, name)).join('\n');
+  for (const command of EMBEDDER_APPROVED_COMMANDS) {
+    assert.ok(
+      gatedText.includes(command),
+      `${command} must run only in a phase gated after ${EMBEDDER_APPROVAL_PHASE}`,
+    );
+  }
+
+  const approval = phaseText(workflow, EMBEDDER_APPROVAL_PHASE);
+  assert.match(approval, /Approve is the only answer that proceeds/u);
+  assert.match(approval, /STATUS=CANCELLED/u);
+});
+
+test('a dry run stops after the plan with STATUS=OK and changes nothing', () => {
+  const workflow = embedderWorkflow();
+  assert.equal(workflow.operating_mode.dry_run, 'print_the_plan_then_status_ok');
+  assert.match(workflow.inputs.dry_run, /STATUS=OK/u);
+  assert.match(workflow.inputs.dry_run, /before the approval/u);
+
+  const approval = phaseText(workflow, EMBEDDER_APPROVAL_PHASE);
+  assert.match(approval, /If dry_run is true/u);
+  assert.match(approval, /STATUS=OK/u);
+  assert.match(approval, /pulls nothing, starts nothing and writes nothing/u);
+
+  const phases = Object.keys(workflow.workflow);
+  assert.ok(
+    phases.indexOf(EMBEDDER_APPROVAL_PHASE) < phases.indexOf('phase_4_approved_steps'),
+    'the dry-run decision must sit before the first gated phase',
+  );
+});
+
+test('no embedder step installs Ollama, which the route only prints for the operator', () => {
+  const workflow = embedderWorkflow();
+  assert.ok(
+    workflow.rules.NEVER.includes('install_or_upgrade_ollama'),
+    'the embedder workflow must forbid installing or upgrading Ollama',
+  );
+  assert.match(
+    workflow.mutation_boundaries.forbidden_targets.join('\n'),
+    /the Ollama install or upgrade itself, which this route prints and never runs/u,
+  );
+  assert.match(
+    phaseText(workflow, 'phase_4_approved_steps'),
+    /Never install or upgrade Ollama from this route/u,
+  );
+
+  const activities = Object.values(workflow.workflow)
+    .flatMap((phase) => (Array.isArray(phase.activities) ? phase.activities : []))
+    .map(String);
+  for (const activity of activities) {
+    if (!/install/iu.test(activity) || !/ollama/iu.test(activity)) continue;
+    assert.match(
+      activity,
+      /\bprint/iu,
+      `an Ollama install mention must be a print step: ${activity}`,
+    );
+    assert.doesNotMatch(
+      activity,
+      /\b(?:run|execute)\b[^.]*\binstall|install[^.]*\b(?:run|execute)\b|\bbrew install\b|\bcurl\b[^\n]*\|\s*(?:ba)?sh\b/iu,
+      `no step may run an Ollama install: ${activity}`,
+    );
+  }
 });

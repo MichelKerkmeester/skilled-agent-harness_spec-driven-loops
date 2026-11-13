@@ -5,6 +5,11 @@
 // ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
+import {
+  OllamaBackendUnreachableError,
+  OllamaModelNotLoadedError,
+  OllamaRequestTimeoutError,
+} from '../../embedders/adapters/ollama.js';
 import { getAdapter } from '../../embedders/registry.js';
 import { getActiveEmbedder } from '../../embedders/schema.js';
 import { getDbReadOnly, loadSkillEmbeddings } from '../../skill-graph/skill-graph-db.js';
@@ -15,6 +20,11 @@ import type { AdvisorProjection, LaneMatch } from '../types.js';
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────────
 const COSINE_THRESHOLD = 0.2;
+
+// A prompt reaches the caller's hook budget, so the embedding must never wait
+// on a cold model load or a wedged request. Past this deadline the lane degrades
+// to phrase scoring for the call instead of stalling it.
+export const PROMPT_EMBEDDING_DEADLINE_MS = 750;
 
 let activePromptEmbedding: { prompt: string; vector: Float32Array } | null = null;
 
@@ -99,6 +109,30 @@ function fixtureVector(text: string): Float32Array {
 // ───────────────────────────────────────────────────────────────────
 // 6. PROMPT EMBEDDING
 // ───────────────────────────────────────────────────────────────────
+export class PromptEmbeddingTimeoutError extends Error {
+  constructor(timeoutMs: number) {
+    super(`prompt embedding timed out after ${timeoutMs} ms`);
+    this.name = 'PromptEmbeddingTimeoutError';
+  }
+}
+
+// The reported reason is the one a caller can act on: pull the model, start the
+// server, or retry after a slow request. Every failure below still degrades this
+// call to phrase scoring, so the mapping changes the diagnosis, not the outcome.
+function promptEmbeddingDisabledReason(error: unknown): string {
+  if (error instanceof OllamaModelNotLoadedError) {
+    return 'prompt_embedding_model_missing';
+  }
+  if (error instanceof PromptEmbeddingTimeoutError || error instanceof OllamaRequestTimeoutError) {
+    return 'prompt_embedding_timeout';
+  }
+  if (error instanceof OllamaBackendUnreachableError) {
+    return 'prompt_embedding_unreachable';
+  }
+
+  return 'prompt_embedding_failed';
+}
+
 export function setSemanticShadowPromptEmbedding(prompt: string, vector: Float32Array | readonly number[] | null | undefined): void {
   activePromptEmbedding = vector ? { prompt, vector: toFloat32Array(vector) } : null;
 }
@@ -112,6 +146,9 @@ export async function withSemanticShadowPromptEmbedding<T>(prompt: string, run: 
     return run();
   }
 
+  // A check before the embed records its own precise reason, so its throw must
+  // not be reported as a transport failure by the catch below.
+  let preEmbedFailure = false;
   try {
     // Read-only access: recommend calls must never open the daemon-owned
     // database read-write (dual-writer hazard) or create it when absent.
@@ -122,6 +159,7 @@ export async function withSemanticShadowPromptEmbedding<T>(prompt: string, run: 
         dimMismatch: false,
         disabledReason: 'database_absent',
       });
+      preEmbedFailure = true;
       throw new Error('skill graph database is absent; shadow scoring disabled');
     }
     const active = getActiveEmbedder(database);
@@ -132,6 +170,7 @@ export async function withSemanticShadowPromptEmbedding<T>(prompt: string, run: 
         dimMismatch: false,
         disabledReason: 'adapter_unavailable',
       });
+      preEmbedFailure = true;
       throw new Error(`active embedder is not registered: ${active.name}`);
     }
     if (adapter.dim !== active.dim) {
@@ -140,10 +179,26 @@ export async function withSemanticShadowPromptEmbedding<T>(prompt: string, run: 
         dimMismatch: true,
         disabledReason: 'dim_mismatch',
       });
+      preEmbedFailure = true;
       throw new Error(`active embedder dimension mismatch: ${active.name} reports ${adapter.dim}, pointer expects ${active.dim}`);
     }
 
-    const [vector] = await adapter.embed([prompt], { inputType: 'query' });
+    const embedding = adapter.embed([prompt], { inputType: 'query' });
+    // The race abandons a slow answer, so consume whatever it later settles
+    // with. Without this the late rejection surfaces as unhandled.
+    embedding.catch(() => undefined);
+    let deadlineTimer: NodeJS.Timeout | undefined;
+    let vector: Float32Array | undefined;
+    try {
+      const deadline = new Promise<never>((_resolveDeadline, rejectDeadline) => {
+        deadlineTimer = setTimeout(() => {
+          rejectDeadline(new PromptEmbeddingTimeoutError(PROMPT_EMBEDDING_DEADLINE_MS));
+        }, PROMPT_EMBEDDING_DEADLINE_MS);
+      });
+      [vector] = await Promise.race([embedding, deadline]);
+    } finally {
+      if (deadlineTimer) clearTimeout(deadlineTimer);
+    }
     setSemanticShadowPromptEmbedding(prompt, vector ?? null);
     setRuntimeHealth({
       activeEmbedder: { name: active.name, dim: active.dim, adapterDim: adapter.dim },
@@ -154,8 +209,8 @@ export async function withSemanticShadowPromptEmbedding<T>(prompt: string, run: 
   } catch (error: unknown) {
     setSemanticShadowPromptEmbedding(prompt, null);
     const message = error instanceof Error ? error.message : String(error);
-    if (!runtimeHealth.disabledReason) {
-      setRuntimeHealth({ disabledReason: 'prompt_embedding_failed' });
+    if (!preEmbedFailure) {
+      setRuntimeHealth({ disabledReason: promptEmbeddingDisabledReason(error) });
     }
     console.warn(`[semantic-shadow] Prompt embedding failed; cosine lane disabled for this call (${message})`);
   }
