@@ -82,4 +82,6 @@ test('the setup workflow and router both name the unrecorded hook health state',
     /When data\.hookHealth is absent, show hook health not recorded under the leg, because no prompt hook has written a record for this checkout yet: OpenCode has no prompt hook that writes one and an unapproved Codex hook never runs\./,
   );
   assert.match(SETUP_ROUTER, /hook health not recorded/);
+  assert.match(SETUP_ROUTER, /because no prompt hook has written a record for this checkout yet/);
+  assert.doesNotMatch(SETUP_ROUTER, /SKILL_ADVISOR_DEBUG/);
 });

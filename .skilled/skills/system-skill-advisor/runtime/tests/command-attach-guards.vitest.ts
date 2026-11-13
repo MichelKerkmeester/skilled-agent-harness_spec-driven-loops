@@ -6,10 +6,14 @@
 // honour the same no-edit wording the scorer honours. A reader who rules out a
 // change must not be handed a command that changes files.
 
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
 import { describe, expect, it } from 'vitest';
 
 import {
   attachCommand,
+  isNoEditRequest,
   NO_EDIT_REQUEST,
   typedCommandForTop,
   typedCommandIn,
@@ -20,6 +24,15 @@ import {
 function SINGLE(workflowMode: string): Record<string, unknown> {
   return { action: 'route', selectionKind: 'single', targets: [{ workflowMode }] };
 }
+
+// The endings a reader uses to rule out a change. One writes the contraction
+// with a curly apostrophe, which is the form many keyboards produce.
+const NOEDIT4 = [
+  "don't change anything yet",
+  'no changes yet',
+  'don\u2019t touch any files',
+  'make no changes',
+];
 
 describe('command attach on a no-edit prompt', () => {
   it('offers no hub command when the prompt rules out a change', () => {
@@ -34,6 +47,31 @@ describe('command attach on a no-edit prompt', () => {
 
   it('reads the shared no-edit wording', () => {
     expect(NO_EDIT_REQUEST.test('just show me the plan')).toBe(true);
+  });
+
+  it.each(NOEDIT4)('offers no hub command when the prompt ends %s', (ending) => {
+    const prompt = 'use sk-doc to create an agent called invoice-parser, ' + ending;
+    expect(attachCommand('sk-doc', SINGLE('sk-create-agent'), prompt)).toBeUndefined();
+  });
+
+  it('offers the agent command when the prompt asks for the change', () => {
+    const prompt = 'use sk-doc to create an agent called invoice-parser';
+    expect(attachCommand('sk-doc', SINGLE('sk-create-agent'), prompt)).toBe('/create:agent');
+  });
+
+  it('reads a curly apostrophe as a straight one', () => {
+    expect(isNoEditRequest('Don\u2019t touch any files')).toBe(true);
+    expect(isNoEditRequest('touch the files')).toBe(false);
+  });
+
+  // A change request can say what must stay the same, and that is still a
+  // request for the change.
+  it.each([
+    'refactor the parser so there are no changes to its public api',
+    'fix the flaky test and make sure there are no changes in behaviour',
+    'create an agent called invoice-parser with no changes to existing agents',
+  ])('keeps a change request that limits its scope: %s', (prompt) => {
+    expect(isNoEditRequest(prompt)).toBe(false);
   });
 });
 
@@ -84,5 +122,17 @@ describe('typed command boundaries', () => {
 describe('generated command table', () => {
   it('holds no separate policy table', async () => {
     expect('COMMAND_POLICIES' in await import('../lib/command-attach.js')).toBe(false);
+  });
+
+  it('the command-bridges README names every command row field', () => {
+    const source = readFileSync(join(import.meta.dirname, '../lib/command-attach.ts'), 'utf8');
+    const readme = readFileSync(join(import.meta.dirname, '../scripts/command-bridges/README.md'), 'utf8');
+    const interfaceBlock = /export interface CommandRow \{([\s\S]*?)\n\}/.exec(source)?.[1] ?? '';
+    const fields = [...interfaceBlock.matchAll(/readonly (\w+)\??:/g)].map((match) => match[1]);
+    expect(fields).toEqual(['command', 'policy', 'mutating', 'ownerSkillId']);
+    const sentence = /Each row carries [^\n]*/.exec(readme)?.[0] ?? '';
+    for (const field of fields) {
+      expect(sentence).toContain('`' + field + '`');
+    }
   });
 });

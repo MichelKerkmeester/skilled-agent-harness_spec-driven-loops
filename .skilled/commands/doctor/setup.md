@@ -79,4 +79,4 @@ It reports DEGRADED when exit 0 has any other freshness value and names `/doctor
 It reports FAIL when exit 75 includes `staleDistWarning` in stderr JSON and names `npm --prefix .skilled/skills/system-skill-advisor/runtime run build`.
 It reports SKIP when exit 75 lacks that field because the daemon is stopped.
 It reports FAIL for any other exit with `/doctor:skill-advisor rebuild`.
-When the daemon holds no hook health records, the leg prints hook health not recorded and names `SKILL_ADVISOR_DEBUG`, the setting that turns the records on.
+When the daemon holds no hook health records, the leg prints hook health not recorded, because no prompt hook has written a record for this checkout yet: OpenCode has no prompt hook that writes one and an unapproved Codex hook never runs.

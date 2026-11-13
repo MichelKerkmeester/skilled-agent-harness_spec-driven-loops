@@ -1,0 +1,1162 @@
+{
+  "summary": {
+    "rows": 44,
+    "differsNoHint": 0,
+    "differsHint": 0,
+    "commandDiffNoHint": [],
+    "commandDiffHint": [],
+    "policyDiffNoHint": [],
+    "policyDiffHint": [],
+    "skillDiffNoHint": [],
+    "skillDiffHint": [],
+    "hookCommandRows": 44,
+    "pluginCommandRows": 44,
+    "hintedCommandRows": 44
+  },
+  "results": [
+    {
+      "id": "cmd-create-agent-typed-01",
+      "hook": {
+        "skill": "create:agent",
+        "command": "/create:agent",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "create:agent",
+        "command": "/create:agent",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "create:agent",
+        "command": "/create:agent",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-create-benchmark-typed-01",
+      "hook": {
+        "skill": "sk-doc",
+        "command": "/create:benchmark",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "sk-doc",
+        "command": "/create:benchmark",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "sk-doc",
+        "command": "/create:benchmark",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-create-changelog-typed-01",
+      "hook": {
+        "skill": "sk-doc",
+        "command": "/create:changelog",
+        "policy": "ask",
+        "ambiguous": true,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "sk-doc",
+        "command": "/create:changelog",
+        "policy": "ask",
+        "ambiguous": true,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "sk-doc",
+        "command": "/create:changelog",
+        "policy": "ask",
+        "ambiguous": true,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-create-command-typed-01",
+      "hook": {
+        "skill": "sk-doc",
+        "command": "/create:command",
+        "policy": "start",
+        "ambiguous": true,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "sk-doc",
+        "command": "/create:command",
+        "policy": "start",
+        "ambiguous": true,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "sk-doc",
+        "command": "/create:command",
+        "policy": "start",
+        "ambiguous": true,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-create-diff-typed-01",
+      "hook": {
+        "skill": "sk-doc",
+        "command": "/create:diff",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "sk-doc",
+        "command": "/create:diff",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "sk-doc",
+        "command": "/create:diff",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-create-feature-catalog-typed-01",
+      "hook": {
+        "skill": "sk-doc",
+        "command": "/create:feature-catalog",
+        "policy": "start",
+        "ambiguous": true,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "sk-doc",
+        "command": "/create:feature-catalog",
+        "policy": "start",
+        "ambiguous": true,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "sk-doc",
+        "command": "/create:feature-catalog",
+        "policy": "start",
+        "ambiguous": true,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-create-goal-typed-01",
+      "hook": {
+        "skill": "sk-doc",
+        "command": "/create:goal",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "sk-doc",
+        "command": "/create:goal",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "sk-doc",
+        "command": "/create:goal",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-create-manual-testing-playbook-typed-01",
+      "hook": {
+        "skill": "create:manual-testing-playbook",
+        "command": "/create:manual-testing-playbook",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "create:manual-testing-playbook",
+        "command": "/create:manual-testing-playbook",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "create:manual-testing-playbook",
+        "command": "/create:manual-testing-playbook",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-create-readme-typed-01",
+      "hook": {
+        "skill": "sk-doc",
+        "command": "/create:readme",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "sk-doc",
+        "command": "/create:readme",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "sk-doc",
+        "command": "/create:readme",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-create-repo-rule-typed-01",
+      "hook": {
+        "skill": "sk-doc",
+        "command": "/create:repo-rule",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "sk-doc",
+        "command": "/create:repo-rule",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "sk-doc",
+        "command": "/create:repo-rule",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-create-skill-parent-typed-01",
+      "hook": {
+        "skill": "sk-doc",
+        "command": "/create:skill-parent",
+        "policy": "start",
+        "ambiguous": true,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "sk-doc",
+        "command": "/create:skill-parent",
+        "policy": "start",
+        "ambiguous": true,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "sk-doc",
+        "command": "/create:skill-parent",
+        "policy": "start",
+        "ambiguous": true,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-create-skill-typed-01",
+      "hook": {
+        "skill": "sk-doc",
+        "command": "/create:skill",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "sk-doc",
+        "command": "/create:skill",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "sk-doc",
+        "command": "/create:skill",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-create-with-human-voice-typed-01",
+      "hook": {
+        "skill": "sk-doc",
+        "command": "/create:with-human-voice",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "sk-doc",
+        "command": "/create:with-human-voice",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "sk-doc",
+        "command": "/create:with-human-voice",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-doctor-agents-md-typed-01",
+      "hook": {
+        "skill": "command-doctor-agents-md-check",
+        "command": "/doctor:agents-md check",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-doctor-agents-md-check",
+        "command": "/doctor:agents-md check",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-doctor-agents-md-check",
+        "command": "/doctor:agents-md check",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-doctor-ci-typed-01",
+      "hook": {
+        "skill": "command-doctor-ci-report",
+        "command": "/doctor:ci report",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-doctor-ci-report",
+        "command": "/doctor:ci report",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-doctor-ci-report",
+        "command": "/doctor:ci report",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-doctor-deep-loop-typed-01",
+      "hook": {
+        "skill": "command-doctor-deep-loop",
+        "command": "/doctor:deep-loop",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-doctor-deep-loop",
+        "command": "/doctor:deep-loop",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-doctor-deep-loop",
+        "command": "/doctor:deep-loop",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-doctor-env-typed-01",
+      "hook": {
+        "skill": "command-doctor-env",
+        "command": "/doctor:env list",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-doctor-env",
+        "command": "/doctor:env list",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-doctor-env",
+        "command": "/doctor:env list",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-doctor-git-typed-01",
+      "hook": {
+        "skill": "command-doctor-git-setup",
+        "command": "/doctor:git setup",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-doctor-git-setup",
+        "command": "/doctor:git setup",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-doctor-git-setup",
+        "command": "/doctor:git setup",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-doctor-helper-typed-01",
+      "hook": {
+        "skill": "command-doctor-helper",
+        "command": "/doctor:helper",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-doctor-helper",
+        "command": "/doctor:helper",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-doctor-helper",
+        "command": "/doctor:helper",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-doctor-install-typed-01",
+      "hook": {
+        "skill": "command-doctor-install",
+        "command": "/doctor:install",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-doctor-install",
+        "command": "/doctor:install",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-doctor-install",
+        "command": "/doctor:install",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-doctor-mcp-typed-01",
+      "hook": {
+        "skill": "command-doctor-mcp-debug",
+        "command": "/doctor:mcp debug",
+        "policy": "ask",
+        "ambiguous": true,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-doctor-mcp-debug",
+        "command": "/doctor:mcp debug",
+        "policy": "ask",
+        "ambiguous": true,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-doctor-mcp-debug",
+        "command": "/doctor:mcp debug",
+        "policy": "ask",
+        "ambiguous": true,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-doctor-overlay-typed-01",
+      "hook": {
+        "skill": "command-doctor-overlay-status",
+        "command": "/doctor:overlay status",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-doctor-overlay-status",
+        "command": "/doctor:overlay status",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-doctor-overlay-status",
+        "command": "/doctor:overlay status",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-doctor-runtime-mirrors-typed-01",
+      "hook": {
+        "skill": "command-doctor-runtime-mirrors",
+        "command": "/doctor:runtime-mirrors",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-doctor-runtime-mirrors",
+        "command": "/doctor:runtime-mirrors",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-doctor-runtime-mirrors",
+        "command": "/doctor:runtime-mirrors",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-doctor-setup-typed-01",
+      "hook": {
+        "skill": "command-doctor-setup",
+        "command": "/doctor:setup",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-doctor-setup",
+        "command": "/doctor:setup",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-doctor-setup",
+        "command": "/doctor:setup",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-doctor-sk-code-typed-01",
+      "hook": {
+        "skill": "command-doctor-sk-code-setup",
+        "command": "/doctor:sk-code setup",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-doctor-sk-code-setup",
+        "command": "/doctor:sk-code setup",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-doctor-sk-code-setup",
+        "command": "/doctor:sk-code setup",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-doctor-sk-skill-typed-01",
+      "hook": {
+        "skill": "command-doctor-sk-skill-convert",
+        "command": "/doctor:sk-skill convert",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-doctor-sk-skill-convert",
+        "command": "/doctor:sk-skill convert",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-doctor-sk-skill-convert",
+        "command": "/doctor:sk-skill convert",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-doctor-skill-advisor-typed-01",
+      "hook": {
+        "skill": "command-doctor-skill-advisor-rebuild",
+        "command": "/doctor:skill-advisor rebuild",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-doctor-skill-advisor-rebuild",
+        "command": "/doctor:skill-advisor rebuild",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-doctor-skill-advisor-rebuild",
+        "command": "/doctor:skill-advisor rebuild",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-doctor-speckit-typed-01",
+      "hook": {
+        "skill": "command-doctor-speckit",
+        "command": "/doctor:speckit",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-doctor-speckit",
+        "command": "/doctor:speckit",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-doctor-speckit",
+        "command": "/doctor:speckit",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-doctor-symlink-typed-01",
+      "hook": {
+        "skill": "command-doctor-symlink-check",
+        "command": "/doctor:symlink check",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-doctor-symlink-check",
+        "command": "/doctor:symlink check",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-doctor-symlink-check",
+        "command": "/doctor:symlink check",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-doctor-update-typed-01",
+      "hook": {
+        "skill": "command-doctor-update",
+        "command": "/doctor:update",
+        "policy": "ask",
+        "ambiguous": true,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-doctor-update",
+        "command": "/doctor:update",
+        "policy": "ask",
+        "ambiguous": true,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-doctor-update",
+        "command": "/doctor:update",
+        "policy": "ask",
+        "ambiguous": true,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-deep-ai-council-typed-01",
+      "hook": {
+        "skill": "system-deep-loop",
+        "command": "/deep:ai-council",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "system-deep-loop",
+        "command": "/deep:ai-council",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "system-deep-loop",
+        "command": "/deep:ai-council",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-deep-research-typed-01",
+      "hook": {
+        "skill": "system-deep-loop",
+        "command": "/deep:research",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "system-deep-loop",
+        "command": "/deep:research",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "system-deep-loop",
+        "command": "/deep:research",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-deep-review-typed-01",
+      "hook": {
+        "skill": "system-deep-loop",
+        "command": "/deep:review",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "system-deep-loop",
+        "command": "/deep:review",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "system-deep-loop",
+        "command": "/deep:review",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-design-chart-typed-01",
+      "hook": {
+        "skill": "sk-design",
+        "command": "/design:chart",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "sk-design",
+        "command": "/design:chart",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "sk-design",
+        "command": "/design:chart",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-design-diagram-typed-01",
+      "hook": {
+        "skill": "sk-design",
+        "command": "/design:diagram",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "sk-design",
+        "command": "/design:diagram",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "sk-design",
+        "command": "/design:diagram",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-design-extract-typed-01",
+      "hook": {
+        "skill": "sk-design",
+        "command": "/design:extract",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "sk-design",
+        "command": "/design:extract",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "sk-design",
+        "command": "/design:extract",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-prompt-improve-typed-01",
+      "hook": {
+        "skill": "sk-prompt",
+        "command": "/prompt:improve",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "sk-prompt",
+        "command": "/prompt:improve",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "sk-prompt",
+        "command": "/prompt:improve",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-speckit-complete-typed-01",
+      "hook": {
+        "skill": "command-speckit-complete",
+        "command": "/speckit:complete",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-speckit-complete",
+        "command": "/speckit:complete",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-speckit-complete",
+        "command": "/speckit:complete",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-speckit-handoff-typed-01",
+      "hook": {
+        "skill": "command-speckit-handoff",
+        "command": "/speckit:handoff",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-speckit-handoff",
+        "command": "/speckit:handoff",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-speckit-handoff",
+        "command": "/speckit:handoff",
+        "policy": "ask",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-speckit-implement-typed-01",
+      "hook": {
+        "skill": "command-speckit-implement",
+        "command": "/speckit:implement",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-speckit-implement",
+        "command": "/speckit:implement",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-speckit-implement",
+        "command": "/speckit:implement",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-speckit-plan-typed-01",
+      "hook": {
+        "skill": "command-speckit-plan",
+        "command": "/speckit:plan",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-speckit-plan",
+        "command": "/speckit:plan",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-speckit-plan",
+        "command": "/speckit:plan",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-speckit-resume-typed-01",
+      "hook": {
+        "skill": "system-spec-kit",
+        "command": "/speckit:resume",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "system-spec-kit",
+        "command": "/speckit:resume",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "system-spec-kit",
+        "command": "/speckit:resume",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-speckit-save-typed-01",
+      "hook": {
+        "skill": "system-spec-kit",
+        "command": "/speckit:save",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "system-spec-kit",
+        "command": "/speckit:save",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "system-spec-kit",
+        "command": "/speckit:save",
+        "policy": "start",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    },
+    {
+      "id": "cmd-speckit-search-typed-01",
+      "hook": {
+        "skill": "command-speckit-search",
+        "command": "/speckit:search",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "plugin": {
+        "skill": "command-speckit-search",
+        "command": "/speckit:search",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "hinted": {
+        "skill": "command-speckit-search",
+        "command": "/speckit:search",
+        "policy": "run",
+        "ambiguous": false,
+        "degraded": false
+      },
+      "differsNoHint": false,
+      "differsHint": false
+    }
+  ]
+}

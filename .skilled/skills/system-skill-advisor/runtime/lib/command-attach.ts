@@ -286,7 +286,13 @@ const DEPTH_REQUEST = new RegExp(`\\b(?:${DEPTH_WORDING.map(escapePhrase).join('
 
 // Wording that asks for an answer and rules out a change. One pattern serves
 // every gate that has to honour it, so a new gate cannot drift from the first.
-export const NO_EDIT_REQUEST = /\b(no edits?|without making changes|do not (change|edit|modify|touch)|read-only only|no edits yet|only; do not|just show|just list)\b/;
+export const NO_EDIT_REQUEST = /\b(no edits?|make no changes|no changes yet|without making changes|(?:do not|don't) (change|edit|modify|touch)|read-only only|no edits yet|only; do not|just show|just list)\b/;
+
+// Many keyboards type the contraction with a curly apostrophe, so the text is
+// folded to the straight form before the pattern reads it.
+export function isNoEditRequest(text: string): boolean {
+  return NO_EDIT_REQUEST.test(text.toLowerCase().replace(/[\u2018\u2019]/g, "'"));
+}
 
 // A compiled route arrives as unvalidated JSON from a separate process, so the
 // shape is narrowed here rather than trusted. Arrays count as objects in
@@ -326,7 +332,7 @@ export function attachCommand(
 
   // A reader who rules out a change gets no command from either path, so the hub
   // route never offers what the scorer already withholds.
-  if (NO_EDIT_REQUEST.test(prompt.toLowerCase())) return undefined;
+  if (isNoEditRequest(prompt)) return undefined;
 
   // Own-key lookup on both levels: the table is data read from a generated
   // object, so an inherited name such as `constructor` must not resolve to a

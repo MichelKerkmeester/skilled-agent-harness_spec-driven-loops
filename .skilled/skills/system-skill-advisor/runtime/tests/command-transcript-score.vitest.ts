@@ -622,6 +622,18 @@ describe('reader failure', () => {
     expect(run.status).toBe(2);
     expect(JSON.parse(String(run.stdout))).toEqual({ ok: false, code: 'locator_unavailable' });
   });
+
+  // A row id picks a line out of a run log, so a session named by a locator has no
+  // row for it to narrow and the form is refused before a reader is spent on it.
+  it('refuses a row id in the session form', () => {
+    const run = runScorer([
+      '--runtime', 'claude', '--locator', '{"sessionId":"session-1"}', '--row-id', 'no-such-row',
+    ]);
+
+    expect(run.status).toBe(2);
+    expect(String(run.stdout)).toBe('');
+    expect(String(run.stderr)).toContain('--row-id narrows --summary only');
+  });
 });
 
 // ───────────────────────────────────────────────────────────────

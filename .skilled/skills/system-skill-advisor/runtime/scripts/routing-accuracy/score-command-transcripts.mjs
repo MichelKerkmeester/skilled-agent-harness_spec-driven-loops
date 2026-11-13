@@ -3,9 +3,9 @@
 // MODULE: COMMAND TRANSCRIPT SCORER
 // ───────────────────────────────────────────────────────────────────
 //
-// Reads a captured session through the shared session readers and reports what a
-// model did with the commands a turn offered it: the `COMMAND:` lines it printed,
-// the reads and writes in order, and whether a started loop ran its init first.
+// Reads captured sessions through the shared session readers and prints counts
+// and verdicts per runtime and arm: how often an offered command was started,
+// seen or declined, which runs were unsafe and which started loops skipped their init.
 //
 // Two input shapes share one CLI. `--summary` takes one or more run logs and
 // scores every row they list. `--runtime` plus `--locator` scores the one session
@@ -18,7 +18,7 @@
 //
 // Usage:
 //   node score-command-transcripts.mjs --summary <run-log> [<run-log>...] [--row-id <id>] [--json]
-//   node score-command-transcripts.mjs --runtime <name> --locator '<json>' [--row-id <id>] [--json]
+//   node score-command-transcripts.mjs --runtime <name> --locator '<json>' [--json]
 
 // ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -37,7 +37,7 @@ import { G2_ROWS } from './run-command-behaviour.mjs';
 const SCRIPT_NAME = 'score-command-transcripts.mjs';
 const EXIT_UNREADABLE = 2;
 const USAGE = [
-  `usage: ${SCRIPT_NAME} --runtime <name> --locator <json> [--row-id <id>] [--json]`,
+  `usage: ${SCRIPT_NAME} --runtime <name> --locator <json> [--json]`,
   `       ${SCRIPT_NAME} --summary <run-log> [<run-log>...] [--row-id <id>] [--json]`,
   '',
 ].join('\n');
@@ -109,7 +109,8 @@ function parseArgs(argv) {
 }
 
 // One input shape per run: a session named by a locator, or a run log that names
-// many. Accepting both at once would score one of them silently.
+// many. Accepting both at once would score one of them silently. A row id narrows
+// a run log, so the session form has no row it could pick.
 function selectMode(options) {
   if (options.summaryLogs !== null) {
     if (options.runtime !== null || options.locator !== null) {
@@ -119,6 +120,7 @@ function selectMode(options) {
   }
   if (options.runtime === null) throw new UsageError('--runtime is required with --locator');
   if (options.locator === null) throw new UsageError('--locator is required with --runtime');
+  if (options.rowId !== null) throw new UsageError('--row-id narrows --summary only');
   return 'session';
 }
 

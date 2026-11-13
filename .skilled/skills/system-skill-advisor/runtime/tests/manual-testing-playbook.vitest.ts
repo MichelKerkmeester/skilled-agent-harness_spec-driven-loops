@@ -53,11 +53,25 @@ describe('skill advisor manual testing playbook inventory', () => {
     expect(rows).toHaveLength(50);
     expect(new Set(rows.map((row) => row.id)).size).toBe(50);
     expect(files).toHaveLength(50);
+    expect(files.filter((file) => /\/\d{3}-[^/]*\.md$/.test(file))).toHaveLength(0);
+    expect(markdown).toContain(
+      'The category tree holds 50 scenario files named by feature, none of them',
+    );
+    expect(markdown).not.toContain('scenario files plus no');
 
     for (const row of rows) {
       expect(existsSync(resolve(playbookRoot, row.relativePath))).toBe(true);
     }
 
     expect(rows.map((row) => row.relativePath).sort()).toEqual(files);
+  });
+
+  it('names the folder scenario results are recorded in by hand', () => {
+    const markdown = readFileSync(rootPlaybook, 'utf8');
+
+    expect(markdown).toContain('<!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->');
+    expect(markdown).toContain('recorded by hand in');
+    expect(markdown).toContain('system-skill-advisor/benchmark/reports/<dated-run-label>/');
+    expect(markdown).not.toContain('renderer-owned');
   });
 });

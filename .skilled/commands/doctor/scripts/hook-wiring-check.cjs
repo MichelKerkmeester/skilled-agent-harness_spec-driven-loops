@@ -112,8 +112,97 @@ function eventPayload(document, event) {
   return undefined;
 }
 
-function stripQuotes(token) {
-  return token.replace(/^['"]+|['"]+$/g, '');
+// A shell groups quoted text into one word and ends a simple command at an
+// operator that stands outside quotes, even one stuck to the word before it.
+// Reading the words first keeps an echo of a quoted script a mention, because a
+// quoted word is only an argument unless a shell is told to run it.
+function readWords(command) {
+  const words = [];
+  let text = '';
+  let started = false;
+
+  function flush() {
+    if (!started) return;
+    words.push({ text, separator: false });
+    text = '';
+    started = false;
+  }
+
+  for (let i = 0; i < command.length; i += 1) {
+    const char = command[i];
+    if (char === "'" || char === '"') {
+      started = true;
+      i += 1;
+      // A shell refuses a line whose quote never closes, so nothing in it runs.
+      if (command.indexOf(char, i) === -1) return [];
+      while (i < command.length && command[i] !== char) {
+        if (char === '"' && command[i] === '\\' && i + 1 < command.length) {
+          text += command[i + 1];
+          i += 2;
+        } else {
+          text += command[i];
+          i += 1;
+        }
+      }
+      continue;
+    }
+    if (char === '\\') {
+      // A backslash before a line break joins the two lines and adds nothing.
+      if (command[i + 1] === '\n') {
+        i += 1;
+      } else if (i + 1 < command.length) {
+        text += command[i + 1];
+        started = true;
+        i += 1;
+      }
+      continue;
+    }
+    // A comment runs from an unquoted # at the start of a word to the line end.
+    if (char === '#' && !started) {
+      while (i + 1 < command.length && command[i + 1] !== '\n') i += 1;
+      continue;
+    }
+    if (char === '\n') {
+      flush();
+      words.push({ text: char, separator: true });
+      continue;
+    }
+    const pair = command.slice(i, i + 2);
+    if (pair === '&&' || pair === '||') {
+      flush();
+      words.push({ text: pair, separator: true });
+      i += 1;
+      continue;
+    }
+    if (char === ';' || char === '|' || char === '&' || char === '(' || char === ')') {
+      flush();
+      words.push({ text: char, separator: true });
+      continue;
+    }
+    if (/\s/.test(char)) {
+      flush();
+      continue;
+    }
+    text += char;
+    started = true;
+  }
+  flush();
+  return words;
+}
+
+function simpleCommands(words) {
+  const commands = [];
+  let current = [];
+  for (const word of words) {
+    if (word.separator) {
+      if (current.length > 0) commands.push(current);
+      current = [];
+    } else {
+      current.push(word);
+    }
+  }
+  if (current.length > 0) commands.push(current);
+  return commands;
 }
 
 function collectCommands(node, commands) {
@@ -126,26 +215,86 @@ function collectCommands(node, commands) {
   return commands;
 }
 
+const ASSIGNMENT = /^[A-Za-z_][A-Za-z0-9_]*=/;
+
+// Flags whose next word is their own argument, so that word is not the command.
+const ENV_FLAGS_WITH_ARGUMENT = new Set(['-u', '--unset', '-C', '--chdir']);
+const NODE_FLAGS_WITH_ARGUMENT = new Set([
+  '-r', '--require', '--import', '--loader', '--experimental-loader', '-C', '--conditions',
+]);
+// Flags that make node do something other than run the script it is given.
+const NODE_FLAGS_WITHOUT_RUN = new Set([
+  '-c', '--check', '-e', '--eval', '-p', '--print', '-v', '--version', '-h', '--help',
+]);
+// Words that open a group or hand over the shell and leave the command after them.
+const COMMAND_PREFIXES = new Set(['{', 'exec']);
+
 function isNodeExecutable(token) {
   return token === 'node' || token.endsWith('/node');
 }
 
-function startsCommand(tokens, index) {
-  if (index === 0) return true;
-  const previous = tokens[index - 1];
-  if (previous === '&&' || previous === '||' || previous === ';' || previous === '|') return true;
-  return previous === '-c'
-    && index >= 2
-    && (tokens[index - 2] === 'bash' || tokens[index - 2] === 'sh');
+function isEnvExecutable(token) {
+  return token === 'env' || token.endsWith('/env');
+}
+
+function isShellExecutable(token) {
+  return ['bash', 'sh', 'zsh'].some((name) => token === name || token.endsWith(`/${name}`));
+}
+
+// env launches the command after its own assignments and flags, so those words
+// say nothing about what runs. The same holds for a leading assignment.
+function commandWords(words) {
+  let index = 0;
+  while (index < words.length && COMMAND_PREFIXES.has(words[index].text)) index += 1;
+  while (index < words.length && ASSIGNMENT.test(words[index].text)) index += 1;
+  if (index < words.length && isEnvExecutable(words[index].text)) {
+    index += 1;
+    while (index < words.length
+      && (ASSIGNMENT.test(words[index].text) || words[index].text.startsWith('-'))) {
+      index += ENV_FLAGS_WITH_ARGUMENT.has(words[index].text) ? 2 : 1;
+    }
+  }
+  return words.slice(index);
+}
+
+function runsNodeOnMarker(words, marker) {
+  const rest = commandWords(words);
+  if (rest.length === 0 || !isNodeExecutable(rest[0].text)) return false;
+  let index = 1;
+  while (index < rest.length && rest[index].text.startsWith('-')) {
+    const flag = rest[index].text;
+    if (NODE_FLAGS_WITHOUT_RUN.has(flag)) return false;
+    index += NODE_FLAGS_WITH_ARGUMENT.has(flag) ? 2 : 1;
+  }
+  return index < rest.length && rest[index].text.endsWith(marker);
+}
+
+// bash -c and its login, sh and zsh forms hand the next word to a shell as a
+// script, so that word is read again as commands. No other word is.
+function scriptWord(words) {
+  const rest = commandWords(words);
+  if (rest.length < 2 || !isShellExecutable(rest[0].text)) return null;
+  // The first word that is not a flag is a script file, and what follows it
+  // belongs to that script.
+  for (let index = 1; index < rest.length - 1; index += 1) {
+    const flag = rest[index].text;
+    if (!flag.startsWith('-')) return null;
+    if (!flag.startsWith('--') && flag.slice(1).includes('c')) {
+      return rest[index + 1];
+    }
+  }
+  return null;
 }
 
 // An argument that only names node, as `echo node <script>` does, runs
 // nothing, so node must stand where a shell starts a command.
-function runsMarker(command, marker) {
-  const tokens = command.split(/\s+/).filter(Boolean).map(stripQuotes);
-  return tokens.some((token, index) => isNodeExecutable(token)
-    && startsCommand(tokens, index)
-    && (tokens[index + 1] || '').endsWith(marker));
+function runsMarker(command, marker, depth = 0) {
+  return simpleCommands(readWords(command)).some((words) => {
+    if (runsNodeOnMarker(words, marker)) return true;
+    if (depth >= 2) return false;
+    const script = scriptWord(words);
+    return script !== null && runsMarker(script.text, marker, depth + 1);
+  });
 }
 
 function inspect(runtime, root) {

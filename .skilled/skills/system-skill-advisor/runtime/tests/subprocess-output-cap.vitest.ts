@@ -42,9 +42,9 @@ process.stdin.on('end', () => {
     expect(result.errorCode).toBe('JSON_PARSE_FAILED');
   });
 
-  // The returned stderr is cut short whatever the cap, so the retry decision is
-  // the one reading that shows where collection stopped.
-  it('stops reading stderr at the cap, so a busy marker past it is not seen', async () => {
+  // The cap bounds what is kept, not what is scanned, so a busy marker written
+  // past it still decides the retry.
+  it('retries once on a busy marker written after the cap', async () => {
     const scriptPath = writeScript(`
 process.stdin.resume();
 process.stdin.on('end', () => {
@@ -61,7 +61,31 @@ process.stdin.on('end', () => {
     });
 
     expect(result.ok).toBe(false);
-    expect(result.errorCode).toBe('NON_ZERO_EXIT');
-    expect(result.retriesAttempted).toBe(0);
+    expect(result.errorCode).toBe('SQLITE_BUSY_EXHAUSTED');
+    expect(result.retriesAttempted).toBe(1);
+  });
+
+  it('retries once on a busy marker split across two writes after the cap', async () => {
+    const scriptPath = writeScript(`
+process.stdin.resume();
+process.stdin.on('end', () => {
+  process.stderr.write('e'.repeat(1024 * 1024));
+  process.stderr.write('\\ndatabase is ');
+  setTimeout(() => {
+    process.stderr.write('locked\\n');
+    process.exitCode = 1;
+  }, 20);
+});
+`);
+    const result = await runAdvisorSubprocess('prompt', {
+      workspaceRoot,
+      pythonBin: process.execPath,
+      scriptPath,
+      timeoutMs: 10000,
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.errorCode).toBe('SQLITE_BUSY_EXHAUSTED');
+    expect(result.retriesAttempted).toBe(1);
   });
 });

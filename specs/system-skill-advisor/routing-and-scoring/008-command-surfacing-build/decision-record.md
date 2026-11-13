@@ -73,6 +73,24 @@ _memory:
 | Q037 | A switched-off meaning lane is shown by the setup check, the status tool and a warning in the advisor JSON. The hook brief stays unchanged. | Not stated. | None | 008-embedder-setup-and-cost spec.md section 10 |
 | Q038 | The prompt embedding gets a 750 ms deadline before the advisor falls back to phrase matching. | Not stated. | None | 008-embedder-setup-and-cost spec.md section 10 |
 | Q039 | Fix the plain documentation prompt that reaches no documentation skill inside phase 005. | Not stated. | None | 005-recommendation-contract-and-brief REQ-019, AC-019, T054 to T057 |
+| Q040 | Build a way for Claude Code to list all 44 tracked commands; the design was settled by the later rename answer. | Research segment three rank 7 showed Claude lists 32 of 44 because the create commands collapse. | None | 016-claude-create-reach-and-doctor-default lane A |
+| Q041 | The degraded brief keeps carrying only a typed command, so research segment three rank 12 is declined. | Not stated. | None | goal.md log, research-segment-3.md rank 12 |
+| Q042 | An ambiguous doctor prompt is offered /doctor:helper. | Not stated. | None | 016-claude-create-reach-and-doctor-default lane B |
+| Q043 | Edit the AGENTS.md Gate 2 direct-call example to the stdin form with --json -. | Review finding R4-P2-003 found the argument form unsafe. | None | 016-claude-create-reach-and-doctor-default lane C |
+| Q044 | No design was chosen: the operator asked whether commands were already symlinked across the CLIs, which led to the next question. | Not stated. | None | 016-claude-create-reach-and-doctor-default lane A |
+| Q045 | The doctor default uses the narrow show-up or appear cue, which fixes one of the two rows and changes no other row. | The wide rule changed 8 other rows and broke a doctor test. | None | 016-claude-create-reach-and-doctor-default lane B |
+| Q046 | No further behaviour arm runs in this packet, so the OpenCode receipt and the longer time cap are declined. | Not stated. | None | goal.md log, research-segment-4.md |
+| Q047 | No design was chosen: the operator pointed at the file name skill.md and proposed sk-skill, which led to the rename question. | Not stated. | None | 016-claude-create-reach-and-doctor-default lane A |
+| Q048 | No option was chosen: the operator asked to check that the name is correct, that Skilled commands use it and whether Claude Code has a bug, which the next question answered. | Not stated. | None | 016-claude-create-reach-and-doctor-default lane A |
+| Q049 | Rename /create:skill to /create:sk-skill on every runtime, with no alias. | The collapse is the open Claude Code bug anthropics/claude-code#85786: any command file named skill.md swallows its siblings. | None | 016-claude-create-reach-and-doctor-default lane A, task T003 |
+| Q050 | The session waited for the two planner agents to return and then handed over to a new session. | Not stated. | None | goal.md log, session handoff note |
+| Q051 | The breaking rename is recorded as a new sk-doc changelog entry at v2.10.0.0, a minor bump with the break called out in the text. | Not stated. | None | 016-claude-create-reach-and-doctor-default task T026 and spec.md Q3 |
+| Q052 | The operator approves the Codex hooks for one arena and one Codex-only behaviour arm runs, which reverses no more arms for Codex alone. | Not stated. | None | 007-per-runtime-behaviour-proof, goal.md log |
+| Q053 | Gate 2 gains no clause for a skill-only brief, so research segment two rank 14 is declined. | Not stated. | None | goal.md log, research-segment-2.md rank 14 |
+| Q054 | The sealed holdout row suppressed-codex-abstain is retired in this packet. | Not stated. | None | 018-holdout-row-retirement |
+| Q055 | Phase 018 retires only suppressed-codex-abstain, and the eight other rows the leak scan names are an advisory for a separate decision. | Not stated. | None | 018-holdout-row-retirement spec.md Q6, task T002 |
+| Q056 | The final hand-over of this branch reaches main through a pull request, not a direct push. | Not stated. | None | goal.md log |
+| Q057 | The write discipline misses on Devin and OpenCode are tracked for a separate packet and get no work in this one. | Not stated. | None | goal.md log |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -848,6 +866,359 @@ Record it as a known limitation
 Answer:
 ```text
 Fix it in phase 005 (Recommended)
+```
+
+### Q040
+<!-- source: claude:d3d370d4-5963-4512-aba8-e562cf2a5942:toolu_017Mz9ELyva7g3JyAi4bTG6w:0 -->
+
+Question:
+```text
+Claude Code shows the model 32 of the 44 tracked commands, because its twelve /create commands collapse into one entry. Research proposes a Claude-only create skill plus a managed .claude/skills tree to restore 44 of 44. Build it?
+```
+
+Options:
+```text
+Build it (Recommended)
+Leave at 32 of 44
+```
+
+Answer:
+```text
+Build it (Recommended)
+```
+
+### Q041
+<!-- source: claude:d3d370d4-5963-4512-aba8-e562cf2a5942:toolu_017Mz9ELyva7g3JyAi4bTG6w:1 -->
+
+Question:
+```text
+When the advisor daemon is unreachable, the fallback brief carries only a typed command (your earlier answer Q026). Research can now also carry the plain-chat command offer on that path. Change the earlier answer?
+```
+
+Options:
+```text
+Keep typed only (Recommended)
+Carry plain offers too
+```
+
+Answer:
+```text
+Keep typed only (Recommended)
+```
+
+### Q042
+<!-- source: claude:d3d370d4-5963-4512-aba8-e562cf2a5942:toolu_017Mz9ELyva7g3JyAi4bTG6w:2 -->
+
+Question:
+```text
+Two plain prompts about doctor checks route to the doctor family but to the wrong subcommand. Research proposes a default doctor subcommand for such prompts. Which policy do you want for the seven-subcommand doctor family?
+```
+
+Options:
+```text
+Offer /doctor:helper (Recommended)
+Offer /doctor:setup
+No default
+```
+
+Answer:
+```text
+Offer /doctor:helper (Recommended)
+```
+
+### Q043
+<!-- source: claude:d3d370d4-5963-4512-aba8-e562cf2a5942:toolu_017Mz9ELyva7g3JyAi4bTG6w:3 -->
+
+Question:
+```text
+Review found the Gate 2 direct-call example in AGENTS.md (line 65) passes the request as an argument, where the safe form is --json - with the request on stdin. AGENTS.md is the shared framework document, so the edit is yours to allow. Make it?
+```
+
+Options:
+```text
+Yes, edit it (Recommended)
+No, leave it
+```
+
+Answer:
+```text
+Yes, edit it (Recommended)
+```
+
+### Q044
+<!-- source: claude:d3d370d4-5963-4512-aba8-e562cf2a5942:toolu_01NEh67Bnm8XQ2MxG2RtV6nL:0 -->
+
+Question:
+```text
+You approved a Claude-only create skill with a managed .claude/skills tree to show Claude all 44 commands. The planner found a smaller way to the same 44 of 44. Which design should phase 016 build?
+```
+
+Options:
+```text
+Flat command mirror (Recommended)
+Managed skills tree
+Accept 43 of 44
+```
+
+Answer:
+```text
+didnt we already symlink commands cross cli
+```
+
+### Q045
+<!-- source: claude:d3d370d4-5963-4512-aba8-e562cf2a5942:toolu_01NEh67Bnm8XQ2MxG2RtV6nL:1 -->
+
+Question:
+```text
+You chose /doctor:helper for ambiguous doctor prompts. The narrow rule fixes one of the two rows. The wider rule fixes both but changes 8 other rows and breaks a doctor test. Which rule?
+```
+
+Options:
+```text
+Narrow cue (Recommended)
+Wide rule
+Copy the row wording
+```
+
+Answer:
+```text
+Narrow cue (Recommended)
+```
+
+### Q046
+<!-- source: claude:d3d370d4-5963-4512-aba8-e562cf2a5942:toolu_01NEh67Bnm8XQ2MxG2RtV6nL:2 -->
+
+Question:
+```text
+Research found OpenCode runs were cut off by the time cap (8 of 24 runs) and its brief delivery cannot be proven without a receipt. Both fixes only pay off if another behaviour arm with OpenCode runs. Run one more arm in this packet?
+```
+
+Options:
+```text
+No more arms (Recommended)
+One OpenCode-only arm
+```
+
+Answer:
+```text
+No more arms (Recommended)
+```
+
+### Q047
+<!-- source: claude:d3d370d4-5963-4512-aba8-e562cf2a5942:toolu_0192gGiFLy2tbPkzunEoKQgT:0 -->
+
+Question:
+```text
+Commands are already symlinked to every CLI. Claude alone collapses the create folder because it holds a file named skill.md. Fix it by adding flat symlinks for Claude in the existing mirror sync?
+```
+
+Options:
+```text
+Add the flat symlinks (Recommended)
+Managed skills tree
+Leave it
+```
+
+Answer:
+```text
+skill.md? should be sk-skill i think right
+```
+
+### Q048
+<!-- source: claude:d3d370d4-5963-4512-aba8-e562cf2a5942:toolu_015CvLhRWQu9GrQ8D6BqVvnw:0 -->
+
+Question:
+```text
+Rename /create:skill to /create:sk-skill (matching /doctor:sk-skill), or keep the name and add flat symlinks for Claude?
+```
+
+Options:
+```text
+Rename to /create:sk-skill (Recommended)
+Rename, keep old name as alias
+Keep name, add flat symlinks
+```
+
+Answer:
+```text
+cgecj if name is correct and command in skilled used that, and check if claude just had bug
+```
+
+### Q049
+<!-- source: claude:d3d370d4-5963-4512-aba8-e562cf2a5942:toolu_01XTE6oDiK3mnHjfFKA23YD8:0 -->
+
+Question:
+```text
+The collapse is an open Claude Code bug triggered by any command file named skill.md. How should phase 016 get Claude to list all 44 commands?
+```
+
+Options:
+```text
+Rename to /create:sk-skill (Recommended)
+Rename, keep typed alias
+Claude-only workaround
+Wait for the upstream fix
+```
+
+Answer:
+```text
+Rename to /create:sk-skill (Recommended)
+```
+
+### Q050
+<!-- source: claude:d3d370d4-5963-4512-aba8-e562cf2a5942:toolu_01Tz2cLhFK3x3TJ9KK6nhYPf:0 -->
+
+Question:
+```text
+The hand-over was deferred by two running planner agents and then withdrawn by your prompt. Context is near 81 percent. How should I continue?
+```
+
+Options:
+```text
+Wait for planners, then hop (Recommended)
+Hop now
+Stay in this session
+```
+
+Answer:
+```text
+Wait for planners, then hop (Recommended)
+```
+
+### Q051
+<!-- source: claude:d3d370d4-5963-4512-aba8-e562cf2a5942:toolu_01Lk9b8JvXTfnyb9JdERqL9Z:0 -->
+
+Question:
+```text
+Renaming /create:skill to /create:sk-skill is a breaking command change in the sk-doc hub, which sits at version 2.9.13.0. How should the changelog record it?
+```
+
+Options:
+```text
+sk-doc v3.0.0.0 (Recommended)
+sk-doc v2.10.0.0
+Release note only
+```
+
+Answer:
+```text
+sk-doc v2.10.0.0
+```
+
+### Q052
+<!-- source: claude:96fe92f2-be24-4324-9bfc-fe4422c8760b:toolu_01Aha9iWD3dJsBNnseHacxqM:0 -->
+
+Question:
+```text
+Codex never received an advisor brief in any behaviour run, because its hooks are not approved for arena paths. Its start rate reads 0 of 12 before, 0 of 12 after and 'not measurable' in the final arm. You already chose no more behaviour arms. How should Codex be closed in the behaviour summary?
+```
+
+Options:
+```text
+Accept not measurable (Recommended)
+Approve hooks, run one arm
+```
+
+Answer:
+```text
+Approve hooks, run one arm
+```
+
+### Q053
+<!-- source: claude:96fe92f2-be24-4324-9bfc-fe4422c8760b:toolu_01Aha9iWD3dJsBNnseHacxqM:1 -->
+
+Question:
+```text
+Gate 2 in AGENTS.md tells the model what to do when the advisor brief names a command. Research segment two (rank 14) proposed one more clause for a brief that names a skill and no command. AGENTS.md is your shared framework document, and with no further behaviour arm the effect of the clause cannot be measured in this packet. Add the clause?
+```
+
+Options:
+```text
+No, decline it (Recommended)
+Yes, add the clause
+```
+
+Answer:
+```text
+No, decline it (Recommended)
+```
+
+### Q054
+<!-- source: claude:96fe92f2-be24-4324-9bfc-fe4422c8760b:toolu_01Aha9iWD3dJsBNnseHacxqM:3 -->
+
+Question:
+```text
+The committed file runtime/scripts/skill-graph.json of the skill advisor holds the full text of one sealed holdout prompt (row suppressed-codex-abstain). It predates this packet. A holdout row whose text sits in a file the scorer reads is no longer out of sample. What should happen with that row?
+```
+
+Options:
+```text
+Retire it in a follow-up (Recommended)
+Retire it in this packet
+Leave it
+```
+
+Answer:
+```text
+Retire it in this packet
+```
+
+### Q055
+<!-- source: claude:96fe92f2-be24-4324-9bfc-fe4422c8760b:toolu_01SPbc8BUY636UxECgiAonvL:0 -->
+
+Question:
+```text
+Planning the holdout retirement found more than the one row you chose to retire (suppressed-codex-abstain). A count-only leak scan shows two more sealed rows whose one- or two-word prompts also appear in committed data files (P1-ABSTAIN-001, P1-PHRASE-001), and six sealed rows whose text appears only in hand-written scorer rules. No command holdout row hits. Which rows should phase 018 retire?
+```
+
+Options:
+```text
+Only the one row (Recommended)
+The one row plus the two short rows
+All nine rows
+```
+
+Answer:
+```text
+Only the one row (Recommended)
+```
+
+### Q056
+<!-- source: claude:96fe92f2-be24-4324-9bfc-fe4422c8760b:toolu_01SPbc8BUY636UxECgiAonvL:1 -->
+
+Question:
+```text
+On 2026-11-13 the 35 commits of this packet were pushed straight to main on your instruction, which bypassed main's branch rules (pull request, required check, verified signatures) as the owner. The branch will be handed back unpushed again at the end. How should the final hand-over of this branch reach main?
+```
+
+Options:
+```text
+Through a pull request (Recommended)
+Direct push again
+```
+
+Answer:
+```text
+Through a pull request (Recommended)
+```
+
+### Q057
+<!-- source: claude:96fe92f2-be24-4324-9bfc-fe4422c8760b:toolu_01Aha9iWD3dJsBNnseHacxqM:2 -->
+
+Question:
+```text
+In the final behaviour arm, Devin and OpenCode edited a guessed file when asked for an edit that names no file, and OpenCode wrote a new spec folder after an ask offer. A brief cannot fix either, so it is write discipline on those two runtimes and outside command surfacing. What should happen with it?
+```
+
+Options:
+```text
+Track for a separate packet (Recommended)
+Drop it
+```
+
+Answer:
+```text
+Track for a separate packet (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

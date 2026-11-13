@@ -18,7 +18,10 @@
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/012-plain-offer-reach",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/013-attribution-and-install-reach",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation",
-    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements"
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/015-health-default-and-brief-refinements",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/016-claude-create-reach-and-doctor-default",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/018-holdout-row-retirement"
   ],
   "manual": {
     "depends_on": [],
@@ -146,6 +149,12 @@
         "source": "derived"
       },
       {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "a",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -164,12 +173,6 @@
         "source": "derived"
       },
       {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
         "name": "Decision Record",
         "kind": "proper_noun",
         "path": "decision-record.md",
@@ -177,12 +180,6 @@
       },
       {
         "name": "Operator Decisions",
-        "kind": "proper_noun",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "Claude Code",
         "kind": "proper_noun",
         "path": "decision-record.md",
         "source": "derived"
@@ -202,7 +199,7 @@
     ],
     "causal_summary": "The repository ships 44 tracked slash commands that own complete workflows, but the skill advisor reaches the model with skills",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-13T11:39:49.060Z",
+    "last_save_at": "2026-11-13T17:03:57.074Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +207,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:4a90d5e759cb165896a3bcb71dac0160810855ffa4fa09f7ca755eeea54a6c52",
+    "source_fingerprint": "sha256:ee601c7fa757822db5b567453bd46138e42715955ce43ab550c108b041357190",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "221376e413fbac34c4b07354a3bb8c5b9007b9f97eb43ff38a623ec9135a568a",
-      "decision-record.md": "b1b6c95eb8cf4a0ececb8a27b3c092307e7d5f10cf663453493c894278245bce"
+      "spec.md": "ae7c16cb6358565e7b8e25399e70959c81a669a1371dd5456b814ed1fd84ccca",
+      "decision-record.md": "e28f9a3e6e67a4e30088b79cb51b7fde9db5540f722392b1c45efac7392e30f9"
     },
-    "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation",
-    "last_active_at": "2026-11-13T09:04:30.237Z"
+    "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation",
+    "last_active_at": "2026-11-13T17:03:57.074Z"
   }
 }

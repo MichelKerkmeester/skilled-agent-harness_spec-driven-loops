@@ -23,7 +23,7 @@
 // behind and each line still answers for its own checkout.
 
 import { spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, realpathSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -325,6 +325,25 @@ export async function promptSessionId({ before, after, prompt, firstUserText }) 
 // Run-log backfill
 // ───────────────────────────────────────────────────────────────
 
+// A run log is input, and the folder it names may hold any code, so only this
+// project root or an arena holding the builder's marker may be replayed.
+/**
+ * Decide whether a run line's checkout may run its own code.
+ *
+ * @param {string} checkoutDir - Root of the checkout a run line names.
+ * @returns {boolean} True when the folder may be warmed and replayed.
+ */
+export function trustedCheckout(checkoutDir) {
+  try {
+    return (
+      realpathSync(checkoutDir) === realpathSync(REPO_ROOT)
+      || existsSync(join(checkoutDir, '.git', 'skilled-behaviour-arena'))
+    );
+  } catch {
+    return false;
+  }
+}
+
 // A fresh daemon can outlast the first prompt's budget, so the backfill asks
 // each checkout to start one before it replays. The status call writes nothing,
 // and its failure is ignored because a replay that finds no daemon records its
@@ -359,12 +378,16 @@ function refused(code, detail) {
  * @param {object} options
  * @param {string} options.inPath - Run log to read.
  * @param {string} options.outPath - New run log to write.
- * @param {(rowId: string) => string} options.promptFor - Prompt lookup. It
- *   refuses an unknown or holdout row by throwing an error with a `code`.
+ * @param {(rowId: string, line: object) => string} options.promptFor - Prompt
+ *   lookup. It also receives the line, so a prompt can be rebuilt from the
+ *   fixture the line records, and it refuses an unknown or holdout row by
+ *   throwing an error with a `code`.
  * @param {boolean} [options.briefOnly] - Write only the delivery answer and
  *   leave every offer field exactly as the input line holds it.
  * @param {Function} [options.replay] - Offer replay, injectable for tests.
  * @param {Function} [options.brief] - Brief delivery reader, injectable for tests.
+ * @param {(checkoutDir: string) => boolean} [options.trusted] - Checkout trust
+ *   check, injectable for tests.
  * @param {(checkoutDir: string) => unknown} [options.warm] - Daemon warm-up,
  *   injectable for tests.
  * @returns {Promise<{ ok: true, lines: number, outPath: string }
@@ -377,6 +400,7 @@ export async function backfillRunLog({
   briefOnly = false,
   replay = replayOffer,
   brief = briefDelivered,
+  trusted = trustedCheckout,
   warm = warmCheckout,
 }) {
   if (resolve(outPath) === resolve(inPath)) {
@@ -392,7 +416,7 @@ export async function backfillRunLog({
   const prompts = [];
   for (const row of rows) {
     try {
-      prompts.push(promptFor(row.rowId));
+      prompts.push(promptFor(row.rowId, row));
     } catch (error) {
       return refused(error?.code ?? 'unknown_row', error?.message ?? String(error));
     }
@@ -413,19 +437,23 @@ export async function backfillRunLog({
     if (!briefOnly) {
       offer = { offeredCommand: null, offeredPolicy: null, offerError: 'no_checkout' };
       if (checkoutDir !== null) {
-        if (!warmed.has(checkoutDir)) {
-          warmed.add(checkoutDir);
-          try {
-            await warm(checkoutDir);
-          } catch {
-            // A failed warm-up still lets the replay report its own miss.
+        if (!trusted(checkoutDir)) {
+          offer = { offeredCommand: null, offeredPolicy: null, offerError: 'untrusted_checkout' };
+        } else {
+          if (!warmed.has(checkoutDir)) {
+            warmed.add(checkoutDir);
+            try {
+              await warm(checkoutDir);
+            } catch {
+              // A failed warm-up still lets the replay report its own miss.
+            }
           }
+          offer = await replay({
+            checkoutDir,
+            prompt: prompts[index],
+            sessionId: `backfill-${rowId}`,
+          });
         }
-        offer = await replay({
-          checkoutDir,
-          prompt: prompts[index],
-          sessionId: `backfill-${rowId}`,
-        });
       }
     }
 

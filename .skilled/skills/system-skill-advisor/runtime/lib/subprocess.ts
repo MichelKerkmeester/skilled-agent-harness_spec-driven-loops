@@ -90,6 +90,7 @@ interface SpawnAttemptResult {
   readonly ok: boolean;
   readonly stdout: string;
   readonly stderr: string;
+  readonly sawBusy: boolean;
   readonly exitCode: number | null;
   readonly signal: NodeJS.Signals | null;
   readonly errorCode: AdvisorSubprocessErrorCode | null;
@@ -214,6 +215,8 @@ function runSpawnAttempt(args: {
   return new Promise((resolve) => {
     let stdout = '';
     let stderr = '';
+    let busyCarry = '';
+    let sawBusy = false;
     let settled = false;
     let timedOut = false;
     let child: ChildProcess;
@@ -229,6 +232,7 @@ function runSpawnAttempt(args: {
         ok: false,
         stdout,
         stderr: error instanceof Error ? error.message : 'spawn failed',
+        sawBusy,
         exitCode: null,
         signal: null,
         errorCode: 'SPAWN_ERROR',
@@ -250,6 +254,16 @@ function runSpawnAttempt(args: {
       stdout = capOutput(stdout, chunk);
     });
     child.stderr?.on('data', (chunk: string) => {
+      // The cap bounds what is kept, not what is scanned, so a marker written
+      // past it, or split across two writes, still decides the retry.
+      if (!sawBusy) {
+        const scan = busyCarry + chunk;
+        if (SQLITE_BUSY_PATTERN.test(scan)) {
+          sawBusy = true;
+        } else {
+          busyCarry = scan.slice(-64);
+        }
+      }
       stderr = capOutput(stderr, chunk);
     });
     child.on('error', (error: NodeJS.ErrnoException) => {
@@ -262,6 +276,7 @@ function runSpawnAttempt(args: {
         ok: false,
         stdout,
         stderr: error.message,
+        sawBusy,
         exitCode: null,
         signal: null,
         errorCode: error.code === 'ENOENT' ? 'PYTHON_MISSING' : 'SPAWN_ERROR',
@@ -278,6 +293,7 @@ function runSpawnAttempt(args: {
         ok: exitCode === 0 && signal === null && !timedOut,
         stdout,
         stderr,
+        sawBusy,
         exitCode,
         signal,
         errorCode: timedOut || performance.now() - startedAt >= args.timeoutMs
@@ -352,7 +368,7 @@ export async function runAdvisorSubprocess(
     });
 
     if (!attemptResult.ok) {
-      const busy = SQLITE_BUSY_PATTERN.test(attemptResult.stderr);
+      const busy = attemptResult.sawBusy || SQLITE_BUSY_PATTERN.test(attemptResult.stderr);
       const budgetRemaining = timeoutMs - (performance.now() - startedAt);
       if (busy && attempt === 0 && budgetRemaining >= 500) {
         retriesAttempted = 1;

@@ -160,14 +160,17 @@ function measureRow(row, root, socketDir, hookPath) {
     hook_event_name: 'UserPromptSubmit',
     session_id: `cost-${row.id}`,
   });
+  // The hook writes its health records under the OS temp folder, so a cost
+  // run points that folder at its own sandbox and leaves the operator's
+  // health log alone. The dispatched-child flag is dropped because this script
+  // measures what the operator's own session receives.
+  const env = { ...process.env, SPECKIT_IPC_SOCKET_DIR: socketDir, TMPDIR: socketDir };
+  delete env.AI_SESSION_CHILD;
   const result = spawnSync(process.execPath, [hookPath], {
     cwd: root,
     input: payload,
     encoding: 'utf8',
-    // The hook writes its health records under the OS temp folder, so a cost
-    // run points that folder at its own sandbox and leaves the operator's
-    // health log alone.
-    env: { ...process.env, SPECKIT_IPC_SOCKET_DIR: socketDir, TMPDIR: socketDir },
+    env,
     timeout: HOOK_TIMEOUT_MS,
     maxBuffer: MAX_STDOUT_BYTES,
   });

@@ -1,0 +1,53 @@
+{
+  "note": "Scratch command-metadata-shaped copy. The tracked source is .skilled/commands/doctor/_routes.yaml, which has no command-metadata.json.",
+  "source": ".skilled/commands/doctor/_routes.yaml",
+  "commands": {
+    "/doctor:install": {
+      "command": "/doctor:install",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "added_intent_signals": [
+        "walk me through putting this toolkit into my own project repository",
+        "put this toolkit into my own project repository",
+        "use this toolkit in my own project",
+        "install this toolkit into another repository",
+        "onboard this project repository"
+      ],
+      "composed_embedding_text": "Get the ordered steps that put Skilled into your own project repo, ready to run. install skilled into my project. set up skilled in another repo. use skilled in my own project. onboard a project repo to skilled. guide me through installing skilled. walk me through a first install of skilled. first install of skilled in my project. skilled in my other repository. skilled in another repository. walk me through putting this toolkit into my own project repository. put this toolkit into my own project repository. use this toolkit in my own project. install this toolkit into another repository. onboard this project repository"
+    },
+    "/doctor:setup": {
+      "command": "/doctor:setup",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "added_intent_signals": [
+        "list every check this project has",
+        "tell me what to fix where it fails",
+        "which checks fail and what to fix",
+        "run every check in this project",
+        "show me every check and the fix"
+      ],
+      "composed_embedding_text": "List every doctor target and run the read-only setup checks, naming the repair command for each failing leg. set up skilled. help me set up skilled. is my skilled install healthy. skilled setup check. run the doctor setup checks. getting started with skilled. overview of every doctor command. model server or helper process still running after the session closed. list every check this project has. tell me what to fix where it fails. which checks fail and what to fix. run every check in this project. show me every check and the fix"
+    },
+    "/doctor:speckit": {
+      "command": "/doctor:speckit",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "added_intent_signals": [
+        "spec search never finds anything",
+        "search does not find terms we know are indexed",
+        "spec search is broken even for indexed terms",
+        "our spec lookup finds nothing",
+        "indexed terms are not found by spec search"
+      ],
+      "composed_embedding_text": "Diagnose spec-kit retrieval: the generated trigger index, its lookup and the ripgrep recipes. trigger index drift. trigger index lookup fails. retrieval conventions doctor. ripgrep recipe check. citation drift summary. is the trigger index fresh. spec search never finds anything. search does not find terms we know are indexed. spec search is broken even for indexed terms. our spec lookup finds nothing. indexed terms are not found by spec search"
+    },
+    "/doctor:update": {
+      "command": "/doctor:update",
+      "source": ".skilled/commands/doctor/_routes.yaml",
+      "added_intent_signals": [
+        "is there a newer release of the toolkit",
+        "what changed in the newer release",
+        "are we on the latest release and what changed",
+        "check whether a newer version exists and what changed"
+      ],
+      "composed_embedding_text": "Route check, align, apply, rollback, record-base or compat operations for a spec-kit release. doctor update command. update skills to latest release. skilled release update. update skilled to the latest release. check for skilled updates. is there a newer skilled release. update my project to a newer skilled release. move my project to the newer spec-kit release. is there a newer release of the toolkit. what changed in the newer release. are we on the latest release and what changed. check whether a newer version exists and what changed"
+    }
+  }
+}

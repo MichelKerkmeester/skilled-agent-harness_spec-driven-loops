@@ -8,7 +8,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { G2_ROWS, childEnv, liveArmRefusal } from '../scripts/routing-accuracy/run-command-behaviour.mjs';
+import { G2_ROWS, armFor, childEnv, lineFixture, liveArmRefusal } from '../scripts/routing-accuracy/run-command-behaviour.mjs';
 import { startedLabel } from '../scripts/routing-accuracy/score-command-transcripts.mjs';
 
 describe('childEnv', () => {
@@ -63,6 +63,47 @@ describe('startedLabel', () => {
       expect(label?.expected_command).toBe(row.command);
       expect(label?.prompt).toBe(row.variant === 'typed' ? ':auto' : '');
     }
+  });
+});
+
+describe('armFor', () => {
+  it('runs a started-command row picked by id under arm g2', () => {
+    expect(armFor({ arm: null, set: null }, ['g2-deep-review-ask'])).toBe('g2');
+  });
+
+  it('runs a whole started-command selection under arm g2', () => {
+    expect(armFor({ arm: null, set: 'g2' }, G2_ROWS.map((row) => row.id))).toBe('g2');
+  });
+
+  it('keeps an explicit arm over the rows it runs', () => {
+    expect(armFor({ arm: 'post', set: null }, ['g2-deep-review-ask'])).toBe('post');
+  });
+
+  it('runs a selection with no started-command row under the default arm', () => {
+    expect(armFor({ arm: null, set: null }, ['cmd-x'])).toBe('pre');
+    expect(armFor({ arm: null, set: null }, [])).toBe('pre');
+  });
+
+  it('refuses a selection that mixes a started-command row with another row', () => {
+    let refusal: { code?: string } | null = null;
+    try {
+      armFor({ arm: null, set: null }, ['g2-deep-review-ask', 'cmd-x']);
+    } catch (error) {
+      refusal = error as { code?: string };
+    }
+
+    expect(refusal?.code).toBe('mixed_row_arms');
+  });
+});
+
+describe('lineFixture', () => {
+  it('keeps the fixture a run line recorded', () => {
+    expect(lineFixture({ fixture: '/custom/fixture' }, '/runs/arm/g2-fixture')).toBe('/custom/fixture');
+  });
+
+  it('falls back to the arm folder for a line that records no fixture', () => {
+    expect(lineFixture({}, '/runs/arm/g2-fixture')).toBe('/runs/arm/g2-fixture');
+    expect(lineFixture({ fixture: '' }, '/runs/arm/g2-fixture')).toBe('/runs/arm/g2-fixture');
   });
 });
 

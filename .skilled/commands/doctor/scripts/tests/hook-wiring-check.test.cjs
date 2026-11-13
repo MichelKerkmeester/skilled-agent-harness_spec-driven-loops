@@ -132,6 +132,86 @@ test('names a runtime whose entry only describes the script', (t) => {
   assert.match(result.out, /^hook-missing claude \.claude\/settings\.json$/m);
 });
 
+test('passes a launch that starts node through env', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{ hooks: [{ type: 'command', command: `env node ${CLAUDE_MARKER}` }] }],
+  });
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok claude');
+});
+
+test('passes a launch that starts node through an absolute env', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{ hooks: [{ type: 'command', command: `/usr/bin/env node ${CLAUDE_MARKER}` }] }],
+  });
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok claude');
+});
+
+test('passes a launch that runs node inside a bash login command', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{ hooks: [{ type: 'command', command: `bash -lc "node ${CLAUDE_MARKER}"` }] }],
+  });
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok claude');
+});
+
+test('passes a launch that runs node inside a zsh command', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{ hooks: [{ type: 'command', command: `zsh -c 'node ${CLAUDE_MARKER}'` }] }],
+  });
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok claude');
+});
+
+test('passes a launch that gives node a flag', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{ hooks: [{ type: 'command', command: `node --no-warnings ${CLAUDE_MARKER}` }] }],
+  });
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok claude');
+});
+
+test('passes a launch whose separator sticks to the previous word', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{ hooks: [{ type: 'command', command: `cd "\$PWD"&& node ${CLAUDE_MARKER}` }] }],
+  });
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok claude');
+});
+
+test('passes a launch whose semicolon sticks to the previous word', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{ hooks: [{ type: 'command', command: `cd /tmp; node ${CLAUDE_MARKER}` }] }],
+  });
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok claude');
+});
+
+test('names a runtime whose entry echoes a quoted command', (t) => {
+  const f = fixture(t);
+  writeClaudeSettings(f.root, {
+    UserPromptSubmit: [{ hooks: [{ type: 'command', command: `echo "x && node ${CLAUDE_MARKER}"` }] }],
+  });
+  const result = f.run();
+  assert.equal(result.code, 1);
+  assert.match(result.out, /^hook-missing claude \.claude\/settings\.json$/m);
+});
+
 test('skips a runtime whose folder is absent', (t) => {
   const f = fixture(t);
   const text = f.run();
@@ -141,3 +221,43 @@ test('skips a runtime whose folder is absent', (t) => {
   assert.equal(json.code, 0);
   assert.deepEqual(JSON.parse(json.out).checks.map((check) => check.status), ['skipped', 'skipped', 'skipped', 'skipped']);
 });
+
+// Launch shapes a shell runs, each with node standing where a command starts.
+for (const [label, build] of [
+  ['env unsets a variable first', (m) => `env -u AI_SESSION_CHILD node ${m}`],
+  ['node preloads a module', (m) => `node -r ./preload.cjs ${m}`],
+  ['the command runs in a subshell', (m) => `(node ${m})`],
+  ['the command runs in a brace group', (m) => `{ node ${m}; }`],
+  ['exec replaces the shell', (m) => `exec node ${m}`],
+  ['a background command comes first', (m) => `cd /tmp & node ${m}`],
+  ['a backslash continues the line', (m) => `node \\\n${m}`],
+]) {
+  test(`passes a launch where ${label}`, (t) => {
+    const f = fixture(t);
+    writeClaudeSettings(f.root, {
+      UserPromptSubmit: [{ hooks: [{ type: 'command', command: build(CLAUDE_MARKER) }] }],
+    });
+    const text = f.run();
+    assert.equal(text.code, 0);
+    assert.equal(text.out.trim(), 'ok claude');
+  });
+}
+
+// Text that names node and the script without a shell ever running it.
+for (const [label, build] of [
+  ['a quote never closes', (m) => `echo "x; node ${m}`],
+  ['node only checks the syntax', (m) => `node --check ${m}`],
+  ['node evaluates inline code', (m) => `node -e "1" ${m}`],
+  ['the launch sits in a comment', (m) => `true # ; node ${m}`],
+  ['a shell script takes its own -c argument', (m) => `bash ./x.sh -c "node ${m}"`],
+]) {
+  test(`names a runtime when ${label}`, (t) => {
+    const f = fixture(t);
+    writeClaudeSettings(f.root, {
+      UserPromptSubmit: [{ hooks: [{ type: 'command', command: build(CLAUDE_MARKER) }] }],
+    });
+    const text = f.run();
+    assert.equal(text.code, 1);
+    assert.match(text.out, /^hook-missing claude \.claude\/settings\.json$/m);
+  });
+}

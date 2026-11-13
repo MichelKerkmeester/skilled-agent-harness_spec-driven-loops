@@ -648,9 +648,12 @@ function rowRuntimeCopies(context, manifest, tools) {
   const unmeasured = entries.filter((entry) => entry.state === UNKNOWN);
   // A missing pointer is a route the runtime does not have, not a copy that was checked.
   const pointerMissing = entries.filter((entry) => entry.kind === 'pointer missing');
-  const expected = entries.length - failed.length - unmeasured.length - pointerMissing.length;
+  // An INFO entry was reported, never checked, so counting it as expected would call a
+  // copy right that no check ever measured.
+  const passed = entries.filter((entry) => entry.state === PASS);
+  const reported = entries.filter((entry) => entry.state === INFO && entry.kind !== 'pointer missing');
   const state = failed.length > 0 ? FINDING : (unmeasured.length > 0 ? UNKNOWN : PASS);
-  const detail = `${expected}/${entries.length} copies as expected${unmeasured.length > 0 ? `, ${unmeasured.length} unmeasured` : ''}${pointerMissing.length > 0 ? `, ${pointerMissing.length} pointer missing` : ''}`;
+  const detail = `${passed.length}/${entries.length} copies as expected${unmeasured.length > 0 ? `, ${unmeasured.length} unmeasured` : ''}${reported.length > 0 ? `, ${reported.length} reported only` : ''}${pointerMissing.length > 0 ? `, ${pointerMissing.length} pointer missing` : ''}`;
   return row('A10', 'runtime copies', state, detail, { lines, entries });
 }
 

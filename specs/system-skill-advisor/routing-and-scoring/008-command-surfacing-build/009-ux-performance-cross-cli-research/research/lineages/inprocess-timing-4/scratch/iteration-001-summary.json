@@ -1,0 +1,70 @@
+{
+  "cold": {
+    "importMs": {
+      "n": 10,
+      "median": 78.408083,
+      "worst": 146.41412499999998,
+      "best": 62.975624999999994
+    },
+    "handlerMs": {
+      "n": 10,
+      "median": 140.48116699999997,
+      "worst": 337.66616600000003,
+      "best": 74.77379200000001
+    },
+    "totalMs": {
+      "n": 10,
+      "median": 239.448417,
+      "worst": 442.994125,
+      "best": 172.291708
+    },
+    "maxTotalRow": {
+      "mode": "cold",
+      "index": 3,
+      "id": "cmd-speckit-save-plain-tune-01",
+      "split": "tune",
+      "importMs": 90.892792,
+      "handlerMs": 337.66616600000003,
+      "totalMs": 442.994125,
+      "top": "sk-doc",
+      "command": null,
+      "needsMode": false,
+      "kind": "skill",
+      "recommendationCount": 1
+    }
+  },
+  "warm": {
+    "handlerMs": {
+      "n": 10,
+      "median": 76.53029099999992,
+      "worst": 93.63550000000004,
+      "best": 26.30037500000003
+    }
+  },
+  "fallback": {
+    "elapsedMs": {
+      "n": 10,
+      "median": 238.53575,
+      "worst": 377.6906250000002,
+      "best": 194.695917
+    },
+    "maxRow": {
+      "mode": "fallback",
+      "index": 9,
+      "id": "cmd-doctor-setup-typed-01",
+      "split": "none",
+      "elapsedMs": 377.6906250000002,
+      "ok": true,
+      "errorCode": null,
+      "recommendationCount": 1,
+      "top": "command-doctor-setup",
+      "command": null,
+      "needsMode": false,
+      "kind": "command"
+    }
+  },
+  "addedColdMedian": 224.72929299999998,
+  "addedWarmMedian": 76.53029099999992,
+  "fallbackMedian": 238.53575,
+  "coldOverFallback": -13.806457000000023
+}

@@ -1,0 +1,45 @@
+$ git log -1 --format=%h -- sk-skill.md
+ec1869dae8
+$ test -e skill.md
+exit=1
+$ git status --porcelain -- .skilled .opencode AGENTS.md
+(end of status)
+$ git rev-parse --short HEAD
+ec1869dae8
+$ npm run build (ADV)
+exit=0
+$ FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":24,"attached":20,"combined":44,"total":44}
+{"own":13,"attached":15,"combined":28,"total":45}
+$ EVAL
+[160,50,21,5]
+$ A10Q
+5/6 copies as expected, 1 pointer missing | pass 3 | reported 2
+$ TC
+exit=0
+$ VALL
+exit=0
+ Test Files  183 passed (183)
+      Tests  1758 passed | 6 skipped (1764)
+$ DALL
+ℹ pass 1189
+ℹ fail 0
+$ VSR
+ℹ pass 93
+ℹ fail 0
+$ VP
+ℹ pass 42
+ℹ fail 0
+$ DERIVE
+{"status":"fresh","changed":[]}
+$ RV
+OK: route-validate — 32 routes validated, 11 warnings
+exit=0
+$ SRM
+[runtime-mirror-sync] PASS: 256 mirrors across 10 trees are in sync.
+exit=0
+$ PBV
+exit=0
+PASS package=system-skill-advisor tier=FAIL_CLOSED scenarios=50 categories=9 operator=25 routing_gold_excluded=25 violations=0 warnings=0

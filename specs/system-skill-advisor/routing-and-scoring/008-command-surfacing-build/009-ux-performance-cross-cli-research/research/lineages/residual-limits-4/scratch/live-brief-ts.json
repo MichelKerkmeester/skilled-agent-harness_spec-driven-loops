@@ -1,0 +1,19 @@
+{
+  "rows": 44,
+  "liveRows": 44,
+  "totalBytes": 13581,
+  "medianBytes": 306,
+  "p95Bytes": 337,
+  "maxBytes": 350,
+  "medianHeadBytes": 88,
+  "p95HeadBytes": 119,
+  "maxHeadBytes": 132,
+  "firstCallDurationMs": 221.8,
+  "medianDurationMs": 145.3,
+  "p95DurationMs": 233.5,
+  "maxDurationMs": 274,
+  "medianLiveDurationMs": 145.3,
+  "p95LiveDurationMs": 233.5,
+  "maxLiveDurationMs": 274,
+  "nonLiveRows": []
+}

@@ -2,6 +2,8 @@
 // MODULE: Advisor Scorer Text Utilities
 // ───────────────────────────────────────────────────────────────
 
+import { isNoEditRequest } from '../command-attach.js';
+
 const STOP_WORDS = new Set([
   'a', 'about', 'able', 'actually', 'agent', 'all', 'also', 'an', 'and', 'any',
   'are', 'as', 'at', 'be', 'been', 'being', 'but', 'by', 'can', 'could', 'did',
@@ -145,7 +147,7 @@ export function scoreTokenOverlap(
 export function isReadOnlyExplainer(promptLower: string): boolean {
   const readOnly = /\b(analyze|explain|inspect|summarize|list|show|tell|compare|decompose)\b/.test(promptLower);
   const skillSurface = /\b(review|audit|deep[- ]research|deep[- ]review|semantic search|figma|clickup|chrome devtools|git worktree|prompt)\b/.test(promptLower);
-  const explicitNoWrite = /\b(no edits?|without making changes|do not (change|edit|modify|touch)|read-only only|no edits yet|only; do not|just show|just list)\b/.test(promptLower);
+  const explicitNoWrite = isNoEditRequest(promptLower);
   if (skillSurface) return false;
   if (readOnly && explicitNoWrite) return true;
   if (/^\s*(analyze|explain|inspect|summarize|list|show|tell|compare|decompose)\b/.test(promptLower)

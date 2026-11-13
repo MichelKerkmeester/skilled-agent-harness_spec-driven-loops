@@ -334,6 +334,14 @@ describe('commandMeaningEligible', () => {
     expect(commandMeaningEligible(prompt, false, readOnlyCommand)).toBe(false);
     expect(commandMeaningEligible(prompt, true, readOnlyCommand)).toBe(false);
   });
+
+  // Many keyboards type the contraction with a curly apostrophe, so the gate
+  // reads the same request whether the mark is straight or curled.
+  it('rules out every command when the prompt asks for no change with a curly apostrophe', () => {
+    const prompt = 'walk me through the optional behaviour toggles, don\u2019t touch anything';
+    expect(commandMeaningEligible(prompt, false, mutatingCommand)).toBe(false);
+    expect(commandMeaningEligible(prompt, false, readOnlyCommand)).toBe(false);
+  });
 });
 
 describe('scoring with no embedder and no stored vectors', () => {

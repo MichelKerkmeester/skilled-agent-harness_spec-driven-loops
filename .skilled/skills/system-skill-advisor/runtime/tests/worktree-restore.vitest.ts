@@ -111,4 +111,36 @@ describe('restoreTurn', () => {
       rmSync(root, { recursive: true, force: true });
     }
   });
+
+  it('removes a created file whose name holds a space', () => {
+    const root = makeRepository();
+    try {
+      const before = statusSnapshot(root);
+      writeFileSync(join(root, 'notes draft.md'), 'draft\n');
+      writeFileSync(join(root, 'plain.md'), 'plain\n');
+
+      const result = restoreTurn({ cwd: root, before });
+
+      expect(result).toEqual({ restored: true, leftoverPaths: [], failures: [] });
+      expect(existsSync(join(root, 'notes draft.md'))).toBe(false);
+      expect(existsSync(join(root, 'plain.md'))).toBe(false);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('keys both sides of a rename whose new name holds a space', () => {
+    const root = makeRepository();
+    try {
+      const before = statusSnapshot(root);
+      git(root, ['mv', 'kept.txt', 'renamed file.txt']);
+
+      expect([...statusSnapshot(root).keys()]).toEqual(
+        expect.arrayContaining(['renamed file.txt', 'kept.txt']),
+      );
+      expect(restoreTurn({ cwd: root, before }).restored).toBe(true);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 });

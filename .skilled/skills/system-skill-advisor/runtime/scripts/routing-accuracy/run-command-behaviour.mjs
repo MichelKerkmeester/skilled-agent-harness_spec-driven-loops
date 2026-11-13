@@ -794,6 +794,19 @@ function fixtureDir(options) {
   return options.fixture ?? resolve(dirname(options.out), G2_FIXTURE_DIRNAME);
 }
 
+// A finished log records the folder its turn measured, so a backfill replays the
+// prompt the turn actually saw rather than the folder this invocation defaults to.
+/**
+ * Read the fixture folder a run line recorded.
+ *
+ * @param {object} line - One run-log line.
+ * @param {string} fallback - Folder a line without a recorded fixture replays.
+ * @returns {string} The fixture folder the line's prompt named.
+ */
+export function lineFixture(line, fallback) {
+  return typeof line?.fixture === 'string' && line.fixture !== '' ? line.fixture : fallback;
+}
+
 // A placeholder keeps the fixed prompts free of a path that only exists on the
 // machine the arm runs on.
 function promptFor(rowId, fixture) {
@@ -969,11 +982,19 @@ function valueAfter(argv, index, flag) {
   return value;
 }
 
-// A set that has its own arm names it, so a started-command run cannot join the
-// change comparison because nobody passed `--arm`.
-function armFor(options) {
+// A started-command row joins its own comparison whichever flag picked it, so the
+// arm follows the rows rather than the invocation. A selection that mixes the two
+// kinds of row has no single honest arm, so it stops instead of recording half its
+// work under the wrong label.
+export function armFor(options, rowIds) {
   if (options.arm !== null) return options.arm;
-  return options.set === G2_SET ? G2_SET : DEFAULT_ARM;
+  const started = rowIds.filter((rowId) => G2_PROMPTS.has(rowId));
+  if (started.length === 0) return DEFAULT_ARM;
+  if (started.length === rowIds.length) return G2_SET;
+  throw new Refusal(
+    'mixed_row_arms',
+    `started-command rows ${started.join(', ')} cannot share an arm with another row`,
+  );
 }
 
 function parseOptions(argv) {
@@ -1133,6 +1154,7 @@ async function runTurn(job, options, exempt, isFirst) {
     rowId: job.rowId,
     arm: options.arm,
     locator,
+    ...(job.fixture === undefined ? {} : { fixture: job.fixture }),
     exit: turn.exit,
     changedPaths: changed,
   };
@@ -1199,7 +1221,15 @@ async function runArm(options, rowIds) {
   for (let index = 0; index < rowIds.length; index += 1) {
     const rowId = rowIds[index];
     const prompt = promptFor(rowId, fixture);
-    const job = { runtime, runtimeName: options.runtime, rowId, prompt, cap: capForRow(rowId), ghConfig };
+    const job = {
+      runtime,
+      runtimeName: options.runtime,
+      rowId,
+      prompt,
+      cap: capForRow(rowId),
+      ghConfig,
+      ...(G2_PROMPTS.has(rowId) ? { fixture } : {}),
+    };
     const result = await runTurn(job, options, exempt, index === 0);
     if (result.refusal !== null) writeJson(result.refusal);
     if (result.status !== 0) return result.status;
@@ -1215,7 +1245,7 @@ async function backfillLog(options) {
   const result = await backfillRunLog({
     inPath: options.backfill,
     outPath: options.out,
-    promptFor: (rowId) => promptFor(rowId, fixture),
+    promptFor: (rowId, line) => promptFor(rowId, lineFixture(line, fixture)),
     briefOnly: options.briefOnly,
   });
   writeJson(result);
@@ -1229,7 +1259,7 @@ async function main(argv) {
     // answered by that guard rather than by whichever usage check would run first.
     const rowIds = selectedRowIds(options);
     const mode = selectMode(options);
-    options.arm = armFor(options);
+    options.arm = armFor(options, rowIds);
 
     if (mode === 'print-argv') {
       writeArgv(options.printArgv);

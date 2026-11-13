@@ -21,6 +21,27 @@ const CORPUS_PATH = join(ROUTING, 'command-prompts.jsonl');
 const BASELINE_PATH = join(ROUTING, 'command-routing-baseline.json');
 const RECAPTURE = 'node scripts/routing-accuracy/capture-command-routing-baseline.mjs --write';
 
+// The capture projects these nine names to score reproducibly. A harness imports
+// the module and scores in process, so the projection has to be undone before
+// the call returns or it silently changes how every later test scores.
+const PROJECTED_ENV = [
+  'SYSTEM_SKILL_ADVISOR_DB_DIR',
+  'SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC',
+  'VITEST',
+  'SPECKIT_SKILL_ADVISOR_FORCE_LOCAL',
+  'PYTHONDONTWRITEBYTECODE',
+  'SPECKIT_ADVISOR_LANE_WEIGHTS_JSON',
+  'SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON',
+  'SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW',
+  'SPECKIT_PRIVATE_SKILL_ROOTS',
+] as const;
+
+type ProjectedEnv = Readonly<Record<(typeof PROJECTED_ENV)[number], string | undefined>>;
+
+function readProjectedEnv(): ProjectedEnv {
+  return Object.fromEntries(PROJECTED_ENV.map((name) => [name, process.env[name]])) as ProjectedEnv;
+}
+
 interface CorpusRow {
   readonly id: string;
   readonly row_type: string;
@@ -77,6 +98,8 @@ function rowJson(rows: Readonly<Record<string, CommandRow>>, id: string): string
 let live: CommandRoutingBaseline;
 let baseline: CommandRoutingBaseline;
 let corpus: CorpusRow[] = [];
+let envBefore: ProjectedEnv;
+let envAfter: ProjectedEnv;
 
 describe('command routing slice', () => {
   beforeAll(async () => {
@@ -85,8 +108,15 @@ describe('command routing slice', () => {
     // The capture owns its own environment projection and scoring clock, so it
     // re-scores under the same regime the baseline was recorded in. Doing that
     // setup again here would double it and let the two drift apart.
+    envBefore = readProjectedEnv();
     live = await scoreCommandCorpus();
+    envAfter = readProjectedEnv();
   }, 120_000);
+
+  it('leaves the caller environment as it found it', () => {
+    // A projection that outlives the call changes how every later test scores.
+    expect(envAfter).toEqual(envBefore);
+  });
 
   it('matches the captured baseline row by row', () => {
     // Corpus ids come first because a prompt added to the corpus but never

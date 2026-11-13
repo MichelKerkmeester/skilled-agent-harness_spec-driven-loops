@@ -1,5 +1,5 @@
 {
-  "run_id": "1794550139177-nft9c6",
+  "run_id": "1794570002424-6wv97k",
   "loop_type": "research",
   "spec_folder": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research",
   "base_artifact_dir": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research",
@@ -27,90 +27,37 @@
   },
   "timestamp_anomalies": [
     {
-      "label": "cross-cli-3",
-      "state_log": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/cross-cli-3/deep-research-state.jsonl",
+      "label": "residual-limits-4",
+      "state_log": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/residual-limits-4/deep-research-state.jsonl",
       "window": {
-        "start_at_iso": "2026-11-13T06:08:59.354Z",
-        "end_at_iso": "2026-11-13T06:28:49.704Z",
+        "start_at_iso": "2026-11-13T11:40:02.939Z",
+        "end_at_iso": "2026-11-13T12:10:28.780Z",
         "tolerance_ms": 120000
       },
       "counts": {
-        "anomalous": 6,
+        "anomalous": 3,
         "untimestamped": 0,
         "unparseable": 0,
-        "total": 8
-      },
-      "sample": [
-        {
-          "index": 1,
-          "reason": "after_window",
-          "timestamp": "2026-11-13T07:52:41.000Z",
-          "deltaMs": 4911296
-        },
-        {
-          "index": 2,
-          "reason": "after_window",
-          "timestamp": "2026-11-13T07:59:12.000Z",
-          "deltaMs": 5302296
-        },
-        {
-          "index": 3,
-          "reason": "after_window",
-          "timestamp": "2026-11-13T08:06:03.000Z",
-          "deltaMs": 5713296
-        },
-        {
-          "index": 4,
-          "reason": "after_window",
-          "timestamp": "2026-11-13T08:13:20.000Z",
-          "deltaMs": 6150296
-        },
-        {
-          "index": 5,
-          "reason": "after_window",
-          "timestamp": "2026-11-13T08:22:41.000Z",
-          "deltaMs": 6711296
-        }
-      ]
-    },
-    {
-      "label": "ux-cost-3",
-      "state_log": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-cost-3/deep-research-state.jsonl",
-      "window": {
-        "start_at_iso": "2026-11-13T06:08:59.360Z",
-        "end_at_iso": "2026-11-13T06:38:19.748Z",
-        "tolerance_ms": 120000
-      },
-      "counts": {
-        "anomalous": 4,
-        "untimestamped": 0,
-        "unparseable": 0,
-        "total": 7
+        "total": 6
       },
       "sample": [
         {
           "index": 0,
           "reason": "after_window",
-          "timestamp": "2026-11-13T07:22:00.000Z",
-          "deltaMs": 2500252
-        },
-        {
-          "index": 3,
-          "reason": "after_window",
-          "timestamp": "2026-11-13T06:41:00.000Z",
-          "deltaMs": 40252
+          "timestamp": "2026-11-13T12:45:00.000Z",
+          "deltaMs": 1951220
         },
         {
           "index": 4,
           "reason": "after_window",
-          "timestamp": "2026-11-13T06:48:00.000Z",
-          "deltaMs": 460252
+          "timestamp": "2026-11-13T12:18:00.000Z",
+          "deltaMs": 331220
         },
         {
           "index": 5,
           "reason": "after_window",
-          "timestamp": "2026-11-13T06:54:00.000Z",
-          "deltaMs": 820252
+          "timestamp": "2026-11-13T12:25:00.000Z",
+          "deltaMs": 751220
         }
       ]
     }

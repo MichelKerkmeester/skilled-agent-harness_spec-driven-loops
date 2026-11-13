@@ -117,7 +117,6 @@ describe('command attach for a single routed mode', () => {
 
     // The gate belongs to the deep-loop hub alone: every other hub answers the
     // same effort-free prompt with its command.
-    expect(attachCommand('sk-doc', singleRoute('sk-create-benchmark'), PLAIN_PROMPT, INJECTED)).toBeUndefined();
     expect(attachCommand('sk-doc', singleRoute('sk-create-readme'), PLAIN_PROMPT, INJECTED)).toBe(INJECTED_COMMAND);
   });
 

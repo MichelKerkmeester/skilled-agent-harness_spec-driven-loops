@@ -81,6 +81,21 @@ const COMMAND_DOC_SUFFIX = '.md';
 const COMPILED_ROUTE_CLI = '.skilled/bin/compiled-route.cjs';
 const COMPILED_ROUTE_TIMEOUT_MS = 5000;
 
+// The reproducible projection writes or deletes exactly these names. They are
+// saved and restored around a score because a harness imports this module and
+// scores in process, so a projection left behind would change the caller.
+const PROJECTED_ENV_NAMES = [
+  'SYSTEM_SKILL_ADVISOR_DB_DIR',
+  'SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC',
+  'VITEST',
+  'SPECKIT_SKILL_ADVISOR_FORCE_LOCAL',
+  'PYTHONDONTWRITEBYTECODE',
+  'SPECKIT_ADVISOR_LANE_WEIGHTS_JSON',
+  'SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON',
+  'SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW',
+  'SPECKIT_PRIVATE_SKILL_ROOTS',
+];
+
 // A real capture talks to the same embedder the recommend path does, so the probe
 // asks that daemon directly and names the model family the routing vectors come
 // from. The command vectors sit beside the skill vectors in the skill graph, in a
@@ -346,6 +361,10 @@ function readHeadSha(workspaceRoot) {
 export async function scoreCommandCorpus(options = {}) {
   const realEmbedding = options.realEmbedding === true;
   const RealDate = Date;
+  // A harness imports this module and scores in process, so the projection must
+  // not outlive the call: every name it writes or deletes is saved here and put
+  // back in the `finally`, with an absent name deleted again.
+  const savedEnv = new Map(PROJECTED_ENV_NAMES.map((name) => [name, process.env[name]]));
   // The projection needs an existing, empty cache directory, and that directory
   // is scratch space this run owns. It is created before the `try` so a failure
   // to create it has nothing left to remove, and removed in the `finally` so
@@ -661,6 +680,10 @@ export async function scoreCommandCorpus(options = {}) {
     };
   } finally {
     globalThis.Date = RealDate;
+    for (const [name, value] of savedEnv) {
+      if (value === undefined) delete process.env[name];
+      else process.env[name] = value;
+    }
     // Removal comes last, after every read that needs the directory has
     // finished; `force` keeps an already-swept directory from turning a
     // completed capture into a failure.

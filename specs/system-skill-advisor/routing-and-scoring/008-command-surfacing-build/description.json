@@ -17,15 +17,19 @@
     "model",
     "skills"
   ],
-  "lastUpdated": "2026-11-13T05:59:02.325Z",
+  "lastUpdated": "2026-11-13T17:03:56.946Z",
   "specId": "008",
   "folderSlug": "command-surfacing-build",
   "parentChain": [
     "system-skill-advisor",
     "routing-and-scoring"
   ],
-  "memorySequence": 1,
+  "memorySequence": 5,
   "memoryNameHistory": [
-    "12-11-26_21-58__rebased-the-branch-onto-main-closed-phase-003.md"
+    "12-11-26_21-58__rebased-the-branch-onto-main-closed-phase-003.md",
+    "13-11-26_16-02__resumed-the-command-surfacing-build-from-the.md",
+    "13-11-26_17-51__built-phase-016-the-rename-of-the-create-skill.md",
+    "13-11-26_18-03__committed-phase-016-locally-as-ec1869dae8.md",
+    "13-11-26_18-03__committed-phase-016-locally-as-ec1869dae8.md"
   ]
 }

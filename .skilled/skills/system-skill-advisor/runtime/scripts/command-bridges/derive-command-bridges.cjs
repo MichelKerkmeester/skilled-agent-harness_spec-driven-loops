@@ -955,7 +955,14 @@ function runtimeCompatibility(entries, metadata) {
 }
 
 function tsString(value) {
-  return `'${value.replaceAll('\\', '\\\\').replaceAll("'", "\\'")}'`;
+  const escaped = value
+    .replaceAll('\\', '\\\\')
+    .replaceAll("'", "\\'")
+    .replaceAll('\n', '\\n')
+    .replaceAll('\r', '\\r')
+    .replaceAll('\u2028', '\\u2028')
+    .replaceAll('\u2029', '\\u2029');
+  return `'${escaped}'`;
 }
 
 function tsArray(values) {
@@ -1404,4 +1411,5 @@ module.exports = {
   doctorLeadPhrases,
   identityViolations,
   commandPolicies,
+  tsString,
 };

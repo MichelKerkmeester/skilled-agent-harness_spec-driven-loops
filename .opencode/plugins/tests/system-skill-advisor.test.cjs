@@ -481,6 +481,41 @@ test('no-brief turns render the no-match head and hygiene context', async () => 
   assert.deepEqual(calls[0].options.stdio, ['pipe', 'pipe', 'ignore']);
 });
 
+test('renders the command, its policy and its owner from the advisor row', async () => {
+  const previousChildSession = process.env.AI_SESSION_CHILD;
+  // A dispatched child renders a start policy as parent-named, so read the row as
+  // the operator's own session does.
+  delete process.env.AI_SESSION_CHILD;
+  try {
+    const hooks = await makePlugin({
+      spawnOverride: spawnSequence([fakeChild({
+        stdout: cliEnvelope({
+          freshness: 'live',
+          recommendations: [{
+            // The owner differs from the skill, so a dropped owner changes the label.
+            skillId: 'system-spec-kit',
+            score: 0.9,
+            confidence: 0.95,
+            uncertainty: 0.12,
+            command: '/create:agent',
+            policy: 'start',
+            ownerSkillId: 'sk-doc',
+          }],
+        }),
+      })]),
+    });
+    const output = await runPrompt(hooks);
+
+    assert.ok(output.system[0].includes('sk-doc → /create:agent (start)'));
+  } finally {
+    if (previousChildSession === undefined) {
+      delete process.env.AI_SESSION_CHILD;
+    } else {
+      process.env.AI_SESSION_CHILD = previousChildSession;
+    }
+  }
+});
+
 test('the stdin request stays inside the byte budget when the prompt needs escaping', async () => {
   const child = fakeChild({ stdout: cliEnvelope({ freshness: 'live', recommendations: [] }) });
   const hooks = await makePlugin({ maxPromptBytes: 600, spawnOverride: spawnSequence([child]) });

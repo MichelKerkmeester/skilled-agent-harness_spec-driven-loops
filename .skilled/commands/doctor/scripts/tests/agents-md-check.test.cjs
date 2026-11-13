@@ -589,7 +589,7 @@ test('A10 leaves a missing pointer out of the count and names it after the copie
   const copies = report.rows.find((row) => row.id === 'A10');
   assert.ok(copies.detail.endsWith(', 1 pointer missing'),
     `the detail names the missing pointer after the count: ${copies.detail}`);
-  assert.match(copies.detail, /^5\/6 copies as expected/u,
+  assert.equal(copies.detail, '3/6 copies as expected, 2 reported only, 1 pointer missing',
     `the count leaves the CLAUDE.md entry out: ${copies.detail}`);
 });
 

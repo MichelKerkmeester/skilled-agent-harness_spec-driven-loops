@@ -21,7 +21,7 @@ contextType: "research"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-12 |
 | **Branch** | `worktrees/352-command-surfacing-research` |
 | **Parent Spec** | ../spec.md |
@@ -42,11 +42,12 @@ This is **Phase 9** of the build that makes the skill advisor surface every trac
 
 **Dependencies**:
 - Segment two ran on 2026-11-13 against the built phases 005, 006, 008 and 010 and the after arm of phase 007.
-- Segment three reads the measured gains of phases 012 and 013. The operator decided on 2026-11-13 that it starts only after this branch is merged to main. Its launcher is prepared and has not run.
+- Segment three ran on 2026-11-13 after the merge to main, against the built phases 011 to 013. Segment four ran the same day against phases 014 and 015.
 
 **Deliverables**:
 - `research/research.md`, the merged synthesis with 14 ranked recommendations in section 9.
 - `research/research-segment-2.md`, the segment two synthesis with 18 ranked items and a disposition for each in section 3.
+- `research/research-segment-3.md` and `research/research-segment-4.md`, with 16 and 9 ranked items. Their final dispositions are in `../goal.md` section 4.
 - A disposition for each of those recommendations, recorded in `tasks.md`.
 <!-- /ANCHOR:phase-context -->
 
@@ -123,7 +124,7 @@ After phases 005 to 008, which further changes raise how often a surfaced comman
 
 ### In Scope
 - Run a fan-out deep research over the three lanes and merge the lineages into one ranked list in `research/research.md`.
-- Rerun the research against the built state of phases 005 to 008 and the after arm of phase 007 until it converges. Segment two did this once. Segment three continues after the merge to main.
+- Rerun the research against the built state of phases 005 to 008 and the after arm of phase 007 until it converges. Segments two, three and four did this. No segment reached the 0.05 threshold and segment four judged the research converged on coverage.
 - Record a disposition for each ranked recommendation in `tasks.md`.
 
 ### Out of Scope
@@ -178,7 +179,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
-| Dependency | Phases 012 and 013 committed and the branch merged to main | Segment three has no measured gains to read until then | Segment three stays open in `tasks.md` and starts after the merge, by operator instruction of 2026-11-13 |
+| Dependency | Phases 012 and 013 committed and the branch merged to main | Segment three has no measured gains to read until then | Met 2026-11-13: the branch reached main and segment three ran after it |
 | Risk | The executor is a flash model and some of its numbers carry only the lineage's citation | Med | `research/research.md` section 15 marks which claims the orchestrator re-checked. A phase that builds a recommendation measures its own baseline before it claims the gain |
 | Risk | The before arm grew while segment one ran | Low | Ranking uses the single snapshot in `research/research.md` section 3 |
 <!-- /ANCHOR:risks -->
@@ -189,8 +190,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 7. OPEN QUESTIONS
 
 - Segment two answered questions 2, 5 and 6 of `research/research.md` section 12 in `research/research-segment-2.md`: the cold first call measured 538.53 ms (rank 16), the brief reached Devin in 24 of 24 sessions (section 2) and the embed model stays cold by design (rank 18). Question 1 is carried as its open question 2 for Codex. The `offer-reach` lineage carried questions 3 and 4, and the segment two synthesis does not answer them.
-- Rank 14 of segment two, a Gate 2 clause for a brief that names a skill and no command, waits on the operator.
-- Carried into segment three:
+- Rank 14 of segment two, a Gate 2 clause for a brief that names a skill and no command, was declined by the operator on 2026-11-13 (decision Q053).
+- Question 4 of `research/research.md` section 12, how a failed host invocation shows up, is carried in `tasks.md` T008 to the Codex-only arm of phase 007, because Codex received no brief in any earlier arm.
+- Carried into segment three, which answers each in `research/research-segment-3.md` section 4:
   - Plain reach on the holdout split is 1 of 44, while the tune split reads 23 of 45. The phase 012 gains do not transfer to unseen wording (`../012-plain-offer-reach/implementation-summary.md`).
   - Hook health shows in `/doctor:setup` only after a run with `SKILL_ADVISOR_DEBUG=1`, because the hook writes diagnostic records only then (`../011-typed-command-delivery-and-guards/implementation-summary.md`).
   - When the daemon is unreachable, the local fallback scorer keeps a typed command and loses the mode label, the doctor hand-off and plain offers (`../012-plain-offer-reach/scratch/live-heads.txt`).

@@ -36,7 +36,8 @@ const CORPUS_ROWS = [
 // to tell apart: a live head for the prompt that asks for one, and the fallback
 // text every other prompt gets when the advisor cannot answer. When
 // COST_PROBE_FILE is set, it also records the temp folder it inherited, so a
-// test can prove each hook child ran inside the run's sandbox.
+// test can prove each hook child ran inside the run's sandbox. When
+// CHILD_PROBE_FILE is set, it records the dispatched-child flag it inherited.
 const HOOK_STUB = `const { appendFileSync, readFileSync } = require('node:fs');
 
 const input = JSON.parse(readFileSync(0, 'utf8'));
@@ -44,6 +45,9 @@ const head = input.prompt.includes('live') ? '${LIVE_HEAD}' : '${STALE_HEAD}';
 const context = head + '\\n' + 'second line';
 if (process.env.COST_PROBE_FILE) {
   appendFileSync(process.env.COST_PROBE_FILE, process.env.TMPDIR + '\\n');
+}
+if (process.env.CHILD_PROBE_FILE) {
+  appendFileSync(process.env.CHILD_PROBE_FILE, (process.env.AI_SESSION_CHILD ?? '<unset>') + '\\n');
 }
 process.stdout.write(JSON.stringify({ hookSpecificOutput: { additionalContext: context } }));
 `;
@@ -119,6 +123,22 @@ describe('brief cost measurement', () => {
         expect(dir).not.toBe(tmpdir());
         expect(existsSync(dir)).toBe(false);
       }
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it('runs each hook child without the dispatched-child flag', () => {
+    const root = makeRoot();
+    const childProbeFile = join(root, 'child-flags.txt');
+    try {
+      const result = runScript(['--root', root, '--rows', 'cost-live'], {
+        AI_SESSION_CHILD: '1',
+        CHILD_PROBE_FILE: childProbeFile,
+      });
+
+      expect(result.status).toBe(0);
+      expect(readFileSync(childProbeFile, 'utf8').trim()).toBe('<unset>');
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

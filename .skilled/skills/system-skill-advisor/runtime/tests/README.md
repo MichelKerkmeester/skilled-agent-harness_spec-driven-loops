@@ -151,7 +151,7 @@ tests/
 | `routing-fixtures.affordance.test.ts` | Connects fixture prompts to affordance expectations. |
 | `shadow-sink.vitest.ts` | Covers shadow telemetry sink behavior. |
 | `skill-graph-db.vitest.ts` | Checks skill-graph database behavior used by advisor tests. |
-| `manual-testing-playbook.vitest.ts` | Verifies manual testing playbook routing fixtures. |
+| `manual-testing-playbook.vitest.ts` | Checks the playbook inventory: the root playbook lists every scenario file in the category tree once, and its persistence note names the folder results are recorded in. |
 | `skill-advisor-cli-stale-daemon-retry.vitest.ts` | Verifies the stale-daemon retry in the CLI entrypoint. |
 | `prompt-policy-gold-replay.vitest.ts` | Replays the prompt gate over the labeled and golden corpora. |
 | `command-meaning-anchor.vitest.ts` | 17 cases on the meaning way in for a command row: a real cosine has to clear the bar and lead the other command rows by the margin, stand-in evidence never passes, a skill row is left alone, a meaning-passed command moves ahead of a passing skill only by the margin, and eligibility rules out every command on a no-edit request and all but read-only commands on a read-only question. |

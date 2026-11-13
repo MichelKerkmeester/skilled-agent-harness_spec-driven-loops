@@ -1,7 +1,7 @@
 ---
 title: "Skill Advisor: Manual Testing Playbook"
 description: "Canonical sk-doc manual testing playbook for the Skill Advisor manual scenario corpus across the native command surface, runtime hooks, compatibility, daemon state, indexing, lifecycle, scorer and Python compatibility workflows."
-version: 0.8.10.0
+version: 0.8.11.0
 ---
 
 # Skill Advisor: Manual Testing Playbook
@@ -27,7 +27,7 @@ Canonical package artifacts:
 ### Result persistence
 
 <!-- MANUAL_PLAYBOOK_RESULT_PERSISTENCE_CONTRACT -->
-A scenario run is complete only after its `PASS`, `FAIL`, or `SKIP` outcome and reason are recorded into `system-skill-advisor/benchmark/reports/<dated-run-label>/`. Generated report Markdown is renderer-owned and never hand-authored.
+A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome, its reason and its evidence paths are recorded by hand in `.skilled/skills/system-skill-advisor/benchmark/reports/<dated-run-label>/`. The first recorded run creates that folder, because the wrapper that once wrote these records was retired and no renderer writes them now.
 
 ---
 
@@ -37,7 +37,7 @@ This playbook provides 50 scenario files across 9 categories, one of them a live
 
 > **Numbering note (gap-09).** The directory layout skips slot `09--*` between `scorer-fusion` and `python-compat`. This mirrors the `feature-catalog/` 05-gap pattern and is an intentional historical reservation from initial scaffold design. The gap is preserved to keep spec-folder cross-reference stability across packets. Do not renumber.
 
-Coverage note (2026-05-07): the prior operator scenario corpus now lives under `manual-testing-playbook/` as the canonical manual validation package. Former `SAD-NNN` IDs are deprecated plus mapped to current feature files in section 18. The source root index describes 42 scenarios, but the source category tree contains 41 `NNN-*.md` scenario files plus no `CL-002`. This root playbook reflects the live file inventory.
+Coverage note (2026-05-07): the prior operator scenario corpus now lives under `manual-testing-playbook/` as the canonical manual validation package. Former `SAD-NNN` IDs are deprecated plus mapped to current feature files in section 18. The source root index describes 42 scenarios. The category tree holds 50 scenario files named by feature, none of them `NNN-*.md`, and still no `CL-002`. This root playbook reflects the live file inventory.
 
 ### Realistic Test Model
 

@@ -33,7 +33,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -43,18 +43,18 @@
       "research/fanout-attribution.md",
       "research/deep-research-config-segment-2.json",
       "research/research-segment-2.md",
+      "research/research-segment-3.md",
+      "research/research-segment-4.md",
       "research/deep-research-config.json",
-      "research/orchestration-summary.json",
       ".codex/README.md",
       ".dsh/plugins/repo-guards/index.mjs",
+      "research/orchestration-summary.json",
       "research/findings-registry.json",
       ".claude/settings.json",
-      ".skilled/commands/create/skill.md",
       "shared/embeddings/adapters/ollama.ts",
       "hooks/claude/user-prompt-submit.ts",
       ".codex/hooks.json",
-      ".skilled/bin/system-skill-advisor-launcher.cjs",
-      ".dsh/plugins/repo-guards/README.md"
+      ".skilled/bin/system-skill-advisor-launcher.cjs"
     ],
     "entities": [
       {
@@ -106,15 +106,21 @@
         "source": "derived"
       },
       {
-        "name": "deep-research-config.json",
-        "kind": "config",
-        "path": "research/deep-research-config.json",
+        "name": "research-segment-3.md",
+        "kind": "doc",
+        "path": "research/research-segment-3.md",
         "source": "derived"
       },
       {
-        "name": "orchestration-summary.json",
+        "name": "research-segment-4.md",
+        "kind": "doc",
+        "path": "research/research-segment-4.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-config.json",
         "kind": "config",
-        "path": "research/orchestration-summary.json",
+        "path": "research/deep-research-config.json",
         "source": "derived"
       },
       {
@@ -130,6 +136,12 @@
         "source": "derived"
       },
       {
+        "name": "orchestration-summary.json",
+        "kind": "config",
+        "path": "research/orchestration-summary.json",
+        "source": "derived"
+      },
+      {
         "name": "findings-registry.json",
         "kind": "config",
         "path": "research/findings-registry.json",
@@ -139,12 +151,6 @@
         "name": "settings.json",
         "kind": "config",
         "path": ".claude/settings.json",
-        "source": "derived"
-      },
-      {
-        "name": "skill.md",
-        "kind": "doc",
-        "path": ".skilled/commands/create/skill.md",
         "source": "derived"
       },
       {
@@ -178,12 +184,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Phases 005 to 008 plan the recommendation contract, the Gate 2 binding, the per-runtime proof and the embedder setup",
     "created_at": "2026-11-12T23:26:03.950Z",
-    "last_save_at": "2026-11-13T06:58:23.997Z",
+    "last_save_at": "2026-11-13T17:26:54.410Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:cb009cd1b944047c8910dbc172ea4e130a47cdd9dc0021313205c765dc0d7851",
+    "source_fingerprint": "sha256:094676b0d2ccf7f9ac484dcfe3052552b7ee9a61dabad8a10f29f995d20aa4a5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6930565b79f51de37738783a14f9cc9206b2d04d9257df4b2213dc1d2eb29d16",
-      "plan.md": "68bf8676855da71b184886d9a88d53d021dd51c668f57da6438ca51c011bee4f",
-      "tasks.md": "2c384e15730bcdaa0847e8fb814dae372d798b232def56a3f5bab022ddb810cb",
-      "implementation-summary.md": "7d7f42fe3a687a54954efcbe5b94041efa0bb418c3c3c85a209a72a632c46d0f",
+      "spec.md": "1b1c8dee22d4744342cd0a8c95693d7841062e215edcdb774882296448927466",
+      "plan.md": "0643b5d1a9e91356dfbc80447f5731ea94436e7135efe16333226402ea85cc56",
+      "tasks.md": "1574c86b5fed5d6835db711054a6d2fe500435c8778869e97361997bdc811e6e",
+      "implementation-summary.md": "89399d1fb5805c19eae0af90bff8044bb40548afc679649866d63e5806a30fcc",
       "research/research.md": "072a00b3bcd9252c7a3852f3935e96760c9c2036a45b9ef9bd48de992c8df8f5"
     },
     "last_active_child_id": null,

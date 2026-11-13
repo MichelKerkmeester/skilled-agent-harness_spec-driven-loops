@@ -585,24 +585,6 @@ function cliRecommendations(data, options) {
     });
 }
 
-// Compact the served compiled decision the advisor attached to a recommendation.
-// Returns null when no recommendation carried a route, which keeps the injected
-// context byte-identical to the legacy brief.
-function compiledRouteSummary(data) {
-  if (!Array.isArray(data?.recommendations)) return null;
-  for (const recommendation of data.recommendations) {
-    const route = recommendation?.compiledRoute;
-    if (!route || typeof route !== 'object' || typeof route.action !== 'string') continue;
-    return {
-      outcome: route.action,
-      hubId: typeof route.hubId === 'string' ? route.hubId : null,
-      targets: Array.isArray(route.targets) ? route.targets.filter((target) => typeof target === 'string') : [],
-      servingAuthority: 'compiled',
-    };
-  }
-  return null;
-}
-
 /**
  * Parse the advisor CLI's stdout and render its brief.
  *
@@ -654,7 +636,6 @@ async function parseCliResponse(stdout, options) {
     })
     : null;
   const brief = typeof rendered === 'string' && rendered.trim() ? rendered : null;
-  const routeSummary = compiledRouteSummary(data);
 
   return {
     brief,
@@ -666,7 +647,6 @@ async function parseCliResponse(stdout, options) {
       tokenCap,
       skillLabel: top?.skill ?? null,
       cacheHit: Boolean(data.cache?.hit),
-      ...(routeSummary ? { compiledRouteSummary: routeSummary } : {}),
     },
   };
 }
@@ -1077,7 +1057,7 @@ function deliverTransformContribution(decision, deliver) {
  * @param {number} [rawOptions.maxPromptBytes] - Maximum UTF-8 bytes of the stdin request sent to the advisor CLI, prompt included
  * @param {number} [rawOptions.maxBriefChars] - Maximum injected advisor brief characters
  * @param {number} [rawOptions.maxCacheEntries] - Maximum advisor cache entries
- * @param {boolean} [rawOptions.boundedCompiledRouteSummary] - Bound long compiled-route target lists
+ * @param {boolean} [rawOptions.boundedCompiledRouteSummary] - Reported as the bounded_compiled_route_summary status field. The brief carries no compiled-route line, so it bounds nothing
  * @param {boolean} [rawOptions.deduplicateTransforms] - Suppress duplicate same-message system blocks
  * @param {string} [rawOptions.sourceSignatureOverride] - Test override for advisor source signature
  * @returns {Promise<Object>} Hooks with `event`, `experimental.chat.system.transform`, and `tool`

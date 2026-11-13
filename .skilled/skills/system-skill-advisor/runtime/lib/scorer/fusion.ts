@@ -17,7 +17,7 @@ import {
   speckitMetrics,
 } from '../metrics.js';
 import { normalize } from '../affordance-normalizer.js';
-import { COMMAND_ROWS, NO_EDIT_REQUEST, TRACKED_COMMANDS, typedCommandIn } from '../command-attach.js';
+import { COMMAND_ROWS, isNoEditRequest, TRACKED_COMMANDS, typedCommandIn } from '../command-attach.js';
 import { scoreDerivedLane } from './lanes/derived.js';
 import { scoreExplicitLane } from './lanes/explicit.js';
 import { scoreGraphCausalLaneSplit } from './lanes/graph-causal.js';
@@ -674,7 +674,7 @@ function hasExplicitWorkflowSignal(contributions: readonly LaneContribution[], s
 
 export function readOnlyRouteAllowed(promptLower: string, skill: SkillProjection): boolean {
   const skillId = skill.id;
-  if (NO_EDIT_REQUEST.test(promptLower)) {
+  if (isNoEditRequest(promptLower)) {
     return false;
   }
   // The explainer floor exists to stop an ambiguous read-only question from
@@ -885,7 +885,7 @@ export function commandMeaningEligible(
   readOnlyExplainer: boolean,
   skill: SkillProjection | undefined,
 ): boolean {
-  if (NO_EDIT_REQUEST.test(promptLower)) return false;
+  if (isNoEditRequest(promptLower)) return false;
   if (!readOnlyExplainer) return true;
   return skill !== undefined && skill.kind === 'command' && 'readOnly' in skill && skill.readOnly === true;
 }
