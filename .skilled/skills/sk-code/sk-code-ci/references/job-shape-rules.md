@@ -9,7 +9,7 @@ trigger_phrases:
   - "ci switch condition"
 importance_tier: normal
 contextType: general
-version: 1.1.8.0
+version: 1.1.9.0
 ---
 
 # Job Shape Rules
@@ -116,7 +116,7 @@ The action is `.github/actions/setup/action.yml`. The rules it follows:
 - **Bun comes from a SHA-pinned setup action**, never from an `npm install` of bun in the workflow.
 - **The scan reads it.** `.github/scripts/check-gate-inputs.sh:499-503` (the `if [[ -d "$ROOT/.github/actions" ]]` block) scans `.github/actions/**` with the workflow parser, so a path in an action is held to the twin rule.
 
-Today five jobs in three workflows call the action: `opencode-dual-version.yml` at `:110` and `:181`, `opencode-plugin-tests.yml` at `:93` and `routing-registry-drift.yml` at `:150` and `:272`. A new provisioning workflow calls the action and does not copy its steps.
+Today five jobs in three workflows call the action: `opencode-dual-version.yml` at `:121` and `:203`, `opencode-plugin-tests.yml` at `:104` and `routing-registry-drift.yml` at `:150` and `:272`. A new provisioning workflow calls the action and does not copy its steps.
 
 ---
 

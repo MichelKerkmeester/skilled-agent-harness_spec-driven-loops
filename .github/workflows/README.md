@@ -108,6 +108,10 @@ Run `/doctor:ci report` to see each switch state. Run `/doctor:ci toggle` to cha
 
 ---
 
+### Checkouts that skip loop state
+
+About two thirds of the tracked files are loop state under `specs/`: the `research/`, `review/`, `scratch/` and `z_archive/` folders. A full checkout fetches all of it and takes about a minute. Seven workflows whose suites read none of it skip those four folder kinds with a non-cone sparse checkout: `command-tree-parity.yml`, `hook-vitest-suites.yml`, `opencode-dual-version.yml`, `opencode-plugin-tests.yml`, `playbook-operator-contract.yml`, `sk-git-script-tests.yml` and `skill-advisor-stress.yml`. A workflow that validates packets, checks links or reads recorded loop logs keeps the full checkout.
+
 ## 3. GUARD ENTRYPOINTS
 
 The naming guard runs the naming checker and its focused tests. The runtime-import guard runs the real-tree check plus clean and failing fixtures.
