@@ -80,8 +80,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      # No suite in this job reads loop state, so the checkout skips the research, review,
-      # scratch and archive folders under specs/: about two thirds of the tracked files.
+      # The checkout skips the research, review, scratch and archive folders under specs/:
+      # about two thirds of the tracked files. The one archived packet a plugin test reads
+      # is named again after the exclusions, so it is still checked out.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           filter: blob:none
@@ -91,6 +92,7 @@ jobs:
             !/specs/**/review/
             !/specs/**/scratch/
             !/specs/**/z_archive/
+            /specs/system-deep-loop/z_archive/026-goal-opencode-plugin/
           sparse-checkout-cone-mode: false
 
       - name: Setup Node
