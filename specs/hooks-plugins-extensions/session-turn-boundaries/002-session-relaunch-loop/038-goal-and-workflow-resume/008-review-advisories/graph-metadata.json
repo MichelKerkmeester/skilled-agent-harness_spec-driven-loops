@@ -17,6 +17,7 @@
       "review advisories tasks",
       "review advisories acceptance criteria",
       "review advisories goal",
+      "008-review-advisories operator decisions",
       "review advisories implementation summary"
     ],
     "key_topics": [
@@ -28,10 +29,10 @@
       "acceptance",
       "criteria",
       "goal",
-      "implementation",
-      "summary",
-      "claude",
-      "start"
+      "008-review-advisories",
+      "operator",
+      "decisions",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -41,6 +42,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/hooks/session-relaunch/claude/compact-pointer.mjs",
       ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
@@ -54,8 +56,7 @@
       ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md",
       "scratch/red-a.txt",
       "scratch/green-a.txt",
-      "scratch/red-b.txt",
-      "scratch/green-b.txt"
+      "scratch/red-b.txt"
     ],
     "entities": [
       {
@@ -86,6 +87,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -173,12 +180,6 @@
         "source": "derived"
       },
       {
-        "name": "green-b.txt",
-        "kind": "file",
-        "path": "scratch/green-b.txt",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -205,7 +206,7 @@
     ],
     "causal_summary": "The Claude start claim can report `PostToolUse` when a startup payload carries no `hookeventname`",
     "created_at": "2026-11-13T05:02:29Z",
-    "last_save_at": "2026-11-13T05:44:30.354Z",
+    "last_save_at": "2026-11-13T06:11:05.217Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,15 +215,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0d53096b06a0105edecbcfdf056e43b2026e0462ef39ad0873e7a44a46ff6b4f",
+    "source_fingerprint": "sha256:fe2b354a88ac8cc067d290007f1444607aba161697ab71fcec103c1c17da162e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a17d5e86ff582c730a1269d0d23803670f380c57473ad69c7d257f0711757ede",
       "plan.md": "5eac14abc8cc110cd2036f2f8d744ac66133cecb183b9ec963a2705aaae8f357",
       "tasks.md": "3f5505683a53f074a5ac167eed016c92d5f4628ef8bad33609cacd3792e25b24",
-      "implementation-summary.md": "ac648688f7ba576d5f24f0985f73b81eb0ed82ad8a1bf1a5d6f5bcc9067226b7"
+      "decision-record.md": "9b8532e278552c9684558017e9dc4c0b56da7fb223e9cab5458b600e6283fe18",
+      "implementation-summary.md": "ee030bbec174a2b068f4bb2169e670aef66e0cc39caeedbdd671966f74ea51a4"
     },
     "last_active_at": null
   }
