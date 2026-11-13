@@ -1,5 +1,5 @@
 {
-  "corpusHash": "7b9f0d32fad1e38986efb7d0905e0c31b18bca0136231230a3bbac056b381309",
+  "corpusHash": "b9ab55769a681548f3cb2d3d6450b0557e296d36b312bee7abb88511990afbef",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26675,
+  "includedPathCount": 26681,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -26287,6 +26287,12 @@
     "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/review/review-report.md",
     "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/synthesis.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/decision-record.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research/research.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/tasks.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/plan.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/spec.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/tasks.md",
@@ -26707,7 +26713,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "b65009f6e185b15c0fb54c840ee4ca9e3cf09c841d828a2b3fa5a09360e18fc7",
+  "manifestHash": "5ec77f5ae3adda41a1257f4447685fea3374ab983cccc706769e341acc9f1586",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -37763,6 +37769,26 @@
     },
     {
       "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/scratch",
       "reason": "excluded directory"
     },
     {
