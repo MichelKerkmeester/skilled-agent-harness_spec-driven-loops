@@ -108,7 +108,7 @@ The landing depends on the session that owns packet `system-skill-advisor/routin
 ## 7. ROLLBACK PLAN
 <!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: `--keep 3` removes an archive newer than the three kept. Revert the one commit. WEAK: Roll back if needed. -->
 
-Trigger: a prompt that routed correctly before the change routes to the wrong mode because of one of the nine keywords. Revert the one commit of this branch. The nine files return to their prior state together, and the check returns to `drift=9` until the phrases are also removed from the two `hub-router.json` files by their owner.
+Trigger: a prompt that routed correctly before the change routes to the wrong mode because of one of the nine keywords. Revert the one commit of this branch, bc86b64c79. The thirteen files return to their prior state together, including the frontmatter version line of both `ROUTER.md` files that the pre-commit gate `doc-version-bump` raised during that commit, and the check returns to `drift=9` until the phrases are also removed from the two `hub-router.json` files by their owner.
 <!-- /ANCHOR:rollback -->
 
 ---

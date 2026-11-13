@@ -47,6 +47,10 @@
       ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
       ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json",
       "specs/sk-doc/hub-routing-and-surfaces/graph-metadata.json",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
       "scratch/measured-before.txt",
       ".skilled/bin/compiled-route-guard.cjs",
       ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
@@ -104,6 +108,30 @@
         "name": "local-native-approved-divergences.json",
         "kind": "config",
         "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "corpus-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "generation-diagnostics.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        "source": "derived"
+      },
+      {
+        "name": "phrase-variants.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
         "source": "derived"
       },
       {
@@ -171,35 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Source",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Commit 7af52ef940 (command surfacing, 2026-11-13) added nine phrases to the `vocabularyClasses` of two `hub-router.json` files and did not carry them to the hubs' root `ROUTER.md`",
     "created_at": "2026-11-13T21:40:26Z",
-    "last_save_at": "2026-11-13T23:27:47.655Z",
+    "last_save_at": "2026-11-13T23:32:01.947Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1c1642ebdcc27986d6808c417645fc402b72e13d6504e85c3909b129240642ff",
+    "source_fingerprint": "sha256:5ff139f48464d9a44883a4e6c9d693f31c36afb222c8631ffcf0062a9ffade3f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d87445b97ab085dc869de43d672c8472578b932b042b322cf79e35a2aff30373",
-      "plan.md": "4c8350ecc2c8478d84fa6c2bdc1735375d9b7f7baa970b9e91993647af5e7054",
+      "spec.md": "5517cfae56484be21414e2e82d0760c0a4206408bae6c74e4da49413e2264ee6",
+      "plan.md": "1f8ccd6139541fd89980b5d1c6aad37db5438376dad6a14dce25ee8e3904e90d",
       "tasks.md": "36930684e14a841036ad7b2b5e1cb55b57b35703b904e3c15719af6890e5aced",
-      "implementation-summary.md": "2487ece8f4ab6e94523ac141446258a66c6e54980bb97a7b6831cc87f251f3b5"
+      "implementation-summary.md": "53b452c16a3f8bbd65656d805d693f625c8eda95571c5756f34e2d7f62add538"
     },
     "last_active_at": null
   }

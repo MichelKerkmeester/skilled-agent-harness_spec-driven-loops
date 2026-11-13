@@ -79,15 +79,15 @@ The Problem Statement quotes `drift=9` from the `checked=7 hub(s), drift=9` line
 ### Out of Scope
 - `scorer-eval-baseline.json`, `routing-baseline.json` and the three corpus files - the session that owns packet `system-skill-advisor/routing-and-scoring/008-command-surfacing-build` edits them on its unpushed branch.
 - Both `hub-router.json` files and `mode-registry.json` - same owner, and the nine phrases are already correct there.
-- The frontmatter version line of either `ROUTER.md` and the `SKILL_CREATION` line - same owner. The operator decision of 2026-11-13 for the shared sk-doc `ROUTER.md` was "Edit here, other lines".
+- The `SKILL_CREATION` line - same owner. The operator decision of 2026-11-13 for the shared sk-doc `ROUTER.md` was "Edit here, other lines". The frontmatter version line of both `ROUTER.md` files is not on this list. The pre-commit gate `doc-version-bump` raised it by itself during commit bc86b64c79 on branch `worktrees/372-hub-vocabulary-drift`: `.skilled/skills/sk-doc/ROUTER.md` from 2.4.6.0 to 2.4.7.0 and `.skilled/skills/system-deep-loop/ROUTER.md` from 1.6.8.0 to 1.6.9.0.
 - Any mode packet's `ROUTER.md` - the check never reads one.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/sk-doc/ROUTER.md` | Modify | Six keywords appended: `AGENT_CREATION` gets "agent definition" and "specialist persona file", `COMMAND_CREATION` gets "prompt shortcut" and "confirm flag", `DIFF` gets "before and after my rewrite", `GOAL_AUTHORING` gets "intent file" |
-| `.skilled/skills/system-deep-loop/ROUTER.md` | Modify | Three keywords appended: `RESEARCH` gets "find out everything", `REVIEW` gets "findings stop changing", `AI_COUNCIL` gets "several models" |
+| `.skilled/skills/sk-doc/ROUTER.md` | Modify | Six keywords appended: `AGENT_CREATION` gets "agent definition" and "specialist persona file", `COMMAND_CREATION` gets "prompt shortcut" and "confirm flag", `DIFF` gets "before and after my rewrite", `GOAL_AUTHORING` gets "intent file". The pre-commit gate `doc-version-bump` raised the frontmatter version line from 2.4.6.0 to 2.4.7.0 during commit bc86b64c79 |
+| `.skilled/skills/system-deep-loop/ROUTER.md` | Modify | Three keywords appended: `RESEARCH` gets "find out everything", `REVIEW` gets "findings stop changing", `AI_COUNCIL` gets "several models". The pre-commit gate `doc-version-bump` raised the frontmatter version line from 1.6.8.0 to 1.6.9.0 during commit bc86b64c79 |
 | `.skilled/skills/sk-doc/graph-metadata.json` | Modify | Written by `generate-router-intent-signals.cjs --write` |
 | `.skilled/skills/system-deep-loop/graph-metadata.json` | Modify | Written by `generate-router-intent-signals.cjs --write` |
 | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json` | Modify | Refreshed by `compiled-route-manifest.cjs refresh --hub system-deep-loop` |
@@ -95,6 +95,10 @@ The Problem Statement quotes `drift=9` from the `checked=7 hub(s), drift=9` line
 | `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` | Modify | Recompiled by `skill_graph_compiler.py --export-json` |
 | `.skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json` | Modify | Recaptured by `capture-local-native-divergence-ledger.mjs --write` |
 | `specs/sk-doc/hub-routing-and-surfaces/graph-metadata.json` | Modify | `create.sh` added this packet to `children_ids` |
+| `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` | Modify | Rebuilt trigger index, written by `generate-trigger-index.mjs` |
+| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json` | Modify | Written by the same `generate-trigger-index.mjs` run |
+| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json` | Modify | Written by the same `generate-trigger-index.mjs` run |
+| `.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json` | Modify | Written by the same `generate-trigger-index.mjs` run |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -141,7 +145,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | The session that owns packet `system-skill-advisor/routing-and-scoring/008-command-surfacing-build` | This branch does not go to main by itself. Until that session merges it, main keeps failing the check | Operator decision of 2026-11-13, "Commit here, land via 008": this branch is committed and handed to that session |
-| Risk | Both sessions edit `.skilled/skills/sk-doc/ROUTER.md` | Medium. A merge conflict if both touch the same line | This branch edits only the four intent lines named in Files to Change and leaves the frontmatter version line and the `SKILL_CREATION` line alone |
+| Risk | Both sessions edit `.skilled/skills/sk-doc/ROUTER.md` | Medium. A merge conflict if both touch the same line | This branch edits by hand only the four intent lines named in Files to Change and leaves the `SKILL_CREATION` line alone. The pre-commit gate `doc-version-bump` raised the frontmatter version line to 2.4.7.0 in commit bc86b64c79. The command surfacing branch raises that line to the same 2.4.7.0, so both branches make an identical change to it |
 | Risk | `tests/parity/scorer-eval-baseline-ratchet.vitest.ts` is red on this branch | Low. One more holdout prompt now routes correctly, which the ratchet reports as an improvement | The 008 session recaptures `scorer-eval-baseline.json` once after the merge |
 <!-- /ANCHOR:risks -->
 
