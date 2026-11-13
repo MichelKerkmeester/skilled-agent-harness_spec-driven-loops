@@ -115,7 +115,7 @@ describe('doctor helper ranker bridge', () => {
 
   // The helper ranks on shared words, so a doctor route phrase built from
   // everyday repair words pulls a code or release request onto a doctor command.
-  it('leaves a code repair request to the code skill', () => {
+  it('keeps a code repair request off the doctor commands', () => {
     expect(matchDoctorProblem('tell me what to fix where the tests fail', WORKSPACE)).toBeNull();
     expect(matchDoctorProblem('fix the failing tests', WORKSPACE)).toBeNull();
   });
