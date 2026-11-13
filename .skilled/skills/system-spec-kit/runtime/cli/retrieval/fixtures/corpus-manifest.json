@@ -1,5 +1,5 @@
 {
-  "corpusHash": "b13687aa606aae0c91eec220cf283e55081a117d5851f5d2d7b9e6ef50231bf8",
+  "corpusHash": "9dd0662992a93271e7a973fc7eb1931665c331e6b869f42a2a28a343d6c68f6d",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26365,
+  "includedPathCount": 26369,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -25625,6 +25625,10 @@
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/021-test-db-temp-leak/plan.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/021-test-db-temp-leak/spec.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/021-test-db-temp-leak/tasks.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/022-ci-sparse-loop-state/implementation-summary.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/022-ci-sparse-loop-state/plan.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/022-ci-sparse-loop-state/spec.md",
+    "specs/system-speckit/runtime-and-release/006-test-cycle-speed/022-ci-sparse-loop-state/tasks.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/decision-record.md",
     "specs/system-speckit/runtime-and-release/006-test-cycle-speed/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/001-goal-parent-single-limit/implementation-summary.md",
@@ -26397,7 +26401,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e8d73431edaaca6b8fd6323fb6635145f2d80135bfd3216aa261f3c77ac91f09",
+  "manifestHash": "bc2ba76f1c250e3ca260fec28a27a77091b455309c0ba81226e86d94d5bfe1b3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -36817,6 +36821,10 @@
     },
     {
       "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/021-test-db-temp-leak/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/runtime-and-release/006-test-cycle-speed/022-ci-sparse-loop-state/scratch",
       "reason": "excluded directory"
     },
     {

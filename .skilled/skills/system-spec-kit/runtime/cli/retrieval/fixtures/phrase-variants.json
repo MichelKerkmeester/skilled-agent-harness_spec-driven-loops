@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e8d73431edaaca6b8fd6323fb6635145f2d80135bfd3216aa261f3c77ac91f09",
+  "manifestHash": "bc2ba76f1c250e3ca260fec28a27a77091b455309c0ba81226e86d94d5bfe1b3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -19410,6 +19410,18 @@
     ],
     "ci shared package resolution": [
       "ci shared package resolution"
+    ],
+    "ci sparse loop state": [
+      "ci sparse loop state"
+    ],
+    "ci sparse loop state implementation summary": [
+      "ci sparse loop state implementation summary"
+    ],
+    "ci sparse loop state plan": [
+      "ci sparse loop state plan"
+    ],
+    "ci sparse loop state tasks": [
+      "ci sparse loop state tasks"
     ],
     "ci surface detection plan": [
       "ci surface detection plan"
@@ -80606,6 +80618,9 @@
     "phase 22 align system spec kit": [
       "phase 22 align system spec kit"
     ],
+    "phase 22 ci sparse loop state": [
+      "phase 22 ci sparse loop state"
+    ],
     "phase 22 collapse plan": [
       "phase 22 collapse plan"
     ],
@@ -112580,6 +112595,9 @@
     ],
     "spark trend with no axis": [
       "spark trend with no axis"
+    ],
+    "sparse checkout loop state folders": [
+      "sparse checkout loop state folders"
     ],
     "sparse checkout rollout": [
       "sparse checkout rollout"
