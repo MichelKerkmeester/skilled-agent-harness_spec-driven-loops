@@ -119,11 +119,12 @@ Make the suites faster one measured change at a time. Each change keeps every te
 | 14 | 014-dead-runner-and-step-cleanup/ | Remove the sharded runner nothing calls and one duplicated workflow step | Complete |
 | 15 | 015-hook-suite-job-split/ | Move the hook vitest suites into their own workflow | Complete: both workflows pass on the pull request |
 | 16 | 016-local-test-timing-profile/ | Time the three local test commands once each | Measured: 914 s, 211 s and 527 s |
-| 17 | 017-specs-artifact-tracking-decision/ | Measure the tracked research and scratch files and write the options | Measured: 88,151 files, decision is the operator's |
+| 17 | 017-specs-artifact-tracking-decision/ | Measure the tracked research and scratch files and write the options | Measured: 88,151 files. The operator chose none of the three options and asked for a sparse checkout in CI only, built in phase 22 |
 | 18 | 018-cli-vitest-shards/ | Run the CLI vitest job as three shards | Complete: shards at 170, 213 and 277 s against 384 to 627 s for the one job |
 | 19 | 019-local-test-speedups/ | Cut local spec-kit and deep-loop test time without removing a test | Complete: spec-kit 667 s to 256 s and deep-loop 497 s to 225 s locally. The runner's deep-loop step is unchanged at about 350 s |
 | 20 | 020-test-speed-followups/ | Retry a failed install, fix two racy test deadlines and stop five test files leaving temp folders | Complete: pull request 101 passed 39 checks with the hook deadline suite blocking again. The retry is proven against a stand-in npm only |
 | 21 | 021-test-db-temp-leak/ | Trace and fix the test database folders each spec-kit lane left behind | Complete: a full run leaves 0 new scratch folders and pull request 102 passed 37 checks after one rerun |
+| 22 | 022-ci-sparse-loop-state/ | Skip the research, review, scratch and archive folders in the checkout of seven workflows | Complete: checkout about 57 s down to about 33 s in seven workflows with equal test counts. Spec-Kit Check, deep-loop and sk-doc keep the full checkout |
 
 ### Phase Transition Rules
 
@@ -155,6 +156,7 @@ Make the suites faster one measured change at a time. Each change keeps every te
 | 018-cli-vitest-shards | 019-local-test-speedups | Independent; phase 19 targets local runs, which the CI phases did not change | The earlier phase is on main |
 | 019-local-test-speedups | 020-test-speed-followups | Independent; phase 20 closes three follow-ups that phases 13 and 19 recorded | The earlier phase is on main |
 | 020-test-speed-followups | 021-test-db-temp-leak | Independent; phase 21 traces the one leak phase 20 left open | The earlier phase is on main |
+| 021-test-db-temp-leak | 022-ci-sparse-loop-state | Independent; phase 22 builds the operator's answer to phase 17 | The earlier phase is on main |
 <!-- /ANCHOR:phase-map -->
 
 ---

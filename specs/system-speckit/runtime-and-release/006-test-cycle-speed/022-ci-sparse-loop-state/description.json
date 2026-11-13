@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/runtime-and-release/006-test-cycle-speed/022-ci-sparse-loop-state",
+  "description": "Phase 22: ci-sparse-loop-state",
+  "keywords": [
+    "phase",
+    "ci-sparse-loop-state"
+  ],
+  "lastUpdated": "2026-11-13T05:02:58.646Z",
+  "specId": "022",
+  "folderSlug": "ci-sparse-loop-state",
+  "parentChain": [
+    "system-speckit",
+    "runtime-and-release",
+    "006-test-cycle-speed"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "13-11-26_06-02__ci-sparse-loop-state-phase-of-the-test-cycle.md"
+  ]
+}
