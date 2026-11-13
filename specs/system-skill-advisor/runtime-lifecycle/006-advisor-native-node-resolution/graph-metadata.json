@@ -49,8 +49,7 @@
       ".skilled/bin/system-skill-advisor-launcher.cjs",
       ".opencode/plugins/system-skill-advisor.js",
       "runtime/package.json",
-      "specs/system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution/scratch/baseline.txt",
-      ".skilled/skills/system-skill-advisor/runtime/node_modules/.advisor-node"
+      "specs/system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution/scratch/baseline.txt"
     ],
     "entities": [
       {
@@ -126,12 +125,6 @@
         "source": "derived"
       },
       {
-        "name": ".advisor-node",
-        "kind": "file",
-        "path": ".skilled/skills/system-skill-advisor/runtime/node_modules/.advisor-node",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`.skilled/bin/skill-advisor.cjs` spawns the advisor CLI with `process.execPath`, and the CLI and the launcher pass that Node on to the daemon",
     "created_at": "2026-11-13T16:02:55Z",
-    "last_save_at": "2026-11-13T16:58:57.829Z",
+    "last_save_at": "2026-11-13T18:11:46.521Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +209,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:46248b285003df347ff947534b0502816417cecbfb1c5ca4585921bbe5f61f1d",
+    "source_fingerprint": "sha256:1eeefbad14f1029abaca16ece21e3ef293d503b28dcd099c467cddcdd2fe1b89",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "92255736f0c9b58aa552608e30af9a1660e7ae9b9f553975c9c7af1e71b8797b",
       "plan.md": "47028a57f20387dc26f4ea6fa666c01959d21399eece5ae8af138fe252f8d0a4",
       "tasks.md": "f17548e68a70b6f2a8a6e6121b5329e1040a091ccbbe7e41a72144bd04278405",
-      "decision-record.md": "3551c1ab7dcd1b6dfd44db9005858f6bebe8e7ed55d5502f7133c230b0180ddc",
-      "implementation-summary.md": "ae6d003460687246df66820133aa5c9cb49805810090be923f224376bc59a332"
+      "decision-record.md": "d9f8752275509dd5ae9c52f3966d119f3b12c4633c9831fb9dcb327bc37e0cfd",
+      "implementation-summary.md": "fe8c7c427d695921023188b8d7f6ff5bf5679b4c61a03660525d4746b834e59d"
     },
     "last_active_at": null
   }

@@ -35,6 +35,7 @@ _memory:
 | ID | Decided | Why | Supersedes | Carried by |
 |----|---------|-----|------------|------------|
 | Q001 | Cap a bundle at four modes in the three registry compilers and add a test that bounds the rule count, instead of replacing the rule list with a closed-form rule. | Not stated. | None | REQ-001, REQ-003, plan.md |
+| Q002 | Commit one commit per packet, merge into main, rerun the suites there and push to origin; the worktree was then removed. | Not stated. | None | implementation-summary.md, how-delivered |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -62,6 +63,27 @@ Cap now, on demand later
 Answer:
 ```text
 Cap the subset size (Recommended)
+```
+
+### Q002
+<!-- source: claude:af01c830-4ea5-4abe-b6ed-dd0c4d9b1b45:toolu_016bSmkoBstUvW6nkxAUaAer:0 -->
+
+Question:
+```text
+Both fixes (the cap on mode subsets and the advisor Node record) are built and verified in worktree 367, with 28 changed paths uncommitted. What should happen to them?
+```
+
+Options:
+```text
+Commit, merge, push (Recommended)
+Commit and merge locally
+Commit only
+Leave uncommitted
+```
+
+Answer:
+```text
+Commit, merge, push (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

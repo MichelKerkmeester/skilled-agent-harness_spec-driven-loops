@@ -192,7 +192,7 @@
     ],
     "causal_summary": "A prompt that opens with show, list, explain or compare is a read-only explainer, and the advisor holds every skill at its floor on such a prompt unless `readOnlyRouteAllowed` lifts one",
     "created_at": "2026-11-13T10:38:28Z",
-    "last_save_at": "2026-11-13T16:11:22.794Z",
+    "last_save_at": "2026-11-13T18:11:49.444Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +202,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fddd82906515b0115bc9f6c6f7aeca05933398bdd3b8ab518026d0a793c54793",
+    "source_fingerprint": "sha256:d13023d455daadb96811c70f95fe5f0cf1f73f5277be3c1a18ab5bd7df7c9ed0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6f50882f348d7ad4c50300a365312064b3568b9c76c9d085552918e72a9f05e7",
       "plan.md": "b5fd2e3d829811ec675f0c2be2a8e2bb05c1db591e5416d1b88d676f9724eac6",
       "tasks.md": "72117c16b7fa25ef591eb32cdeeae57a81246b6e838b23d951c3adcfdbcf83b0",
       "decision-record.md": "0a5fa8673e2047d3f88658a8eac5349f5f1006afd105b1d697893b9b4a2f5210",
-      "implementation-summary.md": "d6e9323b89530e9dda1db089e816574f13bfcbc3dea6a95240e79c8731465bc9"
+      "implementation-summary.md": "d74b474897dc84b9ae9cb87cf055eb018abbe9aa5b397716eb9e835d8256cece"
     },
     "last_active_at": null
   }

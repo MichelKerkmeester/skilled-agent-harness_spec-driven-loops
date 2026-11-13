@@ -8,7 +8,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/routing-and-scoring/009-git-history-lift"
-    last_updated_at: "2026-11-13T16:11:22Z"
+    last_updated_at: "2026-11-13T18:11:49Z"
     last_updated_by: "generate-context"
     recent_action: "Committed f151885f41, merged to main and pushed; recorded operator decisions"
     next_safe_action: "Verify Barter child 016 against the narrower lift before it adopts it"
@@ -17,14 +17,14 @@ _memory:
       - ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts"
       - ".skilled/skills/system-skill-advisor/runtime/tests/scorer/route-gates.vitest.ts"
     session_dedup:
-      fingerprint: "sha256:fc06972002f9ba38fd82a516afa2331a20c35f58da6561e420fd09d1b23d562d"
+      fingerprint: "sha256:370c772ef74b1c0df914ac9d2d82f883b145bb13b3f9be7f261f05332b694ef5"
       session_id: "scaffold-009-git-history-lift"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "af01c830-4ea5-4abe-b6ed-dd0c4d9b1b45"
-      workspace: "/Users/michelkerkmeester/worktrees/public/367-advisor-route-growth-and-node-plans"
-      savedAt: "2026-11-13T16:11:22Z"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-13T18:11:49Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

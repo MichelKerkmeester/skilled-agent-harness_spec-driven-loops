@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The registry compilers of sk-code, mcp-tooling and sk-design emit one composition rule for every subset of two or more modes in the hub's tie-break order",
     "created_at": "2026-11-13T16:02:54Z",
-    "last_save_at": "2026-11-13T16:55:52.806Z",
+    "last_save_at": "2026-11-13T18:11:43.023Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +205,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a42cf153d8d904de498d9f7c4a9f4ea043eb3b8992355267c14a0ca19dc0f7f5",
+    "source_fingerprint": "sha256:9eb6dda077130f1766ffbcf573c57e4ccad82d276e2c626c77fec75182abf3f8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b2b8d92e4ac3eef6420470a84fbb84bf56fcbf6ecec26bcbb0a8b273d19ae1e6",
       "plan.md": "8cb0ec75ef88f43a025046f77a350ed6831103ccb3f3bf96d4228abd9f136b90",
       "tasks.md": "52c9860e39d870f5ff1b9c44d34da7eebbfe04fa9d3d9820106a96a3a755a704",
-      "decision-record.md": "ab75dd61e52e4a743fb4efdfcfc0180145679441230a49c91e0f76c28d94edd2",
-      "implementation-summary.md": "1bacee51de951cccc94774eaee0b2f250e2178aadf022f3499421494a5b7bca9"
+      "decision-record.md": "fbf11d88c2a8fb31c7b387728ec03e5f18afa84c64d754dc1a98fee4cb49bdee",
+      "implementation-summary.md": "e86f8a608708036d1ee0897414a319bae1a179564f2f4213a38725ffea5f77ec"
     },
     "last_active_at": null
   }

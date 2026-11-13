@@ -18,16 +18,17 @@
     "gains",
     "modes"
   ],
-  "lastUpdated": "2026-11-13T16:55:52.806Z",
+  "lastUpdated": "2026-11-13T18:11:43.023Z",
   "specId": "006",
   "folderSlug": "compiled-route-rule-growth",
   "parentChain": [
     "sk-doc",
     "hub-routing-and-surfaces"
   ],
-  "memorySequence": 2,
+  "memorySequence": 3,
   "memoryNameHistory": [
     "13-11-26_17-11__planned-a-cap-of-four-modes-per-bundle-in-the-sk.md",
-    "13-11-26_17-55__built-the-cap-of-four-modes-per-bundle-in-three.md"
+    "13-11-26_17-55__built-the-cap-of-four-modes-per-bundle-in-three.md",
+    "13-11-26_19-11__the-cap-landed-on-origin-main-as-9224c7b291-this.md"
   ]
 }

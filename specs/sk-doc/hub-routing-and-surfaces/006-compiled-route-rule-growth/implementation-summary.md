@@ -8,23 +8,23 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth"
-    last_updated_at: "2026-11-13T16:55:52Z"
+    last_updated_at: "2026-11-13T18:11:43Z"
     last_updated_by: "generate-context"
-    recent_action: "Built and verified the mode-subset cap in worktree 367, uncommitted"
-    next_safe_action: "Review the diff in worktree 367 and commit it"
+    recent_action: "Committed, merged to main and pushed; recorded operator decisions"
+    next_safe_action: "Verify Barter re-pins and drops its overlay for this fix"
     blockers: []
     key_files:
       - ".skilled/bin/tests/compiled-route-rule-bound.test.cjs"
       - ".skilled/bin/compiled-route-sync.cjs"
     session_dedup:
-      fingerprint: "sha256:9f9277adc8a846f244fcea7a9b82808cca05eecec3d337f03734bb34c908cb8b"
+      fingerprint: "sha256:fae4f31fb68856b4e81e0a06b42ef72d34f180bb8692686cbe49e61553004e8d"
       session_id: "scaffold-006-compiled-route-rule-growth"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "af01c830-4ea5-4abe-b6ed-dd0c4d9b1b45"
-      workspace: "/Users/michelkerkmeester/worktrees/public/367-advisor-route-growth-and-node-plans"
-      savedAt: "2026-11-13T16:55:52Z"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-13T18:11:43Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

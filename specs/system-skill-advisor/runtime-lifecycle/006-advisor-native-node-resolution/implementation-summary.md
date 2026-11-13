@@ -8,24 +8,24 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-skill-advisor/runtime-lifecycle/006-advisor-native-node-resolution"
-    last_updated_at: "2026-11-13T16:58:57Z"
+    last_updated_at: "2026-11-13T18:11:46Z"
     last_updated_by: "generate-context"
-    recent_action: "Built and verified the advisor Node record in worktree 367, uncommitted"
-    next_safe_action: "Review the diff in worktree 367 and commit it"
+    recent_action: "Committed, merged to main and pushed; recorded operator decisions"
+    next_safe_action: "Verify Barter re-pins and drops its overlay for this fix"
     blockers: []
     key_files:
       - ".skilled/bin/skill-advisor.cjs"
       - ".skilled/skills/system-skill-advisor/runtime/package.json"
       - ".skilled/bin/tests/skill-advisor-node.test.cjs"
     session_dedup:
-      fingerprint: "sha256:5b195b41c43e84c7120468adc87c8524cc27e51475c35d8fecba7c361007b7a4"
+      fingerprint: "sha256:6abed960891d368d628b4e3360ae9f5567053e473f25d71025edb4540d842d0c"
       session_id: "scaffold-006-advisor-native-node-resolution"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "af01c830-4ea5-4abe-b6ed-dd0c4d9b1b45"
-      workspace: "/Users/michelkerkmeester/worktrees/public/367-advisor-route-growth-and-node-plans"
-      savedAt: "2026-11-13T16:58:57Z"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-13T18:11:46Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

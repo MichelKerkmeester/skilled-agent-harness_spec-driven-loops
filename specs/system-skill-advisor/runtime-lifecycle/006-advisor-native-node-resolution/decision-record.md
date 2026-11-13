@@ -36,6 +36,8 @@ _memory:
 |----|---------|-----|------------|------------|
 | Q001 | Plan two Skilled packets from Barter's handover, this one and sk-doc/hub-routing-and-surfaces/006-compiled-route-rule-growth, and stop before building. | Not stated. | None | spec.md, plan.md |
 | Q002 | Run the plan workflow autonomously with a single agent, no goal file and the fix_bug intent for both packets. | Not stated. | None | plan.md |
+| Q003 | Build both packets in worktree 367 from the literal plan text and stop before committing; the operator then named DeepSeek Flash at max as the executor. | Not stated. | None | implementation-summary.md, how-delivered |
+| Q004 | Run the save on main so the answers of this session are recorded and marked consumed. | Not stated. | None | decision-record.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -83,6 +85,46 @@ Interactive
 Answer:
 ```text
 Same as last time (Recommended)
+```
+
+### Q003
+<!-- source: claude:af01c830-4ea5-4abe-b6ed-dd0c4d9b1b45:toolu_01NfMEJgz8oD1fTB7SeCJ9pi:0 -->
+
+Question:
+```text
+Both Skilled plan packets (the mode-subset cap and the advisor Node record) are written in worktree 367 and pass strict validation, uncommitted. What should happen next?
+```
+
+Options:
+```text
+Implement both (Recommended)
+Commit the plans only
+Stop here
+```
+
+Answer:
+```text
+Implement both (Recommended)
+```
+
+### Q004
+<!-- source: claude:af01c830-4ea5-4abe-b6ed-dd0c4d9b1b45:toolu_0137PjQirssmBFkvBNANtQ2B:0 -->
+
+Question:
+```text
+Both Skilled fixes are pushed to origin/main (cap at four modes: 9224c7b291, advisor Node record: cbfe4b0d23) and worktree 367 is removed. Six answers from this session still show as pending in main's decision queue, four of which are already written in the packets. What should I do last?
+```
+
+Options:
+```text
+Clear the queue (Recommended)
+Clear queue and brief Barter
+Stop here
+```
+
+Answer:
+```text
+Clear the queue (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
