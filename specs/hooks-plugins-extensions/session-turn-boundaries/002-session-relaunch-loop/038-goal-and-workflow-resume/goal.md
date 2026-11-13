@@ -119,6 +119,7 @@ and findings belong here.
 | Live goal hops on Claude Code 2.1.323 | Done | 2026-11-13, playbook GR-1 to GR-3 in a throwaway checkout: goal hop passed (receiver goal_status 3990 chars, goal-start-claim, note done), both controls left the receiver with no goal, suites 573 of 573. The harness ping withdraws an armed hand-over, so it was dropped. Evidence in scratch/live-hops-claude-2026-11-13 |
 | Receiver claim under a carried goal | Open | 2026-11-13: five goal hops with the fixed harness all relaunched and all started the receiver on the goal, but the receiver claimed the note in only two (runs 2 and 9) and replied PONG until the goal paused in three (6, 7, 8). The demo goal forbids other work, so a real goal is untested |
 | Deep research on hand-over gaps | Done | 2026-11-13: three iterations on the native deep-research agent with Opus at medium, after two guards refused Fable 5.2. Every gap in the report is confirmed in code and fourteen changes are ranked in research/research.md section 9. Nothing was run live |
+| Background worker across a hop | Done | 2026-11-13, live: a Claude sender started a node worker with an ampersand and ran prepare itself. Prepare exited 0 with the worker alive, the killer ended the sender 9 s later, and the worker ran on with parent pid 1 for 37 s more until the harness killed it. Evidence in scratch/live-hops-claude-2026-11-13/10-background-worker-orphaned |
 
 ### Deviations and findings
 

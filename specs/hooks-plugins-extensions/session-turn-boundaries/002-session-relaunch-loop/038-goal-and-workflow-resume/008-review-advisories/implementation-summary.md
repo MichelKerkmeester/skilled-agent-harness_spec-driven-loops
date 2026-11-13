@@ -8,23 +8,23 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/008-review-advisories"
-    last_updated_at: "2026-11-13T08:31:34Z"
+    last_updated_at: "2026-11-13T08:36:01Z"
     last_updated_by: "generate-context"
-    recent_action: "Ran three deep-research iterations on the hand-over gap report"
-    next_safe_action: "Run a live hop with a background CLI worker to observe the orphan claim"
+    recent_action: "Confirmed live that a background worker outlives a hop as an orphan"
+    next_safe_action: "Plan a child packet for the ranked hand-over changes"
     blockers: []
     key_files:
       - "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/goal.md"
       - "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/008-review-advisories/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:68170b9a8aa5f848003ae82a9f287bc0833cd37cea3366359eefd44b323e0c7a"
+      fingerprint: "sha256:40164b9baed751e01635e2761fcd69c5c4b1a798288d27702b5c91b6701c7b34"
       session_id: "scaffold-008-review-advisories"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "74f9de05-0121-41a0-9099-52709127e249"
       workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
-      savedAt: "2026-11-13T08:31:34Z"
+      savedAt: "2026-11-13T08:36:01Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

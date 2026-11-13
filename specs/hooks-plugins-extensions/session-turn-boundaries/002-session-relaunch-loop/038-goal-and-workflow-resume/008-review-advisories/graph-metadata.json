@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The Claude start claim can report `PostToolUse` when a startup payload carries no `hookeventname`",
     "created_at": "2026-11-13T05:02:29Z",
-    "last_save_at": "2026-11-13T08:31:34.414Z",
+    "last_save_at": "2026-11-13T08:36:01.317Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,14 +218,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8d1be9e4a29448a6118cb575953c21322f9d21e2167e18df848595f224eda4cb",
+    "source_fingerprint": "sha256:0bf16bb43dc04d6f6e6f49d8db1348ddea93b29c28bb39652ab62cd917c6f9ca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a17d5e86ff582c730a1269d0d23803670f380c57473ad69c7d257f0711757ede",
       "plan.md": "5eac14abc8cc110cd2036f2f8d744ac66133cecb183b9ec963a2705aaae8f357",
       "tasks.md": "3f5505683a53f074a5ac167eed016c92d5f4628ef8bad33609cacd3792e25b24",
       "decision-record.md": "31a97556863f7203b16003f45239b63a0fe849d4efb0f0ef38d6d755028ed762",
-      "implementation-summary.md": "247a855b65d57d539fc7569c3bc697213ffcde98d2e82d7f176507059c2195d4"
+      "implementation-summary.md": "4ca98d14d445311ad44f4b656a7e44d46661491a122f2e2ec3f6107df53718e9"
     },
     "last_active_at": null
   }

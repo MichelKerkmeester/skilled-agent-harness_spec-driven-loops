@@ -1,0 +1,36 @@
+150c150
+< Run the shell command printenv SESSION_RELAUNCH_GOAL_PACKET and write its output into the file GOALENV.marker, or the single word EMPTY when it prints nothing. Then write the first line of any active goal block that appears in your context into the file GOALSEEN.marker, or the single word NONE when your context holds no goal block. Then reply with the single word PONG.
+---
+> Run this shell command: ps -p \$(cat WORKER.pid) -o pid=,ppid=,command= ; echo exit=\$?   Write its full output into the file RECEIVER.marker. Then reply with the single word PONG.
+154,164c154,158
+< ( cd "$sb" && env -u CLAUDECODE -u CLAUDE_CODE_SESSION_ID -u SKILLED_LOOP_MANUAL_TEMPLATE SYSTEM_SESSION_RELAUNCH_ENABLED=1 SKILLED_LOOP_RUNTIME="$runtime" SKILLED_LOOP_HOPS=0 SKILLED_LOOP_ID="$pane_pid" node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs prepare --handoff "$note" --session "$sender_id" --runtime "$runtime" ) > "$out/prepare.txt" 2>&1
+< log "prepare exit=$? ; $(head -c 300 "$out/prepare.txt")"
+< log "note goal_packet line: $(grep -E '^goal_packet' "$note" || echo '<none>')"
+< 
+< if [ "$runtime" = claude ] && [ -z "${NO_GOAL:-}" ]; then
+<   log "no ending prompt for a Claude sender with a goal; waiting for the receiver"
+< elif [ "$runtime" = claude ]; then
+<   say "ping"; log "sent the ending prompt; waiting for the receiver"
+< else
+<   say "Reply with the single word PONG again."; log "sent the ending prompt; waiting for the receiver"
+< fi
+---
+> worker_cmd="nohup node -e \"const fs=require('fs');setInterval(()=>fs.appendFileSync('worker.log',new Date().toISOString()+'\\n'),1000);setTimeout(()=>process.exit(0),240000)\" >/dev/null 2>&1 & echo \$! > WORKER.pid"
+> prepare_cmd="node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs prepare --handoff $note --session $sender_id --runtime claude > PREPARE.out 2>&1; echo \$? > PREPARE.exit"
+> printf '%s\n' "$worker_cmd" > "$out/worker-cmd.txt"; printf '%s\n' "$prepare_cmd" > "$out/prepare-cmd.txt"
+> say "Run exactly these two shell commands, each as its own Bash tool call, in this order, changing nothing. First: $worker_cmd   Second: $prepare_cmd   Then reply with the single word DONE and stop."
+> log "sent the worker and prepare prompt; waiting for the receiver"
+167c161
+<   if grep -qE '^status: (claimed|done)' "$note" && [ -f "$sb/GOALENV.marker" ]; then break; fi
+---
+>   if grep -qE '^status: (claimed|done)' "$note" && [ -f "$sb/RECEIVER.marker" ]; then break; fi
+172,173c166,171
+< log "GOALENV.marker: $(cat "$sb/GOALENV.marker" 2>/dev/null || echo '<absent>')"
+< log "GOALSEEN.marker: $(head -c 200 "$sb/GOALSEEN.marker" 2>/dev/null || echo '<absent>')"
+---
+> log "RECEIVER.marker: $(cat "$sb/RECEIVER.marker" 2>/dev/null || echo '<absent>')"
+> log "PREPARE.exit: $(cat "$sb/PREPARE.exit" 2>/dev/null || echo '<absent>') ; $(head -c 200 "$sb/PREPARE.out" 2>/dev/null)"
+> log "WORKER.pid: $(cat "$sb/WORKER.pid" 2>/dev/null || echo '<absent>')"
+> log "worker now: $(ps -p "$(cat "$sb/WORKER.pid" 2>/dev/null)" -o pid=,ppid=,command= 2>/dev/null | cut -c1-80 || true)"
+> log "worker.log lines: $(wc -l < "$sb/worker.log" 2>/dev/null | tr -d ' ') first: $(head -1 "$sb/worker.log" 2>/dev/null) last: $(tail -1 "$sb/worker.log" 2>/dev/null)"
+> cp "$sb/worker.log" "$out/worker.log" 2>/dev/null; kill "$(cat "$sb/WORKER.pid" 2>/dev/null)" 2>/dev/null

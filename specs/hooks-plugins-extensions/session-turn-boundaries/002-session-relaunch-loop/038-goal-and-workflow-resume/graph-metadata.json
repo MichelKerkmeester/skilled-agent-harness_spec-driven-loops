@@ -216,7 +216,7 @@
     ],
     "causal_summary": "A review of 2026-11-12, checked by a second reviewer, found that a session hop carries the goal on Claude Code, Pi and OpenCode but loses work around it",
     "created_at": "2026-11-12T22:42:00Z",
-    "last_save_at": "2026-11-13T08:31:34.466Z",
+    "last_save_at": "2026-11-13T08:36:01.556Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -224,13 +224,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:324ff6cc446d2ee6c4fd8a08e8eabe3222c666cae8b0ed07e49dc1e331089c99",
+    "source_fingerprint": "sha256:94066f1da916b45836af8260fef8e6282a3c396d780447a674bbd018f60c4d3f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "349964cb3ec95355ee404cd9abe4366cef2105295ef6191703d079c10c43cf6e",
       "research/research.md": "92204b9299358f635ddc43598d35626ede62378b316b456c7c5c352fddfb8e71"
     },
     "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/008-review-advisories",
-    "last_active_at": "2026-11-13T08:31:34.466Z"
+    "last_active_at": "2026-11-13T08:36:01.556Z"
   }
 }
