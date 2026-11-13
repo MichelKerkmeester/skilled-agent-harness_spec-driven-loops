@@ -1,0 +1,22 @@
+=== T007 green: node --test --test-name-pattern "stop-arm defers pending state" ===
+✔ stop-arm defers pending state when background tasks exist and logs the reason (129.8355ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 191.014375
+exit=0
+=== T008 green: node --test --test-name-pattern "stop-arm logs the cron count" ===
+✔ stop-arm logs the cron count of a session whose hop is armable (180.652792ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 239.834875
+exit=0

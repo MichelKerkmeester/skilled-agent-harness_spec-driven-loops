@@ -1,0 +1,44 @@
+Live checks for the Claude Stop notice and the cron carry.
+
+HOP (T001): observed live 2026-11-13, Claude Code 2.1.323, model claude-sonnet-5-5 (pinned by
+the harness), no goal. Throwaway checkout built by the 028 harness build-sandbox.sh, sender under
+skilled-loop in a private tmux server with a private XDG_RUNTIME_DIR, plus a temporary Stop hook
+that saved every Stop payload. Two runs. Run 1 hopped but its sender had no todo tool: this
+Claude version enables the todo tools for this model only when CLAUDE_CODE_ENABLE_TODO_TOOLS is
+true, and ToolSearch for TodoWrite, TaskCreate, TaskList and TaskUpdate found none. Run 2 changed
+that one thing (CLAUDE_CODE_ENABLE_TODO_TOOLS=1 for sender and receiver); the lines below are run 2.
+Commands that mattered:
+  sender: /loop 10m echo ping -> CronCreate "Session-only (not written to disk, dies when Claude exits)"
+  sender: CronList, written to SENDER-TASKS.marker; TaskCreate twice (alpha, beta), both pending
+  harness: session-relaunch.cjs prepare --handoff <note> --session <sender id> --runtime claude, then "ping"
+  relaunch.log: session-crons crons=1, killer-signal SIGTERM to the sender, relaunch reason=ready
+  receiver (fresh session id, note claimed then done): CronList and TaskList
+The cron line keeps the tool's text except that its em dash is written as a hyphen.
+  sender tasks: 10e66e71 - Every 10 minutes (recurring) [session-only], next run Nov 13 12:40pm: echo ping
+  receiver tasks: none (the receiver's CronList returned "No scheduled jobs.")
+  session_crons: [{"id":"10e66e71","schedule":"*/10 * * * *","recurring":true,"prompt":"echo ping"}]
+  todo list: not shown in the receiver; its TaskList returned "No tasks found"
+The sender's screen showed "2 tasks (0 done, 2 open)" before the hop. Both tasks stayed on disk
+under ~/.claude/tasks/<sender session id>/, keyed to the old session, so the receiver never saw
+them. The receiver's own Stop payload carried session_crons []. Run 1 gave the same cron result
+(sender 39820442, receiver "No scheduled jobs.", sender payload session_crons with that one entry).
+Claim "crons end with the session on a hop": confirmed. Claim "the todo list does not carry": confirmed.
+
+SYSTEM MESSAGE (T002): confirmed from Claude Code's hooks reference,
+https://code.claude.com/docs/en/hooks, fetched 2026-11-13.
+
+"To surface a message to the user on any platform, return `systemMessage` in JSON output."
+
+Universal JSON output fields table:
+"| `systemMessage` | none | Warning message shown to the user."
+
+Stop decision control table:
+"| `decision` | `\"block\"` prevents Claude from stopping. Omit to allow Claude to stop |"
+
+Stop input, on the payload fields this phase reads:
+"The `background_tasks` and `session_crons` arrays let hooks distinguish \"session is done\"
+from \"session is paused waiting for background work to wake it back up\"."
+Each session_crons entry carries `id`, `schedule`, `recurring` and `prompt`.
+
+So a Stop hook that prints {"systemMessage": "..."} on stdout and exits 0 shows the text
+to the operator and, because it carries no `decision` key, does not continue the turn.

@@ -36,7 +36,7 @@
       "acceptance"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -45,8 +45,11 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
-      ".skilled/hooks/session-relaunch/codex/stop-arm.mjs",
-      ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"
+      ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+      "scratch/live-crons.txt",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      ".skilled/hooks/session-relaunch/codex/stop-arm.mjs"
     ],
     "entities": [
       {
@@ -95,6 +98,24 @@
         "name": "claude-adapters.test.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "live-crons.txt",
+        "kind": "file",
+        "path": "scratch/live-crons.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
         "source": "derived"
       },
       {
@@ -174,29 +195,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Use Claude Code",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "When background tasks run at Stop, `armPendingRecord` logs `deferred-background-tasks`, marks the record and returns null with no output (`.skilled/hooks/session-relaunch/claude/stop-arm.mjs:119-135`), and `main` then exits with nothing printed (`stop-arm.mjs:179-180`)",
     "created_at": "2026-11-13T08:49:36Z",
-    "last_save_at": "2026-11-13T09:08:26.684Z",
+    "last_save_at": "2026-11-13T11:38:23.717Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51c3d270135441311c69b5e270e7540cf3a0cf8ebc8b623f14442380b92bbb26",
+    "source_fingerprint": "sha256:a86f997e7feefed025c95f453413e12e3dce0e79e92c4e9e57d433c01f0771cf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a2d07e35801608578a51b640e43e07c8b653bb7d3d5ff49a9a0943d98bf3a33a",
+      "spec.md": "9cc995b319efe522b941e120bfac8c67b13b7412133d1ae431fffeeefac1dd0d",
       "plan.md": "ec493d63308ab119bfa36a670b21f9d8159d361c46651608383d482b91568e57",
-      "tasks.md": "546e2e68089b90ce325d87b67231c01c4b6222541eb69401a54a869ad7823dce",
-      "implementation-summary.md": "2018803ba56620b1fe42945a5ad8faa380d478cf38b468beffe478ae501d0497"
+      "tasks.md": "357d0460bd0e47060b531bcec0e8fbfca5f6b876455552b5a1f53885d635a114",
+      "implementation-summary.md": "f0471121a05cc7252d732a9a0dec3bb705c05e56b67ee73a0cc5569e6fb4779b"
     },
     "last_active_at": null
   }

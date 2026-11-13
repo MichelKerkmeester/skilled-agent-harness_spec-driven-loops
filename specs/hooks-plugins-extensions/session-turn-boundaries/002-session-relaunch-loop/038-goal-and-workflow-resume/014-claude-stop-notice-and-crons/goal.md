@@ -8,17 +8,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/014-claude-stop-notice-and-crons"
-    last_updated_at: "2026-11-13T12:00:00Z"
-    last_updated_by: "planner"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Run T001, the live cron check, once the operator gives the go-ahead"
+    last_updated_at: "2026-11-13T15:30:00Z"
+    last_updated_by: "builder"
+    recent_action: "Built the deferral notice and the cron count log; tests, suite and validation pass"
+    next_safe_action: "None, the phase is complete"
     blockers: []
-    key_files: []
+    key_files: [".skilled/hooks/session-relaunch/claude/stop-arm.mjs", ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-014-claude-stop-notice-and-crons"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,8 +56,8 @@ Frozen choices. Changing one is an amendment. Parent decisions bind here. The ch
 ## 3. COMPLETION CRITERIA
 
 - [ ] `scratch/live-crons.txt` shows one task in the sender's list, none in the receiver's, the saved `session_crons` entry and the `systemMessage` source.
-- [ ] `env -u AI_SESSION_CHILD node --test --test-name-pattern 'stop-arm defers pending state|stop-arm logs the cron count' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs` exits 0 with `fail 0`, and `scratch/red.txt` holds both earlier failing runs.
-- [ ] `env -u AI_SESSION_CHILD node --test .skilled/hooks/session-relaunch/tests/*.test.cjs` exits 0 with `fail 0`.
+- [x] `env -u AI_SESSION_CHILD node --test --test-name-pattern 'stop-arm defers pending state|stop-arm logs the cron count' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs` exits 0 with `fail 0`, and `scratch/red.txt` holds both earlier failing runs.
+- [x] `env -u AI_SESSION_CHILD node --test .skilled/hooks/session-relaunch/tests/*.test.cjs` exits 0 with `fail 0`.
 - [ ] `validate.sh 014-claude-stop-notice-and-crons --strict` prints `RESULT: PASSED` and every row in `acceptance-criteria.md` is Met.
 <!-- /ANCHOR:completion -->
 
@@ -75,12 +75,21 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Planning | Done | 2026-11-13: spec, plan, tasks, criteria and goal written from research section 9 ranks 4 and 8 and section 7 item 2. Every criterion Unmet |
-| Build | Pending | Waits for phase 011 and the operator's go-ahead |
+| Build | Done | 2026-11-13: T002 to T012 built by DeepSeek V4.1 Flash max. T001 was run live after the build and confirmed both claims |
+| Baseline | Done | T004: `env -u AI_SESSION_CHILD node --test .skilled/hooks/session-relaunch/tests/*.test.cjs` printed tests 914, pass 914, fail 0 |
+| Test-first red | Done | `scratch/red.txt`: T005 exit 1 on the empty stdout; T006 exit 1 because no `relaunch.log` existed |
+| Tests after edit | Done | `scratch/green.txt`: T007 and T008 exit 0 with fail 0. Guard tests 3 pass. Whole suite at T010: tests 915, pass 915, fail 0. Final-state rerun after a concurrent builder added six tests: tests 921, pass 921, fail 0 |
+| Validation | Done | `validate.sh ... --strict` printed `RESULT: PASSED` after the build and again after the doc edits |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
+| T001 run after the build | The builder could not start a live Claude session, so the orchestrator had an Opus sub-agent run the hop in a throwaway checkout after the build. Two runs: the first had no todo tool, because Claude Code 2.1.323 enables it for this model only with `CLAUDE_CODE_ENABLE_TODO_TOOLS=1`. Both claims are confirmed: crons end with the session and the todo list does not carry |
+| Build order | `tasks.md:100` says a `[B]` on T001 blocks every implementation task. The dispatch told this build to mark T001 `[B]` and build anyway, so it did. T002 was confirmed from the vendor documentation, not marked `[B]` |
 | Cron claim source | Research section 5 marks it CONFIRMED from Claude's scheduled-tasks page only. T001 observes it live before any edit |
 | Existing test contract | `claude-adapters.test.cjs:653` asserts an empty stdout on deferral. T005 replaces that assertion, which is a planned contract change, not a regression |
+| T011 diff scope | `git diff --name-only` also listed `012-session-name-carry/goal.md`, which a concurrent builder owns. This build wrote only the adapter, the test file and this phase's `scratch/` |
+| Producer inventory | `plan.md:83` says the same-class search printed the fixture line only. It also matched one prose sentence at `README.md:51`; no other code producer existed |
+| Consumer inventory | `tasks.md:142` listed `claude-adapters.test.cjs` as importing `armPendingRecord`. It spawns the adapter by path; only `adapter-conformance.test.cjs` imports the function |
 <!-- /ANCHOR:log -->
