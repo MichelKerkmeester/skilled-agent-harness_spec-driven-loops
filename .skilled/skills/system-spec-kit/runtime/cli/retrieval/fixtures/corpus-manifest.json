@@ -1,5 +1,5 @@
 {
-  "corpusHash": "018c2a382337c30e5afeeaabce0e81de1913e4a549461623c45c497f10a2d720",
+  "corpusHash": "a12c450604b6c62b03dcc6af356e2343429bb5458e4e756efad660ba12a681d5",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26557,7 +26557,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "5788d931d2109bcdc9c059e329cb850b94a77437b698e6f0d78f582f07de5cf4",
+  "manifestHash": "7c0f42577e9e2cc30196547a419ab1f820e44b86d19ece72c70cf0b8f3a847d5",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29997,6 +29997,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/z_archive",
       "reason": "excluded directory"
     },
     {
