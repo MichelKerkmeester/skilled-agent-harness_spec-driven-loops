@@ -59,6 +59,7 @@ const HANDOVER_GOAL_RUNTIMES = Object.freeze(['devin', 'cursor']);
 // session costs the same as a short one.
 const GOAL_LOG_TAIL_BYTES = 262144;
 const GOAL_LOG_MAX_TAIL_BYTES = 16 * 1024 * 1024;
+const OPEN_CRITERION_PATTERN = /^[ \t]*-[ \t]+\[ \][ \t]+\S/m;
 const GOAL_LOG_PACKET_PATTERN = /specs\/(?:[A-Za-z0-9._-]+\/)+\d{3}-[a-z0-9]+(?:-[a-z0-9]+)*/g;
 const GOAL_LOG_MAX_CANDIDATES = 8;
 // A headline search walks the packet tree, so folders that hold fixtures, history and
@@ -565,7 +566,9 @@ function goalLogEntry(entry) {
 }
 
 // The newest goal entry of one Claude session log, widening the tail while the read starts
-// mid-file and holds none. Null when the log has none.
+// mid-file and holds none. `latest` is null when the part that was read has none, and
+// `whole` says whether that part was the entire log, since only then is "none" a fact
+// about the session and not about the tail cap.
 function latestGoalLogEntry(logPath) {
   let byteCount = GOAL_LOG_TAIL_BYTES;
   for (;;) {
@@ -584,13 +587,35 @@ function latestGoalLogEntry(logPath) {
       }
       latest = goalLogEntry(entry) ?? latest;
     }
-    if (latest !== null || tail.whole || byteCount >= GOAL_LOG_MAX_TAIL_BYTES) return latest;
+    if (latest !== null || tail.whole || byteCount >= GOAL_LOG_MAX_TAIL_BYTES) {
+      return { latest, whole: tail.whole };
+    }
     byteCount = Math.min(byteCount * 4, GOAL_LOG_MAX_TAIL_BYTES);
   }
 }
 
 // Session logs sit under a per-project folder named from the working directory, which the
 // CLI cannot rebuild exactly, so the folders are searched for the session's own log.
+// A packet goal a Claude receiver can be started on: its slice is within the budget, which a
+// leaf phase goal never is because it binds through its parent, and a completion criterion
+// is still unticked. The log below the durable part holds notes, where an unticked box is
+// not a criterion.
+function packetGoalIsSettable(candidate, roots) {
+  const { readPacketGoal } = require('../../goal/lib/goal-slice.cjs');
+  for (const root of roots) {
+    try {
+      const goal = readPacketGoal(root, candidate);
+      if (goal !== null && goal.budgetState === 'ok'
+        && OPEN_CRITERION_PATTERN.test(goal.durableSlice)) {
+        return true;
+      }
+    } catch {
+      // The next root may hold the file.
+    }
+  }
+  return false;
+}
+
 function claudeSessionLogPath(sessionId, env) {
   if (!/^[A-Za-z0-9._-]+$/.test(sessionId)) return null;
   const configDirectory = env?.CLAUDE_CONFIG_DIR || path.join(os.homedir(), '.claude');
@@ -615,12 +640,24 @@ function claudeGoalPacketResult({ sessionId, specFolder, roots, env }) {
   // leaves the goal unproven.
   if (logPath === null) return none;
   let latest;
+  let whole;
   try {
-    latest = latestGoalLogEntry(logPath);
+    ({ latest, whole } = latestGoalLogEntry(logPath));
   } catch {
     return none;
   }
-  if (latest === null || !latest.active) return none;
+  // A session that never had a goal set leaves the receiver waiting for the operator to type
+  // one. The packet the note names already states what the work is for, so the nearest
+  // unfinished goal the receiver can be started on is carried instead. A log read only in part cannot rule out a goal that
+  // ended earlier, and a finished goal.md would only make the receiver prove it again.
+  if (latest === null) {
+    if (!whole) return none;
+    return {
+      packet: firstUsablePacket(lineage, roots, (candidate) => packetGoalIsSettable(candidate, roots)),
+      reason: '',
+    };
+  }
+  if (!latest.active) return none;
   const headline = latest.condition.split(/\r?\n/).find((line) => line.trim() !== '') ?? '';
   // An active goal with no text cannot name a packet, and calling the packet missing would
   // send the receiver looking for one the goal never chose.
