@@ -594,8 +594,6 @@ function latestGoalLogEntry(logPath) {
   }
 }
 
-// Session logs sit under a per-project folder named from the working directory, which the
-// CLI cannot rebuild exactly, so the folders are searched for the session's own log.
 // A packet goal a Claude receiver can be started on: its slice is within the budget, which a
 // leaf phase goal never is because it binds through its parent, and a completion criterion
 // is still unticked. The log below the durable part holds notes, where an unticked box is
@@ -616,6 +614,8 @@ function packetGoalIsSettable(candidate, roots) {
   return false;
 }
 
+// Session logs sit under a per-project folder named from the working directory, which the
+// CLI cannot rebuild exactly, so the folders are searched for the session's own log.
 function claudeSessionLogPath(sessionId, env) {
   if (!/^[A-Za-z0-9._-]+$/.test(sessionId)) return null;
   const configDirectory = env?.CLAUDE_CONFIG_DIR || path.join(os.homedir(), '.claude');
