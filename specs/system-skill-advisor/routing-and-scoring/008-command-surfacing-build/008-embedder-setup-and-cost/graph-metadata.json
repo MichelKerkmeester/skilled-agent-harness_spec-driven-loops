@@ -39,7 +39,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,10 +47,19 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/verification-evidence.txt",
+      ".skilled/skills/system-skill-advisor/INSTALL-GUIDE.md",
+      "scratch/briefs/e1-T006.txt",
+      "scratch/suite-after.txt",
+      "scratch/real-embedding-after.json",
+      "scratch/setup-leg.txt",
+      "scratch/route-dry-run.txt",
+      "scratch/cost-warm.json",
+      "scratch/cost-cold.json",
+      "scratch/cold-after-abort.txt",
       "scratch/measured-2026-11-12.txt",
       "scratch/embed-probe.mjs",
       "scratch/cli-timing.cjs",
-      ".skilled/skills/system-skill-advisor/INSTALL-GUIDE.md",
       ".skilled/skills/system-spec-kit/shared/dist/embeddings/adapters/ollama.js"
     ],
     "entities": [
@@ -91,6 +100,66 @@
         "source": "derived"
       },
       {
+        "name": "verification-evidence.txt",
+        "kind": "file",
+        "path": "scratch/verification-evidence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL-GUIDE.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/INSTALL-GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "e1-T006.txt",
+        "kind": "file",
+        "path": "scratch/briefs/e1-T006.txt",
+        "source": "derived"
+      },
+      {
+        "name": "suite-after.txt",
+        "kind": "file",
+        "path": "scratch/suite-after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "real-embedding-after.json",
+        "kind": "config",
+        "path": "scratch/real-embedding-after.json",
+        "source": "derived"
+      },
+      {
+        "name": "setup-leg.txt",
+        "kind": "file",
+        "path": "scratch/setup-leg.txt",
+        "source": "derived"
+      },
+      {
+        "name": "route-dry-run.txt",
+        "kind": "file",
+        "path": "scratch/route-dry-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "cost-warm.json",
+        "kind": "config",
+        "path": "scratch/cost-warm.json",
+        "source": "derived"
+      },
+      {
+        "name": "cost-cold.json",
+        "kind": "config",
+        "path": "scratch/cost-cold.json",
+        "source": "derived"
+      },
+      {
+        "name": "cold-after-abort.txt",
+        "kind": "file",
+        "path": "scratch/cold-after-abort.txt",
+        "source": "derived"
+      },
+      {
         "name": "measured-2026-11-12.txt",
         "kind": "file",
         "path": "scratch/measured-2026-11-12.txt",
@@ -106,12 +175,6 @@
         "name": "cli-timing.cjs",
         "kind": "file",
         "path": "scratch/cli-timing.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "INSTALL-GUIDE.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skill-advisor/INSTALL-GUIDE.md",
         "source": "derived"
       },
       {
@@ -143,65 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement Meaning",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Probe",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow At",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Meaning matching only works with a local Ollama server serving `nomic-embed-text:v1.5` and with vectors written by a skill graph scan",
     "created_at": "2026-11-12T20:22:20Z",
-    "last_save_at": "2026-11-12T22:05:06.091Z",
+    "last_save_at": "2026-11-13T03:22:49.773Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +221,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:830f6616fbd5c2b39b4a8bcc0c338d98a05edc5a99f6a4e6b10af3ac7a54d3cd",
+    "source_fingerprint": "sha256:b8eee8d4ef40f6ed9dcc5d1a1040327df52c52119440d0eb990ffc2e571d9e40",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9d6791ba05588154f83569ac148a32f5601fcf3eccd8280ac00ceec97399dd97",
+      "spec.md": "80793b3fad928b1c24abb1e8dac0eba6a4d4057baace34b59158c5bedc9075ff",
       "plan.md": "d18456585df7d840e3adb2939c399d640093a0e3f4da2773ff972e1c0275dced",
-      "tasks.md": "e27da0801115f38d70933164af5fc73d6838a837e9e805bccc0c9e6467853401",
-      "implementation-summary.md": "c13b770f391865fbc20e113bca8a0d6adda9b403aa09dcc3601a74d98b3d9e0b"
+      "tasks.md": "d2d67bd39b39c4ab12c3e4a71d20bac426753bb374ce006919db201995be3a10",
+      "implementation-summary.md": "b199454d4c38cabadbccdc9b224c95d2d613693e51a8c6a4206e455e6919b2e3"
     },
     "last_active_at": null
   }

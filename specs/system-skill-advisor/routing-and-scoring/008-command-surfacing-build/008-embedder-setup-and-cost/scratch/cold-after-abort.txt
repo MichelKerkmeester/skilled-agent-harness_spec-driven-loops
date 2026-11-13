@@ -1,0 +1,3 @@
+# after a 50 ms client abort of /api/embed on a cold model, then 3 s, /api/ps lists:
+
+result: does not list nomic-embed-text:v1.5, so the load did not continue after the client gave up

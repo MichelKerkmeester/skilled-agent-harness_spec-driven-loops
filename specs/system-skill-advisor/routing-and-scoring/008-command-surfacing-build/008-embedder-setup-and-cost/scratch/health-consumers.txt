@@ -1,0 +1,38 @@
+reads	.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:51:type SemanticLaneHealth = NonNullable<AdvisorStatusOutput['semanticLaneHealth']>;
+writes	.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:145:function baseSemanticLaneHealth(disabledReason: string | null): SemanticLaneHealth {
+reads	.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:151:    disabledReason,
+reads	.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:157:function readSemanticLaneHealth(dbPath: string): SemanticLaneHealth {
+reads	.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:160:    return baseSemanticLaneHealth(runtime.disabledReason ?? 'database_absent');
+writes	.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:185:    const disabledReason = dimMismatch
+reads	.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:195:                      : (total > 0 && embedded === 0 ? 'no_skill_vectors' : runtime.disabledReason)))));
+reads	.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:205:      disabledReason,
+reads	.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:206:      laneEnabled: Boolean(hasActive && adapter && !dimMismatch && !staleness.stale && hasVecTable && embedded > 0 && !disabledReason),
+reads	.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:210:    return baseSemanticLaneHealth(runtime.disabledReason ?? 'health_unavailable');
+reads	.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:440:      ...((args.includeSemanticHealth || args.debug) ? { semanticLaneHealth: readSemanticLaneHealth(dbPath) } : {}),
+reads	.skilled/skills/system-skill-advisor/runtime/handlers/advisor-status.ts:464:      ...((args.includeSemanticHealth || args.debug) ? { semanticLaneHealth: readSemanticLaneHealth(dbPath) } : {}),
+reads	.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:243:const semanticLaneHealthSchema = z.object({
+reads	.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:256:  disabledReason: z.string().nullable(),
+writes	.skilled/skills/system-skill-advisor/runtime/schemas/advisor-tool-schemas.ts:438:  semanticLaneHealth: semanticLaneHealthSchema.optional(),
+test	.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts:189:    expect(status.semanticLaneHealth).toBeUndefined();
+test	.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts:252:    expect(compact.semanticLaneHealth).toBeUndefined();
+test	.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts:253:    expect(detailed.semanticLaneHealth).toEqual(expect.objectContaining({
+test	.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts:266:      disabledReason: null,
+test	.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts:278:    expect(status.semanticLaneHealth).toEqual(expect.objectContaining({
+test	.skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-status.vitest.ts:285:      disabledReason: 'dim_mismatch',
+reads	.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:28:  readonly disabledReason: string | null;
+writes	.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:39:  disabledReason: null,
+writes	.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:123:        disabledReason: 'database_absent',
+writes	.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:133:        disabledReason: 'adapter_unavailable',
+writes	.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:141:        disabledReason: 'dim_mismatch',
+reads	.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:151:      disabledReason: vector ? null : 'prompt_embedding_empty',
+reads	.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:157:    if (!runtimeHealth.disabledReason) {
+writes	.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:158:      setRuntimeHealth({ disabledReason: 'prompt_embedding_failed' });
+writes	.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:187:    setRuntimeHealth({ disabledReason: 'projection_embedding_stale' });
+writes	.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:223:      setRuntimeHealth({ disabledReason: 'skill_embedding_load_failed' });
+writes	.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:250:    setRuntimeHealth({ disabledReason: 'projection_embedding_stale' });
+writes	.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:299:      setRuntimeHealth({ disabledReason: 'skill_embedding_load_failed' });
+writes	.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/semantic-shadow.ts:306:    setRuntimeHealth({ disabledReason: 'no_skill_vectors' });
+test	.skilled/skills/system-skill-advisor/runtime/tests/scorer/projection-embedding-staleness.vitest.ts:283:    expect(status.semanticLaneHealth).toEqual(expect.objectContaining({
+test	.skilled/skills/system-skill-advisor/runtime/tests/scorer/projection-embedding-staleness.vitest.ts:284:      disabledReason: 'projection_embedding_stale',
+test	.skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-ablation.vitest.ts:387:    expect(health.disabledReason).toBe('projection_embedding_stale');
+test	.skilled/skills/system-skill-advisor/runtime/tests/scorer/semantic-shadow-ablation.vitest.ts:397:    expect(health).toHaveProperty('disabledReason');

@@ -1,0 +1,39 @@
+{
+  "server": {
+    "url": "http://127.0.0.1:11434",
+    "version": "0.40.15"
+  },
+  "model": {
+    "name": "nomic-embed-text:v1.5",
+    "sizeBytes": 274302450
+  },
+  "loaded": null,
+  "memory": {
+    "servePid": 27430,
+    "serveRssKb": 25776,
+    "runnerPid": null,
+    "runnerRssKb": null
+  },
+  "idle": {
+    "serveRssKb": 25776
+  },
+  "warm": {
+    "n": 30,
+    "medianMs": 7.05,
+    "p95Ms": 12.17
+  },
+  "cold": {
+    "firstCallMs": 538.53
+  },
+  "coldReason": null,
+  "cli": {
+    "ms": [
+      206.59,
+      132.08,
+      164.13,
+      112.1,
+      82.31
+    ],
+    "medianMs": 132.08
+  }
+}

@@ -1,0 +1,53 @@
+Phase 008 verification evidence, run by the orchestrator on 2026-11-13 from the worktree root.
+
+Before numbers (T001 to T005)
+  scratch/before.txt: typed {"correct":24,"total":44}, stand-in plain tune combined 9 of 45 and holdout 0 of 44,
+  real embedding plain tune combined 14 of 45 and holdout 2 of 44, false offers {"count":0,"total":35},
+  scorer [159,50,20,5], rollup {"ask":17,"run":7,"start":20}.
+  Hook latency before, three runs [n, median ms, p95 ms]: [44,199.25,243.85] [44,167.93,210.56] [44,172.47,210.74].
+  Middle median 172.47 ms, middle p95 210.74 ms.
+  scratch/cold-after-abort.txt: after a 50 ms client abort of /api/embed on a cold model, /api/ps listed no model 3 s
+  later, so Ollama does not keep loading the model once the client gave up.
+  scratch/health-consumers.txt: 38 lines, each marked reads, writes or test.
+  T005: `rg -n "ownerSkillId" $ADV/schemas/advisor-tool-schemas.ts` printed line 319.
+
+Build (waves 1 to 5, DeepSeek v4.1 flash max workers through OpenCode Go, a type check between waves, all exit 0)
+  T031: `npm run build` exit 0, `skill_graph_scan --trusted` exit 0 (generation 131 to 132),
+  `select count(*) from vec_cmd_768` printed 46, and the generated bridge file holds 46 entries with embeddingText.
+
+Orchestrator fixes after the waves (gaps between worker tasks)
+  1. route-validate.sh failed three J1 parity checks: `embedder` was missing from the skill-advisor presentation menu,
+     its "Valid targets:" line and its subsystem manifest table. Added as menu entry 5 with the help-block row, and the two
+     later entries renumbered to 6 and 7. After: "OK: route-validate — 32 routes validated, 11 warnings".
+  2. `.skilled/commands/doctor/setup.md` and `doctor-setup-presentation.txt` still said five read-only legs. Now six.
+  3. INSTALL-SKILLED.md cost table: readable sizes added beside the raw numbers.
+
+Verification
+  T037: `npm run typecheck` exit 0. `npm test`: 174 files passed, 1540 passed, 6 skipped, 0 failed (scratch/suite-after.txt).
+  T038: default capture typed {"correct":24,"total":44}, plain tune combined 9 of 45, holdout combined 0 of 44,
+        false offers {"count":0,"total":35}. Scorer [159,50,20,5]. Rollup {"ask":17,"run":7,"start":20}.
+        `derive-command-bridges.cjs --check` printed fresh.
+  T039: `--real-embedding` capture exit 0 (scratch/real-embedding-after.json): typed 24 of 44, plain tune combined 14 of 45
+        (own 7, attached 7), holdout combined 2 of 44, false offers 0 of 35. `doctor-phrase-reach.cjs` exit 0,
+        "STATUS=OK phrases=248 bridges=36".
+  T040: `bash .skilled/commands/doctor/scripts/tests/run-all.sh` printed "7 suite(s) passed, 0 failed".
+        route-validate exit 0.
+  T041: hook latency after, three runs: [44,210.33,248.7] [44,166.44,210.02] [44,175.74,202.53].
+        Middle median 175.74 ms, 3.27 ms over the before middle (bound 25 ms).
+        Middle p95 210.02 ms, 0.72 ms under the before middle (bound 40 ms over).
+        Measured after the behaviour arm ended, load average about 2.9.
+  T042: scratch/setup-leg.txt: `jq -c '.data.semanticLaneHealth | [.laneEnabled, .backend.state, .commandVectorCoverage.embedded > 0]'`
+        printed [true,"reachable",true]. commandVectorCoverage 46 of 46, vectorCoverage 14 of 14, disabledReason null.
+  T043: scratch/route-dry-run.txt: `/doctor:skill-advisor embedder --dry-run` typed in an OpenCode session printed the
+        probe, "Missing: none" and STATUS=OK. `git status --short` and the database mtime were identical before and after.
+        Nothing was missing on this machine, so the plan table had no rows. The plan rows with a cost and an undo per
+        step are covered by the route contract test, not by this run.
+  T032: scratch/cost-warm.json: model 274302450 bytes, serve RSS 32208 KB, runner RSS 279520 KB, warm median 4.8 ms,
+        warm p95 8.9 ms over 30 calls, CLI median 128.26 ms.
+  T033: scratch/cost-cold.json: cold first call 538.53 ms, idle serve RSS 25776 KB.
+  T034 to T036: INSTALL-SKILLED.md and the advisor INSTALL-GUIDE.md carry the route, the cost table and the
+        semantic_lane_off row. Their verify commands are for the closer to rerun.
+
+Operator answers this phase follows (spec.md section 10): set up by default behind a yes, pull and start but never
+install, doctor plus status plus a JSON warning, a 750 ms prompt embedding deadline.
+T034-T036 verified: includeEmbeddingsHealth line names hf-local, INSTALL-GUIDE has 3 lines for skill-advisor embedder or vec_cmd, INSTALL-SKILLED.md has the route row, the Meaning Matching section and the semantic_lane_off row. Python advisor test and the parity test pass after the compatibility entry was added.

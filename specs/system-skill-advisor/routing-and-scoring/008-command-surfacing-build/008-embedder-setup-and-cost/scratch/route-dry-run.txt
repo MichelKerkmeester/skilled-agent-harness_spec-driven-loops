@@ -1,0 +1,32 @@
+# /doctor:skill-advisor embedder --dry-run, typed in an OpenCode session (opencode-go/deepseek-v4.1-flash max), 2026-11-13
+# git status --short before and after: identical. skill-graph.sqlite mtime before and after: identical (1794536267).
+# Nothing was missing on this machine, so the plan table had no rows. The plan rows with cost and undo are covered by the route contract test.
+
+I'll run the skill-advisor doctor command.
+Probe found nothing missing, so the dry run has no plan rows. Nothing to install, start, pull or scan.
+
+```text
+EMBEDDER SETUP DRY RUN
+EMBEDDER SETUP PROBE
+Ollama binary: present at /opt/homebrew/bin/ollama
+Server: answering at http://127.0.0.1:11434, version 0.40.15
+Model: nomic-embed-text:v1.5 present, 274302450 bytes on disk (261.6 MiB)
+Advisor daemon: present
+Active embedder: nomic-embed-text-v1.5 (dim 768, adapter dim 768)
+Command vectors: 46 of 46
+Semantic lane: enabled
+
+Missing: none
+
+EMBEDDER SETUP RESULT
+Server: answering at http://127.0.0.1:11434, version 0.40.15
+Model: nomic-embed-text:v1.5, 274302450 bytes on disk
+Command vectors: 46 of 46
+Semantic lane: enabled
+Next: none
+
+Dry run: nothing was pulled, started or written.
+STATUS=OK
+```
+
+The semantic lane reads as fully on: the lane is enabled, the embedder backend reports reachable and the command vector coverage is complete at 46 of 46. Since the probe requested no step, the cost script was not needed and the plan table was skipped, per the embedder contract's "no missing step" branch.
