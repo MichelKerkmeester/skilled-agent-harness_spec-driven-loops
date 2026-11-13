@@ -34,7 +34,7 @@
       "readme"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -44,6 +44,7 @@
       "implementation-summary.md",
       ".skilled/hooks/session-relaunch/README.md",
       ".skilled/hooks/hook-flags.env.example",
+      "scratch/green.txt",
       "scratch/finding.md",
       ".skilled/commands/speckit/handoff.md",
       ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
@@ -99,6 +100,12 @@
         "name": "hook-flags.env.example",
         "kind": "file",
         "path": ".skilled/hooks/hook-flags.env.example",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
         "source": "derived"
       },
       {
@@ -190,18 +197,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The relaunch README still says the Claude start claim arrives only while the switch is on, which hides the shipped fix in phase 004",
     "created_at": "2026-11-12T22:42:07Z",
-    "last_save_at": "2026-11-13T00:31:30.957Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-13T03:55:30.876Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -211,13 +212,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7fa3888ec5653bc2e54eed7b4e8112fe7ddc5ab5827b9df497fff1107cc5f821",
+    "source_fingerprint": "sha256:63c8d9a80e9180ca712e4ff62cdf74ac615668a820288a190c1017cb252398f1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "56289d2d305355d5f5c4c8b5ba47cd83ee8c668d10e7421d5f4cdc1c00cf476a",
-      "plan.md": "8961e8ba772762bb8b65fceace5d032a752135eec408790307fa0dda191a8ab1",
-      "tasks.md": "d7b09ee12a6302d048a87296fb2de880ccf389e63a77099877bdf5e228271e50",
-      "implementation-summary.md": "d0e9bec0fa06604f0bf4c16c398ff50d306a5841ae8bfafc58e6a13205fe841d"
+      "spec.md": "59f35018951a2226b06c0160174dbc4f01027c3b20d47011b48266f794707fd0",
+      "plan.md": "f22a9fa4db552bfd29eac8aa4ed0e1c00a474822b88d0cfcbb7869d2eb3557a6",
+      "tasks.md": "260684121b4cd1479b6ec1c969c6b60e0f986469f7c45db1f6e78f85f95aff73",
+      "implementation-summary.md": "e5b44e9c373908894ccc24edac08cf8f2ff8f4ab606c985122e8eb4416f9af84"
     },
     "last_active_at": null
   }

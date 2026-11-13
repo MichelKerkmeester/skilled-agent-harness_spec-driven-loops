@@ -34,7 +34,7 @@
       "wrapper"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -45,7 +45,9 @@
       ".skilled/bin/skilled-loop-shell.sh",
       ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs",
       ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-claim-goal.test.cjs",
-      "scratch/finding.md"
+      "scratch/finding.md",
+      "scratch/green.txt",
+      "scratch/red.txt"
     ],
     "entities": [
       {
@@ -106,6 +108,18 @@
         "name": "finding.md",
         "kind": "doc",
         "path": "scratch/finding.md",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
         "source": "derived"
       },
       {
@@ -179,24 +193,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The wrapper prints `skilled-loop <runtime>` as the manual claim command, and so does `relaunch-core.cjs`",
     "created_at": "2026-11-12T22:42:06Z",
-    "last_save_at": "2026-11-13T00:14:21.355Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-13T03:55:28.887Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -206,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ff9018542d9c0a5e39b9a5b0428718988a6c0f57cb013d0cf527aa1280021272",
+    "source_fingerprint": "sha256:ed3aeb0661128bd8a2ab5c3623c44e4d8d5904fdc8b3c042d4d8bda590eee64f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dbd3651d30f7db88bf2dce95b1d6403cf1f4ed856826d3b034b5623490a8ac7e",
-      "plan.md": "8964b8c7c5581365429b871dfa9590dbb75e77e987d414981027487367388c2c",
-      "tasks.md": "3abd3b959547f65f41c1b28fce69aa7af1e397dbd36a9733f44c4182ca3a0bd4",
-      "implementation-summary.md": "2f56c4b92bb7f57f323f7f94fa3c205abb4685e4efaef031694f43a358d1d531"
+      "spec.md": "0e228aee9f66779be773418acbba92a29080182108a85746f5aea10025a48284",
+      "plan.md": "957c5d5bd85cd6208319977c3062d6a2665eb2b29701e3329625cb30ea38b2bf",
+      "tasks.md": "c835d90f15e2038dc00778794f45f5ac0daf91f95358fb4a9097be989863362f",
+      "implementation-summary.md": "9945d2df80df5f612310531ea451e19d20168a96ee6fc082f9b6c9c7bd9be4a9"
     },
     "last_active_at": null
   }

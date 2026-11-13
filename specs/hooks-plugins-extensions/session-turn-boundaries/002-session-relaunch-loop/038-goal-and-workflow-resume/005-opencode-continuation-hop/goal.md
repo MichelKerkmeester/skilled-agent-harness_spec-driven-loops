@@ -8,17 +8,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "scaffold/005-opencode-continuation-hop"
-    last_updated_at: "2026-11-12T22:42:05Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-11-13T03:55:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Closed the phase after the build, the review fixes and the final suite run"
+    next_safe_action: "None; phase closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-005-opencode-continuation-hop"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -55,9 +55,9 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node --test .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs` exits 0 and its output names `a pending relaunch record suppresses the goal continuation` and `the hand-over packet variable is deleted after the one bind attempt`.
-- [ ] `node --test .opencode/plugins/tests/opencode-goal-handover.test.cjs .opencode/plugins/tests/session-relaunch.test.cjs` exits 0.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/005-opencode-continuation-hop --strict` prints `RESULT: PASSED` and every row of `acceptance-criteria.md` is `Met`.
+- [x] `node --test .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs` exits 0 and its output names `a pending relaunch record suppresses the goal continuation` and `the hand-over packet variable is deleted after the one bind attempt`.
+- [x] `node --test .opencode/plugins/tests/opencode-goal-handover.test.cjs .opencode/plugins/tests/session-relaunch.test.cjs` exits 0.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/005-opencode-continuation-hop --strict` prints `RESULT: PASSED` and every row of `acceptance-criteria.md` is `Met`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,6 +77,8 @@ and findings belong here.
 | Finding brief | Done | `scratch/finding.md` names the three files and the pending-record case that must fail first. |
 | Planning documents | Done | 2026-11-13: `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and `goal.md` were filled. |
 | Implementation | Pending | No code change yet. |
+| Build | Done | Luna built it through `codex exec` at xhigh, test first: `scratch/red.txt` shows 46 pass and 2 fail, `scratch/green.txt` 48 of 48. Its sandbox failed three process-tree tests and one count check. Outside the sandbox the only failure was the count check: a playbook states the number of goal plugin tests, and the phase added two. The orchestrator corrected the playbook from 166 to 168. |
+| Suites | Done | The orchestrator reran every suite outside the builders' sandboxes from the final working tree: relaunch and OpenCode plugin suites 1471 of 1471, goal hook suites 200 of 200, Pi relaunch suite 59 of 59, each exit 0. |
 
 ### Deviations and findings
 

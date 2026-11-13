@@ -1,0 +1,44 @@
+✔ bash: a wrapper outside the sourced checkout is not resolved (1249.253083ms)
+✔ bash: an inherited GIT_DIR cannot vouch for a planted repository (695.513333ms)
+✔ bash: the shim sourced through a symlinked file trusts its real checkout (487.547042ms)
+✔ bash: a shell copy without the stored checkout trusts nothing (435.60825ms)
+✔ bash: a wrapper in a registered linked worktree is resolved (375.678208ms)
+✔ bash: a .git file alone does not register a trusted worktree (726.152417ms)
+✔ bash: explicitly trusted checkouts resolve and unset or empty trusts nothing extra (1110.635125ms)
+✔ bash: every interactive form finds the wrapper through a symlinked .skilled (581.043708ms)
+✔ bash: subcommands, print modes, version and help pass through (446.667083ms)
+✔ bash: a directory with no .skilled above it resolves nothing (56.007ms)
+✔ bash: a session already under the loop resolves nothing (74.009125ms)
+✔ bash: an unknown runtime resolves nothing (27.689ms)
+✔ bash: a symlink cycle at the wrapper path returns 1 (241.405167ms)
+✔ zsh: a wrapper outside the sourced checkout is not resolved (1531.107458ms)
+✔ zsh: an inherited GIT_DIR cannot vouch for a planted repository (1519.730209ms)
+✔ zsh: the shim sourced through a symlinked file trusts its real checkout (428.92425ms)
+✔ zsh: a shell copy without the stored checkout trusts nothing (750.075417ms)
+✔ zsh: a wrapper in a registered linked worktree is resolved (609.126584ms)
+✔ zsh: a .git file alone does not register a trusted worktree (640.498458ms)
+✔ zsh: explicitly trusted checkouts resolve and unset or empty trusts nothing extra (469.495708ms)
+✔ zsh: every interactive form finds the wrapper through a symlinked .skilled (423.690041ms)
+✔ zsh: subcommands, print modes, version and help pass through (300.469958ms)
+✔ zsh: a directory with no .skilled above it resolves nothing (41.406583ms)
+✔ zsh: a session already under the loop resolves nothing (39.683583ms)
+✔ zsh: an unknown runtime resolves nothing (14.0405ms)
+✔ zsh: a symlink cycle at the wrapper path returns 1 (76.897458ms)
+✔ bash: sourcing the shim defines the skilled-loop command (4.013042ms)
+✔ bash: the skilled-loop command hands the claim to the trusted wrapper (27.402542ms)
+✔ bash: without a terminal the runtime function runs the binary directly (19.274ms)
+✔ bash: on a terminal the runtime function hands the launch to the wrapper (77.380292ms)
+✔ bash: runtime functions still work after a snapshot drops single-underscore functions (69.221125ms)
+✔ zsh: sourcing the shim defines the skilled-loop command (14.500375ms)
+✔ zsh: the skilled-loop command hands the claim to the trusted wrapper (65.63875ms)
+✔ zsh: without a terminal the runtime function runs the binary directly (42.501667ms)
+✔ zsh: on a terminal the runtime function hands the launch to the wrapper (110.025459ms)
+✔ zsh: runtime functions still work after a snapshot drops single-underscore functions (51.959292ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13884.9085

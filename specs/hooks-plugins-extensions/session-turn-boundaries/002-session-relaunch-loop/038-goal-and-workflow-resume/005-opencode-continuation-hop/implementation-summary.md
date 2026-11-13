@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: The OpenCode goal continuation leaves a prepared hop alone"
+description: "The goal plugin does not send a continuation while a relaunch record names the session as pending or armed, and it drops the packet variable after its one bind attempt."
 trigger_phrases:
   - "opencode continuation hop implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/005-opencode-continuation-hop"
-    last_updated_at: "2026-11-12T22:42:05Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-13T03:55:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Closed the phase after the build, the review fixes and the final suite run"
+    next_safe_action: "None; phase closed"
     blockers: []
-    key_files: []
+    key_files:
+      - ".opencode/plugins/opencode-goal.js"
+      - ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:4a3fa25e78bee27728e7d4590c5188daf666a495ddb03fad15b7598a97312e89"
       session_id: "scaffold-005-opencode-continuation-hop"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,7 +34,6 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
@@ -45,60 +46,65 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+With goal autonomy switched on, an OpenCode session that has prepared a hop is no longer pulled back into work. The hop goes ahead.
 
 ### Phase 5: opencode-continuation-hop
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+On idle the relaunch plugin arms the hop and the goal plugin may send a continuation prompt. That prompt arrives as a user message, and a user message withdraws an armed hop. The session then worked on near its context limit. The goal plugin now reads the relaunch record and holds its continuation while the record names this session as pending or armed. It also deletes the hand-over packet variable after the one bind attempt, so a runtime started from the session does not inherit it.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `.opencode/plugins/opencode-goal.js` | Modified | No continuation during a prepared hop, and the packet variable is dropped after the bind attempt. `.skilled/hooks/goal/opencode/opencode-goal.js` is a link to this file |
+| `.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs` | Modified | Suppressed for a pending and an armed record, and the variable is gone after the attempt |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md` | Modified | The stated suite count follows the two new tests, 166 to 168 |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+Luna built it through `codex exec` at xhigh, test first: `scratch/red.txt` shows 46 pass and 2 fail, `scratch/green.txt` 48 of 48. Its sandbox failed three process-tree tests and one count check. Outside the sandbox the only failure was the count check: a playbook states the number of goal plugin tests, and the phase added two. The orchestrator corrected the playbook from 166 to 168. An independent Opus 5.5 review of the whole diff stalled after an hour and was stopped. The orchestrator finished the review from the experiments it left behind and by reading each change. The orchestrator reran every suite outside the builders' sandboxes from the final working tree: relaunch and OpenCode plugin suites 1471 of 1471, goal hook suites 200 of 200, Pi relaunch suite 59 of 59, each exit 0.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| The goal plugin reads the relaunch record | The record is the one place that says a hop is prepared, and it already has a checked reader |
+| Suppress only for this session and only while pending or armed | A withdrawn or spent record must not hold the continuation back |
+| The playbook count is part of this phase | A contract test pins it to the suite, so adding tests without it fails the suite |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| `node --test .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs` | PASS: 48 tests, 48 pass, 0 fail in `scratch/green.txt` |
+| The two new cases before the change | FAIL as required: 46 pass, 2 fail in `scratch/red.txt` |
+| `goal-doc-contract.test.cjs` after the count correction | PASS: 5 of 5 |
+| `node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs`, loop variables unset | PASS: 1471 tests, 1471 pass, 0 fail, exit 0 |
+| Goal hook suites under `.skilled/hooks/goal` | PASS: 200 tests, 200 pass, 0 fail, exit 0 |
+| Pi relaunch vitest file | PASS: 59 passed, exit 0 |
+| `validate.sh --strict` on this packet | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **Autonomy is off by default.** The defect and the fix only matter with `OPENCODE_GOAL_AUTONOMY` set to `active` or `smoke`.
+2. **Read from the code, not seen live.** The lost hop was found by reading both plugins. No live OpenCode hop was run.
 <!-- /ANCHOR:limitations -->
 
 ---

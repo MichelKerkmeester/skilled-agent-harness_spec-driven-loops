@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: The README says what a hop does with a goal"
+description: "The session-relaunch README and the flags example describe the goal carry-over and workflow re-entry as shipped in the six sibling phases."
 trigger_phrases:
   - "goal handover docs implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/007-goal-handover-docs"
-    last_updated_at: "2026-11-12T22:42:08Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-13T03:55:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Closed the phase after the build, the review fixes and the final suite run"
+    next_safe_action: "None; phase closed"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/hooks/session-relaunch/README.md"
+      - ".skilled/hooks/hook-flags.env.example"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:90cbd333aec039169a950db99ee2d57f2afcd984f06159770800b77605374dd6"
       session_id: "scaffold-007-goal-handover-docs"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,7 +34,6 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
@@ -45,60 +46,61 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+The README now tells you, per runtime, whether a hop carries your goal and what it prints when it does not. The flags example lists the switch that turns the carry-over off.
 
 ### Phase 7: goal-handover-docs
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The README described the goal carry-over as it was before these phases. It now covers the Active command line, the lock release, the goal steps of the receiver, the Codex route, the Cursor and Devin behaviour, the `goal not carried:` line, the bind-once rule on Pi and OpenCode, the held continuation, and `skilled-loop` as a shell function. It records one known race: a Claude sender under an unmet native goal usually still hops and loses the hop only after 30 seconds of steady activity. It also says why Claude refuses a phase-child goal while the plugin runtimes bind it.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `.skilled/hooks/session-relaunch/README.md` | Modified | Goal carry-over and workflow re-entry as shipped, the known race, the phase-child difference |
+| `.skilled/hooks/hook-flags.env.example` | Modified | A commented `SESSION_RELAUNCH_GOAL=0` row |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+DeepSeek V4.1 Flash max wrote it through OpenCode from the diff of the six sibling phases, in `scratch/build.diff` of the parent packet. `scratch/green.txt` holds the search that shows the new lines. The orchestrator read the changed sections against the diff. The orchestrator reran every suite outside the builders' sandboxes from the final working tree: relaunch and OpenCode plugin suites 1471 of 1471, goal hook suites 200 of 200, Pi relaunch suite 59 of 59, each exit 0.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Edit sentences in place | The README's structure is referenced by other documents and tests |
+| The race is recorded, not fixed | The verification found no loop and a hop that usually wins. A fix would need the killer to know goal state |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| `rg -n -e 'Active command' -e 'goal not carried' -e 'SESSION_RELAUNCH_GOAL'` on both files | PASS: 14 matches in `scratch/green.txt` |
+| `node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs`, loop variables unset | PASS: 1471 tests, 1471 pass, 0 fail, exit 0 |
+| Goal hook suites under `.skilled/hooks/goal` | PASS: 200 tests, 200 pass, 0 fail, exit 0 |
+| Pi relaunch vitest file | PASS: 59 passed, exit 0 |
+| `validate.sh --strict` on this packet | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **Nothing here was run live.** The README states what the code and its tests show. No hop was run on any runtime for this packet.
+2. **Other documents may still describe the old behaviour.** Only the README and the flags example were in scope. The playbooks were not rechecked.
 <!-- /ANCHOR:limitations -->
 
 ---

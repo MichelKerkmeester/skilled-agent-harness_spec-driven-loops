@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/005-opencode-continuation-hop
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-12
 <!-- /ANCHOR:metadata -->
 
@@ -51,9 +51,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given autonomy active, an active goal and a pending relaunch record for the session, When `session.idle` reaches `maybeContinueGoal`, Then the decision is `suppressed` and `promptAsync` is not called | `node --test --test-name-pattern='pending relaunch record' .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs` passes `a pending relaunch record suppresses the goal continuation` | Unmet | - |
-| AC-002 | REQ-002 | Given a first top-level `session.created` event with `SESSION_RELAUNCH_GOAL_PACKET` set, When the one bind attempt finishes, Then the packet variable is absent from `process.env` and the goal is bound | `node --test --test-name-pattern='packet variable is deleted' .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs` passes `the hand-over packet variable is deleted after the one bind attempt` | Unmet | - |
-| AC-003 | REQ-003 | Given the plugin change, When the lifecycle, hand-over and relaunch suites run, Then they exit 0 and a continuation with no record still fires | `node --test .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs .opencode/plugins/tests/opencode-goal-handover.test.cjs .opencode/plugins/tests/session-relaunch.test.cjs` exits 0 | Unmet | - |
+| AC-001 | REQ-001 | Given autonomy active, an active goal and a pending relaunch record for the session, When `session.idle` reaches `maybeContinueGoal`, Then the decision is `suppressed` and `promptAsync` is not called | `node --test --test-name-pattern='pending relaunch record' .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs` passes `a pending relaunch record suppresses the goal continuation` Observed 2026-11-13: `a pending relaunch record suppresses the goal continuation` passes in `scratch/green.txt` and failed in `scratch/red.txt`, for a pending and an armed record. | Met | - |
+| AC-002 | REQ-002 | Given a first top-level `session.created` event with `SESSION_RELAUNCH_GOAL_PACKET` set, When the one bind attempt finishes, Then the packet variable is absent from `process.env` and the goal is bound | `node --test --test-name-pattern='packet variable is deleted' .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs` passes `the hand-over packet variable is deleted after the one bind attempt` Observed 2026-11-13: `the hand-over packet variable is deleted after the one bind attempt` passes in `scratch/green.txt` and failed in `scratch/red.txt`. | Met | - |
+| AC-003 | REQ-003 | Given the plugin change, When the lifecycle, hand-over and relaunch suites run, Then they exit 0 and a continuation with no record still fires | `node --test .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs .opencode/plugins/tests/opencode-goal-handover.test.cjs .opencode/plugins/tests/session-relaunch.test.cjs` exits 0 Observed 2026-11-13: the lifecycle, hand-over and relaunch plugin suites pass in the orchestrator's final run of `.opencode/plugins/tests`, and a continuation with no record still fires. | Met | - |
 
 ### Status values
 
@@ -78,7 +78,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-001 is Unmet and blocks closure. The remaining rows are Unmet as well.
+All 3 criteria are Met with observed evidence. The orchestrator reran every suite outside the builders' sandboxes from the final working tree: relaunch and OpenCode plugin suites 1471 of 1471, goal hook suites 200 of 200, Pi relaunch suite 59 of 59, each exit 0. The evidence is pinned to the working tree of branch `worktrees/358-handover-goal-resume` before its commit.
 <!-- /ANCHOR:closure -->

@@ -1,0 +1,1140 @@
+diff --git a/.opencode/plugins/opencode-goal.js b/.opencode/plugins/opencode-goal.js
+index c8d4bd13fc..c4fa34e29f 100644
+--- a/.opencode/plugins/opencode-goal.js
++++ b/.opencode/plugins/opencode-goal.js
+@@ -22,6 +22,7 @@ import { registerGoalCore } from './lib/opencode-goal-core.js';
+ 
+ const require = createRequire(import.meta.url);
+ const { isHookEnabled } = require('../hooks/shared/hook-flags.cjs');
++const { readRelaunchFile } = require('../hooks/session-relaunch/lib/relaunch-core.cjs');
+ // The packet goal.md projections are shared with the runtime-neutral core so the
+ // two implementations cannot disagree on where the frontmatter ends.
+ const goalSlice = require('../hooks/goal/lib/goal-slice.cjs');
+@@ -3007,6 +3008,16 @@ async function maybeContinueGoal(sessionID, rawOptions = {}) {
+     const autoTurnsUsed = goal?.autoTurnsUsed || 0;
+     if (!goal || goal.status !== 'active') return decision('suppressed', 'goal_not_active', autoTurnsUsed);
+ 
++    const loopId = process.env.SKILLED_LOOP_ID;
++    if (loopId) {
++      const relaunchRecord = readRelaunchFile(loopId);
++      if (relaunchRecord?.sessionId === normalizedSessionID
++        && (relaunchRecord.status === 'pending' || relaunchRecord.status === 'armed')) {
++        // An idle continuation sends a user message that can withdraw the prepared hop.
++        return decision('suppressed', 'relaunch_pending', autoTurnsUsed);
++      }
++    }
++
+     const verifierResult = rawOptions.verifierResult || null;
+     if (verifierResult?.timedOut) return decision('suppressed', 'verifier_timeout', autoTurnsUsed);
+     if (verifierResult?.stale) return decision('suppressed', 'stale_verifier_result', autoTurnsUsed);
+@@ -3584,6 +3595,8 @@ async function MkGoalPlugin(ctx, rawOptions = {}) {
+       if (sessionID && !eventPropertiesFrom(event).info?.parentID && !runtimeState.handOverGoalAttempted) {
+         runtimeState.handOverGoalAttempted = true;
+         await bindRelaunchGoal(sessionID, { ...eventOptions, directory: ctx?.directory });
++        // The packet is only for this bind, so child runtimes do not inherit it.
++        delete process.env[RELAUNCH_GOAL_PACKET_ENV];
+       }
+       if (sessionID) await restoreActiveGoal(sessionID, eventOptions);
+       try {
+diff --git a/.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs b/.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs
+index 30a35da9f0..b719394cfc 100644
+--- a/.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs
++++ b/.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs
+@@ -72,6 +72,13 @@ async function withState(fn) {
+   const originalAutonomy = process.env.OPENCODE_GOAL_AUTONOMY;
+   const originalDebug = process.env.OPENCODE_GOAL_DEBUG;
+   const originalDisabled = process.env.OPENCODE_GOAL_PLUGIN_DISABLED;
++  const originalRelaunchEnv = Object.fromEntries([
++    'SKILLED_LOOP_ID',
++    'XDG_RUNTIME_DIR',
++    'SESSION_RELAUNCH_GOAL_PACKET',
++    'SESSION_RELAUNCH_GOAL',
++    'AI_SESSION_CHILD',
++  ].map((name) => [name, process.env[name]]));
+ 
+   try {
+     return await fn({ helpers, pluginModule, stateDir });
+@@ -79,6 +86,7 @@ async function withState(fn) {
+     restoreEnv('OPENCODE_GOAL_AUTONOMY', originalAutonomy);
+     restoreEnv('OPENCODE_GOAL_DEBUG', originalDebug);
+     restoreEnv('OPENCODE_GOAL_PLUGIN_DISABLED', originalDisabled);
++    for (const [name, value] of Object.entries(originalRelaunchEnv)) restoreEnv(name, value);
+     await rm(stateDir, { recursive: true, force: true });
+   }
+ }
+@@ -165,6 +173,84 @@ test('session.created keeps an active goal intact', async () => withState(async
+   assert.equal(goal.goalId, 'event-goal');
+ }));
+ 
++test('a pending relaunch record suppresses the goal continuation', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
++  process.env.OPENCODE_GOAL_AUTONOMY = 'active';
++  process.env.XDG_RUNTIME_DIR = stateDir;
++  const loopId = '123456';
++  process.env.SKILLED_LOOP_ID = loopId;
++  const relaunchDir = join(stateDir, 'skilled-relaunch');
++  await mkdir(relaunchDir, { recursive: true, mode: 0o700 });
++
++  let promptAsyncCalls = 0;
++  const plugin = await pluginModule.default.server({
++    client: {
++      session: {
++        async promptAsync() {
++          promptAsyncCalls += 1;
++        },
++      },
++    },
++  }, {
++    stateDir,
++    nowMs: 10000,
++    supervisorVerifier: async () => ({
++      verdict: 'not_met',
++      reason: 'work remains',
++      confidence: 0.9,
++      evidence: 'The goal still has work to do.',
++    }),
++  });
++
++  for (const status of ['pending', 'armed']) {
++    const sessionID = `session-relaunch-${status}`;
++    await helpers.setGoal(sessionID, 'Keep the prepared hop available', {
++      stateDir,
++      nowMs: 1000,
++      goalIdFactory: () => `goal-relaunch-${status}`,
++    });
++    await writeFile(
++      join(relaunchDir, `relaunch-${loopId}.json`),
++      JSON.stringify({ status, sessionId: sessionID }),
++      'utf8',
++    );
++
++    await plugin.event({
++      event: { type: 'session.idle', properties: { sessionID } },
++    });
++
++    const continuation = (await readContinuationEntries(stateDir)).find((entry) => entry.sid === sessionID);
++    assert.equal(continuation?.decision, 'suppressed', status);
++    assert.equal(continuation?.reason, 'relaunch_pending', status);
++  }
++
++  assert.equal(promptAsyncCalls, 0);
++}));
++
++test('the hand-over packet variable is deleted after the one bind attempt', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
++  const workspace = await mkdtemp(join(tmpdir(), 'opencode-goal-handover-workspace-'));
++  const packetPath = 'specs/t/001-fixture';
++
++  try {
++    await writePacketGoal(workspace, packetPath);
++    process.env.SESSION_RELAUNCH_GOAL_PACKET = packetPath;
++    process.env.SESSION_RELAUNCH_GOAL = '1';
++    delete process.env.AI_SESSION_CHILD;
++    const plugin = await pluginModule.default.server({ directory: workspace }, {
++      stateDir,
++      nowMs: 1000,
++    });
++
++    await plugin.event({ event: nativeSessionEvent('session.created', 'receiver-session') });
++
++    assert.equal(process.env.SESSION_RELAUNCH_GOAL_PACKET, undefined);
++    const goal = await helpers.readGoal('receiver-session', { stateDir });
++    assert.equal(goal.status, 'active');
++    assert.equal(goal.packetPath, packetPath);
++  } finally {
++    await rm(workspace, { recursive: true, force: true });
++  }
++}));
++
+ test('native message headers charge tokens while only explicit assistant text parts become evidence', async () => withState(async ({ helpers, pluginModule, stateDir }) => {
+   const plugin = await pluginModule.default.server({}, { stateDir, nowMs: 1000 });
+   await createLifecycleGoal(helpers, stateDir);
+diff --git a/.skilled/bin/skilled-loop-shell.sh b/.skilled/bin/skilled-loop-shell.sh
+index 8ba65e0f89..ad1c8da148 100644
+--- a/.skilled/bin/skilled-loop-shell.sh
++++ b/.skilled/bin/skilled-loop-shell.sh
+@@ -8,7 +8,8 @@
+ #
+ # Usage: source /abs/path/.skilled/bin/skilled-loop-shell.sh
+ #
+-# Defines claude, pi, opencode, codex, devin and cursor-agent. Each one runs
++# Defines claude, pi, opencode, codex, devin and cursor-agent, plus the `skilled-loop`
++# command the wrapper prints for a manual claim. Each runtime function runs
+ # `bash <repo>/.skilled/bin/skilled-loop <arm> "$@"` when stdin and stdout are a
+ # terminal, no loop is running yet, the arguments open an interactive session, and a
+ # wrapper sits in $PWD or a parent; otherwise it runs the binary itself. A linked
+@@ -315,3 +316,10 @@ function opencode { skilled_loop_launch opencode opencode "$@"; }
+ function codex { skilled_loop_launch codex codex "$@"; }
+ function devin { skilled_loop_launch devin devin "$@"; }
+ function cursor-agent { skilled_loop_launch cursor cursor-agent "$@"; }
++
++# A manual claim is pasted as `skilled-loop <runtime>`, so the shim answers to that name.
++# The wrapper comes from the checkout that owns this shim, never from the current directory,
++# so a pasted claim cannot start a session from a wrapper the shim has not trusted.
++function skilled-loop {
++  bash "${skilled_loop_sourced_checkout:-}/.skilled/bin/skilled-loop" "$@"
++}
+diff --git a/.skilled/commands/speckit/handoff.md b/.skilled/commands/speckit/handoff.md
+index c7fde86208..99db42facf 100644
+--- a/.skilled/commands/speckit/handoff.md
++++ b/.skilled/commands/speckit/handoff.md
+@@ -60,7 +60,7 @@ If a runtime has no session-id variable, such as Devin or Cursor, run `uuidgen`
+ | 1 | Resolve inputs | Session id, cwd, spec binding | Values for the note |
+ | 2 | Save the packet | Claude runs `/speckit:save`. Other runtimes use the continuity writer when a packet is bound | Fresh continuity |
+ | 3 | Write the note | `status: open` handoff file | The note path |
+-| 4 | Prepare | CLI validates and records | Exit code `0`, `2` or `3` |
++| 4 | Prepare | Release a held deep-loop lock, then validate and record | Exit code `0`, `2` or `3` |
+ | 5 | Report | Translate the exit code | `STATUS=` line |
+ 
+ ---
+@@ -130,9 +130,21 @@ Goal states what the work is for.
+ Done records finished work.
+ Remaining work lists the claimable tail.
+ In-flight state preserves the active work the next session must not lose, including open files, half-applied edits, running processes and pending decisions.
++Under In-flight state, include an `Active command:` line with the command, mode and arguments; use `Active command: none` when no command runs. For Codex, also include an `Active goal:` line with the goal or packet path, or `Active goal: none` when no goal is active.
+ 
+ ### Step 4: Prepare
+ 
++If this command holds a deep-loop lock, release it before `prepare` with the captured values:
++
++```bash
++node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release \
++  --lock-path <path> --owner-pid <pid> --nonce <nonce>
++```
++
++The `release --owner-pid` operation also requires the captured lock path and nonce.
++
++Skip this command when no deep-loop lock is held.
++
+ ```bash
+ node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs prepare --handoff <path> --session <session id> --runtime <runtime>
+ ```
+@@ -179,9 +191,12 @@ A session seeded with `[session-relaunch] claim and continue handoff <path>` is
+    Only Claude Code may omit `--session` and use `CLAUDE_CODE_SESSION_ID`.
+    A runtime without a session-id variable generates an id with `uuidgen` and reuses it for the session.
+ 2. Reads the note's Goal, Done, Remaining work and In-flight state sections.
+-3. Runs `/speckit:resume <spec_folder>` when the field contains a repo-relative packet path. When it is `none`, Gate 3 was answered D) Skip and the receiver does not ask it again. When it is empty, Gate 3 was never answered and the receiver asks it as usual.
+-4. Continues the Remaining work.
+-5. Runs `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs complete <path>` when the handoff is fully absorbed.
++3. When the note has an `Active goal:` line other than `none`, use `create_goal` to bring that goal back into the session.
++4. Runs `/speckit:resume <spec_folder>` when the field contains a repo-relative packet path. When it is `none`, Gate 3 was answered D) Skip and the receiver does not ask it again. When it is empty, Gate 3 was never answered and the receiver asks it as usual.
++5. When the bound packet has a `goal.md`, read it before Remaining work; its durable directive binds the session goal.
++6. When the note's `Active command:` line names a command, run it again with the same mode and arguments. The command's own state detection picks the step. Skip this when the line says `none`.
++7. Continues the Remaining work.
++8. Runs `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs complete <path>` when the handoff is fully absorbed.
+ 
+ The note's status moves only `open -> claimed -> done`. When this session prepares a successor hop, `prepare` marks as `done` every other note this session claimed and every other open note this session wrote, sets `completed_at` and adds `superseded_by` with the new note's basename. It leaves done notes, notes of another session and the new note unchanged.
+ 
+diff --git a/.skilled/hooks/goal/pi/goal-context.ts b/.skilled/hooks/goal/pi/goal-context.ts
+index 9eba4c6173..5834f82e87 100644
+--- a/.skilled/hooks/goal/pi/goal-context.ts
++++ b/.skilled/hooks/goal/pi/goal-context.ts
+@@ -96,15 +96,21 @@ function goalOptions(ctx: ExtensionContext): GoalOptions {
+   };
+ }
+ 
+-// A hop receiver binds the hand-over packet once per session. The core refuses a session
+-// that already has or had a goal, so this set only spares the repeat file reads on later turns.
++// A hop receiver binds the hand-over packet once per process. The first attempt with a
++// session id clears the packet variable, so a later session or a nested runtime finds
++// nothing; the set still spares the core call on a repeat attempt in the same session.
+ const handOverAttempted = new Set<string>();
+ 
+ function bindHandOverGoal(core: GoalCore, options: GoalOptions): void {
+   const { sessionId } = options.scope;
+   if (!sessionId || handOverAttempted.has(sessionId)) return;
+   handOverAttempted.add(sessionId);
+-  core.bindRelaunchGoal(options);
++  try {
++    core.bindRelaunchGoal(options);
++  } finally {
++    // Never leave the packet where a new session or a nested runtime could bind it.
++    delete process.env.SESSION_RELAUNCH_GOAL_PACKET;
++  }
+ }
+ 
+ async function runGoalCommand(
+diff --git a/.skilled/hooks/goal/pi/goal-pi.test.mjs b/.skilled/hooks/goal/pi/goal-pi.test.mjs
+index 259d5480df..9f71044c69 100644
+--- a/.skilled/hooks/goal/pi/goal-pi.test.mjs
++++ b/.skilled/hooks/goal/pi/goal-pi.test.mjs
+@@ -536,6 +536,19 @@ test('a receiver with no goal is bound to the hand-over packet at session start
+   });
+ });
+ 
++test('a second session_start with a new id binds nothing after the receiver binds', async () => {
++  process.env.SESSION_RELAUNCH_GOAL_PACKET = HAND_OVER_PACKET;
++  await withHandOverWorkspace(async ({ core, pi, workspace, scoped }) => {
++    await pi.registered.session_start({ type: 'session_start' }, fakeContext('handover-receiver', workspace));
++    assert.equal(core.showGoal(scoped('handover-receiver')).packetPath, HAND_OVER_PACKET);
++
++    await pi.registered.session_start({ type: 'session_start' }, fakeContext('handover-later', workspace));
++    assert.equal(core.showGoal(scoped('handover-later')), null);
++    assert.equal(pi.sent.length, 1, 'only the receiver session restores the hop goal');
++    assert.equal(process.env.SESSION_RELAUNCH_GOAL_PACKET, undefined);
++  });
++});
++
+ test('the first input binds when session start did not, and a later input leaves the record alone', async () => {
+   process.env.SESSION_RELAUNCH_GOAL_PACKET = HAND_OVER_PACKET;
+   await withHandOverWorkspace(async ({ core, pi, workspace, scoped }) => {
+diff --git a/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs b/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs
+index 00dbdd96a6..0e01b5bc18 100644
+--- a/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs
++++ b/.skilled/hooks/session-relaunch/bin/session-relaunch.cjs
+@@ -386,20 +386,28 @@ function noteGoalPacket(frontmatter, recordedGoalSwitch) {
+ // resolves the sending session's goal again and writes the result, removing the field when no
+ // goal can be proven, so a note prepared after its goal ended does not hand the dead goal on. A
+ // failed write leaves the note as it was, since a hand-over never fails for want of a goal.
++// A known goal that cannot be carried is named on stderr, where it cannot disturb the prepared
++// text the calling runtime reads from stdout.
+ function recordGoalPacket({ handoffPath, noteCwd, specFolder, runtime, sessionId }) {
+   if (!core.goalSwitchOn(resolvedSwitches())) return;
+-  const resolved = core.resolveGoalPacket({
++  const options = {
+     runtime,
+     sessionId,
+     specFolder: specFolder === 'none' ? '' : specFolder,
+     roots: goalRoots(noteCwd),
+     env: process.env,
+-  });
++  };
++  const resolved = core.resolveGoalPacket(options);
+   try {
+     core.recordGoalPacket(handoffPath, resolved);
+   } catch {
+     // The note stays as written, and the receiver is simply told nothing.
+   }
++  if (resolved !== '') return;
++  const reason = core.resolveGoalPacketReason(options);
++  if (reason !== '') {
++    process.stderr.write(`[session-relaunch] goal not carried: ${reason}\n`);
++  }
+ }
+ 
+ // prepare and keep accept the same note, so they share one check of it.
+@@ -563,12 +571,14 @@ function prepare(args) {
+   } catch {}
+   // A caller that shows output but not the exit status reads a silent success as a
+   // command that never ran, so the arming run states its outcome and the one action
+-  // left: end the turn and let the idle hop take over.
+-  process.stdout.write(
+-    '[session-relaunch] handoff prepared; stop now and end this turn.'
++  // left. Cursor and Devin have no relaunch hook, so their session ends by hand.
++  const prepared = runtime === 'cursor' || runtime === 'devin'
++    ? '[session-relaunch] handoff prepared; nothing ends this session.'
++      + ' Exit it and run the claim command the wrapper prints.'
++    : '[session-relaunch] handoff prepared; stop now and end this turn.'
+       + ' The loop ends this session when it goes idle and a fresh session continues from '
+-      + `${handoffPath}.\n`,
+-  );
++      + `${handoffPath}.`;
++  process.stdout.write(`${prepared}\n`);
+   return 0;
+ }
+ 
+diff --git a/.skilled/hooks/session-relaunch/claude/compact-pointer.mjs b/.skilled/hooks/session-relaunch/claude/compact-pointer.mjs
+index e7631bfaf0..bf01b6f857 100644
+--- a/.skilled/hooks/session-relaunch/claude/compact-pointer.mjs
++++ b/.skilled/hooks/session-relaunch/claude/compact-pointer.mjs
+@@ -10,7 +10,7 @@ import fs from 'node:fs';
+ import { createRequire } from 'node:module';
+ import path from 'node:path';
+ import { readStdin, parseJsonFailOpen } from '../../shared/hook-adapter-shared.cjs';
+-import { isHookEnabled, loadConfigFile, configPath } from '../../shared/hook-flags.mjs';
++import { hookFlagDecision, loadConfigFile, configPath } from '../../shared/hook-flags.mjs';
+ import {
+   appendLog,
+   dropNestedLoop,
+@@ -159,15 +159,19 @@ function claimAfterGoalStart(payload) {
+ // session is pointed back at that note. Compaction also frees the context the spent
+ // nudge level was measured against, so the level resets and the next fill nudges again.
+ async function main() {
+-  let enabled = false;
++  let decision = null;
+   try {
+-    enabled = isHookEnabled(CONCERN, process.env, loadConfigFile(configPath()), { runtime: 'claude' });
++    decision = hookFlagDecision(CONCERN, process.env, loadConfigFile(configPath()), { runtime: 'claude' });
+   } catch {}
+-  if (!enabled) return done();
++  // The master switch and the concern kill switch silence the whole hook. An enable
++  // switch must not drop the start claim: the wrapper already replaced the start prompt
++  // with the goal command, so the start context is the claim's only route.
++  if (decision === null || decision.reason === 'master' || decision.reason === 'kill') return done();
+ 
+   const payload = parseJsonFailOpen(await readStdin());
+   if (payload === null || typeof payload !== 'object') return done();
+   if (payload.source === 'startup') return claimAfterGoalStart(payload);
++  if (!decision.enabled) return done();
+   if (payload.source !== 'compact') return done();
+ 
+   const sessionId = payload.session_id;
+diff --git a/.skilled/hooks/session-relaunch/lib/nudge.cjs b/.skilled/hooks/session-relaunch/lib/nudge.cjs
+index 0033271c3e..f906dd7f0a 100644
+--- a/.skilled/hooks/session-relaunch/lib/nudge.cjs
++++ b/.skilled/hooks/session-relaunch/lib/nudge.cjs
+@@ -141,6 +141,11 @@ function handoffText({
+   }
+   // The sections asked for are the ones validateHandoff enforces, so prepare accepts the note.
+   const sectionList = core.HANDOFF_SECTIONS.map((name) => `## ${name}`).join(', ');
++  const activeGoalInstruction = runtime === 'codex'
++    ? ' For Codex, also include an `Active goal:` line with the goal or packet path; use '
++      + '`Active goal: none` when no goal is active.'
++    : '';
++  // Releasing a held lock lets the re-run command acquire it after the hop.
+   const lines = [
+     opening,
+     `1. Write the handoff note at ${shellQuote(pathValue)} in exactly this shape:`,
+@@ -158,6 +163,9 @@ function handoffText({
+       + 'Never list these handoff steps (the note, the continuity save, prepare) '
+       + 'there; this session does them now.',
+     SPEC_FOLDER_GUIDANCE,
++    '   Under ## In-flight state include an `Active command:` line with the command, mode and '
++      + 'arguments; use `Active command: none` when no command runs.'
++      + activeGoalInstruction,
+   ];
+ 
+   let step = 2;
+@@ -170,6 +178,13 @@ function handoffText({
+     lines.push(`${step}. When a spec packet is bound to this session, ${saveStep}`);
+     step += 1;
+   }
++  lines.push(
++    `${step}. If this command holds a deep-loop lock, release it before prepare with `
++      + '`node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release '
++      + '--lock-path <path> --owner-pid <pid> --nonce <nonce>`, using the values the command '
++      + 'captured. The `release --owner-pid` form also requires the captured lock path and nonce.',
++  );
++  step += 1;
+   const noteArguments = `--handoff ${shellQuote(pathValue)}`
+     + ` --session ${shellQuote(sessionValue)} --runtime ${shellQuote(runtime)}`;
+   if (inLoop) {
+@@ -231,6 +246,25 @@ function seedText({
+   if (gateWasSkipped) {
+     lines.push('3. Gate 3 is already answered Skip for this session, carried from the handoff.');
+   }
++  lines.push(
++    `${continueStep}. If the note has an \`Active goal:\` line other than \`none\`, use `
++      + '`create_goal` to bring that goal back into this session. On a runtime without '
++      + '`create_goal`, tell the operator which goal to set.',
++  );
++  continueStep += 1;
++  if (typeof specFolder === 'string' && specFolder && !gateWasSkipped) {
++    lines.push(
++      `${continueStep}. When ${specFolder}/goal.md exists, read it before Remaining work; `
++        + 'its durable directive binds the session goal.',
++    );
++    continueStep += 1;
++  }
++  lines.push(
++    `${continueStep}. When the note's \`Active command:\` line names a command, run it again `
++      + 'with the same mode and arguments; the command\'s own state detection picks the step. '
++      + 'Skip this when the line says `none`.',
++  );
++  continueStep += 1;
+   // A session that kept working after it wrote the note may have committed some of its
+   // Remaining work since, so it checks git before trusting the list. The note date is the
+   // boundary for that check; without one the step still asks for the history.
+diff --git a/.skilled/hooks/session-relaunch/lib/relaunch-core.cjs b/.skilled/hooks/session-relaunch/lib/relaunch-core.cjs
+index 3d6570203a..fd461594c2 100644
+--- a/.skilled/hooks/session-relaunch/lib/relaunch-core.cjs
++++ b/.skilled/hooks/session-relaunch/lib/relaunch-core.cjs
+@@ -52,12 +52,18 @@ const GOAL_FILENAME = 'goal.md';
+ // Runtimes whose goal record names the packet the session is bound to; the lookup differs
+ // only in how the record is keyed.
+ const GOAL_RECORD_RUNTIMES = Object.freeze(['opencode', 'pi', 'devin', 'cursor']);
++// A manual runtime starts its next session under a fresh native id, so the record the sender
++// wrote never matches. The sender leaves its packet in the hand-over variable instead.
++const HANDOVER_GOAL_RUNTIMES = Object.freeze(['devin', 'cursor']);
+ // The packet a Claude goal names is read from a bounded tail of the session log, so a long
+ // session costs the same as a short one.
+ const GOAL_LOG_TAIL_BYTES = 262144;
+ const GOAL_LOG_MAX_TAIL_BYTES = 16 * 1024 * 1024;
+ const GOAL_LOG_PACKET_PATTERN = /specs\/(?:[A-Za-z0-9._-]+\/)+\d{3}-[a-z0-9]+(?:-[a-z0-9]+)*/g;
+ const GOAL_LOG_MAX_CANDIDATES = 8;
++// A headline search walks the packet tree, so folders that hold fixtures, history and
++// archived work are skipped, and a match counts only when no second packet shares it.
++const GOAL_SEARCH_SKIP_DIRECTORIES = new Set(['scratch', 'lineages', 'z_archive']);
+ const GOAL_SWITCH_OFF_VALUES = Object.freeze(['0', 'false', 'off', 'no']);
+ // Defaults for a record that names no limits; the wrapper reads the same values.
+ const DEFAULT_MAX_HOPS = 10;
+@@ -596,7 +602,8 @@ function claudeSessionLogPath(sessionId, env) {
+   return null;
+ }
+ 
+-function claudeGoalPacket({ sessionId, specFolder, roots, env }) {
++function claudeGoalPacketResult({ sessionId, specFolder, roots, env }) {
++  const none = { packet: '', reason: '' };
+   const lineage = packetLineage(specFolder);
+   let logPath = null;
+   try {
+@@ -606,20 +613,20 @@ function claudeGoalPacket({ sessionId, specFolder, roots, env }) {
+   }
+   // The log is the only record of a Claude goal, so a log that is missing or cannot be read
+   // leaves the goal unproven.
+-  if (logPath === null) return '';
++  if (logPath === null) return none;
+   let latest;
+   try {
+     latest = latestGoalLogEntry(logPath);
+   } catch {
+-    return '';
++    return none;
+   }
+-  if (latest === null || !latest.active) return '';
++  if (latest === null || !latest.active) return none;
+   const headline = latest.condition.split(/\r?\n/).find((line) => line.trim() !== '') ?? '';
+   const named = [...new Set(latest.condition.match(GOAL_LOG_PACKET_PATTERN) ?? [])];
+   const candidates = [...lineage, ...named].slice(0, GOAL_LOG_MAX_CANDIDATES);
+   // The log keeps the goal's text, not its packet, so a packet is the sender's only when its
+   // goal.md carries the text's opening line.
+-  return firstUsablePacket(candidates, roots, (candidate) => {
++  const carried = firstUsablePacket(candidates, roots, (candidate) => {
+     for (const root of roots) {
+       try {
+         const goalText = fs.readFileSync(path.join(root, candidate, GOAL_FILENAME), 'utf8');
+@@ -630,6 +637,15 @@ function claudeGoalPacket({ sessionId, specFolder, roots, env }) {
+     }
+     return false;
+   });
++  if (carried !== '') return { packet: carried, reason: '' };
++  // The lineage and the packets the goal names can both miss when the sender works outside
++  // its packet. One packet carrying the same headline is still proof of the goal.
++  const matches = goalHeadlinePackets({ roots, headline });
++  if (matches.length === 1) return { packet: matches[0], reason: '' };
++  const reason = matches.length > 1
++    ? `the active goal headline appears in ${matches.length} packets`
++    : 'the active goal names no packet this hand-over can find';
++  return { packet: '', reason };
+ }
+ 
+ // Codex names a rollout for its thread, under a folder per day, so the thread's own file is
+@@ -742,12 +758,70 @@ function recordedGoalPacket({ runtime, sessionId, roots }) {
+ }
+ 
+ /**
+- * Find the packet the sending session's goal is bound to, or '' when it had none or none can
+- * be proven. Every reader fails closed: a log or record that cannot be read leaves the answer
+- * empty, so a hand-over never fails for want of a goal and never claims one it cannot show.
+- * Codex always answers empty. Its goal store is keyed by thread and holds the objective text
+- * and a status, with no packet, and no populated record has been read from it, so nothing
+- * proves that a Codex sender had a goal or which packet it named.
++ * Walk each checkout's specs tree for the goal files that carry the headline. A matched packet
++ * is proven the same way a recorded one is, and the caller decides whether one match is unique
++ * enough to carry.
++ *
++ * @param {Object} options - The search.
++ * @param {string[]} options.roots - Absolute checkouts to walk.
++ * @param {string} options.headline - The goal log's opening line.
++ * @returns {string[]} Repo-relative packets whose goal.md carries the headline.
++ */
++function goalHeadlinePackets({ roots, headline }) {
++  if (headline === '') return [];
++  const matches = new Set();
++  const pending = roots.map((root) => ({ directory: path.join(root, 'specs'), root }));
++  while (pending.length > 0) {
++    const { directory, root } = pending.pop();
++    let entries;
++    try {
++      entries = fs.readdirSync(directory, { withFileTypes: true });
++    } catch {
++      continue;
++    }
++    for (const entry of entries) {
++      if (entry.isDirectory()) {
++        if (!GOAL_SEARCH_SKIP_DIRECTORIES.has(entry.name)) {
++          pending.push({ directory: path.join(directory, entry.name), root });
++        }
++        continue;
++      }
++      if (!entry.isFile() || entry.name !== GOAL_FILENAME) continue;
++      try {
++        if (!fs.readFileSync(path.join(directory, entry.name), 'utf8').includes(headline)) {
++          continue;
++        }
++      } catch {
++        continue;
++      }
++      const packet = path.relative(root, directory).split(path.sep).join('/');
++      if (goalPacketProblem(packet, roots) === null) matches.add(packet);
++      // A second packet already settles uniqueness, so the rest of the tree is not read.
++      if (matches.size > 1) return [...matches];
++    }
++  }
++  return [...matches];
++}
++
++// A manual runtime gets a fresh native id, so its own goal record never matches. The sender
++// leaves the packet it worked under in the environment instead, which is accepted only when
++// it is a real packet and only for the runtimes whose next hop is manual.
++function handoverGoalPacket({ runtime, roots, env }) {
++  if (!HANDOVER_GOAL_RUNTIMES.includes(runtime)) return '';
++  const packet = typeof env?.SESSION_RELAUNCH_GOAL_PACKET === 'string'
++    ? env.SESSION_RELAUNCH_GOAL_PACKET
++    : '';
++  if (packet === '') return '';
++  return goalPacketProblem(packet, roots) === null ? packet : '';
++}
++
++/**
++ * Find the packet the sending session's goal is bound to and say why a known goal cannot be
++ * carried. Every reader fails closed: a log or record that cannot be read leaves the packet
++ * empty and the reason unset, so a hand-over never fails for want of a goal and never claims
++ * one it cannot show. Codex always answers empty with a reason. Its goal store is keyed by
++ * thread and holds the objective text and a status, with no packet, so nothing proves which
++ * packet it named.
+  *
+  * @param {Object} options - The session to resolve.
+  * @param {string} options.runtime - Runtime that owns the session.
+@@ -756,21 +830,54 @@ function recordedGoalPacket({ runtime, sessionId, roots }) {
+  *   candidate packets start.
+  * @param {string[]} options.roots - Absolute checkouts the packet may live in.
+  * @param {NodeJS.ProcessEnv} [options.env=process.env] - Environment carrying the log location.
+- * @returns {string} A repo-relative packet directory holding goal.md, or ''.
++ * @returns {{packet: string, reason: string}} The packet and why a known goal was not carried.
+  */
+-function resolveGoalPacket({
++function resolveGoalPacketResult({
+   runtime, sessionId, specFolder = '', roots = [], env = process.env,
+ } = {}) {
+   try {
+-    if (!nonEmptyString(sessionId) || roots.length === 0) return '';
++    if (!nonEmptyString(sessionId) || roots.length === 0) {
++      return { packet: '', reason: '' };
++    }
+     if (GOAL_RECORD_RUNTIMES.includes(runtime)) {
+-      return recordedGoalPacket({ runtime, sessionId, roots });
++      const recorded = recordedGoalPacket({ runtime, sessionId, roots });
++      if (recorded !== '') return { packet: recorded, reason: '' };
++      return { packet: handoverGoalPacket({ runtime, roots, env }), reason: '' };
++    }
++    if (runtime === 'claude') {
++      return claudeGoalPacketResult({ sessionId, specFolder, roots, env });
++    }
++    if (runtime === 'codex') {
++      return {
++        packet: '',
++        reason: 'Codex keeps its goal where this hand-over cannot read a packet',
++      };
+     }
+-    if (runtime === 'claude') return claudeGoalPacket({ sessionId, specFolder, roots, env });
+   } catch {
+     // Resolution is a convenience for the receiver, never a reason to refuse a hand-over.
+   }
+-  return '';
++  return { packet: '', reason: '' };
++}
++
++/**
++ * Find the packet the sending session's goal is bound to, or '' when it had none or none can
++ * be proven.
++ *
++ * @param {Object} options - The session to resolve; see resolveGoalPacketResult.
++ * @returns {string} A repo-relative packet directory holding goal.md, or ''.
++ */
++function resolveGoalPacket(options) {
++  return resolveGoalPacketResult(options).packet;
++}
++
++/**
++ * Say why a goal the sending session had cannot be carried, or '' when no goal is known.
++ *
++ * @param {Object} options - The session to resolve; see resolveGoalPacketResult.
++ * @returns {string} The reason, or '' when no goal is known.
++ */
++function resolveGoalPacketReason(options) {
++  return resolveGoalPacketResult(options).reason;
+ }
+ 
+ /**
+@@ -1965,6 +2072,7 @@ module.exports = {
+   goalRoots,
+   usableGoalPacket,
+   resolveGoalPacket,
++  resolveGoalPacketReason,
+   resolveSessionSettings,
+   recordGoalPacket,
+   parentMapFromTable,
+diff --git a/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs b/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
+index 5da04a9833..36c498f6c1 100644
+--- a/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
++++ b/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
+@@ -1551,6 +1551,29 @@ test('compact-pointer delivers the claim at the start of a goal-command receiver
+   ), /goal-start-claim/);
+ });
+ 
++test('compact-pointer delivers the start claim with the Claude enable switch off', async (t) => {
++  const sandbox = createSandbox(t);
++  const { notePath, seed } = claimSeedFor(sandbox);
++  sandbox.env.SKILLED_LOOP_CLAIM_SEED = seed;
++  sandbox.env.SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED = '0';
++
++  const result = await runAdapter(sandbox, COMPACT_POINTER, compactPayload('startup'));
++
++  assert.equal(result.code, 0, result.stderr);
++  assert.notEqual(result.stdout, '', 'the start claim must be emitted');
++  const output = JSON.parse(result.stdout).hookSpecificOutput;
++  assert.equal(output.hookEventName, 'SessionStart');
++  assert.ok(output.additionalContext.includes(seed), 'the carried seed keeps its spec folder');
++  assert.ok(
++    output.additionalContext.includes(`claim '${notePath}' --session '${SESSION_ID}'`),
++    output.additionalContext,
++  );
++  assert.ok(output.additionalContext.includes(`/speckit:resume ${START_SPEC_FOLDER}`));
++  assert.match(fs.readFileSync(
++    path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log'), 'utf8',
++  ), /goal-start-claim/);
++});
++
+ test('compact-pointer adds no start claim without the seed, off the start event or for a bad seed', async (t) => {
+   const sandbox = createSandbox(t);
+   const { seed } = claimSeedFor(sandbox);
+diff --git a/.skilled/hooks/session-relaunch/tests/nudge.test.cjs b/.skilled/hooks/session-relaunch/tests/nudge.test.cjs
+index 9e28dc0e43..6e7685705e 100644
+--- a/.skilled/hooks/session-relaunch/tests/nudge.test.cjs
++++ b/.skilled/hooks/session-relaunch/tests/nudge.test.cjs
+@@ -58,8 +58,8 @@ const SPEC_FOLDER_GUIDANCE = '   spec_folder is a repo-relative '
+   + 'packet path, "none" for Gate 3 D) Skip, or empty if unanswered.';
+ const CONTINUITY_WRITER = 'node .skilled/skills/system-spec-kit/runtime/cli/'
+   + 'dist/continuity/generate-context.js';
+-const SEED_STEP_THREE = [
+-  '3. Continue the work under "Remaining work". Do not run prepare for this note;',
++const SEED_REMAINING_WORK_STEP = [
++  '6. Continue the work under "Remaining work". Do not run prepare for this note;',
+   'its handoff is already done. If Remaining work names only handoff steps,',
+   'treat it as empty.',
+ ].join(' ');
+@@ -106,13 +106,13 @@ test('handoff text includes the note, frontmatter, all four sections and prepare
+   const handoffSteps = handoffLines.filter((line) => /^\d+\./.test(line));
+   assert.deepEqual(
+     handoffSteps.map((line) => Number.parseInt(line, 10)),
+-    [1, 2, 3, 4],
++    [1, 2, 3, 4, 5],
+   );
+   assert.ok(handoffSteps[1].includes(CONTINUITY_WRITER));
+   assert.ok(handoffSteps[1].includes(`--stdin --full-auto '${SPEC_FOLDER}'`));
+   assert.equal(handoffSteps[1].includes('/speckit:save'), false);
+-  assert.ok(handoffSteps[2].includes('prepare --handoff'));
+-  assert.ok(handoffSteps[3].startsWith('4. Stop once it exits 0;'));
++  assert.ok(handoffSteps[3].includes('prepare --handoff'));
++  assert.ok(handoffSteps[4].startsWith('5. Stop once it exits 0;'));
+   assert.equal(text.includes('/speckit:save'), false);
+   assert.ok(
+     text.includes(
+@@ -131,13 +131,13 @@ test('handoff text includes the note, frontmatter, all four sections and prepare
+   const unboundSteps = unbound.split('\n').filter((line) => /^\d+\./.test(line));
+   assert.deepEqual(
+     unboundSteps.map((line) => Number.parseInt(line, 10)),
+-    [1, 2, 3],
++    [1, 2, 3, 4],
+   );
+   assert.equal(unboundSteps.some((line) => line.includes('/speckit:save')), false);
+   assert.equal(unbound.includes('generate-context.js'), false);
+   assert.match(unbound, /^   spec_folder: $/m);
+-  assert.ok(unboundSteps[1].includes('prepare --handoff'));
+-  assert.ok(unboundSteps[1].includes("--runtime 'opencode'"));
++  assert.ok(unboundSteps[2].includes('prepare --handoff'));
++  assert.ok(unboundSteps[2].includes("--runtime 'opencode'"));
+ 
+   const skipped = handoffText({
+     notePath: NOTE_PATH,
+@@ -150,7 +150,7 @@ test('handoff text includes the note, frontmatter, all four sections and prepare
+   const skippedSteps = skipped.split('\n').filter((line) => /^\d+\./.test(line));
+   assert.deepEqual(
+     skippedSteps.map((line) => Number.parseInt(line, 10)),
+-    [1, 2, 3],
++    [1, 2, 3, 4],
+   );
+   assert.match(skipped, /^   spec_folder: none$/m);
+   assert.equal(skipped.includes('generate-context.js'), false);
+@@ -166,7 +166,45 @@ test('handoff text includes the note, frontmatter, all four sections and prepare
+   const unspecifiedSteps = unspecified.split('\n').filter((line) => /^\d+\./.test(line));
+   assert.deepEqual(
+     unspecifiedSteps.map((line) => Number.parseInt(line, 10)),
+-    [1, 2, 3, 4],
++    [1, 2, 3, 4, 5],
++  );
++});
++
++test('handoff text asks for an active command line', () => {
++  const text = handoffText({
++    notePath: NOTE_PATH,
++    sessionId: SESSION_ID,
++    specFolder: SPEC_FOLDER,
++    runtime: 'pi',
++    cliPath: CLI_PATH,
++    loopId: LOOP_ID,
++  });
++  const inFlightInstruction = text.split('\n').find((line) => line.includes('Under ## In-flight state'));
++
++  assert.ok(inFlightInstruction, text);
++  assert.ok(inFlightInstruction.includes('Active command:'), text);
++  assert.ok(text.includes('Active command: none'), text);
++});
++
++test('handoff text releases a deep-loop lock before prepare', () => {
++  const text = handoffText({
++    notePath: NOTE_PATH,
++    sessionId: SESSION_ID,
++    specFolder: SPEC_FOLDER,
++    runtime: 'pi',
++    cliPath: CLI_PATH,
++    loopId: LOOP_ID,
++  });
++  const lines = text.split('\n');
++  const releaseIndex = lines.findIndex((line) => line.includes('loop-lock.cjs release'));
++  const prepareIndex = lines.findIndex((line) => line.includes('prepare --handoff'));
++
++  assert.ok(releaseIndex >= 0 && releaseIndex < prepareIndex, text);
++  assert.match(lines[releaseIndex], /--lock-path <path> --owner-pid <pid> --nonce <nonce>/);
++  assert.equal(
++    Number.parseInt(lines[releaseIndex], 10) + 1,
++    Number.parseInt(lines[prepareIndex], 10),
++    text,
+   );
+ });
+ 
+@@ -322,11 +360,11 @@ test('seed text claims the note, resumes only a bound spec folder, and completes
+   const seedSteps = withSpec.split('\n').filter((line) => /^\d+\./.test(line));
+   assert.deepEqual(
+     seedSteps.map((line) => Number.parseInt(line, 10)),
+-    [1, 2, 3, 4],
++    [1, 2, 3, 4, 5, 6, 7],
+   );
+   assert.ok(seedSteps[1].includes(`/speckit:resume ${SPEC_FOLDER}`));
+-  assert.equal(seedSteps[2], SEED_STEP_THREE);
+-  assert.ok(seedSteps[3].includes('complete'));
++  assert.equal(seedSteps[5], SEED_REMAINING_WORK_STEP);
++  assert.ok(seedSteps[6].includes('complete'));
+ 
+   const withoutSpec = seedText({ notePath: NOTE_PATH, specFolder: '', sessionId: SESSION_ID, cliPath: CLI_PATH });
+   assert.equal(withoutSpec.includes('/speckit:resume'), false);
+@@ -340,12 +378,65 @@ test('seed text claims the note, resumes only a bound spec folder, and completes
+   const skipSteps = skipped.split('\n').filter((line) => /^\d+\./.test(line));
+   assert.deepEqual(
+     skipSteps.map((line) => Number.parseInt(line, 10)),
+-    [1, 2, 3, 4, 5],
++    [1, 2, 3, 4, 5, 6, 7],
+   );
+   assert.equal(skipSteps.some((line) => line.includes('/speckit:resume')), false);
+   assert.equal(skipSteps[2], SKIP_GATE_LINE);
+ });
+ 
++test('seed text runs the active command again', () => {
++  const text = seedText({
++    notePath: NOTE_PATH,
++    specFolder: SPEC_FOLDER,
++    sessionId: SESSION_ID,
++    cliPath: CLI_PATH,
++  });
++  const lines = text.split('\n');
++  const commandIndex = lines.findIndex((line) => line.includes('run it again'));
++  const remainingIndex = lines.findIndex((line) => line.includes('Continue the work under'));
++
++  assert.ok(commandIndex >= 0 && commandIndex < remainingIndex, text);
++  assert.match(lines[commandIndex], /same mode and arguments/);
++  assert.match(lines[commandIndex], /state detection picks the step/);
++});
++
++test('seed text reads the spec folder goal before remaining work', () => {
++  const text = seedText({
++    notePath: NOTE_PATH,
++    specFolder: SPEC_FOLDER,
++    sessionId: SESSION_ID,
++    cliPath: CLI_PATH,
++  });
++  const lines = text.split('\n');
++  const goalIndex = lines.findIndex((line) => line.includes('goal.md'));
++  const remainingIndex = lines.findIndex((line) => line.includes('Continue the work under'));
++
++  assert.ok(goalIndex >= 0 && goalIndex < remainingIndex, text);
++  assert.ok(lines[goalIndex].includes(SPEC_FOLDER), text);
++  assert.match(lines[goalIndex], /binds the session goal/);
++});
++
++test('codex handoff requests an active goal line and the seed restores it', () => {
++  const handoff = handoffText({
++    notePath: NOTE_PATH,
++    sessionId: SESSION_ID,
++    specFolder: SPEC_FOLDER,
++    runtime: 'codex',
++    cliPath: CLI_PATH,
++    loopId: LOOP_ID,
++  });
++  const seed = seedText({
++    notePath: NOTE_PATH,
++    specFolder: SPEC_FOLDER,
++    sessionId: SESSION_ID,
++    cliPath: CLI_PATH,
++  });
++
++  assert.match(handoff, /Under ## In-flight state.*Active goal:/);
++  assert.ok(seed.includes('create_goal'), seed);
++  assert.ok(seed.indexOf('create_goal') < seed.indexOf('Continue the work under'), seed);
++});
++
+ test('seed text runs the real claim command with no placeholder explanation', () => {
+   const seed = seedText({
+     notePath: NOTE_PATH,
+@@ -401,7 +492,7 @@ test('after-compaction pointer names the note created_at and the git checks', ()
+   assert.ok(checkIndex > 0 && checkIndex < continueIndex, pointer);
+   assert.deepEqual(
+     lines.slice(1).map((line) => Number.parseInt(line, 10)),
+-    [1, 2, 3, 4, 5],
++    [1, 2, 3, 4, 5, 6, 7, 8],
+   );
+ 
+   // A date the session pastes into its shell stays one quoted argument.
+diff --git a/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs b/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
+index 585e972add..60e21caabf 100644
+--- a/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
++++ b/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
+@@ -2679,6 +2679,84 @@ test('resolveGoalPacket answers empty for an unknown runtime or a missing sessio
+   assert.equal(resolveGoalPacket({}), '');
+ });
+ 
++test('hands a devin or cursor session the hand-over packet', (t) => {
++  const sessionId = 'a8bb5429-9c44-4a93-89d3-f8ee3d53bb2c';
++  const recordPacket = 'specs/hooks/042-recorded-goal';
++  const outcomes = [];
++
++  for (const runtime of ['devin', 'cursor']) {
++    const sandbox = createSandbox(t);
++    writeGoalPacket(sandbox.repoRoot);
++    writeGoalPacket(sandbox.repoRoot, recordPacket);
++    const roots = [sandbox.repoRoot];
++    const env = { ...sandbox.env, SESSION_RELAUNCH_GOAL_PACKET: GOAL_PACKET };
++    const resolve = (overrides = {}) => resolveGoalPacket({
++      runtime,
++      sessionId,
++      roots,
++      env: { ...env, ...overrides },
++    });
++
++    const refused = resolve({ SESSION_RELAUNCH_GOAL_PACKET: '../outside' });
++    const handover = resolve();
++    writeGoalRecord(
++      sandbox.repoRoot,
++      runtime,
++      { status: 'active', packetPath: recordPacket },
++      sessionId,
++    );
++    const recorded = resolve();
++    outcomes.push({ runtime, refused, handover, recorded });
++  }
++
++  assert.deepEqual(outcomes, [
++    { runtime: 'devin', refused: '', handover: GOAL_PACKET, recorded: recordPacket },
++    { runtime: 'cursor', refused: '', handover: GOAL_PACKET, recorded: recordPacket },
++  ]);
++});
++
++test('keeps the hand-over packet off', (t) => {
++  const sandbox = createSandbox(t);
++  writeGoalPacket(sandbox.repoRoot);
++  const roots = [sandbox.repoRoot];
++  const env = { ...sandbox.env, SESSION_RELAUNCH_GOAL_PACKET: GOAL_PACKET };
++  const packets = ['claude', 'codex', 'pi', 'opencode'].map((runtime) => resolveGoalPacket({
++    runtime,
++    sessionId: 'a8bb5429-9c44-4a93-89d3-f8ee3d53bb2c',
++    roots,
++    env,
++  }));
++
++  assert.deepEqual(packets, ['', '', '', '']);
++});
++
++test('finds a goal headline outside the packet lineage', (t) => {
++  const sandbox = createSandbox(t);
++  const headline = '# Goal: A single outside headline';
++  const uniquePacket = 'specs/hooks/041-unique-goal';
++  writeGoalPacket(sandbox.repoRoot, uniquePacket, `${headline}\n`);
++  for (const skipped of ['scratch', 'lineages', 'z_archive']) {
++    writeGoalPacket(sandbox.repoRoot, `specs/${skipped}/042-skipped-goal`, `${headline}\n`);
++  }
++  const env = writeClaudeLog(sandbox, [goalStatus({
++    met: false,
++    sentinel: true,
++    condition: `${headline}\nbody`,
++  })]);
++  const resolve = () => resolveGoalPacket({
++    runtime: 'claude',
++    sessionId: GOAL_SESSION_ID,
++    specFolder: 'none',
++    roots: [sandbox.repoRoot],
++    env,
++  });
++  const unique = resolve();
++
++  writeGoalPacket(sandbox.repoRoot, 'specs/hooks/043-duplicate-goal', `${headline}\n`);
++
++  assert.deepEqual([unique, resolve()], [uniquePacket, '']);
++});
++
+ test('recordGoalPacket writes, replaces and removes the field and skips an unchanged note', (t) => {
+   const sandbox = createSandbox(t);
+   const handoffPath = writeHandoff(sandbox);
+diff --git a/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs b/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs
+index ad6a6529f3..ce20b00a41 100644
+--- a/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs
++++ b/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs
+@@ -2327,6 +2327,80 @@ function noteGoalPacket(handoffPath) {
+   return core.parseHandoff(fs.readFileSync(handoffPath, 'utf8')).frontmatter.goal_packet;
+ }
+ 
++test('one goal reason on stderr for a Claude free-text goal', (t) => {
++  const sandbox = createSandbox(t);
++  const handoffPath = writeHandoff(sandbox);
++  writeClaudeGoalLog(sandbox, [{
++    type: 'attachment',
++    attachment: {
++      type: 'goal_status',
++      met: false,
++      sentinel: true,
++      condition: '# Goal: Work without a packet\nThis goal has no packet path.',
++    },
++  }]);
++  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
++  sandbox.env.SKILLED_LOOP_RUNTIME = 'claude';
++  sandbox.env.CLAUDE_PID = String(process.pid);
++  sandbox.env.SESSION_RELAUNCH_GOAL = '1';
++
++  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath, '--session', SESSION_ID]);
++
++  assert.equal(result.status, 0, result.stderr);
++  assert.match(result.stderr, /^\[session-relaunch\] goal not carried: .+\n$/);
++  assert.equal(result.stderr.trim().split(/\r?\n/).length, 1);
++  assert.equal(
++    result.stdout,
++    '[session-relaunch] handoff prepared; stop now and end this turn.'
++      + ' The loop ends this session when it goes idle and a fresh session continues from '
++      + `${handoffPath}.\n`,
++  );
++});
++
++test('one goal reason on stderr for a Codex sender', (t) => {
++  const sandbox = createSandbox(t);
++  const handoffPath = writeHandoff(sandbox);
++  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
++  sandbox.env.SKILLED_LOOP_RUNTIME = 'codex';
++  sandbox.env.CLAUDE_PID = String(process.pid);
++  sandbox.env.SESSION_RELAUNCH_GOAL = '1';
++
++  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath, '--session', SESSION_ID]);
++
++  assert.equal(result.status, 0, result.stderr);
++  assert.match(result.stderr, /^\[session-relaunch\] goal not carried: .+\n$/);
++  assert.equal(result.stderr.trim().split(/\r?\n/).length, 1);
++  assert.equal(
++    result.stdout,
++    '[session-relaunch] handoff prepared; stop now and end this turn.'
++      + ' The loop ends this session when it goes idle and a fresh session continues from '
++      + `${handoffPath}.\n`,
++  );
++});
++
++test('manual route for a cursor or devin session', (t) => {
++  const outputs = [];
++
++  for (const runtime of ['cursor', 'devin']) {
++    const sandbox = createSandbox(t);
++    const handoffPath = writeHandoff(sandbox);
++    sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
++    sandbox.env.SKILLED_LOOP_RUNTIME = runtime;
++    sandbox.env.CLAUDE_PID = String(process.pid);
++    const result = runCli(sandbox, ['prepare', '--handoff', handoffPath, '--session', SESSION_ID]);
++
++    assert.equal(result.status, 0, result.stderr);
++    outputs.push(result.stdout);
++  }
++
++  assert.deepEqual(outputs, [
++    '[session-relaunch] handoff prepared; nothing ends this session. '
++      + 'Exit it and run the claim command the wrapper prints.\n',
++    '[session-relaunch] handoff prepared; nothing ends this session. '
++      + 'Exit it and run the claim command the wrapper prints.\n',
++  ]);
++});
++
+ // One row per sender runtime: how the goal is made findable for that runtime.
+ const GOAL_SENDER_CASES = [
+   ...GOAL_RECORD_RUNTIMES.map((runtime) => ({
+@@ -2371,6 +2445,7 @@ for (const command of ['prepare', 'keep']) {
+         command, '--handoff', handoffPath, '--session', SESSION_ID, '--runtime', runtime,
+       ]);
+       assert.equal(result.status, command === 'prepare' ? 3 : 0, result.stderr);
++      assert.equal(result.stderr, '');
+     }
+ 
+     assert.equal(fs.readFileSync(handoffPath, 'utf8'), before);
+@@ -2408,6 +2483,7 @@ for (const command of ['prepare', 'keep']) {
+     ]);
+ 
+     assert.equal(result.status, command === 'prepare' ? 3 : 0, result.stderr);
++    assert.equal(result.stderr, '');
+     assert.equal(noteGoalPacket(handoffPath), undefined);
+   });
+ 
+diff --git a/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs b/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs
+index 5fafa85b0a..457e35b538 100644
+--- a/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs
++++ b/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs
+@@ -351,6 +351,32 @@ function replay(shell, bin, file) {
+ }
+ 
+ for (const shell of SHELLS) {
++  test(`${shell.name}: sourcing the shim defines the skilled-loop command`, () => {
++    const script = 'source "$1" || exit 90; command -v skilled-loop';
++    const result = spawnSync(shell.command, [...shell.flags, script, 'skilled-loop-shell-test', SHIM], {
++      encoding: 'utf8',
++      env: cleanEnv(),
++    });
++    assert.equal(result.stdout, 'skilled-loop\n', `${shell.name} command`);
++    assert.equal(result.stderr, '', `${shell.name} stderr`);
++    assert.equal(result.status, 0, `${shell.name} exit`);
++  });
++
++  // The wrapper prints `skilled-loop <runtime>` as the manual claim command, so the shim
++  // answers to that name and hands the claim to the wrapper it already trusts, even
++  // without a terminal.
++  test(`${shell.name}: the skilled-loop command hands the claim to the trusted wrapper`, (t) => {
++    const box = sandbox(t);
++    const bin = stubBin(box.root);
++    const wrapper = fs.realpathSync(box.wrapper);
++    assert.equal(
++      launch(shell, box, bin, 'skilled-loop claude --model opus', { tty: false }),
++      `WRAPPED ${wrapper} claude --model opus\n`,
++    );
++    // No runtime leaves the wrapper's own default in charge, so the shim adds none.
++    assert.equal(launch(shell, box, bin, 'skilled-loop', { tty: false }), `WRAPPED ${wrapper}\n`);
++  });
++
+   test(`${shell.name}: without a terminal the runtime function runs the binary directly`, (t) => {
+     const box = sandbox(t);
+     const bin = stubBin(box.root);
+diff --git a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md
+index b02f94782f..abfa86ebe1 100644
+--- a/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md
++++ b/.skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md
+@@ -30,7 +30,7 @@ Operators run the exact prompt and command sequence for `CO-039` and confirm the
+ - Real user request: `Does /goal-opencode actually work end to end -- can I set a goal, see it reflected correctly, and does it stay scoped to my session without leaking into someone else's chat?`
+ - Prompt: `As an OpenCode plugin validator, exercise the shipped opencode-goal hooks against scratch state. Verify the full /goal-opencode action set, two-session isolation, fixed 64-character SHA-256 state keys, long-session persistence, validated lazy migration of a legacy hex-keyed file, native message.updated token accounting, one [active_goal] injection, and fail-closed disable behavior. Return the exact envelope lines, state filenames, and a PASS/FAIL verdict.`
+ - Expected execution process: Import `.opencode/plugins/opencode-goal.js`, instantiate it with a temporary `stateDir`, drive `tool.opencode_goal`, `tool.opencode_goal_status`, `event`, and `experimental.chat.system.transform` across two normal session ids plus one long id, rename one validated digest file into the earlier hex layout and trigger lazy adoption, then run all eight committed unit suites.
+-- Expected signals: the packet-rendered brief carries the `criteria:` field with one line per completion criterion; `set` returns `STATUS=OK ACTION=set`, `mutation=created`, and a populated RICCE `goal_prompt`; every new basename matches `^[a-f0-9]{64}\.json$`; a 140-character session suffix persists successfully; a valid legacy file moves back to the digest path on read without changing its goal; the two normal sessions remain isolated; native input/output tokens sum exactly to `tokens_used=160` with `usage_source=opencode-native-tokens`; the transform appends one matching `[active_goal:<id>]` block; all actions return their documented success envelopes; the disable switch returns `code=PLUGIN_DISABLED`; and the focused suite passes 166/166.
++- Expected signals: the packet-rendered brief carries the `criteria:` field with one line per completion criterion; `set` returns `STATUS=OK ACTION=set`, `mutation=created`, and a populated RICCE `goal_prompt`; every new basename matches `^[a-f0-9]{64}\.json$`; a 140-character session suffix persists successfully; a valid legacy file moves back to the digest path on read without changing its goal; the two normal sessions remain isolated; native input/output tokens sum exactly to `tokens_used=160` with `usage_source=opencode-native-tokens`; the transform appends one matching `[active_goal:<id>]` block; all actions return their documented success envelopes; the disable switch returns `code=PLUGIN_DISABLED`; and the focused suite passes 168/168.
+ - Evidence requirements: Capture the import exit status, scratch-script JSON result and state filename list, exact goal/status envelopes, migration source-and-target checks, injection assertion, and final TAP summary.
+ - Desired user-visible outcome: A concise PASS or FAIL verdict citing the exact captured envelope lines with no fabricated output, plus the turn 1 tool envelopes and the turn 2 canary quote when the optional live `opencode run` check in Section 3 is run.
+ - Pass/fail: PASS if every action above returns its documented envelope with correct field values (mutation on set, isolated per-session files, exact `tokens_used` sum, `opencode-native-tokens` source, an injection block naming the matching goal id, and every action failing closed under `PLUGIN_DISABLED`). FAIL if any envelope is malformed, if session state leaks across session ids, if token accounting mis-attributes, if the kill switch is ignored, or if a hook throws instead of returning its documented envelope.
+@@ -138,12 +138,12 @@ console.log(JSON.stringify({ verdict: 'PASS', stateFiles, migrated: true, tokens
+ 
+ || Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
+ ||---|---|---|---|---|---|---|---|---|
+-|| CO-039 | Goal hook native opencode-goal validation | Verify actions, opaque persistence, lazy migration, isolation, native accounting, and injection | `As an OpenCode plugin validator, exercise the shipped opencode-goal hooks against scratch state. Verify the full /goal-opencode action set, two-session isolation, fixed 64-character SHA-256 state keys, long-session persistence, validated lazy migration of a legacy hex-keyed file, native message.updated token accounting, one [active_goal] injection, and fail-closed disable behavior. Return the exact envelope lines, state filenames, and a PASS/FAIL verdict.` | 1. `node -e "import('./.opencode/plugins/opencode-goal.js')"` -> 2. `node co-039-opencode-goal-live.mjs` using the scratch script above -> 3. `node --test .opencode/plugins/tests/opencode-goal-*.test.cjs` | Import succeeds; three opaque 64-hex state names are observed; the long id persists; validated legacy state migrates to its digest path; A/B remain isolated; `tokens_used=160`; one matching injection block appears; every disabled action returns `code=PLUGIN_DISABLED`; all 166 tests pass | Scratch-script assertion output, state filename list, exact status envelopes, and TAP summary | PASS only when every storage, migration, isolation, accounting, injection, action, and disable assertion passes with 166/166 tests | Check native session identity and embedded legacy `sessionId` first; an occupied digest target must win without source deletion; token drift means inspect `properties.info.tokens`, never substitute generic usage |
++|| CO-039 | Goal hook native opencode-goal validation | Verify actions, opaque persistence, lazy migration, isolation, native accounting, and injection | `As an OpenCode plugin validator, exercise the shipped opencode-goal hooks against scratch state. Verify the full /goal-opencode action set, two-session isolation, fixed 64-character SHA-256 state keys, long-session persistence, validated lazy migration of a legacy hex-keyed file, native message.updated token accounting, one [active_goal] injection, and fail-closed disable behavior. Return the exact envelope lines, state filenames, and a PASS/FAIL verdict.` | 1. `node -e "import('./.opencode/plugins/opencode-goal.js')"` -> 2. `node co-039-opencode-goal-live.mjs` using the scratch script above -> 3. `node --test .opencode/plugins/tests/opencode-goal-*.test.cjs` | Import succeeds; three opaque 64-hex state names are observed; the long id persists; validated legacy state migrates to its digest path; A/B remain isolated; `tokens_used=160`; one matching injection block appears; every disabled action returns `code=PLUGIN_DISABLED`; all 168 tests pass | Scratch-script assertion output, state filename list, exact status envelopes, and TAP summary | PASS only when every storage, migration, isolation, accounting, injection, action, and disable assertion passes with 168/168 tests | Check native session identity and embedded legacy `sessionId` first; an occupied digest target must win without source deletion; token drift means inspect `properties.info.tokens`, never substitute generic usage |
+ 
+ ### Optional Supplemental Checks
+ 
+ - **Dependency resolution.** The tracked `.skilled/node_modules/@opencode-ai/plugin` dependency resolves in this checkout. Treat import failure as install-state drift; do not create an untracked cache symlink as part of the playbook.
+-- **Unit-test suite run.** `node --test .opencode/plugins/tests/opencode-goal-*.test.cjs` passes 166/166 across nine suite files. Re-measure with the command above rather than trusting this number; it has gone stale once already.
++- **Unit-test suite run.** `node --test .opencode/plugins/tests/opencode-goal-*.test.cjs` passes 168/168 across nine suite files. Re-measure with the command above rather than trusting this number; it has gone stale once already.
+ - **Live headless `opencode run` check (optional).** Headless `opencode run` exposes `opencode_goal` and `opencode_goal_status` to the model, and `experimental.chat.system.transform` fires on a resumed `--session`. The check runs two turns against a scratch `OPENCODE_GOAL_STATE_DIR`, each with an explicit `-m <provider/model>` and stdin redirected from `/dev/null`. In turn 1 the model calls `opencode_goal` with `set` and then `opencode_goal_status`, and the scratch state file for that session id holds the objective. Between the turns, bind that session id in-process to a scratch packet whose `goal.md` carries a random canary the model never sees. Turn 2 resumes with `--session <id>`, calls no tool and asks the model to copy the `[active_goal]` objective and criteria lines from its system prompt. PASS when turn 2 quotes the canary and carries no frontmatter or log-row canary. A passing live run is recorded in `specs/sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/012-goal-send-and-dedupe/scratch/runtime-verification/opencode/a3-live-summary.md`. It supersedes an earlier finding that reported the tools hidden and the transform silent in headless runs.
+ 
+ ---

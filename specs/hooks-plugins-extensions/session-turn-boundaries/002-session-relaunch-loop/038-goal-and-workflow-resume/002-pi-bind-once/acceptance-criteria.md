@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** 002-pi-bind-once
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-12
 <!-- /ANCHOR:metadata -->
 
@@ -51,8 +51,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a Pi receiver process has made its one hand-over attempt with a session id, When a second `session_start` arrives with a new id, Then it binds nothing and `SESSION_RELAUNCH_GOAL_PACKET` is no longer set, so a nested runtime has nothing to bind. | `node --test --test-name-pattern 'a second session_start with a new id binds nothing' .skilled/hooks/goal/pi/goal-pi.test.mjs` exits 0 and its case asserts the empty record and the cleared variable. | Unmet | - |
-| AC-002 | REQ-002 | Given the existing hand-over cases in `goal-pi.test.mjs`, When the once-per-process guard lands, Then the first receiver still binds at session start, its later input does not rebind, an own or cleared goal is left alone, an `AI_SESSION_CHILD=1` child binds nothing, and the off switch, an empty variable and a missing packet bind nothing. | `node --test --test-name-pattern 'hand-over|first input binds|session own|dispatched child|switch, an empty variable' .skilled/hooks/goal/pi/goal-pi.test.mjs` exits 0. | Unmet | - |
+| AC-001 | REQ-001 | Given a Pi receiver process has made its one hand-over attempt with a session id, When a second `session_start` arrives with a new id, Then it binds nothing and `SESSION_RELAUNCH_GOAL_PACKET` is no longer set, so a nested runtime has nothing to bind. | `node --test --test-name-pattern 'a second session_start with a new id binds nothing' .skilled/hooks/goal/pi/goal-pi.test.mjs` exits 0 and its case asserts the empty record and the cleared variable. Observed 2026-11-13: `a second session_start with a new id binds nothing after the receiver binds` passes in `scratch/green.txt` and failed in `scratch/red.txt`. Source: `.skilled/hooks/goal/pi/goal-context.ts`. | Met | - |
+| AC-002 | REQ-002 | Given the existing hand-over cases in `goal-pi.test.mjs`, When the once-per-process guard lands, Then the first receiver still binds at session start, its later input does not rebind, an own or cleared goal is left alone, an `AI_SESSION_CHILD=1` child binds nothing, and the off switch, an empty variable and a missing packet bind nothing. | `node --test --test-name-pattern 'hand-over\|first input binds\|session own\|dispatched child\|switch, an empty variable' .skilled/hooks/goal/pi/goal-pi.test.mjs` exits 0. Observed 2026-11-13: the five existing hand-over cases pass inside the 29 of 29 run in `scratch/green.txt`. | Met | - |
 
 ### Status values
 
@@ -77,7 +77,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Every criterion is unmet because this is a planning-only packet.
+All 2 criteria are Met with observed evidence. The orchestrator reran every suite outside the builders' sandboxes from the final working tree: relaunch and OpenCode plugin suites 1471 of 1471, goal hook suites 200 of 200, Pi relaunch suite 59 of 59, each exit 0. The evidence is pinned to the working tree of branch `worktrees/358-handover-goal-resume` before its commit.
 <!-- /ANCHOR:closure -->

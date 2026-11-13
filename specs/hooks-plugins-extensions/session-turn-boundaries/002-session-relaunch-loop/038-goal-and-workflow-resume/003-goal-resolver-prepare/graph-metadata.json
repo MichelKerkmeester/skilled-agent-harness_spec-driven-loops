@@ -34,7 +34,7 @@
       "cursor"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -46,6 +46,8 @@
       ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
       ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
       ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+      "scratch/red.txt",
+      "scratch/green.txt",
       "scratch/finding.md"
     ],
     "entities": [
@@ -107,6 +109,18 @@
         "name": "session-relaunch-cli.test.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
         "source": "derived"
       },
       {
@@ -180,24 +194,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Devin and Cursor receivers start under a fresh native id, so the goal record the sender wrote under the old id never matches and the next manual hop carries no goal",
     "created_at": "2026-11-12T22:42:02Z",
-    "last_save_at": "2026-11-12T23:26:43.676Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-13T03:55:22.895Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -207,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fcc1bb858c8714a7ffd881c3bebe85ea6e3a59fbd6bb21b2237a3642ec4aaef1",
+    "source_fingerprint": "sha256:fde8cd2c6d9de159379e3b618fd161d48eaf2d288e35dcec73187d9ee680a3d5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f624ec411a35e4728cea6717c9562b693f577c3522290573921ae6d39e1e029d",
-      "plan.md": "e4017d55448451e5ed3f1fcd64a5c9496299b0f70c8a188f4a92f994eef20b0f",
-      "tasks.md": "a92139d029ed42c507a62ef31955bcac2d07119559a0f077dcebdd6b37debe14",
-      "implementation-summary.md": "7f5d62681a177216b4146e758934ab55ac739a72108da430c8b1be6c446512a3"
+      "spec.md": "239fa2f86b7a505be3f80a96b68338e80b96a7a0efc4fbe12da422ae2cacc33e",
+      "plan.md": "12d3efd7a54b5260bc7500f1458ab5c3a128c12958dddc8ba3ed6a0eba5129c8",
+      "tasks.md": "d6298fdbdc3afd369f3b84a5ddce9783c85756b755218b70d7d6d56ee05de2a6",
+      "implementation-summary.md": "73788f6d1c9e2ad9ac628cc91a5822c3486a5d82750c76d4ed3d147de08f9583"
     },
     "last_active_at": null
   }

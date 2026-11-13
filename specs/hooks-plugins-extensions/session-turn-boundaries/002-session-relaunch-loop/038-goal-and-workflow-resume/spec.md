@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "scaffold/038-goal-and-workflow-resume"
+    packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
     recent_action: "Initialize phase-parent continuity block"
@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-12 |
 | **Branch** | `worktrees/358-handover-goal-resume` |
 | **Parent Spec** | `../spec.md` |
@@ -123,13 +123,13 @@ After a hop the receiver runs the sender's command again, reads the goal of the 
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-workflow-reentry-seed/ | The note names the active command and the receiver runs it again. The sender releases a deep-loop lock. The receiver reads the phase goal. A Codex sender names its goal in the note | Draft |
-| 2 | 002-pi-bind-once/ | The Pi extension binds a hop goal once per process and drops the packet variable afterwards | Draft |
-| 3 | 003-goal-resolver-prepare/ | Cursor and Devin keep a handed-over goal, a goal packet is found by a unique headline, `prepare` prints why a goal was not carried and tells Cursor and Devin that nothing ends the session | Draft |
-| 4 | 004-claude-start-claim/ | The Claude start hook delivers the claim when the wrapper swapped the prompt, with the relaunch switch off | Draft |
-| 5 | 005-opencode-continuation-hop/ | The OpenCode goal continuation does not fire while a relaunch record names the session, and the packet variable is dropped after one bind attempt | Draft |
-| 6 | 006-skilled-loop-command/ | `skilled-loop` is a shell function, so the printed manual command runs as typed | Draft |
-| 7 | 007-goal-handover-docs/ | The README and the flags example describe the shipped goal carry-over, the known race and the child goal difference | Draft |
+| 1 | 001-workflow-reentry-seed/ | The note names the active command and the receiver runs it again. The sender releases a deep-loop lock. The receiver reads the phase goal. A Codex sender names its goal in the note | Complete |
+| 2 | 002-pi-bind-once/ | The Pi extension binds a hop goal once per process and drops the packet variable afterwards | Complete |
+| 3 | 003-goal-resolver-prepare/ | Cursor and Devin keep a handed-over goal, a goal packet is found by a unique headline, `prepare` prints why a goal was not carried and tells Cursor and Devin that nothing ends the session | Complete |
+| 4 | 004-claude-start-claim/ | The Claude start hook delivers the claim when the wrapper swapped the prompt, with the relaunch switch off | Complete |
+| 5 | 005-opencode-continuation-hop/ | The OpenCode goal continuation does not fire while a relaunch record names the session, and the packet variable is dropped after one bind attempt | Complete |
+| 6 | 006-skilled-loop-command/ | `skilled-loop` is a shell function, so the printed manual command runs as typed | Complete |
+| 7 | 007-goal-handover-docs/ | The README and the flags example describe the shipped goal carry-over, the known race and the child goal difference | Complete |
 
 ### Phase Transition Rules
 

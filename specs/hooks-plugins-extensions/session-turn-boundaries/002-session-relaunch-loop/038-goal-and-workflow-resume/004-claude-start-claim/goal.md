@@ -8,17 +8,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "scaffold/004-claude-start-claim"
-    last_updated_at: "2026-11-12T22:42:04Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-11-13T03:55:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Closed the phase after the build, the review fixes and the final suite run"
+    next_safe_action: "None; phase closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-004-claude-start-claim"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -54,9 +54,9 @@ Frozen choices. Changing one is an amendment. Parent decisions D1 to D5 bind her
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node --test --test-name-pattern 'Claude enable switch off' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs` exits 0.
-- [ ] `node --test --test-name-pattern 'compact-pointer' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs` exits 0.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/004-claude-start-claim --strict` prints `RESULT: PASSED`.
+- [x] `node --test --test-name-pattern 'Claude enable switch off' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs` exits 0.
+- [x] `node --test --test-name-pattern 'compact-pointer' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs` exits 0.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/004-claude-start-claim --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -75,6 +75,8 @@ and findings belong here.
 | Planning documents | Done | Five docs authored from the phase brief on 2026-11-13 |
 | Baseline | Done | `node --test --test-name-pattern 'compact-pointer' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs` shows the three start-claim tests failing before the change |
 | Implementation | Pending | No source change yet |
+| Build | Done | DeepSeek V4.1 Flash max built it through OpenCode, test first: `scratch/red.txt` shows 64 pass and 1 fail, `scratch/green.txt` 65 of 65. The review asked for a guard under the master switch, which a follow-up pass added. |
+| Suites | Done | The orchestrator reran every suite outside the builders' sandboxes from the final working tree: relaunch and OpenCode plugin suites 1471 of 1471, goal hook suites 200 of 200, Pi relaunch suite 59 of 59, each exit 0. |
 
 ### Deviations and findings
 

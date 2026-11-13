@@ -243,7 +243,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-11-13T00:33:02.998Z",
+    "last_save_at": "2026-11-13T04:01:09.384Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -251,13 +251,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:73b693959c935698115b955033bc55965ae5b0633646e0e036cb2517227cc5ed",
+    "source_fingerprint": "sha256:59c0308d8c244761078958b5ee6e53574703b8184ef0156a913674d59da3bcfc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0bfc68456b7456d5d90fab0bc9404348930e81cecaa900e326afa18c62b921c2",
+      "spec.md": "50f08c6b86b120b23fa53472ca211881098cae3b8dc76fa1e40df95da657a114",
       "research/research.md": "cd715f66fe738274ad12d39730f4c477ce7e636d424fd5c75d0c9ad949f3d338"
     },
-    "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/037-relaunch-test-speed",
-    "last_active_at": "2026-11-12T21:13:52.851Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
+    "last_active_at": "2026-11-13T03:56:30.910Z"
   }
 }

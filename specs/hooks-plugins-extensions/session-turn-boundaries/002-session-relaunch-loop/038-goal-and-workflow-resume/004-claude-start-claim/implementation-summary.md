@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: A Claude claim arrives with the enable switch off"
+description: "The Claude start hook delivers the claim whenever the wrapper replaced the start prompt, also when the Claude enable switch is off. The master and kill switches still silence it."
 trigger_phrases:
   - "claude start claim implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/004-claude-start-claim"
-    last_updated_at: "2026-11-12T22:42:04Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-13T03:55:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Closed the phase after the build, the review fixes and the final suite run"
+    next_safe_action: "None; phase closed"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/hooks/session-relaunch/claude/compact-pointer.mjs"
+      - ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:5e1c53f6cc894ed281c4c63bf1e59caa4948a84bc7b9be20c832443307f78cc8"
       session_id: "scaffold-004-claude-start-claim"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,7 +34,6 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
@@ -45,60 +46,62 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+A note written on Pi or OpenCode and claimed with `claude` is no longer left unread when the Claude relaunch switch is off. The receiver gets its claim steps and the goal.
 
 ### Phase 4: claude-start-claim
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The wrapper replaces the start prompt with the goal command and moves the claim into the environment. The start hook then delivers the claim. With the Claude enable switch off the hook left early, so the session worked the goal and the note stayed open. The claim branch now runs before the enable check. The master switch and the concern kill switch still stop the whole hook, and the compaction path is unchanged.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `.skilled/hooks/session-relaunch/claude/compact-pointer.mjs` | Modified | The start claim runs before the enable check |
+| `.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs` | Modified | The claim with the switch off, and silence under the master switch |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+DeepSeek V4.1 Flash max built it through OpenCode, test first: `scratch/red.txt` shows 64 pass and 1 fail, `scratch/green.txt` 65 of 65. The review asked for a guard under the master switch, which a follow-up pass added. An independent Opus 5.5 review of the whole diff stalled after an hour and was stopped. The orchestrator finished the review from the experiments it left behind and by reading each change. The orchestrator reran every suite outside the builders' sandboxes from the final working tree: relaunch and OpenCode plugin suites 1471 of 1471, goal hook suites 200 of 200, Pi relaunch suite 59 of 59, each exit 0.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Deliver the claim in the hook, not guard the swap in the wrapper | Guarding the swap would keep the hook silent but lose the native goal |
+| The master and kill switches still win | They say stop everything. An enable switch that is merely off does not |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| `node --test .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs` | PASS in the final full run |
+| The new case before the change | FAIL as required: 64 pass, 1 fail in `scratch/red.txt` |
+| `node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs`, loop variables unset | PASS: 1471 tests, 1471 pass, 0 fail, exit 0 |
+| Goal hook suites under `.skilled/hooks/goal` | PASS: 200 tests, 200 pass, 0 fail, exit 0 |
+| Pi relaunch vitest file | PASS: 59 passed, exit 0 |
+| `validate.sh --strict` on this packet | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **Not run in a live Claude session.** The cases feed the hook a start payload.
+2. **The claim needs the wrapper.** Without `SKILLED_LOOP_CLAIM_SEED` in the environment nothing is delivered, as before.
 <!-- /ANCHOR:limitations -->
 
 ---

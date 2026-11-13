@@ -34,7 +34,7 @@
       "claim"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -45,6 +45,8 @@
       ".skilled/hooks/session-relaunch/lib/nudge.cjs",
       ".skilled/commands/speckit/handoff.md",
       ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
+      "scratch/red.txt",
+      "scratch/green.txt",
       ".skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs",
       ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
       "scratch/finding.md"
@@ -102,6 +104,18 @@
         "name": "nudge.test.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
         "source": "derived"
       },
       {
@@ -181,24 +195,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A claim seed tells the receiver to continue the note's Remaining work and nothing else",
     "created_at": "2026-11-12T22:42:00Z",
-    "last_save_at": "2026-11-12T23:03:40.459Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-13T03:55:18.882Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -208,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c505c0d540a8139635ce2990521a4b363e11bcf567c5fabdcb49a0f66539b088",
+    "source_fingerprint": "sha256:5b6ed6b788c02558db99fef411a3025f8c96d272793329d5150defc1b437d731",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a47ba889ff3e64bb02df1406fec0fcd8a2a551e6abb85a63875f0380c19845d9",
-      "plan.md": "4b5c546d3a1c2ae92e6aaeecd6f9196b185fffdb148d99221b525532fd2bb204",
-      "tasks.md": "a4afd3d94c90c52f0d024cb0e480c5ad57c807818a428b5b1260529813ab2435",
-      "implementation-summary.md": "5b39bc3c07adaa45b90e24e16fc01796b337b6bedf74f311e5f661de31920c96"
+      "spec.md": "d56669ff7d04063c786da98c33bdd91d6e4e6e3c508329c1223dea43aace2ea3",
+      "plan.md": "c67d573d949f497a6ed3d69d4090b38c1ae5fb1e39efdf98653a1ae2f2996df3",
+      "tasks.md": "b05d44949cb7a35eb474c807a12fa1d9f9ef05a9fc282f803f2453f0a19f7c05",
+      "implementation-summary.md": "1b97eeb3b40602242616d8a6895221f228b8b525f61bead6c1f9bb46a0a92a8a"
     },
     "last_active_at": null
   }

@@ -1,0 +1,90 @@
+✔ context-nudge skips and logs when the window is unknown (40.35375ms)
+✔ context-nudge logs the unknown window once per session (103.534167ms)
+✔ context-nudge fires at 0.80, suppresses the same level, and fires again at +0.05 (102.537125ms)
+✔ a nested run gets the outside-the-loop nudge (131.694625ms)
+✔ the loop runtime itself still gets the in-loop nudge (57.838875ms)
+✔ context-nudge stays silent for a sub-agent tool call (29.447042ms)
+✔ context-nudge still nudges the main session when agent_id is empty (33.510334ms)
+✔ context-nudge carries the payload spec_folder into the note frontmatter (32.289584ms)
+✔ context-nudge emits nothing below the configured threshold (30.379167ms)
+✔ context-nudge emits nothing while this session already has a prepared handoff (33.765291ms)
+✔ context-nudge emits nothing at the hop limit (33.778125ms)
+✔ context-nudge emits nothing when the relaunch concern is disabled (33.574583ms)
+✔ context-nudge emits nothing when nothing enables the relaunch concern (64.985417ms)
+✔ context-nudge stays silent with its runtime switched off while the global flag is on (59.563791ms)
+✔ context-nudge emits nothing when session_id fails the charset gate (57.586042ms)
+✔ UserPromptSubmit relaunch seed receives claim and completion instructions (30.829375ms)
+✔ UserPromptSubmit seed resumes its carried packet folder (33.717625ms)
+✔ UserPromptSubmit seed carries Gate 3 Skip without a resume command (30.799541ms)
+✔ UserPromptSubmit seed without a suffix has no resume or Skip instruction (30.029291ms)
+✔ stop-arm arms a matching pending record, starts the killer lock, and prints nothing (213.193667ms)
+✔ stop-arm leaves a pending record alone when the relaunch concern is disabled (32.170875ms)
+✔ stop-arm leaves a nested run's pending record untouched (127.071166ms)
+✔ stop-arm defers pending state when background tasks exist and logs the reason (70.727292ms)
+✔ context-nudge withdraws a deferred handoff when the operator sends a prompt (45.303792ms)
+✔ context-nudge records the withdrawal in the hop history (62.197292ms)
+✔ context-nudge records no withdrawal for a prompt that withdrew nothing (36.604333ms)
+✔ the withdraw prompt carries only the notice, then one nudge comes a step above its fill (218.383791ms)
+✔ context-nudge keeps a deferred handoff when a background task reports back (37.406542ms)
+✔ context-nudge keeps a handoff that was prepared and never deferred (35.189166ms)
+✔ context-nudge withdraws an armed handoff when the operator sends a prompt (46.762875ms)
+✔ context-nudge keeps an armed handoff when a background task reports back (35.736542ms)
+✔ context-nudge keeps an armed handoff for a relaunch seed prompt (33.434ms)
+✔ context-nudge leaves another session's armed handoff alone (38.648ms)
+✔ stop-arm logs missing-transcript-path and leaves the record pending (75.629833ms)
+✔ stop-arm logs an async killer spawn error and leaves the record armed (86.163833ms)
+✔ stop-arm logs a synchronous killer spawn throw and leaves the record armed (136.662125ms)
+✔ context-nudge plans the handoff note under the resolved repo root (63.766542ms)
+✔ context-nudge resolves a relative SESSION_RELAUNCH_REPO_ROOT into an absolute note path (63.924958ms)
+✔ context-nudge keeps the default threshold when the env switch is invalid (53.630875ms)
+✔ UserPromptSubmit seed claims the absolute note path it carries (46.8175ms)
+✔ UserPromptSubmit seed with a relative note path emits nothing (32.197167ms)
+✔ stop-arm makes no change without SKILLED_LOOP_ID and prints nothing (35.036125ms)
+✔ stop-arm spawns exactly one killer across repeated Stop payloads on a pending record (136.111208ms)
+✔ stop-arm respawns one killer for an armed record whose killer is gone (133.487083ms)
+✔ stop-arm without CLAUDE_PID targets the loop child, never the hook parent (77.065541ms)
+✔ stop-arm keeps a CLAUDE_PID inside the loop and drops one outside it (156.06875ms)
+✔ stop-arm leaves the record pending when no process below the loop can be found (84.5775ms)
+✔ stop-arm defers an armed record with a dead killer while background tasks run (63.358334ms)
+✔ context-nudge writes SYSTEM_SPEC_FOLDER into the note when the payload carries none (34.110916ms)
+✔ compact-pointer points a compacted session at its open note and resets the nudge level (43.2275ms)
+✔ compaction pointer carries the note date (38.702416ms)
+✔ compact-pointer adds nothing on a fresh start or when no note is open (59.243125ms)
+✔ compact-pointer leaves a note alone while its hop is prepared (30.790667ms)
+✔ compact-pointer stays silent for a fork that just compacted (36.378292ms)
+✔ compact-pointer still points the parent when a fork compacted long ago (57.972ms)
+✔ compact-pointer stays silent when the transcript path names a fork file (57.535125ms)
+✔ compact-pointer skips and logs when the payload has no transcript path (37.395708ms)
+✔ compact-pointer tells a session whose hand-over was withdrawn not to claim the stale note (38.936625ms)
+✔ compact-pointer keeps the claim seed for a disarmed record that is not a withdrawal of this note (79.447ms)
+✔ compact-pointer clears a pending re-arm along with the nudge level (31.174667ms)
+✔ compact-pointer delivers the claim at the start of a goal-command receiver (35.409209ms)
+✖ compact-pointer delivers the start claim with the Claude enable switch off (28.439083ms)
+✔ compact-pointer adds no start claim without the seed, off the start event or for a bad seed (205.79825ms)
+✔ compact-pointer adds no start claim for a dispatched child, a switched-off goal or a disabled hook (164.078542ms)
+✔ compact-pointer adds no start claim to a runtime started from the loop session shell (189.035792ms)
+ℹ tests 65
+ℹ suites 0
+ℹ pass 64
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4454.289083
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1554:1
+✖ compact-pointer delivers the start claim with the Claude enable switch off (28.439083ms)
+  AssertionError [ERR_ASSERTION]: the start claim must be emitted
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/358-handover-goal-resume/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1563:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: '',
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }

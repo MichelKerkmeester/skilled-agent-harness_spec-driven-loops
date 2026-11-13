@@ -8,17 +8,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "scaffold/001-workflow-reentry-seed"
-    last_updated_at: "2026-11-12T22:42:01Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-11-13T03:55:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Closed the phase after the build, the review fixes and the final suite run"
+    next_safe_action: "None; phase closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -56,11 +56,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node --test .skilled/hooks/session-relaunch/tests/nudge.test.cjs` exits 0 with the five new cases and the existing note shape case.
-- [ ] `node --test .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs` exits 0.
-- [ ] `rg -n -e 'Active command' -e 'Active goal' -e 'goal\.md' -e 'release --owner-pid' .skilled/hooks/session-relaunch/lib/nudge.cjs .skilled/commands/speckit/handoff.md` prints at least one line for each term in each file.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/001-workflow-reentry-seed --strict` prints `RESULT: PASSED`.
-- [ ] Every row of `acceptance-criteria.md` is `Met`.
+- [x] `node --test .skilled/hooks/session-relaunch/tests/nudge.test.cjs` exits 0 with the five new cases and the existing note shape case.
+- [x] `node --test .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs` exits 0.
+- [x] `rg -n -e 'Active command' -e 'Active goal' -e 'goal\.md' -e 'release --owner-pid' .skilled/hooks/session-relaunch/lib/nudge.cjs .skilled/commands/speckit/handoff.md` prints at least one line for each term in each file.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/001-workflow-reentry-seed --strict` prints `RESULT: PASSED`.
+- [x] Every row of `acceptance-criteria.md` is `Met`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -80,6 +80,8 @@ and findings belong here.
 | Baseline | Done | 2026-11-12: `node --test .skilled/hooks/session-relaunch/tests/nudge.test.cjs` exited 0 with `fail 0`. |
 | Validation | Done | 2026-11-12: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/001-workflow-reentry-seed --strict` printed `RESULT: PASSED` with 0 errors. |
 | Strict-run metadata repair | Recorded | The Draft auto-repair re-derived `graph-metadata.json` and normalized the `implementation-summary.md` packet pointer. No planning content was written in either file. |
+| Build | Done | Luna built it through `codex exec` at xhigh, test first: `scratch/red.txt` holds the failing run and `scratch/green.txt` the passing one. The orchestrator then changed one sentence: the receiver step named `create_goal`, which only Codex has, so it now also tells a receiver without it to name the goal to the operator. |
+| Suites | Done | The orchestrator reran every suite outside the builders' sandboxes from the final working tree: relaunch and OpenCode plugin suites 1471 of 1471, goal hook suites 200 of 200, Pi relaunch suite 59 of 59, each exit 0. |
 
 ### Deviations and findings
 

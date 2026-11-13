@@ -34,7 +34,7 @@
       "session"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -44,6 +44,8 @@
       "implementation-summary.md",
       ".skilled/hooks/goal/pi/goal-context.ts",
       ".skilled/hooks/goal/pi/goal-pi.test.mjs",
+      "scratch/red.txt",
+      "scratch/green.txt",
       ".opencode/plugins/opencode-goal.js",
       "scratch/finding.md"
     ],
@@ -94,6 +96,18 @@
         "name": "goal-pi.test.mjs",
         "kind": "file",
         "path": ".skilled/hooks/goal/pi/goal-pi.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
         "source": "derived"
       },
       {
@@ -179,24 +193,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Pi 1.5.2 starts a new session inside the receiving process",
     "created_at": "2026-11-12T22:42:01Z",
-    "last_save_at": "2026-11-12T23:14:28.794Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-13T03:56:20.575Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -206,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c39927db50eb0d3bdf4ed90781ccdb1fa90dbc6855b5cf5acedc9255ac0ad799",
+    "source_fingerprint": "sha256:cad4a2c0bad7bb763270cd3d10c1140b97ce7b635958a96134281744eef7afc2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "53ffa07ba91f64ecb5bac50a29803da608c322ee473329854f3d643779efebe5",
-      "plan.md": "95bdb4033da12acb829164b7cd9ed1eb8bac0772d92f817751d38a01e9973e01",
-      "tasks.md": "ebc95ae2073091bb06d0c744df0b9de228e2699817964bc0dca9fd0ed465d24c",
-      "implementation-summary.md": "1cfb97fc4ad94c707738db87980db20d3608759ee4092e9239b92e89b22a8832"
+      "spec.md": "d6cd456407cea3e097b4c3e0b5067b4816478e9093450bded629e7409f7b6f4d",
+      "plan.md": "9b4c81744b128b9cf37dc5156595c1d0b3b7e1473b1a44e7fa5a6255a2c77f2a",
+      "tasks.md": "8dea77da64125379fcf7256cf90795d1b5002dc51b94cf1334ab0cd3eed174af",
+      "implementation-summary.md": "053240f2367550d3aa795d5df6778f4a6bf55e1be5c77e623318710dbcee5959"
     },
     "last_active_at": null
   }

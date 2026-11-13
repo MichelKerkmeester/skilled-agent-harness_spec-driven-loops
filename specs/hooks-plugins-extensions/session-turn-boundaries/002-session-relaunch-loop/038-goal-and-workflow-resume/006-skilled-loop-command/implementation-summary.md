@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+title: "Implementation Summary: The printed manual command runs as typed"
+description: "A shell that sources the shim has a skilled-loop function, so the manual claim command the wrapper prints can be pasted and run."
 trigger_phrases:
   - "skilled loop command implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/006-skilled-loop-command"
-    last_updated_at: "2026-11-12T22:42:06Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-13T03:55:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Closed the phase after the build, the review fixes and the final suite run"
+    next_safe_action: "None; phase closed"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/bin/skilled-loop-shell.sh"
+      - ".skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:153b3b224ad9695eff9a102548f3ee0a8d2848cef289cbf229b0ba28b2c22f16"
       session_id: "scaffold-006-skilled-loop-command"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,7 +34,6 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
@@ -45,60 +46,62 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+When a hop is declined the wrapper prints `skilled-loop <runtime> ...` for you to run. That line now works when you paste it.
 
 ### Phase 6: skilled-loop-command
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+The shim defined a function for each runtime and none for `skilled-loop`, and the wrapper is not on the path. The shim now defines `skilled-loop`, which runs the wrapper of the checkout that owns the shim. It never takes a wrapper from the current folder. When the shim does not know its checkout, it prints one line and returns 127.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `.skilled/bin/skilled-loop-shell.sh` | Modified | A `skilled-loop` function that runs the owning checkout's wrapper |
+| `.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs` | Modified | The function exists after sourcing, and a missing checkout is reported |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+DeepSeek V4.1 Flash max built it through OpenCode, test first, and checked `bash -n` and `zsh -n` on the shim. The review found that an empty checkout variable ran a path under the file system root, which a follow-up pass replaced with a message and exit 127. An independent Opus 5.5 review of the whole diff stalled after an hour and was stopped. The orchestrator finished the review from the experiments it left behind and by reading each change. The orchestrator reran every suite outside the builders' sandboxes from the final working tree: relaunch and OpenCode plugin suites 1471 of 1471, goal hook suites 200 of 200, Pi relaunch suite 59 of 59, each exit 0.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| A function in the shim, not a new printed text | Tests pin the printed command, and the shim is where the runtime names already live |
+| The wrapper comes from the checkout that owns the shim | A pasted claim must not start a wrapper from a cloned repository |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| `node --test .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs` | PASS in the final full run |
+| `bash -n` and `zsh -n` on the shim | PASS: exit 0, reported by the builder |
+| `skilled-loop-wrapper-claim-goal.test.cjs` | PASS: the printed `skilled-loop cursor` and `skilled-loop devin` text is unchanged |
+| `node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs`, loop variables unset | PASS: 1471 tests, 1471 pass, 0 fail, exit 0 |
+| Goal hook suites under `.skilled/hooks/goal` | PASS: 200 tests, 200 pass, 0 fail, exit 0 |
+| Pi relaunch vitest file | PASS: 59 passed, exit 0 |
+| `validate.sh --strict` on this packet | RESULT: PASSED |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **Only in a shell that sources the shim.** Elsewhere the name is still not found, and the bare runtime name skips the wrapper.
 <!-- /ANCHOR:limitations -->
 
 ---

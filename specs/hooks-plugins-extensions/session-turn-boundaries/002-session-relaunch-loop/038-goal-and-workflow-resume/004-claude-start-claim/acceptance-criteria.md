@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** 004-claude-start-claim
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-12
 <!-- /ANCHOR:metadata -->
 
@@ -51,8 +51,8 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given `SYSTEM_SESSION_RELAUNCH_ENABLED=1`, `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0`, a valid `SKILLED_LOOP_CLAIM_SEED` and a `startup` payload, When `compact-pointer.mjs` runs, Then it exits 0 and the SessionStart `additionalContext` holds the seed, the claim command for the note and the `/speckit:resume` line, and the log holds `goal-start-claim` | `node --test --test-name-pattern 'Claude enable switch off' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs` | Unmet | - |
-| AC-002 | REQ-002 | Given the existing claim scenarios (no seed, a source other than `startup`, a bad seed, `AI_SESSION_CHILD=1`, `SESSION_RELAUNCH_GOAL=0`, `SYSTEM_SESSION_RELAUNCH_DISABLED=1` and a loop shell), When the `compact-pointer` tests run, Then the hostile cases exit 0 with empty stdout and the existing start-claim case still delivers its claim | `node --test --test-name-pattern 'compact-pointer' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs` | Unmet | - |
+| AC-001 | REQ-001 | Given `SYSTEM_SESSION_RELAUNCH_ENABLED=1`, `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0`, a valid `SKILLED_LOOP_CLAIM_SEED` and a `startup` payload, When `compact-pointer.mjs` runs, Then it exits 0 and the SessionStart `additionalContext` holds the seed, the claim command for the note and the `/speckit:resume` line, and the log holds `goal-start-claim` | `node --test --test-name-pattern 'Claude enable switch off' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs` Observed 2026-11-13: `compact-pointer delivers the start claim with the Claude enable switch off` passes in `scratch/green.txt` and failed in `scratch/red.txt`. Source: `.skilled/hooks/session-relaunch/claude/compact-pointer.mjs`. | Met | - |
+| AC-002 | REQ-002 | Given the existing claim scenarios (no seed, a source other than `startup`, a bad seed, `AI_SESSION_CHILD=1`, `SESSION_RELAUNCH_GOAL=0`, `SYSTEM_SESSION_RELAUNCH_DISABLED=1` and a loop shell), When the `compact-pointer` tests run, Then the hostile cases exit 0 with empty stdout and the existing start-claim case still delivers its claim | `node --test --test-name-pattern 'compact-pointer' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs` Observed 2026-11-13: the existing claim cases pass inside the 65 of 65 run in `scratch/green.txt`, and the master switch case added after the review passes in the final full run. | Met | - |
 
 ### Status values
 
@@ -77,7 +77,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-001 and AC-002 are unmet. AC-001 carries the concern-off claim and AC-002 carries the guards.
+All 2 criteria are Met with observed evidence. The orchestrator reran every suite outside the builders' sandboxes from the final working tree: relaunch and OpenCode plugin suites 1471 of 1471, goal hook suites 200 of 200, Pi relaunch suite 59 of 59, each exit 0. The evidence is pinned to the working tree of branch `worktrees/358-handover-goal-resume` before its commit.
 <!-- /ANCHOR:closure -->

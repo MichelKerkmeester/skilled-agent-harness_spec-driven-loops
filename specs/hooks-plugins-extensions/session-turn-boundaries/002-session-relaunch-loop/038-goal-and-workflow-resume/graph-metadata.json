@@ -40,7 +40,7 @@
       "binding"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -211,18 +211,19 @@
     ],
     "causal_summary": "A review of 2026-11-12, checked by a second reviewer, found that a session hop carries the goal on Claude Code, Pi and OpenCode but loses work around it",
     "created_at": "2026-11-12T22:42:00Z",
-    "last_save_at": "2026-11-13T00:34:03.311Z",
+    "last_save_at": "2026-11-13T03:59:56.123Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:4ce6da75f0a674f00b4eddca9b4079ec5a81369b4ffe28228f2f41be58968050",
+    "source_fingerprint": "sha256:38cc37dc512e2dc205d7fdf58988fe59622ce3f556aece0ff8f2d0031383d7e5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "77f2f63460c913c4bc0afd6cf07d2892135abf7e3f385512f7324e96e5f3464b"
+      "spec.md": "2c171ec88b344a4834915d48d06ab618b0c8c21c730582737c089c035318774b"
     },
-    "last_active_at": null
+    "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/007-goal-handover-docs",
+    "last_active_at": "2026-11-13T03:56:30.910Z"
   }
 }

@@ -1,0 +1,138 @@
+✔ bash: a wrapper outside the sourced checkout is not resolved (837.980584ms)
+✔ bash: an inherited GIT_DIR cannot vouch for a planted repository (788.59075ms)
+✔ bash: the shim sourced through a symlinked file trusts its real checkout (483.823958ms)
+✔ bash: a shell copy without the stored checkout trusts nothing (425.035417ms)
+✔ bash: a wrapper in a registered linked worktree is resolved (446.002083ms)
+✔ bash: a .git file alone does not register a trusted worktree (402.98775ms)
+✔ bash: explicitly trusted checkouts resolve and unset or empty trusts nothing extra (469.375083ms)
+✔ bash: every interactive form finds the wrapper through a symlinked .skilled (445.404ms)
+✔ bash: subcommands, print modes, version and help pass through (269.499667ms)
+✔ bash: a directory with no .skilled above it resolves nothing (37.227542ms)
+✔ bash: a session already under the loop resolves nothing (34.745125ms)
+✔ bash: an unknown runtime resolves nothing (13.404375ms)
+✔ bash: a symlink cycle at the wrapper path returns 1 (129.312916ms)
+✔ zsh: a wrapper outside the sourced checkout is not resolved (798.570791ms)
+✔ zsh: an inherited GIT_DIR cannot vouch for a planted repository (887.979458ms)
+✔ zsh: the shim sourced through a symlinked file trusts its real checkout (384.600584ms)
+✔ zsh: a shell copy without the stored checkout trusts nothing (358.661583ms)
+✔ zsh: a wrapper in a registered linked worktree is resolved (376.098209ms)
+✔ zsh: a .git file alone does not register a trusted worktree (370.707708ms)
+✔ zsh: explicitly trusted checkouts resolve and unset or empty trusts nothing extra (380.919667ms)
+✔ zsh: every interactive form finds the wrapper through a symlinked .skilled (343.949917ms)
+✔ zsh: subcommands, print modes, version and help pass through (282.7855ms)
+✔ zsh: a directory with no .skilled above it resolves nothing (44.238708ms)
+✔ zsh: a session already under the loop resolves nothing (41.819916ms)
+✔ zsh: an unknown runtime resolves nothing (20.841ms)
+✔ zsh: a symlink cycle at the wrapper path returns 1 (84.949834ms)
+✖ bash: sourcing the shim defines the skilled-loop command (5.154041ms)
+✖ bash: the skilled-loop command hands the claim to the trusted wrapper (6.660291ms)
+✔ bash: without a terminal the runtime function runs the binary directly (30.406167ms)
+✔ bash: on a terminal the runtime function hands the launch to the wrapper (87.964958ms)
+✔ bash: runtime functions still work after a snapshot drops single-underscore functions (51.174541ms)
+✖ zsh: sourcing the shim defines the skilled-loop command (6.411917ms)
+✖ zsh: the skilled-loop command hands the claim to the trusted wrapper (9.332583ms)
+✔ zsh: without a terminal the runtime function runs the binary directly (28.638417ms)
+✔ zsh: on a terminal the runtime function hands the launch to the wrapper (89.42925ms)
+✔ zsh: runtime functions still work after a snapshot drops single-underscore functions (51.664208ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 32
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9582.232292
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:354:3
+✖ bash: sourcing the shim defines the skilled-loop command (5.154041ms)
+  AssertionError [ERR_ASSERTION]: bash command
+  + actual - expected
+  
+  + ''
+  - 'skilled-loop\n'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/358-handover-goal-resume/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:360:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: 'skilled-loop\n',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:368:3
+✖ bash: the skilled-loop command hands the claim to the trusted wrapper (6.660291ms)
+  AssertionError [ERR_ASSERTION]: bash: skilled-loop-shell-test: skilled-loop: command not found
+  
+  
+  127 !== 0
+  
+      at launch (/Users/michelkerkmeester/worktrees/public/358-handover-goal-resume/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:305:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/358-handover-goal-resume/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:373:7)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 127,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:354:3
+✖ zsh: sourcing the shim defines the skilled-loop command (6.411917ms)
+  AssertionError [ERR_ASSERTION]: zsh command
+  + actual - expected
+  
+  + ''
+  - 'skilled-loop\n'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/358-handover-goal-resume/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:360:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: 'skilled-loop\n',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:368:3
+✖ zsh: the skilled-loop command hands the claim to the trusted wrapper (9.332583ms)
+  AssertionError [ERR_ASSERTION]: zsh: zsh:1: command not found: skilled-loop
+  
+  
+  127 !== 0
+  
+      at launch (/Users/michelkerkmeester/worktrees/public/358-handover-goal-resume/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:305:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/358-handover-goal-resume/.skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs:373:7)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 127,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

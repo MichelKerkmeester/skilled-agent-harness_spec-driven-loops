@@ -1,0 +1,99 @@
+✔ renderGoalBrief renders the active_goal block for an active goal, parameterized for Pi (19.172667ms)
+✔ renderGoalBrief returns empty string when no goal is active (0.41225ms)
+✔ renderGoalBrief returns empty string for a paused goal (10.331375ms)
+✔ isPluginDisabled respects OPENCODE_GOAL_PLUGIN_DISABLED without touching real state (0.401292ms)
+✔ verifyGoalHeuristic: short evidence is unclear (0.31225ms)
+✔ verifyGoalHeuristic: blocking language is not-met even with completion words present (0.345708ms)
+✔ verifyGoalHeuristic: explicit completion tied to the objective is met (0.444ms)
+✔ verifyGoalHeuristic: completion language with no objective-specific evidence stays unclear (0.287208ms)
+✔ the module default-exports a single factory function (20.117458ms)
+✔ the factory registers lifecycle handlers and the native goal-pi command (0.381958ms)
+✔ two Pi input contexts inject only their own active goal (14.572583ms)
+✔ same Pi session resumes its goal while a new session starts unbound (5.586666ms)
+✔ turn_end in one Pi session leaves the other session byte-equivalent (12.564417ms)
+✔ turn_end sends its verify nudge without continuing the running turn (8.789ms)
+✔ turn_end judges a tool-heavy turn by its message, not its longer tool output (8.032917ms)
+✔ missing Pi identity fails open without selecting or writing a goal (4.995042ms)
+✔ legacy-only state never injects into a Pi session (0.479ms)
+✔ native goal-pi management writes and shows the current Pi session only (72.738375ms)
+✔ native goal-pi management binds pause, resume, complete, and history to one session (173.072ms)
+✔ native goal-pi management migrates legacy state only to the current session (35.54675ms)
+✔ native binding overrides user-supplied scope flags (42.906834ms)
+✔ native goal-pi management rejects missing identity without writing (31.660458ms)
+✔ the Pi prompt fallback never invokes the unbound manage CLI (0.718417ms)
+✔ a receiver with no goal is bound to the hand-over packet at session start and injects from goal.md (7.967917ms)
+✖ a second session_start with a new id binds nothing after the receiver binds (12.345416ms)
+✔ the first input binds when session start did not, and a later input leaves the record alone (7.087333ms)
+✔ a goal of the session own is never replaced, and a cleared one is not handed back (15.51175ms)
+✔ a dispatched child session that inherited the packet binds nothing in Pi (1.797333ms)
+✔ the switch, an empty variable and a missing packet bind nothing in Pi (2.019917ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 28
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 554.006209
+
+✖ failing tests:
+
+test at .skilled/hooks/goal/pi/goal-pi.test.mjs:539:1
+✖ a second session_start with a new id binds nothing after the receiver binds (12.345416ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + {
+  +   boundAtMs: 1794531533513,
+  +   boundBy: 'pi',
+  +   createdAt: '2026-11-13T00:58:53.513Z',
+  +   createdAtMs: 1794531533513,
+  +   goalId: 'goal-a0904f59-2f25-4b37-9e46-fe0752efeea4',
+  +   goalPrompt: 'Role: Focused pi execution agent operating under the active session goal.\n' +
+  +     'Objective: Execute specs/t/001-fixture/goal.md.\n' +
+  +     'Context: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\n' +
+  +     'Method:\n' +
+  +     '- Restate the concrete completion condition from available evidence before acting.\n' +
+  +     '- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n' +
+  +     '- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\n' +
+  +     'Success Criteria:\n' +
+  +     '- The requested outcome is materially complete, not merely analyzed or partially prepared.\n' +
+  +     '- Required verification has run, or any inability to run it is reported with the exact blocker.\n' +
+  +     '- Status output distinguishes confirmed evidence from inference.\n' +
+  +     'Stop Conditions:\n' +
+  +     '- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n' +
+  +     '- If blocked, preserve state and name the next safe action.',
+  +   lastActivityAtMs: 1794531533513,
+  +   lastResentSliceHash: null,
+  +   lastVerifierReason: null,
+  +   lastVerifierSource: null,
+  +   lastVerifierVerdict: 'not_evaluated',
+  +   objective: 'Execute specs/t/001-fixture/goal.md. DONE WHEN: - done',
+  +   packetPath: 'specs/t/001-fixture',
+  +   revision: 1,
+  +   runtime: 'pi',
+  +   startedAtMs: 1794531533513,
+  +   status: 'active',
+  +   tokenBudget: null,
+  +   turnsUsed: 0,
+  +   updatedAt: '2026-11-13T00:58:53.513Z',
+  +   updatedAtMs: 1794531533513,
+  +   usageSource: 'turn-count-estimate',
+  +   workspace: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/goal-pi-handover-VdO2Dd'
+  + }
+  - null
+  
+      at file:///Users/michelkerkmeester/worktrees/public/358-handover-goal-resume/.skilled/hooks/goal/pi/goal-pi.test.mjs:546:12
+      at async file:///Users/michelkerkmeester/worktrees/public/358-handover-goal-resume/.skilled/hooks/goal/pi/goal-pi.test.mjs:519:7
+      at async TestContext.<anonymous> (file:///Users/michelkerkmeester/worktrees/public/358-handover-goal-resume/.skilled/hooks/goal/pi/goal-pi.test.mjs:541:3)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { goalId: 'goal-a0904f59-2f25-4b37-9e46-fe0752efeea4', objective: 'Execute specs/t/001-fixture/goal.md. DONE WHEN: - done', goalPrompt: 'Role: Focused pi execution agent operating under the active session goal.\nObjective: Execute specs/t/001-fixture/goal.md.\nContext: Use the current conversation, repository files, tests, and active spec constraints as source of truth. Preserve unrelated worktree changes and do not broaden scope.\nMethod:\n- Restate the concrete completion condition from available evidence before acting.\n- Clarify the concrete completion condition from available context, then execute until it is met or blocked.\n- Prefer direct, reversible changes; ask only when blocked by missing information, permissions, or contradictory requirements.\nSuccess Criteria:\n- The requested outcome is materially complete, not merely analyzed or partially prepared.\n- Required verification has run, or any inability to run it is reported with the exact blocker.\n- Status output distinguishes confirmed evidence from inference.\nStop Conditions:\n- Stop only when the goal verifier can mark the goal met, when the user changes or clears the goal, or when progress is blocked by a decision the user must make.\n- If blocked, preserve state and name the next safe action.', status: 'active', tokenBudget: null, createdAt: '2026-11-13T00:58:53.513Z', createdAtMs: 1794531533513, updatedAt: '2026-11-13T00:58:53.513Z', updatedAtMs: 1794531533513, revision: 1, lastVerifierVerdict: 'not_evaluated', lastVerifierReason: null, lastVerifierSource: null, turnsUsed: 0, startedAtMs: 1794531533513, lastActivityAtMs: 1794531533513, usageSource: 'turn-count-estimate', runtime: 'pi', packetPath: 'specs/t/001-fixture', workspace: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/goal-pi-handover-VdO2Dd', boundAtMs: 1794531533513, boundBy: 'pi', lastResentSliceHash: null },
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+EXIT_STATUS=1

@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-12 |
 | **Branch** | `worktrees/358-handover-goal-resume` |
 | **Parent Spec** | ../spec.md |
@@ -112,7 +112,7 @@ The guard is a set of session ids. A new id in the same process is not in the se
 
 | ID | Requirement |
 |----|-------------|
-| REQ-002 | The five hand-over guard cases in `goal-pi.test.mjs` keep passing. They cover the first receiver bind at session start, a later input in its own session, an own or cleared goal, an `AI_SESSION_CHILD=1` child, and the off switch, an empty variable and a missing packet. `node --test --test-name-pattern 'hand-over|first input binds|session own|dispatched child|switch, an empty variable' .skilled/hooks/goal/pi/goal-pi.test.mjs` exits 0. |
+| REQ-002 | The five hand-over guard cases in `goal-pi.test.mjs` keep passing. They cover the first receiver bind at session start, a later input in its own session, an own or cleared goal, an `AI_SESSION_CHILD=1` child, and the off switch, an empty variable and a missing packet. `node --test --test-name-pattern 'hand-over\|first input binds\|session own\|dispatched child\|switch, an empty variable' .skilled/hooks/goal/pi/goal-pi.test.mjs` exits 0. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

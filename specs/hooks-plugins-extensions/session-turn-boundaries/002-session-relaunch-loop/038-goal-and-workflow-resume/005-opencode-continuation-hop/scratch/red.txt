@@ -1,0 +1,98 @@
+✔ session.created keeps an active goal intact (51.072084ms)
+✖ a pending relaunch record suppresses the goal continuation (27.170333ms)
+✖ the hand-over packet variable is deleted after the one bind attempt (11.64425ms)
+✔ native message headers charge tokens while only explicit assistant text parts become evidence (33.204834ms)
+✔ usage ledger retains old message totals beyond 64 message ids (603.038959ms)
+✔ message.updated accounts assistant usage once per message id (30.377416ms)
+✔ message.updated performs one write cycle for one event (28.841292ms)
+✔ message.updated crossing the token budget keeps the goal running (29.773333ms)
+✔ interleaved message totals are charged by delta (36.927542ms)
+✔ usage past the token budget is still charged and the goal stays active (39.118417ms)
+✔ a goal an older version left budget-limited resumes without raising the budget (27.788875ms)
+✔ resume clears a suppression an older version set with a retired cap or budget reason (140.692833ms)
+✔ resume leaves an active suppression with an unknown reason alone (19.65625ms)
+✔ resume still refuses an active goal that is not suppressed (14.426333ms)
+✔ same objective after completion creates a reset goal (58.574458ms)
+✔ missing usage payload leaves tokens unchanged and records unavailable source (25.351125ms)
+✔ retryable provider usage errors mark the goal usage-limited (20.536209ms)
+✔ retry-after parsing honors explicit units before epoch heuristics (36.842209ms)
+✔ non-usage provider errors do not suppress an active goal (19.017417ms)
+✔ permission.asked marks the goal blocked by prompt (17.897791ms)
+✔ permission.replied clears blocked-by-prompt state (28.207625ms)
+✔ question.asked marks the goal blocked by prompt (18.602209ms)
+✔ question.rejected clears blocked-by-prompt state (27.163458ms)
+✔ session.deleted flushes volatile session status before later idle handling (40.603375ms)
+✔ malformed session deletion preserves another session verifier lock (32.625375ms)
+✔ verifier timeout releases the session lock for a later idle event (82.662208ms)
+✔ app.disposed flushes volatile state before later idle handling (21.668375ms)
+✔ event errors are written to the goal events log without debug enabled (2.571167ms)
+✔ session.deleted archives an existing goal file exactly (17.618583ms)
+✔ session.deleted archives a second goal for the same session without overwriting (31.860334ms)
+✔ session.deleted archives a long session id without probing an impossible legacy filename (16.00475ms)
+✔ history lists every distinct snapshot of a goal rebound through three packets (44.083417ms)
+✔ a rebind archives the goal another process wrote just before the lock (29.086833ms)
+✔ the archive moves the active file so the record there at that instant is archived (17.694084ms)
+✔ a goal written while the archive restore runs survives with the moved copy (16.110541ms)
+✔ history migrates a legacy archive and reports an occupied duplicate exactly once (23.112708ms)
+✔ session deletion archive failures preserve active state and write an event error (11.806709ms)
+✔ session.deleted does not reject when the active goal file is missing (1.559917ms)
+✔ disabled plugin events leave the state directory unchanged (1.4735ms)
+✔ disabled env flips apply per call to transform and tools (16.985417ms)
+✔ archive operations serialize with queued usage updates (452.7175ms)
+✔ archive pruning removes old archived files and keeps recent files (23.115ms)
+✔ archive pruning skips staged files (21.578334ms)
+✔ archive prune throttling runs pruning once in a throttle window (35.564041ms)
+✔ orphan sweep archives stale active files and keeps recent files (13.962958ms)
+✔ orphan sweep archives only when the live goal is stale too (3.679541ms)
+✔ orphan sweep prefilter avoids parsing fresh active files (6.916833ms)
+✔ orphan sweep throttle leaves later stale active files in place (8.783542ms)
+ℹ tests 48
+ℹ suites 0
+ℹ pass 46
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2366.277125
+
+✖ failing tests:
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:176:1
+✖ a pending relaunch record suppresses the goal continuation (27.170333ms)
+  AssertionError [ERR_ASSERTION]: pending
+  + actual - expected
+  
+  + 'fired'
+  - 'suppressed'
+  
+      at /Users/michelkerkmeester/worktrees/public/358-handover-goal-resume/.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:222:12
+      at async withState (/Users/michelkerkmeester/worktrees/public/358-handover-goal-resume/.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:84:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'fired',
+    expected: 'suppressed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:229:1
+✖ the hand-over packet variable is deleted after the one bind attempt (11.64425ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'specs/t/001-fixture'
+  - undefined
+  
+      at /Users/michelkerkmeester/worktrees/public/358-handover-goal-resume/.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:245:12
+      at async withState (/Users/michelkerkmeester/worktrees/public/358-handover-goal-resume/.opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:84:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'specs/t/001-fixture',
+    expected: undefined,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

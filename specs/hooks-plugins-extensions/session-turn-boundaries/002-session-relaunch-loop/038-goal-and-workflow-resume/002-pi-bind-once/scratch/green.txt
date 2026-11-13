@@ -1,0 +1,39 @@
+✔ renderGoalBrief renders the active_goal block for an active goal, parameterized for Pi (15.989791ms)
+✔ renderGoalBrief returns empty string when no goal is active (0.368166ms)
+✔ renderGoalBrief returns empty string for a paused goal (9.056625ms)
+✔ isPluginDisabled respects OPENCODE_GOAL_PLUGIN_DISABLED without touching real state (0.389166ms)
+✔ verifyGoalHeuristic: short evidence is unclear (0.326458ms)
+✔ verifyGoalHeuristic: blocking language is not-met even with completion words present (0.347584ms)
+✔ verifyGoalHeuristic: explicit completion tied to the objective is met (0.414625ms)
+✔ verifyGoalHeuristic: completion language with no objective-specific evidence stays unclear (0.272459ms)
+✔ the module default-exports a single factory function (18.516042ms)
+✔ the factory registers lifecycle handlers and the native goal-pi command (0.372875ms)
+✔ two Pi input contexts inject only their own active goal (13.911125ms)
+✔ same Pi session resumes its goal while a new session starts unbound (5.188333ms)
+✔ turn_end in one Pi session leaves the other session byte-equivalent (13.107833ms)
+✔ turn_end sends its verify nudge without continuing the running turn (8.5995ms)
+✔ turn_end judges a tool-heavy turn by its message, not its longer tool output (8.9145ms)
+✔ missing Pi identity fails open without selecting or writing a goal (4.231041ms)
+✔ legacy-only state never injects into a Pi session (0.442708ms)
+✔ native goal-pi management writes and shows the current Pi session only (63.278333ms)
+✔ native goal-pi management binds pause, resume, complete, and history to one session (157.076417ms)
+✔ native goal-pi management migrates legacy state only to the current session (36.807416ms)
+✔ native binding overrides user-supplied scope flags (38.843125ms)
+✔ native goal-pi management rejects missing identity without writing (26.553292ms)
+✔ the Pi prompt fallback never invokes the unbound manage CLI (0.557208ms)
+✔ a receiver with no goal is bound to the hand-over packet at session start and injects from goal.md (7.002542ms)
+✔ a second session_start with a new id binds nothing after the receiver binds (6.13525ms)
+✔ the first input binds when session start did not, and a later input leaves the record alone (6.119958ms)
+✔ a goal of the session own is never replaced, and a cleared one is not handed back (13.549834ms)
+✔ a dispatched child session that inherited the packet binds nothing in Pi (1.074958ms)
+✔ the switch, an empty variable and a missing packet bind nothing in Pi (1.535834ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 500.158875
+
+EXIT_STATUS=0

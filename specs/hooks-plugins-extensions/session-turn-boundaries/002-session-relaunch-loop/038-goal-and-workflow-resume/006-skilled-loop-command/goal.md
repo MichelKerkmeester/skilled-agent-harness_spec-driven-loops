@@ -8,17 +8,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "scaffold/006-skilled-loop-command"
-    last_updated_at: "2026-11-12T22:42:06Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-11-13T03:55:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Closed the phase after the build, the review fixes and the final suite run"
+    next_safe_action: "None; phase closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "[SESSION-ID]"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -53,10 +53,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `zsh -f -c 'source .skilled/bin/skilled-loop-shell.sh; command -v skilled-loop'` prints `skilled-loop`
-- [ ] `node --test .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs` exits 0
-- [ ] `node --test .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-claim-goal.test.cjs` exits 0
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/006-skilled-loop-command --strict` prints `RESULT: PASSED`
+- [x] `zsh -f -c 'source .skilled/bin/skilled-loop-shell.sh; command -v skilled-loop'` prints `skilled-loop`
+- [x] `node --test .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs` exits 0
+- [x] `node --test .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-claim-goal.test.cjs` exits 0
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/006-skilled-loop-command --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -74,6 +74,8 @@ and findings belong here.
 |------|-------|----------|
 | Planning documents authored | Done | Five documents filled from `scratch/finding.md` on 2026-11-13 |
 | Implementation | Pending | No shim change yet |
+| Build | Done | DeepSeek V4.1 Flash max built it through OpenCode, test first, and checked `bash -n` and `zsh -n` on the shim. The review found that an empty checkout variable ran a path under the file system root, which a follow-up pass replaced with a message and exit 127. |
+| Suites | Done | The orchestrator reran every suite outside the builders' sandboxes from the final working tree: relaunch and OpenCode plugin suites 1471 of 1471, goal hook suites 200 of 200, Pi relaunch suite 59 of 59, each exit 0. |
 
 ### Deviations and findings
 

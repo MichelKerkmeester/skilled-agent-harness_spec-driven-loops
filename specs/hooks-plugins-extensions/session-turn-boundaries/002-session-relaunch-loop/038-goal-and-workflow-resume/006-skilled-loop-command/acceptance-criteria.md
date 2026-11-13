@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** 006-skilled-loop-command
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-12
 <!-- /ANCHOR:metadata -->
 
@@ -51,9 +51,9 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given bash or zsh sources the shim, When the new case runs, Then `command -v skilled-loop` prints `skilled-loop` and the function calls the wrapper with `bash` | `node --test .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs` (new case) | Unmet | - |
-| AC-002 | REQ-002 | Given the existing shell cases, When `node --test .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs` runs, Then wrapper resolution, passthrough and snapshot cases pass | `node --test .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs` | Unmet | - |
-| AC-003 | REQ-003 | Given the cursor and devin printed manual commands, When `skilled-loop-wrapper-claim-goal.test.cjs` runs, Then lines 160-170 keep the same `skilled-loop cursor` and `skilled-loop devin` text | `node --test .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-claim-goal.test.cjs` | Unmet | - |
+| AC-001 | REQ-001 | Given bash or zsh sources the shim, When the new case runs, Then `command -v skilled-loop` prints `skilled-loop` and the function calls the wrapper with `bash` | `node --test .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs` (new case) Observed 2026-11-13: the new case passes in `scratch/green.txt` and failed in `scratch/red.txt`: `command -v skilled-loop` prints `skilled-loop` in bash and zsh. | Met | - |
+| AC-002 | REQ-002 | Given the existing shell cases, When `node --test .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs` runs, Then wrapper resolution, passthrough and snapshot cases pass | `node --test .skilled/hooks/session-relaunch/tests/skilled-loop-shell.test.cjs` Observed 2026-11-13: the existing shell cases pass in `scratch/green.txt`. | Met | - |
+| AC-003 | REQ-003 | Given the cursor and devin printed manual commands, When `skilled-loop-wrapper-claim-goal.test.cjs` runs, Then lines 160-170 keep the same `skilled-loop cursor` and `skilled-loop devin` text | `node --test .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-claim-goal.test.cjs` Observed 2026-11-13: `skilled-loop-wrapper-claim-goal.test.cjs` passes in the final full run with the printed commands unchanged. | Met | - |
 
 ### Status values
 
@@ -78,7 +78,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-AC-001 is unmet, so the packet cannot close.
+All 3 criteria are Met with observed evidence. The orchestrator reran every suite outside the builders' sandboxes from the final working tree: relaunch and OpenCode plugin suites 1471 of 1471, goal hook suites 200 of 200, Pi relaunch suite 59 of 59, each exit 0. The evidence is pinned to the working tree of branch `worktrees/358-handover-goal-resume` before its commit.
 <!-- /ANCHOR:closure -->

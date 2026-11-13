@@ -34,7 +34,7 @@
       "prepared"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,9 +42,12 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/hooks/goal/opencode/opencode-goal.js",
       ".opencode/plugins/opencode-goal.js",
+      ".skilled/hooks/goal/opencode/opencode-goal.js",
       ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs",
+      ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md",
+      "scratch/red.txt",
+      "scratch/green.txt",
       ".opencode/plugins/tests/opencode-goal-handover.test.cjs",
       ".opencode/plugins/tests/session-relaunch.test.cjs",
       ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
@@ -92,13 +95,31 @@
       {
         "name": "opencode-goal.js",
         "kind": "code",
-        "path": ".skilled/hooks/goal/opencode/opencode-goal.js",
+        "path": ".opencode/plugins/opencode-goal.js",
         "source": "derived"
       },
       {
         "name": "opencode-goal-lifecycle.test.cjs",
         "kind": "file",
         "path": ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-hook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-opencode/manual-testing-playbook/goal-hook/goal-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
         "source": "derived"
       },
       {
@@ -178,30 +199,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Change",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Guard",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A prepared OpenCode hop can be withdrawn by the goal continuation",
     "created_at": "2026-11-12T22:42:05Z",
-    "last_save_at": "2026-11-13T00:04:00.362Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-13T03:55:26.878Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -211,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:26269c71a27052580f8a10356f5ba50ac7c72a3170db8f5776fd846842e5ad08",
+    "source_fingerprint": "sha256:8d3075fd5310a32403a09a04d252ce9843cc77e4260bf0fa014c8f9a0cf6efba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4e1a4433cf24765a5786c1dade695b0214362829aee958dd0619d0f80bc6660b",
-      "plan.md": "46de71c895e0a667454d5b607e0db9fee149a32644d79b917af1185fe194134b",
-      "tasks.md": "44399248c2e82da20127beca861806b3f22c37ff88db22b99622e049753e33f9",
-      "implementation-summary.md": "7fa13a3ea831ccab5ebe3dc5e9232036f78b914cea412a5aa55fa557eafbb74a"
+      "spec.md": "2dbe9ded44371986d58af060927352fe24efebb18a4e2699a411d0ccb5c104d0",
+      "plan.md": "dcb1b1c8fc9745920efa8ee1ffd9fbed898051384949853ef066f04e19758d7f",
+      "tasks.md": "870637093eab9a55999e0fa42c4f9a7cbaa5e8c6720241a56b40307b5204bfcb",
+      "implementation-summary.md": "2561cafeb284a1c9552bbe6a0821a9de0f8391132eb361376406d8095eee7bdd"
     },
     "last_active_at": null
   }

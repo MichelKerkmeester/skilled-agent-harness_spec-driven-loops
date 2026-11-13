@@ -35,19 +35,19 @@ The relaunch README and the example hook flags still describe the behaviour from
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
-- [ ] Phases 003 and 004 are Complete
-- [ ] The four guard suites pass before the first edit
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
+- [x] Phases 003 and 004 are Complete
+- [x] The four guard suites pass before the first edit
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `rg -n -e 'even while the Claude enable switch is off' -e 'Known Race: A Claude Goal Continuation' -e '^A phase child' .skilled/hooks/session-relaunch/README.md` prints three lines
-- [ ] `rg -n 'SESSION_RELAUNCH_GOAL=0' .skilled/hooks/hook-flags.env.example` prints one line
-- [ ] The four guard suites in `REQ-005` exit 0
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/007-goal-handover-docs --strict` prints `RESULT: PASSED`
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `rg -n -e 'even while the Claude enable switch is off' -e 'Known Race: A Claude Goal Continuation' -e '^A phase child' .skilled/hooks/session-relaunch/README.md` prints three lines
+- [x] `rg -n 'SESSION_RELAUNCH_GOAL=0' .skilled/hooks/hook-flags.env.example` prints one line
+- [x] The four guard suites in `REQ-005` exit 0
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/007-goal-handover-docs --strict` prints `RESULT: PASSED`
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

@@ -8,17 +8,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "scaffold/007-goal-handover-docs"
-    last_updated_at: "2026-11-12T22:42:08Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-11-13T03:55:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Closed the phase after the build, the review fixes and the final suite run"
+    next_safe_action: "None; phase closed"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-007-goal-handover-docs"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -54,12 +54,12 @@ Frozen choices. Changing one is an amendment. Parent decisions D1 to D5 bind her
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `rg -n 'only while the switch is on' .skilled/hooks/session-relaunch/README.md` prints no line and exits 1.
-- [ ] `rg -n 'even while the Claude enable switch is off' .skilled/hooks/session-relaunch/README.md` prints 1 line.
-- [ ] `rg -n 'SESSION_RELAUNCH_GOAL=0' .skilled/hooks/hook-flags.env.example` prints 1 line.
-- [ ] `rg -n -e '^### Known Race: A Claude Goal Continuation During The Arm$' -e '^A phase child' .skilled/hooks/session-relaunch/README.md` prints 2 lines.
-- [ ] `env -u AI_SESSION_CHILD node --test .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs .skilled/hooks/session-relaunch/tests/goal-handover.test.cjs .skilled/hooks/session-relaunch/tests/killer.test.cjs .skilled/hooks/goal/lib/goal-slice.test.cjs` exits 0.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/007-goal-handover-docs --strict` prints `RESULT: PASSED`.
+- [x] `rg -n 'only while the switch is on' .skilled/hooks/session-relaunch/README.md` prints no line and exits 1.
+- [x] `rg -n 'even while the Claude enable switch is off' .skilled/hooks/session-relaunch/README.md` prints 1 line.
+- [x] `rg -n 'SESSION_RELAUNCH_GOAL=0' .skilled/hooks/hook-flags.env.example` prints 1 line.
+- [x] `rg -n -e '^### Known Race: A Claude Goal Continuation During The Arm$' -e '^A phase child' .skilled/hooks/session-relaunch/README.md` prints 2 lines.
+- [x] `env -u AI_SESSION_CHILD node --test .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs .skilled/hooks/session-relaunch/tests/goal-handover.test.cjs .skilled/hooks/session-relaunch/tests/killer.test.cjs .skilled/hooks/goal/lib/goal-slice.test.cjs` exits 0.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/007-goal-handover-docs --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -79,6 +79,8 @@ and findings belong here.
 | Document baseline | Done | 2026-11-13: the example file holds 0 goal switch rows, the README states the old switch rule once, and `phase child` and `known race` appear 0 times |
 | Guard baseline | Done | 2026-11-13: `env -u AI_SESSION_CHILD node --test --test-name-pattern 'compact-pointer' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs` printed 14 pass and 0 fail, and the killer timeout test printed 1 pass and 0 fail |
 | Implementation | Pending | No document change yet |
+| Build | Done | DeepSeek V4.1 Flash max wrote it through OpenCode from the diff of the six sibling phases, in `scratch/build.diff` of the parent packet. `scratch/green.txt` holds the search that shows the new lines. The orchestrator read the changed sections against the diff. The orchestrator reran every suite outside the builders' sandboxes from the final working tree: relaunch and OpenCode plugin suites 1471 of |
+| Suites | Done | The orchestrator reran every suite outside the builders' sandboxes from the final working tree: relaunch and OpenCode plugin suites 1471 of 1471, goal hook suites 200 of 200, Pi relaunch suite 59 of 59, each exit 0. |
 
 ### Deviations and findings
 

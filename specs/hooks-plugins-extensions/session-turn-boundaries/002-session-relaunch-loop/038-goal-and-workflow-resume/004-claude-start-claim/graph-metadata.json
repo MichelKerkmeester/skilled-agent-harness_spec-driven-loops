@@ -34,7 +34,7 @@
       "hook"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,9 +42,11 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/hooks/session-relaunch/README.md",
       ".skilled/hooks/session-relaunch/claude/compact-pointer.mjs",
       ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      ".skilled/hooks/session-relaunch/README.md",
       "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/004-claude-start-claim/scratch/finding.md"
     ],
     "entities": [
@@ -85,12 +87,6 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/hooks/session-relaunch/README.md",
-        "source": "derived"
-      },
-      {
         "name": "compact-pointer.mjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/claude/compact-pointer.mjs",
@@ -100,6 +96,24 @@
         "name": "claude-adapters.test.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
         "source": "derived"
       },
       {
@@ -179,24 +193,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Claude start hook returns before it reads a startup payload when the Claude relaunch switch is off (`SYSTEMSESSIONRELAUNCHCLAUDEENABLED=0`)",
     "created_at": "2026-11-12T22:42:03Z",
-    "last_save_at": "2026-11-12T23:45:53.208Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-13T03:55:24.876Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -206,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c32d5d252f382d7262f9d6f7b6b0cf92abeb415b5de32cc82a7faa83ef75bdce",
+    "source_fingerprint": "sha256:e80cc097521ab84b6c57c2d63d41351726f8dafc5a19dda2c73cc566eb6ace72",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ff693a378e38b0b53bba88fc4e49f87f5c86f870bc10dabbcb745485a6e376cb",
-      "plan.md": "9472b4ea076e02369d965ba75c5ae4e888530753262154f17a7e40df906c2bac",
-      "tasks.md": "4e3717fb5bf4b54cd04bf9f92423efd1ca157296a0a1312281e072d7a2cae9a9",
-      "implementation-summary.md": "7e5941df2222932832f4e7f831194783a3d58423ce15b39a6b3b63016f68d3eb"
+      "spec.md": "ba8cd4091c90d8373ee8200a7ea87e79329ba849f0e0b97e1f58e176a0cd8869",
+      "plan.md": "c12f6ec23d2fb023f8c91164c16f7c80650fd9d21fa5976eacdfd6b33f6e8bbe",
+      "tasks.md": "f5420778d5b6d2956e21d6a276da7b747168271b02789246ef26f0663407ba69",
+      "implementation-summary.md": "1e9fd923d5cd1475dba179204931477d94e351e88df7aa9ab9bc9bd717535d36"
     },
     "last_active_at": null
   }

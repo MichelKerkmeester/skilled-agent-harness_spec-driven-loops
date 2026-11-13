@@ -35,14 +35,14 @@ Change one guard in `goal-context.ts` so a Pi process attempts the hand-over bin
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `node --test .skilled/hooks/goal/pi/goal-pi.test.mjs` exits 0 with `fail 0`
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `node --test .skilled/hooks/goal/pi/goal-pi.test.mjs` exits 0 with `fail 0`
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
