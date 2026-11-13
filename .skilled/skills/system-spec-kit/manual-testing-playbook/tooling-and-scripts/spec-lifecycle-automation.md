@@ -1,7 +1,7 @@
 ---
 title: "237 -- Spec Lifecycle Automation"
 description: "This scenario validates spec lifecycle automation for `237`. It focuses on confirming the lifecycle toolchain exposes recommendation, upgrade, completeness, completion, and archival entrypoints."
-version: 1.6.0.12
+version: 1.6.0.13
 id: tooling-and-scripts-spec-lifecycle-automation
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -202,6 +202,7 @@ EXAMPLES:
     archive-spec.sh specs/051-feature-name/
     archive-spec.sh --force specs/051-feature-name/
     archive-spec.sh specs/my-track/012-feature-name/
+    archive-spec.sh specs/my-track/my-sub/012-feature-name/
     archive-spec.sh specs/my-track/012-feature-name/003-phase-name/
     archive-spec.sh --list
     archive-spec.sh --restore specs/z_archive/051-feature-name/
@@ -212,13 +213,18 @@ NOTES:
     - Specs with <90% completeness will prompt for confirmation
     - Use --force to skip the completeness check
     - A spec is moved into the z_archive/ beside it: specs/z_archive/ at the
-      specs root, specs/<track>/z_archive/ in a track, <parent>/z_archive/
-      for a phase
+      specs root, specs/<track>/z_archive/ in a track, a declared sub-track's
+      own z_archive/ for its packets, <parent>/z_archive/ for a phase
     - Restore returns a spec to the folder its z_archive/ belongs to
+    - A restore whose number a live packet already holds lands on the next free
+      number, counting archived packets, through relocate.mjs
     - A z_archive/ that is a symlink is refused on archive and on restore
+    - An archive or restore argument that passes through a symlink is refused,
+      and the message names the real folder to use instead
     - An archive or restore path with a . or .. segment is refused, since a
       segment can reach a linked z_archive/ that the literal path does not show
-    - A track's graph-metadata.json list is refreshed after both moves
+    - A track's graph-metadata.json list is refreshed after both moves; a
+      declared sub-track's list and its track's are refreshed together
     - A phase parent's graph-metadata.json is left as it is: its writer drops
       a child only through a reviewed prune
 ```

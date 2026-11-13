@@ -7,7 +7,7 @@ trigger_phrases:
   - "run validation rules"
   - "rule scripts"
   - "recursive phase validation"
-version: 2.1.1.0
+version: 2.1.2.0
 ---
 
 # Spec Validation Rule Engine
@@ -26,7 +26,7 @@ The front-end deliberately implements no rules of its own. It used to carry a se
 
 ### Entry Point & Routing
 
-`validate.sh` first parses its CLI flags for JSON, strict, verbose, quiet and recursive modes, then checks two skip controls: `SPECKIT_SKIP_VALIDATION`, read from the environment or `.skilled/hooks/hook-flags.env`, and `SPECKIT_VALIDATION=false`. A skipped run runs no rule and exits 0. Under `--json` it still prints a report, marked `skipped: true` with one info entry and no errors, so a caller that parses the output is never handed an empty stdout. Otherwise it resolves the folder set and delegates. A compiled build is preferred; a source-only checkout runs the orchestrator through the TypeScript loader. When neither is available it exits `3` asking for a build rather than answering with a different rule set.
+`validate.sh` first parses its CLI flags for JSON, strict, verbose, quiet, recursive and archive-inclusive modes, then checks two skip controls: `SPECKIT_SKIP_VALIDATION`, read from the environment or `.skilled/hooks/hook-flags.env`, and `SPECKIT_VALIDATION=false`. A skipped run runs no rule and exits 0. Under `--json` it still prints a report, marked `skipped: true` with one info entry and no errors, so a caller that parses the output is never handed an empty stdout. Otherwise it resolves the folder set and delegates. A compiled build is preferred; a source-only checkout runs the orchestrator through the TypeScript loader. When neither is available it exits `3` asking for a build rather than answering with a different rule set.
 
 Rule inventory lives in `runtime/cli/lib/validator-registry.json`, which carries each rule's id, aliases, script path, severity, and category. The orchestrator implements the most common rules natively and shells out to the registry for the rest, so duplication is bounded to the handful implemented twice rather than all of them.
 
@@ -44,6 +44,8 @@ Level detection belongs to the orchestrator. It first looks for explicit level m
 
 Phase awareness sits in the front-end. If the target folder contains child directories matching `NNN-*/`, recursive validation is auto-enabled unless `--no-recursive` is passed. The parent is validated first, then each child phase with its own detected level, and the run's exit code is the worst of them. A caller can declare exactly which children a recursive run must cover by pointing `SPECKIT_CHILD_MANIFEST_FILE` at a hashed manifest, so a child cannot be added or dropped without the declaration changing with it. In JSON mode each folder emits its own report object rather than one wrapper.
 
+Archived packets are validated only on request. `--recursive --include-archive` adds the numbered packets in the `z_archive/` of the folder given to the run, and for a track root it also adds the packets in the `z_archive/` of each declared sub-track. A default recursive run is unchanged. `--include-archive` without `--recursive` exits 2 with a usage line, and a `z_archive/` or an archived packet that is a symlink is not followed.
+
 The engine therefore behaves as one validator with a thin front-end: a single place where rules are decided, a registry that names them, and optional recursive traversal across phased spec packets.
 
 ### Edge Cases & Caveats
@@ -60,7 +62,7 @@ A linked `upgrade-baseline.json` is not applied: its findings are not read, and 
 
 | File | Layer | Role |
 |------|-------|------|
-| `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` | Orchestrator | Parses flags and config, detects level, resolves rule order, sources rule scripts, aggregates results, and handles recursive phase validation |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` | Orchestrator | Parses flags and config, detects level, resolves rule order, sources rule scripts, aggregates results, and handles recursive phase validation, including archived packets under `--include-archive` |
 | `.skilled/skills/system-spec-kit/runtime/cli/validation/continuity-freshness.ts` | Validation helper | Warns when `_memory.continuity.last_updated_at` lags `graph-metadata.json.derived.last_save_at` |
 | `.skilled/skills/system-spec-kit/runtime/cli/validation/evidence-marker-audit.ts` | Validation helper | Bracket-depth evidence-marker parser used for audit and repair sweeps |
 | `.skilled/skills/system-spec-kit/runtime/cli/validation/evidence-marker-audit.ts` | Validation helper | Strict audit that fails malformed evidence-marker cases |
@@ -84,6 +86,12 @@ A linked `upgrade-baseline.json` is not applied: its findings are not read, and 
 | `.skilled/skills/system-spec-kit/runtime/cli/rules/check-spec-doc-integrity.sh` | Validation rule | Rule script discovered and executed by the orchestrator for spec document integrity checks |
 | `.skilled/skills/system-spec-kit/runtime/cli/rules/check-template-source.sh` | Validation rule | Rule script discovered and executed by the orchestrator for template-source validation |
 | `.skilled/skills/system-spec-kit/runtime/cli/rules/check-toc-policy.sh` | Validation rule | Rule script discovered and executed by the orchestrator for table-of-contents policy checks |
+
+### Validation And Tests
+
+| File | Type | Role |
+|------|------|------|
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/validate-archive-recursive.vitest.ts` | Vitest | Covers `--include-archive` for a track, a declared sub-track and a phase parent, the refusal without `--recursive` and a symlinked `z_archive/` |
 
 ---
 

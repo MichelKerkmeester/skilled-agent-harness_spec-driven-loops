@@ -8,7 +8,7 @@ trigger_phrases:
   - "scratch folder usage"
 importance_tier: normal
 contextType: general
-version: 1.6.11.0
+version: 1.6.12.0
 ---
 
 # Folder Structure Reference
@@ -138,7 +138,11 @@ node .skilled/skills/system-spec-kit/runtime/cli/spec/suggest-subtracks.mjs --tr
 node .skilled/skills/system-spec-kit/runtime/cli/spec/suggest-subtracks.mjs --track <track> > map.json
 ```
 
-The map names every live packet of the track exactly once, because a track holds either packets or sub-tracks and never both. Rename the candidate sub-track names when a clearer name exists, show the map to the operator, and apply the approved map with the relocation tool:
+For a flat track, the map names every live packet of the track exactly once, because a track holds either packets or sub-tracks and never both. The tool prints no map in three cases, each with one line and exit `0`: a track below the threshold, a track where no grouping is found, and a track that already has a declared sub-track.
+
+A track that already has a declared sub-track gets `track <track> is already grouped into sub-tracks; no map`, also when numbered packets still sit beside the sub-tracks. For such a track, ask where each packet fits with `--describe`, which prints `best fit: <track>/<sub-track>` or `none fits: propose a new sub-track in <track>`. Then write the map by hand, one `{ "from": "<track>/NNN-slug", "to": "<track>/<sub-track>/NNN-slug" }` entry for every packet still at the track level, and run it through `relocate.mjs --map`. The map must cover all of them, because `relocate.mjs` refuses a plan that leaves flat packets beside sub-tracks. A single remaining packet can move with `relocate.mjs --from <path> --to <path>`.
+
+Rename the candidate sub-track names when a clearer name exists, show the map to the operator, and apply the approved map with the relocation tool:
 
 ```bash
 node .skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs --map map.json          # dry run, writes nothing

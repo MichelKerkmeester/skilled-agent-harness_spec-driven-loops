@@ -1,8 +1,8 @@
 ---
 title: "Spec Kit: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the system-spec-kit engine."
-last_updated: "2026-11-07"
-version: 2.1.24.0
+last_updated: "2026-11-13"
+version: 2.1.25.0
 ---
 
 # Spec Kit: Manual Testing Playbook
@@ -242,8 +242,11 @@ Every row links a scenario file that exists on disk. The **Catalog Entry** colum
 | PHASE-006 | Spec-folder literal naming (create.sh fallback) | [PHASE-006](tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md) | [spec-folder-literal-naming-create-sh-fallback](../feature-catalog/tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md) |
 | PHASE-009 | Spec-folder literal naming (remediation rule) | [PHASE-009](tooling-and-scripts/spec-folder-literal-naming-remediation-rule.md) | [spec-folder-literal-naming-ai-derived-slugs](../feature-catalog/tooling-and-scripts/spec-folder-literal-naming-ai-derived-slugs.md) |
 | 237 | Spec lifecycle automation | [237](tooling-and-scripts/spec-lifecycle-automation.md) | [spec-lifecycle-automation](../feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md) |
+| 492 | Spec packet relocation and renumbering | [492](tooling-and-scripts/spec-packet-relocation.md) | [spec-packet-relocation](../feature-catalog/tooling-and-scripts/spec-packet-relocation.md) |
+| 495 | Spec validation of archived packets | [495](tooling-and-scripts/spec-validation-archive-reach.md) | [spec-validation-rule-engine](../feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md) |
 | 238 | Spec validation rule engine | [238](tooling-and-scripts/spec-validation-rule-engine.md) | [spec-validation-rule-engine](../feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md) |
 | 272 | Strict validation add-ons | [272](tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md) | [strict-validation-addons](../feature-catalog/tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md) |
+| 493 | Sub-track proposal | [493](tooling-and-scripts/sub-track-proposal.md) | [sub-track-proposal](../feature-catalog/tooling-and-scripts/sub-track-proposal.md) |
 | 208 | Template compliance contract blocks non-compliant | [208](tooling-and-scripts/template-compliance-contract-enforcement-blocks-non-compliant.md) | [template-compliance-contract-enforcement](../feature-catalog/tooling-and-scripts/template-compliance-contract-enforcement.md) |
 | 181 | Template compliance contract produces compliant | [181](tooling-and-scripts/template-compliance-contract-enforcement-produces-compliant.md) | [template-compliance-contract-enforcement](../feature-catalog/tooling-and-scripts/template-compliance-contract-enforcement.md) |
 | 244 | Template composition system | [244](tooling-and-scripts/template-composition-system.md) | [template-composition-system](../feature-catalog/tooling-and-scripts/template-composition-system.md) |
@@ -330,6 +333,7 @@ Doctor command scenarios for system-spec-kit now live in the [central manual tes
 | 489 | Trigger lookup total candidates | [489](retrieval/trigger-lookup-total-candidates.md) | [trigger-lookup-total-candidates](../feature-catalog/retrieval/trigger-lookup-total-candidates.md) |
 | 490 | Stale trigger index fallback | [490](retrieval/stale-index-fallback.md) | [stale-index-fallback](../feature-catalog/retrieval/stale-index-fallback.md) |
 | 491 | Ripgrep one row per file | [491](retrieval/rg-flood-control.md) | [rg-flood-control](../feature-catalog/retrieval/rg-flood-control.md) |
+| 494 | Ripgrep archive search | [494](retrieval/rg-archive-search.md) | [rg-archive-search](../feature-catalog/retrieval/rg-archive-search.md) |
 
 ---
 

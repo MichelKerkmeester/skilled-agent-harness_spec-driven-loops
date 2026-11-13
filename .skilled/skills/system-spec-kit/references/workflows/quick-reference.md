@@ -8,7 +8,7 @@ trigger_phrases:
   - "quick troubleshooting lookup"
 importance_tier: normal
 contextType: general
-version: 1.6.9.0
+version: 1.6.10.0
 ---
 
 # Quick Reference - Commands, Checklists & Troubleshooting
@@ -264,6 +264,8 @@ New/unrelated work is allowed to use Option B, but the new packet must still be 
 
 **Phased Packets:** If the target already has child phase folders, use the active child when the work fits that child's scope. For a distinct but related workstream, prefer Option C and add the next sequential child phase instead of creating a new top-level sibling packet. Use the coordination root only for phase-map updates, root-scope decisions, and tree-truth verification. Use Option B only when the work is outside the phase parent's documented purpose and scope.
 
+**Sub-Tracks:** If the work belongs to a track that is grouped into sub-tracks, prefer Option C and place the packet in the sub-track that fits. If the track's packets have grown into clusters and no sub-track fits, prefer Option C and propose a new sub-track as a whole-track map (`folder-structure.md` §2, When to Propose a Sub-Track). A sub-track is a proposal the operator approves, never a move made silently.
+
 **Small-task definition:** "Small" means exempt work or work that remains Level 1 after LOC guidance and all secondary risk/complexity factors are applied. A Level 2 or Level 3 task that does not phase-qualify is not automatically "small"; it remains standard because the phase thresholds were not both met.
 
 ---
@@ -274,10 +276,10 @@ When Gate 3 applies, always present all four stable labels and ask the user to c
 
 - **Option A:** Continue in the detected/current spec or current phase child when its scope fits.
 - **Option B:** Create a new top-level packet for new/unrelated work; independently evaluate whether that new packet qualifies for phases.
-- **Option C:** Use another existing packet — a related spec when it is a better scope match, a specific child under an existing phase parent, a related standard packet decomposed into phases when it meets both phase thresholds, or a series parent when the work is a different change to the same artifact as an existing packet in the same track (phase-definitions.md §2).
+- **Option C:** Use another existing packet — a related spec when it is a better scope match, a specific child under an existing phase parent, a related standard packet decomposed into phases when it meets both phase thresholds, a sub-track of the track (an existing one, or a new one proposed as a whole-track map when the track's packets have grown into clusters), or a series parent when the work is a different change to the same artifact as an existing packet in the same track (phase-definitions.md §2).
 - **Option D:** Skip spec documentation after the required warning or under an existing exemption.
 
-**Recommendation priority:** `C` for a distinct related workstream in an existing or qualifying phased packet, including a series parent; otherwise `A` when the current packet fits; otherwise `C` for another related packet; `B` only for new/unrelated work; `D` is never the default.
+**Recommendation priority:** `C` for a distinct related workstream in an existing or qualifying phased packet, including a series parent; otherwise `A` when the current packet fits; otherwise `C` for another related packet or a sub-track of the track, existing or newly proposed; `B` only for new/unrelated work; `D` is never the default.
 
 **AI Agent Rule:** Recommend the best-fit option using this priority, but NEVER select it autonomously. The user must choose A/B/C/D.
 

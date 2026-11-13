@@ -6,7 +6,7 @@ trigger_phrases:
   - "refresh-track-roots"
   - "sweep-track-roots"
   - "track-root pre-push gate"
-version: 2.0.8.0
+version: 2.0.9.0
 ---
 
 # Track-root children lists
@@ -39,6 +39,13 @@ updating `children_ids`. The writer refuses a `graph-metadata.json` symlink and
 leaves it unchanged. Empty or unreadable metadata is also left alone and exits
 with status 2.
 
+The writer also seeds a declared sub-track's archive. Git does not track an
+empty folder, so when a sub-track has no `z_archive/` at all, a dry run prints
+`create z_archive/.gitkeep` as pending and `--apply` creates the folder with an
+empty `.gitkeep`. A `z_archive/` that already exists is left as it is, a
+`z_archive/` that is a symlink is refused and not written, and a flat track's
+archive is never seeded.
+
 `sweep-track-roots.mjs` reports. It compares the list with the packets as sets,
 because a packet renamed on disk leaves both counts equal. With `--rev <commit>`
 it reads that commit instead of the working tree, and leaves out a symlinked
@@ -59,7 +66,10 @@ identity `<track>/<sub>`. The reader returns it after its track, the writer
 refreshes its `children_ids` and the track's in one pass, and the sweep reports
 its packets at the same depth as a flat track's. A non-numbered folder without
 the declaration is reported once and never promoted, and a symlinked sub-track
-is skipped with a diagnostic in both views. These diagnostics are advisory to
+is skipped with a diagnostic in both views. In the working tree the sweep also
+prints one line for each declared sub-track that has no `z_archive/` folder,
+naming `refresh-track-roots.mjs --apply` as the way to seed it. A `--rev` sweep
+does not make this check. These diagnostics are advisory to
 the sweep and do not change its exit code. `create.sh` uses the same diagnostic
 to explain a refusal, then exits with status 1.
 
@@ -78,6 +88,8 @@ unfinished packets. `SPECKIT_SKIP_PREPUSH_TRACK_GATE=1` skips it for one push.
 
 `archive.sh` moves a track packet into the track's own `z_archive/` and
 restores it to the track, and runs the writer for that track after both moves.
+A packet in a declared sub-track goes into the sub-track's own `z_archive/`,
+and the writer then runs for the sub-track and for its track.
 
 A packet moved, renamed or deleted by hand leaves the list stale until the
 writer runs again. The gate then names the fix.
@@ -89,8 +101,8 @@ writer runs again. The gate then names the fix.
 | File | Role |
 |------|------|
 | `runtime/cli/lib/track-roots.mjs` | Reads tracks from the working tree or a commit and compares lists as sets |
-| `runtime/cli/spec/refresh-track-roots.mjs` | The writer |
-| `runtime/cli/spec/sweep-track-roots.mjs` | The read-only report, and the check the gate runs |
+| `runtime/cli/spec/refresh-track-roots.mjs` | The writer, which also seeds a declared sub-track's `z_archive/.gitkeep` |
+| `runtime/cli/spec/sweep-track-roots.mjs` | The read-only report, and the check the gate runs. Prints the advisory line for a declared sub-track without `z_archive/` |
 | `runtime/cli/spec/create.sh` | Runs the writer after scaffolding into a track |
 | `runtime/cli/spec/archive.sh` | Runs the writer after archiving or restoring a track packet |
 | `.skilled/scripts/git-hooks/pre-push` | The track-root gate |

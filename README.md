@@ -413,6 +413,8 @@ Eight of them only warn and never fail a run. Two of those are worth knowing. `F
 - **`calculate-completeness.sh`** - calculate spec folder completeness as a percentage
 - **`check-completion.sh`** - verify all completion criteria are met
 - **`check-placeholders.sh`** - find remaining `[PLACEHOLDER]` values after level upgrade
+- **`relocate.mjs`** - move, renumber or re-parent spec packets and rewrite every store that records the path. Takes `--map <file.json>`, `--from` with `--to`, `--renumber <folder>` or `--declare-subtrack <track>/<name>`. Dry run by default, `--apply` writes
+- **`suggest-subtracks.mjs`** - propose a whole-track sub-track map for a flat track, or with `--describe` name the declared sub-track a new packet fits best. Writes nothing
 
 **`validate.sh` exit codes**
 
@@ -425,7 +427,7 @@ Eight of them only warn and never fail a run. Two of those are worth knowing. `F
 
 **Useful flags and behaviors**
 
-`--verbose` shows details behind each rule. `--recursive` validates a parent and all child phase folders. `validate.sh` implements no rules itself. It hands every rule decision to a single Node orchestrator.
+`--verbose` shows details behind each rule. `--recursive` validates a parent and all child phase folders. `--include-archive` works only with `--recursive` and also validates the packets in the `z_archive/` of the folder given and, for a track root, of each declared sub-track. `validate.sh` implements no rules itself. It hands every rule decision to a single Node orchestrator.
 
 The default scaffold path skips post-create validation. Set `SPECKIT_POST_VALIDATE=1` to enable it for strict CI workflows. Path traversal inputs, for example a `--path` value that climbs above the repository root, are rejected before any filesystem write.
 
@@ -473,8 +475,9 @@ Six mandatory gates run before acting. Gates 1 to 5 run before any file change, 
   │  Asked first when a file write is coming    │
   │  A) Existing                                │
   │  B) New, for new or unrelated work          │
-  │  C) Related, a phase child or a series      │
-  │     parent for the same artifact            │
+  │  C) Related, a phase child, a sub-track     │
+  │     of the track or a series parent for     │
+  │     the same artifact                       │
   │  D) Skip                                    │
   └──────────────────┬──────────────────────────┘
                      │
@@ -1199,7 +1202,7 @@ It is the only trigger on Cursor and Devin. Claude Code, Codex, Pi and OpenCode 
 
 **`/speckit:search`**
 
-Two lexical lanes over spec docs and skill docs: trigger-index lookup with `--triggers`, which on a zero-hit also checks spec docs the index does not list yet, ripgrep recipes otherwise. `--paths` and `--count` pick the recipe, and `--packet <specFolder>` narrows the search roots. A phrase nobody wrote is a clean no-hit, never a nearest guess.
+Two lexical lanes over spec docs and skill docs: trigger-index lookup with `--triggers`, which on a zero-hit also checks spec docs the index does not list yet, ripgrep recipes otherwise. `--paths` and `--count` pick the recipe, and `--packet <specFolder>` narrows the search roots. Archived packets are left out by default. `--include-archive` searches them as well through `rg-wrapper.mjs`, marks each archived path `[archived]` and lists the `description.json` and `graph-metadata.json` files of archived packets that hold the phrase. A phrase nobody wrote is a clean no-hit, never a nearest guess.
 
 &nbsp;
 

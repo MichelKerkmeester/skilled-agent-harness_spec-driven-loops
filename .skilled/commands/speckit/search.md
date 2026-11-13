@@ -1,6 +1,6 @@
 ---
 description: "Continuity retrieval front door: trigger-index lookup plus the ripgrep recipes over spec docs and skill docs."
-argument-hint: "<query> [--packet <specFolder>] [--triggers] [--paths] [--count]"
+argument-hint: "<query> [--packet <specFolder>] [--triggers] [--paths] [--count] [--include-archive]"
 allowed-tools: Bash, Read, Grep, Glob
 ---
 
