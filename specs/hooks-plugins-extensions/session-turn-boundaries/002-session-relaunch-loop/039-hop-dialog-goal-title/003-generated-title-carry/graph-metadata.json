@@ -202,7 +202,7 @@
     ],
     "causal_summary": "A Claude hop carried only a launch `--name` or a `/rename` title, which Claude logs as a `custom-title` entry",
     "created_at": "2026-11-13T16:59:14Z",
-    "last_save_at": "2026-11-13T18:59:28.739Z",
+    "last_save_at": "2026-11-13T19:56:00.169Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0a6f9a3b6d4fed64b8a6156a3d69c0fc37d39df8c44de3a6a85d539932fc47a2",
+    "source_fingerprint": "sha256:5b123f12e0242be209f954cc9af9989e487d3ee731e4ec896c175944a9b6a209",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f1e4d654f31016cbe94b5f65f70486a734ce9bbff394ea1bc3af0f8cf47c37f4",
       "plan.md": "17491c67ee78f3c3c8c04614fc6b6098e00a013078fc613de0d1c7a72d39b9de",
       "tasks.md": "7f798017a9c32c2acbb9d0a871dabbfc42272ea036399d26debca49aeb3b5034",
-      "implementation-summary.md": "39bffe0d0e244c46de0e1c45263ebcaed10a463827388f5326c1da3175bdc7ad"
+      "implementation-summary.md": "6a8f7eaefd357d18940599a9ae3520a7e58a7c001c14272ca5e516bca5c00285"
     },
     "last_active_at": null
   }

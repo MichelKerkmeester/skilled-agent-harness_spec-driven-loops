@@ -11,7 +11,7 @@ _memory:
     last_updated_at: "2026-11-13T18:30:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Recorded the question dialog denial, its tests and the checks run in worktree 366"
-    next_safe_action: "Operator decides on merge and push of worktree 366"
+    next_safe_action: "None. Merged into main and pushed on 2026-11-13"
     blockers: []
     key_files: [".skilled/hooks/session-relaunch/claude/subagent-guard.mjs", ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs", ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json"]
     session_dedup:
@@ -81,7 +81,7 @@ The opening check came first and used saved evidence only. In each of the four f
 
 The six tests were written before the source edit. `scratch/red.txt` shows 20 tests with 19 pass and 1 fail, the failing one being the denial test. `scratch/green.txt` shows 20 of 20 after the edit. The registry binding was added and rendered into `.claude/settings.json` by the sync script.
 
-The orchestrator ran the checks in the worktree, and this packet's author reran them on 2026-11-13 with the same results. The relaunch and OpenCode plugin suites ran 1530 of 1530 with exit 0, against a baseline of 1524. Both sync checks printed `PASS`. The code is committed on branch `worktrees/366-hop-after-question-dialog` as `9d0c5368d1`, and these documents are committed on the same branch. Nothing is merged or pushed.
+The orchestrator ran the checks in the worktree, and this packet's author reran them on 2026-11-13 with the same results. The relaunch and OpenCode plugin suites ran 1530 of 1530 with exit 0, against a baseline of 1524. Both sync checks printed `PASS`. The code is committed on branch `worktrees/366-hop-after-question-dialog` as `9d0c5368d1`, and these documents are committed on the same branch. The branch was merged into main as `bc670ffc21` and pushed on 2026-11-13.
 
 The operator's answers on 2026-11-13, given through the question tool: "Fix the dialog-after-prepare hop". Spec folder "C) Related: new child 018 (Recommended)". Workspace "A) Create a git worktree (Recommended)", which made worktree 366 on branch `worktrees/366-hop-after-question-dialog`. Design "Refuse the dialog (Recommended)", after a first answer of "Reproduce live first" that the saved evidence superseded. Builder "This session (Recommended)". The spec folder answer was replaced later that day by "Move to new packet 039 (Recommended)", because the goal of packet 038 was at 3,996 of its 4,000 characters and could not bind more children. These documents moved from `038-goal-and-workflow-resume/018-sender-dialog-after-prepare` to this folder before they were committed, and the `Spec:` line of the code commit was reworded to match.
 <!-- /ANCHOR:how-delivered -->
