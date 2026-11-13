@@ -108,7 +108,9 @@ Run `/doctor:ci report` to see each switch state. Run `/doctor:ci toggle` to cha
 
 ### Checkouts that skip loop state
 
-About two thirds of the tracked files are loop state under `specs/`: the `research/`, `review/`, `scratch/` and `z_archive/` folders. A full checkout fetches all of it and takes about a minute. Seven workflows whose suites read none of it skip those four folder kinds with a non-cone sparse checkout: `command-tree-parity.yml`, `hook-vitest-suites.yml`, `opencode-dual-version.yml`, `opencode-plugin-tests.yml`, `playbook-operator-contract.yml`, `sk-git-script-tests.yml` and `skill-advisor-stress.yml`. `opencode-plugin-tests.yml` names one archived packet again after the exclusions, because a plugin test reads it. A workflow that validates packets, checks links or reads recorded loop logs keeps the full checkout.
+About two thirds of the tracked files are loop state under `specs/`: the `research/`, `review/`, `scratch/` and `z_archive/` folders. A full checkout fetches all of it and takes about a minute. Seven workflows whose suites read none of it skip those four folder kinds with a non-cone sparse checkout: `command-tree-parity.yml`, `hook-vitest-suites.yml`, `opencode-dual-version.yml`, `opencode-plugin-tests.yml`, `playbook-operator-contract.yml`, `sk-git-script-tests.yml` and `skill-advisor-stress.yml`. `opencode-plugin-tests.yml` names one archived packet again after the exclusions, because a plugin test reads it.
+
+Three larger jobs do the same with the few paths their suites read: the CLI and runtime vitest jobs of `spec-kit-check.yml` and `deep-loop-runtime.yml`. The CLI job names two archived packets and one archived fixture folder again, and the deep-loop job names the folders of five recorded loop logs. A test added to one of these jobs that reads another loop-state path must add that path to the job's pattern list. A workflow that validates packets, checks links or walks every README keeps the full checkout, as do the other four jobs of `spec-kit-check.yml`.
 
 ---
 

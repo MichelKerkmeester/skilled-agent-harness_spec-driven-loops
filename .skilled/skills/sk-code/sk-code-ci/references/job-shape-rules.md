@@ -9,7 +9,7 @@ trigger_phrases:
   - "ci switch condition"
 importance_tier: normal
 contextType: general
-version: 1.1.10.0
+version: 1.1.11.0
 ---
 
 # Job Shape Rules
@@ -55,8 +55,8 @@ A job with no `timeout-minutes` runs until GitHub stops it at 360 minutes, so a 
 | `routing-registry-drift.yml` | `golden-prompt-gate` | `:263` | 37 |
 | `spec-kit-check.yml` | `check` | `:104` | 51 |
 | `spec-kit-check.yml` | `cli-vitest` | `:151` | 51 |
-| `spec-kit-check.yml` | `legacy-lanes` | `:198` | 51 |
-| `spec-kit-check.yml` | `runtime-vitest` | `:236` | 51 |
+| `spec-kit-check.yml` | `legacy-lanes` | `:213` | 51 |
+| `spec-kit-check.yml` | `runtime-vitest` | `:251` | 51 |
 | `strict-pass-freshness-report.yml` | `strict-pass-freshness` | `:35` | 143 |
 
 Enforcement: honour-system. Re-run `grep -n 'timeout-minutes' .github/workflows/*.yml` to refresh the table.

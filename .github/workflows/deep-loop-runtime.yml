@@ -47,8 +47,24 @@ jobs:
     steps:
       # The mode-event suites bind each run to a commit and its parent, which a
       # depth-one checkout does not have.
+      # The checkout skips the research, review, scratch and archive folders under specs/:
+      # about two thirds of the tracked files. The suite reads five recorded loop logs, so
+      # their folders are named again after the exclusions.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          filter: blob:none
+          sparse-checkout: |
+            /*
+            !/specs/**/research/
+            !/specs/**/review/
+            !/specs/**/scratch/
+            !/specs/**/z_archive/
+            /specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation/research/lineages/sol/
+            /specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/review/
+            /specs/system-deep-loop/z_archive/025-deep-loop-gpt-reliability/004-benchmarks-and-verification/001-gpt-verification-smoke/ai-council/
+            /specs/system-deep-loop/z_archive/024-deep-loop-improved/012-deep-loop-divergent-mode/ai-council/
+            /specs/system-deep-loop/z_archive/013-agent-deep-review-optimization/improvement/
+          sparse-checkout-cone-mode: false
           fetch-depth: 2
 
       - name: Setup Node
