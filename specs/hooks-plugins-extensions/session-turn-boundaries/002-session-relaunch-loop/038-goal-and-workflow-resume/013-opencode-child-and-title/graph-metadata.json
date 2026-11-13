@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The plugin puts every sub-agent session in a skip set and returns before reading any later event for it (`.opencode/plugins/session-relaunch.js:335`, `:341`), and the parent arms at `session.idle` with no child check (`:418` to `:435`)",
     "created_at": "2026-11-13T08:49:35Z",
-    "last_save_at": "2026-11-13T11:13:19.912Z",
+    "last_save_at": "2026-11-13T11:13:43.412Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0b337965e7119c3babcd4101420ca22a0d0b56d830b4f2202cf0b608d0359622",
+    "source_fingerprint": "sha256:cb1b9073d8bf55de0f2f8f2d3997bfb36fb5516e1e87068c6403a7fb80879135",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5ca3de1c0bb29e389e0309d250daafd3ed57a993e7ddede26170f805f3c1fdf7",
       "plan.md": "bcb426d53318006ff00d7d0e9d718d434a64919669bbb3ac150feb38eeae1774",
       "tasks.md": "d5452383a3f736a1019b381cbb7cc34993b36b3daba1a41c3796da3df00f27cf",
-      "implementation-summary.md": "7cb4c4c2c972ef50c4bb70ad5a6869abd314e1811d41c58389f2e0c474b3afb1"
+      "implementation-summary.md": "2cc45bc44aafc3f9c3edb6e4bc4d1a93de1f6ef2afeeb912c525c8e329c7b948"
     },
     "last_active_at": null
   }

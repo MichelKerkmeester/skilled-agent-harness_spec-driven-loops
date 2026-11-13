@@ -11,9 +11,8 @@ _memory:
     last_updated_at: "2026-11-13T00:00:00Z"
     last_updated_by: "builder"
     recent_action: "Built the child gate, the deferred arm and the seed title, and recorded their red and green runs"
-    next_safe_action: "Run T017, the live bridged title check on OpenCode 2.2.7"
-    blockers:
-      - "T017 needs a live OpenCode claim seed that a builder may not start"
+    next_safe_action: "None, the phase is complete"
+    blockers: []
     key_files:
       - ".opencode/plugins/session-relaunch.js"
       - ".opencode/plugins/lib/v2-bridge.js"
@@ -21,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-013-opencode-child-and-title"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -112,7 +111,7 @@ The session-relaunch suite went from the 65-test baseline to 71 tests, all passi
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The live bridged title is unproven.** T017 needs a claim seed on OpenCode 2.2.7, and a builder may not start an OpenCode session. AC-008 stays Unmet and the packet stays open until the orchestrator runs that check and writes `scratch/live-title-bridge.md`.
+1. **The live bridged title was proven after the build.** On 2026-11-13 a claim seed on OpenCode 2.2.7 renamed a live session through the bridged call, with the argument shape as built (`scratch/live-title-bridge.md`). AC-008 is Met.
 2. **A child that never reports an end keeps the parent unarmed.** The plugin clears the busy state only on `session.idle` or `session.deleted`; a runtime that loses the child without either event leaves the hop waiting, as the spec's risk table accepts.
 3. **The full plugin suite needs `OPENCODE_DB` cleared in this host.** The ambient `opencode-v1.db` name leaks into `session-history-lookup.test.cjs`, which writes `opencode.db`; the failure is outside this phase and disappears with `env -u OPENCODE_DB`.
 <!-- /ANCHOR:limitations -->
