@@ -587,7 +587,7 @@ function prepare(args) {
     handoffPath,
     sessionId,
     runtime,
-    name: process.env.SKILLED_LOOP_NAME || null,
+    name: settings.name || process.env.SKILLED_LOOP_NAME || null,
     cwd: process.cwd(),
     hops,
     model: settings.model,
@@ -818,9 +818,9 @@ function consume(args) {
   // A note with no goal packet keeps the output it always had.
   const consumed = { handoff: handoffPath, spec_folder: specFolder, note };
   if (goalPacket !== '') consumed.goal_packet = goalPacket;
-  // The sender's own latest model, provider, effort and permission mode, which the wrapper
-  // checks before it uses them.
-  for (const key of ['model', 'provider', 'effort', 'permissionMode']) {
+  // The sender's own latest model, provider, effort, permission mode and name, which the
+  // wrapper checks before it uses them.
+  for (const key of ['model', 'provider', 'effort', 'permissionMode', 'name']) {
     if (typeof record?.[key] === 'string' && record[key] !== '') consumed[key] = record[key];
   }
   // Only a withdrawn record carries the key, so every other consume prints what it always did.

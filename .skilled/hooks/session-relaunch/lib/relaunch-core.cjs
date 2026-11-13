@@ -723,10 +723,11 @@ function safeDirectory(directory) {
  * @param {string} options.runtime - Runtime that owns the session.
  * @param {string} options.sessionId - The session's identifier.
  * @param {NodeJS.ProcessEnv} [options.env=process.env] - Environment carrying the log location.
- * @returns {{model: string, effort: string}} The values the log proves, '' for the rest.
+ * @returns {{model: string, effort: string, name: string}} The values the log proves, `''`
+ * for the rest, and the live session name when the log carries one.
  */
 function resolveSessionSettings({ runtime, sessionId, env = process.env } = {}) {
-  const none = { model: '', effort: '' };
+  const none = { model: '', effort: '', name: '' };
   try {
     if (!nonEmptyString(sessionId)) return none;
     const usage = require('./context-usage.cjs');
@@ -740,7 +741,12 @@ function resolveSessionSettings({ runtime, sessionId, env = process.env } = {}) 
     } else if (runtime === 'cursor') {
       found = { model: cursorSelectedModel(env), effort: '' };
     }
-    return found ?? none;
+    if (found === null) return none;
+    return {
+      model: found.model ?? '',
+      effort: found.effort ?? '',
+      name: typeof found.name === 'string' ? found.name : '',
+    };
   } catch {
     return none;
   }

@@ -2787,6 +2787,33 @@ test('prepare falls back to the response model when the Claude entry names no re
   assert.equal(Object.hasOwn(record, 'effort'), false);
 });
 
+// The live title is what the operator last called this session, so it beats the name the
+// wrapper exported at launch, which only repeats the launch line.
+test('prepare records the Claude custom title over SKILLED_LOOP_NAME', (t) => {
+  const sandbox = createSandbox(t);
+  writeClaudeGoalLog(sandbox, [
+    { type: 'assistant', requestedModel: 'claude-sonnet-5-5', effort: 'high' },
+    { type: 'custom-title', customTitle: 'renamed' },
+  ]);
+  sandbox.env.SKILLED_LOOP_NAME = 'launch';
+
+  const record = prepareUnderLoop(sandbox, 'claude');
+
+  assert.equal(record.name, 'renamed');
+});
+
+test('prepare keeps SKILLED_LOOP_NAME when the log holds no title', (t) => {
+  const sandbox = createSandbox(t);
+  writeClaudeGoalLog(sandbox, [
+    { type: 'assistant', requestedModel: 'claude-sonnet-5-5', effort: 'high' },
+  ]);
+  sandbox.env.SKILLED_LOOP_NAME = 'launch';
+
+  const record = prepareUnderLoop(sandbox, 'claude');
+
+  assert.equal(record.name, 'launch');
+});
+
 test('prepare records the Codex sender latest turn model and effort', (t) => {
   const sandbox = createSandbox(t);
   writeCodexRollout(sandbox, [
@@ -2919,6 +2946,27 @@ test('consume reports the permission mode the record holds', (t) => {
     spec_folder: SPEC_FOLDER,
     note: 'open',
     permissionMode: 'acceptEdits',
+  });
+});
+
+test('consume reports the record name', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  writeRelaunchRecord(sandbox, {
+    loopId: LOOP_ID,
+    status: 'armed',
+    handoff: handoffPath,
+    name: 'Work',
+  });
+
+  const result = runCli(sandbox, ['consume', '--loop-id', LOOP_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.deepEqual(JSON.parse(result.stdout), {
+    handoff: handoffPath,
+    spec_folder: SPEC_FOLDER,
+    note: 'open',
+    name: 'Work',
   });
 });
 

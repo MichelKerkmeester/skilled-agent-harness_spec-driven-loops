@@ -181,7 +181,7 @@ if (markerPath && fs.existsSync(markerPath)) {
         : process.env.HANDOFF_PATH,
       sessionId: "session-wrapper-0001",
       runtime: process.env.SESSION_RELAUNCH_TEST_RUNTIME || "claude",
-      name: process.env.SKILLED_LOOP_NAME || null,
+      name: process.env.RECORD_NAME || null,
       cwd: process.env.RECORDED_CWD,
       hops: Number(process.env.SKILLED_LOOP_HOPS || 0),
       armedAt,

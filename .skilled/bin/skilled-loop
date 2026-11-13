@@ -40,6 +40,7 @@ consumed_live_model=''
 consumed_live_provider=''
 consumed_live_effort=''
 consumed_live_permission_mode=''
+consumed_live_name=''
 
 # Prints the manual claim command on stdout, as the CLI does: it is the result an
 # operator copies, and stderr stays for diagnostics. The core fills the template, so the
@@ -268,6 +269,27 @@ model_is_valid() {
   ((${#1} <= 128)) && [[ "$1" =~ $model_pattern ]]
 }
 
+# A name the sender's record reported becomes the receiver's launch name, so it must not read
+# as an option and must not carry a control character that would break the printed command.
+# Control characters include DEL, so the check must not depend on the caller's locale.
+name_is_replayable() {
+  local name="$1"
+  [[ -n "$name" ]] || return 1
+  [[ "$name" != -* ]] || return 1
+  ( LC_ALL=C; [[ "$name" != *[[:cntrl:]]* ]] )
+}
+
+# Removes the number this wrapper wrote for the sender, so a hop replaces it instead of
+# stacking. The first session carries no number, so a trailing " (1)" is someone's own text.
+# Arguments: name, the sender's own session number.
+name_stem() {
+  local name="$1" sender_number="${2:-0}"
+  if ((sender_number >= 2)) && [[ "$name" == *" ($sender_number)" ]]; then
+    name="${name% ($sender_number)}"
+  fi
+  printf '%s' "$name"
+}
+
 # An effort belongs to the model it was chosen for, so a hop onto a different model without a
 # usable effort of its own must not replay the launch effort: some models reject an effort
 # chosen for another, and the runtime default is the safe fallback. An empty launch model proves
@@ -293,19 +315,21 @@ live_model_voids_launch_effort() {
   [[ -z "$live_effort" ]] || ! effort_is_valid "$runtime_name" "$live_effort"
 }
 
-# Reads the consumed record's live model, provider, effort and permission mode in one
+# Reads the consumed record's live model, provider, effort, permission mode and name in one
 # process, so a print costs a single extra read however many of them the record holds.
 read_consumed_live_settings() {
   consumed_live_model=''
   consumed_live_provider=''
   consumed_live_effort=''
   consumed_live_permission_mode=''
+  consumed_live_name=''
   [[ -n "$consumed_record_json" ]] || return 0
   {
     IFS= read -r -d '' consumed_live_model \
       && IFS= read -r -d '' consumed_live_provider \
       && IFS= read -r -d '' consumed_live_effort \
-      && IFS= read -r -d '' consumed_live_permission_mode
+      && IFS= read -r -d '' consumed_live_permission_mode \
+      && IFS= read -r -d '' consumed_live_name
   } < <(
     node -e '
       const fs = require("node:fs");
@@ -313,7 +337,7 @@ read_consumed_live_settings() {
       const text = (key) => (typeof record[key] === "string" ? record[key] : "");
       process.stdout.write(
         text("model") + "\0" + text("provider") + "\0" + text("effort") + "\0"
-          + text("permissionMode") + "\0",
+          + text("permissionMode") + "\0" + text("name") + "\0",
       );
     ' <<< "$consumed_record_json" 2>/dev/null
   ) || {
@@ -321,6 +345,7 @@ read_consumed_live_settings() {
     consumed_live_provider=''
     consumed_live_effort=''
     consumed_live_permission_mode=''
+    consumed_live_name=''
   }
 }
 
@@ -332,8 +357,15 @@ apply_consumed_live_settings() {
   local launch_model="${SKILLED_LOOP_MODEL:-}"
   local launch_provider="${SKILLED_LOOP_PROVIDER:-}"
   local accepted_model=''
+  local sender_number=$((10#${SKILLED_LOOP_HOPS:-0} + 1))
   local changed=1
 
+  # A manual claim starts a new wrapper at hop 0, so the command carries the stem with no
+  # number, whichever name the sender's record proves.
+  if name_is_replayable "$consumed_live_name"; then
+    SKILLED_LOOP_NAME=$(name_stem "$consumed_live_name" "$sender_number")
+    changed=0
+  fi
   if [[ -n "$consumed_live_model" ]] && model_is_valid "$consumed_live_model"; then
     accepted_model="$consumed_live_model"
     SKILLED_LOOP_MODEL="$accepted_model"
@@ -377,6 +409,18 @@ append_effort_arguments() {
       launch_arguments+=(--thinking "$SKILLED_LOOP_EFFORT")
       ;;
   esac
+}
+
+# Appends the session name in the form this launch needs: a hop carries the receiver's
+# number, while a manual claim starts a fresh wrapper at hop 0 and carries the stem alone.
+append_name_arguments() {
+  local mode="$1"
+  [[ -n "${SKILLED_LOOP_NAME:-}" ]] || return 0
+  if [[ "$mode" == 'hop' ]]; then
+    launch_arguments+=(--name "$SKILLED_LOOP_NAME ($((10#${SKILLED_LOOP_HOPS:-0} + 1)))")
+  else
+    launch_arguments+=(--name "$SKILLED_LOOP_NAME")
+  fi
 }
 
 # Prints the packet's chat slice for a receiver that sets its goal from the start prompt. When
@@ -527,7 +571,9 @@ shell_quote_argument() {
   printf '%s' "$quoted"
 }
 
-# Matches this runtime's --help list of options that take a value.
+# Matches this runtime's --help list of options that take a value. The Codex, Cursor, Devin
+# and OpenCode name entries below have no name flag in their help; they stay so a hop strips
+# the option and its value instead of handing them to the runtime as a prompt.
 skilled_loop_replay_takes_value() {
   case "$1:$2" in
     claude:--add-dir|claude:--agent|claude:--agents|claude:--allowedTools|\
@@ -640,7 +686,9 @@ skilled_loop_replay_denied() {
   return 1
 }
 
-# Identifies record-backed settings; the other option lists follow this runtime's --help.
+# Identifies record-backed settings; the other option lists follow this runtime's --help. The
+# Codex, Cursor, Devin and OpenCode name entries have no name flag in that help; they are
+# listed only so a hop strips them.
 skilled_loop_replay_recorded() {
   case "$1:$2" in
     claude:--model|claude:--effort|claude:--permission-mode|claude:-n|claude:--name|\
@@ -669,9 +717,7 @@ build_relaunch_arguments() {
       fi
       launch_arguments+=("$seed")
       relaunch_seed_index=$((${#launch_arguments[@]} - 1))
-      if [[ -n "${SKILLED_LOOP_NAME:-}" ]]; then
-        launch_arguments+=(--name "$SKILLED_LOOP_NAME")
-      fi
+      append_name_arguments "$mode"
       ;;
     pi)
       if [[ -n "${SKILLED_LOOP_PROVIDER:-}" ]]; then
@@ -684,9 +730,7 @@ build_relaunch_arguments() {
       if ((pi_extension_arguments_set == 1)); then
         launch_arguments+=("${pi_extension_arguments[@]}")
       fi
-      if [[ -n "${SKILLED_LOOP_NAME:-}" ]]; then
-        launch_arguments+=(--name "$SKILLED_LOOP_NAME")
-      fi
+      append_name_arguments "$mode"
       launch_arguments+=("$seed")
       relaunch_seed_index=$((${#launch_arguments[@]} - 1))
       ;;
@@ -1359,6 +1403,22 @@ while true; do
           fi
         fi
       fi
+      # The sender's record holds the name its session really carries, which a /rename never
+      # wrote back to the launch line. The stem drops the number this wrapper wrote for the
+      # sender, so the receiver's own number replaces it instead of stacking. A name the
+      # record cannot prove leaves the launch name in place.
+      live_name=$(consumed_field name)
+      if [[ -n "$live_name" ]] && ! name_is_replayable "$live_name"; then
+        printf 'warning: ignoring the sender name %s; relaunching on the launch name\n' \
+          "$live_name" >&2
+        live_name=''
+      fi
+      if [[ -n "$live_name" ]]; then
+        SKILLED_LOOP_NAME=$(name_stem "$live_name" "$SKILLED_LOOP_HOPS")
+      else
+        SKILLED_LOOP_NAME=$(name_stem "${SKILLED_LOOP_NAME:-}" "$SKILLED_LOOP_HOPS")
+      fi
+      export SKILLED_LOOP_NAME
       # Every later manual command, the session's own hop-cap command among them, starts
       # from the settings this hop launches on, so a model an earlier hop switched to is not
       # lost to the first launch's. Building the template resets the launch arguments, so it

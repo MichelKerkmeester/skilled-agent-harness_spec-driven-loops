@@ -27,7 +27,7 @@ test('second invocation uses only the seed and name, recorded cwd, and the same 
   assert.deepEqual(records[1].args, [
     SEED + ` ${handoffPath}`,
     '--name',
-    'X',
+    'X (2)',
   ]);
   assert.equal(records[1].cwd, fs.realpathSync(sandbox.recordedCwd));
   assert.equal(records[0].env.SKILLED_LOOP_ID, records[1].env.SKILLED_LOOP_ID);
@@ -180,7 +180,7 @@ test('a hop replaces the start prompt and the record settings', (t) => {
   assert.equal(args.includes('first prompt'), false);
   assert.ok(args.includes('sonnet'));
   assert.ok(args.includes('high'));
-  assert.ok(args.includes('launch name'));
+  assert.ok(args.includes('launch name (2)'));
   assert.ok(args.includes('--permission-mode'));
 });
 
@@ -404,7 +404,7 @@ test('Claude carries --model value before the seed and name on relaunch', (t) =>
   const seed = `${SEED} ${handoffPath}`;
   assert.deepEqual(records[0].args, firstArguments);
   assert.deepEqual(records[1].args, [
-    '--model', 'selected-model', seed, '--name', 'named',
+    '--model', 'selected-model', seed, '--name', 'named (2)',
   ]);
   assert.equal(records[0].env.SKILLED_LOOP_MODEL, 'selected-model');
   assert.equal(records[1].env.SKILLED_LOOP_MODEL, 'selected-model');
@@ -516,7 +516,7 @@ test('pi relaunch carries provider and model before name and seed', (t) => {
   assert.deepEqual(records[0].args, firstArguments);
   assert.equal(records[1].runtime, 'pi');
   assert.deepEqual(records[1].args, [
-    '--provider', 'openai', '--model', 'm', '-ne', '-e', extensionPath, '--name', 'N', seed,
+    '--provider', 'openai', '--model', 'm', '-ne', '-e', extensionPath, '--name', 'N (2)', seed,
   ]);
   assert.equal(records[1].cwd, fs.realpathSync(sandbox.recordedCwd));
   assert.notEqual(records[1].cwd, path.resolve(sandbox.repoRoot));
@@ -557,4 +557,107 @@ test('Pi normalizes extension aliases and preserves selection order on relaunch'
     '-e', absoluteExtension,
     `${SEED} ${handoffPath}`,
   ]);
+});
+
+// A named loop hands the receiver the sender's live name plus the receiver's session
+// number, so the operator can tell the hop apart without the suffixes stacking.
+test('a Claude hop numbers the replayed name', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const result = runWrapper(sandbox, ['claude', '-n', 'X', 'initial prompt']);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`, '--name', 'X (2)']);
+  assert.equal(records[1].env.SKILLED_LOOP_NAME, 'X');
+  assert.deepEqual(records.map((record) => record.env.SKILLED_LOOP_HOPS), ['0', '1']);
+});
+
+test('a hop replays the sender\'s live name with the next number', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_NAME: 'Renamed',
+  });
+  const result = runWrapper(sandbox, ['claude', 'initial prompt']);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`, '--name', 'Renamed (2)']);
+  assert.equal(records[1].env.SKILLED_LOOP_NAME, 'Renamed');
+});
+
+test('a second hop replaces the sender\'s number instead of stacking it', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    SKILLED_LOOP_HOPS: '1',
+    RECORD_NAME: 'X (2)',
+  });
+  const result = runWrapper(sandbox, ['claude', 'initial prompt']);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`, '--name', 'X (3)']);
+  assert.equal(records[1].env.SKILLED_LOOP_NAME, 'X');
+  assert.deepEqual(records.map((record) => record.env.SKILLED_LOOP_HOPS), ['1', '2']);
+});
+
+test('a name that ends in another number keeps it', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+    markers: '1',
+    RECORD_NAME: 'Phase (7)',
+  });
+  const result = runWrapper(sandbox, ['claude', 'initial prompt']);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`, '--name', 'Phase (7) (2)']);
+  assert.equal(records[1].env.SKILLED_LOOP_NAME, 'Phase (7)');
+});
+
+test('a consumed name that fails the check falls back to the launch name', (t) => {
+  for (const consumedName of ['-x', 'a\nb']) {
+    const sandbox = createSandbox(t);
+    const { recordPath, handoffPath } = installRuntimeStub(sandbox, {
+      markers: '1',
+      RECORD_NAME: consumedName,
+    });
+    const result = runWrapper(sandbox, ['claude', '-n', 'X', 'initial prompt']);
+    assert.equal(result.status, 0, result.stderr);
+    const records = readRecords(recordPath);
+    assert.equal(records.length, 2);
+    assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`, '--name', 'X (2)']);
+    assert.match(result.stderr, /warning: ignoring the sender name/);
+  }
+});
+
+test('a Pi hop numbers the replayed name', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath, handoffPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const result = runWrapper(sandbox, ['pi', '-n', 'N', 'initial prompt']);
+  assert.equal(result.status, 0, result.stderr);
+  const records = readRecords(recordPath);
+  assert.equal(records.length, 2);
+  assert.deepEqual(records[1].args, ['--name', 'N (2)', `${SEED} ${handoffPath}`]);
+  assert.equal(records[1].env.SKILLED_LOOP_NAME, 'N');
+});
+
+test('the manual command carries the name stem without a number', (t) => {
+  const sandbox = createSandbox(t);
+  installRuntimeStub(sandbox, {
+    markers: '1',
+    PENDING_ON_INVOCATION: '1',
+    RECORD_NAME: 'X',
+    STUB_EXIT_CODES: '7',
+  });
+  const result = runWrapper(sandbox, ['claude', 'initial prompt']);
+  assert.equal(result.status, 7, result.stderr);
+  const manualCommand = result.stdout
+    .split('\n')
+    .find((line) => line.startsWith('skilled-loop '));
+  assert.ok(manualCommand, result.stderr);
+  assert.match(manualCommand, /'--name' 'X'/, manualCommand);
+  assert.equal(manualCommand.includes('(2)'), false, manualCommand);
 });
