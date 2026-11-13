@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d19b1ef903881ceabd5847a798b37ca96ecf835e0cc092520cb97e96d7b6cdeb",
+  "corpusHash": "4e97d9d2906172c43a1f2ff6db8ae189f010e93827169b2220e56df4d668f7bc",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26633,7 +26633,7 @@
     "specs/system-speckit/spec-folder-tooling/004-create-path-track-refresh/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e836555da1541a7e97232f8da9a562d715245809ce48ff41dbb1acd0ff0284c7",
+  "manifestHash": "3b352aef1302186edd48279e659965735797cdbd00b6446659d8417a0061ef32",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
