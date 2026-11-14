@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": "agents/006-agent-contract-and-registry-alignment",
   "description": "Fix every contract defect in the eleven agent definition files, add an agent registry that generates the orchestrator rosters, bind agents to skills t",
   "keywords": [
@@ -23,13 +24,14 @@
     "duplicated",
     "text"
   ],
-  "lastUpdated": "2026-11-14T11:36:20.136Z",
+  "lastUpdated": "2026-11-14T12:06:18.965Z",
   "specId": "006",
   "folderSlug": "agent-contract-and-registry-alignment",
   "parentChain": [
     "agents"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_13-06__audited-the-eleven-agent-definition-files-then.md"
+  ]
 }
