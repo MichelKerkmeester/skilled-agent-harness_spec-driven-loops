@@ -76,7 +76,7 @@ function archive(args: string[]) {
 // engine, which resolves its helper writers from the repository it runs in.
 // The mover is copied in, and the follow-up writers whose own suites cover
 // them are stubbed.
-function installRestoreTools() {
+function installRestoreTools(options: { repairDerived?: string; validate?: string } = {}) {
   const spec = path.dirname(archiveScript);
   const cli = path.dirname(spec);
   const skill = path.resolve(cli, '..', '..');
@@ -86,9 +86,13 @@ function installRestoreTools() {
     if (mode !== undefined) fs.chmodSync(file, mode);
   };
   fs.copyFileSync(path.join(CLI_DIR, 'spec', 'relocate.mjs'), path.join(spec, 'relocate.mjs'));
-  stub(path.join(spec, 'repair-derived.cjs'), 'process.exit(0);\n');
+  stub(path.join(spec, 'repair-derived.cjs'), options.repairDerived ?? 'process.exit(0);\n');
   stub(path.join(spec, 'sweep-track-roots.mjs'), 'process.exit(0);\n');
-  stub(path.join(spec, 'validate.sh'), '#!/usr/bin/env bash\nprintf "RESULT: PASSED\\n"\nexit 0\n', 0o755);
+  stub(
+    path.join(spec, 'validate.sh'),
+    options.validate ?? '#!/usr/bin/env bash\nprintf "RESULT: PASSED\\n"\nexit 0\n',
+    0o755,
+  );
   stub(path.join(cli, 'graph', 'migrate-generated-json.ts'), 'process.exit(0);\n');
   stub(path.join(cli, 'retrieval', 'generate-trigger-index.mjs'), 'process.exit(0);\n');
   stub(path.join(skill, 'node_modules', 'tsx', 'dist', 'loader.mjs'), 'export {};\n');
@@ -184,6 +188,41 @@ describe('archive.sh with tracks', () => {
     expect(text).not.toContain('zeta/001-old');
     expect(text).toContain('`specs/zeta/005-old/spec.md`');
     expect(text.trimEnd().endsWith('the earlier id zeta/005-old.')).toBe(true);
+  });
+
+  // A renumbered restore is finished when every relocate step landed, even if
+  // the packet carries validation findings from before it was archived.
+  it('reports a renumbered restore as done when only the packet validation failed', { timeout: 120_000 }, () => {
+    installRestoreTools({ validate: '#!/usr/bin/env bash\nprintf "RESULT: FAILED\\n"\nexit 1\n' });
+    trackRoot('zeta', ['zeta/001-holder', 'zeta/004-live']);
+    packet('zeta/z_archive/001-old');
+    commitFixture();
+
+    const result = archive(['--restore', 'specs/zeta/z_archive/001-old']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(result.stdout).toContain('Restored:');
+    expect(result.stdout).toContain('specs/zeta/005-old');
+    const warnings = (result.stdout + result.stderr).split('\n').filter((line) => line.includes('WARNING:'));
+    expect(warnings).toHaveLength(1);
+    expect(warnings[0]).toContain('specs/zeta/005-old');
+    expect(warnings[0]).toContain('validation');
+    expect(fs.existsSync(path.join(specs, 'zeta', '005-old', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'zeta', 'z_archive', '001-old'))).toBe(false);
+  });
+
+  // A relocation step that fails still leaves the restore unfinished.
+  it('keeps the restore failure when a relocation step fails', { timeout: 120_000 }, () => {
+    installRestoreTools({ repairDerived: 'process.exit(1);\n' });
+    trackRoot('zeta', ['zeta/001-holder', 'zeta/004-live']);
+    packet('zeta/z_archive/001-old');
+    commitFixture();
+
+    const result = archive(['--restore', 'specs/zeta/z_archive/001-old']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stdout + result.stderr).toContain('Restore did not finish');
+    expect(result.stdout + result.stderr).not.toContain('Restored:');
   });
 
   it('keeps the pre-archive id when a live folder holds it', { timeout: 120_000 }, () => {
@@ -596,6 +635,61 @@ describe('archive.sh with declared sub-tracks', () => {
     expect(result.stderr).toContain('Not a packet, track packet or phase');
     expect(fs.existsSync(path.join(specs, 'demo', '001-flat-probe', 'sub', '001-deep', 'spec.md'))).toBe(true);
     expect(fs.existsSync(path.join(specs, 'demo', '001-flat-probe', 'sub', 'z_archive'))).toBe(false);
+  });
+});
+
+describe('archive.sh restore preflight', () => {
+  // A restore reads the relocation preflight for the same move and refuses only
+  // its mixed-track verdict. The packet stays in the track archive, so the
+  // sweep that checks the track layout still passes.
+  it('refuses a restore that would leave a flat packet beside sub-tracks', { timeout: 120_000 }, () => {
+    installRestoreTools();
+    buildSubtrackTree(repo, { flat: false });
+    packet('demo/z_archive/009-old');
+
+    const result = archive(['--restore', 'specs/demo/z_archive/009-old']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stderr).toContain('track specs/demo');
+    expect(result.stderr).toContain('relocate.mjs');
+    expect(result.stderr).toContain('--from demo/z_archive/009-old');
+    expect(result.stderr).toContain('--to demo/sub/009-old --apply');
+    expect(fs.existsSync(path.join(specs, 'demo', 'z_archive', '009-old', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'demo', '009-old'))).toBe(false);
+
+    const sweep = spawnSync('node', [path.join(CLI_DIR, 'spec', 'sweep-track-roots.mjs'), '--specs', specs], { cwd: repo, encoding: 'utf8' });
+    expect(sweep.status, sweep.stdout + sweep.stderr).toBe(0);
+  });
+
+  // The mixed-track line is the only preflight verdict a restore reads. A flat
+  // track has no sub-track for the packet to join, so its restore proceeds.
+  it('still restores into a flat track with no sub-tracks', { timeout: 120_000 }, () => {
+    installRestoreTools();
+    trackRoot('flat', ['flat/001-live']);
+    packet('flat/z_archive/002-old');
+
+    const result = archive(['--restore', 'specs/flat/z_archive/002-old']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(fs.existsSync(path.join(specs, 'flat', '002-old', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'flat', 'z_archive', '002-old'))).toBe(false);
+  });
+
+  // An archive leaves the tree dirty, so the preflight for the restore behind it
+  // can refuse on the uncommitted move. That verdict is not the mixed-track one
+  // and must not block the restore.
+  it('restores a packet archived with no commit in between', { timeout: 120_000 }, () => {
+    installRestoreTools();
+    trackRoot('flat', ['flat/001-live', 'flat/002-old']);
+    commitFixture();
+
+    const archived = archive(['--force', 'specs/flat/002-old']);
+    expect(archived.status, archived.stdout + archived.stderr).toBe(0);
+    const result = archive(['--restore', 'specs/flat/z_archive/002-old']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(fs.existsSync(path.join(specs, 'flat', '002-old', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'flat', 'z_archive', '002-old'))).toBe(false);
   });
 });
 

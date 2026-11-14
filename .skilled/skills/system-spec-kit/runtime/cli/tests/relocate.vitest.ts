@@ -753,12 +753,54 @@ describe('relocate resume', () => {
     const args = ['--from', 'alpha/001-a', '--to', 'alpha/sub/001-a'];
 
     const first = relocate([...args, '--apply']);
-    expect(first.status, first.stdout + first.stderr).toBe(2);
+    expect(first.status, first.stdout + first.stderr).toBe(3);
     expect(first.stdout).toContain('close validate specs/alpha/sub/001-a: RESULT: FAILED');
 
     const second = relocate([...args, '--apply']);
     expect(second.status, second.stdout + second.stderr).toBe(0);
     expect(second.stdout).toContain('relocate: nothing to do');
+  });
+
+  // A finished map is complete even when more than one moved packet fails its
+  // own validation. The verdict is reported, and a rerun finds no work left.
+  it('returns 3 when a finished map leaves only the moved packet validation failing', () => {
+    track('alpha', ['alpha/001-a', 'alpha/002-b'], ['alpha/sub']);
+    declaredSubtrack('alpha/sub');
+    const map = writeMap([
+      { from: 'alpha/001-a', to: 'alpha/sub/001-a' },
+      { from: 'alpha/002-b', to: 'alpha/sub/002-b' },
+    ]);
+    commitFixture();
+    stub(
+      path.join(repo, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'spec', 'validate.sh'),
+      '#!/usr/bin/env bash\nprintf "RESULT: FAILED\\n"\nexit 1\n',
+      0o755,
+    );
+
+    const first = relocate(['--map', map, '--apply']);
+    expect(first.status, first.stdout + first.stderr).toBe(3);
+    expect(first.stdout).toContain('close validate specs/alpha/sub/001-a: RESULT: FAILED');
+    expect(first.stdout).toContain('close validate specs/alpha/sub/002-b: RESULT: FAILED');
+
+    const second = relocate(['--map', map, '--apply']);
+    expect(second.status, second.stdout + second.stderr).toBe(0);
+    expect(second.stdout).toContain('relocate: nothing to do');
+  });
+
+  // A failed step is an unfinished run even when a moved packet's own
+  // validation would also have failed.
+  it('returns 2 when a step fails beside the moved packet validation', () => {
+    track('alpha', ['alpha/001-a'], ['alpha/sub']);
+    declaredSubtrack('alpha/sub');
+    commitFixture();
+    const spec = path.join(repo, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'spec');
+    stub(path.join(spec, 'validate.sh'), '#!/usr/bin/env bash\nprintf "RESULT: FAILED\\n"\nexit 1\n', 0o755);
+    stub(path.join(spec, 'repair-derived.cjs'), 'process.exit(1);\n');
+    const args = ['--from', 'alpha/001-a', '--to', 'alpha/sub/001-a'];
+
+    const result = relocate([...args, '--apply']);
+    expect(result.status, result.stdout + result.stderr).toBe(2);
+    expect(result.stdout).toContain('step graph identity and pointers specs/alpha/sub/001-a (repair-derived): FAILED');
   });
 
   // A stopped move step leaves the folders it already moved staged. Every file

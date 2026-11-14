@@ -33,7 +33,9 @@
 //
 // Exit codes: 0 = nothing left to do (after --apply: every step landed),
 //             1 = work found (dry run only),
-//             2 = a rejected argument, a refused plan or a step that failed.
+//             2 = a rejected argument, a refused plan or a step that failed,
+//             3 = --apply landed every step and the close sweep, and only a
+//                 moved packet's own validation failed; a rerun finds nothing.
 // ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
@@ -1636,9 +1638,11 @@ function applyPlan(plan, tracked) {
 }
 
 // The close is last so its verdict is what the run ends on: the sweep, then
-// each moved packet's own validation, whose RESULT line is the final word.
+// each moved packet's own validation, whose RESULT line is the final word. A
+// failed packet verdict gets its own status, because the move itself landed;
+// a failed sweep still means the run did not finish.
 function closeRun(plan) {
-  let ok = true;
+  let status = 0;
   const sweep = runChild('node', [TOOLS.sweep]);
   out(`close sweep-track-roots: ${sweep.ok ? 'ok' : `FAILED ${sweep.why}`}`);
   if (sweep.ok) {
@@ -1647,20 +1651,21 @@ function closeRun(plan) {
     markLateStep(plan.entries, 'sweep');
   } else {
     for (const line of tail(sweep.stdout, 6)) out(`    ${line}`);
-    ok = false;
+    status = 2;
   }
   for (const entry of plan.entries) {
     const result = runChild('bash', [TOOLS.validate, `specs/${entry.to}`, '--strict']);
     const verdict = `${result.stdout}\n${result.stderr}`.split('\n').filter((line) => /RESULT:/.test(line)).map((line) => line.replace(/\x1b\[[0-9;]*m/g, '').trim());
     if (!result.ok) {
-      ok = false;
+      // The move landed, so the packet's own verdict does not reopen it.
+      if (status === 0) status = 3;
       // The failing rules and the summary, not the passing ones around them.
       const lines = result.stdout.split('\n').map((line) => line.replace(/\x1b\[[0-9;]*m/g, '').trimEnd());
       for (const line of lines.filter((text) => /^\s*x /.test(text) || /^\s*Summary:/.test(text))) out(`    ${line.trim()}`);
     }
     out(`close validate specs/${entry.to}: ${verdict.length ? verdict[verdict.length - 1] : `no RESULT line (${result.why})`}`);
   }
-  return ok;
+  return status;
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -1802,7 +1807,7 @@ function main() {
   }
   out(`${SCRIPT}: applied ${plan.pending.length} move(s)${plan.done.length ? `, finished ${plan.done.length} earlier move(s)` : ''}`);
   out('');
-  return closeRun(plan) ? 0 : 2;
+  return closeRun(plan);
 }
 
 // A reader that closes early is not a failure.

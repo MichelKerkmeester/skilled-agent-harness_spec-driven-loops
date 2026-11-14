@@ -355,6 +355,46 @@ if (ensureDescriptionCache([process.argv[2]]) === null) process.exit(1);
     fi
 }
 
+# A restore is refused when the relocation preflight for the same move reports
+# that its destination would leave a flat packet beside sub-tracks. The rule
+# lives in the preflight, so this asks for a dry run of that move and reads only
+# this one verdict; a dirty tree, a taken number and every other preflight
+# answer stay with the restore's own checks.
+refuse_mixed_track_restore() {
+    local archived="$1"
+    local destination="$2"
+    local specs_root="$3"
+    local relocate_script="$SCRIPT_DIR/relocate.mjs"
+    local from_id to_id track track_dir sub sub_id preflight name
+    local status=0
+
+    [[ -f "$relocate_script" ]] || return 0
+    track="$(track_of "$destination" "$specs_root")"
+    # A packet already inside a sub-track has no track level above it that could
+    # become mixed, so the preflight has no mixed-track verdict to give.
+    [[ -n "$track" && "$track" != */* ]] || return 0
+
+    from_id="${archived#"$specs_root"/}"
+    to_id="${destination#"$specs_root"/}"
+    # set -e would end the script on every non-zero preflight exit, including
+    # "work found" and a plain refusal, so the status is captured with the
+    # output. Only the mixed-track line below decides.
+    preflight="$(node "$relocate_script" --from "$from_id" --to "$to_id" 2>&1)" || status=$?
+    [[ "$preflight" == *"would hold flat packets"* ]] || return 0
+
+    track_dir="$specs_root/$track"
+    for sub in "$track_dir"/*/; do
+        sub="${sub%/}"
+        if is_declared_subtrack "$sub" "$specs_root"; then
+            sub_id="${sub#"$specs_root"/}"
+            break
+        fi
+    done
+    name="$(basename "$to_id")"
+    log_error "Restore refused: track specs/$track would hold flat packets. Move the packet into a sub-track instead: node $relocate_script --from $from_id --to ${sub_id:-$track/<sub>}/$name --apply"
+    exit 1
+}
+
 # The next number after every one already used in a packet home, live or
 # archived, so the restored packet cannot collide with either. relocate.mjs then
 # moves it and rewrites every record that names it, from its own preflight on.
@@ -389,7 +429,17 @@ restore_on_next_number() {
         exit 1
     fi
     log_info "Number ${name:0:3} is taken by $holder; restoring as specs/$to_id"
-    if ! node "$relocate_script" --from "$from_id" --to "$to_id" --apply; then
+    # set -e would end the script on a failed node call, hiding the one status
+    # that still means the move landed. Capture it so that verdict can be told
+    # apart from a run whose steps did not finish.
+    local status=0
+    node "$relocate_script" --from "$from_id" --to "$to_id" --apply || status=$?
+    if [[ "$status" -eq 3 ]]; then
+        log_success "Restored: $archived -> $specs_root/$to_id"
+        log_warning "Restored packet $specs_root/$to_id failed its own validation; the move is complete, but the packet still needs attention. Read the close validate line above."
+        exit 0
+    fi
+    if [[ "$status" -ne 0 ]]; then
         log_error "Restore did not finish. Read the report above, then rerun: node $relocate_script --from $from_id --to $to_id --apply"
         exit 1
     fi
@@ -689,6 +739,10 @@ restore_spec() {
         log_error "Restore target already exists: $destination"
         exit 1
     fi
+
+    # Both restore paths move the folder from here on, so the mixed-track
+    # verdict is read before either one starts.
+    refuse_mixed_track_restore "$resolved_archived" "$destination" "$specs_root"
 
     # A packet number names one folder among its siblings. When a live packet
     # under another name already holds the restored packet's number, the packet
