@@ -156,8 +156,8 @@ const CHILD_ENV_ALLOWLIST = new Set([
   'SPECKIT_PRIVATE_SKILL_ROOTS',
   'SPECKIT_ADVISOR_BM25_LEXICAL_SHADOW',
   'SPECKIT_ADVISOR_FEEDBACK_CALIBRATION_SHADOW',
-  'SYSTEM_SKILL_ADVISOR_HOOK_DISABLED',
-  'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED',
+  // The disable switch is read by each caller in its own process and never by the
+  // shared daemon, so a flagged call cannot silence every later caller.
   'SPECKIT_SKILL_ADVISOR_FORCE_LOCAL',
   'SPECKIT_CODEX_HOOK_TIMEOUT_MS',
   'SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC',

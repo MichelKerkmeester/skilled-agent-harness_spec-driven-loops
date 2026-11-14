@@ -121,6 +121,25 @@ describe('system-skill-advisor launcher bootstrap', () => {
     });
   });
 
+  it('keeps the per-request advisor switch out of the daemon env', () => {
+    configureTempLauncher();
+    const memoryDbPath = launcher.advisorDbPath();
+    const socketDir = expectedChildSocketDir(memoryDbPath);
+    const sourceEnv = {
+      PATH: '/bin',
+      SYSTEM_SKILL_ADVISOR_HOOK_DISABLED: '1',
+      SPECKIT_SKILL_ADVISOR_HOOK_DISABLED: '1',
+    };
+    // Each caller reads the switch in its own process. A daemon that inherited it
+    // would abstain for every later caller in the checkout, so it stays out.
+    expect(launcher.createChildEnv(sourceEnv)).toEqual({
+      PATH: '/bin',
+      MEMORY_DB_PATH: memoryDbPath,
+      SPECKIT_IPC_SOCKET_DIR: socketDir,
+      HF_EMBED_SERVER_URL: expectedModelServerUrl(sourceEnv),
+    });
+  });
+
   it('passes an explicit daemon trust default through to the advisor child env', () => {
     configureTempLauncher();
     const memoryDbPath = launcher.advisorDbPath();

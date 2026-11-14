@@ -7,9 +7,10 @@
 // ───────────────────────────────────────────────────────────────────
 
 import { execFileSync } from 'node:child_process';
-import { readFileSync, realpathSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
+import { disabledRecommendOutput, emptyOutput, requestWorkspaceRoot } from '../lib/advisor-disabled.js';
 import { TRACKED_COMMANDS, attachCommand, commandRowFor, routeNeedsMode, typedCommandForTop } from '../lib/command-attach.js';
 import { advisorPromptCache } from '../lib/prompt-cache.js';
 import { extractMetalinguisticSkillMentions } from '../lib/prompt-policy.js';
@@ -30,7 +31,6 @@ import {
 import { DEFAULT_SHADOW_SCORER_LANE_WEIGHTS } from '../lib/scorer/lane-registry.js';
 import { sanitizeSkillLabel } from '../lib/render.js';
 import { recordShadowDelta, shadowDeltaSinkEnabled } from '../lib/shadow/shadow-sink.js';
-import { findAdvisorWorkspaceRoot } from '../lib/utils/workspace-root.js';
 import {
   AdvisorRecommendInputSchema,
   AdvisorRecommendOutputSchema,
@@ -68,39 +68,12 @@ function emitCompiledRoutingBreadcrumb(message: string): void {
   }
 }
 
-function findWorkspaceRoot(start = process.cwd()): string {
-  return findAdvisorWorkspaceRoot(start, { maxDepth: 12 });
-}
-
-// Canonicalize a caller-supplied workspaceRoot via realpath.
-// The schema-level allowlist refinement runs against the same canonical
-// form, so a caller passing /tmp/symlink-to-repo gets the real path
-// post-symlink before downstream code uses it.
-function canonicalizeWorkspaceRoot(input: string): string {
-  const resolved = resolve(input);
-  try {
-    return realpathSync.native(resolved);
-  } catch {
-    return resolved;
-  }
-}
-
 function cacheSourceSignature(status: AdvisorStatus): string {
   return `${status.freshness}:${status.generation}:${status.lastGenerationBump ?? 'never'}:${DEEP_ROUTING_PROJECTION_HASH}`;
 }
 
 function recommendationLabels(output: AdvisorRecommendOutput): string[] {
   return output.recommendations.map((recommendation) => recommendation.skillId);
-}
-
-function unavailableTrustState(reason: string): AdvisorRecommendOutput['trustState'] {
-  return {
-    state: 'unavailable',
-    reason,
-    generation: 0,
-    checkedAt: new Date().toISOString(),
-    lastLiveAt: null,
-  };
 }
 
 function publicThresholds(args: {
@@ -133,52 +106,6 @@ function renderableStatus(status: AdvisorStatus): AdvisorStatus {
     return { ...status, freshness: trustState };
   }
   return status;
-}
-
-function emptyOutput(args: {
-  workspaceRoot: string;
-  effectiveThresholds: AdvisorRecommendOutput['effectiveThresholds'];
-  freshness: AdvisorRecommendOutput['freshness'];
-  trustState: AdvisorRecommendOutput['trustState'];
-  warnings?: readonly string[];
-  abstainReasons?: readonly string[];
-}): AdvisorRecommendOutput {
-  return AdvisorRecommendOutputSchema.parse({
-    workspaceRoot: args.workspaceRoot,
-    effectiveThresholds: args.effectiveThresholds,
-    recommendations: [],
-    ambiguous: false,
-    freshness: args.freshness,
-    trustState: args.trustState,
-    generatedAt: new Date().toISOString(),
-    cache: {
-      hit: false,
-      sourceSignaturePresent: false,
-    },
-    ...(args.warnings && args.warnings.length > 0 ? { warnings: [...args.warnings] } : {}),
-    ...(args.abstainReasons && args.abstainReasons.length > 0 ? { abstainReasons: [...args.abstainReasons] } : {}),
-  });
-}
-
-// The canonical flag is checked first so the reason names it when both are set.
-const ADVISOR_DISABLED_FLAGS = [
-  'SYSTEM_SKILL_ADVISOR_HOOK_DISABLED',
-  'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED',
-] as const;
-
-function disabledOutput(
-  workspaceRoot: string,
-  effectiveThresholds: PublicThresholds,
-  disabledBy: string,
-): AdvisorRecommendOutput {
-  return emptyOutput({
-    workspaceRoot,
-    effectiveThresholds,
-    freshness: 'unavailable',
-    trustState: unavailableTrustState('ADVISOR_DISABLED'),
-    warnings: ['ADVISOR_DISABLED'],
-    abstainReasons: [`Skill advisor disabled by ${disabledBy}.`],
-  });
 }
 
 function absentOutput(
@@ -581,9 +508,7 @@ function outputAbstainReasons(
 
 async function computeRecommendationOutput(input: AdvisorRecommendInput): Promise<AdvisorRecommendOutput> {
   // Canonicalize via realpath after the schema allowlist check.
-  const workspaceRoot = input.workspaceRoot
-    ? canonicalizeWorkspaceRoot(input.workspaceRoot)
-    : findWorkspaceRoot();
+  const workspaceRoot = requestWorkspaceRoot(input.workspaceRoot);
   const effectiveThresholds = publicThresholds({
     confidenceThreshold: input.options?.confidenceThreshold,
     uncertaintyThreshold: input.options?.uncertaintyThreshold,
@@ -715,18 +640,7 @@ async function computeRecommendationOutput(input: AdvisorRecommendInput): Promis
 
 export async function handleAdvisorRecommend(args: unknown): Promise<HandlerResponse> {
   const input = AdvisorRecommendInputSchema.parse(args);
-  // Canonicalize via realpath after the schema allowlist check.
-  const workspaceRoot = input.workspaceRoot
-    ? canonicalizeWorkspaceRoot(input.workspaceRoot)
-    : findWorkspaceRoot();
-  const effectiveThresholds = publicThresholds({
-    confidenceThreshold: input.options?.confidenceThreshold,
-    uncertaintyThreshold: input.options?.uncertaintyThreshold,
-  });
-  const disabledBy = ADVISOR_DISABLED_FLAGS.find((flag) => process.env[flag] === '1');
-  const data = disabledBy
-    ? disabledOutput(workspaceRoot, effectiveThresholds, disabledBy)
-    : await computeRecommendationOutput(input);
+  const data = disabledRecommendOutput(input) ?? await computeRecommendationOutput(input);
   return {
     content: [{
       type: 'text',

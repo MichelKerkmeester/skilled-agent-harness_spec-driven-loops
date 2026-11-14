@@ -1,0 +1,5 @@
+real 0.50
+real 0.20
+real 0.35
+real 0.22
+real 0.20

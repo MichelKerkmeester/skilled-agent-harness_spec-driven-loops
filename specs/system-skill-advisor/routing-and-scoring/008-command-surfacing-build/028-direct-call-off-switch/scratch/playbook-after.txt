@@ -1,0 +1,87 @@
+$ node .skilled/bin/skill-advisor.cjs advisor_status --workspace-root "$PWD" --format json --no-warm-only > /dev/null
+exit 0
+$ SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1,"includeAbstainReasons":true}' --format json --timeout-ms 30000
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    },
+    "recommendations": [],
+    "ambiguous": false,
+    "freshness": "unavailable",
+    "trustState": {
+      "state": "unavailable",
+      "reason": "ADVISOR_DISABLED",
+      "generation": 0,
+      "checkedAt": "2026-11-14T23:19:04.331Z",
+      "lastLiveAt": null
+    },
+    "generatedAt": "2026-11-14T23:19:04.332Z",
+    "cache": {
+      "hit": false,
+      "sourceSignaturePresent": false
+    },
+    "warnings": [
+      "ADVISOR_DISABLED"
+    ],
+    "abstainReasons": [
+      "Skill advisor disabled by SPECKIT_SKILL_ADVISOR_HOOK_DISABLED."
+    ]
+  }
+}
+exit 0
+$ env -u SPECKIT_SKILL_ADVISOR_HOOK_DISABLED -u SYSTEM_SKILL_ADVISOR_HOOK_DISABLED node .skilled/bin/skill-advisor.cjs advisor_recommend --prompt "help me commit my changes" --options '{"topK":1}' --format json --timeout-ms 30000
+{
+  "status": "ok",
+  "data": {
+    "workspaceRoot": "/Users/michelkerkmeester/worktrees/public/352-command-surfacing-research",
+    "effectiveThresholds": {
+      "confidenceThreshold": 0.8,
+      "uncertaintyThreshold": 0.35,
+      "confidenceOnly": false
+    },
+    "recommendations": [
+      {
+        "skillId": "sk-git",
+        "score": 0.773058,
+        "confidence": 0.9355,
+        "uncertainty": 0.12,
+        "dominantLane": "explicit_author",
+        "status": "active",
+        "kind": "skill"
+      }
+    ],
+    "ambiguous": false,
+    "freshness": "live",
+    "trustState": {
+      "state": "live",
+      "reason": null,
+      "generation": 318,
+      "checkedAt": "2026-11-14T23:19:04.606Z",
+      "lastLiveAt": "2026-11-14T23:19:00.449Z"
+    },
+    "generatedAt": "2026-11-14T23:19:04.766Z",
+    "cache": {
+      "hit": false,
+      "sourceSignaturePresent": true
+    },
+    "_shadow": {
+      "model": "advisor-shadow-learned-weights-v1",
+      "liveWeightsFrozen": true,
+      "recommendations": [
+        {
+          "skillId": "sk-git",
+          "liveScore": 0.773058,
+          "shadowScore": 0.715594,
+          "delta": -0.057464,
+          "dominantShadowLane": "explicit_author"
+        }
+      ]
+    }
+  }
+}
+exit 0

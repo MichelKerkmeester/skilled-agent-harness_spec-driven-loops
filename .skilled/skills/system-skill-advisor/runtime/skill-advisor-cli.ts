@@ -19,6 +19,7 @@ import {
   type SkillAdvisorCliToolDefinition,
 } from './skill-advisor-cli-manifest.js';
 
+import { disabledRecommendOutput } from './lib/advisor-disabled.js';
 import { commandRowFor } from './lib/command-attach.js';
 import { SKILL_ADVISOR_COMPAT_CONTRACT } from './lib/compat/contract.js';
 import { runAdvisorSubprocess, type AdvisorRecommendation } from './lib/subprocess.js';
@@ -1534,6 +1535,10 @@ async function invokeAdvisorRecommendPayload(
   trusted: boolean,
   warmOnly: boolean,
 ): Promise<ToolPayloadResult> {
+  // The switch belongs to the caller. A daemon reads its own environment and the
+  // local scorer reads none, so the client answers before it touches either.
+  const disabled = disabledRecommendOutput(args);
+  if (disabled) return { payload: { status: 'ok', data: disabled }, isError: false };
   try {
     return await invokeToolPayload('advisor_recommend', args, timeoutMs, trusted, warmOnly);
   } catch (error: unknown) {
