@@ -96,6 +96,7 @@ The clause ledger, so nothing is proposed again without its history:
 | `.skilled/skills/sk-doc/sk-create-repo-rule/references/agents-md-integration.md` | Modified | Retire path performed once |
 | `.skilled/changelog/skilled/v4.0.2.1.md` | Modified | Release entry covers the retirement |
 | `README.md` | Modified | Rule counts |
+| `repo-rules/answer-the-actual-request.md`, `repo-rules/communication-prose.md`, `repo-rules/communication-decisions.md` | Deleted | Follow-up on 2026-11-14: the root links to the three retired files were left dangling |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -117,6 +118,8 @@ The work ran on `main` at the operator's choice. It was pushed, all 19 CI runs o
 | Keep `communication-handoff.md` separate | It holds the status contract `AGENTS.md` section 10 points at and the per-runtime question-tool table |
 | Bump `communication.md` to 1.5.0.0 | The file took two other rules' content, which is more than a fourth-segment wording change |
 | Repair the two experiment inputs in place | The operator asked for the gaps closed, and the playbook scenarios run those files. The 007 current arm now rebuilds the long wording because the short wording is the live rule, and a `note` key in the file says so |
+| Remove the three dangling root `repo-rules/` links in a follow-up | Operator request of 2026-11-14. The retire order deleted the files under `.skilled/repo-rules/` but not the root links to them, and `check-repo-rules.cjs` never reads the root folder, so nothing caught it |
+| Keep the retired names in the doctor manifest's `derived.history` | Those bodies are the Gate 6 text shipped in v4.0.0.14 and v4.0.2.0, matched by hash to recognize older embeds. Editing them would break that match |
 | Rewrite the build scenario from observed output | Three of its expectations were stale before this packet: the cards arm no longer fails check 2, one skill file is linked instead of two, and `§6` matched once |
 <!-- /ANCHOR:decisions -->
 

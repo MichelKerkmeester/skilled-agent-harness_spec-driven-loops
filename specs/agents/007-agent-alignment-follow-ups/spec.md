@@ -52,7 +52,7 @@ _memory:
 | **Parent Packet** | agents/007-agent-alignment-follow-ups |
 | **Predecessor** | 006-agent-contract-and-registry-alignment |
 | **Successor** | None |
-| **Handoff Criteria** | Every child phase has a recorded decision or a shipped change, and `validate.sh --recursive --strict` prints `RESULT: PASSED` for the parent and all four children |
+| **Handoff Criteria** | Every child phase has a recorded decision or a shipped change, and `validate.sh --recursive --strict` prints `RESULT: PASSED` for the parent and all five children |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -112,6 +112,7 @@ Each of the four findings ends as a shipped fix or as a recorded decision that n
 | 2 | 002-deepseek-harness-persona-probe/ | Run one read-only harness dispatch with the `context` persona, with and without a tool-mapping line, and record which one reads its file | Complete |
 | 3 | 003-orchestrate-task-package-agent-names/ | Replace the eight hand-typed agent names in the orchestrator's task template with a pointer to the generated routing table | Complete |
 | 4 | 004-agent-authoring-registry-step/ | Add the registry record to the agent authoring workflow so a new agent file passes the roster check | Complete |
+| 5 | 005-alignment-report-fixes/ | Fix the ten distinct findings of the alignment check on phases 1 to 4, in the skill, the command, the playbook, the READMEs, the routing vocabulary and the release notes | Complete |
 
 ### Phase Transition Rules
 
@@ -127,6 +128,7 @@ Each of the four findings ends as a shipped fix or as a recorded decision that n
 | 001-fanout-persona-tool-mapping | 002-deepseek-harness-persona-probe | The decision for the fan-out runner is recorded with its three probe reports | `rg -c '^decision: ' specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/scratch/decision.md` prints 1 |
 | 002-deepseek-harness-persona-probe | 003-orchestrate-task-package-agent-names | The harness verdict is recorded with both report files | `rg -c '^verdict: ' specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/scratch/verdict.md` prints 1 |
 | 003-orchestrate-task-package-agent-names | 004-agent-authoring-registry-step | The task template holds no hand-typed agent list and the runtime copies match | `rg -c '^├─ Agent: @code . @context' .skilled/agents/orchestrate.md` prints no line, and `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0 |
+| 004-agent-authoring-registry-step | 005-alignment-report-fixes | The creation workflow names the registry record and the packet version has its changelog entry | `rg -c 'agent-registry' .skilled/skills/sk-doc/sk-create-agent/SKILL.md` prints 1 or more |
 <!-- /ANCHOR:phase-map -->
 
 ---

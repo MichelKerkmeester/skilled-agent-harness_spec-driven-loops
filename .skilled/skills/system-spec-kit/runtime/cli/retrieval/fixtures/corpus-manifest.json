@@ -1,5 +1,5 @@
 {
-  "corpusHash": "f91b9cdf9f909bc276dc1559e0a25453f01578f9779263d3beeab9d4652d21ae",
+  "corpusHash": "a30f4b3cb766ecad6fabca28d1a82c0d19c6df25dc303184c9fea6f2decffe8a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27143,
+  "includedPathCount": 27150,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6690,7 +6690,9 @@
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.6.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.7.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md",
+    ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.9.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/body-validation/leaf-denies-delegation.md",
+    ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/body-validation/registry-record-before-roster-check.md",
     ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/body-validation/required-agent-sections.md",
     ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/component-choice/named-runtime-persona.md",
     ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/component-choice/reusable-knowledge-stays-a-skill.md",
@@ -9482,6 +9484,11 @@
     "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/decision-record.md",
+    "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
@@ -27175,7 +27182,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "74701a180bc57261fb07543abddf05928eb59d34143316c36e69561bf500f934",
+  "manifestHash": "ced48907e702000eea8df15754eb7ace4bcd4013143a396278a23715c47faccb",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28219,6 +28226,10 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/scratch",
       "reason": "excluded directory"
     },
     {

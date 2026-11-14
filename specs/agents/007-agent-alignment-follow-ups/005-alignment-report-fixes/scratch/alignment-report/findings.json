@@ -1,0 +1,244 @@
+[
+  {
+    "id": "B-1",
+    "source_id": "B-1",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P1",
+    "fix_class": "literal",
+    "file": ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+    "line": "197",
+    "issue": "Step 13 orders a registry record for every new agent with no directory qualifier, but `.skilled/bin/sync-agent-roster.cjs` enumerates only `.skilled/agents` (line 416) and fails every registry record whose name has no file there. The skill supports authoring a single `.claude/agents/` file (output table at SKILL.md:69-73, Claude schema at 124-132), and the repo has a live one: `.claude/agents/Explore.md` has no `.skilled/agents/Explore.md` and no record. Reproducing case: an author follows steps 1-13 for a Claude-only agent, adds the record as ordered, and step 14's check prints `registry record without an agent file: <name>` -- the inverse of the error the step was added to prevent. The real tree passes today (`agent-roster: OK`, exit 0), so the defect is the unqualified instruction, not the tool. Step 14's sentence `A new agent file with no registry record fails it` is false for the same reason and needs the same scope.",
+    "evidence": {
+      "cmd": "node $SCRATCH/fake/.skilled/bin/sync-agent-roster.cjs --check  # scratch copy of .skilled/agents with a claude-only-persona record and no .skilled/agents/claude-only-persona.md; same tree without the record: agent-roster: OK, exit 0",
+      "exit": 1,
+      "out": "registry record without an agent file: claude-only-persona\nagent-roster: FAIL (5 problem(s))"
+    },
+    "fix": {
+      "old": "13. Add a record for a new agent to `.skilled/agents/agent-registry.json`, copying an existing record as the pattern. A record carries `name`, `tier`, `priority`, `dispatchers`, `taskType`, `skills`, `notes` and `summary`, and `templateExceptions` only when the file leaves out a required section. Then run `node .skilled/bin/sync-agent-roster.cjs` so the generated rosters pick the agent up.\n14. Validate markdown structure, frontmatter, runtime placement, permission consistency, and related links. Run `node .skilled/bin/sync-agent-roster.cjs --check` after adding or editing an agent file and after editing the required-sections list in `assets/agent-template.md`: it compares every agent's outline with that list. A new agent file with no registry record fails it with `agent file without a registry record: <name>`.",
+      "new": "13. For a new agent under `.skilled/agents/`, add a record to `.skilled/agents/agent-registry.json`, copying an existing record as the pattern. A record carries `name`, `tier`, `priority`, `dispatchers`, `taskType`, `skills`, `notes` and `summary`, and `templateExceptions` only when the file leaves out a required section. Then run `node .skilled/bin/sync-agent-roster.cjs` so the generated rosters pick the agent up.\n14. Validate markdown structure, frontmatter, runtime placement, permission consistency, and related links. Run `node .skilled/bin/sync-agent-roster.cjs --check` after adding or editing an agent file and after editing the required-sections list in `assets/agent-template.md`: it compares every agent's outline with that list. A new agent file under `.skilled/agents/` with no registry record fails it with `agent file without a registry record: <name>`."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-1",
+    "source_id": "C-1",
+    "lane": "C",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P1",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md",
+    "line": "17",
+    "issue": "The new entry fails sk-create-changelog's shape gate four times, and the standard's §9 says exit 1 blocks the write: line 17 keeps `(Level 1)` on the spec-folder line where §5 item 4 allows the path only, line 15 runs 26 words and line 23 runs 34 against the 22-word ceiling, and the prose averages 13.4 words a sentence against the 10-word ceiling. Fix: delete ` (Level 1)` from line 17, split line 15 into two sentences (`...told an author to run the roster check. It never said to add the registry record that check requires.`), split the line 23 bullet after the `agent-registry.json` path and again before `It says to run`, and split line 24 after the quoted error. A scratch copy edited this way passes the checker (14 sentences, mean 9.6).",
+    "evidence": {
+      "cmd": "python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md",
+      "exit": 1,
+      "out": "FAIL .skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md\n  [spec-line] line 17: drop the (Level 1) label, the line carries paths only\n  [sentence-max] line 15: a sentence of 26 words, ceiling 22. Split it\n  [sentence-max] line 23: a sentence of 34 words, ceiling 22. Split it\n  [sentence-mean] 13.4 words a sentence on average, ceiling 10. Use more, shorter sentences\nSUMMARY files=1 pass=0 fail=1"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "D-1",
+    "source_id": "D-1",
+    "lane": "D",
+    "surface": "S10",
+    "standard": "sk-doc/sk-create-agent",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/agents/markdown.md",
+    "line": "34",
+    "issue": "The new registry step (sk-create-agent/SKILL.md:197) requires the author to write .skilled/agents/agent-registry.json and run `node .skilled/bin/sync-agent-roster.cjs`, which rewrites .skilled/agents/orchestrate.md and .skilled/agents/README.txt. The preferred `/create:agent` entry point runs its own six-step YAML and never names the registry or the roster script (rg exit 1, no matches). The executing @markdown agent's hard write boundary (markdown.md:34) limits file mutation to the command-resolved output path, package root, runtime mirror set, spec folder or scoped markdown path, none of which covers the registry or the shared rosters, and its command map (markdown.md:209) still describes the output as the agent .md plus mirrors only. An agent created through the command alone can still fail `sync-agent-roster.cjs --check` with `agent file without a registry record: <name>` (sync-agent-roster.cjs:425). The phase spec records this as a known limitation and follow-up, so this is non-blocking.",
+    "evidence": {
+      "cmd": "rg -n \"agent-registry|sync-agent-roster|roster\" .skilled/commands/create/assets/create-agent-auto.yaml .skilled/commands/create/assets/create-agent-confirm.yaml .skilled/commands/create/assets/create-agent-presentation.txt",
+      "exit": 1,
+      "out": ""
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  },
+  {
+    "id": "A-1",
+    "source_id": "A-1",
+    "lane": "A",
+    "surface": "S15",
+    "standard": ".github/workflows",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+    "line": "2",
+    "issue": "HEAD's corpus no longer matches the committed trigger-index outputs. The head commit edited a corpus document (.skilled/skills/system-spec-kit/changelog/v2.13.1.0.md) after the last regeneration, so a fresh generation writes a different manifestHash/corpusHash into all four tracked outputs (trigger-index.json, corpus-manifest.json, generation-diagnostics.json, phrase-variants.json). `--check` still exits 0 because the changelog adds no trigger phrases and the report notes no lookup answer depends on the hash, so the advisory freshness step stays green; the post-merge trigger-index-rebuild workflow will still see the diff and push a follow-up [skip ci] rebuild commit. Regenerate and commit the four outputs on this branch so the pushed tree does not need that extra commit.",
+    "evidence": {
+      "cmd": "node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check (plus a fresh generation to a scratch --out and byte comparison of the four committed outputs)",
+      "exit": 0,
+      "out": "trigger index matches the corpus; documents scanned: 26965; stale documents: 0\nnote: manifest hash differs (index 53dd18fad3acccb6f60e5548a6b066cb2c4eb9cd50ee594ca39184be86b64966, corpus adfb1d11a4f3cd4f2cf24e75f348cccb127b263b42fa7ee22d76635076e1843e); no lookup answer depends on it\nDIFF trigger-index.json\nDIFF corpus-manifest.json\nDIFF generation-diagnostics.json\nDIFF phrase-variants.json"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "CR-1",
+    "source_id": "CR-1",
+    "lane": "critic",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md",
+    "line": "61",
+    "issue": "The harness reference presents the model-facing tool list as complete: `bash`, `write`, `edit` and `subagent`. The phase 2 control run in this change called a `read` tool, recorded as the one `tool_call` in `scratch/dsh-control-events.jsonl`. The phase 2 implementation summary calls this a documentation defect and hands it to a harness owner, but no lane reported it and the change files no follow-up packet for it. A reader takes the list as exhaustive, which is how the predecessor packet concluded the harness had no read tool without a run. Add `read` to the list, or reword the sentence so the four names are examples rather than the full set.",
+    "evidence": {
+      "cmd": "rg -n 'Harness tool names are lowercase' .skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md && rg -n -o '\"tool\":\"read\"' specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/scratch/dsh-control-events.jsonl",
+      "exit": 0,
+      "out": "61:Harness tool names are lowercase (`bash`, `write`, `edit`, `subagent`), so a matcher written for capitalized tool names selects nothing.\n5:\"tool\":\"read\""
+    },
+    "fix": {
+      "old": "Harness tool names are lowercase (`bash`, `write`, `edit`, `subagent`), so a matcher written for capitalized tool names selects nothing.",
+      "new": "Harness tool names are lowercase (`bash`, `write`, `edit`, `subagent`, `read`), so a matcher written for capitalized tool names selects nothing."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "B-3",
+    "source_id": "B-3",
+    "lane": "B",
+    "surface": "S4",
+    "standard": "sk-doc/sk-create-manual-testing-playbook",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/manual-testing-playbook.md",
+    "line": "31",
+    "issue": "The playbook's opening blockquote promises coverage of `delivery checks` (line 9), but the six scenarios cover component choice, runtime contract and body validation only (line 31), and no scenario file mentions the registry record or `sync-agent-roster.cjs`. The change made the registry record a mandatory pre-delivery step (SKILL.md:197-198), yet AGV-001, the validation scenario, still stops at `validate_document.py` and `extract_structure.py` (`body-validation/required-agent-sections.md:45`) and never exercises the roster gate the phase fixed. Add a scenario, or extend AGV-001, that runs `node .skilled/bin/sync-agent-roster.cjs --check` and asserts both the missing-record failure and the passing state. The phase scoped itself to SKILL.md plus its changelog, so this is a follow-up, not a blocker.",
+    "evidence": {
+      "cmd": "grep -rn \"registry\\|roster\\|sync-agent\" .skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/",
+      "exit": 1,
+      "out": "(no matches)"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  },
+  {
+    "id": "C-4",
+    "source_id": "C-4",
+    "lane": "C",
+    "surface": "S5",
+    "standard": "sk-doc/sk-create-readme",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/sk-doc/sk-create-agent/README.md",
+    "line": "132",
+    "issue": "The skill README still describes the output as one validated agent file (frontmatter description line 3, Produces row line 25) and its verification as `validate_document.py` plus the naming checks (lines 132-136). SKILL.md step 13 now requires a record in `.skilled/agents/agent-registry.json`, and step 14 makes `sync-agent-roster.cjs --check` mandatory with `agent file without a registry record: <name>` for a missing one. Neither `agent-registry` nor `sync-agent-roster` appears anywhere in the README, so a reader who follows §2 Step 3 ships an agent the skill's own gate rejects. The root README's `/create:agent` entry (README.md:1221) lists the same incomplete output set.",
+    "evidence": {
+      "cmd": "grep -n \"sync-agent-roster\\|agent-registry\" .skilled/skills/sk-doc/sk-create-agent/README.md",
+      "exit": 1,
+      "out": "(no match)"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  },
+  {
+    "id": "BAT-01",
+    "source_id": "S6-release-coverage",
+    "lane": "battery",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": null,
+    "line": null,
+    "issue": "S6-release-coverage failed (exit 1).",
+    "evidence": {
+      "cmd": "node .skilled/commands/assets/local-skilled-alignment/check-release-coverage.cjs --scope /Users/michelkerkmeester/.local/state/local-skilled-alignment/384-agent-alignment-follow-ups/20261114T170403Z/scope.json --repo /Users/michelkerkmeester/worktrees/public/384-agent-alignment-follow-ups",
+      "exit": 1,
+      "out": "MISSING release-notes sk-create-agent required by .skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md\nSTATUS=FINDINGS check-release-coverage: required=1 missing=1 notes=.skilled/changelog/skilled/v4.0.2.1.md",
+      "ci_gated": false,
+      "ci_workflows": []
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-2",
+    "source_id": "C-2",
+    "lane": "C",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "literal",
+    "file": ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md",
+    "line": "25",
+    "issue": "Line 25 says both later steps moved down \"with their wording unchanged\", but the diff shows the old step 13 became step 14 and gained the `agent file without a registry record: <name>` sentence. The bullet directly above already reports that added error, so the entry contradicts itself and misdescribes what shipped. Only delivery (old 14, new 15) kept its wording.",
+    "evidence": {
+      "cmd": "git -c core.fsmonitor=false diff 57531ae8bc..869d4391bf -- .skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+      "exit": 0,
+      "out": "-13. Validate markdown structure, frontmatter, runtime placement, permission consistency, and related links. Run `node .skilled/bin/sync-agent-roster.cjs --check` after adding or editing an agent file and after editing the required-sections list in `assets/agent-template.md`: it compares every agent's outline with that list.\n+13. Add a record for a new agent to `.skilled/agents/agent-registry.json`, copying an existing record as the pattern. A record carries `name`, `tier`, `priority`, `dispatchers`, `taskType`, `skills`, `notes` and `summary`, and `templateExceptions` only when the file leaves out a required section. Then run `node .skilled/bin/sync-agent-roster.cjs` so the generated rosters pick the agent up.\n+14. Validate markdown structure, frontmatter, runtime placement, permission consistency, and related links. Run `node .skilled/bin/sync-agent-roster.cjs --check` after adding or editing an agent file and after editing the required-sections list in `assets/agent-template.md`: it compares every agent's outline with that list. A new agent file with no registry record fails it with `agent file without a registry record: <name>`.\n-14. Deliver only after validation passes or after reporting the exact blocker.\n+15. Deliver only after validation passes or after reporting the exact blocker."
+    },
+    "fix": {
+      "old": "- **Delivery is step 15.** The two later steps moved down by one, with their wording unchanged.",
+      "new": "- **Delivery is step 15.** Both later steps moved down by one. Delivery kept its wording, and validation did not."
+    },
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  },
+  {
+    "id": "C-3",
+    "source_id": "C-3",
+    "lane": "C",
+    "surface": "S6",
+    "standard": "sk-doc/sk-create-changelog",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/changelog/skilled/v4.0.2.1.md",
+    "line": "273",
+    "issue": "The branch ships sk-create-agent v1.0.8.0 (SKILL.md bumped plus a new skill changelog), but the newest root release note never names `sk-create-agent`; the component paragraph at line 273 lists the skills that have an entry for the release and omits this one, so check-release-coverage exits 1. v4.0.2.1 is tagged on origin (`refs/tags/v4.0.2.1` resolves, exit 0), so the route is a new `skilled` entry for the release that carries this work, or an extension of v4.0.2.1 only if the operator reopens it and brings its published release in step. The orchestrate task-template change (`.skilled/agents/orchestrate.md:211`) is unannounced at the root too.",
+    "evidence": {
+      "cmd": "node .skilled/commands/assets/local-skilled-alignment/check-release-coverage.cjs --scope /Users/michelkerkmeester/.local/state/local-skilled-alignment/384-agent-alignment-follow-ups/20261114T170403Z/scope.json --repo /Users/michelkerkmeester/worktrees/public/384-agent-alignment-follow-ups",
+      "exit": 1,
+      "out": "MISSING release-notes sk-create-agent required by .skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md\nSTATUS=FINDINGS check-release-coverage: required=1 missing=1 notes=.skilled/changelog/skilled/v4.0.2.1.md"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": true,
+    "outside_reason": "unchanged in range"
+  },
+  {
+    "id": "CR-2",
+    "source_id": "CR-2",
+    "lane": "critic",
+    "surface": "S8",
+    "standard": "system-skill-advisor",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+    "line": "28",
+    "issue": "The new registry step is absent from the packet's routing vocabulary. The `Keyword triggers:` line and the derived `create-agent-aliases` and hub `intent_signals` carry no `agent registry`, `registry record`, `roster check` or `sync-agent-roster` phrase. The supplied probes P02 and P03 pass only because they also say `new agent` or `agent file`. A user asking the step's own question does not reach the skill: `the agent registry needs a record for my new persona` returns no recommendation, and `add my agent to the agent registry` puts `sk-code` first at 0.233 with `sk-doc` second at 0.221. Add the registry and roster phrases to the source keyword line, regenerate the derived routing files, and rerun the probes; the S7/S8 lens requires a new feature's natural prompt to route top-1 to its owner.",
+    "evidence": {
+      "cmd": "node .skilled/bin/skill-advisor.cjs advisor_recommend --json '{\"prompt\":\"add my agent to the agent registry\"}' --format json",
+      "exit": 0,
+      "out": "recommendations: sk-code 0.233, sk-doc 0.221, mcp-tooling 0.198. The prompt \"the agent registry needs a record for my new persona\" returns an empty recommendations list."
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null
+  }
+]

@@ -148,6 +148,7 @@ Validation:
 - YAML frontmatter: PASSED
 - Required fields: PASSED
 - Permission format: current unified object
+- Registry record and rosters: [PASSED | not applicable, outside .skilled/agents]
 
 Invocation:
 - [mode-specific invocation guidance]

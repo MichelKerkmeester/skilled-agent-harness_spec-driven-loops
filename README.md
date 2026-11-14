@@ -1218,7 +1218,7 @@ Scaffolds a parent skill with nested mode packets: one hub identity plus a `mode
 
 **`/create:agent`** - new agent definitions
 
-Scaffolds a new agent definition with proper frontmatter, behavioral rules and tool permissions. It creates the source-of-truth file in `.skilled/agents/` and the Claude Code mirror. Modes: `:auto`, `:confirm`.
+Scaffolds a new agent definition with proper frontmatter, behavioral rules and tool permissions. It creates the source-of-truth file in `.skilled/agents/` and the Claude Code mirror. It also adds the agent's registry record and runs the roster check. Modes: `:auto`, `:confirm`.
 
 **`/create:readme`** - folder READMEs
 

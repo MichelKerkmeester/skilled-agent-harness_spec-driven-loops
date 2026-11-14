@@ -207,7 +207,7 @@
     ],
     "causal_summary": "A reader who follows hub `ROUTER.md` section 4 is sent to files that do not exist, because the prose still names the pre-split language files",
     "created_at": "2026-11-14T12:01:53Z",
-    "last_save_at": "2026-11-14T16:47:47.959Z",
+    "last_save_at": "2026-11-14T19:04:24.454Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,14 +219,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c544d15810b5dcb3b2da7aa21bac77854d639a495e740ab1b263a1b8fd5116e9",
+    "source_fingerprint": "sha256:aabe19e16e745c745959978857991d7e328a44927e304281fcebbb95d7e192a9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "751588b84e4eec5f363bf16d989d9342b43402e673e888fba168a26b93f0f966",
       "plan.md": "e07279791b0caeb6885f94b52a824d8c1e9a301c7fd194c1c7248e76b0c912fb",
       "tasks.md": "b046f91a57dcec381289a11a2e0d6472a46e2c028f600e374e56b2b592982172",
       "decision-record.md": "6dba53a5112d4a62489fae252edd790227673e2ef29b9afa970ac10ba3d937d0",
-      "implementation-summary.md": "26497db8810b3288a791cf2a6190f0de32ba355bdbc8a35a587c04041cfc5fef"
+      "implementation-summary.md": "4d9b2389e903fac49943c4c634c18baded27b35b4a0c6d378e2286e7c861eb34"
     },
     "last_active_at": null
   }
