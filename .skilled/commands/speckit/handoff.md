@@ -212,7 +212,7 @@ The CLI and wrapper place each path `!` in single quotes outside the seed's doub
 
 A session seeded with `[session-relaunch] claim and continue handoff <path>` is on the other side of this protocol. It:
 
-1. Runs `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs claim <path> --session <session id>`, which moves the note `open -> claimed` and prints its body.
+1. Runs `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs claim <path> --session <session id>`, which moves the note `open -> claimed` and prints its body, then the `complete` command that closes the note.
    When the note carries a `goal_packet`, the output ends with a `Goal packet: <path>` line.
    Only Claude Code may omit `--session` and use `CLAUDE_CODE_SESSION_ID`.
    A runtime without a session-id variable generates an id with `uuidgen` and reuses it for the session.

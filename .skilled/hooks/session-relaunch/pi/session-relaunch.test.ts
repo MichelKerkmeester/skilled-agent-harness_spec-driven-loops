@@ -232,6 +232,43 @@ describe('session-relaunch Pi extension', () => {
     expect(api.sendMessage).toHaveBeenCalledOnce();
   });
 
+  it('turn_end steers the held nudge into a run that is still calling tools', async () => {
+    setupEnv();
+    process.env.SKILLED_LOOP_ID = 'pi-nudge-loop-0001';
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const ctx = makeContext();
+
+    await emit(handlers, 'message_end', {
+      message: { role: 'assistant', usage: { input: 90 } },
+    }, ctx);
+    await emit(handlers, 'turn_end', { toolResults: [{ role: 'toolResult' }] }, ctx);
+    expect(api.sendMessage).toHaveBeenCalledOnce();
+    const [, options] = api.sendMessage.mock.calls[0];
+    expect(options).toEqual({ deliverAs: 'steer', triggerTurn: true });
+
+    await emit(handlers, 'agent_end', {}, ctx);
+    expect(api.sendMessage).toHaveBeenCalledOnce();
+  });
+
+  it('turn_end with no tool results leaves the held nudge for agent_end', async () => {
+    setupEnv();
+    process.env.SKILLED_LOOP_ID = 'pi-nudge-loop-0001';
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const ctx = makeContext();
+
+    await emit(handlers, 'message_end', {
+      message: { role: 'assistant', usage: { input: 90 } },
+    }, ctx);
+    await emit(handlers, 'turn_end', { toolResults: [] }, ctx);
+    expect(api.sendMessage).not.toHaveBeenCalled();
+
+    await emit(handlers, 'agent_end', {}, ctx);
+    const [, options] = api.sendMessage.mock.calls[0];
+    expect(options).toEqual({ deliverAs: 'followUp', triggerTurn: true });
+  });
+
   it('agent_end stays quiet when the prepare call left a pending handoff', async () => {
     setupEnv();
     const loopId = 'pi-loop-pending-handoff';
@@ -343,6 +380,23 @@ describe('session-relaunch Pi extension', () => {
       systemPrompt: expect.stringContaining("claim '/workspace/note.md'"),
     });
     expect(api.sendMessage).not.toHaveBeenCalled();
+  });
+
+  it('reads the seed when other input extensions appended a block below it', async () => {
+    setupEnv();
+    const { api, handlers } = makeExtensionApi();
+    sessionRelaunch(api);
+    const result = await emit(handlers, 'before_agent_start', {
+      prompt: '[session-relaunch] claim and continue handoff /workspace/note.md'
+        + ' | Spec folder: none (Gate 3 answered D, Skip, in the sending session)'
+        + '\n\nAdvisor: live; use system-spec-kit 0.95/0.12 pass.\nDirectives:\n- one rule',
+      systemPrompt: 'base system prompt',
+      systemPromptOptions: {},
+    }, makeContext());
+
+    const systemPrompt = (result as { systemPrompt: string }).systemPrompt;
+    expect(systemPrompt).toContain("claim '/workspace/note.md'");
+    expect(systemPrompt).toContain('Gate 3 is already answered Skip');
   });
 
   it('uses the carried spec folder and keeps the suffixed note path intact', async () => {
