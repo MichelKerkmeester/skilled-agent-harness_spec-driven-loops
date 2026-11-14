@@ -1,42 +1,42 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "c67864c53c",
-  "corpusSha256": "sha256:79b22ea30f75220fe1e951ee936013a689706bbab5c30e80ec59eb324f7fe9ef",
+  "capturedAtSha": "4cf4b6ee02",
+  "corpusSha256": "sha256:a7b4e5d9bb2b09a5d5d31215e512bd47db415c8217d6335aad56423b104779d3",
   "bridgeCounts": {
-    "commandMetadata": 28,
+    "commandMetadata": 27,
     "doctorRoutes": 36,
-    "generated": 64,
+    "generated": 63,
     "typescriptActive": 47,
     "pythonActive": 53
   },
   "metrics": {
     "typed_recall_at_1": {
       "correct": 24,
-      "total": 45
+      "total": 44
     },
     "typed_reach_top3": {
       "correct": 28,
-      "total": 45
+      "total": 44
     },
     "plain_recall_at_1": {
       "tune": {
-        "correct": 8,
-        "total": 46
+        "correct": 9,
+        "total": 45
       },
       "holdout": {
         "correct": 2,
-        "total": 45
+        "total": 44
       }
     },
     "plain_reach_top3": {
       "tune": {
-        "correct": 10,
-        "total": 46
+        "correct": 11,
+        "total": 45
       },
       "holdout": {
         "correct": 2,
-        "total": 45
+        "total": 44
       }
     },
     "false_offer": {
@@ -66,7 +66,6 @@
     "/create:skill",
     "/create:skill-parent",
     "/create:with-human-voice",
-    "/deep:ai-council",
     "/deep:research",
     "/deep:review",
     "/design:chart",
@@ -303,25 +302,6 @@
       }
     },
     "/create:with-human-voice": {
-      "typed": {
-        "rows": 1,
-        "top1": 0,
-        "top3": 0
-      },
-      "plain": {
-        "tune": {
-          "rows": 1,
-          "top1": 0,
-          "top3": 0
-        },
-        "holdout": {
-          "rows": 1,
-          "top1": 0,
-          "top3": 0
-        }
-      }
-    },
-    "/deep:ai-council": {
       "typed": {
         "rows": 1,
         "top1": 0,
@@ -786,8 +766,8 @@
       "plain": {
         "tune": {
           "rows": 1,
-          "top1": 0,
-          "top3": 0
+          "top1": 1,
+          "top3": 1
         },
         "holdout": {
           "rows": 1,
@@ -1568,27 +1548,6 @@
       "top3": false,
       "offered": false
     },
-    "cmd-deep-ai-council-typed-01": {
-      "expected_command": "/deep:ai-council",
-      "top": "system-deep-loop",
-      "top1": false,
-      "top3": false,
-      "offered": false
-    },
-    "cmd-deep-ai-council-plain-tune-01": {
-      "expected_command": "/deep:ai-council",
-      "top": "system-deep-loop",
-      "top1": false,
-      "top3": false,
-      "offered": false
-    },
-    "cmd-deep-ai-council-plain-holdout-01": {
-      "expected_command": "/deep:ai-council",
-      "top": null,
-      "top1": false,
-      "top3": false,
-      "offered": false
-    },
     "cmd-deep-research-typed-01": {
       "expected_command": "/deep:research",
       "top": "system-deep-loop",
@@ -1766,10 +1725,10 @@
     },
     "cmd-speckit-ai-council-plain-tune-01": {
       "expected_command": "/speckit:ai-council",
-      "top": "system-deep-loop",
-      "top1": false,
-      "top3": false,
-      "offered": false
+      "top": "command-speckit-ai-council",
+      "top1": true,
+      "top3": true,
+      "offered": true
     },
     "cmd-speckit-ai-council-plain-holdout-01": {
       "expected_command": "/speckit:ai-council",
@@ -2188,16 +2147,16 @@
   "attachedMetrics": {
     "plain": {
       "tune": {
-        "own": 8,
-        "attached": 15,
-        "combined": 23,
-        "total": 46
+        "own": 9,
+        "attached": 12,
+        "combined": 21,
+        "total": 45
       },
       "holdout": {
         "own": 2,
         "attached": 0,
         "combined": 2,
-        "total": 45
+        "total": 44
       }
     },
     "plain_by_family": {
@@ -2218,15 +2177,15 @@
       "deep": {
         "tune": {
           "own": 0,
-          "attached": 3,
-          "combined": 3,
-          "total": 3
+          "attached": 0,
+          "combined": 0,
+          "total": 2
         },
         "holdout": {
           "own": 0,
           "attached": 0,
           "combined": 0,
-          "total": 3
+          "total": 2
         }
       },
       "design": {
@@ -2273,9 +2232,9 @@
       },
       "speckit": {
         "tune": {
-          "own": 1,
+          "own": 2,
           "attached": 0,
-          "combined": 1,
+          "combined": 2,
           "total": 8
         },
         "holdout": {
@@ -2292,9 +2251,9 @@
     },
     "typed": {
       "own": 24,
-      "attached": 20,
-      "combined": 44,
-      "total": 45
+      "attached": 19,
+      "combined": 43,
+      "total": 44
     },
     "typedRows": {
       "cmd-create-agent-typed-01": {
@@ -2387,13 +2346,6 @@
         "carried": "attached",
         "command": "/create:with-human-voice",
         "policy": "start"
-      },
-      "cmd-deep-ai-council-typed-01": {
-        "expected_command": "/deep:ai-council",
-        "top": "system-deep-loop",
-        "carried": "attached",
-        "command": "/deep:ai-council",
-        "policy": "ask"
       },
       "cmd-deep-research-typed-01": {
         "expected_command": "/deep:research",
@@ -2635,17 +2587,12 @@
       "cmd-create-skill-typed-01": "/create:skill",
       "cmd-create-skill-plain-tune-01": "/create:skill",
       "cmd-create-with-human-voice-typed-01": "/create:with-human-voice",
-      "cmd-deep-ai-council-typed-01": "/deep:ai-council",
-      "cmd-deep-ai-council-plain-tune-01": "/deep:ai-council",
-      "cmd-deep-research-plain-tune-01": "/deep:research",
-      "cmd-deep-review-plain-tune-01": "/deep:review",
       "cmd-design-chart-typed-01": "/design:chart",
       "cmd-design-chart-plain-tune-01": "/design:chart",
       "cmd-design-diagram-typed-01": "/design:diagram",
       "cmd-design-diagram-plain-tune-01": "/design:diagram",
       "cmd-design-extract-typed-01": "/design:extract",
       "cmd-design-extract-plain-tune-01": "/design:extract",
-      "cmd-speckit-ai-council-plain-tune-01": "/deep:ai-council",
       "sv-07": "/create:skill",
       "sv-10": "/design:chart"
     }

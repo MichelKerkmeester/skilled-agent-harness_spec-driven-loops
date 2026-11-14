@@ -28,7 +28,7 @@ const compiler = require('../../scripts/compile-command-contracts.cjs') as {
   sha256: (input: string | Buffer) => string;
 };
 
-const commands = ['deep/ai-council', 'deep/review', 'deep/research'] as const;
+const commands = ['deep/review', 'deep/research'] as const;
 const schemaBlocks = [
   '## gate3Precedence',
   '## renderBlocks.auto',
@@ -48,7 +48,6 @@ function sourceSha(sourcePath: string): string {
 
 describe('compile-command-contracts', () => {
   it.each([
-    ['deep/ai-council', 'deep-ai-council.contract.markdown'],
     ['deep/review', 'deep-review.contract.markdown'],
     ['deep/research', 'deep-research.contract.markdown'],
   ])('writes %s to its tracked renderer path', (command, fileName) => {
@@ -117,8 +116,8 @@ describe('compile-command-contracts', () => {
 // ───────────────────────────────────────────────────────────────────
 
 // Research and review each run from one workflow file. Two per-mode files
-// drift apart, so every fix lands twice or lands in one mode only. The guard
-// leaves the council command alone: it still ships two files.
+// drift apart, so every fix lands twice or lands in one mode only. Both deep
+// modes share this shape, so the guard scans every command.
 const guardedCommands = ['deep/review', 'deep/research'] as const;
 
 // A scratch copy of the assets folder can stand in here, to show that the
@@ -264,7 +263,7 @@ describe('workflow drift guard', () => {
     try {
       writeFileSync(join(dir, 'deep-research.yaml'), 'workflow: {}\n', 'utf8');
       writeFileSync(join(dir, 'deep-research-confirm.yaml'), 'workflow: {}\n', 'utf8');
-      writeFileSync(join(dir, 'deep-ai-council-auto.yaml'), 'workflow: {}\n', 'utf8');
+      writeFileSync(join(dir, 'deep-other-auto.yaml'), 'workflow: {}\n', 'utf8');
       expect(perModeWorkflowFiles(dir)).toEqual(['deep-research-confirm.yaml']);
     } finally {
       rmSync(dir, { recursive: true, force: true });

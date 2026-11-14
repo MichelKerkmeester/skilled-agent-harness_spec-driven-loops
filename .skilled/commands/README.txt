@@ -23,7 +23,7 @@ Commands are organized into six groups:
 | Group | Path | Commands | Purpose |
 |-------|------|----------|---------|
 | **create** | `commands/create/` | 13 | Scaffold OpenCode components, documentation packages, changelogs, charts, diagrams, diffs and repo rules |
-| **deep** | `commands/deep/` | 3 | Deep research, review and AI council loops |
+| **deep** | `commands/deep/` | 2 | Deep research and review loops |
 | **doctor** | `commands/doctor/` | 17 | Setup overview, problem-to-command routing, spec-kit retrieval, skill advisor, deep-loop, runtime-mirror, sk-code setup, CI workflow switches, skill format check, git hook and standards, MCP, release-update, project-repo symlink check, link and unlink, ordered install guide, vendored-tree overlay status, apply and re-pin, root instruction-file check and embed, and environment-switch diagnostics |
 | **design** | `commands/design/` | 3 | Style Reference extraction, standalone charts and diagrams |
 | **prompt** | `commands/prompt/` | 1 | Prompt engineering surface (`/prompt:improve`) via sk-prompt |
@@ -66,7 +66,6 @@ command/
 │   ├── with-human-voice.md   # Apply or score prose against the Human Voice Rules
 │   └── assets/               # YAML workflow and presentation contracts
 ├── deep/                     # Deep-loop commands
-│   ├── ai-council.md         # Multi-seat AI council planning
 │   ├── research.md           # Iterative deep research workflow
 │   ├── review.md             # Iterative code review workflow
 │   └── assets/               # YAML workflow definitions
@@ -156,7 +155,6 @@ Run long-form, stateful deep-loop workflows. Each command supports `:auto` and `
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
-| AI Council | `/deep:ai-council <question> [:auto\|:confirm]` | Multi-seat planning and convergence checks |
 | Research Loop | `/deep:research <topic> [:auto\|:confirm]` | Iterative technical investigation with convergence |
 | Review Loop | `/deep:review <target> [:auto\|:confirm]` | Iterative code review with severity-weighted findings |
 

@@ -9,7 +9,7 @@ trigger_phrases:
   - "composite convergence vote"
 importance_tier: important
 contextType: implementation
-version: 1.11.3.0
+version: 1.11.4.0
 ---
 
 # Deep Review Convergence
@@ -68,7 +68,6 @@ When the loop stops and enters synthesis, the workflow emits `{artifact_dir}/res
 |---|---|---|
 | `deep-review` | 0.10 | severity-weighted P0/P1/P2 ratio |
 | `deep-research` | 0.05 | newInfoRatio (negative-knowledge emphasis) |
-| `deep-ai-council` (proposed) | 0.20 | adjudicator-verdict stability |
 
 Carrying threshold expectations across siblings will cause unexpected iteration counts. Tune each skill against its own default and its own signal, not by analogy.
 

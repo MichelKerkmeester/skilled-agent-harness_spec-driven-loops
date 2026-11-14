@@ -589,7 +589,7 @@ function parseArgs(argv) {
 }
 
 function printHelp() {
-  process.stdout.write('Usage: node check-contract-drift.cjs [--command deep/ai-council|deep/review|deep/research] [--accept-compiled-drift]\n');
+  process.stdout.write('Usage: node check-contract-drift.cjs [--command deep/review|deep/research] [--accept-compiled-drift]\n');
 }
 
 function formatDrift(prefix, drift) {

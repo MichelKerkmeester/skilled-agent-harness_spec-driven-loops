@@ -34,7 +34,6 @@ export const MODE_COMMANDS: Readonly<Record<string, Readonly<Record<string, stri
     'sk-create-with-human-voice': '/create:with-human-voice',
   },
   'system-deep-loop': {
-    'ai-council': '/deep:ai-council',
     'research': '/deep:research',
     'review': '/deep:review',
   },
@@ -190,7 +189,6 @@ export const TRACKED_COMMANDS: Readonly<Record<string, TrackedCommand>> = {
   '/create:skill': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
   '/create:skill-parent': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
   '/create:with-human-voice': { policy: 'start', ownerSkillId: 'sk-doc', scorerRow: false },
-  '/deep:ai-council': { policy: 'ask', ownerSkillId: 'system-deep-loop', scorerRow: false },
   '/deep:research': { policy: 'ask', ownerSkillId: 'system-deep-loop', scorerRow: false },
   '/deep:review': { policy: 'ask', ownerSkillId: 'system-deep-loop', scorerRow: false },
   '/design:chart': { policy: 'start', ownerSkillId: 'sk-design', scorerRow: false },

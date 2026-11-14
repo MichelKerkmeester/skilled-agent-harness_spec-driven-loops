@@ -2,7 +2,7 @@
 name: deep-review
 description: "Autonomous iterative code-review loop with externalized state, convergence detection, P0/P1/P2 findings, fresh context per pass."
 argument-hint: "[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--stop-policy=convergence|max-iterations]"
-version: 1.11.15.0
+version: 1.11.16.0
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task]
 ---
 <!-- Note: Task is for the command executor (loop management); @deep-review agent is LEAF-only (no Task). No WebFetch: review is code-only. -->
@@ -15,7 +15,7 @@ Runtime path resolution:
 - OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 
-Convergence threshold semantics and sibling-parity notes (deep-review 0.10 vs deep-research 0.05 vs deep-ai-council 0.20) live in `references/convergence/convergence.md` §1 under "Threshold Semantics and Sibling Parity".
+Convergence threshold semantics and sibling-parity notes (deep-review 0.10 vs deep-research 0.05) live in `references/convergence/convergence.md` §1 under "Threshold Semantics and Sibling Parity".
 
 ## 1. WHEN TO USE
 

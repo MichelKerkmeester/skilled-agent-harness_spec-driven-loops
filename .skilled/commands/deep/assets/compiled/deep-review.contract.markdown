@@ -27,17 +27,17 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "ef2d16ecfd6e9946ffc753ed8d3e5de3c879ef2a371a6aef6906d79c9eec0a0b",
+      "sha256": "590e40e2ff51468492c183257671d9957d8174e7c8e7a48cff058305463a8ac8",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "cc59065acdf16da29a994cb76ea7e732e6304a13caf46e6cfab23875af817183",
+      "sha256": "7fa309f55b898b8377113aaaf4f43e66d844f75fbf33d676211593db8ca90f21",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "745cbaea13540c1937ef263f2ce18d48c35aa26819ac9cd56c2ffb38caa3c90f",
+      "sha256": "f59a567f2f1478a03f5f93dcb7f562639ea14b10bb31577a1a96292c2543e252",
       "section": "full"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "sha256": "53d811306f0ed3957016769ae6a712c06500b82886b1b6279d1fc10c068b3310",
+      "sha256": "01bf5490d790053c5f2c78f85c5e3814857d0869a07adbd89532f3e738b2abf0",
       "section": "full"
     },
     {

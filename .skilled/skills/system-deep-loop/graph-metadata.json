@@ -34,7 +34,6 @@
     "workflow",
     "research",
     "review-loop",
-    "ai-council",
     "convergence",
     "coverage-graph",
     "mode-registry",
@@ -45,12 +44,10 @@
     "deep-research",
     "deep-research pass",
     "deep-review",
-    "deep-ai-council",
     "research loop",
     "iterative review loop",
     "deep-review wave",
     "release readiness",
-    "ai council deliberation",
     "deep research",
     "iterative investigation",
     "research summary",
@@ -64,17 +61,11 @@
     "severity findings",
     "review convergence",
     "audit the diff",
-    "ai council",
-    "council deliberation",
-    "planning council",
-    "council convergence",
-    "seat diversity",
     "iterative investigation workflow",
     "research convergence detection",
     "deep review",
     "severity weighted findings",
-    "convergence review",
-    "multi-seat planning council"
+    "convergence review"
   ],
   "derived": {
     "trigger_phrases": [
@@ -93,11 +84,7 @@
       "deep-review",
       "convergence review",
       "deep-review wave",
-      "release readiness",
-      "deep-ai-council",
-      "ai council deliberation",
-      "multi-seat planning council",
-      "council convergence"
+      "release readiness"
     ],
     "key_topics": [
       "system-deep-loop",
@@ -107,7 +94,6 @@
       "backendKind",
       "research-mode",
       "review-mode",
-      "ai-council-mode",
       "runtime-infrastructure"
     ],
     "key_files": [
@@ -115,7 +101,6 @@
       ".skilled/skills/system-deep-loop/mode-registry.json",
       ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
       ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
-      ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
       ".skilled/skills/system-deep-loop/shared/synthesis/resource-map.cjs",
       ".skilled/skills/system-deep-loop/runtime/README.md"
     ],
@@ -139,14 +124,13 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "system-deep-loop is the single public skill that merges active deep-loop persona modes (deep-research, deep-review, deep-ai-council) into one advisor identity with active mode packets, routed by workflowMode through mode-registry.json over a nested runtime/ infrastructure layer (frozen, MCP-free; formerly the separate deep-loop-runtime skill, merged 2026-07-08). @context owns one-shot retrieval while research and review carry bounded context snapshots. Per-mode convergence, state, artifacts, and tool-permission contracts are preserved unflattened; the three-tier discriminator (workflowMode / runtimeLoopType / backendKind)keeps graph-backed modes distinct. The prior deep-loop-workflows <-> deep-loop-runtime inter-skill relationship is now intra-skill structure; runtime/ has no graph-metadata.json of its own and is not independently advisor-routable.",
+    "causal_summary": "system-deep-loop is the single public skill that merges active deep-loop persona modes (deep-research, deep-review) into one advisor identity with active mode packets, routed by workflowMode through mode-registry.json over a nested runtime/ infrastructure layer (frozen, MCP-free; formerly the separate deep-loop-runtime skill, merged 2026-07-08). @context owns one-shot retrieval while research and review carry bounded context snapshots. Per-mode convergence, state, artifacts, and tool-permission contracts are preserved unflattened; the three-tier discriminator (workflowMode / runtimeLoopType / backendKind)keeps graph-backed modes distinct. The prior deep-loop-workflows <-> deep-loop-runtime inter-skill relationship is now intra-skill structure; runtime/ has no graph-metadata.json of its own and is not independently advisor-routable.",
     "source_docs": [
       "SKILL.md",
       "README.md",
       "mode-registry.json",
       "deep-research/SKILL.md",
       "deep-review/SKILL.md",
-      "deep-ai-council/SKILL.md",
       "runtime/README.md"
     ],
     "created_at": "2026-06-15T00:00:00Z",
@@ -158,7 +142,6 @@
     "iterative review loop",
     "deep-review wave",
     "release readiness",
-    "ai council deliberation",
     "deep research",
     "iterative investigation",
     "research summary",
@@ -172,16 +155,10 @@
     "severity findings",
     "review convergence",
     "audit the diff",
-    "ai council",
-    "council deliberation",
-    "planning council",
-    "council convergence",
-    "seat diversity",
     "iterative investigation workflow",
     "research convergence detection",
     "deep review",
     "severity weighted findings",
-    "convergence review",
-    "multi-seat planning council"
+    "convergence review"
   ]
 }

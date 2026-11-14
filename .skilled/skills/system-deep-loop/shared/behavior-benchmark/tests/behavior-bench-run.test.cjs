@@ -78,9 +78,9 @@ async function main() {
   assert.equal(bench.classifyVagueAsk(vagueOfferContract, vagueOfferObs, 'pass'), 'offered');
   const vagueMisrouteObs = { ...vagueOfferObs, taskEvents: [{ t: 1, line: '{"tool":"task"}' }] };
   assert.equal(bench.classifyVagueAsk(vagueOfferContract, vagueMisrouteObs, 'setup_misbind'), 'misroute');
-  const vagueRoutedContract = { clarity: 'C1', expected_interaction: 'autonomous', expected_delegation: { evidence_kind: 'seat_artifacts', min_seats: 1 } };
-  assert.equal(bench.classifyVagueAsk(vagueRoutedContract, { ...vagueOfferObs, seatArtifacts: 1 }, 'partial'), 'routed');
-  assert.equal(bench.classifyVagueAsk(vagueRoutedContract, { ...vagueOfferObs, seatArtifacts: 0 }, 'partial'), 'inline');
+  const vagueRoutedContract = { clarity: 'C1', expected_interaction: 'autonomous', expected_delegation: { min_task_events: 1 } };
+  assert.equal(bench.classifyVagueAsk(vagueRoutedContract, { ...vagueOfferObs, taskEvents: [{ t: 1, line: 'x' }] }, 'partial'), 'routed');
+  assert.equal(bench.classifyVagueAsk(vagueRoutedContract, vagueOfferObs, 'partial'), 'inline');
 
   // ── classify unit cases ──────────────────────────────────────────────────
 
@@ -153,43 +153,6 @@ async function main() {
   assert.notEqual(bench.classify(envAuto, envSlowObs), 'env_error');
 
   // ── delegation evidence kinds ────────────────────────────────────────────
-  // Seats are distinct canonical ids in the council's artifact CONTENT, not
-  // separate files (the real council writes one deliberation.md per round with
-  // per-seat sections plus a state JSONL naming each seat by canonical id).
-  const seatSet = bench.countSeatIdsInText(
-    'Round 1 deliberation. seat-001 favors token bucket. seat-002 favors sliding window. ' +
-    'seat-003 favors concurrency cap. Composition: seat-001, seat-002, seat-003.'
-  );
-  assert.equal(seatSet.size, 3, 'three distinct council seats counted from content');
-  // countModeArtifacts reports seat evidence read from ai-council artifact
-  // CONTENT and carries no candidate-evidence count.
-  const seatFixture = fs.mkdtempSync(path.join(os.tmpdir(), 'bench-seats-'));
-  fs.mkdirSync(path.join(seatFixture, 'ai-council'), { recursive: true });
-  fs.writeFileSync(path.join(seatFixture, 'ai-council', 'deliberation.md'), 'Composition: seat-001, seat-002.\n');
-  const seatCounts = bench.countModeArtifacts(seatFixture, ['ai-council/deliberation.md', 'src/untouched.js']);
-  assert.equal(seatCounts.seatArtifacts, 2, 'distinct seats counted from ai-council content');
-  assert.equal('candidateArtifacts' in seatCounts, false, 'candidate evidence kind is retired');
-  fs.rmSync(seatFixture, { recursive: true, force: true });
-
-  // seat_artifacts: council with enough persisted seats scores D3=2, is NOT absorption.
-  const councilContract = {
-    expected_interaction: 'autonomous',
-    expected_delegation: { evidence_kind: 'seat_artifacts', min_seats: 2, role_absorption_forbidden: true },
-  };
-  const councilOk = {
-    spawnError: null, exitCode: 0, killedBy: 'none', stdoutNonEmptyLines: 5, stdoutText: 'council',
-    taskEvents: [], routeProofRecords: [], seatArtifacts: 3,
-    fixtureGained: true, checkpoints: { tTerminalMs: 500000 },
-  };
-  assert.equal(bench.scoreD3(councilContract, councilOk), 2, 'in-CLI council with seats -> D3 2');
-  assert.notEqual(bench.classify(councilContract, councilOk), 'role_absorption', 'in-CLI council NOT absorption');
-  // A council that produced a plan (fixtureGained) with zero seats IS absorption.
-  const councilAbsorbed = { ...councilOk, seatArtifacts: 0 };
-  assert.equal(bench.classify(councilContract, councilAbsorbed), 'role_absorption', 'council, no seats -> absorption');
-  assert.equal(bench.scoreD3(councilContract, councilAbsorbed), 0, 'no seats -> D3 0');
-  // A council HALT cell (correct to convene no seats) scores D3 null, not 0.
-  const councilHalt = { expected_interaction: 'question_halt', expected_delegation: { evidence_kind: 'seat_artifacts', min_seats: 2, role_absorption_forbidden: false } };
-  assert.equal(bench.scoreD3(councilHalt, { seatArtifacts: 0 }), null, 'council halt -> D3 null');
   // task_dispatch keeps the established absorption gate.
   const tdContract = {
     expected_interaction: 'autonomous',

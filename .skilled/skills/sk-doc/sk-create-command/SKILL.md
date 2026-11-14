@@ -2,7 +2,7 @@
 name: sk-create-command
 description: Scaffold OpenCode slash commands with explicit argument hints, allowed tools, and router/presentation separation.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.12.0
+version: 1.0.13.0
 ---
 
 # Create Command
@@ -145,7 +145,7 @@ Use `-auto.yaml` and `-confirm.yaml` only for workflow-backed families that rout
 **Asset stems are hyphen-joined, never underscore-joined.** The stem carries the namespace, the action and the kind:
 - `create-readme-auto.yaml`
 - `speckit-plan-presentation.txt`
-- `deep-ai-council-confirm.yaml`
+- `create-command-confirm.yaml`
 
 A family whose action names already read unambiguously on their own drops the namespace and names assets `<action>-<kind>`.
 For example, `memory` ships `save-presentation.txt` and `design` ships `extract-auto.yaml`.

@@ -2,9 +2,9 @@
   "schemaVersion": 2,
   "generatedBy": "scripts/command-bridges/derive-command-bridges.cjs",
   "counts": {
-    "commandMetadata": 28,
+    "commandMetadata": 27,
     "doctorRoutes": 36,
-    "generated": 64,
+    "generated": 63,
     "typescriptActive": 47,
     "pythonActive": 53
   },
@@ -399,29 +399,6 @@
       "standalone": false,
       "mutating": "mutates",
       "source": ".skilled/skills/sk-doc/command-metadata.json",
-      "runtime": {
-        "typescript": {
-          "enabled": false
-        },
-        "python": {
-          "enabled": false
-        }
-      }
-    },
-    {
-      "id": "command-deep-ai-council",
-      "command": "/deep:ai-council",
-      "skillId": "system-deep-loop",
-      "ownerMode": "ai-council",
-      "description": "Multi-topic deep-ai-council session loop with adjudicator-verdict stability. Modes :auto, :confirm.",
-      "ownedSignals": [
-        "convene an AI council",
-        "run multi-seat deliberation",
-        "make a planning decision with several perspectives"
-      ],
-      "standalone": false,
-      "mutating": "mutates",
-      "source": ".skilled/skills/system-deep-loop/command-metadata.json",
       "runtime": {
         "typescript": {
           "enabled": false
@@ -2804,15 +2781,6 @@
       "mutating": "mutates",
       "askFirst": [],
       "policy": "start"
-    },
-    {
-      "command": "/deep:ai-council",
-      "route": null,
-      "mutating": "mutates",
-      "askFirst": [
-        "spend"
-      ],
-      "policy": "ask"
     },
     {
       "command": "/deep:research",

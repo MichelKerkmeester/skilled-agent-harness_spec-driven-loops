@@ -3,17 +3,6 @@
   "scoringInstant": "2026-11-13T00:00:00Z",
   "entries": [
     {
-      "id": "harder:4798f04a4216",
-      "corpus": "harder",
-      "prompt": "Stage a structured design deliberation with separate seats and converge on the least risky option.",
-      "gold": "deep-ai-council",
-      "promptHash": "sha256:4798f04a421656a90c29b49d7b311ceb8a335d940e9f353b66fbd3df32baf5e0",
-      "localTop": "sk-design",
-      "nativeTop": "system-deep-loop",
-      "reason": "reviewed 2026-09-07: a design-deliberation prompt whose gold is the retired deep-ai-council mode; local now fires sk-design on the design vocabulary the hub restructure added, native keeps the consolidated deep-loop hub",
-      "approvedAt": "2026-09-07"
-    },
-    {
       "id": "harder:b299699c3964",
       "corpus": "harder",
       "promptHash": "sha256:b299699c39642edb88ea3895ad7799d0cb5c153987e4c4e3aa85630798f17906",

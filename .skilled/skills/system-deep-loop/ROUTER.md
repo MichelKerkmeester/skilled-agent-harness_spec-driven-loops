@@ -8,7 +8,7 @@ trigger_phrases:
   - "deep-loop resource map"
 importance_tier: important
 contextType: general
-version: 1.6.8.0
+version: 1.6.9.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -20,7 +20,7 @@ skill_pointer: SKILL.md
 This is system-deep-loop's second-layer (surface) router, first-class at the hub root
 as `ROUTER.md`. The hub selects a
 workflow mode in [`hub-router.json`](hub-router.json) (`research`,
-`review`, `ai-council`); this doc
+`review`); this doc
 maps a request's deep-loop intent to the exact packet-local leaf resources that
 mode should load. Every path is packet-qualified (`<packet>/references|assets/…`,
 where `<packet>` is the mode's `mode-registry.json` `packet` field) and converts
@@ -39,8 +39,6 @@ emits leaf paths, and this router never re-decides the mode.
   convergence references a `/deep:research` iteration loads.
 - **review leaves** — the deep-review loop protocol, completion criteria, and
   convergence references a `/deep:review` audit loop loads.
-- **ai-council leaves** — the council loop protocol, scoring rubric, and output
-  schema a multi-seat deliberation loads.
 
 A bare deep-loop identity term (e.g. "deep loop") names no mode, so it fires no
 intent and falls back to the hub default (disambiguation).
@@ -63,8 +61,7 @@ DEFAULT_RESOURCE = []
 
 INTENT_SIGNALS = {
     "RESEARCH":          {"weight": 4, "keywords": ["deep research", "iterative investigation", "research loop", "research summary", "investigate why", "autoresearch", "research convergence", "deep-research", "iterative investigation workflow", "research convergence detection", "iterative-research"]},
-    "REVIEW":            {"weight": 4, "keywords": ["deep-review", "deep review of", "before running deep review", "review request", "review loop", "iterative review", "severity findings", "release readiness", "review convergence", "audit the diff", "deep review", "iterative review loop", "severity weighted findings", "convergence review", "release-readiness", "deep-review wave"]},
-    "AI_COUNCIL":        {"weight": 4, "keywords": ["ai council", "council deliberation", "multi-seat", "planning council", "council convergence", "seat diversity", "deep-ai-council", "ai council deliberation", "multi-seat planning council"]}
+    "REVIEW":            {"weight": 4, "keywords": ["deep-review", "deep review of", "before running deep review", "review request", "review loop", "iterative review", "severity findings", "release readiness", "review convergence", "audit the diff", "deep review", "iterative review loop", "severity weighted findings", "convergence review", "release-readiness", "deep-review wave"]}
 }
 
 RESOURCE_MAP = {
@@ -77,11 +74,6 @@ RESOURCE_MAP = {
         "deep-review/references/protocol/loop-protocol.md",
         "deep-review/references/protocol/completion-criteria.md",
         "deep-review/references/convergence/convergence.md"
-    ],
-    "AI_COUNCIL": [
-        "deep-ai-council/references/integration/loop-protocol.md",
-        "deep-ai-council/references/scoring/scoring-rubric.md",
-        "deep-ai-council/references/structure/output-schema.md"
     ]
 }
 ```
@@ -112,7 +104,7 @@ The hub's detailed routing prose, moved here from `SKILL.md` so the skill body k
 ### Surface Router — per-mode leaf sets
 
 Stage 2 of routing lives in section 3 of this file. It defines three things:
-- The per-mode leaf-intent model: the research loop protocol/state/convergence leaves, the review loop protocol/completion/convergence leaves, and the ai-council loop protocol/scoring/output-schema leaves.
+- The per-mode leaf-intent model: the research loop protocol/state/convergence leaves and the review loop protocol/completion/convergence leaves.
 - The machine-readable `DEFAULT_RESOURCE` / `INTENT_SIGNALS` / `RESOURCE_MAP` block that the deterministic router-replay and benchmarks parse.
 - The how-to-read rules: a dominant intent → one leaf set; near-tied intents → deduped union; no keyword match → hub `defer`, never a silent default to a mode.
 
@@ -129,17 +121,17 @@ The surface layer never re-decides the mode and is not a runtime hub discovery s
 The hub still routes by `workflowMode` through `mode-registry.json` alone.
 
 ### The three-tier discriminator
-- **`workflowMode`** — the public active mode key: `research`, `review`, and `ai-council`.
-- **`runtimeLoopType`** — the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs` (validated against active `research|review|council`). **Explicit `null` for custom backends; never inferred from `workflowMode`.** Note `ai-council` maps to `runtimeLoopType: council`.
-- **`backendKind`** — which backend runs the mode: `runtime-loop-type` (research/review/ai-council).
+- **`workflowMode`** — the public active mode key: `research` and `review`.
+- **`runtimeLoopType`** — the graph-backed convergence key consumed by `runtime/scripts/convergence.cjs` (validated against active `research|review`). **Explicit `null` for custom backends; never inferred from `workflowMode`.**
+- **`backendKind`** — which backend runs the mode: `runtime-loop-type` (research/review).
 
 ### Routing rule
 ```
 UNKNOWN_FALLBACK_CHECKLIST = [
-    "Confirm whether this is research, review, or ai-council work",
-    "Confirm the target artifact: research.md, a review verdict, or ai-council deliberation artifacts",
+    "Confirm whether this is research or review work",
+    "Confirm the target artifact: research.md or a review verdict",
     "Confirm the matching /deep:* command or agent type when one is already known",
-    "Confirm the backend expectations: runtimeLoopType (research/review/council)",
+    "Confirm the backend expectations: runtimeLoopType (research/review)",
 ]
 
 classify the request to a workflowMode (dominant deep-loop intent; mode hint like "research: ..." overrides)
@@ -160,11 +152,11 @@ else:
 - The fallback must name the unresolved `workflowMode` when known and avoid loading any guessed packet.
   Ask the operator to provide one of the registered modes or the matching `/deep:*` command.
 - Intent classification favors the single dominant active deep-loop mode.
-  A mode hint (`research: ...`, `review: ...`, `ai-council: ...`) overrides the classifier.
+  A mode hint (`research: ...`, `review: ...`) overrides the classifier.
   The legacy advisor projection maps stay hardcoded and drift-guarded against the registry.
   The command files remain static routers with hardcoded asset/mode routing. Neither resolves from `mode-registry.json` at runtime, but both stay equal to its projection.
 - Per-mode behavior is **not flattened**.
-  Each active packet keeps its own convergence math, state shape, artifacts and tool-permission guards. Research has WebFetch; review/ai-council are code/inward-only.
+  Each active packet keeps its own convergence math, state shape, artifacts and tool-permission guards. Research has WebFetch; review is code/inward-only.
   This hub preserves exactly one `graph-metadata.json`, so the advisor discovers exactly one skill identity.
   That remains true whether a mode is reached through the hub `Skill()`, a `/deep:*` command or an agent.
 

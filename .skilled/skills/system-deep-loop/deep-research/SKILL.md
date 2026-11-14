@@ -3,7 +3,7 @@ name: deep-research
 description: "Autonomous deep-research loop: iterative investigation, externalized state, convergence detection, fresh context per pass."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch]
 argument-hint: "[topic] [:auto|:confirm] [--max-iterations=N] [--convergence=N]"
-version: 1.15.13.0
+version: 1.15.14.0
 ---
 
 # Autonomous Deep Research Loop
@@ -75,7 +75,6 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
 
 **NOT INTERCHANGEABLE with siblings:**
 - `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
-- `deep-ai-council` uses 0.20 default on adjudicator-verdict stability
 
 Carrying threshold expectations across siblings will cause unexpected iteration counts; see this skill's changelog/decision records for the parity research confirming thresholds do not carry across siblings.
 
@@ -256,7 +255,7 @@ Focused state references: `references/state/state-jsonl.md`, `references/state/s
 
 Templates: `assets/deep-research-config.json`, `assets/deep-research-strategy.md`, `assets/deep-research-dashboard.md`, `assets/prompt-pack-iteration.md.tmpl`, and `assets/runtime-capabilities.json`.
 
-Cross-skill alignment: `deep-research` owns iterative investigation; its resource family mirrors `deep-review`/`deep-ai-council`, but vocabulary stays novelty/sources/negative-knowledge/question-coverage/synthesis, not severity findings or council agreement.
+Cross-skill alignment: `deep-research` owns iterative investigation; its resource family mirrors `deep-review`, but vocabulary stays novelty/sources/negative-knowledge/question-coverage/synthesis, not severity findings.
 
 ---
 

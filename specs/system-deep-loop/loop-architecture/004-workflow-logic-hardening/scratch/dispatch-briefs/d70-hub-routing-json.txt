@@ -1,0 +1,37 @@
+ALLOWED WRITE PATHS (S = .skilled/skills/system-deep-loop, C = .skilled/commands):
+S/mode-registry.json  S/hub-router.json  S/ROUTER.md  S/graph-metadata.json
+S/command-metadata.json  S/description.json
+C/deep/assets/compiled/README.markdown  C/deep/assets/legacy/README.markdown
+
+TASK: remove the `ai-council` mode from the hub's routing surfaces. Research and review entries
+stay byte for byte, except where a line lists all three modes or loop types.
+
+1. S/mode-registry.json: delete the whole `modes[]` object whose `workflowMode` is `ai-council`.
+   `extensions["runtime-loop"].runtimeLoopTypes` becomes ["research", "review"]. In every
+   description string in this file that lists `council` or `deep-ai-council` as an example or as
+   a third value, reword it for two modes (for example `(research|review)`), using
+   `deep-research` as the example packet name.
+2. S/hub-router.json: remove `ai-council` from `tieBreak`, delete the `ai-council` routerSignals
+   entry and delete the `ai-council-aliases` vocabulary class. Remove any other council keyword.
+3. S/ROUTER.md: delete the `AI_COUNCIL` intent, its resource map entry and every row or sentence
+   that names the ai-council mode. Prose that says three modes says two.
+4. S/graph-metadata.json: remove every council keyword, trigger phrase, intent signal and the
+   `deep-ai-council` packet path. Keep the JSON valid.
+5. S/command-metadata.json: delete the whole `/deep:ai-council` entry and the
+   `preferSiblingWhen` items that name `/deep:ai-council` in the other entries.
+6. S/description.json: remove council keywords and phrases.
+7. The two README.markdown files: delete the rows and sentences about the deep-ai-council files.
+   Counts in those files that said three say two.
+
+Keep each JSON file's existing indentation and key order. Do not reformat lines you do not change.
+
+CHECKS (repository root, every one must hold):
+  node -e 'const r=require("./.skilled/skills/system-deep-loop/mode-registry.json");console.log(r.modes.map(m=>m.workflowMode).join(" "), r.extensions["runtime-loop"].runtimeLoopTypes.join(" "))'      prints: research review research review
+  rg -n -i 'council' .skilled/skills/system-deep-loop/hub-router.json .skilled/skills/system-deep-loop/graph-metadata.json .skilled/skills/system-deep-loop/command-metadata.json .skilled/skills/system-deep-loop/description.json .skilled/skills/system-deep-loop/mode-registry.json      prints nothing
+  rg -n -i 'ai[-_ ]council' .skilled/skills/system-deep-loop/ROUTER.md      prints nothing
+  rg -n -i 'council' .skilled/commands/deep/assets/compiled/README.markdown .skilled/commands/deep/assets/legacy/README.markdown      prints nothing
+  for f in mode-registry hub-router graph-metadata command-metadata description; do node -e "JSON.parse(require('fs').readFileSync('.skilled/skills/system-deep-loop/$f.json','utf8'))" || echo BAD $f; done      prints nothing
+  node .skilled/bin/compiled-route.cjs --hub system-deep-loop --prompt "research the caching options in depth"      output names packetId deep-research
+
+REPORT: one line per file with what you removed, then the output of each check. Do NOT run any
+generator, sync script or test suite.
