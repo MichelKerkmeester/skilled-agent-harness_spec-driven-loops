@@ -1,0 +1,40 @@
+Depth: 1. You are dispatched by the orchestrator. This is an executable-code task: extend one
+existing Node script and its test file under `.skilled/bin/`.
+
+Files (exactly two, both exist, read both first):
+1. .skilled/bin/sync-agent-roster.cjs
+2. .skilled/bin/sync-agent-roster.vitest.ts
+
+Add one more check to `--check` mode: every skill path an agent file cites must exist on disk.
+An agent that cites a renamed skill file fails today only when it tries to read it.
+
+THE CHECK (check mode only; write mode is unchanged)
+- For each `<root>/.skilled/agents/<name>.md`, find every token that starts with `.skilled/skills/`
+  and continues with the characters `A-Z a-z 0-9 _ . / * < > -`.
+- Strip trailing `.` characters from the token (a sentence end).
+- Skip a token that contains `<`, `>` or `*`. Those are placeholders and globs, not paths.
+- A token that contains `..` is a problem: `skill path escapes the repository: <name>: <token>`
+- Otherwise resolve it against the repository root:
+    it does not exist                          ->  `missing skill path: <name>: <token>`
+    it is a directory holding no `SKILL.md`    ->  `skill directory without SKILL.md: <name>: <token>`
+    it is a file, or a directory with SKILL.md ->  fine
+- Report each distinct (agent, token) pair once. Add the problems to the same list the other
+  checks use, so the final `agent-roster: OK` or `agent-roster: FAIL (<n> problem(s))` line and the
+  exit status cover them. Never read or stat anything outside the repository root.
+- Put the logic in one helper function with a comment that says why the check exists.
+
+THE TESTS (add exactly three to the existing four; names are exact)
+  it('flags a missing skill path')                   an agent file cites `.skilled/skills/demo/missing.md`: --check exits 1 and prints `missing skill path:` with the agent name and the path
+  it('rejects a skill path containing ..')           an agent file cites `.skilled/skills/../outside.md`: exits 1 and prints `skill path escapes the repository:`
+  it('skips a placeholder in angle brackets')        an agent file cites `.skilled/skills/<skill>/SKILL.md` and a real file `.skilled/skills/demo/SKILL.md` that the test creates: exits 0
+The four existing tests must still pass unchanged.
+
+Exception to BANNED OPERATIONS for this brief: you may run the two verification commands below.
+
+Verification (run both, paste the output in the handback):
+  .skilled/skills/system-spec-kit/node_modules/.bin/vitest run --root .skilled --config vitest.config.bin.ts bin/sync-agent-roster.vitest.ts
+      # expect: 7 passed
+  node .skilled/bin/sync-agent-roster.cjs --check; echo "exit=$?"
+      # paste whatever it prints. If it reports problems in the real agent files, do NOT edit any
+      # agent file and do NOT weaken the check: list the problems under NOTES and stop.
+Code comments say why, never a spec path, packet number, task id or requirement id.

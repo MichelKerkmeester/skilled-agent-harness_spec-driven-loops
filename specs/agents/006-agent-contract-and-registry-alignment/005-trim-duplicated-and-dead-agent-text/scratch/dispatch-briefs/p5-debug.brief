@@ -1,0 +1,157 @@
+Remove text from one agent file that repeats rules the same file already states elsewhere, and
+bring its advisor block to the shared wording where the changes below say so. Every change is a
+deletion, a section renumbering that follows a deletion, or a re-wrap of the advisor block. No
+rule is reworded.
+
+The two files are the canonical file and its twin. Each has its own list of changes below,
+because the twin's text can differ in path strings. Apply each list to its own file.
+
+Files:
+1. .skilled/agents/debug.md
+2. .claude/agents/debug.md
+
+Do not touch the frontmatter. A commit hook raises the `version` field.
+Each change below gives the exact text to find (OLD) and the exact text that replaces it (NEW).
+The first and last lines of OLD and NEW are unchanged context lines, shown so the place is unambiguous.
+Blank lines inside OLD and NEW are part of the text. Apply every change, top to bottom.
+
+######## FILE: .skilled/agents/debug.md ########
+
+Change 1, at about line 625. Removes 35 line(s), adds 1.
+<<<<<<< OLD
+---
+
+## 11. SUMMARY
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│              THE DEBUG AGENT: FRESH PERSPECTIVE SPECIALIST              │
+├─────────────────────────────────────────────────────────────────────────┤
+│  AUTHORITY                                                              │
+│  ├─► User-invoked root-cause analysis after failed attempts             │
+│  ├─► 5-phase method: Observe, Analyze, Hypothesize, Validate, Fix       │
+│  ├─► Error categorization and dependency/path tracing                   │
+│  └─► Verified fix reporting with prevention guidance                      │
+│                                                                         │
+│  WORKFLOW                                                               │
+│  ├─► 1. Observe exact error and affected scope                          │
+│  ├─► 2. Analyze call flow, data flow, and prior attempts                  │
+│  ├─► 3. Form ranked hypotheses without editing source                   │
+│  ├─► 4. Challenge assumptions and re-rank before fixing                  │
+│  └─► 5. Apply minimal fix, verify, and report outcome                    │
+│                                                                         │
+│  OUTPUT                                                                 │
+│  ├─► Success, blocked, and escalation response templates                │
+│  ├─► Root cause, changes, and verification evidence required             │
+│  └─► Escalate when issue persists or confidence is low                   │
+│                                                                         │
+│  LIMITS                                                                 │
+│  ├─► No nested delegation; execute directly with available tools        │
+│  ├─► Never auto-dispatch; failure thresholds only prompt user opt-in    │
+│  ├─► debug-delegation.md is @debug-exclusive write territory            │
+│  └─► Do not claim resolved status without test evidence                 │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 12. RULES
+
+### ✅ ALWAYS
+======= NEW
+---
+
+## 11. RULES
+
+### ✅ ALWAYS
+>>>>>>> END
+
+Change 2, at about line 677. Removes 1 line(s), adds 1.
+<<<<<<< OLD
+---
+
+## 13. RELATED RESOURCES
+
+- `.skilled/agents/code.md` — the implementation target for a debug-to-implementation handoff.
+======= NEW
+---
+
+## 12. RELATED RESOURCES
+
+- `.skilled/agents/code.md` — the implementation target for a debug-to-implementation handoff.
+>>>>>>> END
+
+######## FILE: .claude/agents/debug.md ########
+
+Change 1, at about line 610. Removes 35 line(s), adds 1.
+<<<<<<< OLD
+---
+
+## 11. SUMMARY
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│              THE DEBUG AGENT: FRESH PERSPECTIVE SPECIALIST              │
+├─────────────────────────────────────────────────────────────────────────┤
+│  AUTHORITY                                                              │
+│  ├─► User-invoked root-cause analysis after failed attempts             │
+│  ├─► 5-phase method: Observe, Analyze, Hypothesize, Validate, Fix       │
+│  ├─► Error categorization and dependency/path tracing                   │
+│  └─► Verified fix reporting with prevention guidance                      │
+│                                                                         │
+│  WORKFLOW                                                               │
+│  ├─► 1. Observe exact error and affected scope                          │
+│  ├─► 2. Analyze call flow, data flow, and prior attempts                  │
+│  ├─► 3. Form ranked hypotheses without editing source                   │
+│  ├─► 4. Challenge assumptions and re-rank before fixing                  │
+│  └─► 5. Apply minimal fix, verify, and report outcome                    │
+│                                                                         │
+│  OUTPUT                                                                 │
+│  ├─► Success, blocked, and escalation response templates                │
+│  ├─► Root cause, changes, and verification evidence required             │
+│  └─► Escalate when issue persists or confidence is low                   │
+│                                                                         │
+│  LIMITS                                                                 │
+│  ├─► No nested delegation; execute directly with available tools        │
+│  ├─► Never auto-dispatch; failure thresholds only prompt user opt-in    │
+│  ├─► debug-delegation.md is @debug-exclusive write territory            │
+│  └─► Do not claim resolved status without test evidence                 │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 12. RULES
+
+### ✅ ALWAYS
+======= NEW
+---
+
+## 11. RULES
+
+### ✅ ALWAYS
+>>>>>>> END
+
+Change 2, at about line 662. Removes 1 line(s), adds 1.
+<<<<<<< OLD
+---
+
+## 13. RELATED RESOURCES
+
+- `.claude/agents/code.md` — the implementation target for a debug-to-implementation handoff.
+======= NEW
+---
+
+## 12. RELATED RESOURCES
+
+- `.claude/agents/code.md` — the implementation target for a debug-to-implementation handoff.
+>>>>>>> END
+
+The markers `<<<<<<< OLD`, `======= NEW` and `>>>>>>> END` are not part of any file. Never write them.
+
+Verification (run all, paste the output in the handback):
+  wc -l < .skilled/agents/debug.md      # expect: 648
+  wc -w < .skilled/agents/debug.md      # expect: 3677
+  wc -l < .claude/agents/debug.md      # expect: 633
+  wc -w < .claude/agents/debug.md      # expect: 3653
+  rg -c '^│' .skilled/agents/debug.md .claude/agents/debug.md      # expect: no output

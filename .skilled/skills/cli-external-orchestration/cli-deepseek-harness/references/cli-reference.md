@@ -9,7 +9,7 @@ trigger_phrases:
   - "dsh launcher patch flag"
 importance_tier: important
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # DeepSeek Harness CLI - Headless Command Reference
@@ -50,9 +50,9 @@ Keyed results are route-specific. The LLM Gateway result is verified below, and 
 | Field | Value | Source |
 |---|---|---|
 | Package | `@deepseek-ai/dsh` | `dist-tags.json` |
-| Version | `0.2.2-rc.1` | `version.txt` |
-| Integrity | `sha512-ijR9UEVYkG15Q/Q79JzvzLBzQOQfc63VLr9n6flpwHPhr5IKn2UxthnSoto/P9l7qGd7pPvI1Ra6TW7LH3oKpg==` | `dist-tags.json` |
-| Dist-tags at capture | `latest` and `next` both `0.2.2-rc.1`, `alpha` `0.2.2-alpha.3` | `dist-tags.json` |
+| Version | `0.2.2-rc.3` | `.../017-dsh-rc3-repin/scratch/measured-before.txt` |
+| Integrity | `sha512-S+4oUYVKWuc1SCMMp1mpUa2llxVy0o9gIgp7TDg/Ea7PuvXVkAfnykqSH1/oDXVB+y5VzEm0QIJulo1LIB3qRg==` | `.../017-dsh-rc3-repin/scratch/measured-before.txt` |
+| Dist-tags at capture | `next` `0.2.2-rc.3`, `latest` `0.2.2-rc.1`, `alpha` `0.2.2-alpha.3` (2026-11-14) | `.../017-dsh-rc3-repin/scratch/measured-before.txt` |
 
 This table is the packet's one pin record, and the `pinned-version-required` hard rule enforces the same version. The research run saw `latest` at `0.2.1-rc.5` a day before this capture, so the tag moves and is never a pin. A new release is re-pinned offline before any dispatch uses it.
 

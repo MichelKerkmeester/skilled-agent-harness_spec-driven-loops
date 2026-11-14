@@ -1,0 +1,43 @@
+Add a short machine-readable list of required sections to the agent template. The template
+gives a full skeleton but never says which sections an agent must carry, so a check had
+nothing to compare an agent file against. Also bring three bullets about the deep-loop
+dialect in line with it.
+
+File (exactly one, it has no twin; ignore the twin instructions in RUN CONTEXT):
+1. .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md
+
+Do not touch the frontmatter. A commit hook raises the `version` field.
+
+Change A. Under `## 3. REQUIRED BODY STRUCTURE`, the first paragraph is this one line:
+Every production agent should include these body elements in this order.
+Leave it. Directly after it (one blank line between), and before `### H1 + Boilerplate`, add
+this block exactly, followed by one blank line:
+
+### Required Sections
+
+The list between the two markers is the outline every agent file must carry, in this order. `node .skilled/bin/sync-agent-roster.cjs --check` reads the list from here and fails when an agent file lacks an entry, names it differently or orders it differently. A heading meets an entry when its text after the section number starts with the entry, so `## 0. ILLEGAL NESTING (HARD BLOCK)` meets `ILLEGAL NESTING`. An agent whose role makes an entry wrong for it records that under `templateExceptions` in `.skilled/agents/agent-registry.json`, with the section and a reason. Every other section in this template is optional: `0b`, `RUNTIME PARAMETERS`, `SUMMARY` and any section an agent adds for its own role. Run the check after every edit to this list.
+
+<!-- REQUIRED-SECTIONS:BEGIN -->
+- `ILLEGAL NESTING`
+- `CORE WORKFLOW`
+- `CAPABILITY SCAN`
+- `HOOK-INJECTED CONTEXT ROUTING`
+- `OUTPUT FORMAT`
+- `OUTPUT VERIFICATION`
+- `ANTI-PATTERNS`
+- `RELATED RESOURCES`
+<!-- REQUIRED-SECTIONS:END -->
+
+Change B. Near the end, under `**Deep-Loop Iteration Agents (sanctioned section-vocabulary dialect)**`,
+three bullets start with `- **Full shape**`, `- **Lean variant**` and `- Only `## 1. CORE WORKFLOW``.
+Replace each, whole line, with these three lines in the same order:
+- **Full shape** (`deep-review`): `## 0. ILLEGAL NESTING (HARD BLOCK)` → `## 0b. INPUT + SCOPE GATES (HARD BLOCK)` → `## 1. CORE WORKFLOW -- Single <lane> Iteration` → `## 2. CAPABILITY SCAN` → `## 3. HOOK-INJECTED CONTEXT ROUTING` → `## 4. <lane> CONTRACT` (`REVIEW CONTRACT`) → `## 5. STATE MANAGEMENT + WRITE SAFETY` → `## 6. <lane> ADVERSARIAL CHECK (Tiered)` (`ADVERSARIAL SELF-CHECK`) → `## 7. RULES` → `## 8. OUTPUT VERIFICATION` → `## 9. ANTI-PATTERNS` → `## 10. RELATED RESOURCES` → `## 11. SUMMARY`.
+- **Lean variant** (`deep-research`): no `§0b`, `## 4. ITERATION PROTOCOL` replaces the CONTRACT, `## 5. STATE MANAGEMENT` drops the `+ WRITE SAFETY` suffix, `RULES` moves to `## 6`, and `## 7. OUTPUT FORMAT` is added, then OUTPUT VERIFICATION / ANTI-PATTERNS / RELATED RESOURCES / SUMMARY.
+- The required-sections list in section 3 binds this dialect too, and `deep-review` records its one exception in the registry. The dialect keeps every boundary, capability, verification, and anti-pattern responsibility of the generic skeleton. Reference files: `.skilled/agents/{deep-review,deep-research}.md` and their `.claude/agents/` mirrors.
+
+Verification (run all, paste the output in the handback):
+  rg -c 'REQUIRED-SECTIONS:(BEGIN|END)' .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md      # expect: 2
+  sed -n '/REQUIRED-SECTIONS:BEGIN/,/REQUIRED-SECTIONS:END/p' .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md | rg -c '^- `'   # expect: 8
+  rg -c 'ROUTING SCAN' .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md                          # expect: no output
+  rg -c 'validator-required' .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md                    # expect: no output
+  rg -n '^version:' .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md                             # expect: 11:version: 1.0.3.0

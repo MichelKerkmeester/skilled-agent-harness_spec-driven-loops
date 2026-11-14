@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The shared conformance case `an arm leaves the record pending when no process below the loop is found` checks its result with `assertStillPending`",
     "created_at": "2026-11-14T06:07:01Z",
-    "last_save_at": "2026-11-14T07:14:49.765Z",
+    "last_save_at": "2026-11-14T13:46:36.207Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1144f7c3e5295161623be0f006d40f9214352401aeecbee13c39de25c3b0d721",
+    "source_fingerprint": "sha256:33517805f9002c758980a2905336c1024a652263326f46cb36eb4ae128ae4587",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "86efde778e2153612d8229491b9ee15886b999b1c7bf25215d980ccce57d0d0f",
-      "plan.md": "6a0b0bac5fa2e2da3ab33fa89c38825fccba1720c52c096317fab5db60dedac6",
-      "tasks.md": "cd0c32cdc10502353071b1f99bc57adfc03cd7add1b8dc5f7054b7aca01ce837",
-      "implementation-summary.md": "0521476c76683bac872f2314a4fa104a4c26b8d4a64ab9e15819ec1ad0602773"
+      "spec.md": "f987df176d5a3fbb7b072782cfee8651d5c561545470d530f7647ee4437f0bf1",
+      "plan.md": "230789fc38bfcb40a4df56d4d5595ca291f5d06b9198e2b7dfe7b4a009063127",
+      "tasks.md": "82cae77972793aa73a858819aa762334b94cc9351626961a95405f6482a93d79",
+      "implementation-summary.md": "ba81659f2491d1879f32489f3fe5498dc5d3f06b85ce5c21e51947c3f9844929"
     },
     "last_active_at": null
   }

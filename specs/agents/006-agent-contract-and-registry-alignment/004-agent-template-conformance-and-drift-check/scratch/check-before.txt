@@ -1,0 +1,29 @@
+# T005: the outline check on the real tree, before any agent file was converted
+missing required section: ai-council: CAPABILITY SCAN
+missing required section: ai-council: HOOK-INJECTED CONTEXT ROUTING
+missing required section: code: CAPABILITY SCAN
+missing required section: code: HOOK-INJECTED CONTEXT ROUTING
+missing required section: code: OUTPUT FORMAT
+missing required section: context: CAPABILITY SCAN
+missing required section: context: HOOK-INJECTED CONTEXT ROUTING
+missing required section: debug: CAPABILITY SCAN
+missing required section: debug: HOOK-INJECTED CONTEXT ROUTING
+missing required section: debug: OUTPUT FORMAT
+missing required section: deep-research: CAPABILITY SCAN
+missing required section: deep-research: HOOK-INJECTED CONTEXT ROUTING
+missing required section: deep-review: CAPABILITY SCAN
+missing required section: deep-review: HOOK-INJECTED CONTEXT ROUTING
+missing required section: deep-review: OUTPUT FORMAT
+missing required section: design: HOOK-INJECTED CONTEXT ROUTING
+missing required section: markdown: CAPABILITY SCAN
+required section out of order: markdown: OUTPUT FORMAT
+required section out of order: markdown: OUTPUT VERIFICATION
+missing required section: orchestrate: CAPABILITY SCAN
+missing required section: orchestrate: HOOK-INJECTED CONTEXT ROUTING
+missing required section: orchestrate: OUTPUT FORMAT
+missing required section: prompt-improver: CAPABILITY SCAN
+missing required section: prompt-improver: HOOK-INJECTED CONTEXT ROUTING
+missing required section: review: CAPABILITY SCAN
+missing required section: review: HOOK-INJECTED CONTEXT ROUTING
+agent-roster: FAIL (26 problem(s))
+exit=1

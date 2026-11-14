@@ -1,0 +1,30 @@
+# Baseline at d05921666c
+
+## Measured Behavior, rerun
+$ rg -l 'Treat hook-injected skill-advisor recommendations as routing hints only' .skilled/agents | wc -l
+      10
+$ rg -l '^│  AUTHORITY' .skilled/agents | wc -l
+       8
+$ cat .skilled/agents/*.md | wc -w
+   53367
+
+# The spec measured 10, 8 and 52568 when it was written. The total is higher now because phases 1 to 4 added text:
+# a ninth file, deep-review.md, carries a summary box whose AUTHORITY line is indented differently, so the second search misses it.
+
+## T002: words per section of code.md
+$ awk '/^## [0-9]+\. /{if(h)print n, h; h=$0; n=0; next} {n+=NF} END{print n, h}' .skilled/agents/code.md
+44 ## 0. ILLEGAL NESTING (HARD BLOCK)
+691 ## 1. CORE WORKFLOW
+111 ## 2. FAST PATH & CONTEXT PACKAGE
+325 ## 3. CAPABILITY SCAN
+54 ## 4. HOOK-INJECTED CONTEXT ROUTING
+573 ## 5. IMPLEMENTATION MODES
+705 ## 6. CODER ACCEPTANCE RUBRIC
+401 ## 7. CODER CHECKLIST
+292 ## 8. ORCHESTRATOR INTEGRATION
+434 ## 9. RETURN CONTRACT
+393 ## 10. RULES
+1166 ## 11. OUTPUT VERIFICATION
+897 ## 12. ANTI-PATTERNS
+59 ## 13. RELATED RESOURCES
+187 ## 14. SUMMARY

@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/005-resume-detection-and-single-workflow",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/005-resume-detection-and-single-workflow",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "resume detection and single workflow",
+      "phase 5 resume detection and single workflow",
+      "resume detection and single workflow plan",
+      "resume detection and single workflow tasks",
+      "resume detection and single workflow acceptance criteria",
+      "resume detection and single workflow implementation summary"
+    ],
+    "key_topics": [
+      "resume",
+      "detection",
+      "single",
+      "workflow",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "speckit"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/speckit/assets/speckit-resume.yaml",
+      ".skilled/commands/speckit/resume.md",
+      ".skilled/commands/speckit/assets/speckit-resume-presentation.txt",
+      ".skilled/commands/speckit/README.txt",
+      ".skilled/skills/system-spec-kit/command-metadata.json",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js",
+      ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
+      ".skilled/commands/speckit/save.md",
+      ".skilled/commands/speckit/handoff.md",
+      ".skilled/skills/system-spec-kit/runtime/lib/resume/resume-ladder.ts",
+      ".skilled/skills/system-spec-kit/feature-catalog/retrieval/session-recovery-spec-kit-resume.md",
+      ".skilled/skills/system-spec-kit/runtime/database/access-telemetry.json",
+      "runtime/database/access-telemetry.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-resume.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-resume.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "resume.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/resume.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-resume-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/assets/speckit-resume-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "test-phase-command-workflows.js",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-goal-offer-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "resume-ladder.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/resume/resume-ladder.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-recovery-spec-kit-resume.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/retrieval/session-recovery-spec-kit-resume.md",
+        "source": "derived"
+      },
+      {
+        "name": "access-telemetry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/database/access-telemetry.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Findings Ledger",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "When `/speckit:resume` runs with no folder argument, its workflow ranks packets and then falls back to the most recently modified one, so an agent can resume a packet another session was working on",
+    "created_at": "2026-11-14T11:33:22Z",
+    "last_save_at": "2026-11-14T14:41:25.401Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7b91ddd80f350596fe281b8471378b83f1b43dd5fe69d0f8fe697a8e0ba2701f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9d52403267997248ed43bf37b8e154f497f899193fb5e7b3823f5f68080a4bf1",
+      "plan.md": "042dc727df17e4d2c3973fa2a39d6389e1adecbc8d361cc9e1f66f9b0992de83",
+      "tasks.md": "c3cec1e96db8221eff4bc46ca8b7dad303789fcf8f221152df89c63bd504368c",
+      "implementation-summary.md": "8cf3c91d820fa21feefd0cbff6cfc223cba8deaee23bf457039340687aee1d17"
+    },
+    "last_active_at": null
+  }
+}

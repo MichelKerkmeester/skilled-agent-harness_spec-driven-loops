@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "fanout persona tool mapping",
+      "phase 1 fanout persona tool mapping",
+      "fanout persona tool mapping plan",
+      "fanout persona tool mapping tasks",
+      "fanout persona tool mapping implementation summary"
+    ],
+    "key_topics": [
+      "fanout",
+      "persona",
+      "tool",
+      "mapping",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "agentpersonablock",
+      "fan-out",
+      "runner"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/baseline.txt",
+      "scratch/codex-probe-prompt.txt",
+      "scratch/codex-run-1.txt",
+      "scratch/codex-run-2.txt",
+      "scratch/codex-run-3.txt",
+      "scratch/decision.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+      ".skilled/skills/system-deep-loop/SKILL.md",
+      ".skilled/agents/README.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "codex-probe-prompt.txt",
+        "kind": "file",
+        "path": "scratch/codex-probe-prompt.txt",
+        "source": "derived"
+      },
+      {
+        "name": "codex-run-1.txt",
+        "kind": "file",
+        "path": "scratch/codex-run-1.txt",
+        "source": "derived"
+      },
+      {
+        "name": "codex-run-2.txt",
+        "kind": "file",
+        "path": "scratch/codex-run-2.txt",
+        "source": "derived"
+      },
+      {
+        "name": "codex-run-3.txt",
+        "kind": "file",
+        "path": "scratch/codex-run-3.txt",
+        "source": "derived"
+      },
+      {
+        "name": "decision.md",
+        "kind": "doc",
+        "path": "scratch/decision.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`agentPersonaBlock` in the fan-out runner inlines `.skilled/agents/<name>.md` into the prompt of every lineage whose kind is not `native`, and it adds no tool-mapping line",
+    "created_at": "2026-11-14T15:48:56Z",
+    "last_save_at": "2026-11-14T16:32:29.405Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:78be272e36d9b4648e4b0276f8433f1190c7665ae3f0919f136bc7a53c877158",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "277790d38d76173e80a06b448b55a1d9bf4e1209e38afb04cfe085e5e87162c3",
+      "plan.md": "2d0738dab87a84fd9235677431f21436e0adb3bb5a88a387440e1e935e9b6463",
+      "tasks.md": "9e0895d19700d0f2ae2b0abcb344aade16472a28d9d1e2e7b99d99ae03be9c15",
+      "implementation-summary.md": "7a819beffe88152e8a276094928b049fa3836abcc7493e841d2d7860dcacf407"
+    },
+    "last_active_at": null
+  }
+}

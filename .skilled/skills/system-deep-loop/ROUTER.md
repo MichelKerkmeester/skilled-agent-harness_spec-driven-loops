@@ -8,7 +8,7 @@ trigger_phrases:
   - "deep-loop resource map"
 importance_tier: important
 contextType: general
-version: 1.6.8.0
+version: 1.6.9.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -62,9 +62,9 @@ a canonical typed pair.
 DEFAULT_RESOURCE = []
 
 INTENT_SIGNALS = {
-    "RESEARCH":          {"weight": 4, "keywords": ["deep research", "iterative investigation", "research loop", "research summary", "investigate why", "autoresearch", "research convergence", "deep-research", "iterative investigation workflow", "research convergence detection", "iterative-research"]},
-    "REVIEW":            {"weight": 4, "keywords": ["deep-review", "deep review of", "before running deep review", "review request", "review loop", "iterative review", "severity findings", "release readiness", "review convergence", "audit the diff", "deep review", "iterative review loop", "severity weighted findings", "convergence review", "release-readiness", "deep-review wave"]},
-    "AI_COUNCIL":        {"weight": 4, "keywords": ["ai council", "council deliberation", "multi-seat", "planning council", "council convergence", "seat diversity", "deep-ai-council", "ai council deliberation", "multi-seat planning council"]}
+    "RESEARCH":          {"weight": 4, "keywords": ["deep research", "iterative investigation", "research loop", "research summary", "investigate why", "autoresearch", "research convergence", "deep-research", "iterative investigation workflow", "research convergence detection", "iterative-research", "find out everything"]},
+    "REVIEW":            {"weight": 4, "keywords": ["deep-review", "deep review of", "before running deep review", "review request", "review loop", "iterative review", "severity findings", "release readiness", "review convergence", "audit the diff", "deep review", "iterative review loop", "severity weighted findings", "convergence review", "release-readiness", "deep-review wave", "findings stop changing"]},
+    "AI_COUNCIL":        {"weight": 4, "keywords": ["ai council", "council deliberation", "multi-seat", "planning council", "council convergence", "seat diversity", "deep-ai-council", "ai council deliberation", "multi-seat planning council", "several models"]}
 }
 
 RESOURCE_MAP = {

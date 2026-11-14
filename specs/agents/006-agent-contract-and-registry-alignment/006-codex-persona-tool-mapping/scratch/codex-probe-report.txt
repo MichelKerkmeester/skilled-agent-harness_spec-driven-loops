@@ -1,0 +1,23 @@
+## Context Package: Agents listed in `.skilled/agents/README.txt`
+
+### Memory Context
+- No continuity records were requested or read.
+
+### Codebase Findings
+- `.skilled/agents/README.txt:24-36` lists: `ai-council`, `code`, `context`, `debug`, `deep-research`, `deep-review`, `design`, `markdown`, `orchestrate`, `prompt-improver`, and `review`.
+
+### Pattern Analysis
+- The roster gives each agent a short role description (`.skilled/agents/README.txt:24-36`).
+
+### Nested Dispatch Status
+- Status: `_No sub-agents dispatched (policy)_`
+- Boundary: Read-only retrieval; no delegation requested.
+
+### Gaps & Unknowns
+- None for the requested roster.
+
+### Recommendation
+- **Verdict**: proceed
+- **Rationale**: The requested list is present in the file.
+
+FILES READ: .skilled/agents/README.txt

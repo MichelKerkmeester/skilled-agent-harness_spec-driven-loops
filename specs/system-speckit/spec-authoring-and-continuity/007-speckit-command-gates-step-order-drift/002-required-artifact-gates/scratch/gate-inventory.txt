@@ -1,0 +1,89 @@
+== speckit-plan.yaml
+      - { id: feature_description, points: 30 }
+      - { id: spec_path_valid, points: 30 }
+      - { id: no_blocking_deps, points: 20 }
+      - { id: execution_mode_set, points: 20 }
+      - { id: spec_exists, points: 25 }
+      - { id: plan_exists, points: 25 }
+      - { id: tasks_exists, points: 20 }
+      - { id: context_saved, points: 15 }
+== speckit-implement.yaml
+      - { id: prerequisites_complete, points: 30 }
+      - { id: plan_clarity, points: 25, criteria: "Pass only when plan.md states a concrete technical approach and affected files; fail if a material design choice remains." }
+      - { id: task_breakdown_quality, points: 25 }
+      - { id: all_tasks_complete, points: 30 }
+      - { id: tests_pass, points: 25 }
+      - { id: summary_exists, points: 25 }
+      - { id: checklist_verified, points: 20 }
+== speckit-complete.yaml
+      - { id: feature_description, points: 30 }
+      - { id: spec_path_valid, points: 30 }
+      - { id: execution_mode_set, points: 20 }
+      - { id: continuity_ladder_walked, points: 20 }
+      - { id: spec_exists, points: 20 }
+      - { id: spec_no_clarification, points: 5 }
+      - { id: plan_exists, points: 20 }
+      - { id: plan_has_approach, points: 5 }
+      - { id: tasks_exists, points: 20 }
+      - { id: tasks_has_format, points: 5 }
+      - { id: checklist_verified, points: 15 }
+      - { id: review_approval, points: 10 }
+      - { id: tasks_complete, points: 30 }
+      - { id: summary_exists, points: 25 }
+      - { id: summary_sections, points: 15 }
+      - { id: memory_saved, points: 20 }
+      - { id: validation_passed, points: 10 }
+speckit-implement.yaml:411:  step_overrides: { step_7: "critical - must complete or fail explicitly" }
+speckit-implement.yaml:437:  step_order: sequential_mandatory
+speckit-implement.yaml:443:  step_completion_rule: "Execute ALL activities → Verify ALL outputs → Mark step complete → THEN proceed. NEVER skip steps, NEVER proceed without completion, NEVER jump to coding before Step 6."
+speckit-implement.yaml:471:  step_1_review_plan_and_spec:
+speckit-implement.yaml:497:  step_2_task_breakdown:
+speckit-implement.yaml:526:  step_3_analysis:
+speckit-implement.yaml:537:  step_4_acceptance_criteria:
+speckit-implement.yaml:556:  step_5_implementation_check:
+speckit-implement.yaml:571:  step_5_5_preflight:
+speckit-implement.yaml:597:  step_6_development:
+speckit-implement.yaml:661:  step_6_5_checkpoint_development:
+speckit-implement.yaml:673:  step_6_7_acceptance_verify:
+speckit-implement.yaml:696:  step_7_completion:
+speckit-implement.yaml:733:  step_7_5_postflight:
+speckit-implement.yaml:762:  step_8_save_context:
+speckit-implement.yaml:785:  step_9_session_handover_check:
+speckit-implement.yaml:824:  step_validation_fails: "Review requirements, ask clarifying questions, retry"
+speckit-plan.yaml:470:  step_order: sequential_mandatory
+speckit-plan.yaml:476:  step_completion_rule: "Execute ALL activities -> Verify ALL outputs -> Mark step complete -> ONLY THEN proceed. NEVER skip steps. NEVER proceed without completion. NEVER implement without /speckit:implement."
+speckit-plan.yaml:485:  step_0.5_intake_branch:
+speckit-plan.yaml:551:  step_0.6_intake_only_gate:
+speckit-plan.yaml:580:  step_1_request_analysis:
+speckit-plan.yaml:606:  step_2_pre_work_review:
+speckit-plan.yaml:618:  step_3_specification:
+speckit-plan.yaml:666:  step_4_clarification:
+speckit-plan.yaml:677:  step_5_planning:
+speckit-plan.yaml:809:  step_5_5_task_breakdown:
+speckit-plan.yaml:838:  step_6_save_context:
+speckit-plan.yaml:857:  step_7_handover_check:
+speckit-plan.yaml:904:  step_validation_fails: "Review requirements, ask clarifying questions, retry"
+speckit-complete.yaml:573:  step_order: sequential_mandatory
+speckit-complete.yaml:582:  step_completion_rule: |
+speckit-complete.yaml:616:  step_0_autopilot_envelope:
+speckit-complete.yaml:646:  step_0.5_intake_branch:
+speckit-complete.yaml:705:  step_1_request_analysis:
+speckit-complete.yaml:740:  step_2_pre_work_review:
+speckit-complete.yaml:775:  step_3_specification:
+speckit-complete.yaml:830:  step_4_clarification:
+speckit-complete.yaml:849:  step_5_acceptance_criteria:
+speckit-complete.yaml:883:  step_6_planning:
+speckit-complete.yaml:990:  step_6_5_checkpoint_planning:
+speckit-complete.yaml:1006:  step_7_task_breakdown:
+speckit-complete.yaml:1054:  step_8_analysis:
+speckit-complete.yaml:1081:  step_9_implementation_check:
+speckit-complete.yaml:1103:  step_9_5_preflight:
+speckit-complete.yaml:1112:  step_10_development:
+speckit-complete.yaml:1184:  step_10_5_checkpoint_development:
+speckit-complete.yaml:1200:  step_11_acceptance_verify:
+speckit-complete.yaml:1230:  step_11_5_postflight:
+speckit-complete.yaml:1239:  step_12_completion:
+speckit-complete.yaml:1279:  step_13_save_context:
+speckit-complete.yaml:1313:  step_13_5_autopilot_archive_verify_merge:
+speckit-complete.yaml:1342:  step_14_handover_check:
+speckit-complete.yaml:1399:  step_validation_fails: "Review requirements, ask clarifying questions, retry step"

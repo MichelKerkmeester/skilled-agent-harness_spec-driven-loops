@@ -1,0 +1,27 @@
+# After the phase 003 edits, on top of 527a8f97e5
+
+## T014: one cited skill path renamed in a scratch copy
+# Method: the agents directory and the script were copied to a temp tree whose .skilled/skills links to the real one.
+# In the copy of deep-review.md, sk-code-review/SKILL.md was renamed to SKILL-renamed.md in every citation.
+agent-roster: OK
+control exit=0
+missing skill path: deep-review: .skilled/skills/sk-code/sk-code-review/SKILL-renamed.md
+agent-roster: FAIL (1 problem(s))
+renamed exit=1
+
+## T015: time of the check on the real tree
+agent-roster: OK
+node .skilled/bin/sync-agent-roster.cjs --check  0.03s user 0.01s system 60% cpu 0.062 total
+
+## T015: tool-call count of one design dispatch after the edit
+# Method: the same as the baseline. A general-purpose agent on Sonnet read .claude/agents/design.md in this worktree and acted as it, read-only, on the same task.
+tool calls: 6 (design.md, sk-code/SKILL.md, sk-code-frontend/SKILL.md, web-visual-values.md, web-motion-and-interaction.md, tokens.css)
+# The baseline was 4. The two extra calls are the two entry files. The agent reported nothing it could not find.
+
+## Measured Behavior rerun
+$ rg -l 'compiled-route' .skilled/agents | wc -l
+       0
+$ rg -o 'sk-code/sk-code-frontend/[a-z/.-]+' .skilled/agents/design.md | sort -u | wc -l
+       0
+$ rg -o '\.skilled/skills/sk-doc/sk-create-[a-z-]+/[A-Za-z0-9_./-]+' .skilled/agents/markdown.md | sort -u | wc -l
+      12

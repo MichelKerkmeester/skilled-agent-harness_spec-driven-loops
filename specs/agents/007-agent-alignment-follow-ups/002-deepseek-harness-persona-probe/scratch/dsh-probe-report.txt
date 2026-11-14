@@ -1,0 +1,26 @@
+## Context Package: First heading of `.skilled/agents/README.txt`
+
+### Memory Context
+- No spec-doc or continuity material consulted; dispatch scoped me to a single file.
+
+### Codebase Findings
+- `.skilled/agents/README.txt:1-2` — First heading line, word for word: `AGENTS DIRECTORY` (set as underlined heading with `================`).
+- `.skilled/agents/README.txt:4-9` — Described as directory of agent definitions for the OpenCode runtime; sibling runtime `.claude/agents/`.
+
+### Pattern Analysis
+- Heading style: uppercase plain text with `=` underrule, not Markdown `#`.
+- Naming: uppercase section titles; generated roster fenced by `# BEGIN/END GENERATED` comments (`:18`, `:31`).
+
+### Nested Dispatch Status
+- Status: `_No sub-agents dispatched (policy)_`
+- Boundary: No delegation or mutation requested; none performed.
+
+### Gaps & Unknowns
+- None within scope; no other file was read and no content beyond scope was verified.
+
+### Recommendation
+- **Verdict**: proceed
+- **Rationale**: The requested line was located and verified at `README.txt:1` verbatim.
+- **Suggested next**: Use `AGENTS DIRECTORY` as the first heading; direct further roster questions to `agent-registry.json` per `README.txt:18`.
+
+FILES READ: .skilled/agents/README.txt

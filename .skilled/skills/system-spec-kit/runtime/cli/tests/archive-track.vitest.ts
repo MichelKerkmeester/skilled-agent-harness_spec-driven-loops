@@ -211,6 +211,20 @@ describe('archive.sh with tracks', () => {
     expect(fs.existsSync(path.join(specs, 'zeta', 'z_archive', '001-old'))).toBe(false);
   });
 
+  // A validator that printed no verdict never checked the packet, so the
+  // restore is unfinished even though every relocation step landed.
+  it('reports the restore as unfinished when the relocated validation printed no RESULT line', { timeout: 120_000 }, () => {
+    installRestoreTools({ validate: '#!/usr/bin/env bash\nexit 1\n' });
+    trackRoot('zeta', ['zeta/001-holder', 'zeta/004-live']);
+    packet('zeta/z_archive/001-old');
+    commitFixture();
+
+    const result = archive(['--restore', 'specs/zeta/z_archive/001-old']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(1);
+    expect(result.stdout + result.stderr).toContain('Restore did not finish');
+  });
+
   // A relocation step that fails still leaves the restore unfinished.
   it('keeps the restore failure when a relocation step fails', { timeout: 120_000 }, () => {
     installRestoreTools({ repairDerived: 'process.exit(1);\n' });
@@ -675,6 +689,27 @@ describe('archive.sh restore preflight', () => {
     expect(fs.existsSync(path.join(specs, 'flat', 'z_archive', '002-old'))).toBe(false);
   });
 
+  // The mixed-track verdict is read from the declared sub-tracks in the shell,
+  // so a flat-track restore never asks the relocation engine for one first.
+  it('restores into a flat track without running a relocation dry run', { timeout: 120_000 }, () => {
+    installRestoreTools();
+    trackRoot('flat', ['flat/001-live']);
+    packet('flat/z_archive/002-old');
+    const calls = path.join(repo, 'relocate-calls.log');
+    fs.writeFileSync(
+      path.join(path.dirname(archiveScript), 'relocate.mjs'),
+      `import fs from 'node:fs';\nfs.appendFileSync(${JSON.stringify(calls)}, process.argv.slice(2).join(' ') + '\\n');\n`,
+    );
+
+    const result = archive(['--restore', 'specs/flat/z_archive/002-old']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(fs.existsSync(path.join(specs, 'flat', '002-old', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'flat', 'z_archive', '002-old'))).toBe(false);
+    const recorded = fs.existsSync(calls) ? fs.readFileSync(calls, 'utf8') : '';
+    expect(recorded, 'the restore asked relocate.mjs for a mixed-track verdict').toBe('');
+  });
+
   // An archive leaves the tree dirty, so the preflight for the restore behind it
   // can refuse on the uncommitted move. That verdict is not the mixed-track one
   // and must not block the restore.
@@ -690,6 +725,18 @@ describe('archive.sh restore preflight', () => {
     expect(result.status, result.stdout + result.stderr).toBe(0);
     expect(fs.existsSync(path.join(specs, 'flat', '002-old', 'spec.md'))).toBe(true);
     expect(fs.existsSync(path.join(specs, 'flat', 'z_archive', '002-old'))).toBe(false);
+  });
+});
+
+describe('archive.sh help', () => {
+  // Both restore outcomes are decisions a caller cannot read from the exit code
+  // alone, so the help names them where the other notes sit.
+  it('names the mixed-track refusal and the failed-validation warning', () => {
+    const result = archive(['--help']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(result.stdout).toMatch(/^.*would hold flat packets.*$/m);
+    expect(result.stdout).toMatch(/^.*own validation.*$/m);
   });
 });
 

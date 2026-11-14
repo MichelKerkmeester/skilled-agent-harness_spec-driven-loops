@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/003-execution-mode-and-autopilot-contract",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/003-execution-mode-and-autopilot-contract",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "execution mode and autopilot contract",
+      "phase 3 execution mode and autopilot contract",
+      "execution mode and autopilot contract plan",
+      "execution mode and autopilot contract tasks",
+      "execution mode and autopilot contract acceptance criteria",
+      "execution mode and autopilot contract implementation summary"
+    ],
+    "key_topics": [
+      "execution",
+      "mode",
+      "autopilot",
+      "contract",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "agent"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/speckit/assets/speckit-complete.yaml",
+      ".skilled/commands/speckit/assets/speckit-plan.yaml",
+      ".skilled/commands/speckit/assets/speckit-implement.yaml",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/speckit-autopilot-contract.vitest.ts",
+      ".skilled/skills/system-spec-kit/README.md",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      "scratch/check-mode-tags.py",
+      ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
+      ".skilled/commands/speckit/assets/speckit-implement-presentation.txt",
+      ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
+      ".skilled/commands/speckit/plan.md",
+      ".skilled/commands/speckit/implement.md",
+      ".skilled/commands/speckit/complete.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/lifecycle/speckit-autopilot-lifecycle.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/lifecycle/speckit-autopilot-lifecycle.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-complete.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-complete.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-plan.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-plan.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-implement.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-implement.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-autopilot-contract.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/speckit-autopilot-contract.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-mode-tags.py",
+        "kind": "file",
+        "path": "scratch/check-mode-tags.py",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-plan-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-implement-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/assets/speckit-implement-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-complete-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "implement.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/implement.md",
+        "source": "derived"
+      },
+      {
+        "name": "complete.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/complete.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-autopilot-lifecycle.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/lifecycle/speckit-autopilot-lifecycle.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An agent that runs `/speckit:plan:autopilot` or `/speckit:implement:autopilot` finds no autopilot block in the workflow, so it has no result line, no reason codes and no rule for what to do when it would ask",
+    "created_at": "2026-11-14T11:33:20Z",
+    "last_save_at": "2026-11-14T13:55:59.178Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cd1e82625908fa12ada6a5dfb2150efd88b0cedd57bd85b47c3b1d36f1d4be4d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4baef64a9fffcfd469955747419cd5bd8e384fa07fac3619a24a91075530bb10",
+      "plan.md": "e4ac773ac275a265326179c0620fe3a85b14065495387ae4e94e0231d71a53ba",
+      "tasks.md": "9ac139486426ed355f02a13a569fd9ea83b92e15414fb2c330698927220c36ed",
+      "implementation-summary.md": "264b5fcbfda06c77380ac2749e12c47a98b665b6062bb1062a6b2a08d841cc20"
+    },
+    "last_active_at": null
+  }
+}

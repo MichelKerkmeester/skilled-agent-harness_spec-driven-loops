@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`relocate.mjs` tells the operator to rerun the same map after a failed step, but the rerun cannot always finish the work",
     "created_at": "2026-11-14T06:10:59Z",
-    "last_save_at": "2026-11-14T09:23:35.778Z",
+    "last_save_at": "2026-11-14T14:14:25.695Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9fe4db0e68a86c6888cd5cc8334167bc8b8bff5402ffb41c093f291d43a7260c",
+    "source_fingerprint": "sha256:25aa2edee9c607a7c7381a1f056702fdbeaca270211dd79abf6c9c4d8ac15e71",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fe344dbbe460bb8b82374a78214c203eb8765499dc6cee943389dcd19a80e7b2",
       "plan.md": "4042322fba64667d84a2b20986eeeb8e5eebb3fad3dc1bb41ad0b767e56432a3",
-      "tasks.md": "5784a3a636d679a1fc09465505195d422cf465f79eddda79f1c47b8cb6096a6d",
-      "implementation-summary.md": "5872b75a800c9ae85269a79db62cb11c31418a8ffd190aff52391eaa3d407020"
+      "tasks.md": "b9eeeb6f8a9247debc12913977dd678b3332b8a08a477a16418e8a8ab6d94d14",
+      "implementation-summary.md": "bcaaf53f275aa3df87e14256b8daa78e0ef81710f3ef93177e07142509dbacc0"
     },
     "last_active_at": null
   }

@@ -1,0 +1,9 @@
+total 16
+drwxr-xr-x@   8 michelkerkmeester  staff   256 Nov  6 07:47 .
+drwxr-x---@ 124 michelkerkmeester  staff  3968 Nov 14 18:09 ..
+-rw-r--r--@   1 michelkerkmeester  staff    37 Nov  5 22:59 .anonymous-user-id
+-rw-------@   1 michelkerkmeester  staff   161 Nov  6 07:45 .credentials.yaml
+drwx------@   3 michelkerkmeester  staff    96 Nov  6 07:47 logs
+drwxr-xr-x@   4 michelkerkmeester  staff   128 Nov  6 07:45 profiles
+drwx------@   7 michelkerkmeester  staff   224 Nov 13 07:15 sessions
+drwx------@   4 michelkerkmeester  staff   128 Nov  6 07:45 storages

@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers",
+  "spec_folder": "agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers",
+  "parent_id": "agents/006-agent-contract-and-registry-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill binding through routers",
+      "phase 3 skill binding through routers",
+      "skill binding through routers plan",
+      "skill binding through routers tasks",
+      "skill binding through routers acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "skill binding through routers implementation summary"
+    ],
+    "key_topics": [
+      "skill",
+      "binding",
+      "routers",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal",
+      "durable",
+      "directive"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/bin/sync-agent-roster.cjs",
+      ".skilled/bin/sync-agent-roster.vitest.ts",
+      ".skilled/agents/design.md",
+      ".skilled/agents/markdown.md",
+      ".skilled/agents/deep-review.md",
+      ".skilled/agents/debug.md",
+      ".skilled/agents/prompt-improver.md",
+      ".skilled/agents/orchestrate.md",
+      "scratch/route-parity.md",
+      "scratch/after.txt",
+      ".skilled/agents/agent-registry.json",
+      ".skilled/bin/check-agent-mirror-sync.cjs",
+      ".skilled/skills/sk-code/ROUTER.md",
+      ".skilled/skills/sk-doc/ROUTER.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agent-roster.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/sync-agent-roster.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agent-roster.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/sync-agent-roster.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": ".skilled/agents/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.md",
+        "kind": "doc",
+        "path": ".skilled/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".skilled/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "debug.md",
+        "kind": "doc",
+        "path": ".skilled/agents/debug.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.md",
+        "kind": "doc",
+        "path": ".skilled/agents/prompt-improver.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "route-parity.md",
+        "kind": "doc",
+        "path": "scratch/route-parity.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "agent-registry.json",
+        "kind": "config",
+        "path": ".skilled/agents/agent-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-agent-mirror-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/check-agent-mirror-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`code` and `review` load `sk-code/SKILL.md` and take whatever route it returns, which survives a reorganised skill",
+    "created_at": "2026-11-14T11:36:22Z",
+    "last_save_at": "2026-11-14T13:05:00.799Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:54aba8e82c925552ee1d5cf9c63d3567368b094833bda609513be93008d2ae0c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f797c6019e30be674282b512af343ce2122b0bc67e9ae5ab17c76e2451b07c71",
+      "plan.md": "1b04422fecaf26ba1b90170279c7e987599d0614734246bc07cc56a88f6ef062",
+      "tasks.md": "26fc436d323d3a7dfd673635e6d51c3101d70c02b8513f9e53a0218a822ff763",
+      "implementation-summary.md": "c99922267f9917669ff98f76c35cfa73ab7385f69f7ed3b15c29259c2cc3660e"
+    },
+    "last_active_at": null
+  }
+}

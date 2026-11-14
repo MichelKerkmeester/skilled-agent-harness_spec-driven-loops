@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/005-resume-detection-and-single-workflow",
+  "description": "Phase 5: resume-detection-and-single-workflow",
+  "keywords": [
+    "phase",
+    "resume-detection-and-single-workflow"
+  ],
+  "lastUpdated": "2026-11-14T11:33:22.803Z",
+  "specId": "005",
+  "folderSlug": "resume-detection-and-single-workflow",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "007-speckit-command-gates-step-order-drift"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

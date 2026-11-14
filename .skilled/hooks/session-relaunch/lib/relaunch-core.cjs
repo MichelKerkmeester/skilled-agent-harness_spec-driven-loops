@@ -627,21 +627,29 @@ function claudeSessionLogPath(sessionId, env) {
   return null;
 }
 
-// Whether the note this session was started from says the goal it carried had ended. Notes
-// sit side by side, so the one the session claimed is found beside the note it now hands over.
+// Whether the note this session claimed last says the goal it carried had ended. Notes sit
+// side by side, so the one the session claimed is found beside the note it now hands over.
+// Only that note speaks: a session that claims a newer note has left the earlier work behind,
+// and a mark on it would end a goal the session never had. A note with no claim time counts as
+// older than any note that carries one, so it never displaces a later claim.
 function claimedNoteEndedGoal(handoffPath, sessionId) {
   if (!nonEmptyString(handoffPath)) return false;
   const directory = path.dirname(handoffPath);
+  let lastClaimed = null;
   for (const fileName of safeDirectory(directory)) {
     if (!fileName.endsWith('.md')) continue;
     try {
       const { frontmatter } = parseHandoff(readHandoffText(path.join(directory, fileName)));
-      if (frontmatter.claimed_by === sessionId && frontmatter.goal_ended === 'true') return true;
+      if (frontmatter.claimed_by !== sessionId) continue;
+      const claimedAt = nonEmptyString(frontmatter.claimed_at) ? frontmatter.claimed_at : '';
+      if (lastClaimed === null || claimedAt > lastClaimed.claimedAt) {
+        lastClaimed = { claimedAt, frontmatter };
+      }
     } catch {
       // A note that cannot be read or parsed says nothing about a goal.
     }
   }
-  return false;
+  return lastClaimed !== null && lastClaimed.frontmatter.goal_ended === 'true';
 }
 
 function claudeGoalPacketResult({ sessionId, specFolder, roots, handoffPath, env }) {
@@ -654,13 +662,18 @@ function claudeGoalPacketResult({ sessionId, specFolder, roots, handoffPath, env
     // An unreadable projects folder reads like a missing log.
   }
   // The log is the only record of a Claude goal, so a log that is missing or cannot be read
-  // leaves the goal unproven.
-  if (logPath === null) return none;
+  // leaves the goal unproven. A mark the note claimed last carries still stands, because the
+  // operator ended that goal and a log this session cannot read cannot bring it back.
+  if (logPath === null) {
+    if (claimedNoteEndedGoal(handoffPath, sessionId)) return { ...none, ended: true };
+    return none;
+  }
   let latest;
   let whole;
   try {
     ({ latest, whole } = latestGoalLogEntry(logPath));
   } catch {
+    if (claimedNoteEndedGoal(handoffPath, sessionId)) return { ...none, ended: true };
     return none;
   }
   // A session that never had a goal set leaves the receiver waiting for the operator to type

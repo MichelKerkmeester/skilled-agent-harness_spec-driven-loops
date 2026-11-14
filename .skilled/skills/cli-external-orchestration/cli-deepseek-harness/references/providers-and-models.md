@@ -9,7 +9,7 @@ trigger_phrases:
   - "deepseek harness providers"
 importance_tier: important
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # DeepSeek Harness - Providers and Models
@@ -42,7 +42,7 @@ Exactly two routes. Anything else is refused before launch.
 
 | Route | Provider id | Model id | Protocol | Base URL | Key variable | Route patch | Status |
 |---|---|---|---|---|---|---|---|
-| LLM Gateway | `llmgateway` | `deepseek-v4.1-flash-1017` | `openai-completions` | `https://api.llmgateway.io/v1` | `LLMGATEWAY_API_KEY` | `.dsh/patches/route-llmgateway-deepseek.patch.yml` | Verified 2026-11-06 on dsh 0.2.2-rc.1: exit 0 and `completed` |
+| LLM Gateway | `llmgateway` | `deepseek-v4.1-flash-1017` | `openai-completions` | `https://api.llmgateway.io/v1` | `LLMGATEWAY_API_KEY` | `.dsh/patches/route-llmgateway-deepseek.patch.yml` | Verified 2026-11-14 on dsh 0.2.2-rc.3: exit 0 and `completed` |
 | OpenCode Go | `opencode-go` | `deepseek-v4.1-flash` | `openai-completions` | `https://opencode.ai/zen/go/v1` | `OPENCODE_API_KEY` | `.dsh/patches/route-opencode-go-deepseek.patch.yml` | Proven 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1` |
 
 Composition observed means `--dump-config` with the draft route patch and the lineage patch, from a disposable home, showed `agent-default-model` naming that provider and model, and the `llm-pi-ai` row carrying that provider with `apiKeyEnv` naming its key variable (`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/002-dsh-offline-contract-pin/evidence/dump-config-llmgateway.txt` and `dump-config-opencode-go.txt`). It does not show that a request reaches the provider, which needs a key.

@@ -325,7 +325,13 @@
     "exempt from the render checks",
     "render exempt map",
     "kept every claim",
-    "kept every original claim"
+    "kept every original claim",
+    "specialist persona file",
+    "prompt shortcut",
+    "before and after my rewrite",
+    "intent file",
+    "new agent definition",
+    "reusable prompt shortcut"
   ],
   "derived": {
     "trigger_phrases": [
@@ -784,6 +790,12 @@
     "exempt from the render checks",
     "render exempt map",
     "kept every claim",
-    "kept every original claim"
+    "kept every original claim",
+    "specialist persona file",
+    "prompt shortcut",
+    "before and after my rewrite",
+    "intent file",
+    "new agent definition",
+    "reusable prompt shortcut"
   ]
 }

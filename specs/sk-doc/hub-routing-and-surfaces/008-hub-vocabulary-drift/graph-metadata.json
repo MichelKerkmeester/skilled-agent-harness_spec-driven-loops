@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift",
+  "spec_folder": "sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift",
+  "parent_id": "sk-doc/hub-routing-and-surfaces",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hub vocabulary drift",
+      "add the nine hub router json phrases",
+      "hub vocabulary drift plan",
+      "hub vocabulary drift tasks",
+      "hub vocabulary drift implementation summary"
+    ],
+    "key_topics": [
+      "hub",
+      "vocabulary",
+      "drift",
+      "nine",
+      "router",
+      "json",
+      "phrases",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "commit"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/ROUTER.md",
+      ".skilled/skills/system-deep-loop/ROUTER.md",
+      ".skilled/skills/sk-doc/graph-metadata.json",
+      ".skilled/skills/system-deep-loop/graph-metadata.json",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
+      "specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-deep-loop/manifest.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json",
+      "specs/sk-doc/hub-routing-and-surfaces/graph-metadata.json",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+      "scratch/measured-before.txt",
+      ".skilled/skills/sk-doc/hub-router.json",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "manifest.json",
+        "kind": "config",
+        "path": ".skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "local-native-approved-divergences.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "corpus-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "generation-diagnostics.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
+        "source": "derived"
+      },
+      {
+        "name": "phrase-variants.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
+        "source": "derived"
+      },
+      {
+        "name": "measured-before.txt",
+        "kind": "file",
+        "path": "scratch/measured-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Routing Registry Drift Guard",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Commit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Commit 7af52ef940 (command surfacing, 2026-11-13) added nine phrases to the `vocabularyClasses` of two `hub-router.json` files and did not carry them to the hubs' root `ROUTER.md`",
+    "created_at": "2026-11-13T21:40:26Z",
+    "last_save_at": "2026-11-14T16:46:43.264Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:8627aa348379c039ab86c648e187a87bc8132ff3ffa3e0ec334d522ba2a04123",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c8c2f97ef5b43cea73ad936d47f3c4a4313eab995e7823b26f8c6d9429664af3",
+      "plan.md": "1f8ccd6139541fd89980b5d1c6aad37db5438376dad6a14dce25ee8e3904e90d",
+      "tasks.md": "e9630433f44cd2c2f6e9fcab0461c2e22eb19be599505bf05644a35def4eb2da",
+      "implementation-summary.md": "b3cd418efa7fd32cc8bceabfe9916cac012cb7593e7f32877b4dc3098e258414"
+    },
+    "last_active_at": null
+  }
+}

@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.23.0
+version: 1.0.24.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -257,7 +257,7 @@ Run the Claude adapter suite:
 node --test .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
 ~~~
 
-Evidence: a context-nudge payload with an invalid session id produces no output. A Stop payload without `transcript_path` keeps the record pending, stamps `deferredAt` on it and logs `missing-transcript-path`. PASS when both cases keep their stated outputs and state. FAIL when the invalid id is injected or the Stop hook arms without a transcript path.
+Evidence: a context-nudge payload with an invalid session id produces no output. A Stop payload without `transcript_path` keeps the record pending, stamps `deferredAt` on it, logs `missing-transcript-path` and prints one `systemMessage` notice that says the Stop carried no transcript path, the next prompt withdraws the hand-over and a later Stop that carries the path arms it instead. The case is `stop-arm logs missing-transcript-path and marks the pending record deferred`. PASS when both cases keep their stated outputs and state. FAIL when the invalid id is injected, the Stop hook arms without a transcript path, or the notice stays silent.
 
 #### Killer lock and signal checks (Automatable)
 
@@ -371,7 +371,7 @@ Run the wrapper suite:
 node --test .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-*.test.cjs
 ~~~
 
-Evidence: tests cover the Claude default with no args or a prompt, first-launch `-n` preservation, `--` ending name scanning, exit 130 printing the manual command without a hop, missing cwd or CR/LF returning 1, consume failure warning while the wrapper continues, a withdrawn decline printing one warning and no manual command, and decider failure preserving Claude's exit code. PASS when each case returns the expected arguments, warning or exit code. FAIL when the wrapper relaunches after exit 130 or changes the runtime exit code after a decider failure.
+Evidence: tests cover the Claude default with no args or a prompt, first-launch `-n` preservation, `--` ending name scanning, exit 130 printing the manual command without a hop, missing cwd or CR/LF returning 1, consume failure warning while the wrapper continues, a withdrawn decline printing one warning and no manual command, and decider failure preserving Claude's exit code. A hop whose wrapper file changed after the loop started prints one `note: skilled-loop changed on disk after this loop started` line and appends one `wrapper-changed` line with the loop id to `relaunch.log` (`a hop says so when the wrapper file changed after the loop started` and `a hop logs wrapper-changed when the wrapper file changed after the loop started`). A wrapper file that cannot be read at the hop, or could not be read at loop start, prints and logs nothing, because a checksum read at one end and not the other is unknown and never a change (`a hop prints and logs nothing when the wrapper file cannot be read` and `a hop prints and logs nothing when the wrapper file could not be read at loop start`). PASS when each case returns the expected arguments, warning or exit code. FAIL when the wrapper relaunches after exit 130, changes the runtime exit code after a decider failure, or reports a change it cannot prove.
 
 #### Note-only nudge outside skilled-loop (Automatable)
 
@@ -808,6 +808,10 @@ Evidence: exit code 0 and these cases pass.
 - `goal-handover.test.cjs`: `renders exactly the chat slice the goal command prints, without frontmatter or comments` and `sends a slice of exactly 4000 characters and refuses 4001`.
 - `claude-adapters.test.cjs`: `compact-pointer delivers the claim at the start of a goal-command receiver` and `compact-pointer adds no start claim for a dispatched child, a switched-off goal or a disabled hook`.
 - `skilled-loop-wrapper-*.test.cjs`: `a Claude hop with a goal starts on the goal command and carries the claim in the environment`, `a Claude hop keeps the claim seed as its start prompt when no goal can be sent` and `wrapper exports no goal packet when SESSION_RELAUNCH_GOAL is 0`.
+- `relaunch-core.test.cjs`: `a goal the sender ended stays ended for a receiver that sets none`, `the ended-goal mark counts only from the note this session claimed last`, `a goal the sender ended stays ended when the session log cannot be read` and `resolveGoalPacket looks no further up than the parent of the note folder`.
+- `session-relaunch-cli.test.cjs`: `prepare gives a Claude sender with no goal the unfinished goal of the note packet` and `prepare marks an ended Claude goal in the note and keeps it ended one hop later`.
+
+An ended Claude goal leaves `goal_ended: true` in the note, and a receiver that sets no goal of its own keeps it ended one hop later. The mark counts only from the note that session claimed last, and a session log the sender cannot read cannot undo it.
 
 PASS when every named case passes. FAIL when a case is missing from the run or fails.
 
@@ -931,7 +935,7 @@ NO_GOAL=1 bash "$out/run-hop-worker.sh" claude "$sandbox" "$out" worker
 bash "$harness/finish-run.sh" claude "$out"
 ~~~
 
-`patch` writes the variant to `$out` and leaves `run-hop.sh` unchanged. The diff changes the note's Remaining work paragraph to the worker and prepare commands. It also replaces the fixed sender prompt with one that runs both commands and then replies `DONE`. The sender starts the worker in its first Bash tool call. The shell that started it exits, so the worker is reparented to pid `1`. The sender runs `prepare` in its next call. `run-hop.sh` sets `here` to the folder that holds the script and reads `goal-records.cjs` from that folder. The check links that helper from the harness folder into `$out`, so the patched script finds it beside itself. `build-sandbox.sh` and `finish-run.sh` read their helpers from the harness folder.
+`patch` writes the variant to `$out` and leaves `run-hop.sh` unchanged. The diff changes the note's Remaining work paragraph to the worker and prepare commands. It also replaces the fixed sender prompt with one that runs both commands and then replies `DONE`. The sender starts the worker in its first Bash tool call. The shell that started it exits, so the worker is reparented to pid `1`. The sender runs `prepare` in its next call. `run-hop.sh` sets `here` to the folder that holds the script and reads `goal-records.cjs` from that folder. The check copies that helper from the harness folder into `$out`, so the patched script finds it beside itself. `build-sandbox.sh` and `finish-run.sh` read their helpers from the harness folder.
 
 The note's `Running workers:` line says `none` and names no worker while the `&` worker runs. `prepare` accepts it because `runningWorkersReason` reads only the note text and takes `none` as the answer, so the worker is invisible to that check. `PREPARE.exit` is `0` for this note.
 

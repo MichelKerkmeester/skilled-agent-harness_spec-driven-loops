@@ -81,6 +81,10 @@ NOTES:
       specs root, specs/<track>/z_archive/ in a track, a declared sub-track's
       own z_archive/ for its packets, <parent>/z_archive/ for a phase
     - Restore returns a spec to the folder its z_archive/ belongs to
+    - A restore into a track that has sub-tracks is refused, since the track
+      would hold flat packets beside them
+    - A restore whose packet fails its own validation is reported as restored
+      with a warning
     - A restore whose number a live packet already holds lands on the next free
       number, counting archived packets, through relocate.mjs
     - A z_archive/ that is a symlink is refused on archive and on restore
@@ -202,6 +206,10 @@ is_declared_subtrack() {
     track="$(basename "$(dirname "$folder")")"
     [[ "$name" != z_* && "$name" != .* && "$name" != node_modules && "$track" != z_* && "$track" != .* && "$track" != node_modules ]] || return 1
     [[ ! "$name" =~ ^[0-9]{3}([-_].+)?$ && ! "$track" =~ ^[0-9]{3}([-_].+)?$ ]] || return 1
+    # The relocation preflight counts a sub-track only under the name rule it
+    # applies to containers, so a declaration on a name that rule rejects is not
+    # a sub-track the restore has to respect.
+    [[ "$name" =~ ^[A-Za-z0-9][A-Za-z0-9._-]*$ && "$track" =~ ^[A-Za-z0-9][A-Za-z0-9._-]*$ ]] || return 1
     [[ ! -f "$folder/spec.md" && ! -f "$(dirname "$folder")/spec.md" ]] || return 1
     [[ ! -L "$folder/description.json" ]] || return 1
     [[ -f "$folder/description.json" ]] || return 1
@@ -355,32 +363,21 @@ if (ensureDescriptionCache([process.argv[2]]) === null) process.exit(1);
     fi
 }
 
-# A restore is refused when the relocation preflight for the same move reports
-# that its destination would leave a flat packet beside sub-tracks. The rule
-# lives in the preflight, so this asks for a dry run of that move and reads only
-# this one verdict; a dirty tree, a taken number and every other preflight
-# answer stay with the restore's own checks.
+# A restore is refused when its destination track holds a declared sub-track:
+# the track would then hold the restored packet flat beside a container whose
+# map covers the whole track. The declaration is read directly, with the same
+# container-name rule the relocation preflight applies to a sub-track.
 refuse_mixed_track_restore() {
     local archived="$1"
     local destination="$2"
     local specs_root="$3"
     local relocate_script="$SCRIPT_DIR/relocate.mjs"
-    local from_id to_id track track_dir sub sub_id preflight name
-    local status=0
+    local from_id to_id track track_dir sub sub_id="" name
 
-    [[ -f "$relocate_script" ]] || return 0
     track="$(track_of "$destination" "$specs_root")"
     # A packet already inside a sub-track has no track level above it that could
     # become mixed, so the preflight has no mixed-track verdict to give.
     [[ -n "$track" && "$track" != */* ]] || return 0
-
-    from_id="${archived#"$specs_root"/}"
-    to_id="${destination#"$specs_root"/}"
-    # set -e would end the script on every non-zero preflight exit, including
-    # "work found" and a plain refusal, so the status is captured with the
-    # output. Only the mixed-track line below decides.
-    preflight="$(node "$relocate_script" --from "$from_id" --to "$to_id" 2>&1)" || status=$?
-    [[ "$preflight" == *"would hold flat packets"* ]] || return 0
 
     track_dir="$specs_root/$track"
     for sub in "$track_dir"/*/; do
@@ -390,6 +387,12 @@ refuse_mixed_track_restore() {
             break
         fi
     done
+    # A track with no declared sub-track stays flat, so the restored packet joins
+    # the other flat packets there.
+    [[ -n "$sub_id" ]] || return 0
+
+    from_id="${archived#"$specs_root"/}"
+    to_id="${destination#"$specs_root"/}"
     name="$(basename "$to_id")"
     log_error "Restore refused: track specs/$track would hold flat packets. Move the packet into a sub-track instead: node $relocate_script --from $from_id --to ${sub_id:-$track/<sub>}/$name --apply"
     exit 1

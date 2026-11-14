@@ -73,8 +73,8 @@ describe('ai-council runtime mirror parity', () => {
     const canonicalLength = normalizeBody(canonicalBody).length;
 
     expect(canonicalHeaders.at(-3)).toBe('17. rollback for operators');
-    expect(canonicalHeaders.at(-2)).toBe('18. related resources');
-    expect(canonicalHeaders.at(-1)).toBe('19. summary');
+    expect(canonicalHeaders.at(-2)).toBe('18. hook-injected context routing');
+    expect(canonicalHeaders.at(-1)).toBe('19. related resources');
 
     for (const file of mirrors.slice(1)) {
       const body = bodyFor(file);

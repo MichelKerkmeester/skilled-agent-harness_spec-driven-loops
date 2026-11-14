@@ -1,0 +1,63 @@
+# After the cut, measured on the working tree at 9efcf3da86 plus the phase 005 changes
+
+## T013: words per file and in total
+$ wc -w .skilled/agents/*.md
+    6554 .skilled/agents/ai-council.md
+    5779 .skilled/agents/code.md
+    3675 .skilled/agents/context.md
+    3677 .skilled/agents/debug.md
+    4923 .skilled/agents/deep-research.md
+    5159 .skilled/agents/deep-review.md
+    2357 .skilled/agents/design.md
+    2459 .skilled/agents/markdown.md
+    8519 .skilled/agents/orchestrate.md
+    3412 .skilled/agents/prompt-improver.md
+    4342 .skilled/agents/review.md
+   50856 total
+
+## Words per section of code.md
+$ awk '/^## [0-9]+\. /{if(h)print n, h; h=$0; n=0; next} {n+=NF} END{print n, h}' .skilled/agents/code.md
+44 ## 0. ILLEGAL NESTING (HARD BLOCK)
+691 ## 1. CORE WORKFLOW
+111 ## 2. FAST PATH & CONTEXT PACKAGE
+325 ## 3. CAPABILITY SCAN
+54 ## 4. HOOK-INJECTED CONTEXT ROUTING
+573 ## 5. IMPLEMENTATION MODES
+705 ## 6. CODER ACCEPTANCE RUBRIC
+401 ## 7. CODER CHECKLIST
+292 ## 8. ORCHESTRATOR INTEGRATION
+434 ## 9. RETURN CONTRACT
+393 ## 10. RULES
+1009 ## 11. OUTPUT VERIFICATION
+257 ## 12. ANTI-PATTERNS
+58 ## 13. RELATED RESOURCES
+
+## Searches
+$ rg -l '^│' .skilled/agents | wc -l
+       0
+$ rg -c 'Use exact tools when the query gives exact evidence handles' .skilled/agents/context.md; echo exit=$?
+exit=1
+$ rg -l -U 'routing hints only\.
+They never override' .skilled/agents | wc -l
+      11
+
+## T016: deleted lines that name a permission or a boundary
+$ git diff main -- .skilled/agents | grep -E '^-[^-]' | grep -c deny
+0
+$ git diff 9efcf3da86 -- .skilled/agents | grep -E '^-[^-]' | grep -cE 'deny|NEVER|HARD BLOCK'
+0
+# The diff against main also shows one deleted line with NEVER, the Iron Law line of an agent file whose section reference phase 4 renumbered. The same line is added back with the new number.
+
+## Checks
+$ node .skilled/bin/sync-agent-roster.cjs --check; echo exit=$?
+agent-roster: OK
+exit=0
+$ node .skilled/bin/check-agent-mirror-sync.cjs --all | tail -1; echo exit=$?
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+exit=0
+
+## T006: the check before design.md and markdown.md were aligned (run after the script change, before the agent files changed)
+shared advisor block differs from the template: design
+shared advisor block differs from the template: markdown
+agent-roster: FAIL (2 problem(s))
+exit=1
