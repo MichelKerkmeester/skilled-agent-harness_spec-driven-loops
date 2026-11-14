@@ -7,7 +7,7 @@ trigger_phrases:
   - "doctor deep-loop"
 importance_tier: normal
 contextType: implementation
-version: 1.4.3.0
+version: 1.4.4.0
 ---
 
 # Deep Loop Runtime Integration Points
@@ -43,9 +43,8 @@ The removed MCP tool surface is not an integration point.
 
 | Surface | Call Shape | Purpose |
 |---|---|---|
-| `deep-review-auto.yaml` | `node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}"` | Graph convergence before stop decision. |
-| `deep-review-auto.yaml` | `node .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --nodes '{graph_nodes_json}' --edges '{graph_edges_json}'` | Persist reducer graph events. |
-| `deep-review-confirm.yaml` | Same script family with confirm-mode sequencing. | Checkpointed graph upsert and convergence. |
+| `deep-review.yaml` | `node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}"` | Graph convergence before stop decision. |
+| `deep-review.yaml` | `node .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --nodes '{graph_nodes_json}' --edges '{graph_edges_json}'` | Persist reducer graph events. |
 | `deep-review/assets/prompt-pack-iteration.md.tmpl` | Optional `graphEvents` array in iteration JSONL. | Produces coverage graph source events. |
 | `runtime/scripts/reduce-state.cjs` | Relocated into `runtime/scripts/` itself (deep-review's own import repointed here); imports coverage-graph runtime. | Consumes sibling runtime helpers from its new home. |
 
@@ -57,9 +56,8 @@ Review graph semantics: `loopType` is `review`; node kinds include `DIMENSION`, 
 
 | Surface | Call Shape | Purpose |
 |---|---|---|
-| `deep-research-auto.yaml` | `node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}"` | Graph convergence before inline stop vote. |
-| `deep-research-auto.yaml` | `node .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}" --nodes '{graph_upsert_nodes_json}' --edges '{graph_upsert_edges_json}'` | Persist research graph events. |
-| `deep-research-confirm.yaml` | Same script family with confirm-mode sequencing. | Checkpointed graph upsert and convergence. |
+| `deep-research.yaml` | `node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}"` | Graph convergence before inline stop vote. |
+| `deep-research.yaml` | `node .skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}" --nodes '{graph_upsert_nodes_json}' --edges '{graph_upsert_edges_json}'` | Persist research graph events. |
 | `deep-research/assets/prompt-pack-iteration.md.tmpl` | Optional `graphEvents` array in iteration JSONL. | Produces research coverage graph source events. |
 
 Research graph semantics: `loopType` is `research`; node kinds include `QUESTION`, `FINDING`, `CLAIM`, and `SOURCE`.
@@ -155,7 +153,7 @@ The following consumers were surfaced by a deep-research audit and were absent f
 
 | # | Consumer | Path | Integration Shape |
 |---|----------|------|-------------------|
-| 1 | `/deep:ai-council` command | `.skilled/commands/deep/assets/deep_ai_council_{auto,confirm}.yaml` | Loads 3 `lib/council/*.cjs` modules via require() for multi-seat dispatch + round-state JSONL + adjudicator scoring |
+| 1 | `/deep:ai-council` command | `.skilled/commands/deep/assets/deep-ai-council-{auto,confirm}.yaml` | Loads 3 `lib/council/*.cjs` modules via require() for multi-seat dispatch + round-state JSONL + adjudicator scoring |
 | 2 | `deep-ai-council` orchestration | `.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-{session,topic}.cjs` | 8 require() calls across all 5 `lib/council/*.cjs` modules |
 | 3 | `/doctor:deep-loop` route manifest | `.skilled/commands/doctor/_routes.yaml:58-74` | Deep-loop entry has 3 `script_invocations` and 4 `trigger_phrases`. All three calls use `--read-only` |
 | 6 | Legacy MCP server READMEs | `.skilled/skills/system-spec-kit/runtime/lib/deep-loop/README.md:25-68` + `.../handlers/coverage-graph/README.md` | Original-location stubs documenting the runtime move |
@@ -164,8 +162,8 @@ The following consumers were surfaced by a deep-research audit and were absent f
 
 Three more surfaces of this hub live inside `system-spec-kit`'s runtime tree and are stable contracts, not incidental reach:
 
-- `.skilled/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs`, which the resource-map emission step calls as a script; its test is `runtime/scripts/tests/resource-map-extractor.vitest.ts` in the same tree.
-- `.skilled/skills/system-spec-kit/runtime/handlers/coverage-graph/convergence.ts`, which produces the graph-convergence verdict the research loop reads.
+- `.skilled/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs`, which the resource-map emission step calls as a script; its test is `.skilled/skills/system-spec-kit/runtime/tests/resource-map-extractor.vitest.ts` in the same tree.
+- `.skilled/skills/system-deep-loop/runtime/lib/coverage-graph/coverage-graph-signals.ts`, which computes the graph signals that `runtime/scripts/convergence.cjs` turns into the graph-convergence verdict the research loop reads.
 - The deep-loop behaviour tests `deep-research-reducer`, `deep-research-contract-parity`, `graph-aware-stop` and `coverage-graph-cross-layer` under `.skilled/skills/system-spec-kit/runtime/cli/tests/`, which the spec-kit CI workflow runs.
 
 `.skilled/skills/system-spec-kit/runtime/tests/review-depth-reducer.vitest.ts:13` requires `'../../../system-deep-loop/runtime/scripts/reduce-state.cjs'` - the test file lives in system-spec-kit's runtime but exercises the (now runtime-hosted) `deep-review` reducer, and is discovered via runtime/'s vitest glob in `vitest.config.ts:20`. Effective SC-007 boundary for any runtime/ change is therefore tighter than the literal directory listing: changes to `runtime/scripts/reduce-state.cjs` ALSO re-validate through runtime/'s test surface.
@@ -193,8 +191,8 @@ Three more surfaces of this hub live inside `system-spec-kit`'s runtime tree and
 | `scripts/*.cjs` | Direct integration entry points. |
 | `lib/deep-loop/*.ts` | Shared executor, validation, state, scoring, and permission primitives. |
 | `lib/coverage-graph/*.ts` | Graph storage, query, and signal primitives. |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Review auto consumer. |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Research auto consumer. |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Review consumer. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Research consumer. |
 | `.skilled/commands/doctor/deep-loop.md` | Doctor route boundary. |
 | `.skilled/skills/system-spec-kit/runtime/vitest.config.ts` | Runtime test discovery. |
 

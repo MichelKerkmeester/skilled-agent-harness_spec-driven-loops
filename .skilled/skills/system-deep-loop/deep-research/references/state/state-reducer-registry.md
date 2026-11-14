@@ -10,7 +10,7 @@ trigger_phrases:
   - "research dashboard derivation"
 importance_tier: normal
 contextType: implementation
-version: 1.14.1.0
+version: 1.14.2.0
 ---
 
 # Deep Research Reducer And Registry Reference
@@ -107,7 +107,7 @@ Post-dispatch failure codes include:
 | `jsonl_missing_fields` | Required JSONL fields are absent |
 | `jsonl_parse_error` | JSONL line is malformed |
 
-Three consecutive failures route to stuck recovery or escalation.
+Three consecutive failures stop the loop with stop reason `error`.
 
 ---
 

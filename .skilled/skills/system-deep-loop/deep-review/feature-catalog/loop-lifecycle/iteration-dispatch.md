@@ -7,7 +7,7 @@ trigger_phrases:
   - "fresh-context review cycle"
   - "leaf review agent"
   - "focus dimension dispatch"
-version: 1.11.0.9
+version: 1.11.1.0
 ---
 
 # Iteration dispatch
@@ -37,8 +37,7 @@ Before each dispatch, the loop reads `deep-review-state.jsonl`, `deep-review-fin
 | `references/protocol/loop-protocol.md` | Protocol | Defines the read-state, state-summary, dispatch, cross-reference execution, evaluation, claim-adjudication, dashboard, and loop-decision steps. |
 | `references/state/state-format.md` | Schema | Defines the required JSONL fields, iteration file structure, graph-event payloads, and traceability-check schema. |
 | `SKILL.md` | Skill contract | Declares the fresh-context model, leaf-only constraint, iteration rules, and tool-call envelope. |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Workflow | Runtime workflow surface for unattended dispatch and evaluation. |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Workflow | Runtime workflow surface for checkpointed dispatch with approval gates. |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Workflow | Runtime workflow surface for dispatch and evaluation, with approval gates in confirm mode. |
 | `.skilled/agents/deep-review.md` | Agent | Runtime leaf-agent contract for one review cycle. |
 
 ### Validation And Tests
@@ -57,7 +56,7 @@ Before each dispatch, the loop reads `deep-review-state.jsonl`, `deep-review-fin
 - Group: Loop lifecycle
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `loop-lifecycle/iteration-dispatch.md`
-- Primary sources: `references/protocol/loop-protocol.md`, `references/state/state-format.md`, `SKILL.md`, `.skilled/commands/deep/assets/deep-review-auto.yaml`, `.skilled/commands/deep/assets/deep-review-confirm.yaml`
+- Primary sources: `references/protocol/loop-protocol.md`, `references/state/state-format.md`, `SKILL.md`, `.skilled/commands/deep/assets/deep-review.yaml`
 Related references:
 - [initialization.md](initialization.md) — Initialization
 - [convergence-check.md](../../feature-catalog/loop-lifecycle/convergence-check.md) — Convergence check

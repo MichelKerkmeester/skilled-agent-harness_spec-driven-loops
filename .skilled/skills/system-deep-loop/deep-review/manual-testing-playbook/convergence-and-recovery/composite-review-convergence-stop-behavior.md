@@ -1,7 +1,7 @@
 ---
 title: "DRV-031 -- Composite review convergence stop behavior"
 description: "Verify the three-signal composite convergence model with severity-weighted newFindingsRatio, weights 0.30/0.25/0.45, and threshold 0.60."
-version: 1.11.0.15
+version: 1.11.1.0
 ---
 
 # DRV-031 -- Composite review convergence stop behavior
@@ -27,10 +27,10 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Objective: Verify 3-signal composite convergence (rolling avg 0.30, MAD 0.25, dimension coverage 0.45) with threshold 0.60.
 - Real user request: Explain how the review loop decides it has found enough issues and can stop before hitting the hard cap.
 - Prompt: `Validate deep-review composite convergence scoring, including rolling average, MAD noise floor, dimension coverage, and stop threshold.`
-- Expected execution process: Inspect the convergence reference first, then the review YAML algorithm, then the quick reference and SKILL.md for user-facing summaries.
+- Expected execution process: Inspect the convergence reference first, then the `convergence.cjs` stop decision, then the quick reference and SKILL.md for user-facing summaries.
 - Desired user-facing outcome: The user gets an accurate explanation of the weighted convergence model, the severity weighting unique to review mode, and when convergence applies.
 - Expected signals: Three named signals with weights 0.30/0.25/0.45, severity-weighted newFindingsRatio, rollingStopThreshold of 0.08, a composite stop threshold above 0.60, and dimension coverage requiring all 4 review dimensions.
-- Pass/fail posture: PASS if the signals, weights, severity weighting, and threshold align across convergence reference, YAML, and user-facing docs. FAIL if any of those elements drift materially.
+- Pass/fail posture: PASS if the signals, weights, severity weighting, and threshold align across the convergence reference, the runtime stop decision, and user-facing docs. FAIL if any of those elements drift materially.
 
 ---
 
@@ -46,14 +46,14 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep-review composite convergence scoring, including rolling average, MAD noise floor, dimension coverage, and stop threshold.
 ### Commands
 1. `bash: rg -n 'COMPOSITE CONVERGENCE|rolling average|MAD noise|dimension coverage|0.60|severity.weighted|newFindingsRatio|0\.30|0\.25|0\.45' .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
-2. `bash: rg -n 'COMPOSITE|rolling_average|MAD|dimension_coverage|convergence|stop_score|severity.*weight|newFindingsRatio' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+2. `bash: rg -n 'COMPOSITE|rolling_average|MAD|dimension_coverage|convergence|stop_score|severity.*weight|newFindingsRatio' .skilled/commands/deep/assets/deep-review.yaml`
 3. `bash: rg -n 'Convergence|Rolling Average|MAD|Dimension Coverage|0\.30|0\.25|0\.45|severity.weighted|newFindingsRatio' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md`
 ### Expected
 Three named signals with weights 0.30/0.25/0.45, severity-weighted newFindingsRatio, rollingStopThreshold of 0.08, a composite stop threshold above 0.60, and dimension coverage requiring all 4 review dimensions.
 ### Evidence
-Capture the full signal table, YAML algorithm excerpt, severity weighting formula, and the user-facing explanation.
+Capture the full signal table, `convergence.cjs` stop decision excerpt, severity weighting formula, and the user-facing explanation.
 ### Pass/Fail
-PASS if the signals, weights, severity weighting, and threshold align across convergence reference, YAML, and user-facing docs. FAIL if any of those elements drift materially.
+PASS if the signals, weights, severity weighting, and threshold align across the convergence reference, the runtime stop decision, and user-facing docs. FAIL if any of those elements drift materially.
 ### Failure Triage
 Privilege the convergence reference for exact math and use quick reference and SKILL.md only as secondary confirmation.
 ---
@@ -72,8 +72,7 @@ Privilege the convergence reference for exact math and use quick reference and S
 | File | Role |
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Canonical convergence math, use `ANCHOR:shouldcontinue-algorithm` and `ANCHOR:signal-definitions` |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Workflow algorithm, inspect `step_check_convergence` |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Workflow algorithm, inspect `step_check_convergence` |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Workflow branch on the `convergence.cjs` stop decision, inspect `step_check_convergence` |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Convergence signal summary, use `ANCHOR:convergence` |
 | `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Convergence and rules documentation, use `ANCHOR:rules` and `ANCHOR:how-it-works` |
 | `.skilled/skills/system-deep-loop/deep-review/README.md` | Feature summary for review convergence |

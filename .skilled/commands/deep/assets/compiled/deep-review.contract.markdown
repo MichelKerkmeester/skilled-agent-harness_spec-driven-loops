@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "58bc91708a93ca47bf1e484b7ea020a536c3685cecbe0ca4e387e31871457fa1",
+      "sha256": "99f77d123118e3f5e42f04be0ed97cd764abc3070703423cfb64106a58181688",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "d381ac78210c6b31cef64937c6b6baf85b4b23ce0adc9a45ed04cf1156b9cbea",
+      "sha256": "324ac92010574f486ecfc00f1eb0f06b57544428f9d01392ac579837bfb466fe",
       "section": "full"
     },
     {
@@ -37,17 +37,17 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "0b70e8815059318b2c2eb23405e2121d878ad48d5f716456b4aaa8b5873d8787",
+      "sha256": "745cbaea13540c1937ef263f2ce18d48c35aa26819ac9cd56c2ffb38caa3c90f",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "f2abb7d154cfd71a8473eec52aadce15e0be2ec2fddf5f213b90c3fdee66b872",
+      "sha256": "2cd7e494002f971779b119f3a2a6179cf0adcfcfee0aee4dcdeaefa4d45cca04",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
-      "sha256": "453f38920e171541152b2c6ba2ef1a408148612aa937d89fbf8dc3492e53d5a7",
+      "sha256": "75be5e46f9a4df6c98a2d5f83aa7e5f037ed026e182cbbaaaf86e541f4889de8",
       "section": "full"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "sha256": "0402faeca60d778ee6665d78c794a6ebc3288c6447ac6c99a2b53065c3169c53",
+      "sha256": "53d811306f0ed3957016769ae6a712c06500b82886b1b6279d1fc10c068b3310",
       "section": "full"
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       "path": ".skilled/agents/deep-review.md",
-      "sha256": "4cca5268f81acd2e38c2a57e3945f78a182e0dc8b409b4e1ba0585989d1104cb",
+      "sha256": "b790400f922d785ded5bc41e7bab2c0b82d78e06e6b4201dd9ddd7c34a4807e0",
       "section": "full"
     },
     {

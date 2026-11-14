@@ -8,7 +8,7 @@ trigger_phrases:
   - "scratch folder usage"
 importance_tier: normal
 contextType: general
-version: 1.6.12.0
+version: 1.6.13.0
 ---
 
 # Folder Structure Reference
@@ -297,7 +297,7 @@ Deep-research and deep-review artifacts (iterations, deltas, prompts, state logs
 
 **Forbidden:** creating or continuing child-phase research/review packets under an ancestor/root spec's `research/` or `review/` folder.
 
-**See also:** `system-deep-loop/deep-research/references/protocol/loop-protocol.md`, `system-deep-loop/deep-review/references/protocol/loop-protocol.md`, and the `step_resolve_artifact_root` block in `.skilled/commands/deep/assets/deep-research-auto.yaml`.
+**See also:** `system-deep-loop/deep-research/references/protocol/loop-protocol.md`, `system-deep-loop/deep-review/references/protocol/loop-protocol.md`, and the `step_resolve_artifact_root` block in `.skilled/commands/deep/assets/deep-research.yaml`.
 
 ---
 

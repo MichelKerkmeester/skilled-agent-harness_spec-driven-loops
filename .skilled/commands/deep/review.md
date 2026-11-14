@@ -23,7 +23,28 @@ Do not dispatch agents from this Markdown file. Agent dispatch, workflow steps, 
 
 Load the presentation contract before showing startup questions, dashboards, checkpoints, success output, failure output, examples, or next-step prompts.
 
-This command is **general-agent based**. Do not use the Task tool to spawn the general agent; in `opencode run --command`, the default primary agent is the command orchestrator when it has the tools listed below. Keep raw agent handles out of this command body because OpenCode parses them as delegation requests.
+
+> **EXECUTION PROTOCOL -- READ FIRST**
+>
+> This command runs a structured YAML workflow. Do NOT dispatch agents from this document.
+>
+> **YOUR FIRST ACTION (HARD-BLOCK gate — do not skip):**
+> 1. Run the Unified Setup Phase (BLOCKED gate) through the presentation contract and resolve:
+>    - `review_target`
+>    - `review_target_type`
+>    - `review_dimensions`
+>    - `spec_folder`
+>    - `execution_mode`
+>    - `maxIterations`
+>    - `convergenceThreshold`
+>    - `stop_policy` (default `convergence` unless `--stop-policy=max-iterations` is present)
+>    - `dry_run` (default false unless `--dry-run` is present)
+> 2. Load the workflow YAML from `assets/` only after all setup values are resolved: `deep-review.yaml`. The mode binds `execution_mode` to `auto` or `confirm`.
+> 3. Execute the YAML workflow step by step using those resolved values
+>
+> This command is **general-agent based** — it orchestrates the deep-review loop. The Unified Setup Phase (the BLOCKED gate) is a HARD BLOCK; it may not be skipped.
+
+This command is **general-agent based**. Do not use the Task tool to spawn the general agent; the default primary agent is the command orchestrator when it has the tools listed below. Keep raw agent handles out of this command body because OpenCode parses them as delegation requests.
 
 In `:auto` mode, an explicit `--restart` or `--lineage-mode=restart` flag (invocation form `--restart|--lineage-mode=restart`) is operator authorization to archive the resolved review packet before fan-out or phase init. Do not ask for a second confirmation; preserve rollback by moving the timestamped archive directory back to `review/` if needed.
 
@@ -31,27 +52,15 @@ In `:auto` mode, an explicit `--restart` or `--lineage-mode=restart` flag (invoc
 
 > Read this first. It is an imperative to you, the executor — not background information.
 
-You were invoked via `opencode run --command deep/review` with the `:auto` suffix and a bound spec_folder and target in your message. The `:auto` suffix plus the bound spec_folder mean setup is ALREADY resolved. Therefore:
+You were invoked with the `:auto` suffix and a bound spec_folder and review target in your message. Setup is already resolved.
 
-- DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
+- DO NOT emit the consolidated setup question (target/mode, review target, Spec Folder A/B/C/D, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
 - DO NOT halt for the repo-wide `CLAUDE.md` Gate-3 documentation gate. Under AUTONOMOUS execution with a validated prebound spec folder, Gate 3 is already satisfied by that folder (the prebound spec folder is your write authority).
-- PROCEED immediately: load the workflow YAML with `execution_mode` bound to `auto` and dispatch the `deep-review` agent to run ONE iteration of the review loop over the bound target.
-- DISPATCH ONLY: You dispatch `deep-review` to run one iteration.
-  You do NOT read, edit, patch or run the review loop over the target yourself.
-  The workflow YAML owns the loop itself.
-  It owns setup, dispatch-per-iteration, reducer sync, convergence checks, synthesis and all loop-level artifact writes.
-  The `deep-review` leaf owns only its own single-iteration artifacts.
-  Mixing your inline work with the dispatch is a route violation.
+- PROCEED immediately: load the workflow YAML with `execution_mode` bound to `auto` and execute it step by step.
+- THE WORKFLOW DISPATCHES: the workflow YAML owns setup, the dispatch of the `deep-review` agent for each iteration, reducer sync, convergence checks, synthesis and all loop-level artifact writes. You do not dispatch from this document, and you do not read, edit, patch or run the loop over the target yourself. The `deep-review` leaf owns only its own single-iteration artifacts.
 - ROUTE PROOF: dispatch through the workflow with `execution_mode` bound to `auto` and its prompt pack so `deep-review` writes each iteration state record with the route-proof fields present — `target_agent: "deep-review"`, `resolved_route`, `agent_definition_loaded: true`, and `mode: "review"`. A completed run whose iteration state records omit these fields is an incomplete delegation and does not pass.
 
-Your job is to DISPATCH `deep-review` to run ONE iteration of the review loop over the bound target.
-You do NOT run the loop yourself.
-You do NOT review or analyze this contract.
-You do NOT summarize this contract.
-The workflow YAML owns the loop itself.
-It owns setup, dispatch-per-iteration, reducer sync, convergence, synthesis and loop-level writes.
-This contract is your instruction set.
-The review target is the bound spec_folder/target named in your message, never this document.
+This contract is your instruction set. The review target is the bound spec_folder or target named in your message, never this document.
 
 ---
 
@@ -67,7 +76,7 @@ The review target is the bound spec_folder/target named in your message, never t
 ## 3. MODE ROUTING
 
 1. Parse `$ARGUMENTS` for attached command suffixes (`:auto` or `:confirm`). Canonical mode syntax is `/deep:review:auto` and `/deep:review:confirm`.
-2. Treat target text, `--max-iterations`, `--convergence`, `--lineage-timeout-hours`, `--stop-policy`, `--dry-run`, `--spec-folder`, `--review-focus`, lifecycle flags (`--restart`, `--lineage-mode`), executor flags, fan-out flags, the internal `--fanout-lineage-artifact-dir`, and pre-bound setup answers as workflow inputs, not execution modes.
+2. Treat the target text, pre-bound setup answers and every flag in the Workflow Flag Surface table below as workflow inputs, not execution modes. The table is the only list of flags.
 3. If `:auto` is present, set `execution_mode = AUTONOMOUS` and resolve required setup inputs through the presentation contract's three-tier auto setup resolution before loading YAML.
 4. If `:confirm` is present, set `execution_mode = INTERACTIVE` and use the presentation contract's consolidated setup prompt before loading YAML.
 5. If no mode suffix is present, set `execution_mode = ASK` and use the presentation contract's consolidated setup prompt to ask for execution mode.
@@ -121,8 +130,7 @@ The default `convergence` stops at legal convergence or `config.maxIterations`, 
 
 When `dry_run=true`, the workflow emits `dry_run_halt` JSONL preview lines to terminal output instead of appending to the live state log, and halts before executor dispatch, persistent state mutation, reducer refresh or child-lineage spawn.
 Under dry run the setup phase binds its values in memory and does not persist `{artifact_dir}/deep-review-config.json`.
-A fresh packet will stop at the first persistent state boundary.
-An existing packet can read current state and convergence signals, render the next prompt for preview, then stop before dispatch.
+A fresh packet and an existing packet both stop at the directory creation step, which is the first persistent state boundary.
 
 ---
 
@@ -148,6 +156,7 @@ The following content lives only in `.skilled/commands/deep/assets/deep-review-p
 
 ## 6. WORKFLOW SUMMARY
 
+The selected YAML workflow initializes deep-review state, dispatches a fresh `deep-review` LEAF agent per iteration, evaluates convergence and synthesizes `{artifact_dir}/review-report.md`, then routes a FAIL or CONDITIONAL verdict to `/speckit:plan` and a PASS verdict to `/create:changelog`.
 
 **Review path (findings):** `/deep:review` -> (if FAIL/CONDITIONAL) `/speckit:plan` -> `/speckit:implement`
 **Review path (clean):** `/deep:review` -> (if PASS) `/create:changelog`

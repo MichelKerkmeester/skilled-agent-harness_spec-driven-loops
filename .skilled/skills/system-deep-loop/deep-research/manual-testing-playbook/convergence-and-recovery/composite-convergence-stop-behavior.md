@@ -1,7 +1,7 @@
 ---
 title: "DR-013 -- Composite convergence stop behavior"
 description: "Verify the three-signal weighted stop model and its graceful degradation rules."
-version: 1.14.0.15
+version: 1.14.1.0
 ---
 
 # DR-013 -- Composite convergence stop behavior
@@ -27,10 +27,10 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Objective: Verify the three-signal weighted stop model and its graceful degradation rules.
 - Real user request: Explain how the loop decides it has probably converged when it has not hit the hard cap yet.
 - Prompt: `Validate composite convergence uses rolling average, MAD, entropy, weights, and the stop-score threshold.`
-- Expected execution process: Inspect the convergence reference first, then the YAML algorithm, then the quick reference visualization and README feature summary.
+- Expected execution process: Inspect the convergence reference first, then the convergence script, then the quick reference visualization and README feature summary.
 - Desired user-visible outcome: The user gets an accurate explanation of the weighted convergence model and when it applies.
 - Expected signals: Three named signals, weights of 0.30/0.35/0.35, graceful degradation with fewer iterations, and a stop threshold above 0.60.
-- Pass/fail posture: PASS if the signals, weights, and threshold align across reference, YAML, and user-facing docs; FAIL if any of those elements drift materially.
+- Pass/fail posture: PASS if the signals, weights, and threshold align across reference, convergence script and user-facing docs; FAIL if any of those elements drift materially.
 
 ---
 
@@ -46,14 +46,14 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate composite convergence uses rolling average, MAD, entropy, weights, and the stop-score threshold.
 ### Commands
 1. `bash: sed -n '1,260p' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
-2. `bash: rg -n 'COMPOSITE CONVERGENCE|rolling average|MAD noise|entropy|0.60' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml`
+2. `bash: rg -n 'computeCompositeScore|rollingAverage|madNoiseFloor|questionEntropy|0.60' .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs`
 3. `bash: rg -n 'Convergence Detection|Composite:|Signals:' .skilled/skills/system-deep-loop/deep-research/README.md .skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md`
 ### Expected
 Three named signals, weights of 0.30/0.35/0.35, graceful degradation with fewer iterations, and a stop threshold above 0.60.
 ### Evidence
-Capture the full signal table, YAML algorithm excerpt, and the user-facing explanation or visualization.
+Capture the full signal table, convergence script excerpt, and the user-facing explanation or visualization.
 ### Pass/Fail
-PASS if the signals, weights, and threshold align across reference, YAML, and user-facing docs; FAIL if any of those elements drift materially.
+PASS if the signals, weights, and threshold align across reference, convergence script and user-facing docs; FAIL if any of those elements drift materially.
 ### Failure Triage
 Privilege the convergence reference for exact math and use README or quick reference only as secondary confirmation.
 ---
@@ -72,8 +72,8 @@ Privilege the convergence reference for exact math and use README or quick refer
 | File | Role |
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Canonical convergence math; use `ANCHOR:shouldcontinue-algorithm` and `ANCHOR:signal-definitions` |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow algorithm; inspect `step_check_convergence` |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Workflow algorithm; inspect `step_check_convergence` |
+| `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Computes the rolling average, MAD noise floor, question entropy, weights, and the normalized stop score |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow algorithm; `step_graph_convergence` runs convergence.cjs and `step_check_convergence` branches on its stop decision |
 | `.skilled/skills/system-deep-loop/deep-research/README.md` | Feature summary for convergence; use `ANCHOR:features` |
 | `.skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md` | Progress visualization and decision tree; use `ANCHOR:convergence-decision-tree` and `ANCHOR:progress-visualization` |
 

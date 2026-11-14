@@ -1,7 +1,7 @@
 ---
 title: "DRV-021 -- Pause sentinel halts between review iterations"
 description: "Verify that the review/.deep-review-pause sentinel halts the review loop between iterations and logs a pause event."
-version: 1.11.0.14
+version: 1.11.1.0
 ---
 
 # DRV-021 -- Pause sentinel halts between review iterations
@@ -46,16 +46,16 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate the deep-review pause sentinel and report whether the loop halts before synthesis.
 ### Commands
 1. `bash: rg -n '.deep-review-pause|paused|Delete.*pause|review/.deep-review-pause' .skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md`
-2. `bash: rg -n 'step_check_pause_sentinel|paused|halt.*true|review/.deep-review-pause|pause.*sentinel' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+2. `bash: rg -n 'step_check_pause_sentinel|paused|halt.*true|review/.deep-review-pause|pause.*sentinel' .skilled/commands/deep/assets/deep-review.yaml`
 3. `bash: rg -n 'pause|sentinel|review/.deep-review-pause|Pause' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/commands/deep/review.md`
 ### Expected
 The sentinel is checked before dispatch, a paused event is logged to JSONL, the loop halts rather than flowing into synthesis, and the sentinel location is `review/.deep-review-pause`.
 ### Evidence
-Capture the sentinel location, the paused-event contract, and the halt behavior from both YAML workflows and user-facing docs.
+Capture the sentinel location, the paused-event contract, and the halt behavior from the workflow and user-facing docs.
 ### Pass/Fail
 PASS if the pause sentinel halts between iterations and does not route to synthesis. FAIL if pause is undocumented or modeled as a hard stop to completion.
 ### Failure Triage
-Use the loop protocol pause subsection as the canonical flow and verify both review YAML workflows mirror it.
+Use the loop protocol pause subsection as the canonical flow and verify the review workflow mirrors it.
 ---
 
 ## 4. SOURCE FILES
@@ -72,8 +72,7 @@ Use the loop protocol pause subsection as the canonical flow and verify both rev
 | File | Role |
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md` | Pause sentinel contract, use the pause-handling subsection |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Pause check step, inspect `step_check_pause_sentinel` |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Pause check step, inspect `step_check_pause_sentinel` |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Pause check step, inspect `step_check_pause_sentinel` |
 | `.skilled/commands/deep/review.md` | Command entrypoint, review-specific pause documentation |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | State files showing pause sentinel location, use `ANCHOR:state-files` |
 | `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Rule-level context, use `ANCHOR:rules` |

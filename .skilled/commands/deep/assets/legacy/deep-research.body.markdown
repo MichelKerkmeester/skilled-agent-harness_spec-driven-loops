@@ -79,7 +79,7 @@ No workflow-asset gap exists for this command.
 
 `--dry-run` is a first-class flag in both execution modes, not a third execution mode. It still performs real setup resolution, artifact-root resolution, focus selection, prompt rendering, and convergence reads when those steps can run without side effects.
 
-Under dry run the setup phase binds its values in memory and does not persist `{artifact_dir}/deep-research-config.json`. When `dry_run=true`, the workflow emits `dry_run_halt` JSONL preview lines to terminal output instead of appending to the live state log, and halts before executor dispatch, persistent state mutation, reducer refresh, or child-lineage spawn. A fresh packet will stop at the first persistent state boundary; an existing packet can read current state and convergence signals, render the next prompt for preview, then stop before dispatch.
+Under dry run the setup phase binds its values in memory and does not persist `{artifact_dir}/deep-research-config.json`. When `dry_run=true`, the workflow emits `dry_run_halt` JSONL preview lines to terminal output instead of appending to the live state log, and halts before executor dispatch, persistent state mutation, reducer refresh, or child-lineage spawn. A fresh packet and an existing packet both stop at the directory creation step, which is the first persistent state boundary.
 
 ---
 

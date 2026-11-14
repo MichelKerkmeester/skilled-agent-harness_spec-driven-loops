@@ -6,7 +6,7 @@ trigger_phrases:
   - "all_dimensions_clean pivot"
   - "read-only review pivot"
   - "review pivot council"
-version: 1.11.0.1
+version: 1.11.1.0
 ---
 
 # Divergent convergence mode
@@ -19,7 +19,7 @@ version: 1.11.0.1
 
 ## 2. HOW IT WORKS
 
-The auto workflow admits only the exact reason `all_dimensions_clean`, after all nine legal-stop gates have run. Candidate sources include unswept dimensions, search debt, producer-consumer paths, negative-test gaps, and traceability gaps. Candidate generation rejects missing-evidence and mutation-shaped directions. The shared adapter runs exactly three native seats in one round, persists the transaction under `<artifactRoot>/divergent/pivots/<pivotId>/council/**`, and continues with the selected read-only direction.
+The workflow admits only the exact reason `all_dimensions_clean`, after all nine legal-stop gates have run. Candidate sources include unswept dimensions, search debt, producer-consumer paths, negative-test gaps, and traceability gaps. Candidate generation rejects missing-evidence and mutation-shaped directions. The shared adapter runs exactly three native seats in one round, persists the transaction under `<artifactRoot>/divergent/pivots/<pivotId>/council/**`, and continues with the selected read-only direction.
 
 `maxIterationsReached`, `blockedStop`, `stuckRecovery`, `error`, `manualStop`, and `userPaused` do not pivot. PASS/CONDITIONAL/FAIL is still derived only in `phase_synthesis`, and no pivot candidate authorizes a fix or target mutation.
 
@@ -31,7 +31,7 @@ The auto workflow admits only the exact reason `all_dimensions_clean`, after all
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Workflow | Owns legal-stop gates, pivot eligibility, native seat dispatch, continuation, and synthesis-only verdict derivation. |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Workflow | Branches on the `convergence.cjs` stop decision, dispatches native seats, continues the loop, and derives the verdict only in synthesis. |
 | `.skilled/skills/system-deep-loop/deep-review/scripts/divergent-review-pivot.ts` | Mode adapter | Builds evidence-grounded read-only candidates and rejects mutation-shaped directions. |
 | `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts` | Shared runtime | Owns the mechanics-only pivot transaction, event vocabulary, quorum, agreement, and artifact layout. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Shared runtime | Validates the four-value convergence-mode enum without changing verdicts. |

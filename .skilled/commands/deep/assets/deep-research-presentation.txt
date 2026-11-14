@@ -334,7 +334,7 @@ STATUS=FAIL ERROR="[message]"
 |-------|--------|
 | Agent dispatch timeout | Retry once with reduced scope, then mark timeout |
 | State file missing | Reconstruct from iteration files |
-| 3+ consecutive failures | Halt loop, enter synthesis with partial findings |
+| 3 consecutive failed iterations | Auto mode: stop with reason `error` and enter synthesis with partial findings. Confirm mode only: a checkpoint first asks Retry, Skip or Cancel |
 | Memory save failure | Save to `scratch/` as backup |
 
 ## 4. Next-Step Suggestions

@@ -7,7 +7,7 @@ trigger_phrases:
   - "STOP_ALLOWED STOP_BLOCKED"
   - "graph-assisted stop decision"
   - "combined-stop rule"
-version: 1.11.0.5
+version: 1.11.1.0
 ---
 
 # Graph convergence event
@@ -36,7 +36,7 @@ The combined-stop rule is strict: final STOP is legal only when the inline revie
 |---|---|---|
 | `references/state/state-format.md` | Schema | Graph Convergence Event schema, decision enum, and combined-stop rule. |
 | `references/convergence/convergence.md` | Protocol | How the graph decision interacts with the inline vote and the legal-stop bundle. |
-| `scripts/reduce-state.cjs` | Reducer | `buildGraphConvergenceRollup` and `computeGraphConvergenceScore` roll events into registry history. |
+| `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Reducer | `buildGraphConvergenceRollup` and `computeGraphConvergenceScore` roll events into registry history. |
 
 ### Validation And Tests
 
@@ -52,7 +52,7 @@ The combined-stop rule is strict: final STOP is legal only when the inline revie
 - Group: State management
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `state-management/graph-convergence-event.md`
-- Primary sources: `references/state/state-format.md`, `references/convergence/convergence.md`, `scripts/reduce-state.cjs`
+- Primary sources: `references/state/state-format.md`, `references/convergence/convergence.md`, `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`
 Related references:
 - [dashboard.md](dashboard.md) — Dashboard
 - [pause-sentinel.md](../../feature-catalog/state-management/pause-sentinel.md) — Pause sentinel

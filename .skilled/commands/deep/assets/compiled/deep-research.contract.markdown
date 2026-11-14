@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "6d1c302623a4a3294724fa5bd9baa153bc61280008546ba8051815da81f244e8",
+      "sha256": "32360b72e5e0b228ea1a76c78c8c50e8305de02d9862ff6c09547ccdc56758d7",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "be9565d5d07c1757e9c5918929d86abc915298c99524be7689eabe44b6c242b4",
+      "sha256": "a9b45d572367bc67c0b105f42617b06a7d6fd83bd70ae132bc389eac22b8d77c",
       "section": "full"
     },
     {
@@ -37,12 +37,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-      "sha256": "fbd159fe04b372fcb003c2f3252f92f688e59f07e96562786f8c723d863b56d7",
+      "sha256": "0171a8b1eda7ad69ea278d306e0293cb088f9ba9bc922079bff926e92e5bfbed",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md",
-      "sha256": "60d6eb7ab43e53b4aea306e2bf12c40859c2f84ca22a1912bddd6d49f6d198d9",
+      "sha256": "6880d5f3e6a3b0868fb0eb6a2d7fa99cdafe63fa1e80861e992333d5caea1be0",
       "section": "full"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
-      "sha256": "cf64e3a90734d4be99e66f25ec2f57bd4658ccde3b485e730f956d2e598fc32e",
+      "sha256": "4546e6c827dc671f239d5bd00dd8dc768ee4b80a35978bff62e303302077da9e",
       "section": "full"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "path": ".skilled/agents/deep-research.md",
-      "sha256": "c414b17113c2f00e17986ac50da04c35d8f843812efcb417073841bdf81b2be2",
+      "sha256": "7e3e3f3dea7fb34d1fca6cc01539d27b0e7fc1fa5663ad746394419628b7367d",
       "section": "full"
     },
     {

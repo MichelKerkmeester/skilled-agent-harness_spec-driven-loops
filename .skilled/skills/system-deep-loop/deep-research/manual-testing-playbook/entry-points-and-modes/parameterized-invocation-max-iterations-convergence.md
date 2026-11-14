@@ -1,7 +1,7 @@
 ---
 title: "DR-003 -- Parameterized invocation with --max-iterations and --convergence"
 description: "Verify that the command binds topic, spec folder, execution mode, max iterations, and convergence threshold before the YAML workflow starts."
-version: 1.14.0.15
+version: 1.14.1.0
 ---
 
 # DR-003 -- Parameterized invocation with --max-iterations and --convergence
@@ -27,7 +27,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Objective: Verify that the command binds topic, spec folder, execution mode, max iterations, and convergence threshold before the YAML workflow starts.
 - Real user request: I want deep research on a topic, but make sure it goes into the right spec folder with the limits I picked.
 - Prompt: `Validate deep-research setup binding for topic, spec folder, max iterations, convergence, and YAML preflight.`
-- Expected execution process: Inspect the unified setup prompt first, then both YAML preflight guards, then the state-format config schema to confirm the same values are represented end-to-end.
+- Expected execution process: Inspect the unified setup prompt first, then the preflight guard in both execution modes, then the state-format config schema to confirm the same values are represented end-to-end.
 - Desired user-visible outcome: The user is told which inputs are required and why the workflow will not proceed until they are bound.
 - Expected signals: The command explicitly names topic, spec folder, execution mode, max iterations, and convergence threshold; YAML preflight verifies them before file writes.
 - Pass/fail posture: PASS if setup requirements and YAML preflight align on the required bindings and spec-folder scope; FAIL if one surface allows missing bindings the other forbids.
@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep-research setup binding for topic, spec folder, max iterations, convergence, and YAML preflight.
 ### Commands
 1. `bash: sed -n '1,220p' .skilled/commands/deep/research.md`
-2. `bash: rg -n 'step_preflight_contract|required_values_present|spec_folder_is_within|max_iterations|convergence_threshold' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml`
+2. `bash: rg -n 'step_preflight_contract|required_values_present|spec_folder_is_within|max_iterations|convergence_threshold' .skilled/commands/deep/assets/deep-research.yaml`
 3. `bash: sed -n '1,180p' .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
 ### Expected
 The command explicitly names topic, spec folder, execution mode, max iterations, and convergence threshold; YAML preflight verifies them before file writes.
@@ -55,7 +55,7 @@ Capture the setup prompt, both preflight guards, and the config schema fields to
 ### Pass/Fail
 PASS if setup requirements and YAML preflight align on the required bindings and spec-folder scope; FAIL if one surface allows missing bindings the other forbids.
 ### Failure Triage
-Compare both YAML files, not just one, and verify the config schema still names the same parameter fields.
+Check the preflight guard in both execution modes, not just one, and verify the config schema still names the same parameter fields.
 ---
 
 ## 4. SOURCE FILES
@@ -72,8 +72,7 @@ Compare both YAML files, not just one, and verify the config schema still names 
 | File | Role |
 |---|---|
 | `.skilled/commands/deep/research.md` | Setup-binding source of truth; use `SINGLE CONSOLIDATED SETUP PROMPT` and `## 0. UNIFIED SETUP PHASE` |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Autonomous preflight guard; inspect `step_preflight_contract` |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Interactive preflight guard; inspect `step_preflight_contract` |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Preflight guard in both execution modes; inspect `step_preflight_contract` |
 | `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Config schema; use `ANCHOR:config-file` |
 
 ---

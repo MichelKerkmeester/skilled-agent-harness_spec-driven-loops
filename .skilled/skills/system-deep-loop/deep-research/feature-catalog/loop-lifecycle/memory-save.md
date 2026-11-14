@@ -7,7 +7,7 @@ trigger_phrases:
   - "generate-context.js"
   - "continuity artifact"
   - "preserve research packet"
-version: 1.14.0.8
+version: 1.14.1.0
 ---
 
 # Memory save
@@ -36,8 +36,7 @@ The save rules also reject manual writes under `memory/`. The command entrypoint
 |---|---|---|
 | `.skilled/commands/deep/research.md` | Command | Defines the save phase and memory integration notes for the command entrypoint. |
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Reference | Defines the save phase and its verification step. |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Runs `generate-context.js` in autonomous mode and marks manual memory authoring as invalid. |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Workflow | Runs the same save flow with confirm-mode review gates. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow | Runs `generate-context.js` and marks manual memory authoring as invalid. Confirm mode adds review gates. |
 
 ### Validation And Tests
 

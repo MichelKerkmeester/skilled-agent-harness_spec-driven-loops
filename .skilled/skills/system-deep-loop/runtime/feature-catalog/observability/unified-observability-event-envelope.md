@@ -6,7 +6,7 @@ trigger_phrases:
   - "unified-observability-event-envelope"
   - "unified observability event envelope runtime"
   - "observability unified observability event envelope"
-version: 1.4.0.15
+version: 1.4.1.0
 ---
 
 # Unified observability event envelope
@@ -40,7 +40,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 | `scripts/convergence.cjs` | Runtime | unified observability event envelope. |
 | `scripts/fanout-run.cjs` | Runtime | unified observability event envelope. |
 | `scripts/status.cjs` | Runtime | unified observability event envelope. |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Integration | unified observability event envelope. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Integration | unified observability event envelope. |
 
 ### Validation And Tests
 
@@ -56,6 +56,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 - Group: Observability
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `observability/unified-observability-event-envelope.md`
-- Primary sources: `lib/deep-loop/observability-events.cjs`, `lib/council/round-state-jsonl.cjs`, `scripts/convergence.cjs`, `scripts/fanout-run.cjs`, `scripts/status.cjs`, `.skilled/commands/deep/assets/deep-research-auto.yaml`, `tests/unit/observability-events.vitest.ts`, `tests/integration/status-script.vitest.ts`
+- Primary sources: `lib/deep-loop/observability-events.cjs`, `lib/council/round-state-jsonl.cjs`, `scripts/convergence.cjs`, `scripts/fanout-run.cjs`, `scripts/status.cjs`, `.skilled/commands/deep/assets/deep-research.yaml`, `tests/unit/observability-events.vitest.ts`, `tests/integration/status-script.vitest.ts`
 Related references:
 - [observability](../observability/) — Observability category

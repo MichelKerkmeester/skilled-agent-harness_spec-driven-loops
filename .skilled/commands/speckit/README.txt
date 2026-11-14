@@ -154,10 +154,8 @@ deep/                 # Deep workflows (research, review, AI council)
 ├── review.md                 # /deep:review - Autonomous code review loop
 ├── ai-council.md             # /deep:ai-council - Multi-topic deep AI council
 └── assets/
-    ├── deep-research-auto.yaml
-    ├── deep-research-confirm.yaml
-    ├── deep-review-auto.yaml
-    ├── deep-review-confirm.yaml
+    ├── deep-research.yaml
+    ├── deep-review.yaml
     └── deep-ai-council-auto.yaml
 
 > Note: skill-advisor tuning previously lived under `speckit/`. It is now `/doctor:skill-advisor tune` under `.skilled/commands/doctor/`, alongside `/doctor:mcp install|debug`, since it tunes runtime configuration rather than driving the spec workflow.

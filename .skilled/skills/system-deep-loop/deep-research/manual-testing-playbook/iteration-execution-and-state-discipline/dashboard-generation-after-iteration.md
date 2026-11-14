@@ -1,7 +1,7 @@
 ---
 title: "DR-024 -- Dashboard generation after iteration"
 description: "Verify dashboard.md is auto-generated after iteration evaluation with correct content."
-version: 1.14.0.17
+version: 1.14.1.0
 ---
 
 # DR-024 -- Dashboard generation after iteration
@@ -27,7 +27,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Objective: Verify dashboard.md is auto-generated after iteration evaluation with correct content.
 - Real user request: After an iteration completes, can I see a summary of where the research stands?
 - Prompt: `Validate the dashboard regenerates after each deep-research iteration with progress, question status, risks, and next focus.`
-- Expected execution process: Inspect the loop protocol for Step 4a, then the state format dashboard section, then the dashboard template asset, then the YAML workflow step.
+- Expected execution process: Inspect the loop protocol for Step 4a, then the state format dashboard section, then the dashboard template asset, then the workflow step.
 - Desired user-visible outcome: The user can open `research/deep-research-dashboard.md` after any iteration and see an up-to-date summary of the research session.
 - Expected signals: `research/deep-research-dashboard.md` exists after at least one iteration completes, contains an iteration table, question status with X/Y answered, trend with last 3 newInfoRatio values, dead ends consolidated from ruledOut data, next focus from strategy.md, and active risks.
 - Pass/fail posture: PASS if the dashboard file exists after iteration evaluation, contains all required sections, and is regenerated (not appended) each iteration; FAIL if the file is missing, sections are absent, or stale data persists from a prior iteration.
@@ -48,12 +48,12 @@ Validate the dashboard regenerates after each deep-research iteration with progr
 1. `bash: rg -n 'Step 4a\|Generate Dashboard\|dashboard_generated' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
 2. `bash: sed -n '/ANCHOR:dashboard/,/\/ANCHOR:dashboard/p' .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
 3. `bash: cat .skilled/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md`
-4. `bash: rg -n 'step_reduce_state\|step_generate_dashboard\|reduce-state.cjs' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml`
+4. `bash: rg -n 'step_reduce_state|reduce-state.cjs' .skilled/commands/deep/assets/deep-research.yaml`
 5. `bash: rg -n 'renderDashboard\|dashboardPath' .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`
 ### Expected
 `research/deep-research-dashboard.md` exists after iteration evaluation; contains iteration table, question status (X/Y answered), trend (last 3 ratios with direction), dead ends (from ruledOut), next focus (from strategy.md), and active risks; file is overwritten (not appended) each iteration; dashboard generation is reducer-owned and idempotent.
 ### Evidence
-Capture the loop protocol Step 4a excerpt, the state format dashboard section, the template content, the YAML step definitions for both reducer and dashboard, and the reducer script's `renderDashboard` function.
+Capture the loop protocol Step 4a excerpt, the state format dashboard section, the template content, the workflow step definition for the reducer, and the reducer script's `renderDashboard` function.
 ### Pass/Fail
 PASS if the dashboard file exists after iteration evaluation, contains all required sections, and is regenerated (not appended) each iteration; FAIL if the file is missing, sections are absent, or stale data persists from a prior iteration.
 ### Failure Triage
@@ -77,8 +77,7 @@ Privilege the loop protocol Step 4a for the generation contract, the reducer scr
 | `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | State format; inspect `ANCHOR:dashboard` for content sections, lifecycle, and file protection rules |
 | `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-dashboard.md` | Dashboard template; structural reference for all required sections (Status, Progress, Questions, Trend, Dead Ends, Next Focus, Active Risks) |
 | `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer script; `renderDashboard` generates the dashboard content; `reduceResearchState` writes it to disk |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow algorithm; inspect `step_reduce_state` and `step_generate_dashboard` |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Workflow algorithm; inspect `step_reduce_state` and `step_generate_dashboard` |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow algorithm; inspect `step_reduce_state`, which runs the reducer that writes the dashboard |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/deep-research-reducer.vitest.ts` | Automated verification; proves reducer idempotency and dashboard content correctness |
 
 ---

@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.4.0
+version: 1.14.5.0
 ---
 
 # deep-research
@@ -71,7 +71,7 @@ Expected output: a JSON summary with `registryPath`, `dashboardPath`, `iteration
 
 ### The Iteration Lifecycle
 
-The command YAML workflow owns dispatch. It initializes the research packet on first run, then loops: check convergence, dispatch the `@deep-research` LEAF agent for one iteration, wait for the write-back, run the reducer and decide whether to continue or stop. Each iteration is a single LEAF dispatch capped at roughly twelve tool calls. The agent investigates one focus area, writes a numbered iteration markdown file, appends a JSONL delta record and returns. It never dispatches sub-agents, never nests another loop and never asks the user a question.
+The command YAML workflow owns dispatch. It initializes the research packet on first run, then loops: check convergence, dispatch the `@deep-research` LEAF agent for one iteration, wait for the write-back, run the reducer and decide whether to continue or stop. Each iteration is a single LEAF dispatch whose tool-call budget comes from `maxToolCallsPerIteration` in the config. The agent investigates one focus area, writes a numbered iteration markdown file, appends a JSONL delta record and returns. It never dispatches sub-agents, never nests another loop and never asks the user a question.
 
 Lifecycle controls include [run-now control](./feature-catalog/loop-lifecycle/run-now-control.md), [per-iteration memory upsert](./feature-catalog/loop-lifecycle/per-iteration-memory-upsert.md), and [loop-wide dry-run](./feature-catalog/loop-lifecycle/loop-wide-dry-run.md).
 
@@ -229,7 +229,7 @@ A feature change to this skill typically touches more than one surface. Before c
 - [ ] **`references/`** -- the owning protocol, state or convergence doc reflects the change (see section 8 table for which doc owns what)
 - [ ] **`feature-catalog/`** -- the feature's category package documents inputs, outputs, owner and acceptance criteria
 - [ ] **`manual-testing-playbook/`** -- a scenario exists (or is updated) with preconditions, expected signals and a pass/fail verdict
-- [ ] **command YAML/tests** -- `.skilled/commands/deep/assets/deep-research-auto.yaml` and `deep-research-confirm.yaml`, plus any `scripts/*.test.cjs`, cover the change
+- [ ] **command YAML/tests** -- `.skilled/commands/deep/assets/deep-research.yaml`, plus any `scripts/*.test.cjs`, cover the change
 - [ ] **`assets/`** -- templates (`deep-research-config.json`, `deep-research-strategy.md`, `deep-research-dashboard.md`, prompt pack) match the new shape
 - [ ] **`scripts/`** -- `reduce-state.cjs` and `runtime-capabilities.cjs` implement the change and stay idempotent
 

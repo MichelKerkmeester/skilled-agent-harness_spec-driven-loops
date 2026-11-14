@@ -1,7 +1,7 @@
 ---
 title: "DLR-038 -- Byte-offset log regions"
 description: "Manual validation scenario for Byte-offset log regions in the runtime/ skill."
-version: 1.4.0.15
+version: 1.4.1.0
 ---
 
 # DLR-038 -- Byte-offset log regions
@@ -45,7 +45,7 @@ Deep-loop runtime features are shared by multiple workflow modes. Manual validat
 ### Commands
 
 1. Inspect `lib/deep-loop/post-dispatch-validate.ts` for the implementation contract.
-2. Inspect `.skilled/commands/deep/assets/deep-research-auto.yaml` for the implementation contract.
+2. Inspect `.skilled/commands/deep/assets/deep-research.yaml` for the implementation contract.
 3. Inspect `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` for the implementation contract.
 4. Inspect `tests/unit/post-dispatch-validate.vitest.ts` for the matching regression coverage.
 5. Inspect `tests/unit/deep-research-reduce-state.vitest.ts` for the matching regression coverage.
@@ -60,7 +60,7 @@ Byte-offset log regions matches the documented current reality, the source ancho
 
 ### Evidence
 
-- Source excerpts from `lib/deep-loop/post-dispatch-validate.ts`, `.skilled/commands/deep/assets/deep-research-auto.yaml`, `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` showing the anchors named in the commands above, read from the current files rather than recalled.
+- Source excerpts from `lib/deep-loop/post-dispatch-validate.ts`, `.skilled/commands/deep/assets/deep-research.yaml`, `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` showing the anchors named in the commands above, read from the current files rather than recalled.
 - Captured stdout and exit status for every command run in this section.
 - Output from `tests/unit/post-dispatch-validate.vitest.ts`, `tests/unit/deep-research-reduce-state.vitest.ts`, `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state-sparkline.test.cjs` naming the assertions that carry the expected signals.
 - A triage note for any non-PASS outcome that names which expected signal was absent or contradicted.
@@ -81,7 +81,7 @@ Byte-offset log regions matches the documented current reality, the source ancho
 | File | Role |
 |---|---|
 | `lib/deep-loop/post-dispatch-validate.ts` | byte-offset log regions. |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | byte-offset log regions. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | byte-offset log regions. |
 | `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | byte-offset log regions. |
 
 ### Validation

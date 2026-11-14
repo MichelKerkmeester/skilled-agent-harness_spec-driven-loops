@@ -9,7 +9,7 @@ trigger_phrases:
   - "rm-8 prevention playbook"
 importance_tier: important
 contextType: implementation
-version: 1.4.9.0
+version: 1.4.10.0
 ---
 
 # Destructive Scope Violations under cli-opencode Deep-Loop Dispatch (RM-8)
@@ -55,7 +55,7 @@ Two contributing layers, both required to enable the failure:
 
 ### Layer A: unrestricted filesystem write capability
 
-The YAML dispatch wrapper (`.skilled/commands/deep/assets/deep-review-auto.yaml` step `if_cli_opencode`) hands the executor:
+The YAML dispatch wrapper (`.skilled/commands/deep/assets/deep-review.yaml` step `if_cli_opencode`) hands the executor:
 
 ```bash
 # OpenCode 1 only
@@ -198,5 +198,5 @@ This requires changes to the YAML wrapper (pre/post hooks) and is a separate pac
 - **Incident source**: local destructive-scope violation policy
 - **RM-8 hardening context**: local destructive-scope violation policy
 - **Hardened prompt template**: `.skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl` §CONSTRAINTS
-- **YAML dispatch surface**: `.skilled/commands/deep/assets/deep-review-auto.yaml` step `if_cli_opencode`
+- **YAML dispatch surface**: `.skilled/commands/deep/assets/deep-review.yaml` step `if_cli_opencode`
 - **Memory feedback**: `feedback_opencode_run_requires_dev_null_stdin.md`, `feedback_opencode_provider_fallback.md`, `feedback_cli_executor_only_when_requested.md`

@@ -1,7 +1,7 @@
 ---
 title: "DRV-023 -- Malformed JSONL lines are skipped with defaults"
 description: "Verify that malformed JSONL lines in the review state log are skipped gracefully with sensible defaults applied."
-version: 1.11.0.14
+version: 1.11.1.0
 ---
 
 # DRV-023 -- Malformed JSONL lines are skipped with defaults
@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate malformed deep-review JSONL handling and report whether bad lines are skipped with safe defaults.
 ### Commands
 1. `bash: rg -n 'malformed|unparseable|skip.*line|parse.*error|JSON.*parse|graceful|default.*ratio|newFindingsRatio.*1\.0' .skilled/skills/system-deep-loop/deep-review/references/state/state-format.md .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
-2. `bash: rg -n 'malformed|parse_error|skip_line|graceful|default|JSON.*parse|error_handling' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+2. `bash: rg -n 'malformed|parse_error|skip_line|graceful|default|JSON.*parse|error_handling' .skilled/commands/deep/assets/deep-review.yaml`
 3. `bash: rg -n 'malformed|corrupt|graceful|JSONL.*error|parse.*fail|default|error handling|fault tolerance' .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md .skilled/commands/deep/review.md`
 ### Expected
 Malformed lines skipped, defaults applied (`newFindingsRatio = 1.0`), iteration count from valid lines, skip is observable.
@@ -74,8 +74,7 @@ Privilege the state format reference for JSONL schema rules and the convergence 
 | `.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md` | JSONL schema and parsing rules, use the state log section |
 | `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Default values on parse failure, graceful degradation rules |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md` | Error handling in iteration loop, use the iteration loop section |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | JSONL parsing and error handling in state read steps |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | JSONL parsing and error handling in state read steps |
+| `.skilled/commands/deep/assets/deep-review.yaml` | JSONL parsing and error handling in state read steps |
 | `.skilled/commands/deep/review.md` | Command routing; the error-handling display is owned by `.skilled/commands/deep/assets/deep-review-presentation.txt` (`Error Handling` section) |
 | `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Rules for state reading, use `ANCHOR:rules` Rule 1 |
 

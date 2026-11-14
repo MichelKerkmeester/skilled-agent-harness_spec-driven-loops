@@ -1,7 +1,7 @@
 ---
 title: "DRV-024 -- JSONL reconstruction from review iteration files"
 description: "Verify that the JSONL state log can be reconstructed from the review/iterations/ write-once files if the main state file is lost or corrupted."
-version: 1.11.0.14
+version: 1.11.1.0
 ---
 
 # DRV-024 -- JSONL reconstruction from review iteration files
@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep-review JSONL reconstruction from iteration markdown and report whether resume still works.
 ### Commands
 1. `bash: rg -n 'iteration.*file|iteration-NNN|write.once|iterations/|reconstruction|reconstruct|redundant|backup' .skilled/skills/system-deep-loop/deep-review/references/state/state-format.md .skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md`
-2. `bash: rg -n 'iteration.*file|write_once|iterations/|iteration-NNN|reconstruct' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+2. `bash: rg -n 'iteration.*file|write_once|iterations/|iteration-NNN|reconstruct' .skilled/commands/deep/assets/deep-review.yaml`
 3. `bash: rg -n 'iteration.*file|write-once|iterations/|iteration-NNN|reconstruct|recovery|backup' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md`
 ### Expected
 Iteration files contain JSONL-compatible metadata, reconstruction path documented, reconstructed JSONL allows resume, and iteration files are write-once.
@@ -73,8 +73,7 @@ Privilege the state format reference for both JSONL and iteration file schemas. 
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md` | JSONL schema and iteration file schema, use the state log and findings registry sections |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md` | Iteration file write-once contract and recovery guidance, use the iteration loop section |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Iteration file creation and state append steps |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Iteration file creation and state append steps |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Iteration file creation and state append steps |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | State file listing showing iterations/ directory, use `ANCHOR:state-files` |
 | `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Rules for externalized state, use `ANCHOR:rules` Rule 3 |
 

@@ -300,8 +300,7 @@ Use Read, Write, Edit, Grep, Glob, Bash and memory tools only within the declare
 | Integration | Canonical Surface | Agent Contract |
 |-------------|-------------------|----------------|
 | Dispatcher command | `.skilled/commands/deep/review.md` (`/deep:review`) | Owns the loop and dispatches this agent once per iteration |
-| Auto workflow | `.skilled/commands/deep/assets/deep-review-auto.yaml` | Owns loop state and reducer refresh |
-| Confirm workflow | `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Owns approval pauses and reducer refresh |
+| Workflow | `.skilled/commands/deep/assets/deep-review.yaml` | Owns loop state and reducer refresh in both execution modes, and the approval pauses in confirm mode |
 | Orchestrator agent | `@orchestrate` | Caller/coordinator only; this agent must not call it back |
 | Single-pass reviewer | `@review` | Separate non-iterative reviewer; do not delegate to it |
 | Research agent | `@deep-research` | Separate research iteration agent; do not delegate review work to it |

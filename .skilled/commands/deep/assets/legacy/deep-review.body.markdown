@@ -55,8 +55,7 @@ No workflow-asset gap exists for this command.
 
 When `dry_run=true`, the workflow emits `dry_run_halt` JSONL preview lines to terminal output instead of appending to the live state log, and halts before executor dispatch, persistent state mutation, reducer refresh or child-lineage spawn.
 Under dry run the setup phase binds its values in memory and does not persist `{artifact_dir}/deep-review-config.json`.
-A fresh packet will stop at the first persistent state boundary.
-An existing packet can read current state and convergence signals, render the next prompt for preview, then stop before dispatch.
+A fresh packet and an existing packet both stop at the directory creation step, which is the first persistent state boundary.
 
 ---
 

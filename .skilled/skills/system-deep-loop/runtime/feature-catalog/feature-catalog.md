@@ -5,7 +5,7 @@ trigger_phrases:
   - "runtime/ feature catalog"
   - "deep-loop runtime inventory"
 importance_tier: "important"
-version: 1.4.1.0
+version: 1.4.2.0
 ---
 
 # runtime/: Feature Catalog
@@ -30,7 +30,7 @@ Use this catalog as the canonical inventory for the live `runtime/` feature surf
 | [council](council/) | 5 features | `lib/council/multi-seat-dispatch.cjs`, `lib/council/round-state-jsonl.cjs`, `lib/council/adjudicator-verdict-scoring.cjs`, `lib/council/cost-guards.cjs`, `lib/council/session-state-hierarchy.cjs` |
 | [fanout](fanout/) | 9 features | `scripts/fanout-pool.cjs`, `scripts/fanout-run.cjs`, `scripts/fanout-salvage.cjs`, `scripts/fanout-merge.cjs`, config schema in `lib/deep-loop/executor-config.ts` |
 | [lifecycle](lifecycle/) | 2 features | `lib/deep-loop/sleep.ts`, `lib/deep-loop/lifecycle-taxonomy.cjs` |
-| [observability](observability/) | 3 features | `lib/deep-loop/observability-events.cjs`, `lib/deep-loop/post-dispatch-validate.ts`, `.skilled/commands/deep/assets/deep-research-auto.yaml` |
+| [observability](observability/) | 3 features | `lib/deep-loop/observability-events.cjs`, `lib/deep-loop/post-dispatch-validate.ts`, `.skilled/commands/deep/assets/deep-research.yaml` |
 | [testing](testing/) | 2 features | `tests/helpers/spawn-cjs.ts`, `tests/integration/convergence-script.vitest.ts`, `tests/unit/fanout-run.vitest.ts` |
 
 **Shared backend contracts (consolidation promotions).** Beyond the numbered entries above, the backend hosts a small set of generic plumbing the consumer modes import rather than duplicate: `lib/deep-loop/runtime-capabilities.cjs` (parameterized capability resolver, with byte-compatible per-skill shims), `lib/deep-loop/artifact-root.cjs` (canonical seam re-exporting `resolveArtifactRoot` from `system-spec-kit/shared/review-research-paths.cjs`), `lib/deep-loop/lifecycle-taxonomy.cjs` (terminal lifecycle enum: seven `stopReason` plus four `sessionOutcome` values) and `scripts/loop-lock.cjs` (CLI adapter over `loop-lock.ts`). These contracts register no MCP tools and carry no public workflow routing; resource-map emission stays in the workflow shared-synthesis layer, not in this runtime.
@@ -875,7 +875,7 @@ Adds single-loop telemetry heartbeat rows for started, progress, and terminal li
 
 #### How It Works
 
-`deep-research-auto.yaml` emits heartbeat rows tagged `label:"single"` with fan-out-shaped gauges, while `atomic-state.ts` suppresses unchanged telemetry rows through serialized-diff gating.
+`deep-research.yaml` emits heartbeat rows tagged `label:"single"` with fan-out-shaped gauges, while `atomic-state.ts` suppresses unchanged telemetry rows through serialized-diff gating.
 
 #### Source Files
 
