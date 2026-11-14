@@ -17,7 +17,8 @@
       "warm daemon ignores disable flag",
       "direct call off switch plan",
       "direct call off switch tasks",
-      "direct call off switch acceptance criteria"
+      "direct call off switch acceptance criteria",
+      "direct call off switch implementation summary"
     ],
     "key_topics": [
       "direct",
@@ -34,12 +35,15 @@
       "ignores"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      "scratch/review/report.txt",
       "scratch/repro-after.txt",
       ".skilled/bin/skill-advisor.cjs",
       "scratch/floor-before.txt",
@@ -48,14 +52,11 @@
       "scratch/repro-before.txt",
       "scratch/timing-before.txt",
       ".opencode/plugins/system-skill-advisor.js",
-      ".skilled/bin/system-skill-advisor-launcher.cjs",
       ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
       ".skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/advisor-disabled.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts",
-      "scratch/review/report.txt",
-      "scratch/planning/direct-call-matrix.sh",
-      "scratch/planning/import-closure.mjs"
+      "scratch/planning/direct-call-matrix.sh"
     ],
     "entities": [
       {
@@ -80,6 +81,24 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "report.txt",
+        "kind": "file",
+        "path": "scratch/review/report.txt",
         "source": "derived"
       },
       {
@@ -131,12 +150,6 @@
         "source": "derived"
       },
       {
-        "name": "system-skill-advisor-launcher.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
-        "source": "derived"
-      },
-      {
         "name": "skill-advisor-cli.ts",
         "kind": "code",
         "path": ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
@@ -161,21 +174,9 @@
         "source": "derived"
       },
       {
-        "name": "report.txt",
-        "kind": "file",
-        "path": "scratch/review/report.txt",
-        "source": "derived"
-      },
-      {
         "name": "direct-call-matrix.sh",
         "kind": "script",
         "path": "scratch/planning/direct-call-matrix.sh",
-        "source": "derived"
-      },
-      {
-        "name": "import-closure.mjs",
-        "kind": "file",
-        "path": "scratch/planning/import-closure.mjs",
         "source": "derived"
       },
       {
@@ -205,21 +206,23 @@
     ],
     "causal_summary": "A model in the behaviour arm's off arm, or a user who exports `SYSTEMSKILLADVISORHOOKDISABLED=1`, runs the Gate 2 direct call and still gets `sk-doc → /create:readme (start)` from the warm daemon, or two skill rows from the local scorer when no daemon answers",
     "created_at": "2026-11-14T22:11:47Z",
-    "last_save_at": "2026-11-14T23:26:15.453Z",
+    "last_save_at": "2026-11-14T23:28:44.249Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "acceptance-criteria.md"
+      "acceptance-criteria.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:01686180a02e230267727c098a79b732d991242f54d52083617e1ef817fa1796",
+    "source_fingerprint": "sha256:c4e710606c6db140b135683fc2af848bf4e947cec3494feff33e002a8e143721",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1e1c15980a84ec5d717fb2d2ff8f703b67d9ffebc994122690a30809fa707b84",
-      "plan.md": "0811ddf5ff5cb8f2e23bbfb1d0667538e111d8bef100d468f3d0fbe4f8c72313",
-      "tasks.md": "1e6fdc93cc36fb32b25e40b41e129c1cb14ce6e8cb62b5754f338b525918a15b"
+      "spec.md": "aa43444f451ed5b6ac653cc14b03182c313d67a28ddb075e13db55d20f0ce0b6",
+      "plan.md": "9b44460d5d006e0bed396564d7526438837f2ae597e66f35328705ea15bd5178",
+      "tasks.md": "537c402c422821b8de4412ee05d68cb8df3fd42b5ca2de33489326155da9f362",
+      "implementation-summary.md": "6ea2c85cd4bc7dc4aa28ae7f8698025ac17b9e2919c1a02503b007c6b744790d"
     },
     "last_active_at": null
   }

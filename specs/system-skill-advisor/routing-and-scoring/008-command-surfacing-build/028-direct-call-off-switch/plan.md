@@ -37,17 +37,17 @@ contextType: "general"
 <!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Phase 027 reads `Complete` and `git status` prints nothing for this phase's nine files (T001)
-- [ ] `scratch/floor-before.txt`, `scratch/eval-before.txt` and the suite lines of `scratch/before.txt` are recorded (T001)
-- [ ] `scratch/repro-before.txt` matches the Measured Behavior block and `scratch/timing-before.txt` holds five warm call times (T002)
+- [x] Phase 027 reads `Complete` and `git status` prints nothing for this phase's nine files (T001)
+- [x] `scratch/floor-before.txt`, `scratch/eval-before.txt` and the suite lines of `scratch/before.txt` are recorded (T001)
+- [x] `scratch/repro-before.txt` matches the Measured Behavior block and `scratch/timing-before.txt` holds five warm call times (T002)
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `BUILD` and `TC` exit 0, `VALL` reports 0 failed, `DT` and `VP` report `fail 0` (T010)
-- [ ] The floor and eval after files equal their before files (T011)
-- [ ] `scratch/repro-after.txt` prints `disabledCount=1` on all five `off` lines and the before rows on all four `on` lines (T012)
-- [ ] The fix is committed and the Opus review reports no open P0 or P1 (T014, T015)
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `BUILD` and `TC` exit 0, `VALL` reports 0 failed, `DT` and `VP` report `fail 0` (T010)
+- [x] The floor and eval after files equal their before files (T011)
+- [x] `scratch/repro-after.txt` prints `disabledCount=1` on all five `off` lines and the before rows on all four `on` lines (T012)
+- [x] The fix is committed and the Opus review reports no open P0 or P1 (T014, T015)
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

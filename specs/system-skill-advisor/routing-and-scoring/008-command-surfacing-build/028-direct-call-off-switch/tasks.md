@@ -99,7 +99,7 @@ Worker lanes. Lane M owns `AD`, `ADT` and `HR` and runs T003 then T004. Lane C o
 - [x] T013 [C] Check the boundaries (`$SP/boundaries.txt`). After T012. Write each command below with its output or exit code into `boundaries.txt`. Verify: `G diff --quiet BASE -- AGENTS.md` exits 0. `test "$(G rev-parse BASE:$RAD/command-prompts.jsonl)" = "$(G hash-object $RAD/command-prompts.jsonl)"` and the same for `$RAD/holdout-prompts.jsonl` exit 0, so neither row file is diffed. `G diff --quiet BASE -- $RAD/command-routing-baseline.json` exits 0. `G diff --stat BASE -- '*package.json' '*package-lock.json'` prints nothing. `G diff BASE -U0 -- $HR $CLI $CLT $TU | rg -e '^\+\s*(//|#|\*|/\*)' | rg -c -e 'specs/|[0-9]{3}-[a-z]|\b(T|P|Q|A)[0-9]{3}\b|\b(REQ|AC|CHK|ADR|SC|NFR)-[0-9]+|\bphase [0-9]+'` and the same `rg -e` pair over `rg -n -e '^\s*(//|\*|/\*)' $AD $ADT` print nothing. `G diff BASE -U0 -- $HD $CP $FA | rg -c '^\+.*\x{2014}'` prints nothing. `G status --porcelain --untracked-files=all -- .skilled .opencode` names only `FILES` and the paths phase 026's notation names. Evidence: boundaries.txt: AGENTS.md, both row-file hashes and baseline unchanged (exit 0); package diff empty; comment-id and em-dash rg print nothing (exit 1); status names only FILES plus the phase 026 harness paths
 - [x] T014 [C] Commit the fix (`FILES` and this phase folder). After T013. Stage by path with `G add -- FILES $PH`, never with `-a` or a folder above `$PH`, and commit with a conventional message. The parent `spec.md`, `../decision-record.md` and the phase 026 documents this plan changed are not part of this commit. Record the short hash as `FIX`. Verify: `G status --porcelain -- FILES $PH` prints nothing, `G log -1 --format=%h` prints `FIX` and `G show --stat --format= FIX` lists only paths in `FILES` or under `$PH`. Evidence: FIX 88d8bebcd7: status of FILES and PH clean after commit; show --stat lists only the eleven FILES and paths under PH
 - [x] T015 [C] Review the fix diff (`$SP/review/brief.txt`, `$SP/review/report.txt`). After T014. Write `brief.txt` naming the diff `G diff BASE FIX -- FILES`, the REQ tables, the Mechanism per Path table and assumptions A3 to A6 of `spec.md`, and asking whether the client decides before any socket probe, spawn or scorer run, whether the client and the handler can return different envelopes, whether any unflagged path changes, whether an added comment names an id, and whether the three documents state the shipped behaviour. One Opus reviewer reads it read-only and writes `report.txt` with a verdict line and each item at P0, P1 or P2. Reproduce each P0 and P1 by running its cited input. A reproduced one becomes a new task with the next free id in the lane that owns the file, test first and checked by an Opus verifier, then a new fix commit whose diff the reviewer reads again. A P1 that does not reproduce is recorded with the command that showed it, and each P2 is recorded on this line with its fix or its reason. Verify: `report.txt` exists and holds a verdict line, and every P0 and P1 it names is named by a task line or recorded here as not reproduced. Evidence: report.txt VERDICT: SHIP, 0 P0, 0 P1, 4 P2. P2-1 (client loads zod and the schema module on every call, warm median 0.15s to 0.22s): kept, NFR-R01 allows exactly this closure and NFR-P02 sets no bound; a lazy import would add a second load path for no measured need. P2-2 (flagged thresholds read from the caller's env, which the launcher does not forward): kept, metadata only on an envelope with no recommendations. P2-3 (flagged input the daemon schema refuses gets an ok abstain): kept as the switch's meaning; the spec edge-case example now names the topK case and says the CLI cannot send workspaceRoot. P2-4 (no doc states the launcher change): fixed, the hook doc now says the launcher does not pass the two _HOOK_DISABLED names to a daemon it starts
-- [ ] T016 [C] Write the results and close the phase (`$PH/implementation-summary.md`, the parent goal log through `PLOG` only). After T015. Copy `$SP/implementation-summary.scaffold.md` to `$PH/implementation-summary.md` and fill it: `BASE`, `FIX` and any later fix commit, the nine files, the reproduction lines before and after, the floors, the suite counts, the two timing medians, the review verdict, the residual of assumption A6 and every `[B]` task. Mark each row of `acceptance-criteria.md` with the evidence observed, set the status in `spec.md` and the phase 28 row of `../spec.md` to `Complete`, write `PLOG "Phase 028 direct-call off switch | Complete | <FIX>: the direct call abstains on 5 of 5 off lines, warm and fresh, both orders. Phase 026 T032 may rerun"`, then run `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder $PH --apply`. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $PH --strict` prints `RESULT: PASSED`, and `rg -c "\| Unmet \|" $PH/acceptance-criteria.md` prints nothing.
+- [x] T016 [C] Write the results and close the phase (`$PH/implementation-summary.md`, the parent goal log through `PLOG` only). After T015. Copy `$SP/implementation-summary.scaffold.md` to `$PH/implementation-summary.md` and fill it: `BASE`, `FIX` and any later fix commit, the nine files, the reproduction lines before and after, the floors, the suite counts, the two timing medians, the review verdict, the residual of assumption A6 and every `[B]` task. Mark each row of `acceptance-criteria.md` with the evidence observed, set the status in `spec.md` and the phase 28 row of `../spec.md` to `Complete`, write `PLOG "Phase 028 direct-call off switch | Complete | <FIX>: the direct call abstains on 5 of 5 off lines, warm and fresh, both orders. Phase 026 T032 may rerun"`, then run `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder $PH --apply`. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $PH --strict` prints `RESULT: PASSED`, and `rg -c "\| Unmet \|" $PH/acceptance-criteria.md` prints nothing. Evidence: implementation-summary.md filled, 10 of 10 acceptance rows Met, spec.md and the parent phase 28 row Complete, PLOG written, repair-derived run, validate --strict below
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -108,10 +108,10 @@ Worker lanes. Lane M owns `AD`, `ADT` and `HR` and runs T003 then T004. Lane C o
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] `scratch/repro-after.txt` prints `disabledCount=1` on all five `off` lines and the before rows on all four `on` lines
-- [ ] `scratch/review/report.txt` holds a verdict with no open P0 or P1
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] `scratch/repro-after.txt` prints `disabledCount=1` on all five `off` lines and the before rows on all four `on` lines
+- [x] `scratch/review/report.txt` holds a verdict with no open P0 or P1
 <!-- /ANCHOR:completion -->
 
 ---
@@ -153,9 +153,9 @@ A `[B]` task stops its lane. The coordinator records the printed line in the par
 ## Pre-Implementation
 <!-- FILL: Write one check per setup fact, each with a command. GOOD: CHK-001 [P0] The start commit is in `goal.md` section 4. WEAK: Setup is ready. -->
 
-- [ ] CHK-001 [P0] Phase 027 reads `Complete` and `FILES` are clean in `git status` (T001).
-- [ ] CHK-002 [P0] The floors, the eval line and the suite lines are recorded before the first edit (T001).
-- [ ] CHK-003 [P1] `$SP/repro-before.txt` matches the Measured Behavior block and the lease pid is running (T002).
+- [x] CHK-001 [P0] Phase 027 reads `Complete` and `FILES` are clean in `git status` (T001). Evidence: T001: 027 Complete printed 1, FILES status empty.
+- [x] CHK-002 [P0] The floors, the eval line and the suite lines are recorded before the first edit (T001). Evidence: before.txt, floor-before.txt and eval-before.txt written at BASE 8bac97d71c before any edit.
+- [x] CHK-003 [P1] `$SP/repro-before.txt` matches the Measured Behavior block and the lease pid is running (T002). Evidence: T002: repro-before.txt matches the block (9, 5, 4), lease pid 59115 was running.
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -164,10 +164,10 @@ A `[B]` task stops its lane. The coordinator records the printed line in the par
 ## Code Quality
 <!-- FILL: Write one check per file rule. A command must answer it. GOOD: CHK-010 [P0] `bash -n scripts/rotate-logs.sh` exits 0. WEAK: Code is clean. -->
 
-- [ ] CHK-010 [P0] `BUILD` and `TC` exit 0 (T010).
-- [ ] CHK-011 [P0] `ADVISOR_DISABLED_FLAGS` is defined once and both callers use `disabledRecommendOutput` (T004, T005).
-- [ ] CHK-012 [P1] No added comment names a spec path or an id, and no added doc line holds an em dash (T013).
-- [ ] CHK-013 [P1] `AD`, the early call in `CLI` and the strip in `TU` each carry one reason comment.
+- [x] CHK-010 [P0] `BUILD` and `TC` exit 0 (T010). Evidence: after.txt: BUILD and TC exit 0.
+- [x] CHK-011 [P0] `ADVISOR_DISABLED_FLAGS` is defined once and both callers use `disabledRecommendOutput` (T004, T005). Evidence: rg: ADVISOR_DISABLED_FLAGS defined only at lib/advisor-disabled.ts:33, disabledRecommendOutput called at handlers/advisor-recommend.ts:643 and skill-advisor-cli.ts:1540.
+- [x] CHK-012 [P1] No added comment names a spec path or an id, and no added doc line holds an em dash (T013). Evidence: boundaries.txt: comment-id and em-dash searches print nothing (exit 1).
+- [x] CHK-013 [P1] `AD`, the early call in `CLI` and the strip in `TU` each carry one reason comment. Evidence: lib/advisor-disabled.ts module header, skill-advisor-cli.ts:1538-1539 and the switchEnv strip in the test utils each carry one reason comment.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -176,11 +176,11 @@ A `[B]` task stops its lane. The coordinator records the printed line in the par
 ## Testing Checklist
 <!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] `--keep 3` leaves 3 archives. WEAK: Tests pass. -->
 
-- [ ] CHK-020 [P0] `VALL` reports 0 failed under the T010 rule, and `DT` and `VP` report `fail 0` (T010).
-- [ ] CHK-021 [P0] The floor and eval after files equal their before files (T011).
-- [ ] CHK-022 [P0] T003, T005 and T006 each recorded a failing first run for the reason their lines name.
-- [ ] CHK-023 [P0] The reproduction prints the abstain reason on five of five `off` lines and the before rows on four of four `on` lines (T012).
-- [ ] CHK-024 [P1] The client's closure names no native package, and both timing files hold five warm call times (T002, T012).
+- [x] CHK-020 [P0] `VALL` reports 0 failed under the T010 rule, and `DT` and `VP` report `fail 0` (T010). Evidence: after.txt: VALL 2121 passed 0 failed, DT and VP fail 0.
+- [x] CHK-021 [P0] The floor and eval after files equal their before files (T011). Evidence: cmp floor and eval exit 0.
+- [x] CHK-022 [P0] T003, T005 and T006 each recorded a failing first run for the reason their lines name. Evidence: T003 failed first on the missing module, T005 failed 3 of 6, T006 failed under the shell switch, each then passed.
+- [x] CHK-023 [P0] The reproduction prints the abstain reason on five of five `off` lines and the before rows on four of four `on` lines (T012). Evidence: repro-after.txt: 5 off lines disabledCount=1 with the abstain reason, on-lines diff against before prints nothing.
+- [x] CHK-024 [P1] The client's closure names no native package, and both timing files hold five warm call times (T002, T012). Evidence: closure-after.txt names zod only for the client, timing-before.txt and timing-after.txt hold five real lines each.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -189,13 +189,13 @@ A `[B]` task stops its lane. The coordinator records the printed line in the par
 ## FIX ADDENDUM: FIX COMPLETENESS
 <!-- FILL: Write this section when the packet fixes a reported finding. Delete it otherwise. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
 
-- [ ] CHK-FIX-001 [P0] Finding class: the ignored switch is `cross-consumer`, one decision read by two callers in two processes, the handler and the client, with the warm and the fallback paths as two routes to the same miss. The test scope strip is `test-isolation`, and the three documents are `instance-only`.
-- [ ] CHK-FIX-002 [P0] Same-class producers: `rg -n "HOOK_DISABLED" $ADV --glob '*.ts' --glob '!**/dist/**' --glob '!tests/**'` lists the handler's list and the compat probe at BASE, and the shared module and the compat probe after the fix.
-- [ ] CHK-FIX-003 [P0] Consumers: `rg -n "ADVISOR_DISABLED_FLAGS|advisorDisabledBy|disabledRecommendOutput|requestWorkspaceRoot|emptyOutput\(|disabledOutput\(" $ADV --glob '*.ts' --glob '!**/dist/**'` is read at close, and every caller still receives the fields it reads (T010).
-- [ ] CHK-FIX-004 [P0] Adversarial table tests: the delimiter (each switch name alone and both together), the joined input (a flagged call followed by an unflagged one in the reproduction), the outside root (a temp `workspaceRoot` behind a symlinked temp folder), the no-op (`true`, `0`, `SYSTEM_SKILL_ADVISOR_DISABLED`, `SYSTEM_HOOKS_DISABLED`) and the fallback (no daemon at all) each hold a row (T003, T005, T012).
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count: the switch (none, `SYSTEM_`, `SPECKIT_`, both, four no-op values) by the backend (warm fake daemon, no daemon) in the tests, and the switch (off, on) by the socket folder (default, fresh) by the call order (flagged first, plain first) plus the stdin form in the reproduction, nine lines.
-- [ ] CHK-FIX-006 [P1] Hostile global state: the new client cases build their environment with `switchEnv`, which deletes every switch name, and T006 runs a suite with the `SYSTEM_` name exported in the shell.
-- [ ] CHK-FIX-007 [P1] Evidence names `BASE`, `FIX` and the files each number came from (T016).
+- [x] CHK-FIX-001 [P0] Finding class: the ignored switch is `cross-consumer`, one decision read by two callers in two processes, the handler and the client, with the warm and the fallback paths as two routes to the same miss. The test scope strip is `test-isolation`, and the three documents are `instance-only`. Evidence: classified as written: the shared module answers for both callers, the warm and fallback routes are both covered by T005 and the reproduction.
+- [x] CHK-FIX-002 [P0] Same-class producers: `rg -n "HOOK_DISABLED" $ADV --glob '*.ts' --glob '!**/dist/**' --glob '!tests/**'` lists the handler's list and the compat probe at BASE, and the shared module and the compat probe after the fix. Evidence: rg outside tests now lists lib/advisor-disabled.ts:34-35 and the compat probe (lib/compat/daemon-probe.ts:47, contract.ts:7); the handler holds no list.
+- [x] CHK-FIX-003 [P0] Consumers: `rg -n "ADVISOR_DISABLED_FLAGS|advisorDisabledBy|disabledRecommendOutput|requestWorkspaceRoot|emptyOutput\(|disabledOutput\(" $ADV --glob '*.ts' --glob '!**/dist/**'` is read at close, and every caller still receives the fields it reads (T010). Evidence: rg at close: the handler and the client are the only callers of disabledRecommendOutput, the handler still uses emptyOutput and requestWorkspaceRoot, and VALL 2121 passed.
+- [x] CHK-FIX-004 [P0] Adversarial table tests: the delimiter (each switch name alone and both together), the joined input (a flagged call followed by an unflagged one in the reproduction), the outside root (a temp `workspaceRoot` behind a symlinked temp folder), the no-op (`true`, `0`, `SYSTEM_SKILL_ADVISOR_DISABLED`, `SYSTEM_HOOKS_DISABLED`) and the fallback (no daemon at all) each hold a row (T003, T005, T012). Evidence: advisor-disabled.vitest.ts covers each name alone and both together, the no-op values true, 0, SYSTEM_SKILL_ADVISOR_DISABLED and SYSTEM_HOOKS_DISABLED, and a tmpdir workspaceRoot resolved through realpath (the macOS tmpdir sits behind the /var symlink); T005 covers no daemon; the reproduction joins flagged and plain calls.
+- [x] CHK-FIX-005 [P1] Matrix axes and row count: the switch (none, `SYSTEM_`, `SPECKIT_`, both, four no-op values) by the backend (warm fake daemon, no daemon) in the tests, and the switch (off, on) by the socket folder (default, fresh) by the call order (flagged first, plain first) plus the stdin form in the reproduction, nine lines. Evidence: tests: the switch by warm fake daemon and no daemon; reproduction: nine lines, off and on by default and fresh by both orders plus stdin.
+- [x] CHK-FIX-006 [P1] Hostile global state: the new client cases build their environment with `switchEnv`, which deletes every switch name, and T006 runs a suite with the `SYSTEM_` name exported in the shell. Evidence: stale-daemon-retry.vitest.ts:152 switchEnv deletes every switch name; T006 ran the dual-client suite with the SYSTEM_ name exported.
+- [x] CHK-FIX-007 [P1] Evidence names `BASE`, `FIX` and the files each number came from (T016). Evidence: implementation-summary.md names BASE 8bac97d71c, FIX 88d8bebcd7, the follow-up 7fda767c08 and the scratch file of each number.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -204,9 +204,9 @@ A `[B]` task stops its lane. The coordinator records the printed line in the par
 ## Security
 <!-- FILL: Write one check per security surface. Write `N/A` with a reason when none applies. GOOD: CHK-030 [P0] `scripts/rotate-logs.sh` reads no credential. WEAK: Security is fine. -->
 
-- [ ] CHK-030 [P0] `rg -l -F '"prompt"' $SP --glob '!planning/**'` prints nothing, and no task read a row file except through `jq 'del(.prompt)'`.
-- [ ] CHK-031 [P0] The disabled envelope carries no prompt text: the module case and the client cases assert its fields, none of which holds the prompt.
-- [ ] CHK-032 [P1] The edge-case behaviour for a `workspaceRoot` under the switch is stated in `spec.md` and the reviewer saw it (T015).
+- [x] CHK-030 [P0] `rg -l -F '"prompt"' $SP --glob '!planning/**'` prints nothing, and no task read a row file except through `jq 'del(.prompt)'`. Evidence: rg for a prompt field over scratch outside planning prints nothing (exit 1); the only hit is the matrix script's fixed probe text; row files read only through jq del(.prompt).
+- [x] CHK-031 [P0] The disabled envelope carries no prompt text: the module case and the client cases assert its fields, none of which holds the prompt. Evidence: advisor-disabled.vitest.ts asserts the envelope fields and none holds the prompt; NFR-S02.
+- [x] CHK-032 [P1] The edge-case behaviour for a `workspaceRoot` under the switch is stated in `spec.md` and the reviewer saw it (T015). Evidence: the reviewer saw the edge case (report P2-3) and spec.md now states it with the topK example and says the CLI cannot send workspaceRoot.
 <!-- /ANCHOR:security -->
 
 ---
@@ -215,8 +215,8 @@ A `[B]` task stops its lane. The coordinator records the printed line in the par
 ## Documentation
 <!-- FILL: Write one check per document that must agree. GOOD: CHK-040 [P1] `spec.md` and `tasks.md` both name `--keep <n>`. WEAK: Docs are updated. -->
 
-- [ ] CHK-040 [P1] `HD`, `CP` and `FA` carry the sentences T007 to T009 name, and the lines the plan lists as unchanged still read as they did.
-- [ ] CHK-041 [P1] `implementation-summary.md` and `scratch/repro-after.txt` quote the same `off` and `on` lines (T016).
+- [x] CHK-040 [P1] `HD`, `CP` and `FA` carry the sentences T007 to T009 name, and the lines the plan lists as unchanged still read as they did. Evidence: T007 to T009 verifiers confirmed the sentences and the unchanged lines; the launcher sentence was added in 7fda767c08.
+- [x] CHK-041 [P1] `implementation-summary.md` and `scratch/repro-after.txt` quote the same `off` and `on` lines (T016). Evidence: implementation-summary.md quotes five lines that rg -F -x finds once each in repro-after.txt.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -225,8 +225,8 @@ A `[B]` task stops its lane. The coordinator records the printed line in the par
 ## File Organization
 <!-- FILL: Write one check per file location rule. GOOD: CHK-050 [P1] Test copies live under `scratch/test/`. WEAK: Files are organized. -->
 
-- [ ] CHK-050 [P1] Every before, after and review file lives under `scratch/`, and no `/tmp/s028.*` folder is left after a reproduction run.
-- [ ] CHK-051 [P1] The fix commit lists only `FILES` and this phase folder (T014).
+- [x] CHK-050 [P1] Every before, after and review file lives under `scratch/`, and no `/tmp/s028.*` folder is left after a reproduction run. Evidence: every before, after and review file is under scratch/, and ls /tmp/s028.* finds nothing.
+- [x] CHK-051 [P1] The fix commit lists only `FILES` and this phase folder (T014). Evidence: show --stat 88d8bebcd7 lists only FILES and this folder.
 <!-- /ANCHOR:file-org -->
 
 ---

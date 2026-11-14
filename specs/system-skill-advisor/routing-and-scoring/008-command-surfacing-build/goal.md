@@ -289,6 +289,7 @@ and findings belong here.
 | Live brief cost | Declined | {"error":"degraded_brief","rows":44,"liveRows":0} exit 2, the script measures only a live head and no row was live in this checkout. No setting was changed to get a number |
 | Review pass four, confirming round | Closed, 0 open P0 and P1 | Rounds 4b and 4c, two lineages each, 10 iterations. Last ratios 4b 0 and 1, 4c 0 and 0.6667 (README findings only, on cap). Adjudicated 2 P1, both reproduced and fixed (T028 and T031, db14c22bb0), 7 P2: 5 fixed, 1 rejected as unreachable, 1 spec wording fixed. No round past 4c |
 | Correction to the confirming round row and the pass-four merge rows | Recorded | Rounds 4b and 4c ran 11 iterations (3, 3, 3 and 2), not 10. The merged activeP1 reads 12 after the rerun merge over 22 lineages, not 10: 5 raw pass-four P1 and 7 from passes one to three. Pass four closes with 0 open P0 and P1 (review/review-report.md, decision P052) |
+| Phase 028 direct-call off switch | Complete | 88d8bebcd7: the direct call abstains on 5 of 5 off lines, warm and fresh, both orders. Phase 026 T032 may rerun |
 
 ### Deviations and findings
 
