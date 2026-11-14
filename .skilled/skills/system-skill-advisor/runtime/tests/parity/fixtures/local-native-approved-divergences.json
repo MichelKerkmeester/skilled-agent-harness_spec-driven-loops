@@ -716,7 +716,7 @@
       "promptHash": "sha256:4c8fe4462488e7eedb3bc3f5d1c89b73de2cc62555589c5dbb55b8a41dc6e801",
       "localTop": "none",
       "nativeTop": "system-deep-loop",
-      "reason": "the deep-loop hub now carries the review phrases its hub router already routed, so native reaches the deep-review gold through system-deep-loop while local still abstains",
+      "reason": "the deep-loop hub's new review and AI council phrases give it the single words stop and several, which this prompt contains, so native reaches the deep-review gold through system-deep-loop while local still abstains; no full phrase matches",
       "approvedAt": "2026-11-13"
     },
     {
