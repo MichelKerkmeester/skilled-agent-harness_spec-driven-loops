@@ -331,7 +331,8 @@
     "before and after my rewrite",
     "intent file",
     "new agent definition",
-    "reusable prompt shortcut"
+    "reusable prompt shortcut",
+    "agent registry"
   ],
   "derived": {
     "trigger_phrases": [
@@ -796,6 +797,7 @@
     "before and after my rewrite",
     "intent file",
     "new agent definition",
-    "reusable prompt shortcut"
+    "reusable prompt shortcut",
+    "agent registry"
   ]
 }
