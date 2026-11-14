@@ -209,8 +209,8 @@
     ],
     "causal_summary": "The 2026-11-14 whole-epic review left four document findings",
     "created_at": "2026-11-14T16:13:57Z",
-    "last_save_at": "2026-11-14T17:40:24.145Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-14T18:51:05.096Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -220,13 +220,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:18e4bb8f57232465d5a8dd3fc57f27973ff40f3bd7620202a742e6618c334d06",
+    "source_fingerprint": "sha256:e884f5312be3186e319e1a5536a4efe22b41c9b3d5afbe43d592a711900ab0e1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "95168e7e4811af949d5c814578408d11f87a1fd9a0607039611afe22f49c2c27",
       "plan.md": "2d44632d91fe5ca30e2626bb8f5376a5d468e32a525d5b3f8d73853313da4ea0",
       "tasks.md": "d914c937b647ce98b0ac7bab3e6f338a577f871e151645d4dfa297c2b7e3441f",
-      "implementation-summary.md": "69c00337a3ce56263895f078c1292d16ff39d25659e4b3632eb1ecfb03d3cba2"
+      "implementation-summary.md": "eaf133c17c2af9f76d30da441fa1422a0edea0a0d8418d5983cc1a9f279abe56"
     },
     "last_active_at": null
   }

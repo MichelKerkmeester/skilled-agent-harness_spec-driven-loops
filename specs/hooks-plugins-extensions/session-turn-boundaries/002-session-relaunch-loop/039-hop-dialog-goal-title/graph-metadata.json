@@ -40,6 +40,7 @@
       "durable directive",
       "completion criteria",
       "goal binding",
+      "039-hop-dialog-goal-title operator decisions",
       "mobile rename does not carry over a hop",
       "stale relaunch wrapper keeps old code",
       "packet 038 and 039 open ends",
@@ -60,11 +61,12 @@
       "completion",
       "criteria"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
+      "decision-record.md",
       "research/research.md",
       ".claude/settings.json",
       ".skilled/commands/assets/local-skilled-alignment/run-lanes.cjs",
@@ -81,8 +83,7 @@
       ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
       ".skilled/hooks/session-relaunch/tests/context-usage.test.cjs",
       ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-harness.cjs",
-      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
-      ".skilled/hooks/session-relaunch/claude/stop-arm.mjs"
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs"
     ],
     "entities": [
       {
@@ -95,6 +96,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -188,12 +195,6 @@
         "source": "derived"
       },
       {
-        "name": "stop-arm.mjs",
-        "kind": "file",
-        "path": ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -232,20 +233,23 @@
     ],
     "causal_summary": "Three gaps showed on 2026-11-13 in Claude Code sessions that hand over near the context limit",
     "created_at": "2026-11-13T18:47:10Z",
-    "last_save_at": "2026-11-14T17:50:08.359Z",
+    "last_save_at": "2026-11-14T18:54:32.588Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md",
+      "decision-record.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:328af276ce68e0c089c635db320000c78df248a075c56c66891dabb5f37ce883",
+    "source_fingerprint": "sha256:9954c6925ea56a3e0d39ce68e8de2452efd6621fbba5ada6a9daea69f71617a0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "956d44ddd19ff5952b12dec4ead046dcbdf3226746a72447958bcd98aef55d3e",
+      "decision-record.md": "da129486e243bec384fdcfb8272c91de9849013a9fec108daa460d8c28ff281f",
       "research/research.md": "f0daad5f191298d68bc32ec2f1767ebd28c3694400bd86b804bbb2b6014e0cf2"
     },
-    "last_active_at": null
+    "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes",
+    "last_active_at": "2026-11-14T18:51:05.146Z"
   }
 }

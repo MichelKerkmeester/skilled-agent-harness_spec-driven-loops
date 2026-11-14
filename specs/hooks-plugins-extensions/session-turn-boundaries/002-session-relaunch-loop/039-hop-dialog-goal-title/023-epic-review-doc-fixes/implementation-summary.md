@@ -9,22 +9,29 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes"
-    last_updated_at: "2026-11-14T18:55:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Closed the phase against the tree at 2638731a9d, with the orchestrator's commit left to run"
-    next_safe_action: "The orchestrator commits, then runs the commit-scope check named in AC-007"
+    last_updated_at: "2026-11-14T18:51:05Z"
+    last_updated_by: "generate-context"
+    recent_action: "Children 020 to 023 built and pushed with the reducer and parser packets"
+    next_safe_action: "Run playbook HS-9 for the live hop check"
+    packet_purpose: "Purpose: The documents say what the shipped code does, the seven rows carry saved evidence, the one row whose rule was reversed is superseded through a decision record, and the operator has one short script to check the three headline behaviors on a real hop."
     blockers: []
-    key_files: [".skilled/hooks/session-relaunch/claude/README.md", ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md", ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md", ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"]
+    key_files:
+      - "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes/implementation-summary.md"
+      - ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:f030b0b41834be2b5c50c7a9fc2d95771b0a3cb5c0e5a4167bfaf1b49ecf3f78"
       session_id: "scaffold-023-epic-review-doc-fixes"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "b726ec67-1d85-4833-b219-c038e184d696"
+      workspace: "/Users/michelkerkmeester/worktrees/public/385-epic-review-fixes"
+      savedAt: "2026-11-14T18:51:05Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
-    open_questions:
-      - "Does the app title follow --name for a generated title? The operator-run scenario records the command line and the app title separately, and no run is claimed."
-    answered_questions:
-      - "Is 002 AC-003 rewritten? No. It is superseded through ADR-001 and keeps its text."
-      - "Was the live hop run? No. HS-9 is operator-run and the packet records no result."
+    open_questions: []
+    answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
 # Implementation Summary

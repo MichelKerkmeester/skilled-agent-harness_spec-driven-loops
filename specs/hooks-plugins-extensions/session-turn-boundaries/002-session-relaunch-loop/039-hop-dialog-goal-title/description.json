@@ -18,7 +18,7 @@
     "session",
     "title"
   ],
-  "lastUpdated": "2026-11-13T22:58:55.851Z",
+  "lastUpdated": "2026-11-14T18:51:05.096Z",
   "specId": "039",
   "folderSlug": "hop-dialog-goal-title",
   "parentChain": [
@@ -26,8 +26,11 @@
     "session-turn-boundaries",
     "002-session-relaunch-loop"
   ],
-  "memorySequence": 1,
+  "memorySequence": 4,
   "memoryNameHistory": [
-    "13-11-26_23-58__deep-research-completed-on-2026-11-13-ten.md"
+    "13-11-26_23-58__deep-research-completed-on-2026-11-13-ten.md",
+    "14-11-26_19-50__packet-039-gained-children-020-to-023-from-a.md",
+    "14-11-26_19-50__packet-039-gained-children-020-to-023-from-a.md",
+    "14-11-26_19-51__packet-039-gained-children-020-to-023-from-a.md"
   ]
 }
