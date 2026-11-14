@@ -1,0 +1,21 @@
+TASK: update one test expectation and its title in one test file.
+
+FILE: .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate-hygiene.test.cjs (read lines 27 to 47 only)
+
+WHY: the hub now declares a FRONTEND surface whose file markers include `.css`, so the fixture file `d.css` detects it.
+
+EDIT 1, line 27. Replace:
+test('F01 foreign polyglot: seven seeded labels block and the surface stays unknown', () => withRepo({
+with:
+test('F01 foreign polyglot: seven seeded labels block and only the stylesheet detects a surface', () => withRepo({
+
+EDIT 2, line 42. Replace:
+  assert.deepEqual(verdict.resolved_surface, ['unknown']);
+with:
+  assert.deepEqual(verdict.resolved_surface, ['FRONTEND']);
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+node --test .skilled/skills/sk-code/sk-code-quality/scripts/tests/quality-gate-hygiene.test.cjs 2>&1 | grep -E '^ℹ (pass|fail)'
+Expected output: a pass line and `ℹ fail 0`

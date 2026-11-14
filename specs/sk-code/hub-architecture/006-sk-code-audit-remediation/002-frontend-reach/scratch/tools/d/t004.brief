@@ -1,0 +1,34 @@
+TASK: add one JSON block to one file.
+
+FILE: .skilled/skills/sk-code/mode-registry.json (read lines 120 to 148 only)
+
+EDIT: the last entry of the "modes" array is the "sk-code-frontend" entry. It ends with:
+
+      "advisorRouting": {
+        "routingClass": "metadata"
+      }
+    }
+  ]
+}
+
+Replace that ending with exactly:
+
+      "advisorRouting": {
+        "routingClass": "metadata"
+      },
+      "surfaceDetection": {
+        "label": "FRONTEND",
+        "role": "specific",
+        "pathMarkers": [],
+        "fileMarkers": [".css", ".scss", ".html", ".tsx", ".jsx", ".vue", ".svelte"],
+        "contentMarkers": []
+      }
+    }
+  ]
+}
+
+Change nothing else in the file. One file changes.
+
+VERIFY (run from the repository root):
+node -e "const m=require('./.skilled/skills/sk-code/mode-registry.json').modes.find(x=>x.workflowMode==='sk-code-frontend');console.log(m.surfaceDetection.role, m.surfaceDetection.fileMarkers.length)"
+Expected output: specific 7
