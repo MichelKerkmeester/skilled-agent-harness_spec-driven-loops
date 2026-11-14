@@ -1,0 +1,15 @@
+PASS the playbook copies the helper and does not link it
+PASS the goal switch sentence names both fields
+PASS the playbook states the copy
+PASS the playbook names the wrapper-changed log line
+PASS the playbook names the ended-goal mark
+PASS the playbook names the missing-transcript notice
+PASS the catalog names the wrapper-changed log line
+PASS the catalog names the deferredAt stamp
+PASS the catalog names the ended-goal mark
+PASS the catalog names the missing-transcript notice
+PASS the catalog names the record with no handoff
+PASS the catalog names the goal fallback bound
+PASS two 1469 citations name commit 89e246760e
+PASS ten 183 citations name commit c69f278cfc
+checks: 14, failed: 0

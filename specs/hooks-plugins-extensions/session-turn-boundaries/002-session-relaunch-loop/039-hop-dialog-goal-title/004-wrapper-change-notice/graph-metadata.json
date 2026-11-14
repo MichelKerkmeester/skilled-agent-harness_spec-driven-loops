@@ -198,7 +198,7 @@
     ],
     "causal_summary": "A running `skilled-loop` wrapper keeps the code it read when it started, so a change to `.skilled/bin/skilled-loop` reaches no hop of a loop that is already running",
     "created_at": "2026-11-14T04:47:36Z",
-    "last_save_at": "2026-11-14T05:35:03.362Z",
+    "last_save_at": "2026-11-14T13:46:32.583Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,11 +209,11 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:39a4666c426c2168f12a4e060b954f1aa39897c4223fdd0fc75a87b7ac343d08",
+    "source_fingerprint": "sha256:3254f00353f98c57b9982ae386fae252338bf3fcbc9c6a69765b96f6fea7442a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f508237086ab647c51d3ad61534e2e6e91dd7546fa8d5eb792645844880c9fd7",
-      "plan.md": "a45682c91c22418de76c9344a508b528ece35a6467645e584be87eab6c16913e",
+      "plan.md": "995907f8369bfefe0e70961593280e2fb1a521a25b24d6dc1472c5f56de7ede4",
       "tasks.md": "59c0b05a87da0254cbc688658fc055508934da8ded39c3ec7ee90fba7a5c37ba",
       "implementation-summary.md": "0755ff16db3e40efc6f156a4d6a704624a10a1e24df9f6c68cb13941e150a97e"
     },

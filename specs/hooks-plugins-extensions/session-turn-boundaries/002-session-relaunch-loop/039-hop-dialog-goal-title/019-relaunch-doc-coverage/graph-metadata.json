@@ -18,7 +18,9 @@
       "relaunch doc coverage plan",
       "relaunch doc coverage tasks",
       "relaunch doc coverage acceptance criteria",
-      "relaunch doc coverage goal"
+      "relaunch doc coverage goal",
+      "relaunch doc coverage implementation summary",
+      "relaunch playbook catalog catch-up"
     ],
     "key_topics": [
       "relaunch",
@@ -35,22 +37,28 @@
       "scenario"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      ".skilled/skills/system-spec-kit/graph-metadata.json",
-      ".skilled/hooks/README.md",
+      "implementation-summary.md",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
       ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
       ".skilled/commands/speckit/handoff.md",
       "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/004-wrapper-change-notice/acceptance-criteria.md",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/004-wrapper-change-notice/plan.md",
       "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/013-conformance-stamp-pin/spec.md",
-      "manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
-      "feature-catalog/context-preservation/session-relaunch-loop.md"
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/004-wrapper-change-notice/graph-metadata.json",
+      "scratch/doc-checks.sh",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      "scratch/citations.sh",
+      "scratch/citations.txt",
+      "scratch/baseline.txt",
+      "scratch/verification.txt"
     ],
     "entities": [
       {
@@ -84,15 +92,9 @@
         "source": "derived"
       },
       {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/graph-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".skilled/hooks/README.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -111,6 +113,54 @@
         "name": "handoff.md",
         "kind": "doc",
         "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/004-wrapper-change-notice/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "doc-checks.sh",
+        "kind": "script",
+        "path": "scratch/doc-checks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "citations.sh",
+        "kind": "script",
+        "path": "scratch/citations.sh",
+        "source": "derived"
+      },
+      {
+        "name": "citations.txt",
+        "kind": "file",
+        "path": "scratch/citations.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "verification.txt",
+        "kind": "file",
+        "path": "scratch/verification.txt",
         "source": "derived"
       },
       {
@@ -154,53 +204,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Every",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Documentation",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Killer And Wrapper",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The HS-8 block of the Claude playbook copies a helper with `cp` (`session-relaunch-claude.md:929`), and the prose below it says the check \"links\" it (`:934`)",
     "created_at": "2026-11-14T11:42:59Z",
-    "last_save_at": "2026-11-14T12:19:01.049Z",
+    "last_save_at": "2026-11-14T13:54:45.304Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,14 +216,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:94226dc3a3451714c2b0d7621942f60599f9f03f0db22ea8796292b854662950",
+    "source_fingerprint": "sha256:dec734bb9a80a0f71e2dc738075304e106b73426537b406a1a5536844296b293",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bd96ad59dd82f9ff1669ef94e484ab70726fcef0eb37b4cefa5d06eb2286991c",
+      "spec.md": "e070efaa32e23c0559c9fd05d0894ec58d297626a46ddcb766e44f4913cf57c1",
       "plan.md": "29b7eb9f226404f51070ecb53cbc8533896bdc1e9bde3c6caf576069da2b65cd",
-      "tasks.md": "3bdffc98b3d5aa613d27eb4d8a55423b7587454fd72c4502059454b8110c8e9a"
+      "tasks.md": "d07c48f6d03be1b34f8c73c9b5dbd0c5f786f04966a4007c667f835b9975ce6f",
+      "implementation-summary.md": "b3da5a175c6c772c7aca70a962653bb149a21ea916bbd2e796f4cc21ac921cdc"
     },
     "last_active_at": null
   }
