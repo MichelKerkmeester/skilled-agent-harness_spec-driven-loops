@@ -8,16 +8,29 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts"
-    last_updated_at: "2026-11-14T11:33:23Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-14T14:42:46Z"
+    last_updated_by: "generate-context"
+    recent_action: "Closed phases 4 and 5 and read the phase 6 spec and its target files"
+    next_safe_action: "Run /speckit:implement on phase 6, starting with its Setup tasks"
+    packet_purpose: "Purpose: An agent that follows `/speckit:save`, `/speckit:search`, `/speckit:handoff` or a lifecycle save step reads one contract per command, and that contract matches what `generate-context.js`, `rg-wrapper.mjs`, `lookup-trigger-index.mjs` and `session-relaunch.cjs` accept and print."
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/commands/speckit/assets/speckit-save-context-tail.yaml"
+      - ".skilled/commands/speckit/save.md"
+      - ".skilled/commands/speckit/handoff.md"
+      - ".skilled/commands/speckit/search.md"
+      - ".skilled/commands/speckit/assets/save-presentation.txt"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-006-save-search-handoff-contracts"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "d2e0387a-2438-42c0-be5e-086960b0c90f"
+      workspace: "/Users/michelkerkmeester/worktrees/public/381-speckit-command-gates-step-order-drift"
+      savedAt: "2026-11-14T14:42:46Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 0
     open_questions: []
     answered_questions: []

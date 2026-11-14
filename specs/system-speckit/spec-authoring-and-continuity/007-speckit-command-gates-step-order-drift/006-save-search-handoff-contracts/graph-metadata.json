@@ -201,8 +201,8 @@
     ],
     "causal_summary": "The lifecycle save steps call `generate-context.js` with a temp file and no `--full-auto`, so the writer runs as `plan-only` and logs `Continuity fields not written` while each step's outputs line says continuity was refreshed",
     "created_at": "2026-11-14T11:33:23Z",
-    "last_save_at": "2026-11-14T12:16:45.463Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-14T14:42:46.613Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -211,13 +211,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:2ed13b17962003affcaf344276ff4ad722bb053bab8fa27a8b11a38cfd07e986",
+    "source_fingerprint": "sha256:f92124e316fa6896a1144963e5417e0f2900ee25fd00abe377125bf290d26057",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "83250d4b615f083989c6365650379161f15600ea575872dda87f73bd1b3eaffd",
       "plan.md": "4577c7d8c9f0f2192744023a7bdb8f7ff1f4eb24483791ef4fd305f819f48d98",
       "tasks.md": "818585ef481e8ac86bb172f429e600934763367c1dcc20c6c10fb7ca324c291d",
-      "implementation-summary.md": "a8773d447c37cbbb1d89c8a24f7c0c9dda3f838d11901b3cff2ff3d265629494"
+      "implementation-summary.md": "7bdf57b213cb656c67f065d5071b456c79f6e452d24e4869e3e88ca15b4ee19c"
     },
     "last_active_at": null
   }

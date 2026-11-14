@@ -1,11 +1,12 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts",
   "description": "Phase 6: save-search-handoff-contracts",
   "keywords": [
     "phase",
     "save-search-handoff-contracts"
   ],
-  "lastUpdated": "2026-11-14T11:33:23.811Z",
+  "lastUpdated": "2026-11-14T14:42:46.613Z",
   "specId": "006",
   "folderSlug": "save-search-handoff-contracts",
   "parentChain": [
@@ -13,7 +14,8 @@
     "spec-authoring-and-continuity",
     "007-speckit-command-gates-step-order-drift"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_15-42__phases-4-and-5-of-the-speckit-command-gates.md"
+  ]
 }
