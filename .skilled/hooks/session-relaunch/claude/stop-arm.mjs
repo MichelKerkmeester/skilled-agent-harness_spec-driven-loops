@@ -47,6 +47,17 @@ function logEvent(event, fields, env) {
   } catch {}
 }
 
+// A Stop that leaves a record pending marks it, so a prompt the operator sends while the
+// record waits withdraws it. Without the mark the record would refuse every question
+// until a later Stop armed it or the operator ran cancel.
+function markParked(loopId, env) {
+  try {
+    markDeferred({ loopId, env });
+  } catch (error) {
+    logEvent('stop-arm-error', { stage: 'defer', loopId, message: error.message }, env);
+  }
+}
+
 // The killer supervises a dying session, so it must outlive this hook process.
 async function spawnKiller(loopId, targetPid, transcriptPath, env, spawnProcess) {
   try {
@@ -123,6 +134,7 @@ async function armPendingRecord(payload, dependencies = {}) {
   // rather than stranding armed with no killer running.
   if (typeof payload.transcript_path !== 'string' || !payload.transcript_path) {
     logEvent('missing-transcript-path', { loopId, sessionId: record.sessionId }, env);
+    markParked(loopId, env);
     return null;
   }
 
@@ -138,12 +150,7 @@ async function armPendingRecord(payload, dependencies = {}) {
       sessionId: record.sessionId,
       tasks: payload.background_tasks.length,
     }, env);
-    // The mark lets a prompt the operator sends while the record waits withdraw it.
-    try {
-      markDeferred({ loopId, env });
-    } catch (error) {
-      logEvent('stop-arm-error', { stage: 'defer', loopId, message: error.message }, env);
-    }
+    markParked(loopId, env);
     // A deferred hop is otherwise silent, so the operator cannot tell the session is
     // parked or how to call it off. The notice carries `systemMessage` and never a
     // `decision` key: Claude shows it and still ends the turn instead of continuing it.
@@ -173,6 +180,7 @@ async function armPendingRecord(payload, dependencies = {}) {
   });
   if (targetPid === null) {
     logEvent('stop-arm-error', { stage: 'target-pid', loopId }, env);
+    markParked(loopId, env);
     return null;
   }
 
@@ -191,8 +199,10 @@ async function armPendingRecord(payload, dependencies = {}) {
     });
   } catch (error) {
     logEvent('stop-arm-error', { stage: 'arm', loopId, message: error.message }, env);
+    markParked(loopId, env);
     return null;
   }
+  // An arm that returns no armed record found none it could arm, so nothing is left pending.
   if (armed === null || armed.status !== 'armed') return null;
 
   await spawnKiller(

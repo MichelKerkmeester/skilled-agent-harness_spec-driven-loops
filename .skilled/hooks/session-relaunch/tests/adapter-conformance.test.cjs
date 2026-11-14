@@ -409,6 +409,14 @@ function assertUntouched({ record, before, spawns }) {
   assert.deepEqual(spawns, []);
 }
 
+// A Stop that cannot arm leaves the record pending. Claude also stamps when it gave up, so
+// the stamp is set aside and everything else must be as it was.
+function assertStillPending({ record, before, spawns }) {
+  const { deferredAt: _deferredAt, ...unmarked } = record;
+  assert.deepEqual(unmarked, before);
+  assert.deepEqual(spawns, []);
+}
+
 const ARM_CASES = [
   {
     name: "an arm turns this session's pending record armed from the live cwd and starts one killer",
@@ -454,7 +462,7 @@ const ARM_CASES = [
     looksUpTarget: true,
     processTable: '41 50\n50 1\n',
     setup: (sandbox, runtime) => prepareArmRecord(sandbox, { runtime }),
-    check: assertUntouched,
+    check: assertStillPending,
   },
 ];
 
