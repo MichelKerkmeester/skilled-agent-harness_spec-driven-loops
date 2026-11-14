@@ -1,0 +1,83 @@
+# Section references in the agent files and what each one points at
+
+## Each bullet names the file, the reference as written before the move and the section it meant
+
+- `ai-council.md` line 98, `§6`, own section SYNTHESIS PROTOCOL, written `§6` after the move: pending
+- `ai-council.md` line 405, `§1`, own section CORE WORKFLOW, written `§1` after the move: pending
+- `ai-council.md` line 407, `§12`, own section OUTPUT PROTOCOL - `ai-council/` SUBFOLDER CONVENTION, written `§12` after the move: pending
+- `ai-council.md` line 416, `§1`, own section CORE WORKFLOW, written `§1` after the move: pending
+- `ai-council.md` line 437, `§8`, own section OUTPUT FORMAT, written `§8` after the move: pending
+- `ai-council.md` line 544, `§1`, own section CORE WORKFLOW, written `§1` after the move: pending
+- `ai-council.md` line 637, `§1`, own section CORE WORKFLOW, written `§1` after the move: pending
+- `ai-council.md` line 674, `§9`, own section OUTPUT VERIFICATION, written `§9` after the move: pending
+- `ai-council.md` line 682, `§15`, own section CONVERGENCE SIGNAL - 2/3 AGREEMENT RULE, written `§15` after the move: pending
+- `code.md` line 32, `§0`, own section ILLEGAL NESTING (HARD BLOCK), written `§0` after the move: pending
+- `code.md` line 32, `§2`, another file, written `§2` after the move: pending
+- `code.md` line 67, `§1`, another file, written `§1` after the move: pending
+- `code.md` line 74, `§10`, own section OUTPUT VERIFICATION, written `§11` after the move: pending
+- `code.md` line 85, `§8`, own section RETURN CONTRACT, written `§9` after the move: pending
+- `code.md` line 116, `§10`, own section OUTPUT VERIFICATION, written `§11` after the move: pending
+- `code.md` line 264, `§8`, own section RETURN CONTRACT, written `§9` after the move: pending
+- `code.md` line 385, `§1`, own section CORE WORKFLOW, written `§1` after the move: pending
+- `code.md` line 388, `§2`, another file, written `§2` after the move: pending
+- `code.md` line 389, `§7`, another file, written `§7` after the move: pending
+- `code.md` line 402, `§3`, own section Routing Scan, written `§3` after the move: pending
+- `code.md` line 404, `§10`, own section OUTPUT VERIFICATION, written `§11` after the move: pending
+- `code.md` line 405, `§5`, own section CODER ACCEPTANCE RUBRIC, written `§6` after the move: pending
+- `code.md` line 546, `§10`, own section OUTPUT VERIFICATION, written `§11` after the move: pending
+- `context.md` line 58, `Section 2`, own section ROUTING SCAN, written `Section 2` after the move: pending
+- `debug.md` line 335, `Section 0`, own section ILLEGAL NESTING (HARD BLOCK), written `Section 0` after the move: pending
+- `markdown.md` line 105, `Section 4`, own section COMMAND TEMPLATE MAP, written `Section 5` after the move: pending
+- `markdown.md` line 140, `Section 4`, own section COMMAND TEMPLATE MAP, written `Section 5` after the move: pending
+- `orchestrate.md` line 53, `§2`, own section ROUTING SCAN, written `§2` after the move: pending
+- `orchestrate.md` line 63, `§8`, own section BUDGET CONSTRAINTS, written `§9` after the move: pending
+- `orchestrate.md` line 64, `§8`, own section BUDGET CONSTRAINTS, written `§9` after the move: pending
+- `orchestrate.md` line 167, `§2`, own section ROUTING SCAN, written `§2` after the move: pending
+- `orchestrate.md` line 213, `§8`, own section BUDGET CONSTRAINTS, written `§9` after the move: pending
+- `orchestrate.md` line 214, `§8`, own section BUDGET CONSTRAINTS, written `§9` after the move: pending
+- `orchestrate.md` line 218, `§2`, own section ROUTING SCAN, written `§2` after the move: pending
+- `orchestrate.md` line 226, `§8`, own section BUDGET CONSTRAINTS, written `§9` after the move: pending
+- `orchestrate.md` line 254, `§5`, own section OUTPUT VERIFICATION, written `§6` after the move: pending
+- `orchestrate.md` line 303, `§2`, own section ROUTING SCAN, written `§2` after the move: pending
+- `orchestrate.md` line 305, `§2`, own section ROUTING SCAN, written `§2` after the move: pending
+- `orchestrate.md` line 314, `§2`, own section ROUTING SCAN, written `§2` after the move: pending
+- `orchestrate.md` line 330, `§8`, own section BUDGET CONSTRAINTS, written `§9` after the move: pending
+- `orchestrate.md` line 331, `§8`, own section BUDGET CONSTRAINTS, written `§9` after the move: pending
+- `orchestrate.md` line 357, `§8`, own section BUDGET CONSTRAINTS, written `§9` after the move: pending
+- `orchestrate.md` line 384, `§2`, own section ROUTING SCAN, written `§2` after the move: pending
+- `orchestrate.md` line 428, `section 9`, another file, written `section 9` after the move: pending
+- `orchestrate.md` line 487, `§5`, own section OUTPUT VERIFICATION, written `§6` after the move: pending
+- `orchestrate.md` line 563, `§8`, `code.md` RETURN CONTRACT, written `§9` after the move: pending
+- `orchestrate.md` line 650, `§8`, own section BUDGET CONSTRAINTS, written `§9` after the move: pending
+- `orchestrate.md` line 663, `§8`, own section BUDGET CONSTRAINTS, written `§9` after the move: pending
+- `orchestrate.md` line 726, `§8`, own section BUDGET CONSTRAINTS, written `§9` after the move: pending
+- `orchestrate.md` line 726, `§8`, own section BUDGET CONSTRAINTS, written `§9` after the move: pending
+- `orchestrate.md` line 761, `§5`, own section OUTPUT VERIFICATION, written `§6` after the move: pending
+- `orchestrate.md` line 771, `§3`, own section TASK DECOMPOSITION & DISPATCH, written `§4` after the move: pending
+- `orchestrate.md` line 880, `§8`, own section BUDGET CONSTRAINTS, written `§9` after the move: pending
+- `orchestrate.md` line 881, `§3`, own section TASK DECOMPOSITION & DISPATCH, written `§4` after the move: pending
+- `orchestrate.md` line 882, `§8`, own section BUDGET CONSTRAINTS, written `§9` after the move: pending
+- `orchestrate.md` line 883, `§2`, own section ROUTING SCAN, written `§2` after the move: pending
+- `orchestrate.md` line 884, `§2`, own section ROUTING SCAN, written `§2` after the move: pending
+- `orchestrate.md` line 885, `§2`, own section ROUTING SCAN, written `§2` after the move: pending
+- `orchestrate.md` line 886, `§8`, own section BUDGET CONSTRAINTS, written `§9` after the move: pending
+- `orchestrate.md` line 887, `§7`, own section SYNTHESIS & DELIVERY, written `§8` after the move: pending
+- `orchestrate.md` line 888, `§6`, own section FAILURE HANDLING, written `§7` after the move: pending
+- `orchestrate.md` line 889, `§4`, own section MANDATORY RULES, written `§5` after the move: pending
+- `orchestrate.md` line 890, `§4`, own section MANDATORY RULES, written `§5` after the move: pending
+- `orchestrate.md` line 904, `§4`, own section MANDATORY RULES, written `§5` after the move: pending
+- `orchestrate.md` line 905, `§4`, own section MANDATORY RULES, written `§5` after the move: pending
+- `review.md` line 52, `section 3`, another file, written `section 3` after the move: pending
+- `review.md` line 58, `section 8`, another file, written `section 8` after the move: pending
+- `review.md` line 58, `Section 5`, own section VERDICT AND ADVISORY SCORE, written `Section 6` after the move: pending
+- `review.md` line 59, `§10`, own section OUTPUT VERIFICATION, written `§11` after the move: pending
+- `review.md` line 141, `section 2`, another file, written `section 2` after the move: pending
+- `review.md` line 162, `section 2`, another file, written `section 2` after the move: pending
+- `review.md` line 192, `sections 2`, another file, written `sections 2` after the move: pending
+- `review.md` line 192, `section 8`, another file, written `section 8` after the move: pending
+- `review.md` line 193, `section 8`, another file, written `section 8` after the move: pending
+- `review.md` line 221, `Section 5`, own section VERDICT AND ADVISORY SCORE, written `Section 6` after the move: pending
+- `review.md` line 250, `Section 5`, own section VERDICT AND ADVISORY SCORE, written `Section 6` after the move: pending
+- `review.md` line 334, `Section 5`, own section VERDICT AND ADVISORY SCORE, written `Section 6` after the move: pending
+- `review.md` line 414, `section 2`, another file, written `section 2` after the move: pending
+- `review.md` line 447, `§10`, own section OUTPUT VERIFICATION, written `§11` after the move: pending

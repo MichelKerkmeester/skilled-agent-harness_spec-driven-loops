@@ -89,7 +89,7 @@ $ rg -l '^## 0b' .skilled/agents | wc -l
 
 ### Out of Scope
 - Rewording the rules inside any section - phase 1 owns contracts and phase 5 owns length
-- Changing what the template requires - the template is the reference here, except where phase 5 amends its summary rule
+- Changing what the template requires - the template is the reference here, except where phase 5 amends its summary rule. Amended 2026-11-14 by operator decision: the template gains a required-sections list that the check reads, because it marked no section as required. See `scratch/required-sections.md`
 - The frontmatter - the crosswalk and the mirror check already govern it
 
 ### Files to Change
@@ -98,6 +98,8 @@ $ rg -l '^## 0b' .skilled/agents | wc -l
 |---|---|---|
 | `.skilled/agents/*.md` | Modify | Section names, presence and order in up to eleven files |
 | `.skilled/agents/agent-registry.json` | Modify | A `templateExceptions` list per agent, each entry with a reason |
+| `.skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md` | Modify | The required-sections list, added by the 2026-11-14 amendment |
+| `.skilled/skills/sk-doc/sk-create-agent/SKILL.md` and `.skilled/bin/README.md` | Modify | One line each naming the outline check, as the checklist asks |
 | `.skilled/bin/sync-agent-roster.cjs` | Modify | Outline check in `--check` mode |
 | `.skilled/bin/sync-agent-roster.vitest.ts` | Modify | Cases for a missing, a renamed and an out-of-order section |
 | Six runtime trees | Regenerate | Copies of the changed agent files |
@@ -198,7 +200,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-- Does the template require the `0b` input and scope gate for every agent or only for agents that write? Decision: T002 reads `agent-template.md` section 3 and records the answer. Until then the gate is treated as required for write-capable agents only.
+- Does the template require the `0b` input and scope gate for every agent or only for agents that write? Decision: T002 reads `agent-template.md` section 3 and records the answer. Until then the gate is treated as required for write-capable agents only. Answer, 2026-11-14: the template makes the gate conditional on how an agent is driven, so it is not in the required list.
+- Which sections are required, when the template marks none? Operator answer, 2026-11-14: a narrow list written into the template, in place of about 20 registry exceptions.
 - Should the check read the required list from the template or from the registry? Decision: from the template, so one edit to the template is enough to move every agent.
 <!-- /ANCHOR:questions -->
 

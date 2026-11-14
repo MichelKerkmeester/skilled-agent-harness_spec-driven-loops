@@ -71,7 +71,7 @@ A maintainer changes the template or an agent file. CI runs the check, which rea
 
 | Surface | Current Role | Action | Verification |
 |---|---|---|---|
-| `.skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md` | Defines the required outline | unchanged | Read in T002 |
+| `.skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md` | Defines the required outline | update | Gains the required-sections list the check reads, by the 2026-11-14 amendment |
 | `.skilled/agents/*.md` | Carry the outlines | update | REQ-004 and REQ-005 searches |
 | `.skilled/agents/orchestrate.md` | Cites other agents' sections by number | update where a number moved | REQ-007 table |
 | `.skilled/commands/` | May cite an agent section by number | checked | `rg -n -e 'agents/[a-z-]+\.md. §' -e 'agent.md §' .skilled/commands` reviewed in T003 |

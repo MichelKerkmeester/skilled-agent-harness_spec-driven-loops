@@ -43,15 +43,21 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      ".skilled/bin/check-agent-mirror-sync.cjs",
+      "scratch/required-sections.md",
+      ".skilled/agents/agent-registry.json",
       ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+      ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+      ".skilled/bin/README.md",
+      ".skilled/bin/sync-agent-roster.cjs",
+      ".skilled/bin/sync-agent-roster.vitest.ts",
+      ".skilled/bin/check-agent-mirror-sync.cjs",
+      "scratch/section-refs.md",
       ".skilled/agents/orchestrate.md",
+      "scratch/baseline.txt",
+      "scratch/move-parity.md",
       ".skilled/agents/code.md",
       ".skilled/agents/context.md",
-      ".skilled/agents/review.md",
-      ".skilled/bin/agent-mirror-crosswalk.md",
-      ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
-      ".skilled/bin/README.md"
+      ".skilled/agents/review.md"
     ],
     "entities": [
       {
@@ -85,9 +91,15 @@
         "source": "derived"
       },
       {
-        "name": "check-agent-mirror-sync.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/check-agent-mirror-sync.cjs",
+        "name": "required-sections.md",
+        "kind": "doc",
+        "path": "scratch/required-sections.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-registry.json",
+        "kind": "config",
+        "path": ".skilled/agents/agent-registry.json",
         "source": "derived"
       },
       {
@@ -97,9 +109,57 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agent-roster.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/sync-agent-roster.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agent-roster.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/sync-agent-roster.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-agent-mirror-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/check-agent-mirror-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "section-refs.md",
+        "kind": "doc",
+        "path": "scratch/section-refs.md",
+        "source": "derived"
+      },
+      {
         "name": "orchestrate.md",
         "kind": "doc",
         "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "move-parity.md",
+        "kind": "doc",
+        "path": "scratch/move-parity.md",
         "source": "derived"
       },
       {
@@ -118,24 +178,6 @@
         "name": "review.md",
         "kind": "doc",
         "path": ".skilled/agents/review.md",
-        "source": "derived"
-      },
-      {
-        "name": "agent-mirror-crosswalk.md",
-        "kind": "doc",
-        "path": ".skilled/bin/agent-mirror-crosswalk.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/bin/README.md",
         "source": "derived"
       },
       {
@@ -161,47 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Rename",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Template",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`sk-doc/sk-create-agent/assets/agent-template.md` names the skills section `CAPABILITY SCAN`, gives hook-injected advisor context its own section and defines an input and scope gate numbered `0b`",
     "created_at": "2026-11-14T11:36:23Z",
-    "last_save_at": "2026-11-14T11:59:00.305Z",
+    "last_save_at": "2026-11-14T13:16:42.135Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,11 +217,11 @@
       "acceptance-criteria.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:d7177f69c89a04d70d1828f0bf4361fd20118950726e890534850923d9f93b8d",
+    "source_fingerprint": "sha256:f4742609e673f9f94dbe4493c6b546c6d2991bdbfe48f1cf6909509a571c0a6f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "24afca760a74bb90aec6357bb1739d10b5fac8f2e0dc164a406dadfdc7288078",
-      "plan.md": "5f7d267eab03cba0f39caa875ce220d1e6035ef4fb9eb77077428158330e1220",
+      "spec.md": "1fd9c48749d0235b5488377f57c794bc012022e4820d13975ba7077e140f8f77",
+      "plan.md": "e3b2aaabf083b9c9e93e4016ce56b12cb288bde01175c342e5b727834615eb34",
       "tasks.md": "61558b58e8d875cbff201302fe00b745e65ce02ec9df59fc6704c24b5eed4260"
     },
     "last_active_at": null
