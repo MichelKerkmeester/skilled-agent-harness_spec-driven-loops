@@ -36,7 +36,7 @@ import {
 } from '../lib/history/lookup-offer.js';
 import { notifyDirectiveLifecycleBoundary } from './directive-lifecycle-boundary.js';
 import { isMainModule } from '../../lib/esm-entry.js';
-import { formatPacketPurpose, resolvePacketPurpose } from '../../lib/spec/packet-purpose.js';
+import { formatPacketProblem, formatPacketPurpose, resolvePacketPurpose } from '../../lib/spec/packet-purpose.js';
 import { SHORT_HOST_STDIN_TIMEOUT_MS } from '../shared-stdin.js';
 
 const require = createRequire(import.meta.url);
@@ -244,7 +244,9 @@ export function buildPacketPurposeSection(
   }
   const purpose = resolvePacketPurpose(folder);
   if (!purpose) return null;
-  return { title: 'Packet Purpose', content: formatPacketPurpose(purpose, root) };
+  const line = formatPacketPurpose(purpose, root);
+  const problem = formatPacketProblem(purpose);
+  return { title: 'Packet Purpose', content: problem ? `${line}\n${problem}` : line };
 }
 
 /**

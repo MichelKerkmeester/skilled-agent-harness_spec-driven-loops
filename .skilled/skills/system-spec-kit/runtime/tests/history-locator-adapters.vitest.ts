@@ -133,7 +133,7 @@ describe('Pi post-compaction locator', () => {
   it('names the packet purpose of the last active spec folder', async () => {
     const sessionId = uniqueSession('pi-purpose');
     const packetDir = mkdtempSync(join(WORKSPACE, 'pi-purpose-'));
-    writeFileSync(join(packetDir, 'spec.md'), '### Purpose\nKeep the reason for the work in view.\n');
+    writeFileSync(join(packetDir, 'spec.md'), '### Problem Statement\nThe reason gets lost.\n\n### Purpose\nKeep the reason for the work in view.\n');
     // Pi reads the state file keyed by the cwd it is handed, not by process.cwd().
     const stateDir = join(
       tmpdir(),
@@ -152,7 +152,7 @@ describe('Pi post-compaction locator', () => {
       );
 
       expect(messages).toHaveLength(1);
-      expect(messages[0].content).toContain('## Packet Purpose\nPurpose: Keep the reason for the work in view.');
+      expect(messages[0].content).toContain('## Packet Purpose\nPurpose: Keep the reason for the work in view.\nProblem: The reason gets lost.');
       expect(messages[0].content).toContain(`## Active Spec Folder\n${relative(WORKSPACE, packetDir)}`);
     } finally {
       rmSync(statePath, { force: true });

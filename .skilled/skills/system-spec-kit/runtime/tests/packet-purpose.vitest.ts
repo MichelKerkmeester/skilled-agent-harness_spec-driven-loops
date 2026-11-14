@@ -65,6 +65,7 @@ describe('resolvePacketPurpose', () => {
       text: 'Keep the parent outcome in view.',
       source: 'packet',
       folder: parent,
+      problem: 'A problem.',
     });
   });
 
@@ -73,6 +74,7 @@ describe('resolvePacketPurpose', () => {
       text: 'Keep the parent outcome in view.',
       source: 'ancestor',
       folder: parent,
+      problem: 'A problem.',
     });
   });
 
@@ -81,6 +83,7 @@ describe('resolvePacketPurpose', () => {
       text: 'Ship the scaffolded packet goal.',
       source: 'goal',
       folder: scaffolded,
+      problem: null,
     });
   });
 
@@ -93,6 +96,7 @@ describe('resolvePacketPurpose', () => {
       text: 'The archive never shrinks, so the disk fills.',
       source: 'packet',
       folder: combinedHeading,
+      problem: null,
     });
   });
 

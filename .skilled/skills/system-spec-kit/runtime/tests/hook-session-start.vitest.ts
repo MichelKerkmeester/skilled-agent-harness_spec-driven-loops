@@ -292,6 +292,41 @@ describe('session-prime hook', () => {
       expect(folderNamedInBrief('## Session State\nRecent topics:\n- purpose')).toBeNull();
     });
 
+    it('adds the problem under the purpose line', async () => {
+      const packetDir = mkdtempSync(join(process.cwd(), '.tmp-session-prime-problem-'));
+      writeFileSync(
+        join(packetDir, 'spec.md'),
+        '### Problem Statement\nThe archive never shrinks, so the disk fills. More detail.\n\n### Purpose\nKeep three archives.\n',
+      );
+      try {
+        const now = new Date().toISOString();
+        saveState(testSessionId, {
+          claudeSessionId: testSessionId,
+          speckitSessionId: null,
+          lastSpecFolder: relative(process.cwd(), packetDir),
+          sessionSummary: null,
+          pendingCompactPrime: null,
+          producerMetadata: null,
+          metrics: { estimatedPromptTokens: 0, estimatedCompletionTokens: 0, lastTranscriptOffset: 0 },
+          createdAt: now,
+          updatedAt: now,
+        });
+
+        let output = '';
+        await runSessionStartHook(
+          { source: 'compact', session_id: testSessionId },
+          async (text) => { output = text; },
+        );
+
+        expect(output.startsWith(
+          '## Packet Purpose\nPurpose: Keep three archives.\nProblem: The archive never shrinks, so the disk fills.\n',
+        )).toBe(true);
+        expect(output).not.toContain('More detail');
+      } finally {
+        rmSync(packetDir, { recursive: true, force: true });
+      }
+    });
+
     it('walks up from a packet subfolder and ignores a folder line quoted under recent context', () => {
       const packetDir = mkdtempSync(join(process.cwd(), '.tmp-session-prime-walkup-'));
       writeFileSync(join(packetDir, 'spec.md'), '### Purpose\nShow the packet purpose from a subfolder.\n');

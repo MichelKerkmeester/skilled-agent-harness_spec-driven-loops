@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Planned, not built, and waiting on an operator decision. This phase holds the plan for fourteen edits that print the first sentence of a packet's Problem Statement under its purpose line after a compaction. No file outside this packet has changed yet."
+description: "Built 2026-11-14. After a compaction, the recovered context prints the first sentence of the packet's Problem Statement as a Problem line under its purpose line, on Claude and on Pi."
 trigger_phrases:
   - "problem sentence carry implementation summary"
 importance_tier: "normal"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-010-problem-sentence-carry"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 010-problem-sentence-carry |
-| **Completed** | Not built. Planned 2026-11-14 |
+| **Completed** | 2026-11-14 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -49,17 +49,20 @@ _memory:
 ## What Was Built
 <!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-Nothing is built yet. This packet holds the plan that answers the last point of finding 3 of the independent review: the Problem Statement, which says why the work exists and for whom, is never carried.
+After a compaction the next AI now sees why the work exists as well as what it is for: a `Problem:` line with the first sentence of the packet's Problem Statement follows the purpose line, on Claude and on Pi. The stored `packet_purpose`, the resume brief and the relaunch note are unchanged.
 
 ### Phase 10: problem-sentence-carry
 
-The five built phases carry one sentence of the Purpose. `plan.md` section 4 holds fourteen edits that make the purpose helper also return the first sentence of the Problem Statement, and make the two compaction adapters print it as a `Problem:` line under the purpose line. The stored `packet_purpose`, the resume brief and the relaunch note do not change.
+E1 to E6 gave the purpose helper a `problem` field, read by `problemIn`, and the `formatPacketProblem` formatter. E7 to E9 print the line in the Claude and Pi compaction adapters. E10 to E12 extend four helper assertions and add one Claude and one Pi check. E13 and E14 update three READMEs.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md`, `plan.md`, `tasks.md` | Created | The plan for the fourteen edits |
+| `.skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts` | Modified | `problem` field, `problemIn` and `formatPacketProblem` |
+| `.skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts`, `hooks/pi/session-compact-context.ts` | Modified | Print the Problem line |
+| `runtime/tests/packet-purpose.vitest.ts`, `hook-session-start.vitest.ts`, `history-locator-adapters.vitest.ts` | Modified | Extended assertions and one new compaction test |
+| `runtime/lib/spec/README.md`, `hooks/claude/README.md`, `hooks/pi/README.md` | Modified | Describe the Problem line |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -68,7 +71,7 @@ The five built phases carry one sentence of the Purpose. `plan.md` section 4 hol
 ## How It Was Delivered
 <!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-Not delivered. Planning ran the two Measured Behavior commands in `spec.md` and counted the sixteen search texts that exist today once each with `rg -c -F`. Four more search texts are lines phases 007 and 009 write, so they cannot be counted until those phases are built. This session could not start `node`, so no code was run.
+The orchestrator captured the baselines in `plan.md` section 5 and counted every search text once. One DeepSeek V4.1 Flash max worker, dispatched through cli-deepseek-harness with `--add-dir` for the four target folders, applied E1 to E14 and exited 0 with a `completed` final event. The orchestrator built the runtime and reran every check below itself.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -94,7 +97,10 @@ Not delivered. Planning ran the two Measured Behavior commands in `spec.md` and 
 |-------|--------|
 | The two Measured Behavior commands in `spec.md` | Run 2026-11-14: no line that mentions a problem in the helper or either adapter, and 2656 live files with a `### Problem Statement` heading |
 | Search texts in `plan.md` section 4 that exist today | Each of the sixteen counted `1` |
-| The fourteen edits | Not run. Tasks T001 to T022 are open |
+| REQ-001 to REQ-003 tests | `(9 tests)`, `(28 tests)`, `(19 tests)`, `Tests  56 passed (56)`, including `adds the problem under the purpose line` |
+| REQ-004 stored purpose | `(42 tests)`, `(1 test)`, `Tests  43 passed (43)`, `workflow.ts` unchanged |
+| REQ-005 typecheck and build | both exit 0, `formatPacketProblem` appears once in the built helper |
+| Lint | eslint exit 0 on the three source files |
 <!-- /ANCHOR:verification -->
 
 ---

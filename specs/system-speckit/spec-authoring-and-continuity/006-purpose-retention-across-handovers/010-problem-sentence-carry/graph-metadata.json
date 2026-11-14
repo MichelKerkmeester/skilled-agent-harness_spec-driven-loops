@@ -38,7 +38,7 @@
       "packet"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,6 +47,11 @@
       "implementation-summary.md",
       ".skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts",
       ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
+      "hooks/pi/session-compact-context.ts",
+      "runtime/tests/packet-purpose.vitest.ts",
+      "runtime/lib/spec/README.md",
+      "hooks/claude/README.md",
+      "hooks/pi/README.md",
       ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts",
       ".skilled/skills/system-spec-kit/runtime/tests/packet-purpose.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/tests/hook-session-start.vitest.ts",
@@ -54,11 +59,7 @@
       ".skilled/skills/system-spec-kit/runtime/lib/spec/README.md",
       ".skilled/skills/system-spec-kit/runtime/hooks/claude/README.md",
       ".skilled/skills/system-spec-kit/runtime/hooks/pi/README.md",
-      "runtime/cli/core/workflow.ts",
-      "runtime/lib/spec/packet-purpose.ts",
-      "runtime/hooks/claude/session-prime.ts",
-      "runtime/hooks/pi/session-compact-context.ts",
-      "runtime/cli/tests/save-continuity-write.vitest.ts"
+      "runtime/cli/core/workflow.ts"
     ],
     "entities": [
       {
@@ -106,13 +107,19 @@
       {
         "name": "session-compact-context.ts",
         "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts",
+        "path": "hooks/pi/session-compact-context.ts",
         "source": "derived"
       },
       {
         "name": "packet-purpose.vitest.ts",
         "kind": "test",
-        "path": ".skilled/skills/system-spec-kit/runtime/tests/packet-purpose.vitest.ts",
+        "path": "runtime/tests/packet-purpose.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/lib/spec/README.md",
         "source": "derived"
       },
       {
@@ -128,21 +135,9 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/runtime/lib/spec/README.md",
-        "source": "derived"
-      },
-      {
         "name": "workflow.ts",
         "kind": "code",
         "path": "runtime/cli/core/workflow.ts",
-        "source": "derived"
-      },
-      {
-        "name": "save-continuity-write.vitest.ts",
-        "kind": "test",
-        "path": "runtime/cli/tests/save-continuity-write.vitest.ts",
         "source": "derived"
       },
       {
@@ -204,11 +199,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The operator reported that the core reason, problem or user need of a packet is lost across handovers and compactions",
     "created_at": "2026-11-14T06:14:06Z",
-    "last_save_at": "2026-11-14T07:26:27.132Z",
+    "last_save_at": "2026-11-14T07:57:27.402Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f6acf7a603ce603a9f95a5b4816ad1d6f8de5e478e73e0af93f33b21552ca623",
+    "source_fingerprint": "sha256:eb9c96865adc92100460ea75a7de80353668d167b0ddba20ea1a4a5e54fea27f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c2bbd97e3d6a7e23b6d5a1d06c3abf3a5b88d23cb183bcb485f6ff61f9b29a88",
+      "spec.md": "5f27c5fab6aa650d677ac18ba4851131108e4503d6553646d1f306ef77c2503f",
       "plan.md": "c488234dab4f8482d4beafe2cf429c2a5774a00dd0922c216a7d0cfde9e7a864",
-      "tasks.md": "00ac74cec45c6fe3056caf43320e9b004ea6633f00d9839d04d934b5957eb5fe",
-      "implementation-summary.md": "44d684e1bf59975c450dc49cf49d127b04369444fdcc8a458f9c4f1b97fd1fae"
+      "tasks.md": "24625d0bd4fe31ef4e6bc3264b30770b48ee82e0e0aef5dadf14376df9ceb9fe",
+      "implementation-summary.md": "f0095cccbe5da9ade1563c10b1a3f332c28be38d7982c0761267ef719f1d68bc"
     },
     "last_active_at": null
   }

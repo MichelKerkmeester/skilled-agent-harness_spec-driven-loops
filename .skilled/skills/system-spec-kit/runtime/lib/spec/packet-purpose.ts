@@ -26,6 +26,8 @@ export interface PacketPurpose {
   source: PacketPurposeSource;
   /** Absolute path of the folder whose spec.md or goal.md held the text. */
   folder: string;
+  /** The first sentence of that folder's `### Problem Statement`, or null when it states none. */
+  problem: string | null;
 }
 
 // The phase-parent scaffold has written this sentence, in two wordings, in
@@ -118,6 +120,15 @@ function purposeIn(folder: string): string | null {
   return markdown === null ? null : authoredSentence(extractPurposeParagraph(markdown));
 }
 
+/** The first sentence under `### Problem Statement`: what is broken, and for whom. */
+function problemIn(folder: string): string | null {
+  const markdown = readTextFile(path.join(folder, 'spec.md'));
+  if (markdown === null) return null;
+  const lines = markdown.split(/\r?\n/);
+  const heading = lines.findIndex((line) => /^###\s+Problem Statement\s*$/.test(line.trim()));
+  return heading < 0 ? null : authoredSentence(paragraphAfter(lines, heading));
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 3. RESOLUTION
 // ───────────────────────────────────────────────────────────────────
@@ -138,7 +149,7 @@ export function resolvePacketPurpose(specFolderAbsPath: string): PacketPurpose |
   try {
     const folder = path.resolve(specFolderAbsPath);
     const own = purposeIn(folder);
-    if (own) return { text: own, source: 'packet', folder };
+    if (own) return { text: own, source: 'packet', folder, problem: problemIn(folder) };
 
     let current = folder;
     for (let depth = 0; depth < MAX_ANCESTOR_DEPTH; depth += 1) {
@@ -146,13 +157,13 @@ export function resolvePacketPurpose(specFolderAbsPath: string): PacketPurpose |
       if (parent === current) break;
       if (!fs.existsSync(path.join(parent, 'spec.md')) || !isPhaseParent(parent)) break;
       const inherited = purposeIn(parent);
-      if (inherited) return { text: inherited, source: 'ancestor', folder: parent };
+      if (inherited) return { text: inherited, source: 'ancestor', folder: parent, problem: problemIn(parent) };
       current = parent;
     }
 
     const goal = readTextFile(path.join(folder, 'goal.md'));
     const objective = goal === null ? null : authoredSentence(extractGoalObjective(goal));
-    return objective ? { text: objective, source: 'goal', folder } : null;
+    return objective ? { text: objective, source: 'goal', folder, problem: null } : null;
   } catch {
     return null;
   }
@@ -166,4 +177,9 @@ export function formatPacketPurpose(purpose: PacketPurpose, projectRoot: string)
   }
   if (purpose.source === 'goal') return `Goal objective: ${purpose.text}`;
   return `Purpose: ${purpose.text}`;
+}
+
+/** Render the problem behind a resolved purpose as one line, or null when the packet states none. */
+export function formatPacketProblem(purpose: PacketPurpose): string | null {
+  return purpose.problem ? `Problem: ${purpose.problem}` : null;
 }

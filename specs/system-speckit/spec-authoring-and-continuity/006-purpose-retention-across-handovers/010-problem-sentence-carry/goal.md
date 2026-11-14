@@ -53,11 +53,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] REQ-001: The helper returns the problem sentence beside the purpose, and null where the packet states none. `../node_modules/.bin/vitest run --config vitest.config.ts runtime/tests/packet-purpose.vitest.ts`, run from `.skilled/skills/system-spec-kit/runtime`, prints `Tests  9 passed (9)` with the four extended assertions
-- [ ] REQ-002: The context recovered after a compaction prints the Problem line under the purpose line. The test `adds the problem under the purpose line` passes, and `hook-session-start.vitest.ts` prints `(28 tests)`
-- [ ] REQ-003: The Pi adapter prints the same line. `history-locator-adapters.vitest.ts` prints `(19 tests)`, all passing, with the extended assertion
-- [ ] REQ-004: The stored `packet_purpose` value is unchanged. `../node_modules/.bin/vitest run --config vitest.config.ts runtime/tests/thin-continuity-record.vitest.ts runtime/tests/authored-continuity-snapshot.vitest.ts`, run from the runtime folder, passes with the test counts captured in task T002, and `git status --short` does not list `runtime/cli/core/workflow.ts`
-- [ ] REQ-005: The runtime still typechecks and builds. `npm run typecheck` and `npm run build` in the runtime folder exit 0, and `rg -c 'formatPacketProblem' dist/lib/spec/packet-purpose.js` prints `1`
+- [x] REQ-001: The helper returns the problem sentence beside the purpose, and null where the packet states none. `../node_modules/.bin/vitest run --config vitest.config.ts runtime/tests/packet-purpose.vitest.ts`, run from `.skilled/skills/system-spec-kit/runtime`, prints `Tests  9 passed (9)` with the four extended assertions
+- [x] REQ-002: The context recovered after a compaction prints the Problem line under the purpose line. The test `adds the problem under the purpose line` passes, and `hook-session-start.vitest.ts` prints `(28 tests)`
+- [x] REQ-003: The Pi adapter prints the same line. `history-locator-adapters.vitest.ts` prints `(19 tests)`, all passing, with the extended assertion
+- [x] REQ-004: The stored `packet_purpose` value is unchanged. `../node_modules/.bin/vitest run --config vitest.config.ts runtime/tests/thin-continuity-record.vitest.ts runtime/tests/authored-continuity-snapshot.vitest.ts`, run from the runtime folder, passes with the test counts captured in task T002, and `git status --short` does not list `runtime/cli/core/workflow.ts`
+- [x] REQ-005: The runtime still typechecks and builds. `npm run typecheck` and `npm run build` in the runtime folder exit 0, and `rg -c 'formatPacketProblem' dist/lib/spec/packet-purpose.js` prints `1`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -73,11 +73,12 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | Planned 2026-11-14, verified by an independent plan review |
+| Phase opened | Done | Planned 2026-11-14, verified by an independent plan review |
+| Phase built | Done | E1 to E14 applied by a DeepSeek V4.1 Flash max worker through cli-deepseek-harness on 2026-11-14, then every criterion rerun by the orchestrator |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None recorded | The criteria above are this phase's own requirement rows, copied from its `spec.md` |
+| Build before the Pi test | The Pi adapter loads the helper from `dist/`, so its purpose test fails until `npm run build` regenerates it. The worker, told not to build, reported partial with that one failure. After the build the three suites print `(9 tests)`, `(28 tests)`, `(19 tests)` and `Tests  56 passed (56)` |
 <!-- /ANCHOR:log -->

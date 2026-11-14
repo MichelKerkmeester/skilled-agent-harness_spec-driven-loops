@@ -69,12 +69,13 @@ function readLastSpecFolder(cwd: string, sessionId: string): string | null {
  */
 async function readPacketPurposeSection(cwd: string, specFolder: string): Promise<string | null> {
   try {
-    type PacketPurpose = { text: string; source: "packet" | "ancestor" | "goal"; folder: string };
-    const { formatPacketPurpose, resolvePacketPurpose } = await import(
+    type PacketPurpose = { text: string; source: "packet" | "ancestor" | "goal"; folder: string; problem: string | null };
+    const { formatPacketProblem, formatPacketPurpose, resolvePacketPurpose } = await import(
       "../../dist/lib/spec/packet-purpose.js"
     ) as {
       resolvePacketPurpose: (specFolderAbsPath: string) => PacketPurpose | null;
       formatPacketPurpose: (purpose: PacketPurpose, projectRoot: string) => string;
+      formatPacketProblem: (purpose: PacketPurpose) => string | null;
     };
     const root = resolve(cwd);
     const folder = resolve(root, specFolder);
@@ -82,7 +83,10 @@ async function readPacketPurposeSection(cwd: string, specFolder: string): Promis
     // project is refused before any file is opened.
     if (!folder.startsWith(root + sep)) return null;
     const purpose = resolvePacketPurpose(folder);
-    return purpose ? `## Packet Purpose\n${formatPacketPurpose(purpose, root)}` : null;
+    if (!purpose) return null;
+    const line = formatPacketPurpose(purpose, root);
+    const problem = formatPacketProblem(purpose);
+    return `## Packet Purpose\n${problem ? `${line}\n${problem}` : line}`;
   } catch {
     return null;
   }
