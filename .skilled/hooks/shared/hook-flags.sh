@@ -8,7 +8,8 @@
 # is truthy (1/true/yes/on, case-insensitive). Default-on, dependency-free, except
 # session-relaunch, which also needs SYSTEM_SESSION_RELAUNCH_ENABLED truthy, or, when
 # the caller names its runtime, SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED, which answers
-# first whenever it holds a value.
+# first whenever it holds a value. With both blank, the claude runtime is on, as in
+# DEFAULT_ON_RUNTIMES in hook-flags.cjs.
 # Flags resolve from the live environment first, then an optional operator config
 # file (hook-flags.env); the environment always wins so a persisted default can
 # still be overridden per session.
@@ -105,7 +106,14 @@ hook_enabled() {
           fi
           ;;
       esac
-      __hook_flags_truthy "$(__hook_flags_resolve SYSTEM_SESSION_RELAUNCH_ENABLED)"
+      __hf_gv=$(__hook_flags_resolve SYSTEM_SESSION_RELAUNCH_ENABLED)
+      __hf_gv_trim=${__hf_gv#"${__hf_gv%%[![:space:]]*}"}
+      if [ -n "$__hf_gv_trim" ]; then
+        __hook_flags_truthy "$__hf_gv"
+        return
+      fi
+      # Neither enable switch holds a value: on only where DEFAULT_ON_RUNTIMES says so.
+      [ "$__hf_rt" = claude ]
       return
       ;;
   esac

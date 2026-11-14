@@ -184,7 +184,7 @@ Pass `--session <id>` to `prepare`. Only Claude Code can omit it and use `CLAUDE
   Show the stderr reason verbatim.
   Fix the cause it names, then run `prepare` again.
   The cause may be an invalid note, a note owned by another session or a live shell child of the runtime process.
-  A reason that starts `session relaunch is disabled` or `session relaunch is off for` means the concern is off for this runtime, inside or outside the loop, because a master or kill switch is set, the runtime's own `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` holds a falsy value, or no enable flag is set.
+  A reason that starts `session relaunch is disabled` or `session relaunch is off for` means the concern is off for this runtime, inside or outside the loop, because a master or kill switch is set, the runtime's own `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` holds a falsy value, `SYSTEM_SESSION_RELAUNCH_ENABLED` holds one, or no enable flag is set on a runtime other than Claude Code.
   Turning it on is the operator's choice, so report the `refused` row and change no flag.
   Report the `refused` row only when the refusal cannot be repaired.
 - `3`: no automatic hop.

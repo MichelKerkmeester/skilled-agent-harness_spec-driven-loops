@@ -207,8 +207,8 @@
     ],
     "causal_summary": "An operator or a model reading the docs cannot learn that every hop carries the packet's purpose, because no feature catalog entry, playbook scenario, injection contract section or root README passage names it",
     "created_at": "2026-11-14T11:27:14Z",
-    "last_save_at": "2026-11-14T14:08:28.272Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-14T19:47:48.009Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -218,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b2a31b690ead8227ced64def9f4186a4fc70f7f2bd3b5e88adc317ca8134d773",
+    "source_fingerprint": "sha256:c2944dfd355b6ee5c0f22f8a08d8944d32a11a48c7c257198b3d9957c502e2f4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b27887fc1e68ada96b35fd75fd677e2ec8ef72486f7c531e30024d1d3afd36e6",
       "plan.md": "ab69844358688623346596133185a0cd9b2860666d734bcd178503d2e6b52001",
       "tasks.md": "0465cee873067620f755127c105fb40a9fd1be13db05a13e5e45c89bcf35a0a4",
-      "implementation-summary.md": "8a89c2e0823242b643f831f8c738168f80e08ba30e176b6e860dd814ab850543"
+      "implementation-summary.md": "e255665cf2aa7f47bfb5acc24d9f44b1d4c22cd338b4d97fe4ad10934c23080b"
     },
     "last_active_at": null
   }

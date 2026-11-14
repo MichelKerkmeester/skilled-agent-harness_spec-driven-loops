@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c4459a00c1ba16709500ed127b207de3c58d8ab71b362fa83a41264e9970ae0a",
+  "manifestHash": "6a32e7a81d17a70be7fbc1c624c484b2b2c7bc01e9c42cfdeb35c34943f61787",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -4054,6 +4054,9 @@
     "018 directive lifecycle review": [
       "018 directive-lifecycle review"
     ],
+    "018 dsh single executor loop operator decisions": [
+      "018-dsh-single-executor-loop operator decisions"
+    ],
     "018 feature catalog degraded": [
       "018 feature catalog degraded"
     ],
@@ -4272,6 +4275,9 @@
     ],
     "019 decision record": [
       "019 decision record"
+    ],
+    "019 dsh single executor hardening operator decisions": [
+      "019-dsh-single-executor-hardening operator decisions"
     ],
     "019 feature catalog shape realignment": [
       "019-feature-catalog-shape-realignment"
@@ -20428,6 +20434,9 @@
     "claude code review prompt template": [
       "claude code review prompt template"
     ],
+    "claude code session handover on by default": [
+      "claude code session handover on by default"
+    ],
     "claude code session resume flags": [
       "claude code session resume flags"
     ],
@@ -20482,6 +20491,24 @@
     ],
     "claude deep loop guard": [
       "claude deep loop guard"
+    ],
+    "claude default on release notes": [
+      "claude default on release notes"
+    ],
+    "claude default on release notes acceptance criteria": [
+      "claude default on release notes acceptance criteria"
+    ],
+    "claude default on release notes goal": [
+      "claude default on release notes goal"
+    ],
+    "claude default on release notes implementation summary": [
+      "claude default on release notes implementation summary"
+    ],
+    "claude default on release notes plan": [
+      "claude default on release notes plan"
+    ],
+    "claude default on release notes tasks": [
+      "claude default on release notes tasks"
     ],
     "claude directive lifecycle boundary": [
       "claude directive lifecycle boundary"
@@ -103976,6 +104003,9 @@
     "session relaunch default off": [
       "session relaunch default off"
     ],
+    "session relaunch default on for claude": [
+      "session relaunch default on for claude"
+    ],
     "session relaunch enable flag plan": [
       "session relaunch enable flag plan"
     ],
@@ -128432,6 +128462,9 @@
     ],
     "v4 0 2 0 release notes": [
       "v4.0.2.0 release notes"
+    ],
+    "v4 0 2 1 handover release notes": [
+      "v4.0.2.1 handover release notes"
     ],
     "v4 0 2 1 release notes": [
       "v4.0.2.1 release notes"

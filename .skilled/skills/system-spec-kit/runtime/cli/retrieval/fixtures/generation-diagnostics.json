@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6804,
-    "ok": 18828,
+    "ok": 18836,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27262,
+  "documentsScanned": 27270,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "c4459a00c1ba16709500ed127b207de3c58d8ab71b362fa83a41264e9970ae0a",
+  "manifestHash": "6a32e7a81d17a70be7fbc1c624c484b2b2c7bc01e9c42cfdeb35c34943f61787",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 43745,
+      "ok": 43756,
       "prose-sentence": 20,
       "single-token": 156,
       "stop-word-only": 1,
@@ -56031,6 +56031,10 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/research/prompts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes/scratch",
       "reason": "excluded directory"
     },
     {

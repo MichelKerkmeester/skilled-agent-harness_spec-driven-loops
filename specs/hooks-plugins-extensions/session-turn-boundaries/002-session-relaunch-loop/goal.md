@@ -94,7 +94,7 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] All 39 phase folders print `RESULT: PASSED` under `validate.sh --strict`, every `acceptance-criteria.md` row Met
+- [x] All 40 phase folders print `RESULT: PASSED` under `validate.sh --strict`, every `acceptance-criteria.md` row Met
 - [x] `validate.sh` on this packet with `--recursive --strict` prints `RESULT: PASSED`
 - [x] A live Claude Code relaunch through `skilled-loop` is recorded with its `relaunch.log` hop line
 - [x] `sync-hook-registrations.cjs --check`, `sync-runtime-mirrors.cjs --check` and `run-all-drift-guards.sh` all exit 0
@@ -126,6 +126,7 @@ and findings belong here.
 | Phase 007 complete | Done | 007 acceptance-criteria 9/9 Met. Live run 10 on Claude, Pi and OpenCode with zero operator prompts (`007-handoff-gate-exemptions/evidence/live-run10-2026-10-19/`). Recursive strict PASSED |
 | Criterion 1 count | Done | 2026-11-12: the alignment report on phase 036 found the criterion still said eleven phase folders while the folder holds 36. It now says 36. The slice is 3,993 characters at packet_budget=ok and changed, so it is printed for the operator with goal.cjs packet |
 | Phase 039 added | Done | 2026-11-13: packet `039-hop-dialog-goal-title` with three Complete children joins as phase 39. Criterion 1 now says 39 phase folders, which keeps the slice at 3,993 characters |
+| Phase 040 added | Done | 2026-11-14: packet 040-claude-default-on-release-notes joins as phase 40 (Claude Code default on, v4.0.2.1 notes). Criterion 1 now says 40 phase folders, same length, slice unchanged in size. No binding row: the slice has 7 characters to spare, so a row waits for the operator |
 
 ### Deviations and findings
 

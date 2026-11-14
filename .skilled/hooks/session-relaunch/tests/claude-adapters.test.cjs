@@ -395,7 +395,7 @@ test('context-nudge emits nothing when the relaunch concern is disabled', async 
   assert.equal(result.stdout, '');
 });
 
-test('context-nudge emits nothing when nothing enables the relaunch concern', async (t) => {
+test('context-nudge nudges when no relaunch switch is set, because Claude is on by default', async (t) => {
   const sandbox = createSandbox(t);
   delete sandbox.env.SYSTEM_SESSION_RELAUNCH_ENABLED;
   sandbox.env.SESSION_RELAUNCH_WINDOW_TOKENS = '1000';
@@ -407,15 +407,15 @@ test('context-nudge emits nothing when nothing enables the relaunch concern', as
     transcript_path: transcriptPath,
     cwd: sandbox.repoRoot,
   };
-  const silent = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
-  assert.equal(silent.code, 0, silent.stderr);
-  assert.equal(silent.stdout, '');
+  const byDefault = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(byDefault.code, 0, byDefault.stderr);
+  assert.notEqual(byDefault.stdout, '');
 
-  // The same fill nudges once the flags file opts in, so the silence above is the default.
-  fs.writeFileSync(sandbox.env.HOOK_FLAGS_CONFIG, 'SYSTEM_SESSION_RELAUNCH_ENABLED=1\n');
-  const optedIn = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
-  assert.equal(optedIn.code, 0, optedIn.stderr);
-  assert.notEqual(optedIn.stdout, '');
+  // The same fill stays silent once the flags file turns Claude off.
+  fs.writeFileSync(sandbox.env.HOOK_FLAGS_CONFIG, 'SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0\n');
+  const optedOut = await runAdapter(sandbox, CONTEXT_NUDGE_PATH, payload);
+  assert.equal(optedOut.code, 0, optedOut.stderr);
+  assert.equal(optedOut.stdout, '');
 });
 
 test('context-nudge stays silent with its runtime switched off while the global flag is on', async (t) => {

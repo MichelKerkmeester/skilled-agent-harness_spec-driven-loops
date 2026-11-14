@@ -79,7 +79,7 @@ The six bridges for repository-opening runtimes refuse self-dispatch except `cli
 The framework extends each runtime through plugins, hooks and extensions rather than asking you to wire anything by hand.
 
 - **Goal Plugin:** binds a session to a spec packet's `goal.md`. On every turn (at session start on Cursor) it injects a pointer to that file plus its completion criteria, so intent survives context resets instead of fading with the window
-- **In-Session Handover:** off by default. Once turned on, a session near its context limit hands its work to a fresh session in the same terminal. See [In-Session Handover](#in-session-handover)
+- **In-Session Handover:** on by default for Claude Code and off for the other runtimes until you turn it on. A session near its context limit hands its work to a fresh session in the same terminal. See [In-Session Handover](#in-session-handover)
 - **`pi-cache-optimizer` ("Cache Pi"):** our custom Pi extension package that keeps Pi-side context costs down across dispatches. `pi-fast-mode-w-subagent-support` sits beside it for fast mode with subagent support
 - **Plus the rest of the extension surface:** spec-gate enforcement, skill-advisor prompt briefs, a guard that keeps dotenv secrets out of the model, post-edit quality checks, session lifecycle and cleanup, MCP route guards and git preflight advisories. These are thin runtime adapters over shared policy cores in `.skilled/hooks/`
 
@@ -1047,25 +1047,36 @@ Autonomous continuation is default-off and gated by caps, a cooldown and a kill-
 
 #### In-Session Handover
 
-In-session handover ships off, and nothing about your sessions changes until you turn it on.
+In-session handover ships on for Claude Code and off for every other runtime. A project that installs Skilled and runs Claude Code gets it without setting anything. Codex, Pi, OpenCode, Cursor and Devin stay as they were until you turn it on for them.
 
-When it is on, a session that reaches 80% of its context window writes a handoff note, saves its spec packet if one is bound and ends. The `skilled-loop` wrapper then starts the same runtime in the same terminal, and the new session claims the note and carries on. Claude Code, Codex, Pi and OpenCode hand over on their own, while Cursor and Devin hand over only when you run `/speckit:handoff`. The note's Goal opens with the packet's purpose line, copied from its `spec.md`, so the purpose survives every hop.
+A session that reaches 80% of its context window writes a handoff note, saves its spec packet if one is bound and ends. The `skilled-loop` wrapper then starts the same runtime in the same terminal, and the new session claims the note and carries on. Claude Code, Codex, Pi and OpenCode hand over on their own, while Cursor and Devin hand over only when you run `/speckit:handoff`. The note's Goal opens with the packet's purpose line, copied from its `spec.md`, so the purpose survives every hop.
 
-To turn it on for every runtime, set the flag in `.skilled/hooks/hook-flags.env`, which git ignores, or export it from your shell profile:
+A Claude Code session started without the wrapper cannot restart itself. At 80% it writes the same note, keeps it with `session-relaunch.cjs keep` and works on. After the next auto-compaction the session is pointed back at the note, so the detail a summary drops is still on disk.
 
-```bash
-echo 'SYSTEM_SESSION_RELAUNCH_ENABLED=1' >> .skilled/hooks/hook-flags.env
-```
+The note and the relaunch record carry what the next session needs:
 
-Then add this line to `~/.zshrc` or `~/.bashrc` with your checkout's absolute path and open a new terminal, so plain runtime launches start under the wrapper. The shim runs only a wrapper inside that checkout, a linked worktree registered to it or a checkout listed in `SKILLED_LOOP_TRUSTED_CHECKOUTS` (colon-separated absolute paths), so a linked worktree needs no extra setting:
+- **The work:** the goal, what is done, what is left, and the running command with its mode and arguments. The next session runs that command again and it finds its own step.
+- **The goal:** the sender's goal, or the unfinished goal of the note's packet or its parent when the sender set none. A goal you met, failed or cleared stays ended.
+- **The session:** the model, effort and launch flags, the Claude permission mode and the Pi Plan or Build mode. The name or title carries too, numbered `<title> (2)`, `<title> (3)` and on.
+- **Live work:** running workers with the step that collects them, scheduled tasks and added directories. The next session collects a live worker instead of starting it again.
+
+The hop waits for the session's background tasks and says so. A question dialog cannot hold a prepared hop open, and a Stop that cannot arm one says why. Your next prompt calls a waiting hop off.
+
+To use the automatic hop, add this line to `~/.zshrc` or `~/.bashrc` with your checkout's absolute path and open a new terminal, so plain runtime launches start under the wrapper. The shim runs only a wrapper inside that checkout, a linked worktree registered to it or a checkout listed in `SKILLED_LOOP_TRUSTED_CHECKOUTS` (colon-separated absolute paths), so a linked worktree needs no extra setting:
 
 ```bash
 source /abs/path/to/skilled-agent-harness_spec-driven-loops/.skilled/bin/skilled-loop-shell.sh
 ```
 
-Each runtime also has its own flag, `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED`, with `<RUNTIME>` one of `CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR` or `DEVIN`. It overrides the global flag for that runtime whenever it holds a value. `1` turns it on and `0` turns it off. So `SYSTEM_SESSION_RELAUNCH_ENABLED=1` with `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0` hands over everywhere except Claude Code.
+To turn it on for every runtime, set the global flag in `.skilled/hooks/hook-flags.env`, which git ignores, or export it from your shell profile:
 
-`SYSTEM_SESSION_RELAUNCH_DISABLED=1` and `SYSTEM_HOOKS_DISABLED=1` beat every enable flag. While handover is off, `/speckit:handoff` refuses and the runtime's own auto-compaction handles a full context window.
+```bash
+echo 'SYSTEM_SESSION_RELAUNCH_ENABLED=1' >> .skilled/hooks/hook-flags.env
+```
+
+Each runtime also has its own flag, `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED`, with `<RUNTIME>` one of `CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR` or `DEVIN`. It overrides the global flag for that runtime whenever it holds a value. `1` turns it on and `0` turns it off. The global flag decides for every runtime without its own value, Claude Code included, and with neither set only Claude Code is on. So `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0` turns the Claude Code default off, and `SYSTEM_SESSION_RELAUNCH_ENABLED=1` with `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0` hands over everywhere except Claude Code.
+
+`SYSTEM_SESSION_RELAUNCH_DISABLED=1` and `SYSTEM_HOOKS_DISABLED=1` beat every enable flag. While handover is off for a runtime, `/speckit:handoff` refuses there and the runtime's own auto-compaction handles a full context window.
 
 The [session-relaunch README](.skilled/hooks/session-relaunch/README.md) covers the per-runtime adapters, hop history, safety limits and troubleshooting.
 
@@ -1620,7 +1631,7 @@ cp .skilled/hooks/hook-flags.env.example .skilled/hooks/hook-flags.env
 # then uncomment the switches you want on
 ```
 
-- **AI hooks.** `SYSTEM_HOOKS_DISABLED=1` turns off every hook at once except the git message gate. Each hook also has its own switch, listed in the [hooks README](.skilled/hooks/README.md). The session-relaunch hooks are the one exception to on-by-default: they stay off until you turn them on globally or per runtime, see [In-Session Handover](#in-session-handover)
+- **AI hooks.** `SYSTEM_HOOKS_DISABLED=1` turns off every hook at once except the git message gate. Each hook also has its own switch, listed in the [hooks README](.skilled/hooks/README.md). The session-relaunch hooks are the one exception to on-by-default: they are on for Claude Code and stay off on every other runtime until you turn them on globally or per runtime, see [In-Session Handover](#in-session-handover)
 - **Validation.** `SPECKIT_SKIP_VALIDATION=1` switches spec folder validation off and `SKDOC_SKIP_VALIDATION=1` switches off the sk-doc validators. A skipped run says so and exits 0, so it is no evidence that a document is valid. CI sets neither
 - **CI workflows.** These switches are repository variables, not environment variables, so set them under Settings, Secrets and variables, Actions, Variables. Every workflow except `dependabot-auto-merge.yml` reads the master switch `SKILLED_CI` and one group variable (`SKILLED_CI_FRESHNESS`, `SKILLED_CI_TESTS`, `SKILLED_CI_REVIEW`, `SKILLED_CI_REPORTS` or `SKILLED_CI_MESSAGES`). Only `off`, in any letter case, skips a job. An unset variable runs it. An empty value, `0`, `false`, `no` or a typo runs it too. Leave `SKILLED_CI` and `SKILLED_CI_MESSAGES` unset while the ruleset requires the message-contract check. A switched-off job reports success, so a required check that is switched off stops blocking a merge. `/doctor:ci report` shows each state. The [workflows README](.github/workflows/README.md#onoff-switches) maps each variable to its workflows
 - **Git hooks, one command.** Each blocking gate names its bypass in its message, such as `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...`. These bypasses are read from the environment only
@@ -1681,7 +1692,7 @@ For recovery, start with `/speckit:resume` and the packet-local continuity ladde
 
 **Q: What happens when a session runs out of context?**
 
-By default the runtime's own auto-compaction takes over, as it always did. In-session handover, which ships off, can hand the work to a fresh session instead, see [In-Session Handover](#in-session-handover).
+On Claude Code, in-session handover is on by default: under the `skilled-loop` wrapper the work moves to a fresh session, and without it the session keeps a handoff note it returns to after auto-compaction. On the other runtimes the runtime's own auto-compaction takes over, as it always did, until you turn handover on for them, see [In-Session Handover](#in-session-handover).
 
 &nbsp;
 
@@ -1729,7 +1740,7 @@ The canonical feature inventory for the `system-spec-kit` engine, at `.skilled/s
 - **[→ Install Guide](INSTALL-SKILLED.md)** - install a Skilled checkout, then bring it into your own project by linking it or by copying it in with overlays
 - **[→ Spec Kit README](.skilled/skills/system-spec-kit/README.md)** - spec folder workflow, Level contract template set, validation rules
 - **[→ Spec-Kit Engine README](.skilled/skills/system-spec-kit/runtime/README.md)** - validation, generated metadata and runtime hook adapters
-- **[→ Session Relaunch README](.skilled/hooks/session-relaunch/README.md)** - in-session handover, off by default: the handoff note, the `skilled-loop` wrapper and the shell shim
+- **[→ Session Relaunch README](.skilled/hooks/session-relaunch/README.md)** - in-session handover, on by default for Claude Code only: the handoff note, the `skilled-loop` wrapper and the shell shim
 - **[→ Hooks README](.skilled/hooks/README.md)** - every runtime hook and plugin, which runtimes run each one and its off switch
 - **[→ Git Hooks README](.skilled/scripts/git-hooks/README.md)** - each git hook gate, what it blocks and how to bypass it
 - **[→ sk-code README](.skilled/skills/sk-code/README.md)** - the code skill and the step-by-step guide to adapting it to your stack

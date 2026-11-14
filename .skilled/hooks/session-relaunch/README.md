@@ -90,7 +90,7 @@ The wrapper exports one loop id and starts `SKILLED_LOOP_HOPS` at 0. It relaunch
 
 ### Run every session under the loop
 
-The session-relaunch hooks ship off. Set `SYSTEM_SESSION_RELAUNCH_ENABLED=1` in `.skilled/hooks/hook-flags.env` or the environment first, or turn one runtime on or off with its own `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` (section 5). Without an enable flag no session is nudged and auto-compaction stays the fallback.
+The session-relaunch hooks ship on for Claude Code and off for every other runtime. Set `SYSTEM_SESSION_RELAUNCH_ENABLED=1` in `.skilled/hooks/hook-flags.env` or the environment to turn them on everywhere, or turn one runtime on or off with its own `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` (section 5). Without an enable flag only Claude Code sessions are nudged, and auto-compaction stays the fallback on the others.
 
 Then add one line to `~/.zshrc` or `~/.bashrc`, with the absolute path of the checkout that owns `.skilled`:
 
@@ -275,8 +275,8 @@ Hook switches resolve from the environment and the optional `.skilled/hooks/hook
 
 | Switch | Default | Behavior |
 |---|---|---|
-| `SYSTEM_SESSION_RELAUNCH_ENABLED` | unset, off | Set to `1` to turn on the context-nudge, Stop-arm and compact-pointer hooks, which ship off, and `prepare`, which refuses while they are off. While they are off, auto-compaction stays the fallback. |
-| `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` | unset, falls back to `SYSTEM_SESSION_RELAUNCH_ENABLED` | One flag each for `CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR` and `DEVIN`. A non-empty value wins over `SYSTEM_SESSION_RELAUNCH_ENABLED` for that runtime: `1` turns the hooks and `prepare` on, `0` turns them off. Each key is read from the environment first, then from `hook-flags.env`, and this rule applies after that, so a file `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0` beats an environment `SYSTEM_SESSION_RELAUNCH_ENABLED=1` for Claude. `SYSTEM_SESSION_RELAUNCH_ENABLED=1` with `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0` is on for every runtime except Claude. |
+| `SYSTEM_SESSION_RELAUNCH_ENABLED` | unset, on for Claude Code and off elsewhere | Set to `1` to turn on the context-nudge, Stop-arm and compact-pointer hooks, which ship off on every runtime but Claude Code, and `prepare`, which refuses while they are off. Set to `0` to turn them off on Claude Code too. While they are off, auto-compaction stays the fallback. |
+| `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` | unset, falls back to `SYSTEM_SESSION_RELAUNCH_ENABLED`, then to the runtime's default | One flag each for `CLAUDE`, `CODEX`, `PI`, `OPENCODE`, `CURSOR` and `DEVIN`. A non-empty value wins over `SYSTEM_SESSION_RELAUNCH_ENABLED` for that runtime: `1` turns the hooks and `prepare` on, `0` turns them off. Each key is read from the environment first, then from `hook-flags.env`, and this rule applies after that, so a file `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0` beats an environment `SYSTEM_SESSION_RELAUNCH_ENABLED=1` for Claude. `SYSTEM_SESSION_RELAUNCH_ENABLED=1` with `SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=0` is on for every runtime except Claude. |
 | `SYSTEM_SESSION_RELAUNCH_DISABLED` | unset | Set to `1` to disable the same hooks. It wins over `SYSTEM_SESSION_RELAUNCH_ENABLED` and every per-runtime enable flag. |
 | `SYSTEM_HOOKS_DISABLED` | unset, off | A truthy value disables hooks across the repository. `MK_HOOKS_DISABLED` is a supported alias. |
 | `SESSION_RELAUNCH_THRESHOLD` | `0.80` | Context fill ratio that triggers the first nudge. Invalid values use `0.80`. Valid values are greater than 0 and at most 1. |
@@ -308,7 +308,7 @@ A prepare exit code of 2 means the note or loop cannot be prepared. Common reaso
 - The note's `spec_folder` is a packet path that does not exist as a directory in the repository. `keep` refuses it the same way.
 - The receiving session shows no `Goal packet:` line, or the note has no `goal_packet`. `prepare` and `keep` write it only when the sender's goal can be proven, so a Codex sender, a Claude session whose log cannot be read and a session whose goal has ended all leave it out. A Claude session that never had a goal set also leaves it out when neither the note's spec folder nor its parent has an unfinished `goal.md` within the slice budget. A `goal_packet` the note carried is removed on the next call in the same cases.
 - No session id reached `prepare` or `claim`. Only Claude can fall back to `CLAUDE_CODE_SESSION_ID`. Other runtimes must pass `--session`.
-- The concern is off for this runtime, and the reason names which switch did it: `SYSTEM_SESSION_RELAUNCH_DISABLED` or the master hook switch is set, the runtime's `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` holds a falsy value, or that flag is empty and `SYSTEM_SESSION_RELAUNCH_ENABLED` is not truthy. The note is left unchanged.
+- The concern is off for this runtime, and the reason names which switch did it: `SYSTEM_SESSION_RELAUNCH_DISABLED` or the master hook switch is set, the runtime's `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` holds a falsy value, or that flag is empty and `SYSTEM_SESSION_RELAUNCH_ENABLED` holds a falsy value, or both are empty on a runtime other than Claude Code. The note is left unchanged.
 - Inside `skilled-loop`, the runtime still has a live child shell from the list in section 3. The prepare command does not run this check outside the loop.
 - `SKILLED_LOOP_HOPS` is not a non-negative integer.
 
