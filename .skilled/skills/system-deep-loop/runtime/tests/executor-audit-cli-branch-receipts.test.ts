@@ -15,6 +15,7 @@
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -275,5 +276,197 @@ describe('deep_*_auto.yaml CLI branches route through the audited wrapper', () =
     expect(dump.forwardedArgs).toEqual(args);
     // (b) receipt produced.
     assertReceiptsProduced(dispatchId);
+  });
+
+  it('dsh branch style: dispatchEnv reaches the child past the allowlist, an inherited DSH_ key does not', () => {
+    // Writes the child's view of the keys to the path given as its last argument.
+    const envRecorder =
+      "require('node:fs').writeFileSync(process.argv[process.argv.length-1],JSON.stringify({dshHome:process.env.DSH_HOME??null,dshSpecFolder:process.env.DSH_SPEC_FOLDER??null,inheritedProbe:process.env.DSH_INHERITED_PROBE??null,specGateDisabled:process.env.SYSTEM_SPEC_GATE_DISABLED??null,aiSessionChild:process.env.AI_SESSION_CHILD??null}))";
+    const envDump = join(dir, 'child-env.json');
+    const dshHome = join(dir, 'dsh-home');
+    const dispatchId = 'review-i4-deepseek-harness-env';
+
+    const exitCode = runAuditedExecutorCommand({
+      command: NODE,
+      args: ['-e', envRecorder, '--', envDump],
+      cwd: dir,
+      timeoutSeconds: 10,
+      stateLogPath,
+      executor: makeBaseExecutor('cli-deepseek-harness'),
+      iteration: 4,
+      guardContext: {
+        // DSH_HOME stays out of the parent env: the nested-dispatch guard refuses a dsh
+        // dispatch whose parent already names a harness home.
+        env: { ...cleanGuardEnv(), DSH_SPEC_FOLDER: '/inherited/spec', DSH_INHERITED_PROBE: 'inherited' },
+        ancestryCmdlines: [],
+        statePaths: [],
+      },
+      receiptDir,
+      dispatchId,
+      dispatchEnv: { DSH_HOME: dshHome, DSH_SPEC_FOLDER: '/abs/spec', SYSTEM_SPEC_GATE_DISABLED: '1', AI_SESSION_CHILD: '1' },
+    });
+
+    expect(exitCode).toBe(0);
+    expect(JSON.parse(readFileSync(envDump, 'utf8'))).toEqual({
+      dshHome,
+      dshSpecFolder: '/abs/spec',
+      inheritedProbe: null,
+      specGateDisabled: '1',
+      aiSessionChild: '1',
+    });
+    assertReceiptsProduced(dispatchId);
+  });
+
+  it('dsh branch style: a completionCheck reason on a clean exit records a crash dispatch_failure', () => {
+    const requireCjs = createRequire(import.meta.url);
+    const { validateDshCompletion } = requireCjs('../scripts/fanout-run.cjs') as {
+      validateDshCompletion: (exitCode: number, stdout: string, stderr?: string) => string | null;
+    };
+    const dispatchId = 'review-i5-deepseek-harness-completion';
+
+    const exitCode = runAuditedExecutorCommand({
+      command: NODE,
+      // Exits 0 after printing the line dsh prints when a plugin fails to load.
+      args: ['-e', "process.stderr.write('plugin repo-guards did not activate\\n')"],
+      cwd: dir,
+      timeoutSeconds: 10,
+      stateLogPath,
+      executor: makeBaseExecutor('cli-deepseek-harness'),
+      iteration: 5,
+      guardContext: { env: cleanGuardEnv(), ancestryCmdlines: [], statePaths: [] },
+      receiptDir,
+      dispatchId,
+      completionCheck: validateDshCompletion,
+    });
+
+    expect(exitCode).toBe(0);
+    const records = readFileSync(stateLogPath, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+    expect(records[records.length - 1]).toMatchObject({
+      type: 'event',
+      event: 'dispatch_failure',
+      reason: 'crash',
+      iteration: 5,
+      detail: 'reported a plugin that did not activate',
+    });
+    // The completion receipt still records the real clean exit.
+    assertReceiptsProduced(dispatchId);
+  });
+
+  it('refuses a dispatchEnv key off the per-kind list before a receipt exists', () => {
+    const dispatchId = 'review-i6-deepseek-harness-env-refused';
+    const refusedInput = {
+      command: NODE,
+      args: ['-e', 'process.stdout.write("must-not-run")'],
+      cwd: dir,
+      timeoutSeconds: 10,
+      stateLogPath,
+      receiptDir,
+      iteration: 6,
+      guardContext: { env: cleanGuardEnv(), ancestryCmdlines: [], statePaths: [] },
+    };
+
+    // The harness list admits four keys. PATH is not one of them, even though the
+    // common env filter would pass PATH to a child.
+    expect(() => runAuditedExecutorCommand({
+      ...refusedInput,
+      executor: makeBaseExecutor('cli-deepseek-harness'),
+      dispatchId,
+      dispatchEnv: { DSH_HOME: join(dir, 'dsh-home-c2'), PATH: process.env.PATH ?? '' },
+    })).toThrow('dispatchEnv key PATH is not allowed for cli-deepseek-harness');
+    expect(existsSync(join(receiptDir, `dispatch-${dispatchId}.intent.json`))).toBe(false);
+    expect(existsSync(join(receiptDir, `dispatch-${dispatchId}.completion.json`))).toBe(false);
+
+    // A kind with no entry allows no key at all, so its row refuses even PATH.
+    const otherKindId = 'review-i6-codex-env-refused';
+    expect(() => runAuditedExecutorCommand({
+      ...refusedInput,
+      executor: makeBaseExecutor('cli-codex'),
+      dispatchId: otherKindId,
+      dispatchEnv: { PATH: process.env.PATH ?? '' },
+    })).toThrow('dispatchEnv key PATH is not allowed for cli-codex');
+    expect(existsSync(join(receiptDir, `dispatch-${otherKindId}.intent.json`))).toBe(false);
+    expect(readFileSync(stateLogPath, 'utf8')).toBe('');
+  });
+
+  it('counts a large stdout instead of echoing it when echoStdout is false, and still judges the stream', () => {
+    const stdoutWrites: string[] = [];
+    const stderrWrites: string[] = [];
+    let judgedStdout = '';
+    const stdoutSpy = vi.spyOn(process.stdout, 'write').mockImplementation((chunk) => {
+      if (typeof chunk === 'string') stdoutWrites.push(chunk);
+      else if (Buffer.isBuffer(chunk)) stdoutWrites.push(chunk.toString('utf8'));
+      return true;
+    });
+    const stderrSpy = vi.spyOn(process.stderr, 'write').mockImplementation((chunk) => {
+      if (typeof chunk === 'string') stderrWrites.push(chunk);
+      else if (Buffer.isBuffer(chunk)) stderrWrites.push(chunk.toString('utf8'));
+      return true;
+    });
+    const dispatchId = 'review-i7-deepseek-harness-echo-off';
+
+    try {
+      const exitCode = runAuditedExecutorCommand({
+        command: NODE,
+        args: ['-e', "process.stdout.write('x'.repeat(4096))"],
+        cwd: dir,
+        timeoutSeconds: 10,
+        stateLogPath,
+        executor: makeBaseExecutor('cli-deepseek-harness'),
+        iteration: 7,
+        guardContext: { env: cleanGuardEnv(), ancestryCmdlines: [], statePaths: [] },
+        receiptDir,
+        dispatchId,
+        dispatchEnv: {
+          DSH_HOME: join(dir, 'dsh-home-c3'),
+          DSH_SPEC_FOLDER: join(dir, 'spec'),
+          SYSTEM_SPEC_GATE_DISABLED: '1',
+          AI_SESSION_CHILD: '1',
+        },
+        echoStdout: false,
+        completionCheck: (_code, stdout) => {
+          judgedStdout = stdout;
+          return null;
+        },
+      });
+      expect(exitCode).toBe(0);
+    } finally {
+      stdoutSpy.mockRestore();
+      stderrSpy.mockRestore();
+    }
+
+    expect(stdoutWrites.join('')).toBe('');
+    expect(stderrWrites.join('')).toContain('[executor-audit] child stdout 4096 bytes, not echoed');
+    expect(judgedStdout).toHaveLength(4096);
+    assertReceiptsProduced(dispatchId);
+  });
+
+  it('logs 0 bytes when echoStdout is false and the child prints nothing', () => {
+    const stderrWrites: string[] = [];
+    const stderrSpy = vi.spyOn(process.stderr, 'write').mockImplementation((chunk) => {
+      if (typeof chunk === 'string') stderrWrites.push(chunk);
+      else if (Buffer.isBuffer(chunk)) stderrWrites.push(chunk.toString('utf8'));
+      return true;
+    });
+    const dispatchId = 'review-i8-deepseek-harness-echo-off-empty';
+
+    try {
+      runAuditedExecutorCommand({
+        command: NODE,
+        args: ['-e', ''],
+        cwd: dir,
+        timeoutSeconds: 10,
+        stateLogPath,
+        executor: makeBaseExecutor('cli-deepseek-harness'),
+        iteration: 8,
+        guardContext: { env: cleanGuardEnv(), ancestryCmdlines: [], statePaths: [] },
+        receiptDir,
+        dispatchId,
+        echoStdout: false,
+      });
+    } finally {
+      stderrSpy.mockRestore();
+    }
+
+    expect(stderrWrites.join('')).toContain('[executor-audit] child stdout 0 bytes, not echoed');
   });
 });

@@ -6,6 +6,7 @@ import {
   renameSync,
   cpSync,
   existsSync,
+  lstatSync,
   mkdirSync,
   mkdtempSync,
   readdirSync,
@@ -13,6 +14,7 @@ import {
   realpathSync,
   rmSync,
   symlinkSync,
+  utimesSync,
   writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -67,6 +69,38 @@ describe('fanout-run.cjs — withAgentPersona', () => {
     const repoRoot = makeTempDir('fanout-persona-missing-');
     expect(() => withAgentPersona('deep-research', 'iteration prompt', repoRoot))
       .toThrow(`Agent persona file not found: ${join(repoRoot, '.skilled', 'agents', 'deep-research.md')}`);
+  });
+});
+
+describe('fanout-run.cjs — stale harness home sweep', () => {
+  it('removes only an old default home, keeping a young home, a named home and a link', () => {
+    const { sweepStaleDshHomes } = requireCjs('../../scripts/fanout-run.cjs') as {
+      sweepStaleDshHomes: (now?: number, tmpRoot?: string) => string[];
+    };
+    const now = Date.now();
+    const hour = 60 * 60 * 1000;
+    const tmpRoot = makeTempDir('fanout-stale-homes-');
+    const targetRoot = makeTempDir('fanout-stale-home-target-');
+    const oldHome = join(tmpRoot, 'dsh-home-AbC123');
+    const youngHome = join(tmpRoot, 'dsh-home-XyZ789');
+    const namedHome = join(tmpRoot, 'dsh-home-archive');
+    const linkHome = join(tmpRoot, 'dsh-home-Lnk456');
+    const linkTarget = join(targetRoot, 'kept-target');
+
+    for (const dir of [oldHome, youngHome, namedHome, linkTarget]) mkdirSync(dir);
+    symlinkSync(linkTarget, linkHome);
+    utimesSync(oldHome, new Date(now - 25 * hour), new Date(now - 25 * hour));
+    utimesSync(youngHome, new Date(now - hour), new Date(now - hour));
+    utimesSync(namedHome, new Date(now - 25 * hour), new Date(now - 25 * hour));
+    // An old link target proves the sweep never follows the link to judge its age.
+    utimesSync(linkTarget, new Date(now - 25 * hour), new Date(now - 25 * hour));
+
+    expect(sweepStaleDshHomes(now, tmpRoot)).toEqual(['dsh-home-AbC123']);
+    expect(existsSync(oldHome)).toBe(false);
+    expect(existsSync(youngHome)).toBe(true);
+    expect(existsSync(namedHome)).toBe(true);
+    expect(lstatSync(linkHome).isSymbolicLink()).toBe(true);
+    expect(existsSync(linkTarget)).toBe(true);
   });
 });
 

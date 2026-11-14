@@ -34,7 +34,7 @@ Runtime code review, review drift remediation, rollback candidate hash hardening
 
 ## Root Purpose
 
-This phase groups the related child phases below so parent-level context stays a short thematic map. Each child owns its own scope, plan, and verification; the chronological lineage of every child is recorded in the root `timeline.md`.
+Review the shipped runtime and close what that review found, from metadata drift and rollback hashing to review containment and the leaf protocol. Each child owns its own scope, plan, and verification; the chronological lineage of every child is recorded in the root `timeline.md`.
 
 ## PHASE DOCUMENTATION MAP
 

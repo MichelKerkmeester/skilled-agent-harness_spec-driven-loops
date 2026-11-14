@@ -334,7 +334,8 @@ export function detectSpecFolder(lines: string[]): string | null {
     const matches = line.match(specFolderRe);
     if (matches) {
       for (const m of matches) {
-        const candidate = m.replace(/[),.;:!?]+$/u, '');
+        // A `:12` or `:12:3` line suffix names a place in the file, not another folder.
+        const candidate = m.replace(/[),.;:!?]+$/u, '').replace(/(?::\d+){1,2}$/u, '');
         const folder = candidate.replace(/\/[^/]+\.[A-Za-z0-9]+$/u, '');
         freq.set(folder, (freq.get(folder) ?? 0) + 1);
       }

@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The operator reported that the core reason, problem or user need of a packet is lost across handovers and compactions",
     "created_at": "2026-11-14T06:14:06Z",
-    "last_save_at": "2026-11-14T07:57:27.402Z",
+    "last_save_at": "2026-11-14T13:46:40.307Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:eb9c96865adc92100460ea75a7de80353668d167b0ddba20ea1a4a5e54fea27f",
+    "source_fingerprint": "sha256:cdaa0a69f00f99d1998525b41e47418271469102cbbbc0629dc0a8f7e61785a1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "5f27c5fab6aa650d677ac18ba4851131108e4503d6553646d1f306ef77c2503f",
       "plan.md": "c488234dab4f8482d4beafe2cf429c2a5774a00dd0922c216a7d0cfde9e7a864",
       "tasks.md": "24625d0bd4fe31ef4e6bc3264b30770b48ee82e0e0aef5dadf14376df9ceb9fe",
-      "implementation-summary.md": "f0095cccbe5da9ade1563c10b1a3f332c28be38d7982c0761267ef719f1d68bc"
+      "implementation-summary.md": "1bc9cd4b27b444b8d1c7911b2b96a8a1238d3fa6f99b06c6f4c222c705d1bd2f"
     },
     "last_active_at": null
   }
