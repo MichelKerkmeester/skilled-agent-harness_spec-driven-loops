@@ -36,7 +36,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Two reviews of 2026-11-14 found texts that say something the code does not do",
     "created_at": "2026-11-14T06:07:02Z",
-    "last_save_at": "2026-11-14T07:23:29.163Z",
+    "last_save_at": "2026-11-14T07:25:41.220Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,12 +216,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bffb04a4562e489d6ba5f13719fb4dedd2ac0885aaa8573774db030f4efeb790",
+    "source_fingerprint": "sha256:7639c71f5d7b3cf4e75496de67f8b246850d5b34bc38c580e4c44417be60064a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "4d9c706d37cba364c6ac588ccbdcfca96d1b888a57e230ab6a22903088f5396b",
       "plan.md": "0514c0e3450e665ef96b15c852779625b7b1c6f29b823a7abf6c7fee3f50266b",
-      "tasks.md": "825a921725a23cf396c75ad98fb86e39c2f21df2519af170d9cf4994f9201524",
+      "tasks.md": "cc86b805fc564346b87c84bcc354488522ed3d6379565580248d8e7a86b3047f",
       "implementation-summary.md": "591dea9bd6e06a3d0fe6c3795bb2f26b148a4853ca4fe5c421d91215e17b37a7"
     },
     "last_active_at": null

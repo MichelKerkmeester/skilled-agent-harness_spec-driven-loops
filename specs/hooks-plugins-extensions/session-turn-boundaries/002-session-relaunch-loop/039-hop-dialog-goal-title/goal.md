@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title"
-    last_updated_at: "2026-11-14T07:45:00Z"
+    last_updated_at: "2026-11-14T07:29:41Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Logged the verifier corrections and four operator answers"
-    next_safe_action: "Build children 012 to 014, then run the six criteria"
+    recent_action: "Passed the six completion criteria and logged the commits of children 012 to 014"
+    next_safe_action: "Operator decides merge and push of branch worktrees/373-relaunch-gap-fixes"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "8d16c027-15a3-4944-a1d2-eef7cc2cb0b8"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -88,12 +88,12 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title --recursive --strict` prints `RESULT: PASSED` fifteen times and never `RESULT: FAILED`
-- [ ] `rg -c '\| Unmet \|' specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/*/acceptance-criteria.md` prints no line
-- [ ] `env -u AI_SESSION_CHILD node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs` exits 0
-- [ ] `env -u AI_SESSION_CHILD node --test .skilled/hooks/goal/**/*.test.cjs .skilled/hooks/goal/**/*.test.mjs` exits 0
-- [ ] `npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts` exits 0
-- [ ] `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check` and `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` both print `PASS`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title --recursive --strict` prints `RESULT: PASSED` fifteen times and never `RESULT: FAILED`
+- [x] `rg -c '\| Unmet \|' specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/*/acceptance-criteria.md` prints no line
+- [x] `env -u AI_SESSION_CHILD node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs` exits 0
+- [x] `env -u AI_SESSION_CHILD node --test .skilled/hooks/goal/**/*.test.cjs .skilled/hooks/goal/**/*.test.mjs` exits 0
+- [x] `npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts` exits 0
+- [x] `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check` and `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` both print `PASS`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -127,6 +127,8 @@ and findings belong here.
 | Child 012 commit | Done | 2026-11-14: commit `94e83013fa` (`Commit-Id` 0013978) changes four files and adds no new file. The same suite gave 1550 of 1550, exit 0 |
 | Child 013 commit | Done | 2026-11-14: commit `c69f278cfc` (`Commit-Id` 0013980) changes one file. The orchestrator's own suite run gave 1550 of 1550, exit 0 |
 | Operator instruction | Done | 2026-11-14: the operator instructed that the orchestrator checks each built child itself. The orchestrator runs each child's commit check against the landed commit |
+| Completion criteria, children 001 to 014 | Done | 2026-11-14 at `45459c0c71` in worktree 373, run one after another with nothing else running. Criterion 1: `RESULT: PASSED` fifteen times, no `FAILED`, exit 0. Criterion 2: the `rg -c` command printed no line, exit 1. Criterion 3: tests 1550, pass 1550, fail 0, exit 0, from 1536 when children 001 to 003 closed. Criterion 4: tests 200, pass 200, fail 0, exit 0, unchanged. Criterion 5: `Tests  62 passed (62)`, exit 0, unchanged. Criterion 6: `PASS: 4 registration files match the 35-hook registry; 22 Pi extensions resolve.` and `PASS: 256 mirrors across 10 trees are in sync.`, both exit 0 |
+| Commits, children 012 to 014 | Done | 2026-11-14 on branch `worktrees/373-relaunch-gap-fixes`: `94e83013fa` for child 012, `c69f278cfc` for 013, `d5c5bc84d3` for the documents of children 004 to 013, and `3be5a9835d` and `45459c0c71` for 014. The orchestrator checked each child itself before its commit, on the operator's instruction. The rebuilt trigger index is committed on its own at the end, as this repository does |
 
 ### Deviations and findings
 
@@ -137,4 +139,5 @@ and findings belong here.
 | No live hop | No child ran a live hop. Each child's known limitations name what a live run would confirm |
 | Amended child 002 | Child 002 chose to skip finished goal documents and not to carry a goal's ending. Children 010 and 011 amend that choice: a Claude goal that ended is marked in the note and stays ended one hop later, and the fallback stops at the parent of the note's folder. The operator approved it as "Goal continuity" on 2026-11-14 |
 | One commit per child | The seven code children changed fifteen files, six of them shared between children. Each commit was built from the final tree with the later children's edits taken out, and the last tree equals the final tree byte for byte |
+| Drift guards | 2026-11-14: `run-all-drift-guards.sh` failed one guard, `alignment-drift`, with 44 findings, 23 errors and 21 warnings on Pi extensions, OpenCode plugins, `skilled-loop-shell.sh` and research scripts. Main at `bd79708c2f` fails the same guard with the same counts, and no flagged file is changed by this branch, so the finding predates it and is left to its owners. The other three guards passed |
 <!-- /ANCHOR:log -->

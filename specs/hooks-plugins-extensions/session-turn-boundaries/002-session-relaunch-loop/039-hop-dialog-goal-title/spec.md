@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title"
-    last_updated_at: "2026-11-14T07:45:00Z"
+    last_updated_at: "2026-11-14T07:29:41Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Corrected the plans of 013 and 014 after a verifier check"
-    next_safe_action: "Build children 012 to 014, then run the six goal criteria"
+    recent_action: "Built and committed children 012 to 014 and passed the six goal criteria"
+    next_safe_action: "Operator decides merge and push of branch worktrees/373-relaunch-gap-fixes"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "8d16c027-15a3-4944-a1d2-eef7cc2cb0b8"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-13 |
 | **Branch** | `worktrees/366-hop-after-question-dialog` for children 001 to 003, merged on 2026-11-13. `worktrees/373-relaunch-gap-fixes` for children 004 to 014 |
 | **Parent Spec** | `../spec.md` |
@@ -160,14 +160,14 @@ Files touched across all phases, for the audit trail. Each child's `plan.md` hol
 | 1 | 001-sender-dialog-after-prepare/ | The Claude PreToolUse guard refuses a question dialog while this session's hand-over is pending, so the turn ends and the Stop hook can arm the hop | Complete |
 | 2 | 002-packet-goal-fallback/ | A Claude sender whose whole session log holds no goal entry hands on the nearest unfinished packet goal in the note's spec folder lineage, so the receiver starts on it | Complete |
 | 3 | 003-generated-title-carry/ | `prepare` records the title Claude generated as the session name when there is no renamed title and no launch name, so the receiver keeps it with the hop count | Complete |
-| 4 | 004-wrapper-change-notice/ | A running wrapper prints one note on stderr before a hop when its own file changed after the loop started, so the operator knows to restart it | In Progress |
-| 5 | 005-parked-record-escape/ | A Claude Stop that cannot arm a pending hand-over stamps the record, so the operator's next prompt withdraws it and question dialogs work again | In Progress |
-| 6 | 006-record-without-handoff/ | A relaunch record with no `handoff` string is read as absent, so the guard and Stop no longer act on a hand-over that has no note | In Progress |
-| 7 | 007-killer-test-margin/ | The killer grace-period test gets a 1000 ms deadline in place of 450 ms, after the failure was reproduced under load | In Progress |
-| 8 | 008-history-test-database-env/ | The history lookup test no longer inherits `OPENCODE_DB` from the shell | In Progress |
+| 4 | 004-wrapper-change-notice/ | A running wrapper prints one note on stderr before a hop when its own file changed after the loop started, so the operator knows to restart it | Complete |
+| 5 | 005-parked-record-escape/ | A Claude Stop that cannot arm a pending hand-over stamps the record, so the operator's next prompt withdraws it and question dialogs work again | Complete |
+| 6 | 006-record-without-handoff/ | A relaunch record with no `handoff` string is read as absent, so the guard and Stop no longer act on a hand-over that has no note | Complete |
+| 7 | 007-killer-test-margin/ | The killer grace-period test gets a 1000 ms deadline in place of 450 ms, after the failure was reproduced under load | Complete |
+| 8 | 008-history-test-database-env/ | The history lookup test no longer inherits `OPENCODE_DB` from the shell | Complete |
 | 9 | 009-document-corrections/ | Five document fixes: two binding rows in the 002 parent goal, phase 033 set to Complete, the sk-git rebase sentence, two stale limitation rows in the summary of 038 child 011, and the playbook case names with `cp` in HS-8 | Complete |
-| 10 | 010-goal-ending-carry/ | A Claude goal that was met, failed or cleared is marked in the note and stays ended for a receiver that sets no goal | In Progress |
-| 11 | 011-goal-fallback-bound/ | The packet goal fallback considers the note's folder and its parent and no packet further up | In Progress |
+| 10 | 010-goal-ending-carry/ | A Claude goal that was met, failed or cleared is marked in the note and stays ended for a receiver that sets no goal | Complete |
+| 11 | 011-goal-fallback-bound/ | The packet goal fallback considers the note's folder and its parent and no packet further up | Complete |
 | 12 | 012-wrapper-notice-log/ | The wrapper appends one `wrapper-changed` line to `relaunch.log` when it prints the change note, and prints and logs nothing when its file cannot be read at the hop | Complete |
 | 13 | 013-conformance-stamp-pin/ | The shared conformance case for a Stop that cannot arm asserts a deferral stamp for Claude and none for a runtime that does not stamp | Complete |
 | 14 | 014-review-wording-fixes/ | Six wording fixes: the README sentence on a missing goal packet, the comment in `readRelaunchFile`, the Stop comment with one test note, `goal_ended` in the handoff command document and one more limitation in the summary of child 010 | Pending |

@@ -52,7 +52,7 @@
       "criteria"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -203,12 +203,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -219,11 +213,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Three gaps showed on 2026-11-13 in Claude Code sessions that hand over near the context limit",
     "created_at": "2026-11-13T18:47:10Z",
-    "last_save_at": "2026-11-14T07:11:34.288Z",
+    "last_save_at": "2026-11-14T07:30:16.463Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -231,10 +231,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:ea4f5f0f7b3357ca576d2ac850a1933b2d6b34a88664629d37e939c2d611a7e7",
+    "source_fingerprint": "sha256:a38435e6c04531e5b36aa3eebcda9eed1b400ffa422dfb78935d8cf97a5ee3b3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "608dfaddb68b6eb4aca8a8ce49428c2c08351ef9109522dbab737422a5a03a36",
+      "spec.md": "3690ceaa456af89cd793520ab4401c6ae7ac0723688556affeeb3c1e29a3fe3c",
       "research/research.md": "f0daad5f191298d68bc32ec2f1767ebd28c3694400bd86b804bbb2b6014e0cf2"
     },
     "last_active_at": null
