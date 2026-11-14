@@ -18,7 +18,8 @@
       "review pass four remediation plan",
       "review pass four remediation tasks",
       "review pass four remediation acceptance criteria",
-      "review pass four remediation goal"
+      "review pass four remediation goal",
+      "review pass four remediation implementation summary"
     ],
     "key_topics": [
       "review",
@@ -35,24 +36,28 @@
       "command"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "scratch/rescore-delta.txt",
-      ".skilled/skills/system-skill-advisor/README.md",
-      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
-      ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md",
-      ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt",
-      ".skilled/commands/deep/review.md",
-      "scratch/floor-before.txt",
-      "scratch/eval-before.txt",
-      "scratch/fit-before.txt",
-      "scratch/repro-before.txt",
-      "scratch/repro-after.txt"
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+      ".skilled/hooks/shared/session-readers/codex.mjs",
+      ".skilled/hooks/shared/session-readers/codex.d.mts.map",
+      ".skilled/hooks/shared/tests/session-readers/codex.test.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md"
     ],
     "entities": [
       {
@@ -86,69 +91,93 @@
         "source": "derived"
       },
       {
-        "name": "rescore-delta.txt",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach-guards.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-offer.mjs",
         "kind": "file",
-        "path": "scratch/rescore-delta.txt",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-offer.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-command-behaviour.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-behaviour-guards.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "score-command-transcripts.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-transcript-score.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "codex.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/codex.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "codex.d.mts.map",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/codex.d.mts.map",
+        "source": "derived"
+      },
+      {
+        "name": "codex.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/tests/session-readers/codex.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-routing-slice.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-skill-advisor/README.md",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
         "source": "derived"
       },
       {
         "name": "advisor-recommend.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
-        "source": "derived"
-      },
-      {
-        "name": "command-meaning-matching.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md",
-        "source": "derived"
-      },
-      {
-        "name": "doctor-agents-md-presentation.txt",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "review.md",
-        "kind": "doc",
-        "path": ".skilled/commands/deep/review.md",
-        "source": "derived"
-      },
-      {
-        "name": "floor-before.txt",
-        "kind": "file",
-        "path": "scratch/floor-before.txt",
-        "source": "derived"
-      },
-      {
-        "name": "eval-before.txt",
-        "kind": "file",
-        "path": "scratch/eval-before.txt",
-        "source": "derived"
-      },
-      {
-        "name": "fit-before.txt",
-        "kind": "file",
-        "path": "scratch/fit-before.txt",
-        "source": "derived"
-      },
-      {
-        "name": "repro-before.txt",
-        "kind": "file",
-        "path": "scratch/repro-before.txt",
-        "source": "derived"
-      },
-      {
-        "name": "repro-after.txt",
-        "kind": "file",
-        "path": "scratch/repro-after.txt",
         "source": "derived"
       },
       {
@@ -174,35 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A reader who writes `do not run /create:agent or /create:readme` still gets `/create:readme (start)` on the top row, and a reader who asks `Is the /doctor:update command safe?` gets `/doctor:update (ask)`",
     "created_at": "2026-11-14T16:35:21Z",
-    "last_save_at": "2026-11-14T19:45:44.951Z",
+    "last_save_at": "2026-11-14T20:06:12.940Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +215,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5ffc1da9ed1d7acc6563be3fe9adf041cb8ceb5249f115ae11abc489f7c1ed74",
+    "source_fingerprint": "sha256:8ef2aea92acfc4f125450e07f4185d4a0aeab0224ce2a33b7b8416a5fca98b92",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8c1be9eb20a7d24883df1d29ffb4facc2006a0f429bb94ca0fe343c91c9c3995",
+      "spec.md": "4cb745059899514290d1677cd0963b41ec91fc3d63250dabae61e07148c1ee8f",
       "plan.md": "4aafeb45b03aae83c48a99f45a79ed82c44254664a38f3fc144272cbe9f8fd4a",
-      "tasks.md": "fe10d45dfd5b5e1b5b59caa74d555065fbf6bbef5c699275f1a3e83b5adf5cd4"
+      "tasks.md": "6d8e83bae60416135973444fe885ac780a82538438191643db213d5eca3759eb",
+      "implementation-summary.md": "0890de21b1f480772b13db040393d6ee921d5a3757e06df728c791651dbc06e7"
     },
     "last_active_at": null
   }

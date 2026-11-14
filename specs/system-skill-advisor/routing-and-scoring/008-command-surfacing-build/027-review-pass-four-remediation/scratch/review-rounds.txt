@@ -6,3 +6,12 @@ SAC4B-P1-001 P1 reproduced: bash review/verify-4/probes/cli-rows.sh 'do not run 
 SAC4B-P2-001 P2 reproduced: 'should I run /create:agent or /create:readme?' and 'is /create:agent or /create:readme better?' each printed /create:readme start. Fix task T029
 AR4B-P2-001 P2 confirmed by reading: README line 76 says adds those three fields and the runner row lists three. Fix task T030
 AR4B-P2-002 P2 confirmed by reading: run-command-behaviour.mjs writes the head-moved line before replayOffer, so it carries no offer field. Fix task T030
+# round 4c, commit range 48f03b5013..868b185e76
+scorer-attach-close-4c "newFindingsRatio":0
+accuracy-runner-close-4c "newFindingsRatio":0.6667
+# adjudication of round 4c
+SAC4C-P1-001 P1 reproduced: cli-rows.sh 'do not run /doctor:ci report or /create:readme' printed [["sk-doc","/create:readme","start"],...] and 'do not run /doctor:ci report or /doctor:ci scaffold' printed /doctor:ci report run. Fixed by T031 in db14c22bb0, after which both print no command
+SAC4C-P2-001 P2 confirmed by reading: 027 spec.md said the question over an or-list was out of scope. Fixed in the spec text (scope line and A3)
+ARC4C-P2-001 P2 rejected: not reachable, normalize turns every redirect to a real file into a write, so the target never reaches shellReadTargets. T032 declined and reverted
+ARC4C-P2-002 and ARC4C-P2-003 P2 confirmed by reading the README against command-offer.mjs. Fixed by T033 in db14c22bb0
+# no round past -4c by T025. accuracy-runner-close-4c ended at 0.6667 on its two-iteration cap on README findings only, all fixed or rejected

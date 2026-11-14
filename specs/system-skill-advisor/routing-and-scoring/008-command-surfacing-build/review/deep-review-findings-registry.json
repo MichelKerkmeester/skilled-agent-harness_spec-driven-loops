@@ -3,6 +3,8 @@
     "accuracy-runner",
     "accuracy-runner-2",
     "accuracy-runner-4",
+    "accuracy-runner-close-4c",
+    "accuracy-runner-confirm-4b",
     "advisor-runtime-3",
     "doctor-docs-3",
     "doctor-docs-4",
@@ -17,7 +19,9 @@
     "render-hooks-plugin-4",
     "scorer-attach",
     "scorer-attach-2",
-    "scorer-attach-4"
+    "scorer-attach-4",
+    "scorer-attach-close-4c",
+    "scorer-attach-confirm-4b"
   ],
   "lineageExecutors": {
     "accuracy-runner": {
@@ -31,6 +35,16 @@
       "reasoningEffort": "max"
     },
     "accuracy-runner-4": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "accuracy-runner-close-4c": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "accuracy-runner-confirm-4b": {
       "kind": "cli-opencode",
       "model": "opencode-go/deepseek-v4.1-flash",
       "reasoningEffort": "max"
@@ -106,6 +120,16 @@
       "reasoningEffort": "max"
     },
     "scorer-attach-4": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "scorer-attach-close-4c": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "scorer-attach-confirm-4b": {
       "kind": "cli-opencode",
       "model": "opencode-go/deepseek-v4.1-flash",
       "reasoningEffort": "max"
@@ -239,6 +263,38 @@
       "mergedFindingIds": [],
       "_lineages": [
         "advisor-runtime-3"
+      ]
+    },
+    {
+      "findingId": "ARC4C-P2-001",
+      "severity": "P2",
+      "title": "A 2> or &> redirect target that names a command document still counts as a start",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 677,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-close-4c"
       ]
     },
     {
@@ -763,6 +819,38 @@
       ]
     },
     {
+      "findingId": "SAC4B-P2-001",
+      "severity": "P2",
+      "title": "A question over an or-list still attaches its second command",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 386,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach-confirm-4b"
+      ]
+    },
+    {
       "findingId": "SA4-P1-001",
       "severity": "P2",
       "title": "A refusal typed with the retired command name still delivers the live mutating command",
@@ -1163,6 +1251,70 @@
       "mergedFindingIds": [],
       "_lineages": [
         "doctor-docs-3"
+      ]
+    },
+    {
+      "findingId": "SAC4B-P1-001",
+      "severity": "P1",
+      "title": "An or-list refusal that names its second command as \"the /x command\" still attaches that command",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 379,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach-confirm-4b"
+      ]
+    },
+    {
+      "findingId": "SAC4C-P1-001",
+      "severity": "P1",
+      "title": "An or-list whose non-final item is a two-word /doctor command still publishes the refused command",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 380,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach-close-4c"
       ]
     },
     {
@@ -3365,6 +3517,102 @@
       ]
     },
     {
+      "findingId": "ARC4C-P2-002",
+      "severity": "P2",
+      "title": "The README says a stored run line holds no offeredAs, but both current writers store it",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "line": 123,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-close-4c"
+      ]
+    },
+    {
+      "findingId": "AR4B-P2-002",
+      "severity": "P2",
+      "title": "The README says every run line carries four attribution fields, but a head-moved line carries none",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "line": 65,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-confirm-4b"
+      ]
+    },
+    {
+      "findingId": "AR4B-P2-001",
+      "severity": "P2",
+      "title": "The README still says the backfill adds three fields and lists three in the runner row",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "line": 76,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-confirm-4b"
+      ]
+    },
+    {
       "findingId": "SA4-P2-002",
       "severity": "P2",
       "title": "The recommend feature doc still says a hub suppresses a command its own command row already offers",
@@ -3429,6 +3677,38 @@
       ]
     },
     {
+      "findingId": "SAC4C-P2-001",
+      "severity": "P2",
+      "title": "The remediation spec still calls the question-over-an-or-list unreproduced and out of scope, and describes the carry as decline-only",
+      "file": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/027-review-pass-four-remediation/spec.md",
+      "line": 239,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach-close-4c"
+      ]
+    },
+    {
       "findingId": "iter5-P2-orphaned-route-summary",
       "severity": "P2",
       "title": "The removed compiled-route line left its per-prompt summary computation and response field without a consumer",
@@ -3458,6 +3738,38 @@
       "mergedFindingIds": [],
       "_lineages": [
         "render-hooks-plugin-2"
+      ]
+    },
+    {
+      "findingId": "ARC4C-P2-003",
+      "severity": "P2",
+      "title": "The runner row says --brief-only rewrites the four fields, but that mode copies the offer fields untouched",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "line": 125,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-close-4c"
       ]
     },
     {
@@ -3918,6 +4230,38 @@
       ]
     },
     {
+      "findingId": "SAC4B-P2-002",
+      "severity": "P2",
+      "title": "README names the child-session policy parent-named only while the render prints (n)",
+      "file": ".skilled/skills/system-skill-advisor/README.md",
+      "line": 121,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach-confirm-4b"
+      ]
+    },
+    {
       "findingId": "R2-P1-001",
       "severity": "P1",
       "title": "The child-session command downgrade is decided only by a process-wide env flag",
@@ -3984,12 +4328,12 @@
   ],
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 10,
-    "P2": 97
+    "P1": 12,
+    "P2": 104
   },
-  "openFindingsCount": 107,
-  "resolvedFindingsCount": 4,
+  "openFindingsCount": 116,
+  "resolvedFindingsCount": 5,
   "activeP0": 0,
-  "activeP1": 10,
-  "activeP2": 97
+  "activeP1": 12,
+  "activeP2": 104
 }

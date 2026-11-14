@@ -287,6 +287,8 @@ and findings belong here.
 | Stored start rates rescored with the shell-read start rule, final set | Supersedes the earlier quotes | tuned rows, one run each, no brief reached Codex. Start rates unchanged. startedOfOffered moved: dsh post 11 to 12, pi post 7 to 9, opencode post 3 to 4. 24 runs moved over the three sets, every one by the shell-read rule, none on a decline row |
 | Quoted start figures superseded by the shell-read rescore | Recorded, closed phases not edited | Codex 0 of 12: ../goal.md:278, 007 decision-record.md:551, 010 spec.md:61, 024 implementation-summary.md:109 and CHK-041. Phase 013 spec.md:97, :100 and :101 (codex post 0 of 12, opencode post 1 of 5, dsh post 6 of 12). 007 goal.md:81 and AC-003 quote the summary these rows restate |
 | Live brief cost | Declined | {"error":"degraded_brief","rows":44,"liveRows":0} exit 2, the script measures only a live head and no row was live in this checkout. No setting was changed to get a number |
+| Review pass four, confirming round | Closed, 0 open P0 and P1 | Rounds 4b and 4c, two lineages each, 10 iterations. Last ratios 4b 0 and 1, 4c 0 and 0.6667 (README findings only, on cap). Adjudicated 2 P1, both reproduced and fixed (T028 and T031, db14c22bb0), 7 P2: 5 fixed, 1 rejected as unreachable, 1 spec wording fixed. No round past 4c |
+| Correction to the confirming round row and the pass-four merge rows | Recorded | Rounds 4b and 4c ran 11 iterations (3, 3, 3 and 2), not 10. The merged activeP1 reads 12 after the rerun merge over 22 lineages, not 10: 5 raw pass-four P1 and 7 from passes one to three. Pass four closes with 0 open P0 and P1 (review/review-report.md, decision P052) |
 
 ### Deviations and findings
 

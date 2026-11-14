@@ -225,7 +225,7 @@
     ],
     "causal_summary": "A user who chats without typing a command gets an improvised approach from the model, even where a slash command already owns a complete workflow for the task",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-14T18:42:09.393Z",
+    "last_save_at": "2026-11-14T20:10:10.877Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -233,11 +233,11 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:527b72a85dd3041691251755f8944674356c46109174ccbe701c9f9755f2080b",
+    "source_fingerprint": "sha256:a9d2ed9371e7cfe5ca6fb80af9f1180a8945181dce2281bcf2b43340144ee006",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d351badc534153c7fc7def0c9c095958dc9802da27bb41fa5f774498d804d34d",
-      "decision-record.md": "01d3bf9a32d1d686409d0b7bc4e318c562cdde7dfd9969c555d3f3bc902d8e80"
+      "spec.md": "a1cb69786ebe21e2f1c9a38b9258fcbc5ff7dfe1844c4aaba81d25fbc60ec1b5",
+      "decision-record.md": "c81b01d4dec606454fad4311c38ea595733f60f01d8faa406cb9627221c14bc4"
     },
     "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/018-holdout-row-retirement",
     "last_active_at": "2026-11-13T22:04:29.402Z"

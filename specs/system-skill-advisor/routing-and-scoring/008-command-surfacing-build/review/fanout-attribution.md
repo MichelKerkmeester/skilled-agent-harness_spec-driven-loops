@@ -1,12 +1,14 @@
 # Fan-Out Attribution
 
-Loop type: **review**  |  Lineage count: **18**
+Loop type: **review**  |  Lineage count: **22**
 
 | Label | Kind | Model | Iterations | Convergence | Salvaged | Verdict |
 |-------|------|-------|-----------|-------------|----------|---------|
 | accuracy-runner | cli-opencode | opencode-go/deepseek-v4.1-flash | 5 | 0.89 | 0 | PASS |
 | accuracy-runner-2 | cli-opencode | opencode-go/deepseek-v4.1-flash | 7 | 1 | 0 | PASS |
 | accuracy-runner-4 | cli-opencode | opencode-go/deepseek-v4.1-flash | 4 | 0 | 0 | CONDITIONAL |
+| accuracy-runner-close-4c | cli-opencode | opencode-go/deepseek-v4.1-flash | 2 | 0.33330000000000004 | 0 | PASS |
+| accuracy-runner-confirm-4b | cli-opencode | opencode-go/deepseek-v4.1-flash | 3 | 0 | 0 | PASS |
 | advisor-runtime-3 | cli-opencode | opencode-go/deepseek-v4.1-flash | 4 | 1 | 0 | PASS |
 | doctor-docs-3 | cli-opencode | opencode-go/deepseek-v4.1-flash | 4 | 1 | 0 | CONDITIONAL |
 | doctor-docs-4 | cli-opencode | opencode-go/deepseek-v4.1-flash | 3 | 1 | 0 | PASS |
@@ -22,3 +24,5 @@ Loop type: **review**  |  Lineage count: **18**
 | scorer-attach | cli-opencode | opencode-go/deepseek-v4.1-flash | 5 | 1 | 0 | PASS |
 | scorer-attach-2 | cli-opencode | opencode-go/deepseek-v4.1-flash | 5 | 1 | 0 | PASS |
 | scorer-attach-4 | cli-opencode | opencode-go/deepseek-v4.1-flash | 4 | 0 | 0 | CONDITIONAL |
+| scorer-attach-close-4c | cli-opencode | opencode-go/deepseek-v4.1-flash | 3 | 1 | 0 | CONDITIONAL |
+| scorer-attach-confirm-4b | cli-opencode | opencode-go/deepseek-v4.1-flash | 3 | 1 | 0 | CONDITIONAL |
