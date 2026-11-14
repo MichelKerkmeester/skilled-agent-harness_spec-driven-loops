@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-11-13 |
 | **Branch** | `worktrees/371-purpose-retention-research` |
 | **Parent Spec** | ../spec.md |
