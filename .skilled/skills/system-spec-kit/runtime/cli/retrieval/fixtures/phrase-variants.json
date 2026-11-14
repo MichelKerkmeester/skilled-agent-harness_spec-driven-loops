@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1cd7a6a0bec7e2858f26ca81c19890d6b96dbf84372fcf311fba50833b017a76",
+  "manifestHash": "ad11cec4a77b91d23f3620f74574ae569202d93a33e4cd74de5e1dee73a755b7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -19860,6 +19860,9 @@
     ],
     "cjs jsdoc documentation drift": [
       "cjs jsdoc documentation drift"
+    ],
+    "cksum stub wrapper test": [
+      "cksum stub wrapper test"
     ],
     "cl 001": [
       "cl-001"
@@ -46284,6 +46287,9 @@
     "empty recommendation reported as outage": [
       "empty recommendation reported as outage"
     ],
+    "empty start checksum false wrapper change note": [
+      "empty start checksum false wrapper change note"
+    ],
     "empty trigger phrases": [
       "empty trigger phrases"
     ],
@@ -46364,6 +46370,24 @@
     ],
     "ended claude goal comes back after a hop": [
       "ended claude goal comes back after a hop"
+    ],
+    "ended goal mark match": [
+      "ended goal mark match"
+    ],
+    "ended goal mark match acceptance criteria": [
+      "ended goal mark match acceptance criteria"
+    ],
+    "ended goal mark match goal": [
+      "ended goal mark match goal"
+    ],
+    "ended goal mark match implementation summary": [
+      "ended goal mark match implementation summary"
+    ],
+    "ended goal mark match plan": [
+      "ended goal mark match plan"
+    ],
+    "ended goal mark match tasks": [
+      "ended goal mark match tasks"
     ],
     "endless sessions readme": [
       "endless sessions readme"
@@ -54937,6 +54961,12 @@
     "goal ended in the handoff command document": [
       "goal_ended in the handoff command document"
     ],
+    "goal ended kept when the session log cannot be read": [
+      "goal_ended kept when the session log cannot be read"
+    ],
+    "goal ended mark from the note claimed last": [
+      "goal_ended mark from the note claimed last"
+    ],
     "goal ended note field": [
       "goal_ended note field"
     ],
@@ -58669,6 +58699,9 @@
     ],
     "hop purpose rule parity tasks": [
       "hop purpose rule parity tasks"
+    ],
+    "hop withdrawn because the transcript was missing": [
+      "hop withdrawn because the transcript was missing"
     ],
     "host index folder setting": [
       "host index folder setting"
@@ -71745,6 +71778,24 @@
     "missing sub track metadata seed": [
       "missing sub-track metadata seed"
     ],
+    "missing transcript notice": [
+      "missing transcript notice"
+    ],
+    "missing transcript notice acceptance criteria": [
+      "missing transcript notice acceptance criteria"
+    ],
+    "missing transcript notice goal": [
+      "missing transcript notice goal"
+    ],
+    "missing transcript notice implementation summary": [
+      "missing transcript notice implementation summary"
+    ],
+    "missing transcript notice plan": [
+      "missing transcript notice plan"
+    ],
+    "missing transcript notice tasks": [
+      "missing transcript notice tasks"
+    ],
     "missing value file behavior": [
       "missing value file behavior"
     ],
@@ -81143,6 +81194,9 @@
     "phase 15 v4 0 0 13 changelog": [
       "phase 15 v4 0 0 13 changelog"
     ],
+    "phase 15 wrapper start checksum": [
+      "phase 15 wrapper start checksum"
+    ],
     "phase 16 align sk design": [
       "phase 16 align sk design"
     ],
@@ -81157,6 +81211,9 @@
     ],
     "phase 16 closure gate": [
       "phase 16 closure gate"
+    ],
+    "phase 16 ended goal mark match": [
+      "phase 16 ended goal mark match"
     ],
     "phase 16 handover trigger review": [
       "phase 16 handover trigger review"
@@ -81209,6 +81266,9 @@
     "phase 17 measured behavior and draft metadata": [
       "phase 17 measured behavior and draft metadata"
     ],
+    "phase 17 missing transcript notice": [
+      "phase 17 missing transcript notice"
+    ],
     "phase 17 over engineering cuts": [
       "phase 17 over engineering cuts"
     ],
@@ -81257,6 +81317,9 @@
     "phase 18 runner gaps": [
       "phase 18 runner gaps"
     ],
+    "phase 18 sk git rebase sentence": [
+      "phase 18 sk git rebase sentence"
+    ],
     "phase 18 tasks": [
       "phase 18 tasks"
     ],
@@ -81289,6 +81352,9 @@
     ],
     "phase 19 plugins compat docs": [
       "phase 19 plugins compat docs"
+    ],
+    "phase 19 relaunch doc coverage": [
+      "phase 19 relaunch doc coverage"
     ],
     "phase 19 routing miss fixes": [
       "phase 19 routing miss fixes"
@@ -90105,6 +90171,15 @@
     "rebase abort rewound branch": [
       "rebase abort rewound branch"
     ],
+    "rebase commit id": [
+      "rebase commit id"
+    ],
+    "rebase commit id probe": [
+      "rebase commit id probe"
+    ],
+    "rebase re mints commit id": [
+      "rebase re-mints commit id"
+    ],
     "rebase spike": [
       "rebase spike"
     ],
@@ -91664,6 +91739,24 @@
     "relaunch coverage gaps tasks": [
       "relaunch coverage gaps tasks"
     ],
+    "relaunch doc coverage": [
+      "relaunch doc coverage"
+    ],
+    "relaunch doc coverage acceptance criteria": [
+      "relaunch doc coverage acceptance criteria"
+    ],
+    "relaunch doc coverage goal": [
+      "relaunch doc coverage goal"
+    ],
+    "relaunch doc coverage implementation summary": [
+      "relaunch doc coverage implementation summary"
+    ],
+    "relaunch doc coverage plan": [
+      "relaunch doc coverage plan"
+    ],
+    "relaunch doc coverage tasks": [
+      "relaunch doc coverage tasks"
+    ],
     "relaunch effort flag": [
       "relaunch effort flag"
     ],
@@ -91726,6 +91819,12 @@
     ],
     "relaunch note scaffold sentence": [
       "relaunch note scaffold sentence"
+    ],
+    "relaunch playbook catalog catch up": [
+      "relaunch playbook catalog catch-up"
+    ],
+    "relaunch playbook wrapper change notice scenario": [
+      "relaunch playbook wrapper change notice scenario"
     ],
     "relaunch prepare claim": [
       "relaunch prepare claim"
@@ -102740,6 +102839,9 @@
     "session relaunch enable flag plan": [
       "session relaunch enable flag plan"
     ],
+    "session relaunch feature catalog goal ended wrapper notice": [
+      "session relaunch feature catalog goal_ended wrapper notice"
+    ],
     "session relaunch fixtures": [
       "session relaunch fixtures"
     ],
@@ -110367,6 +110469,9 @@
     "sk git 1 11 11 0": [
       "sk-git 1.11.11.0"
     ],
+    "sk git 1 11 12 0": [
+      "sk-git 1.11.12.0"
+    ],
     "sk git 1 11 2 0": [
       "sk-git 1.11.2.0"
     ],
@@ -110511,6 +110616,9 @@
     "sk git commit contract update": [
       "sk-git commit contract update"
     ],
+    "sk git commit id rebase probe": [
+      "sk-git commit id rebase probe"
+    ],
     "sk git customization": [
       "sk-git customization"
     ],
@@ -110558,6 +110666,24 @@
     ],
     "sk git playbook changelog tasks": [
       "sk git playbook changelog tasks"
+    ],
+    "sk git rebase sentence": [
+      "sk-git rebase sentence"
+    ],
+    "sk git rebase sentence acceptance criteria": [
+      "sk-git rebase sentence acceptance criteria"
+    ],
+    "sk git rebase sentence goal": [
+      "sk-git rebase sentence goal"
+    ],
+    "sk git rebase sentence implementation summary": [
+      "sk-git rebase sentence implementation summary"
+    ],
+    "sk git rebase sentence plan": [
+      "sk-git rebase sentence plan"
+    ],
+    "sk git rebase sentence tasks": [
+      "sk-git rebase sentence tasks"
     ],
     "sk git reference frontmatter": [
       "sk-git reference frontmatter"
@@ -110651,6 +110777,9 @@
     ],
     "sk git v1 11 11 0": [
       "sk-git v1.11.11.0"
+    ],
+    "sk git v1 11 12 0": [
+      "sk-git v1.11.12.0"
     ],
     "sk git v1 11 2 0": [
       "sk-git v1.11.2.0"
@@ -118010,6 +118139,9 @@
     ],
     "stop vote signals": [
       "stop vote signals"
+    ],
+    "stop without transcript path prints a notice": [
+      "stop without transcript path prints a notice"
     ],
     "stopping clocks implementation": [
       "stopping clocks implementation"
@@ -130062,6 +130194,24 @@
     ],
     "wrapper session reads main checkout": [
       "wrapper session reads main checkout"
+    ],
+    "wrapper start checksum": [
+      "wrapper start checksum"
+    ],
+    "wrapper start checksum acceptance criteria": [
+      "wrapper start checksum acceptance criteria"
+    ],
+    "wrapper start checksum goal": [
+      "wrapper start checksum goal"
+    ],
+    "wrapper start checksum implementation summary": [
+      "wrapper start checksum implementation summary"
+    ],
+    "wrapper start checksum plan": [
+      "wrapper start checksum plan"
+    ],
+    "wrapper start checksum tasks": [
+      "wrapper start checksum tasks"
     ],
     "wrapper writes iteration artifacts": [
       "wrapper writes iteration artifacts"
