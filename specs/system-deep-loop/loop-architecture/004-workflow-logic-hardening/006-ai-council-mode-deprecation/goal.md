@@ -86,9 +86,11 @@ and findings belong here.
 
 ### Open questions
 
-Open question: the D3 decision is needed and is recorded as a `D3 decision:` line once answered. Keep a council command, and under which name and family? Recommended: option B, `/speckit:ai-council` owned by `system-spec-kit`, single round, with `speckit-ai-council.yaml` and `speckit-ai-council-presentation.txt`. The trade-off: B costs three files, their mirrors and an advisor bridge row, and keeps one typed entry point that binds the spec folder before any write. A is smaller and leaves the council reachable only by `@ai-council` or through `@orchestrate`. Other names considered: keeping `/deep:ai-council`, which implies a deep mode and keeps the hub as owner, or a new command family, which needs its own catalog and mirrors.
+D3 decision: option B
 
-Open question: should this phase become a phase parent? The precedent `003-deprecate-improvement-modes` needed 13 phases for a similar removal, and this one touches 451 files. Recommended: keep one phase, and split only if setup shows the runtime removal in T039 to T056 cannot finish in one pass. No subfolder is created until the operator answers.
+Closed on 2026-11-14: the operator chose `/speckit:ai-council`, recorded as Q008 in the parent `decision-record.md`. The question as it was asked: Keep a council command, and under which name and family? Recommended: option B, `/speckit:ai-council` owned by `system-spec-kit`, single round, with `speckit-ai-council.yaml` and `speckit-ai-council-presentation.txt`. The trade-off: B costs three files, their mirrors and an advisor bridge row, and keeps one typed entry point that binds the spec folder before any write. A is smaller and leaves the council reachable only by `@ai-council` or through `@orchestrate`. Other names considered: keeping `/deep:ai-council`, which implies a deep mode and keeps the hub as owner, or a new command family, which needs its own catalog and mirrors.
+
+Closed on 2026-11-14: the operator answered "Split now", recorded as Q009 in the parent `decision-record.md`. This phase becomes a phase parent with children before any implementation. The question as it was asked: should this phase become a phase parent? The precedent `003-deprecate-improvement-modes` needed 13 phases for a similar removal, and this one touches 451 files. Recommended: keep one phase, and split only if setup shows the runtime removal in T039 to T056 cannot finish in one pass. No subfolder is created until the operator answers.
 
 Closed on 2026-11-14: the parent `spec.md` Out of Scope list now says this phase retires the mode, and the parent's phase map row 6 and its 005 to 006 handoff row are filled.
 

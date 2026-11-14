@@ -40,6 +40,9 @@ _memory:
 | Q004 | Confirm mode asks Retry, Skip or Cancel before synthesis after three failed iterations, and auto mode halts to synthesis with no question. | Not stated. | None | 002 REQ-009, REQ-010, 004 REQ-015 |
 | Q005 | The tool-call budgets stay at the prompt values that run today, and the skills are corrected to point at them. | Not stated. | None | 005 REQ-002 |
 | Q006 | After the answers were recorded the session stopped for review before any implementation. A later instruction asked for implementation once no decision is pending. | Not stated. | None | spec.md |
+| Q007 | The phase 004 size requirement reads: each single workflow file is smaller than both twins it replaces. The 140000 and 155000 byte caps are dropped. | The merged files measured 144394 and 158517 bytes and lossless cuts reached about 2900 bytes per file. | The byte caps in phase 004 REQ-010 | 004 REQ-010, AC-010 |
+| Q008 | The council keeps a typed command, `/speckit:ai-council`, beside the standalone agent. This is D3 option B of phase 006. | Not stated. The operator first asked why the speckit family and whether the agent keeps its spec folder support, and chose the command after both were answered. | The "Not decided" row Q001 in `001-deterministic-stop-decision/decision-record.md` | 006 REQ-009, 006 `goal.md` D3 |
+| Q009 | Phase 006 becomes a phase parent with child phases before any implementation starts. | Not stated. | None | 006-ai-council-mode-deprecation/spec.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -166,6 +169,65 @@ Record, then commit the specs
 Answer:
 ```text
 Record answers only (Recommended)
+```
+
+### Q007
+<!-- source: claude:8e1f5098-b19f-4c58-b944-846c87878de7:toolu_01VfmsGUUBfqJfwagKLLThGH:0 -->
+
+Question:
+```text
+Phase 004 is built and verified except one requirement: the merged workflow files miss their byte caps. deep-research.yaml is 144,394 bytes against a 140,000 cap and deep-review.yaml is 158,517 against 155,000. Both are still smaller than every twin they replace (the smaller twins were 157,907 and 165,285). Lossless cuts reach only about 2,900 bytes per file. An unmet acceptance row blocks closing the phase. How should I resolve the size requirement (REQ-010)?
+```
+
+Options:
+```text
+Amend the cap (Recommended)
+Cut comments to reach it
+Leave it open
+```
+
+Answer:
+```text
+Amend the cap (Recommended)
+```
+
+### Q008
+<!-- source: claude:8530dc01-d681-4a14-8056-3f989bdfe568:toolu_013ttWChSKFvE2XeCwzHzBKp:0 -->
+
+Question:
+```text
+The council agent keeps its spec folder support either way: it writes only to ai-council/ inside a spec folder and asks for the folder when it cannot resolve one. Given that, should the council also get a typed command that binds the folder up front?
+```
+
+Options:
+```text
+Agent only (Recommended)
+/speckit:ai-council
+Keep /deep:ai-council
+```
+
+Answer:
+```text
+/speckit:ai-council
+```
+
+### Q009
+<!-- source: claude:8530dc01-d681-4a14-8056-3f989bdfe568:toolu_013638oXHCQ3UcmRCUuxwW1n:2 -->
+
+Question:
+```text
+Phase 006 touches 451 files, and the earlier mode removal (003-deprecate-improvement-modes) needed 13 phases. Should phase 006 be split into child phases?
+```
+
+Options:
+```text
+Keep one phase (Recommended)
+Split now
+```
+
+Answer:
+```text
+Split now
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
