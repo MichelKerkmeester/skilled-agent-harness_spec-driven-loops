@@ -87,6 +87,7 @@ Each cited line was read and each edit was designed as literal text before any d
 | The MCP server selector is `the target is MCP server source: a file that defines an MCP server, registers its tools or sets how it starts` | The checklist's own Usage section lists those three cases. The wording is the session's and no second reader checked it |
 | The hub version rose to 3.12.0.0, a minor step | IMPLEMENTATION now loads one more file, which changes what a route returns |
 | The forced failure used `SPECKIT_COMPILED_ROUTING=0`, not a scratch copy | The battery reads the repository root, so a scratch copy means copying the whole tree. The switch fails two legs without touching a file |
+| The `sk-code-skilled/SKILL.md` pointer to the MCP rule is a link to `../ROUTER.md` | Follow-up on 2026-11-14 at the operator's request. A bare `` `ROUTER.md` §4 `` resolved to the surface packet's own router, which has three sections, so the strict package check failed and turned sk-doc Script Tests red on main. The hub router's section 4 is the one statement of the rule |
 <!-- /ANCHOR:decisions -->
 
 ---
