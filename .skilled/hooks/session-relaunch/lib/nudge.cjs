@@ -19,6 +19,15 @@ const hookFlags = require('../../shared/hook-flags.cjs');
 const SEED_PREFIX = '[session-relaunch]';
 const SPEC_FOLDER_GUIDANCE = '   spec_folder is a repo-relative '
   + 'packet path, "none" for Gate 3 D) Skip, or empty if unanswered.';
+// A Goal that each session writes from memory drifts a little on every hop, so the note
+// opens it with a line copied from the packet, which no hop rewrites.
+const GOAL_GUIDANCE = '   When spec_folder names a packet, open ## Goal with one line '
+  + '`Purpose (<file>): <text>` that copies word for word the ### Purpose text of that '
+  + 'packet\'s spec.md. When that text is empty or a template placeholder, copy the ### Purpose '
+  + 'of the nearest parent folder whose spec.md has one and write `Purpose (from parent '
+  + '<file>): <text>`. When neither exists and the packet holds a goal.md, copy its Objective. '
+  + '<file> is the repo-relative path you copied from. Leave the line out when there is no '
+  + 'such text. Then say what this session works toward.';
 // Every adapter prints this command, so the model always runs the CLI from the repo root.
 const CLI_COMMAND = 'node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs';
 const CONTINUITY_WRITER_COMMAND = 'node .skilled/skills/system-spec-kit/runtime/cli/'
@@ -192,6 +201,7 @@ function handoffText({
       + 'Never list these handoff steps (the note, the continuity save, prepare) '
       + 'there; this session does them now.',
     SPEC_FOLDER_GUIDANCE,
+    GOAL_GUIDANCE,
     '   Under ## In-flight state include an `Active command:` line with the command, mode and '
       + 'arguments; use `Active command: none` when no command runs.'
       + activeGoalInstruction,

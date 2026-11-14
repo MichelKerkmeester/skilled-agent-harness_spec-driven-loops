@@ -90,7 +90,7 @@ session_detection:
 # ─────────────────────────────────────────────────────────────────
 context_loading_priority:
   # The canonical packet is the recovery ladder. Grep only fills a gap the packet named and did not answer.
-  order: ["Primary: handover.md (<24h old)", "Primary: _memory.continuity in implementation-summary.md", "Primary: supporting spec docs (tasks/plan/decision-record/resource-map)", "Secondary: graph-metadata.json packet hints", "Secondary: the packet-scoped ripgrep context recipe (retrieval-conventions.md section 2.4) for a named gap"]
+  order: ["Primary: handover.md (<24h old)", "Primary: _memory.continuity in implementation-summary.md", "Primary: supporting spec docs (spec/tasks/plan/decision-record/resource-map)", "Secondary: graph-metadata.json packet hints", "Secondary: the packet-scoped ripgrep context recipe (retrieval-conventions.md section 2.4) for a named gap"]
   note: "Recover from the canonical packet first, then let the user choose whether a scoped ripgrep pass is needed"
 
 packet_graph_metadata:
@@ -154,7 +154,8 @@ confidence_framework:
     medium: { range: "40-79%", action: "Proceed with caution - present stale session options" }
     low: { range: "0-39%", action: "STOP - Ask user about context reliability and avoid guessing the next step" }
   scoring_weights: { session_recency: 0.40, artifact_completeness: 0.30, memory_availability: 0.20, codebase_changes: 0.10 }
-  reply_format: ["Confidence: NN%", "Context source: handover|memory", "Now", "Last confirmed", "Next safe action"]
+  reply_format: ["Purpose (omit when none)", "Confidence: NN%", "Context source: handover|memory", "Now", "Last confirmed", "Next safe action"]
+  purpose_row: "Quote one sentence, the first, from the packet's own spec.md ### Purpose. When that Purpose is empty, still a bracketed template placeholder or the scaffold sentence that begins Keep parent documentation lean, and the packet is a phase child, quote the nearest ancestor phase parent's Purpose instead and label the row Purpose (parent <parent-folder-name>). Skip an ancestor whose Purpose is empty, a placeholder or the scaffold sentence that begins Keep parent documentation lean. When no Purpose text is found and packet_goal.read found a goal.md, quote its Objective and label the row Purpose (goal.md). When none of these exists, omit the row. Never print None or a placeholder."
   escalation: { timebox_minutes: 5, failed_threshold: 2, action: "Present options to user with current findings" }
 
 # ─────────────────────────────────────────────────────────────────
@@ -186,6 +187,7 @@ workflow:
       - Check for handover.md in spec_folder (<24h old)
       - If recent handover exists, load and display contents
       - Walk the continuity ladder for the resolved spec folder: handover.md, then _memory.continuity, then the packet-first spec docs
+      - Always read the Purpose for the brief, even when handover.md already answers the essentials. Open spec.md and open an ancestor phase parent's spec.md only when confidence_framework.purpose_row sends you there
       - Extract Resume Essentials (current phase/task, last confirmed action, next safe action, blockers, relevant artifact/file)
       - Present targeted depth options instead of raw file-loading choices
       - Present numbered options to user, wait for selection
@@ -225,7 +227,7 @@ workflow:
 
   step_5_present_resume:
     purpose: Display a concise resume brief and offer continuation options
-    activities: [Display spec folder and last activity, Show progress bars, Show Now/Last confirmed/Next safe action/Blockers, Cite the artifact or task that justifies the recommendation, Present continuation options]
+    activities: [Display spec folder and last activity, Show progress bars, Show Purpose/Now/Last confirmed/Next safe action/Blockers, Cite the artifact or task that justifies the recommendation, Present continuation options]
     outputs: { resume_summary: displayed }
     validation: resume_complete
     checkpoint:
