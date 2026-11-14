@@ -113,9 +113,7 @@
       },
       "owned_assets": [
         { "purpose": "presentation", "path": ".skilled/commands/speckit/assets/speckit-<name>-presentation.txt" },
-        { "purpose": "workflow", "path": ".skilled/commands/speckit/assets/speckit-<name>.yaml", "commands": ["/speckit:plan", "/speckit:implement", "/speckit:complete"] },
-        { "purpose": "auto_workflow", "path": ".skilled/commands/speckit/assets/speckit-<name>-auto.yaml", "commands": ["/speckit:resume"] },
-        { "purpose": "confirm_workflow", "path": ".skilled/commands/speckit/assets/speckit-<name>-confirm.yaml", "commands": ["/speckit:resume"] }
+        { "purpose": "workflow", "path": ".skilled/commands/speckit/assets/speckit-<name>.yaml", "commands": ["/speckit:plan", "/speckit:implement", "/speckit:complete", "/speckit:resume"] }
       ],
       "loader_requirements": [
         "Read the presentation asset before showing any startup question",
