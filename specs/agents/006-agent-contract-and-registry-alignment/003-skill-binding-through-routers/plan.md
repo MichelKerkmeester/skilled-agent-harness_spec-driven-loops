@@ -72,6 +72,9 @@ An agent starts a task, reads the skill's entry file named in its own file, and 
 |---|---|---|---|
 | `.skilled/agents/design.md` | Cites four files inside `sk-code-frontend` | update | REQ-004 search |
 | `.skilled/agents/markdown.md` | Cites template files inside `sk-doc` mode packets | update | REQ-005 search |
+| `.skilled/agents/deep-review.md` | Cites the review doctrine file inside `sk-code-review` | update | REQ-006 search |
+| `.skilled/agents/debug.md`, `context.md` and `prompt-improver.md` | Cite skill files without naming a load condition or an entry file | update | REQ-007 search |
+| `.skilled/agents/orchestrate.md` | Cites a placeholder path that the new check reads as a real folder | update | The check exits 0 |
 | `.skilled/skills/sk-code/ROUTER.md` and `.skilled/skills/sk-doc/ROUTER.md` | Select the leaf resources for a task | unchanged | Run once per agent in T002 and T003 |
 | `.skilled/bin/sync-agent-roster.cjs` | Checks rosters against the registry | update | REQ-001 test case |
 | `.skilled/agents/code.md` and `review.md` | Already load `sk-code` through its entry file | unchanged | `git diff --stat main` prints nothing for both |

@@ -142,6 +142,43 @@ function readLines(filePath) {
   return fs.readFileSync(filePath, 'utf8').split('\n');
 }
 
+// Agent files cite skill files and skill directories as paths, so renaming a
+// skill or moving its SKILL.md leaves a citation that only fails when the
+// agent tries to read it mid-task. Resolving every citation here turns that
+// dead end into a check-mode problem line.
+function skillPathProblems(agentName) {
+  const problems = [];
+  const seen = new Set();
+  const source = fs.readFileSync(path.join(AGENTS_DIR, `${agentName}.md`), 'utf8');
+  for (const match of source.matchAll(/\.skilled\/skills\/[A-Za-z0-9_./*<>-]*/g)) {
+    // A trailing dot is sentence punctuation, not part of the path.
+    const token = match[0].replace(/\.+$/, '');
+    // Angle brackets and stars mark placeholders and globs, not real paths.
+    if (token.includes('<') || token.includes('>') || token.includes('*')) {
+      continue;
+    }
+    if (seen.has(token)) {
+      continue;
+    }
+    seen.add(token);
+    if (token.includes('..')) {
+      problems.push(`skill path escapes the repository: ${agentName}: ${token}`);
+      continue;
+    }
+    // The token is root-relative and ".." is gone, so the lookup below never
+    // reaches outside the repository.
+    const target = path.resolve(REPO_ROOT, token);
+    if (!fs.existsSync(target)) {
+      problems.push(`missing skill path: ${agentName}: ${token}`);
+      continue;
+    }
+    if (fs.statSync(target).isDirectory() && !fs.existsSync(path.join(target, 'SKILL.md'))) {
+      problems.push(`skill directory without SKILL.md: ${agentName}: ${token}`);
+    }
+  }
+  return problems;
+}
+
 // Markers are matched by their prefix through the block name, so the trailing
 // "edit ... and run ..." hint on a begin marker may change without hiding it.
 function findBlock(lines, file, name) {
@@ -225,6 +262,10 @@ function checkMode(registry) {
     if (!Array.isArray(agent.dispatchers) || agent.dispatchers.length === 0) {
       problems.push(`registry record names no dispatcher: ${agent.name}`);
     }
+  }
+
+  for (const name of agentFiles) {
+    problems.push(...skillPathProblems(name));
   }
 
   for (const block of BLOCKS) {

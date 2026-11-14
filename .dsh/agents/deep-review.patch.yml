@@ -175,7 +175,7 @@
       
       #### Step 6: Classify Findings
       
-      - Load the review mode's `references/review-core.md` before assigning severity: `sk-code-review/references/review-core.md` inside the sk-code skill, wherever the runtime installed it (in this repository: `.skilled/skills/sk-code/sk-code-review/references/review-core.md`).
+      - Load the review doctrine before assigning severity: read the review mode's `sk-code-review/SKILL.md` inside the sk-code skill, wherever the runtime installed it (in this repository: `.skilled/skills/sk-code/sk-code-review/SKILL.md`), and load the doctrine file it names first.
       - Use shared `P0` / `P1` / `P2` definitions and tag each finding with `correctness`, `security`, `traceability`, or `maintainability`.
       - P0/P1 findings require concrete file:line evidence and counterevidence review.
       - P2 findings require actionable evidence and may include documented inference.
@@ -284,7 +284,7 @@
       
       | Skill | Purpose |
       |-------|---------|
-      | `sk-code` (code-review mode) | Shared review doctrine via `sk-code-review/references/review-core.md` |
+      | `sk-code` (code-review mode) | Shared review doctrine, loaded through `sk-code-review/SKILL.md` |
       | `sk-code` | Router-selected standards evidence |
       
       ### Caller + Command Integrations
@@ -310,7 +310,7 @@
       
       ## 3. REVIEW CONTRACT
       
-      This agent loads shared review doctrine from the review mode's `sk-code-review/references/review-core.md` inside the sk-code skill, wherever the runtime installed it (in this repository: `.skilled/skills/sk-code/sk-code-review/references/review-core.md`), for severity definitions, evidence requirements, and baseline check families.
+      This agent loads shared review doctrine through the review mode's `sk-code-review/SKILL.md` inside the sk-code skill, wherever the runtime installed it (in this repository: `.skilled/skills/sk-code/sk-code-review/SKILL.md`), for severity definitions, evidence requirements, and baseline check families. That file names the doctrine reference as the first resource it loads.
       
       ### Review Dimensions
       
@@ -574,7 +574,7 @@
       ## 9. RELATED RESOURCES
       
       - `.skilled/commands/deep/review.md` — the `/deep:review` loop owner that dispatches this agent once per iteration.
-      - `sk-code-review/references/review-core.md` in the installed sk-code skill (in this repository: `.skilled/skills/sk-code/sk-code-review/references/review-core.md`): the shared review doctrine for severity and evidence.
+      - `sk-code-review/SKILL.md` in the installed sk-code skill (in this repository: `.skilled/skills/sk-code/sk-code-review/SKILL.md`): the review mode entry file, which names the shared review doctrine for severity and evidence.
       - `deep-review/SKILL.md` in the installed system-deep-loop skill (in this repository: `.skilled/skills/system-deep-loop/deep-review/SKILL.md`): the review-mode packet skill.
       - `runtime/scripts/reduce-state.cjs` in that same skill (in this repository: `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`): the reducer this agent's iterations feed.
       - `.skilled/agents/review.md` — the separate non-iterative reviewer this agent must not delegate to.

@@ -65,6 +65,7 @@
       **Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service.
       Bash is denied for this agent, so run the ripgrep recipes from `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` through the Grep tool.
       Read `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` directly.
+      Load the system-spec-kit skill when a continuity question goes beyond these two paths: its entry file is `SKILL.md`, wherever the runtime installed the skill (in this repository: `.skilled/skills/system-spec-kit/SKILL.md`).
       Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
       
       ### Denied Capability Guard

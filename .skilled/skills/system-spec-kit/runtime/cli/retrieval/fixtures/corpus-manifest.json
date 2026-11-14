@@ -1,5 +1,5 @@
 {
-  "corpusHash": "2aa4088af3096cb85f5f42cb7974ce4825d2cf764af8ffa3c01b9db4cc7989db",
+  "corpusHash": "ee335614a73dd83377f82401c1db79dcd4e66845492a4f2864c5d5dd8adb6123",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26865,
+  "includedPathCount": 26866,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9415,6 +9415,7 @@
     "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/tasks.md",
     "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/acceptance-criteria.md",
     "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/implementation-summary.md",
     "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/plan.md",
     "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/spec.md",
     "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/tasks.md",
@@ -26897,7 +26898,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8cfe7ee8a7c31d9046902405cccf283ec31a293c6c30fd87946c4e74e69cdf0d",
+  "manifestHash": "4aafb79255a6e08388073d717b7395becabaeea9ebe297cee9d3a85c4f517871",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

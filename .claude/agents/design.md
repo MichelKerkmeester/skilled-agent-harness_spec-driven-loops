@@ -79,9 +79,9 @@ Both sides state this boundary in their own words. If the dispatch prompt appear
 
 ### Step 2a: The decide path (`sk-code-frontend` visual references)
 
-1. **Load the scales.** Read `.skilled/skills/sk-code/sk-code-frontend/references/web-visual-values.md` — the value scales, colour ramps, elevation, tokens and hard rules.
+1. **Load the scales.** Read the sk-code `SKILL.md`, wherever the runtime installed the sk-code skill (in this repository: `.skilled/skills/sk-code/SKILL.md`), and follow its route to the frontend surface, `sk-code-frontend`. From that packet's own `SKILL.md`, load the visual values reference — the value scales, colour ramps, elevation, tokens and hard rules.
 2. **Detect the entry point.** Nothing yet is a build; a complaint is an improve; existing code is a review. That choice decides which section loads first.
-3. **Load only what the intent scores for.** `.skilled/skills/sk-code/sk-code-frontend/references/web-visual-hierarchy.md` for the build procedure, the symptom-to-fix tables, the hierarchy method, UX laws and the review pass, and `.skilled/skills/sk-code/sk-code-frontend/references/web-motion-and-interaction.md` for motion, inputs, touch, focus, performance and feedback.
+3. **Load only what the intent scores for.** From the same packet, the visual hierarchy reference for the build procedure, the symptom-to-fix tables, the hierarchy method, UX laws and the review pass, and the motion and interaction reference for motion, inputs, touch, focus, performance and feedback.
 4. **Answer with values, not adjectives.** Every spatial value, size, weight, color, shadow, radius and duration comes from a named scale, with the reason it beat its neighbours.
 5. **Verify against the hard rules** before reporting: contrast minimums, group spacing, breakpoint shrink rates, and no signal carried by color alone.
 
@@ -111,10 +111,10 @@ When a measured reference reports a ratio, do not generate the next size by mult
 
 | Capability | Where it lives | When it applies |
 |---|---|---|
-| Value scales, palettes, elevation, tokens, hard rules | `sk-code/sk-code-frontend/references/web-visual-values.md` | Every decide request |
-| Build order, symptom-to-fix, hierarchy, UX laws, review pass | `sk-code/sk-code-frontend/references/web-visual-hierarchy.md` | Something new, a vague complaint, or a review |
-| Motion, inputs, focus, touch, performance, feedback | `sk-code/sk-code-frontend/references/web-motion-and-interaction.md` | Any animation or behavior decision |
-| Contrast-verified starter tokens | `sk-code/sk-code-frontend/assets/tokens.css` | A project with no token layer |
+| Value scales, palettes, elevation, tokens, hard rules | The visual values reference in `sk-code-frontend`, reached through `.skilled/skills/sk-code/SKILL.md` | Every decide request |
+| Build order, symptom-to-fix, hierarchy, UX laws, review pass | The visual hierarchy reference in `sk-code-frontend`, same route | Something new, a vague complaint, or a review |
+| Motion, inputs, focus, touch, performance, feedback | The motion and interaction reference in `sk-code-frontend`, same route | Any animation or behavior decision |
+| Contrast-verified starter tokens | The starter token file in `sk-code-frontend`, same route | A project with no token layer |
 | Extract-write-validate pipeline | `.skilled/skills/sk-design/sk-design-md-generator/SKILL.md` | Every measure request |
 | Extraction entry point | `/design:extract` | Operator-triggered measurement |
 | Chart catalog, template contract, colour systems | `.skilled/skills/sk-design/sk-design-chart/SKILL.md` | Every chart request |
@@ -220,8 +220,7 @@ A failed check is reported as remaining work, never rounded up to complete.
 
 ## 8. RELATED RESOURCES
 
-- `.skilled/skills/sk-code/sk-code-frontend/references/web-visual-values.md`, `web-visual-hierarchy.md` and `web-motion-and-interaction.md` — the decide-path references named in the capability scan.
-- `.skilled/skills/sk-code/sk-code-frontend/assets/tokens.css` — contrast-verified starter tokens.
+- `.skilled/skills/sk-code/SKILL.md` — the entry file for the decide path. Its route to `sk-code-frontend` names the three visual references and the starter token file.
 - `.skilled/skills/sk-design/sk-design-md-generator/SKILL.md` — the measuring skill and its three-phase pipeline.
 - `.skilled/skills/sk-design/sk-design-md-generator/references/design-knowledge/numeric-design-laws.md` — reading targets, with the direction caveat.
 - `.skilled/commands/design/extract.md` — the `/design:extract` entry point for the measure path.

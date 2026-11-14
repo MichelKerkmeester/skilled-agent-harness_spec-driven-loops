@@ -180,13 +180,13 @@
         "source": "derived"
       },
       {
-        "name": "1. DURABLE DIRECTIVE",
-        "kind": "heading",
+        "name": "the",
+        "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Decisions",
+        "name": "1. DURABLE DIRECTIVE",
         "kind": "heading",
         "path": "goal.md",
         "source": "derived"
@@ -194,19 +194,19 @@
     ],
     "causal_summary": "The eleven files in `.skilled/agents/` define how every agent in this repository behaves, and an audit on 2026-11-14 found five kinds of defect in them",
     "created_at": "2026-11-14T11:36:20Z",
-    "last_save_at": "2026-11-14T12:39:38.299Z",
+    "last_save_at": "2026-11-14T13:05:00.826Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:7f9c73027663f929e49af0cf59fe3a28d492a42ec90d88f85c1b1f66fddd7db0",
+    "source_fingerprint": "sha256:a18ee34ad5dafa73c087e116b16c69ed830aeecbeb1d23f47d8a43c0a6fb9c2c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fa6c4b1e458f989add8fb3c08fde48003c9346307be7b1e99a8536b015c4b873"
+      "spec.md": "1984b28df3f3ac7fa16839616d98470feeafa03dc208e83f2de4c9f07b1d268a"
     },
-    "last_active_child_id": "agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters",
-    "last_active_at": "2026-11-14T12:39:16.779Z"
+    "last_active_child_id": "agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers",
+    "last_active_at": "2026-11-14T13:05:00.826Z"
   }
 }

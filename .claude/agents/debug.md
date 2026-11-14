@@ -349,6 +349,7 @@ Proceed to Phase 5 with the post-challenge ranking, not the original ranking.
 
 **Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service.
 Keyed lookup runs `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` and free-text evidence uses the ripgrep recipes in `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`.
+Load the system-spec-kit skill only when the failure touches a spec packet or earlier packet work: its entry file is `SKILL.md`, wherever the runtime installed the skill (in this repository: `.skilled/skills/system-spec-kit/SKILL.md`), and it names both retrieval paths above.
 Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
 ### Tool Selection Flow

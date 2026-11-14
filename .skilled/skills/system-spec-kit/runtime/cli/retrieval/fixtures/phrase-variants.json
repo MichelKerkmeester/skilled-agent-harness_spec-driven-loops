@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8cfe7ee8a7c31d9046902405cccf283ec31a293c6c30fd87946c4e74e69cdf0d",
+  "manifestHash": "4aafb79255a6e08388073d717b7395becabaeea9ebe297cee9d3a85c4f517871",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -112337,6 +112337,9 @@
     ],
     "skill binding through routers acceptance criteria": [
       "skill binding through routers acceptance criteria"
+    ],
+    "skill binding through routers implementation summary": [
+      "skill binding through routers implementation summary"
     ],
     "skill binding through routers plan": [
       "skill binding through routers plan"

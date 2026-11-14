@@ -119,10 +119,10 @@ Use these IDs when a recommendation depends on an integration point.
 
 ### Skills
 
-| Skill | Integration ID | Domain | Use When | Key Features |
-| ----- | -------------- | ------ | -------- | ------------ |
-| `sk-prompt` | `INT-SKILL-PROMPT-IMPROVER` | Prompt engineering | High-stakes prompt improvement is needed | One-pass checklist, presets, CLEAR screening |
-| `sk-doc` | `INT-SKILL-SK-DOC` | Agent-template alignment | Agent structure or formatting must match current template conventions | Canonical agent template and runtime guidance |
+| Skill | Integration ID | Domain | Use When | Entry File | Key Features |
+| ----- | -------------- | ------ | -------- | ---------- | ------------ |
+| `sk-prompt` | `INT-SKILL-PROMPT-IMPROVER` | Prompt engineering | High-stakes prompt improvement is needed | `.skilled/skills/sk-prompt/SKILL.md` | One-pass checklist, presets, CLEAR screening |
+| `sk-doc` | `INT-SKILL-SK-DOC` | Agent-template alignment | Agent structure or formatting must match current template conventions | `.skilled/skills/sk-doc/SKILL.md` | Canonical agent template and runtime guidance |
 
 ### Tools
 
@@ -173,7 +173,7 @@ Incoming prompt-escalation request
 ### ✅ ALWAYS
 
 - Confirm `raw_task` is present and within prompt-construction scope before composing the prompt.
-- Read `.skilled/skills/sk-prompt/SKILL.md` plus the key references before composing the final prompt package.
+- Read `.skilled/skills/sk-prompt/SKILL.md` plus the references it names for the task before composing the final prompt package.
 - Name the default skeleton or the preset used in `FRAMEWORK`, and make the reason traceable to the task shape.
 - Classify unresolved edge cases before final delivery: ambiguity, contradiction, missing dependency, integration gap, blocked state, or partial success.
 - Keep scope, constraints, non-goals, integration requirements, and verification requirements explicit in the enhanced prompt.
@@ -381,8 +381,7 @@ Fix verification gaps first
 ## 10. RELATED RESOURCES
 
 - `.skilled/commands/prompt/improve.md` — the `/prompt-improve` command surface routing to inline or agent flow.
-- `.skilled/skills/sk-prompt/SKILL.md` — the canonical source for the checklist, skeleton and presets, and CLEAR.
-- `.skilled/skills/sk-prompt/references/` — the key references this agent reads before composing a package.
+- `.skilled/skills/sk-prompt/SKILL.md` — the canonical source for the checklist, skeleton and presets, and CLEAR. It names the key references this agent reads before composing a package.
 - `.skilled/skills/sk-doc/SKILL.md` — agent-template alignment when a caller asks for documentation packaging.
 
 ---

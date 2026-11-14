@@ -128,6 +128,11 @@ function writeFile(relativePath: string, content: string): void {
   fs.writeFileSync(filePath, content, 'utf8');
 }
 
+function citeSkillPath(agentName: string, token: string): void {
+  const agentPath = path.join(tmpDir, AGENTS_DIR, `${agentName}.md`);
+  fs.appendFileSync(agentPath, `\nSee ${token} for details.\n`, 'utf8');
+}
+
 function readRegistry(): Registry {
   return JSON.parse(fs.readFileSync(path.join(tmpDir, AGENTS_DIR, REGISTRY_NAME), 'utf8')) as Registry;
 }
@@ -217,5 +222,36 @@ describe('sync-agent-roster', () => {
 
     expect(result.status).toBe(1);
     expect(result.stdout).toContain('stale block: readme-roster');
+  });
+
+  it('flags a missing skill path', () => {
+    citeSkillPath('alpha', '.skilled/skills/demo/missing.md');
+
+    const result = runSync('--check');
+
+    expect(result.status).toBe(1);
+    expect(result.stdout).toContain('missing skill path:');
+    expect(result.stdout).toContain('alpha');
+    expect(result.stdout).toContain('.skilled/skills/demo/missing.md');
+  });
+
+  it('rejects a skill path containing ..', () => {
+    citeSkillPath('alpha', '.skilled/skills/../outside.md');
+
+    const result = runSync('--check');
+
+    expect(result.status).toBe(1);
+    expect(result.stdout).toContain('skill path escapes the repository:');
+  });
+
+  it('skips a placeholder in angle brackets', () => {
+    writeFile('.skilled/skills/demo/SKILL.md', '# demo\n');
+    citeSkillPath('alpha', '.skilled/skills/<skill>/SKILL.md');
+    citeSkillPath('alpha', '.skilled/skills/demo/SKILL.md');
+
+    const result = runSync('--check');
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain('agent-roster: OK');
   });
 });
