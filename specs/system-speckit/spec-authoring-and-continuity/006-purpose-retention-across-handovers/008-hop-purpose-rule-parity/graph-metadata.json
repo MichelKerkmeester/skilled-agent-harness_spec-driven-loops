@@ -39,7 +39,7 @@
       "sentence"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,11 +48,11 @@
       "implementation-summary.md",
       ".skilled/commands/speckit/handoff.md",
       ".skilled/hooks/session-relaunch/lib/nudge.cjs",
-      ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
       ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
-      ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
       ".skilled/commands/speckit/assets/speckit-resume-presentation.txt",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js",
+      ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
+      ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
       ".skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts"
     ],
     "entities": [
@@ -99,21 +99,9 @@
         "source": "derived"
       },
       {
-        "name": "nudge.test.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
-        "source": "derived"
-      },
-      {
         "name": "speckit-resume-auto.yaml",
         "kind": "config",
         "path": ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "speckit-resume-confirm.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
         "source": "derived"
       },
       {
@@ -126,6 +114,18 @@
         "name": "test-phase-command-workflows.js",
         "kind": "code",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-resume-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
         "source": "derived"
       },
       {
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "A packet's purpose is meant to read the same after every hop, so the next AI recognizes it as the one fixed line in a context that otherwise changes",
     "created_at": "2026-11-14T06:14:05Z",
-    "last_save_at": "2026-11-14T07:26:23.476Z",
+    "last_save_at": "2026-11-14T07:51:28.173Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:27b8744ec29fb98996e1a79fb0ab2120cf7945b9922a7d91155a28a58678bca2",
+    "source_fingerprint": "sha256:9f2642587c7463aba5d057bae24ef8cc636785f4b284128940acef18d3ee61bb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "239d97fda26c0549c4d29f92c13bfe671dda9711b24820e848b0a0fcb06ee550",
+      "spec.md": "9d19567606918d559070316ce541d4dd816a676be5b827b9e839e47bbad9d21a",
       "plan.md": "e7788853510f3f7b3e05025b44c28f59084cd4449c085ca3a1f4f55a4d920cd9",
-      "tasks.md": "b4428df99244e2cc5b64478e6a39c3db231b813106a753e06eb1f886a72900c6",
-      "implementation-summary.md": "844e884cb15250c41508a4f3787dad24fb04d3974de09ace5418ed6a72e096bb"
+      "tasks.md": "562627907dfba205fe06cb9c78bc6a2ab28fb18324662c47e3f0e89668d31ea6",
+      "implementation-summary.md": "9b2f61271fd7b7ee57e9ebecd9070253ea3570510237989897e5681fde98004e"
     },
     "last_active_at": null
   }

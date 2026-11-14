@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Planned, not built. This phase holds the plan for eight edits that give the relaunch note and the resume brief the purpose rule and the three line shapes the helper prints. No file outside this packet has changed yet."
+description: "Built 2026-11-14. The relaunch note, the resume brief and the purpose helper now share one rule: the first sentence of the purpose, the scaffold sentence skipped, and the three line shapes the helper prints."
 trigger_phrases:
   - "hop purpose rule parity implementation summary"
 importance_tier: "normal"
@@ -21,7 +21,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-008-hop-purpose-rule-parity"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 008-hop-purpose-rule-parity |
-| **Completed** | Not built. Planned 2026-11-14 |
+| **Completed** | 2026-11-14 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -50,17 +50,21 @@ _memory:
 ## What Was Built
 <!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-Nothing is built yet. This packet holds the plan that answers finding 6 of the independent review of the purpose-carry work, and the nudge-test part of finding 10.
+Every hop now writes the purpose the same way. The relaunch note, the resume brief and the purpose helper quote the first sentence of the purpose, skip the scaffold sentence and label it with one of three shapes: `Purpose:`, `Parent purpose (<folder>):` or `Goal objective:`. Before this phase the hops used five label shapes, and the relaunch note quoted the whole Purpose.
 
 ### Phase 8: hop-purpose-rule-parity
 
-The four hops state the purpose by three rules and five label shapes. The relaunch note copies the whole Purpose and does not skip the scaffold sentence. `plan.md` section 3 states the one rule, and section 4 holds the eight edits that put it into `handoff.md`, `nudge.cjs`, both resume assets and the presentation file.
+Edits E1 to E8 put the one rule from `plan.md` section 3 into `handoff.md`, `nudge.cjs`, both resume assets and the presentation file. E9 added a check that pins the label shape in both resume `purpose_row` lines, so a fourth shape cannot come back unnoticed.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md`, `plan.md`, `tasks.md` | Created | The plan for the eight edits |
+| `.skilled/commands/speckit/handoff.md` | Modified | Rule lines and the reason the note copies the purpose |
+| `.skilled/hooks/session-relaunch/lib/nudge.cjs`, `tests/nudge.test.cjs` | Modified | `GOAL_GUIDANCE` and its pinned substrings |
+| `.skilled/commands/speckit/assets/speckit-resume-auto.yaml`, `speckit-resume-confirm.yaml` | Modified | `purpose_row` label shapes |
+| `.skilled/commands/speckit/assets/speckit-resume-presentation.txt` | Modified | Purpose row and label shapes under the brief |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` | Modified | Pins the label shape in both `purpose_row` lines |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -69,7 +73,7 @@ The four hops state the purpose by three rules and five label shapes. The relaun
 ## How It Was Delivered
 <!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-Not delivered. Planning ran the two Measured Behavior commands in `spec.md` and counted every search text in `plan.md` section 4 once with `rg -c -F`. It could not start `node` or `python3`, so the test and mirror baselines in `plan.md` section 5 are the values phases 002 and 003 recorded.
+The orchestrator captured every baseline in `plan.md` section 5 and counted each search text once. One DeepSeek V4.1 Flash max worker, dispatched through cli-deepseek-harness with `--add-dir` for the four target folders, applied E1 to E9 and exited 0 with a `completed` final event. The orchestrator then reran every check below itself.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -96,7 +100,11 @@ Not delivered. Planning ran the two Measured Behavior commands in `spec.md` and 
 | The label check in `spec.md` | Run 2026-11-14: twelve lines with five shapes across six files |
 | The scaffold check in `spec.md` | Run 2026-11-14: `1` for both resume assets and the helper, no line for `handoff.md` or `nudge.cjs` |
 | Search texts in `plan.md` section 4 | Each of the seven distinct texts counted `1` in its file |
-| The eight edits | Not run. Tasks T001 to T018 are open |
+| REQ-001 label shapes | Twelve lines, two per file for six files, each `Parent purpose (` or `Goal objective:`, no other shape |
+| REQ-002 scaffold skip | `1` for each of the five files |
+| REQ-003 one sentence | `first sentence` counts `1` in `handoff.md` and `nudge.cjs` |
+| REQ-004 relaunch tests | `pass 89`, `fail 0`, and the full suite without `AI_SESSION_CHILD` `pass 1014`, `fail 0` |
+| REQ-005 assets and command checks | `yaml ok`, `Result: passed=150 failed=0`, 256 mirrors in sync, three prompt syncs `PASS: 45` |
 <!-- /ANCHOR:verification -->
 
 ---

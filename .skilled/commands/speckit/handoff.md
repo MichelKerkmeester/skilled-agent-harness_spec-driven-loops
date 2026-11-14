@@ -131,12 +131,13 @@ Leave it out of the note, because a value you write is replaced or removed.
 On Cursor and Devin the manual command that `prepare` prints starts a first launch, which exports no goal packet, so a receiver there does not get the goal.
 Every section must be non-empty.
 Goal states what the work is for.
-When `spec_folder` names a packet, open Goal with one line `Purpose (<file>): <text>` that copies word for word the `### Purpose` text of that packet's `spec.md`, where `<file>` is the repo-relative path you copied it from.
-When that text is empty or still a template placeholder, copy the `### Purpose` of the nearest parent folder whose `spec.md` has one, and write the line as `Purpose (from parent <file>): <text>`.
-When no such text exists and the packet holds a `goal.md`, copy its Objective and name that `goal.md` as `<file>`.
+When `spec_folder` names a packet, open Goal with the packet's purpose line, `Purpose: <sentence>`, where `<sentence>` is the first sentence of that packet's purpose in its `spec.md`, copied word for word and cut to 300 characters.
+The purpose is the paragraph under `### Purpose`. In a `spec.md` without that heading it is the paragraph that opens with `Purpose:` inside the `## PROBLEM & PURPOSE`, `## PURPOSE` or `## ROOT PURPOSE` section, or else that section's opening paragraph.
+When that text is empty, `UNKNOWN`, still a template placeholder or the scaffold sentence that begins `Keep parent documentation lean`, use the nearest enclosing phase parent that has a purpose and write the line as `Parent purpose (<parent folder>): <sentence>`, where `<parent folder>` is that parent's repo-relative folder.
+When no such text exists and the packet holds a `goal.md`, quote its Objective the same way and write the line as `Goal objective: <sentence>`.
 Leave the line out when `spec_folder` is `none` or empty, or when none of these texts exists.
 After the line, say in your own words what this session works toward.
-The line is copied and never reworded, so it reads the same after every hop.
+The line is copied and never reworded, and the resume brief, the context recovered after a compaction and the continuity save print the same three shapes, so it reads the same after every hop.
 A bound `goal.md` still binds the session goal, and the Purpose line says why that goal exists.
 Done records finished work.
 Remaining work lists the claimable tail.

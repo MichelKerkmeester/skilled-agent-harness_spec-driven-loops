@@ -53,11 +53,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] REQ-001: No hop writes a label shape other than the helper's three. The first Measured Behavior command prints twelve lines, each `Parent purpose (` or `Goal objective:`, two per file for the six files, and no line with `Purpose (parent`, `Purpose (from parent`, `Purpose (goal.md)` or `Purpose (<file>)`
-- [ ] REQ-002: Every hop skips the scaffold sentence. The second Measured Behavior command prints `1` for each of the five files
-- [ ] REQ-003: The relaunch note quotes one sentence, not the whole Purpose. `rg -c -F 'first sentence' .skilled/commands/speckit/handoff.md .skilled/hooks/session-relaunch/lib/nudge.cjs` prints `1` for each file, where it prints no line for either today
-- [ ] REQ-004: The relaunch tests still pass with the new nudge text. `node --test .skilled/hooks/session-relaunch/tests/nudge.test.cjs; echo "EXIT=$?"` prints `pass 89`, `fail 0` and `EXIT=0`
-- [ ] REQ-005: The resume assets still load, the command checks hold and the resume label is pinned. The YAML load prints `yaml ok`, `test-phase-command-workflows.js` prints `Result: passed=150 failed=0` (148 before E9) and the four mirror checks print their baseline `PASS` lines
+- [x] REQ-001: No hop writes a label shape other than the helper's three. The first Measured Behavior command prints twelve lines, each `Parent purpose (` or `Goal objective:`, two per file for the six files, and no line with `Purpose (parent`, `Purpose (from parent`, `Purpose (goal.md)` or `Purpose (<file>)`
+- [x] REQ-002: Every hop skips the scaffold sentence. The second Measured Behavior command prints `1` for each of the five files
+- [x] REQ-003: The relaunch note quotes one sentence, not the whole Purpose. `rg -c -F 'first sentence' .skilled/commands/speckit/handoff.md .skilled/hooks/session-relaunch/lib/nudge.cjs` prints `1` for each file, where it prints no line for either today
+- [x] REQ-004: The relaunch tests still pass with the new nudge text. `node --test .skilled/hooks/session-relaunch/tests/nudge.test.cjs; echo "EXIT=$?"` prints `pass 89`, `fail 0` and `EXIT=0`
+- [x] REQ-005: The resume assets still load, the command checks hold and the resume label is pinned. The YAML load prints `yaml ok`, `test-phase-command-workflows.js` prints `Result: passed=150 failed=0` (148 before E9) and the four mirror checks print their baseline `PASS` lines
 <!-- /ANCHOR:completion -->
 
 ---
@@ -73,7 +73,8 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | Planned 2026-11-14, verified by an independent plan review |
+| Phase opened | Done | Planned 2026-11-14, verified by an independent plan review |
+| Phase built | Done | E1 to E9 applied by a DeepSeek V4.1 Flash max worker through cli-deepseek-harness on 2026-11-14, then every criterion rerun by the orchestrator |
 
 ### Deviations and findings
 
