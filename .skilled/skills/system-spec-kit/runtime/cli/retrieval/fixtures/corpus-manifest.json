@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ce3b82ed6941d82a41e59b34e4d0050cce68900de07ac1824039817fd1377d21",
+  "corpusHash": "70aa8d9e7053f67ce340e3de1ce3db41ff77a691191087065ae3bd341893083e",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27330,
+  "includedPathCount": 27331,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8759,6 +8759,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.9.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.13.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.13.1.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.13.2.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.2.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.3.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.4.0.0.md",
@@ -27362,7 +27363,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e4c29f51214dc969913c5a11727d8c0657d00322b9cd285b30fc386501d6e412",
+  "manifestHash": "5fb8f1fa43085db7d7e3d0f526472566b283aca133f389f07e9b56c46ab89b70",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
