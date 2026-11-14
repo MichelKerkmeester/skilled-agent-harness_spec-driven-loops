@@ -44,7 +44,9 @@
       "spec.md",
       "goal.md",
       ".skilled/bin/agent-mirror-crosswalk.md",
+      ".skilled/agents/agent-registry.json",
       ".skilled/agents/README.txt",
+      ".skilled/bin/sync-agent-roster.cjs",
       ".github/workflows/agent-mirror-sync.yml",
       ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
       ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
@@ -76,9 +78,21 @@
         "source": "derived"
       },
       {
+        "name": "agent-registry.json",
+        "kind": "config",
+        "path": ".skilled/agents/agent-registry.json",
+        "source": "derived"
+      },
+      {
         "name": "README.txt",
         "kind": "file",
         "path": ".skilled/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agent-roster.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/sync-agent-roster.cjs",
         "source": "derived"
       },
       {
@@ -180,19 +194,19 @@
     ],
     "causal_summary": "The eleven files in `.skilled/agents/` define how every agent in this repository behaves, and an audit on 2026-11-14 found five kinds of defect in them",
     "created_at": "2026-11-14T11:36:20Z",
-    "last_save_at": "2026-11-14T12:24:14.048Z",
+    "last_save_at": "2026-11-14T12:39:38.299Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:a8448d7be1e007bb1af1309af3119aef52b89887e7889bece93550004cb476da",
+    "source_fingerprint": "sha256:7f9c73027663f929e49af0cf59fe3a28d492a42ec90d88f85c1b1f66fddd7db0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b615675ce870fd4f82b08c4972768a9ecdc512578955d943ecfb9b77d26ec029"
+      "spec.md": "fa6c4b1e458f989add8fb3c08fde48003c9346307be7b1e99a8536b015c4b873"
     },
-    "last_active_child_id": "agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions",
-    "last_active_at": "2026-11-14T12:24:08.921Z"
+    "last_active_child_id": "agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters",
+    "last_active_at": "2026-11-14T12:39:16.779Z"
   }
 }

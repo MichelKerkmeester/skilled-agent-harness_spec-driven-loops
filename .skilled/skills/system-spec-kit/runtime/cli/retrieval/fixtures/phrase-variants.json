@@ -1,5 +1,5 @@
 {
-  "manifestHash": "26bf8485aa75390288350073b29064933c6ec2448ecb7c6026679add3b7477f3",
+  "manifestHash": "8cfe7ee8a7c31d9046902405cccf283ec31a293c6c30fd87946c4e74e69cdf0d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10463,6 +10463,9 @@
     ],
     "agent registry and generated rosters acceptance criteria": [
       "agent registry and generated rosters acceptance criteria"
+    ],
+    "agent registry and generated rosters implementation summary": [
+      "agent registry and generated rosters implementation summary"
     ],
     "agent registry and generated rosters plan": [
       "agent registry and generated rosters plan"

@@ -81,7 +81,7 @@ The council writes its artifacts with Write and Edit, and the calling workflow r
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Six dispatches of DeepSeek V4.1 Flash at max through `cli-opencode` on the LLM Gateway route made the edits, one agent file and its Claude twin per dispatch, each from a brief holding the literal old and new text. The orchestrating session then compared each canonical diff with its twin, ran the acceptance searches, ran the Pi and Codex generators and ran `check-agent-mirror-sync.cjs --all`. The setup files under `scratch/` and the probe were produced by the orchestrating session. The `.cursor` and `.devin` trees are symlinks onto `.claude`, and `.dsh` carries patch files the mirror check does not compare, so none of the three was written.
+Six dispatches of DeepSeek V4.1 Flash at max through `cli-opencode` on the LLM Gateway route made the edits, one agent file and its Claude twin per dispatch, each from a brief holding the literal old and new text. The orchestrating session then compared each canonical diff with its twin, ran the acceptance searches, ran the Pi and Codex generators and ran `check-agent-mirror-sync.cjs --all`. The setup files under `scratch/` and the probe were produced by the orchestrating session. The `.cursor` and `.devin` trees are symlinks onto `.claude`, so neither was written. The `.dsh` patch files were regenerated with `sync-agents-dsh.cjs`, which the commit gate requires.
 <!-- /ANCHOR:how-delivered -->
 
 ---

@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** 006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-14
 <!-- /ANCHOR:metadata -->
 
@@ -51,14 +51,14 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the registry and the agents directory, When the check runs, Then it exits 0 only if the two name the same eleven agents | `node .skilled/bin/sync-agent-roster.cjs --check` exits 0, and the vitest case that removes one record exits 1 naming the agent | Unmet | - |
-| AC-002 | REQ-002 | Given the generated `orchestrate.md`, When it is searched for the two agents, Then each appears in all three rosters | `rg -c '@design' .skilled/agents/orchestrate.md` prints 3 or more, and `rg -c '@prompt-improver' .skilled/agents/orchestrate.md` prints 3 or more | Unmet | - |
-| AC-003 | REQ-003 | Given a generated block, When one row is changed by hand and the check runs, Then it exits 1 and prints the block's name | The vitest case `rejects a hand-edited block` passes | Unmet | - |
-| AC-004 | REQ-004 | Given the regenerated canonical file, When the mirror check runs, Then every comparable copy is in sync | `node .skilled/bin/check-agent-mirror-sync.cjs` ends with `all comparable mirrors in sync` and exits 0 | Unmet | - |
-| AC-005 | REQ-005 | Given `README.txt`, When the check runs after the registry gains a twelfth test record, Then it exits 1 until the block is regenerated | The vitest case `flags a stale README roster` passes | Unmet | - |
-| AC-006 | REQ-006 | Given the workflow file, When it is read, Then one step runs the roster check | `rg -c 'sync-agent-roster.cjs --check' .github/workflows/agent-mirror-sync.yml` prints 1 | Unmet | - |
-| AC-007 | REQ-007 | Given the registry, When each record's dispatchers are read, Then none is empty | `node -e "const r=require('./.skilled/agents/agent-registry.json');process.exit(r.agents.every(a=>a.dispatchers.length)?0:1)"` exits 0 | Unmet | - |
-| AC-008 | REQ-008 | Given the registry and the agent files, When each tier is compared with the file's nesting section, Then they agree | `scratch/tier-parity.md` lists eleven rows, each ending `agrees` | Unmet | - |
+| AC-001 | REQ-001 | Given the registry and the agents directory, When the check runs, Then it exits 0 only if the two name the same eleven agents | `node .skilled/bin/sync-agent-roster.cjs --check` exits 0, and the vitest case that removes one record exits 1 naming the agent. Observed 2026-11-14: the check printed `agent-roster: OK` and exited 0, and the case `fails when a registry record is removed` passed | Met | - |
+| AC-002 | REQ-002 | Given the generated `orchestrate.md`, When it is searched for the two agents, Then each appears in all three rosters | `rg -c '@design' .skilled/agents/orchestrate.md` prints 3 or more, and `rg -c '@prompt-improver' .skilled/agents/orchestrate.md` prints 3 or more. Observed 2026-11-14: both counts printed 3 | Met | - |
+| AC-003 | REQ-003 | Given a generated block, When one row is changed by hand and the check runs, Then it exits 1 and prints the block's name | The vitest case `rejects a hand-edited block` passes. Observed 2026-11-14: the case passed, 4 of 4 tests passed | Met | - |
+| AC-004 | REQ-004 | Given the regenerated canonical file, When the mirror check runs, Then every comparable copy is in sync | `node .skilled/bin/check-agent-mirror-sync.cjs` ends with `all comparable mirrors in sync` and exits 0. Observed 2026-11-14: the check printed `11 agent(s) checked — all comparable mirrors in sync — OK` and exited 0 | Met | - |
+| AC-005 | REQ-005 | Given `README.txt`, When the check runs after the registry gains a twelfth test record, Then it exits 1 until the block is regenerated | The vitest case `flags a stale README roster` passes. Observed 2026-11-14: the case passed | Met | - |
+| AC-006 | REQ-006 | Given the workflow file, When it is read, Then one step runs the roster check | `rg -c 'sync-agent-roster.cjs --check' .github/workflows/agent-mirror-sync.yml` prints 1. Observed 2026-11-14: the count printed 1 | Met | - |
+| AC-007 | REQ-007 | Given the registry, When each record's dispatchers are read, Then none is empty | `node -e "const r=require('./.skilled/agents/agent-registry.json');process.exit(r.agents.every(a=>a.dispatchers.length)?0:1)"` exits 0. Observed 2026-11-14: the command exited 0 | Met | - |
+| AC-008 | REQ-008 | Given the registry and the agent files, When each tier is compared with the file's nesting section, Then they agree | `scratch/tier-parity.md` lists eleven rows, each ending `agrees`. Observed 2026-11-14: eleven rows, each ending `agrees` | Met | - |
 
 ### Status values
 
@@ -83,7 +83,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-No criterion has been verified yet, because this phase is planned and not implemented.
+All eight criteria are `Met`, each with the output observed on 2026-11-14.
 <!-- /ANCHOR:closure -->

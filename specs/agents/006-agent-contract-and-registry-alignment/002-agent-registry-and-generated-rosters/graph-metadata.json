@@ -19,7 +19,8 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "agent registry and generated rosters implementation summary"
     ],
     "key_topics": [
       "agent",
@@ -36,20 +37,28 @@
       "directive"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      ".skilled/agents/README.txt",
+      "implementation-summary.md",
+      ".skilled/agents/agent-registry.json",
+      ".skilled/bin/sync-agent-roster.cjs",
+      ".skilled/bin/sync-agent-roster.vitest.ts",
       ".skilled/agents/orchestrate.md",
+      ".skilled/agents/README.txt",
       ".github/workflows/agent-mirror-sync.yml",
-      ".skilled/bin/check-agent-mirror-sync.cjs",
-      ".skilled/bin/agent-mirror-crosswalk.md",
       ".skilled/bin/README.md",
-      ".skilled/skills/sk-doc/sk-create-agent/SKILL.md"
+      ".claude/agents/orchestrate.md",
+      "scratch/row-parity.md",
+      ".skilled/bin/check-agent-mirror-sync.cjs",
+      "scratch/baseline.txt",
+      ".skilled/bin/agent-mirror-crosswalk.md",
+      "scratch/tier-parity.md",
+      "scratch/after.txt"
     ],
     "entities": [
       {
@@ -83,9 +92,27 @@
         "source": "derived"
       },
       {
-        "name": "README.txt",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-registry.json",
+        "kind": "config",
+        "path": ".skilled/agents/agent-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agent-roster.cjs",
         "kind": "file",
-        "path": ".skilled/agents/README.txt",
+        "path": ".skilled/bin/sync-agent-roster.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agent-roster.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/sync-agent-roster.vitest.ts",
         "source": "derived"
       },
       {
@@ -95,21 +122,15 @@
         "source": "derived"
       },
       {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/agents/README.txt",
+        "source": "derived"
+      },
+      {
         "name": "agent-mirror-sync.yml",
         "kind": "config",
         "path": ".github/workflows/agent-mirror-sync.yml",
-        "source": "derived"
-      },
-      {
-        "name": "check-agent-mirror-sync.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/check-agent-mirror-sync.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "agent-mirror-crosswalk.md",
-        "kind": "doc",
-        "path": ".skilled/bin/agent-mirror-crosswalk.md",
         "source": "derived"
       },
       {
@@ -119,9 +140,39 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "row-parity.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+        "path": "scratch/row-parity.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-agent-mirror-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/check-agent-mirror-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-crosswalk.md",
+        "kind": "doc",
+        "path": ".skilled/bin/agent-mirror-crosswalk.md",
+        "source": "derived"
+      },
+      {
+        "name": "tier-parity.md",
+        "kind": "doc",
+        "path": "scratch/tier-parity.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
         "source": "derived"
       },
       {
@@ -153,68 +204,28 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Add",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Single",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The list of agents is written by hand in `.skilled/agents/README.txt` and three times in `orchestrate.md`: the routing table, the leaf list and the agent files table",
     "created_at": "2026-11-14T11:36:21Z",
-    "last_save_at": "2026-11-14T11:58:45.974Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-14T12:39:16.752Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cf4db38df66e2b8de3eb516b2a498000c8f3e37c83e1beb99594be5efe203978",
+    "source_fingerprint": "sha256:9200df37bbde8689570e753bb4f21bad08673ad5054597438c20815be779db8d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "238feea5174a1bc8d38be5ecbcb89a88959f81beecac1281162cf3e63a8b31a3",
+      "spec.md": "da3b72fa033e074d5fac354f74e85915fcd068e763924cbe7b5f32a65781f6ae",
       "plan.md": "a546f588520c96f7ff7474777f50234b443bd8ac3ab87a8f24c253c0321afbb8",
-      "tasks.md": "40969b986e589e4444d81cee2dbede2ed7c2cd49fc34b3a1377461b891b356ab"
+      "tasks.md": "ed48d6f1268042c26982742df3b8f8ee60fa74ed3c2fa528e5a08a5c49ce41c1",
+      "implementation-summary.md": "02d662810026dfca3c2929d19397ab5b79513f1381898a69fc67388eb308b1c1"
     },
     "last_active_at": null
   }

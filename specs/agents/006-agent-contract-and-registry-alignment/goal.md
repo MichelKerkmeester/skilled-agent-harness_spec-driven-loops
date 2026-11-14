@@ -111,6 +111,7 @@ and findings belong here.
 |------|-------|----------|
 | Phase opened | Pending | |
 | Phase 001 contract contradictions | Complete | 10 of 10 acceptance rows Met, mirror check exit 0 |
+| Phase 002 registry and generated rosters | Complete | 8 of 8 acceptance rows Met, roster check exit 0, 4 tests passed |
 
 ### Deviations and findings
 

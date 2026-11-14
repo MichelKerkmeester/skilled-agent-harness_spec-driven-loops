@@ -64,17 +64,21 @@
       
       ### Agent Selection (Priority Order)
       
-      | Priority | Task Type                                                                 | Agent                  | Tier | Skills                                                                            | subagent_type |
-      | -------- | ------------------------------------------------------------------------- | ---------------------- | ---- | --------------------------------------------------------------------------------- | ------------- |
-      | 1        | ALL codebase exploration, file search, pattern discovery, context loading | `@context`             | LEAF | Trigger index lookup, Glob, Grep, Read                                                    | `"context"`   |
-      | 2        | Evidence / iterative investigation                                        | `@deep-research`       | LEAF | `system-spec-kit`, `deep-research`                                             | `"deep-research"`   |
-      | 3        | Multi-strategy planning and architecture synthesis                        | `@ai-council`         | LEAF | Multi-lens planning rubric (planning-only)                                        | `"ai-council"`   |
-      | 4        | `/create:*` documentation and component creation command execution        | `@markdown`        | LEAF | `sk-doc`, `system-spec-kit` when spec tracking applies                            | `"markdown"`   |
-      | 5        | Code review / security                                                    | `@review`              | LEAF | `sk-code` code-review mode (findings-first baseline + router-selected surface evidence)    | `"review"`   |
-      | 6        | Deep-loop iterative code-audit pass (`/deep:review` only — explicit deep-loop convergence request, not a one-shot review) | `@deep-review` | LEAF | `system-spec-kit`, `deep-review` | `"deep-review"` |
-      | 7        | Implementation / testing                                                  | `@code`                | LEAF | `sk-code` (stack-agnostic; sk-code performs detection at dispatch time); orchestrator dispatches `@review` separately for formal review | `"code"`   |
-      | 8        | Debugging when `failure_count >= 3` — workflow surfaces a prompted offer; user opts in via the runtime's delegation tool. Never auto-dispatched. | `@debug`               | LEAF | Code analysis tools                                                               | `"debug"`   |
-      | 9        | External CLI execution — ONLY when the user names an executor; never auto-selected | `cli-<mode>` via the `cli-external-orchestration` hub | LEAF | `cli-external-orchestration` → the named `cli-X` packet | n/a (external process) |
+      <!-- BEGIN GENERATED: routing-table. Edit agent-registry.json, then run node .skilled/bin/sync-agent-roster.cjs -->
+      | Priority | Task Type | Agent | Tier | Skills | subagent_type |
+      | --- | --- | --- | --- | --- | --- |
+      | 1 | ALL codebase exploration, file search, pattern discovery, context loading | `@context` | LEAF | Trigger index lookup, Glob, Grep, Read | `"context"` |
+      | 2 | Evidence / iterative investigation | `@deep-research` | LEAF | `system-spec-kit`, `deep-research` | `"deep-research"` |
+      | 3 | Multi-strategy planning and architecture synthesis | `@ai-council` | LEAF | Multi-lens planning rubric (planning-only) | `"ai-council"` |
+      | 4 | `/create:*` documentation and component creation command execution | `@markdown` | LEAF | `sk-doc`, `system-spec-kit` when spec tracking applies | `"markdown"` |
+      | 5 | Code review / security | `@review` | LEAF | `sk-code` code-review mode (findings-first baseline + router-selected surface evidence) | `"review"` |
+      | 6 | Deep-loop iterative code-audit pass (`/deep:review` only — explicit deep-loop convergence request, not a one-shot review) | `@deep-review` | LEAF | `system-spec-kit`, `deep-review` | `"deep-review"` |
+      | 7 | Implementation / testing | `@code` | LEAF | `sk-code` (stack-agnostic; sk-code performs detection at dispatch time); orchestrator dispatches `@review` separately for formal review | `"code"` |
+      | 8 | Debugging when `failure_count >= 3` — workflow surfaces a prompted offer; user opts in via the runtime's delegation tool. Never auto-dispatched. | `@debug` | LEAF | Code analysis tools | `"debug"` |
+      | 9 | UI values and behavior, measuring a live surface into a Style Reference, charts and diagrams | `@design` | LEAF | `sk-code` frontend visual references, `sk-design` | `"design"` |
+      | 10 | Prompt creation and improvement, including dispatch-ready CLI prompts | `@prompt-improver` | LEAF | `sk-prompt` | `"prompt-improver"` |
+      | 11 | External CLI execution — ONLY when the user names an executor; never auto-selected | `cli-<mode>` via the `cli-external-orchestration` hub | LEAF | `cli-external-orchestration` → the named `cli-X` packet | n/a (external process) |
+      <!-- END GENERATED: routing-table -->
       
       ### Nesting Depth Protocol (NDP)
       
@@ -82,10 +86,12 @@
       
       #### Agent Tier Classification
       
-      | Tier             | Dispatch Authority               | Who                                                                                   |
-      | ---------------- | -------------------------------- | ------------------------------------------------------------------------------------- |
-      | **ORCHESTRATOR** | Can dispatch LEAF agents         | Top-level orchestrator only                                                           |
-      | **LEAF**         | MUST NOT dispatch any sub-agents | @context, @code, @markdown, @ai-council, @review, @debug, @deep-research, @deep-review |
+      <!-- BEGIN GENERATED: tier-table. Edit agent-registry.json, then run node .skilled/bin/sync-agent-roster.cjs -->
+      | Tier | Dispatch Authority | Who |
+      | --- | --- | --- |
+      | **ORCHESTRATOR** | Can dispatch LEAF agents | Top-level orchestrator only |
+      | **LEAF** | MUST NOT dispatch any sub-agents | @context, @deep-research, @ai-council, @markdown, @review, @deep-review, @code, @debug, @design, @prompt-improver |
+      <!-- END GENERATED: tier-table -->
       
       The AI Council is a LEAF when another agent dispatches it, and may dispatch council seats only when the operator invokes it directly.
       
@@ -153,16 +159,20 @@
       
       ### Agent Files
       
-      | Agent     | File                          | Notes                                                                                  |
-      | --------- | ----------------------------- | -------------------------------------------------------------------------------------- |
-      | @context  | `.skilled/agents/context.md`  | Sub-agent with direct retrieval only. Routes ALL exploration tasks                     |
-      | @markdown | `.skilled/agents/markdown.md` | Template-first documentation executor for `/create:*`, scoped markdown, and spec-doc authoring |
-      | @deep-research | `.skilled/agents/deep-research.md` | LEAF agent; iterative autonomous research loop with externalized state          |
-      | @deep-review | `.skilled/agents/deep-review.md` | LEAF agent; iterative code-audit dimension pass, P0/P1/P2 findings, JSONL state |
+      <!-- BEGIN GENERATED: agent-files. Edit agent-registry.json, then run node .skilled/bin/sync-agent-roster.cjs -->
+      | Agent | File | Notes |
+      | --- | --- | --- |
+      | @context | `.skilled/agents/context.md` | Sub-agent with direct retrieval only. Routes ALL exploration tasks |
+      | @deep-research | `.skilled/agents/deep-research.md` | LEAF agent; iterative autonomous research loop with externalized state |
       | @ai-council | `.skilled/agents/ai-council.md` | Planning-only multi-strategy architect (max 3 strategies). Post-dispatch responsibility: when @orchestrate dispatches at Depth 1, run `node .skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet>` after the LEAF returns to persist `ai-council/` artifacts (see ai-council persistence protocol). If the LEAF's returned report shows `max_rounds` reached without a converged plan (check `current_round >= max_rounds` in `ai-council-config.json`), add `--not-converged` to that invocation — the helper cannot detect max-round exhaustion on its own and defaults to `convergence:true` otherwise. |
-      | @review   | `.skilled/agents/review.md`   | Codebase-agnostic code review; verdict follows severity, score is advisory            |
-      | @debug    | `.skilled/agents/debug.md`    | Isolated by design (no conversation context)                                           |
-      | @code     | `.skilled/agents/code.md`     | Application-code LEAF; sk-code stack delegation; D3 convention-floor caller-restriction (`Depth: 1` marker required); fail-closed verify |
+      | @markdown | `.skilled/agents/markdown.md` | Template-first documentation executor for `/create:*`, scoped markdown, and spec-doc authoring |
+      | @review | `.skilled/agents/review.md` | Codebase-agnostic code review; verdict follows severity, score is advisory |
+      | @deep-review | `.skilled/agents/deep-review.md` | LEAF agent; iterative code-audit dimension pass, P0/P1/P2 findings, JSONL state |
+      | @code | `.skilled/agents/code.md` | Application-code LEAF; sk-code stack delegation; D3 convention-floor caller-restriction (`Depth: 1` marker required); fail-closed verify |
+      | @debug | `.skilled/agents/debug.md` | Isolated by design (no conversation context) |
+      | @design | `.skilled/agents/design.md` | Write-capable LEAF; decides UI values and measures a live surface into a Style Reference |
+      | @prompt-improver | `.skilled/agents/prompt-improver.md` | Read-only LEAF; returns a structured prompt package and never executes it |
+      <!-- END GENERATED: agent-files -->
       
       > **Note**: ALL exploration tasks route through `@context` exclusively. @context executes retrieval directly (no nested sub-agent dispatch).
       

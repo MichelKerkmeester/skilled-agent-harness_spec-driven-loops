@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "description": "One record per agent file in this directory. node .skilled/bin/sync-agent-roster.cjs writes the generated roster blocks from it, and --check fails when a block or the directory disagrees.",
+  "agents": [
+    {
+      "name": "context",
+      "tier": "LEAF",
+      "priority": 1,
+      "dispatchers": [
+        "orchestrate",
+        "/speckit:*",
+        "/create:*",
+        "operator"
+      ],
+      "taskType": "ALL codebase exploration, file search, pattern discovery, context loading",
+      "skills": "Trigger index lookup, Glob, Grep, Read",
+      "notes": "Sub-agent with direct retrieval only. Routes ALL exploration tasks",
+      "summary": "retrieval-first context agent with canonical continuity recovery, read-only"
+    },
+    {
+      "name": "deep-research",
+      "tier": "LEAF",
+      "priority": 2,
+      "dispatchers": [
+        "/deep:research",
+        "orchestrate"
+      ],
+      "taskType": "Evidence / iterative investigation",
+      "skills": "`system-spec-kit`, `deep-research`",
+      "notes": "LEAF agent; iterative autonomous research loop with externalized state",
+      "summary": "autonomous deep-research iterations with externalized state"
+    },
+    {
+      "name": "ai-council",
+      "tier": "LEAF",
+      "priority": 3,
+      "dispatchers": [
+        "/deep:ai-council",
+        "orchestrate",
+        "operator"
+      ],
+      "taskType": "Multi-strategy planning and architecture synthesis",
+      "skills": "Multi-lens planning rubric (planning-only)",
+      "notes": "Planning-only multi-strategy architect (max 3 strategies). Post-dispatch responsibility: when @orchestrate dispatches at Depth 1, run `node .skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet>` after the LEAF returns to persist `ai-council/` artifacts (see ai-council persistence protocol). If the LEAF's returned report shows `max_rounds` reached without a converged plan (check `current_round >= max_rounds` in `ai-council-config.json`), add `--not-converged` to that invocation — the helper cannot detect max-round exhaustion on its own and defaults to `convergence:true` otherwise.",
+      "summary": "multi-strategy AI Council planning, writes only ai-council artifacts"
+    },
+    {
+      "name": "markdown",
+      "tier": "LEAF",
+      "priority": 4,
+      "dispatchers": [
+        "/create:*",
+        "orchestrate"
+      ],
+      "taskType": "`/create:*` documentation and component creation command execution",
+      "skills": "`sk-doc`, `system-spec-kit` when spec tracking applies",
+      "notes": "Template-first documentation executor for `/create:*`, scoped markdown, and spec-doc authoring",
+      "summary": "template-first markdown and documentation executor for /create:* commands and spec docs"
+    },
+    {
+      "name": "review",
+      "tier": "LEAF",
+      "priority": 5,
+      "dispatchers": [
+        "orchestrate",
+        "/speckit:*"
+      ],
+      "taskType": "Code review / security",
+      "skills": "`sk-code` code-review mode (findings-first baseline + router-selected surface evidence)",
+      "notes": "Codebase-agnostic code review; verdict follows severity, score is advisory",
+      "summary": "read-only code-review specialist, pattern validation and quality scoring"
+    },
+    {
+      "name": "deep-review",
+      "tier": "LEAF",
+      "priority": 6,
+      "dispatchers": [
+        "/deep:review",
+        "orchestrate"
+      ],
+      "taskType": "Deep-loop iterative code-audit pass (`/deep:review` only — explicit deep-loop convergence request, not a one-shot review)",
+      "skills": "`system-spec-kit`, `deep-review`",
+      "notes": "LEAF agent; iterative code-audit dimension pass, P0/P1/P2 findings, JSONL state",
+      "summary": "deep-review iteration agent, one dimension per pass with P0/P1/P2 findings"
+    },
+    {
+      "name": "code",
+      "tier": "LEAF",
+      "priority": 7,
+      "dispatchers": [
+        "orchestrate"
+      ],
+      "taskType": "Implementation / testing",
+      "skills": "`sk-code` (stack-agnostic; sk-code performs detection at dispatch time); orchestrator dispatches `@review` separately for formal review",
+      "notes": "Application-code LEAF; sk-code stack delegation; D3 convention-floor caller-restriction (`Depth: 1` marker required); fail-closed verify",
+      "summary": "application-code implementation via sk-code, write-capable LEAF dispatched only by orchestrate"
+    },
+    {
+      "name": "debug",
+      "tier": "LEAF",
+      "priority": 8,
+      "dispatchers": [
+        "operator"
+      ],
+      "taskType": "Debugging when `failure_count >= 3` — workflow surfaces a prompted offer; user opts in via the runtime's delegation tool. Never auto-dispatched.",
+      "skills": "Code analysis tools",
+      "notes": "Isolated by design (no conversation context)",
+      "summary": "user-invoked fresh-perspective debugger, 5-phase root-cause method, never auto-dispatched"
+    },
+    {
+      "name": "design",
+      "tier": "LEAF",
+      "priority": 9,
+      "dispatchers": [
+        "operator",
+        "orchestrate"
+      ],
+      "taskType": "UI values and behavior, measuring a live surface into a Style Reference, charts and diagrams",
+      "skills": "`sk-code` frontend visual references, `sk-design`",
+      "notes": "Write-capable LEAF; decides UI values and measures a live surface into a Style Reference",
+      "summary": "design specialist across two skills: decides UI values from sk-code-frontend's visual references, measures a live surface into a Style Reference via sk-design-md-generator, LEAF"
+    },
+    {
+      "name": "prompt-improver",
+      "tier": "LEAF",
+      "priority": 10,
+      "dispatchers": [
+        "/prompt:improve",
+        "orchestrate"
+      ],
+      "taskType": "Prompt creation and improvement, including dispatch-ready CLI prompts",
+      "skills": "`sk-prompt`",
+      "notes": "Read-only LEAF; returns a structured prompt package and never executes it",
+      "summary": "prompt-engineering specialist, framework selection and CLEAR validation"
+    },
+    {
+      "name": "orchestrate",
+      "tier": "ORCHESTRATOR",
+      "priority": null,
+      "dispatchers": [
+        "operator"
+      ],
+      "taskType": "Task decomposition, delegation, evaluation and synthesis",
+      "skills": "n/a",
+      "notes": "Top-level orchestrator; the only agent that dispatches others",
+      "summary": "senior multi-agent orchestration, decomposition, delegation and synthesis"
+    }
+  ],
+  "routingExtras": [
+    {
+      "priority": 11,
+      "taskType": "External CLI execution — ONLY when the user names an executor; never auto-selected",
+      "agent": "`cli-<mode>` via the `cli-external-orchestration` hub",
+      "tier": "LEAF",
+      "skills": "`cli-external-orchestration` → the named `cli-X` packet",
+      "subagentType": "n/a (external process)"
+    }
+  ]
+}

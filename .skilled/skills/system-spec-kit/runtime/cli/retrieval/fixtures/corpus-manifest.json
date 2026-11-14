@@ -1,5 +1,5 @@
 {
-  "corpusHash": "3d21d9044e10435fa7eb1c7bfe4eb5be2e5df44e3cfb34291cc71f235efcf016",
+  "corpusHash": "2aa4088af3096cb85f5f42cb7974ce4825d2cf764af8ffa3c01b9db4cc7989db",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26864,
+  "includedPathCount": 26865,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9409,6 +9409,7 @@
     "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/tasks.md",
     "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/acceptance-criteria.md",
     "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/implementation-summary.md",
     "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/plan.md",
     "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/spec.md",
     "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/tasks.md",
@@ -26896,7 +26897,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "26bf8485aa75390288350073b29064933c6ec2448ecb7c6026679add3b7477f3",
+  "manifestHash": "8cfe7ee8a7c31d9046902405cccf283ec31a293c6c30fd87946c4e74e69cdf0d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
