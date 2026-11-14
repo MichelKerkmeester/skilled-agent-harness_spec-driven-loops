@@ -2952,6 +2952,75 @@ test('a goal the sender ended stays ended for a receiver that sets none', (t) =>
   assert.equal(resolve().packet, GOAL_PARENT, 'a note another session claimed says nothing here');
 });
 
+// A session can claim a second note while the first one stays behind as done. The note it works
+// from now is the one whose mark counts, or a mark left on the earlier note would end a goal the
+// session never had.
+test('the ended-goal mark counts only from the note this session claimed last', (t) => {
+  const sandbox = createSandbox(t);
+  const roots = [sandbox.repoRoot];
+  writeGoalBudget(sandbox.repoRoot);
+  writeGoalPacket(sandbox.repoRoot, GOAL_PARENT, packetGoalText());
+  const older = writeHandoff(sandbox, {
+    sessionId: 'ses_olderw01', status: 'done', claimedBy: GOAL_SESSION_ID,
+  });
+  const newer = writeHandoff(sandbox, {
+    sessionId: 'ses_newerw01', status: 'claimed', claimedBy: GOAL_SESSION_ID,
+  });
+  const addFields = (notePath, ...lines) => fs.writeFileSync(
+    notePath,
+    readNote(notePath).replace(/^(status: .*)$/m, (line) => [line, ...lines].join('\n')),
+  );
+  addFields(older, 'claimed_at: 2026-10-16T11:00:00.000Z', 'goal_ended: true');
+  addFields(newer, 'claimed_at: 2026-10-16T12:00:00.000Z');
+  const handoffPath = path.join(path.dirname(older), 'outgoing.md');
+  const resolve = () => resolveGoalPacketResult({
+    runtime: 'claude',
+    sessionId: GOAL_SESSION_ID,
+    specFolder: GOAL_PACKET,
+    roots,
+    handoffPath,
+    env: writeClaudeLog(sandbox, [{ type: 'user', message: { content: 'hello' } }]),
+  });
+
+  assert.deepEqual(resolve(), { packet: GOAL_PARENT, reason: '', ended: false },
+    'the note claimed last says nothing about an ending');
+  fs.rmSync(newer);
+  assert.deepEqual(resolve(), { packet: '', reason: '', ended: true },
+    'the only note left is the marked one');
+});
+
+// A log that cannot be read cannot undo an ending the claimed note already states.
+test('a goal the sender ended stays ended when the session log cannot be read', (t) => {
+  const sandbox = createSandbox(t);
+  const claimedPath = writeHandoff(sandbox, { status: 'claimed', claimedBy: GOAL_SESSION_ID });
+  const handoffPath = path.join(path.dirname(claimedPath), 'outgoing.md');
+  const marked = readNote(claimedPath).replace(
+    /^(status: .*)$/m,
+    '$1\nclaimed_at: 2026-10-16T12:00:00.000Z\ngoal_ended: true',
+  );
+  fs.writeFileSync(claimedPath, marked);
+  const resolve = (configDirectory) => resolveGoalPacketResult({
+    runtime: 'claude',
+    sessionId: GOAL_SESSION_ID,
+    specFolder: GOAL_PACKET,
+    roots: [sandbox.repoRoot],
+    handoffPath,
+    env: { ...sandbox.env, CLAUDE_CONFIG_DIR: configDirectory },
+  });
+  const missingConfig = path.join(sandbox.root, 'no-such-config');
+  const configDirectory = path.join(sandbox.root, 'claude-config');
+  fs.mkdirSync(path.join(configDirectory, 'projects', '-some-project', `${GOAL_SESSION_ID}.jsonl`), {
+    recursive: true,
+  });
+
+  assert.deepEqual(resolve(missingConfig), { packet: '', reason: '', ended: true }, 'no log found');
+  assert.deepEqual(resolve(configDirectory), { packet: '', reason: '', ended: true }, 'an unreadable log');
+
+  fs.writeFileSync(claimedPath, marked.replace('\ngoal_ended: true', ''));
+  assert.deepEqual(resolve(missingConfig), { packet: '', reason: '', ended: false },
+    'a note with no mark says nothing about an ending');
+});
+
 test('resolveGoalPacket answers empty when no Claude log can be read', (t) => {
   const sandbox = createSandbox(t);
   writeGoalPacket(sandbox.repoRoot, GOAL_PARENT);

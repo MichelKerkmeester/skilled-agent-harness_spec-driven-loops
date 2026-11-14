@@ -1467,9 +1467,11 @@ while true; do
         launch_arguments=(--no-daemon "${launch_arguments[@]}")
       fi
       # A read that comes back empty is not a change: a checkout can replace this file for a
-      # moment, and only a checksum that was read and differs proves the code on disk moved.
+      # moment, so only a checksum read at loop start and at this hop, and different, proves
+      # the code on disk moved.
       hop_wrapper_checksum=$(wrapper_checksum)
-      if [[ -n "$hop_wrapper_checksum" && "$hop_wrapper_checksum" != "$started_wrapper_checksum" ]]; then
+      if [[ -n "$started_wrapper_checksum" && -n "$hop_wrapper_checksum" \
+        && "$hop_wrapper_checksum" != "$started_wrapper_checksum" ]]; then
         printf '%s\n' \
           'note: skilled-loop changed on disk after this loop started, restart the wrapper to run the new code' >&2
         node -e '

@@ -55,7 +55,7 @@ Frozen choices. Changing one is an amendment. Parent decisions D1 to D4 bind her
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `scratch/hole.txt` shows the no-target case passing under the old helper with the `markParked` call at `claude/stop-arm.mjs:183` removed.
+- [x] `scratch/hole.txt` shows the no-target case passing under the old helper with the `markParked` call at `claude/stop-arm.mjs:183` (`c69f278cfc`) removed.
 - [x] `scratch/red-claude.txt` prints `✖ claude: an arm leaves the record pending when no process below the loop is found`, `scratch/red-codex.txt` prints the same line for `codex`, and `scratch/red-unmarked.txt`, saved with the mark taken off the Claude entry of the adapter table, prints the `claude` line again.
 - [x] `env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='no process below the loop' .skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs` exits 0 with `fail 0`.
 - [x] `git diff --quiet HEAD -- .skilled/hooks/session-relaunch/claude .skilled/hooks/session-relaunch/codex .skilled/hooks/session-relaunch/lib` exits 0 before the commit.
