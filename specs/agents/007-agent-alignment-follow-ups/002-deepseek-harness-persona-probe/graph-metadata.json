@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deepseek harness persona probe",
+      "phase 2 deepseek harness persona probe",
+      "deepseek harness persona probe plan",
+      "deepseek harness persona probe tasks",
+      "deepseek harness persona probe implementation summary"
+    ],
+    "key_topics": [
+      "deepseek",
+      "harness",
+      "persona",
+      "probe",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "rule",
+      "cli-deepseek-harness",
+      "skill"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/baseline.txt",
+      "scratch/dsh-control-prompt.txt",
+      "scratch/dsh-probe-prompt.txt",
+      "scratch/dsh-control-report.txt",
+      "scratch/dsh-probe-report.txt",
+      "scratch/dsh-control-events.jsonl",
+      "scratch/dsh-probe-events.jsonl",
+      "scratch/verdict.md",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md",
+      ".skilled/skills/cli-external-orchestration/SKILL.md",
+      ".skilled/agents/README.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-control-prompt.txt",
+        "kind": "file",
+        "path": "scratch/dsh-control-prompt.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-probe-prompt.txt",
+        "kind": "file",
+        "path": "scratch/dsh-probe-prompt.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-control-report.txt",
+        "kind": "file",
+        "path": "scratch/dsh-control-report.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-probe-report.txt",
+        "kind": "file",
+        "path": "scratch/dsh-probe-report.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-control-events.jsonl",
+        "kind": "file",
+        "path": "scratch/dsh-control-events.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-probe-events.jsonl",
+        "kind": "file",
+        "path": "scratch/dsh-probe-events.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "verdict.md",
+        "kind": "doc",
+        "path": "scratch/verdict.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Rule",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Control",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Rule 7 of `cli-deepseek-harness/SKILL.md` requires every dispatch to inline the agent persona, and the personas name Read, Grep and Glob",
+    "created_at": "2026-11-14T15:48:57Z",
+    "last_save_at": "2026-11-14T16:33:11.475Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5b4914a59031410c51a687e0ba253f7b461c4d28ccd055dfc4f051ba39f1d137",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f4c50145059d385ad513e3171e8b824344492e2c2bb6bb62fb2bf8232cb0ca5d",
+      "plan.md": "88cbc3c747a090712e98e2e9de4b4e75270cda2afd9b75d22a71537d61a21d8f",
+      "tasks.md": "36b3b299386cd4432015db0a868398dfd54c3cf86a66702e78fd6a69d26b9fd3",
+      "implementation-summary.md": "680e73510f13fc72f842f5952fca361b96dcd604f5b70be68893f18fb4ec22ce"
+    },
+    "last_active_at": null
+  }
+}

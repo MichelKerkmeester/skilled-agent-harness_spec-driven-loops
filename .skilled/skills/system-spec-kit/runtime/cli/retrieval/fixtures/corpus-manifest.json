@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e5723ae026c991b45b1a1e2c9075471a4f1e3b54badd255f38ed573e0f2b534a",
+  "corpusHash": "a2afb54b2afd91409fecf89f3e481e81e19f29176d2e18e85912a9264eab5c69",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26951,
+  "includedPathCount": 26969,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6668,6 +6668,7 @@
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.5.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.6.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.7.0.md",
+    ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/body-validation/leaf-denies-delegation.md",
     ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/body-validation/required-agent-sections.md",
     ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/component-choice/named-runtime-persona.md",
@@ -9444,6 +9445,23 @@
     "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/tasks.md",
     "specs/agents/006-agent-contract-and-registry-alignment/goal.md",
     "specs/agents/006-agent-contract-and-registry-alignment/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/implementation-summary.md",
@@ -26983,7 +27001,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "decf4b66b8d53779cd9dadb091f02b54f36388c1178137416dd6fd219bfdecf3",
+  "manifestHash": "94dd0022a92ad7a792ef5b4c72c581a91474fef895be2e7797a3167c88d16b01",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28011,6 +28029,22 @@
     },
     {
       "path": "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/scratch",
       "reason": "excluded directory"
     },
     {

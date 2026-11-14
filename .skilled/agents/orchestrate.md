@@ -208,7 +208,7 @@ TASK #N: [Descriptive Title]
 ├─ Scope: [Explicit inclusions AND exclusions]
 ├─ Reach: [The callers, tests, fixtures, config and exports the task must reach, or "none" when nothing outside Scope is reached]
 ├─ Boundary: [What this agent MUST NOT do]
-├─ Agent: @code | @context | @markdown | @deep-research | @deep-review | @ai-council | @review | @debug
+├─ Agent: [@<name>, exactly one agent from the Agent Selection routing table in §2]
 ├─ Deep Route: [for deep routes only: mode=<workflowMode>; target_agent=@<agent>; execution=<single_iteration|loop|session>; source_of_truth=.skilled/skills/system-deep-loop/mode-registry.json | none]
 ├─ Subagent Type: [the agent's own name, the Agent line without the @ | "general-purpose" only on a runtime with no named agents]
 ├─ Agent Definition: [.skilled/agents/<name>.md — MUST be read and included in prompt | "built-in" for @general-purpose]

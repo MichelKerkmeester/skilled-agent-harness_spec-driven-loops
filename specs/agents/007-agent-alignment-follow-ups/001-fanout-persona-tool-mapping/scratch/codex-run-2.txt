@@ -1,0 +1,3 @@
+AGENTS DIRECTORY
+
+FILES READ: .skilled/agents/README.txt

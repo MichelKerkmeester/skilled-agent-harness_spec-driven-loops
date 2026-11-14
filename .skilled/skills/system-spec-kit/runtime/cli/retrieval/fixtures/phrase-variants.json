@@ -1,5 +1,5 @@
 {
-  "manifestHash": "decf4b66b8d53779cd9dadb091f02b54f36388c1178137416dd6fd219bfdecf3",
+  "manifestHash": "94dd0022a92ad7a792ef5b4c72c581a91474fef895be2e7797a3167c88d16b01",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9974,6 +9974,9 @@
     "agent alignment audit": [
       "agent alignment audit"
     ],
+    "agent alignment follow ups phase parent spec": [
+      "agent alignment follow ups phase parent spec"
+    ],
     "agent alignment implementation summary": [
       "agent alignment implementation summary"
     ],
@@ -9991,6 +9994,18 @@
     ],
     "agent authoring reference index": [
       "agent authoring reference index"
+    ],
+    "agent authoring registry step": [
+      "agent authoring registry step"
+    ],
+    "agent authoring registry step implementation summary": [
+      "agent authoring registry step implementation summary"
+    ],
+    "agent authoring registry step plan": [
+      "agent authoring registry step plan"
+    ],
+    "agent authoring registry step tasks": [
+      "agent authoring registry step tasks"
     ],
     "agent avoidance anti patterns": [
       "agent avoidance anti-patterns"
@@ -10481,6 +10496,9 @@
     ],
     "agent registry and generated rosters tasks": [
       "agent registry and generated rosters tasks"
+    ],
+    "agent registry step": [
+      "agent registry step"
     ],
     "agent routing documentation": [
       "agent routing documentation"
@@ -38941,6 +38959,18 @@
     "deepseek harness persona": [
       "DeepSeek Harness persona"
     ],
+    "deepseek harness persona probe": [
+      "deepseek harness persona probe"
+    ],
+    "deepseek harness persona probe implementation summary": [
+      "deepseek harness persona probe implementation summary"
+    ],
+    "deepseek harness persona probe plan": [
+      "deepseek harness persona probe plan"
+    ],
+    "deepseek harness persona probe tasks": [
+      "deepseek harness persona probe tasks"
+    ],
     "deepseek harness providers": [
       "deepseek harness providers"
     ],
@@ -49487,6 +49517,18 @@
     ],
     "fanout parity packet complete": [
       "fanout parity packet complete"
+    ],
+    "fanout persona tool mapping": [
+      "fanout persona tool mapping"
+    ],
+    "fanout persona tool mapping implementation summary": [
+      "fanout persona tool mapping implementation summary"
+    ],
+    "fanout persona tool mapping plan": [
+      "fanout persona tool mapping plan"
+    ],
+    "fanout persona tool mapping tasks": [
+      "fanout persona tool mapping tasks"
     ],
     "fanout playbook paths": [
       "fanout playbook paths"
@@ -77710,6 +77752,18 @@
     "orchestrate rule 7 tasks": [
       "orchestrate rule 7 tasks"
     ],
+    "orchestrate task package agent names": [
+      "orchestrate task package agent names"
+    ],
+    "orchestrate task package agent names implementation summary": [
+      "orchestrate task package agent names implementation summary"
+    ],
+    "orchestrate task package agent names plan": [
+      "orchestrate task package agent names plan"
+    ],
+    "orchestrate task package agent names tasks": [
+      "orchestrate task package agent names tasks"
+    ],
     "orchestrated sub session worktree sharing": [
       "orchestrated sub-session worktree sharing"
     ],
@@ -80771,6 +80825,9 @@
     "phase 1 doc version contract": [
       "phase 1 doc version contract"
     ],
+    "phase 1 fanout persona tool mapping": [
+      "phase 1 fanout persona tool mapping"
+    ],
     "phase 1 fix agent contract contradictions": [
       "phase 1 fix agent contract contradictions"
     ],
@@ -81545,6 +81602,9 @@
     "phase 2 deep ai council": [
       "phase 2 deep ai council"
     ],
+    "phase 2 deepseek harness persona probe": [
+      "phase 2 deepseek harness persona probe"
+    ],
     "phase 2 doctor git setup": [
       "phase 2 doctor git setup"
     ],
@@ -82016,6 +82076,9 @@
     "phase 3 nested skilled root": [
       "phase 3 nested skilled root"
     ],
+    "phase 3 orchestrate task package agent names": [
+      "phase 3 orchestrate task package agent names"
+    ],
     "phase 3 plain chat command reach": [
       "phase 3 plain chat command reach"
     ],
@@ -82147,6 +82210,9 @@
     ],
     "phase 4 advisor hooks relaunch": [
       "phase 4 advisor hooks relaunch"
+    ],
+    "phase 4 agent authoring registry step": [
+      "phase 4 agent authoring registry step"
     ],
     "phase 4 agent template conformance and drift check": [
       "phase 4 agent template conformance and drift check"
@@ -107381,6 +107447,9 @@
     "sk create agent 1 0 7 0": [
       "sk-create-agent 1.0.7.0"
     ],
+    "sk create agent 1 0 8 0": [
+      "sk-create-agent 1.0.8.0"
+    ],
     "sk create agent implementation summary": [
       "sk create agent implementation summary"
     ],
@@ -107428,6 +107497,9 @@
     ],
     "sk create agent v1 0 7 0": [
       "sk-create-agent v1.0.7.0"
+    ],
+    "sk create agent v1 0 8 0": [
+      "sk-create-agent v1.0.8.0"
     ],
     "sk create benchmark": [
       "sk create benchmark"

@@ -1,0 +1,13 @@
+# After, phase 001
+
+$ npx vitest run tests/unit/fanout-run.vitest.ts tests/fanout-loop-prompt-in-process.test.ts   (in .skilled/skills/system-deep-loop/runtime, from the final state)
+ Test Files  2 passed (2)
+      Tests  191 passed (191)
+exit=0
+# Baseline: 191 passed. After: 191 passed. Delta 0.
+
+$ git diff --stat main -- .skilled/skills/system-deep-loop | wc -l
+0
+
+$ git status --short   (after the three Codex runs, before any other phase started)
+only files under specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/scratch/

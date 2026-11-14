@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe",
+  "description": "Phase 2: deepseek-harness-persona-probe",
+  "keywords": [
+    "phase",
+    "deepseek-harness-persona-probe"
+  ],
+  "lastUpdated": "2026-11-14T16:33:11.475Z",
+  "specId": "002",
+  "folderSlug": "deepseek-harness-persona-probe",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_17-33__a-deepseek-harness-child-given-the-read-only.md"
+  ]
+}
