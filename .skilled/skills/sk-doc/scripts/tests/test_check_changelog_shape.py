@@ -57,15 +57,14 @@ def test_the_model_entry_passes_every_rule():
     assert notes == []
 
 
-def test_file_total_fails_one_line_past_280():
+def test_an_expanded_entry_has_no_line_ceiling():
     base = expanded()
-    at_ceiling = base + "Filler line.\n" * (280 - body_lines(base))
-    assert body_lines(at_ceiling) == 280
-    assert rules(at_ceiling) == []
-    assert rules(at_ceiling + "One more.\n") == ["file-total"]
+    long_entry = base + "Filler line.\n" * (1000 - body_lines(base))
+    assert body_lines(long_entry) == 1000
+    assert rules(long_entry) == []
 
 
-def test_a_compact_entry_has_no_file_total_or_h4_rule():
+def test_a_compact_entry_has_no_line_or_h4_rule():
     compact = FRONTMATTER + "Summary.\n\n&nbsp;\n\n## What's New at a Glance\n\n- **A fix.** It works.\n\n## Upgrade\n\nNo migration required.\n"
     assert rules(compact + "Filler line.\n" * 300) == []
 
@@ -153,7 +152,6 @@ def test_the_template_ceilings_match_the_checker():
                     return int(numbers[0])
         raise AssertionError(f"no ceiling row named {row}")
 
-    assert ceiling("Expanded file total") == shape.EXPANDED_MAX_BODY_LINES
     assert ceiling("Expanded H4 items") == shape.EXPANDED_MAX_H4_ITEMS
     assert ceiling("What's New at a Glance") == shape.GLANCE_MAX_BULLETS
     assert ceiling("Sentence") == shape.SENTENCE_MAX_WORDS
