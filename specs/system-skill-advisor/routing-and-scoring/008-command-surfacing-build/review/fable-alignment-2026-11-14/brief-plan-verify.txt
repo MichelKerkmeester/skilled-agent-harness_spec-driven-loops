@@ -1,0 +1,81 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/352-command-surfacing-research
+Every read and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched reviewer. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0
+are set in your environment, which this repository's AGENTS.md defines as the autonomous
+child-dispatch exemption. Nobody is at a prompt, so no answer can reach you.
+Spec folder: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build (pre-approved, skip Gate 3). Call it P below.
+
+WRITE AUTHORITY: NONE. This is a read-only review. Do not create, edit, move or delete any file,
+do not run git commands that change state (no add, commit, checkout, stash, reset, merge), do not
+start, stop or install anything, and do not dispatch subagents or other CLIs. Print your report to
+stdout and nothing else. Run git only as `git -c core.fsmonitor=false ...`.
+
+HARD DATA RULE: never open `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl`
+unfiltered and never print any `prompt` field from it. It holds sealed holdout prompts. If you need
+its rows, read it only through `jq 'del(.prompt)'`. Never start a model session or run
+`run-command-behaviour.mjs`.
+
+THE OPERATOR'S CORE NEED (verbatim, 2026-11-13, typos are theirs):
+"Its not just that but that ais using skills are flexible but will more often use the besr correct
+workflows for said tasks."
+Restated by the packet: an AI that works through skills stays free to choose how it does a task
+(the command path or the skill path, even for the whole job), and it lands on the best correct
+workflow for that task more often than before, never an improvised one. Delivering a tracked slash
+command to the model with a run, start or ask policy on every supported CLI is only the MEANS.
+Delivery counts show the means works. They do not show the outcome.
+
+YOUR ROLE: independent verifier of a remediation plan. A planner (another fresh session) just wrote new
+phase folders 020 and up under the spec folder (call it P) and may have edited P/spec.md, P/goal.md,
+P/decision-record.md, P/description.json and P/graph-metadata.json. You check that plan. You change nothing.
+
+INPUTS
+- The two review reports the plan answers: P/review/fable-alignment-2026-11-14/report-code-logic.txt
+  (findings numbered 1 to 12, the planner calls them A-1 to A-12) and report-purpose-alignment.txt
+  (findings 1 to 11, called B-1 to B-11). Read both in full.
+- The planner's own final report: P/review/fable-alignment-2026-11-14/report-plan.txt (FILES, PHASES, FINDINGS MAP, GOAL CHANGES,
+  WAITING ON OPERATOR, VALIDATION).
+- `git -c core.fsmonitor=false status --short` and `git -c core.fsmonitor=false diff -- P/spec.md P/goal.md P/decision-record.md`
+  show exactly what the planner changed. Phase 019 files and the advisor scorer files under
+  .skilled/skills/system-skill-advisor/runtime are the coordinator's own uncommitted work, not the planner's.
+- .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md and
+  references/structure/phase-definitions.md (how a phase child must look).
+- P/goal.md section 1 (decisions D1 to D7) and section 4 log, P/decision-record.md: the operator decisions in force.
+  In particular: "No more behaviour arms" (2026-11-13, relaxed only for one Codex-only arm), research rank 12
+  declined (degraded brief stays typed-only, Q026), the Gate 2 clause for a skill-only brief declined, write
+  discipline on Devin and OpenCode belongs to a separate packet, AGENTS.md wording is the operator's to approve,
+  holdout prompt text is never read.
+
+CHECK EACH OF THESE AND REPORT PASS OR FAIL WITH EVIDENCE
+1. Coverage: every review finding (A-1..A-12, B-1..B-11) has a disposition in the plan: a phase and task, a decline
+   with a reason, or "not reproduced" with the probe and its output. Rerun at least the probes for any finding
+   the planner declined or marked not reproduced, using the advisor CLI:
+     printf '%s' '<prompt>' | node .skilled/bin/skill-advisor.cjs advisor_recommend --json - --format json
+   Write your own prompts. Say if a disposition is wrong.
+2. Fidelity: each planned task actually fixes the finding it claims (read the cited code file:line yourself).
+3. Operator decisions: no build task reverses or bypasses a decision listed above. Anything that would is marked
+   WAITING ON OPERATOR with options and a recommendation. Name every violation.
+4. Task shape: every task in each new tasks.md names one file, one function (or one doc section) and a Verify
+   line with a command and its expected output. Tests come before the code they cover. Phases are file-disjoint
+   enough that two phases never edit the same function. List each task that fails.
+5. Purpose: the plan moves the packet toward the core need (models land on a real workflow more often, with free
+   choice), and reports the outcome honestly. Say whether any planned metric could still close green while models
+   improvise.
+6. Goal: run `node .skilled/hooks/goal/bin/goal.cjs packet P --workspace "$PWD"` and report packet_budget. Check the
+   completion criteria are command-checkable and that the binding table and criterion 1 match the real phase count.
+7. Validation: run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <folder> --strict` on every new
+   phase and on P (validate.sh only reads). Paste each RESULT line and the error and warning counts.
+8. Scope: list any file the planner changed outside its write authority (new folders 020+, P/spec.md, P/goal.md,
+   P/decision-record.md, P/description.json, P/graph-metadata.json).
+
+OUTPUT (stdout, plain text, no preamble)
+VERDICT: READY TO BUILD | FIX FIRST
+Then one section per check 1 to 8 with PASS or FAIL. Then FIXES: a numbered list, each naming the file, the exact
+problem and the exact change, graded P0 (blocks the build), P1 (wrong plan in a realistic case) or P2 (minor).
+
+EXTRA CHECK 9: the planner changed P/goal.md completion criteria (see GOAL CHANGES in its report). The operator set
+this session's goal with the original seven criteria. Say whether the new criterion "this log holds the operator's
+target for each or the operator's waiver" conflicts with decision D1 (run autonomously, ask the operator nothing),
+and whether any amended criterion is weaker than the original it replaced.

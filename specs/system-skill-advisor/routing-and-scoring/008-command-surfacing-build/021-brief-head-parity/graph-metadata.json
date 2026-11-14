@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "brief head parity",
+      "phase 21 brief head parity",
+      "opencode head drops the command",
+      "companion line policy word",
+      "brief head parity plan",
+      "brief head parity tasks",
+      "brief head parity acceptance criteria",
+      "brief head parity goal"
+    ],
+    "key_topics": [
+      "brief",
+      "head",
+      "parity",
+      "phase",
+      "opencode",
+      "drops",
+      "command",
+      "companion",
+      "line",
+      "policy",
+      "word",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      ".opencode/plugins/system-skill-advisor.js",
+      ".opencode/plugins/tests/system-skill-advisor.test.cjs",
+      "scratch/planning/probe-heads.mts",
+      "scratch/planning/probe-heads.before.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/system-skill-advisor.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "probe-heads.mts",
+        "kind": "file",
+        "path": "scratch/planning/probe-heads.mts",
+        "source": "derived"
+      },
+      {
+        "name": "probe-heads.before.txt",
+        "kind": "file",
+        "path": "scratch/planning/probe-heads.before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Affected Surfaces",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The recommend handler strips a command from the hub head whenever a lower row carries the same command, unless the caller asked for the top pick alone",
+    "created_at": "2026-11-14T06:10:05Z",
+    "last_save_at": "2026-11-14T07:39:01.592Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:4d2cb68c6194b5e5d72c9e09799390e01618a16d1b7b7004d8fc8bece09bd645",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fe091f964a878b9441dddeef6ba911c89d6b71898daea8d68081b0bf13ef24bf",
+      "plan.md": "78059f7c53896cfa0d96007e677045287eb717670934a2af49f4b7c0ee479fc7",
+      "tasks.md": "4b75d7695c5f4e63c8d0778ec20bc7088d319c076f517c2e293ae9d76e0f9617"
+    },
+    "last_active_at": null
+  }
+}

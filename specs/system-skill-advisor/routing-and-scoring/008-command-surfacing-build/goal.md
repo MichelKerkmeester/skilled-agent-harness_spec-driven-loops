@@ -35,16 +35,15 @@ _memory:
 
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
-<!-- FILL: Write one sentence: what the packet is for, not how. GOOD: Keep only the newest n archives on request. WEAK: Improve the script. -->
 
-**Objective:** A model using skills keeps its free choice and takes the best correct workflow more often, because every tracked slash command reaches it with a run, start or ask policy on every supported CLI, and the plan is built, tested, measured, reviewed and improved without waiting on the operator.
+**Objective:** A model using skills keeps its free choice and takes the best correct workflow more often. Delivery is the means: every tracked slash command reaches it with a run, start or ask policy on every supported CLI. The plan is built, tested, measured, reviewed and improved without waiting on the operator.
 
 ### Decisions
 
 Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
-|----|----------|
+|---|---|
 | D1 | Run autonomously, ask the operator nothing, take the recommended option and record it in `decision-record.md`. |
 | D2 | Never push to main, edit a published release or install software. Log each as waiting. |
 | D3 | Build with `/speckit:plan` and `/speckit:implement`, review with `/deep:review`, find gains with `/deep:research`, close with `/local-skilled-alignment`. |
@@ -52,20 +51,18 @@ Frozen choices. Changing one is an amendment.
 | D5 | Live behaviour runs only in an arena: a throwaway clone, no remote, credentials off. |
 | D6 | Never read holdout prompt text. Every number comes from a committed script. |
 | D7 | A command is a suggestion beside its hub mode. The model picks either path freely, even for the whole job, but it must be the skill's or the command's own workflow, never an improvised one (007 D2). |
-
 <!-- /ANCHOR:directive -->
 
 ---
 
 <!-- ANCHOR:binding -->
 ## 2. BINDING
-<!-- FILL: List each child phase and its goal path. Name the precedence rule. GOOD: 001 and 002. Decisions here outrank child detail. WEAK: Children are bound. -->
 
 **Read the child goal before working a phase.** Each is authoritative for its
 phase and binds as if written here.
 
 | Phase | Goal document |
-|-------|---------------|
+|---|---|
 | 001 | `001-command-routing-baseline-corpus/goal.md` |
 | 002 | `002-command-inventory-and-risk-metadata/goal.md` |
 | 003 | `003-plain-chat-command-reach/goal.md` |
@@ -74,6 +71,10 @@ phase and binds as if written here.
 | 006 | `006-gate-2-binding-and-runtime-pointers/goal.md` |
 | 007 | `007-per-runtime-behaviour-proof/goal.md` |
 | 008 | `008-embedder-setup-and-cost/goal.md` |
+| 020 | `020-command-offer-fit-guards/goal.md` |
+| 021 | `021-brief-head-parity/goal.md` |
+| 022 | `022-workflow-measure-soundness/goal.md` |
+| 023 | `023-untuned-outcome-evidence/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -86,14 +87,13 @@ string, not these files.
 
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
-<!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] Strict validation prints `RESULT: PASSED` for this parent and all eight phases, each Complete.
+- [ ] Strict validation prints `RESULT: PASSED` for this parent and every phase folder, each Complete.
 - [ ] The advisor suite (`npx vitest run`) reports 0 failed, typed recall is at least 24 of 44 and false offers 0 of 35.
 - [ ] The behaviour summary prints a before and after start rate for claude, codex, opencode, pi, devin and dsh, and each unsafe start after has a fix or reason in this log.
-- [ ] A `/deep:review` loop over the packet code has converged with 0 open P0 and P1 findings.
+- [ ] A `/deep:review` loop over the packet code has converged with 0 open P0 and P1 findings, and `/local-skilled-alignment` on the branch reports 0 P0 and 0 P1.
 - [ ] A `/deep:research` loop on UX, performance and cross-CLI usefulness has converged, each recommendation built in a new phase or declined with a reason.
-- [ ] `/local-skilled-alignment` on the branch reports 0 P0 and 0 P1 findings.
+- [ ] The workflow summary prints a followed rate with its range per runtime and arm, the capture prints sealed reach and fit counts, and this log states for each a target and whether the printed value meets it, or states the outcome as not shown with the item waiting on the operator.
 - [ ] The branch sits on `origin/main`, clean and unpushed, with each item waiting on the operator in this log.
 <!-- /ANCHOR:completion -->
 
@@ -221,6 +221,22 @@ and findings belong here.
 | Merge of origin/main 4f57ea6ac8 and of worktrees/372-hub-vocabulary-drift | Done, commits 8390d86ca9 and 2276ba13... | Operator approved the 372 merge through the question tool on 2026-11-14 after the peer session asked. Tag pre-merge-352b marks 3a91e4ab61. Only the trigger index and its three fixtures conflicted, rebuilt by generate-trigger-index.mjs with --check exit 0. The commit gate raised sk-doc ROUTER.md to 2.4.8.0 and re-minted both hub manifests. Skill graph freshness strict exit 0, bridges fresh, 0 be... |
 | Side effect of the 372 merge | Open, operator chose to fix the row here | Tune row cmd-doctor-agents-md-plain-tune-01 lost its command: sk-doc gained the phrases confirm flag and agent definition, matches the tokens confirm and agents and scores 0.199 against 0.161 for command-doctor-agents-md-check. Plain tune 28 to 27 of 45, own 13 to 12. Holdout top-1 50 to 51 of 65, so scorer-eval-baseline needs one recapture. Failing now: command-routing-slice (2 tests) and scor... |
 | Lost tune row cmd-doctor-agents-md-plain-tune-01 | Fixed, commit 23e7eee17b | Cause confirmed: sk-doc passed on four single words (lexical 0.667 clears the 0.65 direct lift to confidence 0.82) and a passing skill blocked the doctor hand-off on a weak cue. Rule: a skill with no phrase of its own in the prompt no longer blocks it when the ranker scores 10 or more, and the ranked command leads. Plain tune 12 to 13 of 45, 1 of 132 rows changed, false offers 0 of 35, eval 161... |
+| Fable 5.2 alignment reviews, 2026-11-14 | Done, verdicts DRIFTING and not ready... | Operator asked for two fresh Fable 5.2 medium reviews on the second Claude account, read-only, no subagents. Code lens: 5 P1, 7 P2. Purpose lens: DRIFTING, 4 P1, 7 P2. Both found the phase 019 share drops runs that wrote nothing: 9 of Claude's 10 such final-arm runs ran shell steps without a load. Reproduced by the coordinator: refusal and question prompts get a start command, app problems get... |
+| Phase 019 load rate added (T025) | Decided without the operator (D1) | loadRate counts every owned scored run, so a run that skipped the workflow and wrote nothing stays in. Final arm: claude 6 of 16, devin 15 of 16, dsh 12 of 15, pi 5 of 16, opencode 7 of 16. The old share read 6 of 6 for claude. Test file 80 passed, old fields unchanged |
+| Remediation plan after the alignment reviews, 2026-11-14 | Planned, not built | Four phases, each strict PASSED with 0 errors and 0 warnings. 020 offer fit guards, 16 tasks. 021 brief head parity, 13 tasks. 022 workflow measure soundness, 18 tasks. 023 untuned outcome evidence, 15 tasks. Every finding was reproduced by a probe before it was planned and B-10 did not reproduce. Order: 020 and 021 side by side, then 022, then 023 |
+| Goal amendment by the planner, 2026-11-14 | Decided without the operator (D1) | Objective now names delivery as the means of the outcome. Criterion 1 reads every phase folder where it read all eight phases. The review and alignment criteria are merged into one line. A new criterion names the followed rate with its range, the sealed reach and fit counts and the operator's target or waiver. Binding rows 020 to 023 added. Three template FILL comments removed above the log to... |
+| Untuned reach at planning, commit 16c9757ac0 | Measured by the committed capture | Real embedding: the brief carries the right command on 5 of 44 sealed plain rows against 33 of 45 tuned rows. Fixture: 1 of 44 against 28 of 45. Create, deep and design families: 0 of 19 sealed. Attached on sealed rows: 0 of 44. The earlier row that calls the attached figure on holdout unmeasured is superseded, because the capture already prints it |
+| WAITING ON OPERATOR: behaviour arm on untuned rows | Waiting | The only way to show the brief causes more correct workflows on requests nobody tuned for. Proposal: 24 fresh rows never tuned on (12 that fit a command, 6 skill-only, 6 decline), three runs each, the brief on and off at one commit, 144 sessions per runtime. No more behaviour arms is in force, so nothing is built. Recommendation: approve it for three runtimes after phase 023 closes |
+| WAITING ON OPERATOR: outcome target | Waiting | Options: a gain target (the brief-on arm follows on more paired rows than the brief-off arm on every runtime measured, and no command starts on a decline row), an absolute followed rate the operator names, or a written waiver that closes the packet on delivery and says the outcome was not shown. Recommendation: the gain target, with the sealed reach kept as a floor that may only rise |
+| WAITING ON OPERATOR: head wording, AGENTS.md prefix and sealed reach | Waiting | B-5: reword the head so the command reads as an option. It changes the operator-approved brief and would need the arm to judge, recommendation: decide with the arm. B-6: prefix the Gate 2 policy sentences with If you take the command, an AGENTS.md edit, recommendation: yes. B-11: raise the sealed reach by matching, recommendation: a follow-up packet after phase 023 prints the stage counts |
+| Goal check after the amendment | Open, waits on the operator | check-goal.cjs prints RESULT: FAILED (4/5): 11 missing binding rows, phases 009 to 019, which have no goal.md. Phases 020 to 023 are bound. Eleven more rows need about 530 characters and the slice is at 3954 of 4000. Options: retrofit eleven child goals and shorten the decision prose, or accept the finding for closed phases. Recommendation: accept it, because a goal written after a phase closed... |
+| Phase 019 workflow outcome measure, 2026-11-14 | Done, tuned rows only, one run each,... | Load rate before to final: claude 4 of 16 to 6 of 16, codex 0 of 16 to not run, pi 3 of 16 to 5 of 16, devin 12 of 16 to 15 of 16, opencode 9 of 16 to 7 of 16, dsh 10 of 16 to 12 of 15. Share of runs that loaded or wrote: claude 4 of 4 to 6 of 6, codex 0 of 0, pi 3 of 7 to 5 of 6, devin 12 of 12 to 15 of 15, opencode 9 of 11 to 7 of 10, dsh 10 of 12 to 12 of 14. Source 019 scratch workflow-pre.... |
+| Criterion 6 reworded after the plan verification, 2026-11-14 | Decided (D1), operator may overturn | Coordinator ruling after the plan verification. Old last clause: this log holds the operator's target for each or the operator's waiver, which no answer under D1 can meet. New: this log states for each a target and whether the printed value meets it, or states the outcome as not shown with the item waiting on the operator. Slice 3992 of 4000, budget ok. P003 and P013 stay open for the operator |
+| WAITING ON OPERATOR: step-level check on a sample of stored runs | Waiting | Purpose review: did a run execute the workflow's own steps, not only open it. Not planned, no script can print it. Options: (a) operator reads 12 stored final-arm sessions against a short step list, (b) a model reader scores them, a model run that needs a yes, (c) fold it into the untuned arm, (d) waive it and keep the stated limit. Recommendation: (a) after phase 022. Keep the sessions until then (P018) |
+| Plan fixes after the plan verification, 2026-11-14 | Applied to the plan, not built | Verifier verdict FIX FIRST. All 14 fixes applied after each probe was rerun. Tasks: 020 has 18, 021 has 14, 022 has 27, 023 has 21. Mention reader holds 24 of 24 probe cases. OpenCode plugin sends the top-only option, head target 17 of 17. loadRate keeps six path counts. Sealed plain count is a floor in 020 and 021. B-10 reworded, supersedes did not reproduce. Decisions P013 to P019 |
+| Operator instruction, 2026-11-14 08:20 CET | Operator-made, amends D4 | Verbatim: For implementation after verifier use opus mediums through claude2. It replaces the same morning's instruction to use DeepSeek v4.1 flash max for implementation. Phases 020 to 023 are built by Opus 5.5 medium on the second Claude account, one task per session, no subagents. Fable 5.2 stays read-only judgment and planning. |
+| claude2 quota spent, 2026-11-14 08:00 CET | Decided without the operator (D1) | The second account hit its 5-hour limit, reset 11:40 CET. The plan fixes ran as Fable 5.2 on the main account through the Agent tool instead of waiting: 14 of 14 applied, strict PASSED on 020 to 023 and the parent, rechecked by the coordinator. The build waits for the reset, because the operator named claude2 for it. |
+| Phase 019 closed, commit 2b87df13e0 | Done | Strict PASSED 0 errors 0 warnings, 13 of 13 acceptance rows Met with task-line citations, 23 of 23 checklist items checked by the coordinator and an Opus verifier, temp folder removed. The load rates in the phase 019 row above are the closing numbers. |
 
 ### Deviations and findings
 

@@ -1,0 +1,16 @@
+# app problem
+cue=weak first=/doctor:env list score=8.361 noEdit=false :: the environment variable for the database url is missing in production
+cue=weak first=/doctor:overlay status score=6.529 noEdit=false :: the install step in our dockerfile is broken, the overlay filesystem is stale
+cue=weak first=/doctor:mcp debug score=10.009 noEdit=false :: the mcp tool call fails with a wrong argument error in my weather server code
+cue=strong first=/doctor:git hooks score=9.761 noEdit=false :: turn off the dark mode toggle in the settings page
+cue=strong first=- score=- noEdit=false :: the login button is not working on the checkout page
+cue=weak first=- score=- noEdit=false :: our ci pipeline is failing on the lint step for the payments service
+# toolkit problem
+cue=strong first=- score=- noEdit=false :: my skilled hooks are not showing up
+cue=strong first=- score=- noEdit=false :: the skill advisor is not firing in codex
+cue=weak first=/doctor:runtime-mirrors score=14.255 noEdit=false :: the runtime mirrors are out of sync with .skilled
+cue=strong first=/doctor:mcp install score=7.491 noEdit=false :: code mode is not registered in opencode
+cue=strong first=/doctor:deep-loop score=21.666 noEdit=true :: my deep research loop never converges, dont touch anything just tell me why
+cue=strong first=/doctor:speckit score=23.471 noEdit=true :: the trigger index lookup returns nothing for my packet, do not change anything
+cue=weak first=/doctor:agents-md check score=15.398 noEdit=false :: AGENTS.md is missing the shipped sections
+cue=weak first=/doctor:symlink link score=11.428 noEdit=false :: the symlink to the skilled checkout is broken

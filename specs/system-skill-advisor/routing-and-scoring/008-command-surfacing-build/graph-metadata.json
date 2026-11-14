@@ -22,7 +22,11 @@
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/016-claude-create-reach-and-doctor-default",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/017-review-pass-two-remediation",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/018-holdout-row-retirement",
-    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure"
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/022-workflow-measure-soundness",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence"
   ],
   "manual": {
     "depends_on": [],
@@ -68,7 +72,11 @@
       "005-recommendation-contract-and-brief/goal.md",
       "006-gate-2-binding-and-runtime-pointers/goal.md",
       "007-per-runtime-behaviour-proof/goal.md",
-      "008-embedder-setup-and-cost/goal.md"
+      "008-embedder-setup-and-cost/goal.md",
+      "020-command-offer-fit-guards/goal.md",
+      "021-brief-head-parity/goal.md",
+      "022-workflow-measure-soundness/goal.md",
+      "023-untuned-outcome-evidence/goal.md"
     ],
     "entities": [
       {
@@ -200,7 +208,7 @@
     ],
     "causal_summary": "A user who chats without typing a command gets an improvised approach from the model, even where a slash command already owns a complete workflow for the task",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-14T05:30:04.308Z",
+    "last_save_at": "2026-11-14T07:42:16.267Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,11 +216,11 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:1ce7a93d18125376b9f737a34de7e957e75454c497c352e02496f702e93d9023",
+    "source_fingerprint": "sha256:e2a53b3ca52f9b640a6dfb0a329fe37a8118921830d91d9727a1c064d4c6448a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1fd3011d1076bce931218a536d70e68a35ec9ac10efd3a68ffb0906e07d8bb23",
-      "decision-record.md": "b423bc956d49f40467e92ca2418aa192b0918726003d2ddc35d6422ffd593033"
+      "spec.md": "edeb01e4e5c7032ccd4f2d15501c73c1fed92d8b9d8d3edcaf03ebbabd6f52db",
+      "decision-record.md": "bb5f923564397a2fa768a15d5a0dc38b2601e1ddb9733e8d08466d1940c23370"
     },
     "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/018-holdout-row-retirement",
     "last_active_at": "2026-11-13T22:04:29.402Z"

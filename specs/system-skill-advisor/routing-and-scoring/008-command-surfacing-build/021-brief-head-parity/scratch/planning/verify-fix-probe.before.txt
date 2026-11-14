@@ -1,0 +1,24 @@
+PROMPT: thorough deep review of the readme I wrote for the hooks folder
+  claude:   Advisor: live; ambiguous: system-deep-loop → /deep:review (ask) 0.95/0.16 vs sk-doc 0.93/0.12 pass.
+  opencode: Advisor: live; ambiguous: system-deep-loop → /deep:review (ask) 0.95/0.16 vs sk-doc → /create:readme (start) 0.93/0.12 pass.
+  same head: false
+PROMPT: do a deep review of the readme in the doctor scripts folder
+  claude:   Advisor: live; ambiguous: system-deep-loop → /deep:review (ask) 0.95/0.16 vs sk-doc 0.93/0.12 pass.
+  opencode: Advisor: live; ambiguous: system-deep-loop → /deep:review (ask) 0.95/0.16 vs sk-doc → /create:readme (start) 0.93/0.12 pass.
+  same head: false
+PROMPT: deep research how the readme for the hooks folder should be structured
+  claude:   Advisor: live; ambiguous: sk-doc → /create:readme (start) 0.91/0.16 vs system-deep-loop 0.91/0.12 pass.
+  opencode: Advisor: live; ambiguous: sk-doc → /create:readme (start) 0.91/0.16 vs system-deep-loop → /deep:research (ask) 0.91/0.12 pass.
+  same head: false
+PROMPT: run a deep review on the manual testing playbook I wrote for login
+  claude:   Advisor: live; ambiguous: sk-doc → /create:manual-testing-playbook (start) 0.95/0.16 vs system-deep-loop 0.92/0.12 pass.
+  opencode: Advisor: live; ambiguous: sk-doc 0.95/0.16 vs system-deep-loop → /deep:review (ask) 0.92/0.12 pass.
+  same head: false
+PROMPT: create a new agent definition for a security reviewer
+  claude:   Advisor: live; use sk-doc → /create:agent (start) 0.82/0.12 pass.
+  opencode: Advisor: live; use sk-doc → /create:agent (start) 0.82/0.12 pass.
+  same head: true
+PROMPT: write an agent file for a code reviewer agent
+  claude:   Advisor: live; ambiguous: sk-doc → /create:agent (start) 0.91/0.16 vs sk-code 0.89/0.12 pass.
+  opencode: Advisor: live; ambiguous: sk-doc → /create:agent (start) 0.91/0.16 vs sk-code 0.89/0.12 pass.
+  same head: true

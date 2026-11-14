@@ -1,0 +1,96 @@
+VERDICT: DRIFTING. The purpose is restated correctly in the documents, but the completion criteria, the brief wording and the phase 019 measure still optimise and score delivery on the tuned rows, so nothing yet shows models land on the best workflow more often.
+
+Method note: briefs below were rendered by feeding the live advisor CLI output into the compiled `renderAdvisorBrief` (`runtime/dist/runtime/lib/render.js`) with every recommendation marked as passing. They are DERIVED, not captured from the hook. One hook brief is OBSERVED: this session received `Advisor: live; ambiguous: sk-code 0.95/0.16 vs system-spec-kit 0.95/0.16 pass. / Also: /doctor:setup`.
+
+ANSWERS
+
+**1. Free choice**
+- OBSERVED: the brief head is imperative and carries no choice wording: `Advisor: live; use sk-doc → /create:readme (start) 0.95/0.12 pass.` (`render.ts:603-604`, label built at `render.ts:241-243`).
+- OBSERVED: the free-choice rule lives only in `AGENTS.md:68` ("offers its workflow beside the skill's. Take either path whole, never an improvised one"). A search for "Take either path" across the hooks, `runtime/lib`, `.opencode/plugins` and the advisor skill docs hit `AGENTS.md` alone.
+- DERIVED: D7 holds only where `AGENTS.md` is loaded. Without it the model sees "use X → /cmd (start)", which reads as an instruction. The packet's own log records this happening: `goal.md:131`, Claude arena rows carried the brief without the Gate 2 bullet.
+- OBSERVED: `AGENTS.md:68` continues "`run` starts it now. `start` starts it without `:auto`". These are not scoped to "if you take the command", so they can be read as mandates. The `declined` state in the `COMMAND:` output line is the only explicit exit.
+- OBSERVED: ordering favours the command. A command row with lower confidence leads its owning skill: "create a new agent definition for a security reviewer" returned `create:agent` 0.8235 above `sk-doc` 0.8924.
+- OBSERVED: an unrequested command reached a read-only review prompt (this session's `Also: /doctor:setup`). The companion line is added at `render.ts:563-569` with no policy word.
+
+**2. Best correct workflow** (prompt → brief received)
+
+Skill path is best, no command expected:
+- "fix the off-by-one bug in the pagination helper in src/utils/paginate.ts" → `use sk-code`. Correct.
+- "commit my staged changes with a conventional commit message" → `use sk-git`. Correct.
+- "review the README in the hooks folder for accuracy, no edits" → `use sk-doc`, no command. Correct, `NO_EDIT_REQUEST` works (`command-attach.ts:308`).
+- "write a changelog and a readme for the new plugin" → `use sk-doc`, no command. Correct for two modes.
+- "rename the variable foo to bar in utils.py" → `mcp-code-mode 0.82/0.30`. Wrong skill, though this is skill scoring, outside the packet.
+
+Command clearly fits:
+- "write a readme for the doctor scripts folder" → `sk-doc → /create:readme (start)`. Correct.
+- "check whether AGENTS.md still has the shipped sections" → `/doctor:agents-md check (run)`. Correct.
+- "save context" → `/speckit:save (start)`; "tune the skill advisor" → `/doctor:skill-advisor tune (ask)`. Correct.
+- "plan a new feature: rate limiting for the api" → no brief. Missed `/speckit:plan`.
+- "my skilled hooks are not showing up" → no brief. Missed `/doctor:helper`, which `goal.md:179` says a "not showing up" prompt gets.
+- "do a thorough multi-pass review of the advisor runtime code" → `ambiguous: system-deep-loop vs sk-code`, no `/deep:review`. This is the row shape that ran unsafe in the final arm.
+
+Should get nothing, or no start offer:
+- "thanks, that looks good" and "research how other CLIs surface slash commands" → nothing. Correct.
+- "what does /create:readme do?" → `use sk-doc → /create:readme (start)`. Wrong: a question gets a start offer.
+- "update the README typo in line 3" → `use sk-doc → /create:readme (start)`. Wrong: a one-character fix gets a creation workflow.
+- "do not run it, just tell me what /doctor:update would change" → `/doctor:update (ask)` plus `Also: /doctor:update`. The refusal is not honoured, and the command is named twice.
+
+**3. The measure**
+
+The rule is at `score-command-transcripts.mjs:612-669`, the share at `:1414-1417`. It is a proxy for "opened the expected owner's entry document before writing", not for "best correct workflow". The packet's caveat covers only the first item below.
+
+It counts a run as good when it was not:
+- OBSERVED: a load followed by full improvisation counts (the caveat the packet names).
+- OBSERVED: any `SKILL.md` or `ROUTER.md` under the owner hub counts (regex at `:614`). Reading `sk-doc/sk-create-readme/SKILL.md` on a `/create:agent` row scores `skill`.
+- OBSERVED: a run that loaded and never acted counts in the numerator, because with no write any load qualifies (`:621`).
+- INFERRED: the before arm may already be high for reasons unrelated to this packet. `AGENTS.md` Gate 2 requires `sk-doc` before any `.md` write, and 8 of the 15 expected commands are owned by `sk-doc`. The before-arm `skill` count from T016 would confirm it.
+
+It counts a run as bad, or drops it, when it was good:
+- OBSERVED: an `ask` row where the model asked and waited without loading is `none` (`:668`) and leaves the denominator. The correct behaviour earns nothing.
+- DERIVED: a redirect to a scratch file before the load makes the run `improvised`, because any redirect not matching `DISCARDED_TARGET` is a write (`:284`, `:361-363`). I did not read that pattern's contents. `goal.md:161` records four final-arm runs that wrote only temp files.
+- INFERRED: a host that injects skill content without a tool event would read as improvised. Per-runtime transcripts would confirm it.
+
+Population limits:
+- OBSERVED: only the 16 `cmd-*-plain-tune-*` rows enter the share; the 8 `mns-chat` rows are `noOwner` (019 `spec.md:209`). The corpus counts by split are 45 tune and 44 holdout, and the runs use no holdout row.
+- DERIVED: at most 16 runs per runtime and arm, one run per row, no repeat and no interval. A one- or two-run difference cannot support "more often".
+- DERIVED: the arms differ in more than the brief. The commit, the arena state (`goal.md:141`, staged files leaked between turns) and Codex being in the before arm only all changed.
+- DERIVED: no row tests free choice on a task whose best path is a skill with no command, because the 9 near-miss rows were never run.
+
+**4. Means versus outcome**
+- OBSERVED: all seven completion criteria (`goal.md:91-97`) are delivery or process: validation, typed recall 24 of 44, false offers 0 of 35, start rates, review and research convergence, alignment, branch state. None is an outcome criterion.
+- OBSERVED: the objective (`goal.md:40`) writes the means in as the cause ("because every tracked slash command reaches it").
+- DERIVED: start rate is a means number that works against D7. A model that correctly took the skill path lowers it.
+- Per the packet's own log, not rerun: plain tune went 9 to 28 of 45 while plain holdout sits at 5 of 44 (`goal.md:147`, `:179`, `:180`). That gap is the signature of phrase tuning on the evaluation rows.
+- DERIVED: the behaviour arms and phase 019 run on those same tuned rows, so the final-arm gains and the coming share overstate general behaviour.
+- OBSERVED: pushing offers further has already caused harm once. Six generic phrases pulled "fix the tests" prompts onto doctor commands and were removed (`goal.md:206`). The two wrong start offers in answer 2 are the same failure, still live.
+
+**5. What is missing**
+- A share measured on prompts nobody tuned phrases for, with repeats per row and a spread.
+- Rows where the right answer is the skill path with no command, and rows where it is nothing, scored for whether the model was pulled into a command.
+- A step-level check on a sample: did the run execute the workflow's own setup and required steps, not only open it.
+- A paired comparison where only the brief differs, same commit and clean arenas.
+- An outcome criterion and target in `goal.md` section 3.
+
+FINDINGS
+
+1. **P1: the outcome measure scores only the 16 tuned rows.** There is one run each, no holdout, no skill-only row and no negative row (019 `spec.md:209`). Fix: score a fresh untuned row set with at least three repeats per row before quoting any share as the outcome.
+2. **P1: the share formula is asymmetric.** `none` leaves the denominator, a load with no action enters the numerator, and a correct ask-and-wait earns nothing (`score-command-transcripts.mjs:668`, `:1414-1417`). Fix: report `none` beside the share and count an `ask` row that asked and wrote nothing as a followed workflow.
+3. **P1: the brief offers a `start` command on a question and on a trivial edit.** See the `/create:readme` cases in answer 2; the hub attach path has no question or edit-size gate (`command-attach.ts:333-374`). Fix: withhold the attached command when the prompt is interrogative about the command or asks for an in-place edit of an existing file.
+4. **P1: no completion criterion measures the outcome.** `goal.md:91-97` can close green with models improvising. Fix: add one criterion that names the workflow share on untuned rows and the operator's target.
+5. **P2: free choice depends on `AGENTS.md` being loaded.** The brief itself says "use X → /cmd (policy)" (`render.ts:603`). Fix: change the head to wording that names the command as an option, such as "use sk-doc; command offered: /create:readme (start)".
+6. **P2: the policy sentences in `AGENTS.md:68` read as mandates.** Fix: prefix them with "If you take the command:".
+7. **P2: a wrong mode under the right hub counts as followed** (`score-command-transcripts.mjs:614`). Fix: when the row expects a command, require the mode folder that command maps to.
+8. **P2: any redirect before the load flips a run to improvised** (`:284`). Fix: ignore writes outside the repository when setting the first-write boundary.
+9. **P2: "do not run it" is not read as a refusal, and the command prints twice** (`command-attach.ts:308`, `render.ts:563-569`). Fix: add the "do not run/start" forms to `NO_EDIT_REQUEST` and drop a companion equal to the head command.
+10. **P2: a command row can lead a higher-confidence owning skill**, so the command is the headline even when the skill scored better. Fix: when the owner skill passes with higher confidence, render the skill first and the command as the option.
+11. **P2: plain requests that clearly fit a command get no brief** ("plan a new feature…", "my skilled hooks are not showing up"). Fix: treat the holdout plain rate as the reach number to raise, by matching, not by more phrases.
+
+NOT CHECKED
+
+- The real hook output for my prompts. I rendered through the compiled renderer, not `user-prompt-submit.ts`, and the hook's prompt policy may skip short prompts that the CLI answers.
+- Whether `dist` matches the current TypeScript. The one hook brief I received matched the format.
+- The OpenCode plugin's command line. My search of `skill-advisor-render.js` found only fallback heads; I did not read the plugin.
+- `fusion.ts`, `projection.ts`, `ambiguity.ts`, `doctor-helper-handoff.ts`, the lanes and `derive-command-bridges.cjs`. They were not read, so the two missed prompts in finding 11 have no root cause.
+- Any workflow share number. T016 and T017 have not run, and I did not open the stored sessions.
+- Holdout figures (5 of 44, 50 of 65). They are quoted from the goal log; I did not run the capture scripts.
+- The scorer test file. It reported 77 passed and 0 failed at 06:55, not the two expected failures, so the file changed while I read it and the line numbers above may shift.

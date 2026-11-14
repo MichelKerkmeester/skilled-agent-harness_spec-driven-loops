@@ -1,0 +1,19 @@
+[
+  "make a manual testing playbook for the login flow",
+  "write a readme for the doctor scripts folder",
+  "create a new agent definition for a security reviewer",
+  "document the new skill and create a feature catalog for it",
+  "do not run it, just tell me what /doctor:update would change",
+  "the trigger index lookup returns nothing for my packet, do not change anything",
+  "my deep research loop never converges, dont touch anything just tell me why",
+  "turn off the dark mode toggle in the settings page",
+  "the mcp tool call fails with a wrong argument error in my weather server code",
+  "tune the skill advisor",
+  "save context",
+  "review the alignment of this packet with its purpose, read-only, and report findings",
+  "the trigger index lookup returns nothing for my packet",
+  "run /doctor:update for this repository",
+  "check the runtime mirrors and then fix the failing unit test in the parser",
+  "thorough deep review of the readme I wrote for the hooks folder",
+  "run a deep review on the manual testing playbook I wrote for login"
+]

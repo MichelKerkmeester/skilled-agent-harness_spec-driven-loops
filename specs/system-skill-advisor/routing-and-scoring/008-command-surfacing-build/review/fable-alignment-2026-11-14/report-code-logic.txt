@@ -1,0 +1,94 @@
+VERDICT: Not ready to close. The recommendation path hands a wrong or unfit command to realistic prompts, Claude and OpenCode render different heads for the same prompt, and the phase 019 share reads 100% on a runtime where 10 of 16 owned runs loaded no workflow.
+
+Paths below are relative to the repository root; `SA` is `.skilled/skills/system-skill-advisor`, `RA` is `SA/runtime/scripts/routing-accuracy`. Scorer line numbers are approximate because the file changed while I read it.
+
+FINDINGS
+
+1. **P1 — `RA/score-command-transcripts.mjs:~666` (`workflowPath` return) and `:~1407-1418` (`share`).** The share leaves out every run that loaded nothing and wrote nothing, so it reports how loaders compare with writers, not how often a workflow was used.
+   - Scenario: a run-policy row answered by improvised shell commands with no write is `none`, and drops out of the denominator. A run that read `SKILL.md` and wrote nothing still counts in the numerator.
+   - OBSERVED: `node RA/score-command-transcripts.mjs --summary …/007-per-runtime-behaviour-proof/scratch/runs-final.jsonl --json`, `workflow` block per runtime:
+
+     | Runtime | command | skill | improvised | none | share |
+     |---|---|---|---|---|---|
+     | claude | 5 | 1 | 0 | 10 | 6 of 6 |
+     | pi | 5 | 0 | 1 | 10 | 5 of 6 |
+     | opencode | 5 | 2 | 3 | 6 | 7 of 10 |
+     | devin | 14 | 1 | 0 | 1 | 15 of 15 |
+     | dsh | 11 | 1 | 2 | 1 | 12 of 14 |
+
+   - DERIVED: Claude and devin both read 100%, yet Claude loaded a workflow on 6 of 16 owned rows and devin on 15 of 16.
+   - INFERRED: some `none` runs acted through shell. Counting `none` runs that hold a shell event would confirm it.
+
+2. **P1 — `.opencode/plugins/system-skill-advisor.js:846-856` against `SA/hooks/lib/skill-advisor-cli-fallback.ts:238-241`, with `SA/runtime/handlers/advisor-recommend.ts:453-456,478`.** OpenCode asks without `compiledRouteTopOnly`, so the handler's dedupe strips the command from the hub head whenever a lower row carries it, and the renderer never shows that lower row.
+   - OBSERVED: prompt "make a manual testing playbook for the login flow".
+     - Default options (OpenCode's shape): `[["sk-doc",0.95,0.12,null,null],["create:manual-testing-playbook",0.8394,0.12,"/create:manual-testing-playbook","start"]]`, `ambiguous:false`.
+     - With `"options":{"compiledRouteTopOnly":true}` (Claude's shape): `["sk-doc",0.95,0.12,"/create:manual-testing-playbook","start"]`.
+   - DERIVED: `render.ts:563-565` prints a lower row only when it is a doctor bridge. Claude's head is `sk-doc → /create:manual-testing-playbook (start)`; OpenCode's is `use sk-doc` with no command. Running both hooks on this prompt would confirm the rendered text.
+
+3. **P1 — `RA/command-offer.mjs:32,83-131`.** The `offeredCommand` on a run line is a replay of the Claude hook, so it does not describe what OpenCode's model saw.
+   - DERIVED from finding 2: on that prompt an OpenCode run would be recorded as offered `/create:manual-testing-playbook` while its head carried none. An "offered but not started" count there blames the model for an offer it never got.
+   - I did not read the runner, so "used for every runtime" rests on the module header at `:5-10`.
+
+4. **P1 — `SA/runtime/lib/scorer/fusion.ts:930-934`.** A command that passes on meaning has its confidence lifted to the threshold but keeps its uncertainty, so the scorer says it passes and both hooks drop it.
+   - OBSERVED: "document the new skill and create a feature catalog for it" returns row 0 as `command-doctor-sk-skill-convert`, confidence 0.8, uncertainty 0.42, `/doctor:sk-skill convert`, `ask`, above `sk-doc` at 0.95.
+   - DERIVED: the hooks recompute passing with uncertainty ≤ 0.35 (`skill-advisor-cli-fallback.ts:373,469`, plugin `:572`, `render.ts:530-538`). Three consequences:
+     - The direct CLI call that Gate 2 path B prescribes shows a head no hook renders.
+     - On Claude only index 0 gets a compiled route, so the hub that becomes the rendered head gets no command and no "needs a mode" label.
+     - `capture-command-routing-baseline.mjs:298-301,511` counts `result.recommendations`, so such a row is a top-1 hit that is never delivered. This applies only under real embedding, and I did not check which regime the published baseline used.
+
+5. **P1 — `SA/runtime/lib/scorer/doctor-helper-handoff.ts:61-63,66-69` and `fusion.ts:1152-1159`.** Ordinary app problems that share doctor vocabulary get a doctor command, sometimes as the only recommendation. All four are read-only or `ask`, so harm is low, but each is a command where none fits. OBSERVED:
+   - "the environment variable for the database url is missing in production" → only `/doctor:env list` (run).
+   - "the install step in our dockerfile is broken, the overlay filesystem is stale" → only `/doctor:overlay status` (run).
+   - "the mcp tool call fails with a wrong argument error in my weather server code" → `/doctor:mcp debug` (ask) ahead of `mcp-code-mode` 0.89 and `sk-code` 0.86.
+   - "turn off the dark mode toggle in the settings page" → `sk-code`, then `/doctor:helper` (run), because `turn off` is a strong cue.
+
+6. **P1 — `fusion.ts:1119-1181` and `:1104-1111`.** The hand-off never checks `isNoEditRequest`, and it accepts any `run` row, including the two marked `add-only` (`command-attach.ts:80,105`).
+   - OBSERVED: "the trigger index lookup returns nothing for my packet, do not change anything" → `/doctor:speckit` (run).
+   - OBSERVED: "my deep research loop never converges, dont touch anything just tell me why" → `/doctor:deep-loop` (run).
+   - I did not check what those two commands write.
+
+7. **P2 — `SA/runtime/lib/render.ts:257-266`.** The `Also:` line prints the command with no policy word outside a child session, so a companion bridge reaches the model with no run, start or ask.
+   - OBSERVED: this session's own brief ended `Also: /doctor:setup`.
+   - DERIVED: an `ask` bridge in that slot would read the same way.
+
+8. **P2 — `SA/runtime/lib/command-attach.ts:253-260,308`.** A command that is typed only to be refused or discussed is still attached, because the typed path skips the no-edit gate and the pattern has no "do not run/start/use". OBSERVED:
+   - "do not run /speckit:complete yet, just explain what it does" → head `/speckit:complete` (start).
+   - "I never want to use /create:agent again, delete the agent file" → head `/create:agent` (start).
+   - "someone ran /speckit:save by accident, how do I undo what it wrote" → head `/speckit:save` (start).
+   - "please do not start /deep:research, I only want a two line summary…" → `/deep:research` (ask).
+   - DERIVED: `capture-command-routing-baseline.mjs:532,583-587` counts neither kind of typed delivery on a silence row, so `false_offer` cannot see this class when the head is the owner skill.
+
+9. **P2 — `RA/score-command-transcripts.mjs:580` and `:~622-624`, `documentTails` `:511-514`.** Two real load shapes are invisible to the classifier.
+   - A shell read such as `cat .skilled/skills/sk-doc/SKILL.md` is a `shell` event, and only `read` and `skill` events are matched.
+   - Pi and Codex mirror commands as `.pi/prompts/create-agent.md` and `.codex/prompts/create-agent.md` (OBSERVED by `ls`), which no tail matches.
+   - INFERRED that stored runs contain these. My session probe was blocked, and a count of pre-write shell events naming those paths would confirm it.
+
+10. **P2 — `RA/score-command-transcripts.mjs:~619`.** A `compiled-route.cjs --hub <owner> … > file` call becomes a write event, is its own first-write boundary and is skipped by `>= boundary`, so that hub load can never count.
+    - DERIVED from the lines. Any earlier `> /tmp/x` redirect moves the boundary the same way.
+
+11. **P2 — `RA/command-offer.mjs:34-36,56-67,145-148`.** Three delivery and offer readings can be right for the wrong reason.
+    - `parseOffer` takes the first slash command on the head, which in an ambiguous head can belong to the `vs` partner.
+    - `BRIEF_PATTERN` matches `Advisor: no skill matched.`, so a fallback with no offer counts as a delivered brief.
+    - `recordsHaveBrief` tests every record's JSON, so a tool result holding `SA/hooks/skill-advisor-hook.md` (which contains the pattern, OBSERVED by grep) counts as delivered.
+
+12. **P2 — `RA/score-command-transcripts.mjs:519-524`.** `/create:sk-skill` expects `create-sk-skill-confirm.yaml`, but the file is `create-skill-confirm.yaml` (OBSERVED by `ls`), so a late confirm read goes undetected for that command.
+
+RULED OUT
+- Typed-command boundaries: "run /doctor:agents-md" gave `/doctor:agents-md check` (run) and "/deep:research:auto …" gave `/deep:research` (ask).
+- Deep-loop depth gate: "give me a thorough review of the login form css" gave `sk-code` and no deep command.
+- Owner table: no command base maps to two `skillId` values in `command-bridges.generated.json` (the jq group check printed nothing).
+- The hand-off never selects an `ask` command (`fusion.ts:1107`) and clamps its own uncertainty to the threshold (`:1168`), so its rows survive the hook filter.
+- Child sessions: `render.ts:194-199` downgrades `start`, `ask` and non-read-only `run`.
+- Holdout rows are refused before any prompt is read (`scoreRun`, `:~1277`).
+- Fallback head strings match between `render.ts:641-647` and `skill-advisor-render.js:66-72`.
+- `tests/command-transcript-score.vitest.ts` reported 79 passed and 0 failed when I ran it, so the two by-design failures were gone by then.
+
+ALIGNMENT VERDICT
+The code serves the means better than the outcome. The recommendation path does keep free choice: it offers and never forces, and the phase 019 classifier counts the skill path as equal to the command path. The outcome number, though, is built so that not engaging is invisible. The strongest evidence is the final-arm summary: Claude prints `6 of 6` while 10 of its 16 owned runs loaded no workflow. Offers are also recorded from the Claude hook for runtimes whose head differs, so the delivery counts are not yet a sound base either. Until `none` runs enter the denominator, or are reported beside the share as a first-class number, the measure cannot show "more often".
+
+NOT CHECKED
+- Real transcript event shapes per runtime: my inline probe over the stored sessions needed an approval nobody could give, so findings 9 and 10 rest on code and file layout.
+- Rendered hook text: I ran no hook, so the heads in findings 2, 4 and 7 are derived from CLI output plus `render.ts`.
+- `projection.ts`, `ambiguity.ts`, `lanes/explicit.ts`, `lanes/semantic-shadow.ts`, `derive-command-bridges.cjs`, `run-command-behaviour.mjs` and `user-prompt-submit.ts` were not read in depth.
+- The parent `spec.md` and `goal.md` were not read, so a decision in D1 to D7 may already accept `add-only` commands as `run` or the policy-free companion line.
+- The uncommitted test diff and the floors the tests pin were not reviewed line by line.

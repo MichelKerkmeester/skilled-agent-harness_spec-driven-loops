@@ -1,0 +1,120 @@
+VERDICT: FIX FIRST
+
+No P0. Six P1 defects in the plan are each a small edit to a `tasks.md` or to `P/goal.md`; fix them before workers are dispatched. The planner changed nothing outside its authority, and its validation and goal numbers reproduce.
+
+Probe note: the prescribed form `printf '%s' '<prompt>' | … --json -` exits 64 ("--json must be a valid JSON object") for a bare prompt, so every probe used `--json '{"prompt":"…"}'`.
+
+**1. Coverage: PASS, with three dispositions to correct**
+- All 23 findings have a disposition in the FINDINGS MAP.
+- A-2 "Planned: 021 T003" is incomplete. OBSERVED with the planner's `probe-heads.mts` on my prompt "thorough deep review of the readme I wrote for the hooks folder":
+  - Claude: `ambiguous: system-deep-loop → /deep:review (ask) 0.95/0.16 vs sk-doc 0.93/0.12`
+  - OpenCode: same head, but `vs sk-doc → /create:readme (start) 0.93/0.12`, so `same head: false`.
+  - T003 only touches index 0, so this gap survives.
+- A-3 "021 T003 fixes it" is wrong for the stored runs. `offeredCommand` was recorded at run time from the Claude replay, and nothing rescored changes it.
+- B-10 "not reproduced" is right about the rendered head and wrong about the rows.
+  - My two prompts render `use sk-doc → /create:agent (start)` on both runtimes.
+  - The row order does reproduce: `create:agent 0.8235` above `sk-doc 0.8924` in the planner's own `probe-offers.before.txt:50-51`.
+- Declines rerun and upheld:
+  - A-5 remainder: "the symlink in my node_modules folder is broken after npm install" returns only `/doctor:symlink check (run)`, so the residual is a class, not two prompts.
+  - A-6 `run` on add-only: phase 002 `spec.md:152` REQ-007 derives it by design.
+  - A-11 fallback head: a null offer never enters `offerReached`.
+
+**2. Fidelity: FAIL in four places**
+- 020 T003, a refusal lead can swallow a real request. The task says "at most two words" between the negation and the use verb and never defines a word. DERIVED from the task text, not run:
+  - "never mind just run /speckit:save" matches under any reading.
+  - "dont guess, run /speckit:plan" matches if the worker writes `\S+`.
+  - No REQUEST6 control covers either.
+- 020 T003, the ask leads miss common question shapes. OBSERVED today, and no planned lead matches them:
+  - "is /speckit:complete overkill for a two line fix?" → `/speckit:complete (start)`
+  - "should I use /deep:research for this or just read the two files myself?" → `/deep:research (ask)`
+- 020 T006 fixes only correction wording. OBSERVED: "change the title of the README in the hooks folder" and "add a troubleshooting section to the existing README…" both return `sk-doc → /create:readme (start)`, and neither holds a `SMALL_EDIT_WORDING` word.
+- 022 T009 breaks the phase 019 fix for A-1.
+  - It leaves `loadRate` as `command + skill` over `command + skill + improvised + none` (`score-command-transcripts.mjs:1443-1446`).
+  - T006 and T007 move runs into `otherMode` and `asked`, which then leave that denominator.
+  - `SUMOK` checks only `followedRate`.
+- The other tasks match the code I read:
+  - 020: T004, T005, T007, T009, T010.
+  - 021: T003 (for the head row), T004, T005, T006.
+  - 022: T003 to T005, T008, T011, T012.
+  - 023: T007's Wilson values are correct.
+
+**3. Operator decisions: PASS**
+- No task builds an arm, edits `AGENTS.md`, rewords the head, changes the degraded brief or touches Devin and OpenCode write discipline.
+- 023 T004 writes sealed rows and nothing reads them back.
+- The seven operator-decision items in WAITING ON OPERATOR each carry options and a recommendation; item 8 (arena deletion) is a sequencing note.
+- One deviation is recorded, not hidden: P001 raises the level to 2 where the authoring card says not to.
+
+**4. Task shape: FAIL on the literal rule**
+- Every task has a Verify with a command and expected output, and tests come first inside each task.
+- Two files in one task (module plus its test):
+  - 020 T003 to T010
+  - 021 T003 to T006
+  - 022 T003 to T009, T011, T012
+  - 023 T003, T005, T007 to T009
+- More than one function in one task:
+  - 022 T008 (six) and T006 (five)
+  - 023 T009 (five), T003 and T005 (three each)
+  - 020 T008 (three)
+- No file named: 020 T015, 021 T012, 022 T018.
+- `[P]` sits on tasks that must run in order inside a lane (020 T007 to T010, 022 T003 to T009).
+- 022 and 023 edit the same functions (`tallyBlock`, `newTally`, `addScored`, `scoreRun`). This is safe only because 023 T001 gates on 022 being committed.
+
+**5. Purpose: FAIL on the closing metric, PASS on direction**
+- Direction is right: 020 removes unfit offers, 022 makes the measure count behaviour, and 023 adds sealed fit rows written blind.
+- Three numbers can still close green while models improvise:
+  - Goal criterion 6 needs the rates printed and a target logged. It never says the target is met.
+  - `followedRate` is still 16 tuned rows with one run each. It also counts an ask row that worked the task through shell and then asked.
+  - 020 and 021 close on the planner's own probe prompts (8 heads, 15 of 15).
+- 020 can lower sealed reach unseen: T010 raises the weak-cue bar and `FLOOR` omits `.attachedMetrics.plain.holdout`.
+- The 5 of 44 and 33 of 45 in the goal log were captured before T007, so they may count rows no hook renders.
+
+**6. Goal: FAIL on binding, otherwise as reported**
+- `packet_durable_chars=3954`, `packet_budget=ok`.
+- `check-goal.cjs` prints `RESULT: FAILED (4/5 checks)`: 11 missing binding rows, phases 009 to 019. The table holds 12 rows for 23 phase folders. This is logged and waiting on the operator.
+- Criterion 1 says "every phase folder", which matches any count.
+- Six criteria are command-checkable. Criterion 6's last clause is not (see check 9).
+
+**7. Validation: PASS, matches the planner**
+- 020: `Errors: 0 Warnings: 0`, `RESULT: PASSED`.
+- 021: `Errors: 0 Warnings: 0`, `RESULT: PASSED`.
+- 022: `Errors: 0 Warnings: 0`, `RESULT: PASSED`.
+- 023: `Errors: 0 Warnings: 0`, `RESULT: PASSED`.
+- P, own block: `Errors: 0 Warnings: 1` (SOURCE_TAGS, 11 of 669), `RESULT: PASSED`.
+- P, recursive: fails only on 019, `Errors: 2 Warnings: 1`, `RESULT: FAILED` (generated metadata stale against the coordinator's uncommitted `spec.md`).
+
+**8. Scope: PASS**
+- `git status --short` shows only the four new folders plus `P/spec.md`, `P/goal.md`, `P/decision-record.md` and `P/graph-metadata.json`.
+- The 017 scratch files date from 2026-11-13 23:08, before the planner ran.
+
+**9. Goal criteria against D1**
+- The new criterion conflicts with D1. "This log holds the operator's target for each or the operator's waiver" cannot be met without an operator answer. D1 says ask nothing, and the objective still says "without waiting on the operator". The original seven could close with items logged as waiting.
+- No amended criterion is weaker than the one it replaced. Criterion 1 is stronger (23 folders, not eight), and the merged review and alignment line keeps both bars.
+- The planner logged the amendment as "Decided without the operator (D1)". The operator set those criteria, so it should be put to them.
+
+FIXES
+
+1. **P1, `020/tasks.md` T003.** The lead gap is undefined. Define a gap word as letters and apostrophes only, so no lead crosses a comma, and bar a use verb inside the bare-lead gap. Add four REQUEST controls expecting `false`: "dont guess, run /speckit:plan", "never mind just run /speckit:save", "not sure, use /create:readme", "without asking, run /speckit:complete".
+2. **P1, `020/tasks.md` T003.** Yes/no questions pass. Add to `COMMAND_ASK_LEADS`: `should i|should we|do i need to|when would i` plus a use verb, and `is|does|can|will|would` directly before the command. Add my two question prompts to REFUSE8 and "can you run /speckit:plan?" as a request control.
+3. **P1, `021/tasks.md`.** The ambiguous partner differs between runtimes.
+   - Add a lane P task: `advisorCliRequest` (`.opencode/plugins/system-skill-advisor.js:847-856`) sends `compiledRouteTopOnly: true`, with a `PJT` case asserting it.
+   - Add my two ambiguous prompts to `head-prompts.json` and raise T011 to 17 of 17.
+   - Recheck the `/create:readme` count of 2 in 020 T014, since one of those lines is this partner.
+4. **P1, `022/tasks.md` T009, `SUMOK`, T001.** Make the `loadRate` denominator all six path counts. Add the same identity to `SUMOK`. Drop the fixed `6 of 16` expectation after the change.
+5. **P1, `020/tasks.md` and `021/tasks.md`.** Add `.attachedMetrics.plain.holdout` to `FLOOR` and `REAL`. Block 020 T013 and 021 T010 when the fixture count drops. For the real count, record the drop and name T007 or T010 as its cause.
+6. **P1, `P/goal.md` criterion 6.** Replace the last clause with: "and this log states for each a target and whether the printed value meets it, or states the outcome as not shown with the item waiting on the operator." Log the amendment as waiting on the operator.
+7. **P2, `023/tasks.md` T012 and `022/tasks.md` T013.** Add a fifth `limit:` line: the offer on a stored non-Claude run is the Claude hook's replay. Condition T013's sentence on fix 3.
+8. **P2, `022/tasks.md` T007.** Count `askedActed` beside `asked`, as `noneActed` sits beside `none`.
+9. **P2, `020/spec.md` REQ-004 and Out of Scope.** Say the small-edit gate covers correction wording only. State the A-5 residual as a class. Note that T009 inherits `NO_EDIT_REQUEST`: "leave every file as it is" still gets `/doctor:speckit (run)`.
+10. **P2, `P/spec.md` row 20.** Delete "an ambiguous pair keeps its marker"; no task does it.
+11. **P2, `P/decision-record.md` P008 and the map.** Reword B-10 to "row order reproduces, the rendered head already names the skill first, the rest is B-5".
+12. **P2, `022/tasks.md` T019.** The goal-log row must carry "tuned rows, one run each, not the outcome".
+13. **P2, task shape.** Split the multi-function tasks (022 T006 and T008, 023 T009, 020 T008) one function per task. Drop `[P]` from in-order lane tasks.
+14. **P2, WAITING ON OPERATOR.** Add the purpose review's step-level check on a sample of stored runs; it has no disposition.
+
+NOT CHECKED
+- No suite, build or capture was run, so no planned expected count (8 heads, 11 delta lines, `[44,24,24]`) is confirmed beyond reading the before files.
+- The lead-pattern failures in fix 1 are derived from the task wording; no such code exists yet.
+- Whether stored run lines carry `locator.projectDir` (022 T008) was not opened.
+- `phase-definitions.md` was not read; child shape rests on the strict validation passes.
+
+Yours to do: apply fixes 1 to 6, then put the goal amendment and the outcome target to the operator.
