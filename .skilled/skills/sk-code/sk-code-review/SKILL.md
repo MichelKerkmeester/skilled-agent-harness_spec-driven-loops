@@ -2,7 +2,7 @@
 name: sk-code-review
 description: "Stack-agnostic code-review for sk-code: findings-first severity, security/correctness minimums, and surface evidence."
 allowed-tools: [Read, Bash, Grep, Glob, Write]
-version: 1.9.16.0
+version: 1.9.18.0
 metadata:
   family: sk-code
 ---
@@ -106,11 +106,8 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
 
 #### Reach Calibration
 
-A `P0` or `P1` finding names its reach in its `Case:` line: an input or call path that the code's stated contract allows, or a real caller that sends it.
-A failure that needs input outside that contract, such as `NaN` where the contract says a number, a wrong type, or an inverted range the code already rejects, is `P2` hardening, unless the code claims to validate that input.
-Data that crosses a trust boundary is always in reach.
-The low-confidence escalation rule raises a finding only when its reach is named.
-The full rule is [`review-core.md`](./references/review-core.md) section 2.
+A `P0` or `P1` finding names its reach in its `Case:` line, and a finding that cannot name one is `P2`.
+The rule, its exceptions for validated input and for data that crosses a trust boundary, and the limit on the low-confidence escalation rule are in [`review-core.md`](./references/review-core.md) section 2.
 
 #### Numeric Severity Calibration
 
@@ -121,13 +118,7 @@ Do not introduce `score>=4` or any other numeric threshold as a blocker.
 
 #### Instance-Only Opt-Out
 
-A finding may use the narrow fix path only when all are true:
-
-- It is not P0/P1 security, path, auth/authz, sandboxing, env precedence, schema, persistence, or public-response behavior.
-- `rg` proves no same-class producer or consumer.
-- Verification is local and cheap: one focused test, one doc row, or one static audit command.
-- The fix response includes the exact command evidence for the opt-out.
-
+A finding may use the narrow fix path only when it meets every condition of the instance-only opt-out in [`fix-completeness-checklist.md`](./assets/fix-completeness-checklist.md) section 2.
 Otherwise, run the full fix completeness checklist.
 
 ### Phase 4: Output and Next Action
@@ -169,7 +160,7 @@ Not checked: [one line naming what mattered but could not be checked, and why, o
 ```
 
 The `Rule sources:` line is defined in [`review-core.md`](./references/review-core.md) section 8: the checklists the review read, then each override outcome group, with `none` for an empty group and `Rule sources: none` when no file was resolved.
-It never starts with `Review status:` or `Not checked:`, so the final-line checks read the rest of the report as before, and `scripts/check-review-final-line.js` checks the line's own format when it is present.
+It never starts with `Review status:`, `Not checked:` or `Overall assessment`, so the final-line checks read the rest of the report as before, and `scripts/check-review-final-line.js` checks the line's own format when it is present.
 
 `Quality gate evidence` reads `present` when a `sk-code-quality` run verdict was handed to the review as input, and `absent` otherwise. Either value leaves every baseline check in place. The verdict is input evidence only, so no check is skipped because the gate already ran it, and no gate count renumbers a finding.
 
@@ -258,6 +249,8 @@ A repository, a surface packet or a mode a user adds to the hub may raise these 
 - Every review ends on exactly one of the three status lines in section 3.
 - The mode writes only its PR-state cache file in the reviewing user's cache directory, never into the reviewed repository.
 
+The `Write` entry in this file's `allowed-tools` exists for that cache file alone. The hub's `mode-registry.json` states the same scope in this mode's `writeScopeNote`.
+
 ---
 
 ## 5. REFERENCES
@@ -329,20 +322,9 @@ The playbook scenario `CR-028` replays a user security surface through both rout
 
 Prevents redundant re-reviews when a PR has not changed since the last review.
 
-**Signature computation:**
-```
-diff_content_hash = sha256(git diff <base-ref>...HEAD)
-signature         = sha256(commit_subject + "\u001f" + diff_content_hash)
-```
-Where `commit_subject` is the first line of `git log <base-ref>...HEAD --format=%s` (latest commit subject).
+The gate hashes the diff and the latest commit subject into one signature and looks it up in a cache file in the reviewing user's cache directory. The gate never writes into the reviewed repository. Its one side effect is that file, and deleting it resets the gate.
 
-**Cache storage:**
-- Path: `${XDG_CACHE_HOME:-$HOME/.cache}/sk-code-review/<repo-ref>.jsonl`, in the reviewing user's cache directory. The gate never writes into the reviewed repository. Its one side effect is this file, and deleting it resets the gate.
-- `<repo-ref>` is computed as `sha256(<repo identity>).slice(0, 12)`, where `<repo identity>` is `git remote get-url origin`. A repository with no `origin` remote falls back to `git rev-parse --show-toplevel`, the repository root path, so a local-only repository still gets a stable key. A moved folder changes that key, and the worst case is one cache miss and a full review.
-- An optional pathspec scopes the gate to one monorepo package. The same pathspec goes to the `git diff` and `git log` calls above, and `<repo-ref>` becomes `sha256(<repo identity> + "\u001f" + <pathspec>).slice(0, 12)`, so each package keeps its own signature and cache file.
-  With no pathspec the whole repository is one scope. [references/pr-state-dedup.md](./references/pr-state-dedup.md) holds the commands.
-- Each line is a JSON object: `{"signature": "<sha256-hex>", "timestamp": "<ISO-8601>", "prev_sha": "<commit-sha>"}`
-- Retention: keep last **100 entries** per repo-ref, prune older entries on write
+[`references/pr-state-dedup.md`](./references/pr-state-dedup.md) is the specification. It holds the signature formula, the cache path and key, the optional pathspec scope, the line schema, the retention cap and the cache write.
 
 **Skip behavior:**
 When the current signature matches a prior cache entry, the review emits:
@@ -350,8 +332,6 @@ When the current signature matches a prior cache entry, the review emits:
 Review status: COMMENTED (no changes since last review at <prev_sha>)
 ```
 No full review analysis runs. Automation may treat `COMMENTED` as a pass (no new findings).
-
-**Cache write:** After each full review completes, write the current signature + timestamp + HEAD SHA to the cache file.
 
 ### 8.2 M-2: Opt-In Minimum Evidence Gate
 
@@ -394,7 +374,7 @@ Both are skill guidance the reviewer reads and applies in-loop, not a separate c
 
 - `full` (default / unset): the normal ALWAYS + CONDITIONAL + ON_DEMAND routing ([`ROUTER.md`](./ROUTER.md) §3).
 - `ultra`: bias intent selection toward the existing `ON_DEMAND` reference set (the deep-dive tier in [`ROUTER.md`](./ROUTER.md) §3) for the session, so a reviewer does not have to repeat "comprehensive / full review" each time.
-- `lite`: maps to the existing M-2 conservative skip (§8.2). It NEVER lowers the ALWAYS tier, the baseline security/correctness minimums, or the P0/P1/P2 contract. It cannot skip a review on a sensitive path (auth/config/persistence/deps/sandbox/public-response), exactly as M-2 already enforces.
+- `lite`: applies the existing M-2 conservative skip (§8.2) only when `SK_CODE_REVIEW_MIN_CHANGED_LINES` is set above 0. With no threshold set, `lite` skips nothing and every diff receives a full review. It NEVER lowers the ALWAYS tier, the baseline security/correctness minimums, or the P0/P1/P2 contract. It cannot skip a review on a sensitive path (auth/config/persistence/deps/sandbox/public-response), exactly as M-2 already enforces.
 
 The depth alias is advisory routing only; it must never be read as permission to relax a floor.
 
@@ -409,9 +389,11 @@ Start with `references/quick-reference.md`, then load task-specific doctrine, as
 Manual testing scenarios for the `sk-code-review` mode (of the sk-code family) live in `manual-testing-playbook/manual-testing-playbook.md`, the root index, plus per-feature sub-files under `manual-testing-playbook/<topic>/<scenario>.md`.
 Both the category folder and the scenario file use bare descriptive slugs, with no numeric prefix.
 
-Validate the root index with the sk-doc document validator in playbook mode:
+Validate the package with the sk-doc playbook package validator, the first check of the playbook's release checklist:
+`validate-playbook-package.cjs --package manual-testing-playbook`.
+Then validate the root index with the sk-doc document validator in playbook mode:
 `validate_document.py --type playbook manual-testing-playbook/manual-testing-playbook.md`.
-The playbook path is relative to this packet, and the validator path is wherever sk-doc is installed.
+The playbook path is relative to this packet, and both validator paths are wherever sk-doc is installed.
 Playbook mode applies the playbook rule set.
 
 Execute scenarios in Claude Code or OpenCode sessions for behavioral verification.

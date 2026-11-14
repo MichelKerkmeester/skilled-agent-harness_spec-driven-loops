@@ -1,0 +1,9 @@
+TASK: change one version string in one file.
+
+FILE: .skilled/skills/sk-code/hub-router.json (read lines 1 to 8 only)
+
+EDIT. Line 3 holds the version string `3.11.6.0`. Replace `3.11.6.0` with `3.12.0.0` on that line only. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+sed -n 3p .skilled/skills/sk-code/hub-router.json
+Expected output: the same line with `3.12.0.0` in place of `3.11.6.0`

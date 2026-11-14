@@ -1,0 +1,15 @@
+TASK: replace one sentence ending in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md (read lines 98 to 106 only)
+
+EDIT. One line reads exactly `a symlink to them and no router lists either path.` Replace that whole line with the one line between the marker lines below.
+
+<<<TEXT
+a symlink to them and no packet router lists either path. The hub router lists the canonical files as shared controls.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'no packet router lists either path. The hub router lists the canonical files as shared controls.' .skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md
+Expected output: `1`

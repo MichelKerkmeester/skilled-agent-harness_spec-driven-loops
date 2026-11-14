@@ -1,7 +1,7 @@
 ---
 title: "sk-code: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review/orchestration guidance, execution expectations, and per-feature validation files for the sk-code skill."
-version: 1.5.20.0
+version: 1.5.21.0
 ---
 
 # sk-code: Manual Testing Playbook
@@ -151,7 +151,7 @@ Hard rule: any critical-path scenario FAIL forces the feature verdict to FAIL. C
 Release is READY only when:
 1. No feature verdict is FAIL.
 2. All critical scenarios (SD-002, SD-003, SD-004, RD-002, SA-001) are PASS.
-3. Every operator scenario listed in §16 has a recorded outcome: 18 of 18, across the 8 operator categories. The `compiled-routing/` files are routing-gold and carry their own verdict through the topology gate, not through this protocol.
+3. Every operator scenario listed in §16 has a recorded outcome: 21 of 21, across the 8 operator categories. The `compiled-routing/` files are routing-gold and carry their own verdict through the topology gate, not through this protocol.
 4. No unresolved blocking triage item remains.
 
 ### Root-vs-Feature Rule
@@ -215,11 +215,14 @@ Per-feature files: see `language-sub-detection/`.
 
 ---
 
-## 9. ROUTING DISAMBIGUATION (`RD-002`)
+## 9. ROUTING DISAMBIGUATION (`RD-002..RD-005`)
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
 | `RD-002` | sk-code vs sk-doc Anti-Pattern | Verify skill advisor routes doc-edit prompts to sk-doc, NOT sk-code | `Update the sk-code SKILL.md headline section to clarify the two-axis routing model and add a one-line summary at the top.` | advisor probe → inspect top-1, `confidence`, `passes_threshold` and each candidate's `score` | advisor: sk-doc top-1 with `passes_threshold` true, and sk-doc's `score` higher than sk-code's | `/tmp/skc-RD002-advisor.txt` | PASS iff advisor top-1 == sk-doc AND sk-doc's `passes_threshold` is true AND sk-doc's `score` exceeds sk-code's `score` | If sk-code wins despite this being a doc-edit, propose an anti-signal in the `signals` list of `skill-graph.json` and get operator approval before editing |
+| `RD-003` | Plain Frontend Requests Reach the Frontend Surface | Verify everyday frontend requests return a route that includes sk-code-frontend | `fix the responsive grid layout on the pricing page` | save the 13 prompts → replay each through `compiled-route.cjs --hub sk-code` → count the routes that name sk-code-frontend | 13 route lines, each with a target whose workflowMode is sk-code-frontend | `/tmp/skc-RD003-routes.txt` | PASS iff the count is 13 | If the guard reports a stale manifest, refresh it and replay. Otherwise add a phrase of two or more words to the matching frontend class and INTENT_SIGNALS rows. Never edit a prompt |
+| `RD-004` | A UI Review Bundles the Frontend Surface | Verify a UI component review returns the review mode first and the frontend surface second | `review my react component for accessibility issues` | route probe → list the workflowMode of each target in order | selectionKind surfaceBundle, with sk-code-review first and sk-code-frontend second | `/tmp/skc-RD004-route.txt` | PASS iff the route holds exactly those two targets in that order | If sk-code-frontend is missing, add one phrase to the code-frontend-review class. If it is the only target, two frontend phrases matched, so remove the broader one |
+| `RD-005` | Non-Frontend Requests Stay Off the Frontend Surface | Verify requests that share a word with frontend work but concern other code never return sk-code-frontend | `add left padding to the binary buffer before hashing` | save the 8 prompts → replay each through `compiled-route.cjs --hub sk-code` → count the routes that name sk-code-frontend | 8 decision lines, none naming sk-code-frontend | `/tmp/skc-RD005-routes.txt` | PASS iff the count is 0 | List the frontend keywords with no space and no hyphen, and replace each with a phrase of two or more words. If the list is empty, narrow the phrase that matched |
 
 Per-feature files: see `routing-disambiguation/`.
 
@@ -347,6 +350,9 @@ The Catalog Entry column names the feature-catalog document that owns the behavi
 | Language Sub-Detection | LS-005 | [language-sub-detection/skilled-javascript.md](language-sub-detection/skilled-javascript.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | No |
 | Language Sub-Detection | LS-006 | [language-sub-detection/skilled-rust.md](language-sub-detection/skilled-rust.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | No |
 | Routing Disambiguation | RD-002 | [routing-disambiguation/skcode-vs-skdoc.md](routing-disambiguation/skcode-vs-skdoc.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | Yes |
+| Routing Disambiguation | RD-003 | [routing-disambiguation/frontend-reach.md](routing-disambiguation/frontend-reach.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | No |
+| Routing Disambiguation | RD-004 | [routing-disambiguation/frontend-review-bundle.md](routing-disambiguation/frontend-review-bundle.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | No |
+| Routing Disambiguation | RD-005 | [routing-disambiguation/frontend-negative-probes.md](routing-disambiguation/frontend-negative-probes.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | No |
 | Skill Advisor Integration | SA-001 | [skill-advisor-integration/advisor-probe-battery.md](skill-advisor-integration/advisor-probe-battery.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | Yes |
 | Design Restraint | DR-001 | [design-restraint/design-restraint-ladder.md](design-restraint/design-restraint-ladder.md) | none | No |
 | Design Restraint | DR-002 | [design-restraint/implementer-anti-stall.md](design-restraint/implementer-anti-stall.md) | none | No |
@@ -356,4 +362,4 @@ The Catalog Entry column names the feature-catalog document that owns the behavi
 | Tooling And Hooks | TH-002 | [tooling-and-hooks/comment-hygiene-hook.md](tooling-and-hooks/comment-hygiene-hook.md) | `feature-catalog/quality-gate/rule-overrides-and-hygiene-policy.md` | No |
 | Plugins And Hooks | `post-edit-quality-router` | [plugins-and-hooks/post-edit-quality-router.md](plugins-and-hooks/post-edit-quality-router.md) | none | No |
 
-**Operator scenarios**: 18, across the 8 operator categories, with 5 on the critical path (SD-002, SD-003, SD-004, RD-002, SA-001). The package's `compiled-routing/` folder holds 9 further routing-gold files that ship their own verdict through the topology gate, so the walked tree holds 27 scenario files in total. The package validator derives these numbers at run time; this paragraph repeats them so a reader without the validator sees the same figure.
+**Operator scenarios**: 21, across the 8 operator categories, with 5 on the critical path (SD-002, SD-003, SD-004, RD-002, SA-001). The package's `compiled-routing/` folder holds 9 further routing-gold files that ship their own verdict through the topology gate, so the walked tree holds 30 scenario files in total. The package validator derives these numbers at run time; this paragraph repeats them so a reader without the validator sees the same figure.

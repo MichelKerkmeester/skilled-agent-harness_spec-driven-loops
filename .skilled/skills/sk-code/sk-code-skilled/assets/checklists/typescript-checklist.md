@@ -8,7 +8,7 @@ trigger_phrases:
   - "pascalcase types check"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # TypeScript Code Quality Checklist
@@ -47,7 +47,7 @@ These items MUST be fixed before any commit.
 [ ] File has TypeScript module header identifying the module
 ```
 
-A `.d.ts`, `.d.mts` or `.d.cts` file the compiler emitted, one that ends with a `//# sourceMappingURL=` line, is exempt. A hand-written declaration file still needs the header.
+A `.d.ts`, `.d.mts` or `.d.cts` file the compiler emitted, one that ends with a `//# sourceMappingURL=` line, is exempt. A hand-written declaration file still needs the header. A file that holds only one `export { default } from '<path>';` line is exempt too, because it is an entry point with no module body.
 
 **Required format**:
 ```typescript

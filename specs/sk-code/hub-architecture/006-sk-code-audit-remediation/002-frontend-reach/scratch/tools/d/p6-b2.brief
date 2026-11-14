@@ -1,0 +1,15 @@
+TASK: replace one bullet line in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/README.md (read lines 28 to 38 only)
+
+EDIT. Replace the whole bullet line that starts with `- Detection that tries every declared specific surface first, including any operator-private surface skill` with the one line between the marker lines below.
+
+<<<TEXT
+- Detection that tries every declared specific surface first and checks this surface last as the hub's fallback. A specific surface is a hub packet with a `surfaceDetection` block in `../mode-registry.json`, or a skill outside the hub that declares `surface_detection` in its own `graph-metadata.json`, as `../shared/references/stack-detection.md` describes. When a specific surface also matches, this surface loads as second evidence.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'surface_detection' .skilled/skills/sk-code/sk-code-skilled/README.md; rg -c 'operator-private' .skilled/skills/sk-code/sk-code-skilled/README.md; echo "exit $?"
+Expected output: `1` then `exit 1`

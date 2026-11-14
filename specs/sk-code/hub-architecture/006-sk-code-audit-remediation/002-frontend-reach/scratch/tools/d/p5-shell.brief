@@ -1,0 +1,9 @@
+TASK: delete one blank line in one file.
+
+FILE: .skilled/bin/skilled-loop-shell.sh (read lines 46 to 54 only)
+
+EDIT. Line 49 is `}`, the end of the function `skilled_loop_real_path`. Line 50 is blank. Line 51 starts with `# An unresolved or misplaced shim`. Delete the blank line 50, so the comment line follows the `}` line directly. Do not add any `set` line. Do not change any other line.
+
+VERIFY (run from the repository root):
+bash -n .skilled/bin/skilled-loop-shell.sh; echo "exit $?"; sed -n 80p .skilled/bin/skilled-loop-shell.sh
+Expected output: `exit 0` then a line that is two spaces followed by `set -uo pipefail`

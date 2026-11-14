@@ -106,6 +106,8 @@ The checks in the Verification table ran after the last generator. The branch is
 | Replace "agent definition" with "new agent definition" and "confirm flag" with "reusable prompt shortcut" | A phrase in `ROUTER.md` becomes an advisor signal, words included. "confirm flag" sent "add a --confirm flag to the deploy script" from sk-code to sk-doc and took the `/doctor:agents-md` tune row. Dropping both phrases cost the two tune rows their attached command. "auto or confirm flag" still leaked the word confirm. The two chosen phrases keep every probe and every command-routing metric equal to main |
 | Keep the three system-deep-loop phrases | Their single words add system-deep-loop as a passing second candidate on some unrelated prompts, but no probe and no corpus row changes its top-1 |
 | Refresh only the system-deep-loop manifest | `compiled-route-guard.cjs` reported only system-deep-loop as stale. sk-doc stayed fresh |
+| Merge worktrees 386, 387 and 388 into one branch, recheck it, then push once | Operator decision of 2026-11-14, "Integrate, recheck, push". One push carried all three, and the checks ran on the merged state, so no worktree reached main unchecked against the others. It landed as a fast-forward to `d3f08a81ac` |
+| Remove the three worktrees and their branches after the push | Operator decision of 2026-11-14, "Remove after push". The branches were fully merged into origin/main, so removing them lost no commit |
 <!-- /ANCHOR:decisions -->
 
 ---

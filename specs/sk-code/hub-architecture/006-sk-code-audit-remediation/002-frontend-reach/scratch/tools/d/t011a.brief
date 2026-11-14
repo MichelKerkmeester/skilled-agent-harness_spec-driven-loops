@@ -1,0 +1,40 @@
+TASK: author one new manual testing playbook scenario file.
+
+NEW FILE: .skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-reach.md
+
+FORMAT: copy the structure of the sibling file .skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/skcode-vs-skdoc.md exactly (read that one file in full first): the same frontmatter keys (title, description, version: 1.0.0.0), the H1 equal to the title, then the sections "## 1. OVERVIEW", "## 2. SCENARIO CONTRACT", "## 3. TEST EXECUTION" (with the sub-headings Preconditions, Exact Command Sequence, Expected Signals, Pass/Fail Criteria, Failure Triage and the "Evidence:" line), "## 4. SOURCE FILES" and "## 5. SOURCE METADATA", separated by "---" dividers the same way. In section 2 keep both the fenced "**Exact prompt**" block and the single line that starts with "Prompt: " followed by the same prompt in backticks.
+Write plain sentences. No em dash, no semicolon. Do not mention any spec folder, task id or finding id.
+In section 5 use: Group: Routing Disambiguation, the Playbook ID below, Created 2026-11-14, Critical path: No, Destructive: No, Concurrent-safe: Yes, Last validated: 2026-11-14.
+In section 4 list: ../manual-testing-playbook.md, .skilled/skills/sk-code/hub-router.json (the frontend vocabulary classes), .skilled/skills/sk-code/mode-registry.json (the FRONTEND detection block) and .skilled/bin/compiled-route.cjs. End section 4 with the line: Catalog: `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`, the entry that states how the hub bundles a surface packet beside a workflow mode.
+Create exactly one file. Do not edit any other file.
+
+CONTENT
+Playbook ID: RD-003. Title: "RD-003: Plain Frontend Requests Reach the Frontend Surface".
+What it verifies: a frontend request written in everyday words, with no file path and no jargon, returns a compiled route whose targets include sk-code-frontend. The risk it guards: the frontend vocabulary once held only specialist phrases, so ordinary requests returned defer and the frontend references never loaded.
+Realistic user request: a developer asks for an ordinary frontend fix in plain words.
+Exact prompt (the first of the set, used for the "Exact prompt" block and the "Prompt:" line):
+fix the responsive grid layout on the pricing page
+The full prompt set, which section 3 replays, one per line:
+fix the responsive grid layout on the pricing page
+make the navbar sticky with css
+build a modal with a focus trap in React
+improve LCP on the landing page
+add a dark mode toggle to the site
+the button text has poor contrast
+style the form inputs and error messages
+write a css animation for the loading spinner
+implement the checkout page from the figma file
+center a div vertically
+add i18n support with rtl languages
+optimize images and lazy loading on the homepage
+make the table scroll horizontally on mobile
+Preconditions: node is callable, and `node .skilled/bin/compiled-route-guard.cjs --json` reports the sk-code hub as fresh.
+Exact Command Sequence: 1. save the 13 prompts, one per line, to /tmp/skc-RD003-prompts.txt. 2. run: while IFS= read -r p; do node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "$p"; done < /tmp/skc-RD003-prompts.txt > /tmp/skc-RD003-routes.txt  3. run: grep -c '"workflowMode":"sk-code-frontend"' /tmp/skc-RD003-routes.txt
+Expected signals: 13 route lines, each with "action":"route" and a target whose workflowMode is sk-code-frontend. The count command prints 13.
+PASS iff the count is 13. FAIL iff any prompt returns defer or a route without sk-code-frontend.
+Evidence: /tmp/skc-RD003-routes.txt
+Failure triage: 1. Find the failing prompt's line in the routes file. 2. If the guard reports a stale manifest, the router is serving the legacy path, so run the refresh command the guard prints and replay. 3. Otherwise add a phrase of two or more words from the failing prompt to the matching frontend class in hub-router.json and to the matching row of INTENT_SIGNALS in both ROUTER.md files. 4. Never edit a prompt to make it pass, and never add a single-word keyword.
+
+VERIFY (run from the repository root):
+grep -c '^## [1-5]\. ' .skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-reach.md
+Expected output: 5

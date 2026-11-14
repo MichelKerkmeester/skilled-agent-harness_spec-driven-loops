@@ -1,0 +1,8 @@
+$ printf "See `references/shared/no-such-file.md`." >> sk-code-skilled/SKILL.md; bash run-all-drift-guards.sh
+PASS: alignment-drift  (verify_alignment_drift.py --check-router) (21 warnings)
+PASS: stack-folders    (verify_stack_folders.py)
+PASS: router-sync      (verify-router-sync.cjs --checks 1a,1b,2,3,4)
+FAIL check paths: path references in the hub docs resolve on disk (1 problem(s))
+FAIL: doc-claims       (verify-doc-claims.cjs)
+run-all-drift-guards: 1 guard(s) FAILED
+exit=1

@@ -8,7 +8,7 @@ trigger_phrases:
   - "repeatable drift verifier"
 importance_tier: normal
 contextType: implementation
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Alignment Verification Automation
@@ -101,7 +101,7 @@ The umbrella runs every leg. Leg 1b skips Git-ignored paths and reports any rema
 or asset doc that no router names. If Git is missing or the hub is not a repository, it keeps the
 full walked list.
 The three shared workflow docs are the only allowlisted routable docs, because each surface carries
-a symlink to them and no router lists either path.
+a symlink to them and no packet router lists either path. The hub router lists the canonical files as shared controls.
 
 ### Severity model
 

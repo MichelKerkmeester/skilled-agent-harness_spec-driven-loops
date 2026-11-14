@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings",
+  "description": "Phase 9: out-of-ledger-findings",
+  "keywords": [
+    "phase",
+    "out-of-ledger-findings"
+  ],
+  "lastUpdated": "2026-11-14T17:11:19.185Z",
+  "specId": "009",
+  "folderSlug": "out-of-ledger-findings",
+  "parentChain": [
+    "sk-code",
+    "hub-architecture",
+    "006-sk-code-audit-remediation"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_18-11__added-phase-009-to-the-sk-code-audit-remediation.md"
+  ]
+}

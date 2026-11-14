@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0250dffa1a88da8b91160e3acf796ac7b900e7221d64740961e0402302250e42",
+  "manifestHash": "84161c0e911a3a373c653f136f1203e3470bc5d37f457be21fa4bac8d0df2d5f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13365,6 +13365,9 @@
     "audit executor": [
       "audit executor"
     ],
+    "audit finding verdicts": [
+      "audit finding verdicts"
+    ],
     "audit findings fix program": [
       "audit findings fix program"
     ],
@@ -19468,6 +19471,9 @@
     "ci health followups tasks": [
       "ci health followups tasks"
     ],
+    "ci keyword copies guarded": [
+      "ci keyword copies guarded"
+    ],
     "ci lanes wired": [
       "ci lanes wired"
     ],
@@ -19686,6 +19692,24 @@
     ],
     "ci visual regression pipeline": [
       "ci visual regression pipeline"
+    ],
+    "ci vocabulary single source": [
+      "ci vocabulary single source"
+    ],
+    "ci vocabulary single source acceptance criteria": [
+      "ci vocabulary single source acceptance criteria"
+    ],
+    "ci vocabulary single source goal": [
+      "ci vocabulary single source goal"
+    ],
+    "ci vocabulary single source implementation summary": [
+      "ci vocabulary single source implementation summary"
+    ],
+    "ci vocabulary single source plan": [
+      "ci vocabulary single source plan"
+    ],
+    "ci vocabulary single source tasks": [
+      "ci vocabulary single source tasks"
     ],
     "ci workflow doctor and switches": [
       "ci workflow doctor and switches"
@@ -50859,6 +50883,24 @@
     "finding to commit map": [
       "finding to commit map"
     ],
+    "finding verification": [
+      "finding verification"
+    ],
+    "finding verification acceptance criteria": [
+      "finding verification acceptance criteria"
+    ],
+    "finding verification goal": [
+      "finding verification goal"
+    ],
+    "finding verification implementation summary": [
+      "finding verification implementation summary"
+    ],
+    "finding verification plan": [
+      "finding verification plan"
+    ],
+    "finding verification tasks": [
+      "finding verification tasks"
+    ],
     "findings completeness mapping table": [
       "findings completeness mapping table"
     ],
@@ -52682,17 +52724,59 @@
     "front proxy utf8 frame corruption": [
       "front proxy utf8 frame corruption"
     ],
+    "frontend content": [
+      "frontend content"
+    ],
+    "frontend content acceptance criteria": [
+      "frontend content acceptance criteria"
+    ],
+    "frontend content decision record": [
+      "frontend content decision record"
+    ],
+    "frontend content goal": [
+      "frontend content goal"
+    ],
+    "frontend content implementation summary": [
+      "frontend content implementation summary"
+    ],
+    "frontend content plan": [
+      "frontend content plan"
+    ],
+    "frontend content tasks": [
+      "frontend content tasks"
+    ],
     "frontend disconnect instrumentation": [
       "frontend disconnect instrumentation"
     ],
     "frontend disconnect logging": [
       "frontend disconnect logging"
     ],
+    "frontend load rule": [
+      "frontend load rule"
+    ],
     "frontend overrides contract": [
       "frontend overrides contract"
     ],
     "frontend practice": [
       "frontend practice"
+    ],
+    "frontend reach": [
+      "frontend reach"
+    ],
+    "frontend reach acceptance criteria": [
+      "frontend reach acceptance criteria"
+    ],
+    "frontend reach goal": [
+      "frontend reach goal"
+    ],
+    "frontend reach implementation summary": [
+      "frontend reach implementation summary"
+    ],
+    "frontend reach plan": [
+      "frontend reach plan"
+    ],
+    "frontend reach tasks": [
+      "frontend reach tasks"
     ],
     "frontend reference layout": [
       "frontend reference layout"
@@ -54012,6 +54096,9 @@
     ],
     "general cleanup omnibus": [
       "general cleanup omnibus"
+    ],
+    "generate command routers check exits 1": [
+      "generate-command-routers check exits 1"
     ],
     "generate command routers clean": [
       "generate-command-routers clean"
@@ -59305,6 +59392,27 @@
     ],
     "hub router agreement": [
       "hub router agreement"
+    ],
+    "hub router alignment": [
+      "hub router alignment"
+    ],
+    "hub router alignment acceptance criteria": [
+      "hub router alignment acceptance criteria"
+    ],
+    "hub router alignment decision record": [
+      "hub router alignment decision record"
+    ],
+    "hub router alignment goal": [
+      "hub router alignment goal"
+    ],
+    "hub router alignment implementation summary": [
+      "hub router alignment implementation summary"
+    ],
+    "hub router alignment plan": [
+      "hub router alignment plan"
+    ],
+    "hub router alignment tasks": [
+      "hub router alignment tasks"
     ],
     "hub router json contract": [
       "hub-router json contract"
@@ -65939,6 +66047,9 @@
     ],
     "make branch protection less strict": [
       "make branch protection less strict"
+    ],
+    "make hub router json the authority": [
+      "make hub router json the authority"
     ],
     "make llmgateway the opencode 1 cli opencode default": [
       "make llmgateway the opencode 1 cli opencode default"
@@ -73260,6 +73371,9 @@
     "motion layer acceptance criteria": [
       "motion layer acceptance criteria"
     ],
+    "motion reference line target": [
+      "motion reference line target"
+    ],
     "motion regressions cross browser performance": [
       "motion regressions cross-browser performance"
     ],
@@ -76373,9 +76487,6 @@
     "opencode and guards tasks": [
       "opencode and guards tasks"
     ],
-    "opencode authoring": [
-      "opencode authoring"
-    ],
     "opencode authoring checklists": [
       "opencode authoring checklists"
     ],
@@ -76998,9 +77109,6 @@
     ],
     "opencode symlink tasks": [
       "opencode symlink tasks"
-    ],
-    "opencode system code": [
-      "opencode system code"
     ],
     "opencode system context findings": [
       "opencode system context findings"
@@ -78247,6 +78355,24 @@
     "out of contract input": [
       "out-of-contract input"
     ],
+    "out of ledger findings": [
+      "out of ledger findings"
+    ],
+    "out of ledger findings acceptance criteria": [
+      "out of ledger findings acceptance criteria"
+    ],
+    "out of ledger findings goal": [
+      "out of ledger findings goal"
+    ],
+    "out of ledger findings implementation summary": [
+      "out of ledger findings implementation summary"
+    ],
+    "out of ledger findings plan": [
+      "out of ledger findings plan"
+    ],
+    "out of ledger findings tasks": [
+      "out of ledger findings tasks"
+    ],
     "out of scope cleanup": [
       "out of scope cleanup"
     ],
@@ -79122,6 +79248,9 @@
     ],
     "packet id audit fixes": [
       "packet id audit fixes"
+    ],
+    "packet keyword row aligned": [
+      "packet keyword row aligned"
     ],
     "packet leaf resource routing": [
       "packet leaf resource routing"
@@ -80963,6 +81092,9 @@
     "phase 1 fanout persona tool mapping": [
       "phase 1 fanout persona tool mapping"
     ],
+    "phase 1 finding verification": [
+      "phase 1 finding verification"
+    ],
     "phase 1 fix agent contract contradictions": [
       "phase 1 fix agent contract contradictions"
     ],
@@ -81767,6 +81899,9 @@
     "phase 2 fresh timing profile": [
       "phase 2 fresh timing profile"
     ],
+    "phase 2 frontend reach": [
+      "phase 2 frontend reach"
+    ],
     "phase 2 goal criteria refresh": [
       "phase 2 goal criteria refresh"
     ],
@@ -82190,6 +82325,9 @@
     "phase 3 feature catalog findings": [
       "phase 3 feature catalog findings"
     ],
+    "phase 3 frontend content": [
+      "phase 3 frontend content"
+    ],
     "phase 3 fsmonitor daemon lifecycle": [
       "phase 3 fsmonitor daemon lifecycle"
     ],
@@ -82565,6 +82703,9 @@
     "phase 4 trigger index rebuild hardening": [
       "phase 4 trigger index rebuild hardening"
     ],
+    "phase 4 vocabulary single source": [
+      "phase 4 vocabulary single source"
+    ],
     "phase 4 webflow and obsidian": [
       "phase 4 webflow and obsidian"
     ],
@@ -82675,6 +82816,9 @@
     ],
     "phase 5 hooks vitest scope": [
       "phase 5 hooks vitest scope"
+    ],
+    "phase 5 hub router alignment": [
+      "phase 5 hub router alignment"
     ],
     "phase 5 implementation review": [
       "phase 5 implementation review"
@@ -83003,6 +83147,9 @@
     "phase 6 skilled loop command": [
       "phase 6 skilled loop command"
     ],
+    "phase 6 skilled packet fixes": [
+      "phase 6 skilled packet fixes"
+    ],
     "phase 6 speckit command and agent alignment": [
       "phase 6 speckit command and agent alignment"
     ],
@@ -83128,6 +83275,9 @@
     ],
     "phase 7 remediation review fixes": [
       "phase 7 remediation review fixes"
+    ],
+    "phase 7 review packet fixes": [
+      "phase 7 review packet fixes"
     ],
     "phase 7 review reducer missing config": [
       "phase 7 review reducer missing config"
@@ -83264,6 +83414,9 @@
     "phase 8 project scoped state": [
       "phase 8 project scoped state"
     ],
+    "phase 8 quality packet fixes": [
+      "phase 8 quality packet fixes"
+    ],
     "phase 8 release coverage": [
       "phase 8 release coverage"
     ],
@@ -83378,6 +83531,9 @@
     "phase 9 open items ledger": [
       "phase 9 open items ledger"
     ],
+    "phase 9 out of ledger findings": [
+      "phase 9 out of ledger findings"
+    ],
     "phase 9 overlay write checks follow up": [
       "phase 9 overlay write checks follow up"
     ],
@@ -83401,6 +83557,9 @@
     ],
     "phase 9 research fixes": [
       "phase 9 research fixes"
+    ],
+    "phase 9 resume contract owned assets": [
+      "phase 9 resume contract owned assets"
     ],
     "phase 9 review closeout": [
       "phase 9 review closeout"
@@ -84435,6 +84594,9 @@
     ],
     "pi enabledmodels union alpha": [
       "pi enabledModels union alpha"
+    ],
+    "pi entry file header decision": [
+      "pi entry file header decision"
     ],
     "pi event list probe": [
       "pi event list probe"
@@ -88991,6 +89153,30 @@
     ],
     "quality obsidian coverage tasks": [
       "quality obsidian coverage tasks"
+    ],
+    "quality packet audit fixes": [
+      "quality packet audit fixes"
+    ],
+    "quality packet fixes": [
+      "quality packet fixes"
+    ],
+    "quality packet fixes acceptance criteria": [
+      "quality packet fixes acceptance criteria"
+    ],
+    "quality packet fixes goal": [
+      "quality packet fixes goal"
+    ],
+    "quality packet fixes implementation summary": [
+      "quality packet fixes implementation summary"
+    ],
+    "quality packet fixes plan": [
+      "quality packet fixes plan"
+    ],
+    "quality packet fixes tasks": [
+      "quality packet fixes tasks"
+    ],
+    "quality packet out of ledger fixes": [
+      "quality packet out of ledger fixes"
     ],
     "quality playbook disabled hygiene rules": [
       "quality playbook disabled hygiene rules"
@@ -96302,6 +96488,18 @@
     "resume continue devin live run": [
       "resume-continue Devin live run"
     ],
+    "resume contract owned assets": [
+      "resume contract owned assets"
+    ],
+    "resume contract owned assets implementation summary": [
+      "resume contract owned assets implementation summary"
+    ],
+    "resume contract owned assets plan": [
+      "resume contract owned assets plan"
+    ],
+    "resume contract owned assets tasks": [
+      "resume contract owned assets tasks"
+    ],
     "resume detection and single workflow": [
       "resume detection and single workflow"
     ],
@@ -97571,6 +97769,9 @@
     "review p2 findings triage": [
       "review p2 findings triage"
     ],
+    "review packet audit fixes": [
+      "review packet audit fixes"
+    ],
     "review packet continuity": [
       "review packet continuity"
     ],
@@ -97578,8 +97779,29 @@
       "review packet contract",
       "review-packet contract"
     ],
+    "review packet fixes": [
+      "review packet fixes"
+    ],
+    "review packet fixes acceptance criteria": [
+      "review packet fixes acceptance criteria"
+    ],
+    "review packet fixes goal": [
+      "review packet fixes goal"
+    ],
+    "review packet fixes implementation summary": [
+      "review packet fixes implementation summary"
+    ],
+    "review packet fixes plan": [
+      "review packet fixes plan"
+    ],
+    "review packet fixes tasks": [
+      "review packet fixes tasks"
+    ],
     "review packet location": [
       "review packet location"
+    ],
+    "review packet out of ledger fix": [
+      "review packet out of ledger fix"
     ],
     "review packet outputs": [
       "review packet outputs"
@@ -105470,6 +105692,12 @@
     "sk code 3 11 6 0": [
       "sk-code 3.11.6.0"
     ],
+    "sk code 3 12 0 0": [
+      "sk-code 3.12.0.0"
+    ],
+    "sk code 3 12 1 0": [
+      "sk-code 3.12.1.0"
+    ],
     "sk code 3 2 0 0": [
       "sk-code 3.2.0.0"
     ],
@@ -105659,6 +105887,12 @@
     "sk code assets scripts": [
       "sk-code assets/scripts"
     ],
+    "sk code audit findings ledger": [
+      "sk code audit findings ledger"
+    ],
+    "sk code audit remediation phase parent spec": [
+      "sk code audit remediation phase parent spec"
+    ],
     "sk code benchmark": [
       "sk-code benchmark"
     ],
@@ -105730,6 +105964,9 @@
     ],
     "sk code ci 1 1 15 0": [
       "sk-code-ci 1.1.15.0"
+    ],
+    "sk code ci 1 1 16 0": [
+      "sk-code-ci 1.1.16.0"
     ],
     "sk code ci 1 1 2 0": [
       "sk-code-ci 1.1.2.0"
@@ -105833,6 +106070,9 @@
     ],
     "sk code ci v1 1 15 0": [
       "sk-code-ci v1.1.15.0"
+    ],
+    "sk code ci v1 1 16 0": [
+      "sk-code-ci v1.1.16.0"
     ],
     "sk code ci v1 1 2 0": [
       "sk-code-ci v1.1.2.0"
@@ -106044,6 +106284,9 @@
     "sk code frontend 1 1 0 0": [
       "sk-code-frontend 1.1.0.0"
     ],
+    "sk code frontend 1 2 0 0": [
+      "sk-code-frontend 1.2.0.0"
+    ],
     "sk code frontend build plan": [
       "sk-code-frontend build plan"
     ],
@@ -106079,6 +106322,9 @@
     ],
     "sk code frontend v1 1 0 0": [
       "sk-code-frontend v1.1.0.0"
+    ],
+    "sk code frontend v1 2 0 0": [
+      "sk-code-frontend v1.2.0.0"
     ],
     "sk code frontend value references": [
       "sk-code-frontend value references"
@@ -106502,6 +106748,12 @@
     "sk code quality 1 13 2 0": [
       "sk-code-quality 1.13.2.0"
     ],
+    "sk code quality 1 13 20 0": [
+      "sk-code-quality 1.13.20.0"
+    ],
+    "sk code quality 1 13 21 0": [
+      "sk-code-quality 1.13.21.0"
+    ],
     "sk code quality 1 13 3 0": [
       "sk-code-quality 1.13.3.0"
     ],
@@ -106654,6 +106906,12 @@
     ],
     "sk code quality v1 13 2 0": [
       "sk-code-quality v1.13.2.0"
+    ],
+    "sk code quality v1 13 20 0": [
+      "sk-code-quality v1.13.20.0"
+    ],
+    "sk code quality v1 13 21 0": [
+      "sk-code-quality v1.13.21.0"
     ],
     "sk code quality v1 13 3 0": [
       "sk-code-quality v1.13.3.0"
@@ -106835,6 +107093,12 @@
     "sk code review 1 9 16 0": [
       "sk-code-review 1.9.16.0"
     ],
+    "sk code review 1 9 17 0": [
+      "sk-code-review 1.9.17.0"
+    ],
+    "sk code review 1 9 18 0": [
+      "sk-code-review 1.9.18.0"
+    ],
     "sk code review 1 9 2 0": [
       "sk-code-review 1.9.2.0"
     ],
@@ -106981,6 +107245,12 @@
     ],
     "sk code review v1 9 16 0": [
       "sk-code-review v1.9.16.0"
+    ],
+    "sk code review v1 9 17 0": [
+      "sk-code-review v1.9.17.0"
+    ],
+    "sk code review v1 9 18 0": [
+      "sk-code-review v1.9.18.0"
     ],
     "sk code review v1 9 2 0": [
       "sk-code-review v1.9.2.0"
@@ -107204,6 +107474,12 @@
     "sk code skilled 2 1 9 0": [
       "sk-code-skilled 2.1.9.0"
     ],
+    "sk code skilled 2 2 0 0": [
+      "sk-code-skilled 2.2.0.0"
+    ],
+    "sk code skilled 2 2 1 0": [
+      "sk-code-skilled 2.2.1.0"
+    ],
     "sk code skilled alignment": [
       "sk-code-skilled alignment"
     ],
@@ -107383,6 +107659,12 @@
     ],
     "sk code skilled v2 1 9 0": [
       "sk-code-skilled v2.1.9.0"
+    ],
+    "sk code skilled v2 2 0 0": [
+      "sk-code-skilled v2.2.0.0"
+    ],
+    "sk code skilled v2 2 1 0": [
+      "sk-code-skilled v2.2.1.0"
     ],
     "sk code smart routing": [
       "sk-code smart routing"
@@ -107581,6 +107863,12 @@
     ],
     "sk code v3 11 6 0": [
       "sk-code v3.11.6.0"
+    ],
+    "sk code v3 12 0 0": [
+      "sk-code v3.12.0.0"
+    ],
+    "sk code v3 12 1 0": [
+      "sk-code v3.12.1.0"
     ],
     "sk code v3 2 0 0": [
       "sk-code v3.2.0.0"
@@ -114005,6 +114293,30 @@
     "skilled omithook": [
       "skilled.omitHook"
     ],
+    "skilled packet audit fixes": [
+      "skilled packet audit fixes"
+    ],
+    "skilled packet fixes": [
+      "skilled packet fixes"
+    ],
+    "skilled packet fixes acceptance criteria": [
+      "skilled packet fixes acceptance criteria"
+    ],
+    "skilled packet fixes goal": [
+      "skilled packet fixes goal"
+    ],
+    "skilled packet fixes implementation summary": [
+      "skilled packet fixes implementation summary"
+    ],
+    "skilled packet fixes plan": [
+      "skilled packet fixes plan"
+    ],
+    "skilled packet fixes tasks": [
+      "skilled packet fixes tasks"
+    ],
+    "skilled packet out of ledger fixes": [
+      "skilled packet out of ledger fixes"
+    ],
     "skilled placeholder removal": [
       "skilled placeholder removal"
     ],
@@ -114100,6 +114412,12 @@
     ],
     "skilled style split": [
       "skilled style split"
+    ],
+    "skilled surface authoring": [
+      "skilled surface authoring"
+    ],
+    "skilled system code": [
+      "skilled system code"
     ],
     "skilled todo format override": [
       "skilled todo format override"
@@ -117233,6 +117551,9 @@
     ],
     "speckit resume": [
       "speckit:resume"
+    ],
+    "speckit resume path drift": [
+      "speckit resume path drift"
     ],
     "speckit retired vocabulary and dead paths": [
       "speckit retired vocabulary and dead paths"
@@ -129277,8 +129598,32 @@
     "vocabulary invariance": [
       "vocabulary invariance"
     ],
+    "vocabulary mirrors decision": [
+      "vocabulary mirrors decision"
+    ],
     "vocabulary phase checklist": [
       "vocabulary phase checklist"
+    ],
+    "vocabulary single source": [
+      "vocabulary single source"
+    ],
+    "vocabulary single source acceptance criteria": [
+      "vocabulary single source acceptance criteria"
+    ],
+    "vocabulary single source decision record": [
+      "vocabulary single source decision record"
+    ],
+    "vocabulary single source goal": [
+      "vocabulary single source goal"
+    ],
+    "vocabulary single source implementation summary": [
+      "vocabulary single source implementation summary"
+    ],
+    "vocabulary single source plan": [
+      "vocabulary single source plan"
+    ],
+    "vocabulary single source tasks": [
+      "vocabulary single source tasks"
     ],
     "vocabulary source check": [
       "vocabulary source check"

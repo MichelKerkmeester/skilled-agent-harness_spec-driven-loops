@@ -9,7 +9,7 @@ trigger_phrases:
   - "focus ring and keyboard behavior"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Web Motion and Interaction
@@ -51,14 +51,7 @@ This file covers the twelve animation principles, the enforceable motion ruleset
 - **Support:** Judgment, no version gate.
 - **See also:** [A15](web-accessibility-patterns.md#a15-framework-validation-layers) and [web-markup-and-css.md](web-markup-and-css.md#3-forms).
 
-### M2. Autocomplete and spellcheck
-
-- **Rule:** Disable `spellcheck` and `autocomplete` on inputs where they are noise, which is most free-text fields.
-- **Why:** Browser spell and history suggestions cover the content with red underlines or stale values the field does not want.
-- **When not to:** Keep `autocomplete` and its token on identity, contact, address, payment and credential fields, as [web-markup-and-css.md](web-markup-and-css.md#3-forms) sets out.
-- **Pitfall:** Disabling `autocomplete` on a password or address field breaks password managers and autofill.
-- **Support:** Judgment, no version gate.
-- **See also:** [web-markup-and-css.md](web-markup-and-css.md#3-forms).
+**M2. Autocomplete and spellcheck** lives in [web-elements-and-attributes.md](web-elements-and-attributes.md#m2-autocomplete-and-spellcheck), beside EA5.
 
 ### M3. Prefix and suffix decorations
 
@@ -158,32 +151,11 @@ This file covers the twelve animation principles, the enforceable motion ruleset
 - **Support:** Judgment, no version gate.
 - **See also:** [web-performance-and-loading.md](web-performance-and-loading.md) for the font loading path.
 
-### M13. Stable weight across states
+**M13. Stable weight across states** lives in [web-visual-values.md](web-visual-values.md#m13-stable-weight-across-states), beside V6.
 
-- **Rule:** Never change font weight on hover or on a selected state. Change colour instead.
-- **Why:** A weight change alters glyph width and shifts the layout of everything after it.
-- **When not to:** Use weight for a state that does not sit in flow, such as a badge whose box is already sized for the heavier weight.
-- **Pitfall:** A hover weight change makes a navigation row jump by a pixel, so the whole row appears to twitch.
-- **Support:** Judgment, no version gate.
-- **See also:** [web-visual-values.md](web-visual-values.md#v6-font-weight).
+**M14. Weight floor and heading weight** lives in [web-visual-values.md](web-visual-values.md#m14-weight-floor-and-heading-weight), beside V6.
 
-### M14. Weight floor and heading weight
-
-- **Rule:** Never use a weight below 400, and set medium-sized headings at 500 to 600.
-- **Why:** Thin stems lose contrast against the background at body size and read as broken rendering.
-- **When not to:** Use a lighter weight for a very large display line where the size already carries the emphasis.
-- **Pitfall:** A 300 weight at body size on a low-resolution screen reads as a rendering fault rather than a style choice.
-- **Support:** Judgment, no version gate.
-- **See also:** [web-visual-values.md](web-visual-values.md#v6-font-weight).
-
-### M15. Numerals and text size adjust
-
-- **Rule:** Apply `font-variant-numeric: tabular-nums` to numbers in tables, dashboards and anywhere a digit change would shift the layout, and set `-webkit-text-size-adjust: 100%` to stop unexpected text resizing in iOS landscape.
-- **Why:** Tabular figures give every digit the same advance width, so a counter does not jitter, and the text size adjustment keeps the declared scale instead of letting the platform rescale it.
-- **When not to:** Keep proportional numerals in running prose, where they sit better between letters.
-- **Pitfall:** Tabular numerals in a large headline leave visible gaps around narrow digits such as 1.
-- **Support:** Judgment, no version gate.
-- **See also:** [web-visual-values.md](web-visual-values.md#v10-numerals-and-typeface-selection).
+**M15. Numerals and text size adjust** lives in [web-visual-values.md](web-visual-values.md#m15-numerals-and-text-size-adjust), beside V10.
 
 ### M16. The `clamp()` tension
 
@@ -200,14 +172,7 @@ The rule that large elements shrink faster than small ones still decides which t
 
 ## 5. FOCUS, KEYBOARD AND SCREEN READERS
 
-### M17. A focus indicator that survives forced colors
-
-- **Rule:** Keep a visible focus indicator on every focusable control, using `:focus-visible` for the browser-selected ring and a boundary that stays visible in forced-colors mode.
-- **Why:** A replacement drawn only as a shadow can disappear when the browser replaces author colours and drops shadows for boundaries, which leaves the keyboard user with no position.
-- **When not to:** Add an explicit focus style when a programmatic focus change must always show an indicator, as [A5](web-accessibility-patterns.md#a5-focus-visible-styling) notes.
-- **Pitfall:** `outline: none` with no replacement is a serious accessibility defect, and a replacement that depends on one visual channel fails the moment that channel is overridden.
-- **Support:** Judgment, no version gate.
-- **See also:** [A5](web-accessibility-patterns.md#a5-focus-visible-styling) and [A8](web-accessibility-patterns.md#a8-forced-colors).
+**M17. A focus indicator that survives forced colors** lives in [web-accessibility-patterns.md](web-accessibility-patterns.md#m17-a-focus-indicator-that-survives-forced-colors), beside A8.
 
 ### M18. Keyboard navigation in lists
 
@@ -236,14 +201,7 @@ The rule that large elements shrink faster than small ones still decides which t
 - **Support:** Judgment, no version gate.
 - **See also:** [A2](web-accessibility-patterns.md#a2-accessible-name-order).
 
-### M21. Disabled controls and tooltips
-
-- **Rule:** Never put a tooltip on a disabled control, and never put interactive content in a tooltip that opens on hover, for the reasons in [A14](web-accessibility-patterns.md#a14-tooltip).
-- **Why:** A disabled control is not focusable, so its tooltip is unreachable by keyboard.
-- **When not to:** Use a dialog or popover when the content needs controls.
-- **Pitfall:** A tooltip that carries the control's only name leaves the control unnamed once the tooltip is dismissed.
-- **Support:** Judgment, no version gate.
-- **See also:** [A14](web-accessibility-patterns.md#a14-tooltip).
+**M21. Disabled controls and tooltips** lives in [web-accessibility-patterns.md](web-accessibility-patterns.md#m21-disabled-controls-and-tooltips), beside A14.
 
 ### M22. The nested menu prediction cone
 
@@ -318,14 +276,7 @@ The values that drive these items, including the duration bands and the easing c
 - **Support:** Judgment, no version gate.
 - **See also:** [web-visual-values.md](web-visual-values.md) for colour ramps.
 
-### M29. GPU promotion and `will-change`
-
-- **Rule:** Use `transform: translateZ(0)` sparingly as a fix for a measured problem, and toggle `will-change` on for the duration of an unperformant scroll animation and off afterwards.
-- **Why:** Both promote a layer, and a permanent promotion costs memory and can change how text is rasterized.
-- **When not to:** Leave the element unpromoted when the animation already holds its frame budget.
-- **Pitfall:** A permanent `will-change` is its own leak.
-- **Support:** Judgment, no version gate.
-- **See also:** [web-performance-and-loading.md](web-performance-and-loading.md).
+**M29. GPU promotion and `will-change`** lives in [web-performance-and-loading.md](web-performance-and-loading.md#m29-gpu-promotion-and-will-change), beside P7.
 
 ### M30. Media autoplay and framework render loops
 
@@ -532,14 +483,7 @@ These rules are checkable in a diff. They are grouped by what they govern.
 - **Support:** Judgment, no version gate.
 - **See also:** [Section 6](#6-motion-at-the-implementation-level).
 
-### M51. Reduced motion
-
-- **Rule:** Wrap optional motion in `prefers-reduced-motion: no-preference` as [A9](web-accessibility-patterns.md#a9-reduced-motion) requires. Under `reduce`, replace movement with an instant change or a short opacity fade, and never auto-play motion.
-- **Why:** A vestibular-sensitive user can be made ill by large movement, while a fade carries the state change without the travel. A native shell reads the platform setting, iOS Reduce Motion or Android Remove animations, through its accessibility API.
-- **When not to:** Keep essential feedback such as progress and a state change in both modes.
-- **Pitfall:** A global animation reset can remove a loading spinner and leave no progress cue, which is the trap A9 names.
-- **Support:** Judgment, no version gate.
-- **See also:** [A9](web-accessibility-patterns.md#a9-reduced-motion).
+**M51. Reduced motion** lives in [web-accessibility-patterns.md](web-accessibility-patterns.md#m51-reduced-motion), beside A9.
 
 ### M52. Timing bands
 

@@ -8,7 +8,7 @@ trigger_phrases:
   - "python docstring format"
 importance_tier: normal
 contextType: implementation
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Python Quick Reference
@@ -401,7 +401,7 @@ P1 - Required:
 
 P2 - Recommended:
 [ ] Import order
-[ ] Line length < 120
+[ ] Line length at most 120 characters
 [ ] Full docstring coverage
 ```
 

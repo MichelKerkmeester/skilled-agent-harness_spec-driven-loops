@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-code-review routing"
 importance_tier: normal
 contextType: general
-version: 1.0.2.0
+version: 1.0.3.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -32,23 +32,13 @@ loads before an intent selects it.
 
 ## 2. INTENT MODEL
 
-- **`SECURITY`** fires on `security`, `auth`, `injection`, `vulnerability` and `race` at weight 5, the highest in the packet. It loads `assets/security-checklist.md`.
-- **`QUALITY`** fires on `correctness`, `bug`, `regression`, `performance`, `boundary`, `contract`, `breaking change`, `backward compatible` and `compatibility` at weight 4. It loads `assets/code-quality-checklist.md`.
-- **`KISS`** fires on `kiss`, `simple`, `simplicity`, `over-engineer` and `overengineering` at weight 3. It loads `assets/code-quality-checklist.md`, the file `QUALITY` and `DRY` also select.
-- **`DRY`** fires on `dry`, `duplication`, `duplicate`, `copy-paste` and `repeated logic` at weight 3. It loads `assets/code-quality-checklist.md`.
-- **`SOLID`** fires on `solid`, `architecture`, `design`, `coupling`, `cohesion`, `module`, `adapter`, `interface`, `abstraction`, `responsibility`, `dependency` and `boundary` at weight 3. It loads `assets/solid-checklist.md`.
-- **`REMOVAL`** fires on `remove`, `dead code`, `cleanup` and `deprecate` at weight 3. It loads `assets/removal-plan.md`.
-- **`TESTING`** fires on `test`, `tests`, `testing`, `coverage`, `assertion`, `mock`, `stub`, `fixture`, `test quality` and `brittle` at weight 3. It loads `assets/test-quality-checklist.md`.
-- **`CORE`** fires on `review doctrine`, `review standards`, `review baseline`, `single pass`, `single-pass`, `interactive review` and `one-pass review` at weight 2. It loads `references/review-core.md` and `references/review-ux-single-pass.md`.
-- **`COMPLETENESS`** fires on `fix completeness`, `incomplete fix`, `partial fix`, `complete the fix`, `all call sites`, `leftover` and `half-done` at weight 3. It loads `assets/fix-completeness-checklist.md`.
-- **`PR_STATE`** fires on `pr state`, `pull request state`, `dedup`, `deduplicate`, `duplicate finding`, `already flagged`, `prior comment` and `repeated finding` at weight 3. It loads `references/pr-state-dedup.md`.
-- **`SETUP`** fires on `quick reference`, `review setup`, `how to review`, `review workflow` and `review cheat sheet` at weight 2. It loads `references/quick-reference.md`.
+The intent model is authored once, in section 3. `INTENT_SIGNALS` holds the keywords and the weight of each intent, and `RESOURCE_MAP` holds the files each intent loads. Read them there, and change them there only.
 
 ---
 
 ## 3. MACHINE ROUTER
 
-The one machine-readable projection of the intent model above, written as `## MACHINE ROUTER` so every
+The intent model in its one machine-readable form, written as `## MACHINE ROUTER` so every
 reader finds it. This section is the last in the file, and it holds the only pseudocode.
 
 The packet's deterministic intent-to-reference routing. Paths are relative to this skill root.
@@ -104,7 +94,7 @@ RESOURCE_MAP = {
     "SETUP": ["references/quick-reference.md"],
 }
 
-ON_DEMAND_KEYWORDS = ["deep review", "full review", "all checks", "comprehensive", "flag false positives", "blocking regressions", "list findings", "read-only only", "underrepresented", "scope correctly"]
+ON_DEMAND_KEYWORDS = ["deep review", "full review", "all checks", "comprehensive", "flag false positives", "blocking regressions", "list findings", "read-only only"]
 UNKNOWN_FALLBACK_CHECKLIST = [
     "Confirm review scope (diff/staged/files/commit range)",
     "Confirm risk priority (security/correctness/performance/maintainability/test quality/contract safety)",

@@ -1,0 +1,19 @@
+TASK: append one subsection to the end of one file.
+
+FILE: .skilled/skills/sk-code/sk-code-quality/SKILL.md (read the last 8 lines only)
+
+EDIT. The last line of the file starts with ``- [`references/code-style-guide.md`](references/code-style-guide.md)``. Do not change it. After it, append the five lines between the marker lines below: one blank line, the heading, one blank line and two bullets. The file ends with one newline after the last bullet.
+
+<<<TEXT
+
+### Manual Testing Playbook
+
+- [`manual-testing-playbook/manual-testing-playbook.md`](manual-testing-playbook/manual-testing-playbook.md) - The root index of the manual scenarios, with one file per scenario under `manual-testing-playbook/quality-gate/`.
+- Validate the package with `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook`, run from the repository root.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+tail -5 .skilled/skills/sk-code/sk-code-quality/SKILL.md | rg -c 'manual-testing-playbook'; echo "exit $?"
+Expected output: `2` then `exit 0`

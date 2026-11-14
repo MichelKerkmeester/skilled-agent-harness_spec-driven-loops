@@ -1,0 +1,28 @@
+TASK: register three new scenarios in one playbook root index.
+
+FILE: .skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md (read lines 152 to 156, lines 216 to 226 and lines 346 to 360 only)
+
+EDIT 1, line 154. Replace "18 of 18" with "21 of 21". Nothing else on the line changes.
+
+EDIT 2, line 218. Replace:
+## 9. ROUTING DISAMBIGUATION (`RD-002`)
+with:
+## 9. ROUTING DISAMBIGUATION (`RD-002..RD-005`)
+
+EDIT 3. The table in section 9 has one data row, which starts with | `RD-002` |. Add these three rows directly after it, each on one line:
+| `RD-003` | Plain Frontend Requests Reach the Frontend Surface | Verify everyday frontend requests return a route that includes sk-code-frontend | `fix the responsive grid layout on the pricing page` | save the 13 prompts → replay each through `compiled-route.cjs --hub sk-code` → count the routes that name sk-code-frontend | 13 route lines, each with a target whose workflowMode is sk-code-frontend | `/tmp/skc-RD003-routes.txt` | PASS iff the count is 13 | If the guard reports a stale manifest, refresh it and replay. Otherwise add a phrase of two or more words to the matching frontend class and INTENT_SIGNALS rows. Never edit a prompt |
+| `RD-004` | A UI Review Bundles the Frontend Surface | Verify a UI component review returns the review mode first and the frontend surface second | `review my react component for accessibility issues` | route probe → list the workflowMode of each target in order | selectionKind surfaceBundle, with sk-code-review first and sk-code-frontend second | `/tmp/skc-RD004-route.txt` | PASS iff the route holds exactly those two targets in that order | If sk-code-frontend is missing, add one phrase to the code-frontend-review class. If it is the only target, two frontend phrases matched, so remove the broader one |
+| `RD-005` | Non-Frontend Requests Stay Off the Frontend Surface | Verify requests that share a word with frontend work but concern other code never return sk-code-frontend | `add left padding to the binary buffer before hashing` | save the 8 prompts → replay each through `compiled-route.cjs --hub sk-code` → count the routes that name sk-code-frontend | 8 decision lines, none naming sk-code-frontend | `/tmp/skc-RD005-routes.txt` | PASS iff the count is 0 | List the frontend keywords with no space and no hyphen, and replace each with a phrase of two or more words. If the list is empty, narrow the phrase that matched |
+
+EDIT 4. In the section 16 table, the row that starts with | Routing Disambiguation | RD-002 | is on line 349. Add these three rows directly after it, each on one line:
+| Routing Disambiguation | RD-003 | [routing-disambiguation/frontend-reach.md](routing-disambiguation/frontend-reach.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | No |
+| Routing Disambiguation | RD-004 | [routing-disambiguation/frontend-review-bundle.md](routing-disambiguation/frontend-review-bundle.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | No |
+| Routing Disambiguation | RD-005 | [routing-disambiguation/frontend-negative-probes.md](routing-disambiguation/frontend-negative-probes.md) | `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md` | No |
+
+EDIT 5, the paragraph that starts with **Operator scenarios**: 18 (line 359 before your edits). Replace "**Operator scenarios**: 18," with "**Operator scenarios**: 21," and replace "holds 27 scenario files" with "holds 30 scenario files". Nothing else in the paragraph changes.
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-code/manual-testing-playbook 2>&1 | grep -c 'INDEX_ORPHAN_FILE'
+Expected output: 0

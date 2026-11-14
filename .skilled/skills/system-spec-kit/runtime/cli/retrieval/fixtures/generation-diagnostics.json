@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 49,
-    "missing-frontmatter": 6778,
-    "ok": 18643,
+    "missing-frontmatter": 6789,
+    "ok": 18723,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27051,
+  "documentsScanned": 27142,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "0250dffa1a88da8b91160e3acf796ac7b900e7221d64740961e0402302250e42",
+  "manifestHash": "84161c0e911a3a373c653f136f1203e3470bc5d37f457be21fa4bac8d0df2d5f",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 43466,
+      "ok": 43581,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -10657,6 +10657,24 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-negative-probes.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-reach.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-review-bundle.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/skcode-vs-skdoc.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -10777,7 +10795,55 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/motion-interaction.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/visual-hierarchy.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/visual-values.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-accessibility.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-cascade.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-elements.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-internationalization.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-layout.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-performance.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -56774,6 +56840,46 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/006-skilled-packet-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/sk-code/hub-architecture/z_archive",
       "reason": "excluded directory"
     },
@@ -63443,6 +63549,10 @@
     },
     {
       "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets/scratch",
       "reason": "excluded directory"
     },
     {

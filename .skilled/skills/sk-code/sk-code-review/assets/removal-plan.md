@@ -8,7 +8,7 @@ trigger_phrases:
   - "removal usage evidence check"
 importance_tier: normal
 contextType: planning
-version: 1.5.1.0
+version: 1.5.2.0
 ---
 
 # Removal and Iteration Plan
@@ -99,7 +99,7 @@ If any item is missing, keep the recommendation at P2 with follow-up actions.
 
 ## 5. RELATED RESOURCES
 
-- [quick-reference.md](../references/quick-reference.md) - Baseline review protocol and severity handling.
+- [quick-reference.md](../references/quick-reference.md) - Entry index that routes to the review doctrine and the single-pass flow.
 - [security-checklist.md](./security-checklist.md) - Security and privacy checks before deleting controls.
 - [code-quality-checklist.md](./code-quality-checklist.md) - Reliability and edge-case checks before cleanup.
 - [solid-checklist.md](./solid-checklist.md) - Architecture ownership checks for extraction or deletion.

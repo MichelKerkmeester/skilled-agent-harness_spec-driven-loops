@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/006-sk-code-audit-remediation",
+  "spec_folder": "sk-code/hub-architecture/006-sk-code-audit-remediation",
+  "parent_id": "sk-code/hub-architecture",
+  "children_ids": [
+    "sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification",
+    "sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach",
+    "sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content",
+    "sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source",
+    "sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment",
+    "sk-code/hub-architecture/006-sk-code-audit-remediation/006-skilled-packet-fixes",
+    "sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes",
+    "sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes",
+    "sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk code audit remediation phase parent spec",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "code",
+      "audit",
+      "remediation",
+      "phase",
+      "parent",
+      "spec",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      "001-finding-verification/findings-ledger.md",
+      "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md",
+      ".skilled/skills/sk-code/mode-registry.json",
+      ".skilled/skills/sk-code/hub-router.json",
+      ".skilled/skills/sk-code/ROUTER.md",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/sk-code/shared/references/stack-detection.md",
+      ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+      ".skilled/bin/skilled-loop-shell.sh",
+      "002-frontend-reach/plan.md",
+      "002-frontend-reach/spec.md",
+      "003-frontend-content/spec.md",
+      "005-hub-router-alignment/spec.md",
+      "001-finding-verification/scratch/probes.txt",
+      "001-finding-verification/goal.md",
+      "002-frontend-reach/goal.md",
+      "003-frontend-content/goal.md",
+      "004-vocabulary-single-source/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-ledger.md",
+        "kind": "doc",
+        "path": "001-finding-verification/findings-ledger.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "stack-detection.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/shared/references/stack-detection.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-shell.sh",
+        "kind": "script",
+        "path": ".skilled/bin/skilled-loop-shell.sh",
+        "source": "derived"
+      },
+      {
+        "name": "probes.txt",
+        "kind": "file",
+        "path": "001-finding-verification/scratch/probes.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Closeable Yes",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "DeepSeek V4.1 Flash",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-pi",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An audit of the sk-code hub on 2026-11-14 produced 61 findings",
+    "created_at": "2026-11-14T12:01:48Z",
+    "last_save_at": "2026-11-14T17:34:22.440Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:5b0f4b18455356f3cf1c47b55a866be489627263caa8f2d1c84e5aedeb732b92",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "355ca2e1a5d9d0629c422ebd79eedaf027a0d9c3ebc8060a38ed1f57b561f726"
+    },
+    "last_active_child_id": "sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings",
+    "last_active_at": "2026-11-14T17:11:19.214Z"
+  }
+}

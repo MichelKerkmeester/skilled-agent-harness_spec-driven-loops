@@ -7,7 +7,7 @@ trigger_phrases:
   - "browser accessibility preferences"
 importance_tier: important
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Web Accessibility Patterns
@@ -135,6 +135,15 @@ When a component library provides widget roles, state, focus movement or announc
 - **Support:** Baseline widely available since 2025-03-12 (web-features `forced-colors`). Chrome 89 / Firefox 89 / Safari 16.
 - **See also:** [MDN: forced-colors](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/forced-colors)
 
+### M17. A focus indicator that survives forced colors
+
+- **Rule:** Keep a visible focus indicator on every focusable control, using `:focus-visible` for the browser-selected ring and a boundary that stays visible in forced-colors mode.
+- **Why:** A replacement drawn only as a shadow can disappear when the browser replaces author colours and drops shadows for boundaries, which leaves the keyboard user with no position.
+- **When not to:** Add an explicit focus style when a programmatic focus change must always show an indicator, as [A5](web-accessibility-patterns.md#a5-focus-visible-styling) notes.
+- **Pitfall:** `outline: none` with no replacement is a serious accessibility defect, and a replacement that depends on one visual channel fails the moment that channel is overridden.
+- **Support:** Judgment, no version gate.
+- **See also:** [A5](web-accessibility-patterns.md#a5-focus-visible-styling) and [A8](web-accessibility-patterns.md#a8-forced-colors).
+
 ### A9. Reduced motion
 
 - **Rule:** Put optional motion inside `prefers-reduced-motion: no-preference` and keep progress feedback available in both modes.
@@ -143,6 +152,15 @@ When a component library provides widget roles, state, focus movement or announc
 - **Pitfall:** A global animation reset can remove a loading spinner and leave no visible progress cue.
 - **Support:** Baseline widely available since 2022-07-15 (web-features `prefers-reduced-motion`). Chrome 74 / Firefox 63 / Safari 10.1.
 - **See also:** [MDN: prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion)
+
+### M51. Reduced motion
+
+- **Rule:** Wrap optional motion in `prefers-reduced-motion: no-preference` as [A9](web-accessibility-patterns.md#a9-reduced-motion) requires. Under `reduce`, replace movement with an instant change or a short opacity fade, and never auto-play motion.
+- **Why:** A vestibular-sensitive user can be made ill by large movement, while a fade carries the state change without the travel. A native shell reads the platform setting, iOS Reduce Motion or Android Remove animations, through its accessibility API.
+- **When not to:** Keep essential feedback such as progress and a state change in both modes.
+- **Pitfall:** A global animation reset can remove a loading spinner and leave no progress cue, which is the trap A9 names.
+- **Support:** Judgment, no version gate.
+- **See also:** [A9](web-accessibility-patterns.md#a9-reduced-motion).
 
 ### A10. Contrast, color scheme and transparency preferences
 
@@ -196,6 +214,15 @@ When a component library provides widget roles, state, focus movement or announc
 - **Pitfall:** A tooltip on a disabled control may never appear, and a tooltip cannot provide the control's only name.
 - **Support:** Judgment, no version gate.
 - **See also:** [WAI-ARIA APG: Tooltip](https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
+
+### M21. Disabled controls and tooltips
+
+- **Rule:** Never put a tooltip on a disabled control, and never put interactive content in a tooltip that opens on hover, for the reasons in [A14](web-accessibility-patterns.md#a14-tooltip).
+- **Why:** A disabled control is not focusable, so its tooltip is unreachable by keyboard.
+- **When not to:** Use a dialog or popover when the content needs controls.
+- **Pitfall:** A tooltip that carries the control's only name leaves the control unnamed once the tooltip is dismissed.
+- **Support:** Judgment, no version gate.
+- **See also:** [A14](web-accessibility-patterns.md#a14-tooltip).
 
 ---
 

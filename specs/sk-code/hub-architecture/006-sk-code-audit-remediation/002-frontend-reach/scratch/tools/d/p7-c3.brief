@@ -1,0 +1,15 @@
+TASK: insert one table row in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-review/README.md (read lines 215 to 227 only)
+
+EDIT. In the table under `## 7. VERIFICATION`, find the row that starts with `| Playbook structure |`. Do not change it. Directly after it, insert the one line between the marker lines below as a new table row.
+
+<<<TEXT
+| Playbook package | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-code/sk-code-review/manual-testing-playbook` prints `PASS` with `violations=0 warnings=0` and exits 0. It is the first check of the playbook's release checklist |
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'validate-playbook-package.cjs' .skilled/skills/sk-code/sk-code-review/README.md; echo "exit $?"
+Expected output: `1` then `exit 0`

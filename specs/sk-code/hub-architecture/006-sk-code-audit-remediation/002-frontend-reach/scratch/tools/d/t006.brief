@@ -1,0 +1,26 @@
+TASK: add one vocabulary class to one JSON file, in two places.
+
+FILE: .skilled/skills/sk-code/hub-router.json (read lines 40 to 46 and lines 86 to 94 only)
+
+EDIT 1, line 43. Replace:
+      "classes": ["code-frontend-aliases", "code-frontend-visual"],
+with:
+      "classes": ["code-frontend-aliases", "code-frontend-visual", "code-frontend-review"],
+
+EDIT 2, the end of the file. The "code-frontend-visual" class is the last entry of "vocabularyClasses". Its closing lines are:
+    }
+  }
+}
+Add a comma after the brace that closes "code-frontend-visual" and insert the new class after it, so the file ends with exactly:
+    },
+    "code-frontend-review": {
+      "keywords": ["accessibility issues", "accessibility review", "ui component", "frontend component"]
+    }
+  }
+}
+
+Do not touch the long keyword lines 88 and 91. One file changes.
+
+VERIFY (run from the repository root):
+node -e "const r=require('./.skilled/skills/sk-code/hub-router.json');console.log(r.routerSignals['sk-code-frontend'].classes.length, r.vocabularyClasses['code-frontend-review'].keywords.length, Object.keys(r.vocabularyClasses).length)"
+Expected output: 3 4 16

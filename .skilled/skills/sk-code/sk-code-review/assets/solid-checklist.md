@@ -8,7 +8,7 @@ trigger_phrases:
   - "architecture smell patterns"
 importance_tier: normal
 contextType: implementation
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # SOLID and Architecture Checklist
@@ -118,7 +118,7 @@ When suggesting a refactor, include:
 
 ## 5. RELATED RESOURCES
 
-- [quick-reference.md](../references/quick-reference.md) - Baseline review flow and severity mapping.
+- [quick-reference.md](../references/quick-reference.md) - Entry index that routes to the review doctrine and the single-pass flow.
 - [security-checklist.md](./security-checklist.md) - Security and runtime risk checks.
 - [code-quality-checklist.md](./code-quality-checklist.md) - Correctness and performance checklist.
 - [removal-plan.md](./removal-plan.md) - Safe deletion and deferred migration planning.

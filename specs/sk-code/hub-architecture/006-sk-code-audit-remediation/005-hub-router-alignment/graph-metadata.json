@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment",
+  "spec_folder": "sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment",
+  "parent_id": "sk-code/hub-architecture/006-sk-code-audit-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hub router alignment",
+      "phase 5 hub router alignment",
+      "hub router alignment plan",
+      "hub router alignment tasks",
+      "hub router alignment acceptance criteria",
+      "hub router alignment goal",
+      "hub router alignment decision record",
+      "pi entry file header decision",
+      "hub router alignment implementation summary"
+    ],
+    "key_topics": [
+      "hub",
+      "router",
+      "alignment",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "decision",
+      "record",
+      "entry"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/ROUTER.md",
+      ".skilled/bin/skilled-loop-shell.sh",
+      "scratch/forced-failure.txt",
+      ".skilled/repo-rules/skill-hub-routing.md",
+      ".skilled/skills/sk-code/SKILL.md",
+      ".skilled/skills/sk-code/description.json",
+      ".skilled/skills/sk-code/mode-registry.json",
+      ".skilled/skills/sk-code/hub-router.json",
+      ".skilled/skills/sk-code/leaf-manifest.json",
+      ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
+      ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+      "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/scratch/setup-baseline.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-shell.sh",
+        "kind": "script",
+        "path": ".skilled/bin/skilled-loop-shell.sh",
+        "source": "derived"
+      },
+      {
+        "name": "forced-failure.txt",
+        "kind": "file",
+        "path": "scratch/forced-failure.txt",
+        "source": "derived"
+      },
+      {
+        "name": "skill-hub-routing.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/skill-hub-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "description.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "sk-code-setup-check.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/scripts/sk-code-setup-check.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "setup-baseline.txt",
+        "kind": "file",
+        "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/scratch/setup-baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A reader who follows hub `ROUTER.md` section 4 is sent to files that do not exist, because the prose still names the pre-split language files",
+    "created_at": "2026-11-14T12:01:53Z",
+    "last_save_at": "2026-11-14T16:47:47.959Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c544d15810b5dcb3b2da7aa21bac77854d639a495e740ab1b263a1b8fd5116e9",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "751588b84e4eec5f363bf16d989d9342b43402e673e888fba168a26b93f0f966",
+      "plan.md": "e07279791b0caeb6885f94b52a824d8c1e9a301c7fd194c1c7248e76b0c912fb",
+      "tasks.md": "b046f91a57dcec381289a11a2e0d6472a46e2c028f600e374e56b2b592982172",
+      "decision-record.md": "6dba53a5112d4a62489fae252edd790227673e2ef29b9afa970ac10ba3d937d0",
+      "implementation-summary.md": "26497db8810b3288a791cf2a6190f0de32ba355bdbc8a35a587c04041cfc5fef"
+    },
+    "last_active_at": null
+  }
+}

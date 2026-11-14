@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/006-sk-code-audit-remediation/006-skilled-packet-fixes",
+  "spec_folder": "sk-code/hub-architecture/006-sk-code-audit-remediation/006-skilled-packet-fixes",
+  "parent_id": "sk-code/hub-architecture/006-sk-code-audit-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skilled packet fixes",
+      "phase 6 skilled packet fixes",
+      "skilled packet fixes plan",
+      "skilled packet fixes tasks",
+      "skilled packet fixes acceptance criteria",
+      "skilled packet fixes goal",
+      "skilled packet fixes implementation summary"
+    ],
+    "key_topics": [
+      "skilled",
+      "packet",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "sk-code-skilled",
+      "evidence"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      "changelog/v2.2.0.0.md",
+      "scratch/failure-path.txt",
+      "scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-skilled/README.md",
+      ".skilled/skills/sk-code/sk-code-skilled/ROUTER.md",
+      "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md",
+      ".skilled/skills/sk-code/sk-code-skilled/references/python/quick-reference.md",
+      ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual-testing-playbook.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.2.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "failure-path.txt",
+        "kind": "file",
+        "path": "scratch/failure-path.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-ledger.md",
+        "kind": "doc",
+        "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md",
+        "source": "derived"
+      },
+      {
+        "name": "formatting-imports-and-coexistence.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md",
+        "source": "derived"
+      },
+      {
+        "name": "alignment-verification-automation.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/shared/alignment-verification-automation.md",
+        "source": "derived"
+      },
+      {
+        "name": "quick-reference.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/references/python/quick-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "universal-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `sk-code-skilled` packet is the evidence an agent loads for work on this framework's own code, and a reader found 15 places where it contradicts itself, cites a path that does not exist or repeats a rule in several files",
+    "created_at": "2026-11-14T12:01:54Z",
+    "last_save_at": "2026-11-14T16:12:32.580Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:da88ffad4eb89c43f7b4c2d0c665bae4c2d559206bd7b99062de7076f8e16561",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6ba695ca86cebd5ea3e6e0c7d5e9aab4dc3162c882a1cd6ad1f06d8b09c1569d",
+      "plan.md": "fa9a2570f5739e32ef7d0b9dea95400bde2e045be226182a42e0369e97dda37b",
+      "tasks.md": "44067743c6fd106ed484d9ff661a7fc77c4a826e673c02547f81f5cdbdd2888e",
+      "implementation-summary.md": "f18b9d25022c639d59d60de85a31cc008b922846ff22dcea118250ca36b78bb7"
+    },
+    "last_active_at": null
+  }
+}

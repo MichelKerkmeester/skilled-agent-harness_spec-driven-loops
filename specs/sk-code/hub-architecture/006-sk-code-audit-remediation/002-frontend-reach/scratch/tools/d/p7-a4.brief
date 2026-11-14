@@ -1,0 +1,15 @@
+TASK: insert one paragraph in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-review/SKILL.md (read lines 236 to 256 only)
+
+EDIT. Find the bullet line that starts with `- The mode writes only its PR-state cache file`. It is the last bullet under `### Extension Floors`. Do not change that bullet. Directly after it, insert one blank line and then the one line between the marker lines below. The existing blank line and the `---` divider follow the new line.
+
+<<<TEXT
+The `Write` entry in this file's `allowed-tools` exists for that cache file alone. The hub's `mode-registry.json` states the same scope in this mode's `writeScopeNote`.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'writeScopeNote' .skilled/skills/sk-code/sk-code-review/SKILL.md; echo "exit $?"
+Expected output: `1` then `exit 0`

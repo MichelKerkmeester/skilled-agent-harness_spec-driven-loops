@@ -1,0 +1,41 @@
+TASK: edit keyword arrays and two sentences in one Markdown file.
+
+FILE: .skilled/skills/sk-code/ROUTER.md (read lines 150 to 154, lines 252 to 264 and lines 514 to 517 only)
+
+PART A. Lines 253 to 263 are rows of the INTENT_SIGNALS block, one row per line. Each row keeps its name, its weight and its existing entries. Row WEB_CASCADE and row WEB_VISUAL_HIERARCHY do not change.
+EDIT 1, the line that starts with    "FRONTEND_WEB":
+  The array currently ends with "semantic html markup". Append after that last entry, inside the same array on the same line: "with css", "the stylesheet", "css file", "ui component", "frontend component", "form inputs", "form styling", "style the form"
+EDIT 2, the line that starts with    "WEB_ELEMENTS":
+  The array currently ends with "popover attribute". Append after that last entry, inside the same array on the same line: "modal dialog"
+EDIT 3, the line that starts with    "WEB_LAYOUT":
+  The array currently ends with "css stacking context". Append after that last entry, inside the same array on the same line: "responsive layout", "responsive grid", "css grid", "flexbox layout", "sticky header", "sticky navbar", "navbar sticky", "center a div", "vertically center", "center vertically", "scroll horizontally", "horizontal scroll", "mobile viewport", "media query"
+EDIT 4, the line that starts with    "WEB_A11Y":
+  The array currently ends with "wcag audit". Append after that last entry, inside the same array on the same line: "focus trap", "accessibility issues", "accessibility review"
+EDIT 5, the line that starts with    "WEB_PERF":
+  The array currently ends with "largest contentful paint". Append after that last entry, inside the same array on the same line: "improve lcp", "lcp regression", "core web vitals", "cumulative layout shift", "interaction to next paint", "lazy load images", "optimize images", "image optimization"
+EDIT 6, the line that starts with    "WEB_I18N":
+  The array currently ends with "bidirectional text". Append after that last entry, inside the same array on the same line: "rtl languages", "rtl layout", "rtl support", "i18n support"
+EDIT 7, the line that starts with    "WEB_VISUAL_VALUES":
+  Remove exactly these single-word entries from its keywords array: "padding". Keep every longer entry that contains one of those words.
+  The array currently ends with "muted text". Append after that last entry, inside the same array on the same line: "dark mode toggle", "dark mode", "poor contrast", "low contrast", "text contrast"
+EDIT 8, the line that starts with    "WEB_MOTION":
+  Remove exactly these single-word entries from its keywords array: "animation", "easing", "hover". Keep every longer entry that contains one of those words.
+  The array currently ends with "interaction states". Append after that last entry, inside the same array on the same line: "css animation", "css transition", "loading spinner", "hover animation", "hover effect"
+EDIT 9, the line that starts with    "FIGMA_TO_CODE":
+  The array currently ends with "implement a figma design". Append after that last entry, inside the same array on the same line: "figma file", "from figma"
+
+PART B, line 153. Replace:
+When a request asks about web frontend practice, or a Figma-to-code check, the hub bundles `sk-code-frontend` from request vocabulary alone:
+with:
+When a request asks about web frontend practice or a Figma-to-code check, or the work touches a stylesheet, markup or component file, the hub bundles `sk-code-frontend`:
+
+PART C, line 516. Replace:
+`sk-code-ci` and `sk-code-frontend` are the surfaces that stack detection does not select. The hub bundles both from request vocabulary alone: CI through `code-ci-aliases` and `code-ci-runtime`, and Frontend through `code-frontend-aliases` in `hub-router.json`.
+with:
+`sk-code-ci` is the one surface that stack detection does not select. The hub bundles it from request vocabulary alone, through `code-ci-aliases` and `code-ci-runtime` in `hub-router.json`. `sk-code-frontend` is reached both ways: stack detection selects it through the file markers of its `FRONTEND` block, and the hub bundles it from request vocabulary through `code-frontend-aliases`, `code-frontend-visual` and `code-frontend-review`.
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+node "/private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/be81cf85-d3a8-4817-a272-76f2cb0c8ab3/scratchpad/chk_intents.cjs" .skilled/skills/sk-code/ROUTER.md
+Expected output: 162 0 true

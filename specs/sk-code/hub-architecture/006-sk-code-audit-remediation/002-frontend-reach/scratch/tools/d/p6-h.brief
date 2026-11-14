@@ -1,0 +1,15 @@
+TASK: insert one list line into one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md (read lines 370 to 382 only)
+
+EDIT. Under the heading `### Style Guides` there are five list lines. The last one starts with `- [Config Style Guide]`. Directly after it, insert the one line between the marker lines below.
+
+<<<TEXT
+- [Rust Style Guide](../../references/rust/style-guide/overview-and-file-header.md) - split into seven topic parts
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'rust/style-guide' .skilled/skills/sk-code/sk-code-skilled/assets/checklists/universal-checklist.md; ls .skilled/skills/sk-code/sk-code-skilled/references/rust/style-guide/overview-and-file-header.md
+Expected output: a number above 0, then the path

@@ -1,0 +1,21 @@
+TASK: insert two table rows in one file, one in each of two tables.
+
+FILE: .skilled/skills/sk-code/sk-code-quality/README.md (read lines 132 to 158 only)
+
+EDIT 1. In the table under `## 5. VERIFICATION`, find the row that starts with `| README structure |`. Do not change it. Directly after it, insert the one line between the first pair of marker lines below.
+
+<<<TEXT
+| Manual playbook | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook` prints `PASS` with `violations=0 warnings=0`. The scenarios under `manual-testing-playbook/quality-gate/` run in a live session |
+TEXT>>>
+
+EDIT 2. In the table under `## 6. RELATED DOCUMENTS`, find the row that starts with ``| [`ROUTER.md`](./ROUTER.md) |``. Do not change it. Directly after it, insert the one line between the second pair of marker lines below.
+
+<<<ROW
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate the quality gate |
+ROW>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'manual-testing-playbook' .skilled/skills/sk-code/sk-code-quality/README.md; echo "exit $?"
+Expected output: `2` then `exit 0`

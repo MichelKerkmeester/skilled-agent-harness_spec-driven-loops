@@ -1,0 +1,15 @@
+TASK: replace one bullet line in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-review/references/review-core.md (read lines 249 to 261 only)
+
+EDIT. Replace the whole bullet line that starts with ``- List each checklist by its `file` value`` with the one line between the marker lines below.
+
+<<<TEXT
+- List each checklist by its `file` value in the resolver's output, in the order the files first reach it. Separate the checklist files in the `Rule sources:` group with `, `, and separate the entries within each of the other four groups with `; `.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'separate entries within one group' .skilled/skills/sk-code/sk-code-review/references/review-core.md; echo "exit $?"
+Expected output: `exit 1`

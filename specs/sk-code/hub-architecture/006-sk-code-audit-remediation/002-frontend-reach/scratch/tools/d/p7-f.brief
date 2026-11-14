@@ -1,0 +1,11 @@
+TASK: insert one divider in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md (read lines 13 to 23 only)
+
+EDIT. Line 17 starts with `A finding names one site;`, line 18 is blank and line 19 is `## 1. OVERVIEW`. Insert two new lines between line 18 and line 19: a line holding exactly `---`, then a blank line. Afterwards line 19 is `---`, line 20 is blank and line 21 is `## 1. OVERVIEW`.
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+sed -n '19p;21p' .skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md
+Expected output: `---` then `## 1. OVERVIEW`

@@ -1,0 +1,13 @@
+TASK: insert one sentence into one line of one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md (read lines 130 to 142 only)
+
+EDIT. One line starts with two spaces and then `The wrapper scans repository content only: the files git tracks`. In that line, replace the literal text
+stay out of a gate they can never pass. It exits 0 on a clean tree
+with the literal text
+stay out of a gate they can never pass. When Git is missing or the hub is not a repository, the orphan-doc walk keeps the full walked list. It exits 0 on a clean tree
+Keep the rest of the line byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'full walked list' .skilled/skills/sk-code/sk-code-skilled/SKILL.md
+Expected output: `1`

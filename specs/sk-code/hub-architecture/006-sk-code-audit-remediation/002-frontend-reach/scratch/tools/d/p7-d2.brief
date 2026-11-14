@@ -1,0 +1,13 @@
+TASK: one literal replacement in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-review/ROUTER.md (read the line that starts with `ON_DEMAND_KEYWORDS = [` and the two lines around it only)
+
+EDIT. In the line that starts with `ON_DEMAND_KEYWORDS = [`, replace the literal text
+"read-only only", "underrepresented", "scope correctly"]
+with the literal text
+"read-only only"]
+Keep the rest of that line byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'underrepresented|scope correctly' .skilled/skills/sk-code/sk-code-review/ROUTER.md; echo "exit $?"
+Expected output: `exit 1`

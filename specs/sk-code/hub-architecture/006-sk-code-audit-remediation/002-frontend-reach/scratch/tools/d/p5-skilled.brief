@@ -1,0 +1,15 @@
+TASK: replace one sentence in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md (read lines 176 to 186 only)
+
+EDIT. Replace the whole line that starts with `The MCP server checklist, ` and ends with `load it by judgment when your target is MCP server source.` with the one line between the marker lines below.
+
+<<<TEXT
+The MCP server checklist, `assets/checklists/mcp-server-authoring.md`, has no path to declare, so no row below names it. Load it when the target is MCP server source: a file that defines an MCP server, registers its tools or sets how it starts. The hub `ROUTER.md` §4 states this rule once.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'by judgment' .skilled/skills/sk-code/sk-code-skilled/SKILL.md; echo "exit $?"; rg -c 'a file that defines an MCP server, registers its tools or sets how it starts' .skilled/skills/sk-code/sk-code-skilled/SKILL.md
+Expected output: `exit 1` then `1`

@@ -1,0 +1,13 @@
+TASK: replace one sentence in one file.
+
+FILE: .skilled/skills/sk-code/changelog/v3.12.0.0.md (read lines 22 to 34 only)
+
+EDIT. In the bullet that starts with `- **The setup battery passes.**`, replace the literal sentence
+The 22 Pi extension files carry a module header.
+with the literal sentence
+The drift guard skips the header rule for a one-line re-export entry file.
+Keep the rest of that bullet byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'Pi extension files carry' .skilled/skills/sk-code/changelog/v3.12.0.0.md; echo "exit $?"; rg -c 'one-line re-export entry file' .skilled/skills/sk-code/changelog/v3.12.0.0.md
+Expected output: `exit 1` then `1`

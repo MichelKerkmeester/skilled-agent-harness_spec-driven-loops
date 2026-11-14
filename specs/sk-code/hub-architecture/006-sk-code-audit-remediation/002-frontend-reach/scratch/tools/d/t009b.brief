@@ -1,0 +1,22 @@
+TASK: replace one sentence in each of three Markdown files.
+
+FILE 1: .skilled/skills/sk-code/SKILL.md (read lines 48 to 51 only). Line 50. Replace the ending:
+and motion and interaction guidance, bundled from request vocabulary alone.
+with:
+and motion and interaction guidance, selected by its `FRONTEND` file markers or bundled from request vocabulary.
+
+FILE 2: .skilled/skills/sk-code/shared/references/phase-detection.md (read lines 38 to 40 only). Line 39. Replace:
+It returns SKILLED or UNKNOWN and never `sk-code-ci` or `sk-code-frontend`, which the hub bundles from request vocabulary alone (`code-ci-aliases` and `code-ci-runtime`, and `code-frontend-aliases`, in `hub-router.json`).
+with:
+It returns FRONTEND, SKILLED or UNKNOWN and never `sk-code-ci`, which the hub bundles from request vocabulary alone (`code-ci-aliases` and `code-ci-runtime` in `hub-router.json`). The hub also bundles `sk-code-frontend` from request vocabulary (`code-frontend-aliases`, `code-frontend-visual` and `code-frontend-review`).
+
+FILE 3: .skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md (read lines 31 to 33 only). Line 32. Replace the ending:
+`sk-code-ci` and `sk-code-frontend` declare no block, because the hub bundles each from request vocabulary alone.
+with:
+`sk-code-frontend` declares a `FRONTEND` block with the `specific` role and file markers for stylesheet, markup and component files, and the hub also bundles it from request vocabulary. `sk-code-ci` declares no block, because the hub bundles it from request vocabulary alone.
+
+Change nothing else. Three files change.
+
+VERIFY (run from the repository root):
+grep -c 'sk-code-frontend` are\|sk-code-frontend`, which the hub\|guidance, bundled from request vocabulary alone' .skilled/skills/sk-code/SKILL.md .skilled/skills/sk-code/shared/references/phase-detection.md .skilled/skills/sk-code/feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md
+Expected output: each of the three lines ends with :0

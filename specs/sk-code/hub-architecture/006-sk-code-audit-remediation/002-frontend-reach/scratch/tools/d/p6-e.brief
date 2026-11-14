@@ -1,0 +1,15 @@
+TASK: replace one bullet line in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md (read lines 73 to 81 only)
+
+EDIT. Under the heading `### Line Length`, replace the line `- **Maximum**: 100 characters` with the one line between the marker lines below.
+
+<<<TEXT
+- **Maximum**: 100 characters, stricter than the shared maximum of 120 in `assets/checklists/universal-checklist.md`
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'stricter than the shared' .skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/formatting-imports-and-coexistence.md
+Expected output: `1`

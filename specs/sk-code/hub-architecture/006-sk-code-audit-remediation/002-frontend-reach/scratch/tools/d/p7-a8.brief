@@ -1,0 +1,13 @@
+TASK: one literal replacement in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-review/SKILL.md (read lines 1 to 8 only)
+
+EDIT. On line 5, replace the literal text
+version: 1.9.16.0
+with the literal text
+version: 1.9.17.0
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+sed -n 5p .skilled/skills/sk-code/sk-code-review/SKILL.md
+Expected output: `version: 1.9.17.0`
