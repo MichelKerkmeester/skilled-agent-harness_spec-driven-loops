@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin",
+  "description": "Phase 17: dsh-rc3-repin",
+  "keywords": [
+    "phase",
+    "dsh-rc3-repin"
+  ],
+  "lastUpdated": "2026-11-14T17:00:48.733Z",
+  "specId": "017",
+  "folderSlug": "dsh-rc3-repin",
+  "parentChain": [
+    "cli-external-orchestration",
+    "runtime-lifecycle",
+    "002-cli-deepseek-harness-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

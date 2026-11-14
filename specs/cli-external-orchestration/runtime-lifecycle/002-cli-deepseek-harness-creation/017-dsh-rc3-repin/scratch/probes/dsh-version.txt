@@ -1,0 +1,2 @@
+/Users/michelkerkmeester/.local/bin/dsh
+0.2.2-rc.3
