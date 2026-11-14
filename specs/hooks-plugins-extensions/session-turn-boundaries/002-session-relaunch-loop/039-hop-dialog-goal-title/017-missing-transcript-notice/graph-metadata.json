@@ -18,7 +18,8 @@
       "missing transcript notice plan",
       "missing transcript notice tasks",
       "missing transcript notice acceptance criteria",
-      "missing transcript notice goal"
+      "missing transcript notice goal",
+      "missing transcript notice implementation summary"
     ],
     "key_topics": [
       "missing",
@@ -42,10 +43,16 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "implementation-summary.md",
       ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
       ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
       ".skilled/hooks/session-relaunch/README.md",
-      ".skilled/hooks/session-relaunch/claude/README.md"
+      ".skilled/hooks/session-relaunch/claude/README.md",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      "scratch/withdraw-tests.txt",
+      "scratch/baseline.txt",
+      "scratch/final-suite.txt"
     ],
     "entities": [
       {
@@ -79,6 +86,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "stop-arm.mjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
@@ -94,6 +107,36 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "withdraw-tests.txt",
+        "kind": "file",
+        "path": "scratch/withdraw-tests.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-suite.txt",
+        "kind": "file",
+        "path": "scratch/final-suite.txt",
         "source": "derived"
       },
       {
@@ -155,47 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Measured Behavior",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "When a Claude Stop payload carries no `transcriptpath`, `stop-arm.mjs` logs `missing-transcript-path` (`claude/stop-arm.mjs:137`), stamps `deferredAt` on the pending record (`:138`) and returns",
     "created_at": "2026-11-14T11:42:56Z",
-    "last_save_at": "2026-11-14T12:03:32.029Z",
+    "last_save_at": "2026-11-14T13:05:06.627Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +210,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fa5e235944f0f46524faed8363c6c5c3c10928ebb2351f94dc510997a280b98e",
+    "source_fingerprint": "sha256:16cceec6a18418d2020364742950f88baf6546289cad4de361c456d88f625eff",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "85f768db02ffb09c13e534c340810f825fdb1e835b884317947f558966edefeb",
       "plan.md": "dc78dfcf774f5ca76d08d34c8e88fe642ec920d4489fd9ff7927065630bc2b70",
-      "tasks.md": "166f99492a0851477e00dfb93d8bf4acd0803c53b9b46e84750f9471482e805c"
+      "tasks.md": "2958ff83f95c405b71ee764606628ddaf436f434cc2e4f97dcf32c4828c2cea0",
+      "implementation-summary.md": "bdf115d06bbbdc48241d1ad57e03f7ca710dfd9f78ce6fe23b519d9810c1de8a"
     },
     "last_active_at": null
   }

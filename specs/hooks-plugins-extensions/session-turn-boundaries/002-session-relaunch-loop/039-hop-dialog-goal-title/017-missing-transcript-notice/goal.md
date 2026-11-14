@@ -8,19 +8,19 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice"
-    last_updated_at: "2026-11-14T12:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Authored the phase goal from spec.md and acceptance-criteria.md"
-    next_safe_action: "Build the phase from tasks.md after phase 16 and the operator's workspace choice"
+    last_updated_at: "2026-11-14T18:10:00Z"
+    last_updated_by: "code-agent"
+    recent_action: "Built the missing-transcript notice, red then green, with the full suite at the baseline count"
+    next_safe_action: "The orchestrator commits the four files and runs T013 against the fix commit"
     blockers: []
-    key_files: [".skilled/hooks/session-relaunch/claude/stop-arm.mjs", ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"]
+    key_files: [".skilled/hooks/session-relaunch/claude/stop-arm.mjs", ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs", ".skilled/hooks/session-relaunch/README.md", ".skilled/hooks/session-relaunch/claude/README.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-017-missing-transcript-notice"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
-      - "Does Claude show a Stop systemMessage when the payload has no transcript path? Not run live."
+      - "Does Claude show a Stop systemMessage when the payload has no transcript path? Not run live; the background-task notice relies on the same contract."
     answered_questions:
       - "Is the silent withdrawal intended? The operator answered on 2026-11-14: Keep, add a notice (Recommended)."
 ---
@@ -58,11 +58,11 @@ Frozen choices. Changing one is an amendment. Parent decisions D1 to D4 bind her
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] The red run saved in `scratch/red.txt` shows `stop-arm logs missing-transcript-path and marks the pending record deferred` failing before the source edit.
-- [ ] `env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='missing-transcript-path and marks' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs` exits 0 with `pass 1` and `fail 0`.
-- [ ] `env -u AI_SESSION_CHILD -u OPENCODE_DB node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs` exits 0 with `fail 0` and the test count saved in `scratch/baseline.txt`.
-- [ ] `rg -c 'could not arm the hop because this Stop carried no transcript path' .skilled/hooks/session-relaunch/claude/stop-arm.mjs` prints 1, and `rg -c 'no transcript path' .skilled/hooks/session-relaunch/README.md .skilled/hooks/session-relaunch/claude/README.md` prints a count for each of the two files.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice --strict` prints `RESULT: PASSED`.
+- [x] The red run saved in `scratch/red.txt` shows `stop-arm logs missing-transcript-path and marks the pending record deferred` failing before the source edit. Observed 2026-11-14: `scratch/red.txt:2` prints `✖`, `:6` `ℹ fail 1`, the assertion at `:16` reads `stdout is empty: the missing-transcript Stop printed no notice`, and `:28` `exit=1`.
+- [x] `env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='missing-transcript-path and marks' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs` exits 0 with `pass 1` and `fail 0`. Observed 2026-11-14: `scratch/green.txt:2` prints `✔`, `:3` `ℹ tests 1`, `:5` `ℹ pass 1`, `:6` `ℹ fail 0` and `:11` `exit=0`.
+- [x] `env -u AI_SESSION_CHILD -u OPENCODE_DB node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs` exits 0 with `fail 0` and the test count saved in `scratch/baseline.txt`. Observed 2026-11-14: `scratch/final-suite.txt:1566` prints `ℹ tests 1553`, `:1568` `ℹ pass 1553`, `:1569` `ℹ fail 0` and `:1574` `exit=0`, equal to the 1553 baseline at `scratch/baseline.txt:1565`, `:1567` and `:1568`.
+- [x] `rg -c 'could not arm the hop because this Stop carried no transcript path' .skilled/hooks/session-relaunch/claude/stop-arm.mjs` prints 1, and `rg -c 'no transcript path' .skilled/hooks/session-relaunch/README.md .skilled/hooks/session-relaunch/claude/README.md` prints a count for each of the two files. Observed 2026-11-14: printed 1 with exit 0, then 1 for each README with exit 0.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice --strict` prints `RESULT: PASSED`. Observed 2026-11-14: Errors 0, Warnings 0, `RESULT: PASSED`, exit 0, after `repair-derived.cjs --apply` reported `inspected=1 repaired=1 failed=0`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -82,7 +82,7 @@ and findings belong here.
 | Operator answer | Done | 2026-11-14, word for word: "Keep, add a notice (Recommended)" |
 | Code read | Done | 2026-11-14 at `99d197475d`: the branch logs at `stop-arm.mjs:137` and stamps at `:138`, the only `systemMessage` is at `:162`, and the test asserts an empty stdout at `claude-adapters.test.cjs:958`. The output is quoted in `spec.md` Measured Behavior |
 | Plan documents | Done | 2026-11-14: spec, plan, tasks, criteria and this goal written. `implementation-summary.md` is written after the build |
-| Build | Pending | Tasks T001 to T014 |
+| Build | Done | 2026-11-14: T001 to T012 completed, T013 deferred to the orchestrator's commit. Red `scratch/red.txt`: tests 1, pass 0, fail 1, exit 1, the failure naming the empty stdout. Green `scratch/green.txt`: tests 1, pass 1, fail 0, exit 0. Claude adapter and conformance suites: tests 115, pass 115, fail 0, exit 0. Relaunch and OpenCode plugin suites: tests 1553, pass 1553, fail 0, exit 0, the baseline count |
 | Merge and push | Pending | Parent decision D4: nothing is merged or pushed without the operator |
 
 ### Deviations and findings

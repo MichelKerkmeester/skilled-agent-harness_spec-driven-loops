@@ -955,13 +955,22 @@ test('stop-arm logs missing-transcript-path and marks the pending record deferre
   delete payload.transcript_path;
   const result = await runAdapter(sandbox, STOP_ARM_PATH, payload);
   assert.equal(result.code, 0, result.stderr);
-  assert.equal(result.stdout, '');
+  assert.notEqual(result.stdout, '', 'stdout is empty: the missing-transcript Stop printed no notice');
+  const lines = result.stdout.trim().split('\n');
+  assert.equal(lines.length, 1);
+  const notice = JSON.parse(lines[0]);
+  assert.equal(typeof notice.systemMessage, 'string');
+  assert.match(notice.systemMessage, /no transcript path/);
+  assert.match(notice.systemMessage, /next prompt withdraws/);
+  assert.equal(Object.hasOwn(notice, 'decision'), false);
   // The record is marked so a prompt withdraws it, and a Stop with no typed prompt tries again.
   const { deferredAt, ...unchanged } = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
   assert.deepEqual(unchanged, record);
   assert.ok(Number.isFinite(Date.parse(deferredAt)), deferredAt);
-  const log = fs.readFileSync(path.join(stateDir, 'relaunch.log'), 'utf8');
-  assert.match(log, /missing-transcript-path/);
+  const logLines = fs.readFileSync(path.join(stateDir, 'relaunch.log'), 'utf8')
+    .split(/\r?\n/)
+    .filter((line) => line.includes('missing-transcript-path'));
+  assert.equal(logLines.length, 1);
 });
 
 test('stop-arm arms nothing for a pending record that names no note', async (t) => {
