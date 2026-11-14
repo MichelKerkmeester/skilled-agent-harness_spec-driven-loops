@@ -756,7 +756,7 @@ test('pinned-version-required evaluates npx DSH dispatches and rejects other ver
     .filter(({ check }) => check === 'pinned-version-required');
 
   assert.deepEqual(violations(pinned), []);
-  for (const version of ['0.2.2', '0.2.2-rc.2', 'latest']) {
+  for (const version of ['0.2.2', '0.2.2-rc.1', '0.2.2-rc.2', 'latest']) {
     const command = `npx -y @deepseek-ai/dsh@${version} --profile headless --json -`;
     assert.equal(violations(command).length, 1, version);
   }

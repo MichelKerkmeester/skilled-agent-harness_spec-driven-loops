@@ -1,0 +1,15 @@
+TASK: replace one long paragraph line in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/scripts/README.md (read lines 11 to 15 only)
+
+EDIT. Line 13 is one long paragraph that starts with `` `scripts/` holds the one drift-guard entrypoint `` and ends with `` load-tier claims match `DEFAULT_RESOURCE`. `` Replace the whole of line 13 with the one line between the marker lines below.
+
+<<<TEXT
+`scripts/` holds the one drift-guard entrypoint for the `sk-code-skilled` surface. It runs four drift guards (alignment-drift, stack-folder, router-sync, doc-claims) in sequence and exits non-zero if any fails, so a completion gate never has to remember separate commands. The router-sync guard (`assets/scripts/verify-router-sync.cjs`) runs as five legs. [`alignment-verification-automation.md`](../references/shared/alignment-verification-automation.md) lists the four checks behind them, what covers each and what the orphan-doc leg does when Git is missing. The doc-claims guard (`assets/scripts/verify-doc-claims.cjs`) checks the sk-code prose: path references resolve, no retired packet name remains, every surface count matches the surface modes in `mode-registry.json` and the `ROUTER.md` load-tier claims match `DEFAULT_RESOURCE`.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'Leg 1b|leg 1b' .skilled/skills/sk-code/sk-code-skilled/scripts/README.md; echo "exit $?"; rg -c 'runs as five legs' .skilled/skills/sk-code/sk-code-skilled/scripts/README.md
+Expected output: `exit 1` then `1`

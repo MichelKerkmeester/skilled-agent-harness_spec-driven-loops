@@ -2,7 +2,7 @@
 name: cli-codex
 description: "Codex CLI executor for OpenAI-backed coding, repo analysis, PR review, web research, and cross-model validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.9.15.1
+version: 1.9.16.0
 ---
 
 # Codex CLI Orchestrator - Cross-AI Task Delegation
@@ -156,7 +156,7 @@ Git diff review uses the built-in subcommand (no `-p`): `codex exec review "..."
 
 ### Dispatch-Critical Gotchas
 
-The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search`, `codex mcp`, session resume/fork, `--image`, `codex cloud`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md). Five gotchas break a dispatch or make a child misreport its result. Honor them at routing time:
+The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search`, `codex mcp`, session resume/fork, `--image`, `codex cloud`), essential command examples, and troubleshooting table are in the ALWAYS-loaded [cli-reference.md](./references/cli-reference.md). Six gotchas break a dispatch or make a child misreport its result. Honor them at routing time:
 
 - **`codex exec` defaults to `--sandbox read-only`** — file-modification tasks silently no-op (the agent plans changes but cannot write them). Pass `--sandbox workspace-write`; for headless no-prompt execution use top-level `-a never` before `exec` or `-c approval_policy=never`.
 - **`--search` is a top-level flag, not an `exec` flag.** Enable live web search as `codex --search exec …`, because it precedes the subcommand.
@@ -166,6 +166,9 @@ The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search
 - **No `--reasoning-effort`, `--reasoning`, or `--quiet` flag exists** — set effort with `-c model_reasoning_effort="<level>"`; capture the last message with `-o file.txt`; capture stderr with `2>&1`.
 - **`--sandbox workspace-write` blocks local IPC sockets, so a child cannot run checks that start `tsx`.** spec-kit's `npm --prefix runtime/cli run check` fails there with `listen EPERM`, and it also fails with `TMPDIR` pointed elsewhere. It passes outside the sandbox. That was observed 2026-09-24 on codex-cli 0.156.1.
   Tell the child which checks to leave to you, run them in the orchestrating session after it returns, and read that EPERM as a sandbox limit, not a code failure.
+- **A read-only dispatch can exit 0 having read nothing.** The agent personas name Claude Code tools, and `codex exec` has only its shell. A child given an inlined persona that denies Bash, with no tool-mapping line above it (Rule 17), can conclude it has no tool it may use.
+  That was observed 2026-11-14 on codex-cli 0.167.2 with the `context` persona: the run exited 0 and its report ended `FILES READ: none`. The same prompt read its file on codex-cli 0.169.0, so the failure is intermittent.
+  Ask every read-only child to end its report with a `FILES READ:` line, and treat `FILES READ: none`, or a report that names no file, as a failed dispatch whatever the exit status.
 
 ---
 
@@ -226,6 +229,11 @@ The full flag glossary, sandbox modes, unique capabilities (`/review`, `--search
    - Resolve the persona from the ACTIVE runtime's agent directory per AGENTS.md §9 (`.skilled/agents/<name>.md`, `.claude/agents/<name>.md`, etc.), and never hardcode one runtime.
    - Map each subtask to the RIGHT agent (`code`→code, `review`→review, `design`→design, research→`deep-research`, docs→`markdown`), not to one default.
    - **Codex has no native persona surface.** `.codex/agents/*.toml` is TUI-only, and `codex exec` and `-p <profile>` load sandbox/effort config rather than a persona. So **INLINE** the persona block into the prompt payload on every dispatch, using the same in-payload pattern as the `DESIGN_DISPATCH_MANIFEST` in Rule 14, because the child cannot resolve agent paths by reference.
+   - **Put a tool-mapping line directly above the inlined persona.** The personas name Claude Code tools (Read, Grep, Glob, Bash) and Codex has only its shell, so the child must be told which shell commands stand in for them. Copy this text unchanged:
+     ```text
+     TOOL MAPPING: the persona below names tools this runtime does not have. Use your shell for them, read-only: Read = `cat` or `sed -n`, Grep = `rg`, Glob = `find` or `ls`, and `wc` for counts. A persona line that denies Bash does not forbid these read commands. Run no other command.
+     ```
+     The text names read commands only. A dispatch that writes keeps the line and states its write surface in the task, under `--sandbox workspace-write`.
    - A persona-less dispatch runs the leaf as a generic assistant, silently dropping the agent's tool-scope, verification gates, and output contract.
    Canonical contract: `../../sk-prompt/assets/cli-prompt-quality-card.md` "Persona Injection". Native precedent: `orchestrate.md` "Agent Loading Protocol". Rare exceptions (focused summary for a small-context model, pure-mechanical command) are declared at the dispatch site.
 

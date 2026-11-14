@@ -7,7 +7,7 @@ trigger_phrases:
   - "SPECKIT_AUTOPILOT_RESULT"
   - "branch-preserved speckit failure"
   - "unattended task metadata"
-version: 1.6.0.99
+version: 1.6.1.0
 ---
 
 # Speckit autopilot lifecycle
@@ -32,7 +32,7 @@ Autopilot failures and no-op exits must emit one machine-readable line prefixed 
 
 ### Branch Preservation
 
-The complete workflow asset defines the unattended sequence as branch first, propose unattended work, apply unattended work, archive in place, verify clean and merge only on clean verification. On every hard failure, the branch is preserved and merge is skipped.
+The complete workflow asset defines the unattended sequence as bind workspace, propose unattended work, apply unattended work, archive in place and verify clean. The operator chooses the workspace at startup, a worktree or the current branch, and autopilot creates a branch only with `git worktree add -b`. Autopilot never merges and never pushes: a run that passed verification reports its branch with `"merged":false` and leaves the merge to the operator. On every hard failure, the branch is preserved.
 
 ### Planning Metadata
 

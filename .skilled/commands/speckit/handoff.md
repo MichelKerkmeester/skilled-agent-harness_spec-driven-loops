@@ -38,8 +38,17 @@ If a runtime has no session-id variable, such as Devin or Cursor, run `uuidgen` 
 **Outputs:**
 
 - A handoff note at `.skilled/skills/.state/session-relaunch/handoffs/<UTC yyyymmddThhmmssZ>-<session id>.md`, with the full session id because Pi and OpenCode ids share a time-based prefix.
-- One `STATUS=` line per the exit code in Step 5: `STATUS=OK RESULT=prepared HANDOFF=<path>`, `STATUS=OK RESULT=manual HANDOFF=<path>` or `STATUS=FAIL ERROR="<reason>"`.
+- One `STATUS=` line, taken from the STATUS table below.
 - When a spec packet is bound: save continuity before `prepare` runs. The nudge asks for the note first, and either order works. Claude runs `/speckit:save`. Other runtimes pipe the save JSON to the continuity writer.
+
+**STATUS table:** the command ends with exactly one of these lines. Steps 2 and 5 name the row and do not restate it.
+
+| Row | When | Line |
+|---|---|---|
+| prepared | `prepare` exits `0` | `STATUS=OK RESULT=prepared HANDOFF=<path>` |
+| manual | `prepare` exits `3` | `STATUS=OK RESULT=manual HANDOFF=<path>` |
+| refused | `prepare` exits `2` and the refusal cannot be repaired | `STATUS=FAIL ERROR="<reason>"` |
+| save failed | The Step 2 continuity save fails | `STATUS=FAIL ERROR="continuity save failed: <reason>"` |
 
 **CLI:** `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs`
 
@@ -80,12 +89,12 @@ The automatic nudge asks for the note first and the save second.
 Both orders meet that need.
 Claude runs `/speckit:save` in its explicit full-auto mode, because the default response is a save plan that writes nothing.
 Continue only when the result reports the writer ran.
-Other runtimes pipe the save JSON to `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin --full-auto <spec-folder>`.
+Other runtimes pipe the save JSON to `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js --stdin --full-auto --session-id <id> --runtime <slug> <spec-folder>`, where `<id>` is the Step 1 session id and `<slug>` is one of the writer's own runtime values: claude, codex, opencode, pi, devin, dsh or cursor.
 Record the repo-relative packet path in `spec_folder`.
 When Gate 3 was answered D) Skip, set `spec_folder` to `none` and skip the save.
 When Gate 3 was never answered, leave `spec_folder` empty.
 
-If the save fails, stop here. Do not write the note or run `prepare`, because the receiving session would resume stale packet state. Report `STATUS=FAIL ERROR="continuity save failed: <reason>"`.
+If the save fails, stop here. Do not write the note or run `prepare`, because the receiving session would resume stale packet state. Report the `save failed` row of the STATUS table in section 2.
 
 ### Step 3: Write The Handoff Note
 
@@ -128,7 +137,7 @@ Frontmatter is flat `key: value` lines only: no nesting, no lists.
 `prepare` and `keep` set it, never you: each call writes the repo-relative directory of the packet whose `goal.md` holds the goal the session works under, and removes the field when that goal cannot be proven, so Codex notes never carry it.
 Leave it out of the note, because a value you write is replaced or removed.
 `prepare` and `keep` also own the optional `goal_ended` field, which they write when a Claude goal was met, failed or cleared and remove any value you write by hand.
-`SESSION_RELAUNCH_GOAL=0` turns the field off.
+`SESSION_RELAUNCH_GOAL=0` turns both fields off, `goal_packet` and `goal_ended` alike.
 On Cursor and Devin the manual command that `prepare` prints starts a first launch, which exports no goal packet, so a receiver there does not get the goal.
 Every section must be non-empty.
 Goal states what the work is for.
@@ -166,22 +175,22 @@ Skip this command when no deep-loop lock is held.
 node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs prepare --handoff <path> --session <session id> --runtime <runtime>
 ```
 
-Pass `--session <id>` to `prepare`. Only Claude Code can omit it and use `CLAUDE_CODE_SESSION_ID`. The `--runtime` value must be one of `claude`, `pi`, `opencode`, `codex`, `cursor` or `devin`. Outside the loop, it overrides the environment or Claude default. Inside the loop, it must match `SKILLED_LOOP_RUNTIME` or prepare exits 2. The handoff nudge passes the session id and runtime.
+Pass `--session <id>` to `prepare`. Only Claude Code can omit it and use `CLAUDE_CODE_SESSION_ID`. The `session-relaunch.cjs --runtime` value must be one of `claude`, `pi`, `opencode`, `codex`, `cursor` or `devin`, the `RUNTIMES` list in `relaunch-core.cjs`. A DSH session saves through the continuity writer, which takes `dsh` as a runtime value, but `prepare` refuses `--runtime dsh`, so a DSH session gets no relaunch record. Outside the loop, it overrides the environment or Claude default. Inside the loop, it must match `SKILLED_LOOP_RUNTIME` or prepare exits 2. The handoff nudge passes the session id and runtime.
 
 ### Step 5: Report By Exit Code
 
-- `0`: prepared. The record is pending until the runtime's arm event fires. Command-only runtimes leave it pending for the wrapper's manual command. Report `STATUS=OK RESULT=prepared HANDOFF=<path>` and stop.
+- `0`: prepared. The record is pending until the runtime's arm event fires. Command-only runtimes leave it pending for the wrapper's manual command. Report the `prepared` row of the STATUS table in section 2 and stop.
 - `2`: refused.
   Show the stderr reason verbatim.
   Fix the cause it names, then run `prepare` again.
   The cause may be an invalid note, a note owned by another session or a live shell child of the runtime process.
   A reason that starts `session relaunch is disabled` or `session relaunch is off for` means the concern is off for this runtime, inside or outside the loop, because a master or kill switch is set, the runtime's own `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` holds a falsy value, or no enable flag is set.
-  Turning it on is the operator's choice, so report `STATUS=FAIL ERROR="<reason>"` and change no flag.
-  Report `STATUS=FAIL ERROR="<reason>"` only when the refusal cannot be repaired.
+  Turning it on is the operator's choice, so report the `refused` row and change no flag.
+  Report the `refused` row only when the refusal cannot be repaired.
 - `3`: no automatic hop.
   Either the session is not running under `skilled-loop`, or the loop has reached its hop limit, in which case the CLI first prints `hop limit reached; continue in this session` and auto-compaction stays the fallback.
   Both cases print the claim command for the selected runtime.
-  Show it verbatim and report `STATUS=OK RESULT=manual HANDOFF=<path>`.
+  Show it verbatim and report the `manual` row.
   For automatic hops in later sessions, start the runtime through `skilled-loop`, or source `.skilled/bin/skilled-loop-shell.sh` from the shell profile so a plain `claude`, `pi`, `opencode`, `codex`, `devin` or `cursor-agent` launch starts under it.
 
 | Runtime | Printed command |

@@ -1,0 +1,12 @@
+$ env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='killer is gone|record read throws' .skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs
+✔ subagent-guard denies a question dialog over an armed record whose killer is gone (113.2965ms)
+✔ subagent-guard lets a question dialog through when the record read throws (79.880292ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 254.82275
+exit=0

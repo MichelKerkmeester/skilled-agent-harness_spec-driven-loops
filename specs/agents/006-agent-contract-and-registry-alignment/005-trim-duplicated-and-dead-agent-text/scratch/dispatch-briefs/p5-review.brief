@@ -1,0 +1,109 @@
+Remove text from one agent file that repeats rules the same file already states elsewhere, and
+bring its advisor block to the shared wording where the changes below say so. Every change is a
+deletion, a section renumbering that follows a deletion, or a re-wrap of the advisor block. No
+rule is reworded.
+
+The two files are the canonical file and its twin. Each has its own list of changes below,
+because the twin's text can differ in path strings. Apply each list to its own file.
+
+Files:
+1. .skilled/agents/review.md
+2. .claude/agents/review.md
+
+Do not touch the frontmatter. A commit hook raises the `version` field.
+Each change below gives the exact text to find (OLD) and the exact text that replaces it (NEW).
+The first and last lines of OLD and NEW are unchanged context lines, shown so the place is unambiguous.
+Blank lines inside OLD and NEW are part of the text. Apply every change, top to bottom.
+
+######## FILE: .skilled/agents/review.md ########
+
+Change 1, at about line 464 (OLD runs to the end of the file). Removes 31 line(s), adds 0.
+<<<<<<< OLD
+- `.skilled/agents/deep-review.md`: the separate iterative reviewer for `/deep:review`, not a delegation target.
+
+---
+
+## 14. SUMMARY
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                   THE REVIEWER: CODE QUALITY GUARDIAN                   │
+├─────────────────────────────────────────────────────────────────────────┤
+│  AUTHORITY                                                              │
+│  ├─► Read-only quality, security, and pattern review                    │
+│  ├─► The review mode's floor and lens, with the repository's overrides  │
+│  ├─► Verdict from severity; the score is advisory only                  │
+│  └─► Issue triage into P0/P1/P2 severities                              │
+│                                                                         │
+│  REVIEW MODES                                                           │
+│  ├─► PR review, pre-commit checks, and focused-file audits              │
+│  └─► Gate validation for orchestrator quality control                   │
+│                                                                         │
+│  WORKFLOW                                                               │
+│  ├─► 1. Scope changes, load the mode, resolve each file's rules         │
+│  ├─► 2. Analyze code, risks, and pattern compliance                     │
+│  ├─► 3. Categorize findings and derive the verdict                      │
+│  └─► 4. Deliver structured report ending on the status line             │
+│                                                                         │
+│  LIMITS                                                                 │
+│  ├─► No write/edit operations; analysis only                            │
+│  ├─► No house rule the mode or the repository does not declare          │
+│  └─► No pass while a P0 or an open P1 remains                           │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+======= NEW
+- `.skilled/agents/deep-review.md`: the separate iterative reviewer for `/deep:review`, not a delegation target.
+
+>>>>>>> END
+
+######## FILE: .claude/agents/review.md ########
+
+Change 1, at about line 449 (OLD runs to the end of the file). Removes 31 line(s), adds 0.
+<<<<<<< OLD
+- `.claude/agents/deep-review.md`: the separate iterative reviewer for `/deep:review`, not a delegation target.
+
+---
+
+## 14. SUMMARY
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                   THE REVIEWER: CODE QUALITY GUARDIAN                   │
+├─────────────────────────────────────────────────────────────────────────┤
+│  AUTHORITY                                                              │
+│  ├─► Read-only quality, security, and pattern review                    │
+│  ├─► The review mode's floor and lens, with the repository's overrides  │
+│  ├─► Verdict from severity; the score is advisory only                  │
+│  └─► Issue triage into P0/P1/P2 severities                              │
+│                                                                         │
+│  REVIEW MODES                                                           │
+│  ├─► PR review, pre-commit checks, and focused-file audits              │
+│  └─► Gate validation for orchestrator quality control                   │
+│                                                                         │
+│  WORKFLOW                                                               │
+│  ├─► 1. Scope changes, load the mode, resolve each file's rules         │
+│  ├─► 2. Analyze code, risks, and pattern compliance                     │
+│  ├─► 3. Categorize findings and derive the verdict                      │
+│  └─► 4. Deliver structured report ending on the status line             │
+│                                                                         │
+│  LIMITS                                                                 │
+│  ├─► No write/edit operations; analysis only                            │
+│  ├─► No house rule the mode or the repository does not declare          │
+│  └─► No pass while a P0 or an open P1 remains                           │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+======= NEW
+- `.claude/agents/deep-review.md`: the separate iterative reviewer for `/deep:review`, not a delegation target.
+
+>>>>>>> END
+
+The markers `<<<<<<< OLD`, `======= NEW` and `>>>>>>> END` are not part of any file. Never write them.
+
+Verification (run all, paste the output in the handback):
+  wc -l < .skilled/agents/review.md      # expect: 462
+  wc -w < .skilled/agents/review.md      # expect: 4341
+  wc -l < .claude/agents/review.md      # expect: 447
+  wc -w < .claude/agents/review.md      # expect: 4315
+  rg -c '^│' .skilled/agents/review.md .claude/agents/review.md      # expect: no output

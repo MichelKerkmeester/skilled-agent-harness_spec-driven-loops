@@ -8,7 +8,7 @@ trigger_phrases:
   - "figma to code review"
 importance_tier: important
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Frontend Practice
@@ -94,7 +94,7 @@ A project mode wins for its app when it declares a change to one core or web-lay
 
 ## 6. LAYERS AND TOPIC FILES
 
-Load this core, the web layer and the one topic file the change touches. Load a second topic file only when the change crosses into it.
+Load this core first. Web intents add the web layer and the one web topic file the change touches. The visual, motion and Figma intents add the files the packet router maps for them, without the web layer. Load a second topic file only when the change crosses into it.
 
 **Layers**
 

@@ -1,0 +1,29 @@
+Give each skill row in the prompt-improver agent an entry file, and stop citing a bare
+references folder. The skill's entry file names the references to read.
+
+Files (exactly two, same change in each):
+1. .skilled/agents/prompt-improver.md
+2. .claude/agents/prompt-improver.md
+
+Change A. The `### Skills` table has a header row, a separator row and two data rows. Replace
+those four lines with these four lines:
+| Skill | Integration ID | Domain | Use When | Entry File | Key Features |
+| ----- | -------------- | ------ | -------- | ---------- | ------------ |
+| `sk-prompt` | `INT-SKILL-PROMPT-IMPROVER` | Prompt engineering | High-stakes prompt improvement is needed | `.skilled/skills/sk-prompt/SKILL.md` | One-pass checklist, presets, CLEAR screening |
+| `sk-doc` | `INT-SKILL-SK-DOC` | Agent-template alignment | Agent structure or formatting must match current template conventions | `.skilled/skills/sk-doc/SKILL.md` | Canonical agent template and runtime guidance |
+
+Change B. Old line:
+- Read `.skilled/skills/sk-prompt/SKILL.md` plus the key references before composing the final prompt package.
+New line:
+- Read `.skilled/skills/sk-prompt/SKILL.md` plus the references it names for the task before composing the final prompt package.
+
+Change C. Under `## 10. RELATED RESOURCES`, these two bullets:
+- `.skilled/skills/sk-prompt/SKILL.md` — the canonical source for the checklist, skeleton and presets, and CLEAR.
+- `.skilled/skills/sk-prompt/references/` — the key references this agent reads before composing a package.
+are replaced by this single bullet:
+- `.skilled/skills/sk-prompt/SKILL.md` — the canonical source for the checklist, skeleton and presets, and CLEAR. It names the key references this agent reads before composing a package.
+
+Verification (run all, paste the output in the handback):
+  rg -n 'sk-prompt/references/' .skilled/agents/prompt-improver.md .claude/agents/prompt-improver.md   # expect: no output
+  rg -c 'Entry File' .skilled/agents/prompt-improver.md .claude/agents/prompt-improver.md               # expect: 1 for each file
+  rg -c 'sk-prompt/SKILL.md' .skilled/agents/prompt-improver.md .claude/agents/prompt-improver.md       # expect: 4 for each file

@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/006-agent-contract-and-registry-alignment",
+  "spec_folder": "agents/006-agent-contract-and-registry-alignment",
+  "parent_id": null,
+  "children_ids": [
+    "agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions",
+    "agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters",
+    "agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers",
+    "agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check",
+    "agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text",
+    "agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "agent contract and registry alignment phase parent spec",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding"
+    ],
+    "key_topics": [
+      "agent",
+      "contract",
+      "registry",
+      "alignment",
+      "phase",
+      "parent",
+      "spec",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "goal.md",
+      ".skilled/bin/agent-mirror-crosswalk.md",
+      ".skilled/agents/agent-registry.json",
+      ".skilled/agents/README.txt",
+      ".skilled/bin/sync-agent-roster.cjs",
+      ".github/workflows/agent-mirror-sync.yml",
+      ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+      ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+      ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+      "001-fix-agent-contract-contradictions/goal.md",
+      "002-agent-registry-and-generated-rosters/goal.md",
+      "003-skill-binding-through-routers/goal.md",
+      "004-agent-template-conformance-and-drift-check/goal.md",
+      "005-trim-duplicated-and-dead-agent-text/goal.md",
+      "006-codex-persona-tool-mapping/goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-crosswalk.md",
+        "kind": "doc",
+        "path": ".skilled/bin/agent-mirror-crosswalk.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-registry.json",
+        "kind": "config",
+        "path": ".skilled/agents/agent-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agent-roster.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/sync-agent-roster.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-sync.yml",
+        "kind": "config",
+        "path": ".github/workflows/agent-mirror-sync.yml",
+        "source": "derived"
+      },
+      {
+        "name": "agent-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-codex/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "cli-prompt-quality-card.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Every",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "CI",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "generated",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The eleven files in `.skilled/agents/` define how every agent in this repository behaves, and an audit on 2026-11-14 found five kinds of defect in them",
+    "created_at": "2026-11-14T11:36:20Z",
+    "last_save_at": "2026-11-14T15:05:02.882Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:f53af9de596860d0f6c0321b01ab54a2293b144375bf30b079f838361a6d7c23",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "833904aa051c5c53e50624fa942712bcb01a47d0c50749cee6716532d936a650"
+    },
+    "last_active_child_id": "agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping",
+    "last_active_at": "2026-11-14T14:16:38.674Z"
+  }
+}

@@ -2235,7 +2235,7 @@
       "command": "/speckit:complete",
       "skillId": "system-spec-kit",
       "ownerMode": "system-spec-kit",
-      "description": "End-to-end SpecKit workflow, 14+ steps. Modes :auto, :confirm, :autopilot; :with-* workflow modifiers.",
+      "description": "End-to-end SpecKit workflow, 13 steps. Modes :auto, :confirm, :autopilot; :with-* workflow modifiers.",
       "ownedSignals": [
         "/speckit:complete",
         "the whole spec workflow",
@@ -2253,7 +2253,7 @@
           "order": 42,
           "id": "command-speckit-complete",
           "name": "command-speckit-complete",
-          "description": "End-to-end SpecKit workflow, 14+ steps. Modes :auto, :confirm, :autopilot; :with-* workflow modifiers.",
+          "description": "End-to-end SpecKit workflow, 13 steps. Modes :auto, :confirm, :autopilot; :with-* workflow modifiers.",
           "keywords": [
             "/speckit:complete",
             "the whole spec workflow",
@@ -2406,7 +2406,7 @@
       "command": "/speckit:plan",
       "skillId": "system-spec-kit",
       "ownerMode": "system-spec-kit",
-      "description": "Planning workflow, 8 steps: spec through plan only. Modes :auto, :confirm, :autopilot; :with-* modifiers.",
+      "description": "Planning workflow, 7 steps: spec through plan only. Modes :auto, :confirm, :autopilot; :with-* modifiers.",
       "ownedSignals": [
         "/speckit:plan",
         "write a spec first",
@@ -2425,7 +2425,7 @@
           "order": 45,
           "id": "command-speckit-plan",
           "name": "command-speckit-plan",
-          "description": "Planning workflow, 8 steps: spec through plan only. Modes :auto, :confirm, :autopilot; :with-* modifiers.",
+          "description": "Planning workflow, 7 steps: spec through plan only. Modes :auto, :confirm, :autopilot; :with-* modifiers.",
           "keywords": [
             "/speckit:plan",
             "write a spec first",

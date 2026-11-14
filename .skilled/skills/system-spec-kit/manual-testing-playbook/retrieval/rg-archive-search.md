@@ -1,7 +1,7 @@
 ---
 title: "494 -- Ripgrep archive search"
 description: "This scenario validates archive-aware search for `494`. It focuses on rg-wrapper.mjs leaving archived packets out by default and, with --include-archive, marking each archived hit and listing matching archived metadata files."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # 494 -- Ripgrep archive search
@@ -88,7 +88,15 @@ Search the demo specs for "ledger reconciliation" with rg-wrapper.mjs, first wit
    echo "ARCHIVE_COUNT_EXIT=$?"
    ```
 
-7. Remove the scratch directory.
+7. Run the path recipe with `--include-archive` and `--json`, and print the three fields that mark archived paths.
+
+   ```bash
+   node .skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs path "ledger reconciliation" --root "$RG_ARCHIVE_DEMO" --search-root specs --include-archive --json > "$RG_ARCHIVE_DEMO/path.json"
+   echo "PATH_JSON_EXIT=$?"
+   node -e 'const r=require(process.argv[1]);console.log(JSON.stringify({includeArchive:r.includeArchive,paths:r.paths,archivedPaths:r.archivedPaths},null,2))' "$RG_ARCHIVE_DEMO/path.json"
+   ```
+
+8. Remove the scratch directory.
 
    ```bash
    rm -rf "$RG_ARCHIVE_DEMO"
@@ -167,14 +175,29 @@ Step 6 prints one JSON record and `ARCHIVE_COUNT_EXIT=0`. The record carries the
 }
 ```
 
+Step 7 prints `PATH_JSON_EXIT=0` and the record below. `paths` stays a list of plain strings with both files, and `archivedPaths` holds only the archived one.
+
+```text
+{
+  "includeArchive": true,
+  "paths": [
+    "specs/demo/001-alpha/spec.md",
+    "specs/demo/z_archive/002-old/spec.md"
+  ],
+  "archivedPaths": [
+    "specs/demo/z_archive/002-old/spec.md"
+  ]
+}
+```
+
 ### Evidence
 
-Capture the printed `RG_ARCHIVE_DEMO` path, the full output of steps 3 to 6 and each `_EXIT` line. Keep the two `command :` lines of steps 3 and 4 side by side, since the missing archive glob is the proof that the flag changed the search and not only the labels.
+Capture the printed `RG_ARCHIVE_DEMO` path, the full output of steps 3 to 7 and each `_EXIT` line. Keep the two `command :` lines of steps 3 and 4 side by side, since the missing archive glob is the proof that the flag changed the search and not only the labels.
 
 ### Pass / Fail
 
-- **Pass**: step 3 reports `paths   : 1` with no `z_archive` path and no `json    :` section, step 4 reports `paths   : 2` with the archived path marked `[archived]` and the `json    : 1 archived metadata file(s)` section, step 5 marks the archived row and leaves the live row unmarked, step 6 carries `"archived": false` and `"archived": true` on the two rows with a `jsonLane` block, and every `_EXIT` line reads `0`.
-- **Fail**: the default run returns an archived path, an archived path appears without the `[archived]` mark, a live path carries the mark, the metadata section is missing under `--include-archive`, a JSON row lacks the `archived` field, or any run exits non-zero.
+- **Pass**: step 3 reports `paths   : 1` with no `z_archive` path and no `json    :` section, step 4 reports `paths   : 2` with the archived path marked `[archived]` and the `json    : 1 archived metadata file(s)` section, step 5 marks the archived row and leaves the live row unmarked, step 6 carries `"archived": false` and `"archived": true` on the two rows with a `jsonLane` block, step 7 carries both files in `paths` as plain strings and only the archived file in `archivedPaths`, and every `_EXIT` line reads `0`.
+- **Fail**: the default run returns an archived path, an archived path appears without the `[archived]` mark, a live path carries the mark, the metadata section is missing under `--include-archive`, a JSON row lacks the `archived` field, the step 7 record lacks `archivedPaths` or lists the live file in it, or any run exits non-zero.
 
 ### Failure Triage
 
@@ -213,4 +236,4 @@ Provenance: manual only - node .skilled/skills/system-spec-kit/runtime/cli/retri
 - Playbook ID: 494
 - Canonical root source: `manual-testing-playbook.md`
 - Feature file path: `retrieval/rg-archive-search.md`
-- Destructive: No. The wrapper only reads. The scenario writes its fixture into the scratch directory step 1 created, and step 7 removes that directory.
+- Destructive: No. The wrapper only reads. The scenario writes its fixture into the scratch directory step 1 created, and step 8 removes that directory.

@@ -6,7 +6,7 @@ trigger_phrases:
   - "packet purpose across handovers"
   - "compaction packet purpose"
   - "purpose line on resume"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Packet purpose carry
@@ -55,8 +55,7 @@ Each save stores the sentence as `packet_purpose` in the continuity block. Devin
 | `runtime/cli/core/workflow.ts` | Handler | Writes `packet_purpose` into the continuity block on save. |
 | `.skilled/hooks/session-relaunch/lib/nudge.cjs` | Shared | Tells the relaunch note to open `## Goal` with the purpose line. |
 | `.skilled/commands/speckit/handoff.md` | Script | Defines the note rules, including the purpose line and the parent and goal fallbacks. |
-| `.skilled/commands/speckit/assets/speckit-resume-auto.yaml` | Script | Carries the shared purpose row for an automatic resume brief. |
-| `.skilled/commands/speckit/assets/speckit-resume-confirm.yaml` | Script | Carries the shared purpose row for a confirmed resume brief. |
+| `.skilled/commands/speckit/assets/speckit-resume.yaml` | Script | Carries the purpose row for the resume brief in both modes. |
 
 ### Validation And Tests
 

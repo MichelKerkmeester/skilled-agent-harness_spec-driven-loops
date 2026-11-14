@@ -1,0 +1,16 @@
+TASK: replace one line in each of three Markdown files.
+
+In each file below, replace the line
+- **Last validated**: 2026-11-14
+with
+- **Last validated**: pending first manual run
+
+FILE 1: .skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-reach.md (line 117)
+FILE 2: .skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-review-bundle.md (line 94)
+FILE 3: .skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-negative-probes.md (line 115)
+
+Read only the last 8 lines of each file. Change nothing else. Three files change.
+
+VERIFY (run from the repository root):
+grep -c 'pending first manual run' .skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-*.md
+Expected output: each of the three lines ends with :1

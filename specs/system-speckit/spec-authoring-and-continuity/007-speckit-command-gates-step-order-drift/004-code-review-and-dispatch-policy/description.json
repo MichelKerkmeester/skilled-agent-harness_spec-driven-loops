@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/004-code-review-and-dispatch-policy",
+  "description": "Phase 4: code-review-and-dispatch-policy",
+  "keywords": [
+    "phase",
+    "code-review-and-dispatch-policy"
+  ],
+  "lastUpdated": "2026-11-14T11:33:21.833Z",
+  "specId": "004",
+  "folderSlug": "code-review-and-dispatch-policy",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "007-speckit-command-gates-step-order-drift"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

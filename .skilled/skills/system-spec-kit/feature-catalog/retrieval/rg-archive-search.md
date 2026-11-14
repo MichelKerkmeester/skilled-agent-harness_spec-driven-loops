@@ -6,7 +6,7 @@ trigger_phrases:
   - "rg-wrapper --include-archive"
   - "search archived spec packets"
   - "archived label in ripgrep results"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Ripgrep archive search (rg-wrapper.mjs --include-archive)
@@ -25,7 +25,7 @@ Every recipe leaves `z_archive/` folders out by default, so an archived packet i
 
 `--include-archive` works with the structured, path-only and count recipes. It drops only the archive exclusion from the recipe, so the other guards and the file limit apply as before. A path counts as archived when one of its segments is exactly `z_archive`.
 
-In human output each archived path ends with `[archived]`. In JSON the report carries `includeArchive: true`, and each row in `results` and in `counts` carries `archived: true` or `archived: false`. The `paths` list of the path-only recipe stays a list of plain strings. Without the flag none of these fields appear, and the report shape is unchanged.
+In human output each archived path ends with `[archived]`. In JSON the report carries `includeArchive: true`, and each row in `results` and in `counts` carries `archived: true` or `archived: false`. The `paths` list of the path-only recipe stays a list of plain strings, and the record adds `archivedPaths`, the subset of `paths` that lie under a `z_archive` folder, empty when every listed path is live. Without the flag none of these fields appear, and the report shape is unchanged.
 
 ### Metadata lane
 

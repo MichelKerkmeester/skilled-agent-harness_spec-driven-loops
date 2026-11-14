@@ -1,0 +1,14 @@
+$ env -u AI_SESSION_CHILD -u OPENCODE_DB bash specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/scratch/rebase-sentence-check.sh
+PASS  the old rebase sentence is gone
+PASS  the new sentence names both conditions
+PASS  the skill version is 1.11.12.0
+PASS  the changelog file exists
+PASS  the changelog names 1.11.12.0
+PASS  the probe output holds four cases
+PASS  frontmatter-version verify passes
+PASS  the skill package validates
+PASS  the skill document validates
+PASS  the commit hook folder is unchanged
+
+checks: 10, failed: 0
+exit=0

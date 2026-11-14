@@ -1,0 +1,66 @@
+Depth: 1. You are dispatched by the orchestrator. This is an executable-code task: extend one
+existing Node script and its test file under `.skilled/bin/`.
+
+Files (exactly two, both exist, read both first):
+1. .skilled/bin/sync-agent-roster.cjs
+2. .skilled/bin/sync-agent-roster.vitest.ts
+Read-only input, read it too: .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md
+(its `### Required Sections` block, between two HTML comment markers).
+
+Add one more check to `--check` mode: every agent file carries the sections the agent template
+lists as required, in the template's order. Agent files drifted from the template three times
+with nothing failing.
+
+THE CHECK (check mode only; write mode is unchanged and never reads the template)
+1. Required list. Read `<root>/.skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md`.
+   The list is the lines between `<!-- REQUIRED-SECTIONS:BEGIN -->` and `<!-- REQUIRED-SECTIONS:END -->`.
+   Each non-blank line there must have the form: dash, space, backtick, title, backtick. The title
+   is the entry. The script holds no copy of the titles.
+   If the file is missing, a marker is missing, the list is empty or a line has another form:
+   print `sync-agent-roster.cjs: cannot read the required sections from <repo-relative path>: <reason>`
+   to stderr and exit 2. This is the only new exit 2.
+2. Agent headings. In each `<root>/.skilled/agents/<name>.md`, a numbered section is a line of the
+   form `## <digits>. <title>` outside a fenced code block (a line starting with three backticks
+   opens or closes a fence). `## 0b. X` is not a numbered section. Keep them in file order.
+3. A heading meets a required entry when its title starts with the entry (case-sensitive).
+   Use the first heading that meets it.
+4. Exceptions. A registry agent record may hold `templateExceptions`: an array of objects
+   `{ "section": "<required entry>", "reason": "<text>" }`. A required entry listed there is skipped
+   for that agent, for presence and for order.
+     an exception whose section is not a required entry  ->  `template exception names no required section: <name>: <section>`
+     an exception with a missing or empty reason          ->  `template exception without a reason: <name>: <section>`
+5. Problems, one line each, added to the same list the other checks use:
+     the file has no numbered section at all              ->  `agent file has no numbered sections: <name>`   (and nothing else for that file)
+     a required entry no heading meets                     ->  `missing required section: <name>: <entry>`
+     the entries that are present are not in the template's order
+                                                           ->  `required section out of order: <name>: <entry>`
+       Walk the required entries in order and keep the file position of the last one found. An
+       entry found at an earlier position than that is out of order: report it and do not advance.
+6. Put the template parsing in one helper and the per-agent comparison in another, each with a
+   comment that says why it exists. The check writes nothing.
+
+THE TESTS
+The fixture agents are bare today, so they would all fail the new check. Change `beforeEach` so the
+temp tree holds a fixture template at the path above with a three-entry list (`CORE WORKFLOW`,
+`CAPABILITY SCAN`, `OUTPUT VERIFICATION`), and so every fixture agent file, including the fixture
+`orchestrate.md`, carries those three numbered sections in that order. The seven existing tests
+must pass with their assertions unchanged.
+Add exactly five tests (names are exact):
+  it('flags a missing section')                           one agent file loses its `CAPABILITY SCAN` section: exits 1, prints `missing required section:` with the agent name and `CAPABILITY SCAN`
+  it('flags a renamed section')                           one agent file's heading becomes `## 2. ROUTING SCAN`: exits 1, prints `missing required section:` with the agent name and `CAPABILITY SCAN`
+  it('flags an out-of-order section')                     one agent file has `OUTPUT VERIFICATION` before `CAPABILITY SCAN`: exits 1, prints `required section out of order:`
+  it('accepts a section the registry excepts')            one agent file lacks `CAPABILITY SCAN` and its registry record lists it under `templateExceptions` with a reason: exits 0
+  it('exits 2 when the required list cannot be parsed')   the fixture template loses its END marker: exits 2 and stderr contains `cannot read the required sections`
+
+Exception to BANNED OPERATIONS for this brief: you may run the three verification commands below.
+
+Verification (run all, paste the output in the handback):
+  node --check .skilled/bin/sync-agent-roster.cjs; echo "exit=$?"
+      # expect: exit=0
+  .skilled/skills/system-spec-kit/node_modules/.bin/vitest run --root .skilled --config vitest.config.bin.ts bin/sync-agent-roster.vitest.ts
+      # expect: 12 passed
+  node .skilled/bin/sync-agent-roster.cjs --check; echo "exit=$?"
+      # paste everything it prints. The real agent files are not converted yet, so problems are
+      # expected here. Do NOT edit any agent file, the registry or the template, and do NOT weaken
+      # the check: list the problems under NOTES and stop.
+Code comments say why, never a spec path, packet number, task id or requirement id.

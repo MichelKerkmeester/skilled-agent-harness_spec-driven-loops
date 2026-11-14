@@ -1,0 +1,14 @@
+TASK: one literal edit in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/scripts/README.md (read lines 28 to 36 only)
+
+EDIT, line 33, the table row for `tests/verify-router-sync.test.cjs`. Replace this text inside the row:
+runs without `--checks` and proves check 2 reads the `ROUTER.md` shared-controls block.
+with:
+runs without `--checks`, proves check 2 reads the `ROUTER.md` shared-controls block and proves check 2 fails when a mirrored surface's keyword copies or a registry alias disagree with `hub-router.json`.
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'registry alias disagree' .skilled/skills/sk-code/sk-code-skilled/scripts/README.md
+Expected output: `1`

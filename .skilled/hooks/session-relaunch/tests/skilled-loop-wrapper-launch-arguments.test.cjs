@@ -5,6 +5,7 @@
 
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
+const { spawnSync } = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 const { RUNTIMES } = require('../lib/relaunch-core.cjs');
@@ -342,6 +343,36 @@ test('a hop prints and logs nothing when the wrapper file cannot be read', (t) =
     WRAPPER_MAKE_UNREADABLE_ON_INVOCATION: '1',
     WRAPPER_UNREADABLE_PATH: wrapperPath,
   });
+
+  const result = runWrapperScript(sandbox, wrapperPath, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(readRecords(recordPath).length, 2);
+  assert.doesNotMatch(result.stderr, /changed on disk/);
+  assert.doesNotMatch(readLog(sandbox), /wrapper-changed/);
+});
+
+// The loop-start read can fail while a later hop read succeeds, so the stub fails only its
+// first call. A checksum read at one end and not the other is unknown, never a change.
+test('a hop prints and logs nothing when the wrapper file could not be read at loop start', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const { wrapperPath } = installWrapperCopy(sandbox);
+  const realCksum = spawnSync('/bin/bash', ['-c', 'command -v cksum'], { encoding: 'utf8' })
+    .stdout.trim();
+  assert.notEqual(realCksum, '', 'the host resolves a real cksum for later reads');
+  const callCountPath = path.join(sandbox.root, 'cksum-calls');
+  const stubPath = path.join(sandbox.binDir, 'cksum');
+  fs.writeFileSync(stubPath, `#!/usr/bin/env bash
+set -euo pipefail
+count=0
+if [[ -f '${callCountPath}' ]]; then count=$(cat '${callCountPath}'); fi
+count=$((count + 1))
+printf '%s' "$count" > '${callCountPath}'
+# The first read is the loop-start checksum; every later read is a hop checksum.
+if [[ "$count" -eq 1 ]]; then exit 1; fi
+exec '${realCksum}' "$@"
+`, { mode: 0o755 });
 
   const result = runWrapperScript(sandbox, wrapperPath, ['claude']);
 

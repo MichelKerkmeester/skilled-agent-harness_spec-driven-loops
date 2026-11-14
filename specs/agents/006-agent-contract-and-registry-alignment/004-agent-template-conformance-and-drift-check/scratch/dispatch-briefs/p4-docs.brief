@@ -1,0 +1,24 @@
+Name the new outline check in the two places an author looks: the bin README row for the script,
+and the creation steps of the agent-authoring skill.
+
+Files (exactly two, they are different files with different changes; ignore the twin instructions in RUN CONTEXT):
+1. .skilled/bin/README.md
+2. .skilled/skills/sk-doc/sk-create-agent/SKILL.md
+Do not touch either file's frontmatter.
+
+Change A, in .skilled/bin/README.md. One table row starts with
+`| `node .skilled/bin/sync-agent-roster.cjs [--check]` | CLI |`. Inside that row, old text:
+`--check` writes nothing and exits 1 when a block or the agents directory disagrees with the registry.
+New text:
+`--check` writes nothing and exits 1 when a block or the agents directory disagrees with the registry, when an agent file cites a skill path that is not on disk, or when an agent file lacks or misorders a section the agent template lists as required and the registry records no exception for it.
+The rest of the row stays.
+
+Change B, in .skilled/skills/sk-doc/sk-create-agent/SKILL.md. In the numbered creation steps, old line:
+13. Validate markdown structure, frontmatter, runtime placement, permission consistency, and related links.
+New line:
+13. Validate markdown structure, frontmatter, runtime placement, permission consistency, and related links. Run `node .skilled/bin/sync-agent-roster.cjs --check` after adding or editing an agent file and after editing the required-sections list in `assets/agent-template.md`: it compares every agent's outline with that list.
+
+Verification (run all, paste the output in the handback):
+  rg -c 'lacks or misorders a section' .skilled/bin/README.md                                   # expect: 1
+  rg -c 'sync-agent-roster.cjs --check' .skilled/skills/sk-doc/sk-create-agent/SKILL.md        # expect: 1
+  rg -n '^version:' .skilled/skills/sk-doc/sk-create-agent/SKILL.md                             # expect: 5:version: 1.0.7.0

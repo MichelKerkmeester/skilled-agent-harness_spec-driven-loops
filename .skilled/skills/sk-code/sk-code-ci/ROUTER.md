@@ -6,7 +6,7 @@ trigger_phrases:
   - "sk-code-ci routing"
 importance_tier: normal
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -31,7 +31,7 @@ loads before an intent selects it.
 ## 2. INTENT MODEL
 
 - **`CI_WORKFLOW`** is the only intent in the packet, at weight 4.
-  - Fires on `github actions workflow`, `ci workflow`, `github actions yaml`, `workflow path filters`, `github workflow timeout`, `github workflow concurrency`, `github workflow permissions`, `required status check workflow`, `ci job`, `action to a sha`, `sha-pinned action` and `.github/workflows/`.
+  - Fires on the keywords of the `CI_WORKFLOW` row in section 3. That row holds the same set as the two CI classes of the hub's `hub-router.json`, and the router-sync guard compares them.
   - Loads `references/ci-workflow-standards.md`, `references/trigger-and-filter-rules.md`, `references/job-shape-rules.md` and `references/protected-set.md`.
   - Default resource: `references/ci-workflow-standards.md`, which a run loads before intent scoring.
 
@@ -55,7 +55,7 @@ DEFAULT_RESOURCE = [
 ]
 
 INTENT_SIGNALS = {
-    "CI_WORKFLOW": {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "ci job", "action to a sha", "sha-pinned action", ".github/workflows/"]},
+    "CI_WORKFLOW": {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "github actions permissions", "ci workflows", "ci switch", "turn off ci", ".github/workflows", "workflow concurrency", "github actions release workflow", "github actions deploy workflow", "release workflow yaml", "deploy workflow yaml", "github actions minutes", "actions minutes", "actions runner minutes", "runner minutes", "ci workflow cost", "ci cost", "reduce ci costs", "lower ci costs", "cut ci costs", "reduce our ci costs", "lower our ci costs", "ci spend", "ci bill", "ci minutes cost", "cut the ci minutes", "cut ci minutes", "reduce ci minutes", "ci pipeline cost", "ci pipeline cheaper", "ci pipelines cheaper", "cheaper ci pipeline", "ci runs cheaper", "failing ci", "failing ci pipeline", "ci failure", "ci failures", "ci is failing", "broken ci", "debug the ci", "debug ci", "cost of our ci", "make ci cheaper", "github actions bill", "github actions cost", "turn off the ci", "turn on the ci", "ci review workflow", "runner-minutes", "timeout-minutes", "paths-ignore", "pull_request_target", "permissions: contents: read", "actions/cache", "setup-bun", "fail-fast: false", "strategy matrix", "ruleset context", "trigger-index rebuild", "workflow_dispatch", "actions concurrency group", "actions cache key", "ci job", "action to a sha", "sha-pinned action"]},
 }
 
 RESOURCE_MAP = {

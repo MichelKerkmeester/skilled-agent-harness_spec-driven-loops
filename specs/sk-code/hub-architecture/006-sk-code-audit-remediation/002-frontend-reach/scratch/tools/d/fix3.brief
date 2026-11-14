@@ -1,0 +1,16 @@
+TASK: update one test expectation in one test file.
+
+FILE: .skilled/bin/tests/compiled-route-surface-hint.test.cjs (read lines 160 to 172 only)
+
+WHY: the hub registry now declares `sk-code-frontend` as a specific surface, so the compiled model lists it ahead of the surface the fixture adds.
+
+EDIT, line 163. Replace:
+  assert.deepEqual(snapshot.routingModel.surfaceDetection.specific, ['sk-code-webflow']);
+with:
+  assert.deepEqual(snapshot.routingModel.surfaceDetection.specific, ['sk-code-frontend', 'sk-code-webflow']);
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+node --test .skilled/bin/tests/compiled-route-surface-hint.test.cjs 2>&1 | grep -E '^ℹ (pass|fail)'
+Expected output: `ℹ pass 15` and `ℹ fail 0`

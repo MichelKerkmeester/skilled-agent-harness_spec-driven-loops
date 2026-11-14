@@ -1,0 +1,1623 @@
+{
+  "sessionId": "2026-11-14T08:55:56.921Z",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "status": "INITIALIZED",
+  "openFindings": [
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "An unavailable startup checksum is treated as proof that the wrapper changed",
+      "file": ".skilled/bin/skilled-loop",
+      "line": 1472,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "README treats an empty startup checksum as proof that the wrapper did not change",
+      "file": ".skilled/bin/skilled-loop",
+      "line": 1472,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 8,
+      "lastSeen": 8,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 8,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R10-P2-001",
+      "severity": "P2",
+      "title": "The feature catalog omits the new wrapper-change notice and log event",
+      "file": ".skilled/bin/skilled-loop",
+      "line": 1473,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 10,
+      "lastSeen": 10,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 10,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 3
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.6666666667000001,
+  "graphConvergenceScore": 0.893,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": [
+    {
+      "count": 12,
+      "description": "Dimension coverage (57%) is below threshold (80%). 12 gap(s) found. STOP is blocked until all required dimensions have meaningful coverage.",
+      "severity": "blocking",
+      "type": "uncovered_dimensions"
+    }
+  ],
+  "graphSignals": {
+    "dimensionCoverage": 0.5714285714285714,
+    "evidenceDensity": 5,
+    "findingStability": 1,
+    "hotspotSaturation": 1,
+    "p0ResolutionRate": 1,
+    "score": 0.893
+  },
+  "candidateCoverage": {
+    "covered": [
+      "acceptance_status_state",
+      "ambient_opencode_db_inheritance",
+      "checklist_evidence",
+      "claude_playbook_capability_alignment",
+      "claude_stop_deferred_stamp",
+      "comment_hygiene",
+      "cross_runtime_alignment",
+      "documentation_consistency",
+      "existing_finding_reverification",
+      "feature_catalog_documentation_gap",
+      "goal_ended_marker_consistency",
+      "goal_ended_value_injection",
+      "killer_timeout_test_margin",
+      "log_event_name_injection",
+      "parked_stop_record",
+      "playbook_capability",
+      "record_without_handoff",
+      "selected_spec_code_alignment",
+      "shell_argument_construction",
+      "spec_code",
+      "stop_missing_transcript_deferred_stamp",
+      "task_checkbox_state",
+      "test_quality",
+      "test_temporary_directory_cleanup",
+      "wrapper_checksum_baseline",
+      "wrapper_checksum_baseline_wording"
+    ],
+    "ruledOut": [
+      "acceptance_status_state",
+      "ambient_opencode_db_inheritance",
+      "checklist_evidence",
+      "claude_playbook_capability_alignment",
+      "claude_stop_deferred_stamp",
+      "comment_hygiene",
+      "documentation_consistency",
+      "goal_ended_marker_consistency",
+      "goal_ended_value_injection",
+      "killer_timeout_test_margin",
+      "log_event_name_injection",
+      "parked_stop_record",
+      "record_without_handoff",
+      "shell_argument_construction",
+      "spec_code",
+      "stop_missing_transcript_deferred_stamp",
+      "task_checkbox_state",
+      "test_quality",
+      "test_temporary_directory_cleanup"
+    ],
+    "deferred": [
+      "cross_runtime_alignment",
+      "goal_packet_title_provenance",
+      "handoffPath_sibling_read_boundary",
+      "pi_plugin_test_parity",
+      "playbook_capability",
+      "remaining_operator_focus",
+      "selected_spec_code_alignment",
+      "stop_adapter_state_boundary"
+    ],
+    "blocked": [
+      "feature_catalog_traceability",
+      "killer_timeout_margin",
+      "pi_opencode_adapter_claim",
+      "question_dialog_stop_ordering",
+      "sk_git_rebase_id_claim"
+    ],
+    "byBugClass": {
+      "wrapper_checksum_baseline": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "record_without_handoff": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "parked_stop_record": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "remaining_operator_focus": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "shell_argument_construction": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "log_event_name_injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "goal_ended_value_injection": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "goal_packet_title_provenance": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "handoffPath_sibling_read_boundary": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "stop_adapter_state_boundary": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "task_checkbox_state": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "acceptance_status_state": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "selected_spec_code_alignment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "cross_runtime_alignment": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "playbook_capability": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "feature_catalog_traceability": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          3
+        ]
+      },
+      "test_quality": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "comment_hygiene": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "documentation_consistency": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "runtime test execution": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "remaining traceability protocols": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "goal_ended_marker_consistency": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "question_dialog_stop_ordering": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          6
+        ]
+      },
+      "prepare_stop_state_interleaving": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          6
+        ]
+      },
+      "ambient_opencode_db_inheritance": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "test_temporary_directory_cleanup": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "pi_plugin_test_parity": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": true,
+        "blocked": false,
+        "iterations": [
+          7
+        ]
+      },
+      "killer_timeout_margin": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          7
+        ]
+      },
+      "wrapper_checksum_baseline_wording": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "claude_stop_deferred_stamp": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          8
+        ]
+      },
+      "pi_opencode_adapter_claim": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          8,
+          9
+        ]
+      },
+      "sk_git_rebase_id_claim": {
+        "covered": false,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": true,
+        "iterations": [
+          8,
+          9
+        ]
+      },
+      "checklist_evidence": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "spec_code": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          9
+        ]
+      },
+      "feature_catalog_documentation_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "claude_playbook_capability_alignment": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "killer_timeout_test_margin": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "stop_missing_transcript_deferred_stamp": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      },
+      "existing_finding_reverification": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          10
+        ]
+      }
+    }
+  },
+  "searchDebt": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs",
+        ".skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs"
+      ],
+      "bugClass": "remaining_operator_focus",
+      "disposition": "deferred",
+      "rationale": "This iteration completed the strategy-selected wrapper, record and parked-Stop focus.",
+      "evidenceRefs": [
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/spec.md:147",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/spec.md:134"
+      ],
+      "reason": "Review the remaining operator-focus surfaces in a later iteration."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
+      ],
+      "bugClass": "goal_packet_title_provenance",
+      "disposition": "deferred",
+      "rationale": "This pass established serialization boundaries but did not inspect every producer and validator.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:393",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:595"
+      ],
+      "reason": "Continue with the goal_packet and generated title producer-to-consumer chain."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
+      ],
+      "bugClass": "handoffPath_sibling_read_boundary",
+      "disposition": "deferred",
+      "rationale": "The sibling scan is new in this range, but this pass did not verify all handoffPath guards.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:632",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:393"
+      ],
+      "reason": "Inspect path resolution and caller validation before judging the read boundary."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs"
+      ],
+      "bugClass": "stop_adapter_state_boundary",
+      "disposition": "deferred",
+      "rationale": "The rendered security focus selected wrapper, core and goal-field paths.",
+      "evidenceRefs": [],
+      "reason": "Review the Claude Stop adapter environment and state path handoff."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+        ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs"
+      ],
+      "bugClass": "selected_spec_code_alignment",
+      "disposition": "deferred",
+      "rationale": "Selected behavior paths were reviewed, but the full per-row evidence mapping remains.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop:1472",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:632",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:911",
+        ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:284"
+      ],
+      "reason": "Complete the requirement-to-test crosswalk and inspect all child implementation summaries."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"
+      ],
+      "bugClass": "cross_runtime_alignment",
+      "disposition": "deferred",
+      "rationale": "The shared test contract was inspected, but runtime producers and cross-runtime documentation were not fully compared.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs:417",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1360"
+      ],
+      "reason": "Trace each runtime adapter to the shared conformance expectations and its playbook."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-005",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-git/feature-catalog/feature-catalog.md"
+      ],
+      "bugClass": "feature_catalog_traceability",
+      "disposition": "blocked",
+      "rationale": "The dispatch focus requires this overlay, but no specific catalog entry was opened.",
+      "evidenceRefs": [],
+      "reason": "No content evidence is available for a feature-catalog comparison."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md"
+      ],
+      "bugClass": "playbook_capability",
+      "disposition": "deferred",
+      "rationale": "The playbook was only spot-checked for relevant links and prerequisites.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md:978",
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md:37"
+      ],
+      "reason": "Compare changed behaviors with each automatable and live playbook scenario."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs"
+      ],
+      "bugClass": "question_dialog_stop_ordering",
+      "disposition": "blocked",
+      "rationale": "The test establishes sequential behavior only.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:284",
+        ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:313"
+      ],
+      "reason": "The guard implementation is absent from the declared review scope, so its read/lock ordering cannot be inspected."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs"
+      ],
+      "bugClass": "killer_timeout_margin",
+      "disposition": "blocked",
+      "rationale": "The changed test and range are in scope, but the timeout clock and poll implementation cannot be confirmed from this target.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:780",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:787",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:788",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:790"
+      ],
+      "reason": "The production implementation .skilled/hooks/session-relaunch/lib/killer.cjs is outside the declared review target, so the test timeout origin and post-signal grace behavior remain unknown."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs"
+      ],
+      "bugClass": "pi_plugin_test_parity",
+      "disposition": "deferred",
+      "rationale": "Runtime parity cannot be assessed without a Pi-specific target.",
+      "evidenceRefs": [
+        ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:69"
+      ],
+      "reason": "No Pi plugin test path is declared in the review scope."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md"
+      ],
+      "bugClass": "pi_opencode_adapter_claim",
+      "disposition": "blocked",
+      "rationale": "The declared target does not include the Pi/OpenCode adapter implementation.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md:78"
+      ],
+      "reason": "A future dispatch must include those implementation surfaces to confirm the playbook claims."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-003",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/sk-git/SKILL.md:322"
+      ],
+      "bugClass": "sk_git_rebase_id_claim",
+      "disposition": "blocked",
+      "rationale": "The documentation line was checked against rebase message replay, but the repository hook behavior cannot be confirmed from the declared target.",
+      "evidenceRefs": [
+        ".skilled/skills/sk-git/SKILL.md:322"
+      ],
+      "reason": "The Commit-Id hook implementation is outside the declared review target."
+    }
+  ],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs"
+      ],
+      "bugClass": "record_without_handoff",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed branch and tests match the missing-handoff contract.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1302",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1028",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1041"
+      ],
+      "reason": "Reader guard and focused cases were inspected."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"
+      ],
+      "bugClass": "parked_stop_record",
+      "disposition": "ruled_out",
+      "rationale": "The inspected missing-transcript path and test agree on the deferral stamp.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:124",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:940"
+      ],
+      "reason": "The focused path was inspected; other operator-focus surfaces remain deferred."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "shell_argument_construction",
+      "disposition": "ruled_out",
+      "rationale": "The inspected construction sites preserve values as individual arguments.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop:426",
+        ".skilled/bin/skilled-loop:458",
+        ".skilled/bin/skilled-loop:713"
+      ],
+      "reason": "No eval or interpolated command string was present at the reviewed argument construction sites."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
+      ],
+      "bugClass": "log_event_name_injection",
+      "disposition": "ruled_out",
+      "rationale": "The event is fixed and field values cannot add whitespace-delimited lines at this sink.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop:1475",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1732"
+      ],
+      "reason": "The event argument is literal and appendLog applies a simple-name check."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
+      ],
+      "bugClass": "goal_ended_value_injection",
+      "disposition": "ruled_out",
+      "rationale": "The persisted marker is derived from a boolean and written as a fixed value.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:982"
+      ],
+      "reason": "No external string is copied into goal_ended by the reviewed writer."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/tasks.md"
+      ],
+      "bugClass": "task_checkbox_state",
+      "disposition": "ruled_out",
+      "rationale": "All task status boxes in the 14 child task files were checked; no open or blocked status appeared.",
+      "evidenceRefs": [
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/tasks.md:38",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/tasks.md:65"
+      ],
+      "reason": "No unchecked or blocked task box appeared in the packet-wide status scan."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/acceptance-criteria.md"
+      ],
+      "bugClass": "acceptance_status_state",
+      "disposition": "ruled_out",
+      "rationale": "The status scan found Met on every parsed acceptance row.",
+      "evidenceRefs": [
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/acceptance-criteria.md:54",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/acceptance-criteria.md:54"
+      ],
+      "reason": "No Not Met or non-final acceptance status appeared in the packet-wide status scan."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-001",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs:416",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:940",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:788",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1028",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:295",
+        ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:298",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2773"
+      ],
+      "bugClass": "test_quality",
+      "disposition": "ruled_out",
+      "rationale": "The changed cases make their setup, trigger, and expected state visible in the test body.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs:416",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:940",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:788",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1028",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:295",
+        ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:298",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2773"
+      ],
+      "reason": "No actionable clarity or assertion-structure defect was found in the reviewed changed ranges."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs:416",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:940",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:788",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1028",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:295",
+        ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:298"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "The added explanatory comments state durable behavior reasons.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs:416",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:940",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:788",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1028",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:295"
+      ],
+      "reason": "The changed code comment scan returned no artifact IDs or spec paths."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/README.md:112",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:53",
+        ".skilled/hooks/session-relaunch/README.md:134",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:51"
+      ],
+      "bugClass": "documentation_consistency",
+      "disposition": "ruled_out",
+      "rationale": "The docs describe the changed behavior without contradicting the inspected producer code.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop:1472",
+        ".skilled/hooks/session-relaunch/README.md:112",
+        ".skilled/hooks/session-relaunch/README.md:134"
+      ],
+      "reason": "Direct source comparison found no wording mismatch."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
+      ],
+      "bugClass": "goal_ended_marker_consistency",
+      "disposition": "ruled_out",
+      "rationale": "The inspected branches keep an ended marker separate from a carried packet.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:670",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:673",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:681",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:405"
+      ],
+      "reason": "The resolver/caller tuple in the reviewed range does not return a packet and ended=true together."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/plugins/tests/session-history-lookup.test.cjs"
+      ],
+      "bugClass": "ambient_opencode_db_inheritance",
+      "disposition": "ruled_out",
+      "rationale": "The changed test explicitly removes the ambient database name for the child process.",
+      "evidenceRefs": [
+        ".opencode/plugins/tests/session-history-lookup.test.cjs:133",
+        ".opencode/plugins/tests/session-history-lookup.test.cjs:135",
+        ".opencode/plugins/tests/session-history-lookup.test.cjs:138"
+      ],
+      "reason": "The fixture child environment excludes OPENCODE_DB before the generated command runs."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs",
+        ".opencode/plugins/tests/session-history-lookup.test.cjs"
+      ],
+      "bugClass": "test_temporary_directory_cleanup",
+      "disposition": "ruled_out",
+      "rationale": "The inspected fixture cleanup paths cover success and thrown-test cleanup.",
+      "evidenceRefs": [
+        ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:86",
+        ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:91",
+        ".opencode/plugins/tests/session-history-lookup.test.cjs:36",
+        ".opencode/plugins/tests/session-history-lookup.test.cjs:37",
+        ".opencode/plugins/tests/session-history-lookup.test.cjs:110",
+        ".opencode/plugins/tests/session-history-lookup.test.cjs:112"
+      ],
+      "reason": "Cleanup is registered through finally and t.after on the scoped fixture paths."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"
+      ],
+      "bugClass": "claude_stop_deferred_stamp",
+      "disposition": "ruled_out",
+      "rationale": "The changed sentence is supported by the scoped adapter and its focused test.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md:256",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:136",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:138",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:940",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:963"
+      ],
+      "reason": "Direct source and test reads agree with the documentation."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/004-wrapper-change-notice/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/004-wrapper-change-notice/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/005-parked-record-escape/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/005-parked-record-escape/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/006-record-without-handoff/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/006-record-without-handoff/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/007-killer-test-margin/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/007-killer-test-margin/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/008-history-test-database-env/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/008-history-test-database-env/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/010-goal-ending-carry/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/010-goal-ending-carry/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/011-goal-fallback-bound/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/011-goal-fallback-bound/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/012-wrapper-notice-log/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/012-wrapper-notice-log/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/013-conformance-stamp-pin/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/013-conformance-stamp-pin/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/tasks.md"
+      ],
+      "bugClass": "checklist_evidence",
+      "disposition": "ruled_out",
+      "rationale": "No Met row without a usable evidence pointer was confirmed; source-only edge cases are explicitly documented.",
+      "evidenceRefs": [
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/acceptance-criteria.md:54",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/acceptance-criteria.md:54",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1028",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2887",
+        ".opencode/plugins/tests/session-history-lookup.test.cjs:133",
+        ".skilled/skills/sk-git/SKILL.md:322"
+      ],
+      "reason": "The packet evidence maps acceptance claims to cited run logs, focused assertions or current source lines."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+        ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs",
+        ".opencode/plugins/tests/session-history-lookup.test.cjs"
+      ],
+      "bugClass": "spec_code",
+      "disposition": "ruled_out",
+      "rationale": "The packet behavior claims found matching in-scope assertion/source evidence.",
+      "evidenceRefs": [
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/acceptance-criteria.md:54",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/acceptance-criteria.md:54",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1028",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2887",
+        ".opencode/plugins/tests/session-history-lookup.test.cjs:133",
+        ".skilled/skills/sk-git/SKILL.md:322"
+      ],
+      "reason": "Focused test and source references agree with the reviewed acceptance rows."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"
+      ],
+      "bugClass": "claude_playbook_capability_alignment",
+      "disposition": "ruled_out",
+      "rationale": "The selected Claude scenario matches its implementation and focused assertion.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md:260",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:136",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:960"
+      ],
+      "reason": "Direct source and test evidence confirm the playbook claim."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs"
+      ],
+      "bugClass": "killer_timeout_test_margin",
+      "disposition": "ruled_out",
+      "rationale": "The widened deadline leaves a usable polling margin and the parent wait remains ample.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:783",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:788",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:700"
+      ],
+      "reason": "Source timing and test wait bounds support the intended grace-period case."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"
+      ],
+      "bugClass": "stop_missing_transcript_deferred_stamp",
+      "disposition": "ruled_out",
+      "rationale": "The branch and test both confirm the pending deferral stamp.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:136",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:138",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:960"
+      ],
+      "reason": "The focused source and test confirm the required timestamp."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs"
+      ],
+      "bugClass": "record_without_handoff",
+      "disposition": "ruled_out",
+      "rationale": "The reviewed branch and tests match the missing-handoff contract.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1302",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1028",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1041"
+      ],
+      "proof": "Reader guard and focused cases were inspected."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"
+      ],
+      "bugClass": "parked_stop_record",
+      "disposition": "ruled_out",
+      "rationale": "The inspected missing-transcript path and test agree on the deferral stamp.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:124",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:940"
+      ],
+      "proof": "The focused path was inspected; other operator-focus surfaces remain deferred."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "shell_argument_construction",
+      "disposition": "ruled_out",
+      "rationale": "The inspected construction sites preserve values as individual arguments.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop:426",
+        ".skilled/bin/skilled-loop:458",
+        ".skilled/bin/skilled-loop:713"
+      ],
+      "proof": "No eval or interpolated command string was present at the reviewed argument construction sites."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
+      ],
+      "bugClass": "log_event_name_injection",
+      "disposition": "ruled_out",
+      "rationale": "The event is fixed and field values cannot add whitespace-delimited lines at this sink.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop:1475",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1732"
+      ],
+      "proof": "The event argument is literal and appendLog applies a simple-name check."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
+      ],
+      "bugClass": "goal_ended_value_injection",
+      "disposition": "ruled_out",
+      "rationale": "The persisted marker is derived from a boolean and written as a fixed value.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:982"
+      ],
+      "proof": "No external string is copied into goal_ended by the reviewed writer."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/tasks.md"
+      ],
+      "bugClass": "task_checkbox_state",
+      "disposition": "ruled_out",
+      "rationale": "All task status boxes in the 14 child task files were checked; no open or blocked status appeared.",
+      "evidenceRefs": [
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/tasks.md:38",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/tasks.md:65"
+      ],
+      "proof": "No unchecked or blocked task box appeared in the packet-wide status scan."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-003-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/acceptance-criteria.md"
+      ],
+      "bugClass": "acceptance_status_state",
+      "disposition": "ruled_out",
+      "rationale": "The status scan found Met on every parsed acceptance row.",
+      "evidenceRefs": [
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/acceptance-criteria.md:54",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/acceptance-criteria.md:54"
+      ],
+      "proof": "No Not Met or non-final acceptance status appeared in the packet-wide status scan."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-001",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs:416",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:940",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:788",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1028",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:295",
+        ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:298",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2773"
+      ],
+      "bugClass": "test_quality",
+      "disposition": "ruled_out",
+      "rationale": "The changed cases make their setup, trigger, and expected state visible in the test body.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs:416",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:940",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:788",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1028",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:295",
+        ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:298",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2773"
+      ],
+      "proof": "No actionable clarity or assertion-structure defect was found in the reviewed changed ranges."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-002",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs:416",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:940",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:788",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1028",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:295",
+        ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:298"
+      ],
+      "bugClass": "comment_hygiene",
+      "disposition": "ruled_out",
+      "rationale": "The added explanatory comments state durable behavior reasons.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs:416",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:940",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:788",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1028",
+        ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:295"
+      ],
+      "proof": "The changed code comment scan returned no artifact IDs or spec paths."
+    },
+    {
+      "iteration": 4,
+      "id": "SL-004-003",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/README.md:112",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:53",
+        ".skilled/hooks/session-relaunch/README.md:134",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:51"
+      ],
+      "bugClass": "documentation_consistency",
+      "disposition": "ruled_out",
+      "rationale": "The docs describe the changed behavior without contradicting the inspected producer code.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop:1472",
+        ".skilled/hooks/session-relaunch/README.md:112",
+        ".skilled/hooks/session-relaunch/README.md:134"
+      ],
+      "proof": "Direct source comparison found no wording mismatch."
+    },
+    {
+      "iteration": 6,
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
+      ],
+      "bugClass": "goal_ended_marker_consistency",
+      "disposition": "ruled_out",
+      "rationale": "The inspected branches keep an ended marker separate from a carried packet.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:670",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:673",
+        ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs:681",
+        ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs:405"
+      ],
+      "proof": "The resolver/caller tuple in the reviewed range does not return a packet and ended=true together."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-001",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/plugins/tests/session-history-lookup.test.cjs"
+      ],
+      "bugClass": "ambient_opencode_db_inheritance",
+      "disposition": "ruled_out",
+      "rationale": "The changed test explicitly removes the ambient database name for the child process.",
+      "evidenceRefs": [
+        ".opencode/plugins/tests/session-history-lookup.test.cjs:133",
+        ".opencode/plugins/tests/session-history-lookup.test.cjs:135",
+        ".opencode/plugins/tests/session-history-lookup.test.cjs:138"
+      ],
+      "proof": "The fixture child environment excludes OPENCODE_DB before the generated command runs."
+    },
+    {
+      "iteration": 7,
+      "id": "SL-007-002",
+      "dimension": "security",
+      "targetRefs": [
+        ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs",
+        ".opencode/plugins/tests/session-history-lookup.test.cjs"
+      ],
+      "bugClass": "test_temporary_directory_cleanup",
+      "disposition": "ruled_out",
+      "rationale": "The inspected fixture cleanup paths cover success and thrown-test cleanup.",
+      "evidenceRefs": [
+        ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:86",
+        ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs:91",
+        ".opencode/plugins/tests/session-history-lookup.test.cjs:36",
+        ".opencode/plugins/tests/session-history-lookup.test.cjs:37",
+        ".opencode/plugins/tests/session-history-lookup.test.cjs:110",
+        ".opencode/plugins/tests/session-history-lookup.test.cjs:112"
+      ],
+      "proof": "Cleanup is registered through finally and t.after on the scoped fixture paths."
+    },
+    {
+      "iteration": 8,
+      "id": "SL-008-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"
+      ],
+      "bugClass": "claude_stop_deferred_stamp",
+      "disposition": "ruled_out",
+      "rationale": "The changed sentence is supported by the scoped adapter and its focused test.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md:256",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:136",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:138",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:940",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:963"
+      ],
+      "proof": "Direct source and test reads agree with the documentation."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-001",
+      "dimension": "traceability",
+      "targetRefs": [
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/004-wrapper-change-notice/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/004-wrapper-change-notice/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/005-parked-record-escape/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/005-parked-record-escape/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/006-record-without-handoff/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/006-record-without-handoff/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/007-killer-test-margin/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/007-killer-test-margin/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/008-history-test-database-env/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/008-history-test-database-env/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/010-goal-ending-carry/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/010-goal-ending-carry/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/011-goal-fallback-bound/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/011-goal-fallback-bound/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/012-wrapper-notice-log/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/012-wrapper-notice-log/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/013-conformance-stamp-pin/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/013-conformance-stamp-pin/tasks.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/acceptance-criteria.md",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/tasks.md"
+      ],
+      "bugClass": "checklist_evidence",
+      "disposition": "ruled_out",
+      "rationale": "No Met row without a usable evidence pointer was confirmed; source-only edge cases are explicitly documented.",
+      "evidenceRefs": [
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/acceptance-criteria.md:54",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/acceptance-criteria.md:54",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1028",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2887",
+        ".opencode/plugins/tests/session-history-lookup.test.cjs:133",
+        ".skilled/skills/sk-git/SKILL.md:322"
+      ],
+      "proof": "The packet evidence maps acceptance claims to cited run logs, focused assertions or current source lines."
+    },
+    {
+      "iteration": 9,
+      "id": "SL-009-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+        ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+        ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs",
+        ".opencode/plugins/tests/session-history-lookup.test.cjs"
+      ],
+      "bugClass": "spec_code",
+      "disposition": "ruled_out",
+      "rationale": "The packet behavior claims found matching in-scope assertion/source evidence.",
+      "evidenceRefs": [
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/acceptance-criteria.md:54",
+        "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/acceptance-criteria.md:54",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1028",
+        ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2887",
+        ".opencode/plugins/tests/session-history-lookup.test.cjs:133",
+        ".skilled/skills/sk-git/SKILL.md:322"
+      ],
+      "proof": "Focused test and source references agree with the reviewed acceptance rows."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-002",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"
+      ],
+      "bugClass": "claude_playbook_capability_alignment",
+      "disposition": "ruled_out",
+      "rationale": "The selected Claude scenario matches its implementation and focused assertion.",
+      "evidenceRefs": [
+        ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md:260",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:136",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:960"
+      ],
+      "proof": "Direct source and test evidence confirm the playbook claim."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs"
+      ],
+      "bugClass": "killer_timeout_test_margin",
+      "disposition": "ruled_out",
+      "rationale": "The widened deadline leaves a usable polling margin and the parent wait remains ample.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:783",
+        ".skilled/hooks/session-relaunch/tests/killer.test.cjs:788",
+        ".skilled/hooks/session-relaunch/lib/killer.cjs:700"
+      ],
+      "proof": "Source timing and test wait bounds support the intended grace-period case."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-004",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"
+      ],
+      "bugClass": "stop_missing_transcript_deferred_stamp",
+      "disposition": "ruled_out",
+      "rationale": "The branch and test both confirm the pending deferral stamp.",
+      "evidenceRefs": [
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:136",
+        ".skilled/hooks/session-relaunch/claude/stop-arm.mjs:138",
+        ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:960"
+      ],
+      "proof": "The focused source and test confirm the required timestamp."
+    },
+    {
+      "iteration": 10,
+      "id": "SL-010-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/bin/skilled-loop"
+      ],
+      "bugClass": "existing_finding_reverification",
+      "disposition": "not_applicable",
+      "rationale": "This checks prior registry state and does not create a new finding.",
+      "evidenceRefs": [
+        ".skilled/bin/skilled-loop:1472"
+      ],
+      "proof": "R1-P2-001 is carried forward as active and remains unchanged; this re-verification is not a new bug-class finding."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "feature_catalog_documentation_gap",
+      "claude_playbook_capability_alignment",
+      "killer_timeout_test_margin",
+      "stop_missing_transcript_deferred_stamp",
+      "existing_finding_reverification"
+    ],
+    "covered": [
+      "feature_catalog_documentation_gap",
+      "claude_playbook_capability_alignment",
+      "killer_timeout_test_margin",
+      "stop_missing_transcript_deferred_stamp",
+      "existing_finding_reverification"
+    ],
+    "ruledOut": [
+      "claude_playbook_capability_alignment",
+      "killer_timeout_test_margin",
+      "stop_missing_transcript_deferred_stamp"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

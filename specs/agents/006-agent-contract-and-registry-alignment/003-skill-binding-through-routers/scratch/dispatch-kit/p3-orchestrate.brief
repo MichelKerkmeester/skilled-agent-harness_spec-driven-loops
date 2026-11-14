@@ -1,0 +1,16 @@
+Replace one placeholder path so the skill-path check can tell it is a placeholder. A path
+written `cli-X` looks like a real folder that does not exist; `cli-<mode>` is skipped by the check.
+
+Files (exactly two, same change in each):
+1. .skilled/agents/orchestrate.md
+2. .claude/agents/orchestrate.md
+
+Change A. One line contains this text:
+`.skilled/skills/cli-external-orchestration/cli-X/SKILL.md`
+Replace it with:
+`.skilled/skills/cli-external-orchestration/cli-<mode>/SKILL.md`
+Nothing else on that line changes. The words `cli-X` earlier on the same line (in "ANY `cli-X` prompt") stay.
+
+Verification (run all, paste the output in the handback):
+  rg -c 'cli-external-orchestration/cli-X/' .skilled/agents/orchestrate.md .claude/agents/orchestrate.md        # expect: no output
+  rg -c 'cli-external-orchestration/cli-<mode>/SKILL.md' .skilled/agents/orchestrate.md .claude/agents/orchestrate.md   # expect: 1 for each file

@@ -1,0 +1,15 @@
+$ env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='wrapper file' .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs
+✔ a hop says so when the wrapper file changed after the loop started (1499.372084ms)
+✔ a hop logs wrapper-changed when the wrapper file changed after the loop started (1127.897458ms)
+✔ a hop prints and logs nothing when the wrapper file cannot be read (1266.99675ms)
+✔ a hop prints and logs nothing when the wrapper file could not be read at loop start (1005.904125ms)
+✔ a hop prints no change notice when the wrapper file is unchanged (1198.672042ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6172.71875
+exit=0

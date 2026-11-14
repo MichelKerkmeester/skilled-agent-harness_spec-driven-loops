@@ -2,7 +2,7 @@
 name: system-spec-kit
 description: "Spec-folder workflow + context preservation: Levels 1-3+, validation, trigger-index, ripgrep retrieval. Required for file changes."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 2.13.0.0
+version: 2.13.1.0
 ---
 
 <!-- Keywords: spec-kit, speckit, documentation-workflow, spec-folder, template-enforcement, context-preservation, progressive-documentation, validation, trigger-index, retrieval-conventions, ripgrep-retrieval, continuity-writer, handover, opencode-goal, goal-plugin, active_goal, session-goal, importance-tiers -->
@@ -292,7 +292,7 @@ P0 blocks, P1 requires completion or approved deferral, and P2 is optional. Code
 | Gate 1 trigger lookup | `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` (exit `0` hit, `1` no-hit, `2` broken) |
 | Regenerate trigger index | `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` |
 | Free-text retrieval | The ripgrep recipes in `references/retrieval/retrieval-conventions.md` §2, scoped by the trailing positional path |
-| Next spec number | `ls -d specs/[0-9]*/ \| sed 's/.*\/\([0-9]*\)-.*/\1/' \| sort -n \| tail -1` |
+| Next spec number | `find specs/<root> specs/<root>/z_archive -mindepth 1 -maxdepth 1 -type d -name '[0-9]*' 2>/dev/null \| sed 's#.*/##' \| grep -o '^[0-9]*' \| sort -n \| tail -1 \| awk '{n=$1} END{printf "%03d\n", n+1}'`. Name one root: a track, a declared sub-track or `specs` itself. Archived packets count, as they do for `create.sh`. Without `--track`, `create.sh` also counts numbered git branches, so its number can be higher |
 | Upgrade level | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/007-feature/ --to 2` |
 | Completeness | `.skilled/skills/system-spec-kit/runtime/cli/spec/calculate-completeness.sh specs/007-feature/` |
 | Worktree isolation | `.skilled/bin/worktree-session.sh` creates a per-session git worktree with isolated `SPEC_KIT_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`. Pair with `worktree-reaper.sh` for teardown and `worktree-guard.sh` for lock enforcement |
@@ -314,6 +314,6 @@ The router discovers reference, asset and script docs dynamically.
 Start with these references: `references/workflows/quick-reference.md`, `references/templates/template-guide.md`, `references/validation/validation-rules.md`, `references/retrieval/retrieval-conventions.md`, `references/structure/grep-convention.md` and `references/memory/save-workflow.md`.
 Then load task-specific resources from `references/`, templates from `assets/` and automation from `runtime/cli/` when present.
 
-Scripts: `runtime/cli/spec/validate.sh`, `runtime/cli/spec/create.sh`, `runtime/cli/dist/continuity/generate-context.js`, `runtime/cli/spec/check-completion.sh`.
+Scripts: `runtime/cli/spec/validate.sh`, `runtime/cli/spec/create.sh`, `runtime/cli/dist/continuity/generate-context.js`, `runtime/cli/spec/check-completion.sh`, `runtime/cli/spec/relocate.mjs` (moves, renumbers and re-parents packets), `runtime/cli/spec/suggest-subtracks.mjs` (proposes a sub-track map) and `runtime/cli/spec/archive.sh` (archives and restores packets).
 
 Related skills: `sk-doc` for authored documentation quality, `sk-code` for code changes, `sk-git` for git handoff, and `system-deep-loop` for iterative research and audit (its `research` and `review` modes).

@@ -1,0 +1,52 @@
+Depth: 1. You are dispatched by the orchestrator. This is an executable-code task: extend one
+existing Node script and its test file under `.skilled/bin/`.
+
+Files (exactly two, both exist, read both first):
+1. .skilled/bin/sync-agent-roster.cjs
+2. .skilled/bin/sync-agent-roster.vitest.ts
+Read-only input, read it too: .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md
+(the lines between `<!-- ADVISOR-BLOCK:BEGIN -->` and `<!-- ADVISOR-BLOCK:END -->`).
+
+Add one more check to `--check` mode: every agent file carries the template's advisor block,
+word for word. Every agent file repeats that block because a runtime loads one agent file at a
+time, and two copies had drifted from the others with nothing failing.
+
+THE CHECK (check mode only; write mode is unchanged and never reads the template)
+1. Shared block. Read `<root>/.skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md`.
+   The block is the lines between the line whose trimmed text is `<!-- ADVISOR-BLOCK:BEGIN -->`
+   and the next line whose trimmed text is `<!-- ADVISOR-BLOCK:END -->`, markers excluded, kept
+   exactly as written. The script holds no copy of the block's words.
+   If the file cannot be read, a marker is missing or there is no non-blank line between the
+   markers: print `sync-agent-roster.cjs: cannot read the shared advisor block from <repo-relative path>: <reason>`
+   to stderr and exit 2. Follow the shape of `requiredSections()` and `unreadableRequiredSections()`.
+2. Per agent file. `<root>/.skilled/agents/<name>.md` passes when the block's lines appear in it
+   as consecutive lines, in order, each line equal to the block's line exactly (no trimming, no
+   case folding). Otherwise add one problem line to the same list the other checks use:
+     shared advisor block differs from the template: <name>
+3. Run it in the loop in `checkMode` that already calls `skillPathProblems` and `templateProblems`,
+   after those two. Read the block once, before the loop, next to `const required = requiredSections();`.
+4. Put the template parsing in one helper and the per-agent comparison in another, each with a
+   comment that says why it exists. The check writes nothing.
+
+THE TESTS
+The fixture template and the fixture agents hold no block today, so they would all fail the new
+check. Change the fixtures so that `TEMPLATE_DOC` carries the two markers with a two-line block
+between them, and every fixture agent file written in `beforeEach`, including the fixture
+`orchestrate.md`, carries those same two lines. The file `kilo.md` written inside the test
+`flags a stale README roster` stays as it is. The twelve existing tests must pass with their
+assertions unchanged.
+Add exactly one test (the name is exact):
+  it('flags a drifted shared block')    one word of the block changes in the fixture agent file `alpha.md`: exits 1 and stdout contains `shared advisor block differs from the template: alpha`
+
+Exception to BANNED OPERATIONS for this brief: you may run the three verification commands below.
+
+Verification (run all, paste the output in the handback):
+  node --check .skilled/bin/sync-agent-roster.cjs; echo "exit=$?"
+      # expect: exit=0
+  .skilled/skills/system-spec-kit/node_modules/.bin/vitest run --root .skilled --config vitest.config.bin.ts bin/sync-agent-roster.vitest.ts
+      # expect: 13 passed
+  node .skilled/bin/sync-agent-roster.cjs --check; echo "exit=$?"
+      # paste everything it prints. Two real agent files are not aligned yet, so exit=1 naming
+      # them is expected here. Do NOT edit any agent file, the registry or the template, and do
+      # NOT weaken the check: list the problems under NOTES and stop.
+Code comments say why, never a spec path, packet number, task id or requirement id.

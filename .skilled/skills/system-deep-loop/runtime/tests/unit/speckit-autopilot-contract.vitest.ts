@@ -27,12 +27,11 @@ const TERMINAL_REASON_CODES = [
   'uncertainty_blocked',
 ];
 const AUTOPILOT_SEQUENCE = [
-  'branch_first',
+  'bind_workspace',
   'propose_unattended',
   'apply_unattended',
   'archive_in_place',
   'verify_clean',
-  'merge_on_clean',
 ];
 
 // ───────────────────────────────────────────────────────────────────
@@ -84,12 +83,14 @@ describe('speckit autopilot command contract', () => {
     expect(yamlText).toContain('SPECKIT_AUTOPILOT_RESULT');
   });
 
-  it('keeps the branch-first lifecycle ordered before merge-on-clean', () => {
+  it('binds the workspace first and ends at verification with no merge step', () => {
     const yamlText = readCompleteAutoYaml();
     const positions = AUTOPILOT_SEQUENCE.map((step) => yamlText.indexOf(step));
 
     expect(positions.every((position) => position >= 0)).toBe(true);
     expect(positions).toEqual([...positions].sort((left, right) => left - right));
+    expect(yamlText).toContain('workspace_choice');
+    expect(yamlText).not.toContain('"merged":true');
   });
 
   it('requires unattended task metadata and branch-preserved failure', () => {

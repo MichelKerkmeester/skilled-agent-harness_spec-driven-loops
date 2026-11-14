@@ -6,7 +6,7 @@ trigger_phrases:
   - "resume purpose row"
   - "parent purpose row"
 id: plugins-and-hooks-packet-purpose-resume
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Packet purpose on resume
@@ -46,13 +46,13 @@ This scenario validates:
 
 ### Commands
 
-1. Confirm both resume workflows carry the same purpose rule:
+1. Confirm the resume workflow carries the purpose rule:
 
    ```bash
-   rg -n 'purpose_row:' .skilled/commands/speckit/assets/speckit-resume-auto.yaml .skilled/commands/speckit/assets/speckit-resume-confirm.yaml
+   rg -n 'purpose_row:' .skilled/commands/speckit/assets/speckit-resume.yaml
    ```
 
-   Expected: both assets carry the same `purpose_row` rule. Both name `Purpose:`, `Parent purpose (<repo-relative parent folder>):` and `Goal objective:`.
+   Expected: the asset carries one `purpose_row` rule. It names `Purpose:`, `Parent purpose (<repo-relative parent folder>):` and `Goal objective:`.
 
 2. Read the purpose source for the packet that states its own purpose:
 
@@ -100,7 +100,7 @@ Capture the exact command, the full brief and the exit status for each of the th
 1. Re-run the failing resume on its own and record the exit status. The first case that differs names the failing source rule.
 2. Confirm the packet really holds the text the case expects. Read the paragraph under `### Purpose`.
 3. Confirm the phase child sits under a phase parent with a `spec.md` and an authored purpose.
-4. Confirm the two workflow assets still carry `purpose_row`, because a missing key drops the row on every runtime.
+4. Confirm the workflow asset still carries `purpose_row`, because a missing key drops the row on every runtime.
 
 ---
 
@@ -109,8 +109,7 @@ Capture the exact command, the full brief and the exit status for each of the th
 - Root playbook: [manual-testing-playbook.md](../../manual-testing-playbook/manual-testing-playbook.md)
 - Feature catalog: [packet-purpose-carry.md](../../feature-catalog/context-preservation/packet-purpose-carry.md)
 - Purpose reader: `runtime/lib/spec/packet-purpose.ts`
-- Automatic resume workflow: `.skilled/commands/speckit/assets/speckit-resume-auto.yaml`
-- Confirm resume workflow: `.skilled/commands/speckit/assets/speckit-resume-confirm.yaml`
+- Resume workflow: `.skilled/commands/speckit/assets/speckit-resume.yaml`
 - Workflow contract test: `runtime/cli/tests/test-phase-command-workflows.js`
 
 ---

@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Gate 6 in `AGENTS.md` named five reply rules, and a session that followed it read all five around its replies",
     "created_at": "2026-11-12T07:38:04Z",
-    "last_save_at": "2026-11-12T09:00:18.318Z",
+    "last_save_at": "2026-11-14T18:49:46.645Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,14 +214,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:be944899221a1c8d1fd92945b0db9dcfadd5f6ad37913050cfc8863caefab085",
+    "source_fingerprint": "sha256:5790f0923cb769dda7ac6bd321b39027997066d88105f0bb708c11fdd4cc5b2d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "92a627011664c413c8faa164591ceb30c8401390c1364c7519d76ef97cc54f89",
       "plan.md": "5a8b08f0b110b35cfde0dd3e8d85edd63fb094a03be2ec9b130a0c3e2731fdc9",
       "tasks.md": "32887d2c49cd5736b271d5869f51f3aa548fea06c855c9524cf2e346f1b7c53e",
       "decision-record.md": "18ca6fc9b4909788470ea60d1466e02b6aa29938d103efb41acb3ad7bccc82eb",
-      "implementation-summary.md": "f21791078f654362ca77bf56a31a9f5e96ce56d4e435369b7470faad0c955bd9"
+      "implementation-summary.md": "d51685f224a4438b01a815c7d7c12dcd3e227937518f1c374f09776d5ae733c4"
     },
     "last_active_at": null
   }

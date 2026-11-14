@@ -8,7 +8,7 @@ trigger_phrases:
   - "typescript strict mode style"
 importance_tier: normal
 contextType: implementation
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # TypeScript Style Guide
@@ -33,7 +33,7 @@ Defines consistent styling rules for TypeScript files to ensure readability, mai
 
 ## 2. FILE HEADER FORMAT
 
-All TypeScript files MUST begin with a module header block identifying the module. The one exception is a `.d.ts`, `.d.mts` or `.d.cts` file the compiler emitted, which ends with a `//# sourceMappingURL=` line. A hand-written declaration file still needs the header.
+All TypeScript files MUST begin with a module header block identifying the module. One exception is a `.d.ts`, `.d.mts` or `.d.cts` file the compiler emitted, which ends with a `//# sourceMappingURL=` line. A hand-written declaration file still needs the header. The other exception is a file that holds only one `export { default } from '<path>';` line, because it is an entry point with no module body.
 
 ### Template
 

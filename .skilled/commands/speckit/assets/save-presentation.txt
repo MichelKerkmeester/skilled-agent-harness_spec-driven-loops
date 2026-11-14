@@ -25,51 +25,42 @@ Folder      <spec_folder>
 Mode        plan-only
 Route       <route_category>
 Targets     <target_1>, <target_2>
+Blockers    <blocker, or none>
+Advisories  <advisory, or none>
+Decisions   <count> pending operator answer(s), listed and not written, or none
+Orphans     <count> <session-id> for each other session with pending answers, or none
 
 Proposed edits
 - <edit summary>
 
 Follow-up
-- <apply|refresh-graph|regenerate-trigger-index|none>
+- <full-auto|regenerate-trigger-index|none>
 
 STATUS=OK ACTION=plan TARGET=<spec_folder>
 ```
 
-## 3. Apply Result Display
+## 3. Full-Auto Result Display
 
 ```text
-SPECKIT:SAVE
+SPECKIT:SAVE FULL-AUTO
 --------------------------------------------------
 Folder      <spec_folder>
 Targets     <target_1>, <target_2>, <target_3>
-
-Anchors
-- <anchor_1>
-- <anchor_2>
+Continuity  Wrote continuity to <pointer>
+Decisions   Wrote <n> operator decision(s) to <folder>
+Session ref session_ref skipped: <reason>
 
 Triggers
 <phrase_1> | <phrase_2> | <phrase_3>
 
-STATUS=OK TARGETS=<count> ANCHORS=<count>
+STATUS=OK TARGETS=<count>
 ```
 
-## 4. Trigger Edit Display
+The Continuity, Decisions and Session ref rows quote lines the writer printed.
+When the writer printed `Continuity fields not written: <reason>`, the Continuity row shows that line.
+Leave out the Decisions row when the writer printed no decision line, and the Session ref row when it printed no `session_ref skipped` line.
 
-```text
-SPECKIT:TRIGGERS
---------------------------------------------------
-Record      #<id> "<spec_doc_title>"
-
-Current triggers
-1. <phrase_1>
-2. <phrase_2>
-3. <phrase_3>
-
-Actions: [a] add | [r] remove number | [s] save | [b] back
-STATUS=OK ID=<id> TRIGGERS=<count>
-```
-
-## 5. Error Display
+## 4. Error Display
 
 ```text
 SPECKIT:SAVE
@@ -80,7 +71,7 @@ Recovery    <next safe action>
 STATUS=FAIL ERROR="<message>"
 ```
 
-## 6. Display Rules
+## 5. Display Rules
 
 - Keep output parseable: stable labels, one status line, no decorative menu dumps.
 - Report save quality review issues only when returned by the save script or tool.

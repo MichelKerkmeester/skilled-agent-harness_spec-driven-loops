@@ -1,0 +1,49 @@
+TASK: create one new file with exactly the content given below.
+
+FILE TO CREATE: .skilled/skills/sk-code/changelog/v3.12.0.0.md
+
+The content is everything between the two marker lines below. Write it byte for byte, with a final newline after the last line. Do not add, drop, reword or reflow anything. Write the file in one write call. Read no other file.
+
+<<<FILE
+---
+title: "sk-code v3.12.0.0, frontend requests reach the frontend surface and the router prose matches its map"
+description: "v3.12.0.0 routes plain frontend requests to sk-code-frontend, guards the frontend vocabulary copies, routes the implement doctrine and aligns the hub router's prose with its machine map."
+trigger_phrases:
+  - "sk-code v3.12.0.0"
+  - "sk-code 3.12.0.0"
+  - "hub router alignment"
+importance_tier: "normal"
+contextType: "general"
+version: 3.12.0.0
+---
+
+# v3.12.0.0, Frontend Requests Reach the Frontend Surface
+
+A frontend request in plain words used to return `defer`. The hub router's prose named files that no longer exist. Both are fixed, and the setup battery passes.
+
+> Spec folder: `specs/sk-code/hub-architecture/006-sk-code-audit-remediation`
+
+&nbsp;
+
+## What's New at a Glance
+
+- **Plain frontend requests route to `sk-code-frontend`.** A sticky navbar or a dark mode toggle now loads the frontend references. A stylesheet, markup or component file detects the `FRONTEND` surface ahead of `SKILLED`. This closes audit rows `F1` to `F4`.
+- **The frontend packet states one load rule.** sk-code-frontend v1.2.0.0 shipped with a scenario for every intent. This closes rows `F5` to `F13`.
+- **A vocabulary mismatch fails the guard.** Check 2 of `verify-router-sync.cjs` compares the frontend keywords in three places. It also fails on a registry alias no class holds. This closes row `H1`.
+- **The router prose names real files.** Section 4 of `ROUTER.md` lists each language's files and folders as they are on disk. The VERIFICATION row and the implementation tier match the machine map. This closes row `H2`.
+- **CI and frontend have their own rows.** The load tiers, the intent notes and the verification table now cover `sk-code-ci` and `sk-code-frontend`. This closes row `H3`.
+- **The implement doctrine is routed.** IMPLEMENTATION loads `shared/references/workflow-implement.md`. The file is a declared shared control. This closes row `H4`.
+- **One rule for the authoring checklists.** Each of the four opens only when the target matches its selector. The MCP server selector reads the same in three documents. This closes rows `SK-07` and `QL-09`.
+- **The setup battery passes.** The 22 Pi extension files carry a module header. The loop shell shim's strict mode sits inside the guard's window. This closes row `H5`.
+- **The pointer to another repository is gone.** Section 10 of `ROUTER.md` lists only files in this hub. This closes row `H6`.
+
+&nbsp;
+
+## Upgrade
+
+No migration required.
+FILE>>>
+
+VERIFY (run from the repository root):
+wc -l .skilled/skills/sk-code/changelog/v3.12.0.0.md
+Expected output: `37 .skilled/skills/sk-code/changelog/v3.12.0.0.md`

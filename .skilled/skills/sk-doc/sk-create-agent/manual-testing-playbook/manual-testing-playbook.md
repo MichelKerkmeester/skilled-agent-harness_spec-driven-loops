@@ -1,7 +1,7 @@
 ---
 title: "create-agent: Manual Testing Playbook"
 description: "Operator-facing reference for choosing, authoring and validating runtime agent markdown files in the create-agent workflow."
-version: 1.0.0.3
+version: 1.0.1.0
 ---
 
 # create-agent: Manual Testing Playbook
@@ -28,7 +28,7 @@ A scenario run is complete only after its `PASS`, `FAIL` or `SKIP` outcome and r
 
 ## 1. OVERVIEW
 
-This playbook tests six scenarios across three categories. The scenarios cover the decisions that make an agent a runtime component instead of reusable knowledge or a slash command. They also cover placement, permissions, body shape and validation.
+This playbook tests seven scenarios across three categories. The scenarios cover the decisions that make an agent a runtime component instead of reusable knowledge or a slash command. They also cover placement, permissions, body shape, validation and the registry record the roster check requires.
 
 ### Realistic Test Model
 
@@ -47,7 +47,7 @@ Positive scenarios check behavior the mode must handle. Negative scenarios check
 
 1. Run commands from the repository root.
 2. Identify the runtime directory before drafting. OpenCode uses `.opencode/agents/`. Claude Code uses `.claude/agents/`.
-3. Use an isolated fixture for any scenario that writes an agent file. Recovery removes the fixture after the validator run.
+3. Use an isolated fixture for any scenario that writes an agent file. Recovery removes the fixture after the validator run. `AGV-003` is the one scenario that writes under `.skilled/agents/` and edits the registry, and its last steps restore both.
 4. Confirm `python3` is available before running shared validators.
 5. Keep the shipped `SKILL.md`, references and assets unchanged during every scenario.
 
@@ -97,9 +97,9 @@ Positive scenarios check behavior the mode must handle. Negative scenarios check
 
 ### Feature Verdict Rules
 
-- `PASS`: both scenarios in the category pass.
+- `PASS`: every scenario in the category passes.
 - `FAIL`: any scenario in the category fails.
-- `SKIP`: both scenarios name the same sandbox or runtime blocker.
+- `SKIP`: every scenario in the category names the same sandbox or runtime blocker.
 
 ### Release Readiness Rule
 
@@ -207,7 +207,7 @@ Desired user-visible outcome: the user receives a Claude Code agent file that do
 
 ---
 
-## 9. BODY VALIDATION (`AGV-001..AGV-002`)
+## 9. BODY VALIDATION (`AGV-001..AGV-003`)
 
 ### AGV-001 | Required body sections
 
@@ -241,6 +241,22 @@ Desired user-visible outcome: the authority boundary stays narrow and the reason
 > **Feature File:** [AGV-002](body-validation/leaf-denies-delegation.md)
 > **Catalog:** no feature-catalog entry exists for this package.
 
+### AGV-003 | Registry record before the roster check
+
+#### Description
+Verify that a new agent under `.skilled/agents/` fails the roster check without a registry record and passes it with one.
+
+#### Scenario Contract
+Prompt: `I added a new agent file under .skilled/agents and the roster check fails. What is missing, and show me the check passing.`
+
+The mode names the registry record as the missing piece. It adds the record, rewrites the generated rosters and shows the check passing. The throwaway file and record are removed afterwards.
+
+Desired user-visible outcome: the operator sees the error without the record, `agent-roster: OK` with it and a clean tree at the end.
+
+#### Test Execution
+> **Feature File:** [AGV-003](body-validation/registry-record-before-roster-check.md)
+> **Catalog:** no feature-catalog entry exists for this package.
+
 ---
 
 ## 10. AUTOMATED TEST CROSS-REFERENCE
@@ -250,6 +266,7 @@ Desired user-visible outcome: the authority boundary stays narrow and the reason
 | `shared/scripts/validate_document.py` | Agent sections, frontmatter and links | AGV-001, AGR-001, AGR-002 |
 | `shared/scripts/extract_structure.py` | Heading structure for review | AGV-001 |
 | `shared/scripts/check_authored_name_kebab.py` | Runtime filename shape | AGR-001, AGR-002 |
+| `.skilled/bin/sync-agent-roster.cjs --check` | Agent files against the registry and the generated rosters | AGV-003 |
 
 These checks validate the authored fixture. They do not decide whether the request needs an agent or whether a leaf should delegate. Those boundaries remain manual checks.
 
@@ -267,3 +284,4 @@ This package has no feature catalog. The index below is the playbook catalog.
 | AGR-002 | Claude tools allow-list | RUNTIME CONTRACT | [AGR-002](runtime-contract/claude-tools-allow-list.md) |
 | AGV-001 | Required body sections | BODY VALIDATION | [AGV-001](body-validation/required-agent-sections.md) |
 | AGV-002 | Leaf denies delegation | BODY VALIDATION | [AGV-002](body-validation/leaf-denies-delegation.md) |
+| AGV-003 | Registry record before the roster check | BODY VALIDATION | [AGV-003](body-validation/registry-record-before-roster-check.md) |

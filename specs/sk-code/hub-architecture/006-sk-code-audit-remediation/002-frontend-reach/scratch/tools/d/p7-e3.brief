@@ -1,0 +1,15 @@
+TASK: replace one line in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-review/assets/solid-checklist.md (read the last 12 lines only)
+
+EDIT. Under the heading that ends with `RELATED RESOURCES`, replace the whole bullet line that starts with `- [quick-reference.md](../references/quick-reference.md) - ` with the one line between the marker lines below.
+
+<<<TEXT
+- [quick-reference.md](../references/quick-reference.md) - Entry index that routes to the review doctrine and the single-pass flow.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'quick-reference.md\) - Entry index' .skilled/skills/sk-code/sk-code-review/assets/solid-checklist.md; echo "exit $?"
+Expected output: `1` then `exit 0`

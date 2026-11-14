@@ -1,7 +1,7 @@
 ---
 title: "sk-code-skilled: Manual Testing Playbook"
 description: "Routing-recall corpus for the sk-code-skilled surface: one scenario per declared intent, plus the always-load shared tier, the guard exit statuses and the SKILLED surface detection the packet rests on."
-version: 1.2.2.0
+version: 1.2.4.0
 ---
 
 # sk-code-skilled: Manual Testing Playbook
@@ -483,10 +483,12 @@ than prose alone, and explains that the packet is bundled as surface evidence be
 | `scripts/tests/verify-router-sync.test.cjs` | Legs 1a, 1b, 2 and 3 against a throwaway hub, plus the `--checks` selector; does not exercise leg 4 | OC-008 |
 | `scripts/tests/run-all-drift-guards.test.cjs` | The wrapper's pass, warn and fail aggregation, including the exit-1 path | OC-008 |
 | `scripts/tests/verify-doc-claims.test.cjs` | The path, name, surface and load-tier claim checks, plus the exit-2 usage paths | OC-008 |
-| `scripts/tests/verify-router-sync-git-timeout.test.cjs` | Leg 1b's bounded `git check-ignore` | OC-008 |
+| `scripts/tests/verify-router-sync-git-timeout.test.cjs` | The bounded `git check-ignore` of leg 1b | OC-008 |
 | `scripts/tests/declared-surfaces-parity.test.cjs` | The replay library and the plugin declare the same surfaces for the live hub | OC-012 |
 | `scripts/tests/quality-checklist-map.test.cjs` | The `SKILLED` quality checklist map against the quality defaults and surface declarations | OC-007 |
 | `scripts/tests/router-stage-two-quality.test.cjs` | Stage-two intent selection for a restraint request | OC-007 |
+| `scripts/tests/router-file-resolver.test.cjs` | The resolver's verdict for a router declared in `ROUTER.md`, in `SKILL.md`, in both and in neither, plus a default-only declaration, a fenced sample and a Unicode line separator | OC-011 |
+| `scripts/tests/router-replay-lib-resolver.test.cjs` | `parseRouter` reads a router that lives only in `ROUTER.md` and refuses a skill that declares in both documents | OC-011 |
 
 Each module builds its own throwaway tree, so a failure is a real regression rather than shared state.
 

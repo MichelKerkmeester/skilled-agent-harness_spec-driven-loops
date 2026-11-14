@@ -1,0 +1,16 @@
+TASK: replace one comment sentence in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs (read lines 44 to 54 only)
+
+EDIT. Lines 46 to 49 are a four-line `//` comment above `const NON_ROUTED_ALLOWLIST`. Replace those four comment lines with the four lines between the marker lines below. Do not change the `const NON_ROUTED_ALLOWLIST` statement or anything else.
+
+<<<TEXT
+// Each surface reaches the implement, debug and verify doctrine through a symlink, so the
+// symlinked copies stay unrouted. The hub ROUTER routes the three canonical paths as shared
+// controls. Exact paths, not a folder, keep any other unrouted doc under shared/
+// reported.
+TEXT>>>
+
+VERIFY (run from the repository root):
+node --check .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs; echo "exit $?"; rg -c 'routes the three canonical paths as shared' .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs
+Expected output: `exit 0` then `1`

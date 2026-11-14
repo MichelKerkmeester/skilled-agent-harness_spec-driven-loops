@@ -1,24 +1,14 @@
-# ─────────────────────────────────────────────────────────────────
 # SMART SPECKIT: COMPLETE WORKFLOW (ONE ASSET, THREE EXECUTION MODES)
-# ─────────────────────────────────────────────────────────────────
-# YAML PREDICATE GRAMMAR CONTRACT (S7 / M11):
-# - `when:` fields that gate branch logic use the typed BooleanExpr form
-#   `{ field, op, value }` defined by
-#   `.skilled/skills/system-spec-kit/shared/predicates/boolean-expr.ts`.
-# - Legacy string literals (e.g. `folder_state == populated-folder`) are
-#   preserved under `when_legacy_literal` as diagnostic aides during
-#   migration; they must stay mechanically equivalent to the typed form.
-# - `after:` carries prose timing / narrative notes that previously bled
-#   into `when:`. `after:` is never evaluated as a predicate.
-# - Operators permitted: ==, !=, in, not_in. Boolean literals must match
-#   the uppercase TRUE/FALSE contract used by predicate normalization.
-# ─────────────────────────────────────────────────────────────────
+predicate_grammar:
+  shared_tail: "assets/speckit-lifecycle-shared.yaml#predicate_grammar"
+  shared_tail_note: "The rules for when, when_legacy_literal and after live once in the shared lifecycle include."
+
 execution_mode:
   source: "$ARGUMENTS"
   values: [auto, confirm, autopilot]
   default: confirm
-  rule: "Under confirm, execute every checkpoint block in order at the step that carries it, and apply the mode_overrides.confirm wording. Under auto or autopilot, skip every block whose applies_to is confirm and every checkpoint_confirm flag and keep the autonomous wording of this file. Under autopilot, unattended task metadata is required as the command router states."
-checkpoints: [step_1_request_analysis, step_2_pre_work_review, step_3_specification, step_4_clarification, step_5_acceptance_criteria, step_6_planning, step_7_task_breakdown, step_8_analysis, step_9_implementation_check, step_10_development, step_11_acceptance_verify, step_12_completion, step_13_save_context, step_14_handover_check, step_6_5_checkpoint_planning, step_9_5_preflight, step_10_5_checkpoint_development, step_11_5_postflight]
+  rule: "Under confirm, execute every checkpoint block in order at the step that carries it, and apply the mode_overrides.confirm wording. Under auto or autopilot, skip every block whose applies_to is confirm and every checkpoint_confirm flag and keep the autonomous wording of this file. Under autopilot, the unattended_autopilot block of this file is the contract for the workspace, the terminal result, the reason codes and the task metadata."
+checkpoints: [step_1_request_analysis, step_2_pre_work_review, step_3_specification, step_4_clarification, step_5_acceptance_criteria, step_6_planning, step_7_task_breakdown, step_8_analysis, step_9_implementation_check, step_10_development, step_11_acceptance_verify, step_12_completion, step_13_save_context]
 mode_overrides:
   confirm:
     role: "Expert Developer using Smart SpecKit with user confirmation"
@@ -33,20 +23,13 @@ mode_overrides:
     behavior: "{ if_context_found: \"Present context summary to user for confirmation\", if_no_context: \"Proceed to Step 1\" }"
     approach: "incremental_implementation_with_reviews, complete lifecycle with user-validated checkpoints"
     principle: "Execute workflow steps with user approval at each checkpoint outside child dispatch"
-    checkpoint_behavior: "Complete step \u2192 Present results \u2192 Present options \u2192 Wait for response \u2192 Proceed or modify"
+    checkpoint_behavior: "Complete the step, present the results and the options, then wait for the response. Approve marks the step complete and continues. An option that shows information (a label that starts with Review, View, Show or Check) shows it, then presents the same checkpoint again. An option that asks for a change (a label that starts with Modify, plus Address Blockers and Adjust Baseline) applies the change, reruns that step's post_write_validation when the step has one, then presents the same checkpoint again. Any other option does what its description says."
     child_dispatch_checkpoints: "When child_dispatch applies, record each checkpoint question with its first option as the default in the lineage directory and continue."
 
-# ─────────────────────────────────────────────────────────────────
 # CHECKPOINT OPTIONS
-# ─────────────────────────────────────────────────────────────────
 checkpoint_options:
-  standard:
-  - label: "Approve"
-    description: "Approve and continue to next step"
-  - label: "Review"
-    description: "Show more details"
-  - label: "Modify"
-    description: "Make changes before proceeding"
+  shared_tail: "assets/speckit-lifecycle-shared.yaml#checkpoint_options"
+  shared_tail_note: "The standard option set lives once in the shared lifecycle include. A reference such as checkpoint_options.standard resolves through this pointer."
 
 child_dispatch: "When AI_SESSION_CHILD=1 marks a non-interactive worker bound to a lineage directory, Gate 3 is pre-resolved to that directory and the worker does not ask. Interactive sessions always ask."
 
@@ -58,9 +41,7 @@ runtime_agent_path_resolution:
   default: .skilled/agents
   claude: .claude/agents
 
-# ─────────────────────────────────────────────────────────────────
 # OPERATING MODE
-# ─────────────────────────────────────────────────────────────────
 operating_mode:
   workflow: sequential_14_step
   workflow_compliance: MANDATORY
@@ -72,7 +53,6 @@ operating_mode:
     Executes the 14-step workflow without step-by-step approval.
     Supports optional chained workflows:
     - :with-research - Run research phase before planning
-    Checkpoints still pause for confirmation after optional workflows complete.
 
 unattended_autopilot:
   enabled: true
@@ -82,25 +62,37 @@ unattended_autopilot:
   compatibility:
     auto_unchanged: true
     autopilot_is_not_auto_alias: true
-    no_existing_callers_changed: true
+  workspace_choice:
+    values: [worktree, current_branch]
+    bound_by: "A pre-bound setup answer or the one startup question. After startup autopilot waits for no answer."
+    worktree: "Create the branch only with `git worktree add -b <branch> <path>`, as sk-git SKILL.md section 3 states, and run every later step inside that worktree."
+    current_branch: "Stay on the branch that is checked out. Create no branch."
+    inherited: "A run with AI_SESSION_CHILD=1, or one already inside a linked worktree, takes current_branch."
+    unbound: "With no bound workspace_choice, emit the terminal result with reason uncertainty_blocked before any write."
+    forbidden: "Never run git branch, git checkout -b, git switch -c, git merge or git push."
   terminal_result:
     output_prefix: SPECKIT_AUTOPILOT_RESULT
     schema:
       required_fields: [mode, ok, reason, branch, merged, verification]
       success_reason: null
       failure_reason_field: reason
+      success: '{"mode":"autopilot","ok":true,"reason":null,"branch":"<branch>","merged":false,"verification":"passed"}'
+      failure: '{"mode":"autopilot","ok":false,"reason":"<terminal_reason_code>","branch":"<branch>","merged":false,"verification":"<summary>"}'
     terminal_reason_codes:
       - no_eligible_tasks
       - retry_exhausted
       - verification_failed
       - uncertainty_blocked
   lifecycle_sequence:
-    - branch_first
+    - bind_workspace
     - propose_unattended
     - apply_unattended
     - archive_in_place
     - verify_clean
-    - merge_on_clean
+  sequence_note: "A workflow runs the entries its own steps implement, in this order."
+  stop_rule: "After startup no branch waits for an answer. A branch whose modes map names a default takes it. A branch that cannot continue without an answer emits the terminal result with reason uncertainty_blocked."
+  p1_rule: "An unfinished P1 item stays Unmet, the terminal result names it with reason verification_failed and the run does not report success."
+  merge_rule: "Autopilot never merges and never pushes. A run that passed verification reports its branch with merged false, and the merge is left to the operator."
   branch_preserved_failure:
     preserve_branch: true
     merge: false
@@ -108,12 +100,8 @@ unattended_autopilot:
     emit_terminal_result: true
   task_metadata_contract:
     required_fields: [agent, deps, touched-files]
+    written_by: "The workflow step whose key ends in _task_breakdown."
     missing_or_uncertain_field_reason: uncertainty_blocked
-
-development_philosophy:
-  principle: "Quality first, velocity second"
-  approach: "Complete lifecycle with validated checkpoints"
-  mandate: "Plan thoroughly, implement carefully, verify continuously, execute autonomously"
 
 optional_workflows:
   research_integration:
@@ -123,9 +111,10 @@ optional_workflows:
       smart_detect: true
       uncertainty_threshold: 60
     insert_point: "after_phase_2"
-    workflow_reference: "../deep/assets/deep-research-auto.yaml"
+    workflow_reference: ".skilled/commands/deep/assets/deep-research-auto.yaml"
     checkpoint:
       enabled: true
+      modes: { confirm: "ask the prompt below and wait", auto: "take Y, continue to Step 1 and list it under Defaults taken", autopilot: "take Y and continue to Step 1" }
       prompt: |
         WORKFLOW CHECKPOINT - Research Complete
         Research phase complete. Created: research/research.md (17 sections)
@@ -136,49 +125,10 @@ optional_workflows:
       - { key: "review", action: "show_output" }
 
   phase_decomposition:
-    enabled: true
-    trigger:
-      flag: ":with-phases"
-      smart_detect: false
-    insert_point: "before_step_1"
-    pre_workflow_steps:
-      - id: P1
-        name: Analyze Scope
-        command: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --json --recommend-phases --phase-threshold {phase_threshold} --loc {estimated_loc} --files {estimated_files}"
-        output: phase_recommendation
-      - id: P2
-        name: Define Decomposition
-        activities: ["Generate LITERAL phase names that describe the concrete work in each phase — e.g. data-model-design, api-implementation, ui-integration — NOT generic placeholders like phase-1 / phase-2 / remediation / cleanup. Names must include a specific subject token (the component or behaviour being changed).", "Define scope boundaries per phase", "Map dependencies between phases", "Define deliverables per phase"]
-        output: phase_plan
-      - id: P3
-        name: Create Folders
-        command: 'bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh "{feature_description}" --phase --phases {phase_count} --phase-names "{phase_names}" --level {parent_level}'
-        output: parent_and_child_folders
-      - id: P4
-        name: Populate Templates
-        activities: ["Load phase-parent Level template contract", "Fill parent Phase Documentation Map", "Load phase-child Level template contract", "Fill child back-references and scope boundaries", "When the parent needs a goal, author it and bind each child goal with /create:goal {parent_folder} phase-parent"]
-        output: populated_specs
-    templates:
-      phase_parent_section: Level template contract
-      phase_child_header: Level template contract
-    post_decomposition:
-      action: "Update spec_path to first child phase folder, continue with normal workflow"
-      validation: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh --recursive {parent_folder}"
-    checkpoint:
-      enabled: true
-      prompt: |
-        WORKFLOW CHECKPOINT - Phase Decomposition Complete
-        Parent: {parent_folder} | Phases: {phase_count} children created
-        Continue with first child ({first_child_folder})? [Y/n/review]
-      options:
-        - { key: "Y", action: "continue_with_first_child" }
-        - { key: "n", action: "pause" }
-        - { key: "review", action: "show_folder_tree" }
-    defaults: { phase_count: 3, phase_names: "auto-generate", parent_level: "3+" }
+    shared_tail: "assets/speckit-lifecycle-shared.yaml#phase_decomposition"
+    shared_tail_note: "The phase decomposition steps and their checkpoint live once in the shared lifecycle include."
 
-# ─────────────────────────────────────────────────────────────────
 # USER INPUTS
-# ─────────────────────────────────────────────────────────────────
 user_inputs:
   spec_folder: "[SPEC_FOLDER] - Spec folder path. Leave empty to auto-create next available."
   context: "[CONTEXT] - Background info, constraints, existing docs. Leave empty to infer."
@@ -189,14 +139,13 @@ user_inputs:
   goal_prompt_choice: "[offer|skip|set] - Optional session-goal behavior. Defaults to offer under :auto; set requires goal_objective."
   goal_objective: "[TEXT] - Objective passed to opencode_goal only when goal_prompt_choice is set."
 
-# ─────────────────────────────────────────────────────────────────
 # FIELD HANDLING
-# ─────────────────────────────────────────────────────────────────
 field_handling:
   spec_id:
     derive_from: "spec_folder path using pattern specs/{NNN}, specs/{NNN-name}, or specs/{NNN-parent}/{NNN-phase} (phase child — use parent NNN as spec_id)"
     fallback: "Extract numeric portion or use timestamp if extraction fails"
   defaults: { spec_folder_empty: "Auto-create specs/{NNN} from highest +001", context_empty: "Infer from [REQUEST], [STAGING LINK], and codebase exploration", issues_empty: "Investigate and discover during workflow", environment_empty: "Skip browser testing steps", scope_empty: "Use scope_policy.default" }
+  spec_folder_skip: "Q1 option D, Skip documentation: the run stops before step 1 and writes nothing. This command exists to write a packet, so it has no work without one."
   phase_folder_awareness:
     note: "[SPEC_FOLDER] may be a phase child path (e.g., specs/003-name/001-phase/). When Option C targets a phase child or --phase-folder is provided, spec_id derives from the parent folder NNN, not the child NNN. When Option C adds a phase to a parent that has a goal.md, give it a child goal and binding row with /create:goal <parent> phase-add. Predecessor validation required for non-first phases."
     path_pattern: "specs/{NNN-parent}/{NNN-phase}/"
@@ -207,76 +156,8 @@ field_handling:
     no_regression_rule: "When folder_state == populated-folder, skip shared intake-contract execution (`.skilled/skills/system-spec-kit/references/workflows/intake-contract.md` §2-§5) and preserve the current Step 1 behavior."
 
 goal_prompting:
-  default_choice: offer
-  choices:
-    offer: "Render the optional session-goal offer only; call no goal tool in any runtime."
-    skip: "Suppress the optional session-goal offer; call no goal tool in any runtime."
-    set: "Set a session goal only when goal_objective is provided."
-  set_mutation:
-    when:
-      field: goal_prompt_choice
-      op: "=="
-      value: set
-    require: goal_objective
-    # Resolved by runtime rather than naming one runtime's tool: three of the
-    # supported runtimes document no adapter for it, including the one whose
-    # native goal surface is the reason this offer exists. A runtime without a
-    # surface hands off to the operator; none is ever faked.
-    # When the resolved packet carries a goal.md, the set path binds instead of
-    # setting text: bindGoal derives the objective from the file, so the packet
-    # is the source from the first turn and the operator has nothing to paste.
-    bind_when_goal_present:
-      rule: "If <spec_path>/goal.md exists, call the bind action with spec_path and skip the text set; goal_objective is then the packet's objective slice."
-    dispatch_by_runtime:
-      opencode:
-        tool: opencode_goal
-        invocation: 'opencode_goal({ action: "bind", packetPath: spec_path }) when <spec_path>/goal.md exists, otherwise opencode_goal({ action: "set", objective: goal_objective })'
-        status_tool: opencode_goal_status
-      pi:
-        command: 'bin/goal.cjs bind <spec_path> when <spec_path>/goal.md exists, otherwise bin/goal.cjs set <objective>'
-        note: "Scope flags --runtime, --session and --workspace carry the native session identity and the repository root."
-      cursor:
-        surface: "injection-only; no management surface"
-        handoff: "Report the objective for the operator to set; do not fabricate a call."
-      default:
-        surface: "native session-goal command, when the runtime provides one"
-        handoff: "Report the objective for the operator to set; do not fabricate a call."
-  objective_shape:
-    rule: "Pointer first, then the binding sentence when the packet is phased, then the completion criteria copied out; never the file body and never its frontmatter."
-    why: "Nothing dereferences a path in an objective, every surface caps what it holds, and a truncation must keep the address. The chat resend is a different payload: the chat slice under packet_goal.resend.payload, so the operator can paste it. The objective stored by the runtime is the projection above."
-  # The packet goal.md is the source of the directive, and the session binds to
-  # it rather than to a remembered string. Everything below is the agent's
-  # posture around that file; the mechanics live in the goal hook core.
-  # Authoring the file, its binding rows and its amendments is sk-create-goal's,
-  # through /create:goal.
-  packet_goal:
-    nesting:
-      parent_is_the_directive: "The packet root goal.md is the directive. A phased packet's children each carry their own goal.md, and the parent's binding table names them."
-      read_order: "Read the parent goal.md first, then the child goal.md for the phase being worked. A child's criteria bind as if written in the parent."
-      precedence: "The parent goal's binding section states the precedence rule, and section 6 of sk-create-goal's references/parent-and-nested-goals.md is its full statement. A summary is never the source."
-      budget: "A top-level or phase-parent durable slice holds at most 4,000 characters. A child is unbounded unless it is itself a phase parent, and section 2 of sk-create-goal's references/budget-and-handoff.md is the rule. Never trim a child into the parent. Cut an over-budget parent in the order section 3 of sk-create-goal's references/budget-and-handoff.md gives."
-    bind_by_runtime:
-      opencode: 'opencode_goal({ action: "bind", packetPath: spec_path })'
-      pi: 'node .skilled/hooks/goal/bin/goal.cjs bind <spec_path> --runtime Pi --session <native session id> --workspace <repo root>'
-      cursor: "injection-only; report the objective for the operator to set, do not fabricate a call"
-      devin: "injection-only; report the objective for the operator to set, do not fabricate a call"
-      claude-code: "native goal command. Render the chat slice per resend.payload as one fenced code block that holds the slice and nothing else, and ask the operator to set it. There is no session record here, so hold the slice hash for the session instead."
-      codex: "native goal command. Render the chat slice per resend.payload and ask the operator to set it. There is no session record here, so hold the slice hash for the session instead."
-    resend:
-      trigger: "The durable slice hash of the parent goal.md changed: a decision, a binding row or a criterion. Log rows and frontmatter never trigger."
-      payload: "The `chat_slice` of the parent goal.md that `node .skilled/hooks/goal/bin/goal.cjs packet <spec_path> --workspace <repo root>` prints, rendered from the file, never from memory. What it contains, and the `packet_budget=ok` check before it is sent, are section 4 of sk-create-goal's references/budget-and-handoff.md. On Claude Code, send it as one fenced code block that holds the slice and nothing else."
-      after: "Ask the operator to set it. On a runtime with a bound session, record the send with the goal command's resent action."
-      child_rule: "A child goal change that alters a parent decision or criterion is a parent amendment: run /create:goal <parent> amend, as section 6 of sk-create-goal's references/parent-and-nested-goals.md says."
-      without_a_session: "On claude-code and codex, read the hash at every command entry with `node .skilled/hooks/goal/bin/goal.cjs packet <spec_path> --workspace <repo root>` and compare `packet_slice_hash` against the hash last rendered this session. Different means resend; equal means stay silent. A first entry with no held hash renders once."
-    reminder:
-      while_unset: "Repeat a one-line reminder at every command entry and turn where the runtime injects; never repeat the full slice unless asked."
-      never_halts: "Work never stops because a goal is unset or a reminder went unanswered. Only an explicit operator stop halts."
-      after_set: "Acknowledge in one line and continue the current work at once; do not restate the goal, do not ask whether to proceed."
-    log:
-      rule: "Progress, evidence and deviations go to the goal log, below the durable slice, never into the directive, and always through the locked append: the goal command's log action on a bound session, or `node .skilled/hooks/goal/bin/goal.cjs packet-log <spec_path> \"<item> | <state> | <evidence>\" --workspace <repo root>` on a runtime without a management surface or for an unbound packet. Never hand-edit the table."
-  status_tool_by_runtime:
-    opencode: opencode_goal_status
-    default: "none; report state from the packet documents instead"
+  shared_tail: "assets/speckit-lifecycle-shared.yaml#goal_prompting"
+  shared_tail_note: "The goal offer, the set path and the packet goal posture live once in the shared lifecycle include."
 
 packet_graph_metadata:
   completion_contract:
@@ -286,32 +167,12 @@ packet_graph_metadata:
     manual_fields_preserved: ["depends_on", "supersedes", "related_to"]
     note: "Completion depends on canonical save to refresh packet graph metadata without mutating manual relationships."
 
-# ─────────────────────────────────────────────────────────────────
 # DOCUMENTATION LEVELS
-# ─────────────────────────────────────────────────────────────────
 documentation_levels:
-  level_1_baseline:
-    name: "Level 1 (Baseline)"
-    required_files: [spec.md, plan.md, tasks.md]
-    loc_guidance: "<100 LOC"
-    use_case: "Simple changes, bug fixes"
-  level_2_verification:
-    name: "Level 2 (Verification)"
-    required_files: [spec.md, plan.md, tasks.md, acceptance-criteria.md]
-    loc_guidance: "100-499 LOC"
-    use_case: "Medium features, refactoring"
-  level_3_full:
-    name: "Level 3 (Full)"
-    required_files: [spec.md, plan.md, tasks.md, acceptance-criteria.md]
-    loc_guidance: ">=500 LOC"
-    use_case: "Complex features, architecture changes"
-  level_selection:
-    note: "recommend-level.sh scores LOC, file count and risk and decides the level; when its answer and judgment differ, go higher. decision-record.md and the other add-ons are lazy at every level, scaffolded on request"
-    default: "Level 1 for simple tasks, escalate based on analysis"
+  shared_tail: "assets/speckit-lifecycle-shared.yaml#documentation_levels"
+  shared_tail_note: "The level table and the level selection rule live once in the shared lifecycle include."
 
-# ─────────────────────────────────────────────────────────────────
 # AVAILABLE TEMPLATES
-# ─────────────────────────────────────────────────────────────────
 available_templates:
   default_level: level_2
   level_1:
@@ -398,52 +259,25 @@ template_compliance:
       <!-- ANCHOR:verification --> ## Verification
       <!-- ANCHOR:limitations --> ## Known Limitations
 
-# ─────────────────────────────────────────────────────────────────
 # PARALLEL DISPATCH CONFIGURATION
-# ─────────────────────────────────────────────────────────────────
 parallel_dispatch_config:
   enabled: true
   scoring: { domain_count: 0.35, file_count: 0.25, loc_estimate: 0.15, parallel_opportunity: 0.20, task_type: 0.05 }
   thresholds: { direct_max: 20, ask_min: 20, min_domains: 2 }
-  session_preference_s: 3600
   override_phrases:
     direct: [ "proceed directly", "handle directly", "skip parallel", "skip agents" ]
     parallel: [ "use parallel", "dispatch agents", "parallelize", "use agents" ]
     auto: [ "auto-decide", "auto mode", "decide for me" ]
   eligible_phases: [step_3_specification, step_6_planning, step_8_analysis, step_10_development]
 
-# ─────────────────────────────────────────────────────────────────
-# MULTI-AGENT DISPATCH CONFIGURATION
-# ─────────────────────────────────────────────────────────────────
-multi_agent_config:
-  enabled: true
-  dispatch_modes:
-    single: { id: A, label: "Single Agent", agents: 1, model: opus }
-    multi_small:
-      id: B
-      label: "Multi-Agent (1+2)"
-      orchestrator: { model: opus, role: coordinator }
-      workers:
-        - { role: architecture_explorer, focus: "Project Structure Analysis", step: 6 }
-        - { role: feature_explorer, focus: "Feature Pattern Analysis", step: 6 }
-    multi_large:
-      id: C
-      label: "Multi-Agent (1+3)"
-      orchestrator: { model: opus, role: coordinator }
-      workers:
-        - { role: architecture_explorer, focus: "Project Structure Analysis", step: 6 }
-        - { role: feature_explorer, focus: "Feature Pattern Analysis", step: 6 }
-        - { role: dependency_explorer, focus: "Dependency and Test Analysis", step: 6 }
-  fallback: { timeout_s: 60, on_timeout: "continue with available", on_all_fail: "single-agent mode" }
-
-# ─── AGENT AVAILABILITY (conditional — not instructions) ──────────
+# AGENT AVAILABILITY (conditional, not instructions)
 # These entries define WHICH agent to use IF a workflow step calls for it.
 # Do NOT dispatch agents based on reading this section.
 # Agents are activated ONLY when their designated step is executing.
 agent_availability:
   deep-research:
-    available_at_step: "Phase 3 (if :with-research OR confidence < 60%)"
-    condition: "ONLY dispatch when :with-research flag is set OR confidence < 60% during planning"
+    available_at_step: "Phase 3 (if :with-research OR confidence < 40%)"
+    condition: "ONLY dispatch when :with-research flag is set OR confidence < 40% during planning"
     agent_file: "[runtime_agent_path]/deep-research.md"
     fallback: "general"
     not_for: "proactive research or pre-step investigation"
@@ -463,18 +297,17 @@ agent_availability:
     blocking: true
     on_block: "A P0 or an open P1 finding blocks. Address before completion."
     verdict: "The review's pass or fail follows severity alone: any P0, or an open P1, fails the gate. The advisory score never blocks."
-    dual_phase:
-      phase_a: { mode: 2, name: "Pre-Commit code review (sk-code code-review mode: findings-first baseline + router-selected surface evidence)", blocking: false }
-      phase_b: { mode: 4, name: "Gate Validation", blocking: true }
+    review_mode: "Gate Validation with gate_type post_execution. One dispatch per run, and one more after a REQUESTED_CHANGES verdict."
+    fallback_rule: "The general fallback keeps the CODE-REVIEW marker and the blocking verdict."
     not_for: "reviewing this workflow prompt, reviewing the command, or any pre-step validation"
   cross_skill_authoring_load:
     purpose: "Load sk-code authoring resources at WRITE-TIME (Step 10), distinct from review-time review.standards_contract overlay."
     available_at_step: 10
-    condition: "Activate when any task in tasks.md targets a path under .skilled/skills/, .skilled/agents/, .skilled/commands/, or <spec-folder> sk-code ships authoring checklists (skill-authoring.md, agent-authoring.md, command-authoring.md, mcp-server-authoring.md); spec-folder authoring now lives in system-spec-kit: read references/workflows/spec-authoring-card.md first, then references/workflows/spec-folder-authoring-checklist.md and spec-folder-write-recipe.md for the detail."
+    condition: "Activate when any task in tasks.md targets a path under .skilled/skills/, .skilled/agents/, .skilled/commands/, or specs/. sk-code ships authoring checklists (skill-authoring.md, agent-authoring.md, command-authoring.md, mcp-server-authoring.md); spec-folder authoring now lives in system-spec-kit: read .skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md first, then .skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md and .skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md for the detail."
     resources:
-      - "sk-code/sk-code-skilled/assets/checklists/{matching_target}-authoring.md"
-      - "system-spec-kit/references/workflows/spec-authoring-card.md (read first, for every spec-doc target)"
-      - "system-spec-kit/references/workflows/spec-folder-write-recipe.md (when target is under .opencode/specs/)"
+      - ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/{matching_target}-authoring.md"
+      - ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md (read first, for every spec-doc target)"
+      - ".skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md (when target is under specs/)"
     precedence: "Authoring-time guidance is consulted BEFORE writes; review-time overlay (sk-code review mode: findings-first baseline + router-selected surface evidence) runs at Step 11 and remains unchanged."
     not_for: "targets outside .skilled/, or a target an advisor-named local-* skill owns."
   debug:
@@ -482,117 +315,100 @@ agent_availability:
     condition: "ONLY surface a prompted offer when 3+ task failures observed during Step 10 development. Never auto-dispatch — the user opts in via Task tool."
     agent_file: "[runtime_agent_path]/debug.md"
     fallback: "general-purpose"
+    modes: { confirm: "ask the prompt in on_threshold", auto: "take continue manually, log it and list it under Defaults taken", autopilot: "take continue manually. When the retry path is exhausted, emit SPECKIT_AUTOPILOT_RESULT with reason retry_exhausted" }
     prompt_threshold: { counter: "task_failure_count", reset_on: "new_task", threshold: 3, mode: "operator-judgment", note: "Counter is documentation-only; the workflow operator surfaces the prompt based on observed repeated failures, never auto-routes." }
     on_threshold: "Surface a single direct prompt: 'Dispatch @debug for fresh-perspective root-cause? (y / continue manually / skip)'. On y, generate debug-delegation.md scaffold and instruct user to dispatch @debug via Task tool. The workflow itself NEVER calls Task tool → @debug."
     not_for: "proactive debugging, pre-step investigation, reviewing this workflow, or any autonomous routing"
 
-# ─────────────────────────────────────────────────────────────────
 # QUALITY GATES
-# ─────────────────────────────────────────────────────────────────
 quality_gates:
   enabled: true
+  exists_rule: "A check that a packet document exists passes only when the file exists and `rg -c 'YOUR_VALUE_HERE:' <file>` finds no match. Every check whose id ends in _exists is decided by this rule, and a failed check names the file."
   pre_execution:
     location: "Before Step 1"
-    threshold: 70
+    pass_when: every check passes
     blocking: hard
     checks:
-      - { id: feature_description, points: 30 }
-      - { id: spec_path_valid, points: 30 }
-      - { id: execution_mode_set, points: 20 }
-      - { id: continuity_ladder_walked, points: 20 }
-    on_fail: "Pre-execution gate below threshold. Missing: {missing_checks}. Hard block."
+      - { id: feature_description, from: invocation, criteria: "A non-empty feature description is bound from the command arguments or from the step_0.5_intake_branch bind." }
+      - { id: spec_path_valid, from: step_0.5_intake_branch, criteria: "On the single-packet path the spec folder exists, because the intake Emit phase created it. Under :with-phases only a well-formed path is required, because P3 creates the folder after Step 1." }
+      - { id: execution_mode_set, from: invocation, criteria: "execution_mode is bound to auto, confirm or autopilot." }
+    on_fail: "Pre-execution gate failed. Failed checks: {failed_checks}. Hard block."
   planning_gate:
     location: "Between Step 7 and Step 8"
-    threshold: 70
+    pass_when: every check passes
     blocking: hard
     critical: true
     checks:
-      - { id: spec_exists, points: 20 }
-      - { id: spec_no_clarification, points: 5 }
-      - { id: plan_exists, points: 20 }
-      - { id: plan_has_approach, points: 5 }
-      - { id: tasks_exists, points: 20 }
-      - { id: tasks_has_format, points: 5 }
-      - { id: checklist_verified, points: 15 }
-      - { id: review_approval, points: 10 }
-    on_fail: "PLANNING GATE BLOCKED ({score}/100, need 70). Missing: {missing_checks}. HALTED."
-    review_integration: { blocking: true, on_review_fail: "P0 items blocking. Address before implementation." }
+      - { id: spec_exists, from: step_3_specification, criteria: "spec.md passes exists_rule." }
+      - { id: spec_no_clarification, from: step_4_clarification, criteria: "spec.md holds no [NEEDS CLARIFICATION] marker." }
+      - { id: plan_exists, from: step_6_planning, criteria: "plan.md passes exists_rule." }
+      - { id: plan_has_approach, from: step_6_planning, criteria: "plan.md states the technical approach and the files it changes." }
+      - { id: tasks_exists, from: step_7_task_breakdown, criteria: "tasks.md passes exists_rule." }
+      - { id: tasks_has_format, from: step_7_task_breakdown, criteria: "Every task line in tasks.md follows the task format of the tasks template." }
+    on_fail: "PLANNING GATE BLOCKED. Failed checks: {failed_checks}. Return to the producing step of each failed check. HALTED."
   post_execution:
-    location: "After Step 12"
-    threshold: 70
+    location: "Between Step 13 and Step 13.5"
+    pass_when: every check passes
     blocking: hard
     checks:
-      - { id: tasks_complete, points: 30 }
-      - { id: summary_exists, points: 25 }
-      - { id: summary_sections, points: 15 }
-      - { id: memory_saved, points: 20 }
-      - { id: validation_passed, points: 10 }
-    on_fail: "Post-execution gate below threshold. Missing: {missing_checks}. Complete before done."
+      - { id: tasks_complete, from: step_10_development, criteria: "tasks.md holds no unchecked task line." }
+      - { id: summary_exists, from: step_12_completion, criteria: "implementation-summary.md passes exists_rule." }
+      - { id: summary_sections, from: step_12_completion, criteria: "implementation-summary.md holds every section the step 12 summary_document lists." }
+      - { id: validation_passed, from: step_12_completion, criteria: "validate.sh --strict printed RESULT: PASSED for the spec folder in this run." }
+      - { id: continuity_saved, from: step_13_save_context, criteria: "The continuity writer exited 0 for this packet in this run." }
+    on_fail: "Post-execution gate failed. Failed checks: {failed_checks}. Complete each one before done."
 
-# ─────────────────────────────────────────────────────────────────
 # CIRCUIT BREAKER
-# ─────────────────────────────────────────────────────────────────
 circuit_breaker:
   enabled: true
-  thresholds: { failures: 3, recovery_s: 60, success_to_close: 1 }
+  thresholds: { failures: 3, success_to_close: 1 }
   states: { CLOSED: dispatch_to_agent, OPEN: use_fallback, HALF_OPEN: test_single }
-  agents: { research: { fallback: general }, review: { fallback: general, preserve: [blocking] } }
   logging: { on_state_change: true, on_fallback_used: true, include_failure_details: true }
 
-# ─────────────────────────────────────────────────────────────────
 # CONFIDENCE & CLARIFICATION FRAMEWORK
-# ─────────────────────────────────────────────────────────────────
 confidence_framework:
   thresholds:
     high: { range: "80-100%", action: "Proceed with cited evidence" }
     medium: { range: "40-79%", action: "Proceed with caution, document assumptions" }
-    low: { range: "0-39%", action: "STOP - Ask A/B/C clarification" }
+    low: { range: "0-39%", action: "STOP - Ask A/B/C clarification", modes: { confirm: "ask the question and wait", auto: "ask the question and wait, because confidence below 40 is a required stop", autopilot: "emit SPECKIT_AUTOPILOT_RESULT with reason uncertainty_blocked" } }
   scoring_weights: { requirements_clarity: 0.25, api_design: 0.15, state_flow: 0.15, type_safety: 0.10, performance: 0.10, accessibility: 0.10, tooling_risk: 0.15 }
   reply_format: ["Confidence: NN%", "Top factors: 2-3 bullets", "Next action"]
-  escalation: { timebox_minutes: 10, failed_threshold: 2 }
+  escalation: { failed_threshold: 2 }
 
-# ─────────────────────────────────────────────────────────────────
 # REQUEST ANALYSIS FRAMEWORK
-# ─────────────────────────────────────────────────────────────────
 request_analysis_framework:
   solution_flow: [parse_request, gather_context, identify_approach, validate_choice, clarify_if_needed, scope_check, execute]
   design_principles:
     - "KISS: Use existing patterns, direct solution > clever complexity"
     - "Evidence-Based: Cite sources [SOURCE: file:lines] or UNKNOWN. validate.sh --strict checks each tag in research and review artifacts through its SOURCE_TAGS rule: path and line exist, nothing more"
     - "Effectiveness: Performant + Maintainable + Concise, solve ONLY stated problem"
-  pre_change_validation: [simplest_solution, scope_discipline, spec_folder_created, read_files_first, clear_success_criteria, confidence_80_plus, sources_cited, user_approval, checklist_verified_L2_plus]
+  pre_change_validation: [simplest_solution, scope_discipline, spec_folder_created, read_files_first, clear_success_criteria, confidence_80_plus, sources_cited]
+  pre_change_validation_confirm: { applies_to: confirm, checks: [user_approval] }
 
-# ─────────────────────────────────────────────────────────────────
 # WORKFLOW ENFORCEMENT
-# ─────────────────────────────────────────────────────────────────
 workflow_enforcement:
   mode: strict
   step_order: sequential_mandatory
   skip_allowed: false
   phase_gate:
     location: "Between Step 7 and Step 8"
-    requirements:
-    - "spec.md exists and has no [NEEDS CLARIFICATION] markers"
-    - "plan.md exists with technical approach"
-    - "tasks.md exists with all tasks listed"
+    requirements: "The checks of quality_gates.planning_gate. This gate restates none of them."
     action_if_failed: "STOP and return to incomplete step"
   step_completion_rule: |
     FOR EACH STEP: Execute ALL activities → Verify ALL outputs → Mark step complete → THEN proceed
-    NEVER skip a step. NEVER proceed without marking previous complete. NEVER jump to code before Step 8.
+    NEVER skip a step. NEVER proceed without marking previous complete. NEVER jump to code before Step 10.
   critical_steps:
     step_10_development:
       enforcement: "MUST mark tasks [x] in tasks.md as completed"
       verification: "Count [x] vs [ ] - all must be [x]"
     step_11_acceptance_verify:
       enforcement: "MUST verify every acceptance-criteria row and every P0/P1 item of the tasks.md verification checklist (Level 2+)"
-      verification: "All P0 items [x], P1 either [x] or deferred with approval"
+      verification: "All P0 items [x], P1 either [x] or, under confirm only, deferred with approval"
     step_12_completion:
       enforcement: "MUST create implementation-summary.md"
       verification: "File must exist in spec folder"
 
-# ─────────────────────────────────────────────────────────────────
 # CONTEXT LOADING
-# ─────────────────────────────────────────────────────────────────
 context_loading:
   trigger: "At workflow START, before Step 1"
   retrieval_recipe:
@@ -606,12 +422,10 @@ context_loading:
   when_to_skip: ["New spec folder (no prior context)", "User says 'skip context' or 'fresh start'"]
   behavior: { if_context_found: "Surface relevant decisions and state", if_no_context: "Proceed to Step 1" }
 
-# ─────────────────────────────────────────────────────────────────
 # WORKFLOW
-# ─────────────────────────────────────────────────────────────────
 workflow:
   step_0_autopilot_envelope:
-    purpose: Activate the unattended branch-preserved envelope before any spec or implementation writes
+    purpose: Bind the operator's workspace and the unattended envelope before any spec or implementation write
     activation:
       when:
         field: execution_mode
@@ -619,30 +433,30 @@ workflow:
         value: autopilot
       when_legacy_literal: "execution_mode == autopilot"
     sequence:
-      - branch_first
+      - bind_workspace
       - propose_unattended
       - apply_unattended
       - archive_in_place
       - verify_clean
-      - merge_on_clean
     activities:
       - "Treat :autopilot, :unattended, and --unattended as execution_mode=autopilot; do not route them through the plain :auto contract."
-      - "Before Step 0.5, create or switch to an autopilot branch and record branch/base branch names for the terminal result."
+      - "Before Step 0.5, read workspace_choice as unattended_autopilot.workspace_choice states. For worktree, create the branch only with `git worktree add -b <branch> <path>` and run every later step inside that worktree. For current_branch, stay on the branch that is checked out. Record the branch name for the terminal result."
+      - "With no bound workspace_choice, stop with reason uncertainty_blocked before any write."
       - "Suppress every human approval prompt after startup parsing; use terminal reason codes instead."
-      - "Require generated tasks to expose agent, deps, and touched-files metadata before implementation eligibility is evaluated."
-      - "If no executable task is eligible, stop with reason no_eligible_tasks and leave the branch unmerged."
-      - "If a task or wave exhausts its permitted retry path, stop with reason retry_exhausted and leave the branch unmerged."
-      - "If verification, validation, lint, build, or required tests fail at the merge gate, stop with reason verification_failed and leave the branch unmerged."
-      - "If uncertainty prevents safe unattended progress, stop with reason uncertainty_blocked and leave the branch unmerged."
+      - "If no executable task is eligible, stop with reason no_eligible_tasks and leave the branch as it is."
+      - "If a task or wave exhausts its permitted retry path, stop with reason retry_exhausted and leave the branch as it is."
+      - "If verification, validation, lint, build, or required tests fail, stop with reason verification_failed and leave the branch as it is."
+      - "If uncertainty prevents safe unattended progress, stop with reason uncertainty_blocked and leave the branch as it is."
     terminal_output:
       prefix: SPECKIT_AUTOPILOT_RESULT
       failure_schema: '{"mode":"autopilot","ok":false,"reason":"<terminal_reason_code>","branch":"<branch>","merged":false,"verification":"<summary>"}'
-      success_schema: '{"mode":"autopilot","ok":true,"reason":null,"branch":"<branch>","merged":true,"verification":"passed"}'
+      success_schema: '{"mode":"autopilot","ok":true,"reason":null,"branch":"<branch>","merged":false,"verification":"passed"}'
     validation: autopilot_envelope_bound
 
   step_0.5_intake_branch:
     purpose: Detect non-healthy target folders before Step 1 so `/complete` can inline absorb the shared intake contract (`.skilled/skills/system-spec-kit/references/workflows/intake-contract.md` §5) without a visible chained handoff
     action: "Run folder-state discovery using ls plus canonical file checks on the target spec path after any phase-predecessor validation"
+    with_phases_rule: "Under :with-phases, skip the Emit phase of the intake contract. P3 of phase_decomposition creates the parent and child folders after Step 1, so intake binds its fields and writes no folder."
     inspect:
       command: "ls -la {spec_folder} 2>/dev/null || true"
       file_checks:
@@ -676,6 +490,7 @@ workflow:
       inline_start_intake:
         execution_mode: "{execution_mode}"
         prompt_mode: "single_consolidated_prompt"
+        modes: { confirm: "ask the intake questions in the one consolidated setup prompt", auto: "resolve each field as the auto resolution table of the presentation file states and list each default under Defaults taken. The spec folder question is Gate 3 and is still put to the operator when no folder is bound", autopilot: "resolve each field from the pre-bound setup answers and the defaults. A required field with neither ends with reason uncertainty_blocked before any write" }
         questions:
           - "Questions from `.skilled/skills/system-spec-kit/references/workflows/intake-contract.md` §5 (Q0-Q4+) are absorbed inline into the parent setup prompt"
         bind_fields:
@@ -700,7 +515,7 @@ workflow:
 
   step_1_request_analysis:
     purpose: Analyze inputs and define development scope
-    spec_folder: "[SPEC_FOLDER] → auto-create if empty"
+    spec_folder: "[SPEC_FOLDER] → verified here, never created here"
     context: "[CONTEXT] → infer if empty"
     issues: "[ISSUES] → discover if empty"
     request: "[REQUEST] → REQUIRED"
@@ -709,9 +524,10 @@ workflow:
     activities:
     - Analyze all user inputs thoroughly
     - Define development scope for the spec folder
-    - Verify or create spec folder structure
+    - Verify the spec folder exists. The intake Emit phase creates it, or P3 does under :with-phases
     - Check for existing artifacts
     - Establish development scope
+    outputs: [development_scope, estimated_loc, estimated_files]
     phase_predecessor_validation:
       trigger: "If [SPEC_FOLDER] path matches specs/{NNN-parent}/{NNN-phase}/ (phase child)"
       skip_if: "First phase (001-*) — no predecessor to check"
@@ -724,7 +540,7 @@ workflow:
       thresholds:
         high_80_plus: { action: "Proceed to Step 2" }
         medium_40_79: { action: "Proceed with caution", requirement: "Document assumptions in spec.md" }
-        low_below_40: { action: "STOP - Ask A/B/C clarification", wait_for: "User response" }
+        low_below_40: { action: "STOP - Ask A/B/C clarification", wait_for: "User response", modes: { confirm: "ask the question and wait", auto: "ask the question and wait, because confidence below 40 is a required stop", autopilot: "emit SPECKIT_AUTOPILOT_RESULT with reason uncertainty_blocked" } }
     validation: understanding_confirmed
     checkpoint:
       applies_to: confirm
@@ -756,13 +572,13 @@ workflow:
       research_triggered = FALSE
       IF ":with-research" in command_flags:
         research_triggered = TRUE; trigger_reason = "explicit_flag"
-      ELSE IF confidence_score < 60:
+      ELSE IF confidence_score < 40:
         research_triggered = TRUE; trigger_reason = "uncertainty_auto_detected"
     actions:
       if_triggered:
       - log: "Initiating research phase (reason: {trigger_reason})"
-      - execute_workflow: "../deep/assets/deep-research-auto.yaml"
-      - on_complete: "show_checkpoint"
+      - execute_workflow: ".skilled/commands/deep/assets/deep-research-auto.yaml"
+      - { on_complete: "show_checkpoint", modes: { confirm: "show optional_workflows.research_integration.checkpoint", auto: "skip the checkpoint and continue to step_3", autopilot: "skip the checkpoint and continue to step_3" } }
       if_skipped:
       - log: "Research phase skipped (confidence: {confidence_score}%)"
       - continue_to: "step_3"
@@ -772,14 +588,14 @@ workflow:
     pre_phase_parallel_check:
       enabled: true
       phase_domains: [code, docs]
+      modes: { confirm: "ask when the complexity score reaches parallel_dispatch_config.thresholds.ask_min", auto: "direct: take the fallback and list it under Defaults taken", autopilot: "direct: take the fallback" }
       on_parallel_dispatch:
         agents:
         - { name: "spec_explorer", focus: "Existing specifications and patterns" }
         - { name: "requirement_analyzer", focus: "Similar features and requirements" }
       fallback: "Proceed with activities below"
     activities:
-    - Find highest feature number across all sources
-    - Run create.sh script (runtime/cli/spec/create.sh) with calculated number
+    - Verify the spec folder exists and never create it in this step
     - Estimate complexity and select documentation level using progressive enhancement:
       - "Level 1 (Baseline): <100 LOC - spec.md + plan.md + tasks.md"
       - "Level 2 (Verification): 100-499 LOC - core trio plus acceptance-criteria.md"
@@ -791,7 +607,7 @@ workflow:
     - Fill User Scenarios & Testing section
     - Generate Functional Requirements (testable)
     - Define Success Criteria (measurable, technology-agnostic)
-    - "Run the restraint pass on Scope and Files to Change: for each new file, module, option, layer or dependency name what fails today without it (prevent-overengineering.md section 2)"
+    - "Run the restraint pass on Scope and Files to Change: for each new file, module, option, layer or dependency name what fails today without it (.skilled/repo-rules/prevent-overengineering.md section 2)"
     - Identify Key Entities if data involved
     - For Level 2+, include acceptance-criteria.md with one row per requirement
     - For Level 3, include decision-record.md with Traceability, Risk Matrix, Rollback Plan
@@ -801,7 +617,7 @@ workflow:
       thresholds:
         high_80_plus: { action: "Finalize spec.md and proceed to Step 4" }
         medium_40_79: { action: "Add [NEEDS CLARIFICATION] markers to uncertain sections" }
-        low_below_40: { action: "STOP - Ask clarification before finalizing spec", wait_for: "User response" }
+        low_below_40: { action: "STOP - Ask clarification before finalizing spec", wait_for: "User response", modes: { confirm: "ask the question and wait", auto: "ask the question and wait, because confidence below 40 is a required stop", autopilot: "emit SPECKIT_AUTOPILOT_RESULT with reason uncertainty_blocked" } }
     outputs:
     - spec.md: acceptance_criteria
     - location: "[SPEC_FOLDER]/spec.md"
@@ -843,26 +659,17 @@ workflow:
       options: checkpoint_options.standard
 
   step_5_acceptance_criteria:
-    purpose: Author acceptance-criteria.md AND USE IT FOR ACTIVE VERIFICATION (Level 2+ requirement)
+    purpose: Author acceptance-criteria.md with one Unmet row per requirement (Level 2+ requirement). This step verifies no row.
     level_requirement: "Level 2+ (Verification and Full)"
     activities:
     - Check documentation level - skip for Level 1, MANDATORY for Level 2+
     - Load the acceptance-criteria template
     - Write one row per requirement in Given / When / Then form, status Unmet, with the command, file:line or artifact that will prove it
     - Create acceptance-criteria.md in the spec folder when create.sh did not scaffold it
-    - "FOR EACH ROW: verify the outcome → set Met with observed evidence → otherwise leave Unmet, or Waived/Superseded with an ADR that exists in decision-record.md"
-    - Keep the tasks.md verification checklist current: every P0 item [x] with evidence, every P1 item [x] or a documented deferral, P2 deferrals with reasons
-    verification_protocol:
-      p0_handling: "BLOCKER - Cannot proceed without completion"
-      p1_handling: "Required - Complete or get user approval to defer"
-      p2_handling: "Optional - Can defer with documented reason"
-      unmet_row: "BLOCKER - AC_CLOSURE fails a packet created after 2026-08-30 while any row is Unmet"
-      waiver: "Waived or Superseded rows name an ADR-NNN that exists in decision-record.md; an unbacked waiver counts as Unmet"
+    - Leave every row Unmet. The acceptance verification step after development verifies the rows
     outputs:
     - acceptance_criteria: authored
     - location: "[SPEC_FOLDER]/acceptance-criteria.md"
-    - closure_status: closeable_or_not
-    - p0_status: "all_complete or blocked"
     template: .skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl
     template_prompt_contract:
       canonical_template: .skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl
@@ -874,16 +681,16 @@ workflow:
       on_fail: "STOP and repair acceptance-criteria.md template drift before proceeding"
       guard_command: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh && bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh"
       guard_on_fail: "Report the guard output and continue: a failure means the skill's own examples or authoring card drifted, not this packet"
-    validation: acceptance_verified_and_marked
+    validation: acceptance_rows_authored
     checkpoint:
       applies_to: confirm
-      question: "Step 5 Complete: Checklist verified. How would you like to proceed?"
-      child_dispatch: "When child_dispatch applies, default to Proceed only when every P0 checklist item is marked [x] and every P0 row is Met or Waived. When one is open, default to Address Blockers, record the open items in the lineage directory and continue."
+      question: "Step 5 Complete: Acceptance criteria rows authored. How would you like to proceed?"
+      child_dispatch: "When child_dispatch applies, default to Proceed when every requirement has a row. When a requirement has no row, write the missing row, record it in the lineage directory and continue."
       use: present_options_to_user
       options:
       - { label: "Proceed", description: "Continue to planning" }
-      - { label: "Review Verification", description: "Show acceptance-criteria and checklist details" }
-      - { label: "Address Blockers", description: "Fix P0/P1 blockers first" }
+      - { label: "Review Rows", description: "Show the acceptance-criteria.md rows" }
+      - { label: "Modify Rows", description: "Change a row before planning" }
 
   step_6_planning:
     purpose: Create technical plan with implementation approach
@@ -893,58 +700,58 @@ workflow:
       Parallel dispatch is integral to this phase - no additional question asked.
 
     inline_parallel_exploration:
-      execution: { tool: Task, subagent_type: context, model: opus, parallel: true }
+      execution: { tool: Task, subagent_type: context, parallel: true }
       agents:
         architecture_explorer:
           focus: "Project structure, entry points, component connections"
           prompt: |
             Explore codebase architecture for: {task_description}
-            Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "project architecture entry points").
+            Build Grep and Glob patterns from likely names, domain terms, and error strings (e.g., "project architecture entry points").
             Verify hits with Read; the ripgrep recipes in retrieval-conventions.md are for spec docs and skill docs, not arbitrary code.
-            Return: 1) Architecture hypothesis 2) Full file paths 3) Patterns noticed
+            Return: 1) Architecture findings, each with its file path and line number 2) Full file paths 3) Patterns noticed
             Do NOT draw conclusions - just report findings.
         feature_explorer:
           focus: "Similar features, related patterns"
           prompt: |
             Explore codebase for similar features/patterns for: {task_description}
-            Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "similar feature implementation patterns").
+            Build Grep and Glob patterns from likely names, domain terms, and error strings (e.g., "similar feature implementation patterns").
             Verify hits with Read; the ripgrep recipes in retrieval-conventions.md are for spec docs and skill docs, not arbitrary code.
-            Return: 1) Similar features hypothesis 2) Full file paths 3) Patterns noticed
+            Return: 1) Similar feature findings, each with its file path and line number 2) Full file paths 3) Patterns noticed
             Do NOT draw conclusions - just report findings.
         dependency_explorer:
           focus: "Imports, modules, affected areas"
           prompt: |
             Explore dependencies and integration points for: {task_description}
-            Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "module imports dependencies").
+            Build Grep and Glob patterns from likely names, domain terms, and error strings (e.g., "module imports dependencies").
             Verify hits with Read; the ripgrep recipes in retrieval-conventions.md are for spec docs and skill docs, not arbitrary code.
-            Return: 1) Affected modules hypothesis 2) Full file paths 3) Patterns noticed
+            Return: 1) Affected module findings, each with its file path and line number 2) Full file paths 3) Patterns noticed
             Do NOT draw conclusions - just report findings.
         test_explorer:
           focus: "Test patterns, testing infrastructure"
           prompt: |
             Explore test patterns and testing infrastructure.
-            Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "test infrastructure patterns").
+            Build Grep and Glob patterns from likely names, domain terms, and error strings (e.g., "test infrastructure patterns").
             Verify hits with Read; the ripgrep recipes in retrieval-conventions.md are for spec docs and skill docs, not arbitrary code.
-            Return: 1) Testing hypothesis 2) Full test file paths 3) Patterns noticed
+            Return: 1) Testing findings, each with its file path and line number 2) Full test file paths 3) Patterns noticed
             Do NOT draw conclusions - just report findings.
       verification:
         approach:
         - "Read each file identified by @context agents"
-        - "Verify or refute each hypothesis"
+        - "Verify each finding"
         - "Cross-reference findings across agents"
         - "Build complete mental model"
-        - "Resolve conflicting hypotheses"
+        - "Resolve conflicting findings"
       outputs: [architecture_findings, feature_findings, dependency_findings, test_findings, verified_mental_model]
       fallback: { on_failure: "Use inline planning activities below" }
 
     activities:
-    - Run check-prerequisites.sh --json --paths-only to get feature paths
+    - Run bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --paths-only to get feature paths
     - Load FEATURE_SPEC and AGENTS.md
     - Load plan.md and preserve exact structure
     - Fill Technical Context (mark unknowns as NEEDS CLARIFICATION)
     - Fill Constitution Check section
     - Evaluate gates (ERROR if violations unjustified)
-    - Phase 0: Generate research/research.md to resolve all unknowns
+    - "Phase 0: Record each unknown in the plan.md Technical Context and name /deep:research for an unknown that needs investigation. Read an existing research/research.md as input and never write it"
     - Phase 1: Define component structure and interfaces
     - Generate Testing Strategy with test pyramid
     - Generate Success Metrics from spec criteria
@@ -956,7 +763,6 @@ workflow:
     - Generate Phase 2-4 outlines (implementation phases)
     outputs:
     - plan.md: technical_approach
-    - research/research.md: resolved_unknowns
     level_1_baseline: [spec.md, plan.md, tasks.md]
     level_2_verification: [acceptance-criteria.md]
     level_3_full: ["decision-record.md on request"]
@@ -977,8 +783,8 @@ workflow:
       thresholds:
         high_80_plus: { action: "Finalize plan.md and proceed to Step 7", cite: "Document key sources in plan.md" }
         medium_40_79: { action: "Proceed but flag uncertainties", requirement: "Add RISK markers" }
-        low_below_40: { action: "STOP - Request research spike or clarification", wait_for: "User decision" }
-      escalation: { trigger: "2 failed attempts OR 10 minutes", action: "Present options to user" }
+        low_below_40: { action: "STOP - Request research spike or clarification", wait_for: "User decision", modes: { confirm: "ask the question and wait", auto: "ask the question and wait, because confidence below 40 is a required stop", autopilot: "emit SPECKIT_AUTOPILOT_RESULT with reason uncertainty_blocked" } }
+      escalation: { trigger: "2 failed attempts", action: "Present options to user", modes: { confirm: "ask: present the options and wait", auto: "take the most conservative option, record it in plan.md as an assumption with a RISK marker and list it under Defaults taken", autopilot: "emit SPECKIT_AUTOPILOT_RESULT with reason retry_exhausted" } }
     post_write_validation:
       # cadence: this gate re-validates the documents this step wrote; a later step's writes get their own gate
       command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
@@ -992,27 +798,14 @@ workflow:
       use: present_options_to_user
       options: checkpoint_options.standard
 
-  step_6_5_checkpoint_planning:
-    purpose: Save context checkpoint after planning phase complete
-    checkpoint: true
-    memory_action: save
-    activities:
-    - Save context checkpoint using system-spec-kit skill
-    - Record progress up to planning milestone for session recovery
-    - Preserve planning decisions, exploration findings, and technical approach
-    tool_invocation:
-      command: Read(".skilled/skills/system-spec-kit/SKILL.md")
-      note: "Intermediate checkpoint - planning phase complete"
-    outputs:
-    - checkpoint_file: "[SPEC_FOLDER]/scratch/checkpoint__planning_complete.md"
-    validation: checkpoint_saved
-    checkpoint_confirm: true
-
   step_7_task_breakdown:
     purpose: Break plan into executable implementation tasks (Level 1+ requirement)
     level_requirement: "Level 1+ (Baseline - required at all levels)"
+    unattended_task_metadata:
+      applies_to: autopilot
+      rule: "Every task row carries agent, deps and touched-files. When a field cannot be set, end with reason uncertainty_blocked, as unattended_autopilot.task_metadata_contract states."
     activities:
-    - Run check-prerequisites.sh --json to get FEATURE_DIR
+    - Run bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json to get FEATURE_DIR
     - Load plan.md for tech stack and architecture
     - Load spec.md for user stories and priorities
     - Load optional artifacts (research)
@@ -1041,14 +834,7 @@ workflow:
 
     phase_gate_checkpoint:
       trigger: "After Step 7 completes"
-      action: |
-        STOP and verify Phase Gate:
-        1. spec.md exists → If not, return to Step 3
-        2. plan.md exists and states a technical approach, meaning the approach and the files it changes → If not, return to Step 6
-        3. tasks.md exists → If not, this step failed
-        4. No [NEEDS CLARIFICATION] in spec.md
-        5. Mark "PHASE GATE: PASSED"
-        6. ONLY THEN proceed to Step 8
+      action: "STOP and evaluate quality_gates.planning_gate. When every check passes, mark PHASE GATE: PASSED and proceed to Step 8. When a check fails, return to the producing step of that check."
       enforcement: HARD_BLOCK
     checkpoint:
       applies_to: confirm
@@ -1062,6 +848,7 @@ workflow:
       enabled: true
       phase_domains: [code, docs, analysis]
       complexity_boost: 10
+      modes: { confirm: "ask when the complexity score reaches parallel_dispatch_config.thresholds.ask_min", auto: "direct: take the fallback and list it under Defaults taken", autopilot: "direct: take the fallback" }
       on_parallel_dispatch:
         agents:
         - { name: "consistency_analyzer", focus: "Cross-artifact consistency and requirement coverage" }
@@ -1074,7 +861,10 @@ workflow:
     - Run detection passes for: Duplication, Ambiguity, Underspecification, Constitution alignment, Coverage, Inconsistency
     - Assign severity levels (CRITICAL, HIGH, MEDIUM, LOW)
     - Generate consistency report, coverage verification, gap analysis
-    - Suggest remediations (non-destructive, user must approve)
+    - Suggest remediations (non-destructive) and handle them as remediations.modes states
+    remediations:
+      modes: { confirm: "ask the user to approve each remediation before it is applied", auto: "apply none and list each one in the consistency report", autopilot: "apply none and list each one in the consistency report" }
+    on_fail: "A CRITICAL or HIGH finding, or a P0 requirement that no task covers, stops the run before development. Return to the step that wrote the named artifact: step_3_specification for spec.md, step_6_planning for plan.md, step_7_task_breakdown for tasks.md. Fix it and rerun this step. After the third failed round, STOP and report the open findings. MEDIUM and LOW findings are recorded in the report and do not block."
     outputs: [consistency_report, coverage_verification, alignment_check, gap_analysis]
     validation: consistency_verified
     checkpoint:
@@ -1086,9 +876,9 @@ workflow:
   step_9_implementation_check:
     purpose: Verify all prerequisites for implementation
     activities:
-    - Run check-prerequisites.sh --json --require-tasks
+    - Run bash .skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh --json --require-tasks
     - Verify plan.md and tasks.md exist
-    - Check acceptance-criteria.md rows and the tasks.md verification checklist
+    - Confirm each requirement has an acceptance-criteria row
     - Verify no blockers exist
     - Verify environment is ready
     - Verify dependencies loaded
@@ -1105,21 +895,13 @@ workflow:
       - { label: "Review Plan", description: "Review technical plan" }
       - { label: "Hold", description: "Pause before implementation" }
 
-  step_9_5_preflight:
-    name: "PREFLIGHT Capture"
-    purpose: "Record the epistemic baseline before implementation in the packet's own documents"
-    target: "{spec_folder}/implementation-summary.md"
-    method: "Append a PREFLIGHT row under an anchor: taskId, knowledgeScore, uncertaintyScore, contextScore. The database that once stored these is retired; the packet document is now the record."
-    parameters: "specFolder, taskId, knowledgeScore, uncertaintyScore, contextScore"
-    skip_conditions: ["Less than 10 LOC change", "User says skip preflight"]
-    checkpoint_confirm: { type: "user_checkpoint", message: "Epistemic scores captured. Continue?" }
-
   step_10_development:
     purpose: Execute implementation following task plan
     pre_phase_parallel_check:
       enabled: true
       phase_domains: [code, testing]
       complexity_boost: 15
+      modes: { confirm: "ask when the complexity score reaches parallel_dispatch_config.thresholds.ask_min", auto: "direct: take the fallback and list it under Defaults taken", autopilot: "direct: take the fallback" }
       on_parallel_dispatch:
         agents:
         - { name: "implementation_agent", focus: "Core implementation tasks from tasks.md" }
@@ -1127,7 +909,7 @@ workflow:
         warning: "Development tasks may have dependencies - verify task order"
       fallback: "Proceed with activities below"
     activities:
-    - Load sk-code authoring-time resources for OpenCode targets — when any task in tasks.md targets a path under .skilled/skills/, .skilled/agents/, .skilled/commands/, or .opencode/specs/, load the matching sk-code authoring checklist (sk-code/sk-code-skilled/assets/checklists/{skill,agent,command,mcp-server}-authoring.md), and for .opencode/specs/ targets read the system-spec-kit authoring card (references/workflows/spec-authoring-card.md) first, then the spec-folder docs (references/workflows/spec-folder-authoring-checklist.md + spec-folder-write-recipe.md), BEFORE the first write. Authoring-time load is distinct from review-time load (see agent_dispatch.review.standards_contract). Skip when no .skilled/ targets are present.
+    - Load sk-code authoring-time resources for OpenCode targets: when any task in tasks.md targets a path under .skilled/skills/, .skilled/agents/, .skilled/commands/, or specs/, load the matching sk-code authoring checklist (.skilled/skills/sk-code/sk-code-skilled/assets/checklists/{skill,agent,command,mcp-server}-authoring.md), and for specs/ targets read the system-spec-kit authoring card (.skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md) first, then the spec-folder docs (.skilled/skills/system-spec-kit/references/workflows/spec-folder-authoring-checklist.md + .skilled/skills/system-spec-kit/references/workflows/spec-folder-write-recipe.md), BEFORE the first write. Authoring-time load is distinct from review-time load (see agent_availability.review.standards_contract). Skip when no .skilled/ targets are present.
     - Load tasks.md and parse task structure
     - Execute implementation phase by phase
     - Setup first (project structure, dependencies, configuration)
@@ -1153,12 +935,13 @@ workflow:
         thresholds:
           high_80_plus: { action: "Implement task, mark [x]" }
           medium_40_79: { action: "Implement with extra validation", requirement: "Add inline comments" }
-          low_below_40: { action: "STOP - Do not implement uncertain code", wait_for: "Resolution" }
+          low_below_40: { action: "STOP - Do not implement uncertain code", wait_for: "Resolution", modes: { confirm: "ask the question and wait", auto: "ask the question and wait, because confidence below 40 is a required stop", autopilot: "emit SPECKIT_AUTOPILOT_RESULT with reason uncertainty_blocked" } }
     debug_escalation:
       prompt_threshold: { enabled: true, counter_name: "task_failure_count", reset_on: "new_task", threshold: 3, mode: "operator-judgment", note: "Workflow surfaces prompt; never auto-routes." }
       on_threshold_reached:
         action: "prompt_user_with_y_n_skip"
         no_autonomous_routing: true
+        modes: { confirm: "ask the prompt below", auto: "take on_continue_manually, log it and list it under Defaults taken", autopilot: "take on_continue_manually. When the retry path is exhausted, emit SPECKIT_AUTOPILOT_RESULT with reason retry_exhausted" }
         prompt: |
           ⚠️  3+ fix attempts failed for task {current_task_id}. The @debug agent runs a 5-phase fresh-perspective root-cause pass with no prior context — it costs one Task-tool dispatch and writes findings to a structured report.
           Dispatch @debug? (y / continue manually / skip)
@@ -1186,32 +969,39 @@ workflow:
       - { label: "Run Tests", description: "Execute test suite" }
       - { label: "Continue", description: "Proceed to completion" }
 
-  step_10_5_checkpoint_development:
-    purpose: Save context checkpoint after development phase complete
-    checkpoint: true
-    memory_action: save
-    activities:
-    - Save context checkpoint using system-spec-kit skill
-    - Record progress up to development milestone for session recovery
-    - Preserve implementation decisions, code changes, and debugging insights
-    tool_invocation:
-      command: Read(".skilled/skills/system-spec-kit/SKILL.md")
-      note: "Intermediate checkpoint - development phase complete"
-    outputs:
-    - checkpoint_file: "[SPEC_FOLDER]/scratch/checkpoint__development_complete.md"
-    validation: checkpoint_saved
-    checkpoint_confirm: true
-
   step_11_acceptance_verify:
     purpose: Verify every acceptance-criteria row and every P0/P1 checklist item before claiming completion
     blocking: true
     level_requirement: "Level 2+"
+    review_dispatch:
+      order: "First activity of this step, at every level. At Level 1 this dispatch still runs when the rest of the step is skipped. One dispatch per run, and one more after a REQUESTED_CHANGES verdict."
+      agent: "@review, as the review entry of agent_availability names it. The general fallback gets the same prompt and its verdict blocks the same way."
+      tool_scope: "Read-only. The prompt grants no write tool and passes file paths, never file contents."
+      prompt: |
+        CODE-REVIEW
+
+        Mode: Gate Validation
+        gate_type: post_execution
+        task_id: [SPEC_FOLDER]
+        artifact: [the path of every file this run changed, one per line]
+        context: Spec folder [SPEC_FOLDER]. Review the changed files against spec.md and acceptance-criteria.md in that folder. When the run changed no file, review the spec folder.
+        Return review_status as APPROVED, COMMENTED or REQUESTED_CHANGES, with every P0 and open P1 finding at file:line.
+      verdict:
+        APPROVED: "Continue with the next activity."
+        COMMENTED: "Continue with the next activity and list the comments in the verification results."
+        REQUESTED_CHANGES: "Any P0 or an open P1. Do not continue to step_12_completion and return to step_10_development. Write no implementation-summary.md and claim no completion. Fix the listed findings there, then dispatch @review once more with the same prompt."
+        advisory_score: "Never blocks."
+      halt:
+        trigger: "The second dispatch returns REQUESTED_CHANGES."
+        action: "List the P0 and open P1 findings, write no implementation-summary.md and claim no completion."
+        modes: { confirm: "stop and show the findings", auto: "stop, report the findings and report no success", autopilot: "emit SPECKIT_AUTOPILOT_RESULT with reason verification_failed" }
     activities:
+    - "Dispatch @review first, as review_dispatch states, and act on its verdict before any other activity"
     - Load acceptance-criteria.md and the Verification Checklist section of tasks.md
     - Set every row to Met with observed evidence, or to Waived/Superseded naming an ADR that exists in decision-record.md
     - Reread the request and its amendments and map each outcome they ask for to a Met row or name it as not done
     - Verify ALL P0 checklist items are marked [x] with evidence
-    - Verify ALL P1 items are either marked [x] or have documented user approval to defer
+    - "Verify ALL P1 items are marked [x]. Under confirm a P1 item may instead carry documented user approval to defer. Under auto and autopilot an unfinished P1 item stays Unmet and the run does not report success"
     - P2 items may be deferred without approval
     - Document verification results with evidence format
     evidence_format: "- [x] Task description [EVIDENCE: file.js:45-67 - implementation verified]"
@@ -1221,8 +1011,8 @@ workflow:
       on_incomplete: "UNMET CRITERIA OR P0 ITEMS INCOMPLETE - Cannot proceed. WORKFLOW HALTED."
     p1_enforcement:
       blocking: soft
-      allow_deferral: true
-      on_incomplete: "P1 items incomplete. A) Complete remaining B) Document deferral and proceed"
+      allow_deferral: confirm_only
+      on_incomplete: "P1 items incomplete. Under confirm: A) Complete remaining B) Document deferral and proceed. Under auto and autopilot each one stays Unmet, the result names it and the run does not report success. Autopilot ends with reason verification_failed"
     outputs: [acceptance_verification_report, evidence_documentation]
     validation: all_p0_complete
     checkpoint:
@@ -1231,15 +1021,6 @@ workflow:
       child_dispatch: "When child_dispatch applies, default to Approve only when every acceptance-criteria row and every P0 item is verified. When one is open, record the open rows and the p0_enforcement halt in the lineage directory, do not claim completion, and continue."
       use: present_options_to_user
       options: checkpoint_options.standard
-
-  step_11_5_postflight:
-    name: "POSTFLIGHT Capture"
-    purpose: "Record the learning delta after implementation in the packet's own documents"
-    target: "{spec_folder}/implementation-summary.md"
-    method: "Append a POSTFLIGHT row beside the matching PREFLIGHT row and compute the delta from the two rows. The database that once stored these is retired; the packet document is now the record."
-    parameters: "specFolder, taskId, knowledgeScore, uncertaintyScore, contextScore"
-    skip_conditions: ["Less than 10 LOC change", "No PREFLIGHT was captured"]
-    checkpoint_confirm: { type: "user_checkpoint", message: "Epistemic scores captured. Continue?" }
 
   step_12_completion:
     purpose: Generate implementation summary and verify completion
@@ -1281,35 +1062,6 @@ workflow:
       use: present_options_to_user
       options: checkpoint_options.standard
 
-  step_12_5_autopilot_archive_verify_merge:
-    purpose: Close unattended runs by archiving in place, verifying, and merging only when clean
-    activation:
-      when:
-        field: execution_mode
-        op: "=="
-        value: autopilot
-      when_legacy_literal: "execution_mode == autopilot"
-    sequence:
-      - archive_in_place
-      - verify_clean
-      - merge_on_clean
-    activities:
-      - "Archive or finalize generated SpecKit artifacts on the autopilot branch; do not open a PR-only archive path."
-      - "Run the required validation, lint, build, and test gates for the changed surface."
-      - "Confirm the worktree is clean after verification and before merge."
-      - "Merge the autopilot branch only when verification passed and the worktree is clean."
-      - "On merge conflict, failed verification, dirty tree, retry exhaustion, no eligible tasks, or unresolved uncertainty, stop without merge and preserve the branch."
-    failure_policy:
-      no_eligible_tasks: { branch_preserved: true, merge: false, emit_terminal_result: true }
-      retry_exhausted: { branch_preserved: true, merge: false, emit_terminal_result: true }
-      verification_failed: { branch_preserved: true, merge: false, emit_terminal_result: true }
-      uncertainty_blocked: { branch_preserved: true, merge: false, emit_terminal_result: true }
-    terminal_output:
-      prefix: SPECKIT_AUTOPILOT_RESULT
-      failure_schema: '{"mode":"autopilot","ok":false,"reason":"<terminal_reason_code>","branch":"<branch>","merged":false,"verification":"<summary>"}'
-      success_schema: '{"mode":"autopilot","ok":true,"reason":null,"branch":"<branch>","merged":true,"verification":"passed"}'
-    validation: autopilot_merge_gate_complete
-
   step_13_save_context:
     purpose: Save conversation context for documentation and team sharing
     activities:
@@ -1322,102 +1074,76 @@ workflow:
     outputs:
     - context_file: "Canonical continuity refreshed in spec docs (decision-record.md / implementation-summary.md / handover.md) by the continuity writer"
     validation: context_saved_successfully
-
-    write_continuity:
-      writer: "node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js"
-      invocation: 'node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder-path]'
-      critical_note: "The writer is the whole write. It keeps atomic same-directory update and lock semantics, needs no background service, and has no indexing step after it."
-      # Narrative timing moved from `when:` to `after:` (separates predicate-`when:` from prose-`after:`).
-      after: "Immediately after the canonical spec document is refreshed on disk"
-
     importance_tier:
       assign: important
       rationale: "Complete workflow represents significant implementation work"
       tier_reference: "critical > important > normal > temporary > deprecated"
     checkpoint:
       applies_to: confirm
-      question: "Step 13 Complete: Context saved. Proceed to workflow finish?"
+      question: "Step 13 Complete: Context saved. SpecKit workflow finished!"
       use: present_options_to_user
       options:
-      - { label: "Continue", description: "Proceed to workflow finish" }
-      - { label: "Finish Now", description: "Complete without another continuity refresh" }
+      - { label: "Done", description: "Complete the workflow" }
+      - { label: "View Summary", description: "Show implementation-summary.md" }
     shared_tail: "assets/speckit-save-context-tail.yaml#save_context_core"
-    shared_tail_note: "The writer, post-save rule and anchor requirements live once in the shared tail; {spec_path} is this workflow's packet."
+    shared_tail_note: "The writer call and the post-save check live once in the shared tail; {spec_path} is this workflow's packet."
 
-  step_14_handover_check:
-    purpose: Final workflow closeout before completion
+  step_13_5_autopilot_archive_verify:
+    purpose: Close unattended runs by archiving in place, verifying and reporting the branch. This step never merges.
+    activation:
+      when:
+        field: execution_mode
+        op: "=="
+        value: autopilot
+      when_legacy_literal: "execution_mode == autopilot"
+    sequence:
+      - archive_in_place
+      - verify_clean
     activities:
-    - Confirm the workflow is ready to terminate cleanly
-    - Remind the operator to run /speckit:save before pausing if another continuity refresh is needed
-    options:
-    - { label: "Refresh Context", action: "Run /speckit:save" }
-    - { label: "Skip", action: "Proceed to termination" }
-    note: "Use /speckit:save when you want one more continuity refresh before ending the workflow."
-    validation: workflow_finish_confirmed
-    checkpoint:
-      applies_to: confirm
-      question: "Step 14: Would you like to refresh continuity before ending the workflow?"
-      child_dispatch: "When child_dispatch applies, default to Skip. Step 13 already saved context, so another refresh is not needed. Record the question with Skip as the default in the lineage directory and continue."
-      use: present_options_to_user
-      options:
-      - { label: "Run /speckit:save", description: "Refresh canonical continuity before ending" }
-      - { label: "Skip", description: "Complete without another continuity refresh" }
+      - "Archive or finalize generated SpecKit artifacts on the bound branch; do not open a PR-only archive path."
+      - "Run the required validation, lint, build, and test gates for the changed surface."
+      - "Confirm the worktree is clean after verification."
+      - "Report the branch in the terminal result with merged false. The merge is left to the operator."
+      - "On failed verification, dirty tree, retry exhaustion, no eligible tasks, or unresolved uncertainty, stop and preserve the branch."
+    failure_policy:
+      no_eligible_tasks: { branch_preserved: true, merge: false, emit_terminal_result: true }
+      retry_exhausted: { branch_preserved: true, merge: false, emit_terminal_result: true }
+      verification_failed: { branch_preserved: true, merge: false, emit_terminal_result: true }
+      uncertainty_blocked: { branch_preserved: true, merge: false, emit_terminal_result: true }
+    terminal_output:
+      prefix: SPECKIT_AUTOPILOT_RESULT
+      failure_schema: '{"mode":"autopilot","ok":false,"reason":"<terminal_reason_code>","branch":"<branch>","merged":false,"verification":"<summary>"}'
+      success_schema: '{"mode":"autopilot","ok":true,"reason":null,"branch":"<branch>","merged":false,"verification":"passed"}'
+    validation: autopilot_verify_gate_complete
 
-# ─────────────────────────────────────────────────────────────────
 # WORKFLOW TERMINATION
-# ─────────────────────────────────────────────────────────────────
 termination:
-  after_step: 14
-  message: "SpecKit workflow completed successfully."
+  after_step: 13
+  autopilot_after_step: 13.5
+  message: "SpecKit workflow completed. Step 13 wrote continuity once. The workflow ends after step 13 under confirm and auto, and after step 13.5 under autopilot."
+  remaining_children: "When the run decomposed into phases, name each remaining child folder with its command: /speckit:complete <child-folder>"
 
-# ─────────────────────────────────────────────────────────────────
 # CHECKPOINT PROTOCOL
-# ─────────────────────────────────────────────────────────────────
 checkpoint_protocol:
   display_format: "WORKFLOW CHECKPOINT - {checkpoint_title} | {checkpoint_content} | Progress: {progress_display}"
   autonomous_behavior: { pause_for_confirmation: false, default_action_on_timeout: "continue", timeout_seconds: 0 }
 
-# ─────────────────────────────────────────────────────────────────
-# QUALITY STANDARDS
-# ─────────────────────────────────────────────────────────────────
-quality_standards:
-  documentation: [production_ready_examples, defensive_programming, error_handling, comprehensive_tests]
-  code_examples: [working_snippets, error_handling, performance_optimized, accessible, browser_compatible]
-  analysis_depth: [edge_cases, failure_modes, recovery_strategies, monitoring]
-
-# ─────────────────────────────────────────────────────────────────
-# AUTONOMOUS EXECUTION GUIDANCE
-# ─────────────────────────────────────────────────────────────────
-autonomous_execution:
-  principle: "Execute workflow steps sequentially without user approval gates"
-  decision_making: "Analyze thoroughly, make informed decisions, document reasoning, proceed with best judgment"
-  validation_approach: "Self-validate at checkpoints, verify against quality standards, test continuously"
-  uncertainty_handling: "Research before deciding, document assumptions, choose conservative approach"
-  progress_tracking: "Update checklists, log milestones, document deviations, maintain audit trail"
-  completion_criteria: "All steps completed, implementation validated, docs generated, quality met, context saved"
-
-# ─────────────────────────────────────────────────────────────────
 # ERROR RECOVERY
-# ─────────────────────────────────────────────────────────────────
 error_recovery:
-  step_validation_fails: "Review requirements, ask clarifying questions, retry step"
+  step_validation_fails: { action: "Review requirements, ask clarifying questions, retry", modes: { confirm: "ask the clarifying questions and wait", auto: "review the requirements and retry with no question. After the third failed retry stop and report the failed validation", autopilot: "review the requirements and retry. After the third failed retry emit SPECKIT_AUTOPILOT_RESULT with reason retry_exhausted" } }
   tests_fail: "Debug, fix, re-run before marking complete"
-  prerequisites_insufficient: "Return to prior phase or ask user"
+  prerequisites_insufficient: { action: "Return to prior phase or ask user", modes: { confirm: "ask the user which prior phase to return to", auto: "return to the step that produces the missing prerequisite", autopilot: "return to the step that produces the missing prerequisite. When it cannot be produced, emit SPECKIT_AUTOPILOT_RESULT with reason uncertainty_blocked" } }
   environment_unavailable: "Skip browser testing, document limitation"
   unexpected_error: "Log error, document state, attempt graceful recovery"
 
-# ─────────────────────────────────────────────────────────────────
 # SUCCESS CRITERIA
-# ─────────────────────────────────────────────────────────────────
 success:
   specification: [requirements_defined, acceptance_criteria, approach_planned, dependencies_identified]
   implementation: [code_follows_standards, tests_pass, browser_validated, performance_acceptable]
   documentation: [spec_folder_complete, summary_created, deviations_documented, context_saved]
   quality: [checklist_validated, no_regressions, functionality_preserved, standards_maintained]
 
-# ─────────────────────────────────────────────────────────────────
 # RULES
-# ─────────────────────────────────────────────────────────────────
 rules:
   ALWAYS:
   - follow_workflow_sequence
@@ -1425,12 +1151,15 @@ rules:
   - validate_before_completion
   - use_browser_for_staging_analysis
   - self_validate_and_proceed
-  - do_not_prompt_for_user_approval
   - limit_context_to_active_scope
   - use_checklist_for_verification_level_2_plus
   - mark_checklist_items_with_evidence
   - complete_all_p0_items_before_done
+  CONFIRM_ONLY:
   - get_user_approval_for_p1_deferrals
+  AUTO_AND_AUTOPILOT:
+  - do_not_prompt_for_user_approval
+  - leave_unfinished_p1_items_unmet_and_do_not_report_success
   NEVER:
   - skip_workflow_steps
   - ignore_blockers

@@ -1,0 +1,21 @@
+TASK: two literal replacements on one line of one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/scripts/README.md (read lines 11 to 14 only)
+
+EDIT. Line 13 is one long paragraph that starts with `` `scripts/` holds the one drift-guard entrypoint``. On that line make these two replacements.
+
+Replacement 1. Replace the literal text
+(`assets/scripts/verify-router-sync.cjs`)
+with the literal text
+(`../assets/scripts/verify-router-sync.cjs`)
+
+Replacement 2. Replace the literal text
+(`assets/scripts/verify-doc-claims.cjs`)
+with the literal text
+(`../assets/scripts/verify-doc-claims.cjs`)
+
+Keep the rest of that line byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+python3 .skilled/skills/sk-doc/sk-create-readme/scripts/check_readme_references.py .skilled/skills/sk-code/sk-code-skilled/scripts/README.md | tail -2
+Expected output: a line that starts with `PASS` and holds `unresolved=0`, then `SUMMARY files=1 pass=1 fail=0`

@@ -29,7 +29,7 @@ contextType: "general"
 | **Branch** | `worktrees/376-dsh-single-executor-loop` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 18 of 19 |
-| **Predecessor** | 016-ci-red-check-repairs |
+| **Predecessor** | 017-dsh-rc3-repin |
 | **Successor** | None |
 | **Handoff Criteria** | Edits E1 to E19 are applied, the three new test cells pass, typecheck and contract drift are clean and every row in `acceptance-criteria.md` is `Met` |
 <!-- /ANCHOR:metadata -->
