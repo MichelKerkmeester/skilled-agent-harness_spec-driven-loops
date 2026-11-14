@@ -9,8 +9,9 @@
 // in this order: decision, stopReason, reasonDetail, weightedStopScore, signals,
 // gates, blockedBy, graphDecision and inputs. stopReason keeps the frozen
 // eight-value set; the finer cause travels in reasonDetail as
-// maxIterationsReached, stuckThresholdReached, convergenceModeOff,
-// stopPolicyMaxIterations, noStopCandidate, minIterationsNotReached,
+// maxIterationsReached, consecutiveFailures, stuckThresholdReached,
+// convergenceModeOff, stopPolicyMaxIterations, noStopCandidate,
+// minIterationsNotReached,
 // qualityGuardFailed, all_questions_answered, all_dimensions_clean,
 // composite_converged, graphStopBlocked, graph_convergence_continue,
 // graphDecisionMissing, or the name of a failed gate.
@@ -49,6 +50,8 @@ const DEFAULT_MIN_OBSERVATIONS = 2;
 const DEFAULT_SLIDING_WINDOW_SIZE = 5;
 const MIN_OBSERVATIONS_FLOOR = 1;
 const MIN_OBSERVATIONS_CEILING = 10;
+// Repeated failures are an outage, not evidence, so the loop halts instead of voting.
+const CONSECUTIVE_FAILURE_LIMIT = 3;
 const OBSERVABILITY_EVENTS_FILENAME = 'observability-events.jsonl';
 const VALID_CONVERGENCE_MODES = new Set(['default', 'off', 'sliding-window', 'divergent']);
 // Every key this entrypoint reads from the parsed arguments. A flag missing
@@ -83,7 +86,6 @@ const CONVERGENCE_FLAGS = [
   'specFolder',
   'stateLog',
   'stopDecision',
-  'stuckCount',
   'traceImprovementEffect',
 ];
 
@@ -1040,6 +1042,9 @@ function buildStopDecision(input) {
   const ratios = Array.isArray(source.ratios) ? source.ratios : [];
   const iterationCount = typeof source.iterationCount === 'number' ? source.iterationCount : 0;
   const stuckCount = typeof source.stuckCount === 'number' ? source.stuckCount : 0;
+  const consecutiveFailureCount = typeof source.consecutiveFailureCount === 'number'
+    ? source.consecutiveFailureCount
+    : 0;
   const maxIterations = Number.isFinite(config.maxIterations) ? config.maxIterations : Infinity;
   const stuckThreshold = Number.isFinite(config.stuckThreshold) ? config.stuckThreshold : Infinity;
   const minIterations = Number.isFinite(config.minIterations) ? config.minIterations : 0;
@@ -1115,6 +1120,10 @@ function buildStopDecision(input) {
       capGates,
       capGates.failed,
     );
+  }
+
+  if (consecutiveFailureCount >= CONSECUTIVE_FAILURE_LIMIT) {
+    return emit('STOP', 'error', 'consecutiveFailures', gatesAt(false), []);
   }
 
   if (stuckCount >= stuckThreshold) {
@@ -1234,7 +1243,7 @@ function readStateLogRows(filePath) {
 // input error rather than as whatever the graph layer reports first.
 function readStopDecisionFiles(args) {
   const configPath = ensureString(args, 'configPath');
-  const stateLogPath = ensureString(args, 'stateLog');
+  const stateLogPath = validateNamespaceValue(ensureString(args, 'stateLog'), 'stateLog', inputError);
   const registryPath = typeof args.registryPath === 'string' && args.registryPath !== ''
     ? args.registryPath
     : null;
@@ -1271,6 +1280,64 @@ function orderedIterationRecords(stateRows) {
     .sort((left, right) => left[0] - right[0])
     .map(([, row]) => row);
   return [...numbered, ...unnumbered];
+}
+
+// The counters are rebuilt from the log on every pass, so a resumed run counts
+// the same as a run that never paused.
+function deriveLoopCounters(records, options) {
+  const rows = Array.isArray(records) ? records : [];
+  const settings = isPlainObject(options) ? options : {};
+  const loopType = settings.loopType;
+  const convergenceThreshold = finiteNumberOrNull(settings.convergenceThreshold);
+  const researchThreshold = convergenceThreshold !== null && convergenceThreshold > 0
+    ? convergenceThreshold
+    : 0.05;
+  const reviewThreshold = mapReviewThresholds(convergenceThreshold).noProgressCutoff;
+
+  // A redispatched iteration supersedes its earlier rows, and the surviving row
+  // counts at the position of the last row for that iteration.
+  const lastIndexByNumber = new Map();
+  for (let index = 0; index < rows.length; index += 1) {
+    const row = rows[index];
+    if (!isPlainObject(row) || row.type !== 'iteration') continue;
+    const number = iterationRecordNumber(row);
+    if (number !== null) lastIndexByNumber.set(number, index);
+  }
+
+  let stuckCount = 0;
+  let consecutiveFailureCount = 0;
+  for (let index = 0; index < rows.length; index += 1) {
+    const row = rows[index];
+    if (!isPlainObject(row)) continue;
+    if ((row.type === 'event' && row.event === 'stuckRecovery')
+      || row.stem === 'deep_review.recovery_started') {
+      stuckCount = 0;
+      continue;
+    }
+    if (row.type !== 'iteration') continue;
+    const number = iterationRecordNumber(row);
+    if (number !== null && lastIndexByNumber.get(number) !== index) continue;
+    if (row.status === 'thought') continue;
+    if (row.status === 'error' || row.status === 'timeout') {
+      consecutiveFailureCount += 1;
+      continue;
+    }
+
+    consecutiveFailureCount = 0;
+    if (row.status === 'insight') {
+      stuckCount = 0;
+      continue;
+    }
+    const ratio = loopType === 'review'
+      ? finiteNumberOrNull(row.newFindingsRatio)
+      : finiteNumberOrNull(row.newInfoRatio);
+    const low = loopType === 'review'
+      ? ratio !== null && ratio <= reviewThreshold
+      : ratio !== null && ratio < researchThreshold;
+    stuckCount = low ? stuckCount + 1 : 0;
+  }
+
+  return { stuckCount, consecutiveFailureCount };
 }
 
 function stopDecisionConfig(config, loopType, args) {
@@ -1502,18 +1569,26 @@ function buildStopDecisionInput(args, loopType, files, graph) {
   const registry = isPlainObject(files?.registry) ? files.registry : {};
   const stateRows = Array.isArray(files?.stateLogRows) ? files.stateLogRows : [];
   const iterationRecords = orderedIterationRecords(stateRows);
-  const evidenceRecords = iterationRecords.filter((record) => record.status !== 'thought');
+  const evidenceRecords = iterationRecords.filter(
+    (record) => record.status !== 'thought' && record.status !== 'error' && record.status !== 'timeout',
+  );
   const ratioKey = loopType === 'review' ? 'newFindingsRatio' : 'newInfoRatio';
   const ratios = evidenceRecords
     .map((record) => record[ratioKey])
     .filter((value) => typeof value === 'number' && Number.isFinite(value));
+  const decisionConfig = stopDecisionConfig(config, loopType, args);
+  const convergenceThreshold = decisionConfig.convergenceThreshold === null
+    ? undefined
+    : decisionConfig.convergenceThreshold;
+  const counters = deriveLoopCounters(stateRows, { loopType, convergenceThreshold });
 
   return {
     loopType,
     iterationCount: stopDecisionNumberFlag(args.iterationCount, 'iterationCount')
       ?? iterationRecords.length,
-    stuckCount: stopDecisionNumberFlag(args.stuckCount, 'stuckCount') ?? 0,
-    config: stopDecisionConfig(config, loopType, args),
+    stuckCount: counters.stuckCount,
+    consecutiveFailureCount: counters.consecutiveFailureCount,
+    config: decisionConfig,
     ratios,
     research: loopType === 'research'
       ? stopDecisionResearchFacts(registry, evidenceRecords, graph)
@@ -1535,17 +1610,17 @@ function buildStopDecisionInput(args, loopType, files, graph) {
 }
 
 function buildStopDecisionGraphFailurePayload(error, args, loopType, files) {
+  const input = buildStopDecisionInput(args, loopType, files, { failed: true });
   return {
     status: 'ok',
     data: null,
     graph_decision: null,
     graph_error: error instanceof Error ? error.message : String(error),
-    stop_decision: buildStopDecision(buildStopDecisionInput(
-      args,
-      loopType,
-      files,
-      { failed: true },
-    )),
+    stop_decision: buildStopDecision(input),
+    loop_counters_json: {
+      stuckCount: input.stuckCount,
+      consecutiveFailureCount: input.consecutiveFailureCount,
+    },
   };
 }
 
@@ -1634,7 +1709,7 @@ async function main() {
       if (convergenceModeConfig.mode === 'divergent') data.convergenceMode = convergenceModeConfig.mode;
       const payload = { status: 'ok', data, graph_decision: data.decision, graph_decision_json: JSON.stringify(data.decision), graph_signals_json: {}, graph_blockers_json: [], graph_blockers_csv: '', graph_stop_blocked: false, graph_trace_json: [], graph_convergence_score: 0, graph_score_delta: null, graph_score_delta_json: 'null' };
       if (stopDecisionRequested) {
-        payload.stop_decision = buildStopDecision(buildStopDecisionInput(
+        const stopDecisionInput = buildStopDecisionInput(
           args,
           loopType,
           stopDecisionFiles,
@@ -1645,7 +1720,12 @@ async function main() {
             edges: [],
             trace: [],
           },
-        ));
+        );
+        payload.stop_decision = buildStopDecision(stopDecisionInput);
+        payload.loop_counters_json = {
+          stuckCount: stopDecisionInput.stuckCount,
+          consecutiveFailureCount: stopDecisionInput.consecutiveFailureCount,
+        };
       }
       if (!readOnly) appendConvergenceObservabilityEvent(db, payload, ns);
       jsonOut(payload);
@@ -1792,12 +1872,17 @@ async function main() {
     if (improvementEffect) payload.graph_improvement_effect_json = improvementEffect;
     if (observationThreshold) payload.graph_observation_threshold_json = observationThreshold;
     if (stopDecisionRequested) {
-      payload.stop_decision = buildStopDecision(buildStopDecisionInput(
+      const stopDecisionInput = buildStopDecisionInput(
         args,
         loopType,
         stopDecisionFiles,
         { decision, blockers, nodes, edges, trace },
-      ));
+      );
+      payload.stop_decision = buildStopDecision(stopDecisionInput);
+      payload.loop_counters_json = {
+        stuckCount: stopDecisionInput.stuckCount,
+        consecutiveFailureCount: stopDecisionInput.consecutiveFailureCount,
+      };
     }
     if (!readOnly) appendConvergenceObservabilityEvent(db, payload, ns);
     jsonOut(payload);
@@ -1822,6 +1907,7 @@ module.exports = {
   combineGraphDecision,
   computeScoreDelta,
   computeStopSignals,
+  deriveLoopCounters,
   evaluateResearchQualityGuards,
   evaluateReviewLegalStopGates,
   mapReviewThresholds,

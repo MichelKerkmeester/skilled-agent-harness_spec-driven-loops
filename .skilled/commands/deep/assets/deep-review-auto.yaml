@@ -652,7 +652,7 @@ workflow:
 
       step_init_complete:
         log: "Initialization complete. Config, state, and strategy files created. Review scope: {review_scope_files_count} files, {dimension_queue_count} dimensions."
-        set: { current_iteration: 1, stuck_count: 0, p0_count: 0, p1_count: 0, p2_count: 0 }
+        set: { current_iteration: 1, p0_count: 0, p1_count: 0, p2_count: 0 }
 
   # ═══════════════════════════════════════════════════════════════
   # PHASE 2: ITERATION LOOP
@@ -694,9 +694,9 @@ workflow:
           - dimensions_remaining: "List of dimensions not yet reviewed"
           - dimension_coverage: "covered / total dimensions"
           - coverage_age: "Iterations since dimension coverage last changed; require >= 1 before STOP"
-          - p0_count: "Count P0 findings across all iterations"
-          - p1_count: "Count P1 findings across all iterations"
-          - p2_count: "Count P2 findings across all iterations"
+          - p0_count: "findingsBySeverity.P0 from {state_paths.findings_registry}, the reducer's deduplicated count of open findings, else 0"
+          - p1_count: "findingsBySeverity.P1 from {state_paths.findings_registry}, else 0"
+          - p2_count: "findingsBySeverity.P2 from {state_paths.findings_registry}, else 0"
           - resource_map_present: "Extract boolean from deep-review-config.json, default false"
           - resource_map_prompt_line: "If resource_map_present is true, return 'Resource Map Coverage: cross-check target_files from {spec_folder}/applied/T-*.md against {spec_folder}/resource-map.md and classify only missed coverage as gaps.' Else return 'Resource Map Coverage: resource-map.md not present; skipping coverage gate.'"
           - session_id: "Extract sessionId from deep-review-config.json"
@@ -744,12 +744,16 @@ workflow:
           3. Preserve raw graph signals and blockers for reducer rollup and blocked-stop evidence.
           4. Normalize blockers to both JSON array and CSV forms for downstream stop handling.
           5. Set graph_stop_blocked = true only when graph_decision == "STOP_BLOCKED".
-        bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --convergence-mode "{convergence_mode}" --stop-decision --config-path "{state_paths.config}" --state-log "{state_paths.state_log}" --registry-path "{state_paths.findings_registry}" --iteration-count "{iteration_count}" --stuck-count "{stuck_count}" --security-sensitive-fix-scope "{security_sensitive_fix_scope}" --fix-replay-required-rows "{fix_completeness_replay_required_rows}" --fix-replay-passing-rows "{fix_completeness_replay_passing_rows}"'
+        bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --convergence-mode "{convergence_mode}" --stop-decision --config-path "{state_paths.config}" --state-log "{state_paths.state_log}" --registry-path "{state_paths.findings_registry}" --iteration-count "{iteration_count}" --security-sensitive-fix-scope "{security_sensitive_fix_scope}" --fix-replay-required-rows "{fix_completeness_replay_required_rows}" --fix-replay-passing-rows "{fix_completeness_replay_passing_rows}"'
         note: "The script is the only place the stop decision is computed. step_check_convergence branches on its stop_decision output."
         append_jsonl: '{"stem":"deep_review.graph_convergence_evaluated","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation},"iterationId":"iteration-{current_iteration}"},"data":{"rawSignals":{graph_raw_signals_json},"weightedSignals":{graph_raw_signals_json},"dimensionCoverageDigest":"{dimension_coverage_digest}","protocolCoverageDigest":"{protocol_coverage_digest}","findingStability":"{finding_stability}","p0p1ResolutionState":"{p0p1_resolution_state}","evidenceDensity":{evidence_density},"hotspotSaturation":{hotspot_saturation},"decision":"{graph_decision_code}","policyFingerprint":"{policy_fingerprint}","blockerIds":{graph_blocker_ids_json},"stopCandidate":{stop_candidate},"graphDecision":"{graph_decision_code}","graphDigest":"{graph_digest}","signals":{graph_signals_json},"blockers":{graph_blockers_json}},"eventId":"graph-{session_id}-g{generation}-i{current_iteration}"}'
+        on_missing_counters: "If loop_counters_json is missing from the output, halt with stop reason error. Never bind a default counter."
         outputs:
           - graph_decision: "CONTINUE | STOP_ALLOWED | STOP_BLOCKED"
           - stop_decision: "Tool stop_decision object: decision, stopReason, reasonDetail, weightedStopScore, signals, gates, blockedBy, graphDecision, inputs"
+          - loop_counters_json: "Tool loop_counters_json object: stuckCount and consecutiveFailureCount, both rebuilt from the state log on this pass"
+          - stuck_count: "loop_counters_json.stuckCount"
+          - consecutive_failure_count: "loop_counters_json.consecutiveFailureCount"
           - graph_decision_code: "CONTINUE maps to continue, STOP_ALLOWED to converged, STOP_BLOCKED to blocked"
           - graph_signals_json: "JSON object returned by convergence.cjs"
           - graph_raw_signals_json: "Exact-field convergence-signals JSON built from the convergence.cjs signals; observationDigest is the sha256 of graph_signals_json"
@@ -771,8 +775,10 @@ workflow:
         action: "Branch on the stop decision that convergence.cjs computed in step_graph_convergence"
         algorithm: |
           The whole stop decision is computed by convergence.cjs from the review config, the state log, the findings registry and the coverage graph. This step performs no arithmetic and never recomputes or overrides the result.
+          The ratio signals leave out thought iterations and every iteration whose status is error or timeout, and stuck_count is loop_counters_json.stuckCount.
           The script applies this fixed order, first match wins:
           1. if iteration_count >= max_iterations: STOP (maxIterationsReached). This terminal cap is evaluated before every veto, the claim-adjudication veto included; failed legal-stop gates are recorded in stop_decision.blockedBy as synthesis evidence.
+          1a. After 3 consecutive failed iterations (status error or timeout), halt the loop and enter synthesis with stop reason error and partial findings.
           2. if stuck_count >= config.stuckThreshold: STUCK_RECOVERY
           3. if convergence_mode == "off": skip convergence stop candidates and continue.
           3a. if stop_policy == "max-iterations" AND iteration_count < max_iterations: the vote is telemetry only and the decision is CONTINUE.
@@ -1076,7 +1082,6 @@ workflow:
             pending_stop_event: "stuck_recovery"
             pending_stop_reason: "stuckRecovery"
             pending_stop_detail: "Recovery path activated after repeated no-progress iterations"
-          reset: { stuck_count: 0 }
         if_continue:
           log: "Iteration {current_iteration}: Continuing. Dimension: {next_dimension}"
 
@@ -1966,7 +1971,6 @@ workflow:
           on_failure:
             action: "emit schema_mismatch canonical conflict event"
             redispatch_once: "On the FIRST failure of the mechanical command check for this iteration, re-run step_dispatch_iteration exactly once for the same iteration number, then re-run the check. If it still fails, record the iteration as error (per step_evaluate_results.on_missing_outputs) and continue. Never re-dispatch a given iteration more than once."
-            escalation: "After 3 consecutive failures across iterations, trigger stuck_recovery event with diagnostic context"
         record_executor_audit:
           skip_when: "config.executor.kind == 'native'"
           target: "{state_paths.state_log}"
@@ -2101,69 +2105,11 @@ workflow:
           - graph_nodes_json: "JSON array of canonical and optional review graph nodes"
           - graph_edges_json: "JSON array of canonical and optional review graph edges"
 
-      step_generate_dashboard:
-        action: "Generate or refresh the review dashboard"
-        read:
-          - "{state_paths.state_log}"
-          - "{state_paths.findings_registry}"
-          - "{state_paths.strategy}"
-        content: |
-          # Deep Review Dashboard - Session Overview
-
-          Auto-generated from JSONL state log and strategy file. Regenerated after every iteration evaluation.
-
-          ## Status
-          - Review Target: {review_target} ({review_target_type})
-          - Status: [ITERATING | CONVERGING | STUCK_RECOVERY | COMPLETE]
-          - Iteration: {current_iteration} of {max_iterations}
-          - Provisional Verdict: [PASS | CONDITIONAL | FAIL | PENDING]
-          - hasAdvisories: {has_advisories}
-
-          ## Findings Summary
-          | Severity | Count | Trend |
-          |----------|------:|-------|
-          | P0 (Blockers) | {p0_count} | {p0_trend} |
-          | P1 (Required) | {p1_count} | {p1_trend} |
-          | P2 (Suggestions) | {p2_count} | {p2_trend} |
-
-          ## Dimension Coverage
-          | Dimension | Status | Iteration | Findings |
-          |-----------|--------|-----------|----------|
-          | [per dimension from strategy + JSONL] |
-
-          ## Traceability Coverage
-          | Protocol | Level | Status | Findings |
-          |----------|-------|--------|----------|
-          | [per protocol from traceabilityChecks] |
-
-          ## Progress
-          | # | Dimension | Ratio | P0/P1/P2 | Status |
-          |---|-----------|-------|----------|--------|
-          | [per iteration from JSONL] |
-
-          ## Trend
-          - Last 3 ratios: [{ratios}] [{trend}]
-          - Stuck count: {stuck_count}
-          - Gate violations: {guard_violations}
-
-          ## Next Focus
-          {next_dimension}
-        output: "{state_paths.dashboard}"
-        note: "Auto-generated from JSONL + strategy. Never manually edited."
-
       step_update_tracking:
         action: "Update loop tracking variables"
         set:
           current_iteration: "{current_iteration + 1}"
-          p0_count: "Accumulate from severity_counts"
-          p1_count: "Accumulate from severity_counts"
-          p2_count: "Accumulate from severity_counts"
-          stuck_count: |
-            if status == 'thought': unchanged (skip)
-            if status == 'insight': 0 (reset)
-            if newFindingsRatio <= 0.5 x convergenceThreshold: stuck_count + 1
-            else: 0
-        log: "Iteration {N} complete. Dimensions: {dimensions}. newFindingsRatio: {newFindingsRatio}. Findings: P0={severity_counts.P0} P1={severity_counts.P1} P2={severity_counts.P2}. Stuck count: {stuck_count}."
+        log: "Iteration {N} complete. Dimensions: {dimensions}. newFindingsRatio: {newFindingsRatio}. Findings: P0={severity_counts.P0} P1={severity_counts.P1} P2={severity_counts.P2}."
 
       step_loop_decision:
         action: "Return to step_read_state for next iteration"
@@ -2482,7 +2428,7 @@ workflow:
 error_recovery:
   agent_dispatch_timeout: "Retry once with reduced scope (fewer files per iteration). If second timeout, mark as 'timeout' and continue."
   state_file_missing: "If JSONL missing during loop, reconstruct from iteration files. If strategy missing, create minimal version."
-  consecutive_failures: "After 3 consecutive errors, halt loop and enter synthesis with partial findings."
+  consecutive_failures: "See step_check_convergence rule 1a. The script counts trailing failed iterations from the state log and returns stop reason error."
   continuity_save_failure: "Preserve the review packet in review/ as backup. Log warning."
 
 # ─────────────────────────────────────────────────────────────────

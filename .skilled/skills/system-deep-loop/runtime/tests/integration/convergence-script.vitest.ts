@@ -6,6 +6,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import { createRequire } from 'node:module';
 import { join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import {
   computeContextSignalsFromData,
@@ -737,7 +738,6 @@ describe('convergence profile parity pins', () => {
 
 describe('convergence.cjs stop-decision', () => {
   const fs = requireCjs('node:fs') as typeof import('node:fs');
-  const os = requireCjs('node:os') as typeof import('node:os');
   const tempDirs: string[] = [];
 
   type StopDecisionFixture = {
@@ -752,7 +752,9 @@ describe('convergence.cjs stop-decision', () => {
     stateRows: Array<Record<string, unknown>>,
     registry: Record<string, unknown>,
   ): StopDecisionFixture {
-    const dir = fs.mkdtempSync(join(os.tmpdir(), 'dlr-stop-decision-'));
+    const base = fileURLToPath(new URL('../.tmp/', import.meta.url));
+    fs.mkdirSync(base, { recursive: true });
+    const dir = fs.mkdtempSync(join(base, 'dlr-stop-decision-'));
     tempDirs.push(dir);
     const configPath = join(dir, 'config.json');
     const stateLogPath = join(dir, 'state.jsonl');
