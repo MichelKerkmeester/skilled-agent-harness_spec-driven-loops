@@ -18,7 +18,8 @@
       "question guard killer gone plan",
       "question guard killer gone tasks",
       "question guard killer gone acceptance criteria",
-      "question guard killer gone goal"
+      "question guard killer gone goal",
+      "question guard killer gone implementation summary"
     ],
     "key_topics": [
       "question",
@@ -35,16 +36,24 @@
       "armable"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "implementation-summary.md",
       ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs",
       ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs",
-      ".skilled/hooks/session-relaunch/claude/README.md"
+      ".skilled/hooks/session-relaunch/claude/README.md",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      "scratch/control.txt",
+      "scratch/baseline.txt",
+      "scratch/guard-suite.txt",
+      "scratch/claude-conformance.txt",
+      "scratch/final-suite.txt"
     ],
     "entities": [
       {
@@ -78,6 +87,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "subagent-guard.mjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs",
@@ -93,6 +108,48 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/hooks/session-relaunch/claude/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "control.txt",
+        "kind": "file",
+        "path": "scratch/control.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "guard-suite.txt",
+        "kind": "file",
+        "path": "scratch/guard-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "claude-conformance.txt",
+        "kind": "file",
+        "path": "scratch/claude-conformance.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-suite.txt",
+        "kind": "file",
+        "path": "scratch/final-suite.txt",
         "source": "derived"
       },
       {
@@ -142,59 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow An",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Measured Behavior",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`pendingHandOver` denies a question dialog only when `armableRecord` reports `reason === 'pending'` (`claude/subagent-guard.mjs:84`)",
     "created_at": "2026-11-14T16:13:51Z",
-    "last_save_at": "2026-11-14T16:26:38.707Z",
+    "last_save_at": "2026-11-14T16:57:34.239Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +211,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:1117183797778dba17277f6f4e3587b71b9d90af6bb97ca473f370b46bbd5a1c",
+    "source_fingerprint": "sha256:614796dc5e85dea78ec65ea5e4a9c5713e67bc67abcb0b05d4281308087dedbb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "45465aef5da6c9a739be4e630cc38b701bb56ab547251db2795911442000c290",
+      "spec.md": "3e3dd96cb58b933d7f707b3f3f231e85e26a9b3a647836cb8bfffb50d4cd2ade",
       "plan.md": "e80855e4d0f44962f1004d50acde561819fe4bbd3484b66faca48f03d7155b8c",
-      "tasks.md": "f2001135e02c4310b96865122bd61a3cd18694e2a9f22627c07578b7be56bb3b"
+      "tasks.md": "0550e2fc4b414dd007318a2363827b49d1fdafc59216821dbc3e6a090253f1d0",
+      "implementation-summary.md": "09382214903e72f4684d1842742ce390452d6318ce168bba9498369c185af6a7"
     },
     "last_active_at": null
   }

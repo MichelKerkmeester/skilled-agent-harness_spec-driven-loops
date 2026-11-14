@@ -8,17 +8,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/020-question-guard-killer-gone"
-    last_updated_at: "2026-11-14T16:20:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Planned the armable verdict fix"
-    next_safe_action: "The builder implements the split tests and the condition"
+    last_updated_at: "2026-11-14T19:15:00Z"
+    last_updated_by: "code-agent"
+    recent_action: "Built the armable verdict guard, split the armed-record test and proved the throwing read"
+    next_safe_action: "The orchestrator commits the fix and the operator decides the merge"
     blockers: []
     key_files: [".skilled/hooks/session-relaunch/claude/subagent-guard.mjs", ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs", ".skilled/hooks/session-relaunch/claude/README.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-020-question-guard-killer-gone"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Does a killer spawn failure always leave the record armed? Both spawn-error tests say yes."
     answered_questions:
@@ -58,11 +58,11 @@ Frozen choices. Changing one is an amendment. Parent decisions D1 to D4 bind her
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] The red run saved in `scratch/red.txt` shows the killer-gone denial failing before the source edit, and `scratch/green.txt` shows it passing after.
-- [ ] `scratch/control.txt` shows the live-killer control passing, and the run exits 0 with `fail 0`.
-- [ ] `env -u AI_SESSION_CHILD -u OPENCODE_DB node --test .skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs` exits 0 with `fail 0`, saved to `scratch/guard-suite.txt`.
-- [ ] `env -u AI_SESSION_CHILD -u OPENCODE_DB node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs` exits 0 with `fail 0` and two more tests than `scratch/baseline.txt`.
-- [ ] `rg -c 'live killer' .skilled/hooks/session-relaunch/claude/README.md` prints 1 or more, and `validate.sh 020-question-guard-killer-gone --strict` prints `RESULT: PASSED`.
+- [x] The red run saved in `scratch/red.txt` shows the killer-gone denial failing before the source edit, and `scratch/green.txt` shows it passing after. Result: red is tests 2, pass 1, fail 1, exit 1 with the cross mark on the denial. Green is tests 2, pass 2, fail 0, exit 0 with the tick on the same test.
+- [x] `scratch/control.txt` shows the live-killer control passing, and the run exits 0 with `fail 0`. Result: tests 1, pass 1, fail 0, exit 0.
+- [x] `env -u AI_SESSION_CHILD -u OPENCODE_DB node --test .skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs` exits 0 with `fail 0`, saved to `scratch/guard-suite.txt`. Result: tests 23, pass 23, fail 0, exit 0.
+- [x] `env -u AI_SESSION_CHILD -u OPENCODE_DB node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs` exits 0 with `fail 0` and two more tests than `scratch/baseline.txt`. Result: tests 1555, pass 1555, fail 0, exit 0, against the 1553 baseline.
+- [x] `rg -c 'live killer' .skilled/hooks/session-relaunch/claude/README.md` prints 1 or more, and `validate.sh 020-question-guard-killer-gone --strict` prints `RESULT: PASSED`. Result: rg printed 1, and validate printed RESULT: PASSED with Errors 0 and Warnings 0.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -82,8 +82,8 @@ and findings belong here.
 | Operator decision | Done | 2026-11-14: fix every P2 finding as new children from 020, one child per code fix with a test that fails first, and the document fixes in one shared child |
 | Code read | Done | 2026-11-14 at `fa6a56f0fc`: the condition at `claude/subagent-guard.mjs:84`, both armable reasons at `lib/relaunch-core.cjs:1180` and `:1183`, the spawn-failure test at `tests/claude-adapters.test.cjs:1001` and the armed-record test at `tests/subagent-guard.test.cjs:313` |
 | Plan documents | Done | 2026-11-14: spec, plan, tasks, criteria and this goal written |
-| Build | Pending | The builder runs T001 to T015 and records the runs under `scratch/` |
-| Fix commit | Pending | Recorded after the build |
+| Build | Done | 2026-11-14: T001 to T015 completed. Red `scratch/red.txt`: tests 2, pass 1, fail 1, exit 1, the failure naming the empty stdout on the killer-gone denial. Green `scratch/green.txt`: tests 2, pass 2, fail 0, exit 0. Control `scratch/control.txt`: tests 1, pass 1, fail 0, exit 0. Guard suite: tests 23, pass 23, fail 0, exit 0. Claude adapter and conformance suites: tests 115, pass 115, fail 0, exit 0. Relaunch and OpenCode plugin suites: tests 1555, pass 1555, fail 0, exit 0, two above the baseline |
+| Fix commit | Pending | The orchestrator commits. The working-tree filter of T014 added no file outside this child and no log event |
 | Merge and push | Pending | Parent decision D4: nothing is merged or pushed without the operator |
 
 ### Deviations and findings
