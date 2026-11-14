@@ -39,14 +39,14 @@ The synchronous audited runner gains two optional fields, `dispatchEnv` and `com
 <!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Each of the 19 search texts below counts 1 in its file with `rg -U -c -F`
-- [ ] The section 5 baselines reproduce: 10 passed, typecheck exit 0, drift OK for both commands
-- [ ] `git status --short` shows none of the 10 target files modified before E1
+- [x] Each of the 19 search texts below counts 1 in its file with `rg -U -c -F`
+- [x] The section 5 baselines reproduce: 10 passed, typecheck exit 0, drift OK for both commands
+- [x] `git status --short` shows none of the 10 target files modified before E1
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] From the runtime folder, `npx vitest run --no-coverage tests/executor-audit-cli-branch-receipts.test.ts tests/unit/executor-branch-contract.vitest.ts tests/unit/write-containment-yaml-call-sites.vitest.ts` prints `Tests  13 passed (13)`
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] From the runtime folder, `npx vitest run --no-coverage tests/executor-audit-cli-branch-receipts.test.ts tests/unit/executor-branch-contract.vitest.ts tests/unit/write-containment-yaml-call-sites.vitest.ts` prints `Tests  13 passed (13)`
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -991,7 +991,7 @@ The full runtime suite is not provable on the mirror. It failed gateway tests th
 | `buildLineageCommand`, `withAgentPersona`, `validateDshCompletion` exports of `fanout-run.cjs` | Internal | Green | The dsh branch cannot build or judge a run |
 | `tsx` 4.22.4 and Vitest 4.1.12 in the runtime `node_modules` | Internal | Green | The YAML heredoc and the tests cannot load TypeScript |
 | `compile-command-contracts.cjs` and `check-contract-drift.cjs` | Internal | Green | The pre-commit contract gate blocks the commit |
-| dsh 0.2.2-rc.1 with an LLM Gateway or OpenCode Go key | External | Yellow | Only the manual keyed run waits. The automated checks use a stub |
+| dsh 0.2.2-rc.1 with an LLM Gateway or OpenCode Go key | External | Green | Only the manual keyed run waits. The automated checks use a stub |
 <!-- /ANCHOR:dependencies -->
 
 ---

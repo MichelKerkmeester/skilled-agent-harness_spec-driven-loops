@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "One cli-deepseek-harness lineage now runs in /deep:review and /deep:research :auto. The live keyed proof is still pending."
+description: "One cli-deepseek-harness lineage now runs in /deep:review and /deep:research :auto, proven by a live five-iteration review."
 trigger_phrases:
   - "dsh single executor loop implementation summary"
 importance_tier: "normal"
@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-single-executor-loop"
     last_updated_at: "2026-11-14T10:25:58Z"
     last_updated_by: "orchestrator-worker"
-    recent_action: "Recorded the applied build and its verification"
-    next_safe_action: "Record the live single-lineage run against AC-009"
+    recent_action: "Recorded the live five-iteration review against AC-009 and closed the packet"
+    next_safe_action: "Start phase 018"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-017-dsh-single-executor-loop"
       parent_session_id: null
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +37,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 017-dsh-single-executor-loop |
-| **Completed** | Pending. The build landed 2026-11-14 and the live proof is open |
+| **Completed** | 2026-11-14 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -52,7 +52,7 @@ You can now run `/deep:review` or `/deep:research` in `:auto` with one `cli-deep
 
 The single dsh branch in each `:auto` YAML now builds its command through the shared `buildLineageCommand` builder. It starts dsh in the artifact directory with a fresh `DSH_HOME`, the spec folder marker and the gate switch. The prompt opens with a `REPOSITORY ROOT` line. The audited runner takes two new options. `dispatchEnv` adds named values after the env filter. `completionCheck` judges a clean exit, so a run that reports a plugin that did not activate records a `crash` dispatch failure.
 
-The live keyed proof is still pending. A 5-iteration `/deep:review` with one dsh lineage started on 2026-11-14. AC-009 stays unmet until it reports.
+A live five-iteration `/deep:review` with one dsh lineage proved the path on 2026-11-14. It wrote all five iteration records through the append gateway, logged no `dispatch_failure` and left no harness home behind.
 
 ### Files Changed
 
@@ -75,7 +75,7 @@ The live keyed proof is still pending. A 5-iteration `/deep:review` with one dsh
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-A DeepSeek V4.1 Flash max worker ran through `cli-deepseek-harness`. It applied edits E1 to E19 from `plan.md` and ran `compile-command-contracts.cjs --write` for `deep/review` and `deep/research`. It exited 0 with a `completed` final event. The orchestrator then ran the touched tests, typecheck, the drift checks, the YAML loads, the refusal search and the full runtime suite. The stub dsh smoke ran for both YAMLs in both modes. Nothing is committed yet.
+A DeepSeek V4.1 Flash max worker ran through `cli-deepseek-harness`. It applied edits E1 to E19 from `plan.md` and ran `compile-command-contracts.cjs --write` for `deep/review` and `deep/research`. It exited 0 with a `completed` final event. The orchestrator then ran the touched tests, typecheck, the drift checks, the YAML loads, the refusal search and the full runtime suite. The stub dsh smoke ran for both YAMLs in both modes. The build is commit `1bedb33577`. The live five-iteration review that proves AC-009 is commit `aab544ae11`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -106,7 +106,7 @@ A DeepSeek V4.1 Flash max worker ran through `cli-deepseek-harness`. It applied 
 | Ephemeral labels in new comments | PASS. None |
 | Full runtime suite | PASS. `Test Files  173 passed (173)`, `Tests  2894 passed, 8 skipped (2902)`, 220.57 s, exit 0. Before: 2891 passed, 8 skipped (2899) |
 | Stub dsh smoke, both YAMLs, `ok` and `inactive` | PASS. `exit 0`, `cwd_is_artifact_dir True`, `home_removed_after_run True`, and the `inactive` runs record one `crash` failure |
-| Live keyed single-lineage run (AC-009) | PENDING. The 5-iteration run started 2026-11-14 |
+| Live keyed single-lineage run (AC-009) | PASS. In the five-iteration `/deep:review` at `specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/` (built on `1bedb33577`, recorded in `aab544ae11`), `ls iterations/iteration-001.md` exits 0, `rg -c '"type":"iteration"' deep-review-state.jsonl` prints 5, `rg -c dispatch_failure` on the same log prints nothing with exit 1, no `dsh-home-*` folder newer than 2026-11-14 11:00 is in `os.tmpdir()`, and each `dispatch-receipts/dispatch-review-i{1..5}-g1.completion.json` holds `exitStatus` 0, `signal` null and executor kind `cli-deepseek-harness` with the artifact directory as cwd. |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -114,7 +114,7 @@ A DeepSeek V4.1 Flash max worker ran through `cli-deepseek-harness`. It applied 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The live proof is open.** AC-009 needs the keyed run to write `iteration-001.md` and an iteration record. Record the result when the run ends.
+1. **The single branch's executor audit rows do not survive in the state log.** The live review's five iteration records carry no executor identity, so only the dispatch receipts name the harness. Phase 018 records this as item C6 and defers it there until the operator picks where the identity should live.
 2. **The `:confirm` YAMLs have no single-executor branch for codex, pi, cursor, devin or dsh.** Use `:auto` for these executors until a later packet adds them.
 3. **The smoke needs a temp folder inside the worktree.** With a folder outside it, write containment exits 1 after the dispatch. Place the folder under the worktree and remove it after.
 <!-- /ANCHOR:limitations -->

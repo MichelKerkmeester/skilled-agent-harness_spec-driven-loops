@@ -24,7 +24,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/376-dsh-single-executor-loop` |
 | **Parent Spec** | ../spec.md |
@@ -241,7 +241,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 10. OPEN QUESTIONS
 <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- Does a live dsh leaf follow the `REPOSITORY ROOT` line and run the repo-relative append gateway from the root? No keyed single-lineage run exists yet, so REQ-009 and AC-009 stay unmet until one does.
+- Does a live dsh leaf follow the `REPOSITORY ROOT` line and run the repo-relative append gateway from the root? Answered: yes. A live five-iteration single-lineage review wrote all five iteration records through the gateway with no `dispatch_failure`, so REQ-009 and AC-009 are met.
 - Decided: `SYSTEM_SPEC_GATE_DISABLED=1` rides in `dispatchEnv`, as the fan-out runner sets it, because `SYSTEM_SPEC_GATE_ENFORCE=0` alone only stops the deny.
 <!-- /ANCHOR:questions -->
 

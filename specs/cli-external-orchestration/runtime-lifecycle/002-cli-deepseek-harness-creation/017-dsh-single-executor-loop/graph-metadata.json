@@ -38,7 +38,7 @@
       "runauditedexecutorcommand"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -181,12 +181,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -203,11 +197,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "An operator who runs `/deep:review` or `/deep:research` in `:auto` with one `cli-deepseek-harness` executor gets the refusal message and exit 2, so a dsh run needs at least two lineages",
     "created_at": "2026-11-14T10:25:57Z",
-    "last_save_at": "2026-11-14T11:02:37.126Z",
+    "last_save_at": "2026-11-14T12:15:12.547Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,13 +217,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:01f381c0e0a20c70a4c056ee7a31841e26646a142ac52e7d48ef91b12685e420",
+    "source_fingerprint": "sha256:32037342a598f16e84261546a02c7c50798c50146722531d7616238396a0eb73",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3c759fcfe088ed59943bf329f5a94a77369287ad5b011a78c0b95acce4529db3",
-      "plan.md": "c0076c7de166879797e80cfd9a32e230b3bf73048d16f2bf4cd16fd8995093a5",
-      "tasks.md": "5bdb4e121f594de5b9a7377e0175bcae25cd6f04960f017ea438731b28509d13",
-      "implementation-summary.md": "94a6fc8cf05ab161eb430d5a32bf7690cac69e45549ab32724fd48fff1d5cbc1"
+      "spec.md": "ed508d5f68c4f39d04fdcca17d36ec7b9a9410f121cf5e4d9b8d796d42cb26cf",
+      "plan.md": "9d4e85a31c29a912c7c87666815615c2231f0496714501025a07c748ba2448f5",
+      "tasks.md": "2520c5958d5d31ed0e0d3db2a0ade3c314739c2af31fe947461004b185faed51",
+      "implementation-summary.md": "73c87894d9e5327d34e8f3a3a7f862ca6bcd3db6564c5feacb27d8b0dd150b33"
     },
     "last_active_at": null
   }

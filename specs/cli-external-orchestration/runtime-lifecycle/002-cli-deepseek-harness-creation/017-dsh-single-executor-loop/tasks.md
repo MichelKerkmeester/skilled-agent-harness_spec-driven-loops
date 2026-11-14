@@ -66,7 +66,7 @@ contextType: "general"
 - [x] T013 Run the touched tests (`$RT/vitest.config.ts`). Verify: `cd $RT && npx vitest run --no-coverage $TOUCHED` prints `Tests  13 passed (13)`. Evidence: `Test Files  3 passed (3)` and `Tests  13 passed (13)`.
 - [x] T014 Run the full runtime suite (`$RT/vitest.config.ts`). Verify: `cd $RT && npx vitest run --no-coverage` prints the plan section 5 baseline counts plus 3 passed tests. Evidence: `Test Files  173 passed (173)`, `Tests  2894 passed | 8 skipped (2902)`, 220.57 s, exit 0. Before: 2891 passed.
 - [x] T015 Smoke both rendered dsh branches against a stub `dsh` (`$PK/scratch/dsh-branch-smoke.py`). Verify: for each `:auto` YAML, `ok` mode prints `exit 0`, `cwd_is_artifact_dir True`, `home_removed_after_run True`, `"gateDisabled": "1"`, `"promptStart": "REPOSITORY ROOT:"` and `dispatch_failures []`, and `inactive` mode prints `exit 0` and one `crash` failure with detail `reported a plugin that did not activate`. Evidence: all four runs print `exit 0`, `cwd_is_artifact_dir True`, `home_removed_after_run True` and the expected failures. The temp folder must sit inside the worktree. A folder outside it makes write containment exit 1 after the dispatch.
-- [ ] T016 Run one keyed single-lineage review iteration (`.skilled/commands/deep/assets/deep-review-auto.yaml`). Verify: the AC-009 commands print an `iteration-001.md` path, at least 1 `"type":"iteration"` record and no `dispatch_failure`. Open: a live 5-iteration `/deep:review` with one dsh lineage started 2026-11-14 and has not reported yet.
+- [x] T016 Run one keyed single-lineage review iteration (`.skilled/commands/deep/assets/deep-review-auto.yaml`). Verify: the AC-009 commands print an `iteration-001.md` path, at least 1 `"type":"iteration"` record and no `dispatch_failure`. Evidence: In the five-iteration `/deep:review` at `specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/` (built on `1bedb33577`, recorded in `aab544ae11`), `ls iterations/iteration-001.md` exits 0, `rg -c '"type":"iteration"' deep-review-state.jsonl` prints 5, `rg -c dispatch_failure` on the same log prints nothing with exit 1, no `dsh-home-*` folder newer than 2026-11-14 11:00 is in `os.tmpdir()`, and each `dispatch-receipts/dispatch-review-i{1..5}-g1.completion.json` holds `exitStatus` 0, `signal` null and executor kind `cli-deepseek-harness` with the artifact directory as cwd.
 - [x] T017 Confirm the tree holds only the planned files (`git status`). Verify: `git status --short` lists the 8 edited files, the 2 regenerated contracts and this packet, and no `specs/smoke` or `dsh-home-*` path. Evidence: `git status --short` lists the 8 edited files, the 2 contracts, the parent `spec.md` and `graph-metadata.json` and this packet, with no `specs/smoke` or `dsh-home-*` path.
 - [x] T018 Fill the implementation summary with the files and the verify output (`$PK/implementation-summary.md`). Verify: `rg -o '\[YOUR_VALUE_HERE:' $PK/implementation-summary.md | wc -l` prints 0. Evidence: the count prints 0.
 - [x] T019 Validate the packet (`$PK/spec.md`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $PK --strict --quiet` prints `RESULT: PASSED`. Evidence: the strict run prints `RESULT: PASSED`.
@@ -78,9 +78,9 @@ contextType: "general"
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed
+- [x] Manual verification passed
 - [x] The touched tests print `Tests  13 passed (13)` and both drift checks print `OK`
 <!-- /ANCHOR:completion -->
 
@@ -142,7 +142,7 @@ A task blocks when a search text counts other than 1. Mark it `[B]`, stop and re
 ## Testing Checklist
 <!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] `--keep 3` leaves 3 archives. WEAK: Tests pass. -->
 
-- [ ] CHK-020 [P0] Every row in `acceptance-criteria.md` is `Met`. Open: AC-009 waits on the live run.
+- [x] CHK-020 [P0] Every row in `acceptance-criteria.md` is `Met`. Evidence: AC-001 to AC-008 at `1bedb33577` and AC-009 from the live review recorded in `aab544ae11`.
 - [x] CHK-021 [P0] The stub-dsh smoke passes for both YAMLs in both modes (T015). Evidence: T015.
 - [x] CHK-022 [P1] The new tests fail on the unedited runner and YAMLs. Check: the plan section 5 prototype evidence, `Tests  3 failed | 8 passed (11)`. Evidence: plan section 5.
 - [x] CHK-023 [P1] An exit-0 run with an inactive plugin records a `crash` dispatch failure (receipts cell 5 and T015 `inactive` mode). Evidence: receipts test passes and T015 `inactive` prints the `crash` failure.
@@ -160,7 +160,7 @@ A task blocks when a search text counts other than 1. Mark it `[B]`, stop and re
 - [x] CHK-FIX-004 [P0] Env adversarial case: an inherited `DSH_INHERITED_PROBE` does not reach the child and an inherited `DSH_SPEC_FOLDER` is overridden (receipts cell 4). Evidence: receipts cell 4 passes.
 - [x] CHK-FIX-005 [P1] Matrix axes are env source by exit, listed in `plan.md` affected surfaces. Evidence: `plan.md` affected surfaces.
 - [x] CHK-FIX-006 [P1] Hostile env variant: the smoke strips `DSH_HOME` from its own env before the run, and the state-env guard refuses a dsh dispatch whose parent sets it. Evidence: T015 ran with `DSH_HOME` unset.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the implementing commit SHA in `implementation-summary.md`. Open: nothing is committed yet.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the implementing commit SHA in `implementation-summary.md`. Evidence: the build is `1bedb33577` and the live review is `aab544ae11`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -203,8 +203,8 @@ A task blocks when a search text counts other than 1. Mark it `[B]`, stop and re
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 11/12 |
-| P1 Items | 13 | 12/13 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 13 | 13/13 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-11-14
