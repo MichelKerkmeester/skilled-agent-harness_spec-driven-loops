@@ -734,3 +734,363 @@ describe('convergence profile parity pins', () => {
     });
   });
 });
+
+describe('convergence.cjs stop-decision', () => {
+  const fs = requireCjs('node:fs') as typeof import('node:fs');
+  const os = requireCjs('node:os') as typeof import('node:os');
+  const tempDirs: string[] = [];
+
+  type StopDecisionFixture = {
+    dir: string;
+    configPath: string;
+    stateLogPath: string;
+    registryPath: string;
+  };
+
+  function writeFixtureFiles(
+    config: Record<string, unknown>,
+    stateRows: Array<Record<string, unknown>>,
+    registry: Record<string, unknown>,
+  ): StopDecisionFixture {
+    const dir = fs.mkdtempSync(join(os.tmpdir(), 'dlr-stop-decision-'));
+    tempDirs.push(dir);
+    const configPath = join(dir, 'config.json');
+    const stateLogPath = join(dir, 'state.jsonl');
+    const registryPath = join(dir, 'registry.json');
+    fs.writeFileSync(configPath, JSON.stringify(config), 'utf8');
+    fs.writeFileSync(
+      stateLogPath,
+      stateRows.map((row) => JSON.stringify(row)).join('\n') + '\n',
+      'utf8',
+    );
+    fs.writeFileSync(registryPath, JSON.stringify(registry), 'utf8');
+    return { dir, configPath, stateLogPath, registryPath };
+  }
+
+  function researchFixture(): StopDecisionFixture {
+    const ratios = [0.4, 0.3, 0.2];
+    return writeFixtureFiles(
+      {
+        maxIterations: 10,
+        minIterations: 3,
+        convergenceThreshold: 0.05,
+        stopPolicy: 'convergence',
+        stuckThreshold: 3,
+      },
+      ratios.map((newInfoRatio, index) => ({
+        type: 'iteration',
+        iteration: index + 1,
+        status: 'complete',
+        newInfoRatio,
+        answeredQuestions: ['q1'],
+        keyQuestions: ['q1'],
+      })),
+      { metrics: { resolvedQuestions: 1, openQuestions: 0 } },
+    );
+  }
+
+  function reviewFixture(
+    extraRows: Array<Record<string, unknown>> = [],
+  ): StopDecisionFixture {
+    const ratios = [0.3, 0.2];
+    return writeFixtureFiles(
+      {
+        maxIterations: 7,
+        convergenceThreshold: 0.1,
+        stopPolicy: 'convergence',
+        stuckThreshold: 2,
+        reviewDimensions: ['correctness'],
+        crossReference: { core: [] },
+      },
+      [
+        ...ratios.map((newFindingsRatio, index) => ({
+          type: 'iteration',
+          iteration: index + 1,
+          status: 'complete',
+          newFindingsRatio,
+          dimensions: ['correctness'],
+        })),
+        ...extraRows,
+      ],
+      {
+        dimensionCoverage: { correctness: true },
+        findingsBySeverity: { P0: 0, P1: 0, P2: 0 },
+        openFindings: [],
+      },
+    );
+  }
+
+  function stopDecisionArgs(
+    namespace: ScriptNamespace,
+    fixture: StopDecisionFixture,
+    extraArgs: string[] = [],
+  ): string[] {
+    return [
+      ...namespaceArgs(namespace),
+      '--stop-decision',
+      '--config-path',
+      fixture.configPath,
+      '--state-log',
+      fixture.stateLogPath,
+      '--registry-path',
+      fixture.registryPath,
+      ...extraArgs,
+    ];
+  }
+
+  const stopDecisionKeys = [
+    'decision',
+    'stopReason',
+    'reasonDetail',
+    'weightedStopScore',
+    'signals',
+    'gates',
+    'blockedBy',
+    'graphDecision',
+    'inputs',
+  ];
+
+  afterEach(() => {
+    while (tempDirs.length > 0) {
+      const dir = tempDirs.pop();
+      if (dir) fs.rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it('prints the nine stop_decision fields for research', () => {
+    const namespace = uniqueNamespace('convergence', 'research');
+    namespaces.push(namespace);
+    expect(seedConvergedResearchGraph(namespace).exitCode).toBe(0);
+    const fixture = researchFixture();
+
+    const result = runScript('convergence', stopDecisionArgs(namespace, fixture));
+    const stopDecision = result.json.stop_decision as {
+      inputs: {
+        iterationCount: number;
+        ratios: number[];
+        research: {
+          answeredCount: number;
+          totalQuestions: number;
+          answeredQuestionSourceCounts: Record<string, number>;
+        };
+      };
+    };
+
+    expect(result.exitCode).toBe(0);
+    expect(result.json.status).toBe('ok');
+    expect(Object.keys(result.json.stop_decision as Record<string, unknown>)).toEqual(
+      stopDecisionKeys,
+    );
+    expect(stopDecision.inputs.iterationCount).toBe(3);
+    expect(stopDecision.inputs.ratios).toEqual([0.4, 0.3, 0.2]);
+    expect(stopDecision.inputs.research.answeredCount).toBe(1);
+    expect(stopDecision.inputs.research.totalQuestions).toBe(1);
+    expect(stopDecision.inputs.research.answeredQuestionSourceCounts).toEqual({
+      'question-1': 2,
+    });
+  });
+
+  it('prints the nine stop_decision fields for review', () => {
+    const namespace = uniqueNamespace('convergence', 'review');
+    namespaces.push(namespace);
+    expect(seedReviewNode(namespace).exitCode).toBe(0);
+    const fixture = reviewFixture();
+
+    const result = runScript('convergence', stopDecisionArgs(namespace, fixture));
+    const stopDecision = result.json.stop_decision as {
+      inputs: {
+        review: {
+          missingDimensions: string[];
+          coverageAge: number;
+          activeP0: number;
+        };
+      };
+    };
+
+    expect(result.exitCode).toBe(0);
+    expect(Object.keys(result.json.stop_decision as Record<string, unknown>)).toEqual(
+      stopDecisionKeys,
+    );
+    expect(stopDecision.inputs.review.missingDimensions).toEqual([]);
+    expect(stopDecision.inputs.review.coverageAge).toBe(1);
+    expect(stopDecision.inputs.review.activeP0).toBe(0);
+  });
+
+  it('is byte-identical across two runs', () => {
+    const namespace = uniqueNamespace('convergence', 'research');
+    namespaces.push(namespace);
+    expect(seedConvergedResearchGraph(namespace).exitCode).toBe(0);
+    const fixture = researchFixture();
+
+    const first = runScript('convergence', stopDecisionArgs(namespace, fixture));
+    const second = runScript('convergence', stopDecisionArgs(namespace, fixture));
+
+    expect(first.exitCode).toBe(0);
+    expect(second.exitCode).toBe(0);
+    expect(JSON.stringify(second.json.stop_decision)).toBe(
+      JSON.stringify(first.json.stop_decision),
+    );
+  });
+
+  it('keeps deciding on an empty graph', () => {
+    const namespace = uniqueNamespace('convergence', 'research');
+    namespaces.push(namespace);
+    const fixture = researchFixture();
+
+    const result = runScript('convergence', stopDecisionArgs(namespace, fixture));
+    const stopDecision = result.json.stop_decision as Record<string, unknown>;
+
+    expect(result.exitCode).toBe(0);
+    expect(result.json.graph_decision).toBe('CONTINUE');
+    expect(stopDecision.graphDecision).toBe('CONTINUE');
+    expect(stopDecision.decision).toBe('CONTINUE');
+    expect(stopDecision.stopReason).toBeNull();
+    expect(stopDecision.reasonDetail).toBe('graph_convergence_continue');
+  });
+
+  it('treats a graph failure as a missing graph decision', () => {
+    const namespace = uniqueNamespace('convergence', 'research');
+    namespaces.push(namespace);
+    expect(seedConvergedResearchGraph(namespace).exitCode).toBe(0);
+    const fixture = researchFixture();
+
+    for (const fault of ['script', 'db']) {
+      const result = runScript('convergence', stopDecisionArgs(namespace, fixture), {
+        env: { ...process.env, DEEP_LOOP_TEST_FAULT: fault },
+      });
+      const stopDecision = result.json.stop_decision as Record<string, unknown>;
+
+      expect(result.exitCode).toBe(0);
+      expect(result.json.status).toBe('ok');
+      expect(result.json.graph_decision).toBeNull();
+      expect(stopDecision.graphDecision).toBeNull();
+      expect(stopDecision.decision).toBe('CONTINUE');
+      expect(stopDecision.stopReason).toBeNull();
+      expect(stopDecision.reasonDetail).toBe('graphDecisionMissing');
+    }
+  });
+
+  it('stops at the cap even when the graph failed', () => {
+    const namespace = uniqueNamespace('convergence', 'research');
+    namespaces.push(namespace);
+    expect(seedConvergedResearchGraph(namespace).exitCode).toBe(0);
+    const fixture = researchFixture();
+
+    const result = runScript(
+      'convergence',
+      stopDecisionArgs(namespace, fixture, ['--iteration-count', '10']),
+      { env: { ...process.env, DEEP_LOOP_TEST_FAULT: 'script' } },
+    );
+    const stopDecision = result.json.stop_decision as Record<string, unknown>;
+
+    expect(result.exitCode).toBe(0);
+    expect(stopDecision.decision).toBe('STOP');
+    expect(stopDecision.stopReason).toBe('maxIterationsReached');
+  });
+
+  it('echoes the judgment inputs and fails the replay gate', () => {
+    const namespace = uniqueNamespace('convergence', 'review');
+    namespaces.push(namespace);
+    expect(seedReviewNode(namespace).exitCode).toBe(0);
+    const fixture = reviewFixture();
+
+    const result = runScript(
+      'convergence',
+      stopDecisionArgs(namespace, fixture, [
+        '--security-sensitive-fix-scope',
+        'true',
+        '--fix-replay-required-rows',
+        '2',
+        '--fix-replay-passing-rows',
+        '1',
+      ]),
+    );
+    const stopDecision = result.json.stop_decision as {
+      inputs: {
+        review: {
+          securitySensitiveFixScope: boolean;
+          fixReplayRequiredRows: number;
+          fixReplayPassingRows: number;
+        };
+      };
+      gates: { fixCompletenessReplayGate: { pass: boolean } };
+    };
+
+    expect(result.exitCode).toBe(0);
+    expect(stopDecision.inputs.review.securitySensitiveFixScope).toBe(true);
+    expect(stopDecision.inputs.review.fixReplayRequiredRows).toBe(2);
+    expect(stopDecision.inputs.review.fixReplayPassingRows).toBe(1);
+    expect(stopDecision.gates.fixCompletenessReplayGate.pass).toBe(false);
+  });
+
+  it('reads the last claim adjudication event', () => {
+    const namespace = uniqueNamespace('convergence', 'review');
+    namespaces.push(namespace);
+    expect(seedReviewNode(namespace).exitCode).toBe(0);
+    const fixture = reviewFixture([
+      { type: 'event', event: 'claim_adjudication', passed: false },
+    ]);
+
+    const result = runScript('convergence', stopDecisionArgs(namespace, fixture));
+    const stopDecision = result.json.stop_decision as {
+      inputs: { review: { lastClaimAdjudicationPassed: boolean | null } };
+    };
+
+    expect(result.exitCode).toBe(0);
+    expect(stopDecision.inputs.review.lastClaimAdjudicationPassed).toBe(false);
+  });
+
+  it('exits 3 when the config file or the state log is missing', () => {
+    const namespace = uniqueNamespace('convergence', 'research');
+    namespaces.push(namespace);
+    const fixture = researchFixture();
+
+    const missingConfig = runScript('convergence', [
+      ...namespaceArgs(namespace),
+      '--stop-decision',
+      '--config-path',
+      join(fixture.dir, 'missing-config.json'),
+      '--state-log',
+      fixture.stateLogPath,
+      '--registry-path',
+      fixture.registryPath,
+    ]);
+    expect(missingConfig.exitCode).toBe(3);
+    expect(missingConfig.json.status).toBe('error');
+
+    const missingStateLog = runScript('convergence', [
+      ...namespaceArgs(namespace),
+      '--stop-decision',
+      '--config-path',
+      fixture.configPath,
+      '--state-log',
+      join(fixture.dir, 'missing-state.jsonl'),
+      '--registry-path',
+      fixture.registryPath,
+    ]);
+    expect(missingStateLog.exitCode).toBe(3);
+    expect(missingStateLog.json.status).toBe('error');
+  });
+
+  it('exits 3 for a loop type that has no stop decision', () => {
+    const namespace = uniqueContextNamespace();
+    namespaces.push(namespace);
+    const fixture = researchFixture();
+
+    const result = runScript('convergence', stopDecisionArgs(namespace, fixture));
+
+    expect(result.exitCode).toBe(3);
+    expect(result.json.status).toBe('error');
+  });
+
+  it('adds nothing without the flag', () => {
+    const namespace = uniqueNamespace('convergence', 'research');
+    namespaces.push(namespace);
+    expect(seedConvergedResearchGraph(namespace).exitCode).toBe(0);
+
+    const result = runScript('convergence', namespaceArgs(namespace));
+
+    expect(result.exitCode).toBe(0);
+    expect('stop_decision' in result.json).toBe(false);
+  });
+});

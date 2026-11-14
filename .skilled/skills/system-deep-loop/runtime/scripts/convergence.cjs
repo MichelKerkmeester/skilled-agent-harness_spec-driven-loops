@@ -55,12 +55,16 @@ const VALID_CONVERGENCE_MODES = new Set(['default', 'off', 'sliding-window', 'di
 // here is treated as an unknown option, so this list is the accepted set.
 const CONVERGENCE_FLAGS = [
   'configJson',
+  'configPath',
   'convergenceMode',
   'convergence_mode',
+  'fixReplayPassingRows',
+  'fixReplayRequiredRows',
   'graphNoveltyFloor',
   'improvementEffect',
   'improvementEffectTrace',
   'iteration',
+  'iterationCount',
   'loopType',
   'minObservations',
   'min_observations',
@@ -68,13 +72,18 @@ const CONVERGENCE_FLAGS = [
   'observationThresholdGuard',
   'persistSnapshot',
   'readOnly',
+  'registryPath',
   'reportedNovelty',
   'reportedNoveltyThreshold',
   'roundId',
+  'securitySensitiveFixScope',
   'sessionId',
   'slidingWindowSize',
   'sliding_window_size',
   'specFolder',
+  'stateLog',
+  'stopDecision',
+  'stuckCount',
   'traceImprovementEffect',
 ];
 
@@ -1159,6 +1168,387 @@ function buildStopDecision(input) {
   );
 }
 
+// The stop decision reads loop state from files, so these helpers stay
+// independent of the coverage graph and remain usable when the graph fails.
+function isPlainObject(value) {
+  return Boolean(value) && typeof value === 'object' && !Array.isArray(value);
+}
+
+function finiteNumberOrNull(value) {
+  return typeof value === 'number' && Number.isFinite(value) ? value : null;
+}
+
+function stopDecisionNumberFlag(value, key) {
+  if (value === undefined || value === null || value === true || value === '') return null;
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) throw inputError(`${key} must be a finite number`);
+  return Math.trunc(parsed);
+}
+
+function readJsonObjectFile(filePath, key) {
+  if (!fs.existsSync(filePath)) throw inputError(`${key} file does not exist: ${filePath}`);
+  let raw;
+  try {
+    raw = fs.readFileSync(filePath, 'utf8');
+  } catch {
+    throw inputError(`${key} file is not readable: ${filePath}`);
+  }
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    throw inputError(`${key} file must be JSON: ${filePath}`);
+  }
+  if (!isPlainObject(parsed)) throw inputError(`${key} file must hold a JSON object: ${filePath}`);
+  return parsed;
+}
+
+function readStateLogRows(filePath) {
+  if (!fs.existsSync(filePath)) throw inputError(`stateLog file does not exist: ${filePath}`);
+  let raw;
+  try {
+    raw = fs.readFileSync(filePath, 'utf8');
+  } catch {
+    throw inputError(`stateLog file is not readable: ${filePath}`);
+  }
+  const rows = [];
+  let lineCount = 0;
+  for (const line of raw.split(/\r?\n/)) {
+    if (line.trim() === '') continue;
+    lineCount += 1;
+    try {
+      const parsed = JSON.parse(line);
+      if (isPlainObject(parsed)) rows.push(parsed);
+    } catch {
+      // A torn line is not a record; the rows after it still carry loop state.
+    }
+  }
+  if (lineCount > 0 && rows.length === 0) {
+    throw inputError(`stateLog file must hold one JSON object per line: ${filePath}`);
+  }
+  return rows;
+}
+
+// The three stop-decision inputs are independent of the graph, so they are read
+// and validated before any graph work: a malformed request must fail as an
+// input error rather than as whatever the graph layer reports first.
+function readStopDecisionFiles(args) {
+  const configPath = ensureString(args, 'configPath');
+  const stateLogPath = ensureString(args, 'stateLog');
+  const registryPath = typeof args.registryPath === 'string' && args.registryPath !== ''
+    ? args.registryPath
+    : null;
+  return {
+    config: readJsonObjectFile(configPath, 'configPath'),
+    stateLogRows: readStateLogRows(stateLogPath),
+    // An absent registry is a loop with no recorded findings yet, not a broken
+    // request; only a present-but-unreadable registry file is an error.
+    registry: registryPath === null || !fs.existsSync(registryPath)
+      ? {}
+      : readJsonObjectFile(registryPath, 'registryPath'),
+  };
+}
+
+function iterationRecordNumber(row) {
+  const declared = finiteNumberOrNull(row.iteration);
+  return declared !== null ? declared : finiteNumberOrNull(row.run);
+}
+
+function orderedIterationRecords(stateRows) {
+  const byNumber = new Map();
+  const unnumbered = [];
+  for (const row of stateRows) {
+    if (!isPlainObject(row) || row.type !== 'iteration') continue;
+    const number = iterationRecordNumber(row);
+    if (number === null) {
+      unnumbered.push(row);
+    } else {
+      // A later row for the same iteration supersedes the earlier one.
+      byNumber.set(number, row);
+    }
+  }
+  const numbered = [...byNumber.entries()]
+    .sort((left, right) => left[0] - right[0])
+    .map(([, row]) => row);
+  return [...numbered, ...unnumbered];
+}
+
+function stopDecisionConfig(config, loopType, args) {
+  const antiConvergence = isPlainObject(config.antiConvergence) ? config.antiConvergence : {};
+  const maxIterations = finiteNumberOrNull(config.maxIterations);
+  const declaredMinIterations = finiteNumberOrNull(config.minIterations)
+    ?? finiteNumberOrNull(antiConvergence.minIterations)
+    ?? 0;
+  const modeFlagGiven = args.convergenceMode !== undefined || args.convergence_mode !== undefined;
+  const configMode = antiConvergence.convergenceMode;
+  return {
+    maxIterations,
+    // A floor above the cap could never be reached; cap it at the cap.
+    minIterations: maxIterations === null
+      ? declaredMinIterations
+      : Math.min(declaredMinIterations, maxIterations),
+    convergenceThreshold: finiteNumberOrNull(config.convergenceThreshold),
+    stopPolicy: config.stopPolicy === 'max-iterations' ? 'max-iterations' : 'convergence',
+    stuckThreshold: finiteNumberOrNull(config.stuckThreshold) ?? (loopType === 'review' ? 2 : 3),
+    convergenceMode: modeFlagGiven
+      ? readConvergenceModeConfig(args).mode
+      : typeof configMode === 'string' && configMode !== '' ? configMode : 'default',
+  };
+}
+
+// Distinct SOURCE nodes behind the FINDING nodes that answer each question.
+// The counts are null when the graph holds no answered QUESTION node, which
+// keeps the source-diversity guard unevaluated instead of failed.
+function answeredQuestionSourceCounts(nodes, edges) {
+  const nodeList = Array.isArray(nodes) ? nodes : [];
+  const edgeList = Array.isArray(edges) ? edges : [];
+  const kindById = new Map(nodeList.map((node) => [node?.id, node?.kind]));
+  const answeringQuestionIds = new Set(
+    edgeList.filter((edge) => edge?.relation === 'ANSWERS').map((edge) => edge.targetId),
+  );
+  const questionIds = nodeList
+    .filter((node) => node?.kind === 'QUESTION' && answeringQuestionIds.has(node.id))
+    .map((node) => node.id)
+    .sort();
+  if (questionIds.length === 0) return null;
+
+  const citedSourcesByFinding = new Map();
+  for (const edge of edgeList) {
+    if (edge?.relation !== 'CITES') continue;
+    if (kindById.get(edge.sourceId) !== 'FINDING') continue;
+    if (kindById.get(edge.targetId) !== 'SOURCE') continue;
+    if (!citedSourcesByFinding.has(edge.sourceId)) {
+      citedSourcesByFinding.set(edge.sourceId, new Set());
+    }
+    citedSourcesByFinding.get(edge.sourceId).add(edge.targetId);
+  }
+
+  const counts = {};
+  for (const questionId of questionIds) {
+    const sources = new Set();
+    for (const edge of edgeList) {
+      if (edge?.relation !== 'ANSWERS' || edge.targetId !== questionId) continue;
+      if (kindById.get(edge.sourceId) !== 'FINDING') continue;
+      for (const sourceId of citedSourcesByFinding.get(edge.sourceId) ?? []) sources.add(sourceId);
+    }
+    counts[questionId] = sources.size;
+  }
+  return counts;
+}
+
+function stopDecisionResearchFacts(registry, evidenceRecords, graph) {
+  const metrics = isPlainObject(registry.metrics) ? registry.metrics : {};
+  const resolvedQuestions = Array.isArray(registry.resolvedQuestions) ? registry.resolvedQuestions : [];
+  const openQuestions = Array.isArray(registry.openQuestions) ? registry.openQuestions : [];
+  const answeredCount = finiteNumberOrNull(metrics.resolvedQuestions) ?? resolvedQuestions.length;
+  const openCount = finiteNumberOrNull(metrics.openQuestions) ?? openQuestions.length;
+  return {
+    answeredCount,
+    totalQuestions: answeredCount + openCount,
+    iterationRecords: evidenceRecords.map((record) => {
+      const projected = {};
+      if (Array.isArray(record.answeredQuestions)) projected.answeredQuestions = record.answeredQuestions;
+      if (Array.isArray(record.keyQuestions)) projected.keyQuestions = record.keyQuestions;
+      return projected;
+    }),
+    // A failed graph cannot prove which questions have sources; null keeps the
+    // guard unevaluated instead of failing it on missing evidence.
+    answeredQuestionSourceCounts: isPlainObject(graph) && graph.failed === true
+      ? null
+      : answeredQuestionSourceCounts(graph?.nodes, graph?.edges),
+  };
+}
+
+function reviewCoverageAge(evidenceRecords, dimensions) {
+  if (dimensions.length === 0) return 0;
+  const covered = new Set();
+  for (let index = 0; index < evidenceRecords.length; index += 1) {
+    const record = evidenceRecords[index];
+    if (Array.isArray(record.dimensions)) {
+      for (const dimension of record.dimensions) covered.add(dimension);
+    }
+    if (dimensions.every((dimension) => covered.has(dimension))) {
+      return evidenceRecords.length - 1 - index;
+    }
+  }
+  return 0;
+}
+
+function reviewTraceabilityCovered(config, registry) {
+  const traceability = isPlainObject(registry.traceability) ? registry.traceability : {};
+  const summary = isPlainObject(traceability.summary) ? traceability.summary : null;
+  const core = isPlainObject(config.crossReference) && Array.isArray(config.crossReference.core)
+    ? config.crossReference.core
+    : [];
+  const settingsPassed = summary !== null ? summary.gatingFailures === 0 : core.length === 0;
+  if (!settingsPassed) return false;
+
+  const results = Array.isArray(traceability.results) ? traceability.results : [];
+  const incompleteStatuses = new Set(['', 'pending', 'deferred', 'skipped']);
+  return core.every((id) => results.some((entry) => {
+    if (!isPlainObject(entry) || entry.protocolId !== id) return false;
+    if (typeof entry.status !== 'string') return false;
+    return !incompleteStatuses.has(entry.status.toLowerCase());
+  }));
+}
+
+function lastClaimAdjudicationPassed(stateRows) {
+  let lastMatch = null;
+  for (const row of stateRows) {
+    if (isPlainObject(row) && row.type === 'event' && row.event === 'claim_adjudication') {
+      lastMatch = row;
+    }
+  }
+  return lastMatch !== null && typeof lastMatch.passed === 'boolean' ? lastMatch.passed : null;
+}
+
+function reviewFallbackCoveredBugClasses(iterationRecords) {
+  const evidenceMethods = new Set([
+    'direct_read',
+    'exact_grep',
+    'semantic_search',
+    'producer_consumer_trace',
+    'negative_test_inspection',
+  ]);
+  const covered = new Set();
+  for (const record of iterationRecords) {
+    if (!Array.isArray(record.searchLedger)) continue;
+    for (const row of record.searchLedger) {
+      if (!isPlainObject(row) || typeof row.bugClass !== 'string') continue;
+      if (!Array.isArray(row.evidenceRefs) || row.evidenceRefs.length === 0) continue;
+      const actions = Array.isArray(row.searchActions) ? row.searchActions : [];
+      if (!actions.some((action) => isPlainObject(action) && evidenceMethods.has(action.method))) {
+        continue;
+      }
+      covered.add(row.bugClass);
+    }
+  }
+  return [...covered].sort();
+}
+
+function graphHotspotSaturation(graph) {
+  if (!isPlainObject(graph) || graph.failed === true) return null;
+  const trace = Array.isArray(graph.trace) ? graph.trace : [];
+  const entry = trace.find(
+    (candidate) => isPlainObject(candidate) && candidate.signal === 'hotspotSaturation',
+  );
+  return entry !== undefined && typeof entry.passed === 'boolean' ? entry.passed : null;
+}
+
+function stopDecisionReviewFacts(options = {}) {
+  const {
+    config,
+    registry,
+    evidenceRecords,
+    iterationRecords,
+    stateRows,
+    args,
+    graph,
+  } = options;
+  const coverage = isPlainObject(registry.dimensionCoverage) ? registry.dimensionCoverage : {};
+  const dimensions = Array.isArray(config.reviewDimensions)
+    ? config.reviewDimensions
+    : Object.keys(coverage);
+  const findingsBySeverity = isPlainObject(registry.findingsBySeverity)
+    ? registry.findingsBySeverity
+    : {};
+  const openFindings = Array.isArray(registry.openFindings) ? registry.openFindings : [];
+  const searchCoverage = isPlainObject(registry.searchCoverage) ? registry.searchCoverage : {};
+  const candidateCoverage = isPlainObject(registry.candidateCoverage) ? registry.candidateCoverage : {};
+  const lastIteration = iterationRecords.length > 0
+    ? iterationRecords[iterationRecords.length - 1]
+    : null;
+
+  return {
+    totalDimensions: dimensions.length,
+    missingDimensions: dimensions.filter((dimension) => coverage[dimension] !== true),
+    coverageAge: reviewCoverageAge(evidenceRecords, dimensions),
+    traceabilityCovered: reviewTraceabilityCovered(config, registry),
+    activeP0: finiteNumberOrNull(findingsBySeverity.P0) ?? 0,
+    activeP1: finiteNumberOrNull(findingsBySeverity.P1) ?? 0,
+    evidenceBackedP0P1: openFindings.filter((finding) => (
+      isPlainObject(finding)
+      && (finding.severity === 'P0' || finding.severity === 'P1')
+      && finding.file !== null
+      && finding.file !== undefined
+      && finding.line !== null
+      && finding.line !== undefined
+    )).length,
+    hotspotSaturated: graphHotspotSaturation(graph),
+    lastClaimAdjudicationPassed: lastClaimAdjudicationPassed(stateRows),
+    securitySensitiveFixScope: asBoolean(args.securitySensitiveFixScope),
+    fixReplayRequiredRows: stopDecisionNumberFlag(args.fixReplayRequiredRows, 'fixReplayRequiredRows') ?? 0,
+    fixReplayPassingRows: stopDecisionNumberFlag(args.fixReplayPassingRows, 'fixReplayPassingRows') ?? 0,
+    reviewDepthSchemaVersion: lastIteration !== null && Number.isFinite(lastIteration.reviewDepthSchemaVersion)
+      ? lastIteration.reviewDepthSchemaVersion
+      : null,
+    reviewDepthApplicability: lastIteration !== null && isPlainObject(lastIteration.reviewDepthApplicability)
+      ? lastIteration.reviewDepthApplicability
+      : null,
+    searchDebt: Array.isArray(registry.searchDebt) ? registry.searchDebt : [],
+    candidateCovered: Array.isArray(candidateCoverage.covered) ? candidateCoverage.covered : [],
+    requiredBugClasses: Array.isArray(searchCoverage.requiredBugClasses)
+      ? searchCoverage.requiredBugClasses
+      : [],
+    graphCoverageMode: typeof searchCoverage.graphCoverageMode === 'string'
+      ? searchCoverage.graphCoverageMode
+      : null,
+    fallbackCoveredBugClasses: reviewFallbackCoveredBugClasses(iterationRecords),
+  };
+}
+
+function buildStopDecisionInput(args, loopType, files, graph) {
+  const config = isPlainObject(files?.config) ? files.config : {};
+  const registry = isPlainObject(files?.registry) ? files.registry : {};
+  const stateRows = Array.isArray(files?.stateLogRows) ? files.stateLogRows : [];
+  const iterationRecords = orderedIterationRecords(stateRows);
+  const evidenceRecords = iterationRecords.filter((record) => record.status !== 'thought');
+  const ratioKey = loopType === 'review' ? 'newFindingsRatio' : 'newInfoRatio';
+  const ratios = evidenceRecords
+    .map((record) => record[ratioKey])
+    .filter((value) => typeof value === 'number' && Number.isFinite(value));
+
+  return {
+    loopType,
+    iterationCount: stopDecisionNumberFlag(args.iterationCount, 'iterationCount')
+      ?? iterationRecords.length,
+    stuckCount: stopDecisionNumberFlag(args.stuckCount, 'stuckCount') ?? 0,
+    config: stopDecisionConfig(config, loopType, args),
+    ratios,
+    research: loopType === 'research'
+      ? stopDecisionResearchFacts(registry, evidenceRecords, graph)
+      : null,
+    review: loopType === 'review'
+      ? stopDecisionReviewFacts({
+        config,
+        registry,
+        evidenceRecords,
+        iterationRecords,
+        stateRows,
+        args,
+        graph,
+      })
+      : null,
+    graphDecision: graph?.decision ?? null,
+    graphBlockers: isPlainObject(graph) && Array.isArray(graph.blockers) ? graph.blockers : [],
+  };
+}
+
+function buildStopDecisionGraphFailurePayload(error, args, loopType, files) {
+  return {
+    status: 'ok',
+    data: null,
+    graph_decision: null,
+    graph_error: error instanceof Error ? error.message : String(error),
+    stop_decision: buildStopDecision(buildStopDecisionInput(
+      args,
+      loopType,
+      files,
+      { failed: true },
+    )),
+  };
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 5. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
@@ -1172,6 +1562,13 @@ async function main() {
   if (loopType !== 'research' && loopType !== 'review' && loopType !== 'council' && loopType !== 'context') {
     throw inputError('loopType must be "research", "review", "council", or "context"');
   }
+  const stopDecisionRequested = args.stopDecision === true;
+  if (stopDecisionRequested && loopType !== 'research' && loopType !== 'review') {
+    throw inputError('--stop-decision is supported only for "research" and "review" loop types');
+  }
+  // Read the state files before the graph is opened so a bad request exits as
+  // an input error instead of depending on graph availability.
+  const stopDecisionFiles = stopDecisionRequested ? readStopDecisionFiles(args) : null;
 
   const ns = { specFolder, loopType, sessionId };
   const readOnly = args.readOnly === true;
@@ -1236,6 +1633,20 @@ async function main() {
       };
       if (convergenceModeConfig.mode === 'divergent') data.convergenceMode = convergenceModeConfig.mode;
       const payload = { status: 'ok', data, graph_decision: data.decision, graph_decision_json: JSON.stringify(data.decision), graph_signals_json: {}, graph_blockers_json: [], graph_blockers_csv: '', graph_stop_blocked: false, graph_trace_json: [], graph_convergence_score: 0, graph_score_delta: null, graph_score_delta_json: 'null' };
+      if (stopDecisionRequested) {
+        payload.stop_decision = buildStopDecision(buildStopDecisionInput(
+          args,
+          loopType,
+          stopDecisionFiles,
+          {
+            decision: data.decision,
+            blockers: [],
+            nodes: [],
+            edges: [],
+            trace: [],
+          },
+        ));
+      }
       if (!readOnly) appendConvergenceObservabilityEvent(db, payload, ns);
       jsonOut(payload);
       return;
@@ -1380,8 +1791,22 @@ async function main() {
     };
     if (improvementEffect) payload.graph_improvement_effect_json = improvementEffect;
     if (observationThreshold) payload.graph_observation_threshold_json = observationThreshold;
+    if (stopDecisionRequested) {
+      payload.stop_decision = buildStopDecision(buildStopDecisionInput(
+        args,
+        loopType,
+        stopDecisionFiles,
+        { decision, blockers, nodes, edges, trace },
+      ));
+    }
     if (!readOnly) appendConvergenceObservabilityEvent(db, payload, ns);
     jsonOut(payload);
+  } catch (err) {
+    // The stop decision is read from loop state files, so a graph that cannot
+    // be opened or evaluated still leaves a usable decision; report the missing
+    // graph decision instead of failing the request.
+    if (!stopDecisionRequested || (err && err.code === 'INPUT_VALIDATION')) throw err;
+    jsonOut(buildStopDecisionGraphFailurePayload(err, args, loopType, stopDecisionFiles));
   } finally {
     db?.closeDb();
   }
@@ -1393,6 +1818,7 @@ module.exports = {
   applyObservationThresholdGuard,
   buildImprovementEffect,
   buildStopDecision,
+  buildStopDecisionInput,
   combineGraphDecision,
   computeScoreDelta,
   computeStopSignals,
