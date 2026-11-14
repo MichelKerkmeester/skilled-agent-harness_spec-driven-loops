@@ -1,4 +1,4 @@
-# Review scope: files this packet changed outside specs/, generated JSON and fixtures left out
+# Review scope: files this packet changed outside specs/, generated JSON and fixtures left out except the three routing files the phase 009 signal change touched
 .env.example
 .skilled/commands/create/assets/create-agent-presentation.txt
 .skilled/commands/create/assets/create-command-presentation.txt
@@ -19,6 +19,8 @@
 .skilled/commands/speckit/assets/speckit-plan-presentation.txt
 .skilled/commands/speckit/README.txt
 .skilled/commands/speckit/search.md
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json
+.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json
 .skilled/skills/system-spec-kit/changelog/v2.13.0.0.md
 .skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md
 .skilled/skills/system-spec-kit/feature-catalog/retrieval/rg-archive-search.md
@@ -28,6 +30,7 @@
 .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-validation-rule-engine.md
 .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/sub-track-proposal.md
 .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/track-root-children-lists.md
+.skilled/skills/system-spec-kit/graph-metadata.json
 .skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md
 .skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/rg-archive-search.md
 .skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-lifecycle-automation.md

@@ -9,7 +9,7 @@ trigger_phrases:
   - "suggested phase counts"
 importance_tier: normal
 contextType: planning
-version: 1.6.5.0
+version: 1.6.6.0
 ---
 
 # Phase Definitions
@@ -252,7 +252,7 @@ Phase folders use the same status values as regular spec folders:
 When the current work is already inside a phase parent:
 
 1. Use Option A when the requested work fits the current active, draft, or paused child phase.
-2. Prefer Option C when the work is a distinct but related workstream within the parent's documented purpose and scope. Add the next sequential child phase and update the Phase Documentation Map. When the parent has a `goal.md`, give the new phase its child goal and binding row with `/create:goal <parent> phase-add`.
+2. Prefer Option C when the work is a distinct but related workstream within the parent's documented purpose and scope. Add the next sequential child phase and update the Phase Documentation Map. The new phase takes the number after the highest one in the parent, a phase archived in the parent's `z_archive/` included, so `create.sh --phase --parent` never reuses an archived phase's number. When the parent has a `goal.md`, give the new phase its child goal and binding row with `/create:goal <parent> phase-add`.
 3. Use Option C when another related existing packet is a better scope match.
 4. Use Option B only when the work is new or unrelated to the phase parent's purpose, requirements, and Phase Documentation Map.
 5. Option D (Skip) remains an explicit documentation opt-out and is never the default.

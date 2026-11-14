@@ -16,7 +16,8 @@
       "next spec number counts archived",
       "skill docs and housekeeping plan",
       "skill docs and housekeeping tasks",
-      "skill docs and housekeeping goal"
+      "skill docs and housekeeping goal",
+      "skill docs and housekeeping implementation summary"
     ],
     "key_topics": [
       "skill",
@@ -33,18 +34,24 @@
       "goal"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
+      "implementation-summary.md",
+      "scratch/routing-review.md",
+      "scratch/setup-notes.md",
+      "scratch/validators.txt",
+      "scratch/advisor-suite.txt",
       "runtime/cli/spec/README.md",
       ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
       ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
       ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
       "references/workflows/worked-examples.md",
-      ".skilled/repo-rules/skill-hub-routing.md"
+      ".skilled/repo-rules/skill-hub-routing.md",
+      ".skilled/skills/system-spec-kit/changelog/v2.13.1.0.md"
     ],
     "entities": [
       {
@@ -72,6 +79,36 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-review.md",
+        "kind": "doc",
+        "path": "scratch/routing-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "setup-notes.md",
+        "kind": "doc",
+        "path": "scratch/setup-notes.md",
+        "source": "derived"
+      },
+      {
+        "name": "validators.txt",
+        "kind": "file",
+        "path": "scratch/validators.txt",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-suite.txt",
+        "kind": "file",
+        "path": "scratch/advisor-suite.txt",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": "runtime/cli/spec/README.md",
@@ -93,6 +130,12 @@
         "name": "skill-hub-routing.md",
         "kind": "doc",
         "path": ".skilled/repo-rules/skill-hub-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.13.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/changelog/v2.13.1.0.md",
         "source": "derived"
       },
       {
@@ -154,61 +197,27 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Shipped",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Every Verify",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`SKILL.md` publishes a next-number command that ignores archived packets, against decision D4, and its script list omits the three tools this packet added",
     "created_at": "2026-11-14T11:10:42Z",
-    "last_save_at": "2026-11-14T11:35:14.151Z",
+    "last_save_at": "2026-11-14T14:15:06.567Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f51d41c376cb540e74175c4701913116f1f2baf4d35011f24cbe47468ebf0d48",
+    "source_fingerprint": "sha256:f3d3de7916fb15eb2e3f1f5644248ec4290c519fcfb1b7b2493f331e333b307b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c1adcdf7e5c8e4119f06c45456faf5937a268e7ae41cf689b34b8c01e2819001",
+      "spec.md": "ab0959b0a6259b6442a04c13bd0ef2cfa9b1b0ceedfc0258c7779022785e089e",
       "plan.md": "9b94713557145661ec57100fcf5f0acf0838bcaf9d9e5cdec3034fb5c303af38",
-      "tasks.md": "a559a21adcb7c7c673143cfbf93b1b42db3ec6c8e246513208ce6d17c93d7d43"
+      "tasks.md": "7ce24b9971847f92510f5cb12df8c460645687496de7d8dfa9c545e0d463c443",
+      "implementation-summary.md": "b53f639f67c38c8139e9a3e6f5dcbaac919ed25bd610089ba67bd4d0e5d48028"
     },
     "last_active_at": null
   }

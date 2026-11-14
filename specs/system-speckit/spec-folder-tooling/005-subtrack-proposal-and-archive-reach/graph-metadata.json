@@ -221,7 +221,7 @@
     ],
     "causal_summary": "Subtracks exist in system-spec-kit only as a hand-written declaration, one level deep, and three gaps follow from that",
     "created_at": "2026-11-13T10:07:28Z",
-    "last_save_at": "2026-11-14T14:04:03.241Z",
+    "last_save_at": "2026-11-14T14:13:37.646Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -229,10 +229,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:52270c8f16a6f3f3252da654b7d58f140e62f68a42969f4b73c1754748fbe15b",
+    "source_fingerprint": "sha256:94df347719d07f86191924f7450d85240db01acac81b83cf7d33da6c4286c050",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0ee71d08e6d0d871a073afeecc7b47b0e20d524cb702b2f86059bebd11747c8b",
+      "spec.md": "b806c40a5fbb1de6dc5e8e041bb82eeaf7f91b5fe8f2dab93cf4215c5a9aca91",
       "decision-record.md": "d7935cec43beefd3fb1f51dd93cc99cfa1d8de33314360a0a126e768205511dc"
     },
     "last_active_child_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/011-relocate-and-restore-fixes",

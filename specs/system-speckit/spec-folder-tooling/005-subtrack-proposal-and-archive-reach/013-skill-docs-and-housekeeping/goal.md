@@ -53,11 +53,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] In a `mktemp` copy with `specs/demo/001-a` live and `specs/demo/z_archive/008-b` archived, the next-number command in `SKILL.md` prints 9, the number `create.sh` gives
-- [ ] `rg -n 'archivedPaths' .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` and `rg -n 'flat packets' .skilled/skills/system-spec-kit/runtime/cli/spec/README.md` each print a line
-- [ ] `.skilled/skills/system-spec-kit/changelog/v2.13.1.0.md` exists and `SKILL.md` line 5 reads `version: 2.13.1.0`
-- [ ] `scratch/routing-review.md` holds a verdict on the phase 009 routing change
-- [ ] `validate.sh specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach --strict --recursive` prints `RESULT: PASSED` 14 times
+- [x] In a `mktemp` copy with `specs/demo/001-a` live and `specs/demo/z_archive/008-b` archived, the next-number command in `SKILL.md` prints 9, the number `create.sh` gives Evidence: printed `009`, matching `create.sh` (scratch/setup-notes.md).
+- [x] `rg -n 'archivedPaths' .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md` and `rg -n 'flat packets' .skilled/skills/system-spec-kit/runtime/cli/spec/README.md` each print a line Evidence: one line each.
+- [x] `.skilled/skills/system-spec-kit/changelog/v2.13.1.0.md` exists and `SKILL.md` line 5 reads `version: 2.13.1.0` Evidence: the file exists and line 5 reads `version: 2.13.1.0`.
+- [x] `scratch/routing-review.md` holds a verdict on the phase 009 routing change Evidence: `Verdict: ACCEPT`.
+- [x] `validate.sh specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach --strict --recursive` prints `RESULT: PASSED` 14 times Evidence: 14 `RESULT: PASSED`, exit 0.
 <!-- /ANCHOR:completion -->
 
 ---

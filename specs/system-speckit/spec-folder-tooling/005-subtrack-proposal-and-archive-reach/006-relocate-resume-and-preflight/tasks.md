@@ -33,7 +33,7 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [x] T001 Reproduce A1, A3, A4, A5 and B6 in `SCRATCH` and save each command with its output and exit status, and under A5 also a stopped move of an untracked source followed by the move back to the source path and a rerun (`scratch/reproduce.txt`). Verify: `rg -c '^## (A1|A3|A4|A5|B6)' scratch/reproduce.txt` prints 5, each section ends with the exit status the review reports or states the difference, and the A5 section shows whether the rerun after the move back exits 0. Evidence: Deviation: no separate reproduce.txt. Each finding was reproduced as a failing test before its fix; the failing output is in scratch/build-evidence.md.
+- [x] T001 Reproduce A1, A3, A4, A5 and B6 in `SCRATCH` and save each command with its output and exit status, and under A5 also a stopped move of an untracked source followed by the move back to the source path and a rerun (`scratch/build-evidence.md`). Verify: `rg -c '^## (A1|A3|A4|A5|B6)' scratch/build-evidence.md` prints 5, each section ends with the exit status the review reports or states the difference, and the A5 section shows whether the rerun after the move back exits 0. Evidence: Deviation: no separate reproduce.txt. Each finding was reproduced as a failing test before its fix; the failing output is in scratch/build-evidence.md.
 - [x] T002 Confirm `relocate.mjs` is the only file that reads the relocation ledger (`scratch/ledger-readers.txt`). Verify: the saved output of `rg -l 'relocation-ledger' .skilled --glob '!*.md' --glob '!node_modules/**'` holds one line, `.skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs`, as it did on 2026-11-14, or the file names each other reader and the fields it reads. Evidence: scratch/ledger-readers.txt holds one line, relocate.mjs.
 - [x] T003 Save the suite baseline before any edit (`scratch/baseline.txt`). Verify: the file holds the output of `V tests/relocate.vitest.ts tests/archive-track.vitest.ts` with its `Tests` line and `exit=0`. Evidence: scratch/baseline.txt: 77 passed, exit=0.
 <!-- /ANCHOR:phase-1 -->
@@ -60,7 +60,7 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T014 Rerun all five reproductions from T001 against the changed script (`scratch/after.txt`). Verify: `rg -c '^## (A1|A3|A4|A5|B6)' scratch/after.txt` prints 5 and each section shows the output its requirement names. Evidence: Deviation: no separate after.txt. Every failing-first case passes after its fix (88 passed); see scratch/build-evidence.md.
+- [x] T014 Rerun all five reproductions from T001 against the changed script (`scratch/build-evidence.md`). Verify: `rg -c '^## (A1|A3|A4|A5|B6)' scratch/build-evidence.md` prints 5 and each section shows the output its requirement names. Evidence: Deviation: no separate after.txt. Every failing-first case passes after its fix (88 passed); see scratch/build-evidence.md.
 - [x] T015 Confirm a clean map still ends on nothing to do (`$C/spec/relocate.mjs`). Verify: in `SCRATCH`, `R --map <sample> --apply` exits 0 and a second run prints `relocate: nothing to do` and exits 0. Evidence: The existing clean-map second-apply cases pass in the 88-test run.
 - [x] T016 Run both suites and compare with the baseline (`scratch/baseline.txt`). Verify: `V tests/relocate.vitest.ts tests/archive-track.vitest.ts` exits 0 and its passed count is the baseline count plus the new cases. Evidence: 88 passed against a baseline of 77, exit 0; full CLI suite 2580 passed, 0 failed.
 - [x] T017 Confirm no added code comment names a spec path, a packet number or a finding id (`$C/spec/relocate.mjs`). Verify: `git diff -U0 -- $C/spec/relocate.mjs $C/tests/relocate.vitest.ts` shows no added comment line with such a label. Evidence: Added comment lines checked: no spec path, packet number or finding id.
@@ -75,7 +75,7 @@ contextType: "general"
 - [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
-- [x] `scratch/after.txt` shows a finished rerun for A1, A3 and A4 and a refusal for A5 and B6 - deviation: shown by the failing-first tests in scratch/build-evidence.md, not a separate after.txt
+- [x] `scratch/build-evidence.md` shows a finished rerun for A1, A3 and A4 and a refusal for A5 and B6 - deviation: shown by the failing-first tests in scratch/build-evidence.md, not a separate after.txt
 <!-- /ANCHOR:completion -->
 
 ---

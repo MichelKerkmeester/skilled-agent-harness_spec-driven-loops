@@ -144,6 +144,7 @@ and findings belong here.
 | Docs written by the orchestrator | Deviation | The claude2 account hit its usage limit. The operator chose that this session writes the phase docs from the saved build evidence |
 | Phase 011 relocate and restore fixes | Complete | f6825d19b2; three suites 115 passed, npm test 2613 passed exit 0, recursive strict 14 PASSED |
 | Phase 012 catalog and playbook alignment | Complete | scenarios 492-494 run verbatim, sk-doc validators exit 0, recursive strict 14 PASSED |
+| Phase 013 skill docs and housekeeping | Complete | v2.13.1.0 entry, skill docs VALID, routing review ACCEPT |
 
 ### Deviations and findings
 

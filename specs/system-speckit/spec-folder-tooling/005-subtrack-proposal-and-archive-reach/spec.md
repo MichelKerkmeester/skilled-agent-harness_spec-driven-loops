@@ -171,7 +171,7 @@ Audit summary only. Per-phase detail lives in each child's `plan.md`. Paths with
 | 10 | 010-real-pipeline-tests/ | One suite that runs the true writers and the resume paths. Closes A10 | Complete |
 | 11 | 011-relocate-and-restore-fixes/ | A stopped re-parent finished by a rerun, exit 3 only on `RESULT: FAILED`, the bare-name boundary and a restore check without a dry run. Closes Fable F1 to F4, F6 recorded as unreachable | Complete |
 | 12 | 012-catalog-and-playbook-alignment/ | The feature catalog and playbook pages the DeepSeek review found stale | Complete |
-| 13 | 013-skill-docs-and-housekeeping/ | `SKILL.md`, references, READMEs, a `v2.13.1.0` changelog entry, the packet records and a review of the phase 009 routing change. Closes Fable F5, F7, F8 and F9 | Draft |
+| 13 | 013-skill-docs-and-housekeeping/ | `SKILL.md`, references, READMEs, a `v2.13.1.0` changelog entry, the packet records and a review of the phase 009 routing change. Closes Fable F5, F7, F8 and F9 | Complete |
 
 ### Phase Transition Rules
 
