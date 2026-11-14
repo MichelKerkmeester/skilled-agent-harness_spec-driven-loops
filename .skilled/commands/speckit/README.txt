@@ -89,6 +89,7 @@ This document is a routing and reference surface only. Run the command entrypoin
 | **search** | `/speckit:search <query> [--packet <specFolder>] [--triggers] [--paths] [--count] [--include-archive]` | direct-dispatch | Lexical retrieval: trigger-index lookup and the ripgrep recipes over spec docs and skill docs |
 | **save** | `/speckit:save <spec-folder>` | direct-dispatch | Write session context into the packet's continuity surfaces |
 | **handoff** | `/speckit:handoff` | 5 | Manual session-relaunch trigger: write the handoff note and arm the loop |
+| **ai-council** | `/speckit:ai-council <question-or-task> [:auto\|:confirm] [--spec-folder=PATH]` | 3 | Single-round AI council: bind the spec folder, dispatch `@ai-council` once, report its plan |
 
 ### Search Lanes
 
@@ -121,6 +122,7 @@ Scope by positional path, not by pattern: `--packet specs/<track>/<NNN-name>` re
 | `search` | Nothing (read-only lexical retrieval) |
 | `save` | Nothing (creates or refreshes packet continuity surfaces) |
 | `handoff` | Nothing (writes the handoff note and arms the relaunch loop) |
+| `ai-council` | Existing spec folder with `spec.md`, which receives the `ai-council/` artifacts |
 
 <!-- /ANCHOR:commands -->
 
@@ -131,7 +133,8 @@ Scope by positional path, not by pattern: `--packet specs/<track>/<NNN-name>` re
 
 ```text
 speckit/
-├── README.txt        # This file, 9-command index and workflow guide
+├── README.txt        # This file, 10-command index and workflow guide
+├── ai-council.md     # /speckit:ai-council - Single-round AI council
 ├── complete.md       # /speckit:complete - Full end-to-end workflow
 ├── handoff.md        # /speckit:handoff - Manual session-relaunch trigger
 ├── implement.md      # /speckit:implement - Execute planned work
@@ -223,6 +226,7 @@ The `complete` command combines research, plan and implement into a single invoc
 | save | No delegation: routes directly to `generate-context.js` |
 | search | No delegation: routes directly to the trigger-index lookup or a ripgrep recipe |
 | handoff | No delegation: writes the note and calls `session-relaunch.cjs prepare` |
+| ai-council | @ai-council, dispatched once. The agent runs its own seats and writes its own artifacts |
 
 <!-- /ANCHOR:workflow-progression -->
 

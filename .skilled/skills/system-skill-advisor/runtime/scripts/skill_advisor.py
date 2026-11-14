@@ -2752,6 +2752,16 @@ GENERATED_COMMAND_BRIDGES = {
         "owner_mode": "sk-prompt",
         "routing_enabled": True,
     },
+    "command-speckit-ai-council": {
+        "description": "AI Council, 3 steps: bind the spec folder, dispatch @ai-council once, report the plan. Modes :auto, :confirm.",
+        "slash_markers": ["/speckit:ai-council", "speckit:ai-council"],
+        "owning_skill": "system-spec-kit",
+        "inventory_id": "command-speckit-ai-council",
+        "command": "/speckit:ai-council",
+        "skill_id": "system-spec-kit",
+        "owner_mode": "system-spec-kit",
+        "routing_enabled": True,
+    },
     "command-speckit-handoff": {
         "description": "Write the handoff note and prepare the session relaunch loop: the manual trigger on every runtime.",
         "slash_markers": ["/speckit:handoff", "speckit:handoff"],

@@ -91,7 +91,8 @@
         ".skilled/commands/speckit/plan.md",
         ".skilled/commands/speckit/implement.md",
         ".skilled/commands/speckit/complete.md",
-        ".skilled/commands/speckit/resume.md"
+        ".skilled/commands/speckit/resume.md",
+        ".skilled/commands/speckit/ai-council.md"
       ],
       "input": {
         "required": true,
@@ -99,9 +100,9 @@
         "argument_hint": "<feature-description> [:auto|:confirm|:autopilot|:unattended|--unattended] [:with-context] [:with-phases]"
       },
       "execution_targets": [
-        { "selector": ":auto", "target": ".skilled/commands/speckit/assets/speckit-<name>.yaml (execution_mode auto)", "commands": ["/speckit:plan", "/speckit:implement", "/speckit:complete"] },
+        { "selector": ":auto", "target": ".skilled/commands/speckit/assets/speckit-<name>.yaml (execution_mode auto)", "commands": ["/speckit:plan", "/speckit:implement", "/speckit:complete", "/speckit:ai-council"] },
         { "selector": ":autopilot | :unattended | --unattended", "target": ".skilled/commands/speckit/assets/speckit-<name>.yaml (execution_mode autopilot; not aliased to :auto)", "commands": ["/speckit:plan", "/speckit:implement", "/speckit:complete"] },
-        { "selector": ":confirm | interactive choice", "target": ".skilled/commands/speckit/assets/speckit-<name>.yaml (execution_mode confirm)", "commands": ["/speckit:plan", "/speckit:implement", "/speckit:complete"] },
+        { "selector": ":confirm | interactive choice", "target": ".skilled/commands/speckit/assets/speckit-<name>.yaml (execution_mode confirm)", "commands": ["/speckit:plan", "/speckit:implement", "/speckit:complete", "/speckit:ai-council"] },
         { "selector": ":auto", "target": ".skilled/commands/speckit/assets/speckit-resume-auto.yaml", "commands": ["/speckit:resume"] },
         { "selector": ":confirm | interactive choice", "target": ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml", "commands": ["/speckit:resume"] }
       ],
@@ -114,7 +115,7 @@
       },
       "owned_assets": [
         { "purpose": "presentation", "path": ".skilled/commands/speckit/assets/speckit-<name>-presentation.txt" },
-        { "purpose": "workflow", "path": ".skilled/commands/speckit/assets/speckit-<name>.yaml", "commands": ["/speckit:plan", "/speckit:implement", "/speckit:complete"] },
+        { "purpose": "workflow", "path": ".skilled/commands/speckit/assets/speckit-<name>.yaml", "commands": ["/speckit:plan", "/speckit:implement", "/speckit:complete", "/speckit:ai-council"] },
         { "purpose": "auto_workflow", "path": ".skilled/commands/speckit/assets/speckit-<name>-auto.yaml", "commands": ["/speckit:resume"] },
         { "purpose": "confirm_workflow", "path": ".skilled/commands/speckit/assets/speckit-<name>-confirm.yaml", "commands": ["/speckit:resume"] }
       ],
@@ -140,7 +141,7 @@
         "operations": ["implement and complete mutate repository code", "run validation gates", "autopilot merges git branches after clean verification"]
       },
       "timeout_bounds": null,
-      "invocation_aliases": ["/speckit:plan", "/speckit:implement", "/speckit:complete", "/speckit:resume", ":auto suffix", ":confirm suffix", ":autopilot suffix", ":unattended suffix", "--unattended flag"],
+      "invocation_aliases": ["/speckit:plan", "/speckit:implement", "/speckit:complete", "/speckit:resume", "/speckit:ai-council", ":auto suffix", ":confirm suffix", ":autopilot suffix", ":unattended suffix", "--unattended flag"],
       "workflow_schema_ref": ".skilled/skills/system-spec-kit/references/workflows/agent-io-contract.md"
     },
     "continuity": {

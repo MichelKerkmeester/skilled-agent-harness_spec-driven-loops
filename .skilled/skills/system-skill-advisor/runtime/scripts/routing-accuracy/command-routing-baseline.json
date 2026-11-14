@@ -1,42 +1,42 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "99b68d8b3d",
-  "corpusSha256": "sha256:698da57b02159a756dbba5d6a2c9a3c6d14588d07e96be268567835cf36448b8",
+  "capturedAtSha": "c67864c53c",
+  "corpusSha256": "sha256:79b22ea30f75220fe1e951ee936013a689706bbab5c30e80ec59eb324f7fe9ef",
   "bridgeCounts": {
-    "commandMetadata": 27,
+    "commandMetadata": 28,
     "doctorRoutes": 36,
-    "generated": 63,
-    "typescriptActive": 46,
-    "pythonActive": 52
+    "generated": 64,
+    "typescriptActive": 47,
+    "pythonActive": 53
   },
   "metrics": {
     "typed_recall_at_1": {
       "correct": 24,
-      "total": 44
+      "total": 45
     },
     "typed_reach_top3": {
-      "correct": 27,
-      "total": 44
+      "correct": 28,
+      "total": 45
     },
     "plain_recall_at_1": {
       "tune": {
         "correct": 8,
-        "total": 45
+        "total": 46
       },
       "holdout": {
-        "correct": 1,
-        "total": 44
+        "correct": 2,
+        "total": 45
       }
     },
     "plain_reach_top3": {
       "tune": {
         "correct": 10,
-        "total": 45
+        "total": 46
       },
       "holdout": {
-        "correct": 1,
-        "total": 44
+        "correct": 2,
+        "total": 45
       }
     },
     "false_offer": {
@@ -51,7 +51,7 @@
     },
     "agreement": {
       "correct": 8,
-      "total": 10
+      "total": 11
     }
   },
   "unreachable": [
@@ -774,6 +774,25 @@
           "rows": 1,
           "top1": 0,
           "top3": 0
+        }
+      }
+    },
+    "/speckit:ai-council": {
+      "typed": {
+        "rows": 1,
+        "top1": 0,
+        "top3": 1
+      },
+      "plain": {
+        "tune": {
+          "rows": 1,
+          "top1": 0,
+          "top3": 0
+        },
+        "holdout": {
+          "rows": 1,
+          "top1": 1,
+          "top3": 1
         }
       }
     },
@@ -1738,6 +1757,27 @@
       "top3": false,
       "offered": false
     },
+    "cmd-speckit-ai-council-typed-01": {
+      "expected_command": "/speckit:ai-council",
+      "top": "sk-git",
+      "top1": false,
+      "top3": true,
+      "offered": true
+    },
+    "cmd-speckit-ai-council-plain-tune-01": {
+      "expected_command": "/speckit:ai-council",
+      "top": "system-deep-loop",
+      "top1": false,
+      "top3": false,
+      "offered": false
+    },
+    "cmd-speckit-ai-council-plain-holdout-01": {
+      "expected_command": "/speckit:ai-council",
+      "top": "command-speckit-ai-council",
+      "top1": true,
+      "top3": true,
+      "offered": true
+    },
     "cmd-speckit-implement-typed-01": {
       "expected_command": "/speckit:implement",
       "top": "command-speckit-implement",
@@ -2151,13 +2191,13 @@
         "own": 8,
         "attached": 15,
         "combined": 23,
-        "total": 45
+        "total": 46
       },
       "holdout": {
-        "own": 1,
+        "own": 2,
         "attached": 0,
-        "combined": 1,
-        "total": 44
+        "combined": 2,
+        "total": 45
       }
     },
     "plain_by_family": {
@@ -2236,13 +2276,13 @@
           "own": 1,
           "attached": 0,
           "combined": 1,
-          "total": 7
+          "total": 8
         },
         "holdout": {
-          "own": 0,
+          "own": 1,
           "attached": 0,
-          "combined": 0,
-          "total": 7
+          "combined": 1,
+          "total": 8
         }
       }
     },
@@ -2254,7 +2294,7 @@
       "own": 24,
       "attached": 20,
       "combined": 44,
-      "total": 44
+      "total": 45
     },
     "typedRows": {
       "cmd-create-agent-typed-01": {
@@ -2516,6 +2556,13 @@
         "command": "/prompt:improve",
         "policy": "start"
       },
+      "cmd-speckit-ai-council-typed-01": {
+        "expected_command": "/speckit:ai-council",
+        "top": "sk-git",
+        "carried": null,
+        "command": null,
+        "policy": null
+      },
       "cmd-speckit-complete-typed-01": {
         "expected_command": "/speckit:complete",
         "top": "command-speckit-complete",
@@ -2598,6 +2645,7 @@
       "cmd-design-diagram-plain-tune-01": "/design:diagram",
       "cmd-design-extract-typed-01": "/design:extract",
       "cmd-design-extract-plain-tune-01": "/design:extract",
+      "cmd-speckit-ai-council-plain-tune-01": "/deep:ai-council",
       "sv-07": "/create:skill",
       "sv-10": "/design:chart"
     }

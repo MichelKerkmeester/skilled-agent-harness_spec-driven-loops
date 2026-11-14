@@ -158,7 +158,7 @@ Before every sub-agent dispatch, compare the selected route, loaded agent defini
 | @markdown | `.skilled/agents/markdown.md` | Template-first documentation executor for `/create:*`, scoped markdown, and spec-doc authoring |
 | @deep-research | `.skilled/agents/deep-research.md` | LEAF agent; iterative autonomous research loop with externalized state          |
 | @deep-review | `.skilled/agents/deep-review.md` | LEAF agent; iterative code-audit dimension pass, P0/P1/P2 findings, JSONL state |
-| @ai-council | `.skilled/agents/ai-council.md` | Planning-only multi-strategy architect (max 3 strategies). Post-dispatch responsibility: when @orchestrate dispatches at Depth 1, run `node .skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet>` after the LEAF returns to persist `ai-council/` artifacts (see ai-council persistence protocol). If the LEAF's returned report shows `max_rounds` reached without a converged plan (check `current_round >= max_rounds` in `ai-council-config.json`), add `--not-converged` to that invocation — the helper cannot detect max-round exhaustion on its own and defaults to `convergence:true` otherwise. |
+| @ai-council | `.skilled/agents/ai-council.md` | Planning-only multi-strategy architect (max 3 strategies). The LEAF persists its own `ai-council/` artifacts with its Write and Edit tools, so @orchestrate runs nothing after it returns. The plan is in `council-report.md` inside the bound packet. |
 | @review   | `.skilled/agents/review.md`   | Codebase-agnostic code review; verdict follows severity, score is advisory            |
 | @debug    | `.skilled/agents/debug.md`    | Isolated by design (no conversation context)                                           |
 | @code     | `.skilled/agents/code.md`     | Application-code LEAF; sk-code stack delegation; D3 convention-floor caller-restriction (`Depth: 1` marker required); fail-closed verify |
@@ -202,7 +202,7 @@ TASK #N: [Descriptive Title]
 └─ Est. Tool Calls: [N] ([breakdown]) → [Single agent | Split: M agents × ~K calls] (§8 TCB)
 ```
 
-**`Deep Route:` resolution rule (registry-backed, not judgment):** You MUST resolve `mode`, `target_agent`, and `execution` for any of the 4 `@deep-*`/`@ai-council` agents directly from that agent's matching entry in `.skilled/skills/system-deep-loop/mode-registry.json`.
+**`Deep Route:` resolution rule (registry-backed, not judgment):** You MUST resolve `mode`, `target_agent`, and `execution` for the `@deep-research` and `@deep-review` agents directly from that agent's matching entry in `.skilled/skills/system-deep-loop/mode-registry.json`.
 The entry supplies `workflowMode`, `agent`, and the entry's own execution semantics — never infer or guess them.
 A reviewer must be able to verify correctness by diffing the emitted `Deep Route:` line against the registry entry.
 If the registry has no matching entry for the requested mode, stop before dispatch rather than fabricating a route.
