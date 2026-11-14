@@ -677,6 +677,8 @@ It has nine commands. Four `advisor_*` commands cover routing, freshness, rebuil
 
 When the daemon is unreachable, the CLI answers from the Python scorer at `.skilled/skills/system-skill-advisor/runtime/scripts/skill_advisor.py`. It marks the response degraded, so the prompt-time brief reports `Advisor: stale` rather than claiming live.
 
+Every prompt hook run also writes a small health record with no prompt text in it. Once one exists, `advisor_status` shows a `hookHealth` section and `/doctor:setup` shows it in its advisor leg. You can then see whether the hook runs and how often it fell back to the local scorer.
+
 When there is no brief, the prompt hooks and the OpenCode plugin still say why in one line above the directives. The line reads `Advisor: outage (...)` with the command to route by hand, or `Advisor: no skill matched.`, or `Advisor: prompt skipped.` for casual prompts such as `thanks`, which never reach the CLI. A setup, install, configure or check-the-tooling prompt with no match also gets `For setup or health checks, run /doctor:setup.`
 
 The advisor also suggests doctor commands. A setup or health prompt that no skill answers gets a runnable `/doctor:<command> <target>` line. When a skill also matches, the skill comes first and the brief adds `Also: /doctor:<command> <target>` on a second line.
