@@ -1,0 +1,42 @@
+ROLE: You are a Node.js engineer. Write one CommonJS script and one test file.
+
+CONTEXT: the deep-research and deep-review workflows hold one inline Node body per executor kind
+that dispatches a single iteration. They move into one script, so each workflow branch becomes
+one call and both execution modes share the code.
+
+SECTION of the spec named above: "## 5. `dispatch-iteration.cjs`" (lines 321 to 497). Section
+5.E.1 covers the review opencode preflight and drain. `--executor native` exits 64, as section
+5.B says.
+
+TWO CHANGES TO THE SPEC, both for `cli-opencode`. The confirm workflows guard opencode writes
+and the auto workflows do not, and the one script must keep the stricter behavior:
+  1. Research `cli-opencode`: run the containment tail of section 5.B around the dispatch, the
+     same way cli-cursor does: snapshotOutOfScopeDirtyPaths before runAuditedExecutorCommand,
+     enforceWriteContainment after it, the two stderr advisories, then exit with the dispatch status.
+  2. Review `cli-opencode`: keep every preflight guard and the recovery baseline of section
+     5.E.1, and also run the same containment tail around the dispatch (snapshot directly before
+     runAuditedExecutorCommand, enforce directly after it), with artifactDir set to the resolved
+     artifact directory of step 4 in 5.E.1. Then drain as 5.E.1 says.
+  For both, --artifact-dir is required, as for cli-cursor.
+
+ALLOWED WRITE PATHS:
+- .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs   (new)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/dispatch-iteration.vitest.ts   (new)
+
+TEST FILE: four cases, spawning the script with node from the repository root.
+  1. `--executor unknown`: exit status 64 and stderr names all eight supported kinds.
+  2. `--executor cli-deepseek-harness`: exit status 2 and stderr holds "runs only as a fan-out lineage".
+  3. `--executor native`: exit status 64.
+  4. `--executor cli-cursor --loop-type research` with no other flag: exit status 64.
+
+CHECKS, run from .skilled/skills/system-deep-loop/runtime:
+  node --check scripts/dispatch-iteration.cjs
+  node scripts/dispatch-iteration.cjs --executor unknown ; echo "status=$?"     must name the eight kinds and print status=64
+  node_modules/.bin/vitest run --no-coverage tests/unit/dispatch-iteration.vitest.ts     must pass 4 tests
+  npm run typecheck                                                               must exit 0
+  rg -n "stem: 'deep_review.recovery_baseline'" scripts/dispatch-iteration.cjs    must print 1 line
+  rg -c 'enforceWriteContainment\(\{' scripts/dispatch-iteration.cjs              must print at least 1
+  Environment reads: the script passes the whole environment object to the calls section 5.H
+  lists and reads the one named key TMPDIR. It names no other key.
+
+REPORT: the output of each check, and any place where the inline bodies disagreed with the spec.

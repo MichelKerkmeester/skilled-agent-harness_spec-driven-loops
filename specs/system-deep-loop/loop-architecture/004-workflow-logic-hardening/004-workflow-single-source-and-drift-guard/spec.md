@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -169,7 +169,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-001 | F14. `.skilled/commands/deep/assets/` holds `deep-research.yaml` and `deep-review.yaml` and no research or review file ending in `-auto.yaml` or `-confirm.yaml`. |
 | REQ-002 | F14. Each single workflow declares a top-level `execution_mode` with values `auto` and `confirm`, and every confirm-only block carries `applies_to: confirm`, as `speckit-plan.yaml` does. |
 | REQ-003 | F14. Each single workflow contains each of the eight executor branches `if_native`, `if_cli_claude_code`, `if_cli_codex`, `if_cli_cursor`, `if_cli_devin`, `if_cli_pi`, `if_cli_opencode` and `if_cli_deepseek_harness` once, and none of them sits inside a block marked `applies_to`. |
-| REQ-004 | F14. Every step the census lists as auto-only (10 for research, 4 for review) exists in the single workflow outside any `applies_to: confirm` or `applies_to: auto` block, so it runs in both modes. |
+| REQ-004 | F14. Every step the census lists as auto-only (11 for research after phase 003 added `step_apply_lifecycle_request`, 4 for review) exists in the single workflow outside any `applies_to: confirm` or `applies_to: auto` block, so it runs in both modes. |
 | REQ-005 | F14. Each single workflow carries one dispatch failure policy for both modes, taken from the policy phase 002 settled, so `if_failed` and the `if_failed_recoverable` and `if_failed_unrecoverable` pair never both appear. |
 | REQ-006 | F15. With `dry_run=true`, both modes of both commands emit `dry_run_halt` and stop before any executor dispatch or state write, and the target `research/` or `review/` folder gains no file. |
 | REQ-007 | F14 and F15. The drift guard in `compile-command-contracts.vitest.ts` fails when a per-mode workflow file for research or review reappears, when a command doc lists a flag its workflow never reads or when a workflow reads a flag the command doc does not list. Both checks cover the research and review definitions only, so the council twins and doc never fail it. |
@@ -181,7 +181,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement |
 |----|-------------|
 | REQ-009 | F15. `research.md` and `review.md` both list `--dry-run` in their Workflow Flag Surface table without a confirm-only restriction, and both presentation files document the dry-run halt. |
-| REQ-010 | F16. `deep-research.yaml` is at most 140000 bytes and `deep-review.yaml` at most 155000 bytes, so each is smaller than both files it replaces. |
+| REQ-010 | F16. `deep-research.yaml` and `deep-review.yaml` are each smaller than both files they replace. The first target was 140000 and 155000 bytes. The operator amended it on 2026-11-14 after the merged files measured 144394 and 158517 bytes. |
 | REQ-011 | F16. The census script run with `--single` reports at most 2000 inline heredoc bytes in each single workflow, because the bodies now live in runtime scripts that both commands call. |
 | REQ-012 | F16. Each single workflow has one parameterized pivot seat step pair, so `step_dispatch_pivot_seat_002` and `step_dispatch_pivot_seat_003` no longer appear. |
 | REQ-013 | F14. The compiled contracts are regenerated and `node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs` exits 0. |
@@ -198,7 +198,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - **SC-001**: `ls .skilled/commands/deep/assets/*.yaml` lists `deep-research.yaml` and `deep-review.yaml` and no research or review twin.
 - **SC-002**: `npm test` in `.skilled/skills/system-deep-loop/runtime` passes, and the drift guard fails on a fixture copy that restores `deep-research-confirm.yaml`.
-- **SC-003**: `wc -c` on the two single workflows prints at most 140000 and 155000.
+- **SC-003**: `wc -c` on each single workflow prints less than both twins it replaces.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -220,7 +220,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## L2: NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
-- **NFR-P01**: The orchestrator loads at most 140000 bytes for a research run and 155000 bytes for a review run, down from 165890 and 181686 for auto.
+- **NFR-P01**: The orchestrator loads less for a run than either twin held: 144394 bytes for research and 158517 for review, down from 172747 and 180254 for auto.
 - **NFR-P02**: The drift guard adds under 2 seconds to `npx vitest run tests/unit/compile-command-contracts.vitest.ts`.
 
 ### Security

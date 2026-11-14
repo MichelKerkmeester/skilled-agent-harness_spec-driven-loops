@@ -36,7 +36,7 @@
       "twin"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -44,20 +44,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/commands/deep/assets/deep-research.yaml",
+      ".skilled/skills/system-deep-loop/runtime/scripts/loop-heartbeat.cjs",
+      ".skilled/commands/deep/research.md",
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+      ".skilled/commands/speckit/assets/speckit-complete.yaml",
+      "scratch/guard-negative.txt",
+      ".skilled/agents/deep-review.md",
+      ".skilled/commands/speckit/README.txt",
       ".skilled/commands/speckit/assets/speckit-plan.yaml",
       ".skilled/commands/speckit/plan.md",
+      ".skilled/commands/deep/assets/deep-review.yaml",
       ".skilled/skills/system-deep-loop/command-metadata.json",
-      ".skilled/commands/speckit/README.txt",
-      ".skilled/commands/deep/assets/deep-research-auto.yaml",
-      ".skilled/commands/deep/research.md",
-      ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts",
-      "scratch/measure-workflows.sh",
-      ".skilled/commands/deep/assets/deep-review-auto.yaml",
-      ".skilled/commands/deep/assets/compiled/README.markdown",
-      ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
-      ".skilled/skills/sk-doc/sk-create-command/SKILL.md"
+      ".skilled/skills/system-deep-loop/runtime/scripts/run-now-sentinel.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/iteration-graph-upsert.cjs"
     ],
     "entities": [
       {
@@ -97,63 +97,15 @@
         "source": "derived"
       },
       {
-        "name": "speckit-plan.yaml",
+        "name": "deep-research.yaml",
         "kind": "config",
-        "path": ".skilled/commands/speckit/assets/speckit-plan.yaml",
+        "path": ".skilled/commands/deep/assets/deep-research.yaml",
         "source": "derived"
       },
       {
-        "name": "command-metadata.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-deep-loop/command-metadata.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.txt",
+        "name": "loop-heartbeat.cjs",
         "kind": "file",
-        "path": ".skilled/commands/speckit/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-auto.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-presentation.txt",
-        "kind": "file",
-        "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "compile-command-contracts.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "compile-command-contracts.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/compile-command-contracts.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "measure-workflows.sh",
-        "kind": "script",
-        "path": "scratch/measure-workflows.sh",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review-auto.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "README.markdown",
-        "kind": "file",
-        "path": ".skilled/commands/deep/assets/compiled/README.markdown",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/loop-heartbeat.cjs",
         "source": "derived"
       },
       {
@@ -163,9 +115,57 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "speckit-complete.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-complete.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "guard-negative.txt",
+        "kind": "file",
+        "path": "scratch/guard-negative.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+        "path": ".skilled/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-plan.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-plan.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "run-now-sentinel.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/run-now-sentinel.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-graph-upsert.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/iteration-graph-upsert.cjs",
         "source": "derived"
       },
       {
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Each deep-loop command ships an auto workflow and a confirm workflow that are edited by hand and have drifted",
     "created_at": "2026-11-14T11:33:21Z",
-    "last_save_at": "2026-11-14T11:59:17.600Z",
+    "last_save_at": "2026-11-14T19:10:44.727Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ed6bd27d940e2fb33bd67e790d9e455871bba3a5d559ec63609bb969ea57f2b6",
+    "source_fingerprint": "sha256:ac5b0c42d6b8169ebac60d90e4a0981da2a1a16d6f1508ca5a4cd89b570520e9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "81e97a1681a5ecc98879f3a3d909deb380269361d3146bd2762e054bd0427961",
-      "plan.md": "bde91c79650381e710c5676ef8452f2bd960e96f52b5c028ddabecba6cf1f410",
-      "tasks.md": "37735acf262ecaca8ae821fdbb2266e4cf2432b146e15926ca9bab4f4d5a1f40",
-      "implementation-summary.md": "26b6d877d94e72864a24a6d04338f15cbbd4886517d9d8a59181ef91b73f3239"
+      "spec.md": "7cdca6a0d894de6ebd2bd760be2a704cbab005bd07e5a43612de6639cd96cbbf",
+      "plan.md": "65ecdf474e8ba930098130b0eb5eda922364af446cb1c2c7e4553dca5d15b3cc",
+      "tasks.md": "02e0b8ecf9e1092f0fa76c66171de9516540f06efd7f46c1b0d8b1238a003ee2",
+      "implementation-summary.md": "51679e0871fc95ff6f642963a34eb81b8d3c5850da03d8fe24ef61429d9721af"
     },
     "last_active_at": null
   }

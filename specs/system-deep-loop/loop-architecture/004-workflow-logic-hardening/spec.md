@@ -148,7 +148,7 @@ Per-phase detail lives in each child's `plan.md`. Where a child's own file list 
 | 1 | 001-deterministic-stop-decision/ | A runtime script computes the whole stop decision, with one stop-reason list, the configured review threshold and one rule for a missing graph decision | Complete |
 | 2 | 002-persisted-loop-state-and-failure-policy/ | Counters come from the state log, failed iterations stay out of the vote, one failure rule holds and the reducer alone writes the dashboard | Complete |
 | 3 | 003-lifecycle-lock-and-limits/ | Research restart works like review restart, the lock outlives the longest dispatch and is released on every halt, and the duration cap is enforced | Complete |
-| 4 | 004-workflow-single-source-and-drift-guard/ | One workflow file per command serves both modes, dry run works everywhere, the files shrink and a guard test stops the drift from returning | Pending |
+| 4 | 004-workflow-single-source-and-drift-guard/ | One workflow file per command serves both modes, dry run works everywhere, the files shrink and a guard test stops the drift from returning | Complete |
 | 5 | 005-command-and-skill-doc-alignment/ | Command docs, skills and references match the code and each other, and a doc guard keeps them that way | Pending |
 | 6 | 006-ai-council-mode-deprecation/ | `ai-council` stops being a deep-loop mode and lives on as a standalone agent in every runtime, so the hub routes two modes | Pending |
 

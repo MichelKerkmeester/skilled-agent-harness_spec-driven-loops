@@ -1,0 +1,28 @@
+ROLE: You are a Node.js engineer. Write two CommonJS scripts.
+
+CONTEXT: the deep-research workflow holds inline Node bodies for the run-now sentinel (check and
+restore) and for the per-iteration graph upsert. They move into two scripts so the workflow
+shrinks. Existing tests will drive both scripts through the workflow once a later change swaps
+the inline bodies for calls.
+
+SECTIONS of the spec named above: "## 3. `run-now-sentinel.cjs`" (lines 170 to 258) and
+"## 4. `iteration-graph-upsert.cjs`" (lines 262 to 317).
+
+DECISION the spec leaves open (section 3.B, exit codes): when the check or restore body throws,
+print the error message to stderr, still drain the staged events, then exit 1 if the drain
+returned 0, else exit with the drain status.
+
+ALLOWED WRITE PATHS:
+- .skilled/skills/system-deep-loop/runtime/scripts/run-now-sentinel.cjs   (new)
+- .skilled/skills/system-deep-loop/runtime/scripts/iteration-graph-upsert.cjs   (new)
+
+CHECKS, run from .skilled/skills/system-deep-loop/runtime:
+  node --check scripts/run-now-sentinel.cjs && node --check scripts/iteration-graph-upsert.cjs
+  node scripts/run-now-sentinel.cjs ; echo "status=$?"         must print a usage line naming check and restore, and status=64
+  node scripts/iteration-graph-upsert.cjs ; echo "status=$?"   must print a usage line and status=64
+  D=$(mktemp -d); node scripts/iteration-graph-upsert.cjs --delta-dir "$D" --state-log "$D/none.jsonl" --iteration 1 --spec-folder specs/x --session-id s ; echo "status=$?"
+       must print "deep-research graph upsert: no graph events for iteration 1; skipping" and status=0
+  rg -n 'record\("run_now_' scripts/run-now-sentinel.cjs          must print 3 lines
+  Environment reads: run-now-sentinel.cjs may read only TMPDIR, iteration-graph-upsert.cjs none.
+
+REPORT: the output of each check, and any place where the inline bodies disagreed with the spec.
