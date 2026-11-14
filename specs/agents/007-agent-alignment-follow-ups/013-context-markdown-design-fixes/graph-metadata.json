@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "context markdown design fixes",
+      "phase 13 context markdown design fixes",
+      "context markdown design fixes plan",
+      "context markdown design fixes tasks",
+      "context markdown design fixes implementation summary"
+    ],
+    "key_topics": [
+      "context",
+      "markdown",
+      "design",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "read-only",
+      "review",
+      "eleven",
+      "agent"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/agents/context.md",
+      ".skilled/agents/markdown.md",
+      ".skilled/agents/design.md",
+      ".claude/agents/context.md",
+      "scratch/negative-checks.sh",
+      ".skilled/commands/speckit/plan.md",
+      ".skilled/commands/create/agent.md",
+      ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+      "runtime/cli/retrieval/lib/corpus.mjs",
+      ".skilled/agents/agent-registry.json",
+      ".skilled/skills/sk-design/mode-registry.json",
+      ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs",
+      ".skilled/bin/sync-agent-roster.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".skilled/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.md",
+        "kind": "doc",
+        "path": ".skilled/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": ".skilled/agents/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "negative-checks.sh",
+        "kind": "script",
+        "path": "scratch/negative-checks.sh",
+        "source": "derived"
+      },
+      {
+        "name": "agent.md",
+        "kind": "doc",
+        "path": ".skilled/commands/create/agent.md",
+        "source": "derived"
+      },
+      {
+        "name": "retrieval-conventions.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+        "source": "derived"
+      },
+      {
+        "name": "corpus.mjs",
+        "kind": "file",
+        "path": "runtime/cli/retrieval/lib/corpus.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "agent-registry.json",
+        "kind": "config",
+        "path": ".skilled/agents/agent-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-design/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "quality-gate.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-pi.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-dsh.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agent-roster.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/sync-agent-roster.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Context Package",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A read-only review of the eleven agent files found eleven problems in these three agents, and at `c1dbb1bcc4` ten reproduce in full and one in part",
+    "created_at": "2026-11-14T20:19:23Z",
+    "last_save_at": "2026-11-14T20:48:17.797Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:bfbb67637a6a3b05d17a2480c28907ea3bebf4ae78a579bb6605e17a40a92bac",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "002ff6057e59969829b3150103d07a57dfcd1a4d8ef7699c2486edc89e03f0b8",
+      "plan.md": "add8232aeadcc7edf520c0ed975c5c9a05c23878b9abe9003e5782fb7cafe193",
+      "tasks.md": "e44a26ba3a35daf19df972f643a3ec4c41692614c118a6644d2609248895505e",
+      "implementation-summary.md": "e564c7d33b737e574f65371c0fb4528eec74c54932805030f8c793386bcf07a0"
+    },
+    "last_active_at": null
+  }
+}

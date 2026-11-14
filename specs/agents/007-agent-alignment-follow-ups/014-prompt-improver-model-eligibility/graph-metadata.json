@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "prompt improver model eligibility",
+      "phase 14 prompt improver model eligibility",
+      "prompt improver model eligibility plan",
+      "prompt improver model eligibility tasks",
+      "prompt improver model eligibility implementation summary"
+    ],
+    "key_topics": [
+      "prompt",
+      "improver",
+      "model",
+      "eligibility",
+      "phase",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "section",
+      "prompt-improver",
+      "denies"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/commands/prompt/improve.md",
+      ".skilled/agents/prompt-improver.md",
+      ".claude/agents/prompt-improver.md",
+      ".pi/agents/prompt-improver.md",
+      ".codex/agents/prompt-improver.toml",
+      ".dsh/agents/prompt-improver.patch.yml",
+      ".skilled/skills/sk-prompt/SKILL.md",
+      ".skilled/commands/prompt/assets/prompt_improve_auto.yaml",
+      ".skilled/agents/README.txt",
+      ".skilled/bin/agent-mirror-crosswalk.md",
+      ".skilled/agents/agent-registry.json",
+      ".skilled/skills/sk-prompt/manual-testing-playbook/escalation-tiers/prompt-improver-output-block.md",
+      "specs/sk-prompt/009-prompt-improver-model-eligibility/spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "improve.md",
+        "kind": "doc",
+        "path": ".skilled/commands/prompt/improve.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.md",
+        "kind": "doc",
+        "path": ".skilled/agents/prompt-improver.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.toml",
+        "kind": "file",
+        "path": ".codex/agents/prompt-improver.toml",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.patch.yml",
+        "kind": "config",
+        "path": ".dsh/agents/prompt-improver.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_improve_auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/prompt/assets/prompt_improve_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-crosswalk.md",
+        "kind": "doc",
+        "path": ".skilled/bin/agent-mirror-crosswalk.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-registry.json",
+        "kind": "config",
+        "path": ".skilled/agents/agent-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver-output-block.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/manual-testing-playbook/escalation-tiers/prompt-improver-output-block.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Section",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Section 0.1 of `prompt-improver.md` denies Opus and Fable on any route and tells an ineligible model to refuse the work",
+    "created_at": "2026-11-14T20:19:24Z",
+    "last_save_at": "2026-11-14T21:25:07.546Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c02c8cf2aed6311c7a2e5b0d36b6df5d592864efa96b4a665b8cb10cc2f2ee9d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e67be6110beda92d56a9658b99724be2a2315e25a22d67658e7e7d1912e23e1f",
+      "plan.md": "0a1ecfe9be20e0606194e537a29122f6eaa7f7a33fe7dbfb2a234a6693422f46",
+      "tasks.md": "e728632e53bc1a0d0823293b2674904c1dd5121777b4b6004430e089a0207d54",
+      "implementation-summary.md": "0422273a48ee81d80dd98db0e519ba69840b787a18178dab4529fe80183bb81d"
+    },
+    "last_active_at": null
+  }
+}

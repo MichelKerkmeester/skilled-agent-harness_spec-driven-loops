@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/012-review-agent-gates",
+  "description": "Phase 12: review-agent-gates",
+  "keywords": [
+    "phase",
+    "review-agent-gates"
+  ],
+  "lastUpdated": "2026-11-14T20:48:12.098Z",
+  "specId": "012",
+  "folderSlug": "review-agent-gates",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_21-48__phase-012-findings-reproduced-before-planning.md"
+  ]
+}

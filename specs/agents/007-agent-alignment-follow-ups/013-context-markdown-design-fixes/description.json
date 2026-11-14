@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes",
+  "description": "Phase 13: context-markdown-design-fixes",
+  "keywords": [
+    "phase",
+    "context-markdown-design-fixes"
+  ],
+  "lastUpdated": "2026-11-14T20:48:17.797Z",
+  "specId": "013",
+  "folderSlug": "context-markdown-design-fixes",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_21-48__phase-013-findings-reproduced-before-planning.md"
+  ]
+}
