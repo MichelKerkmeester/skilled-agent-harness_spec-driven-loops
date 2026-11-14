@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Planned, not built. This phase holds the plan for fifteen edits that close three defects found while building phases 001 to 005 and one test gap the independent review found. No file outside this packet has changed yet."
+description: "Built 2026-11-14. Five live phase parents now carry a real purpose, the PreCompact brief names `specs/` folders, both resume assets list the presentation rows and a test proves an unfilled parent purpose fails once the parent leaves Draft."
 trigger_phrases:
   - "purpose carry follow ups implementation summary"
 importance_tier: "normal"
@@ -29,7 +29,7 @@ _memory:
       savedAt: "2026-11-14T07:30:54Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 45
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,7 +48,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 006-purpose-carry-follow-ups |
-| **Completed** | Not built. Planned 2026-11-14 |
+| **Completed** | 2026-11-14 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -56,57 +56,60 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-Nothing is built yet. The operator chose to plan the three follow-up defects as one phase and to stop before the build, so this packet holds the plan and the evidence for each defect.
+After a resume or a compaction on a child of five live phase parents, the next AI now gets that parent's real purpose instead of the scaffold sentence. The brief cached before a compaction now names the active packet for folders under `specs/`, and both resume workflow assets list the same ten brief rows as the presentation file.
 
 ### Phase 6: purpose-carry-follow-ups
 
-All three defects were confirmed on 2026-11-14. Five live phase parents carry the scaffold purpose sentence. The PreCompact folder detection returns nothing for a `specs/` path and the cached brief holds no `Active spec folder:` line. The resume assets list six brief rows where the presentation file lists ten. `plan.md` section 4 holds the fourteen edits and the source docs behind each new parent purpose.
-
-An independent review on 2026-11-14 led to three changes in this plan. The Purpose and REQ-001 in `spec.md` no longer say that every live phase parent states a purpose, because the edits rewrite the five parents that hold the scaffold sentence and no others. Edit E15 adds one assertion that a new phase parent which leaves Draft with an unfilled purpose fails the gate. The live phase parents with a bracket placeholder or no purpose text are listed in `scratch/phase-parents-without-purpose-text.txt` and stay out of scope. Edits E1 to E14 are unchanged.
+Edits E1 to E10 gave five parents a Problem Statement and Purpose taken from their children's docs. E11 copied the Stop hook's folder regex into `detectSpecFolder` in `compact-inject.ts`, and E12 added the test that proves it. E13 and E14 replaced `reply_format` in both resume assets. E15 added the assertion that a parent set to In Progress with its purpose token unfilled fails on `PLACEHOLDER_FILLED` with exit 2.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md`, `plan.md`, `tasks.md` | Created | The plan for the fourteen edits |
-| `scratch/check-brief-rows.py` | Created | Compares the resume brief rows in the presentation file with each asset's `reply_format` |
-| `scratch/phase-parents-without-purpose-text.txt` | Created | Lists the live phase parents that have no purpose to carry, and how the list was made |
+| Five parent `spec.md` files named in `plan.md` E1 to E10 | Modified | Real Problem Statement and Purpose |
+| The same five parents' `graph-metadata.json` | Re-derived | Generated from the rewritten `spec.md`, by `repair-derived.cjs --apply` |
+| `.skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts` | Modified | Folder regex matches `specs/` |
+| `.skilled/skills/system-spec-kit/runtime/tests/hook-precompact.vitest.ts` | Modified | One test for a `specs/` folder and the brief line |
+| `.skilled/commands/speckit/assets/speckit-resume-auto.yaml`, `speckit-resume-confirm.yaml` | Modified | `reply_format` lists the presentation rows |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts` | Modified | Unfilled parent purpose fails outside Draft |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-Not delivered. Planning ran the three Measured Behavior commands in `spec.md`, counted every search text in `plan.md` section 4 once with `rg -c -F` and applied the hook and asset edits to scratch copies outside the repository to check the planned results.
+The orchestrator captured every baseline in `plan.md` section 5 and counted each search text once. One DeepSeek V4.1 Flash max worker, dispatched through cli-deepseek-harness from a scratch directory with `--add-dir` for the nine target folders, applied E1 to E15 and exited 0 with a `completed` final event. The orchestrator then reran typecheck, build and every check below itself. The parent validation first failed on generated metadata drift, which `repair-derived.cjs --apply` cleared.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
 | The presentation file wins over the YAML assets for the brief rows | `.skilled/commands/speckit/resume.md` section 5 says the resume brief template lives only in the presentation file |
 | `reply_format` names the Source row without its values | The presentation file's values include `mcp_enrichment`, which no resume step produces. Repeating values in a second file is how the two drifted |
 | Copy the Stop hook regex into the PreCompact hook | It already matches `specs/` and `.opencode/specs/`, and the Stop hook feeds the purpose line with it |
+| Re-derive the parents' `graph-metadata.json` rather than leave them stale | The metadata is generated from `spec.md`, so a stale copy fails strict validation and misdescribes the parent |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| Baselines in `plan.md` section 5 | Recorded 2026-11-14: hook tests 40 of 40, phase workflow 148 of 148, 256 mirrors in sync, `yaml ok`, typecheck exit 0, five parents `RESULT: PASSED` |
-| The fifteen edits | Not run. Tasks T005 to T028 are open |
+| REQ-001 scaffold sentence outside this packet | `rg -l ... \| wc -l` prints `0` |
+| REQ-002 hook tests | `hook-precompact.vitest.ts (18 tests)`, `hook-session-start.vitest.ts (23 tests)`, `Tests  41 passed (41)` |
+| REQ-003 brief rows | `speckit-resume-auto.yaml match`, `speckit-resume-confirm.yaml match` |
+| REQ-004 five parents | local embeddings `Errors: 0  Warnings: 1`, the other four `Errors: 0  Warnings: 0`, each `RESULT: PASSED`, after the metadata re-derive |
+| REQ-005 unchanged checks | `Result: passed=148 failed=0`, `PASS: 256 mirrors across 10 trees are in sync.`, `yaml ok` |
+| REQ-006 typecheck, build and built hook | both exit 0, `specs/ -> "specs/system-speckit/x/y"`, `Active spec folder lines in brief: 1` |
+| REQ-007 scaffold gate tests | `Test Files  4 passed (4)`, `Tests  99 passed (99)`, `PLACEHOLDER_FILLED` count `1` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -116,7 +119,7 @@ Not delivered. Planning ran the three Measured Behavior commands in `spec.md`, c
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
 1. **No check proves a parent Purpose is true.** The five new sentences come from the child docs named under each edit in `plan.md`. The workaround is for the builder to reread those docs before each edit.
-2. **The local embeddings Purpose in E2 may not cover every child.** The reviewer read it as fitting children 001 to 029 and noted about fifteen later children under that parent that are not about embeddings. That reading was not rechecked for this plan. The sentence is left as approved.
+2. **The local embeddings Purpose in E2 is broad by design.** The operator widened it on 2026-11-14 to cover children 030 to 055, which work on the runtime around the embedder rather than the embedder itself.
 3. **Some live phase parents still have no purpose after this phase.** They are listed in `scratch/phase-parents-without-purpose-text.txt`.
 <!-- /ANCHOR:limitations -->
 

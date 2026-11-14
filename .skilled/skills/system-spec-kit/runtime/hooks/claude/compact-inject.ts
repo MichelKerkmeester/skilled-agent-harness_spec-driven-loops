@@ -328,7 +328,7 @@ function extractAttentionSignals(lines: string[]): string[] {
 
 /** Detect active spec folder paths from transcript lines */
 export function detectSpecFolder(lines: string[]): string | null {
-  const specFolderRe = /\.opencode\/specs\/[^\s"'`]+/g;
+  const specFolderRe = /(?:\.opencode\/)?specs\/[^\s"'`]+/g;
   const freq = new Map<string, number>();
   for (const line of lines) {
     const matches = line.match(specFolderRe);

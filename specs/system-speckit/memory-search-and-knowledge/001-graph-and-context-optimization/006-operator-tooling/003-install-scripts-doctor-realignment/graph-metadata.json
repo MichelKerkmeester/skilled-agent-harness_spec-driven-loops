@@ -23,15 +23,15 @@
       "015-install-scripts-doctor-realignment",
       "phase",
       "parent",
-      "phased",
-      "decomposition",
-      "tracks",
-      "deep-research",
-      "deep-dive",
-      "rework",
       "install",
       "guides",
-      "scripts"
+      "setup",
+      "scripts",
+      "doctor",
+      "commands",
+      "described",
+      "system",
+      "since"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -70,30 +70,30 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement This",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Keep",
+        "name": "Purpose Bring",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "This phased decomposition tracks Deep-research deep-dive + rework of install guides, scripts, and doctor commands for post-CocoIndex-deprecation reality, including 116 deep-skill-evolution impact across independently executable child phase folders",
+    "causal_summary": "The install guides, setup scripts and `/doctor` commands described a system that had since changed",
     "created_at": "2026-05-26T05:47:43Z",
-    "last_save_at": "2026-11-10T05:46:56.254Z",
+    "last_save_at": "2026-11-14T07:40:34.217Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:15cb5895fe124aecc1e0007d5fd984089e7010b2e56a40686c41e733b7958ccc",
+    "source_fingerprint": "sha256:b631198a951b066c2685ebba59871e23456ac073d0221d703c0b16eaceb5932d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "95a8efce235be297c2c229b68cc549a1ee5c832054e07c20de26fce00672bd38"
+      "spec.md": "9eef2782fb21928a5fca2c13194fef1cf7dd3a51e3845a094fb0158ff23d3e68"
     },
     "last_active_child_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/002-operator-surface-realignment",
     "last_active_at": null

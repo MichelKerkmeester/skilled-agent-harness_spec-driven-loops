@@ -221,7 +221,7 @@ Build the phases in number order, 006 to 011, one at a time. The order is not on
 | 3 | 003-relaunch-goal-quote/ | The relaunch note Goal opens with the packet purpose | Complete |
 | 4 | 004-compaction-purpose-line/ | The context injected after a compaction carries the packet purpose, and the shared purpose helper | Complete |
 | 5 | 005-continuity-purpose-field/ | The continuity block carries the purpose and the recovery Goal shows it | Complete |
-| 6 | 006-purpose-carry-follow-ups/ | Real purposes for the five live phase parents that hold the scaffold sentence, the PreCompact folder line for `specs/` paths, resume asset brief rows that match the presentation file and a test that an unfilled parent purpose fails the gate once the parent leaves Draft | Draft |
+| 6 | 006-purpose-carry-follow-ups/ | Real purposes for the five live phase parents that hold the scaffold sentence, the PreCompact folder line for `specs/` paths, resume asset brief rows that match the presentation file and a test that an unfilled parent purpose fails the gate once the parent leaves Draft | Complete |
 | 7 | 007-purpose-reader-coverage/ | The purpose helper reads a purpose written under another heading or as an inline `Purpose:` label, and no longer returns a list marker or a line cut at an abbreviation | Draft |
 | 8 | 008-hop-purpose-rule-parity/ | The relaunch note, the nudge text and the resume assets state the same purpose rule and labels as the helper, with the scaffold skip | Draft |
 | 9 | 009-compaction-purpose-folder/ | The compaction recovery finds the packet when the session touched more than one, holds the folder path inside the project, and its tests use repo-relative folders | Draft |

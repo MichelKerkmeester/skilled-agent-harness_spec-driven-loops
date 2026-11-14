@@ -39,7 +39,7 @@
       "spec"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -47,20 +47,20 @@
       "goal.md",
       "decision-record.md",
       "implementation-summary.md",
-      "scratch/phase-parents-without-purpose-text.txt",
-      "scratch/check-brief-rows.py",
-      ".skilled/commands/speckit/resume.md",
       ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/hook-precompact.vitest.ts",
+      ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts",
+      ".skilled/commands/speckit/resume.md",
+      "scratch/phase-parents-without-purpose-text.txt",
       "runtime/tests/hook-precompact.vitest.ts",
       "runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts",
+      "scratch/check-brief-rows.py",
       "runtime/hooks/claude/session-prime.ts",
       "specs/mcp-tooling/z_archive/003-mcp-figma-transfer/spec.md",
       "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/spec.md",
       "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/spec.md",
-      "specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/spec.md",
-      "specs/system-speckit/runtime-and-release/001-system-speckit-v4/004-decisions-and-notes-system/spec.md",
-      "specs/system-speckit/runtime-and-release/001-system-speckit-v4/030-spec-kit-simplification-research/spec.md",
-      ".skilled/skills/system-spec-kit/runtime/tests/hook-precompact.vitest.ts"
+      "specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/spec.md"
     ],
     "entities": [
       {
@@ -100,15 +100,27 @@
         "source": "derived"
       },
       {
-        "name": "phase-parents-without-purpose-text.txt",
-        "kind": "file",
-        "path": "scratch/phase-parents-without-purpose-text.txt",
+        "name": "compact-inject.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
         "source": "derived"
       },
       {
-        "name": "check-brief-rows.py",
-        "kind": "file",
-        "path": "scratch/check-brief-rows.py",
+        "name": "hook-precompact.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hook-precompact.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-resume-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "scaffold-passes-its-own-gate.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts",
         "source": "derived"
       },
       {
@@ -118,21 +130,15 @@
         "source": "derived"
       },
       {
-        "name": "compact-inject.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
+        "name": "phase-parents-without-purpose-text.txt",
+        "kind": "file",
+        "path": "scratch/phase-parents-without-purpose-text.txt",
         "source": "derived"
       },
       {
-        "name": "hook-precompact.vitest.ts",
-        "kind": "test",
-        "path": "runtime/tests/hook-precompact.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "scaffold-passes-its-own-gate.vitest.ts",
-        "kind": "test",
-        "path": "runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts",
+        "name": "check-brief-rows.py",
+        "kind": "file",
+        "path": "scratch/check-brief-rows.py",
         "source": "derived"
       },
       {
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Measured Behavior",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The parent exists because the reason for a piece of work got lost across session handovers and compactions",
     "created_at": "2026-11-14T05:10:09Z",
-    "last_save_at": "2026-11-14T07:30:54.537Z",
+    "last_save_at": "2026-11-14T07:42:43.311Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,14 +221,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:feea8e4b748585fa35fc987728c6529255b17385ddbc0a76c850aff65a5203b9",
+    "source_fingerprint": "sha256:62071c4e8af378fc2832e05d047e10991a5cb75c18d50e5474604e2ac1d97190",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "93599742d0779b0ab28cfa59ee88bc64accb286a309af0aae94bb9b6e4e7476d",
+      "spec.md": "1f728610ef3176d91c2fea88872d69bc863490ade6d96b95526c54de0232e748",
       "plan.md": "26a6f9f1ebd30cb9cb3715d102d0cc3783e523d019855078a559a5b0ed58ab0a",
-      "tasks.md": "31b8bf6c50b4aabf96bc94423b1555284fa9dd45b03d0545b604061b23139024",
+      "tasks.md": "b10824fd16b86625c4c887a37533656a8ee7432cf03fc0d78dfef81bbe56d1d0",
       "decision-record.md": "0e66f4ba40a2c7920bbd924917caa3ad16a894cb260c5b68c78a065212fc76c4",
-      "implementation-summary.md": "921ea5bdc1f2a4c523c6b5854c0fad74878e116a68f254f8b0ba8726d3c9999d"
+      "implementation-summary.md": "906d0e4ebffb6cb18e9dd097511ca37ec2d903410a3f6c9c5c5088fe4bad493d"
     },
     "last_active_at": null
   }

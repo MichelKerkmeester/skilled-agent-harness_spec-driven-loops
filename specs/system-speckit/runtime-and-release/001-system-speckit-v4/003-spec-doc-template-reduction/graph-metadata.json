@@ -83,30 +83,30 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement This",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Purpose Keep",
+        "name": "Purpose Cut",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "This phased decomposition tracks Reduce and optimize spec-kit doc templates; merge tasks and checklist; less bloat, better historic context and small-model legibility across independently executable child phase folders",
+    "causal_summary": "The spec-kit doc templates rendered more text than an author needed",
     "created_at": "2026-08-26T05:33:55Z",
-    "last_save_at": "2026-11-10T05:47:58.352Z",
+    "last_save_at": "2026-11-14T07:40:40.806Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:b0c5a8f3d007f8d5171781418c2e82b0602613d6077abf8d9123202dc258e0a2",
+    "source_fingerprint": "sha256:43c5e2c7d172956d086af19f75ab83ef6b02fe1c8da8f15d358dd938610c80d1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ff87ca87d2f16c9b601070035baac7831cb6154257c86170ec5afbd130b06a5a"
+      "spec.md": "7acee934ecba9c30275ec5514d8e8215244b8bf9f83d40c0b069e47a4db29b39"
     },
     "last_active_child_id": "system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/009-template-folder-restructure",
     "last_active_at": "2026-08-27T20:21:06.358Z"
