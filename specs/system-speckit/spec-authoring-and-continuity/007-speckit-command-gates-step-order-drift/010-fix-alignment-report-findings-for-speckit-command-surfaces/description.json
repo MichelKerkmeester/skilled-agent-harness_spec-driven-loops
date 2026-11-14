@@ -15,7 +15,7 @@
     "old",
     "facts"
   ],
-  "lastUpdated": "2026-11-14T20:22:29.831Z",
+  "lastUpdated": "2026-11-14T21:33:19.984Z",
   "specId": "010",
   "folderSlug": "fix-alignment-report-findings-for-speckit-command-surfaces",
   "parentChain": [
@@ -23,9 +23,10 @@
     "spec-authoring-and-continuity",
     "007-speckit-command-gates-step-order-drift"
   ],
-  "memorySequence": 2,
+  "memorySequence": 3,
   "memoryNameHistory": [
     "14-11-26_21-07__closed-the-findings-of-alignment-run.md",
-    "14-11-26_21-22__closed-the-findings-of-alignment-run.md"
+    "14-11-26_21-22__closed-the-findings-of-alignment-run.md",
+    "14-11-26_22-33__closed-the-findings-of-alignment-run.md"
   ]
 }

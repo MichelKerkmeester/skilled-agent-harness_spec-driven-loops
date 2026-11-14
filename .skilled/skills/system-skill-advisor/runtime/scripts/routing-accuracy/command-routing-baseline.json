@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "99b68d8b3d",
+  "capturedAtSha": "6e005145ae",
   "corpusSha256": "sha256:698da57b02159a756dbba5d6a2c9a3c6d14588d07e96be268567835cf36448b8",
   "bridgeCounts": {
     "commandMetadata": 27,
@@ -1670,7 +1670,7 @@
     },
     "cmd-design-extract-plain-holdout-01": {
       "expected_command": "/design:extract",
-      "top": "sk-doc",
+      "top": "sk-code",
       "top1": false,
       "top3": false,
       "offered": false
