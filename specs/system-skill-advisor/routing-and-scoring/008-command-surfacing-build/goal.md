@@ -240,6 +240,7 @@ and findings belong here.
 | Operator instruction, 2026-11-14 09:00 CET | Operator-made, amends D4 again | Verbatim: Use deepseek v4.1 flash max dont wait for claude2. Phases 020 to 023 are built by DeepSeek v4.1 flash max on OpenCode Go, one task per session, each checked by an Opus verifier before the next task in its lane. The second plan check runs as read-only Fable 5.2 on the main account. Supersedes the 08:20 Opus on claude2 row. |
 | Phase 020 small-edit gate, retry bound | Decided without the operator (D1) | Three Opus checks failed the gate on false positives (T006, then T021, then T022): real creation requests lost their command. At the three-fix bound the design is inverted once (T024): only readme, catalog, playbook, repo-rule and benchmark commands are gated. If its check finds a common miss, the gate is removed and B-3's small-edit half is declined. |
 | Phase 020 command offer fit guards closed | Done, not committed yet | Probe offers 26 to 8, suite 1919 passed 0 failed, five floors and eval equal. Real sealed plain 5 to 4 of 44, cause the uncertainty bar (P021). Slice baseline recaptured for three question rows (P020). Two doctor cases out of scope, scores 10.009 and 9.761. |
+| Phase 021 brief head parity closed | Done, not committed yet | Same head on Claude and OpenCode for 17 of 17 probe prompts, 14 before. Companion line prints its policy word and never repeats a printed command. Suite 1922 passed 0 failed, plugin 45 of 45, every floor and the real capture equal. |
 
 ### Deviations and findings
 

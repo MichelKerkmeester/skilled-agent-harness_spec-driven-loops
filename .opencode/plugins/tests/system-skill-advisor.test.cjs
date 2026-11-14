@@ -516,6 +516,42 @@ test('renders the command, its policy and its owner from the advisor row', async
   }
 });
 
+test('names the first passing row when the first row does not pass', async () => {
+  const previousChildSession = process.env.AI_SESSION_CHILD;
+  delete process.env.AI_SESSION_CHILD;
+  try {
+    const hooks = await makePlugin({
+      spawnOverride: spawnSequence([fakeChild({
+        stdout: cliEnvelope({
+          freshness: 'live',
+          recommendations: [
+            {
+              skillId: 'command-doctor-sk-skill-convert',
+              score: 0.5,
+              confidence: 0.8,
+              uncertainty: 0.42,
+              command: '/doctor:sk-skill convert',
+              policy: 'ask',
+              ownerSkillId: 'sk-doc',
+            },
+            { skillId: 'sk-doc', score: 0.8, confidence: 0.95, uncertainty: 0.12 },
+          ],
+        }),
+      })]),
+    });
+    const output = await runPrompt(hooks);
+
+    assert.ok(output.system[0].includes('use sk-doc 0.95/0.12 pass.'));
+    assert.ok(!output.system[0].includes('command-doctor-'));
+  } finally {
+    if (previousChildSession === undefined) {
+      delete process.env.AI_SESSION_CHILD;
+    } else {
+      process.env.AI_SESSION_CHILD = previousChildSession;
+    }
+  }
+});
+
 test('the stdin request stays inside the byte budget when the prompt needs escaping', async () => {
   const child = fakeChild({ stdout: cliEnvelope({ freshness: 'live', recommendations: [] }) });
   const hooks = await makePlugin({ maxPromptBytes: 600, spawnOverride: spawnSequence([child]) });
@@ -537,6 +573,15 @@ test('a prompt over 10,000 characters is sent as its first 10,000', async () => 
   await runPrompt(hooks, { prompt });
 
   assert.equal(JSON.parse(child.stdinPayload).prompt, prompt.slice(0, 10_000));
+});
+
+test('asks the advisor for the route of the top pick alone, as the hooks do', async () => {
+  const child = fakeChild({ stdout: cliEnvelope({ freshness: 'live', recommendations: [] }) });
+  const hooks = await makePlugin({ spawnOverride: spawnSequence([child]) });
+
+  await runPrompt(hooks);
+
+  assert.equal(JSON.parse(child.stdinPayload).options.compiledRouteTopOnly, true);
 });
 
 test('a byte budget too small for any prompt fails open without spawning', async () => {

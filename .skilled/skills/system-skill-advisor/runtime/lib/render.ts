@@ -252,17 +252,17 @@ function recommendationLabel(recommendation: RenderableRecommendation, childSess
       : sanitizeSkillLabel(recommendation.skill));
 }
 
-// The companion line normally shows only the runnable command. A child gets the
-// downgrade marker appended because that command must not be started there.
+// A companion is a command the reader may act on, so it carries the same policy
+// word the head carries. A child still gets the downgrade marker because that
+// command must not be started there.
 function companionCommandLabel(skillId: string, childSession: boolean): string | null {
   const command = doctorCommandString(skillId);
   if (command === null) {
     return null;
   }
   const row = commandRowFor(skillId);
-  return childSession && parentNamedOnly(row?.policy, row?.mutating)
-    ? `${command} (${PARENT_NAMED_POLICY})`
-    : command;
+  const word = policyWord(row?.policy, row?.mutating, childSession);
+  return word === null ? command : `${command} (${word})`;
 }
 
 function formatScore(value: number): string {
@@ -560,12 +560,27 @@ export function renderAdvisorBrief(
     ? `${topLabel} (needs a mode)`
     : topLabel;
 
+  // A command printed twice reads as two offers, so the companion line never
+  // repeats the command the head already names.
+  const headPrintedCommand = top.command
+    ?? (top.needsMode === true ? undefined : commandRowFor(top.skill)?.command);
   const companion = isDoctorBridgeId(top.skill)
     ? undefined
-    : recommendations.slice(1).find((recommendation) => doctorCommandString(recommendation.skill) !== null);
+    : recommendations.slice(1).find((recommendation) => {
+      const command = doctorCommandString(recommendation.skill);
+      return command !== null && command !== headPrintedCommand;
+    });
   const companionLabel = companion ? companionCommandLabel(companion.skill, childSession) : null;
-  const companionLine = (shownSecond: string | undefined): string => (
-    companionLabel && companion && companion.skill !== shownSecond ? `\nAlso: ${companionLabel}` : ''
+  const companionCommand = companion ? doctorCommandString(companion.skill) : null;
+  // The partner's command shares the printed line with the head, so a companion
+  // that repeats it would offer that command a second time.
+  const companionLine = (shownSecond: string | undefined, shownCommand?: string): string => (
+    companionLabel
+    && companion
+    && companion.skill !== shownSecond
+    && (shownCommand === undefined || companionCommand !== shownCommand)
+      ? `\nAlso: ${companionLabel}`
+      : ''
   );
   const capWithCompanion = (head: string, companionText: string, cap: number): string => {
     const companionFits = head.length + companionText.length <= cap * TOKEN_TO_CHAR_ESTIMATE;
@@ -592,7 +607,7 @@ export function renderAdvisorBrief(
         + `${formatScore(vs.confidence)}/${formatScore(vs.uncertainty)} pass.`;
       const rendered = capWithCompanion(
         head,
-        companionLine(vs.skill),
+        companionLine(vs.skill, vs.command ?? commandRowFor(vs.skill)?.command),
         Math.min(tokenCap, AMBIGUOUS_TOKEN_CAP),
       ) + DIRECTIVES_LABEL + HYGIENE_DIRECTIVE;
       observeAdvisorPolicy(rendered, options);

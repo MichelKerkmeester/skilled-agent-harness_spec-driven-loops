@@ -472,10 +472,10 @@ function enrichCompiledRoutes(
       // types to run it, so it rides along only when the route names exactly one mode
       // that has a command. A broader route leaves the key off rather than guessing.
       const command = attachCommand(recommendation.skillId, compiledRoute, prompt);
-      // A caller that asks for the top pick alone renders that head and no row
-      // below it, so a command only a lower row carries would never reach the
-      // reader. The head keeps the command when it is the only row served.
-      return command && (!alreadyOffered.has(command) || (topOnly && index === 0))
+      // Every caller renders the head and at most one partner, so a command a
+      // lower row carries would never reach the reader. The head keeps the
+      // command whichever request shape the caller asked for.
+      return command && (!alreadyOffered.has(command) || index === 0)
         ? {
           ...recommendation,
           compiledRoute,

@@ -9,7 +9,7 @@ trigger_phrases:
   - "advisor hook smoke tests"
 importance_tier: important
 contextType: implementation
-version: 3.6.11.0
+version: 3.6.12.0
 ---
 
 # Skill Advisor Hook Reference
@@ -40,7 +40,7 @@ On each user-prompt event the adapter:
 6. **Directive-lifecycle dedup.** `decideDirectiveLifecycleDelivery` suppresses a re-delivery of the same directive to the same session within its cadence, so a repeated prompt does not re-inject an identical brief. A repeat in a known session keeps the first line, a route or a fallback status, and drops the directives block.
 7. **Emit.** Native adapters emit a `hookSpecificOutput.additionalContext` JSON envelope. OpenCode appends to `output.system` via `experimental.chat.system.transform`. Pi sends a model-visible message.
 
-The injected brief begins with `Advisor:` and names the routed skill or, when the recommendation resolves to a command, the skill that owns it and the runnable command. A doctor command appears as its runnable `/doctor:` string on the top line or under a skill as an `Also:` second line. The handler returns `{}` when the hook is disabled, input cannot be parsed or an unhandled exception occurs. A shim also returns `{}` when it cannot resolve or relay valid child output, including on timeout. When the handler has no brief, it emits the directives fallback.
+The injected brief begins with `Advisor:` and names the routed skill or, when the recommendation resolves to a command, the skill that owns it and the runnable command. A doctor command appears as its runnable `/doctor:` string on the top line or under a skill as an `Also:` second line. The line under a skill reads `Also: <command> (<policy>)`, and it is left out when the head or its partner already names that command. The handler returns `{}` when the hook is disabled, input cannot be parsed or an unhandled exception occurs. A shim also returns `{}` when it cannot resolve or relay valid child output, including on timeout. When the handler has no brief, it emits the directives fallback.
 
 ### Brief head form
 

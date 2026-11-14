@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** 021-brief-head-parity
 **Level:** 2
-**Status:** Planned
+**Status:** Complete
 **Date:** 2026-11-14
 <!-- /ANCHOR:metadata -->
 
@@ -53,15 +53,15 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the phase diff, When the two capture scripts run, Then the typed recall, false offer, typed delivery and eval lines equal their lines in `scratch/before.txt` and neither the plain tune count nor the sealed plain count is lower | `rg -c "^RESULT: every floor holds$" scratch/after.txt` prints 1 | Unmet | - |
-| AC-002 | REQ-002 | Given one prompt whose hub leads and whose command also has its own row, When the handler runs with `compiledRouteTopOnly` set and unset, Then the first recommendation carries the same command both times | `npx vitest run tests/handlers/advisor-recommend-compiled-route-option.vitest.ts` reports 0 failed | Unmet | - |
-| AC-003 | REQ-003 | Given the built advisor and the real plugin, When `probe-heads.mts` runs, Then all 17 prompts print `same head: true` and no line holds `command-doctor-` | `rg -c -F 'same head: true' scratch/repro-after.txt` prints 17 and `rg -c -F 'command-doctor-' scratch/repro-after.txt` prints nothing | Unmet | - |
-| AC-004 | REQ-004 | Given a passing doctor bridge below a skill head, When the brief renders outside and inside a child session, Then the companion reads `Also: <command> (<policy>)` or keeps its child marker | `npx vitest run tests/doctor-brief-render.vitest.ts tests/render-child-session.vitest.ts` reports 0 failed | Unmet | - |
-| AC-005 | REQ-005 | Given a head that prints `/doctor:update` and a passing row for the same command, When the brief renders, Then `/doctor:update` appears once and no `Also:` line repeats it | `rg -c -F 'Also: /doctor:update' scratch/repro-after.txt` prints nothing | Unmet | - |
-| AC-006 | REQ-006 | Given a CLI payload whose first row does not pass and whose second does, When the plugin renders, Then the head names the second row | `node --test .opencode/plugins/tests/system-skill-advisor.test.cjs` reports `fail 0` | Unmet | - |
-| AC-007 | REQ-007 | Given the skill README and the hook reference, When each is searched for the companion line's form, Then both show `(<policy>)` | The two `rg` checks in T007 and T008 print 1 | Unmet | - |
-| AC-008 | REQ-008 | Given the phase diff, When added comment lines are searched for a spec path or an id, Then nothing is found and no head wording string changed | The `G diff` checks in T012 and CHK-011 print nothing | Unmet | - |
-| AC-009 | REQ-009 | Given a prompt sent through the plugin, When the request written to the advisor CLI is parsed, Then `options.compiledRouteTopOnly` is `true` | `node --test .opencode/plugins/tests/system-skill-advisor.test.cjs` reports `fail 0` and `rg -c -F 'compiledRouteTopOnly: true,' .opencode/plugins/system-skill-advisor.js` prints 1 | Unmet | - |
+| AC-001 | REQ-001 | Given the phase diff, When the two capture scripts run, Then the typed recall, false offer, typed delivery and eval lines equal their lines in `scratch/before.txt` and neither the plain tune count nor the sealed plain count is lower | Observed: `rg -c "^RESULT: every floor holds$" scratch/after.txt` printed 1. Typed recall 24 of 44, false offers 0 of 35, typed delivery 44 of 44, eval `[161,51,21,5]`, plain tune 28 of 45 and sealed plain 1 of 44 equal `before.txt` (`tasks.md:90`) | Met | - |
+| AC-002 | REQ-002 | Given one prompt whose hub leads and whose command also has its own row, When the handler runs with `compiledRouteTopOnly` set and unset, Then the first recommendation carries the same command both times | Observed: `npx vitest run tests/handlers/advisor-recommend-compiled-route-option.vitest.ts` printed `Tests  7 passed (7)` (`tasks.md:68`) | Met | - |
+| AC-003 | REQ-003 | Given the built advisor and the real plugin, When `probe-heads.mts` runs, Then all 17 prompts print `same head: true` and no line holds `command-doctor-` | Observed: `rg -c -F 'same head: true' scratch/repro-after.txt` printed 17 where 14 printed before, and `rg -c -F 'command-doctor-'` printed nothing (`tasks.md:91`) | Met | - |
+| AC-004 | REQ-004 | Given a passing doctor bridge below a skill head, When the brief renders outside and inside a child session, Then the companion reads `Also: <command> (<policy>)` or keeps its child marker | Observed: `npx vitest run tests/doctor-brief-render.vitest.ts tests/render-child-session.vitest.ts` printed `Tests  23 passed (23)` (`tasks.md:71`) | Met | - |
+| AC-005 | REQ-005 | Given a head that prints `/doctor:update` and a passing row for the same command, When the brief renders, Then `/doctor:update` appears once and no `Also:` line repeats it | Observed: `rg -c -F 'Also: /doctor:update' scratch/repro-after.txt` printed nothing, and the render test that prints a head command once passed (`tasks.md:72`) | Met | - |
+| AC-006 | REQ-006 | Given a CLI payload whose first row does not pass and whose second does, When the plugin renders, Then the head names the second row | Observed: `node --test .opencode/plugins/tests/system-skill-advisor.test.cjs` printed `fail 0` of 45 with `names the first passing row when the first row does not pass` passing (`tasks.md:75`) | Met | - |
+| AC-007 | REQ-007 | Given the skill README and the hook reference, When each is searched for the companion line's form, Then both show `(<policy>)` | Observed: `rg -c -F 'Also: /doctor:<command> <target> (<policy>)'` over the README printed 1 and `rg -c -F 'Also: <command> (<policy>)'` over the hook reference printed 1 (`tasks.md:79`, `tasks.md:80`) | Met | - |
+| AC-008 | REQ-008 | Given the phase diff, When added comment lines are searched for a spec path or an id, Then nothing is found and no head wording string changed | Observed: the comment id search in `scratch/boundaries.txt` exited 1, and the only removed line holding head text is a test expectation that gained its policy word, so no head wording string changed (`tasks.md:92`) | Met | - |
+| AC-009 | REQ-009 | Given a prompt sent through the plugin, When the request written to the advisor CLI is parsed, Then `options.compiledRouteTopOnly` is `true` | Observed: `node --test` printed `fail 0` of 45 with `asks the advisor for the route of the top pick alone, as the hooks do` passing, and `rg -c -F 'compiledRouteTopOnly: true,'` over the plugin printed 1 (`tasks.md:76`) | Met | - |
 
 ### Status values
 
@@ -87,7 +87,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-The phase is planned and not built, so every row is unmet.
+Every criterion is Met with observed evidence, and the strict validation passed at close-out.
 <!-- /ANCHOR:closure -->

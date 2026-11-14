@@ -155,7 +155,7 @@ describe('advisor_recommend compiled-route option', () => {
     expect(hubOnly.find((row) => row.skillId === 'sk-doc')?.command).toBe(command);
   });
 
-  it('lets the top hub carry a command only a lower row would offer', async () => {
+  it('lets the top hub carry its command under every request shape', async () => {
     const corpusRow = readFileSync(CORPUS_PATH, 'utf8')
       .split('\n')
       .filter((line) => line.trim() !== '')
@@ -187,7 +187,9 @@ describe('advisor_recommend compiled-route option', () => {
       prompt: corpusRow.prompt,
       options: { includeCompiledRoute: true },
     })).data?.recommendations ?? [];
-    expect(everyRow.find((row) => row.skillId === 'sk-doc')?.command).toBeUndefined();
+    expect(everyRow[0]?.skillId).toBe('sk-doc');
+    expect(everyRow[0]?.command).toBe(command);
+    expect(everyRow[0]?.command).toBe(topOnly[0]?.command);
   });
 
   it('marks a hub that needs a mode without marking a hub that has none', async () => {

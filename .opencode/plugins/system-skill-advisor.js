@@ -610,7 +610,9 @@ async function parseCliResponse(stdout, options) {
   }
 
   const recommendations = cliRecommendations(data, options);
-  const top = recommendations[0] ?? null;
+  // The renderer leads with the first passing row, so a label taken from a row
+  // that does not pass would name one row and score another.
+  const top = recommendations.find((recommendation) => recommendation.passes_threshold) ?? recommendations[0] ?? null;
   // The CLI reports no freshness when it answered from the local scorer instead
   // of the daemon; 'stale' keeps that brief renderable and honest.
   const freshness = data.freshness === 'live' || data.freshness === 'stale'
@@ -850,6 +852,10 @@ function advisorCliRequest({ prompt, options, surfaceHint = null }) {
     topK: 3,
     includeAttribution: false,
     includeAbstainReasons: true,
+    // The brief prints the head and at most one partner, and every hook asks for
+    // the route of the top pick alone, so a partner that carried a command here
+    // and none there would give two runtimes two heads for one request.
+    compiledRouteTopOnly: true,
     confidenceThreshold: options.thresholdConfidence,
     uncertaintyThreshold: DEFAULT_THRESHOLD_UNCERTAINTY,
     ...(surfaceHint ? { surfaceHint } : {}),
