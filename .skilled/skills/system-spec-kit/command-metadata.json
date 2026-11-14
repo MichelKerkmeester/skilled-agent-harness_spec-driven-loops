@@ -165,14 +165,8 @@
       {
         "order": 3,
         "skill": "system-spec-kit",
-        "resource": ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
-        "action": "load the auto workflow and follow it when the resolved mode is :auto"
-      },
-      {
-        "order": 4,
-        "skill": "system-spec-kit",
-        "resource": ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
-        "action": "load the confirm workflow and follow it when the resolved mode is :confirm"
+        "resource": ".skilled/commands/speckit/assets/speckit-resume.yaml",
+        "action": "load the workflow and follow it with execution_mode bound to the resolved mode, auto or confirm"
       }
     ]
   },

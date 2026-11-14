@@ -26,8 +26,7 @@ const WORKFLOW_YAML_FILES = [
   'commands/speckit/assets/speckit-plan.yaml',
   'commands/speckit/assets/speckit-complete.yaml',
   'commands/speckit/assets/speckit-implement.yaml',
-  'commands/speckit/assets/speckit-resume-auto.yaml',
-  'commands/speckit/assets/speckit-resume-confirm.yaml',
+  'commands/speckit/assets/speckit-resume.yaml',
 ];
 
 const ROUTER_FILES = [
@@ -71,7 +70,7 @@ test('goal offer text is present in all presentation contracts', () => {
   }
 });
 
-test('goal_prompt_choice is confined to the five workflow YAML assets', () => {
+test('goal_prompt_choice is confined to the four workflow YAML assets', () => {
   const actual = listFiles(SPECKIT_ROOT)
     .filter((absolute) => readFileSync(absolute, 'utf8').includes('goal_prompt_choice'))
     .map((absolute) => relative(OPENCODE_ROOT, absolute))

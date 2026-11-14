@@ -144,8 +144,7 @@ speckit/
     ├── speckit-implement.yaml
     ├── speckit-plan.yaml
     ├── speckit-save-context-tail.yaml
-    ├── speckit-resume-auto.yaml
-    ├── speckit-resume-confirm.yaml
+    ├── speckit-resume.yaml
     ├── save-presentation.txt
     └── search-presentation.txt
 
@@ -246,7 +245,7 @@ The `complete` command supports two additional flags:
 
 Each mode-pair command maps to a YAML workflow file in `assets/`:
 - Plan, implement, complete: one `speckit-<command>.yaml` carrying `execution_mode` (auto, confirm, autopilot), a `checkpoints` list and `mode_overrides.confirm`; confirm-only blocks are marked `applies_to: confirm`
-- Resume: `speckit-resume-auto.yaml` and `speckit-resume-confirm.yaml`
+- Resume: one `speckit-resume.yaml` carrying `execution_mode` (auto, confirm), a `checkpoints` list and `mode_overrides.confirm`
 - Shared tail: `speckit-save-context-tail.yaml` holds the save-context writer, post-save rule and anchor requirements once
 
 `save` and `search` carry no `:auto`/`:confirm` suffix. Each is a single-pass direct-dispatch router with its own presentation contract (`save-presentation.txt`, `search-presentation.txt`) and no owned workflow YAML.

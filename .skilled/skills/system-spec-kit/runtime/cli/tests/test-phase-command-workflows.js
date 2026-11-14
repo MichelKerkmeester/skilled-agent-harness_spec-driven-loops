@@ -118,8 +118,7 @@ function testAssetPhaseFolderNotes() {
     'speckit-plan.yaml',
     'speckit-implement.yaml',
     'speckit-complete.yaml',
-    'speckit-resume-auto.yaml',
-    'speckit-resume-confirm.yaml',
+    'speckit-resume.yaml',
   ];
 
   for (const yaml of yamlAssets) {
@@ -138,7 +137,7 @@ function testAssetPhaseFolderNotes() {
       `${yaml} includes phase-folder/phase-child contract`
     );
 
-    if (yaml.startsWith('speckit-resume-')) {
+    if (yaml.startsWith('speckit-resume')) {
       assertTrue(
         text.includes('purpose_row:') && text.includes('Parent purpose (<repo-relative parent folder>)'),
         `${yaml} keeps the shared purpose label shape in purpose_row`

@@ -102,8 +102,7 @@
         { "selector": ":auto", "target": ".skilled/commands/speckit/assets/speckit-<name>.yaml (execution_mode auto)", "commands": ["/speckit:plan", "/speckit:implement", "/speckit:complete"] },
         { "selector": ":autopilot | :unattended | --unattended", "target": ".skilled/commands/speckit/assets/speckit-<name>.yaml (execution_mode autopilot; not aliased to :auto)", "commands": ["/speckit:plan", "/speckit:implement", "/speckit:complete"] },
         { "selector": ":confirm | interactive choice", "target": ".skilled/commands/speckit/assets/speckit-<name>.yaml (execution_mode confirm)", "commands": ["/speckit:plan", "/speckit:implement", "/speckit:complete"] },
-        { "selector": ":auto", "target": ".skilled/commands/speckit/assets/speckit-resume-auto.yaml", "commands": ["/speckit:resume"] },
-        { "selector": ":confirm | interactive choice", "target": ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml", "commands": ["/speckit:resume"] }
+        { "selector": ":auto | :confirm | interactive choice", "target": ".skilled/commands/speckit/assets/speckit-resume.yaml (execution_mode auto or confirm)", "commands": ["/speckit:resume"] }
       ],
       "mode_matrix": {
         "default_policy": "ask",
