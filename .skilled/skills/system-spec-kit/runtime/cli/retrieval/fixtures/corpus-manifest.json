@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6e395dc41c892399a2635c6eb934bc674a76ab932775409a4dddd1da096d3979",
+  "corpusHash": "9b36f10b76321640bd9ed5269195c34222331a819200af0787d3c2e74219b196",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -26997,7 +26997,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "53dd18fad3acccb6f60e5548a6b066cb2c4eb9cd50ee594ca39184be86b64966",
+  "manifestHash": "adfb1d11a4f3cd4f2cf24e75f348cccb127b263b42fa7ee22d76635076e1843e",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
