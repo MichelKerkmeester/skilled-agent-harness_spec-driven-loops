@@ -194,14 +194,14 @@
     ],
     "causal_summary": "The eleven files in `.skilled/agents/` define how every agent in this repository behaves, and an audit on 2026-11-14 found five kinds of defect in them",
     "created_at": "2026-11-14T11:36:20Z",
-    "last_save_at": "2026-11-14T14:16:43.073Z",
+    "last_save_at": "2026-11-14T15:05:02.882Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:e1f98726205da99607bc909ac07d280be219a568cf5868ba79ac82771f95b692",
+    "source_fingerprint": "sha256:f53af9de596860d0f6c0321b01ab54a2293b144375bf30b079f838361a6d7c23",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "833904aa051c5c53e50624fa942712bcb01a47d0c50749cee6716532d936a650"
