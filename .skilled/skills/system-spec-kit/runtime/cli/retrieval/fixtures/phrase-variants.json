@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e0a6422a000b4e7cc39f8fbd39db52d8bb0cc7f31e014a49c5acf3e56fa1fb20",
+  "manifestHash": "ff475bd655ed7ad08232d684c145b057e5261beba4fb976e73cff9212f7020e7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -6872,6 +6872,9 @@
     "039 token aware chunking tasks": [
       "039 token-aware chunking tasks"
     ],
+    "040 claude default on release notes operator decisions": [
+      "040-claude-default-on-release-notes operator decisions"
+    ],
     "040 embedding row reset": [
       "040 embedding row reset"
     ],
@@ -6907,6 +6910,9 @@
     ],
     "041 cocoindex ipc observability": [
       "041 cocoindex ipc observability"
+    ],
+    "041 cross runtime handover parity operator decisions": [
+      "041-cross-runtime-handover-parity operator decisions"
     ],
     "041 implementation plan": [
       "041 implementation plan"
@@ -32739,6 +32745,21 @@
     ],
     "cross runtime goal state": [
       "cross-runtime goal state"
+    ],
+    "cross runtime handover parity": [
+      "cross runtime handover parity"
+    ],
+    "cross runtime handover parity acceptance criteria": [
+      "cross runtime handover parity acceptance criteria"
+    ],
+    "cross runtime handover parity implementation summary": [
+      "cross runtime handover parity implementation summary"
+    ],
+    "cross runtime handover parity plan": [
+      "cross runtime handover parity plan"
+    ],
+    "cross runtime handover parity tasks": [
+      "cross runtime handover parity tasks"
     ],
     "cross runtime hook parity": [
       "cross runtime hook parity"
@@ -65219,6 +65240,9 @@
     "live hop and notice reason tasks": [
       "live hop and notice reason tasks"
     ],
+    "live hop harness": [
+      "live hop harness"
+    ],
     "live mcp probe contract": [
       "live MCP probe contract"
     ],
@@ -77109,6 +77133,9 @@
     "opencode native surfaces tasks": [
       "opencode native surfaces tasks"
     ],
+    "opencode nested run misread": [
+      "opencode nested run misread"
+    ],
     "opencode nested run waiver": [
       "opencode nested run waiver"
     ],
@@ -85267,6 +85294,9 @@
     ],
     "pi no extensions read only hardening": [
       "pi no-extensions read-only hardening"
+    ],
+    "pi nudge steer turn end": [
+      "pi nudge steer turn end"
     ],
     "pi one line entry files": [
       "pi one-line entry files"
@@ -103849,6 +103879,9 @@
     ],
     "session handover 2026 05 18 evening": [
       "session handover 2026-05-18 evening"
+    ],
+    "session handover pi opencode codex": [
+      "session handover pi opencode codex"
     ],
     "session health check": [
       "session health check"
