@@ -1,5 +1,5 @@
 {
-  "corpusHash": "69fb00c1b3996f5da16c9be16df2fa9da1579c0f127ca2c79034b1ddb65c10d1",
+  "corpusHash": "e9ed6e96dd055181f8a2e296c18a30536d93a3d67983735b6ee3738713231d55",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27303,
+  "includedPathCount": 27305,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7666,6 +7666,7 @@
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.10.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.11.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.12.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.13.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.2.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.3.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.4.0.md",
@@ -7822,6 +7823,7 @@
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.12.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.13.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.14.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.15.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.2.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.3.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.4.0.md",
@@ -27335,7 +27337,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "f619e4849c0206ad15547d7400e4d917b81f284d69fa942f06032bcbc55870c6",
+  "manifestHash": "91213d5cc4e3140eb9e264b64cc995c37d9811483b85b60ad381c2ae2f1430c9",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

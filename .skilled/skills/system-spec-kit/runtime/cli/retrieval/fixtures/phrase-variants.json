@@ -1,5 +1,5 @@
 {
-  "manifestHash": "f619e4849c0206ad15547d7400e4d917b81f284d69fa942f06032bcbc55870c6",
+  "manifestHash": "91213d5cc4e3140eb9e264b64cc995c37d9811483b85b60ad381c2ae2f1430c9",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -37413,6 +37413,9 @@
     "deep research 1 15 12 0": [
       "deep-research 1.15.12.0"
     ],
+    "deep research 1 15 13 0": [
+      "deep-research 1.15.13.0"
+    ],
     "deep research 1 15 2 0": [
       "deep-research 1.15.2.0"
     ],
@@ -38093,6 +38096,9 @@
     "deep research v1 15 12 0": [
       "deep-research v1.15.12.0"
     ],
+    "deep research v1 15 13 0": [
+      "deep-research v1.15.13.0"
+    ],
     "deep research v1 15 2 0": [
       "deep-research v1.15.2.0"
     ],
@@ -38213,6 +38219,9 @@
     ],
     "deep review 1 11 14 0": [
       "deep-review 1.11.14.0"
+    ],
+    "deep review 1 11 15 0": [
+      "deep-review 1.11.15.0"
     ],
     "deep review 1 11 3 0": [
       "deep-review 1.11.3.0"
@@ -39003,6 +39012,9 @@
     ],
     "deep review v1 11 14 0": [
       "deep-review v1.11.14.0"
+    ],
+    "deep review v1 11 15 0": [
+      "deep-review v1.11.15.0"
     ],
     "deep review v1 11 2 0": [
       "deep-review v1.11.2.0"
@@ -61822,6 +61834,9 @@
     ],
     "iteration audit trail staging": [
       "iteration audit trail staging"
+    ],
+    "iteration budget from config": [
+      "iteration budget from config"
     ],
     "iteration contract acceptance": [
       "iteration contract acceptance"
@@ -98164,6 +98179,9 @@
     ],
     "review identity cleanup tasks": [
       "review identity cleanup tasks"
+    ],
+    "review iteration budget 24": [
+      "review iteration budget 24"
     ],
     "review iteration file structure": [
       "review iteration file structure"
