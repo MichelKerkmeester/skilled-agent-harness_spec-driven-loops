@@ -78,6 +78,12 @@
         "source": "derived"
       },
       {
+        "name": "Purpose Establish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Code Graph",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -103,12 +109,6 @@
       },
       {
         "name": "sidecar",
-        "kind": "key_phrase",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Ollama",
         "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
@@ -150,19 +150,19 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "CocoIndex code embedder stack parent. Current default is sbert/nomic-ai/CodeRankEmbed (768d, MIT) with hybrid search default-on, query expansion default-off, and Qwen rerank via sidecar default-on.",
+    "causal_summary": "Establish and harden the CocoIndex code-retrieval stack around a code-tuned embedder, from the initial swap and bake-off through registry, pipeline, and review work",
     "created_at": "2026-05-18T16:14:38.272Z",
-    "last_save_at": "2026-11-10T05:46:32.145Z",
+    "last_save_at": "2026-11-14T08:04:15.724Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:07f4202264671ed5dde16f443f864a8ad2a7797c7415e9d088d4f11606377f37",
+    "source_fingerprint": "sha256:4205f25ae41b9c0383973f6775af99d2999ea02cd294e41409e846f56f62d54b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3b37173ec497feb9af75b04e5d5f7fc096c113700b7a3a60d13f98f7bb5bf92b",
+      "spec.md": "1bc555d4b9257465d07eaef520921f01b7ad9c2b3385cca15cb7e2d2c41140bc",
       "decision-record.md": "e464946684788234de998c49b54865ec10df6d6f9c893022a5aeb9a8b845f9f3"
     },
     "last_active_child_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/013-bench-harness-and-fixture-audit",

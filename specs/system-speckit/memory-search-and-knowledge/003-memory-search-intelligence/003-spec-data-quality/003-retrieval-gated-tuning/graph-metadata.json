@@ -31,9 +31,9 @@
       "retrieval-gated",
       "phase",
       "parent",
-      "subgroup",
-      "spec-data-quality",
-      "track"
+      "tune",
+      "evidence-aware",
+      "search"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -78,24 +78,24 @@
         "source": "derived"
       },
       {
-        "name": "Chunk Prefix",
+        "name": "Purpose Tune",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Retrieval-Gated Tuning subgroup of the spec-data-quality track: retrieval-tuning items gated behind benchmarks.",
+    "causal_summary": "Tune retrieval for evidence-aware search quality, gating each change behind a production recall measurement so a gain is proven before it becomes a default",
     "created_at": "2026-06-27T17:25:40.245Z",
-    "last_save_at": "2026-11-10T05:47:43.596Z",
+    "last_save_at": "2026-11-14T08:05:10.807Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e69f38e92dea549990bacfeaf97cc9a7a8a7d8e0d79bba4b1ea1453a60877b01",
+    "source_fingerprint": "sha256:5fac6219b3ab47ea168c271f5143b0525ffd4705df85e7fccb8ce59cfd4594c3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "336304968a877b5247423a1b8a6f1a0cbc1de1466c0006456580d68727a2ff2e"
+      "spec.md": "ae796bf262dd5fb2bacc2f1dabdb4052d1b187e125a4142587c2abde246d956b"
     },
     "last_active_child_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/002-prodmode-recall-gate",
     "last_active_at": null

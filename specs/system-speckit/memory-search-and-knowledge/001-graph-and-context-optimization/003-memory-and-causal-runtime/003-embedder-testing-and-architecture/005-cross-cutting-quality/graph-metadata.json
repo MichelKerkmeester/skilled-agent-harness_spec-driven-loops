@@ -34,9 +34,9 @@
       "audit",
       "deep-review",
       "docs-alignment",
-      "phase",
-      "parent",
-      "grouping"
+      "hold",
+      "documentation",
+      "work"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -54,8 +54,20 @@
         "source": "derived"
       },
       {
+        "name": "Purpose Hold",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "cli-devin SWE",
         "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose",
+        "kind": "heading",
         "path": "spec.md",
         "source": "derived"
       },
@@ -76,32 +88,20 @@
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "016/005: Cross-cutting quality (phase parent)",
-        "kind": "quoted",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "trigger_phrases:   -",
-        "kind": "quoted",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "Phase parent grouping the cross-cutting quality + verification + docs work that spans multiple 016 stacks. Three sub-phases: playbook quality audit, 20-iter deep-review of the 016-019 code stack, and skill-docs alignment sweep.",
+    "causal_summary": "Hold the quality, verification and documentation work that spans the memory and code embedder stacks, so the playbooks, benchmarks, install steps and skill docs stay correct across both",
     "created_at": "2026-05-18T08:06:49.047Z",
-    "last_save_at": "2026-11-10T05:46:35.845Z",
+    "last_save_at": "2026-11-14T08:19:15.705Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:25e8da96788eaa814be40b59e3ebe232fd68034a623069e5d58c6c77bc5c429a",
+    "source_fingerprint": "sha256:f1b9f5e8d4b74dd0fd1cea51de28a76dfa52e47bf73cd7050645b924e3efc36f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "24b15c2720233783b9a7fbfb74b4a906a7d78171cad8056047d01a0cdf486c60"
+      "spec.md": "edd65054810a45de00eab406a4393857821988b8b362384e539d70691727e21d"
     },
     "last_active_child_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/004-skill-local-benchmarks-format",
     "last_active_at": null

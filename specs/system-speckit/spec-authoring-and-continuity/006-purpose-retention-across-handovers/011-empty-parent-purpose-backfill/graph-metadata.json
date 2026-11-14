@@ -36,17 +36,19 @@
       "completion"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/sentences.md",
       "scratch/parents.txt",
-      "scratch/check-backfill.mjs",
+      "scratch/validate-baseline.txt",
       "runtime/dist/lib/spec/packet-purpose.js",
-      "runtime/lib/spec/packet-purpose.ts"
+      "runtime/lib/spec/packet-purpose.ts",
+      "scratch/check-backfill.mjs"
     ],
     "entities": [
       {
@@ -80,15 +82,21 @@
         "source": "derived"
       },
       {
+        "name": "sentences.md",
+        "kind": "doc",
+        "path": "scratch/sentences.md",
+        "source": "derived"
+      },
+      {
         "name": "parents.txt",
         "kind": "file",
         "path": "scratch/parents.txt",
         "source": "derived"
       },
       {
-        "name": "check-backfill.mjs",
+        "name": "validate-baseline.txt",
         "kind": "file",
-        "path": "scratch/check-backfill.mjs",
+        "path": "scratch/validate-baseline.txt",
         "source": "derived"
       },
       {
@@ -101,6 +109,12 @@
         "name": "packet-purpose.ts",
         "kind": "code",
         "path": "runtime/lib/spec/packet-purpose.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-backfill.mjs",
+        "kind": "file",
+        "path": "scratch/check-backfill.mjs",
         "source": "derived"
       },
       {
@@ -180,23 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Twenty-one live phase parents hold no purpose of their own",
     "created_at": "2026-11-14T07:20:48Z",
-    "last_save_at": "2026-11-14T07:26:29.119Z",
+    "last_save_at": "2026-11-14T08:20:12.262Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dd86004c4022ef1d4efd3bed232d16b5fb81ed7d9d71ccd7c3b4c8f332571447",
+    "source_fingerprint": "sha256:384aef79dcea1e0c300f4089e15b1e487750e74b3fc677481dbe680ea66b6c26",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6ac828bfe3dcaded8d922fd61bce7a093737328dcfd590c6cf5a7e3944455afd",
+      "spec.md": "510a4962691090266fe85727ec86173cac46624fdcfd20d2cb22bfce6da85b0c",
       "plan.md": "f73dec0f1a0f06b31f29047ad971344cf5997880643cc3747305ad7303c2edd1",
-      "tasks.md": "e57985b97ff69b1abf9b5e85698b7784221b2520a1e4734cd661a3ebbd46186d",
-      "implementation-summary.md": "60cf7f863a938ba17ca5f10d5097edaf1b8483b50383f4f8941524bfb9f46059"
+      "tasks.md": "c5eb57febca5975dfbc374a756083ac6c28f879055df0a049983bea343da7644",
+      "implementation-summary.md": "5f6772c1daaafccd940aafa3b03855d3c08fa323f01fc5a541398e63b2d1f652"
     },
     "last_active_at": null
   }

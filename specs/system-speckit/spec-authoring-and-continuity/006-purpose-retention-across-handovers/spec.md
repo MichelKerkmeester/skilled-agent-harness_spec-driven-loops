@@ -226,7 +226,7 @@ Build the phases in number order, 006 to 011, one at a time. The order is not on
 | 8 | 008-hop-purpose-rule-parity/ | The relaunch note, the nudge text and the resume assets state the same purpose rule and labels as the helper, with the scaffold skip | Complete |
 | 9 | 009-compaction-purpose-folder/ | The compaction recovery finds the packet when the session touched more than one, holds the folder path inside the project, and its tests use repo-relative folders | Complete |
 | 10 | 010-problem-sentence-carry/ | The context recovered after a compaction also carries the first sentence of the Problem Statement. The operator said yes on 2026-11-14 | Complete |
-| 11 | 011-empty-parent-purpose-backfill/ | One authored purpose sentence in each of the 21 live phase parents that state none, reviewed by the operator before commit | Draft |
+| 11 | 011-empty-parent-purpose-backfill/ | One authored purpose sentence in each of the 21 live phase parents that state none, reviewed by the operator before commit | Complete |
 
 ### Phase Transition Rules
 

@@ -53,9 +53,9 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] REQ-001: Each of the 21 parents shows its own purpose. `node specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill/scratch/check-backfill.mjs` prints `packet` on all 21 lines and `own purpose: 21 of 21`
-- [ ] REQ-002: No parent validates worse than before. `CI=1 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <parent> --strict` prints a first `Summary` line with no more errors or warnings than the T002 baseline for each of the 21
-- [ ] REQ-003: The operator approved the 21 sentences. The operator's answer is recorded in `implementation-summary.md` before the commit
+- [x] REQ-001: Each of the 21 parents shows its own purpose. `node specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill/scratch/check-backfill.mjs` prints `packet` on all 21 lines and `own purpose: 21 of 21`
+- [x] REQ-002: No parent validates worse than before. `CI=1 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <parent> --strict` prints a first `Summary` line with no more errors or warnings than the T002 baseline for each of the 21
+- [x] REQ-003: The operator approved the 21 sentences. The operator's answer is recorded in `implementation-summary.md` before the commit
 <!-- /ANCHOR:completion -->
 
 ---
@@ -71,11 +71,13 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | Planned 2026-11-14, verified by an independent plan review |
+| Phase opened | Done | Planned 2026-11-14, verified by an independent plan review |
+| Phase built | Done | A DeepSeek V4.1 Flash max worker through cli-deepseek-harness wrote the 21 sentences from each parent's child docs on 2026-11-14. The operator approved them on 2026-11-14 with two rewrites, for `002-spec-memory-stack` and `005-cross-cutting-quality` |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None recorded | The criteria above are this phase's own requirement rows, copied from its `spec.md` |
+| Generated metadata | Each rewritten parent's `graph-metadata.json` was re-derived with `repair-derived.cjs --apply`, because a changed `spec.md` drifts it. After that every parent printed its baseline `Summary` line |
+| Remint gate bypass | The pre-commit `spec-remint` gate could not re-derive metadata for `016-search-and-output-intelligence/research`, because a folder named `research` is not `NNN-slug`. That folder failed strict validation before this phase with 4 errors, unchanged after. On 2026-11-14 the operator approved committing with `SPECKIT_SKIP_SPEC_REMINT=1` once; the folder name stays a known defect |
 <!-- /ANCHOR:log -->
