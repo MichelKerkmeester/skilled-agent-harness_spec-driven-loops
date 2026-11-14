@@ -32,7 +32,7 @@
       "workflow"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -40,8 +40,12 @@
       "implementation-summary.md",
       ".skilled/agents/agent-registry.json",
       ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md",
+      "scratch/probe.txt",
       ".skilled/skills/sk-doc/SKILL.md",
-      ".skilled/repo-rules/skill-hub-routing.md"
+      "scratch/baseline.txt",
+      ".skilled/repo-rules/skill-hub-routing.md",
+      "scratch/after.txt"
     ],
     "entities": [
       {
@@ -81,9 +85,33 @@
         "source": "derived"
       },
       {
+        "name": "v1.0.8.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "probe.txt",
+        "kind": "file",
+        "path": "scratch/probe.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
         "name": "skill-hub-routing.md",
         "kind": "doc",
         "path": ".skilled/repo-rules/skill-hub-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
         "source": "derived"
       },
       {
@@ -163,36 +191,12 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Measured Behavior",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "their",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Step 13 of the ordered creation workflow in `sk-create-agent/SKILL.md` tells an author to run `node .skilled/bin/sync-agent-roster.cjs --check` after adding an agent file",
     "created_at": "2026-11-14T15:49:00Z",
-    "last_save_at": "2026-11-14T16:00:04.137Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-14T16:33:16.829Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -200,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:397350b6f7131844372d608ab20bf70452cb0944ad30c16f41234d30bbd8ae42",
+    "source_fingerprint": "sha256:6807314f6b6364c67d3364e8bcc5e9e655d3785f41973dad1e3dc46ebdfb8756",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8779165141438cc07ae88e682ceb65e67711e7172c2b3aee6c6d0c3d4b01ec1c",
-      "plan.md": "f8f366e9e07c76ed5ac96d394083a5494683b4ec7973c6e5706f4a0d9239abb5",
-      "tasks.md": "8a9a5e0401f840a7f1b5c57cb56218f32c6309581d26e02a4cf0dc436899e3f0",
-      "implementation-summary.md": "5971500f22efdee5d5f44cbfabc95700c42bc0302d0d4d428f27177d4954006f"
+      "spec.md": "f5c096cbb10119f85dfd6620b27ac0868d6abae9f820b8888b3e73b1ada0ad31",
+      "plan.md": "6669e7d8a4f84900bf4613beb923dda34f85616ce002867c6097a2038a702a5f",
+      "tasks.md": "13f6b968a3e92c3a9f8956da5a012adfa3a072d754ac7eb34c1684c080fb670e",
+      "implementation-summary.md": "7deec4a09523f6845c1c3fd9d5267537d263a3aa12e9bdc9c0825e8d48ea400b"
     },
     "last_active_at": null
   }

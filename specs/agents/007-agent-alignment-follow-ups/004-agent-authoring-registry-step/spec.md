@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/384-agent-alignment-follow-ups` |
 | **Parent Spec** | ../spec.md |
@@ -151,6 +151,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - Is the registry step a new step or a sentence added to step 13? Decision: a new step before validation. Step 13 validates, and an author needs the record to exist before the check runs.
 - Do the `/create:agent` workflow assets restate the creation steps? UNKNOWN until T002 reads them. A search of both files for `agent-registry` and `sync-agent-roster` printed no line on 2026-11-14. If they restate the steps, that is reported as a follow-up and not changed here.
+- Answers, 2026-11-14. The `/create:agent` workflow assets do not restate the creation steps. They run their own six-step workflow and never run the roster check, so the command can still produce an agent file that fails it. That is reported as a follow-up. The hub's vocabulary check fails with `drift=6` before and after this phase, so REQ-005 is judged on the version check, which passes.
 <!-- /ANCHOR:questions -->
 
 ---

@@ -35,15 +35,15 @@ Change one skill document. The ordered creation workflow in `sk-create-agent/SKI
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `rg -c 'agent-registry' .skilled/skills/sk-doc/sk-create-agent/SKILL.md` prints no line
-- [ ] The `sk-doc` hub's version rule has been read and the files it binds are named in `scratch/baseline.txt`
-- [ ] `node .skilled/bin/sync-agent-roster.cjs --check` prints `agent-roster: OK` before any edit
+- [x] `rg -c 'agent-registry' .skilled/skills/sk-doc/sk-create-agent/SKILL.md` prints no line
+- [x] The `sk-doc` hub's version rule has been read and the files it binds are named in `scratch/baseline.txt`
+- [x] `node .skilled/bin/sync-agent-roster.cjs --check` prints `agent-roster: OK` before any edit
 
 ### Definition of Done
-- [ ] Every requirement in `spec.md` section 4 holds
-- [ ] `rg -c 'agent-registry' .skilled/skills/sk-doc/sk-create-agent/SKILL.md` prints 1 or more
-- [ ] `git status --short .skilled/agents` prints no line
-- [ ] Docs updated (spec/plan/tasks)
+- [x] Every requirement in `spec.md` section 4 holds
+- [x] `rg -c 'agent-registry' .skilled/skills/sk-doc/sk-create-agent/SKILL.md` prints 1 or more
+- [x] `git status --short .skilled/agents` prints no line
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
