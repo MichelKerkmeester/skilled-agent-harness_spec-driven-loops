@@ -364,7 +364,14 @@
     "hover animation",
     "hover effect",
     "figma file",
-    "from figma"
+    "from figma",
+    "permissions: contents: read",
+    "fail-fast: false",
+    "strategy matrix",
+    "ruleset context",
+    "trigger-index rebuild",
+    "actions concurrency group",
+    "actions cache key"
   ],
   "derived": {
     "trigger_phrases": [
@@ -665,6 +672,13 @@
     "hover animation",
     "hover effect",
     "figma file",
-    "from figma"
+    "from figma",
+    "permissions: contents: read",
+    "fail-fast: false",
+    "strategy matrix",
+    "ruleset context",
+    "trigger-index rebuild",
+    "actions concurrency group",
+    "actions cache key"
   ]
 }
