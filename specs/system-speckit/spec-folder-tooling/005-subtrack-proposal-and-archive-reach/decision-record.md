@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach"
     last_updated_at: "2026-11-14T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Added operator decisions Q010 to Q018 of 2026-11-14 by hand"
+    recent_action: "Added operator decisions Q019 to Q023 of 2026-11-14 by hand"
     next_safe_action: "Review the recorded operator decisions"
     blockers: []
     key_files: []
@@ -52,6 +52,11 @@ _memory:
 | Q016 | The P1 and P2 findings of the two reviews of the finished packet are fixed in three phases: 011 code, 012 feature catalog and playbook, 013 skill documents, changelog and packet records. | Not stated. | None | spec.md Operator Decisions, goal.md D6, children 011 to 013 |
 | Q017 | This session writes the planning documents for phases 011 to 013. | Not stated. The recommended option said the session already holds both reviews and the traced code paths. | Q012 for the planning of phases 011 to 013 | spec.md Operator Decisions |
 | Q018 | The phase 009 routing change gets a review task: phase 013 adds both routing files to the review manifest and reviews the change. | Not stated. | None | 013-skill-docs-and-housekeeping REQ-008 |
+| Q019 | Phase 011 is built now, in a new git worktree: 378, branch worktrees/378-relocate-restore-fixes. | Not stated. | None | 011-relocate-and-restore-fixes |
+| Q020 | DeepSeek V4.1 Flash through dsh implements the phase 011 code. | Not stated. | None | 011-relocate-and-restore-fixes scratch worker reports |
+| Q021 | The phase 011 build runs on the pinned dsh 0.2.2-rc.1, called by its absolute path, after the global dsh changed to 0.2.2-rc.3. | Not stated. | None | 011-relocate-and-restore-fixes implementation-summary.md |
+| Q022 | dsh is re-pinned to 0.2.2-rc.3, in a packet of its own outside this one. | Not stated. | None | Not carried in this packet; the re-pin packet is not started |
+| Q023 | The main checkout's uncommitted copies of the phase 011 to 013 planning files are removed before worktree 378 merges into main, not now. | Not stated. | None | The session handoff note of 2026-11-14 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -315,6 +320,51 @@ Asked through AskUserQuestion on 2026-11-14. Question: how the plan handles the 
 Operator answer:
 ```text
 Add a review task (Recommended)
+```
+
+### Q019
+
+Asked through AskUserQuestion on 2026-11-14. Question: start building phase 011, and where. Options: yes in a new worktree, yes on the current branch, or not yet.
+
+Operator answer:
+```text
+Yes, new worktree (Recommended)
+```
+
+### Q020
+
+Asked through AskUserQuestion on 2026-11-14. Question: who implements the phase 011 code. Options: DeepSeek via dsh, or this session.
+
+Operator answer:
+```text
+DeepSeek via dsh (Recommended)
+```
+
+### Q021
+
+Asked through AskUserQuestion on 2026-11-14. Question: the global dsh became 0.2.2-rc.3 while the pin requires 0.2.2-rc.1, so how does the phase 011 build proceed. Options: reinstall rc.1, this session builds, or Pi with OpenCode Go.
+
+Operator answer:
+```text
+Reinstall rc.1 (Recommended)
+```
+
+### Q022
+
+Asked through AskUserQuestion on 2026-11-14. Question: what happens to the second dsh install at 0.2.2-rc.3 that shadows the pinned rc.1 in PATH. Options: leave it for now, remove the copy, or re-pin to rc.3.
+
+Operator answer:
+```text
+Re-pin to rc.3
+```
+
+### Q023
+
+Asked through AskUserQuestion on 2026-11-14. Question: what to do with the uncommitted copies of the phase 011 to 013 planning files in the main checkout, already committed in worktree 378. Options: remove before merge, or remove them now.
+
+Operator answer:
+```text
+Remove before merge (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

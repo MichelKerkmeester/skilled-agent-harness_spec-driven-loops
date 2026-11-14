@@ -33,9 +33,11 @@
 //
 // Exit codes: 0 = nothing left to do (after --apply: every step landed),
 //             1 = work found (dry run only),
-//             2 = a rejected argument, a refused plan or a step that failed,
+//             2 = a rejected argument, a refused plan, a step that failed or a
+//                 validation that failed without printing RESULT: FAILED,
 //             3 = --apply landed every step and the close sweep, and only a
-//                 moved packet's own validation failed; a rerun finds nothing.
+//                 moved packet's own validation printed RESULT: FAILED; a
+//                 rerun finds nothing.
 // ───────────────────────────────────────────────────────────────────
 
 // ───────────────────────────────────────────────────────────────────
@@ -680,9 +682,9 @@ function preArchiveAliases(entries) {
 function bareNameEdits(entries) {
   const names = new Map();
   const summaryRows = new Map();
-  const addName = (file, from, to) => {
-    if (!names.has(file)) names.set(file, new Map());
-    names.get(file).set(from, to);
+  const addName = (file, from, to, parent) => {
+    if (!names.has(file)) names.set(file, { parent, names: new Map() });
+    names.get(file).names.set(from, to);
   };
   for (const entry of entries) {
     const fromParent = parentId(entry.from);
@@ -694,13 +696,14 @@ function bareNameEdits(entries) {
     const to = baseName(entry.to);
     if (from === to) continue;
     const parentDir = abs(fromParent);
-    addName(path.join(parentDir, 'spec.md'), from, to);
-    addName(path.join(parentDir, 'goal.md'), from, to);
-    for (const child of numberedDirs(parentDir)) addName(path.join(parentDir, child, 'spec.md'), from, to);
+    const parent = baseName(fromParent);
+    addName(path.join(parentDir, 'spec.md'), from, to, parent);
+    addName(path.join(parentDir, 'goal.md'), from, to, parent);
+    for (const child of numberedDirs(parentDir)) addName(path.join(parentDir, child, 'spec.md'), from, to, parent);
     // Planning reads the folder where it still sits; a finished move is read
     // where it landed.
     const summary = entry.state === 'done' ? abs(entry.to) : abs(entry.from);
-    summaryRows.set(path.join(summary, 'implementation-summary.md'), { from, to });
+    summaryRows.set(path.join(summary, 'implementation-summary.md'), { from, to, parent });
   }
   return { names, summaryRows };
 }
@@ -742,9 +745,14 @@ function tableRowName(cell) {
 }
 
 /** A bare folder name replaced only where it stands as a whole name. */
-function replaceBareName(text, from, to) {
-  return text.replace(bareNamePattern(new Map([[from, to]])), to);
+function replaceBareName(text, from, to, parent) {
+  return text.replace(bareNamePattern(new Map([[from, to]]), parent), to);
 }
+
+// The order phase-row files are written: the new parent first and the old
+// parent last, so a run stopped between the writes still leaves the old rows
+// as the signal a rerun reads.
+const PHASE_ROW_ORDER = { newParent: 0, other: 1, oldParent: 2 };
 
 /**
  * The rows a re-parent must move between the old and new parent. The old
@@ -754,8 +762,12 @@ function replaceBareName(text, from, to) {
  */
 function phaseRowEdits(entries) {
   const files = new Map();
-  const ensure = (file, label) => {
-    if (!files.has(file)) files.set(file, { label, ops: [] });
+  const ensure = (file, label, order = PHASE_ROW_ORDER.other) => {
+    if (!files.has(file)) {
+      files.set(file, { label, order, ops: [] });
+    } else if (order < files.get(file).order) {
+      files.get(file).order = order;
+    }
     return files.get(file);
   };
   const addNote = (item, text) => {
@@ -776,7 +788,7 @@ function phaseRowEdits(entries) {
     return null;
   };
 
-  for (const entry of entries.filter((item) => item.state === 'pending')) {
+  for (const entry of entries) {
     const oldParent = parentId(entry.from);
     const newParent = parentId(entry.to);
     if (oldParent === newParent) continue;
@@ -786,15 +798,34 @@ function phaseRowEdits(entries) {
     const oldName = baseName(entry.from);
     const newName = baseName(entry.to);
 
+    const oldSpecText = oldIsPhase ? readText(path.join(abs(oldParent), 'spec.md')) : null;
+    const oldGoalText = oldIsPhase ? readText(path.join(abs(oldParent), 'goal.md')) : null;
+    const newSpecText = newIsPhase ? readText(path.join(abs(newParent), 'spec.md')) : null;
+    const newGoalText = newIsPhase ? readText(path.join(abs(newParent), 'goal.md')) : null;
+    const matchesOld = (cells) => tableRowName(cells[0]) === oldName || tableRowName(cells[1]) === oldName;
+    const oldMapRow = row(oldSpecText, 'map', (cells) => tableRowName(cells[1]) === oldName);
+    const oldHandoffRow = row(oldSpecText, 'handoff', matchesOld);
+    const oldBindingRow = row(oldGoalText, 'binding', (cells) => tableRowName(cells[0]) === oldName);
+    const newMapRow = row(newSpecText, 'map', (cells) => tableRowName(cells[1]) === newName);
+    const newBindingRow = row(newGoalText, 'binding', (cells) => tableRowName(cells[0]) === newName);
+    // A pending entry always plans its rows. A done entry plans them only while
+    // a row is stale: the old parent still names the phase, or the new parent
+    // has no row for its new name. A finished pair plans no edit at all, so a
+    // rerun can still end on nothing to do.
+    const stale = Boolean(oldMapRow || oldHandoffRow || oldBindingRow
+      || (newIsPhase && (!newMapRow || (newGoalText !== null && !newBindingRow))));
+    if (entry.state === 'done' && !stale) continue;
+
     if (oldIsPhase) {
       const oldSpec = path.join(abs(oldParent), 'spec.md');
-      const oldItem = ensure(oldSpec, `specs/${oldParent}/spec.md`);
+      const oldItem = ensure(oldSpec, `specs/${oldParent}/spec.md`, PHASE_ROW_ORDER.oldParent);
       oldItem.ops.push({ kind: 'removeMap', name: oldName });
       oldItem.ops.push({ kind: 'removeHandoff', name: oldName });
 
       const oldGoal = path.join(abs(oldParent), 'goal.md');
       if (fs.existsSync(oldGoal)) {
-        ensure(oldGoal, `specs/${oldParent}/goal.md`).ops.push({ kind: 'removeBinding', name: oldName });
+        ensure(oldGoal, `specs/${oldParent}/goal.md`, PHASE_ROW_ORDER.oldParent)
+          .ops.push({ kind: 'removeBinding', name: oldName });
       }
 
       // A sibling that named the moved phase takes the nearest phase left on
@@ -813,13 +844,14 @@ function phaseRowEdits(entries) {
 
     if (newIsPhase) {
       const newSpec = path.join(abs(newParent), 'spec.md');
-      const newItem = ensure(newSpec, `specs/${newParent}/spec.md`);
-      const oldSpecText = oldIsPhase ? readText(path.join(abs(oldParent), 'spec.md')) : null;
-      const oldRow = row(oldSpecText, 'map', (cells) => tableRowName(cells[1]) === oldName);
-      if (oldRow) {
-        const number = Number(newName.slice(0, 3));
-        const focus = oldRow[2] || '';
-        const status = oldRow[3] || '';
+      const newItem = ensure(newSpec, `specs/${newParent}/spec.md`, PHASE_ROW_ORDER.newParent);
+      const number = Number(newName.slice(0, 3));
+      if (oldMapRow || entry.state === 'done') {
+        // A row removed before the rerun leaves no focus or status to copy. The
+        // scaffold's own placeholder row still names the folder, so the new
+        // parent's map lists the phase and a rerun finds nothing left to add.
+        const focus = oldMapRow ? oldMapRow[2] || '' : `[Phase ${number} scope]`;
+        const status = oldMapRow ? oldMapRow[3] || '' : 'Pending';
         newItem.ops.push({
           kind: 'addTableRow',
           table: 'map',
@@ -838,12 +870,10 @@ function phaseRowEdits(entries) {
 
       const newGoal = path.join(abs(newParent), 'goal.md');
       if (fs.existsSync(newGoal)) {
-        const oldGoalText = oldIsPhase ? readText(path.join(abs(oldParent), 'goal.md')) : null;
-        const oldBinding = row(oldGoalText, 'binding', (cells) => tableRowName(cells[0]) === oldName);
-        const bindingRow = oldBinding
-          ? `| ${oldBinding.map((cell) => replaceBareName(cell, oldName, newName)).join(' | ')} |`
+        const bindingRow = oldBindingRow
+          ? `| ${oldBindingRow.map((cell) => replaceBareName(cell, oldName, newName, baseName(newParent))).join(' | ')} |`
           : `| ${newName} | \`${newName}/goal.md\` |`;
-        ensure(newGoal, `specs/${newParent}/goal.md`).ops.push({
+        ensure(newGoal, `specs/${newParent}/goal.md`, PHASE_ROW_ORDER.newParent).ops.push({
           kind: 'addTableRow',
           table: 'binding',
           name: newName,
@@ -857,7 +887,8 @@ function phaseRowEdits(entries) {
 
     // The moved child's own neighbours belong to the parent it now sits in. A
     // destination that is not a phase parent leaves it with no phase neighbour.
-    const childSpec = path.join(abs(entry.from), 'spec.md');
+    const childFolder = entry.state === 'done' ? abs(entry.to) : abs(entry.from);
+    const childSpec = path.join(childFolder, 'spec.md');
     if ((oldIsPhase || newIsPhase) && fs.existsSync(childSpec)) {
       const children = newIsPhase
         ? [...numberedDirs(abs(newParent)).filter((name) => name !== newName), newName].sort()
@@ -976,17 +1007,27 @@ function applyPhaseRows(text, edit) {
   return { text: result, changes, notes: notes.map((note) => `${edit.label}: ${note}`) };
 }
 
-/** The regex that finds one of the bare names, bounded as a folder name is. */
-function bareNamePattern(names) {
+/**
+ * The regex that finds one of the bare names, bounded as a folder name is, but
+ * not one directly behind another folder's path. A name this parent owns still
+ * matches behind its own folder name and behind `./` or `../`; everything else
+ * names a folder somewhere else and is left as written.
+ */
+function bareNamePattern(names, parent) {
   const alternatives = [...names.keys()].sort((a, b) => b.length - a.length).map(escapeRegExp);
-  return new RegExp(`(?<![${SEGMENT_CHAR}])(${alternatives.join('|')})(?![${SEGMENT_CHAR}])`, 'g');
+  const ownPrefixes = [`(?<![${SEGMENT_CHAR}.])\\.{1,2}/`];
+  if (parent) ownPrefixes.push(`(?<![${SEGMENT_CHAR}.])${escapeRegExp(parent)}/`);
+  return new RegExp(
+    `(?<![${SEGMENT_CHAR}])(?:(?<![${SEGMENT_CHAR}/])|(?<=${ownPrefixes.join('|')}))(${alternatives.join('|')})(?![${SEGMENT_CHAR}])`,
+    'g',
+  );
 }
 
 /** The summary text with a stale folder row set to the moved name, or null. */
 function rewrittenSummaryRow(text, edit) {
   const hit = SPEC_FOLDER_ROW.exec(text);
   if (!hit) return null;
-  const next = hit[2].replace(bareNamePattern(new Map([[edit.from, edit.to]])), edit.to);
+  const next = hit[2].replace(bareNamePattern(new Map([[edit.from, edit.to]]), edit.parent), edit.to);
   if (next === hit[2]) return null;
   return text.slice(0, hit.index) + hit[1] + next + hit[3] + text.slice(hit.index + hit[0].length);
 }
@@ -1091,11 +1132,11 @@ function buildTransform(entries, bare = { names: new Map(), summaryRows: new Map
     }
     // Bare names run after whole ids so the tail of a full id is not rewritten
     // on its own before the whole id can be matched.
-    const names = bare.names.get(file);
-    if (names) {
-      result = result.replace(bareNamePattern(names), (match) => {
+    const bareNames = bare.names.get(file);
+    if (bareNames) {
+      result = result.replace(bareNamePattern(bareNames.names, bareNames.parent), (match) => {
         changes += 1;
-        return names.get(match);
+        return bareNames.names.get(match);
       });
     }
     const summaryRow = bare.summaryRows.get(file);
@@ -1360,7 +1401,8 @@ function scanCode(entries) {
 // The map file is the run's input and names every old id on purpose, so it is
 // never one of the references the run rewrites, wherever it is kept.
 function buildPlan(entries, newSubtracks, inputs = new Set()) {
-  const transform = buildTransform(entries, bareNameEdits(entries), phaseRowEdits(entries));
+  const phaseRows = phaseRowEdits(entries);
+  const transform = buildTransform(entries, bareNameEdits(entries), phaseRows);
   const editsByFile = childrenEdits(entries);
   const forwardPending = makePathMapper(entries.filter((entry) => entry.state === 'pending').map((entry) => [abs(entry.from), abs(entry.to)]));
 
@@ -1409,6 +1451,12 @@ function buildPlan(entries, newSubtracks, inputs = new Set()) {
       changes,
     });
   }
+
+  // A stopped finish must leave the old parent's rows as the stale signal a
+  // rerun reads. The phase-row plan puts the new parent first and the old
+  // parent last; every other rewrite keeps the text-file order.
+  rewrites.sort((a, b) => (phaseRows.get(a.file)?.order ?? PHASE_ROW_ORDER.other)
+    - (phaseRows.get(b.file)?.order ?? PHASE_ROW_ORDER.other));
 
   const pending = entries.filter((entry) => entry.state === 'pending');
   const done = entries.filter((entry) => entry.state === 'done');
@@ -1639,32 +1687,42 @@ function applyPlan(plan, tracked) {
 
 // The close is last so its verdict is what the run ends on: the sweep, then
 // each moved packet's own validation, whose RESULT line is the final word. A
-// failed packet verdict gets its own status, because the move itself landed;
-// a failed sweep still means the run did not finish.
+// failed packet verdict gets its own status only when the validator reported
+// one; a failed sweep or a validator that never reported still means the run
+// did not finish.
 function closeRun(plan) {
   let status = 0;
   const sweep = runChild('node', [TOOLS.sweep]);
   out(`close sweep-track-roots: ${sweep.ok ? 'ok' : `FAILED ${sweep.why}`}`);
-  if (sweep.ok) {
-    // The sweep passing is the completion mark for the close. A packet's own
-    // failing verdict below is reported but never keeps the map open.
-    markLateStep(plan.entries, 'sweep');
-  } else {
+  if (!sweep.ok) {
     for (const line of tail(sweep.stdout, 6)) out(`    ${line}`);
     status = 2;
   }
+  // A validation counts as reported when it printed a RESULT line or exited 0.
+  // One that exits non-zero with no RESULT line did not report on the packet,
+  // so the close cannot be marked complete and a rerun must ask it again.
+  let everyVerdictReported = true;
   for (const entry of plan.entries) {
     const result = runChild('bash', [TOOLS.validate, `specs/${entry.to}`, '--strict']);
     const verdict = `${result.stdout}\n${result.stderr}`.split('\n').filter((line) => /RESULT:/.test(line)).map((line) => line.replace(/\x1b\[[0-9;]*m/g, '').trim());
+    if (!verdict.length && !result.ok) everyVerdictReported = false;
     if (!result.ok) {
-      // The move landed, so the packet's own verdict does not reopen it.
-      if (status === 0) status = 3;
+      // The move landed, so a failed packet verdict only reports. A validator
+      // that never ran is unfinished work instead, and outranks that verdict.
+      if (verdict.some((line) => /RESULT:\s*FAILED/.test(line))) {
+        if (status === 0) status = 3;
+      } else {
+        status = 2;
+      }
       // The failing rules and the summary, not the passing ones around them.
       const lines = result.stdout.split('\n').map((line) => line.replace(/\x1b\[[0-9;]*m/g, '').trimEnd());
       for (const line of lines.filter((text) => /^\s*x /.test(text) || /^\s*Summary:/.test(text))) out(`    ${line.trim()}`);
     }
     out(`close validate specs/${entry.to}: ${verdict.length ? verdict[verdict.length - 1] : `no RESULT line (${result.why})`}`);
   }
+  // The sweep passing is the completion mark for the close. Writing it while a
+  // validator never reported would close the map before its packet was checked.
+  if (sweep.ok && everyVerdictReported) markLateStep(plan.entries, 'sweep');
   return status;
 }
 
