@@ -18,7 +18,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-002-persisted-loop-state-and-failure-policy"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -58,11 +58,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `npm --prefix .skilled/skills/system-deep-loop/runtime test -- tests/unit/loop-counters-derivation.vitest.ts` exits 0, including the four-failure research case and the resume case.
-- [ ] `rg -c -e 'step_generate_dashboard' -e 'Accumulate from severity_counts' -e 'trigger stuck_recovery event' -e 'After 3 consecutive errors' .skilled/commands/deep/assets/deep-re*.yaml` prints nothing, `rg -c 'Retry / Skip / Cancel' .skilled/commands/deep/assets/deep-re*-auto.yaml` prints nothing and `rg -c 'Retry / Skip / Cancel' .skilled/commands/deep/assets/deep-re*-confirm.yaml` prints a count for each of the two confirm files.
-- [ ] `rg -n -e 'stuck_count: 0' -e 'stuck_count \+ 1' .skilled/commands/deep/assets/deep-re*.yaml` prints nothing.
-- [ ] `node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs --command deep/research` and the same with `deep/review` exit 0.
-- [ ] `npm --prefix .skilled/skills/system-deep-loop/runtime test` exits 0.
+- [x] `npm --prefix .skilled/skills/system-deep-loop/runtime test -- tests/unit/loop-counters-derivation.vitest.ts` exits 0, including the four-failure research case and the resume case.
+- [x] `rg -c -e 'step_generate_dashboard' -e 'Accumulate from severity_counts' -e 'trigger stuck_recovery event' -e 'After 3 consecutive errors' .skilled/commands/deep/assets/deep-re*.yaml` prints nothing, `rg -c 'Retry / Skip / Cancel' .skilled/commands/deep/assets/deep-re*-auto.yaml` prints nothing and `rg -c 'Retry / Skip / Cancel' .skilled/commands/deep/assets/deep-re*-confirm.yaml` prints a count for each of the two confirm files.
+- [x] `rg -n -e 'stuck_count: 0' -e 'stuck_count \+ 1' .skilled/commands/deep/assets/deep-re*.yaml` prints nothing.
+- [x] `node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs --command deep/research` and the same with `deep/review` exit 0.
+- [x] `npm --prefix .skilled/skills/system-deep-loop/runtime test` exits 0.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -78,11 +78,20 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Spec docs authored | Done | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and `goal.md` were authored on 2026-11-14. Implementation has not started. |
+| Spec docs authored | Done | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and `goal.md` were authored on 2026-11-14. Implementation started after phase 001 closed. |
+| Baseline suite | Done | `npm test` in the runtime folder on the phase 001 final tree: 175 test files, 2986 passed, 8 skipped, 0 failed. |
+| Failing-first tests, T003 to T009 | Done | `loop-counters-derivation.vitest.ts` held 15 cases, and 13 failed before `deriveLoopCounters` existed. |
+| Script, T010 to T012 | Done | `deriveLoopCounters` is exported, the `--stuck-count` flag is gone and failed iterations are left out of the ratios. The test file reports 16 passed and `npm run typecheck` exits 0. |
+| Workflow files, T013 to T030 | Done | All four files bind both counters from `loop_counters_json`, state the one failure rule and hold no `step_generate_dashboard`. Every `rg` check in `tasks.md` gives the expected result and the four files parse as YAML. |
+| Dashboard, T031 | Done | `reduce-state.cjs:2871` prints the stuck count from `deriveLoopCounters`. The `research dashboard` case passes. |
+| Contracts, T033 and T034 | Done | `check-contract-drift.cjs` prints `[CONTRACT DRIFT] OK commands=3`, and `OK commands=1` for each of `deep/research` and `deep/review`. |
+| Full suite, T036 | Done | 176 test files, 3002 passed, 8 skipped, 0 failed, exit 0. The baseline plus 16 new tests. |
+| Fix SHA | Done | `485fd61d0a` on branch `worktrees/382-deep-loop-workflow-logic-hardening`. Nothing is pushed. |
+| Phase close | Done | Every `acceptance-criteria.md` row is `Met`. |
 
 ### Open questions
 
-- Settled: The confirm files name Retry / Skip / Cancel (`deep-research-confirm.yaml:1943` and `deep-review-confirm.yaml:2155`) but never define what each choice does. The counter is derived from the state log, so a choice changes it only through a persisted event. Adopted meaning: Retry appends a gate-decision event that resets `consecutiveFailureCount` to 0 and dispatches the next iteration with the same focus. Skip appends the same event and dispatches the next iteration with the next focus. Cancel ends the run with status CANCELLED and no synthesis, as the other confirm gates do. Tasks T024 and T026 use this meaning. Adopted as the default on 2026-11-14: announced to the operator, who did not object.
+- Answer: Retry and Skip both dispatch the next iteration and record nothing, Retry with the same focus and Skip with the next one. Cancel ends the run with status CANCELLED and no synthesis, as the other confirm gates do. The meaning adopted during planning had Retry and Skip append an event that resets `consecutiveFailureCount`. That was not built, see the first row under Deviations and findings. The gate asks again after each further failed iteration, and one completed iteration clears the count.
 - Answered: phase 001 confirmed on 2026-11-14 that `runtime/scripts/convergence.cjs` owns the stop decision. D6 stands.
 
 ### Deviations and findings
@@ -94,5 +103,14 @@ and findings belong here.
 | F07 in review confirm | `deep-review-confirm.yaml` has no `escalation` line. Only two rules disagree there. |
 | Operator decision 2026-11-14: confirm gate | Confirm mode keeps a Retry / Skip / Cancel gate after three consecutive failed iterations. Auto mode halts straight to synthesis with stop reason `error`. D3 and D8 were amended. |
 | Operator decision 2026-11-14: stop-decision owner | Phase 001 confirmed that `runtime/scripts/convergence.cjs` owns the stop decision. |
+| Retry and Skip record nothing | The plan had them append an event that resets the failure count. The state log is a projection rebuilt from the ledger, and bookkeeping rows are printed, not persisted. Such an event needs a new ledger stem in two schemas, outside this phase's file list. The gate asks again after each further failed iteration, and a completed iteration clears the count. |
+| `loop_counters_json` needs `--stop-decision` | The script prints the field on all three `--stop-decision` payloads, not for a bare `--state-log`. Every workflow passes both flags. |
+| The gate sentence sits in `purpose` | The confirm-only Retry / Skip / Cancel sentence is the `purpose` of `gate_consecutive_failures`, not a line of the `algorithm` block. `stop-policy-yaml-parity.vitest.ts` requires that block to be identical in auto and confirm. |
+| Research confirm gained the error row append | The spec noted the append as missing and did not list it as a change. Without it the failure count never moves in research confirm mode, so it was added to match the auto file. |
+| Fixtures moved inside the repository | The stop-decision fixtures in `convergence-script.vitest.ts` moved from the system temp folder to the git-ignored `runtime/tests/.tmp/`, because the `--state-log` path check rejects a path outside the repository. |
+| No workflow step persists a `timeout` row | `deriveLoopCounters` counts a `timeout` status, but nothing writes one today. Not fixed here. |
+| `--stuck-count` flag removed | Phase 001 added the flag as a stopgap. The script now derives the count, so the flag is gone. |
+| T032 needed no edit | The literal `stuck_count >= config.stuckThreshold` stays in the workflow text, so `deep-research-convergence-floor.vitest.ts` passes unchanged. |
+| T011 `rg` prints two lines | The task expected one line for `'stateLog'`. Lines 87 and 1246 match, the flag list entry and the path check. |
 | Docs for phase 005 | The loop-protocol references, the dashboard asset templates and the playbooks still describe the old rules. Phase 005 owns them. |
 <!-- /ANCHOR:log -->

@@ -1,0 +1,153 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/382-deep-loop-workflow-logic-hardening
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/002-persisted-loop-state-and-failure-policy
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+
+ROLE: You are a workflow-file editor. Make exactly the edits below, nothing else. Do not
+refactor, reformat, reorder or fix anything adjacent. Do not commit.
+
+BANNED OPERATIONS: git commit, git push, git checkout, git reset, git stash, rm, mv, any write
+outside the allowed paths, any package install. Do NOT read a YAML file whole: each is over
+150 KB. Find every anchor with grep -n and read only a small window around it (sed -n 'A,Bp').
+Keep the indentation of the surrounding lines exactly. YAML must still parse afterwards.
+
+CONTEXT: convergence.cjs now rebuilds two counters from the state log on every pass and prints
+them as `loop_counters_json: { stuckCount, consecutiveFailureCount }`. It no longer accepts
+--stuck-count. It returns decision STOP with stopReason `error` and reasonDetail
+`consecutiveFailures` after 3 failed iterations in a row. The reducer is the only writer of
+the dashboard. The workflow files must stop keeping the stuck counter in memory.
+
+ALLOWED WRITE PATHS (only these two files, both in .skilled/commands/deep/assets/):
+- deep-review-auto.yaml
+- deep-review-confirm.yaml
+
+Apply edits 1 to 9 to BOTH files. Apply edits 10 to 12 to deep-review-confirm.yaml only.
+
+EDIT 1. In step_graph_convergence, on the `bash:` line, delete the text
+   --stuck-count "{stuck_count}"
+together with the one space before it. Change nothing else on that line.
+
+EDIT 2. In step_graph_convergence, directly after the output line that starts with
+`- stop_decision:`, add these three output lines at the same indentation:
+          - loop_counters_json: "Tool loop_counters_json object: stuckCount and consecutiveFailureCount, both rebuilt from the state log on this pass"
+          - stuck_count: "loop_counters_json.stuckCount"
+          - consecutive_failure_count: "loop_counters_json.consecutiveFailureCount"
+Then add this key to the same step, directly before its `outputs:` key and at the same indentation:
+        on_missing_counters: "If loop_counters_json is missing from the output, halt with stop reason error. Never bind a default counter."
+
+EDIT 3. Remove the in-memory initial value. Find `stuck_count: 0` inside a `set:` map
+(deep-review-auto.yaml: in step_init_complete; deep-review-confirm.yaml: in gate_init_approval
+on_A). Delete `stuck_count: 0, ` from that map and keep the other keys, so it reads
+`{ current_iteration: 1, p0_count: 0, p1_count: 0, p2_count: 0 }`.
+
+EDIT 4. In step_handle_convergence under if_stuck_recovery, delete the whole line
+          reset: { stuck_count: 0 }
+The recovery event the workflow appends afterwards is what resets the derived counter.
+
+EDIT 5. In step_update_tracking:
+  a. Delete the three lines
+          p0_count: "Accumulate from severity_counts"
+          p1_count: "Accumulate from severity_counts"
+          p2_count: "Accumulate from severity_counts"
+  b. Delete the `stuck_count: |` key and the four lines of its block (they start with
+     `if status == 'thought'`, `if status == 'insight'`, `if newFindingsRatio <=` and `else: 0`).
+  c. If the step has a `log:` line that ends with ` Stuck count: {stuck_count}."`, remove
+     ` Stuck count: {stuck_count}.` from it and keep the closing quote.
+  The step keeps `current_iteration: "{current_iteration + 1}"`.
+
+EDIT 6. In step_read_state, the extract list holds three lines
+          - p0_count: "Count P0 findings across all iterations"
+          - p1_count: "Count P1 findings across all iterations"
+          - p2_count: "Count P2 findings across all iterations"
+Replace their values so they read:
+          - p0_count: "findingsBySeverity.P0 from {state_paths.findings_registry}, the reducer's deduplicated count of open findings, else 0"
+          - p1_count: "findingsBySeverity.P1 from {state_paths.findings_registry}, else 0"
+          - p2_count: "findingsBySeverity.P2 from {state_paths.findings_registry}, else 0"
+
+EDIT 7. In step_check_convergence, in the `algorithm: |` block:
+  a. Directly after the line that starts with `The whole stop decision is computed by convergence.cjs`,
+     add this line at the same indentation:
+          The ratio signals leave out thought iterations and every iteration whose status is error or timeout, and stuck_count is loop_counters_json.stuckCount.
+  b. Directly after the line that starts with `1. if iteration_count >= max_iterations`, add this
+     line at the same indentation:
+          1a. After 3 consecutive failed iterations (status error or timeout), halt the loop and enter synthesis with stop reason error and partial findings.
+  Do not change the line `2. if stuck_count >= config.stuckThreshold: STUCK_RECOVERY`.
+
+EDIT 8. If the file holds a line that starts with
+`escalation: "After 3 consecutive failures across iterations`, delete that whole line.
+(deep-review-confirm.yaml has none.)
+
+EDIT 9. Delete the whole step `step_generate_dashboard:`: its key line and every line that
+belongs to it, up to but not including the next step key at the same indentation
+(`step_update_tracking:`). Leave exactly one blank line between the step before it and
+step_update_tracking.
+Then, at the bottom of the file in the `error_recovery:` map, replace the value of
+`consecutive_failures:` with:
+  consecutive_failures: "See step_check_convergence rule 1a. The script counts trailing failed iterations from the state log and returns stop reason error."
+
+EDIT 10. There is no edit 10. The `algorithm: |` block of step_check_convergence must stay
+byte-identical in the auto file and the confirm file, because a test compares them.
+
+EDIT 11 (confirm file only). In step_handle_convergence, add a new branch directly before the
+`if_stop:` key, at the same indentation as `if_stop:`:
+        if_consecutive_failures:
+          when: "stop_decision.reasonDetail == 'consecutiveFailures'. This branch runs instead of if_stop."
+          gate_consecutive_failures:
+            type: approval_gate
+            purpose: "In confirm mode, ask the operator Retry / Skip / Cancel before synthesis starts."
+            present: |
+              **{consecutive_failure_count} iterations in a row failed.**
+
+              Options:
+              A) Retry: dispatch the next iteration with the same dimension
+              B) Skip: dispatch the next iteration with the next dimension
+              C) Cancel: end the run with no synthesis
+            wait_for: "User response"
+            on_A: { set: { decision: "CONTINUE" }, proceed_to: step_dispatch_iteration }
+            on_B: { action: "Advance next_dimension to the next uncovered dimension in strategy.md", set: { decision: "CONTINUE" }, proceed_to: step_dispatch_iteration }
+            on_C: { action: "Cancel workflow", status: "CANCELLED" }
+          note: "The failure count is rebuilt from the state log, so this gate asks again after each further failed iteration and stops asking once an iteration completes."
+Copy the `after_gate_refresh_lock:` block from gate_pre_iteration into the new gate, directly
+after its `wait_for:` line.
+
+EDIT 12 (confirm file only).
+  a. The post-iteration gate has
+        on_A: { proceed_to: step_generate_dashboard }
+        on_B: { action: "Set next_dimension to user's choice in strategy.md", proceed_to: step_generate_dashboard }
+     Change both `step_generate_dashboard` targets to `step_update_tracking`.
+  b. Near the bottom of the file a line starts with
+     `step_init_complete: "Covered by gate_init_approval.on_A, which sets current_iteration 1 and zeroes stuck_count/p0_count/p1_count/p2_count`.
+     Change `zeroes stuck_count/p0_count/p1_count/p2_count` to `zeroes p0_count/p1_count/p2_count`.
+
+VERIFY (run from the repository root and print each output):
+  rg -n -e 'stuck_count: 0' -e 'stuck_count \+ 1' -e 'stuck-count' -e 'step_generate_dashboard' -e 'trigger stuck_recovery event' -e 'After 3 consecutive errors' -e 'Accumulate from severity_counts' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  rg -c -e 'loop_counters_json is missing' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  rg -c -e 'After 3 consecutive failed iterations' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  rg -c -e 'whose status is error or timeout' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  rg -c 'findingsBySeverity' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  rg -c 'Retry / Skip / Cancel' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  rg -n 'proceed_to: step_update_tracking' .skilled/commands/deep/assets/deep-review-confirm.yaml
+  python3 -c "import sys, yaml; [yaml.safe_load(open(p)) for p in sys.argv[1:]]; print('yaml ok')" .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/stop-decision-yaml-contract.vitest.ts tests/unit/stop-policy-yaml-parity.vitest.ts tests/integration/review-depth-convergence.vitest.ts tests/unit/lifecycle-taxonomy-yaml-parity.vitest.ts)
+
+EXPECTED: the first command prints nothing. The second, third and fourth print 1 for each
+file. The fifth prints 1 or more for each file. The sixth prints a count only for
+deep-review-confirm.yaml. The seventh prints two lines. The eighth prints `yaml ok`. The tests
+report 0 failed. If a test fails, do not edit the test: print the failure and stop.
+
+RETURN: the outputs of the verify commands.
