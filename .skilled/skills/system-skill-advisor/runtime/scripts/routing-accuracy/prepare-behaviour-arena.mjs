@@ -40,7 +40,7 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────
 
-import { existsSync, lstatSync, lutimesSync, mkdirSync, readdirSync, rmSync, utimesSync, writeFileSync } from 'node:fs';
+import { appendFileSync, existsSync, lstatSync, lutimesSync, mkdirSync, readdirSync, rmSync, utimesSync, writeFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -297,6 +297,16 @@ function assertHead(dest, head) {
   if (cloned !== head) throw new StepFailure('head_mismatch', `expected ${head}, got ${cloned}`);
 }
 
+// Claude Code reads CLAUDE.md and not AGENTS.md, so the arena imports its own
+// rules, and the exclude line keeps the clean-tree check and the head unchanged.
+function writeClaudePointer(dest) {
+  const pointerPath = join(dest, 'CLAUDE.md');
+  if (existsSync(pointerPath)) return;
+  writeFileSync(pointerPath, '@AGENTS.md\n');
+  mkdirSync(join(dest, '.git', 'info'), { recursive: true });
+  appendFileSync(join(dest, '.git', 'info', 'exclude'), '/CLAUDE.md\n');
+}
+
 function buildArena(source, dest, head) {
   cloneInto(source, dest);
   checkoutDetached(dest, head);
@@ -308,6 +318,7 @@ function buildArena(source, dest, head) {
     if (basename(relPath) === 'dist') stampBuildTree(destPath);
   }
   assertHead(dest, head);
+  writeClaudePointer(dest);
   // The runner refuses a live arm in a checkout without this file, because only a
   // checkout built here has no remote, no outer repository and no dotenv file in
   // its copied build trees.

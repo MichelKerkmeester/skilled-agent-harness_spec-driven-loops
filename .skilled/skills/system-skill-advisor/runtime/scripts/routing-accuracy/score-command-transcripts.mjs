@@ -24,7 +24,7 @@
 // 1. IMPORTS
 // ───────────────────────────────────────────────────────────────────
 
-import { readFileSync, realpathSync } from 'node:fs';
+import { existsSync, readFileSync, realpathSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadSession } from '../../../../../hooks/shared/session-readers/index.mjs';
@@ -943,6 +943,41 @@ function reportedStart(events, wanted) {
     .some((line) => line.state === 'started' && namesCommand(line.command, wanted));
 }
 
+/**
+ * Find the tracked command a run started, if it started one.
+ *
+ * A start has several shapes: a skill event that names the command, a `COMMAND:`
+ * line that reports it started, a host that expanded a typed command, or a read
+ * of the command's document when the run went on to write. A read with no write
+ * is a lookup, because a question about a command is answered by reading it.
+ *
+ * @param {Array<{seq: number, kind: string, path: string|null, command: string|null, text: string|null}>} events
+ *   Events from `normalize`.
+ * @param {Iterable<string>} commands - The commands the bridge table tracks.
+ * @param {string} [checkoutDir] - The folder the run's checkout names, so a write
+ *   outside it sets no boundary.
+ * @returns {string|null} The first listed command the run started, or null.
+ */
+export function startedCommand(events, commands, checkoutDir) {
+  const stream = Array.isArray(events) ? events : [];
+  const boundary = firstWritePosition(stream, checkoutDir);
+
+  for (const command of commands ?? []) {
+    const wanted = commandParts(command);
+    if (wanted === null) continue;
+
+    const loaded = stream.some(
+      (event) => event && event.kind === 'skill' && namesCommand(event.command, wanted),
+    );
+    if (loaded) return command;
+    if (reportedStart(stream, wanted)) return command;
+    if (hostExpanded(stream, wanted)) return command;
+    if (boundary !== null && readDocument(stream, wanted)) return command;
+  }
+
+  return null;
+}
+
 // The prompt decides what a `:auto` suffix means. A typed auto command asked
 // for the mode and is not the run's own choice, while the same suffix on any
 // other row is a mode the run gave itself.
@@ -1203,6 +1238,12 @@ async function scoreSession(options) {
 // reason.
 const PROMPTS_PATH = resolve(dirname(fileURLToPath(import.meta.url)), 'command-prompts.jsonl');
 
+// The fresh rows live apart from the corpus so the capture never publishes them.
+// The variable lets a test label made-up rows before the blind file exists, and no
+// arm or scoring command sets it.
+const FRESH_PATH = process.env.SKILL_ADVISOR_FRESH_PROMPTS_PATH
+  || resolve(dirname(fileURLToPath(import.meta.url)), 'behaviour-fresh-prompts.jsonl');
+
 // The bridge table is the only place a command's owning skill is written down, so
 // the summary reads it once instead of importing a second copy that can drift.
 const BRIDGES_PATH = resolve(dirname(fileURLToPath(import.meta.url)), '../command-bridges/command-bridges.generated.json');
@@ -1229,11 +1270,14 @@ function rowLabel(row) {
 function loadRowLabels() {
   const labels = new Map();
 
-  for (const line of readFileSync(PROMPTS_PATH, 'utf8').split('\n')) {
-    if (line.trim() === '') continue;
-    const row = JSON.parse(line);
-    if (typeof row.id !== 'string' || row.id === '') continue;
-    labels.set(row.id, row.split === 'holdout' ? { holdout: true } : rowLabel(row));
+  for (const path of [PROMPTS_PATH, FRESH_PATH]) {
+    if (!existsSync(path)) continue;
+    for (const line of readFileSync(path, 'utf8').split('\n')) {
+      if (line.trim() === '') continue;
+      const row = JSON.parse(line);
+      if (typeof row.id !== 'string' || row.id === '') continue;
+      labels.set(row.id, row.split === 'holdout' ? { holdout: true } : rowLabel(row));
+    }
   }
 
   return labels;
@@ -1244,14 +1288,18 @@ function loadRowLabels() {
 // to nothing is left out rather than keyed under an empty string, and a read or
 // parse error is allowed to end the run because a summary without the owner table
 // would report every run as unowned. A command's mode is kept beside its owner, so
-// a load of another mode under the same hub can be told apart.
+// a load of another mode under the same hub can be told apart. The distinct
+// commands are listed in table order for the start check, which asks whether any
+// tracked command began rather than which owner a row named.
 function loadOwners() {
   const table = JSON.parse(readFileSync(BRIDGES_PATH, 'utf8'));
   const byCommand = new Map();
   const modeByCommand = new Map();
   const skills = new Set();
+  const commands = new Set();
 
   for (const entry of table.entries) {
+    if (typeof entry.command === 'string' && entry.command !== '') commands.add(entry.command);
     if (typeof entry.skillId !== 'string' || entry.skillId === '') continue;
     skills.add(entry.skillId);
     const parts = commandParts(entry.command);
@@ -1261,7 +1309,7 @@ function loadOwners() {
     if (typeof entry.ownerMode === 'string' && entry.ownerMode !== '') modeByCommand.set(key, entry.ownerMode);
   }
 
-  return { byCommand, modeByCommand, skills };
+  return { byCommand, modeByCommand, skills, commands };
 }
 
 // A row names the command it expects, and some rows name the owning skill at the
@@ -1348,11 +1396,12 @@ class LogError extends Error {
 
 // The runtime entry spends the key `unscored` on its own count, so an arm that
 // carries that word is filed under the unknown arm rather than overwriting it.
-const RESERVED_ARM = 'unscored';
+// The entry also spends the key `paired` on the pair block.
+const RESERVED_ARMS = Object.freeze(['unscored', 'paired']);
 
 function armOf(line) {
   const arm = typeof line.arm === 'string' && line.arm !== '' ? line.arm : 'unknown';
-  return arm === RESERVED_ARM ? 'unknown' : arm;
+  return RESERVED_ARMS.includes(arm) ? 'unknown' : arm;
 }
 
 function readRunLog(path) {
@@ -1391,11 +1440,14 @@ function readRunLog(path) {
 }
 
 // A run log is append-only, so a row whose turn was retried appears more than once
-// and its last line describes the attempt the arm kept.
+// and its last line describes the attempt the arm kept. A row measured more than
+// once keeps one line per run, because its second run is a second sample rather than
+// a retry, and a retried line still replaces the first line of its own run.
 function latestLines(lines) {
   const latest = new Map();
   for (const line of lines) {
-    latest.set(`${line.runtime}\u0000${armOf(line)}\u0000${String(line.rowId)}`, line);
+    const run = Number.isInteger(line.run) && line.run >= 1 ? line.run : 1;
+    latest.set(`${line.runtime}\u0000${armOf(line)}\u0000${String(line.rowId)}\u0000${run}`, line);
   }
   return [...latest.values()];
 }
@@ -1509,6 +1561,14 @@ async function scoreRun(line, labels, owners) {
   if (label === null) return { scored: false, reason: 'unknown_row' };
   if (label.holdout) return { scored: false, reason: 'holdout_row' };
 
+  // The two arms differ only in the advisor, so a run whose brief contradicts its
+  // arm measured the other arm, and its score would credit work this arm never got.
+  const arm = armOf(line);
+  if ((arm === 'off' && line.briefDelivered === true)
+    || (arm === 'on' && line.briefDelivered === false)) {
+    return { scored: false, reason: 'arm_delivery_mismatch' };
+  }
+
   // A turn the cap stopped exits 143, and a turn killed before it wrote an exit
   // records none. Both left a transcript worth reading, so the code is kept as a
   // fact about the run rather than as a ground to discard it.
@@ -1537,6 +1597,14 @@ async function scoreRun(line, labels, owners) {
   return {
     scored: true,
     rowId,
+    rowType: label.row_type,
+    run: Number.isInteger(line.run) && line.run >= 1 ? line.run : 1,
+    offeredCommand: typeof line.offeredCommand === 'string' ? line.offeredCommand : null,
+    // A decline row and a skill-only row ask whether the run began a tracked
+    // command it was not asked to take, so the start is read from its transcript.
+    commandStarted: label.row_type === 'decline' || label.row_type === 'skill-only'
+      ? startedCommand(events, owners.commands, line.locator?.projectDir)
+      : null,
     capped,
     startRow: isStartRow(label),
     started: start.started,
@@ -1630,8 +1698,11 @@ function newTally() {
     repeatedCommandLines: 0,
     loops: 0,
     loopsWithoutInit: 0,
-    workflow: { command: 0, skill: 0, asked: 0, askedActed: 0, otherMode: 0, improvised: 0, none: 0, noneActed: 0, noOwner: 0, unscoredOnly: 0 },
-    pairRows: new Map(),
+    workflow: { command: 0, skill: 0, asked: 0, askedActed: 0, otherMode: 0, improvised: 0, none: 0, noneActed: 0, noOwner: 0 },
+    pairCounts: new Map(),
+    // A decline row and a skill-only row are judged by whether the run began a tracked
+    // command, so each run of either class is counted with the start it produced.
+    commandStarts: { decline: { started: 0, runs: 0 }, skillOnly: { started: 0, runs: 0 }, runs: [] },
     // A followed rate hides whether the head named the command at all, so each owned
     // run is counted again under the offer its own run line records.
     followedByOffer: {
@@ -1663,6 +1734,24 @@ export function wilsonRange(successes, total) {
     + zSquared / (4 * total * total))) / denominator;
   const bound = (value) => Math.min(1, Math.max(0, Math.round(value * 100) / 100));
   return { low: bound(centre - spread), high: bound(centre + spread) };
+}
+
+// Two arms that differ only in the advisor can still split their wins by chance, so
+// the pair counts are read against the exact one-sided tail of the sign test rather
+// than a normal approximation. Integer arithmetic keeps the tail exact at the sizes
+// an arm reports, and the result is rounded to the four decimals a printed p carries.
+export function signTestP(gained, lost) {
+  const pairs = gained + lost;
+  if (pairs === 0) return null;
+  let tail = 0n;
+  let coefficient = 1n;
+  for (let k = 0; k <= pairs; k += 1) {
+    if (k >= gained) tail += coefficient;
+    coefficient = (coefficient * BigInt(pairs - k)) / BigInt(k + 1);
+  }
+  const total = 2n ** BigInt(pairs);
+  const tenThousandths = (tail * 10000n + total / 2n) / total;
+  return Number(tenThousandths) / 10000;
 }
 
 function tallyBlock(tally) {
@@ -1699,7 +1788,7 @@ function tallyBlock(tally) {
       none: tally.workflow.none,
       noneActed: tally.workflow.noneActed,
       noOwner: tally.workflow.noOwner,
-      unscored: tally.unscored + tally.workflow.unscoredOnly,
+      unscored: tally.unscored,
       // The load rate is the outcome reading: every owned run the arm scored is in
       // its denominator, so a run that skipped the workflow and wrote nothing cannot
       // leave the count the way it leaves the share.
@@ -1740,7 +1829,22 @@ function tallyBlock(tally) {
     byPolicy: Object.fromEntries(
       POLICY_KEYS.map((key) => [key, { ...tally.byPolicy[key] }]),
     ),
+    // A start rate alone cannot say which command began, so each start is listed
+    // beside the count that produced it.
+    declineStarts: rate(tally.commandStarts.decline.started, tally.commandStarts.decline.runs),
+    skillOnlyStarts: rate(tally.commandStarts.skillOnly.started, tally.commandStarts.skillOnly.runs),
+    commandStartRuns: tally.commandStarts.runs,
   };
+}
+
+// The pair compares each row across its two arms, so every owned row counts its runs
+// and the ones that followed. A row scored a different number of times in each arm is
+// not a like-for-like comparison.
+function countPairRow(counts, rowId, workflowPath) {
+  const count = counts.get(rowId) ?? { followed: 0, runs: 0 };
+  count.runs += 1;
+  if (['command', 'skill', 'asked'].includes(workflowPath)) count.followed += 1;
+  counts.set(rowId, count);
 }
 
 function addScored(tally, result) {
@@ -1748,9 +1852,22 @@ function addScored(tally, result) {
   // The path is counted before the policy lookup returns, because a row with no
   // policy still loaded a workflow or improvised one.
   tally.workflow[result.workflowPath] += 1;
-  // Two arms are compared row by row, so each owned row keeps whether its run
-  // took a path the followed rate counts.
-  if (result.workflowPath !== 'noOwner') tally.pairRows.set(result.rowId, ['command', 'skill', 'asked'].includes(result.workflowPath));
+  if (result.workflowPath !== 'noOwner') countPairRow(tally.pairCounts, result.rowId, result.workflowPath);
+  // A decline row and a skill-only row are judged by whether the run began a tracked
+  // command, so the start is recorded beside the run that made it.
+  if (result.rowType === 'decline' || result.rowType === 'skill-only') {
+    const startCounts = tally.commandStarts[result.rowType === 'decline' ? 'decline' : 'skillOnly'];
+    startCounts.runs += 1;
+    if (result.commandStarted !== null) {
+      startCounts.started += 1;
+      tally.commandStarts.runs.push({
+        rowId: result.rowId,
+        run: result.run,
+        command: result.commandStarted,
+        offeredCommand: result.offeredCommand,
+      });
+    }
+  }
   if (result.workflowPath === 'none' && result.acted) tally.workflow.noneActed += 1;
   // An ask row that ran steps on the task and then asked did more than the one step
   // the ask policy names, so it is counted apart from a row that only asked.
@@ -1846,7 +1963,9 @@ async function summarize(options) {
     addScored(tally, result);
   }
 
-  return project(summary, options.pair);
+  const projected = project(summary, options.pair);
+  if (typeof options.pair === 'string') projected.pooled = pooledPair(projected, options.pair, summary);
+  return projected;
 }
 
 // A runtime entry carries its per-arm blocks and how many of its runs scored
@@ -1875,25 +1994,39 @@ function project(summary, pair) {
       block[arm] = { ...tallyBlock(tally), armIncomplete: tally.runs < largestRuns[arm] };
     }
     // Two arms are compared row by row, so the pair counts only the rows both arms
-    // scored and says which of them moved into or out of a followed path. A runtime
-    // missing one of the named arms has no comparison to report.
+    // scored and says which of them moved into or out of a followed path. A row
+    // scored a different number of times in each arm is counted apart, because the
+    // comparison measures runs rather than rows. A runtime missing one of the named
+    // arms has no comparison to report.
     const arms = typeof pair === 'string' ? pair.split(',') : null;
     if (arms !== null) {
       const from = entry[arms[0]];
       const to = entry[arms[1]];
-      if (from?.pairRows instanceof Map && to?.pairRows instanceof Map) {
-        const shared = [...from.pairRows.keys()].filter((rowId) => to.pairRows.has(rowId));
+      if (from?.pairCounts instanceof Map && to?.pairCounts instanceof Map) {
+        const shared = [
+          ...from.pairCounts.keys(),
+          ...[...to.pairCounts.keys()].filter((rowId) => !from.pairCounts.has(rowId)),
+        ];
         if (shared.length > 0) {
-          const counts = { gained: 0, lost: 0, bothFollowed: 0, neitherFollowed: 0 };
+          const counts = {
+            rows: 0, gained: 0, lost: 0, bothFollowed: 0, neitherFollowed: 0, unpaired: 0,
+          };
           for (const rowId of shared) {
-            const before = from.pairRows.get(rowId);
-            const after = to.pairRows.get(rowId);
-            if (before && after) counts.bothFollowed += 1;
-            else if (!before && !after) counts.neitherFollowed += 1;
-            else if (after) counts.gained += 1;
-            else counts.lost += 1;
+            const before = from.pairCounts.get(rowId) ?? { runs: 0, followed: 0 };
+            const after = to.pairCounts.get(rowId) ?? { runs: 0, followed: 0 };
+            // A row the two arms sampled a different number of times has no
+            // like-for-like rate, so it leaves the counts above untouched.
+            if (before.runs !== after.runs) {
+              counts.unpaired += 1;
+              continue;
+            }
+            counts.rows += 1;
+            if (after.followed > before.followed) counts.gained += 1;
+            else if (after.followed < before.followed) counts.lost += 1;
+            else if (after.followed > 0) counts.bothFollowed += 1;
+            else counts.neitherFollowed += 1;
           }
-          block.paired = { from: arms[0], to: arms[1], rows: shared.length, ...counts };
+          block.paired = { from: arms[0], to: arms[1], ...counts };
         }
       }
     }
@@ -1903,6 +2036,53 @@ function project(summary, pair) {
   return projected;
 }
 
+// A pair compares one runtime's two arms, while the verdict is read across every
+// runtime at once, so the per-runtime counts are summed and the split is read against
+// the exact sign test. A runtime with no paired block contributes no pair counts,
+// because it ran only one arm of the pair.
+//
+// A start count is read across every runtime that ran an arm, so it is summed from the
+// per-arm tallies rather than only from the runtimes whose pairs could be compared. The
+// tally is the one the printed `x of y` rate reads, so the two never drift apart.
+function pooledPair(projected, pair, tallies) {
+  const arms = pair.split(',');
+  const pooled = {
+    from: arms[0],
+    to: arms[1],
+    runtimes: 0,
+    rows: 0,
+    gained: 0,
+    lost: 0,
+    ties: 0,
+    unpaired: 0,
+    declineStarts: Object.fromEntries(arms.map((arm) => [arm, { started: 0, runs: 0 }])),
+    skillOnlyStarts: Object.fromEntries(arms.map((arm) => [arm, { started: 0, runs: 0 }])),
+  };
+
+  for (const [runtime, block] of Object.entries(projected)) {
+    const paired = block.paired;
+    if (paired !== undefined) {
+      pooled.runtimes += 1;
+      pooled.rows += paired.rows;
+      pooled.gained += paired.gained;
+      pooled.lost += paired.lost;
+      pooled.ties += paired.bothFollowed + paired.neitherFollowed;
+      pooled.unpaired += paired.unpaired;
+    }
+    for (const arm of arms) {
+      if (block[arm] === undefined) continue;
+      const starts = tallies[runtime][arm].commandStarts;
+      pooled.declineStarts[arm].started += starts.decline.started;
+      pooled.declineStarts[arm].runs += starts.decline.runs;
+      pooled.skillOnlyStarts[arm].started += starts.skillOnly.started;
+      pooled.skillOnlyStarts[arm].runs += starts.skillOnly.runs;
+    }
+  }
+
+  pooled.p = signTestP(pooled.gained, pooled.lost);
+  return pooled;
+}
+
 function writeSummary(summary, json) {
   if (json) {
     writeJson(summary);
@@ -1910,6 +2090,7 @@ function writeSummary(summary, json) {
   }
 
   for (const [runtime, entry] of Object.entries(summary)) {
+    if (runtime === 'pooled') continue;
     process.stdout.write(`${runtime}: ${entry.unscored} unscored\n`);
     for (const [arm, block] of Object.entries(entry)) {
       if (arm === 'unscored' || arm === 'paired') continue;
@@ -1938,6 +2119,17 @@ function writeSummary(summary, json) {
           + ` followed rate ${block.workflow.followedRate}, load rate ${block.workflow.loadRate},`
           + ` share ${block.workflow.share}\n`,
       );
+      // The counts print under the arm that produced them, because one arm's starts
+      // say nothing about the other arm's.
+      process.stdout.write(
+        `    command starts: decline ${block.declineStarts}, skill-only ${block.skillOnlyStarts}\n`,
+      );
+      for (const start of block.commandStartRuns) {
+        process.stdout.write(
+          `    start ${start.rowId} run ${start.run}: ${start.command}`
+            + ` (offered ${start.offeredCommand ?? 'none'})\n`,
+        );
+      }
       for (const miss of block.unscoredRuns) {
         process.stdout.write(`    unscored ${miss.rowId}: ${miss.reason}\n`);
       }
@@ -1959,6 +2151,15 @@ function writeSummary(summary, json) {
           + ` neither followed ${entry.paired.neitherFollowed}\n`,
       );
     }
+  }
+  // The pooled block sums every runtime, so it prints once after them rather than
+  // as a runtime of its own.
+  if (summary.pooled !== undefined) {
+    process.stdout.write(
+      `pooled ${summary.pooled.from} to ${summary.pooled.to}: ${summary.pooled.runtimes} runtimes,`
+        + ` ${summary.pooled.rows} rows, gained ${summary.pooled.gained}, lost ${summary.pooled.lost},`
+        + ` ties ${summary.pooled.ties}, unpaired ${summary.pooled.unpaired}, p ${summary.pooled.p}\n`,
+    );
   }
 }
 

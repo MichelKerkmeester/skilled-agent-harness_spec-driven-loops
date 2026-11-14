@@ -30,6 +30,7 @@ import {
   normalize,
   offerSeenIn,
   startState,
+  startedCommand,
 } from '../scripts/routing-accuracy/score-command-transcripts.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -677,6 +678,74 @@ describe('startState', () => {
   });
 });
 
+describe('startedCommand', () => {
+  const COMMANDS = ['/create:readme', '/deep:review'];
+  const CHECKOUT = '/x';
+  const README_DOCUMENT = '/x/.skilled/commands/create/readme.md';
+  const README_WRITE = '/x/README.md';
+
+  interface NormalizedEvent {
+    readonly seq: number;
+    readonly kind: string;
+    readonly path: string | null;
+    readonly command: string | null;
+    readonly text: string | null;
+  }
+
+  function event(seq: number, kind: string, fields: Partial<NormalizedEvent> = {}): NormalizedEvent {
+    return { seq, kind, path: null, command: null, text: null, ...fields };
+  }
+
+  it('returns the command whose document a run read before its first write', () => {
+    const events = [
+      event(0, 'read', { path: README_DOCUMENT }),
+      event(1, 'write', { path: README_WRITE }),
+    ];
+
+    expect(startedCommand(events, COMMANDS, CHECKOUT)).toBe('/create:readme');
+  });
+
+  it('returns null when the run only read the document', () => {
+    const events = [event(0, 'read', { path: README_DOCUMENT })];
+
+    expect(startedCommand(events, COMMANDS, CHECKOUT)).toBeNull();
+  });
+
+  it('counts a shell read of the document as a start', () => {
+    const events = [
+      event(0, 'shell', { command: `cat ${README_DOCUMENT}` }),
+      event(1, 'write', { path: README_WRITE }),
+    ];
+
+    expect(startedCommand(events, COMMANDS, CHECKOUT)).toBe('/create:readme');
+  });
+
+  it('does not count a shell search of the document as a start', () => {
+    const events = [
+      event(0, 'shell', { command: `rg -n step ${README_DOCUMENT}` }),
+      event(1, 'write', { path: README_WRITE }),
+    ];
+
+    expect(startedCommand(events, COMMANDS, CHECKOUT)).toBeNull();
+  });
+
+  it('returns the command a COMMAND: line reported started', () => {
+    const events = [event(0, 'text', { text: 'COMMAND: /deep:review → started' })];
+
+    expect(startedCommand(events, COMMANDS, CHECKOUT)).toBe('/deep:review');
+  });
+
+  it('returns the command a skill event names', () => {
+    const events = [event(0, 'skill', { command: '/create:readme' })];
+
+    expect(startedCommand(events, COMMANDS, CHECKOUT)).toBe('/create:readme');
+  });
+
+  it('returns null when no event names a command', () => {
+    expect(startedCommand([], COMMANDS, CHECKOUT)).toBeNull();
+  });
+});
+
 // ───────────────────────────────────────────────────────────────
 // 5. LOOP INIT
 // ───────────────────────────────────────────────────────────────
@@ -791,8 +860,15 @@ describe('loopInit', () => {
 // 6. READER FAILURE
 // ───────────────────────────────────────────────────────────────
 
-function runScorer(args: readonly string[]): ReturnType<typeof spawnSync> {
-  return spawnSync(process.execPath, [SCORER, ...args], { encoding: 'utf8', timeout: 20_000 });
+function runScorer(
+  args: readonly string[],
+  env: Record<string, string> = {},
+): ReturnType<typeof spawnSync> {
+  return spawnSync(process.execPath, [SCORER, ...args], {
+    encoding: 'utf8',
+    timeout: 20_000,
+    env: { ...process.env, ...env },
+  });
 }
 
 describe('reader failure', () => {
@@ -839,6 +915,7 @@ interface RunLogLine {
   readonly runtime?: string;
   readonly rowId: string;
   readonly arm: string;
+  readonly run?: number;
   readonly exit: number | null;
   readonly locator: Readonly<Record<string, string>> | null;
   readonly offeredCommand?: string | null;
@@ -873,6 +950,19 @@ function loadableSession(
   return { sessionId: SUMMARY_SESSION, transcriptPath, claudeRoot };
 }
 
+// The base turn of the shared loader reports a start of its own, so a case that
+// reads which command began writes a transcript from the entries it hands over.
+function loadableEntries(
+  root: string,
+  entries: readonly Record<string, unknown>[],
+): Record<string, string> {
+  const claudeRoot = join(root, 'claude', 'projects');
+  const transcriptPath = join(claudeRoot, SUMMARY_SESSION, `${SUMMARY_SESSION}.jsonl`);
+  mkdirSync(dirname(transcriptPath), { recursive: true });
+  writeFileSync(transcriptPath, `${entries.map((entry) => JSON.stringify(entry)).join('\n')}\n`);
+  return { sessionId: SUMMARY_SESSION, transcriptPath, claudeRoot };
+}
+
 // The reader joins a tool call to the result turn that follows it, so a fixture
 // that puts a read before a write has to add both halves of each call.
 function claudeToolTurn(
@@ -903,7 +993,10 @@ function claudeToolTurn(
 
 // Codex names its rollout by the path the runner captured rather than by a session
 // folder, so a case that needs a second runtime builds the store under its own root.
-function loadableCodexSession(root: string): Record<string, string> {
+function loadableCodexSession(
+  root: string,
+  extraEntries: readonly Record<string, unknown>[] = [],
+): Record<string, string> {
   const codexRoot = join(root, 'codex', 'sessions');
   const transcriptPath = join(codexRoot, 'rollout-2026-01-01T00-00-00-codex-1.jsonl');
   mkdirSync(dirname(transcriptPath), { recursive: true });
@@ -919,6 +1012,7 @@ function loadableCodexSession(root: string): Record<string, string> {
         content: [{ type: 'output_text', text: 'COMMAND: /create:agent → started' }],
       },
     },
+    ...extraEntries,
   ].map((line) => JSON.stringify(line)).join('\n')}\n`);
   return { sessionId: 'codex-1', transcriptPath, codexRoot };
 }
@@ -928,6 +1022,7 @@ function loadableCodexSession(root: string): Record<string, string> {
 function summarize(
   runOf: (root: string) => readonly RunLogLine[],
   extraArgs: readonly string[] = [],
+  freshRows: readonly object[] = [],
 ): unknown {
   const root = mkdtempSync(join(tmpdir(), 'command-summary-'));
   try {
@@ -935,7 +1030,14 @@ function summarize(
     const lines = runOf(root).map((line) => JSON.stringify({ runtime: 'claude', ...line }));
     writeFileSync(logPath, `${lines.join('\n')}\n`);
 
-    const run = runScorer(['--summary', logPath, ...extraArgs, '--json']);
+    const env: Record<string, string> = {};
+    if (freshRows.length > 0) {
+      const freshPath = join(root, 'fresh.jsonl');
+      writeFileSync(freshPath, `${freshRows.map((row) => JSON.stringify(row)).join('\n')}\n`);
+      env.SKILL_ADVISOR_FRESH_PROMPTS_PATH = freshPath;
+    }
+
+    const run = runScorer(['--summary', logPath, ...extraArgs, '--json'], env);
     expect(run.status).toBe(0);
     return JSON.parse(String(run.stdout));
   } finally {
@@ -1000,6 +1102,84 @@ describe('run log summary', () => {
           scored: 0,
           unscoredRuns: [
             { rowId: 'cmd-create-agent-plain-holdout-01', reason: 'holdout_row' },
+          ],
+        },
+      },
+    });
+  });
+
+  // A fresh row is written after the corpus is frozen, so its label has to come
+  // from a file the corpus never holds or a run of it reads as an unknown row.
+  it('labels a fresh row', () => {
+    const summary = summarize(
+      (root) => [{ rowId: 'fresh-fit-91', arm: 'on', exit: 0, locator: loadableSession(root) }],
+      [],
+      [{
+        id: 'fresh-fit-91',
+        row_type: 'plain',
+        split: 'fresh',
+        prompt: 'made up',
+        expected_command: '/create:readme',
+        expected_policy: 'start',
+        expected_top: 'sk-doc',
+      }],
+    );
+
+    expect(summary).toMatchObject({
+      claude: { on: { scored: 1, unscoredRuns: [] } },
+    });
+  });
+
+  // A row measured twice holds two samples, so the second run of a row sits beside
+  // the first rather than replacing it the way a retried turn does.
+  it('keeps two runs of one row apart', () => {
+    const summary = summarize((root) => {
+      const locator = loadableSession(root);
+      return [
+        { rowId: SUMMARY_ROW, arm: 'on', exit: 0, run: 1, locator },
+        { rowId: SUMMARY_ROW, arm: 'on', exit: 0, run: 2, locator },
+        { rowId: SUMMARY_ROW, arm: 'on', exit: 0, run: 1, locator },
+      ];
+    });
+
+    expect(summary).toMatchObject({ claude: { on: { runs: 2 } } });
+  });
+
+  // The pair block spends the key `paired` on its own counts, so a run line that
+  // carries that word is filed under the unknown arm rather than overwriting them.
+  it('files an arm named paired under the unknown arm', () => {
+    const summary = summarize((root) => [
+      { rowId: SUMMARY_ROW, arm: 'paired', exit: 0, locator: loadableSession(root) },
+    ]);
+
+    expect(summary).toMatchObject({ claude: { unknown: { runs: 1 } } });
+    expect(summary).not.toHaveProperty('claude.paired');
+  });
+
+  // The two arms differ only in the advisor, so a run whose brief contradicts its
+  // arm measured the other arm, and its score would credit work this arm never got.
+  it('leaves a delivery that contradicts the arm unscored', () => {
+    const summary = summarize((root) => {
+      const locator = loadableSession(root);
+      return [
+        { rowId: SUMMARY_ROW, arm: 'on', exit: 0, briefDelivered: false, locator },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'off', exit: 0, briefDelivered: true, locator },
+        { rowId: 'cmd-doctor-ci-plain-tune-01', arm: 'off', exit: 0, briefDelivered: 'unknown', locator },
+      ];
+    });
+
+    expect(summary).toMatchObject({
+      claude: {
+        on: {
+          runs: 1,
+          scored: 0,
+          unscoredRuns: [{ rowId: SUMMARY_ROW, reason: 'arm_delivery_mismatch' }],
+        },
+        off: {
+          runs: 2,
+          scored: 1,
+          unscoredRuns: [
+            { rowId: 'cmd-create-agent-plain-tune-02', reason: 'arm_delivery_mismatch' },
           ],
         },
       },
@@ -1821,6 +2001,502 @@ describe('run log summary', () => {
     });
     expect(summary).not.toHaveProperty('codex.paired');
   });
+
+  // Two runs of one row are two samples, so a row pairs on how many of its runs
+  // followed rather than on whichever line the log kept last.
+  it('pairs two runs per row by followed count', () => {
+    const summary = summarize((root) => {
+      const followed = (key: string): Record<string, string> => loadableSession(
+        join(root, key),
+        [...claudeToolTurn(`claude-${key}`, 'Read', { file_path: SKILL_DOCUMENT })],
+      );
+      const unfollowed = (key: string): Record<string, string> => loadableSession(join(root, key));
+
+      return [
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'off', run: 1, exit: 0, locator: unfollowed('a1-off') },
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'off', run: 2, exit: 0, locator: followed('a2-off') },
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'on', run: 1, exit: 0, locator: followed('a1-on') },
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'on', run: 2, exit: 0, locator: followed('a2-on') },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'off', run: 1, exit: 0, locator: followed('b1-off') },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'off', run: 2, exit: 0, locator: unfollowed('b2-off') },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'on', run: 1, exit: 0, locator: unfollowed('b1-on') },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'on', run: 2, exit: 0, locator: unfollowed('b2-on') },
+        { rowId: 'cmd-create-agent-typed-01', arm: 'off', run: 1, exit: 0, locator: followed('c1-off') },
+        { rowId: 'cmd-create-agent-typed-01', arm: 'off', run: 2, exit: 0, locator: unfollowed('c2-off') },
+        { rowId: 'cmd-create-agent-typed-01', arm: 'on', run: 1, exit: 0, locator: followed('c1-on') },
+        { rowId: 'cmd-create-agent-typed-01', arm: 'on', run: 2, exit: 0, locator: unfollowed('c2-on') },
+        { rowId: 'cmd-create-readme-plain-tune-01', arm: 'off', run: 1, exit: 0, locator: unfollowed('d1-off') },
+        { rowId: 'cmd-create-readme-plain-tune-01', arm: 'off', run: 2, exit: 0, locator: unfollowed('d2-off') },
+        { rowId: 'cmd-create-readme-plain-tune-01', arm: 'on', run: 1, exit: 0, locator: unfollowed('d1-on') },
+        { rowId: 'cmd-create-readme-plain-tune-01', arm: 'on', run: 2, exit: 0, locator: unfollowed('d2-on') },
+      ];
+    }, ['--pair', 'off,on']);
+
+    expect(summary).toMatchObject({
+      claude: {
+        paired: {
+          from: 'off',
+          to: 'on',
+          rows: 4,
+          gained: 1,
+          lost: 1,
+          bothFollowed: 1,
+          neitherFollowed: 1,
+          unpaired: 0,
+        },
+      },
+    });
+  });
+
+  // A row scored a different number of times in each arm offers no like-for-like
+  // comparison, so it is counted apart rather than against whichever run came last.
+  it('leaves a row unpaired when its arms scored different run counts', () => {
+    const summary = summarize((root) => {
+      const followed = (key: string): Record<string, string> => loadableSession(
+        join(root, key),
+        [...claudeToolTurn(`claude-${key}`, 'Read', { file_path: SKILL_DOCUMENT })],
+      );
+      const unfollowed = (key: string): Record<string, string> => loadableSession(join(root, key));
+
+      return [
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'off', run: 1, exit: 0, locator: unfollowed('u1-off') },
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'off', run: 2, exit: 0, locator: followed('u2-off') },
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'on', run: 1, exit: 0, locator: followed('u1-on') },
+      ];
+    }, ['--pair', 'off,on']);
+
+    expect(summary).toMatchObject({
+      claude: {
+        paired: {
+          from: 'off',
+          to: 'on',
+          rows: 0,
+          gained: 0,
+          lost: 0,
+          bothFollowed: 0,
+          neitherFollowed: 0,
+          unpaired: 1,
+        },
+      },
+    });
+  });
+
+  // A row one arm never scored still sits in the other arm's counts, so the pair
+  // reports it as unpaired rather than dropping it from the comparison.
+  it('counts a row one arm never scored as unpaired', () => {
+    const summary = summarize((root) => {
+      const followed = (key: string): Record<string, string> => loadableSession(
+        join(root, key),
+        [...claudeToolTurn(`claude-${key}`, 'Read', { file_path: SKILL_DOCUMENT })],
+      );
+      const unfollowed = (key: string): Record<string, string> => loadableSession(join(root, key));
+
+      return [
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'off', run: 1, exit: 0, locator: unfollowed('v1-off') },
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'off', run: 2, exit: 0, locator: followed('v2-off') },
+        {
+          rowId: 'cmd-create-agent-plain-tune-01',
+          arm: 'on',
+          run: 1,
+          exit: 0,
+          briefDelivered: false,
+          locator: unfollowed('v1-on'),
+        },
+        {
+          rowId: 'cmd-create-agent-plain-tune-01',
+          arm: 'on',
+          run: 2,
+          exit: 0,
+          briefDelivered: false,
+          locator: followed('v2-on'),
+        },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'off', run: 1, exit: 0, locator: unfollowed('w1-off') },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'on', run: 1, exit: 0, locator: followed('w1-on') },
+      ];
+    }, ['--pair', 'off,on']);
+
+    expect(summary).toMatchObject({
+      claude: {
+        paired: { from: 'off', to: 'on', rows: 1, unpaired: 1 },
+      },
+    });
+    expect((summary as { pooled: unknown }).pooled).toMatchObject({ unpaired: 1 });
+  });
+
+  // A pair speaks for one runtime, and the verdict is read across every runtime at
+  // once, so the pooled block sums each paired block and reads its split against the
+  // exact sign test. A summary without a pair names no arms and has nothing to pool.
+  it('pools the pairs of every runtime', () => {
+    const log = (root: string) => {
+      const followed = (key: string): Record<string, string> => loadableSession(
+        join(root, key),
+        [...claudeToolTurn(`claude-${key}`, 'Read', { file_path: SKILL_DOCUMENT })],
+      );
+      const unfollowed = (key: string): Record<string, string> => loadableSession(join(root, key));
+      const codexFollowed = (key: string): Record<string, string> => loadableCodexSession(join(root, key), [{
+        timestamp: TIMESTAMP,
+        type: 'response_item',
+        payload: {
+          type: 'function_call',
+          id: `codex-${key}`,
+          call_id: `codex-${key}`,
+          name: 'read_file',
+          arguments: JSON.stringify({ file_path: SKILL_DOCUMENT }),
+        },
+      }]);
+
+      return [
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'off', exit: 0, locator: unfollowed('pool-1-off') },
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'on', exit: 0, locator: followed('pool-1-on') },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'off', exit: 0, locator: unfollowed('pool-2-off') },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'on', exit: 0, locator: followed('pool-2-on') },
+        {
+          runtime: 'codex',
+          rowId: 'cmd-create-readme-plain-tune-01',
+          arm: 'off',
+          exit: 0,
+          locator: loadableCodexSession(join(root, 'pool-3-off')),
+        },
+        {
+          runtime: 'codex',
+          rowId: 'cmd-create-readme-plain-tune-01',
+          arm: 'on',
+          exit: 0,
+          locator: codexFollowed('pool-3-on'),
+        },
+      ];
+    };
+
+    const summary = summarize(log, ['--pair', 'off,on']);
+
+    expect((summary as { pooled: unknown }).pooled).toEqual({
+      from: 'off',
+      to: 'on',
+      runtimes: 2,
+      rows: 3,
+      gained: 3,
+      lost: 0,
+      ties: 0,
+      unpaired: 0,
+      declineStarts: { off: { started: 0, runs: 0 }, on: { started: 0, runs: 0 } },
+      skillOnlyStarts: { off: { started: 0, runs: 0 }, on: { started: 0, runs: 0 } },
+      p: 0.125,
+    });
+    expect(summarize(log)).not.toHaveProperty('pooled');
+  });
+
+  // A pooled start count is read across every runtime that ran the arm, so it is
+  // summed from the per-arm tallies rather than only from the runtimes whose pairs
+  // could be compared.
+  it('pools the start counts per arm', () => {
+    const rows = [
+      {
+        id: 'fresh-decline-refusal-01',
+        row_type: 'decline',
+        decline_kind: 'refusal',
+        split: 'fresh',
+        prompt: 'made up',
+      },
+      {
+        id: 'fresh-decline-question-01',
+        row_type: 'decline',
+        decline_kind: 'question',
+        split: 'fresh',
+        prompt: 'made up',
+      },
+      {
+        id: 'fresh-skill-01',
+        row_type: 'skill-only',
+        split: 'fresh',
+        prompt: 'made up',
+      },
+      {
+        id: 'fresh-skill-02',
+        row_type: 'skill-only',
+        split: 'fresh',
+        prompt: 'made up',
+      },
+    ];
+
+    const summary = summarize(
+      (root) => {
+        const checkout = (key: string): string => join(root, key, 'checkout');
+        const readOnly = (key: string): Record<string, string> => loadableEntries(join(root, key), [
+          ...claudeToolTurn(`${key}-read`, 'Read', { file_path: '.skilled/commands/create/readme.md' }),
+        ]);
+        const wroteAfterRead = (key: string): Record<string, string> => ({
+          ...loadableEntries(join(root, key), [
+            ...claudeToolTurn(`${key}-read`, 'Read', { file_path: '.skilled/commands/create/readme.md' }),
+            ...claudeToolTurn(`${key}-write`, 'Write', {
+              file_path: join(checkout(key), 'README.md'),
+              content: '# readme',
+            }),
+          ]),
+          projectDir: checkout(key),
+        });
+        const reported = (key: string): Record<string, string> => loadableEntries(join(root, key), [{
+          type: 'assistant',
+          uuid: `${key}-started`,
+          sessionId: SUMMARY_SESSION,
+          timestamp: TIMESTAMP,
+          message: {
+            role: 'assistant',
+            content: [{ type: 'text', text: 'COMMAND: /create:readme → started' }],
+          },
+        }]);
+
+        return [
+          // Claude starts one of each class in `off` and both in `on`.
+          { rowId: 'fresh-decline-refusal-01', arm: 'off', exit: 0, locator: readOnly('pool-claude-1-off') },
+          { rowId: 'fresh-decline-question-01', arm: 'off', exit: 0, locator: wroteAfterRead('pool-claude-2-off') },
+          { rowId: 'fresh-skill-01', arm: 'off', exit: 0, locator: reported('pool-claude-3-off') },
+          { rowId: 'fresh-skill-02', arm: 'off', exit: 0, locator: readOnly('pool-claude-4-off') },
+          { rowId: 'fresh-decline-refusal-01', arm: 'on', exit: 0, locator: wroteAfterRead('pool-claude-1-on') },
+          { rowId: 'fresh-decline-question-01', arm: 'on', exit: 0, locator: wroteAfterRead('pool-claude-2-on') },
+          { rowId: 'fresh-skill-01', arm: 'on', exit: 0, locator: reported('pool-claude-3-on') },
+          { rowId: 'fresh-skill-02', arm: 'on', exit: 0, locator: reported('pool-claude-4-on') },
+          // Codex reports a start on the base turn, so every one of its rows counts one.
+          { runtime: 'codex', rowId: 'fresh-decline-refusal-01', arm: 'off', exit: 0, locator: loadableCodexSession(join(root, 'pool-codex-1-off')) },
+          { runtime: 'codex', rowId: 'fresh-decline-question-01', arm: 'off', exit: 0, locator: loadableCodexSession(join(root, 'pool-codex-2-off')) },
+          { runtime: 'codex', rowId: 'fresh-skill-01', arm: 'off', exit: 0, locator: loadableCodexSession(join(root, 'pool-codex-3-off')) },
+          { runtime: 'codex', rowId: 'fresh-skill-02', arm: 'off', exit: 0, locator: loadableCodexSession(join(root, 'pool-codex-4-off')) },
+          { runtime: 'codex', rowId: 'fresh-decline-refusal-01', arm: 'on', exit: 0, locator: loadableCodexSession(join(root, 'pool-codex-1-on')) },
+          { runtime: 'codex', rowId: 'fresh-decline-question-01', arm: 'on', exit: 0, locator: loadableCodexSession(join(root, 'pool-codex-2-on')) },
+          { runtime: 'codex', rowId: 'fresh-skill-01', arm: 'on', exit: 0, locator: loadableCodexSession(join(root, 'pool-codex-3-on')) },
+          { runtime: 'codex', rowId: 'fresh-skill-02', arm: 'on', exit: 0, locator: loadableCodexSession(join(root, 'pool-codex-4-on')) },
+        ];
+      },
+      ['--pair', 'off,on'],
+      rows,
+    );
+
+    expect((summary as { pooled: { declineStarts: unknown; skillOnlyStarts: unknown } }).pooled).toMatchObject({
+      declineStarts: { on: { started: 4, runs: 4 } },
+      skillOnlyStarts: { off: { started: 3, runs: 4 } },
+    });
+  });
+
+  // The text form is the operator's view of the same counts, so the pooled block
+  // prints once after the runtimes rather than being walked as a runtime of its own.
+  it('prints the pooled line in the text summary', () => {
+    const root = mkdtempSync(join(tmpdir(), 'command-summary-'));
+    try {
+      const logPath = join(root, 'run-log.jsonl');
+      const followed = (key: string): Record<string, string> => loadableSession(
+        join(root, key),
+        [...claudeToolTurn(`claude-${key}`, 'Read', { file_path: SKILL_DOCUMENT })],
+      );
+      const unfollowed = (key: string): Record<string, string> => loadableSession(join(root, key));
+      const codexFollowed = (key: string): Record<string, string> => loadableCodexSession(join(root, key), [{
+        timestamp: TIMESTAMP,
+        type: 'response_item',
+        payload: {
+          type: 'function_call',
+          id: `codex-${key}`,
+          call_id: `codex-${key}`,
+          name: 'read_file',
+          arguments: JSON.stringify({ file_path: SKILL_DOCUMENT }),
+        },
+      }]);
+      const lines = [
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'off', exit: 0, locator: unfollowed('pool-1-off') },
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'on', exit: 0, locator: followed('pool-1-on') },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'off', exit: 0, locator: unfollowed('pool-2-off') },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'on', exit: 0, locator: followed('pool-2-on') },
+        {
+          runtime: 'codex',
+          rowId: 'cmd-create-readme-plain-tune-01',
+          arm: 'off',
+          exit: 0,
+          locator: loadableCodexSession(join(root, 'pool-3-off')),
+        },
+        {
+          runtime: 'codex',
+          rowId: 'cmd-create-readme-plain-tune-01',
+          arm: 'on',
+          exit: 0,
+          locator: codexFollowed('pool-3-on'),
+        },
+      ].map((line) => JSON.stringify({ runtime: 'claude', ...line }));
+      writeFileSync(logPath, `${lines.join('\n')}\n`);
+
+      const run = runScorer(['--summary', logPath, '--pair', 'off,on']);
+
+      expect(run.status).toBe(0);
+      expect(String(run.stdout)).toContain(
+        'pooled off to on: 2 runtimes, 3 rows, gained 3, lost 0, ties 0, unpaired 0, p 0.125',
+      );
+      expect(String(run.stdout).split('\n').some((line) => line.startsWith('pooled:'))).toBe(false);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  // A decline row and a skill-only row are judged by whether the run began a
+  // tracked command, so each start is counted beside the run that made it.
+  it('counts command starts on decline and skill-only rows', () => {
+    const rows = [
+      {
+        id: 'fresh-decline-refusal-01',
+        row_type: 'decline',
+        decline_kind: 'refusal',
+        split: 'fresh',
+        prompt: 'made up',
+      },
+      {
+        id: 'fresh-decline-question-01',
+        row_type: 'decline',
+        decline_kind: 'question',
+        split: 'fresh',
+        prompt: 'made up',
+      },
+      {
+        id: 'fresh-skill-01',
+        row_type: 'skill-only',
+        split: 'fresh',
+        prompt: 'made up',
+      },
+    ];
+
+    const summary = summarize(
+      (root) => {
+        const checkout = join(root, 'decline-write', 'checkout');
+        return [
+          {
+            rowId: 'fresh-decline-refusal-01',
+            arm: 'on',
+            exit: 0,
+            locator: {
+              ...loadableEntries(join(root, 'decline-write'), [
+                ...claudeToolTurn('decline-read', 'Read', { file_path: '.skilled/commands/create/readme.md' }),
+                ...claudeToolTurn('decline-write', 'Write', { file_path: join(checkout, 'README.md'), content: '# readme' }),
+              ]),
+              projectDir: checkout,
+            },
+          },
+          {
+            rowId: 'fresh-decline-question-01',
+            arm: 'on',
+            exit: 0,
+            locator: loadableEntries(join(root, 'decline-read'), [
+              ...claudeToolTurn('decline-read-only', 'Read', { file_path: '.skilled/commands/create/readme.md' }),
+            ]),
+          },
+          {
+            rowId: 'fresh-skill-01',
+            arm: 'on',
+            exit: 0,
+            locator: loadableEntries(join(root, 'skill-only'), [{
+              type: 'assistant',
+              uuid: 'claude-skill-only',
+              sessionId: SUMMARY_SESSION,
+              timestamp: TIMESTAMP,
+              message: {
+                role: 'assistant',
+                content: [{ type: 'text', text: 'COMMAND: /create:readme → started' }],
+              },
+            }]),
+          },
+        ];
+      },
+      [],
+      rows,
+    );
+
+    expect(summary).toMatchObject({
+      claude: {
+        on: {
+          declineStarts: '1 of 2',
+          skillOnlyStarts: '1 of 1',
+          commandStartRuns: [
+            { rowId: 'fresh-decline-refusal-01', command: '/create:readme' },
+            { rowId: 'fresh-skill-01', command: '/create:readme' },
+          ],
+        },
+      },
+    });
+  });
+
+  // The start count says how often a decline or skill-only run began a command, and
+  // the start lines name the command, so the text form prints both under the arm.
+  it('prints the start line in the text summary', () => {
+    const rows = [
+      {
+        id: 'fresh-decline-refusal-01',
+        row_type: 'decline',
+        decline_kind: 'refusal',
+        split: 'fresh',
+        prompt: 'made up',
+      },
+      {
+        id: 'fresh-decline-question-01',
+        row_type: 'decline',
+        decline_kind: 'question',
+        split: 'fresh',
+        prompt: 'made up',
+      },
+      {
+        id: 'fresh-skill-01',
+        row_type: 'skill-only',
+        split: 'fresh',
+        prompt: 'made up',
+      },
+    ];
+    const root = mkdtempSync(join(tmpdir(), 'command-summary-'));
+    try {
+      const logPath = join(root, 'run-log.jsonl');
+      const freshPath = join(root, 'fresh.jsonl');
+      writeFileSync(freshPath, `${rows.map((row) => JSON.stringify(row)).join('\n')}\n`);
+      const checkout = join(root, 'decline-write', 'checkout');
+      const lines = [
+        {
+          rowId: 'fresh-decline-refusal-01',
+          arm: 'on',
+          exit: 0,
+          locator: {
+            ...loadableEntries(join(root, 'decline-write'), [
+              ...claudeToolTurn('decline-read', 'Read', { file_path: '.skilled/commands/create/readme.md' }),
+              ...claudeToolTurn('decline-write', 'Write', { file_path: join(checkout, 'README.md'), content: '# readme' }),
+            ]),
+            projectDir: checkout,
+          },
+        },
+        {
+          rowId: 'fresh-decline-question-01',
+          arm: 'on',
+          exit: 0,
+          locator: loadableEntries(join(root, 'decline-read'), [
+            ...claudeToolTurn('decline-read-only', 'Read', { file_path: '.skilled/commands/create/readme.md' }),
+          ]),
+        },
+        {
+          rowId: 'fresh-skill-01',
+          arm: 'on',
+          exit: 0,
+          locator: loadableEntries(join(root, 'skill-only'), [{
+            type: 'assistant',
+            uuid: 'claude-skill-only',
+            sessionId: SUMMARY_SESSION,
+            timestamp: TIMESTAMP,
+            message: {
+              role: 'assistant',
+              content: [{ type: 'text', text: 'COMMAND: /create:readme → started' }],
+            },
+          }]),
+        },
+      ].map((line) => JSON.stringify({ runtime: 'claude', ...line }));
+      writeFileSync(logPath, `${lines.join('\n')}\n`);
+
+      const run = runScorer(['--summary', logPath], { SKILL_ADVISOR_FRESH_PROMPTS_PATH: freshPath });
+
+      expect(run.status).toBe(0);
+      expect(String(run.stdout)).toContain('command starts: decline 1 of 2, skill-only 1 of 1');
+      expect(String(run.stdout)).toContain('start fresh-decline-refusal-01 run 1: /create:readme (offered none)');
+      expect(String(run.stdout)).toContain('start fresh-skill-01 run 1: /create:readme (offered none)');
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
 });
 
 // The interval is the part of a rate a small arm cannot show, so it is checked at
@@ -1840,6 +2516,27 @@ describe('wilsonRange', () => {
 
   it('returns null for an arm that scored nothing', () => {
     expect(scorer.wilsonRange(0, 0)).toBeNull();
+  });
+});
+
+// The sign test turns the pair counts into the chance of a split at least this
+// lopsided when the two arms are assumed equal, so it is checked at a clear gain,
+// a weaker gain, a clean sweep and no pair at all.
+describe('signTestP', () => {
+  it('returns the tail probability of a clear gain', () => {
+    expect(scorer.signTestP(15, 5)).toBe(0.0207);
+  });
+
+  it('returns the tail probability of a weaker gain', () => {
+    expect(scorer.signTestP(12, 6)).toBe(0.1189);
+  });
+
+  it('returns one half to the power of the pairs when every pair gained', () => {
+    expect(scorer.signTestP(4, 0)).toBe(0.0625);
+  });
+
+  it('returns null when no pair was compared', () => {
+    expect(scorer.signTestP(0, 0)).toBeNull();
   });
 });
 

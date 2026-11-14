@@ -1,0 +1,44 @@
+HEAD 88d8bebcd7
+BUILD exit 0
+spec-kit claude [warm, off first] off Advisor count: none
+spec-kit claude [warm, off first] on Advisor count: 1
+spec-kit claude [fresh, off first] off Advisor count: none
+spec-kit claude [fresh, off first] on Advisor count: 1
+spec-kit claude [fresh, on first] on Advisor count: 1
+spec-kit claude [fresh, on first] off Advisor count: none
+spec-kit codex [warm, off first] off Advisor count: none
+spec-kit codex [warm, off first] on Advisor count: 1
+spec-kit codex [fresh, off first] off Advisor count: none
+spec-kit codex [fresh, off first] on Advisor count: 1
+spec-kit codex [fresh, on first] on Advisor count: 1
+spec-kit codex [fresh, on first] off Advisor count: none
+spec-kit devin [warm, off first] off Advisor count: none
+spec-kit devin [warm, off first] on Advisor count: 1
+spec-kit devin [fresh, off first] off Advisor count: none
+spec-kit devin [fresh, off first] on Advisor count: 1
+spec-kit devin [fresh, on first] on Advisor count: 1
+spec-kit devin [fresh, on first] off Advisor count: none
+advisor claude (Pi imports) [warm, off first] off Advisor count: none
+advisor claude (Pi imports) [warm, off first] on Advisor count: 1
+advisor claude (Pi imports) [fresh, off first] off Advisor count: none
+advisor claude (Pi imports) [fresh, off first] on Advisor count: 1
+advisor claude (Pi imports) [fresh, on first] on Advisor count: 1
+advisor claude (Pi imports) [fresh, on first] off Advisor count: none
+direct call off disabled count: 1
+direct call on disabled count: none
+direct call matrix:
+lease before {"pid":34407,"childPid":34413,"startedAt":"2026-11-14T23:21:55.087Z"}
+warm, flag first   1st off disabledCount=1 {"degraded":null,"source":null,"freshness":"unavailable","abstain":["Skill advisor disabled by SYSTEM_SKILL_ADVISOR_HOOK_DISABLED."],"recs":[]}
+warm, flag first   2nd on disabledCount=none {"degraded":null,"source":null,"freshness":"live","abstain":null,"recs":["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]}
+warm, plain first  1st on disabledCount=none {"degraded":null,"source":null,"freshness":"live","abstain":null,"recs":["sk-doc:/create:readme:start","system-spec-kit:-:-","mcp-tooling:-:-"]}
+warm, plain first  2nd off disabledCount=1 {"degraded":null,"source":null,"freshness":"unavailable","abstain":["Skill advisor disabled by SYSTEM_SKILL_ADVISOR_HOOK_DISABLED."],"recs":[]}
+fresh, flag first  1st off disabledCount=1 {"degraded":null,"source":null,"freshness":"unavailable","abstain":["Skill advisor disabled by SYSTEM_SKILL_ADVISOR_HOOK_DISABLED."],"recs":[]}
+fresh, flag first  2nd on disabledCount=none {"degraded":true,"source":"local-scorer","freshness":null,"abstain":null,"recs":["system-spec-kit:-:-","sk-doc:-:-"]}
+fresh, plain first 1st on disabledCount=none {"degraded":true,"source":"local-scorer","freshness":null,"abstain":null,"recs":["system-spec-kit:-:-","sk-doc:-:-"]}
+fresh, plain first 2nd off disabledCount=1 {"degraded":null,"source":null,"freshness":"unavailable","abstain":["Skill advisor disabled by SYSTEM_SKILL_ADVISOR_HOOK_DISABLED."],"recs":[]}
+warm, stdin form       off disabledCount=1 {"degraded":null,"source":null,"freshness":"unavailable","abstain":["Skill advisor disabled by SYSTEM_SKILL_ADVISOR_HOOK_DISABLED."],"recs":[]}
+lease after  {"pid":34407,"childPid":34413,"startedAt":"2026-11-14T23:21:55.087Z"}
+opencode argv: ["run","--standalone","--model","llmgateway/deepseek-v4.1-flash-1017#max","--format","json","--auto","sample prompt for argv inspection"] 
+opencode plugin switch line: return !isHookEnabled('skill-advisor');
+dsh adapter switch line: isEnabled = isHookEnabled,
+pi import line: export const ADVISOR_HOOK_MODULE =

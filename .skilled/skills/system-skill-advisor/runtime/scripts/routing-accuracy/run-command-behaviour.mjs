@@ -45,7 +45,7 @@
 //     --out <run-log> [--arm <arm>] [--fixture <dir>] [--dry-run]
 //   node run-command-behaviour.mjs --backfill <run-log> --out <new-log> [--brief-only]
 
-import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, realpathSync } from 'node:fs';
+import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, realpathSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { homedir } from 'node:os';
 import { randomUUID } from 'node:crypto';
@@ -64,6 +64,7 @@ const DSH_PATCH_DIR = resolve(REPO_ROOT, '.dsh/patches');
 // directory instead of letting each reader compare the id against its own root.
 const PROJECT_DIR = realpathSync(REPO_ROOT);
 const PROMPTS_PATH = resolve(HERE, 'command-prompts.jsonl');
+const FRESH_PATH = resolve(HERE, 'behaviour-fresh-prompts.jsonl');
 
 const EXIT_REFUSED = 2;
 const EXIT_HEAD_MOVED = 3;
@@ -575,6 +576,24 @@ function changedPaths(before, after) {
   return changed.sort();
 }
 
+// The arena's pointer is left out of git, so the restore after a turn never sees a
+// turn that edits or deletes it. Writing the pre-turn content back keeps every later
+// turn in that arena on the same rules.
+/**
+ * Put the arena's pointer back when a turn changed or removed it.
+ *
+ * @param {string} dir - The checkout the turn ran in.
+ * @param {string | null} before - The pointer content read before the turn, null when absent.
+ * @returns {boolean} Whether the pointer was written back.
+ */
+export function restorePointer(dir, before) {
+  if (typeof before !== 'string') return false;
+  const path = join(dir, 'CLAUDE.md');
+  if (existsSync(path) && readFileSync(path, 'utf8') === before) return false;
+  writeFileSync(path, before, 'utf8');
+  return true;
+}
+
 // The head and the stash are the two places another operator's git work can hide.
 function gitSnapshot() {
   return {
@@ -626,14 +645,19 @@ class Refusal extends Error {
 // the lookup itself, so a run, a selection and a listing all answer a refused id
 // the same way instead of one of them getting there through a usage error.
 function findRow(rowId) {
-  for (const line of readFileSync(PROMPTS_PATH, 'utf8').split('\n')) {
-    if (line.trim() === '') continue;
-    const row = JSON.parse(line);
-    if (row.id !== rowId) continue;
-    if (row.split === 'holdout') {
-      throw new Refusal('holdout_row', `${rowId}: a holdout row is never run`);
+  const paths = rowId.startsWith('fresh-') && existsSync(FRESH_PATH)
+    ? [PROMPTS_PATH, FRESH_PATH]
+    : [PROMPTS_PATH];
+  for (const path of paths) {
+    for (const line of readFileSync(path, 'utf8').split('\n')) {
+      if (line.trim() === '') continue;
+      const row = JSON.parse(line);
+      if (row.id !== rowId) continue;
+      if (row.split === 'holdout') {
+        throw new Refusal('holdout_row', `${rowId}: a holdout row is never run`);
+      }
+      return row;
     }
-    return row;
   }
   throw new Refusal('unknown_row', `${rowId}: no row holds that id`);
 }
@@ -656,6 +680,81 @@ function rowLabels() {
     labels.push({ id: row.id, split: row.split, rowType: row.row_type, policy: row.expected_policy });
   }
   return labels;
+}
+
+// The fresh set is authored apart from the corpus, so the split and the id prefix
+// are its only guard against a row that would measure the wrong question. The count
+// is fixed because a rate over fewer rows than the arm claims would misreport it.
+const FRESH_ROW_COUNT = 36;
+
+/**
+ * Read the fresh rows from their own text and refuse a set that cannot be blinded.
+ *
+ * @param {string} text - The fresh row file, one JSON row per line.
+ * @returns {object[]} The parsed rows.
+ */
+export function freshRowsFrom(text) {
+  const rows = [];
+  for (const line of text.split('\n')) {
+    if (line.trim() === '') continue;
+    const row = JSON.parse(line);
+    if (row.split === 'holdout') {
+      throw new Refusal('holdout_row', `${row.id}: a holdout row is never run`);
+    }
+    if (row.split !== 'fresh') {
+      throw new Refusal('fresh_split', `${row.id}: a fresh row needs split fresh`);
+    }
+    if (typeof row.id !== 'string' || !row.id.startsWith('fresh-')) {
+      throw new Refusal('fresh_id', `${row.id}: a fresh row id starts with fresh-`);
+    }
+    rows.push(row);
+  }
+  if (rows.length !== FRESH_ROW_COUNT) {
+    throw new Refusal('set_short', `fresh: expected ${FRESH_ROW_COUNT} rows, found ${rows.length}`);
+  }
+  return rows;
+}
+
+// A repeated prompt would measure a request the corpus already answered, so the fresh
+// set stays apart from it. The refusal names the two ids and never the text, because a
+// blind row's prompt is the one thing the run must not publish.
+/**
+ * Refuse a fresh row whose prompt repeats another row.
+ *
+ * @param {object[]} freshRows - The fresh rows about to run.
+ * @param {object[]} otherRows - Every row the fresh set must stay apart from.
+ */
+export function assertFreshRowsUnique(freshRows, otherRows) {
+  const fold = (prompt) => prompt.toLowerCase().trim().replace(/\s+/g, ' ');
+  for (let index = 0; index < freshRows.length; index += 1) {
+    const fresh = freshRows[index];
+    const folded = fold(fresh.prompt);
+    for (const other of otherRows) {
+      if (fold(other.prompt) === folded) {
+        throw new Refusal('repeated_row', `fresh row ${fresh.id} repeats row ${other.id}`);
+      }
+    }
+    for (const later of freshRows.slice(index + 1)) {
+      if (fold(later.prompt) === folded) {
+        throw new Refusal('repeated_row', `fresh row ${fresh.id} repeats row ${later.id}`);
+      }
+    }
+  }
+}
+
+// The fresh rows live apart from the corpus so the capture never publishes them,
+// and a prompt that repeats a corpus row would measure a tuned request.
+function freshRowIds() {
+  if (!existsSync(FRESH_PATH)) {
+    throw new Refusal('fresh_missing', 'behaviour-fresh-prompts.jsonl: no fresh row file');
+  }
+  const freshRows = freshRowsFrom(readFileSync(FRESH_PATH, 'utf8'));
+  const corpusRows = readFileSync(PROMPTS_PATH, 'utf8')
+    .split('\n')
+    .filter((line) => line.trim() !== '')
+    .map((line) => JSON.parse(line));
+  assertFreshRowsUnique(freshRows, corpusRows);
+  return freshRows.map((row) => row.id).sort();
 }
 
 // The log is written after the closing snapshot, so the file the runner creates is
@@ -761,6 +860,7 @@ const G2_PROMPTS = new Map(G2_ROWS.map((row) => [row.id, row.prompt]));
 
 const SETS = Object.freeze({
   chat: chatRowIds,
+  fresh: freshRowIds,
   [G2_SET]: () => G2_ROWS.map((row) => row.id),
 });
 
@@ -904,7 +1004,7 @@ function ghConfigDir(outPath) {
   return join(dirname(outPath), 'gh-config-empty');
 }
 
-export function childEnv(ghConfig) {
+export function childEnv(ghConfig, arm) {
   const env = {};
   for (const [name, value] of Object.entries(process.env)) {
     if (value === undefined) continue;
@@ -913,20 +1013,33 @@ export function childEnv(ghConfig) {
       CHILD_ENV_PREFIXES.some((prefix) => name.startsWith(prefix));
     if (keep) env[name] = value;
   }
+  if (arm === 'off' || arm === 'on') {
+    // The two arms differ only in the advisor, so a switch inherited from the
+    // operator's shell is removed from both.
+    for (const name of Object.keys(env)) {
+      if (name.endsWith('_DISABLED') && (name.includes('SKILL_ADVISOR') || name.includes('HOOKS'))) {
+        delete env[name];
+      }
+    }
+    if (arm === 'off') {
+      env.SYSTEM_SKILL_ADVISOR_HOOK_DISABLED = '1';
+      env.SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED = '1';
+    }
+  }
   env.GH_CONFIG_DIR = ghConfig;
   env.GIT_TERMINAL_PROMPT = '0';
   Object.assign(env, GIT_CREDENTIAL_OVERRIDES);
   return env;
 }
 
-function spawnTurn(runtime, argv, prompt, capMs, ghConfig) {
+function spawnTurn(runtime, argv, prompt, capMs, ghConfig, arm) {
   return new Promise((settle) => {
     // A CLI that reads the prompt from stdin gets a pipe to write it into. Every other
     // runtime keeps stdin ignored, because an open stdin leaves that CLI waiting on
     // input nobody types until the cap runs out into an empty transcript.
     const child = spawn(runtime.command, argv, {
       cwd: REPO_ROOT,
-      env: childEnv(ghConfig),
+      env: childEnv(ghConfig, arm),
       // Ignored means the child reads /dev/null rather than blocking on a terminal.
       stdio: [runtime.promptOnStdin ? 'pipe' : 'ignore', 'pipe', 'inherit'],
       // A chat turn still running after its cap is stuck, while a started workflow
@@ -965,8 +1078,9 @@ const SAMPLE_PROMPT = 'sample prompt for argv inspection';
 const SAMPLE_SESSION_ID = 'sample-session-id';
 
 // An arm label decides how a later scorer groups a whole log, so a typo would
-// quietly invent a third arm. The set is closed for that reason.
-const ARMS = ['pre', 'post', 'smoke', 'g2'];
+// quietly invent a third arm. The set is closed for that reason. The off and on
+// arms compare one commit with the advisor switched off and on.
+const ARMS = ['pre', 'post', 'smoke', 'g2', 'off', 'on'];
 
 // The pre-change arm is the default because it is the one that can run before the
 // brief lands. A post-change run has to say which arm it belongs to. The
@@ -978,7 +1092,7 @@ const USAGE = [
   `usage: ${SCRIPT_NAME} --print-argv <runtime>`,
   `       ${SCRIPT_NAME} --list <set>`,
   `       ${SCRIPT_NAME} --runtime <runtime> (--set <set> | --row-id <id>...)`,
-  '         --out <run-log> [--arm <arm>] [--fixture <dir>] [--dry-run]',
+  '         --out <run-log> [--arm <arm>] [--run <n>] [--fixture <dir>] [--dry-run]',
   `       ${SCRIPT_NAME} --backfill <run-log> --out <new-log> [--brief-only]`,
 ].join('\n');
 
@@ -1015,6 +1129,25 @@ export function armFor(options, rowIds) {
   );
 }
 
+// A fresh row answers a fixed question on each arm, so the run number and the arm
+// are part of the question. A run that leaves the run number out or files the row
+// under another arm could not be paired with the arm it belongs to.
+/**
+ * Refuse a fresh run that names no measured arm or no run number.
+ *
+ * @param {object} options - The parsed invocation.
+ * @param {string[]} rowIds - The rows this invocation selected.
+ */
+export function assertFreshRun(options, rowIds) {
+  if (!rowIds.some((rowId) => rowId.startsWith('fresh-'))) return;
+  if (options.arm !== 'off' && options.arm !== 'on') {
+    throw new Refusal('fresh_arm', 'a fresh row runs under arm off or on');
+  }
+  if (options.run === null) {
+    throw new Refusal('fresh_run', 'a fresh row needs --run');
+  }
+}
+
 function parseOptions(argv) {
   const options = {
     printArgv: null,
@@ -1023,6 +1156,7 @@ function parseOptions(argv) {
     runtime: null,
     rowIds: [],
     arm: null,
+    run: null,
     out: null,
     backfill: null,
     fixture: null,
@@ -1053,6 +1187,13 @@ function parseOptions(argv) {
         throw new UsageError(`--arm: expected one of ${ARMS.join(', ')}`);
       }
       options.arm = arm;
+    } else if (token === '--run') {
+      index += 1;
+      const run = valueAfter(argv, index, '--run');
+      if (!/^[1-9][0-9]*$/.test(run)) {
+        throw new UsageError('--run: a whole number from 1 is required');
+      }
+      options.run = Number(run);
     } else if (token === '--out') {
       index += 1;
       options.out = resolve(valueAfter(argv, index, '--out'));
@@ -1143,9 +1284,13 @@ async function runTurn(job, options, exempt, isFirst) {
   // starts no CLI, so it has nothing to list.
   const listed = !options.dryRun && listsStore(job.runtime);
   const listingBefore = listed ? storeIds(job.runtime, job.ghConfig) : null;
+  // The pointer is excluded from git, so the restore below never sees a turn that
+  // changed or deleted it.
+  const pointerPath = join(REPO_ROOT, 'CLAUDE.md');
+  const pointerBefore = existsSync(pointerPath) ? readFileSync(pointerPath, 'utf8') : null;
   const turn = options.dryRun
     ? { exit: null, error: null, streamId: null }
-    : await spawnTurn(job.runtime, argv, job.prompt, job.cap, job.ghConfig);
+    : await spawnTurn(job.runtime, argv, job.prompt, job.cap, job.ghConfig, options.arm);
   const listingAfter = listed ? storeIds(job.runtime, job.ghConfig) : null;
   let reportedId = listed
     ? addedSessionId(listingBefore, listingAfter)
@@ -1171,6 +1316,7 @@ async function runTurn(job, options, exempt, isFirst) {
     runtime: job.runtimeName,
     rowId: job.rowId,
     arm: options.arm,
+    ...(options.run === null ? {} : { run: options.run }),
     locator,
     ...(job.fixture === undefined ? {} : { fixture: job.fixture }),
     exit: turn.exit,
@@ -1187,6 +1333,7 @@ async function runTurn(job, options, exempt, isFirst) {
   // A dry run spawns nothing, so an unchanged worktree is the only thing it can
   // honestly report as left as found.
   const restore = options.dryRun ? null : restoreTurn({ cwd: REPO_ROOT, before: before.status });
+  const pointerRestored = options.dryRun ? false : restorePointer(REPO_ROOT, pointerBefore);
   const restored = options.dryRun ? changed.length === 0 : restore.restored;
   // The head the reader saw is the only place the offer was named, and not every
   // runtime keeps it, so the offer is replayed after the turn. A dry run still
@@ -1203,6 +1350,7 @@ async function runTurn(job, options, exempt, isFirst) {
     ...offerLineFields(offer),
     briefDelivered: delivered,
     restored,
+    ...(pointerRestored ? { pointerRestored: true } : {}),
     ...(restore !== null && restore.leftoverPaths.length > 0
       ? { leftoverPaths: restore.leftoverPaths }
       : {}),
@@ -1277,6 +1425,9 @@ async function main(argv) {
     const rowIds = selectedRowIds(options);
     const mode = selectMode(options);
     options.arm = armFor(options, rowIds);
+    // A listing writes nothing, so it names rows without needing an arm or a run
+    // number. Only a run is held to the fresh set's own rules.
+    if (mode === 'run') assertFreshRun(options, rowIds);
 
     if (mode === 'print-argv') {
       writeArgv(options.printArgv);
