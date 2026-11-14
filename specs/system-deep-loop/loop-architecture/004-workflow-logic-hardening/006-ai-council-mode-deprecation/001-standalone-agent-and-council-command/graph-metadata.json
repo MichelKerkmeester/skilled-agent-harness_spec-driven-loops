@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/001-standalone-agent-and-council-command",
+  "spec_folder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/001-standalone-agent-and-council-command",
+  "parent_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "standalone agent and council command",
+      "phase 1 standalone agent and council command",
+      "standalone agent and council command plan",
+      "standalone agent and council command tasks",
+      "standalone agent and council command acceptance criteria",
+      "standalone agent and council command goal",
+      "standalone agent and council command implementation summary"
+    ],
+    "key_topics": [
+      "standalone",
+      "agent",
+      "council",
+      "command",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/agents/ai-council.md",
+      ".claude/agents/ai-council.md",
+      ".codex/agents/ai-council.toml",
+      ".pi/agents/ai-council.md",
+      ".dsh/agents/ai-council.patch.yml",
+      ".skilled/agents/orchestrate.md",
+      ".skilled/skills/system-spec-kit/command-metadata.json",
+      ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      ".skilled/bin/agent-mirror-crosswalk.md",
+      ".cursor/agents/ai-council.md",
+      ".devin/agents/ai-council/AGENT.md",
+      "codex/sync-agents.cjs",
+      "pi/sync-agents-pi.cjs",
+      "dsh/sync-agents-dsh.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".skilled/agents/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.toml",
+        "kind": "file",
+        "path": ".codex/agents/ai-council.toml",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.patch.yml",
+        "kind": "config",
+        "path": ".dsh/agents/ai-council.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-crosswalk.md",
+        "kind": "doc",
+        "path": ".skilled/bin/agent-mirror-crosswalk.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENT.md",
+        "kind": "doc",
+        "path": ".devin/agents/ai-council/AGENT.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents.cjs",
+        "kind": "file",
+        "path": "codex/sync-agents.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-pi.cjs",
+        "kind": "file",
+        "path": "pi/sync-agents-pi.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-dsh.cjs",
+        "kind": "file",
+        "path": "dsh/sync-agents-dsh.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Deep Route",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `ai-council` agent body points at `deep-ai-council/scripts/persist-artifacts.cjs`, the packet structure references and `runtime/scripts/append-mode-event.cjs`, and it tells the agent to run `node` while its frontmatter says `bash: deny`",
+    "created_at": "2026-11-14T20:19:48Z",
+    "last_save_at": "2026-11-14T20:32:08.983Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:552f8d4c33d5c525f8cd107685cfeee1030ec6795ce513e71ef0c605728e31f4",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a493a577ab008ff654abc60765db549d4cee4dfd9035db7e302f577f57671054",
+      "plan.md": "60884fa1e15e339341ab10737e4bcb2741bf0b1cb9a1c4220e3ae55720adb492",
+      "tasks.md": "56baeca5def0b94f2b22057926dd8ebd5cb2bb6c86f43c6273bef208bc439640",
+      "implementation-summary.md": "aa831da817f0298ee93b89df3cb4279f4c13a86ac07751f125b77d18724542e8"
+    },
+    "last_active_at": null
+  }
+}

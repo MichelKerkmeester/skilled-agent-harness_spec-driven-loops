@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/002-hub-two-mode-wiring",
+  "spec_folder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/002-hub-two-mode-wiring",
+  "parent_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hub two mode wiring",
+      "phase 2 hub two mode wiring",
+      "hub two mode wiring plan",
+      "hub two mode wiring tasks",
+      "hub two mode wiring acceptance criteria",
+      "hub two mode wiring goal",
+      "hub two mode wiring implementation summary"
+    ],
+    "key_topics": [
+      "hub",
+      "two",
+      "mode",
+      "wiring",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/repo-rules/skill-hub-routing.md",
+      ".skilled/skills/system-deep-loop/mode-registry.json",
+      ".skilled/skills/system-deep-loop/leaf-manifest.json",
+      ".skilled/skills/system-deep-loop/SKILL.md",
+      ".skilled/commands/deep/ai-council.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+      ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
+      ".claude/commands/deep/ai-council.md",
+      ".cursor/commands/deep-ai-council.md",
+      ".opencode/commands/deep/ai-council.md",
+      ".dsh/prompts/deep-ai-council.md",
+      ".skilled/bin/compiled-route-sync.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-hub-routing.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/skill-hub-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "compile-command-contracts.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-ai-council.md",
+        "kind": "doc",
+        "path": ".cursor/commands/deep-ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "compiled-route-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/compiled-route-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Delete",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The hub still registers `ai-council` as a workflow mode, so a council request routes into `system-deep-loop`",
+    "created_at": "2026-11-14T20:19:49Z",
+    "last_save_at": "2026-11-14T20:32:12.828Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cf87a352b4eb5b20a9ee01802165ff99ec7ba171363feeafddc3ea2d44f871e3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "148aa75c5792367a888b9769993248796f3815b986e4de64096292d660880993",
+      "plan.md": "ee1a83f9620bdce9990ba03353f354b465a6482985a52c2d363cd1e5243754d0",
+      "tasks.md": "f3007f4d8fadf40106a52d4ac52187ccb4d1718e31dd6a4b8ebf2793d7c617c6",
+      "implementation-summary.md": "6a04d6406cb62fe9c92e310be34a93bfea655a344082c58e3bb2bc8a300fee75"
+    },
+    "last_active_at": null
+  }
+}

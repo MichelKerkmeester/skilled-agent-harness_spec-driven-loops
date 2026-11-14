@@ -3,7 +3,13 @@
   "packet_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation",
   "spec_folder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation",
   "parent_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening",
-  "children_ids": [],
+  "children_ids": [
+    "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/001-standalone-agent-and-council-command",
+    "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/002-hub-two-mode-wiring",
+    "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/003-runtime-council-removal",
+    "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/004-advisor-council-removal",
+    "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/005-caller-sweep-and-verification"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -15,12 +21,7 @@
       "phase 6 ai council mode deprecation",
       "retire deep-ai-council mode",
       "standalone ai-council agent",
-      "ai council mode deprecation plan",
-      "council removal inventory",
-      "ai council mode deprecation tasks",
-      "ai council mode deprecation acceptance criteria",
-      "ai council mode deprecation goal",
-      "ai council mode deprecation implementation summary"
+      "ai council mode deprecation goal"
     ],
     "key_topics": [
       "council",
@@ -32,33 +33,30 @@
       "standalone",
       "ai-council",
       "agent",
-      "plan",
-      "removal",
-      "inventory"
+      "goal",
+      "operator",
+      "decided"
     ],
     "importance_tier": "normal",
     "status": "draft",
     "key_files": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "acceptance-criteria.md",
       "goal.md",
-      "implementation-summary.md",
-      ".skilled/skills/system-deep-loop/mode-registry.json",
-      ".skilled/skills/system-deep-loop/leaf-manifest.json",
-      ".skilled/skills/system-deep-loop/SKILL.md",
-      ".skilled/commands/deep/ai-council.md",
       ".skilled/agents/ai-council.md",
       ".claude/agents/ai-council.md",
-      ".codex/agents/ai-council.toml",
-      ".pi/agents/ai-council.md",
-      ".dsh/agents/ai-council.patch.yml",
-      ".skilled/bin/agent-mirror-crosswalk.md",
-      ".cursor/agents/ai-council.md",
-      ".devin/agents/ai-council/AGENT.md",
-      "codex/sync-agents.cjs",
-      "pi/sync-agents-pi.cjs"
+      ".skilled/skills/system-deep-loop/mode-registry.json",
+      ".skilled/commands/deep/ai-council.md",
+      "001-standalone-agent-and-council-command/acceptance-criteria.md",
+      "002-hub-two-mode-wiring/acceptance-criteria.md",
+      "003-runtime-council-removal/acceptance-criteria.md",
+      "004-advisor-council-removal/acceptance-criteria.md",
+      ".skilled/repo-rules/skill-hub-routing.md",
+      "001-standalone-agent-and-council-command/goal.md",
+      "002-hub-two-mode-wiring/goal.md",
+      "003-runtime-council-removal/goal.md",
+      "004-advisor-council-removal/goal.md",
+      "005-caller-sweep-and-verification/goal.md",
+      "scratch/council-inventory-2026-11-14.txt"
     ],
     "entities": [
       {
@@ -68,33 +66,15 @@
         "source": "derived"
       },
       {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "acceptance-criteria.md",
-        "kind": "doc",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
-      },
-      {
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "ai-council.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".skilled/agents/ai-council.md",
         "source": "derived"
       },
       {
@@ -104,57 +84,15 @@
         "source": "derived"
       },
       {
-        "name": "leaf-manifest.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-deep-loop/leaf-manifest.json",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
+        "name": "skill-hub-routing.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/SKILL.md",
+        "path": ".skilled/repo-rules/skill-hub-routing.md",
         "source": "derived"
       },
       {
-        "name": "ai-council.md",
-        "kind": "doc",
-        "path": ".skilled/commands/deep/ai-council.md",
-        "source": "derived"
-      },
-      {
-        "name": "ai-council.toml",
+        "name": "council-inventory-2026-11-14.txt",
         "kind": "file",
-        "path": ".codex/agents/ai-council.toml",
-        "source": "derived"
-      },
-      {
-        "name": "ai-council.patch.yml",
-        "kind": "config",
-        "path": ".dsh/agents/ai-council.patch.yml",
-        "source": "derived"
-      },
-      {
-        "name": "agent-mirror-crosswalk.md",
-        "kind": "doc",
-        "path": ".skilled/bin/agent-mirror-crosswalk.md",
-        "source": "derived"
-      },
-      {
-        "name": "AGENT.md",
-        "kind": "doc",
-        "path": ".devin/agents/ai-council/AGENT.md",
-        "source": "derived"
-      },
-      {
-        "name": "sync-agents.cjs",
-        "kind": "file",
-        "path": "codex/sync-agents.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "sync-agents-pi.cjs",
-        "kind": "file",
-        "path": "pi/sync-agents-pi.cjs",
+        "path": "scratch/council-inventory-2026-11-14.txt",
         "source": "derived"
       },
       {
@@ -194,38 +132,55 @@
         "source": "derived"
       },
       {
-        "name": "Implementation Plan",
+        "name": "Decisions Frozen",
         "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "name": "one",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "children",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DURABLE DIRECTIVE",
+        "kind": "heading",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions",
+        "kind": "heading",
+        "path": "goal.md",
         "source": "derived"
       }
     ],
     "causal_summary": "On 2026-11-14 the operator decided, in these words: \"let's deprecate deep-ai-council completely as a deep mode and instead make it a isolated .agents file maybe with a command workflow and presentation asset for all runtimes\"",
     "created_at": "2026-11-14T11:56:20Z",
-    "last_save_at": "2026-11-14T20:17:25.750Z",
+    "last_save_at": "2026-11-14T20:32:04.801Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "plan.md",
-      "tasks.md",
-      "acceptance-criteria.md",
-      "goal.md",
-      "implementation-summary.md"
+      "goal.md"
     ],
-    "source_fingerprint": "sha256:fb1685f695de7ea6cae21d3f95da7dfa68e97cec4fc7a307234c4e6ad5a9dfc6",
+    "source_fingerprint": "sha256:3437682ddca506b5742a2697f0d6b906c713fd657120e2fa602b283a649fa56b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "fb53ba70b32dd2531e118d835287b23997743271aa21f9a1ceb7faeb68dce999",
-      "plan.md": "e9af0140e3b65e3e20aad993442d382f391b7efe99074257fe0cc6025545fa0a",
-      "tasks.md": "47be8b2464fb0322785a84a0a818c3a1e248c5bee03d1223606573e78a356cab",
-      "implementation-summary.md": "907a499484403ad83c76444c2e79e5a268e43a1e7b78da70452876b309b08878"
+      "spec.md": "414e907d389494a1002b1236c33072d3233991a7a97feac6587dcbc28c5937a8"
     },
     "last_active_at": null
   }

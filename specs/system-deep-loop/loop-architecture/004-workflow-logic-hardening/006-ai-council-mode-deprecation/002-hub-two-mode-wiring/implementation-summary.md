@@ -2,13 +2,13 @@
 title: "Implementation Summary"
 description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
 trigger_phrases:
-  - "ai council mode deprecation implementation summary"
+  - "hub two mode wiring implementation summary"
 importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation"
-    last_updated_at: "2026-11-14T11:56:22Z"
+    packet_pointer: "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/002-hub-two-mode-wiring"
+    last_updated_at: "2026-11-14T20:19:50Z"
     last_updated_by: "template-author"
     recent_action: "Initialized Level 2 template"
     next_safe_action: "Replace continuity placeholders"
@@ -16,7 +16,7 @@ _memory:
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-006-ai-council-mode-deprecation"
+      session_id: "scaffold-002-hub-two-mode-wiring"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -36,7 +36,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 006-ai-council-mode-deprecation |
+| **Spec Folder** | 002-hub-two-mode-wiring |
 | **Completed** | 2026-11-14 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -49,7 +49,7 @@ _memory:
 
 [YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
 
-### Phase 6: ai-council-mode-deprecation
+### Phase 2: hub-two-mode-wiring
 
 [What this feature does and why it exists. 1-2 paragraphs. Use direct address.
 Explain what the user gains, not what files you touched.]

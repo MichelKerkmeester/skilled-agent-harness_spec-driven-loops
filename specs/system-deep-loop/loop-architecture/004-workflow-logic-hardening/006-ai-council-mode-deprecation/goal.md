@@ -41,32 +41,54 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | `ai-council` stops being a workflow mode of `system-deep-loop`. The hub registers two modes, research and review, on every routing surface, and the hub's gates pass for a two-mode hub. |
-| D2 | The council survives as a standalone agent definition in every runtime's agent folder, carried by the existing mirror mechanism: `.skilled` and `.claude` authored, `.codex`, `.pi` and `.dsh` generated, `.cursor`, `.devin` and `.opencode` symlinked. No second mechanism is added. |
-| D3 | The command is a visible decision with two options, agent only (A) or agent plus one command with one workflow file and one presentation file (B). B is recommended. A kept command follows the phase 004 one-workflow-file rule, and its name and family are an open question, because `/deep:ai-council` implies a deep mode. |
-| D4 | The divergent Council pivot keeps working. `runtime/lib/council/multi-seat-dispatch.cjs`, its test and the `pathContainsAiCouncil` guard stay. Every other council file listed in `plan.md` section 3 is removed after a named caller check prints nothing. |
-| D5 | Nothing is deleted without a rollback sentence. Tracked removals revert through `git revert`. The packet changelog moves to a real folder under `.skilled/changelog/system-deep-loop/deep-ai-council/` instead of being deleted. Existing `ai-council/**` artifacts inside spec folders are never touched, and untracked council graph databases are left in place. |
-| D6 | Wiring changes follow `.skilled/repo-rules/skill-hub-routing.md`: both routing stages are replayed on real prompts and the per-hub gate runs with the hub path. |
-| D7 | This phase runs after phase 005 so it does not collide with the research and review edits, and it depends on phase 004 for the one-workflow-file rule. |
-| D8 | The agent is self-contained. Its body names no `system-deep-loop` path and runs no script. It keeps `bash: deny` and writes `ai-council/**` with its own Write and Edit tools, with the artifact layout and output schema in its own body. |
-| D9 | The sweep searches mode vocabulary (`deep-ai-council`, `/deep:ai-council`, `deep-council`, "planning council", "council deliberation"), not the agent name. `@ai-council` and the `ai-council/**` artifact path stay valid. Changelogs, dated benchmark reports and spec-copy fixtures stay as history on an allowlist. |
-| D10 | The multi-topic session loop is dropped under both D3 options, because it needs the `council` loop type, the council graph and the session scripts D4 removes. |
+| D1 | The hub registers two modes, research and review, on every routing surface. |
+| D2 | The council survives as one agent in every runtime's agent folder, carried by the existing mirror mechanism only. |
+| D3 | Option B: one command, `/speckit:ai-council`, owned by `system-spec-kit`, with one workflow file and one presentation file. |
+| D4 | The divergent Council pivot keeps working. `runtime/lib/council/multi-seat-dispatch.cjs`, its test and the `pathContainsAiCouncil` guard stay. |
+| D5 | Every delete is a tracked file and reverts through `git revert`. `ai-council/**` inside spec folders and untracked files are never touched. |
+| D6 | Hub wiring follows `.skilled/repo-rules/skill-hub-routing.md`: both routing stages replayed, the per-hub gate run with the hub path. |
+| D7 | The children run in folder order, after phases 004 and 005 of the packet. |
+| D8 | The agent names no `system-deep-loop` path, runs no script and keeps `bash: deny`. |
+| D9 | The sweep searches mode vocabulary, not the agent name. Changelogs, dated benchmark reports and spec-copy fixtures stay on an allowlist. |
+| D10 | The multi-topic session loop is dropped. |
 
 <!-- /ANCHOR:directive -->
 
 ---
 
+<!-- ANCHOR:binding -->
+## 2. BINDING
+
+**Read the child goal before working a phase.** Each is authoritative for its
+phase and binds as if written here.
+
+| Phase | Goal document |
+|-------|---------------|
+| 001-standalone-agent-and-council-command | `001-standalone-agent-and-council-command/goal.md` |
+| 002-hub-two-mode-wiring | `002-hub-two-mode-wiring/goal.md` |
+| 003-runtime-council-removal | `003-runtime-council-removal/goal.md` |
+| 004-advisor-council-removal | `004-advisor-council-removal/goal.md` |
+| 005-caller-sweep-and-verification | `005-caller-sweep-and-verification/goal.md` |
+
+**Precedence.** Decisions above outrank child detail. Child detail outranks any
+summary of it. Name a conflict rather than resolving it silently.
+
+**Stop.** Only the criteria below decide done. An evaluator sees the objective
+string, not these files.
+<!-- /ANCHOR:binding -->
+
+---
 
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node -e 'console.log(require("./.skilled/skills/system-deep-loop/mode-registry.json").modes.map(m=>m.workflowMode).join(" "))'` prints `research review`.
+- [ ] `mode-registry.json` in `.skilled/skills/system-deep-loop` lists exactly two `workflowMode` values, `research` and `review`.
 - [ ] `node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/system-deep-loop` prints `declares 2 modes` and `OK: parent-skill-check`.
-- [ ] For "convene an ai council to compare three migration plans", `skill_advisor.py` prints no `"mode": "ai-council"`, `"research"` or `"review"` row and `compiled-route.cjs --hub system-deep-loop` prints no `deep-` packet id.
+- [ ] For "convene an ai council to compare three migration plans", `skill_advisor.py` prints no `ai-council`, `research` or `review` mode row and `compiled-route.cjs --hub system-deep-loop` prints no `deep-` packet id.
 - [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/integration/divergent-pivot.vitest.ts tests/council/multi-seat-dispatch.vitest.ts` exits 0.
-- [ ] `node .skilled/bin/check-agent-mirror-sync.cjs --all` and `node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs` exit 0, and the agent body search in REQ-008 prints nothing.
-- [ ] `npm test` and `npm run typecheck` in the deep-loop runtime and the advisor runtime exit 0 or match the start baseline.
-- [ ] Every row in `acceptance-criteria.md` is `Met`, and `validate.sh` on this folder with `--strict` prints `RESULT: PASSED`.
+- [ ] `node .skilled/bin/check-agent-mirror-sync.cjs --all` exits 0, and `rg -n 'system-deep-loop|deep-ai-council|node ' .skilled/agents/ai-council.md` prints nothing.
+- [ ] `npm test` and `npm run typecheck` exit 0 in the deep-loop runtime and in the advisor runtime.
+- [ ] `validate.sh` on this folder with `--recursive --strict` prints `RESULT: PASSED` for it and all five children.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -82,6 +104,7 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
+| Split into five children | Done | The operator answered "Split now" (Q009). `create.sh --phase --parent` scaffolded children 001 to 005 on 2026-11-14. All 89 tasks, 17 criteria and 26 checklist items keep their ids in the child that owns them. Ten tasks (T090 to T099), four requirements (REQ-018 to REQ-021) and four criteria (AC-018 to AC-021) were added at the split. `plan.md`, `tasks.md`, `acceptance-criteria.md` and `implementation-summary.md` left this folder, because a phase parent keeps only the lean trio and its goal. |
 | Spec docs authored | Done | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and `goal.md` written on 2026-11-14. Implementation has not started. Inventory baseline saved to `scratch/council-inventory-2026-11-14.txt`, 451 files. |
 
 ### Open questions
@@ -106,5 +129,8 @@ Closed on 2026-11-14: this phase answers the parent's open question about fixing
 | Agent contradicts itself | `.skilled/agents/ai-council.md` sets `bash: deny` yet tells the agent to run `node` scripts at `:752` and `:773`. D8 resolves this. |
 | Pivot closure | The import closure of the two pivot scripts, `divergent-pivot.ts` and both reducers reaches only `multi-seat-dispatch.cjs`, which has no `require`. |
 | Pivot comments stay | `fanout-pool.cjs:428` and `:509` and `deep-research-ledger-types.ts:591` to `:741` name the council only as pivot vocabulary. |
+| Decisions shortened | The durable slice must stay within 4,000 characters once the binding table is added, so each decision above now states only the choice. The full wording of each one is in the child goal that owns it and in the packet `decision-record.md`. D3 now states the option the operator chose. No decision changed. |
+| Criterion wording | The fifth and sixth criteria dropped the "or match the start baseline" clause and the roster checker, which children 001, 003 and 004 carry. The seventh now validates recursively. |
+| Verify clauses corrected | Seven task lines and one criterion said `rg -c ... prints 0`. `rg -c` prints no line for zero matches, so that output can never appear. They now pipe to `wc -l`: T012, T029, T031, T063, T077, T079, T080 and AC-004. |
 | Finding class | cross-consumer: one mode removal reaches the hub, the runtime, the advisor, six other skills, hooks, plugins and CI. |
 <!-- /ANCHOR:log -->
