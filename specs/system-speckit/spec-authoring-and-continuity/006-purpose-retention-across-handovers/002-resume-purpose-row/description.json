@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/002-resume-purpose-row",
+  "description": "Phase 2: resume-purpose-row",
+  "keywords": [
+    "phase",
+    "resume-purpose-row"
+  ],
+  "lastUpdated": "2026-11-13T21:41:51.465Z",
+  "specId": "002",
+  "folderSlug": "resume-purpose-row",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "006-purpose-retention-across-handovers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

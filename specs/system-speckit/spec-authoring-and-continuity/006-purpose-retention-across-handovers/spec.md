@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-11-13 |
 | **Branch** | `worktrees/371-purpose-retention-research` |
 <!-- /ANCHOR:metadata -->
@@ -153,8 +153,8 @@ Deep research runs against this packet with `/deep:research`, and `research/rese
 Findings of the 2026-11-13 deep-research run, two lineages of five iterations on the same model, abridged from `research/research.md`.
 
 - The purpose is written once, in `spec.md` section 2, and no automatic hop reads it back. The compaction "Goal" facet is filled from `next_safe_action`, the default Claude compaction brief is transcript-only and the resume brief has no purpose row.
-- Phase parents often carry no real purpose, because `create.sh` writes generic layout text and the validator exempts parents from anchor checks.
-- The lineages split on the fix. The adjudicated recommendation quotes the packet's existing Purpose in the resume brief, the compaction brief and the relaunch note's Goal, and stops `create.sh` writing a generic parent purpose. A purpose field in `_memory.continuity` is held.
+- Phase parents often carry no real purpose, because nothing flags an unfilled parent purpose and the validator exempts parents from anchor checks.
+- The lineages split on the fix. The adjudicated recommendation quotes the packet's existing Purpose in the resume brief, the compaction brief and the relaunch note's Goal, and makes an unfilled parent purpose fail a check. A purpose field in `_memory.continuity` is held.
 - Ruled out: parent-level acceptance criteria, a new parent purpose section (one already exists) and a template or validator change alone.
 - Full answers, orchestrator citation checks and limits: `research/research.md`.
 <!-- END GENERATED: deep-research/spec-findings -->
@@ -163,3 +163,33 @@ Findings of the 2026-11-13 deep-research run, two lineages of five iterations on
 ---
 
 
+
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
+
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, verification, decisions, continuity) live inside the phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-parent-purpose-scaffold/ | An unfilled purpose in a new phase parent fails a check | Pending |
+| 2 | 002-resume-purpose-row/ | The `/speckit:resume` brief shows the packet purpose | Pending |
+| 3 | 003-relaunch-goal-quote/ | The relaunch note Goal opens with the packet purpose | Pending |
+| 4 | 004-compaction-purpose-line/ | The context injected after a compaction carries the packet purpose, and the shared purpose helper | Pending |
+| 5 | 005-continuity-purpose-field/ | The continuity block carries the purpose and the recovery Goal shows it | Pending |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/speckit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001-parent-purpose-scaffold | 002-resume-purpose-row | None. The two phases touch different files and can ship in either order | Each phase passes `validate.sh --strict` on its own |
+| 002-resume-purpose-row | 003-relaunch-goal-quote | None. The relaunch note text does not depend on the resume brief | Each phase passes `validate.sh --strict` on its own |
+| 003-relaunch-goal-quote | 004-compaction-purpose-line | None. The compaction hook does not depend on the relaunch note | Each phase passes `validate.sh --strict` on its own |
+| 004-compaction-purpose-line | 005-continuity-purpose-field | Phase 004 is built and merged, because phase 005 imports the purpose helper that 004 creates | `runtime/lib/spec/packet-purpose.ts` exists and its tests pass |
+<!-- /ANCHOR:phase-map -->

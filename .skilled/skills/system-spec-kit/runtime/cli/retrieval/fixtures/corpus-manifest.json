@@ -1,5 +1,5 @@
 {
-  "corpusHash": "e1646d287868be8ecfa921ec990787a3fef50602f28217c58ccb3a48ca92d7e5",
+  "corpusHash": "6b216c30e647a53a881f8022be0c5b884f0b45b35f89742503c631a6b1798f14",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26717,
+  "includedPathCount": 26742,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -12009,6 +12009,7 @@
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/tasks.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/research/research.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/goal.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/research/research.md",
@@ -18095,6 +18096,10 @@
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/018-holdout-row-retirement/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/018-holdout-row-retirement/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/018-holdout-row-retirement/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/tasks.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/fanout-attribution-pass-1.md",
@@ -26323,6 +26328,26 @@
     "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/review/review-report.md",
     "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/synthesis.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/001-parent-purpose-scaffold/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/001-parent-purpose-scaffold/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/001-parent-purpose-scaffold/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/001-parent-purpose-scaffold/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/002-resume-purpose-row/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/002-resume-purpose-row/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/002-resume-purpose-row/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/002-resume-purpose-row/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/003-relaunch-goal-quote/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/003-relaunch-goal-quote/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/003-relaunch-goal-quote/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/003-relaunch-goal-quote/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/004-compaction-purpose-line/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/004-compaction-purpose-line/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/004-compaction-purpose-line/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/004-compaction-purpose-line/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/005-continuity-purpose-field/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/005-continuity-purpose-field/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/005-continuity-purpose-field/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/005-continuity-purpose-field/tasks.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/decision-record.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/implementation-summary.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/plan.md",
@@ -26749,7 +26774,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4c88bad3fe91d55a1497958d3d6163676e836aa342c4d047e3911ca196b1a6dc",
+  "manifestHash": "98201cba1d712c32c35ce5d62a31d0b74a809292a1b811511a5a2e2b2e642ce4",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -30257,6 +30282,34 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/research/deep-research-audit-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/research/deep-research-ledger",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/research/deltas",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/research/dispatch-receipts",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/research/iterations",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/research/locks-and-fencing-v1",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/research/prompts",
       "reason": "excluded directory"
     },
     {
@@ -34108,6 +34161,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages",
       "reason": "excluded directory"
     },
@@ -37829,6 +37886,26 @@
     },
     {
       "path": "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/001-parent-purpose-scaffold/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/002-resume-purpose-row/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/003-relaunch-goal-quote/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/004-compaction-purpose-line/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/005-continuity-purpose-field/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/004-compaction-purpose-line",
+  "description": "Phase 4: compaction-purpose-line",
+  "keywords": [
+    "phase",
+    "compaction-purpose-line"
+  ],
+  "lastUpdated": "2026-11-13T21:41:52.937Z",
+  "specId": "004",
+  "folderSlug": "compaction-purpose-line",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "006-purpose-retention-across-handovers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

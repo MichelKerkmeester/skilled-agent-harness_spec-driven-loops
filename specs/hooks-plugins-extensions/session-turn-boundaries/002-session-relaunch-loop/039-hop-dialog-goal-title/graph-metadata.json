@@ -19,7 +19,12 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "mobile rename does not carry over a hop",
+      "stale relaunch wrapper keeps old code",
+      "packet 038 and 039 open ends",
+      "relaunch live proof run set",
+      "cleared goal comes back after a hop"
     ],
     "key_topics": [
       "hop",
@@ -40,6 +45,7 @@
     "key_files": [
       "spec.md",
       "goal.md",
+      "research/research.md",
       ".claude/settings.json",
       ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs",
       ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs",
@@ -56,8 +62,7 @@
       "001-sender-dialog-after-prepare/acceptance-criteria.md",
       "002-packet-goal-fallback/acceptance-criteria.md",
       "001-sender-dialog-after-prepare/goal.md",
-      "002-packet-goal-fallback/goal.md",
-      "003-generated-title-carry/goal.md"
+      "002-packet-goal-fallback/goal.md"
     ],
     "entities": [
       {
@@ -70,6 +75,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -147,7 +158,7 @@
       {
         "name": "Claude Code",
         "kind": "proper_noun",
-        "path": "spec.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -197,27 +208,23 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three gaps showed on 2026-11-13 in Claude Code sessions that hand over near the context limit",
     "created_at": "2026-11-13T18:47:10Z",
-    "last_save_at": "2026-11-13T19:56:01.694Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-13T22:58:55.851Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
-      "goal.md"
+      "goal.md",
+      "research/research.md"
     ],
-    "source_fingerprint": "sha256:2b4a89266e0c358074e423d999661b1aad7e79ad68b460e97b1cd602e75a103a",
+    "source_fingerprint": "sha256:aa5a1e8acc171e2e541dd35c85f6f2d3500770b92ef2a70ddd69cb136f03e868",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b1307e7d52ae0b814eb2d309d578bfece170add0e4b7d6ae4b246e209076c4cc"
+      "spec.md": "72d40626a720a258187b429dac58e704a63a846a1c893a4d95225a3ebe1c17cb",
+      "research/research.md": "f0daad5f191298d68bc32ec2f1767ebd28c3694400bd86b804bbb2b6014e0cf2"
     },
     "last_active_at": null
   }

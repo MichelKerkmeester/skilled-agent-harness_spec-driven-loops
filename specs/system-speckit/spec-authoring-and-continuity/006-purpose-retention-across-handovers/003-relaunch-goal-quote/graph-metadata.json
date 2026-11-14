@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/003-relaunch-goal-quote",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/003-relaunch-goal-quote",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "relaunch goal quote",
+      "phase 3 relaunch goal quote",
+      "purpose line in the handoff note goal",
+      "relaunch goal quote plan",
+      "relaunch goal quote tasks",
+      "relaunch goal quote implementation summary"
+    ],
+    "key_topics": [
+      "relaunch",
+      "goal",
+      "quote",
+      "phase",
+      "purpose",
+      "line",
+      "handoff",
+      "note",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/commands/speckit/handoff.md",
+      ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+      ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
+      ".claude/commands/speckit/handoff.md",
+      ".cursor/commands/speckit-handoff.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-handoff.md",
+        "kind": "doc",
+        "path": ".cursor/commands/speckit-handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Writer",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Apply Edit",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The parent exists to keep a packet's problem, purpose and user need in front of the next session across relaunch hops and compactions, because the purpose is written once in `spec.md` and no hop reads it back",
+    "created_at": "2026-11-13T21:41:51Z",
+    "last_save_at": "2026-11-13T21:51:27.322Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:ef8962245124259b3d96b13a68996dc2a9d12c00bead65f94968ee3880420900",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "41c7c81577e6f0f4f4d68d5a1d8d762ae13ffb37a78e631ff9457915e2fe626e",
+      "plan.md": "fca5347305b30d266e9017b4ef37617c16b7ff7e650a604585ab64793f4052ec",
+      "tasks.md": "d6b509c8c56f6d8d1c3076d9c7a2e77376e56d1999c55c0b8174d2997ab9e420",
+      "implementation-summary.md": "23a3bc1a3f39eb67193f6057472d63dde40686dad50824b4b0a135d4e3e0355c"
+    },
+    "last_active_at": null
+  }
+}

@@ -19,15 +19,16 @@
     "several",
     "in-session"
   ],
-  "lastUpdated": "2026-11-13T21:18:47.852Z",
+  "lastUpdated": "2026-11-13T22:18:50.698Z",
   "specId": "006",
   "folderSlug": "purpose-retention-across-handovers",
   "parentChain": [
     "system-speckit",
     "spec-authoring-and-continuity"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "13-11-26_22-18__deep-research-finished-two-deepseek-lineages-of.md"
+    "13-11-26_22-18__deep-research-finished-two-deepseek-lineages-of.md",
+    "13-11-26_23-18__packet-006-became-a-phase-parent-with-five.md"
   ]
 }

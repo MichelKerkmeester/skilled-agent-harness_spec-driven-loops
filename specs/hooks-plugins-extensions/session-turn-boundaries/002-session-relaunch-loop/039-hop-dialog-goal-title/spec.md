@@ -148,6 +148,24 @@ Files touched across all phases, for the audit trail. Each child's `plan.md` hol
 
 - Does each fix hold in a live hop? No live hop was run for any child. Each rests on unit and CLI tests, and each child's known limitations name what a live run would confirm.
 - Do Pi, OpenCode or Codex hold a prepared hand-over open behind a dialog the same way? Not examined.
+- Under research: close the gaps, unknowns and open ends of packets `038-goal-and-workflow-resume` and `039-hop-dialog-goal-title` of the session relaunch loop. Find what a Claude `/rename` made in the mobile app writes and whether a hop can carry it, check each recorded known limitation of both packets against the code, name the smallest set of live runs that proves the fixes not yet run live, explain the open packet-level and parent-level items, and name the smallest change for each gap that survives.
+
+**Research Context:** a deep-research run covered the topic above on 2026-11-13. `research/research.md` is the canonical source for its findings.
+
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+Findings of the 2026-11-13 deep-research run, abridged from `research/research.md`. The ten iterations ran nothing against a live runtime. One finding rests on what the orchestrating session observed about its own hop.
+
+- Every relaunch wrapper running on 2026-11-13 started before the name-carry code landed in `.skilled/bin/skilled-loop`, and a wrapper runs the code it started with. No session those wrappers launched has a `--name` flag. The cause is inferred. One hop from a freshly started wrapper confirms or refutes it.
+- `prepare` reads a Claude name from the transcript only. Claude keeps a second title store under `~/.claude/sessions` that no relaunch code reads. What a rename in the mobile app writes is unconfirmed.
+- A hop is a new session in the app. Whether the app title follows `--name`, and whether a replayed `--remote-control <old name>` outranks it, is unconfirmed.
+- Child 001: a pending record that Stop cannot arm blocks every question until `cancel`, except after a background-task deferral. `ExitPlanMode` and permission prompts are not guarded. A record with no `handoff` is treated as pending. Pi, OpenCode and Codex have no guard.
+- Child 002: a goal cleared by hand comes back one hop later, and the fallback can pick any ancestor with an open criterion.
+- Child 003: a generated title that ends in the sender's own hop number loses that number.
+- Packet 038: each of its 49 recorded limits has a verdict. Five are refuted, among them two stale rows in the summary of child 011.
+- Parent level: the 002 parent goal binds neither 038 nor 039 and has seven characters left. Phase 033 says Draft while its nine children say Complete. The sk-git sentence that a rebase keeps a `Commit-Id` is wrong.
+- Ten shipped fixes or groups of fixes have no live hop behind them. Six live runs close what a live run can close.
+- These changes fall outside this packet's frozen scope. `research/research.md` section 9 ranks 23 of them and section 10 names five operator decisions.
+<!-- END GENERATED: deep-research/spec-findings -->
 <!-- /ANCHOR:questions -->
 
 ---

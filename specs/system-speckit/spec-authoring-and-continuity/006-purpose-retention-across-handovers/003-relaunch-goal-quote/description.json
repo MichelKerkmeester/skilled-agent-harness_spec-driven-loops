@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/003-relaunch-goal-quote",
+  "description": "Phase 3: relaunch-goal-quote",
+  "keywords": [
+    "phase",
+    "relaunch-goal-quote"
+  ],
+  "lastUpdated": "2026-11-13T21:41:52.209Z",
+  "specId": "003",
+  "folderSlug": "relaunch-goal-quote",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "006-purpose-retention-across-handovers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/004-compaction-purpose-line",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/004-compaction-purpose-line",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "compaction purpose line",
+      "phase 4 compaction purpose line",
+      "packet purpose after compaction",
+      "resolvePacketPurpose helper",
+      "compaction purpose line plan",
+      "compaction purpose line tasks",
+      "compaction purpose line implementation summary"
+    ],
+    "key_topics": [
+      "compaction",
+      "purpose",
+      "line",
+      "phase",
+      "packet",
+      "resolvepacketpurpose",
+      "helper",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary",
+      "parent"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "runtime/hooks/claude/session-prime.ts",
+      "runtime/hooks/pi/session-compact-context.ts",
+      "runtime/hooks/claude/compact-inject.ts",
+      "runtime/hooks/devin/post-compaction.cjs",
+      "runtime/hooks/devin/README.md",
+      ".opencode/plugins/session-history-lookup.js",
+      "runtime/api/index.ts",
+      "hooks/claude/session-prime.ts",
+      "hooks/pi/session-compact-context.ts",
+      "tests/hook-session-start.vitest.ts",
+      "tests/history-locator-adapters.vitest.ts",
+      "lib/spec/README.md",
+      "lib/MODULE-MAP.md",
+      "lib/README.md",
+      "hooks/claude/README.md",
+      "hooks/pi/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": "runtime/hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-compact-context.ts",
+        "kind": "code",
+        "path": "runtime/hooks/pi/session-compact-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "compact-inject.ts",
+        "kind": "code",
+        "path": "runtime/hooks/claude/compact-inject.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-compaction.cjs",
+        "kind": "file",
+        "path": "runtime/hooks/devin/post-compaction.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/hooks/devin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-history-lookup.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-history-lookup.js",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "runtime/api/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-session-start.vitest.ts",
+        "kind": "test",
+        "path": "tests/hook-session-start.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "history-locator-adapters.vitest.ts",
+        "kind": "test",
+        "path": "tests/history-locator-adapters.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "MODULE-MAP.md",
+        "kind": "doc",
+        "path": "lib/MODULE-MAP.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The parent exists to keep a packet's problem, purpose and user need in front of the next session across relaunch hops and compactions, because the purpose is written once in `spec.md` and no hop reads it back",
+    "created_at": "2026-11-13T21:41:52Z",
+    "last_save_at": "2026-11-13T21:59:29.583Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:031a6948645134fc46e3b12c645491f81833248b3838ac401264059683b6cc22",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "590f36feeee03736530bd76b000f3826acf0c68391a5840e456088828852f35d",
+      "plan.md": "38989f83936d66a5133bfee3c5ed6f8675fe4bddbf661f18449d4cca5690ff75",
+      "tasks.md": "9a112a1b9b7640a61eed2f67a0fe203a3ccaa823adb20aad366d394a7c758d23",
+      "implementation-summary.md": "dc4d0fa3a040b0b36ff4de2920606d79e613c9f6fa23536a12464975ecefbbcb"
+    },
+    "last_active_at": null
+  }
+}
