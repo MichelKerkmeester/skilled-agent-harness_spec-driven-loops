@@ -17,14 +17,14 @@
     "model",
     "skills"
   ],
-  "lastUpdated": "2026-11-14T04:59:08.388Z",
+  "lastUpdated": "2026-11-14T05:30:04.308Z",
   "specId": "008",
   "folderSlug": "command-surfacing-build",
   "parentChain": [
     "system-skill-advisor",
     "routing-and-scoring"
   ],
-  "memorySequence": 9,
+  "memorySequence": 10,
   "memoryNameHistory": [
     "12-11-26_21-58__rebased-the-branch-onto-main-closed-phase-003.md",
     "13-11-26_16-02__resumed-the-command-surfacing-build-from-the.md",
@@ -34,6 +34,7 @@
     "13-11-26_21-21__closed-phases-017-018-009-and-007-closed-review.md",
     "13-11-26_23-04__restated-the-packet-s-core-need-in-the-parent.md",
     "14-11-26_05-58__diagnosed-the-failing-capture-date-test-as-a.md",
-    "14-11-26_05-59__diagnosed-the-failing-capture-date-test-as-a.md"
+    "14-11-26_05-59__diagnosed-the-failing-capture-date-test-as-a.md",
+    "14-11-26_06-30__restored-the-command-offer-on-the-lost-tune-row.md"
   ]
 }
