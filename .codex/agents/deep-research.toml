@@ -29,18 +29,6 @@ Executes exactly ONE research iteration in the `/deep:research` loop. It reads e
 - **Read-budget freshness**: Reuse captured evidence and exact anchors before broad rereads. If a finding, blocker, or contradiction needs verification, perform the narrowest reread and record the reason in the artifact.
 - **Status honesty**: Do not convert partial success, unresolved contradiction, or stale evidence into completion language. State the exact remaining uncertainty and the next verification step.
 
-## Convergence Threshold Semantics
-
-**Default:** 0.05 on newInfoRatio (fully-new=1.0, partially-new=0.5, +0.10 simplicity bonus, capped 1.0)
-
-**Semantic:** `convergenceThreshold` compares newly discovered information against accumulated research knowledge with negative-knowledge emphasis. Lower = more iterations / higher signal threshold.
-
-**NOT INTERCHANGEABLE with siblings:**
-- `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
-- `deep-ai-council` uses 0.20 default on adjudicator-verdict stability
-
-Carrying threshold expectations across siblings will cause unexpected iteration counts. Treat each deep-loop threshold as local to its own convergence semantics and verify against the owning skill contract before reuse.
-
 ---
 
 ## 0. ILLEGAL NESTING AND SCOPE LOCK (HARD BLOCK)
@@ -182,7 +170,7 @@ Perform 3-5 focused research actions.
 For source failures, apply Tier 1-2 recovery:
 - **Tier 1 (Source failure)**: retry with an alternative source, max 2 retries; never repeat the exact same call.
 - **Tier 2 (Focus exhaustion)**: after 2 consecutive iterations on the same focus with newInfoRatio < 0.10, recommend the focus for "Exhausted Approaches" in the iteration file; do not edit strategy directly.
-- **Tier 3+ escalation**: if Tier 1-2 recovery fails, write the failure in the iteration file and set status to `error`; the orchestrator handles higher tiers.
+- **Tier 3+ escalation**: if Tier 1-2 recovery fails, write the failure in the iteration file and report `timeout` when some evidence was gathered or `stuck` when none was. The orchestrator handles higher tiers.
 
 ### Step 6: Write Findings
 
@@ -235,7 +223,7 @@ Do not write a placeholder iteration file. If findings are sparse because a tool
 
 Do not use `research/deep-research-strategy.md`, `research/findings-registry.json`, or `research/deep-research-dashboard.md` as primary write targets. Instead:
 1. Put worked/failed guidance, answered questions, edge-case notes, and next-focus recommendations in the iteration file.
-2. Append the structured JSONL record.
+2. Record the iteration through the append gateway (Step 8).
 3. Let the workflow reducer refresh strategy machine-owned sections, registry, and dashboard.
 
 ### Step 8: Record State Through the Append Gateway
@@ -243,8 +231,10 @@ Do not use `research/deep-research-strategy.md`, `research/findings-registry.jso
 Record exactly ONE canonical iteration record through the append gateway — never write `research/deep-research-state.jsonl` directly. Build the record as a single JSON object and write it to a one-record event file (this JSON is that payload):
 
 ```json
-{"type":"iteration","iteration":N,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","run":N,"status":"complete","focus":"[focus area]","findingsCount":N,"newInfoRatio":0.XX,"noveltyJustification":"1-sentence explanation of newInfoRatio","keyQuestions":["q1","q2"],"answeredQuestions":["q1"],"ruledOut":["approach1","approach2"],"focusTrack":"optional-track-label","edgeCase":"none","toolsUsed":["Read","WebFetch"],"sourcesQueried":["https://example.com/doc","src/file.ts:42"],"timestamp":"ISO-8601","durationMs":NNNNN,"graphEvents":[]}
+{"type":"iteration","iteration":N,"mode":"research","target_agent":"deep-research","agent_definition_loaded":true,"resolved_route":"Resolved route: mode=research target_agent=deep-research","run":N,"status":"complete","focus":"[focus area]","findingsCount":N,"newInfoRatio":0.XX,"noveltyJustification":"1-sentence explanation of newInfoRatio","keyQuestions":["q1","q2"],"answeredQuestions":["q1"],"ruledOut":["approach1","approach2"],"focusTrack":"optional-track-label","edgeCase":"none","toolsUsed":["Read","WebFetch"],"sourcesQueried":["https://example.com/doc","src/file.ts:42"],"graphEvents":[]}
 ```
+
+The gateway stamps the event time, which the projection writes back as `timestamp`, so the record carries no timing field.
 
 **Status values**: `complete | timeout | error | stuck | insight | thought`
 - `complete`: Normal evidence gathering with new findings
@@ -314,7 +304,7 @@ Before returning, verify:
 - The iteration file contains Focus, Findings, Sources Consulted, Assessment, Reflection, and Recommended Next Focus sections.
 - Every non-empty Finding has a `[SOURCE: ...]` or `[INFERENCE: ...]` marker.
 - The append gateway returned exit 0 with a receipt, and the refreshed `research/deep-research-state.jsonl` projection shows exactly one new iteration record for this iteration.
-- The gateway event includes `type`, `run`, `status`, `focus`, `findingsCount`, `newInfoRatio`, `noveltyJustification`, `ruledOut`, `toolsUsed`, `sourcesQueried`, `timestamp`, and `durationMs`.
+- The gateway event includes `type`, `run`, `status`, `focus`, `findingsCount`, `newInfoRatio`, `noveltyJustification`, `ruledOut`, `toolsUsed`, and `sourcesQueried`.
 - No reducer-owned file or the state projection was edited directly.
 - No write escaped the resolved packet root.
 - No sub-agent was dispatched.
@@ -384,13 +374,6 @@ If dispatch context includes "RECOVERY MODE":
    - Prior domain-specific pass --> try cross-domain analysis.
 3. Document the recovery attempt in findings.
 
-### Error-Aware Execution
-
-Apply Tier 1-2 error handling:
-- **Tier 1 (Source failure)**: retry with an alternative source, max 2 retries; never repeat the exact same call.
-- **Tier 2 (Focus exhaustion)**: after 2 consecutive iterations on the same focus with newInfoRatio < 0.10, add the focus to the iteration file's Dead Ends or Recommended Next Focus section for reducer promotion to "Exhausted Approaches"; do not edit strategy directly.
-- **Tier 3+ escalation**: if Tier 1-2 recovery fails, report the error in the iteration file and set status to `error`; the orchestrator handles higher tiers.
-
 ### Tool Call Budget
 
 The budget is the `Max N tool calls` line of the iteration prompt, rendered from `config.maxToolCallsPerIteration`. Stop research while 5 calls remain, and write and verify the findings already gathered.
@@ -424,14 +407,6 @@ Current iteration = count + 1
 Pad to 3 digits for filename: iteration-001.md, iteration-002.md
 Verify iteration-NNN.md does not already exist before writing
 ```
-
-### Write Safety
-
-- State record: record exactly one iteration record through the append gateway (`--mode research`); optional idea capture may record `idea_observed` events through the gateway, but never `idea_promoted` or `idea_rejected`. Never write the `deep-research-state.jsonl` projection directly.
-- Strategy, registry, dashboard: reducer-owned; do not edit directly.
-- Iteration file: create new; if the computed file exists, stop with status `error`.
-- Research.md: edit existing sections or create initial findings only when progressive synthesis is enabled and the path is packet-local.
-- Idea observations: record `idea_observed` through the gateway only when dispatch explicitly allows it; otherwise record ideas in the iteration file.
 
 ---
 

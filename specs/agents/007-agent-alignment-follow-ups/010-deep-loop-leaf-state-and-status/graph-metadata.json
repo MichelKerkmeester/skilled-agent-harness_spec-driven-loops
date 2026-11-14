@@ -32,17 +32,19 @@
       "tells"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "scratch/after.txt",
       ".skilled/agents/deep-research.md",
       ".skilled/agents/deep-review.md",
-      "scratch/measured.txt",
       ".claude/agents/deep-research.md",
       ".claude/agents/deep-review.md",
+      "scratch/baseline.txt",
+      "scratch/measured.txt",
       ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
       ".skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs",
       ".skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs",
@@ -78,6 +80,12 @@
         "source": "derived"
       },
       {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
         "name": "deep-research.md",
         "kind": "doc",
         "path": ".skilled/agents/deep-research.md",
@@ -87,6 +95,12 @@
         "name": "deep-review.md",
         "kind": "doc",
         "path": ".skilled/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
         "source": "derived"
       },
       {
@@ -184,23 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Nine",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Text",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`deep-research.md` tells the leaf to set status `error` when source recovery fails, while its own status rule keeps `error` for state corruption and the workflow halts after 3 consecutive errors",
     "created_at": "2026-11-14T20:19:21Z",
-    "last_save_at": "2026-11-14T20:48:02.021Z",
+    "last_save_at": "2026-11-14T23:57:16.506Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +211,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ada0ac5800af2bd16afb9b17713030bed0583fa1ab7be6c337e3abfdc9815b78",
+    "source_fingerprint": "sha256:a899991ed893d71f2c805858a169f2c998d3bb143195e66f39eed611b63d3908",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "be4ad2dba75da9e614183e7d57b0230aa331f035c4d6c6c52fcac7cb2d024b63",
+      "spec.md": "89cf587330384448cf4823c5f9db48b7ee36fdf68fcc167a734704e46ccaa994",
       "plan.md": "2fee2e19d6050d9c019991cbe440a8513e2292f0500752862c283761abfe223e",
-      "tasks.md": "34e03e91dcf19071bc8f55ec19561ae1adeea69006193c79fb453b2bb216bee4",
-      "implementation-summary.md": "d816954c01d0fb8e0a6068970c2dcc7d05fc2b6ee9763762dfd9ddb0eb2d6da3"
+      "tasks.md": "3cf126266d609d9d48b468d8e4294c28b2e57ffb0a9ecff78201fe6e445015a2",
+      "implementation-summary.md": "270b29bc733bd145a7c884c2de84e5e48c62114d4fac58ab3b4bbda07ce8f957"
     },
     "last_active_at": null
   }
