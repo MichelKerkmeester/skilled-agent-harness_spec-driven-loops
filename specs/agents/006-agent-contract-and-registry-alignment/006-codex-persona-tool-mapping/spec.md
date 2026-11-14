@@ -20,7 +20,7 @@ contextType: "general"
 |---|---|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/377-agent-contract-and-registry-alignment` |
 | **Parent Spec** | ../spec.md |
@@ -194,6 +194,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - Where does the canonical persona-injection contract live? `cli-codex/SKILL.md` cites a `Persona Injection` section in `sk-prompt/assets/cli-prompt-quality-card.md`, and a search for that exact heading found nothing. Decision: T003 locates it. If it does not exist, the rule goes into `cli-codex/SKILL.md` only and the dangling citation is reported.
 - Does the hub's release version move with a packet change? Decision: T004 reads the version rule in the hub's `SKILL.md` and follows it.
+- Answers, 2026-11-14: the canonical contract exists as section 6 of the card, written `PERSONA INJECTION` in capitals, which the search missed. The hub version does not move with a packet change, so only the packet's version and changelog changed.
+- Follow-up: `cli-deepseek-harness` is marked `needs the line` in `scratch/other-modes.md`. Its documents name no read tool, and no run confirmed a failure.
+- Follow-up: `agentPersonaBlock` in the deep-loop `fanout-run.cjs` inlines a persona for a Codex executor with no mapping line. The runner is out of scope here.
 <!-- /ANCHOR:questions -->
 
 ---

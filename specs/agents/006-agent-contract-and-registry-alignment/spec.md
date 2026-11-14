@@ -45,7 +45,7 @@ _memory:
 |---|---|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/377-agent-contract-and-registry-alignment` |
 | **Parent Spec** | None, this is the packet root |
@@ -117,7 +117,7 @@ Every agent file states one contract its permissions allow, reaches skills throu
 | 3 | 003-skill-binding-through-routers/ | Bind agents to skills through each skill's own entry point and router, and check that every cited skill path exists | Complete |
 | 4 | 004-agent-template-conformance-and-drift-check/ | Bring the eleven files onto the agent template's current outline and add a check that fails when one drifts from it | Complete |
 | 5 | 005-trim-duplicated-and-dead-agent-text/ | Remove restated summaries and repeated sections, and hold the one shared block identical across files | Complete |
-| 6 | 006-codex-persona-tool-mapping/ | Add a tool-mapping line to persona injection so a Codex child given a read-only persona still reads files | Pending |
+| 6 | 006-codex-persona-tool-mapping/ | Add a tool-mapping line to persona injection so a Codex child given a read-only persona still reads files | Complete |
 
 ### Phase Transition Rules
 

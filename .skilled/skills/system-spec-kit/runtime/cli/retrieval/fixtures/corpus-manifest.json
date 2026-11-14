@@ -1,5 +1,5 @@
 {
-  "corpusHash": "707f5edfd8e63b58569342b22c71384971668edc804f9727961e6ce2ffe1d061",
+  "corpusHash": "82aa3bb452801325f6f629aab46ee7953bf9eb94c591b67614bcff5cd9064fb6",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26870,
+  "includedPathCount": 26872,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -788,6 +788,7 @@
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.14.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.15.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.15.1.md",
+    ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.16.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.4.0.md",
@@ -9435,6 +9436,7 @@
     "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/tasks.md",
     "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/acceptance-criteria.md",
     "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/implementation-summary.md",
     "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/plan.md",
     "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/spec.md",
     "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/tasks.md",
@@ -26902,7 +26904,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1aae69ac67ee50ae9bd0bc943f4286ae606d5f3b908c8a5eaea93bbcde247228",
+  "manifestHash": "de25e2d4e4444fa826cd6e89d78b4e1f93af0d974d42b10f101edef5f83d56b2",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

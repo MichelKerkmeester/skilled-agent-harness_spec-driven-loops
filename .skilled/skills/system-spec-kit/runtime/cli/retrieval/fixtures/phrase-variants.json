@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1aae69ac67ee50ae9bd0bc943f4286ae606d5f3b908c8a5eaea93bbcde247228",
+  "manifestHash": "de25e2d4e4444fa826cd6e89d78b4e1f93af0d974d42b10f101edef5f83d56b2",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -21349,6 +21349,9 @@
     "cli codex 1 9 15 1": [
       "cli-codex 1.9.15.1"
     ],
+    "cli codex 1 9 16 0": [
+      "cli-codex 1.9.16.0"
+    ],
     "cli codex 1 9 2 0": [
       "cli-codex 1.9.2.0"
     ],
@@ -21573,6 +21576,9 @@
     ],
     "cli codex v1 9 15 1": [
       "cli-codex v1.9.15.1"
+    ],
+    "cli codex v1 9 16 0": [
+      "cli-codex v1.9.16.0"
     ],
     "cli codex v1 9 2 0": [
       "cli-codex v1.9.2.0"
@@ -27079,6 +27085,12 @@
     ],
     "codex persona tool mapping acceptance criteria": [
       "codex persona tool mapping acceptance criteria"
+    ],
+    "codex persona tool mapping implementation summary": [
+      "codex persona tool mapping implementation summary"
+    ],
+    "codex persona tool mapping line": [
+      "codex persona tool mapping line"
     ],
     "codex persona tool mapping plan": [
       "codex persona tool mapping plan"

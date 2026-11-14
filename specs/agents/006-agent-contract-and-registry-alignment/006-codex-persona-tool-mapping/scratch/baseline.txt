@@ -20,3 +20,6 @@ canonical contract: .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md 
 version files: .skilled/skills/cli-external-orchestration/cli-codex/SKILL.md (`version` frontmatter, 5:version: 1.9.15.1) and one new file under .skilled/skills/cli-external-orchestration/cli-codex/changelog/ named after the new version. The newest entry is v1.9.15.1.md.
 # The hub rule (.skilled/skills/cli-external-orchestration/SKILL.md line 158) binds the hub's own version to the hub's changelog and its three root JSON files. A change inside one mode packet does not move it: the last cli-codex release, commit 08157451ce, changed the packet version, its changelog and the compiled-routing manifest hash, and left the hub at 2.0.0.0.
 # The card carries its own `version` frontmatter (12:version: 0.8.6.0), which the commit gate raises.
+
+## Finding class
+finding class: cross-consumer. Every CLI mode that inlines a persona shares the rule, so the canonical contract carries it and `other-modes.md` records the same-class search.

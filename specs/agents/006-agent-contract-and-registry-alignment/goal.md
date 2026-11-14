@@ -115,10 +115,12 @@ and findings belong here.
 | Phase 003 skill binding through routers | Complete | 7 of 7 acceptance rows Met, roster check exit 0 with the path check on, 7 tests passed |
 | Phase 004 template conformance and drift check | Complete | 7 of 7 acceptance rows Met, roster check exit 0 with the outline check on, 12 tests passed |
 | Phase 005 trim duplicated and dead agent text | Complete | 7 of 8 acceptance rows Met and AC-007 waived by ADR-001, roster check exit 0 with the shared-block check on, 13 tests passed, 50,856 words |
+| Phase 006 codex persona tool mapping | Complete | 7 of 7 acceptance rows Met, two live read-only Codex runs read their file, hub vocabulary check passed |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None recorded | |
+| Word ceiling | `wc -w .skilled/agents/*.md` prints 50,856, above the 50,000 the fifth criterion names. The operator waived it on 2026-11-14, recorded as ADR-001 in phase 005. |
+| Codex failure | The read-nothing failure did not reproduce on codex-cli 0.169.0. The rule stands on the one run observed on 0.167.2. |
 <!-- /ANCHOR:log -->
