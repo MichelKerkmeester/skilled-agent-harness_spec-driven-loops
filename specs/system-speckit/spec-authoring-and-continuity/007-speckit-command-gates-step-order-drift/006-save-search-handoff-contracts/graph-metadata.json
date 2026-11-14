@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "save search handoff contracts",
+      "phase 6 save search handoff contracts",
+      "save search handoff contracts plan",
+      "save search handoff contracts tasks",
+      "save search handoff contracts acceptance criteria",
+      "save search handoff contracts implementation summary"
+    ],
+    "key_topics": [
+      "save",
+      "search",
+      "handoff",
+      "contracts",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "lifecycle"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/speckit/assets/speckit-save-context-tail.yaml",
+      ".skilled/commands/speckit/save.md",
+      ".skilled/commands/speckit/handoff.md",
+      ".skilled/commands/speckit/search.md",
+      ".skilled/commands/speckit/assets/save-presentation.txt",
+      ".skilled/commands/speckit/assets/search-presentation.txt",
+      ".skilled/commands/speckit/assets/speckit-plan.yaml",
+      ".skilled/commands/speckit/assets/speckit-implement.yaml",
+      ".skilled/commands/speckit/assets/speckit-complete.yaml",
+      ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js",
+      ".skilled/skills/system-spec-kit/shared/tests/boolean-expr.test.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-save-context-tail.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-save-context-tail.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "save-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/assets/save-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "search-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/assets/search-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-plan.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-plan.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-implement.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-implement.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-complete.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-complete.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-complete-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "test-phase-command-workflows.js",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js",
+        "source": "derived"
+      },
+      {
+        "name": "boolean-expr.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/shared/tests/boolean-expr.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The lifecycle save steps call `generate-context.js` with a temp file and no `--full-auto`, so the writer runs as `plan-only` and logs `Continuity fields not written` while each step's outputs line says continuity was refreshed",
+    "created_at": "2026-11-14T11:33:23Z",
+    "last_save_at": "2026-11-14T12:16:45.463Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:2ed13b17962003affcaf344276ff4ad722bb053bab8fa27a8b11a38cfd07e986",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "83250d4b615f083989c6365650379161f15600ea575872dda87f73bd1b3eaffd",
+      "plan.md": "4577c7d8c9f0f2192744023a7bdb8f7ff1f4eb24483791ef4fd305f819f48d98",
+      "tasks.md": "818585ef481e8ac86bb172f429e600934763367c1dcc20c6c10fb7ca324c291d",
+      "implementation-summary.md": "a8773d447c37cbbb1d89c8a24f7c0c9dda3f838d11901b3cff2ff3d265629494"
+    },
+    "last_active_at": null
+  }
+}

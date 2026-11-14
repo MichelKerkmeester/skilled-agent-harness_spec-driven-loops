@@ -1,0 +1,21 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/001-step-order-acceptance-after-development",
+  "description": "Phase 1: step-order-acceptance-after-development",
+  "keywords": [
+    "phase",
+    "step-order-acceptance-after-development"
+  ],
+  "lastUpdated": "2026-11-14T12:29:42.796Z",
+  "specId": "001",
+  "folderSlug": "step-order-acceptance-after-development",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "007-speckit-command-gates-step-order-drift"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_13-29__authored-and-validated-an-eight-phase-packet-for.md"
+  ]
+}
