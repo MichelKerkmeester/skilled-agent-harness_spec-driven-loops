@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping",
+  "spec_folder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping",
+  "parent_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "skill docs and housekeeping",
+      "phase 13 skill docs and housekeeping",
+      "next spec number counts archived",
+      "skill docs and housekeeping plan",
+      "skill docs and housekeeping tasks",
+      "skill docs and housekeeping goal",
+      "skill docs and housekeeping implementation summary"
+    ],
+    "key_topics": [
+      "skill",
+      "docs",
+      "housekeeping",
+      "phase",
+      "next",
+      "spec",
+      "number",
+      "counts",
+      "archived",
+      "plan",
+      "tasks",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/routing-review.md",
+      "scratch/setup-notes.md",
+      "scratch/validators.txt",
+      "scratch/advisor-suite.txt",
+      "runtime/cli/spec/README.md",
+      ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-changelog/SKILL.md",
+      "references/workflows/worked-examples.md",
+      ".skilled/repo-rules/skill-hub-routing.md",
+      ".skilled/skills/system-spec-kit/changelog/v2.13.1.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "routing-review.md",
+        "kind": "doc",
+        "path": "scratch/routing-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "setup-notes.md",
+        "kind": "doc",
+        "path": "scratch/setup-notes.md",
+        "source": "derived"
+      },
+      {
+        "name": "validators.txt",
+        "kind": "file",
+        "path": "scratch/validators.txt",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-suite.txt",
+        "kind": "file",
+        "path": "scratch/advisor-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-skill/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "worked-examples.md",
+        "kind": "doc",
+        "path": "references/workflows/worked-examples.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-hub-routing.md",
+        "kind": "doc",
+        "path": ".skilled/repo-rules/skill-hub-routing.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.13.1.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/changelog/v2.13.1.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`SKILL.md` publishes a next-number command that ignores archived packets, against decision D4, and its script list omits the three tools this packet added",
+    "created_at": "2026-11-14T11:10:42Z",
+    "last_save_at": "2026-11-14T14:16:24.827Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e8c4cc58eedccbd58132f08c83a0f9bd6283ae6eca9996be06ab1ed9cd472080",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ab0959b0a6259b6442a04c13bd0ef2cfa9b1b0ceedfc0258c7779022785e089e",
+      "plan.md": "9b94713557145661ec57100fcf5f0acf0838bcaf9d9e5cdec3034fb5c303af38",
+      "tasks.md": "7ce24b9971847f92510f5cb12df8c460645687496de7d8dfa9c545e0d463c443",
+      "implementation-summary.md": "af601be77ad88a61ffad40f646d5cfd37bc15f70e74dbf733e8a09ce80f156f1"
+    },
+    "last_active_at": null
+  }
+}

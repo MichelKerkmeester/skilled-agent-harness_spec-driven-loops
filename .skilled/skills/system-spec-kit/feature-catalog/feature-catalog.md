@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-11-13"
-version: 2.1.30.0
+version: 2.1.31.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -671,7 +671,7 @@ Coordinated shell lifecycle for recommending spec depth, creating spec folders a
 
 #### Current Reality
 
-`create.sh`, `recommend-level.sh`, `upgrade-level.sh`, `calculate-completeness.sh`, `check-completion.sh` and `archive.sh` are the entry points. `create.sh` counts archived numbers when it numbers a packet and, with `--track`, prints at most one advisory sub-track line from `suggest-subtracks.mjs`. `archive.sh` archives into the `z_archive/` beside the packet, a declared sub-track's own included, refreshes the description cache after a move and restores a packet whose number is taken onto the next free number through `relocate.mjs`.
+`create.sh`, `recommend-level.sh`, `upgrade-level.sh`, `calculate-completeness.sh`, `check-completion.sh` and `archive.sh` are the entry points. `create.sh` counts archived numbers when it numbers a packet and, with `--track`, prints at most one advisory sub-track line from `suggest-subtracks.mjs`. `archive.sh` archives into the `z_archive/` beside the packet, a declared sub-track's own included, refreshes the description cache after a move and restores a packet whose number is taken onto the next free number through `relocate.mjs`. A restore whose relocation exits 3 is reported as restored with a warning, and a restore into a track that holds sub-tracks is refused.
 
 #### Source Files
 
@@ -687,7 +687,7 @@ Moves, renumbers and re-parents spec packets and rewrites every store that recor
 
 #### Current Reality
 
-`relocate.mjs` takes one mode: `--map`, `--from` with `--to`, `--renumber` or `--declare-subtrack`. It prints the plan and exits 1 when a dry run finds work, and `--apply` writes. Every refusal happens before the first write. An applied run moves the folders, rewrites references under `specs/`, re-derives the packets' recorded paths, refreshes the track roots, the relocation ledger, the redirect table and the trigger index, then closes with the track-root sweep and strict validation of each moved packet. Code and CI files are never rewritten: a moved path named there refuses the run.
+`relocate.mjs` takes one mode: `--map`, `--from` with `--to`, `--renumber` or `--declare-subtrack`. It prints the plan and exits 1 when a dry run finds work, and `--apply` writes. Every refusal happens before the first write. An applied run moves the folders, rewrites references under `specs/`, re-derives the packets' recorded paths, refreshes the track roots, the relocation ledger, the redirect table and the trigger index, then closes with the track-root sweep and strict validation of each moved packet. It exits 3 when every step landed and only a moved packet's own validation printed `RESULT: FAILED`, and a rerun finishes a run that stopped on a failed step. Code and CI files are never rewritten: a moved path named there refuses the run.
 
 #### Source Files
 
@@ -735,7 +735,7 @@ Proposes a sub-track grouping for a whole flat track, or names the declared sub-
 
 #### Current Reality
 
-`suggest-subtracks.mjs --track <name>` prints a JSON map of every live packet in a flat track to a proposed sub-track, in the shape `relocate.mjs --map` takes, or one line that says why there is no map. With `--describe` it prints the best-fitting declared sub-track or says that none fits. It reads packet metadata only and exits 0 for a proposal and for an explained non-answer.
+`suggest-subtracks.mjs --track <name>` prints a JSON map of every live packet in a flat track to a proposed sub-track, in the shape `relocate.mjs --map` takes, or says why there is no map. With `--describe` it prints the best-fitting declared sub-track or says that none fits. It reads packet metadata only and exits 0 for a proposal and for an explained non-answer.
 
 #### Source Files
 
@@ -1075,7 +1075,7 @@ Searches archived packets on request, labels each archived hit and lists the arc
 
 #### Current Reality
 
-Every recipe leaves `z_archive/` out by default. `rg-wrapper.mjs --include-archive` searches archived packets too. Human output marks each archived path `[archived]`, and JSON rows in `results` and `counts` carry `archived: true` or `archived: false`. A second lane lists the `description.json` and `graph-metadata.json` files of archived packets that match, under a `json    :` section in human output and as `jsonLane` in JSON, and it is not bounded by the file limit.
+Every recipe leaves `z_archive/` out by default. `rg-wrapper.mjs --include-archive` searches archived packets too. Human output marks each archived path `[archived]`, and JSON rows in `results` and `counts` carry `archived: true` or `archived: false`. The path recipe's JSON keeps `paths` as plain strings and adds `archivedPaths`. A second lane lists the `description.json` and `graph-metadata.json` files of archived packets that match, under a `json    :` section in human output and as `jsonLane` in JSON, and it is not bounded by the file limit.
 
 #### Source Files
 

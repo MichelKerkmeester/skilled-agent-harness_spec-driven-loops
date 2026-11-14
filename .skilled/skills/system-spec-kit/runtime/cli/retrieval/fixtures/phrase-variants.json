@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1f8730e7f14c825fc9c8f9507478cd6f0e7d349ebe90ff6049eedc76546ccd0f",
+  "manifestHash": "53dd18fad3acccb6f60e5548a6b066cb2c4eb9cd50ee594ca39184be86b64966",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -16763,6 +16763,21 @@
     ],
     "catalog and playbook acceptance criteria": [
       "catalog and playbook acceptance criteria"
+    ],
+    "catalog and playbook alignment": [
+      "catalog and playbook alignment"
+    ],
+    "catalog and playbook alignment goal": [
+      "catalog and playbook alignment goal"
+    ],
+    "catalog and playbook alignment implementation summary": [
+      "catalog and playbook alignment implementation summary"
+    ],
+    "catalog and playbook alignment plan": [
+      "catalog and playbook alignment plan"
+    ],
+    "catalog and playbook alignment tasks": [
+      "catalog and playbook alignment tasks"
     ],
     "catalog and playbook implementation summary": [
       "catalog and playbook implementation summary"
@@ -49857,6 +49872,9 @@
     "feature catalog registered validated": [
       "feature catalog registered validated"
     ],
+    "feature catalog relocation exit 3": [
+      "feature catalog relocation exit 3"
+    ],
     "feature catalog review plan": [
       "feature catalog review plan"
     ],
@@ -74079,6 +74097,9 @@
     "next safe action verbs evidence": [
       "next safe action verbs evidence"
     ],
+    "next spec number counts archived": [
+      "next spec number counts archived"
+    ],
     "next step options after findings": [
       "next step options after findings"
     ],
@@ -81050,6 +81071,9 @@
     "phase 11 pre existing gate failures": [
       "phase 11 pre existing gate failures"
     ],
+    "phase 11 relocate and restore fixes": [
+      "phase 11 relocate and restore fixes"
+    ],
     "phase 11 remaining limits": [
       "phase 11 remaining limits"
     ],
@@ -81097,6 +81121,9 @@
     ],
     "phase 12 authoring speed fixes and alignment": [
       "phase 12 authoring speed fixes and alignment"
+    ],
+    "phase 12 catalog and playbook alignment": [
+      "phase 12 catalog and playbook alignment"
     ],
     "phase 12 deep loop modes and commands": [
       "phase 12 deep loop modes and commands"
@@ -81214,6 +81241,9 @@
     ],
     "phase 13 sk vision v2 tools and loose": [
       "phase 13 sk vision v2 tools and loose"
+    ],
+    "phase 13 skill docs and housekeeping": [
+      "phase 13 skill docs and housekeeping"
     ],
     "phase 13 system spec kit": [
       "phase 13 system spec kit"
@@ -89313,6 +89343,9 @@
     "re parent packets into a sub track": [
       "re-parent packets into a sub-track"
     ],
+    "re parent resume phase rows": [
+      "re-parent resume phase rows"
+    ],
     "re pin after frontmatter move": [
       "re-pin after frontmatter move"
     ],
@@ -92985,14 +93018,35 @@
     "relevance dominant confidence rebalance": [
       "relevance-dominant confidence rebalance"
     ],
+    "relocate and restore fixes": [
+      "relocate and restore fixes"
+    ],
+    "relocate and restore fixes goal": [
+      "relocate and restore fixes goal"
+    ],
+    "relocate and restore fixes implementation summary": [
+      "relocate and restore fixes implementation summary"
+    ],
+    "relocate and restore fixes plan": [
+      "relocate and restore fixes plan"
+    ],
+    "relocate and restore fixes tasks": [
+      "relocate and restore fixes tasks"
+    ],
     "relocate and suggest subtracks vitest suites": [
       "relocate and suggest-subtracks vitest suites"
+    ],
+    "relocate exit status 3": [
+      "relocate exit status 3"
     ],
     "relocate mjs": [
       "relocate.mjs"
     ],
     "relocate mjs move renumber re parent": [
       "relocate.mjs move renumber re-parent"
+    ],
+    "relocate rerun finishes a stopped move": [
+      "relocate rerun finishes a stopped move"
     ],
     "relocate rerun finishes late steps": [
       "relocate rerun finishes late steps"
@@ -95872,6 +95926,9 @@
     ],
     "restore pi advisor brief tasks": [
       "restore pi advisor brief tasks"
+    ],
+    "restore refused beside sub tracks": [
+      "restore refused beside sub-tracks"
     ],
     "restore staged": [
       "restore staged"
@@ -112683,6 +112740,21 @@
     "skill docs alignment tasks": [
       "skill docs alignment tasks"
     ],
+    "skill docs and housekeeping": [
+      "skill docs and housekeeping"
+    ],
+    "skill docs and housekeeping goal": [
+      "skill docs and housekeeping goal"
+    ],
+    "skill docs and housekeeping implementation summary": [
+      "skill docs and housekeeping implementation summary"
+    ],
+    "skill docs and housekeeping plan": [
+      "skill docs and housekeeping plan"
+    ],
+    "skill docs and housekeeping tasks": [
+      "skill docs and housekeeping tasks"
+    ],
     "skill docs audit": [
       "skill docs audit"
     ],
@@ -121298,6 +121370,9 @@
     "system spec kit 2 13 0 0": [
       "system-spec-kit 2.13.0.0"
     ],
+    "system spec kit 2 13 1 0": [
+      "system-spec-kit 2.13.1.0"
+    ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
     ],
@@ -121927,6 +122002,9 @@
     ],
     "system spec kit v2 13 0 0": [
       "system-spec-kit v2.13.0.0"
+    ],
+    "system spec kit v2 13 1 0": [
+      "system-spec-kit v2.13.1.0"
     ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"

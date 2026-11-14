@@ -1,0 +1,46 @@
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/SKILL.md
+
+✅ VALID: .skilled/skills/system-spec-kit/SKILL.md
+Document type: skill
+Total issues: 0
+exit=0
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/README.md
+
+✅ VALID: .skilled/skills/system-spec-kit/README.md
+Document type: readme
+Total issues: 0
+exit=0
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/runtime/cli/spec/README.md
+
+✅ VALID: .skilled/skills/system-spec-kit/runtime/cli/spec/README.md
+Document type: readme
+Total issues: 0
+exit=0
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md
+
+✅ VALID: .skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md
+Document type: reference
+Total issues: 0
+exit=0
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/references/structure/folder-structure.md
+
+✅ VALID: .skilled/skills/system-spec-kit/references/structure/folder-structure.md
+Document type: reference
+Total issues: 0
+exit=0
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/references/structure/phase-definitions.md
+
+✅ VALID: .skilled/skills/system-spec-kit/references/structure/phase-definitions.md
+Document type: reference
+Total issues: 0
+exit=0
+$ python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/system-spec-kit/changelog/v2.13.1.0.md
+
+✅ VALID: .skilled/skills/system-spec-kit/changelog/v2.13.1.0.md
+Document type: changelog
+Total issues: 0
+exit=0
+$ python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/skills/system-spec-kit/changelog/v2.13.1.0.md
+PASS .skilled/skills/system-spec-kit/changelog/v2.13.1.0.md
+SUMMARY files=1 pass=1 fail=0
+exit=0

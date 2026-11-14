@@ -198,7 +198,7 @@
     ],
     "causal_summary": "`relocate.vitest.ts` and `archive-track.vitest.ts` copy `relocate.mjs` into a temp tree and replace every writer it drives with a stub, as the lines below show",
     "created_at": "2026-11-14T06:11:02Z",
-    "last_save_at": "2026-11-14T09:23:41.112Z",
+    "last_save_at": "2026-11-14T14:14:25.701Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,12 +208,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:76a48cf20c6ce67791d7b5fcf974710c98b5a17508cd1751ca46dba1842f553f",
+    "source_fingerprint": "sha256:e4de00d2eba2d7400a440e21a2ed9932717a559b30619a6f31857a29d22d031b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6f5d2773987d6de04bbf6cb385634b918d16088c3b8535ca4345c6d44d36d8f6",
       "plan.md": "9d2414ff8ff2ea348dfca88d65adc8f48b78a3330235c3aea7c525097e9333ae",
-      "tasks.md": "23a7f0d22ade74211eb2f946c58256efc680b772a7a3439847cd99890c01f66d",
+      "tasks.md": "9343f8acfb6f7412419f9c9151e8bf0d46384ac53ddb5b5eaab935dee30e201c",
       "implementation-summary.md": "36862f4ee1b3b195d6650256be1bcc1d24a2141fb7ac0f5eafda3de9c6d8e0ac"
     },
     "last_active_at": null
