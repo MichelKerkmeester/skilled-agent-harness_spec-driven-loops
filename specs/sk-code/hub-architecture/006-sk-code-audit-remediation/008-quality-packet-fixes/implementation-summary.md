@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes"
-    last_updated_at: "2026-11-14T16:44:26Z"
+    last_updated_at: "2026-11-14T16:49:02Z"
     last_updated_by: "generate-context"
-    recent_action: "Closed phases 007 and 008 with every RV and QL ledger row closed"
-    next_safe_action: "Verify the parent goal third criterion wording with the operator"
+    recent_action: "Amended the parent goal third criterion to the line the battery prints"
+    next_safe_action: "Add phase 009 for the findings outside the ledger and fix them"
     packet_purpose: "Purpose: Every `QL` row in the ledger is either fixed with a command that proves it or closed as `no change` with its reason."
     blockers: []
     key_files:
@@ -21,14 +21,14 @@ _memory:
       - ".skilled/skills/sk-code/sk-code-quality/README.md"
       - ".skilled/skills/sk-code/sk-code-review/ROUTER.md"
     session_dedup:
-      fingerprint: "sha256:4819adebffe532cb49c241c0a370af9f7db51ae363167ca46940ec4afe82eed3"
+      fingerprint: "sha256:cfd8375727c88c38f184bc8bff398da11e1a1e0e5747a6d9d2453adc690e30b7"
       session_id: "scaffold-008-quality-packet-fixes"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "6ca6fd40-3a19-42ea-9911-8e44f09f6f74"
       workspace: "/Users/michelkerkmeester/worktrees/public/379-sk-code-audit-remediation"
-      savedAt: "2026-11-14T16:44:26Z"
+      savedAt: "2026-11-14T16:49:02Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100

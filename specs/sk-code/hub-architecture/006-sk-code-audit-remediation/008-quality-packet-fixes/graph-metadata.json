@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The `sk-code-quality` packet decides whether an author's change may be called done, and a reader found 14 places where its documents disagree or repeat one rule in two files",
     "created_at": "2026-11-14T12:01:56Z",
-    "last_save_at": "2026-11-14T16:44:26.501Z",
+    "last_save_at": "2026-11-14T16:49:02.534Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e474a04256377ff2821269cd4b01df931ea10f6b80ce05a4ee7dbe3b01a537b5",
+    "source_fingerprint": "sha256:8df034bd6acabfae556e4a3fe6cf4fcd601c0769c44254bfff3924190c02e9f0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "92b1083c469bc8a12069662c43b2f547154a60320b4ec585f48a460ce38a080a",
       "plan.md": "509c1a0d2b491e7bbb0c52527e7c20a2a963605532168bae576a02db2571db48",
       "tasks.md": "2164f019e176544389ee7b91bd367162dbde46fab155289de7c29dd8d15b5d0f",
-      "implementation-summary.md": "bc596c4e43ee06b3b1f69ed035c2190ba5a0cb41926357021a816afc17f36738"
+      "implementation-summary.md": "93ab18e58a7cf35f3c3312a918080a39bcacee48ef28a574f9c7d48732f5c6c0"
     },
     "last_active_at": null
   }

@@ -206,7 +206,7 @@
     ],
     "causal_summary": "An audit of the sk-code hub on 2026-11-14 produced 61 findings",
     "created_at": "2026-11-14T12:01:48Z",
-    "last_save_at": "2026-11-14T16:47:43.616Z",
+    "last_save_at": "2026-11-14T16:49:02.553Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,6 @@
       "spec.md": "9100553ebaf72ead905479da9fdc7f502cc0e78e81978ab968facadf9d517aa6"
     },
     "last_active_child_id": "sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes",
-    "last_active_at": "2026-11-14T16:44:26.548Z"
+    "last_active_at": "2026-11-14T16:49:02.553Z"
   }
 }
