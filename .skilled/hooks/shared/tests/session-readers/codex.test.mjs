@@ -6,6 +6,7 @@
 // borrows another runtime's store.
 
 import assert from 'node:assert/strict';
+import { realpathSync, symlinkSync } from 'node:fs';
 import { join } from 'node:path';
 import { test } from 'node:test';
 
@@ -93,6 +94,37 @@ test('a rollout outside the store is refused without reading it', async () => {
       assert.equal(result.ok, false);
       assert.equal(result.code, 'session_mismatch');
       assert.equal(tracker.opened.includes(outside), false, 'the outside path was opened before the refusal');
+    } finally {
+      tracker.restore();
+    }
+  });
+});
+
+test('a rollout reached through a link inside the store is read at the resolved path', async () => {
+  await withTempAsync('codex-link', async (root) => {
+    const fixture = codexSession({ root });
+    const link = join(fixture.root, 'link.jsonl');
+    symlinkSync(fixture.filePath, link);
+
+    const tracker = trackFileOpens();
+    try {
+      const result = await loadSession({
+        runtime: 'codex',
+        sessionId: SESSION,
+        codexRoot: fixture.root,
+        transcriptPath: link,
+      });
+      assert.equal(result.ok, true);
+      assert.equal(
+        tracker.opened.includes(link),
+        false,
+        `the link path was opened: ${tracker.opened.join(', ')}`,
+      );
+      assert.equal(
+        tracker.opened.includes(realpathSync(fixture.filePath)),
+        true,
+        `the resolved file was not opened: ${tracker.opened.join(', ')}`,
+      );
     } finally {
       tracker.restore();
     }

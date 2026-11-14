@@ -355,6 +355,42 @@ describe('backfillRunLog', () => {
     }
   });
 
+  it('keeps where the offered command sat in the head', async () => {
+    const dir = mkdtempSync(join(tmpdir(), 'command-offer-'));
+    const outPath = join(dir, 'runs-out.jsonl');
+    const inPath = writeRunLog(dir, [
+      { runtime: 'claude', rowId: 'row-one', arm: 'pre', locator: { projectDir: '/checkout-one' }, exit: 0, changedPaths: [] },
+      { runtime: 'claude', rowId: 'row-two', arm: 'pre', locator: { projectDir: '/checkout-one' }, exit: 0, changedPaths: [] },
+    ]);
+    try {
+      const result = await backfillRunLog({
+        inPath,
+        outPath,
+        promptFor: (rowId: string) => `prompt for ${rowId}`,
+        warm: async () => {},
+        replay: async ({ sessionId }: { checkoutDir: string; prompt: string; sessionId: string }) => (
+          sessionId === 'backfill-row-one'
+            ? {
+              offeredCommand: '/create:manual-testing-playbook',
+              offeredPolicy: 'start',
+              offeredAs: 'partner',
+              offerError: null,
+            }
+            : { offeredCommand: null, offeredPolicy: null, offerError: 'no_head' }
+        ),
+        brief: async () => true,
+        trusted: () => true,
+      });
+
+      expect(result).toEqual({ ok: true, lines: 2, outPath });
+      const written = readFileSync(outPath, 'utf8').trim().split('\n').map((line) => JSON.parse(line));
+      expect(written[0].offeredAs).toBe('partner');
+      expect(written[1].offeredAs).toBeNull();
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
   it('hands each line to the prompt lookup', async () => {
     const dir = mkdtempSync(join(tmpdir(), 'command-offer-'));
     const outPath = join(dir, 'runs-out.jsonl');

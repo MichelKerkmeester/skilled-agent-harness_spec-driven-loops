@@ -643,8 +643,9 @@ function firstWritePosition(events, checkoutDir) {
 const SHELL_READERS = Object.freeze(['cat', 'head', 'tail', 'sed', 'less', 'more', 'bat', 'nl', 'awk']);
 
 // The lines of a heredoc are data handed to a program and not commands, so the pattern
-// keeps the opening line and drops the body.
-const HEREDOC_BODY = /(<<-?\s*(['"]?)([A-Za-z_][A-Za-z0-9_]*)\2[^\n]*)\n[\s\S]*?\n[ \t]*\3[ \t]*(?=\n|$)/g;
+// keeps the opening line and drops the body. An end word may hold a hyphen or a dot, as
+// `END-SCRIPT` does.
+const HEREDOC_BODY = /(<<-?\s*(['"]?)([A-Za-z_][A-Za-z0-9_.-]*)\2[^\n]*)\n[\s\S]*?\n[ \t]*\3[ \t]*(?=\n|$)/g;
 
 function shellReadTargets(command) {
   const text = (typeof command === 'string' ? command : '').replace(HEREDOC_BODY, '$1');
@@ -910,12 +911,15 @@ function spokenCommands(events) {
 // document the command routes to was read, the command was loaded through a
 // skill tool, or the model reported the start on its `COMMAND:` line. A read
 // after the first write still took the command, so position is not consulted.
+// A shell read of the document is a start by the rule a load already uses, so a
+// search, an in-place `sed` and a heredoc line are not.
 function readDocument(events, wanted) {
   const documents = documentTails(wanted);
 
   for (const event of events) {
     if (!event) continue;
     if (event.kind === 'skill' && namesCommand(event.command, wanted)) return true;
+    if (event.kind === 'shell' && shellReadTargets(event.command).some((value) => tailMatches(value, documents))) return true;
     if (event.kind !== 'read' && event.kind !== 'skill') continue;
 
     const named = [event.path, event.command].filter((value) => typeof value === 'string' && value.trim());

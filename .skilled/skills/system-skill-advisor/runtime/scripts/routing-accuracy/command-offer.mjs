@@ -483,6 +483,8 @@ export async function backfillRunLog({
     // A recorded offer belongs to the head the turn saw, so recomputing
     // delivery must not replay it. A brief-only pass copies the line forward
     // untouched, so a present offer stays and an absent one stays absent.
+    // Where the command sat in the head travels with it, because a command on
+    // the partner side was shown and not offered.
     let nextLine;
     if (briefOnly) {
       nextLine = { ...line, briefDelivered: delivered, briefBackfilled: true };
@@ -491,6 +493,7 @@ export async function backfillRunLog({
         ...line,
         offeredCommand: offer.offeredCommand ?? null,
         offeredPolicy: offer.offeredPolicy ?? null,
+        offeredAs: offer.offeredAs ?? null,
         offerError: offer.offerError ?? null,
         briefDelivered: delivered,
         offerBackfilled: true,

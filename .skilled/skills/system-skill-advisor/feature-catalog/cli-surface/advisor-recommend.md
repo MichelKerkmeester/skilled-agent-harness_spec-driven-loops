@@ -7,7 +7,7 @@ trigger_phrases:
   - "native recommend"
   - "skill recommendation tool"
   - "compiledRoute enrichment"
-version: 0.9.5.0
+version: 0.9.6.0
 ---
 
 # advisor_recommend Command
@@ -36,7 +36,7 @@ The request option `options.includeCompiledRoute` is an optional boolean that de
 
 The request option `options.compiledRouteTopOnly` is an optional boolean that defaults to false. When a caller passes `true`, `enrichCompiledRoutes()` runs the route lookup for the first recommendation only and returns every later one unchanged, so only the top pick can carry `compiledRoute` or `command`. Each lookup is a `compiled-route.cjs` subprocess, so this saves one subprocess for each further eligible hub. The prompt hooks pass `true` with `includeCompiledRoute: true`, because the brief leads with the top pick. The option is declared in the zod schema (the `options` of `AdvisorRecommendInputSchema` in `schemas/advisor-tool-schemas.ts`), the tool descriptor (`tools/advisor-recommend.ts:24`) and the CLI manifest (`skill-advisor-cli-manifest.ts:58`).
 
-A hub also leaves `command` off when the same command already ranks in the result through its own command row. `enrichCompiledRoutes()` takes the `command` fields present in the result as the commands already offered, so one command never takes two slots.
+A hub below the head leaves `command` off when the same command already ranks in the result through its own command row, because `enrichCompiledRoutes()` takes the `command` fields present in the result as the commands already offered. The head keeps its command even then, because every caller renders the head and at most one partner.
 
 ### Recommendation Contract (`kind`, `command`, `policy`, `ownerSkillId`)
 

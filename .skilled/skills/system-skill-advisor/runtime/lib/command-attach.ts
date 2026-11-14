@@ -373,6 +373,11 @@ export const COMMAND_DECLINE_LEADS: readonly string[] = [
   `(?:skip|skipping|without|instead of|rather than|avoid|stop|stopped|quit|${COMMAND_NOT_WORD}) (?:(?!${COMMAND_USE_VERB}\\b)[a-z']+ ){0,2}`,
 ];
 
+// A refusal over an or-list refuses every command the list joins to the one its
+// lead names, while a second use verb opens a clause of its own, so the list
+// joins only `or` and `, or`.
+const COMMAND_OR_LIST = '(?:\\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)?,? or )*';
+
 // A command the reader asks about is named without being asked for, so this list
 // holds the leads that mark that naming. A lead must sit directly before the
 // command so a later clause cannot turn an earlier request into a question, and
@@ -386,7 +391,8 @@ export const COMMAND_ASK_LEADS: readonly string[] = [
 // A bare ask word opens a statement as often as a question, so it marks a naming
 // only when the command it precedes is followed by a question mark before the
 // sentence ends, or when the lead itself opens a sentence, which a question mark ends as a full stop does.
-export const COMMAND_BARE_ASK_LEAD = '(?:is|does|can|will|would) ';
+// A question often names the command after `the`, as in `is the /x command safe`.
+export const COMMAND_BARE_ASK_LEAD = '(?:is|does|can|will|would) (?:the )?';
 
 // A clause that opens with a use verb and `it` asks for the command an earlier
 // clause only named, so a naming such as `not run /x yet, please start it`
@@ -416,7 +422,9 @@ export function commandOnlyMentioned(prompt: string, command: string): boolean {
     const before = text.slice(0, nameEnd);
     const tail = text.slice(nameEnd);
     if (COMMAND_ASKED_BY_PRONOUN.test(tail.split(/(?:^|[\s,;(])\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)?(?![a-z0-9_\/-]|\.[a-z0-9])/)[0])) return false;
-    const led = [...COMMAND_DECLINE_LEADS, ...COMMAND_ASK_LEADS].some((lead) => (
+    const led = COMMAND_DECLINE_LEADS.some((lead) => (
+      new RegExp(`(?:^|[^a-z0-9_/])${lead}${COMMAND_OR_LIST}${name}$`).test(before)
+    )) || COMMAND_ASK_LEADS.some((lead) => (
       new RegExp(`(?:^|[^a-z0-9_/])${lead}${name}$`).test(before)
     ));
     if (led) return true;

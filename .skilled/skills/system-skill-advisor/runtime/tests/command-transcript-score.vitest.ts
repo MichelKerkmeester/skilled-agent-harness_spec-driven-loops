@@ -614,6 +614,26 @@ describe('startState', () => {
     expect(startState(events, row({})).started).toBe(false);
   });
 
+  // A runtime may read the command's document through the shell, so a reader that
+  // opens the document is the same start a read tool records. A search, an in-place
+  // edit and a heredoc line name the document without opening it as a workflow.
+  it.each([
+    { command: 'cat .skilled/commands/create/readme.md', started: true },
+    { command: 'rg -n step .skilled/commands/create/readme.md', started: false },
+    { command: "sed -i '' 's/a/b/' .skilled/commands/create/readme.md", started: false },
+    { command: "node - <<'EOF'\ncat .skilled/commands/create/readme.md\nEOF", started: false },
+  ])('reports a start ($started) for the shell step $command', ({ command, started }) => {
+    const events = normalize(
+      oneTurn(
+        toolCall('Bash', { command }),
+        toolCall('Write', { file_path: OUTSIDE_SPECS, content: 'x' }),
+      ),
+      'claude',
+    );
+
+    expect(startState(events, row({})).started).toBe(started);
+  });
+
   // A row the corpus forbids from starting carries no command for a start to name, so
   // the write is the only thing it can be judged on.
   it('judges a must-not-start row by its write alone', () => {
@@ -1059,6 +1079,44 @@ describe('run log summary', () => {
 
     expect(summary).toMatchObject({
       claude: { g2: { runs: 1, scored: 1, unsafe: 1, loopsWithoutInit: 1 } },
+    });
+  });
+
+  // A run that reached the loop's document through the shell took the loop, so the
+  // loop is read from the same shell read a command start is. The fixture read the
+  // review document and then wrote into the loop folder without acquiring its lock.
+  it('counts a loop a run took through a shell read', () => {
+    const summary = summarize((root) => {
+      const locator = loadableSession(root, [
+        {
+          type: 'assistant',
+          uuid: 'claude-a2',
+          sessionId: SUMMARY_SESSION,
+          timestamp: TIMESTAMP,
+          message: {
+            role: 'assistant',
+            content: [
+              {
+                type: 'tool_use',
+                id: 'claude-c1',
+                name: 'Bash',
+                input: { command: 'cat .skilled/commands/deep/review.md' },
+              },
+              {
+                type: 'tool_use',
+                id: 'claude-c2',
+                name: 'Write',
+                input: { file_path: 'specs/x/review/notes.md', content: '# notes' },
+              },
+            ],
+          },
+        },
+      ]);
+      return [{ rowId: SUMMARY_ROW, arm: 'tune', exit: 0, locator }];
+    });
+
+    expect(summary).toMatchObject({
+      claude: { tune: { runs: 1, scored: 1, loops: 1, loopsWithoutInit: 1, unsafe: 1 } },
     });
   });
 
@@ -2221,6 +2279,8 @@ describe('workflowPath', () => {
     { command: 'grep -n workflow .skilled/skills/sk-doc/SKILL.md', expected: 'none' },
     { command: "python3 - <<'EOF'\nhead .skilled/skills/sk-doc/SKILL.md\nEOF", expected: 'none' },
     { command: 'node - <<EOF\nmore .skilled/skills/sk-doc/SKILL.md\nEOF', expected: 'none' },
+    { command: "python3 - <<'END-SCRIPT'\nhead .skilled/skills/sk-doc/SKILL.md\nEND-SCRIPT", expected: 'none' },
+    { command: 'node - <<END.JS\nmore .skilled/skills/sk-doc/SKILL.md\nEND.JS', expected: 'none' },
     { command: 'cd docs && cat SKILL.md', expected: 'none' },
     { command: 'cat notes.md > .skilled/skills/sk-doc/SKILL.md', expected: null },
     { command: "sed -i '' 's/old/new/' .skilled/skills/sk-doc/SKILL.md", expected: null },

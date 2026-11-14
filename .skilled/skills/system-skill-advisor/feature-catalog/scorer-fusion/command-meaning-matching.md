@@ -6,7 +6,7 @@ trigger_phrases:
   - "command row embedding"
   - "vec_cmd table"
   - "command meaning anchor"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Command Meaning Matching
@@ -62,7 +62,7 @@ A meaning pass lifts a command past the read-only confidence floor, so `commandM
 
 | File | Type | Role |
 |---|---|---|
-| `.skilled/skills/system-skill-advisor/runtime/tests/command-meaning-anchor.vitest.ts` | Vitest | 17 cases: cosine bar, margin, stand-in refusal, eligibility and ranking rule |
+| `.skilled/skills/system-skill-advisor/runtime/tests/command-meaning-anchor.vitest.ts` | Vitest | 28 cases: cosine bar, margin, stand-in refusal, eligibility and ranking rule |
 | `.skilled/skills/system-skill-advisor/runtime/tests/command-bridges-drift-guard.vitest.ts` | Vitest | Generated bridge file matches the deriver |
 
 ---

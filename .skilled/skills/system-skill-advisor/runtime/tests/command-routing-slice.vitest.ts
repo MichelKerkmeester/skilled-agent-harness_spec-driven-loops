@@ -129,6 +129,26 @@ let corpus: CorpusRow[] = [];
 let envBefore: ProjectedEnv;
 let envAfter: ProjectedEnv;
 
+// The live capture is what the next recapture writes, so a holdout id it
+// publishes is caught before it reaches the committed baseline.
+function publishedHoldoutIds(capture: CommandRoutingBaseline, holdoutIds: ReadonlySet<string>): string[] {
+  const attached = capture.attachedMetrics as {
+    readonly attachedRows: Readonly<Record<string, string>>;
+    readonly typedRows: Readonly<Record<string, unknown>>;
+    readonly needsModeRows?: readonly string[];
+  };
+  return [
+    ...new Set(
+      [
+        ...Object.keys(capture.rows),
+        ...Object.keys(attached.attachedRows),
+        ...Object.keys(attached.typedRows),
+        ...(attached.needsModeRows ?? []),
+      ].filter((id) => holdoutIds.has(id)),
+    ),
+  ].sort();
+}
+
 describe('command routing slice', () => {
   beforeAll(async () => {
     baseline = JSON.parse(readFileSync(BASELINE_PATH, 'utf8')) as CommandRoutingBaseline;
@@ -178,22 +198,35 @@ describe('command routing slice', () => {
       holdoutIds.size,
       'the corpus marks no holdout row, so this check would pass without testing anything',
     ).toBeGreaterThan(0);
-    const attached = baseline.attachedMetrics as {
-      readonly attachedRows: Readonly<Record<string, string>>;
-      readonly typedRows: Readonly<Record<string, unknown>>;
-      readonly needsModeRows?: readonly string[];
-    };
-    const published = [
-      ...new Set(
-        [
-          ...Object.keys(baseline.rows),
-          ...Object.keys(attached.attachedRows),
-          ...Object.keys(attached.typedRows),
-          ...(attached.needsModeRows ?? []),
-        ].filter((id) => holdoutIds.has(id)),
-      ),
-    ];
-    expect(published, `the baseline publishes a per-row outcome for ${published.length} holdout ids`).toEqual([]);
+    const publishedBaseline = publishedHoldoutIds(baseline, holdoutIds);
+    expect(
+      publishedBaseline,
+      `the baseline publishes a per-row outcome for ${publishedBaseline.length} holdout ids`,
+    ).toEqual([]);
+    const publishedLive = publishedHoldoutIds(live, holdoutIds);
+    expect(
+      publishedLive,
+      `the live capture publishes a per-row outcome for ${publishedLive.length} holdout ids`,
+    ).toEqual([]);
+  });
+
+  it('finds a holdout id in any published map', () => {
+    // Each published map is a place a holdout outcome can surface, so the guard
+    // has to read all four rather than the one map a case happens to check.
+    const capture = {
+      rows: { 'made-up-holdout-01': {} },
+      attachedMetrics: {
+        attachedRows: {},
+        typedRows: { 'made-up-holdout-02': {} },
+        needsModeRows: ['made-up-holdout-03'],
+      },
+    } as unknown as CommandRoutingBaseline;
+    const holdoutIds = new Set(['made-up-holdout-01', 'made-up-holdout-02', 'made-up-holdout-03']);
+    expect(publishedHoldoutIds(capture, holdoutIds)).toEqual([
+      'made-up-holdout-01',
+      'made-up-holdout-02',
+      'made-up-holdout-03',
+    ]);
   });
 
   it('refuses a fit row that repeats another row', () => {

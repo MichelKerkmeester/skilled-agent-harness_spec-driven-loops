@@ -7,7 +7,7 @@ trigger_phrases:
   - "advisor_recommend"
   - "which skill should handle this"
   - "route this request"
-version: 0.12.20.0
+version: 0.12.21.0
 ---
 
 # system-skill-advisor
@@ -118,7 +118,7 @@ The separate `/goal` plugin:
 
 ### Doctor Command Routing
 
-When no skill answers a setup or health prompt, the fallback names the runnable `/doctor:setup` line. When a skill and doctor bridge both pass without a typed `/doctor:` command, the skill stays first and the brief adds `Also: /doctor:<command> <target> (<policy>)` as its second line, where the policy is run, start or ask, and leaves the line out when the head already names that command.
+When no skill answers a setup or health prompt, the fallback names the runnable `/doctor:setup` line. When a skill and doctor bridge both pass without a typed `/doctor:` command, the skill stays first and the brief adds `Also: /doctor:<command> <target> (<policy>)` as its second line, where the policy is run, start or ask, or `parent-named only` in a child session for a command the child must not start on its own, and leaves the line out when the head already names that command.
 
 ---
 

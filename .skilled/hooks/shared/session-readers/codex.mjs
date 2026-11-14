@@ -164,7 +164,9 @@ export function loadCodexSession({ sessionId, transcriptPath, ...options } = {})
 
   let raw;
   try {
-    raw = readFileSync(transcriptPath, 'utf8');
+    // The read is the file containment resolved, so a path repointed after the
+    // check is not read in its place.
+    raw = readFileSync(storePath, 'utf8');
   } catch {
     try {
       statSync(root);

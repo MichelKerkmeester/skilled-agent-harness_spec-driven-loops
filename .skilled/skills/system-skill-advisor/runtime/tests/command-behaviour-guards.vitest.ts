@@ -8,7 +8,7 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { G2_ROWS, armFor, childEnv, lineFixture, liveArmRefusal } from '../scripts/routing-accuracy/run-command-behaviour.mjs';
+import { G2_ROWS, armFor, childEnv, lineFixture, liveArmRefusal, offerLineFields } from '../scripts/routing-accuracy/run-command-behaviour.mjs';
 import { startedLabel } from '../scripts/routing-accuracy/score-command-transcripts.mjs';
 
 describe('childEnv', () => {
@@ -104,6 +104,25 @@ describe('lineFixture', () => {
   it('falls back to the arm folder for a line that records no fixture', () => {
     expect(lineFixture({}, '/runs/arm/g2-fixture')).toBe('/runs/arm/g2-fixture');
     expect(lineFixture({ fixture: '' }, '/runs/arm/g2-fixture')).toBe('/runs/arm/g2-fixture');
+  });
+});
+
+describe('offerLineFields', () => {
+  it('copies the offered command, its policy and where it sat', () => {
+    expect(
+      offerLineFields({
+        offeredCommand: '/create:readme',
+        offeredPolicy: 'start',
+        offeredAs: 'partner',
+        offerError: null,
+      }),
+    ).toEqual({ offeredCommand: '/create:readme', offeredPolicy: 'start', offeredAs: 'partner' });
+  });
+
+  it('writes null where the replay found no offer', () => {
+    expect(
+      offerLineFields({ offeredCommand: null, offeredPolicy: null, offerError: 'no_head' }),
+    ).toEqual({ offeredCommand: null, offeredPolicy: null, offeredAs: null });
   });
 });
 

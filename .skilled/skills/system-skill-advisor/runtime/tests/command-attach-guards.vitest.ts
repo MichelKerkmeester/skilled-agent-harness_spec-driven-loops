@@ -152,11 +152,33 @@ describe('a command the prompt only mentions', () => {
     expect(commandOnlyMentioned(prompt, command)).toBe(false);
   });
 
+  it.each([
+    ['do not run /create:agent or /create:readme', '/create:readme'],
+    ['never use /create:readme or /create:feature-catalog', '/create:feature-catalog'],
+    ['do not run /deep:review, or /deep:research', '/deep:research'],
+    ['skip /create:agent or /create:readme', '/create:readme'],
+    ['do not run /speckit:plan or /speckit:implement or /speckit:complete', '/speckit:complete'],
+  ])('reads %s as a refusal of %s through an or-list', (prompt, command) => {
+    expect(commandOnlyMentioned(prompt, command)).toBe(true);
+  });
+
+  it.each([
+    ['use /create:agent or /create:readme', '/create:agent'],
+    ['use /create:agent or /create:readme', '/create:readme'],
+    ['use /speckit:plan, not /speckit:complete', '/speckit:plan'],
+    ['do not run /speckit:complete, run /speckit:plan or /speckit:implement', '/speckit:plan'],
+    ['do not run /speckit:complete, run /speckit:plan or /speckit:implement', '/speckit:implement'],
+    ['do not run /speckit:complete or run /speckit:plan', '/speckit:plan'],
+  ])('still reads %s as a request for %s beside an or-list', (prompt, command) => {
+    expect(commandOnlyMentioned(prompt, command)).toBe(false);
+  });
+
   // A bare lead opens a statement as often as a question, so it marks a mention
   // only before a question. One led occurrence does not make a request either
   // when a later occurrence of the same command is not led.
   it.each([
     ['the next step is /speckit:implement', '/speckit:implement'],
+    ['the next step is the /speckit:implement command', '/speckit:implement'],
     ['is this right? run /speckit:plan', '/speckit:plan'],
     ['the next step is /speckit:implement\nany questions?', '/speckit:implement'],
     ['what does /speckit:save do? ok now run /speckit:save', '/speckit:save'],
@@ -173,6 +195,7 @@ describe('a command the prompt only mentions', () => {
     ['can /prompt:improve make a vague request easier to follow', '/prompt:improve'],
     ['ok. is /speckit:plan enough here', '/speckit:plan'],
     ['quick question? is /speckit:resume safe to run twice', '/speckit:resume'],
+    ['Is the /doctor:update command safe?', '/doctor:update'],
   ])('reads %s as a question about %s', (prompt, command) => {
     expect(commandOnlyMentioned(prompt, command)).toBe(true);
   });
@@ -230,6 +253,7 @@ describe('a command the prompt only mentions', () => {
   it.each([
     'what does /create:readme do?',
     'skip /create:readme, just append one line to the existing README',
+    'do not run /create:agent or /create:readme',
   ])('offers no hub command for %s', (prompt) => {
     expect(attachCommand('sk-doc', SINGLE('sk-create-readme'), prompt)).toBeUndefined();
   });

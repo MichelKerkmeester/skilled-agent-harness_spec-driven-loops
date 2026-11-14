@@ -807,6 +807,24 @@ export function lineFixture(line, fallback) {
   return typeof line?.fixture === 'string' && line.fixture !== '' ? line.fixture : fallback;
 }
 
+// A run line keeps where its offered command sat in the head, because the summary
+// counts a command on the partner side apart from an offer.
+/**
+ * Copy the offer a run line records into the fields that line carries.
+ *
+ * @param {{ offeredCommand: string | null, offeredPolicy: string | null,
+ *   offeredAs?: 'head' | 'partner' | null }} offer - The replayed offer.
+ * @returns {{ offeredCommand: string | null, offeredPolicy: string | null,
+ *   offeredAs: 'head' | 'partner' | null }} The offer fields a line records.
+ */
+export function offerLineFields(offer) {
+  return {
+    offeredCommand: offer.offeredCommand ?? null,
+    offeredPolicy: offer.offeredPolicy ?? null,
+    offeredAs: offer.offeredAs ?? null,
+  };
+}
+
 // A placeholder keeps the fixed prompts free of a path that only exists on the
 // machine the arm runs on.
 function promptFor(rowId, fixture) {
@@ -1182,8 +1200,7 @@ async function runTurn(job, options, exempt, isFirst) {
     : await briefDelivered({ runtime: job.runtimeName, locator, loadSession: loadSharedSession });
   appendRunLine(options.out, {
     ...line,
-    offeredCommand: offer.offeredCommand,
-    offeredPolicy: offer.offeredPolicy,
+    ...offerLineFields(offer),
     briefDelivered: delivered,
     restored,
     ...(restore !== null && restore.leftoverPaths.length > 0

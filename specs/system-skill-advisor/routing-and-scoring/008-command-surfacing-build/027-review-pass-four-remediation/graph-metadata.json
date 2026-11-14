@@ -42,11 +42,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "scratch/rescore-delta.txt",
       ".skilled/skills/system-skill-advisor/README.md",
       ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
       ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md",
       ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt",
-      ".skilled/commands/deep/review.md"
+      ".skilled/commands/deep/review.md",
+      "scratch/floor-before.txt",
+      "scratch/eval-before.txt",
+      "scratch/fit-before.txt",
+      "scratch/repro-before.txt",
+      "scratch/repro-after.txt"
     ],
     "entities": [
       {
@@ -80,6 +86,12 @@
         "source": "derived"
       },
       {
+        "name": "rescore-delta.txt",
+        "kind": "file",
+        "path": "scratch/rescore-delta.txt",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/skills/system-skill-advisor/README.md",
@@ -107,6 +119,36 @@
         "name": "review.md",
         "kind": "doc",
         "path": ".skilled/commands/deep/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "floor-before.txt",
+        "kind": "file",
+        "path": "scratch/floor-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "eval-before.txt",
+        "kind": "file",
+        "path": "scratch/eval-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "fit-before.txt",
+        "kind": "file",
+        "path": "scratch/fit-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "repro-before.txt",
+        "kind": "file",
+        "path": "scratch/repro-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "repro-after.txt",
+        "kind": "file",
+        "path": "scratch/repro-after.txt",
         "source": "derived"
       },
       {
@@ -156,47 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Measured Behavior",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Fix",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A reader who writes `do not run /create:agent or /create:readme` still gets `/create:readme (start)` on the top row, and a reader who asks `Is the /doctor:update command safe?` gets `/doctor:update (ask)`",
     "created_at": "2026-11-14T16:35:21Z",
-    "last_save_at": "2026-11-14T17:14:08.041Z",
+    "last_save_at": "2026-11-14T18:15:40.205Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +212,12 @@
       "acceptance-criteria.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:d089770b45a1b9022ce4d318de4f3ea316d07aee272637d9aff00069e433b505",
+    "source_fingerprint": "sha256:64099fe189d6e1933d759b14ed5cb1c8164c1389e95324261359ce45a50ed26d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b15ac7836c0d50f40542d94468e7f7257280270d86fdcc6a92abad57860deac4",
       "plan.md": "4aafeb45b03aae83c48a99f45a79ed82c44254664a38f3fc144272cbe9f8fd4a",
-      "tasks.md": "04536fbfa8e7e8d6c5f7f8f335e23c763821f5b30f17752afae12813c1df9fa6"
+      "tasks.md": "744a86fc8ec0eaed15fb08f9af124fb15fc5ebbfd6adadbac017c2e2f9f8847d"
     },
     "last_active_at": null
   }
