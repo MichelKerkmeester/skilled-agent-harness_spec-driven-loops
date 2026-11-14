@@ -1,0 +1,13 @@
+TASK: one literal replacement in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-review/SKILL.md (read lines 168 to 176 only)
+
+EDIT. In the line that starts with `It never starts with`, replace the literal text
+It never starts with `Review status:` or `Not checked:`, so
+with the literal text
+It never starts with `Review status:`, `Not checked:` or `Overall assessment`, so
+Keep the rest of that line byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'Not checked:` or `Overall assessment`' .skilled/skills/sk-code/sk-code-review/SKILL.md; echo "exit $?"
+Expected output: `1` then `exit 0`

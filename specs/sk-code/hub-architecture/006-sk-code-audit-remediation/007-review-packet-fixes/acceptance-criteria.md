@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes"
-    last_updated_at: "2026-11-14T12:01:56Z"
+    last_updated_at: "2026-11-14T16:29:21Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Marked every criterion with observed evidence"
+    next_safe_action: "None, the packet is closeable"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-007-review-packet-fixes"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** `007-review-packet-fixes`
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-14
 <!-- /ANCHOR:metadata -->
 
@@ -51,12 +51,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |---|---|---|---|---|---|
-| AC-001 | REQ-001 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | `grep -c '^\| RV-.*\| - \|$' specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md` prints 0, so every row carries fix evidence or `no change`. | Unmet | - |
-| AC-002 | REQ-002 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | `node --test .skilled/skills/sk-code/sk-code-review/scripts/tests` passes. | Unmet | - |
-| AC-003 | REQ-003 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | `rg -c 'lite.*only when' .skilled/skills/sk-code/sk-code-review/SKILL.md` prints 1, when row `RV-02` held. | Unmet | - |
-| AC-004 | REQ-004 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | The review copy canary named in `.skilled/skills/sk-code/sk-code-review/scripts/README.md` still passes after rows `RV-04` to `RV-06`. | Unmet | - |
-| AC-005 | REQ-005 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | No file outside `sk-code-review/` and the ledger appears in `git diff --stat` for this phase's commits. | Unmet | - |
-| AC-006 | REQ-006 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | The newest file in `.skilled/skills/sk-code/sk-code-review/changelog/` matches the `version` in `.skilled/skills/sk-code/sk-code-review/SKILL.md`. | Unmet | - |
+| AC-001 | REQ-001 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | `grep -c '^\| RV-.*\| - \|$' specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md` prints 0, so every row carries fix evidence or `no change`. Observed: `0` on 2026-11-14 at `1dca9e88ad`. | Met | - |
+| AC-002 | REQ-002 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | `node --test .skilled/skills/sk-code/sk-code-review/scripts/tests` passes. Observed: exit 0 with 0 tests, as at the baseline. The folder's one test is `check-rule-copies.test.sh`, which prints `All rule-canary test cases passed` and exits 0. | Met | - |
+| AC-003 | REQ-003 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | `rg -c 'lite.*only when' .skilled/skills/sk-code/sk-code-review/SKILL.md` prints 1, when row `RV-02` held. Observed: `1`. | Met | - |
+| AC-004 | REQ-004 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | The review copy canary named in `.skilled/skills/sk-code/sk-code-review/scripts/README.md` still passes after rows `RV-04` to `RV-06`. Observed: `node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js` exits 0 and its shell test passes. | Met | - |
+| AC-005 | REQ-005 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | No file outside `sk-code-review/` and the ledger appears in `git diff --stat` for this phase's commits. Observed: `git show --stat 1dca9e88ad` lists thirteen files, all under `sk-code-review/`. The docs commit holds the ledger and this packet's own documents. | Met | - |
+| AC-006 | REQ-006 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | The newest file in `.skilled/skills/sk-code/sk-code-review/changelog/` matches the `version` in `.skilled/skills/sk-code/sk-code-review/SKILL.md`. Observed: `v1.9.17.0.md` is the newest file and `SKILL.md` holds `version: 1.9.17.0`. | Met | - |
 
 ### Status values
 
@@ -81,7 +81,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-No criterion is met yet, because this phase is planned and not started.
+Six criteria are met with the outputs observed on 2026-11-14 at commit `1dca9e88ad`.
 <!-- /ANCHOR:closure -->

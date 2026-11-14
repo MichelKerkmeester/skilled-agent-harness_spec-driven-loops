@@ -71,6 +71,11 @@ and findings belong here.
 |------|-------|----------|
 | Spec, plan, tasks and acceptance criteria authored | Done | Written on 2026-11-14 from the audit evidence in `../001-finding-verification/` |
 | Implementation | Pending | Not started |
+| Phase 007 closed | Done | Code 1dca9e88ad. Six criteria Met. Twelve RV rows fixed, RV-11 closed with no change. 23 DeepSeek V4.1 Flash dispatches through cli-pi |
+| Edge cases | Recorded | No row was Refuted, so the empty case did not arise. All 13 rows held: twelve were fixed in one commit, not one commit each, on the operator's commit policy. One reworded Extension Floor made the canary exit 1, and it exited 0 after the restore |
+| Deviation: T014's verify prints 1, not 2 | Recorded | Lines 18 to 21 of the fix-completeness checklist can hold one divider. Line 19 is the divider and line 21 the first H2, the shape of the other five assets |
+| Deviation: REQ-002's command runs no test | Recorded | node --test on scripts/tests exits 0 with 0 tests, at the baseline and now. The folder's one test is check-rule-copies.test.sh, which passes |
+| Finding outside the ledger: a playbook row names the wrong gate | Open | minimum-evidence-gate.md line 179 calls pr-state-dedup.md the gate the depth alias maps lite onto. lite maps onto M-2 |
 
 ### Deviations and findings
 

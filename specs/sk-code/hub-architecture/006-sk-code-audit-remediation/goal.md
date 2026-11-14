@@ -121,6 +121,7 @@ and findings belong here.
 | Operator answers 2026-11-14 for phase 005 | Done | Remove one blank line from skilled-loop-shell.sh in place of a top-level set. Revert the 22 Pi extension headers and exempt one-line re-export files in the drift guard, because the mirror-parity gate requires one line per file |
 | Criterion 3 quotes a line the battery never prints | Open | The battery's pass line is STATUS=OK legs=9 with exit 0. Phase 005 ADR-001 records it. The criterion text is frozen, so the operator decides whether to amend it |
 | Phase 006 skilled packet fixes | Done | Code ac50644619. No SK row has a dash as its fix evidence. Packet version 2.2.0.0. Three findings outside the ledger are in the phase 006 goal log for the operator |
+| Phase 007 review packet fixes | Done | Code 1dca9e88ad. No RV row has a dash as its fix evidence. Packet version 1.9.17.0. One finding outside the ledger is in the phase 007 goal log for the operator |
 
 ### Deviations and findings
 

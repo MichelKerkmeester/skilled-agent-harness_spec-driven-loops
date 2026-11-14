@@ -1,0 +1,13 @@
+TASK: one literal replacement in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-review/README.md (read lines 147 to 157 only)
+
+EDIT. In the line that starts with ``The optional `SK_CODE_REVIEW_DEPTH=lite|full|ultra` alias``, replace the literal text
+`lite` maps to the conservative skip.
+with the literal text
+`lite` applies the conservative skip only when the `SK_CODE_REVIEW_MIN_CHANGED_LINES` threshold is set.
+Keep the rest of that line byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'lite` maps to' .skilled/skills/sk-code/sk-code-review/README.md; echo "exit $?"
+Expected output: `exit 1`
