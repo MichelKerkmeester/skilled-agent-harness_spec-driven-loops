@@ -37,14 +37,14 @@ Three workflow files change: `speckit-implement.yaml`, `speckit-complete.yaml` a
 <!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Phases 1 to 3 are closed: `rg -l '\| Unmet \|' specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/00[123]-*/acceptance-criteria.md` prints nothing
-- [ ] The review step keys are known: `rg -n 'available_at_step' .skilled/commands/speckit/assets/speckit-implement.yaml` names a step key that exists under `workflow:`
-- [ ] The baseline is recorded: `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` prints `Result: passed=150 failed=0`
+- [x] Phases 1 to 3 are closed: `rg -l '\| Unmet \|' specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/00[123]-*/acceptance-criteria.md` prints nothing
+- [x] The review step keys are known: `rg -n 'available_at_step' .skilled/commands/speckit/assets/speckit-implement.yaml` names a step key that exists under `workflow:`
+- [x] The baseline is recorded: `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` prints `Result: passed=154 failed=0`
 
 ### Definition of Done
-- [ ] Every row in `acceptance-criteria.md` is `Met`
-- [ ] `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` prints a `Result:` line with `failed=0`
-- [ ] Docs updated (spec/plan/tasks) and `validate.sh <this folder> --strict --quiet` prints `RESULT: PASSED`
+- [x] Every row in `acceptance-criteria.md` is `Met`
+- [x] `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` prints a `Result:` line with `failed=0`
+- [x] Docs updated (spec/plan/tasks) and `validate.sh <this folder> --strict --quiet` prints `RESULT: PASSED`
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -113,7 +113,7 @@ Verification runs each requirement's `rg` or `awk` command, the command workflow
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Unit | Each requirement's text check in the three workflow files | `rg` and `awk`, run per file as each `spec.md` requirement names |
-| Integration | The workflow contracts the existing suite asserts | `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` prints `failed=0`. Baseline before this phase: `Result: passed=150 failed=0` |
+| Integration | The workflow contracts the existing suite asserts | `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` prints `failed=0`. Baseline before this phase: `Result: passed=154 failed=0` |
 | Manual | Read the edited review step in implement and complete end to end | Read the step and confirm the dispatch, the verdict branch and the single re-dispatch appear in that order |
 <!-- /ANCHOR:testing -->
 
