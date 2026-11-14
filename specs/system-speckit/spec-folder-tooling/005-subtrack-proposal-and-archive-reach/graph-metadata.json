@@ -221,7 +221,7 @@
     ],
     "causal_summary": "Subtracks exist in system-spec-kit only as a hand-written declaration, one level deep, and three gaps follow from that",
     "created_at": "2026-11-13T10:07:28Z",
-    "last_save_at": "2026-11-14T13:18:23.051Z",
+    "last_save_at": "2026-11-14T14:04:03.241Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -229,11 +229,11 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:ca815f0dfb6a8fc2e3d85c7a953e713504768957ba387e9871dc10c0ed4bf759",
+    "source_fingerprint": "sha256:52270c8f16a6f3f3252da654b7d58f140e62f68a42969f4b73c1754748fbe15b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aa9457c16561ec8baaaae9fb3aa0197a5d0b62575bff44e56bb32f58f1c4fe8b",
-      "decision-record.md": "90e061b9abe4712e1fbec5425d42a5a666940ba767525e26d52a5e2c94cc59af"
+      "spec.md": "0ee71d08e6d0d871a073afeecc7b47b0e20d524cb702b2f86059bebd11747c8b",
+      "decision-record.md": "d7935cec43beefd3fb1f51dd93cc99cfa1d8de33314360a0a126e768205511dc"
     },
     "last_active_child_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/011-relocate-and-restore-fixes",
     "last_active_at": "2026-11-14T13:14:36.494Z"

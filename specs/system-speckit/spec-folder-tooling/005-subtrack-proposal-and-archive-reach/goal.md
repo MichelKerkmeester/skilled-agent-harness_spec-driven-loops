@@ -143,6 +143,7 @@ and findings belong here.
 | Criteria 2 and 3 rerun on the final tree 2026-11-14 | Done | The earlier criteria row leaned on tests for 2 and 3, so both were rerun literally in a throwaway clone of `96ea4dc02a` with its own runtime build. 2: a 10-packet track `clus` with a track root, `suggest-subtracks.mjs --track clus` exit 0 with a 10-entry map in two groups, `relocate.mjs --map` dry run exit 1 with `moves=10 moved=0 rewrites=21 identity=10 roots=3 ledger=10` and no refusal, `git status --porcelain` empty before and after. 3: with `specs/demo/001-a` live and `z_archive/007-b` archived by `archive.sh`, `create.sh --track demo --skip-branch` exit 0 created `008-next-one`. With `002-gamma` archived from a two-phase parent, `create.sh --phase --parent` created `003-delta` with Predecessor `001-alpha`. Clone deleted afterwards |
 | Docs written by the orchestrator | Deviation | The claude2 account hit its usage limit. The operator chose that this session writes the phase docs from the saved build evidence |
 | Phase 011 relocate and restore fixes | Complete | f6825d19b2; three suites 115 passed, npm test 2613 passed exit 0, recursive strict 14 PASSED |
+| Phase 012 catalog and playbook alignment | Complete | scenarios 492-494 run verbatim, sk-doc validators exit 0, recursive strict 14 PASSED |
 
 ### Deviations and findings
 

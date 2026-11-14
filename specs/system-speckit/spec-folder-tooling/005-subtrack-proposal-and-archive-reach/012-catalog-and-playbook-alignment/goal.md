@@ -53,11 +53,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `rg -n 'RESULT: FAILED' .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-packet-relocation.md` prints a line
-- [ ] `rg -n 'flat packets' .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md` prints a line
-- [ ] `rg -n 'archivedPaths' .skilled/skills/system-spec-kit/feature-catalog/retrieval/rg-archive-search.md .skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/rg-archive-search.md` prints a line for each file
-- [ ] The proposal playbook scenario runs the printed map through `relocate.mjs --map` in a `mktemp` copy of the tooling, and that step run by hand exits 1 with no refusal
-- [ ] The sk-doc catalog and playbook validators exit 0 on every changed page
+- [x] `rg -n 'RESULT: FAILED' .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-packet-relocation.md` prints a line Evidence: one line, the exit paragraph.
+- [x] `rg -n 'flat packets' .skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md` prints a line Evidence: one line, the restore paragraph.
+- [x] `rg -n 'archivedPaths' .skilled/skills/system-spec-kit/feature-catalog/retrieval/rg-archive-search.md .skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/rg-archive-search.md` prints a line for each file Evidence: one line in each file.
+- [x] The proposal playbook scenario runs the printed map through `relocate.mjs --map` in a `mktemp` copy of the tooling, and that step run by hand exits 1 with no refusal Evidence: scratch/playbook-run.txt, `PREFLIGHT_EXIT=1` with five move lines and no refusal.
+- [x] The sk-doc catalog and playbook validators exit 0 on every changed page Evidence: scratch/validators.txt, every run exit 0.
 <!-- /ANCHOR:completion -->
 
 ---

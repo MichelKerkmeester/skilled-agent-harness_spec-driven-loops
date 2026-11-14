@@ -16,7 +16,8 @@
       "feature catalog relocation exit 3",
       "catalog and playbook alignment plan",
       "catalog and playbook alignment tasks",
-      "catalog and playbook alignment goal"
+      "catalog and playbook alignment goal",
+      "catalog and playbook alignment implementation summary"
     ],
     "key_topics": [
       "catalog",
@@ -29,16 +30,28 @@
       "plan",
       "tasks",
       "goal",
-      "phases",
-      "changed"
+      "implementation",
+      "summary"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
+      "implementation-summary.md",
+      "feature-catalog/tooling-and-scripts/spec-packet-relocation.md",
+      "feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md",
+      "feature-catalog/retrieval/rg-archive-search.md",
+      "feature-catalog/tooling-and-scripts/sub-track-proposal.md",
+      "feature-catalog/feature-catalog.md",
+      "manual-testing-playbook/tooling-and-scripts/spec-packet-relocation.md",
+      "manual-testing-playbook/tooling-and-scripts/sub-track-proposal.md",
+      "manual-testing-playbook/retrieval/rg-archive-search.md",
+      "scratch/setup-notes.md",
+      "scratch/playbook-run.txt",
+      "scratch/validators.txt",
       ".skilled/skills/sk-doc/sk-create-feature-catalog/SKILL.md",
       ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
       "runtime/cli/spec/README.md"
@@ -66,6 +79,60 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-packet-relocation.md",
+        "kind": "doc",
+        "path": "feature-catalog/tooling-and-scripts/spec-packet-relocation.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-lifecycle-automation.md",
+        "kind": "doc",
+        "path": "feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md",
+        "source": "derived"
+      },
+      {
+        "name": "rg-archive-search.md",
+        "kind": "doc",
+        "path": "feature-catalog/retrieval/rg-archive-search.md",
+        "source": "derived"
+      },
+      {
+        "name": "sub-track-proposal.md",
+        "kind": "doc",
+        "path": "feature-catalog/tooling-and-scripts/sub-track-proposal.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": "feature-catalog/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "setup-notes.md",
+        "kind": "doc",
+        "path": "scratch/setup-notes.md",
+        "source": "derived"
+      },
+      {
+        "name": "playbook-run.txt",
+        "kind": "file",
+        "path": "scratch/playbook-run.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validators.txt",
+        "kind": "file",
+        "path": "scratch/validators.txt",
         "source": "derived"
       },
       {
@@ -133,79 +200,27 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Documentation",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow Script",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Every Verify",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Scope",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "its",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Phases 006 to 010 changed what `relocate.mjs`, `archive.sh`, `rg-wrapper.mjs` and `suggest-subtracks.mjs` do, and only `runtime/cli/spec/README.md` was updated for one of those changes",
     "created_at": "2026-11-14T11:10:41Z",
-    "last_save_at": "2026-11-14T11:35:12.714Z",
+    "last_save_at": "2026-11-14T14:03:10.254Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ad404fb73bc0b7c8fd602da50f5ec385e772d0e882f5c26f53c138c7ac5d510d",
+    "source_fingerprint": "sha256:eacf5eb9276d48d02ece84b67283b659b0512a4fea39745b8a7a5801c2ad7a90",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e8f1284fa3bef1468d80b8e4786c741b559375d65618918130c5d6489219aa9c",
+      "spec.md": "36bf94e10c652c6ecd2abf0777733bcd171068ed567536b6d184594a5c955c9a",
       "plan.md": "02641aa44ef76f2dc221fe3cdf35527b0237e91145767355a14421f8fd25e075",
-      "tasks.md": "994f607a5dcb5f71afb65f832e844c9428fec4104903a61ab98f9f9dd4a17961"
+      "tasks.md": "d25aaeb6759097b33753c1763c093b3a540654e19b579cde00a5bc8748f1747a",
+      "implementation-summary.md": "e01b5e0f00d3108f0da1008e61ca77a844f7035c4a081f9a92a70bcb821e4047"
     },
     "last_active_at": null
   }

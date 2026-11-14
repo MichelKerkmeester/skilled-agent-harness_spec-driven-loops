@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach"
     last_updated_at: "2026-11-14T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Added operator decisions Q019 to Q023 of 2026-11-14 by hand"
+    recent_action: "Added operator decisions Q019 to Q026 of 2026-11-14 by hand"
     next_safe_action: "Review the recorded operator decisions"
     blockers: []
     key_files: []
@@ -57,6 +57,9 @@ _memory:
 | Q021 | Reinstall dsh 0.2.2-rc.1 for the phase 011 build, after the global dsh changed to 0.2.2-rc.3. The build called the pinned rc.1 by its absolute path. | Not stated. | None | 011-relocate-and-restore-fixes implementation-summary.md |
 | Q022 | dsh is re-pinned to 0.2.2-rc.3, in a packet of its own outside this one. | The chosen option read: re-pin offline first as hard-rules.json requires, in its own packet; phase 011 stays on rc.1 meanwhile. | None | Not carried in this packet; the re-pin packet is not started |
 | Q023 | The main checkout's uncommitted copies of the phase 011 to 013 planning files are removed before worktree 378 merges into main, not now. | Not stated. | None | The session handoff note of 2026-11-14 |
+| Q024 | This session builds phases 012 and 013. | Not stated. The recommended option said this session holds the phase 011 diff that 013 must describe. | Q012 for the implementation of phases 012 and 013 | 012-catalog-and-playbook-alignment, 013-skill-docs-and-housekeeping |
+| Q025 | The phase 009 routing review in phase 013 is done by Fable 5.2 at high effort through claude2. | Not stated. | None | 013-skill-docs-and-housekeeping REQ-008 |
+| Q026 | Worktree 375 and its local branch worktrees/375-subtrack-review-remediation are removed now. | Not stated. The branch was already merged into main. | None | Done 2026-11-14: `git worktree remove` and `git branch -d` |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -365,6 +368,33 @@ Asked through AskUserQuestion on 2026-11-14. Question: what to do with the uncom
 Operator answer:
 ```text
 Remove before merge (Recommended)
+```
+
+### Q024
+
+Asked through AskUserQuestion on 2026-11-14. Question: who builds the documentation phases 012 and 013. Options: this session, DeepSeek via dsh, or Fable 5.2 via claude2.
+
+Operator answer:
+```text
+This session (Recommended)
+```
+
+### Q025
+
+Asked through AskUserQuestion on 2026-11-14. Question: who does the phase 013 review of the phase 009 routing change. Options: a fresh Fable 5.2 high, or this session.
+
+Operator answer:
+```text
+use claude2 for fable 5.2 high
+```
+
+### Q026
+
+Asked through AskUserQuestion on 2026-11-14. Question: remove worktree 375 and branch worktrees/375-subtrack-review-remediation, already merged into main. Options: remove now, or leave it for now.
+
+Operator answer:
+```text
+Remove now (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
