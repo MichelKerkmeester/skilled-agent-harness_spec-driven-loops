@@ -70,6 +70,7 @@ phase and binds as if written here.
 | 006-skilled-packet-fixes | `006-skilled-packet-fixes/goal.md` |
 | 007-review-packet-fixes | `007-review-packet-fixes/goal.md` |
 | 008-quality-packet-fixes | `008-quality-packet-fixes/goal.md` |
+| 009-out-of-ledger-findings | `009-out-of-ledger-findings/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -83,11 +84,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `grep -c '| - |$' specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md` prints 0, so every finding row carries fix evidence or `no change`.
-- [ ] For every line tagged `frontend` in `specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/scratch/probes.txt`, `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<prompt>"` prints a decision that contains `"workflowMode":"sk-code-frontend"`, and for every line tagged `negative` it does not.
-- [ ] `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` ends with `STATUS=OK legs=9` and exits 0.
-- [ ] `grep -L 'Closeable:\*\* Yes' specs/sk-code/hub-architecture/006-sk-code-audit-remediation/0*/acceptance-criteria.md` prints nothing.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/hub-architecture/006-sk-code-audit-remediation --recursive --strict --quiet` prints `RESULT: PASSED` on every line.
+- [x] `grep -c '| - |$' specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md` prints 0, so every finding row carries fix evidence or `no change`.
+- [x] For every line tagged `frontend` in `specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/scratch/probes.txt`, `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<prompt>"` prints a decision that contains `"workflowMode":"sk-code-frontend"`, and for every line tagged `negative` it does not.
+- [x] `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` ends with `STATUS=OK legs=9` and exits 0.
+- [x] `grep -L 'Closeable:\*\* Yes' specs/sk-code/hub-architecture/006-sk-code-audit-remediation/0*/acceptance-criteria.md` prints nothing.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/hub-architecture/006-sk-code-audit-remediation --recursive --strict --quiet` prints `RESULT: PASSED` on every line.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -125,6 +126,10 @@ and findings belong here.
 | Phase 008 quality packet fixes | Done | Code 3c7926322b. No QL row has a dash as its fix evidence. Packet version 1.13.20.0. Two findings outside the ledger are in the phase 008 goal log for the operator |
 | Session of 2026-11-14 closed phases 007 and 008 | Done | Code 1dca9e88ad and 3c7926322b. Criteria 1, 2, 4 and 5 pass as written. Criterion 3 prints STATUS=OK legs=9 with exit 0, and its text waits on the operator |
 | Operator answer 2026-11-14: amend criterion 3 to the line the battery prints | Done | The criterion now reads STATUS=OK legs=9 with exit 0. The phase 005 goal and the parent phase map row match it. Phase 005 ADR-001 holds the reasoning |
+| Operator instruction 2026-11-14: fix open items | Done | Phase 009 added for the findings phases 006 to 008 logged outside the ledger. Ledger row H7 stays out by the earlier answer |
+| Phase 009 out-of-ledger findings | Done | Code 7f35cb2db1. Ten criteria Met. Packet versions 2.2.1.0, 1.9.18.0 and 1.13.21.0. Two findings outside the phase are in the phase 009 goal log for the operator |
+| Operator confirmation for compiled-route-surface-hint.test.cjs line 163 | Assumed | fix open items is read as the acknowledgement. Phase 002 CHK-012 is ticked with that reading as its evidence |
+| Five completion criteria rerun from the final state | Done | Ledger open rows 0. Probe replay 13 of 13 frontend, 1 of 1 review, 0 of 8 negative. Battery STATUS=OK legs=9 exit 0. No acceptance file lacks Closeable Yes over 9 files. Recursive strict validation RESULT: PASSED on 10 lines. Parent status Complete |
 
 ### Deviations and findings
 

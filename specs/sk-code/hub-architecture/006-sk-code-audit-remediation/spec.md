@@ -45,14 +45,14 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/379-sk-code-audit-remediation` |
 | **Parent Spec** | None. This is a top-level packet in the `sk-code/hub-architecture` track |
 | **Parent Packet** | sk-code/hub-architecture/006-sk-code-audit-remediation |
 | **Predecessor** | 005-private-surface-skills |
 | **Successor** | None |
-| **Handoff Criteria** | Every row of `001-finding-verification/findings-ledger.md` carries fix evidence, the probe replay shows the frontend surface reached, and the sk-code setup battery prints `STATUS=PASS` |
+| **Handoff Criteria** | Every row of `001-finding-verification/findings-ledger.md` carries fix evidence, the probe replay shows the frontend surface reached, and the sk-code setup battery prints `STATUS=OK legs=9` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -81,6 +81,7 @@ Every audit finding is either fixed with a command that proves it or closed with
 - Make a vocabulary mismatch between the hub's copies fail a guard.
 - Bring the hub router's prose in line with its machine map and turn the setup battery green.
 - Fix the confirmed findings in `sk-code-skilled`, `sk-code-review` and `sk-code-quality`.
+- Fix the findings those three phases logged outside the ledger.
 
 ### Out of Scope
 - `sk-code-ci` content. The audit raised no finding against it. Its vocabulary copies are compared by the phase 004 guard and are not edited.
@@ -103,9 +104,9 @@ Every audit finding is either fixed with a command that proves it or closed with
 | `.skilled/skills/sk-code/sk-code-skilled/scripts/verify-router-sync.cjs` | Modify | 004 | Vocabulary comparison leg and its test |
 | `.skilled/commands/doctor/scripts/sk-code-setup-check.cjs` | Modify | 005 | Exit status follows the status line |
 | `.pi/extensions/*.ts`, `.skilled/bin/skilled-loop-shell.sh` | Modify | 005 | The 23 drift-guard errors, only after the operator answers the open question |
-| `.skilled/skills/sk-code/sk-code-skilled/` | Modify | 005, 006 | Confirmed `SK` rows |
-| `.skilled/skills/sk-code/sk-code-review/` | Modify | 007 | Confirmed `RV` rows |
-| `.skilled/skills/sk-code/sk-code-quality/` | Modify | 005, 008 | Confirmed `QL` rows |
+| `.skilled/skills/sk-code/sk-code-skilled/` | Modify | 005, 006, 009 | Confirmed `SK` rows |
+| `.skilled/skills/sk-code/sk-code-review/` | Modify | 007, 009 | Confirmed `RV` rows |
+| `.skilled/skills/sk-code/sk-code-quality/` | Modify | 005, 008, 009 | Confirmed `QL` rows |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -125,6 +126,7 @@ Every audit finding is either fixed with a command that proves it or closed with
 | 6 | 006-skilled-packet-fixes/ | Fix the confirmed `SK` rows in `sk-code-skilled` | Complete |
 | 7 | 007-review-packet-fixes/ | Fix the confirmed `RV` rows in `sk-code-review` | Complete |
 | 8 | 008-quality-packet-fixes/ | Fix the confirmed `QL` rows in `sk-code-quality` | Complete |
+| 9 | 009-out-of-ledger-findings/ | Fix the findings phases 006 to 008 logged outside the ledger, and close the phase 002 checklist line that waited on the operator | Complete |
 
 ### Phase Transition Rules
 
@@ -144,6 +146,7 @@ Every audit finding is either fixed with a command that proves it or closed with
 | 005-hub-router-alignment | 006-skilled-packet-fixes | The setup battery prints `STATUS=OK legs=9` and exits 0 | `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` |
 | 006-skilled-packet-fixes | 007-review-packet-fixes | No `SK` ledger row has `-` as its fix evidence | `grep -c '^| SK-.*| - |$' findings-ledger.md` prints 0 |
 | 007-review-packet-fixes | 008-quality-packet-fixes | No `RV` ledger row has `-` as its fix evidence | `grep -c '^| RV-.*| - |$' findings-ledger.md` prints 0 |
+| 008-quality-packet-fixes | 009-out-of-ledger-findings | No `QL` ledger row has `-` as its fix evidence | `grep -c '^| QL-.*| - |$' findings-ledger.md` prints 0 |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -11,7 +11,8 @@
     "sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment",
     "sk-code/hub-architecture/006-sk-code-audit-remediation/006-skilled-packet-fixes",
     "sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes",
-    "sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes"
+    "sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes",
+    "sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings"
   ],
   "manual": {
     "depends_on": [],
@@ -41,7 +42,7 @@
       "criteria"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -174,6 +175,12 @@
         "source": "derived"
       },
       {
+        "name": "Closeable Yes",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "a",
         "kind": "key_phrase",
         "path": "goal.md",
@@ -196,27 +203,21 @@
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
-      },
-      {
-        "name": "exit",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "An audit of the sk-code hub on 2026-11-14 produced 61 findings",
     "created_at": "2026-11-14T12:01:48Z",
-    "last_save_at": "2026-11-14T16:49:02.553Z",
+    "last_save_at": "2026-11-14T17:09:52.499Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:e27783b41f3bcd09d033088dc4b27cd9681b76e666cd55fd605b64048c314368",
+    "source_fingerprint": "sha256:a44a5b0640d620683c37bbb7592b93f8d98cf344ba60c7eb9afd971856c9c9ba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "9100553ebaf72ead905479da9fdc7f502cc0e78e81978ab968facadf9d517aa6"
+      "spec.md": "355ca2e1a5d9d0629c422ebd79eedaf027a0d9c3ebc8060a38ed1f57b561f726"
     },
     "last_active_child_id": "sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes",
     "last_active_at": "2026-11-14T16:49:02.553Z"

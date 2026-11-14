@@ -1,0 +1,42 @@
+TASK: create one new file with exactly the content given below.
+
+FILE TO CREATE: .skilled/skills/sk-code/sk-code-quality/changelog/v1.13.21.0.md
+
+The content is everything between the two marker lines below. Write it byte for byte, with a final newline after the last line. Do not add, drop, reword or reflow anything. Write the file in one write call. Read no other file.
+
+<<<FILE
+---
+title: "sk-code-quality v1.13.21.0, the tree is called SKILLED on every line"
+description: "v1.13.21.0 renames four lines. The README and `SKILL.md` call the tree SKILLED and keep OpenCode for the runtime."
+trigger_phrases:
+  - "sk-code-quality v1.13.21.0"
+  - "sk-code-quality 1.13.21.0"
+  - "quality packet out of ledger fixes"
+importance_tier: "normal"
+contextType: "general"
+version: 1.13.21.0
+---
+
+# v1.13.21.0, The Tree Is Called SKILLED on Every Line
+
+Four lines in the README and `SKILL.md` still called the tree OpenCode. They now say SKILLED. OpenCode remains where it names a runtime. No check, gate value or exit code changed.
+
+> Spec folder: `specs/sk-code/hub-architecture/006-sk-code-audit-remediation`
+
+&nbsp;
+
+## What's New at a Glance
+
+- **The README names SKILLED targets.** The use-it-for row and two target-family rows say SKILLED.
+- **The load table names SKILLED language files.** The language-files row in `SKILL.md` says SKILLED.
+
+&nbsp;
+
+## Upgrade
+
+No migration required.
+FILE>>>
+
+VERIFY (run from the repository root):
+sed -n 10p .skilled/skills/sk-code/sk-code-quality/changelog/v1.13.21.0.md
+Expected output: `version: 1.13.21.0`

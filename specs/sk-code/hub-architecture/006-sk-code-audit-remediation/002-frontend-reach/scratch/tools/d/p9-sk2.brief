@@ -1,0 +1,13 @@
+TASK: one literal replacement in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/assets/checklists/js-css-style/overview-header-and-comments.md (read lines 40 to 44 only)
+
+EDIT. In the paragraph that starts with `Comment rules are not here either.`, replace the literal text
+history comments (CHK-CMT-07) are universal rules
+with the literal text
+history comments are universal rules
+Keep the rest of that line byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'CHK-CMT' .skilled/skills/sk-code/sk-code-skilled/assets/checklists/js-css-style/overview-header-and-comments.md; echo "exit $?"
+Expected output: `exit 1`

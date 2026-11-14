@@ -1,0 +1,26 @@
+TASK: three literal replacements in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-quality/README.md (read lines 24 to 49 only)
+
+EDIT. Make these three replacements. Each old text appears once in the file.
+
+Replacement 1. In the table row that starts with `| **Use it for** |`, replace the literal text
+comment hygiene and OpenCode target-path checklists
+with the literal text
+comment hygiene and SKILLED target-path checklists
+
+Replacement 2. Replace the literal text
+| **OpenCode skills** |
+with the literal text
+| **SKILLED skills** |
+
+Replacement 3. Replace the literal text
+| **OpenCode agents and commands** |
+with the literal text
+| **SKILLED agents and commands** |
+
+Keep the rest of each line byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'OpenCode' .skilled/skills/sk-code/sk-code-quality/README.md; echo "exit $?"
+Expected output: `exit 1`

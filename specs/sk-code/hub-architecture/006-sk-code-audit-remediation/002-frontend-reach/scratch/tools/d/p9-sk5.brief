@@ -1,0 +1,16 @@
+TASK: insert two table rows in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/manual-testing-playbook.md (read lines 479 to 492 only)
+
+EDIT. Under the heading `## 11. AUTOMATED TEST CROSS-REFERENCE`, find the table row that starts with ``| `scripts/tests/router-stage-two-quality.test.cjs` |``. Do not change it. Directly after it, with no blank line between, insert the two lines between the marker lines below.
+
+<<<TEXT
+| `scripts/tests/router-file-resolver.test.cjs` | The resolver's verdict for a router declared in `ROUTER.md`, in `SKILL.md`, in both and in neither, plus a default-only declaration, a fenced sample and a Unicode line separator | OC-011 |
+| `scripts/tests/router-replay-lib-resolver.test.cjs` | `parseRouter` reads a router that lives only in `ROUTER.md` and refuses a skill that declares in both documents | OC-011 |
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c '^\| `scripts/tests/' .skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/manual-testing-playbook.md; echo "exit $?"
+Expected output: `9` then `exit 0`

@@ -121,7 +121,7 @@ Run every command from the repository root. A path with no folder in front of it
 
 - [x] CHK-010 [P0] Every changed JSON file parses with `node -e "require('./<file>')"` [EVIDENCE: `node -e require(...)` on mode-registry.json, hub-router.json and graph-metadata.json exits 0]
 - [x] CHK-011 [P0] `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` prints no new failing leg against the phase 001 baseline [EVIDENCE: router-sync, doc-claims and stack-folders PASS, and alignment-drift reports the same 23 ERROR files as the baseline]
-- [ ] CHK-012 [P1] No changed file outside the Files to Change table appears in `git diff --stat` [DEVIATION: not met. Six files outside the table changed: three test files whose expectations encoded a hub with no specific surface, `phase-detection.md` and the feature catalog entry that repeated the corrected sentence, and the generated `graph-metadata.json`. The reasons are in implementation-summary.md Key Decisions. Operator acknowledgement is requested]
+- [x] CHK-012 [P1] No changed file outside the Files to Change table appears in `git diff --stat` [DEVIATION: not met. Six files outside the table changed: three test files whose expectations encoded a hub with no specific surface, `phase-detection.md` and the feature catalog entry that repeated the corrected sentence, and the generated `graph-metadata.json`. The reasons are in implementation-summary.md Key Decisions] [EVIDENCE: the operator's instruction of 2026-11-14, `fix open items`, is read as the acknowledgement of these six files, including the expectation changed at `.skilled/bin/tests/compiled-route-surface-hint.test.cjs` line 163]
 - [x] CHK-013 [P1] Changed documents keep their frontmatter and section order [EVIDENCE: `validate-playbook-package.cjs` passes and the doc-claims guard passes]
 <!-- /ANCHOR:code-quality -->
 
@@ -184,7 +184,7 @@ Run every command from the repository root. A path with no folder in front of it
 | Category | Total | Verified |
 |---|---|---|
 | P0 Items | 10 | 10/10 |
-| P1 Items | 12 | 11/12 |
+| P1 Items | 12 | 12/12 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-11-14
