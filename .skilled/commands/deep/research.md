@@ -1,6 +1,6 @@
 ---
 description: "Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm."
-argument-hint: "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--dry-run]"
+argument-hint: "<topic> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--dry-run] [--restart]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch
 ---
 
@@ -14,8 +14,10 @@ Thin router for the deep-research loop. This command verifies the runtime agent,
 - **ALL** agent dispatching is handled by the YAML workflow steps.
 - **MARKDOWN OWNS SETUP**: resolve setup inputs here first, then hand off to YAML.
 - **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
-  - `research_topic`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`
+  - `research_topic`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`, `lineage_mode`
   - `dry_run` is normalized to `true` or `false`; absence means `false`
+
+In `:auto` mode, an explicit `--restart` or `--lineage-mode=restart` flag (invocation form `--restart|--lineage-mode=restart`) is operator authorization to archive the resolved research packet before fan-out or phase init. Do not ask for a second confirmation; preserve rollback by moving the timestamped archive directory back to `research/` if needed.
 
 ## 1. ROUTER CONTRACT
 
@@ -94,7 +96,7 @@ The research target is the bound spec_folder/target named in your message, never
 ## 3. MODE ROUTING
 
 1. Parse `$ARGUMENTS` for attached suffixes: `:auto` sets `execution_mode = AUTONOMOUS`; `:confirm` sets `execution_mode = INTERACTIVE`; no suffix sets `execution_mode = ASK`.
-2. Treat `--max-iterations`, `--convergence`, `--lineage-timeout-hours`, `--stop-policy`, `--dry-run`, `--spec-folder`, `--executor`, `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count`, `--executors`, `--concurrency`, and `--no-resource-map` as workflow inputs, not execution modes.
+2. Treat `--max-iterations`, `--convergence`, `--lineage-timeout-hours`, `--stop-policy`, `--dry-run`, `--spec-folder`, lifecycle flags (`--restart`, `--lineage-mode`), `--executor`, `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count`, `--executors`, `--concurrency`, and `--no-resource-map` as workflow inputs, not execution modes.
 3. For `:auto`, resolve setup from `$ARGUMENTS` flags, any `PRE-BOUND SETUP ANSWERS:` marker block, scope-extracted spec-folder paths, and the presentation contract's default resolution table. When all required fields are resolved, persist `{artifact_dir}/deep-research-config.json`, bind runtime YAML placeholders, and load `.skilled/commands/deep/assets/deep-research-auto.yaml`.
 4. In `:auto`, ask a targeted Tier-2 question only for `spec_folder` when the topic is present, names no resolvable spec folder, and the folder choice is ambiguous. Missing `research_topic` is absence, not ambiguity; use the named-missing-inputs fail-fast format from the auto-mode contract and do not load YAML.
 5. For `:confirm`, use the presentation contract's consolidated setup prompt to bind missing setup values, then load `.skilled/commands/deep/assets/deep-research-confirm.yaml`.
@@ -118,6 +120,7 @@ into `config`.
 | `--stop-policy` | `convergence` \| `max-iterations` | See Stop Policy Flag below. |
 | `--no-resource-map` | no value | Suppresses the `research/resource-map.md` write; `research.md` still emits. |
 | `--dry-run` | no value | See Dry-Run Flag below. |
+| `--restart`, `--lineage-mode` | `auto` \| `resume` \| `restart` | Session lifecycle intent, default `auto`. `resume` keeps the same `sessionId` and archives nothing; `restart`, which bare `--restart` selects, opens a new `sessionId` at generation+1 and archives the prior `research/`. `fork` and `completed-continue` are deferred and rejected. |
 | `--executor` | `TYPE` | Selects the executor kind, and is repeatable. Each occurrence opens a group accepting `--model=X`, `--config-dir=PATH`, `--reasoning-effort=LEVEL`, `--service-tier=TIER`, `--executor-timeout=SECONDS`, `--iters=N`, `--count=N` and `--label=X`. Which of those a given kind supports, and the fail-fast on an unsupported pairing, are in the presentation asset. |
 | `--executors` | `JSON` | Declares the executor matrix in one value; one expanded lineage selects `config.executor`, while two or more select `config.fanout`. |
 | `--concurrency` | `N` | Caps concurrent lineages in the fan-out pool. Default `2`. |

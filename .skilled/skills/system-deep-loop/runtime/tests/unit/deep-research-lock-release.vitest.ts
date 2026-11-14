@@ -129,3 +129,86 @@ describe('deep-loop lock release carries the acquire nonce', () => {
     expect(existsSync(lockPath)).toBe(false);
   });
 });
+
+describe('every terminal path after the acquire releases the lock', () => {
+  const LOCKED_WORKFLOWS = [
+    'deep-research-auto',
+    'deep-research-confirm',
+    'deep-review-auto',
+    'deep-review-confirm',
+  ];
+
+  for (const name of LOCKED_WORKFLOWS) {
+    it(`${name} routes to step_release_lock on every terminal path`, () => {
+      const text = readFileSync(resolve(ASSETS, `${name}.yaml`), 'utf8');
+      const lines = text.split(/\r?\n/u);
+      const acquireIndex = lines.indexOf('      step_acquire_lock:');
+      expect(acquireIndex).toBeGreaterThanOrEqual(0);
+
+      const problems: string[] = [];
+      let haltCount = 0;
+
+      for (let index = acquireIndex + 1; index < lines.length; index += 1) {
+        const line = lines[index];
+        const trimmed = line.trim();
+        const indent = line.slice(0, line.length - line.trimStart().length);
+
+        if (trimmed === 'halt: true') {
+          haltCount += 1;
+          const next = lines[index + 1] ?? '';
+          const nextTrimmed = next.trim();
+          const nextIndent = next.slice(0, next.length - next.trimStart().length);
+          if (nextIndent !== indent || nextTrimmed !== 'release_lock: step_release_lock') {
+            problems.push(
+              `line ${index + 1}: halt: true is not followed by release_lock: step_release_lock at the same indentation`,
+            );
+          }
+        }
+
+        if (
+          line.includes('fail closed: lost the packet lock')
+          && !line.includes('step_release_lock')
+        ) {
+          problems.push(`line ${index + 1}: a lost-lock failure does not route to step_release_lock`);
+        }
+
+        if (
+          (trimmed.startsWith('on_fail:') || trimmed.startsWith('on_missing_counters:'))
+          && /\bhalt\b/iu.test(line)
+          && !line.includes('step_release_lock')
+        ) {
+          problems.push(`line ${index + 1}: a halting failure branch does not route to step_release_lock`);
+        }
+
+        if (
+          line.includes('status: "CANCELLED"')
+          && !line.includes('release_lock: step_release_lock')
+        ) {
+          problems.push(`line ${index + 1}: a cancelled branch does not route to step_release_lock`);
+        }
+      }
+
+      for (let index = 0; index < acquireIndex; index += 1) {
+        if (lines[index].includes('step_release_lock')) {
+          problems.push(`line ${index + 1}: step_release_lock appears before the lock is acquired`);
+        }
+      }
+
+      for (let index = 0; index < lines.length; index += 1) {
+        if (lines[index].includes('applies_to: [')) {
+          problems.push(`line ${index + 1}: the retired applies_to list is still present`);
+        }
+      }
+
+      const releaseSteps = lines.filter((line) => line === '      step_release_lock:');
+      if (releaseSteps.length !== 1) {
+        problems.push(
+          `file: expected exactly one step_release_lock step, found ${releaseSteps.length}`,
+        );
+      }
+
+      expect(problems).toEqual([]);
+      expect(haltCount).toBeGreaterThan(0);
+    });
+  }
+});

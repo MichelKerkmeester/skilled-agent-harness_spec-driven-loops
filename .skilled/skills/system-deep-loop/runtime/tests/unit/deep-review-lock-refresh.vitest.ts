@@ -33,7 +33,7 @@ const { load: loadYaml } = sharedRequire('js-yaml') as { load: (source: string) 
 
 const WORKFLOW_FILES = ['deep-review-auto.yaml', 'deep-review-confirm.yaml'] as const;
 
-const LONG_TTL_ARG = '--ttl-ms 1800000';
+const LONG_TTL_ARG = '--ttl-ms {lock_ttl_ms}';
 const REFRESH_COMMAND = 'loop-lock.cjs refresh';
 const STALE_OVERRIDE_CLAIM = 'stale-lock override is confirm-only';
 

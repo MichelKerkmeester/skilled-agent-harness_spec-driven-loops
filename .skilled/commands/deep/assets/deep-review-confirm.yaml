@@ -100,7 +100,7 @@ state_write_protocol:
   applies_to: "every append_to_jsonl and append_jsonl directive in this workflow"
   refusal_handling: "halt on exit 2; never fall back to a direct file write. Exit 1 on a row that is still routed through the gateway is a workflow defect and halts; the pinned_bookkeeping rows are recorded through bookkeeping_log and are never routed."
   pinned_bookkeeping:
-    events: [config_warning, lock_released, pivot_confirm_accepted, manualStop, pivot_override_accepted]
+    events: [config_warning, lock_released, pivot_confirm_accepted, manualStop, pivot_override_accepted, maxDurationReached]
     directive: "bookkeeping_log"
     handling: "These rows are workflow bookkeeping that the review ledger schema pins to the legacy path: they have no lossless review-event target, so the gateway would refuse them with exit 1 and write nothing. They are never sent to the gateway. The step prints the row in its log line and continues; none of them is a halt condition."
   contract: |
@@ -303,11 +303,12 @@ workflow:
 
       step_acquire_lock:
         action: "Acquire the single-writer advisory lock before session classification"
-        command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs acquire --lock-path {state_paths.lock_file} --packet-id {spec_folder} --ttl-ms 1800000"
+        ttl_ms: "lock_ttl_ms = max(1800000, executor_timeout * 1000). executor_timeout is the bound dispatch timeout in seconds, 900 when unset. The lock is stale after twice this value, so it outlives the longest allowed dispatch."
+        command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs acquire --lock-path {state_paths.lock_file} --packet-id {spec_folder} --ttl-ms {lock_ttl_ms}"
         on_acquire: "Capture lock.ownerPid as captured_owner_pid and lock.acquireNonce as captured_acquire_nonce from the JSON output, and reuse both for every release below. If acquired=false, stop and present recovery choices — another deep-review run already holds this packet."
         note: "Uses the promoted runtime/ loop-lock CLI (single source of truth: stale-lock reclaim, clean owner-scoped release). macOS/BSD locking is advisory — best-effort single-writer, not a hard mutex across host calls. Acquire reclaims a stale lock itself and reports the old holder under `reclaimed`. A lock is stale when its heartbeat is older than twice its TTL, or when its owning process is known to be dead. No confirmation step exists in either mode: log a `reclaimed` holder and continue."
         on_halt:
-          action: "Release the lock before any terminal halt branch returns control"
+          action: "Every terminal halt after the acquire runs step_release_lock before it returns control"
           command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}; failures here are logged but do not block the halt"
         on_cancel:
           action: "Release the lock on user cancel or pause-sentinel detection before sentinel processing"
@@ -337,7 +338,7 @@ workflow:
           after_gate_refresh_lock:
             action: "Refresh the packet lock heartbeat immediately after the operator response"
             command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
-            on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+            on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet, so run step_release_lock and stop rather than continue without it."
           options: [resume, restart, cancel]
           on_resume_choice:
             before_append: "Run on_moved_legacy_state first when it applies."
@@ -347,14 +348,53 @@ workflow:
             append_jsonl: '{"stem":"deep_review.run_resumed","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation}},"data":{"priorTailDigest":"{prior_tail_digest}","sourceSessionId":"{session_id}","resumeReason":"Auto-resume: state artifacts are complete and consistent; continue the same lineage.","continuedFromRunId":"{session_id}-i{iteration_count}","compatibilityDecision":"exact","recoveryReceiptRef":"none"}}'
             skip_to: gate_init_approval
           on_restart_choice:
-            command: "if [ -d {state_paths.packet_dir} ]; then mkdir -p {state_paths.archive_root} && mv {state_paths.packet_dir} {state_paths.archive_root}/{timestamp_slug}; fi"
+            bind_prior_lineage:
+              action: "Read the session id and generation of the packet that is about to be archived"
+              command: |
+                node -e '
+                  const fs = require("fs");
+                  const crypto = require("crypto");
+                  let priorSessionId = null;
+                  let priorGeneration = 0;
+                  try {
+                    const config = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
+                    const lineage = config.lineage || config;
+                    priorSessionId = typeof lineage.sessionId === "string" ? lineage.sessionId : null;
+                    priorGeneration = Number(lineage.generation) || 0;
+                  } catch (error) {
+                    if (error.code !== "ENOENT") {
+                      console.error("The old config cannot be read: " + error.message);
+                      process.exit(1);
+                    }
+                  }
+                  let priorTailDigest = crypto.createHash("sha256").update("").digest("hex");
+                  try {
+                    priorTailDigest = crypto.createHash("sha256").update(fs.readFileSync(process.argv[2])).digest("hex");
+                  } catch (error) {
+                    if (error.code !== "ENOENT") throw error;
+                  }
+                  console.log(JSON.stringify({ priorSessionId, priorGeneration, priorTailDigest }));
+                ' "{state_paths.config}" "{state_paths.state_log}"
+              outputs:
+                - prior_session_id: "priorSessionId from the JSON output, null when no old config exists"
+                - prior_generation: "priorGeneration from the JSON output, 0 when no old config exists"
+                - prior_tail_digest: "priorTailDigest from the JSON output: the sha256 of the old state log bytes, or of zero bytes when no old state log exists"
+              on_fail: "Halt with STATUS=FAIL through step_release_lock. The old config is unreadable, so repair or archive the packet by hand."
+            command: |
+              if [ -e "{state_paths.archive_root}/{timestamp_slug}" ]; then
+                echo "The archive folder {state_paths.archive_root}/{timestamp_slug} is already there." >&2
+                exit 1
+              fi
+              mkdir -p "{state_paths.archive_root}/{timestamp_slug}" || exit 1
+              find "{state_paths.packet_dir}" -mindepth 1 -maxdepth 1 ! -name "$(basename "{state_paths.lock_file}")" -exec mv {} "{state_paths.archive_root}/{timestamp_slug}/" \; || exit 1
+              mkdir -p "{state_paths.prompt_dir}" "{state_paths.iteration_dir}" "{state_paths.delta_dir}"
+            on_fail: "Halt with STATUS=FAIL through step_release_lock. Never fall back to resume."
             set:
               lineage_mode: "restart"
-              parent_session_id: "{prior_session_id}"
-              generation: "{prior_generation + 1}"
             skip_to: step_create_config
           on_cancel_choice:
             halt: true
+            release_lock: step_release_lock
             message: "Review session preserved. Manually archive or edit review/ before re-running."
           note: "fork and completed-continue branches are deferred. The reducer still reads `lineageMode` from config for dashboards and analysis, but only `new`, `resume`, and `restart` are runtime-supported in this release. See deep-review/references/protocol/loop-protocol.md `Session Lifecycle` for the canonical one-session model."
         on_moved_legacy_state:
@@ -408,6 +448,7 @@ workflow:
           skip_to: phase_synthesis
         on_invalid_state:
           halt: true
+          release_lock: step_release_lock
           message: "Existing deep-review state in review/ is incomplete or contradictory. Repair or archive the invalid review packet before continuing."
         on_fresh:
           action: "Proceed with a new session"
@@ -491,13 +532,17 @@ workflow:
       step_create_config:
         action: "Create deep-review-config.json from template with review-specific fields"
         template: .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json
+        lineage_values:
+          generation_init: "{prior_generation + 1} when lineage_mode == 'restart', else 1"
+          lineage_mode_init: "restart when lineage_mode == 'restart', else new"
+          parent_session_id_init: "{prior_session_id} when lineage_mode == 'restart', else null"
         populate:
           topic: "Review: {review_target}"
           mode: "review"
           sessionId: "{session_id_init}"
-          parentSessionId: null
-          lineageMode: "new"
-          generation: 1
+          parentSessionId: "{parent_session_id_init}"
+          lineageMode: "{lineage_mode_init}"
+          generation: "{generation_init}"
           continuedFromRun: null
           reviewTarget: "{review_target}"
           reviewTargetType: "{review_target_type}"
@@ -588,7 +633,7 @@ workflow:
 
       step_create_findings_registry:
         action: "Initialize reducer-owned review findings registry"
-        content: '{"sessionId":"{session_id_init}","generation":1,"lineageMode":"new","openFindings":[],"resolvedFindings":[],"repeatedFindings":[],"dimensionCoverage":{"correctness":false,"security":false,"traceability":false,"maintainability":false},"findingsBySeverity":{"P0":0,"P1":0,"P2":0},"openFindingsCount":0,"resolvedFindingsCount":0,"convergenceScore":0.0}'
+        content: '{"sessionId":"{session_id_init}","generation":{generation_init},"lineageMode":"{lineage_mode_init}","openFindings":[],"resolvedFindings":[],"repeatedFindings":[],"dimensionCoverage":{"correctness":false,"security":false,"traceability":false,"maintainability":false},"findingsBySeverity":{"P0":0,"P1":0,"P2":0},"openFindingsCount":0,"resolvedFindingsCount":0,"convergenceScore":0.0}'
         output: "{state_paths.findings_registry}"
 
       step_create_strategy:
@@ -663,10 +708,10 @@ workflow:
         after_gate_refresh_lock:
           action: "Refresh the packet lock heartbeat immediately after the operator response"
           command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
-          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet, so run step_release_lock and stop rather than continue without it."
         on_A: { set: { current_iteration: 1, p0_count: 0, p1_count: 0, p2_count: 0 }, proceed_to: phase_loop }
         on_B: { action: "Apply user adjustments to strategy.md, scope, or dimensions", return_to: gate_init_approval }
-        on_C: { action: "Cancel workflow", status: "CANCELLED" }
+        on_C: { action: "Cancel workflow", status: "CANCELLED", release_lock: step_release_lock }
 
   # ═══════════════════════════════════════════════════════════════
   # PHASE 2: ITERATION LOOP
@@ -680,7 +725,33 @@ workflow:
       step_refresh_lock:
         action: "Refresh the packet lock heartbeat before the iteration begins"
         command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
-        on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than iterate without it."
+        on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet, so run step_release_lock and stop rather than iterate without it."
+
+      step_check_max_duration:
+        action: "Stop the loop when the run has used its wall-clock budget, and still synthesize"
+        command: |
+          node -e '
+            const config = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"));
+            const maxDurationMinutes = Number(config.maxDurationMinutes);
+            const startedMs = Date.parse(config.createdAt);
+            const elapsedMinutes = Math.floor((Date.now() - startedMs) / 60000);
+            const reached = Number.isFinite(maxDurationMinutes) && maxDurationMinutes > 0
+              && Number.isFinite(startedMs) && elapsedMinutes >= maxDurationMinutes;
+            console.log(JSON.stringify({ elapsedMinutes, maxDurationMinutes, reached }));
+          ' "{state_paths.config}"
+        outputs:
+          - duration_reached: "reached from the JSON output"
+          - elapsed_minutes: "elapsedMinutes from the JSON output"
+        note: "The clock starts at the createdAt of the current generation's config. A resume keeps it and a restart resets it, so paused and waiting time counts."
+        if_reached:
+          when: "duration_reached == true"
+          set: { decision: "STOP", reason: "maxDurationReached", stopReason: "maxDurationReached" }
+          bookkeeping_log: '{"type":"event","event":"maxDurationReached","mode":"review","run":{current_iteration},"stopReason":"maxDurationReached","elapsedMinutes":{elapsed_minutes},"maxDurationMinutes":{config.maxDurationMinutes},"timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
+          log: "Duration limit reached after {elapsed_minutes} minutes. Skipping dispatch and entering synthesis with partial findings."
+          skip_to: phase_synthesis
+          note: "The stop row is printed, not appended: the gateway refuses an event it has no ledger stem for. The reason reaches the synthesis report through the bound reason."
+        if_not_reached:
+          action: "Continue with the iteration"
 
       step_record_artifact_migration:
         action: "Record the legacy review state move once per session, after the run is open"
@@ -763,7 +834,7 @@ workflow:
         bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --convergence-mode "{convergence_mode}" --stop-decision --config-path "{state_paths.config}" --state-log "{state_paths.state_log}" --registry-path "{state_paths.findings_registry}" --iteration-count "{iteration_count}" --security-sensitive-fix-scope "{security_sensitive_fix_scope}" --fix-replay-required-rows "{fix_completeness_replay_required_rows}" --fix-replay-passing-rows "{fix_completeness_replay_passing_rows}"'
         note: "The script is the only place the stop decision is computed. step_check_convergence branches on its stop_decision output."
         append_jsonl: '{"stem":"deep_review.graph_convergence_evaluated","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation},"iterationId":"iteration-{current_iteration}"},"data":{"rawSignals":{graph_raw_signals_json},"weightedSignals":{graph_raw_signals_json},"dimensionCoverageDigest":"{dimension_coverage_digest}","protocolCoverageDigest":"{protocol_coverage_digest}","findingStability":"{finding_stability}","p0p1ResolutionState":"{p0p1_resolution_state}","evidenceDensity":{evidence_density},"hotspotSaturation":{hotspot_saturation},"decision":"{graph_decision_code}","policyFingerprint":"{policy_fingerprint}","blockerIds":{graph_blocker_ids_json},"stopCandidate":{stop_candidate},"graphDecision":"{graph_decision_code}","graphDigest":"{graph_digest}","signals":{graph_signals_json},"blockers":{graph_blockers_json}},"eventId":"graph-{session_id}-g{generation}-i{current_iteration}"}'
-        on_missing_counters: "If loop_counters_json is missing from the output, halt with stop reason error. Never bind a default counter."
+        on_missing_counters: "If loop_counters_json is missing from the output, halt with stop reason error. Never bind a default counter. Run step_release_lock before the halt returns control."
         outputs:
           - graph_decision: "CONTINUE | STOP_ALLOWED | STOP_BLOCKED"
           - stop_decision: "Tool stop_decision object: decision, stopReason, reasonDetail, weightedStopScore, signals, gates, blockedBy, graphDecision, inputs"
@@ -902,10 +973,10 @@ workflow:
             after_gate_refresh_lock:
               action: "Refresh the packet lock heartbeat immediately after the operator response"
               command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
-              on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+              on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet, so run step_release_lock and stop rather than continue without it."
             on_A: { set: { decision: "CONTINUE" }, proceed_to: step_dispatch_iteration }
             on_B: { action: "Advance next_dimension to the next uncovered dimension in strategy.md", set: { decision: "CONTINUE" }, proceed_to: step_dispatch_iteration }
-            on_C: { action: "Cancel workflow", status: "CANCELLED" }
+            on_C: { action: "Cancel workflow", status: "CANCELLED", release_lock: step_release_lock }
           note: "The failure count is rebuilt from the state log, so this gate asks again after each further failed iteration and stops asking once an iteration completes."
         if_stop:
           branch_on: "convergence_mode == 'divergent' AND stop_decision.reasonDetail == 'all_dimensions_clean'"
@@ -1114,7 +1185,7 @@ workflow:
                   after_gate_refresh_lock:
                     action: "Refresh the packet lock heartbeat immediately after the operator response"
                     command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
-                    on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+                    on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet, so run step_release_lock and stop rather than continue without it."
                   on_A:
                     bookkeeping_log: '{"type":"event","event":"pivot_confirm_accepted","mode":"review","run":{current_iteration},"pivotId":"{pivot_result.pivotId}","selectedCandidate":{pivot_result.selectedCandidate},"timestamp":"{ISO_8601_NOW}","sessionId":"{session_id}","generation":{generation}}'
                     set:
@@ -1149,7 +1220,7 @@ workflow:
                   after_gate_refresh_lock:
                     action: "Refresh the packet lock heartbeat immediately after the operator response"
                     command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
-                    on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+                    on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet, so run step_release_lock and stop rather than continue without it."
                   on_A: { skip_to: gate_pre_synthesis }
                   on_B:
                     action: "Read pivot_result.paths.configPath, validate the supplied id against acceptedCandidates, bind the exact candidate and persisted previousFocus/saturatedDirections/frontier, and reject ids outside that frontier or any candidate that authorizes a fix, target expansion, or file mutation."
@@ -1200,6 +1271,7 @@ workflow:
             pending_stop_reason: null
             pending_stop_detail: null
           halt: true
+          release_lock: step_release_lock
         if_pending_stuck_recovery:
           append_jsonl: '{"stem":"deep_review.recovery_started","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation},"iterationId":"iteration-{current_iteration}","dimensionId":"{least_explored}"},"data":{"normalizedStopReason":"stuckRecovery","recoveryCause":"repeated-no-progress","fromIterationId":"iteration-{current_iteration}","strategy":"{recovery_strategy_code}","targetDimensionId":"{least_explored}","outcome":"recovery-started","lineageRef":"{session_id}","priorTailDigest":"{prior_tail_digest}","originatingPauseEventId":"none"}}'
           reset:
@@ -1255,14 +1327,22 @@ workflow:
         after_gate_refresh_lock:
           action: "Refresh the packet lock heartbeat immediately after the operator response"
           command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
-          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet, so run step_release_lock and stop rather than continue without it."
         on_A: { proceed_to: step_dispatch_iteration }
         on_B: { action: "Update next_dimension to user's choice", proceed_to: step_dispatch_iteration }
         on_C: { proceed_to: gate_pre_synthesis }
-        on_D: { action: "Cancel workflow", status: "CANCELLED" }
+        on_D: { action: "Cancel workflow", status: "CANCELLED", release_lock: step_release_lock }
 
       step_dispatch_iteration:
         action: "Dispatch @deep-review agent for one review iteration"
+        pre_dispatch_refresh_lock:
+          action: "Refresh the packet lock heartbeat immediately before the dispatch starts"
+          command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. Run step_release_lock and stop rather than dispatch without it."
+        post_dispatch_refresh_lock:
+          action: "Refresh the packet lock heartbeat immediately after the dispatch returns"
+          command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. Run step_release_lock and stop rather than continue without it."
         resolve_executor:
           source: "config.executor"
           loader: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts#parseExecutorConfig"
@@ -1315,6 +1395,7 @@ workflow:
             agent: deep-review
             model: opus
             context_source: "rendered_prompt_pack"
+          timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
         if_cli_claude_code:
           command: |
@@ -1527,6 +1608,7 @@ workflow:
             set: { reason: "error", stopReason: "error" }
             message: "The {last_record.executor.kind} executor is unavailable ({last_record.matchedMarker}). Switch executor or wait, then resume this run."
             halt: true
+            release_lock: step_release_lock
           if_other_failure:
             action: "Mark iteration as 'error', continue to next"
           # Canonical iteration record: include sessionId, generation, durationMs so the reducer can
@@ -1653,11 +1735,11 @@ workflow:
         after_gate_refresh_lock:
           action: "Refresh the packet lock heartbeat immediately after the operator response"
           command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
-          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet, so run step_release_lock and stop rather than continue without it."
         on_A: { proceed_to: step_update_tracking }
         on_B: { action: "Set next_dimension to user's choice in strategy.md", proceed_to: step_update_tracking }
         on_C: { proceed_to: gate_pre_synthesis }
-        on_D: { action: "Cancel workflow", status: "CANCELLED" }
+        on_D: { action: "Cancel workflow", status: "CANCELLED", release_lock: step_release_lock }
 
       step_update_tracking:
         action: "Update loop tracking variables"
@@ -1758,7 +1840,7 @@ workflow:
         after_gate_refresh_lock:
           action: "Refresh the packet lock heartbeat immediately after the operator response"
           command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
-          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet, so run step_release_lock and stop rather than continue without it."
         on_A: { proceed_to: step_read_all_iterations }
         on_B: { action: "Increase max_iterations or adjust focus, return to loop", proceed_to: phase_loop }
         on_C: { action: "Cancel synthesis, keep artifacts", status: "PARTIAL" }
@@ -1964,7 +2046,7 @@ workflow:
         after_gate_refresh_lock:
           action: "Refresh the packet lock heartbeat immediately after the operator response"
           command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
-          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet, so run step_release_lock and stop rather than continue without it."
         on_A: { proceed_to: phase_save }
         on_B: { action: "Generate remediation plan section, then save to memory", proceed_to: phase_save }
         on_C: { action: "Apply user revisions", return_to: gate_post_synthesis }

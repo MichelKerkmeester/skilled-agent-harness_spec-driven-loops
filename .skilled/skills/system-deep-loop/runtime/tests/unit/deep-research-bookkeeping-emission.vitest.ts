@@ -72,6 +72,9 @@ const ENUM_PLACEHOLDER_VALUES: Record<string, string> = {
   // The workflow fills the timestamp with the current UTC instant, and a row the
   // projection writes back field for field must carry one to be accepted.
   ISO_8601_NOW: '2026-05-24T00:00:00Z',
+  // The restarted row carries the sha256 of the archived state log, and the
+  // gateway accepts only a real digest there. This is the digest of zero bytes.
+  prior_tail_digest: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
 };
 
 function renderTemplate(template: string): string {
@@ -85,7 +88,7 @@ function renderTemplate(template: string): string {
       if (quoteCount % 2 === 1) {
         return ENUM_PLACEHOLDER_VALUES[token] ?? `p-${token.replace(/[^A-Za-z0-9_.-]/g, '_')}`;
       }
-      if (/(^|\.)generation$|iteration|count$|_raw$|max_iterations|effective_min/.test(token)) return '1';
+      if (/(^|\.)generation$|^generation_init$|iteration|count$|_raw$|max_iterations|effective_min/.test(token)) return '1';
       if (/_pass$/.test(token)) return 'true';
       if (/score$|sources$/.test(token)) return '0';
       if (/questions$|^answered_count$/.test(token)) return '0';

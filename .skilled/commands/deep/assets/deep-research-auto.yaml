@@ -42,6 +42,7 @@ operating_principles:
 user_inputs:
   research_topic: "[RESEARCH_TOPIC] - Topic to investigate deeply. REQUIRED."
   spec_folder: "[SPEC_FOLDER] - Spec folder path. REQUIRED."
+  lineage_mode: "[auto|resume|restart] - Session lifecycle intent. Default: auto. `resume` keeps the same sessionId and archives nothing. `restart` opens a new sessionId at generation+1 and archives the prior research/ packet."
   max_iterations: "[MAX_ITERATIONS] - Maximum loop iterations. Default: 10."
   convergence_threshold: "[CONVERGENCE_THRESHOLD] - Stop threshold. Default: 0.05."
   convergence_mode: "[default|off|sliding-window|divergent] - Convergence policy modifier. Default: default."
@@ -109,7 +110,7 @@ state_write_protocol:
   applies_to: "every append_to_jsonl and append_jsonl directive in this workflow"
   refusal_handling: "halt on exit 2; never fall back to a direct file write. Exit 1 on a row that is still routed through the gateway is a workflow defect and halts; the pinned_bookkeeping rows are recorded through bookkeeping_log and are never routed."
   pinned_bookkeeping:
-    events: [config_warning, graph_convergence, lock_released, schema_mismatch]
+    events: [config_warning, graph_convergence, lock_released, schema_mismatch, maxDurationReached]
     directive: "bookkeeping_log"
     handling: "These rows are workflow bookkeeping that the research ledger schema pins to the legacy path: they have no lossless research-event target, so the gateway would refuse them with exit 1 and write nothing. They are never sent to the gateway. The step prints the row in its log line and continues; none of them is a halt condition."
   contract: |
@@ -204,6 +205,63 @@ workflow:
       bind:
         reducer_artifact_arg: ""
 
+  step_apply_lifecycle_request:
+    description: "Honor explicit auto-mode restart before fan-out or normal initialization"
+    skip_when: "lineage_mode != 'restart'"
+    instructions: |
+      This is the autonomous equivalent of the confirm-mode restart choice. Run it
+      immediately after artifact resolution and before fan-out so old packet files
+      cannot be merged with fresh lineage outputs. A restart request must never
+      fall back to auto-resume. In auto mode, the explicit restart flag is operator
+      authorization to archive the resolved research packet, so do not ask for a
+      second confirmation. Rollback is to move the timestamped archive back to
+      the packet directory.
+    bind_prior_lineage:
+      action: "Read the session id and generation of the packet that is about to be archived"
+      command: |
+        node -e '
+          const fs = require("fs");
+          const crypto = require("crypto");
+          let priorSessionId = null;
+          let priorGeneration = 0;
+          try {
+            const config = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
+            const lineage = config.lineage || config;
+            priorSessionId = typeof lineage.sessionId === "string" ? lineage.sessionId : null;
+            priorGeneration = Number(lineage.generation) || 0;
+          } catch (error) {
+            if (error.code !== "ENOENT") {
+              console.error("The old config cannot be read: " + error.message);
+              process.exit(1);
+            }
+          }
+          let priorTailDigest = crypto.createHash("sha256").update("").digest("hex");
+          try {
+            priorTailDigest = crypto.createHash("sha256").update(fs.readFileSync(process.argv[2])).digest("hex");
+          } catch (error) {
+            if (error.code !== "ENOENT") throw error;
+          }
+          console.log(JSON.stringify({ priorSessionId, priorGeneration, priorTailDigest }));
+        ' "{state_paths.config}" "{state_paths.state_log}"
+      outputs:
+        - prior_session_id: "priorSessionId from the JSON output, null when no old config exists"
+        - prior_generation: "priorGeneration from the JSON output, 0 when no old config exists"
+        - prior_tail_digest: "priorTailDigest from the JSON output: the sha256 of the old state log bytes, or of zero bytes when no old state log exists"
+      on_fail: "Halt with STATUS=FAIL. The old config is unreadable, so repair or archive the packet by hand."
+    command: |
+      if [ -e "{state_paths.archive_root}/{timestamp_slug}" ]; then
+        echo "The archive folder {state_paths.archive_root}/{timestamp_slug} is already there." >&2
+        exit 1
+      fi
+      if [ -d "{state_paths.packet_dir}" ]; then
+        mkdir -p "{state_paths.archive_root}" && mv "{state_paths.packet_dir}" "{state_paths.archive_root}/{timestamp_slug}" || exit 1
+      fi
+      mkdir -p "{state_paths.packet_dir}"
+    outputs:
+      - archived_path: "{state_paths.archive_root}/{timestamp_slug} when a prior packet existed, else null"
+      - lineage_mode: "restart"
+    on_fail: "Halt with STATUS=FAIL; do not continue as resume or auto."
+
   step_fanout_spawn:
     description: "Spawn fan-out lineages; skip and proceed to phase_init normally when single-executor"
     skip_when: "config.fanout is absent"
@@ -244,7 +302,7 @@ workflow:
       step_preflight_contract:
         action: "Validate required setup bindings and executable workflow contract before any file writes"
         verify:
-          - required_values_present: [research_topic, spec_folder, max_iterations, convergence_threshold, convergence_mode, stop_policy]
+          - required_values_present: [research_topic, spec_folder, lineage_mode, max_iterations, convergence_threshold, convergence_mode, stop_policy]
           - spec_folder_is_within: "specs/ or .opencode/specs/ (canonicalize alias roots before validation)"
           - unresolved_placeholders: "FAIL if any user-facing template references placeholders not produced by earlier steps"
           - tool_contract: "FAIL if executable steps reference tools outside the command allowlist"
@@ -283,14 +341,14 @@ workflow:
 
       step_acquire_lock:
         action: "Acquire the single-writer advisory lock before session classification"
-        command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs acquire --lock-path {state_paths.lock_file} --packet-id {spec_folder} --ttl-ms 1800000"
+        ttl_ms: "lock_ttl_ms = max(1800000, executor_timeout * 1000). executor_timeout is the bound dispatch timeout in seconds, 900 when unset. The lock is stale after twice this value, so it outlives the longest allowed dispatch."
+        command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs acquire --lock-path {state_paths.lock_file} --packet-id {spec_folder} --ttl-ms {lock_ttl_ms}"
         on_acquire: "Capture lock.ownerPid as captured_owner_pid and lock.acquireNonce as captured_acquire_nonce from the JSON output, and reuse both for every release below. If acquired=false, fail closed: another deep-research run already holds this packet."
         note: "Uses the promoted runtime/ loop-lock CLI (single source of truth: stale-lock reclaim, clean owner-scoped release). macOS/BSD locking is advisory — best-effort single-writer, not a hard mutex across host calls. Acquire reclaims a stale lock itself and reports the old holder under `reclaimed`. A lock is stale when its heartbeat is older than twice its TTL, or when its owning process is known to be dead. No confirmation step exists in either mode: log a `reclaimed` holder and continue."
         # Lock-cleanup contract: the lock file MUST be released on every terminal exit path that follows acquisition.
         # Runtimes honoring step_acquire_lock are required to perform this cleanup before halting or pausing.
         on_halt:
-          action: "Release the lock before any terminal halt branch returns control"
-          applies_to: ["step_classify_session.on_invalid_state", "step_classify_session.on_completed_session", "step_preinit_spec_branch.conflict-detected"]
+          action: "Every terminal halt after the acquire runs step_release_lock before it returns control"
           command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}; failures here are logged but do not block the halt"
         on_cancel:
           action: "Release the lock on user cancel or pause-sentinel detection before sentinel processing"
@@ -321,21 +379,16 @@ workflow:
           append_jsonl: '{"type":"event","event":"resumed","mode":"research","sessionId":"{session_id}","parentSessionId":"{session_id}","lineageMode":"resume","continuedFromRun":{iteration_count},"generation":{generation},"archivedPath":null,"timestamp":"{ISO_8601_NOW}"}'
           skip_to: phase_loop
         on_restart:
-          action: "Archive the current research packet under the root-level research_archive/ tree and start a new lineage segment with a fresh sessionId and generation+1."
-          command: "if [ -d {state_paths.packet_dir} ]; then mkdir -p {state_paths.archive_root} && mv {state_paths.packet_dir} {state_paths.archive_root}/{timestamp_slug}; fi"
-          set:
-            lineage_mode: "restart"
-            parent_session_id: "{prior_session_id}"
-            generation: "{prior_generation + 1}"
-          append_jsonl: '{"type":"event","event":"restarted","mode":"research","sessionId":"{session_id}","parentSessionId":"{prior_session_id}","lineageMode":"restart","generation":{generation},"archivedPath":"{state_paths.archive_root}/{timestamp_slug}","timestamp":"{ISO_8601_NOW}"}'
-          skip_to: step_create_config
+          action: "Nothing is archived here. step_apply_lifecycle_request archived the packet before the lock was taken, so a restart run reaches this step as fresh and continues as on_fresh."
         note_deferred_branches: "fork and completed-continue are deferred and no longer runtime-supported in this release. The reducer still reads `lineageMode` from config for dashboards and analysis, but only `new`, `resume`, and `restart` are live. See deep-research/references/protocol/loop-protocol.md §Lifecycle Branch Contract for the one-session contract."
         on_completed_session:
           log: "Prior session already completed. Do not route directly to synthesis; archive the completed research/ tree or start a fresh packet instead."
           halt: true
+          release_lock: step_release_lock
           message: "Completed deep-research packet detected. Archive or replace the existing research/ tree before starting a new session."
         on_invalid_state:
           halt: true
+          release_lock: step_release_lock
           message: "Existing deep-research state is incomplete or contradictory. Repair or archive the invalid research packet before continuing."
         on_fresh:
           action: "Proceed with a new session"
@@ -355,6 +408,10 @@ workflow:
       step_create_config:
         action: "Create deep-research-config.json from template"
         template: .skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json
+        lineage_values:
+          generation_init: "{prior_generation + 1} when lineage_mode == 'restart', else 1"
+          lineage_mode_init: "restart when lineage_mode == 'restart', else new"
+          parent_session_id_init: "{prior_session_id} when lineage_mode == 'restart', else null"
         populate:
           topic: "{research_topic}"
           maxIterations: "{max_iterations}"
@@ -376,9 +433,9 @@ workflow:
           status: "initialized"
           executionMode: "auto"
           lineage.sessionId: "{session_id_init}"
-          lineage.parentSessionId: null
-          lineage.lineageMode: "new"
-          lineage.generation: 1
+          lineage.parentSessionId: "{parent_session_id_init}"
+          lineage.lineageMode: "{lineage_mode_init}"
+          lineage.generation: "{generation_init}"
           lineage.continuedFromRun: null
           nextRunAt: null
           remainingDelayMs: null
@@ -440,6 +497,13 @@ workflow:
           rm -f "$EVENT_FILE"
           exit "$STATUS"
         output: "{state_paths.state_log}"
+
+      step_record_restarted_run:
+        skip_when: "lineage_mode != 'restart'"
+        action: "Record deep_research.run_restarted after the run-open row, so the restart marker never precedes deep_research.run_initialized"
+        bind:
+          restart_lineage_id: "{prior_session_id} when it is not null, else {session_id_init}"
+        append_jsonl: '{"stem":"deep_research.run_restarted","scope":{"runId":"{session_id_init}","lineageId":"{restart_lineage_id}"},"data":{"priorTailDigest":"{prior_tail_digest}","archivedLineageId":"{restart_lineage_id}","restartReason":"Restart requested: the prior research packet was archived and a new lineage segment opened.","generation":{generation_init},"compatibilityDecision":"exact","recoveryReceiptRef":"none"}}'
 
       step_create_strategy:
         action: "Create strategy file from template with initial questions"
@@ -526,6 +590,7 @@ workflow:
           conflict-detected:
             append_to_jsonl: '{"type":"spec_mutation","event":"spec_mutation_conflict","folder_state":"conflict-detected","reason":"Pre-init spec.md mutation is ambiguous or unsafe.","specPath":"{spec_folder}/spec.md","timestamp":"{ISO_8601_NOW}"}'
             halt: true
+            release_lock: step_release_lock
 
       step_validate_preinit_spec_doc:
         action: "Run targeted strict validation after any deep-research pre-init spec.md mutation"
@@ -597,7 +662,33 @@ workflow:
       step_refresh_lock:
         action: "Refresh the packet lock heartbeat before the iteration begins"
         command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
-        on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than iterate without it."
+        on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet, so run step_release_lock and stop rather than iterate without it."
+
+      step_check_max_duration:
+        action: "Stop the loop when the run has used its wall-clock budget, and still synthesize"
+        command: |
+          node -e '
+            const config = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"));
+            const maxDurationMinutes = Number(config.maxDurationMinutes);
+            const startedMs = Date.parse(config.createdAt);
+            const elapsedMinutes = Math.floor((Date.now() - startedMs) / 60000);
+            const reached = Number.isFinite(maxDurationMinutes) && maxDurationMinutes > 0
+              && Number.isFinite(startedMs) && elapsedMinutes >= maxDurationMinutes;
+            console.log(JSON.stringify({ elapsedMinutes, maxDurationMinutes, reached }));
+          ' "{state_paths.config}"
+        outputs:
+          - duration_reached: "reached from the JSON output"
+          - elapsed_minutes: "elapsedMinutes from the JSON output"
+        note: "The clock starts at the createdAt of the current generation's config. A resume keeps it and a restart resets it, so paused and waiting time counts."
+        if_reached:
+          when: "duration_reached == true"
+          set: { decision: "STOP", reason: "maxDurationReached", stopReason: "maxDurationReached" }
+          bookkeeping_log: '{"type":"event","event":"maxDurationReached","mode":"research","run":{current_iteration},"stopReason":"maxDurationReached","elapsedMinutes":{elapsed_minutes},"maxDurationMinutes":{config.maxDurationMinutes},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          log: "Duration limit reached after {elapsed_minutes} minutes. Skipping dispatch and entering synthesis with partial findings."
+          skip_to: phase_synthesis
+          note: "The stop row is printed, not appended: the gateway refuses an event it has no ledger stem for. The reason reaches the synthesis report through the bound reason."
+        if_not_reached:
+          action: "Continue with the iteration"
 
       step_record_artifact_migration:
         action: "Record a legacy artifact alias read once per session, after the run is open"
@@ -740,6 +831,7 @@ workflow:
           append_jsonl: '{"type":"event","event":"userPaused","mode":"research","run":{current_iteration},"stopReason":"userPaused","sentinelPath":"{state_paths.pause_sentinel}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
           message: "Research paused. Delete research/.deep-research-pause to resume."
           halt: true
+          release_lock: step_release_lock
         if_not_exists:
           proceed: true
 
@@ -770,7 +862,7 @@ workflow:
           - loop_counters_json: "Tool loop_counters_json object: stuckCount and consecutiveFailureCount, both rebuilt from the state log on this pass"
           - stuck_count: "loop_counters_json.stuckCount"
           - consecutive_failure_count: "loop_counters_json.consecutiveFailureCount"
-        on_missing_counters: "If loop_counters_json is missing from the output, halt with stop reason error. Never bind a default counter."
+        on_missing_counters: "If loop_counters_json is missing from the output, halt with stop reason error. Never bind a default counter. Run step_release_lock before the halt returns control."
         bookkeeping_log: '{"type":"event","event":"graph_convergence","mode":"research","run":{current_iteration},"decision":{graph_decision_json},"signals":{graph_signals_json},"blockers":{graph_blockers_json},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
 
       step_check_convergence:
@@ -1090,6 +1182,7 @@ workflow:
           log: "Rejected-pattern cache suppressed the prior candidate; dispatching the next accepted candidate."
         if_all_candidates_suppressed:
           halt: true
+          release_lock: step_release_lock
           message: 'All next-focus, recovery, and ideas candidates match active rejected patterns. Remove or reset the rejected pattern, or provide a new focus. In a ledger-backed run (a deep-research-ledger/frames folder beside the state log) the next projection replaces a hand-edited state log, so record the removal or reset through the append gateway: write one row to a file, either {"type":"event","event":"idea_rejected_removed","mode":"research","pattern":"<rejected text>","category":"<its category>","timestamp":"<UTC now, e.g. 2026-05-24T00:00:00Z>"} or {"type":"event","event":"idea_rejected_reset","mode":"research","reason":"<why>","timestamp":"<UTC now>"}, then run node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs --mode research --run-directory {artifact_dir} --event-json <that file> and rerun the reducer before resuming.'
 
       step_ideas_backlog_lifecycle:
@@ -1146,6 +1239,14 @@ workflow:
 
       step_dispatch_iteration:
         action: "Dispatch one iteration via the selected executor"
+        pre_dispatch_refresh_lock:
+          action: "Refresh the packet lock heartbeat immediately before the dispatch starts"
+          command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. Run step_release_lock and stop rather than dispatch without it."
+        post_dispatch_refresh_lock:
+          action: "Refresh the packet lock heartbeat immediately after the dispatch returns"
+          command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. Run step_release_lock and stop rather than continue without it."
         resolve_executor:
           source: "config.executor"
           loader: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts#parseExecutorConfig"
@@ -1193,6 +1294,7 @@ workflow:
             agent: deep-research
             model: opus
             context_source: "rendered_prompt_pack"
+          timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
         if_cli_deepseek_harness:
           command: |
@@ -1912,6 +2014,7 @@ workflow:
           set: { reason: "error", stopReason: "error" }
           message: "The {unavailable_record.executor.kind} executor is unavailable ({unavailable_record.matchedMarker}). Switch executor or wait, then resume this run."
           halt: true
+          release_lock: step_release_lock
         if_absent:
           action: "Continue to state reduction"
 
@@ -2060,6 +2163,7 @@ workflow:
             set: { reason: "error", stopReason: "error" }
             message: "The {last_record.executor.kind} executor is unavailable ({last_record.matchedMarker}). Switch executor or wait, then resume this run."
             halt: true
+            release_lock: step_release_lock
           if_other_failure:
             action: "Mark iteration as 'error', continue to next"
             # Canonical iteration record: include mode, sessionId, generation, durationMs, keyQuestions, answeredQuestions
@@ -2296,6 +2400,7 @@ workflow:
             on_manual_edit_conflict:
               append_to_jsonl: '{"type":"spec_mutation","event":"spec_mutation_conflict","folder_state":"conflict-detected","reason":"Manual edits detected inside existing generated findings fence.","specPath":"{spec_folder}/spec.md","generatedFence":"deep-research/spec-findings","conflictKind":"generated-fence-manual-edit","timestamp":"{ISO_8601_NOW}"}'
               halt: true
+              release_lock: step_release_lock
         instructions:
           - "Read `{state_paths.research_output}` as the canonical synthesis source."
           - "Replace exactly one generated findings block under the chosen host anchor."
