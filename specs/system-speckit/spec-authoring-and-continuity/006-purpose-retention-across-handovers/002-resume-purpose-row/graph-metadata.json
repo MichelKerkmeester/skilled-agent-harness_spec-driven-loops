@@ -15,6 +15,10 @@
       "phase 2 resume purpose row",
       "resume purpose row plan",
       "resume purpose row tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "resume purpose row implementation summary"
     ],
     "key_topics": [
@@ -24,12 +28,12 @@
       "phase",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
-      "parent",
       "packet",
-      "exists",
-      "find"
+      "goal",
+      "durable",
+      "directive",
+      "completion",
+      "criteria"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -37,6 +41,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md",
       ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
       ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
@@ -70,6 +75,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -191,32 +202,27 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The parent packet exists to find where a packet's problem, purpose and user need drop on each hop and to name the smallest change that keeps them in front of the next session",
     "created_at": "2026-11-13T21:41:50Z",
-    "last_save_at": "2026-11-14T05:35:16.111Z",
+    "last_save_at": "2026-11-14T07:26:13.897Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:57c2c9e2d864340d581071c34b950cded06aa415b517589f57e7efc0eeef3c08",
+    "source_fingerprint": "sha256:e4555c7ba89dd685d65f939c6464b97d798f16ffdd8f60663f4b276f05ef0f11",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6ad9f9b4bf0452b3330287df74a07b90f377aa0ebd474690ec0eba35b7d8a885",
       "plan.md": "d8cf0f096cce684e82ccc4daf2f795874bff0e69e849031c7b7b53ef8b4ce439",
       "tasks.md": "f8ee2854b667992a2a31db34a83f5690c3eb45a35a154c0cf78b516b8f57558e",
-      "implementation-summary.md": "002185d29f0c8f2c5913b8cde2ea165ffd97df8c09ffa6f334df92dcf779db63"
+      "implementation-summary.md": "f059235a3b2b52bd91f484f4e86dae2a457ed0130d0c9f6b7885da277dd38764"
     },
     "last_active_at": null
   }

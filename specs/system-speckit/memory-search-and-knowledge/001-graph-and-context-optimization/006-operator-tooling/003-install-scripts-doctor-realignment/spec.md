@@ -62,10 +62,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-This phased decomposition tracks Deep-research deep-dive + rework of install guides, scripts, and doctor commands for post-CocoIndex-deprecation reality, including 116 deep-skill-evolution impact across independently executable child phase folders.
+The install guides, setup scripts and `/doctor` commands described a system that had since changed. They still carried CocoIndex and reranking text after that stack was deprecated, and they named skills, database paths and MCP tool owners from before the deep-loop skill renames and the skill-advisor extraction.
 
 ### Purpose
-Keep parent documentation lean while child phases own detailed plans, tasks, checklists, and continuity.
+Bring the install guides, setup scripts and `/doctor` commands in line with the system as it runs now, with one agreed database path for each store.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->

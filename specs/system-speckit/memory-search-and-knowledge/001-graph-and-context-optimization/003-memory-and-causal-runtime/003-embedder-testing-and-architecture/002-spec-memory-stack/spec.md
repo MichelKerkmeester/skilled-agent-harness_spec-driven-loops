@@ -33,6 +33,9 @@ _memory:
 # 016/001: mk-spec-memory stack (phase parent)
 
 <!-- ANCHOR:overview -->
+### Purpose
+Move memory search onto local embedders behind one adapter interface, then keep that stack fast, measured and correct, from the backend cascade and default model through its cache, startup and metadata repair.
+
 ## 1. OVERVIEW
 
 This phase parent groups all mk-spec-memory (TypeScript MCP) embedder + architecture work that was previously spread across the top-level `016/001-004` slots. The grouping mirrors the `004-code-index-stack` pattern — one umbrella per skill surface so the 016 root stays scannable.

@@ -1,0 +1,34 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/374-purpose-carry-follow-ups
+Every read and command uses this root. Your environment block may name a different "Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 are set, which AGENTS.md defines as the autonomous child-dispatch exemption. Nobody is at a prompt. The spec folder is:
+  specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers
+This is a READ-ONLY verification. Write no files, edit nothing, commit nothing. Your whole deliverable is your final text answer.
+
+ROLE
+You are a fresh, independent plan verifier. Another model wrote the plan you check. Judge it on what you read and run, not on its own claims.
+
+ORIGINAL USER NEED
+The core reason, problem or user need of a spec packet gets lost over in-session handovers and compactions. The operator wants a packet's purpose to survive a resume, a relaunch, a compaction and a continuity save, so the next AI still sees why the work exists.
+
+INPUTS
+- The independent code review: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/ef52f514-275d-4013-b7bd-ab365324057d/scratchpad/fable-review/review.md
+- The planner's report: /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/ef52f514-275d-4013-b7bd-ab365324057d/scratchpad/fable-review/plan.md
+- The planned changes are uncommitted in this worktree. See them with `git status --short` and `git diff` (modified files) and by reading the new folders 007-purpose-reader-coverage, 008-hop-purpose-rule-parity, 009-compaction-purpose-folder and 010-problem-sentence-carry under the spec folder. Child 006-purpose-carry-follow-ups was updated (E15, T026 to T028, revised Purpose and REQ-001). The parent spec.md was rewritten.
+- The code the plans target is on this branch: read it directly.
+
+CHECK
+1. Coverage: every review finding is planned, folded in or declined, and each decline has a reason that holds against the original need. Flag any decline you think is wrong.
+2. Executability: each new or changed task names an exact file, and its Verify command prints a concrete expected output. Each search text in a plan matches exactly once in its target file today (run `rg -c -F -- '<search text>' <file>`, or `rg -U -c -F` for multi-line). Each test baseline a plan quotes matches the file today (count `it(` lines, or run the vitest file from .skilled/skills/system-spec-kit/runtime with ../node_modules/.bin/vitest run --config vitest.config.ts <file> if you can). Flag any design choice the plan leaves to the implementer.
+3. Correctness of the planned code: would each planned change do what its spec says, without breaking a current caller or test? Read the callers.
+4. Scope and drift: no phase widens beyond the original need or the review finding it answers. Child 006's Purpose and REQ-001 no longer claim more than its tasks prove.
+5. Order: the build order and dependencies between 006 to 010 are stated and correct.
+6. Docs: the parent spec.md states the original need and lists phases 001 to 010 correctly.
+
+OUTPUT FORMAT
+Start with one line: VERDICT: READY | READY WITH FIXES | NOT READY, then one sentence why.
+Then FINDINGS, most severe first. Each: severity (P0 blocks the build, P1 should fix before building, P2 minor), file:line, what is wrong, the fix in one sentence, and the evidence (command plus output line). Mark each OBSERVED or INFERRED.
+Then PER PHASE: one line per child 006 to 010 with READY, READY WITH FIXES or NOT READY.
+Then WHAT I DID NOT CHECK.
+Plain prose, no em dashes. If you find nothing at a severity, say so.

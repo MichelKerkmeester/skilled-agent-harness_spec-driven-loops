@@ -40,6 +40,9 @@ Groups generated-metadata build phases for identity resolution, scoped backfill,
 | **Predecessor** | ../005-shared-engine-and-research/spec.md |
 | **Successor** | ../007-metadata-rename-reconciliation/spec.md |
 
+### Purpose
+Harden the generated description and graph metadata, migrate the repo onto the hardened format, and prove each search-quality change with a measured benchmark before it graduates.
+
 ## PHASE DOCUMENTATION MAP
 
 | Child | Description |

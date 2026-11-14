@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "empty parent purpose backfill",
+      "phase 11 empty parent purpose backfill",
+      "empty parent purpose backfill plan",
+      "empty parent purpose backfill tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "empty parent purpose backfill implementation summary"
+    ],
+    "key_topics": [
+      "empty",
+      "parent",
+      "purpose",
+      "backfill",
+      "phase",
+      "plan",
+      "tasks",
+      "packet",
+      "goal",
+      "durable",
+      "directive",
+      "completion"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/sentences.md",
+      "scratch/parents.txt",
+      "scratch/validate-baseline.txt",
+      "runtime/dist/lib/spec/packet-purpose.js",
+      "runtime/lib/spec/packet-purpose.ts",
+      "scratch/check-backfill.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "sentences.md",
+        "kind": "doc",
+        "path": "scratch/sentences.md",
+        "source": "derived"
+      },
+      {
+        "name": "parents.txt",
+        "kind": "file",
+        "path": "scratch/parents.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-baseline.txt",
+        "kind": "file",
+        "path": "scratch/validate-baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "packet-purpose.js",
+        "kind": "code",
+        "path": "runtime/dist/lib/spec/packet-purpose.js",
+        "source": "derived"
+      },
+      {
+        "name": "packet-purpose.ts",
+        "kind": "code",
+        "path": "runtime/lib/spec/packet-purpose.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-backfill.mjs",
+        "kind": "file",
+        "path": "scratch/check-backfill.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Authored",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow After",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Twenty-one live phase parents hold no purpose of their own",
+    "created_at": "2026-11-14T07:20:48Z",
+    "last_save_at": "2026-11-14T08:51:19.994Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1eb8c140afeff10cdf7e847b90c4cb4b83faa5ee14eb1eb0020f22bb6bc03e86",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "510a4962691090266fe85727ec86173cac46624fdcfd20d2cb22bfce6da85b0c",
+      "plan.md": "f73dec0f1a0f06b31f29047ad971344cf5997880643cc3747305ad7303c2edd1",
+      "tasks.md": "c5eb57febca5975dfbc374a756083ac6c28f879055df0a049983bea343da7644",
+      "implementation-summary.md": "5f6772c1daaafccd940aafa3b03855d3c08fa323f01fc5a541398e63b2d1f652"
+    },
+    "last_active_at": null
+  }
+}

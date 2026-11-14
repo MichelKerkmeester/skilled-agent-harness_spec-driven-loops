@@ -17,6 +17,10 @@
       "goal facet packet purpose",
       "continuity purpose field plan",
       "continuity purpose field tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "continuity purpose field implementation summary"
     ],
     "key_topics": [
@@ -29,9 +33,9 @@
       "packet",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
-      "parent"
+      "durable",
+      "directive",
+      "completion"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -39,6 +43,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md",
       ".skilled/skills/system-spec-kit/runtime/api/index.ts",
       ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts",
@@ -54,8 +59,7 @@
       "runtime/api/index.ts",
       "runtime/cli/utils/input-normalizer.ts",
       "lib/continuity/thin-continuity-record.ts",
-      "cli/core/workflow.ts",
-      "api/index.ts"
+      "cli/core/workflow.ts"
     ],
     "entities": [
       {
@@ -74,6 +78,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -195,32 +205,27 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The parent exists to keep a packet's problem, purpose and user need in front of the next session across relaunch hops and compactions, because the purpose is written once in `spec.md` and no hop reads it back",
     "created_at": "2026-11-13T21:41:53Z",
-    "last_save_at": "2026-11-13T23:44:41.908Z",
+    "last_save_at": "2026-11-14T07:26:18.482Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3d69935c13d6218d9744a4cf2c591f45bfc1bd71af3704b540e7dfbdf437bf9c",
+    "source_fingerprint": "sha256:1da1e0ddd738cd0b79979f220de1738c1796eb90e925ec2e8a58bd3327f3bca3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "996d8b43a5efc380ba4c3de1e455129232ab1408d81d4d9ea04d71124045fab7",
       "plan.md": "b0007a5a95fab31f262f2386049f5e2611de2b3f223f0f5b41e657e7661ec628",
       "tasks.md": "a972fdc85bd7cf2c8e71287ca997154bc4c92d2339e2849f6dd1bbbf43ea07f4",
-      "implementation-summary.md": "0af3c3b6f9a2d876ff94330c81cd3a442fa0aa837f0adc5eb31c52dda47a0dc5"
+      "implementation-summary.md": "5b61458d8ddd37846ed3c4851d4982d16afd52a72f7d3e1257dc054f2aa6075b"
     },
     "last_active_at": null
   }

@@ -9,7 +9,12 @@
     "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/003-relaunch-goal-quote",
     "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/004-compaction-purpose-line",
     "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/005-continuity-purpose-field",
-    "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups"
+    "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups",
+    "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/007-purpose-reader-coverage",
+    "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/008-hop-purpose-rule-parity",
+    "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/009-compaction-purpose-folder",
+    "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/010-problem-sentence-carry",
+    "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill"
   ],
   "manual": {
     "depends_on": [],
@@ -22,6 +27,10 @@
       "keep a packet s core purpose across handovers",
       "purpose retention across handovers plan",
       "purpose retention across handovers tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "006-purpose-retention-across-handovers operator decisions",
       "purpose retention across handovers implementation summary",
       "why compaction loses the purpose",
@@ -37,9 +46,9 @@
       "core",
       "plan",
       "tasks",
-      "006-purpose-retention-across-handovers",
-      "operator",
-      "decisions"
+      "goal",
+      "durable",
+      "directive"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -47,6 +56,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md",
@@ -56,20 +66,19 @@
       "templates/addons/handover.md.tmpl",
       "templates/addons/acceptance-criteria.md.tmpl",
       "templates/addons/goal.md.tmpl",
+      "006-purpose-carry-follow-ups/scratch/phase-parents-without-purpose-text.txt",
       "runtime/hooks/claude/compact-inject.ts",
+      "007-purpose-reader-coverage/spec.md",
+      ".opencode/plugins/session-history-lookup.js",
       "runtime/lib/spec/packet-purpose.ts",
       "006-purpose-carry-follow-ups/plan.md",
-      "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md",
-      "research/lineages/deepseek-1/research.md",
-      "research/lineages/deepseek-2/research.md",
-      "runtime/lib/continuity/thin-continuity-record.ts",
-      ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts"
+      "001-parent-purpose-scaffold/goal.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
-        "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -82,6 +91,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -133,21 +148,27 @@
         "source": "derived"
       },
       {
+        "name": "phase-parents-without-purpose-text.txt",
+        "kind": "file",
+        "path": "006-purpose-carry-follow-ups/scratch/phase-parents-without-purpose-text.txt",
+        "source": "derived"
+      },
+      {
         "name": "compact-inject.ts",
         "kind": "code",
         "path": "runtime/hooks/claude/compact-inject.ts",
         "source": "derived"
       },
       {
-        "name": "packet-purpose.ts",
+        "name": "session-history-lookup.js",
         "kind": "code",
-        "path": "runtime/lib/spec/packet-purpose.ts",
+        "path": ".opencode/plugins/session-history-lookup.js",
         "source": "derived"
       },
       {
-        "name": "thin-continuity-record.ts",
+        "name": "packet-purpose.ts",
         "kind": "code",
-        "path": "runtime/lib/continuity/thin-continuity-record.ts",
+        "path": "runtime/lib/spec/packet-purpose.ts",
         "source": "derived"
       },
       {
@@ -197,44 +218,33 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Run",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The operator reported on 2026-11-13 that the core reason, problem, purpose or user need behind a piece of work gets lost after several in-session handovers (relaunch hops) or context compactions",
     "created_at": "2026-11-13T20:59:19Z",
-    "last_save_at": "2026-11-14T05:35:18.113Z",
+    "last_save_at": "2026-11-14T08:51:18.376Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:42d2fa66343a9887a8579b678910d43175f4ee09e37fddac9f214e3755a4ae06",
+    "source_fingerprint": "sha256:f15eb98d409413a678c7cf59ab572144a1220d5cd40149443b7367ddc7dc7d92",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e72da5165d99973530cfe7b270ed69a3ea9efbe5557116b46732731b23f9c1ed",
+      "spec.md": "70a7018c22a503b624b2afa814dd78a1bd38ad18365bd2638a88a21d55f6b03e",
       "plan.md": "4d2c2864ea17ecda1f7c0ba309d5417972de1bf3752db73d878ac865c10a5112",
       "tasks.md": "8a27e74d4d2e5fc872676c93a8aaf45e80ce01225d1b3ffd942cf96096e10ec6",
-      "decision-record.md": "399ddab622ede1f9ca5335f1467880916f70ca673984e2ed946169d043a417c6",
-      "implementation-summary.md": "ce21426170918a93e637eabe0dcc14f3b2458ad492629576507dc7294b693ee7",
+      "decision-record.md": "20ebcf715e1af893b083d8b34303e8035ec1d7d37292785d267fd7745878da80",
+      "implementation-summary.md": "c0c4ac3ba010de762b9025d5526d4c8edef32c2cb665fdcd0bbfa5d4c3ee749b",
       "research/research.md": "8044ae31f45b4ceb56b793fd4a6f0fb33cdf34fe5ea890469767b156b0e5916d"
     },
     "last_active_child_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups",
-    "last_active_at": "2026-11-14T05:35:18.113Z"
+    "last_active_at": "2026-11-14T07:30:54.580Z"
   }
 }

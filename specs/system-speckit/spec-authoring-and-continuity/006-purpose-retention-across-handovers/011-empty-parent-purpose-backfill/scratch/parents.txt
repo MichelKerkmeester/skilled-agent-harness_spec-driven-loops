@@ -1,0 +1,38 @@
+# Live phase parents with no purpose to carry, measured 2026-11-14 at bd79708c2f.
+#
+# How the list was made, from the worktree root, with rg, sort and comm only:
+# 1. Live spec files: rg --files specs -g spec.md, leaving out z_archive, scratch and lineages folders.
+# 2. Phase parents: every live spec.md whose folder holds a numbered child folder (NNN-name) with its own spec.md.
+#    This found 301 parents. A parent whose children carry only description.json is not counted.
+# 3. No purpose text: no "### Purpose" heading, no other heading that names a purpose and no "Purpose:" label.
+# 4. Bracket placeholder: a "### Purpose" heading whose first text line is one bracketed prompt.
+#
+# Not on this list: the five parents that hold the scaffold sentence, which edits E1 to E10 rewrite,
+# and the 58 parents that state a purpose under another heading, which phase 007 makes readable.
+# The purpose helper may still show a line for a packet below one of these parents when a parent
+# further up states a purpose. That was not checked, because the planning session could not run node.
+
+## No purpose text (11)
+specs/hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/spec.md
+specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/spec.md
+specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/spec.md
+specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment/spec.md
+specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/spec.md
+specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/spec.md
+specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/002-retroactive-automation/spec.md
+specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/003-retrieval-gated-tuning/spec.md
+specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/004-novel-research/spec.md
+specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/005-shared-engine-and-research/spec.md
+specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/spec.md
+
+## Bracket placeholder under ### Purpose (10)
+specs/sk-design/020-chart-and-diagram-review/spec.md
+specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/001-cli-classifier/spec.md
+specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/002-cli-external-orchestration/spec.md
+specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/005-mcp-tooling/spec.md
+specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/006-sk-code/spec.md
+specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/007-sk-design/spec.md
+specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/008-sk-doc/spec.md
+specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/011-system-deep-loop/spec.md
+specs/system-skill-advisor/codebase-conformance/001-advisor-audit-and-state-containment/spec.md
+specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/002-memory-store-and-search/016-search-and-output-intelligence/research/spec.md

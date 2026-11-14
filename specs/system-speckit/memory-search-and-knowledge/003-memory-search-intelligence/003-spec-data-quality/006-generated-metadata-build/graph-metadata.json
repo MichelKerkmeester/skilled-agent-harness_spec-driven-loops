@@ -36,11 +36,11 @@
       "generated-metadata",
       "phase",
       "parent",
-      "subgroup",
-      "spec-data-quality",
-      "track",
-      "full-repo",
-      "migration"
+      "harden",
+      "description",
+      "graph",
+      "migrate",
+      "repo"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -85,24 +85,24 @@
         "source": "derived"
       },
       {
-        "name": "Identity Resolver Merge Safety",
+        "name": "Purpose Harden",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Generated-Metadata Build subgroup of the spec-data-quality track: the generated-metadata build, full-repo migration, flag-graduation benchmark and search-quality/evidence-gap wave.",
+    "causal_summary": "Harden the generated description and graph metadata, migrate the repo onto the hardened format, and prove each search-quality change with a measured benchmark before it graduates",
     "created_at": "2026-06-27T17:26:05.303Z",
-    "last_save_at": "2026-11-10T05:47:46.473Z",
+    "last_save_at": "2026-11-14T08:05:36.148Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f629dbe59650ab0441ebaa3771ad83d01f1d806913b8221cf4cd88886e2ec80a",
+    "source_fingerprint": "sha256:8c3832070ba0ee0472c95713ed5a0994b354a92c039111caad3706d1e8408d94",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "39e782a4757e7ab924e4508316f968c38fac8e7d19cd692a2a9abc94ebe8a8ab"
+      "spec.md": "7251d0608d1f4fd515d57616389d6c30e71d4d0c33782365c38ffff5817bd1be"
     },
     "last_active_child_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/006-generated-metadata-build/006-generator-hardening",
     "last_active_at": null
