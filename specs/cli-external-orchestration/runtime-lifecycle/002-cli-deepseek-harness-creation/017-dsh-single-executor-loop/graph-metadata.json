@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-single-executor-loop",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-single-executor-loop",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dsh single executor loop",
+      "phase 17 dsh single executor loop",
+      "single lineage cli-deepseek-harness",
+      "dsh single executor deep review",
+      "dispatchEnv completionCheck runAuditedExecutorCommand",
+      "dsh single executor loop plan",
+      "dispatchEnv completionCheck plan",
+      "if_cli_deepseek_harness single lineage edits",
+      "dsh single executor loop tasks",
+      "dsh single executor loop acceptance criteria",
+      "dsh single executor loop implementation summary"
+    ],
+    "key_topics": [
+      "dsh",
+      "single",
+      "executor",
+      "loop",
+      "phase",
+      "lineage",
+      "cli-deepseek-harness",
+      "deep",
+      "review",
+      "dispatchenv",
+      "completioncheck",
+      "runauditedexecutorcommand"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+      ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      ".skilled/commands/deep/assets/deep-review-presentation.txt",
+      ".skilled/commands/deep/assets/deep-research-presentation.txt",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/fanout-executor.md",
+      ".skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts",
+      ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+      "runtime/vitest.config.ts",
+      ".skilled/skills/system-deep-loop/changelog/v1.6.24.0.md",
+      "scratch/dsh-branch-smoke.py"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-executor.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/fanout-executor.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-audit-cli-branch-receipts.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "executor-branch-contract.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": "runtime/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "v1.6.24.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/changelog/v1.6.24.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-branch-smoke.py",
+        "kind": "file",
+        "path": "scratch/dsh-branch-smoke.py",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An operator who runs `/deep:review` or `/deep:research` in `:auto` with one `cli-deepseek-harness` executor gets the refusal message and exit 2, so a dsh run needs at least two lineages",
+    "created_at": "2026-11-14T10:25:57Z",
+    "last_save_at": "2026-11-14T11:02:37.126Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:01f381c0e0a20c70a4c056ee7a31841e26646a142ac52e7d48ef91b12685e420",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "3c759fcfe088ed59943bf329f5a94a77369287ad5b011a78c0b95acce4529db3",
+      "plan.md": "c0076c7de166879797e80cfd9a32e230b3bf73048d16f2bf4cd16fd8995093a5",
+      "tasks.md": "5bdb4e121f594de5b9a7377e0175bcae25cd6f04960f017ea438731b28509d13",
+      "implementation-summary.md": "94a6fc8cf05ab161eb430d5a32bf7690cac69e45549ab32724fd48fff1d5cbc1"
+    },
+    "last_active_at": null
+  }
+}

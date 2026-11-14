@@ -57,6 +57,39 @@ function opencodeBranchesMissingBuilder(yaml: string): number[] {
   return missing;
 }
 
+const DSH_SINGLE_BRANCH_TOKENS = [
+  'buildLineageCommand',
+  'DSH_HOME',
+  'SYSTEM_SPEC_GATE_DISABLED',
+  'REPOSITORY ROOT',
+  'validateDshCompletion',
+];
+
+// A branch body runs from its key to the next line at the same or a shallower indent.
+function dshSingleBranchGaps(yaml: string): string[] {
+  const lines = yaml.split(/\r?\n/);
+  const start = lines.findIndex((line) => /^\s*if_cli_deepseek_harness:\s*$/.test(line));
+  if (start === -1) return ['if_cli_deepseek_harness'];
+  const indent = /^\s*/.exec(lines[start])![0].length;
+  let end = start + 1;
+  while (end < lines.length) {
+    const line = lines[end];
+    if (line.trim() && /^\s*/.exec(line)![0].length <= indent) break;
+    end += 1;
+  }
+  const body = lines.slice(start + 1, end).join('\n');
+  // The ancestry recursion guard reads the parent shell's command line, which carries
+  // the heredoc text, so a bare harness binary word there refuses the dispatch as nested.
+  const bareBinary = body
+    .split(/\s+/)
+    .map((token) => token.replace(/^['"]|['"]$/g, ''))
+    .some((token) => token.split('/').pop() === 'dsh');
+  return [
+    ...DSH_SINGLE_BRANCH_TOKENS.filter((token) => !body.includes(token)),
+    ...(bareBinary ? ['bare dsh word'] : []),
+  ];
+}
+
 function readWorkflows(): Map<string, string> {
   return new Map(WORKFLOW_YAMLS.map((file) => [file, readFileSync(resolve(ASSETS, file), 'utf8')]));
 }
@@ -91,5 +124,15 @@ describe('deep-loop executor branch contract', () => {
     for (const yaml of workflows.values()) expect(opencodeBranchesMissingBuilder(yaml)).toEqual([]);
     expect(opencodeBranchesMissingBuilder('if_cli_opencode:\n  command: opencode run\n'))
       .toEqual([1]);
+  });
+
+  it('runs a single cli-deepseek-harness lineage through the shared builder in both auto workflows', () => {
+    for (const file of ['deep-research-auto.yaml', 'deep-review-auto.yaml']) {
+      const yaml = workflows.get(file)!;
+      expect(yaml).not.toContain('runs only as a fan-out lineage');
+      expect(dshSingleBranchGaps(yaml)).toEqual([]);
+    }
+    expect(dshSingleBranchGaps('if_cli_deepseek_harness:\n  command: dsh\nif_cli_pi:\n  DSH_HOME\n'))
+      .toEqual([...DSH_SINGLE_BRANCH_TOKENS, 'bare dsh word']);
   });
 });

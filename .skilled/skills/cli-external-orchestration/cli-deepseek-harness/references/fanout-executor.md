@@ -9,7 +9,7 @@ trigger_phrases:
   - "dsh deep-loop lineage"
 importance_tier: normal
 contextType: implementation
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # DeepSeek Harness - Fan-Out Executor
@@ -112,7 +112,7 @@ The effort value is recorded in the invocation metadata rather than passed on ar
 
 ## 6. SINGLE DISPATCHES
 
-The runner accepts research and review lineages. A single build or doc dispatch composes the shape in [cli-reference.md](./cli-reference.md) section 5 from a scratch cwd, with the same hard rules, and validates the `final` event the same way.
+The runner accepts research and review lineages. The `/deep:review` and `/deep:research` `:auto` workflows also run one dsh lineage without a fan-out, through the same `buildLineageCommand` builder. That branch passes the artifact directory as the lineage directory, so dsh starts there, opens the prompt with a `REPOSITORY ROOT` line, adds a fresh `DSH_HOME`, `DSH_SPEC_FOLDER`, `SYSTEM_SPEC_GATE_DISABLED` and `AI_SESSION_CHILD` after the env filter and judges the run with `validateDshCompletion`. The `:confirm` workflows have no dsh branch. A single build or doc dispatch composes the shape in [cli-reference.md](./cli-reference.md) section 5 from a scratch cwd, with the same hard rules, and validates the `final` event the same way.
 
 ---
 

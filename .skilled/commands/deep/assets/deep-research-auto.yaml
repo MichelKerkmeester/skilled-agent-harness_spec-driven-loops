@@ -1212,14 +1212,145 @@ workflow:
           wait_for_completion: true
         if_cli_deepseek_harness:
           command: |
-            node --input-type=module <<'EOF'
-            console.error('cli-deepseek-harness runs only as a fan-out lineage; rerun with --count=2 or a second --executor group, or choose another executor kind');
-            process.exit(2);
+            node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
+            import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
+            import { createRequire } from 'node:module';
+            import os from 'node:os';
+            import path from 'node:path';
+            import { runAuditedExecutorCommand } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
+            import { resolveSandboxMode, resolveClaudePermissionMode } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
+            import {
+              snapshotOutOfScopeDirtyPaths,
+              enforceWriteContainment,
+            } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts';
+
+            // The command builder is the one the fan-out lineage path uses, so the pinned harness
+            // release, the model allowlist, the route, lineage and guards patches and the
+            // headless write flags stay one source of truth. It throws (fail closed) when the
+            // harness binary is absent or off its pinned release, or the model is off the
+            // allowlist, so a requested harness executor never becomes native.
+            // No line of this heredoc names the harness binary as a bare word. The ancestry
+            // recursion guard reads every ancestor command line, the shell running this step
+            // carries the heredoc text, and such a word would refuse the dispatch as nested.
+            const require = createRequire(import.meta.url);
+            const { buildLineageCommand, withAgentPersona, validateDshCompletion } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+
+            const kind = '{config.executor.kind}';
+            const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
+            const timeoutSeconds = Number('{config.executor.timeoutSeconds}');
+            // The iteration must write its own iteration file, delta and state record,
+            // so the leaf runs workspace-write.
+            const sandboxMode = 'workspace-write';
+            const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
+            const lineage = { kind, model, sandboxMode, reasoningEffort };
+            const resolvedSandbox = resolveSandboxMode(sandboxMode);
+            const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
+
+            const repoRoot = '{repo_root}';
+            const artifactDir = '{artifact_dir}';
+            // The prompt pack says every path is relative to the repo root and calls the append
+            // gateway by a repo-relative path, but the harness starts in the artifact folder, so
+            // the prompt names the root and tells the leaf to run commands from it.
+            const promptBody = 'REPOSITORY ROOT: ' + repoRoot + '. Resolve every relative path in this prompt against it and run every command as `cd ' + repoRoot + ' && <command>`.\n\n'
+              + withAgentPersona('deep-research', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), repoRoot);
+            // The headless harness reads <cwd>/.env and the repository root holds one, so the
+            // builder starts it in the artifact folder and the dispatch runs from the cwd it returns.
+            const { command, args, input, cwd } = buildLineageCommand(
+              lineage,
+              promptBody,
+              resolvedSandbox,
+              resolvedPermission,
+              { env: process.env, cwd: repoRoot, lineageDir: artifactDir, repoRoot },
+            );
+
+            const executor = {
+              kind,
+              model,
+              configDir: null,
+              reasoningEffort,
+              serviceTier: null,
+              sandboxMode,
+              timeoutSeconds,
+              governor: null,
+            };
+            const dispatchId = 'research-i{current_iteration}-g{config.lineage.generation}';
+            // The step timeout equals the executor timeout, so the child gets a shorter one. An
+            // outer kill while the child still runs would skip the finally block and strand the home.
+            const dispatchTimeoutSeconds = Math.max(Math.ceil(timeoutSeconds / 2), timeoutSeconds - 30);
+            const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot, artifactDir });
+            // The harness writes profiles and an anonymous id into its home, so every run gets
+            // a fresh one outside the checkout, removed once the run settles. The env allowlist
+            // drops every DSH_ key, so the home and the absolute spec folder the repo-guards goal
+            // bridge reads ride in dispatchEnv. DSH_HOME on this process would instead trip the
+            // nested-dispatch guard.
+            const dshHome = mkdtempSync(path.join(os.tmpdir(), 'dsh-home-'));
+            let dispatchExit;
+            try {
+              dispatchExit = runAuditedExecutorCommand({
+                command,
+                args,
+                cwd,
+                timeoutSeconds: dispatchTimeoutSeconds,
+                stateLogPath: '{state_paths.state_log}',
+                executor,
+                iteration: Number('{current_iteration}'),
+                input,
+                receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
+                dispatchId,
+                dispatchEnv: {
+                  DSH_HOME: dshHome,
+                  DSH_SPEC_FOLDER: path.resolve(repoRoot, '{spec_folder}'),
+                  // The leaf has no user turn to answer the spec gate, and ENFORCE=0 alone only
+                  // stops the deny, so DISABLED makes classify and enforce no-ops, as in fan-out.
+                  SYSTEM_SPEC_GATE_DISABLED: '1',
+                  AI_SESSION_CHILD: '1',
+                },
+                // The harness can exit 0 after a guard plugin failed to load, so its event
+                // stream and stderr are judged as well as its exit code.
+                completionCheck: validateDshCompletion,
+              });
+            } finally {
+              rmSync(dshHome, { recursive: true, force: true });
+            }
+            const containment = enforceWriteContainment({
+              repoRoot,
+              artifactDir,
+              preDispatchDirtyPaths,
+              stateLogPath: '{state_paths.state_log}',
+              iteration: Number('{current_iteration}'),
+              label: dispatchId,
+            });
+            if (containment.violations.length > 0) {
+              console.error(
+                'write-containment advisory: detected ' + containment.violations.length
+                  + ' out-of-scope path(s), left on disk: '
+                  + containment.violations.map((v) => v.path).join(', '),
+              );
+            }
+            // A path that was already dirty before the dispatch and changed during it is held out of
+            // violations. enforceWriteContainment records it in the state log as containment_contested;
+            // this prints it so the run's own output says so too.
+            if (containment.contested.length > 0) {
+              console.error(
+                'write-containment contested: ' + containment.contested.length
+                  + ' path(s) already dirty before the dispatch changed during it, left on disk: '
+                  + containment.contested.map((v) => v.path).join(', ')
+                  + '\n' + containment.contestedNote,
+              );
+            }
+            process.exit(dispatchExit);
             EOF
           working_directory: "{repo_root}"
+          timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
           notes:
-            - "Fails closed before any dispatch receipt is written; the pre_dispatch_audit provenance row for the attempted executor remains"
+            - "cli-deepseek-harness single-executor: builds through the shared fan-out command builder (buildLineageCommand), so the pinned harness release, the model allowlist and the route, lineage and guards patches stay one source of truth. runAuditedExecutorCommand emits INTENT + COMPLETION receipts"
+            - "The harness starts in the artifact directory, never the repository root, with a fresh DSH_HOME outside the checkout. DSH_HOME, DSH_SPEC_FOLDER, SYSTEM_SPEC_GATE_DISABLED and AI_SESSION_CHILD reach the child through dispatchEnv, and the home is removed in a finally block"
+            - "The prompt opens with a REPOSITORY ROOT line, because the prompt pack's paths and gateway call are repo-relative while the harness starts in the artifact directory"
+            - "The child timeout is 30 s under the step timeout (at least half of it), so the finally block removes the home before any outer kill"
+            - "validateDshCompletion judges a clean exit, so a plugin that did not activate or a missing final event records a crash dispatch_failure"
+            - "Fails closed when the harness binary is absent, off its pinned release or the model is off the allowlist (buildLineageCommand throws, exit non-zero). A requested cli-deepseek-harness executor never degrades to native"
+            - "The command text never names the harness binary as a bare word, because the ancestry recursion guard reads the parent shell's command line"
         if_cli_claude_code:
           command: |
             node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
@@ -1591,7 +1722,7 @@ workflow:
           notes:
             - "cli-pi single-executor: dispatches per-iteration through the shared fan-out command builder (buildLineageCommand) so the enforced cli-pi model allowlist + headless write flags stay one source of truth; runAuditedExecutorCommand emits INTENT + COMPLETION receipts"
             - "Fails closed when pi is absent or the model is off the allowlist (buildLineageCommand throws, exit non-zero) — a requested cli-pi executor never degrades to native"
-            - "Single-executor cli-deepseek-harness is refused by if_cli_deepseek_harness; dsh runs through fan-out"
+            - "cli-deepseek-harness has its own single-executor branch, if_cli_deepseek_harness above, built through the same buildLineageCommand. Fan-out also runs the kind"
         record_executor_audit:
           skip_when: "config.executor.kind == 'native'"
           target: "{state_paths.state_log}"

@@ -194,6 +194,15 @@ type RunAuditedExecutorCommandInput = {
   // optional; the engine generates a filename-safe unique one when omitted.
   receiptDir?: string;
   dispatchId?: string;
+  // For the cli-deepseek-harness single-lineage branch only: its fresh harness home and
+  // spec-folder marker are keys the per-kind allowlist drops on purpose. They are merged
+  // after the filter, so only the values the caller names reach the child, never an
+  // inherited one. Another kind that needs a key widens its allowlist instead. Only the
+  // synchronous runner reads this field and completionCheck.
+  dispatchEnv?: Record<string, string>;
+  // A clean exit does not prove a good run for every CLI. When set, it judges the
+  // output of a child that exited 0, and a non-null reason is recorded as a crash.
+  completionCheck?: (exitCode: number, stdout: string, stderr: string) => string | null;
 };
 
 // ───────────────────────────────────────────────────────────────────
@@ -1217,7 +1226,7 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
     cwd: input.cwd,
     encoding: 'utf8',
     timeout: timeoutMs,
-    env: buildExecutorDispatchEnv(input.executor, input.guardContext?.env ?? process.env),
+    env: { ...buildExecutorDispatchEnv(input.executor, input.guardContext?.env ?? process.env), ...input.dispatchEnv },
     maxBuffer: 10 * 1024 * 1024,
     ...(typeof input.input === 'string' ? { input: input.input } : {}),
   });
@@ -1285,6 +1294,27 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
       unavailableMarker,
     );
     return 0;
+  }
+
+  // Some CLIs exit 0 after a failure they report only in their output, such as a
+  // plugin that did not load, so the caller's check reads what the child printed.
+  if (input.completionCheck && result.status === 0) {
+    const completionFailure = input.completionCheck(
+      result.status,
+      typeof result.stdout === 'string' ? result.stdout : '',
+      typeof result.stderr === 'string' ? result.stderr : '',
+    );
+    if (completionFailure !== null) {
+      emitDispatchFailure(
+        input.stateLogPath,
+        input.executor,
+        'crash',
+        input.iteration,
+        completionFailure,
+        unavailableMarker,
+      );
+      return 0;
+    }
   }
 
   // Provenance must not lie: a clean exit can fail loud when the model the CLI

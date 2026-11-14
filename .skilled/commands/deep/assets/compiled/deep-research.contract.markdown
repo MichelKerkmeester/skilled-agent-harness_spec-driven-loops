@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "448463f96cad56e6691c7c75895143712abbf3c97be4e015c26f9ae94cd3acff",
+      "sha256": "b2d8695657bdaa0175e6bfc3c253e1666c33cb6b3998758d29405c9835862782",
       "section": "full"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
-      "sha256": "5ef00c8113e997e5d0a2d47cf853ce192d6ae0227fb34db3c9f1236b824fa649",
+      "sha256": "44d6e6f3ccfba49696d3700948b370b80b4890ac0efa99517f2df699c764108d",
       "section": "full"
     },
     {
@@ -91,7 +91,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "264634b67ec33ed7d77613ab5f9aba3cfcb4cf8832c1df3ea94ad72ab062cfcd"
+  "compiledBodyDigest": "c9e3c087a3193473192443005850c7bd897023f9a6f667094e67bb1599afcd14"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -249,7 +249,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --convergence=N -> convergenceThreshold = N
    |-- --convergence-mode=default|off|sliding-window|divergent -> antiConvergence.convergenceMode = value
    |-- --spec-folder=PATH -> spec_path = PATH, omit Q1
-   |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness`, the last one fan-out only; `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
+   |-- --executor=<type> -> config.executor.kind (`native` | `cli-codex` | `cli-claude-code` | `cli-opencode` | `cli-cursor` | `cli-devin` | `cli-pi` | `cli-deepseek-harness`, the last one a single lineage in `:auto` or a fan-out; `EXECUTOR_KINDS` in `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts` is authoritative)
    |-- --model=<id> -> config.executor.model (for example `gpt-5.4`)
    |-- --config-dir=<path> -> config.executor.configDir (cli-claude-code only; must resolve under ~/.claude* or a repository .claude* folder; fan-out sets CLAUDE_CONFIG_DIR)
    |-- --reasoning-effort=<level> -> config.executor.reasoningEffort (`none` | `minimal` | `low` | `medium` | `high` | `xhigh` | `max`)
@@ -319,7 +319,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      E) cli-cursor — requires `cursor-agent`. Model must be on the enforced allowlist. No `--reasoning-effort` (effort is baked into the model id), no `--service-tier`.
      F) cli-devin — requires `devin`. Model must be on the enforced allowlist. No `--reasoning-effort`, no `--service-tier`.
      G) cli-pi — requires `pi`. Model must be on the enforced allowlist. `reasoningEffort` maps to `--thinking`. No `--service-tier`, no sandbox flag.
-     H) cli-deepseek-harness (experimental, explicit choice only, fan-out only) — a single-executor run exits 2, so give it a fan-out shape such as `--executor=cli-deepseek-harness --model=deepseek-v4.1-flash --count=2`. Requires `dsh` at the pinned release. Model must be `deepseek-v4.1-flash-1017` (LLM Gateway) or `deepseek-v4.1-flash` (OpenCode Go), pinned to `max`. Prompt travels on stdin; no `--service-tier`; the guards patch is required; `liveTools.mcpServers` may name only `code_mode`.
+     H) cli-deepseek-harness (experimental, explicit choice only) — a single lineage such as `--executor=cli-deepseek-harness --model=deepseek-v4.1-flash` runs in `:auto` through the shared fan-out command builder, and a fan-out shape such as `--count=2` also works. Requires `dsh` at the pinned release. Model must be `deepseek-v4.1-flash-1017` (LLM Gateway) or `deepseek-v4.1-flash` (OpenCode Go), pinned to `max`. Prompt travels on stdin; no `--service-tier`; the guards patch is required; `liveTools.mcpServers` may name only `code_mode`.
      D-H build their commands through the shared fan-out command builder (`LINEAGE_COMMAND_ADAPTERS` in `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs`). Per-kind flag support (`EXECUTOR_KIND_FLAG_SUPPORT`) and the cli-cursor/cli-devin/cli-pi model allowlists (`CURSOR_SUPPORTED_MODELS`, `DEVIN_SUPPORTED_MODELS`, `PI_SUPPORTED_MODELS`) are owned by `executor-config.ts`; this contract does not restate them. Off-allowlist model or missing binary fails closed — a requested CLI executor never degrades to native.
 
    Reply format examples:
