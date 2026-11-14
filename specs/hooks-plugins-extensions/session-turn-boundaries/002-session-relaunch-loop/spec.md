@@ -142,6 +142,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 37 | 037-relaunch-test-speed/ | The wrapper test file is split into four files with one shared harness, so the relaunch suite runs the same 868 tests in about 40 seconds instead of 130, and one nudge test no longer reads the loop id of the session that runs it | Complete |
 | 38 | 038-goal-and-workflow-resume/ | Seven children make goals and running workflows survive a hop: the note names the active command, Cursor and Devin keep a handed-over goal, `prepare` says why a goal was not carried, Pi binds once per process, a Claude claim is delivered with the switch off, the OpenCode continuation leaves a prepared hop alone and `skilled-loop` runs as typed | Complete |
 | 39 | 039-hop-dialog-goal-title/ | Three children close gaps seen on Claude Code after phase 38: a pending hand-over refuses a question dialog so the hop is not parked behind it, a sender that set no goal hands on the unfinished goal of its packet, and a session with only a generated title keeps it after a hop. Eight more close the open ends the research of 2026-11-13 found in those fixes: a changed wrapper says so before a hop, a record Stop cannot arm stops blocking questions, a record with no note is read as absent, an ended goal stays ended, the goal fallback stops at the parent folder, two tests are fixed and five documents are corrected | Complete |
+| 40 | 040-claude-default-on-release-notes/ | Claude Code hands over by default while every other runtime stays off until its switch is set, and the v4.0.2.1 release notes and root README describe every hand-over change | Complete |
 
 ### Phase Transition Rules
 
@@ -192,6 +193,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 036-review-remediation | 037-relaunch-test-speed | Phase 36 is Complete and the relaunch suite passes with 868 tests | `validate.sh 036-review-remediation --recursive --strict` RESULT: PASSED, and `037-relaunch-test-speed/scratch/before-relaunch.txt` holds the baseline run |
 | 037-relaunch-test-speed | 038-goal-and-workflow-resume | Phase 37 is Complete and the review of goal and workflow carry-over is verified | `validate.sh 037-relaunch-test-speed --strict` RESULT: PASSED, and `038-goal-and-workflow-resume/scratch/verify-1.md` holds the verified findings |
 | 038-goal-and-workflow-resume | 039-hop-dialog-goal-title | Phase 38 is Complete and the four failed runs of its child 016 are saved for the opening check | `validate.sh 038-goal-and-workflow-resume --recursive --strict` RESULT: PASSED, and `039-hop-dialog-goal-title/001-sender-dialog-after-prepare/scratch/failed-runs/` holds the four runs |
+| 039-hop-dialog-goal-title | 040-claude-default-on-release-notes | Phase 39 is Complete and pushed, because phase 40 rewrites the release notes that describe it | `validate.sh 039-hop-dialog-goal-title --recursive --strict` RESULT: PASSED |
 <!-- /ANCHOR:phase-map -->
 
 ---

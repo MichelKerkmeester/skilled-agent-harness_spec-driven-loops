@@ -42,7 +42,8 @@
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/036-review-remediation",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/037-relaunch-test-speed",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",
-    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title"
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes"
   ],
   "manual": {
     "depends_on": [],
@@ -244,7 +245,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-11-14T18:51:05.146Z",
+    "last_save_at": "2026-11-14T20:05:18.809Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -252,13 +253,13 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a51bc4ddc1855483660be83bad4dde75f086d97bc6b515988ab74cc541bfb3ed",
+    "source_fingerprint": "sha256:5f3c7b34748cffddbc0bfadef9cc85904a38b9d93a099c1104652ab2d4f690ea",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8a9e959345d2a0a5638cb7f91c8e169aa3aa5f8dc8127190efa7ec1af6547c3e",
+      "spec.md": "9316ae5b4c8e5379efec0c89cc251b1a8d9d844a9a0b64f681b8ba90d2d6e059",
       "research/research.md": "cd715f66fe738274ad12d39730f4c477ce7e636d424fd5c75d0c9ad949f3d338"
     },
-    "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title",
-    "last_active_at": "2026-11-14T18:51:05.146Z"
+    "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/040-claude-default-on-release-notes",
+    "last_active_at": "2026-11-14T20:01:19.603Z"
   }
 }
