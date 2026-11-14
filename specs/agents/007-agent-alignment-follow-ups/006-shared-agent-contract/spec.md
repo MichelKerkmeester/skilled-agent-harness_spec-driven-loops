@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/384-agent-alignment-follow-ups` |
 | **Parent Spec** | ../spec.md |
@@ -313,7 +313,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- /ANCHOR:nfr -->
 
 ### Performance
-- **NFR-P01**: Every touched agent file stays at or under its baseline line count, so no dispatch loads a longer definition than today.
+- **NFR-P01**: Every touched agent file stays at or under 600 lines, and a file already over 600 does not grow, as REQ-013 checks. A file under the cap may gain the lines the refusal and untrusted-content rules add.
 - **NFR-P02**: N/A. The phase runs no service. A deep iteration's budget grows only on the review side, from 13 to 24 calls.
 
 ### Security

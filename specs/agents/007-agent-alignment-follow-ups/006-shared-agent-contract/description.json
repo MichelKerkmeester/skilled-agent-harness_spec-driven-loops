@@ -6,15 +6,16 @@
     "phase",
     "shared-agent-contract"
   ],
-  "lastUpdated": "2026-11-14T20:47:40.044Z",
+  "lastUpdated": "2026-11-14T21:52:45.613Z",
   "specId": "006",
   "folderSlug": "shared-agent-contract",
   "parentChain": [
     "agents",
     "007-agent-alignment-follow-ups"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "14-11-26_21-47__phase-006-findings-reproduced-before-planning.md"
+    "14-11-26_21-47__phase-006-findings-reproduced-before-planning.md",
+    "14-11-26_22-52__built-phase-006-through-speckit-implement-auto.md"
   ]
 }

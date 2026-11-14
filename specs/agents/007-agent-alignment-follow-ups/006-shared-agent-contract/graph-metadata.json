@@ -35,16 +35,18 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      "scratch/baseline.txt",
-      ".skilled/agents/context.md",
       ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+      "scratch/before.txt",
+      "scratch/baseline.txt",
+      "scratch/after.txt",
+      ".skilled/agents/context.md",
       ".skilled/agents/code.md",
       ".skilled/agents/deep-research.md",
       ".skilled/agents/orchestrate.md",
@@ -54,9 +56,7 @@
       ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
       ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts",
-      ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
-      ".skilled/skills/sk-doc/scripts/check-frontmatter-versions.sh",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs"
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown"
     ],
     "entities": [
       {
@@ -90,21 +90,33 @@
         "source": "derived"
       },
       {
+        "name": "agent-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
         "name": "baseline.txt",
         "kind": "file",
         "path": "scratch/baseline.txt",
         "source": "derived"
       },
       {
-        "name": "context.md",
-        "kind": "doc",
-        "path": ".skilled/agents/context.md",
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
         "source": "derived"
       },
       {
-        "name": "agent-template.md",
+        "name": "context.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+        "path": ".skilled/agents/context.md",
         "source": "derived"
       },
       {
@@ -162,18 +174,6 @@
         "source": "derived"
       },
       {
-        "name": "check-frontmatter-versions.sh",
-        "kind": "script",
-        "path": ".skilled/skills/sk-doc/scripts/check-frontmatter-versions.sh",
-        "source": "derived"
-      },
-      {
-        "name": "generate-trigger-index.mjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The rules every agent shares have no single home, so each agent file carries its own copy and the copies disagree",
     "created_at": "2026-11-14T20:19:16Z",
-    "last_save_at": "2026-11-14T20:47:40.044Z",
+    "last_save_at": "2026-11-14T21:54:08.031Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc5c1741164f86a5c2baf401d62ae373ba3fa5becd969f189b01fa1d5f52efe3",
+    "source_fingerprint": "sha256:89df7cb17e2c76bf229eb91eff710051efee129e30c7aad382cd4e964fbe503b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f942af5b58d46ca2968ac22319165b5a167223189fee46b90ee3130138133e57",
+      "spec.md": "f215e7af7cc732caec652f07dcef1a3a039b90d3d0545d2a1c0b581d3d0298ac",
       "plan.md": "d6a71c2bfe8c1c0bb9efb18072b49921729565d3a1197f3ef96232c4494142a7",
-      "tasks.md": "aaed894c7b85f24efa9ca8f4542841440387d5c5a6728e92d853981cd5db0623",
-      "implementation-summary.md": "d1f70de607edd19e6a15423b51fdaa4f9786fae4c72f9214753aaab5d9b1d4ab"
+      "tasks.md": "8ae6dcbd247a8159cff58ee81da78c7241c5eafc96e7f7538380c45237400ae1",
+      "implementation-summary.md": "fb7d984bc8e6fba92c1cf2d5397dd81e7c97785fcdf7fe1a41fb7af3559e64ba"
     },
     "last_active_at": null
   }
