@@ -71,6 +71,9 @@ and findings belong here.
 |------|-------|----------|
 | Spec, plan, tasks and acceptance criteria authored | Done | Written on 2026-11-14 from the audit evidence in `../001-finding-verification/` |
 | Implementation | Pending | Not started |
+| Phase 004 closed | Done | Code 9a9bbb76aa. Five criteria Met, AC-006 Superseded by ADR-001. Row H1 carries fix evidence and row H7 records the sk-code-ci difference. 8 DeepSeek V4.1 Flash dispatches through cli-pi |
+| Edge cases | Recorded | sk-code-skilled is left off vocabularyMirrors, so the three-way match skips it and its alias rule passes. The 162 frontend keywords compare as sets, so order does not matter |
+| Deviation: the comparison lives in check 2 | Recorded | ADR-002. A sixth leg would change the 5/5 total and the leg list about twenty documents quote, two of them outside the hub |
 
 ### Deviations and findings
 

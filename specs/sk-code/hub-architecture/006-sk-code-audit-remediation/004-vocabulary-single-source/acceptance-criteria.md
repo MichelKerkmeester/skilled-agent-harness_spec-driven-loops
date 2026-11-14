@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source"
-    last_updated_at: "2026-11-14T12:01:53Z"
+    last_updated_at: "2026-11-14T14:41:22Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Marked every criterion with observed evidence"
+    next_safe_action: "None, the packet is closeable"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-004-vocabulary-single-source"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** `004-vocabulary-single-source`
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-14
 <!-- /ANCHOR:metadata -->
 
@@ -51,12 +51,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |---|---|---|---|---|---|
-| AC-001 | REQ-001 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | With one keyword removed from `code-frontend-aliases` in a scratch copy of the hub, the router-sync guard exits non-zero and names `hub-router.json`. | Unmet | - |
-| AC-002 | REQ-002 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | On the unmodified tree, `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` prints PASS for the router-sync leg. | Unmet | - |
-| AC-003 | REQ-003 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | `rg -c 'fires on' .skilled/skills/sk-code/sk-code-frontend/ROUTER.md` prints nothing and exits 1. | Unmet | - |
-| AC-004 | REQ-004 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | The `description` of `mode-registry.json` states the aliases rule, and the guard checks it: a registry alias absent from every `hub-router.json` class makes the guard exit non-zero. | Unmet | - |
-| AC-005 | REQ-005 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs` passes with the two new cases. | Unmet | - |
-| AC-006 | REQ-006 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | The same leg runs for `sk-code-ci`, whose vocabulary is copied the same way, with no change to its keywords. | Unmet | - |
+| AC-001 | REQ-001 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | With one keyword removed from `code-frontend-aliases` in a scratch copy of the hub, the router-sync guard exits non-zero and names `hub-router.json`. Observed: exit 1 with `hub-router.json` named in 3 problem lines, on 2026-11-14 at `9a9bbb76aa`. | Met | - |
+| AC-002 | REQ-002 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | On the unmodified tree, `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` prints PASS for the router-sync leg. Observed: `PASS: router-sync` with `5/5 checks passed`. | Met | - |
+| AC-003 | REQ-003 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | `rg -c 'fires on' .skilled/skills/sk-code/sk-code-frontend/ROUTER.md` prints nothing and exits 1. Observed: nothing printed, exit 1. | Met | - |
+| AC-004 | REQ-004 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | The `description` of `mode-registry.json` states the aliases rule, and the guard checks it: a registry alias absent from every `hub-router.json` class makes the guard exit non-zero. Observed: the description states the rule, and a scratch alias no class holds made check 2 exit 1. | Met | - |
+| AC-005 | REQ-005 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs` passes with the two new cases. Observed: 18 pass, 0 fail. | Met | - |
+| AC-006 | REQ-006 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | The same leg runs for `sk-code-ci`, whose vocabulary is copied the same way, with no change to its keywords. Observed: the alias rule runs for `sk-code-ci` and passes. Its three keyword copies hold 72, 58 and 12 keywords, so the three-way match does not run for it. | Superseded | ADR-001 |
 
 ### Status values
 
@@ -81,7 +81,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-No criterion is met yet, because this phase is planned and not started.
+Five criteria are met with the outputs observed on 2026-11-14 at commit `9a9bbb76aa`. AC-006 is superseded by ADR-001 in `decision-record.md`, on the operator's answer of the same day.
 <!-- /ANCHOR:closure -->

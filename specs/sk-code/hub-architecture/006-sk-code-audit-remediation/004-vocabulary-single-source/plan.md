@@ -54,8 +54,18 @@ Remove the one copy that is prose. Extend the existing router-sync guard to comp
 Guarded duplicate sources
 
 ### Key Components
-- **`verify-router-sync.cjs`**: Gains one leg that compares vocabulary copies
+- **`verify-router-sync.cjs`**: Check 2 gains the vocabulary comparison
 - **`sk-code-frontend/ROUTER.md` section 2**: Stops restating the keywords
+
+### Pairs the guard compared before this phase
+
+Read from `sk-code-skilled/assets/scripts/verify-router-sync.cjs` at `ff0673af0a`. None of them compared a keyword.
+
+- **Check 1a, lines 234 to 246**: the machine router's paths against the disk, and the hub prose maps against the machine router.
+- **Check 1b, lines 249 to 280**: every reference and asset document against the routers that name it.
+- **Check 2, lines 283 to 330**: the hub surface `RESOURCE_MAP` against the union of the surface children plus the shared controls. Lines 96 to 117 check that each surface has a `tieBreak` position and a `routerSignals` entry.
+- **Check 3, lines 333 to 372**: the route gold, `leaf-manifest.json` and the `sk-code-skilled` `RESOURCE_MAP`.
+- **Check 4, lines 408 to 419**: each playbook scenario's expected resources against what the router emits.
 
 ### Data Flow
 The guard reads the vocabulary classes, the hub intent rows and the packet intent rows. It compares them as sets per surface. Any difference prints the keyword and the two files and fails the run.

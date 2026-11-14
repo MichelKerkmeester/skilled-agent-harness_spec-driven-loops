@@ -17,6 +17,8 @@
       "vocabulary single source tasks",
       "vocabulary single source acceptance criteria",
       "vocabulary single source goal",
+      "vocabulary single source decision record",
+      "vocabulary mirrors decision",
       "vocabulary single source implementation summary"
     ],
     "key_topics": [
@@ -29,19 +31,21 @@
       "acceptance",
       "criteria",
       "goal",
-      "implementation",
-      "summary",
-      "frontend"
+      "decision",
+      "record",
+      "mirrors"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
+      "scratch/mutation.txt",
       ".skilled/skills/sk-code/sk-code-frontend/ROUTER.md",
       ".skilled/skills/sk-code/mode-registry.json",
       ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs",
@@ -82,9 +86,21 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mutation.txt",
+        "kind": "file",
+        "path": "scratch/mutation.txt",
         "source": "derived"
       },
       {
@@ -182,23 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Guarded",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A frontend keyword lives in five hand-edited places: two classes in `hub-router.json`, the aliases in `mode-registry.json`, the hub `ROUTER.md` block, the packet `ROUTER.md` block and the packet's prose list",
     "created_at": "2026-11-14T12:01:52Z",
-    "last_save_at": "2026-11-14T12:18:05.177Z",
+    "last_save_at": "2026-11-14T14:41:24.246Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,15 +211,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:89d50f9130648f586ff52f5e2c1a4bf55ae50c77ef63ef7e8c066edc8bd5061e",
+    "source_fingerprint": "sha256:c3b245759fe7208d2e4bfb885f15cef1132247f1e6be4327670931a0e4aeccb3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "abd20895d7f4f5c44425517b010f3a880478f7b0e19d31727da59c4378cd8261",
-      "plan.md": "55ee1b1117d051c0181c26cd02bc513d3b3266f219b0999378cfb0e2365e5854",
-      "tasks.md": "175843773767506547da795937d30ee1e756a56b3ce8e7af6c8780fcfa228f7a",
-      "implementation-summary.md": "505b923bd1c65fc71d0e18a5f5e5846e7b49b042a047e30cff227c3167b78a61"
+      "spec.md": "763544dd2e053ac55619f425ff674f9ae7b472a44f2565a5735564d0419ca472",
+      "plan.md": "2b31fb890f63b297f0cd0b45574771f60035bace0c4cc6f08586ca14c775b9bf",
+      "tasks.md": "d60ae515c99243b2cb6ab82b9b92a30cf89a714e933b443f0a37f2b85a881e3d",
+      "decision-record.md": "99dcea993ac3b077264f79264af9c435544257d58b9ca4d373467a3d6a87386b",
+      "implementation-summary.md": "4cf494a89ff6b2d40222607a4f62085fddcc696a96e83efa70aa293b1fede23c"
     },
     "last_active_at": null
   }

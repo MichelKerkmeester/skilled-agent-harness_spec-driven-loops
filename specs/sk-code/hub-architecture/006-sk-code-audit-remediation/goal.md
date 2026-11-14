@@ -116,6 +116,7 @@ and findings belong here.
 | Phase 003 frontend content | Code done, closure waits on the operator | Code 62507384e6. AC-003 names a baseline of 48 where the tree held 57, and AC-004 asks for 400 lines where the frozen scope reaches 586 |
 | Phase 003 frontend content | Done | Code 62507384e6. Rows F5 to F13 carry fix evidence. 27 DeepSeek V4.1 Flash dispatches through cli-pi. Operator answers of 2026-11-14 corrected the rule count to 57 and accepted 586 lines under ADR-001 |
 | Operator answer 2026-11-14: phase 004 guards the frontend copies and records the sk-code-ci drift | Done | AskUserQuestion answer. CI holds 72 keywords in hub-router.json, 58 in the hub ROUTER.md row and 12 in the packet row, so no CI keyword changes in phase 004 |
+| Phase 004 vocabulary single source | Done | Code 9a9bbb76aa. Row H1 carries fix evidence. New ledger row H7 records the sk-code-ci keyword copies, 72, 58 and 12, left for a later packet on the operator's answer |
 
 ### Deviations and findings
 
