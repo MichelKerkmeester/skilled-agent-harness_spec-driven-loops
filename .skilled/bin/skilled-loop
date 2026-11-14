@@ -28,6 +28,13 @@ resolve_script_path() {
 
 script_path=$(resolve_script_path)
 script_directory=$(dirname "$script_path")
+
+# Prints a checksum of the wrapper file, or nothing when the file cannot be read, as it
+# can be for a moment while a checkout replaces it.
+wrapper_checksum() {
+  { cksum < "$script_path"; } 2>/dev/null || true
+}
+
 relaunch_cli="$script_directory/../hooks/session-relaunch/bin/session-relaunch.cjs"
 relaunch_core="$script_directory/../hooks/session-relaunch/lib/relaunch-core.cjs"
 goal_handover="$script_directory/../hooks/session-relaunch/lib/goal-handover.cjs"
@@ -1196,6 +1203,10 @@ fi
 relaunched_handoff=''
 relaunched_spec_folder=''
 
+# A running loop keeps the code it started with, so a fix that lands in this file later
+# reaches no hop of this loop. The checksum taken here lets each hop say so.
+started_wrapper_checksum=$(wrapper_checksum)
+
 while true; do
   # Cursor keeps one model selection for all its sessions, so the CLI counts a selection as
   # this session's only when it changed after this launch.
@@ -1454,6 +1465,10 @@ while true; do
       build_relaunch_arguments "$launch_prompt"
       if [[ "$runtime" == 'codex' ]]; then
         launch_arguments=(--no-daemon "${launch_arguments[@]}")
+      fi
+      if [[ "$(wrapper_checksum)" != "$started_wrapper_checksum" ]]; then
+        printf '%s\n' \
+          'note: skilled-loop changed on disk after this loop started, restart the wrapper to run the new code' >&2
       fi
       ;;
     1)

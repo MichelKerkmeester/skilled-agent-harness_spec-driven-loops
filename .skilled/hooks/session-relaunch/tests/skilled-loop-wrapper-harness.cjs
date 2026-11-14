@@ -208,6 +208,12 @@ const noteRewriteInvocation = process.env.NOTE_REWRITE_ON_INVOCATION;
 if (noteRewriteInvocation === String(invocation)) {
   fs.writeFileSync(process.env.HANDOFF_PATH, fs.readFileSync(process.env.NOTE_REWRITE_SOURCE, "utf8"));
 }
+// A case that edits the wrapper while its loop runs appends after the loop, so the running
+// copy keeps the code it already read.
+const wrapperAppendInvocation = process.env.WRAPPER_APPEND_ON_INVOCATION;
+if (wrapperAppendInvocation === String(invocation)) {
+  fs.appendFileSync(process.env.WRAPPER_APPEND_PATH, "# appended while the loop runs\\n");
+}
 const exitCodes = (process.env.STUB_EXIT_CODES || "0").split(",").map(Number);
 process.exitCode = exitCodes[Math.min(invocation - 1, exitCodes.length - 1)];
 `;

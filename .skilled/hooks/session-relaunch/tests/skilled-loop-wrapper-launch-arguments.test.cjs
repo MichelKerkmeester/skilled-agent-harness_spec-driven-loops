@@ -12,7 +12,8 @@ const {
   SEED, SPEC_FOLDER, SPEC_FOLDER_SUFFIX, SKIP_SPEC_FOLDER_SUFFIX, LOOP_ID_PATTERN,
   RUNTIME_SOURCE, expectedClaudeManualCommand, createSandbox, installRuntimeStub,
   writeSpecFolderNote,
-  runWrapperScript, runWrapper, handOverLines, installWrapperCopyWithChangedSuffix,
+  runWrapperScript, runWrapper, handOverLines, installWrapperCopy,
+  installWrapperCopyWithChangedSuffix,
   installWrapperWithThrowingSuffix, installMalformedConsumeStub, readRecords, readLog,
 } = require('./skilled-loop-wrapper-harness.cjs');
 
@@ -289,6 +290,37 @@ test('wrapper relaunches without a spec-folder suffix when the core formatter th
   assert.equal(records.length, 2);
   assert.deepEqual(records[1].args, [`${SEED} ${handoffPath}`]);
   assert.match(result.stderr, /could not build the spec-folder suffix/);
+});
+
+test('a hop says so when the wrapper file changed after the loop started', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const { wrapperPath } = installWrapperCopy(sandbox);
+  Object.assign(sandbox.env, {
+    WRAPPER_APPEND_ON_INVOCATION: '1',
+    WRAPPER_APPEND_PATH: wrapperPath,
+  });
+
+  const result = runWrapperScript(sandbox, wrapperPath, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(readRecords(recordPath).length, 2);
+  const notices = result.stderr.split('\n')
+    .filter((line) => line.startsWith('note: skilled-loop changed on disk'));
+  assert.equal(notices.length, 1, result.stderr);
+  assert.match(notices[0], /restart the wrapper/);
+});
+
+test('a hop prints no change notice when the wrapper file is unchanged', (t) => {
+  const sandbox = createSandbox(t);
+  const { recordPath } = installRuntimeStub(sandbox, { markers: '1' });
+  const { wrapperPath } = installWrapperCopy(sandbox);
+
+  const result = runWrapperScript(sandbox, wrapperPath, ['claude']);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.equal(readRecords(recordPath).length, 2);
+  assert.doesNotMatch(result.stderr, /changed on disk/);
 });
 
 test('wrapper leaves an empty spec folder unanswered without logging a drop', (t) => {
