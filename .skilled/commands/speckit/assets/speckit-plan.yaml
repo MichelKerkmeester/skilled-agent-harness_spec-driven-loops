@@ -18,7 +18,7 @@ execution_mode:
   values: [auto, confirm, autopilot]
   default: confirm
   rule: "Under confirm, execute every checkpoint block in order at the step that carries it, and apply the mode_overrides.confirm wording. Under auto or autopilot, skip every block whose applies_to is confirm and every checkpoint_confirm flag and keep the autonomous wording of this file. Under autopilot, unattended task metadata is required as the command router states."
-checkpoints: [step_1_request_analysis, step_2_pre_work_review, step_3_specification, step_4_clarification, step_5_planning, step_6_save_context, step_7_handover_check]
+checkpoints: [step_1_request_analysis, step_2_pre_work_review, step_3_specification, step_4_clarification, step_5_planning, step_5_5_task_breakdown, step_6_save_context, step_7_handover_check]
 mode_overrides:
   confirm:
     role: "Expert Developer using Smart SpecKit for interactive planning"
@@ -79,10 +79,11 @@ optional_workflows:
     trigger:
       flag: ":with-phases"
       smart_detect: false
-    insert_point: "before_step_1"
+    insert_point: "after_step_1"
     pre_workflow_steps:
       - id: P1
         name: Analyze Scope
+        input: "estimated_loc and estimated_files from the step_1_request_analysis outputs"
         command: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --json --recommend-phases --phase-threshold {phase_threshold} --loc {estimated_loc} --files {estimated_files}"
         output: phase_recommendation
       - id: P2
@@ -91,7 +92,8 @@ optional_workflows:
         output: phase_plan
       - id: P3
         name: Create Folders
-        command: 'bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh "{feature_description}" --phase --phases {phase_count} --phase-names "{phase_names}" --level {parent_level}'
+        command: 'bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh "{feature_description}" --phase --phases {phase_count} --phase-names "{phase_names}" --level {recommended_level}'
+        input: "--phases takes the number of phases P2 defined. --level takes the level P1 printed."
         output: parent_and_child_folders
       - id: P4
         name: Populate Templates
@@ -102,6 +104,7 @@ optional_workflows:
       phase_child_header: Level template contract
     post_decomposition:
       action: "Update spec_path to first child phase folder, continue with normal workflow"
+      remaining_children: "Every child folder after the first, recorded for termination"
       validation: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh --recursive {parent_folder}"
     checkpoint:
       enabled: true
@@ -113,7 +116,7 @@ optional_workflows:
         - { key: "Y", action: "continue_with_first_child" }
         - { key: "n", action: "pause" }
         - { key: "review", action: "show_folder_tree" }
-    defaults: { phase_count: 3, phase_names: "auto-generate", parent_level: "3+" }
+    defaults: { phase_names: "auto-generate" }
 
 # ─────────────────────────────────────────────────────────────────
 # PLANNING PHILOSOPHY
@@ -320,6 +323,14 @@ template_compliance:
       <!-- ANCHOR:success-criteria --> ## 5. SUCCESS CRITERIA
       <!-- ANCHOR:risks --> ## 6. RISKS & DEPENDENCIES
       <!-- ANCHOR:questions --> ## 7. OPEN QUESTIONS
+    tasks_md: |
+      # Tasks: [NAME]
+      <!-- ANCHOR:notation --> ## Task Notation
+      <!-- ANCHOR:phase-1 --> ## Phase 1: Setup
+      <!-- ANCHOR:phase-2 --> ## Phase 2: Implementation
+      <!-- ANCHOR:phase-3 --> ## Phase 3: Verification
+      <!-- ANCHOR:completion --> ## Completion Criteria
+      <!-- ANCHOR:cross-refs --> ## Cross-References
     plan_md: |
       # Implementation Plan: [NAME]
       <!-- ANCHOR:summary --> ## 1. SUMMARY
@@ -413,7 +424,7 @@ quality_gates:
       - { id: execution_mode_set, points: 20 }
     on_fail: "Pre-execution gate below threshold. Missing: {missing_checks}."
   post_execution:
-    location: "After Step 7"
+    location: "After Step 6"
     threshold: 70
     blocking: hard
     checks:
@@ -474,6 +485,7 @@ workflow:
   step_0.5_intake_branch:
     purpose: Detect non-healthy target folders before Step 1 so `/plan` can inline absorb the shared intake contract (`.skilled/skills/system-spec-kit/references/workflows/intake-contract.md` §5) without a visible chained handoff
     action: "Run folder-state discovery using ls plus canonical file checks on the target spec path"
+    with_phases_rule: "Under :with-phases, skip the Emit phase of the intake contract. P3 of phase_decomposition creates the parent and child folders after Step 1, so intake binds its fields and writes no folder."
     inspect:
       command: "ls -la {spec_folder} 2>/dev/null || true"
       file_checks:
@@ -567,10 +579,10 @@ workflow:
 
   step_1_request_analysis:
     purpose: Analyze inputs and define planning scope
-    activities: [Analyze all user inputs, Define development scope, Verify/create spec folder, Check existing artifacts, Establish planning scope]
+    activities: [Analyze all user inputs, Define development scope, Verify the spec folder exists, Check existing artifacts, Establish planning scope]
     deep_analysis:
       focus: comprehensive_requirement_analysis
-      outputs: [requirement_summary, approach_overview, complexity_assessment, key_objectives, success_criteria]
+      outputs: [requirement_summary, approach_overview, complexity_assessment, key_objectives, success_criteria, estimated_loc, estimated_files]
     confidence_checkpoint:
       evaluate_at: "After analyzing all inputs"
       scoring_factors:
@@ -613,7 +625,7 @@ workflow:
         agents: [{ name: spec_explorer, focus: "Existing specs and patterns" }, { name: requirement_analyzer, focus: "Similar features and requirements" }]
         dispatch_note: "Spawn agents in SINGLE message for parallel execution"
       fallback: "Proceed with activities if dispatch fails or user chooses direct"
-    activities: [Run create.sh (runtime/cli/spec/create.sh), "Estimate complexity and select doc level (L1:<100 LOC, L2:100-499, L3:>=500)", Load and fill spec.md, Generate functional requirements, Define success criteria, "Run the restraint pass on Scope and Files to Change: for each new file, module, option, layer or dependency name what fails today without it (prevent-overengineering.md section 2)"]
+    activities: [Verify the spec folder exists and never create it in this step, "Estimate complexity and select doc level (L1:<100 LOC, L2:100-499, L3:>=500)", Load and fill spec.md, Generate functional requirements, Define success criteria, "Run the restraint pass on Scope and Files to Change: for each new file, module, option, layer or dependency name what fails today without it (prevent-overengineering.md section 2)"]
     outputs: [spec.md]
     template: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl
     template_prompt_contract:
@@ -790,9 +802,38 @@ workflow:
       question: "Step 5 Complete: Technical plan created. Review plan.md?"
       use: present_options_to_user
       options:
-        - { label: "Approve Plan", description: "Plan looks good, proceed to save context" }
+        - { label: "Approve Plan", description: "Plan looks good, proceed to task breakdown" }
         - { label: "Review Plan", description: "Show plan.md for detailed review" }
         - { label: "Modify Plan", description: "Request changes to technical plan" }
+
+  step_5_5_task_breakdown:
+    purpose: Write tasks.md from the finished plan, so the plan leaves a task list for /speckit:implement
+    activities:
+    - Load plan.md for tech stack and architecture
+    - Load spec.md for user stories and priorities
+    - Generate tasks organized by user story with dependency graph
+    - Mark parallel-executable tasks with [P], define phases, generate estimates
+    - Write tasks.md
+    outputs: [tasks.md]
+    template: .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
+    template_prompt_contract:
+      canonical_template: .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
+      inline_scaffold_key: tasks_md
+      writing_rule: "Embed template_compliance.inline_scaffolds.tasks_md in the prompt before writing tasks.md and preserve the required anchors/headers in order."
+    post_write_validation:
+      command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
+      on_fail: "STOP and repair tasks.md template drift before proceeding"
+      guard_command: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh && bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh"
+      guard_on_fail: "Report the guard output and continue: a failure means the skill's own examples or authoring card drifted, not this packet"
+    validation: tasks_documented
+    checkpoint:
+      applies_to: confirm
+      question: "Step 5.5 Complete: Tasks defined. Review tasks.md?"
+      use: present_options_to_user
+      options:
+        - { label: "Approve Tasks", description: "Task breakdown looks good, continue to the save" }
+        - { label: "Review Tasks", description: "Show tasks.md for review" }
+        - { label: "Modify Tasks", description: "Request changes to task breakdown" }
 
   step_6_save_context:
     purpose: Save conversation context for planning documentation
@@ -837,6 +878,7 @@ workflow:
 termination:
   after_step: 7
   message: "Planning phase completed. Workflow terminated after step 7."
+  remaining_children: "When the run decomposed into phases, name each remaining child folder with its command: /speckit:plan <child-folder>"
   next_steps: [Review planning docs, Validate technical approach, "Use /speckit:implement:auto or /speckit:implement:confirm"]
   enforcement: |
     CRITICAL: If user requests implementation via free text (e.g., "implement this plan",

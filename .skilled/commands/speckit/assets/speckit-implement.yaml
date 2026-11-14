@@ -6,7 +6,7 @@ execution_mode:
   values: [auto, confirm, autopilot]
   default: confirm
   rule: "Under confirm, execute every checkpoint block in order at the step that carries it, and apply the mode_overrides.confirm wording. Under auto or autopilot, skip every block whose applies_to is confirm and every checkpoint_confirm flag and keep the autonomous wording of this file. Under autopilot, unattended task metadata is required as the command router states."
-checkpoints: [step_1_review_plan_and_spec, step_2_task_breakdown, step_3_analysis, step_4_acceptance_criteria, step_5_implementation_check, step_5_5_preflight, step_6_development, step_7_completion, step_7_5_postflight, step_8_save_context, step_9_session_handover_check, step_6_5_checkpoint_development]
+checkpoints: [step_1_review_plan_and_spec, step_2_task_breakdown, step_3_analysis, step_4_acceptance_criteria, step_5_implementation_check, step_5_5_preflight, step_6_development, step_7_completion, step_7_5_postflight, step_8_save_context, step_9_session_handover_check, step_6_5_checkpoint_development, step_6_7_acceptance_verify]
 mode_overrides:
   confirm:
     role: "Expert Developer using Smart SpecKit for interactive implementation"
@@ -17,7 +17,7 @@ mode_overrides:
     mandate: "Build incrementally, review with user, deliver confidently"
     goal_prompt_choice: "[offer|skip|set] - Optional session-goal behavior. Defaults to offer unless the user chooses skip or set; set requires goal_objective."
     interactive_integration: "Confidence checks surfaced at user checkpoints"
-    step_completion_rule: "Execute ALL activities \u2192 Verify ALL outputs \u2192 Present checkpoint for approval \u2192 Mark step complete after approval \u2192 THEN proceed. NEVER skip steps, NEVER proceed without user approval outside child dispatch, NEVER jump to coding before Step 5."
+    step_completion_rule: "Execute ALL activities \u2192 Verify ALL outputs \u2192 Present checkpoint for approval \u2192 Mark step complete after approval \u2192 THEN proceed. NEVER skip steps, NEVER proceed without user approval outside child dispatch, NEVER jump to coding before Step 6."
     approach: "incremental_implementation_with_reviews, systematic execution with user validation at checkpoints"
     principle: "Execute with user approval at each checkpoint outside child dispatch"
     checkpoint_behavior: "[Complete activities, Present results summary, Present options for approval, Wait for response, Process feedback, Proceed or modify]"
@@ -36,7 +36,7 @@ checkpoint_options:
     description: "Make changes before proceeding"
   code_review:
   - label: "Approve Code"
-    description: "Implementation reviewed, continue to Step 7 completion"
+    description: "Implementation reviewed, continue to Step 6.7 acceptance verification"
   - label: "Review Code"
     description: "Show code changes for review"
   - label: "Modify Code"
@@ -389,7 +389,6 @@ quality_gates:
       - { id: prerequisites_complete, points: 30 }
       - { id: plan_clarity, points: 25, criteria: "Pass only when plan.md states a concrete technical approach and affected files; fail if a material design choice remains." }
       - { id: task_breakdown_quality, points: 25 }
-      - { id: checklist_verified, points: 20 }
     on_fail: "PRE-IMPLEMENTATION GATE FAILED ({score}/100). Fix issues before coding."
   post_implementation:
     location: "After Step 7"
@@ -441,7 +440,7 @@ workflow_enforcement:
     location: "Before Step 1"
     requirements: ["spec.md exists in SPEC_FOLDER", "plan.md exists in SPEC_FOLDER"]
     action_if_failed: "STOP - run /speckit:plan first"
-  step_completion_rule: "Execute ALL activities → Verify ALL outputs → Mark step complete → THEN proceed. NEVER skip steps, NEVER proceed without completion, NEVER jump to coding before Step 5."
+  step_completion_rule: "Execute ALL activities → Verify ALL outputs → Mark step complete → THEN proceed. NEVER skip steps, NEVER proceed without completion, NEVER jump to coding before Step 6."
   critical_steps:
     step_6: { enforcement: "MUST mark tasks [x] in tasks.md", verification: "Count [x] vs [ ] — all must be [x]" }
     step_7: { enforcement: "MUST create implementation-summary.md", verification: "File must exist in spec folder" }
@@ -478,6 +477,8 @@ workflow:
     - Verify spec.md and plan.md exist
     - Load and review all planning artifacts
     - Understand requirements, analyze approach, identify dependencies, note constraints
+    - Confirm plan.md leaves no design choice to the implementer
+    on_fail: "STOP before task breakdown. plan.md leaves a design choice to the implementer: name the choice, return to /speckit:plan so it records the decision in plan.md and reruns its task breakdown, then rerun /speckit:implement from Step 1."
     required_documents: ["[SPEC_FOLDER]/spec.md", "[SPEC_FOLDER]/plan.md"]
     optional_documents: [research/research.md, "decision-record-*.md"]
     deep_analysis:
@@ -534,30 +535,29 @@ workflow:
       options: checkpoint_options.standard
 
   step_4_acceptance_criteria:
-    purpose: Verify acceptance-criteria.md and the tasks.md checklist AND USE THEM FOR VERIFICATION (Level 2+)
+    purpose: Author the acceptance-criteria.md rows before development (Level 2+). This step verifies no row.
     activities:
     - Skip for Level 1, MANDATORY for Level 2+
-    - Load acceptance-criteria.md rows and the tasks.md Verification Checklist items with priorities (P0/P1/P2)
-    - "FOR EACH ITEM: verify condition, mark [x] with evidence, document blockers/deferrals"
-    - Ensure ALL P0 complete (HARD BLOCKER), ALL P1 complete or approved deferral
-    - Set each row to Met, Waived or Superseded with observed evidence and mark the checklist items [x]
-    verification_protocol: { p0: "BLOCKER", p1: "Required or user-approved deferral", p2: "Optional, can defer with reason" }
-    outputs: { acceptance_status: closeable_or_not, checklist_status: pass_or_fail, p0_status: "all_complete or blocked" }
-    validation: acceptance_verified_and_marked
+    - Load acceptance-criteria.md and the requirements in spec.md
+    - "When acceptance-criteria.md holds only the scaffold row: write one Unmet row per spec requirement, each naming the command or inspection that verifies it"
+    - "Otherwise: confirm that every spec requirement has a row, and add an Unmet row for each requirement that has none"
+    - Leave every row Unmet. The acceptance verification step after development verifies the rows
+    outputs: { acceptance_rows: authored_or_confirmed, requirements_without_row: none }
+    validation: acceptance_rows_authored
     checkpoint:
       applies_to: confirm
-      question: "Step 4 Complete: Checklists verified. Ready to implement?"
-      child_dispatch: "When child_dispatch applies, default to Start Implementation only when every P0 row is Met or Waived. When a P0 row is open, default to Address Blockers, record the open rows in the lineage directory and continue."
+      question: "Step 4 Complete: Acceptance criteria rows authored. Ready to implement?"
+      child_dispatch: "When child_dispatch applies, default to Start Implementation when every requirement has a row. When a requirement has no row, write the missing row, record it in the lineage directory and continue."
       options:
         - { label: "Start Implementation", description: "Begin development phase" }
-        - { label: "Review Verification", description: "Show acceptance-criteria and checklist verification details" }
-        - { label: "Address Blockers", description: "Fix P0/P1 blockers first" }
+        - { label: "Review Rows", description: "Show the acceptance-criteria.md rows" }
+        - { label: "Modify Rows", description: "Change a row before development" }
 
   step_5_implementation_check:
     purpose: Verify all prerequisites for implementation
-    activities: [Verify environment ready, Check API endpoints, Verify dependencies, Confirm no blockers, Confirm plan.md leaves no design choice to the implementer]
-    checks: { prerequisites: verified, blockers: none, environment: ready, plan_design_choices: none }
-    on_fail: "STOP before coding. plan.md leaves a design choice to the implementer: name the choice, return to planning, record the decision in plan.md, then rerun this step."
+    activities: [Verify environment ready, Check API endpoints, Verify dependencies, Confirm no blockers]
+    checks: { prerequisites: verified, blockers: none, environment: ready }
+    on_fail: "STOP before coding. Name the failed check and its blocker, fix it, then rerun this step."
     validation: prerequisites_verified
     checkpoint:
       applies_to: confirm
@@ -655,7 +655,7 @@ workflow:
     checkpoint:
       applies_to: confirm
       question: "Step 6 Complete: Development finished. Review implementation?"
-      child_dispatch: "When child_dispatch applies, record the question with Approve Code, the first option of checkpoint_options.code_review, as the default in the lineage directory and continue. Approve Code reaches Step 7, which validates the spec folder and checks that tests pass before completion."
+      child_dispatch: "When child_dispatch applies, record the question with Approve Code, the first option of checkpoint_options.code_review, as the default in the lineage directory and continue. Approve Code reaches Step 6.7, which verifies the acceptance-criteria rows before Step 7 completion."
       options: checkpoint_options.code_review
 
   step_6_5_checkpoint_development:
@@ -669,6 +669,29 @@ workflow:
     outputs: ["[SPEC_FOLDER]/scratch/checkpoint__development_complete.md"]
     validation: checkpoint_saved
     checkpoint_confirm: true
+
+  step_6_7_acceptance_verify:
+    purpose: Verify every acceptance-criteria row and every P0/P1 checklist item after development and before completion
+    blocking: true
+    level_requirement: "Level 2+"
+    activities:
+    - Skip for Level 1, MANDATORY for Level 2+
+    - Load acceptance-criteria.md and the Verification Checklist section of tasks.md
+    - Set every row to Met with observed evidence, or to Waived/Superseded naming an ADR that exists in decision-record.md
+    - Verify ALL P0 checklist items are marked [x] with evidence
+    - Verify ALL P1 items are either marked [x] or have documented user approval to defer
+    - P2 items may be deferred with a documented reason
+    verification_protocol: { p0: "BLOCKER", p1: "Required or user-approved deferral", p2: "Optional, can defer with reason" }
+    p0_enforcement:
+      blocking: true
+      on_incomplete: "UNMET CRITERIA OR P0 ITEMS INCOMPLETE - Cannot proceed to completion. WORKFLOW HALTED."
+    outputs: { acceptance_status: closeable_or_not, checklist_status: pass_or_fail, p0_status: "all_complete or blocked" }
+    validation: acceptance_verified_and_marked
+    checkpoint:
+      applies_to: confirm
+      question: "Acceptance verification complete: every row and every P0/P1 checklist item verified. Proceed to completion?"
+      child_dispatch: "When child_dispatch applies, default to Approve only when every acceptance-criteria row and every P0 item is verified. When one is open, record the open rows and the p0_enforcement halt in the lineage directory, do not claim completion, and continue."
+      options: checkpoint_options.standard
 
   step_7_completion:
     purpose: Generate implementation summary

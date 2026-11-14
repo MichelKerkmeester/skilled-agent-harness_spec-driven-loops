@@ -140,10 +140,11 @@ optional_workflows:
     trigger:
       flag: ":with-phases"
       smart_detect: false
-    insert_point: "before_step_1"
+    insert_point: "after_step_1"
     pre_workflow_steps:
       - id: P1
         name: Analyze Scope
+        input: "estimated_loc and estimated_files from the step_1_request_analysis outputs"
         command: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/recommend-level.sh --json --recommend-phases --phase-threshold {phase_threshold} --loc {estimated_loc} --files {estimated_files}"
         output: phase_recommendation
       - id: P2
@@ -152,7 +153,8 @@ optional_workflows:
         output: phase_plan
       - id: P3
         name: Create Folders
-        command: 'bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh "{feature_description}" --phase --phases {phase_count} --phase-names "{phase_names}" --level {parent_level}'
+        command: 'bash .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh "{feature_description}" --phase --phases {phase_count} --phase-names "{phase_names}" --level {recommended_level}'
+        input: "--phases takes the number of phases P2 defined. --level takes the level P1 printed."
         output: parent_and_child_folders
       - id: P4
         name: Populate Templates
@@ -163,6 +165,7 @@ optional_workflows:
       phase_child_header: Level template contract
     post_decomposition:
       action: "Update spec_path to first child phase folder, continue with normal workflow"
+      remaining_children: "Every child folder after the first, recorded for termination"
       validation: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh --recursive {parent_folder}"
     checkpoint:
       enabled: true
@@ -174,7 +177,7 @@ optional_workflows:
         - { key: "Y", action: "continue_with_first_child" }
         - { key: "n", action: "pause" }
         - { key: "review", action: "show_folder_tree" }
-    defaults: { phase_count: 3, phase_names: "auto-generate", parent_level: "3+" }
+    defaults: { phase_names: "auto-generate" }
 
 # ─────────────────────────────────────────────────────────────────
 # USER INPUTS
@@ -518,7 +521,7 @@ quality_gates:
     on_fail: "PLANNING GATE BLOCKED ({score}/100, need 70). Missing: {missing_checks}. HALTED."
     review_integration: { blocking: true, on_review_fail: "P0 items blocking. Address before implementation." }
   post_execution:
-    location: "After Step 12"
+    location: "Between Step 13 and Step 13.5"
     threshold: 70
     blocking: hard
     checks:
@@ -560,7 +563,7 @@ request_analysis_framework:
     - "KISS: Use existing patterns, direct solution > clever complexity"
     - "Evidence-Based: Cite sources [SOURCE: file:lines] or UNKNOWN. validate.sh --strict checks each tag in research and review artifacts through its SOURCE_TAGS rule: path and line exist, nothing more"
     - "Effectiveness: Performant + Maintainable + Concise, solve ONLY stated problem"
-  pre_change_validation: [simplest_solution, scope_discipline, spec_folder_created, read_files_first, clear_success_criteria, confidence_80_plus, sources_cited, user_approval, checklist_verified_L2_plus]
+  pre_change_validation: [simplest_solution, scope_discipline, spec_folder_created, read_files_first, clear_success_criteria, confidence_80_plus, sources_cited, user_approval]
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW ENFORCEMENT
@@ -578,7 +581,7 @@ workflow_enforcement:
     action_if_failed: "STOP and return to incomplete step"
   step_completion_rule: |
     FOR EACH STEP: Execute ALL activities → Verify ALL outputs → Mark step complete → THEN proceed
-    NEVER skip a step. NEVER proceed without marking previous complete. NEVER jump to code before Step 8.
+    NEVER skip a step. NEVER proceed without marking previous complete. NEVER jump to code before Step 10.
   critical_steps:
     step_10_development:
       enforcement: "MUST mark tasks [x] in tasks.md as completed"
@@ -643,6 +646,7 @@ workflow:
   step_0.5_intake_branch:
     purpose: Detect non-healthy target folders before Step 1 so `/complete` can inline absorb the shared intake contract (`.skilled/skills/system-spec-kit/references/workflows/intake-contract.md` §5) without a visible chained handoff
     action: "Run folder-state discovery using ls plus canonical file checks on the target spec path after any phase-predecessor validation"
+    with_phases_rule: "Under :with-phases, skip the Emit phase of the intake contract. P3 of phase_decomposition creates the parent and child folders after Step 1, so intake binds its fields and writes no folder."
     inspect:
       command: "ls -la {spec_folder} 2>/dev/null || true"
       file_checks:
@@ -700,7 +704,7 @@ workflow:
 
   step_1_request_analysis:
     purpose: Analyze inputs and define development scope
-    spec_folder: "[SPEC_FOLDER] → auto-create if empty"
+    spec_folder: "[SPEC_FOLDER] → verified here, never created here"
     context: "[CONTEXT] → infer if empty"
     issues: "[ISSUES] → discover if empty"
     request: "[REQUEST] → REQUIRED"
@@ -709,9 +713,10 @@ workflow:
     activities:
     - Analyze all user inputs thoroughly
     - Define development scope for the spec folder
-    - Verify or create spec folder structure
+    - Verify the spec folder exists. The intake Emit phase creates it, or P3 does under :with-phases
     - Check for existing artifacts
     - Establish development scope
+    outputs: [development_scope, estimated_loc, estimated_files]
     phase_predecessor_validation:
       trigger: "If [SPEC_FOLDER] path matches specs/{NNN-parent}/{NNN-phase}/ (phase child)"
       skip_if: "First phase (001-*) — no predecessor to check"
@@ -778,8 +783,7 @@ workflow:
         - { name: "requirement_analyzer", focus: "Similar features and requirements" }
       fallback: "Proceed with activities below"
     activities:
-    - Find highest feature number across all sources
-    - Run create.sh script (runtime/cli/spec/create.sh) with calculated number
+    - Verify the spec folder exists and never create it in this step
     - Estimate complexity and select documentation level using progressive enhancement:
       - "Level 1 (Baseline): <100 LOC - spec.md + plan.md + tasks.md"
       - "Level 2 (Verification): 100-499 LOC - core trio plus acceptance-criteria.md"
@@ -843,26 +847,17 @@ workflow:
       options: checkpoint_options.standard
 
   step_5_acceptance_criteria:
-    purpose: Author acceptance-criteria.md AND USE IT FOR ACTIVE VERIFICATION (Level 2+ requirement)
+    purpose: Author acceptance-criteria.md with one Unmet row per requirement (Level 2+ requirement). This step verifies no row.
     level_requirement: "Level 2+ (Verification and Full)"
     activities:
     - Check documentation level - skip for Level 1, MANDATORY for Level 2+
     - Load the acceptance-criteria template
     - Write one row per requirement in Given / When / Then form, status Unmet, with the command, file:line or artifact that will prove it
     - Create acceptance-criteria.md in the spec folder when create.sh did not scaffold it
-    - "FOR EACH ROW: verify the outcome → set Met with observed evidence → otherwise leave Unmet, or Waived/Superseded with an ADR that exists in decision-record.md"
-    - Keep the tasks.md verification checklist current: every P0 item [x] with evidence, every P1 item [x] or a documented deferral, P2 deferrals with reasons
-    verification_protocol:
-      p0_handling: "BLOCKER - Cannot proceed without completion"
-      p1_handling: "Required - Complete or get user approval to defer"
-      p2_handling: "Optional - Can defer with documented reason"
-      unmet_row: "BLOCKER - AC_CLOSURE fails a packet created after 2026-08-30 while any row is Unmet"
-      waiver: "Waived or Superseded rows name an ADR-NNN that exists in decision-record.md; an unbacked waiver counts as Unmet"
+    - Leave every row Unmet. The acceptance verification step after development verifies the rows
     outputs:
     - acceptance_criteria: authored
     - location: "[SPEC_FOLDER]/acceptance-criteria.md"
-    - closure_status: closeable_or_not
-    - p0_status: "all_complete or blocked"
     template: .skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl
     template_prompt_contract:
       canonical_template: .skilled/skills/system-spec-kit/templates/addons/acceptance-criteria.md.tmpl
@@ -874,16 +869,16 @@ workflow:
       on_fail: "STOP and repair acceptance-criteria.md template drift before proceeding"
       guard_command: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-example-drift.sh && bash .skilled/skills/system-spec-kit/runtime/cli/spec/check-card-sync.sh"
       guard_on_fail: "Report the guard output and continue: a failure means the skill's own examples or authoring card drifted, not this packet"
-    validation: acceptance_verified_and_marked
+    validation: acceptance_rows_authored
     checkpoint:
       applies_to: confirm
-      question: "Step 5 Complete: Checklist verified. How would you like to proceed?"
-      child_dispatch: "When child_dispatch applies, default to Proceed only when every P0 checklist item is marked [x] and every P0 row is Met or Waived. When one is open, default to Address Blockers, record the open items in the lineage directory and continue."
+      question: "Step 5 Complete: Acceptance criteria rows authored. How would you like to proceed?"
+      child_dispatch: "When child_dispatch applies, default to Proceed when every requirement has a row. When a requirement has no row, write the missing row, record it in the lineage directory and continue."
       use: present_options_to_user
       options:
       - { label: "Proceed", description: "Continue to planning" }
-      - { label: "Review Verification", description: "Show acceptance-criteria and checklist details" }
-      - { label: "Address Blockers", description: "Fix P0/P1 blockers first" }
+      - { label: "Review Rows", description: "Show the acceptance-criteria.md rows" }
+      - { label: "Modify Rows", description: "Change a row before planning" }
 
   step_6_planning:
     purpose: Create technical plan with implementation approach
@@ -1088,7 +1083,7 @@ workflow:
     activities:
     - Run check-prerequisites.sh --json --require-tasks
     - Verify plan.md and tasks.md exist
-    - Check acceptance-criteria.md rows and the tasks.md verification checklist
+    - Confirm each requirement has an acceptance-criteria row
     - Verify no blockers exist
     - Verify environment is ready
     - Verify dependencies loaded
@@ -1281,35 +1276,6 @@ workflow:
       use: present_options_to_user
       options: checkpoint_options.standard
 
-  step_12_5_autopilot_archive_verify_merge:
-    purpose: Close unattended runs by archiving in place, verifying, and merging only when clean
-    activation:
-      when:
-        field: execution_mode
-        op: "=="
-        value: autopilot
-      when_legacy_literal: "execution_mode == autopilot"
-    sequence:
-      - archive_in_place
-      - verify_clean
-      - merge_on_clean
-    activities:
-      - "Archive or finalize generated SpecKit artifacts on the autopilot branch; do not open a PR-only archive path."
-      - "Run the required validation, lint, build, and test gates for the changed surface."
-      - "Confirm the worktree is clean after verification and before merge."
-      - "Merge the autopilot branch only when verification passed and the worktree is clean."
-      - "On merge conflict, failed verification, dirty tree, retry exhaustion, no eligible tasks, or unresolved uncertainty, stop without merge and preserve the branch."
-    failure_policy:
-      no_eligible_tasks: { branch_preserved: true, merge: false, emit_terminal_result: true }
-      retry_exhausted: { branch_preserved: true, merge: false, emit_terminal_result: true }
-      verification_failed: { branch_preserved: true, merge: false, emit_terminal_result: true }
-      uncertainty_blocked: { branch_preserved: true, merge: false, emit_terminal_result: true }
-    terminal_output:
-      prefix: SPECKIT_AUTOPILOT_RESULT
-      failure_schema: '{"mode":"autopilot","ok":false,"reason":"<terminal_reason_code>","branch":"<branch>","merged":false,"verification":"<summary>"}'
-      success_schema: '{"mode":"autopilot","ok":true,"reason":null,"branch":"<branch>","merged":true,"verification":"passed"}'
-    validation: autopilot_merge_gate_complete
-
   step_13_save_context:
     purpose: Save conversation context for documentation and team sharing
     activities:
@@ -1344,6 +1310,35 @@ workflow:
     shared_tail: "assets/speckit-save-context-tail.yaml#save_context_core"
     shared_tail_note: "The writer, post-save rule and anchor requirements live once in the shared tail; {spec_path} is this workflow's packet."
 
+  step_13_5_autopilot_archive_verify_merge:
+    purpose: Close unattended runs by archiving in place, verifying, and merging only when clean
+    activation:
+      when:
+        field: execution_mode
+        op: "=="
+        value: autopilot
+      when_legacy_literal: "execution_mode == autopilot"
+    sequence:
+      - archive_in_place
+      - verify_clean
+      - merge_on_clean
+    activities:
+      - "Archive or finalize generated SpecKit artifacts on the autopilot branch; do not open a PR-only archive path."
+      - "Run the required validation, lint, build, and test gates for the changed surface."
+      - "Confirm the worktree is clean after verification and before merge."
+      - "Merge the autopilot branch only when verification passed and the worktree is clean."
+      - "On merge conflict, failed verification, dirty tree, retry exhaustion, no eligible tasks, or unresolved uncertainty, stop without merge and preserve the branch."
+    failure_policy:
+      no_eligible_tasks: { branch_preserved: true, merge: false, emit_terminal_result: true }
+      retry_exhausted: { branch_preserved: true, merge: false, emit_terminal_result: true }
+      verification_failed: { branch_preserved: true, merge: false, emit_terminal_result: true }
+      uncertainty_blocked: { branch_preserved: true, merge: false, emit_terminal_result: true }
+    terminal_output:
+      prefix: SPECKIT_AUTOPILOT_RESULT
+      failure_schema: '{"mode":"autopilot","ok":false,"reason":"<terminal_reason_code>","branch":"<branch>","merged":false,"verification":"<summary>"}'
+      success_schema: '{"mode":"autopilot","ok":true,"reason":null,"branch":"<branch>","merged":true,"verification":"passed"}'
+    validation: autopilot_merge_gate_complete
+
   step_14_handover_check:
     purpose: Final workflow closeout before completion
     activities:
@@ -1369,6 +1364,7 @@ workflow:
 termination:
   after_step: 14
   message: "SpecKit workflow completed successfully."
+  remaining_children: "When the run decomposed into phases, name each remaining child folder with its command: /speckit:complete <child-folder>"
 
 # ─────────────────────────────────────────────────────────────────
 # CHECKPOINT PROTOCOL
