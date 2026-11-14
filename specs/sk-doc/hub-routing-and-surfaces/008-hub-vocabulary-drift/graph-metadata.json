@@ -32,7 +32,7 @@
       "commit"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -171,12 +171,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement Commit",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -184,6 +178,12 @@
       },
       {
         "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -203,8 +203,8 @@
     ],
     "causal_summary": "Commit 7af52ef940 (command surfacing, 2026-11-13) added nine phrases to the `vocabularyClasses` of two `hub-router.json` files and did not carry them to the hubs' root `ROUTER.md`",
     "created_at": "2026-11-13T21:40:26Z",
-    "last_save_at": "2026-11-13T23:32:01.947Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-14T05:29:26.504Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -212,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5ff139f48464d9a44883a4e6c9d693f31c36afb222c8631ffcf0062a9ffade3f",
+    "source_fingerprint": "sha256:fe60e6b706ff54825e26b42d82db30281617d28bd086d849a4a6eb7c83e5f008",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5517cfae56484be21414e2e82d0760c0a4206408bae6c74e4da49413e2264ee6",
+      "spec.md": "352ca2a0262c3e3b66b633ab96560ce6f87f793ccb058a4307d7e43e79a9bac2",
       "plan.md": "1f8ccd6139541fd89980b5d1c6aad37db5438376dad6a14dce25ee8e3904e90d",
-      "tasks.md": "36930684e14a841036ad7b2b5e1cb55b57b35703b904e3c15719af6890e5aced",
-      "implementation-summary.md": "53b452c16a3f8bbd65656d805d693f625c8eda95571c5756f34e2d7f62add538"
+      "tasks.md": "e92ecba6fc85539d3276a61775c70c90dd82a669f5d5e212359207a72334f1d9",
+      "implementation-summary.md": "ff69824396063ebba987179666a7942d8d7d560473555cc21b4cdccef89fdf07"
     },
     "last_active_at": null
   }

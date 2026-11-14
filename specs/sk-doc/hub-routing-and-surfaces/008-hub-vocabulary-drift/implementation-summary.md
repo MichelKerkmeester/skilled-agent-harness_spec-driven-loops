@@ -8,17 +8,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift"
-    last_updated_at: "2026-11-13T21:40:26Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-11-14T05:29:26Z"
+    last_updated_by: "generate-context"
+    recent_action: "Closed the packet on the merged command surfacing branch"
+    next_safe_action: "None in this packet. It reaches main with the command surfacing pull request the operator opens"
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/tasks.md"
+      - "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/implementation-summary.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:acec11d67de2561a08464fe8e5a2bcd0b625be2d388acbd75ca1e206db001e4c"
       session_id: "scaffold-008-hub-vocabulary-drift"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -47,7 +49,7 @@ _memory:
 ## What Was Built
 <!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-The Routing Registry Drift Guard step "Hub vocabulary source" passes again on this branch: `ci-hub-vocabulary-source.cjs` prints `checked=7 hub(s), drift=0` where main prints `drift=9`. The branch is implemented and verified but not yet on main. It lands through the 008-command-surfacing-build session.
+The Routing Registry Drift Guard step "Hub vocabulary source" passes again on this branch: `ci-hub-vocabulary-source.cjs` prints `checked=7 hub(s), drift=0` where main prints `drift=9`. The branch is merged into the 008-command-surfacing-build branch `worktrees/352-command-surfacing-research` as 2276ba1364. It reaches main through that branch's pull request.
 
 ### Add the nine hub-router.json phrases to the sk-doc and system-deep-loop root ROUTER.md intents so the hub vocabulary source check passes
 
@@ -88,6 +90,8 @@ All commands ran on worktree branch `worktrees/372-hub-vocabulary-drift`. The fa
 4. `capture-local-native-divergence-ledger.mjs --write`
 
 The checks in the Verification table ran after the last generator. The branch is committed here as bc86b64c79 and handed to the 008-command-surfacing-build session. That commit also carries the rebuilt trigger index, and `generate-trigger-index.mjs --check` exits 0. It does not go to main by itself.
+
+The 008 session merged the branch as 2276ba1364, recaptured `scorer-eval-baseline.json` once in 23e7eee17b and closed this packet on its branch. The operator chose that hand-over on 2026-11-14, as the hub vocabulary session reported it.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -123,7 +127,9 @@ The checks in the Verification table ran after the last generator. The branch is
 | `validate_skill_package.py` on sk-doc and system-deep-loop | PASS. PASS, exit 0 |
 | `ci-skill-root-metadata.cjs`, `ci-leaf-manifest-freshness.cjs`, `ci-skill-derived-freshness.cjs` | PASS. 14 of 14, exit 0 |
 | Advisor suites `routing-registry-drift-guard`, `routing-parity-deep-skills`, `routing-parity-deep-council`, `routing-golden-prompts` and `tests/parity/` | Before the change 12 files and 123 tests passed. After it 122 of 123 pass |
-| `tests/parity/scorer-eval-baseline-ratchet.vitest.ts` | FAIL by design. `holdout_top1.correct: live=51 baseline=50. improvement detected` |
+| `tests/parity/scorer-eval-baseline-ratchet.vitest.ts` on this branch | FAIL by design. `holdout_top1.correct: live=51 baseline=50. improvement detected` |
+| The same test on the merged 008 branch, after the recapture in 23e7eee17b | PASS. `Tests  7 passed (7)` |
+| `ci-hub-vocabulary-source.cjs` on the merged 008 branch | PASS. `checked=7 hub(s), drift=0`, `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -132,8 +138,9 @@ The checks in the Verification table ran after the last generator. The branch is
 ## Known Limitations
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **The scorer baseline ratchet is red on this branch.** `tests/parity/scorer-eval-baseline-ratchet.vitest.ts` fails with `holdout_top1.correct: live=51 baseline=50. improvement detected`. One more holdout prompt now routes correctly. The baseline recapture belongs to the 008 session, so the test stays red here until that session merges this branch and recaptures `scorer-eval-baseline.json`.
+1. **The scorer baseline ratchet was red on this branch and is green on the merged one.** `tests/parity/scorer-eval-baseline-ratchet.vitest.ts` failed here with `holdout_top1.correct: live=51 baseline=50. improvement detected`, because one more holdout prompt now routes correctly. The 008 session recaptured `scorer-eval-baseline.json` in 23e7eee17b and the test passes there.
 2. **Main still fails the check.** This branch does not go to main by itself. Until the 008 session lands it, `ci-hub-vocabulary-source.cjs` on main keeps printing `drift=9`.
+3. **Two of the new phrases had a side effect in the advisor.** "confirm flag" and "agent definition" gave sk-doc the single words confirm and agents in the lexical lane. sk-doc then passed on shared words for a prompt about drifted AGENTS.md sections, and that pass blocked the doctor hand-off to `/doctor:agents-md check`. The 008 session fixed it in 23e7eee17b with a rule in the hand-off, and left the phrases as they are.
 <!-- /ANCHOR:limitations -->
 
 ---

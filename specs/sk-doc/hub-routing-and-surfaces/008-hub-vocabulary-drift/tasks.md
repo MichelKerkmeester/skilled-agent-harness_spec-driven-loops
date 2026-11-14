@@ -69,7 +69,7 @@ contextType: "general"
 - [x] T016 Run the three freshness checks (`S/ci-skill-root-metadata.cjs`). Verify: `ci-skill-root-metadata.cjs`, `ci-leaf-manifest-freshness.cjs` and `ci-skill-derived-freshness.cjs` report 14 of 14 and exit 0.
 - [x] T017 Rerun the advisor suites of T002 (`A/tests/parity/scorer-eval-baseline-ratchet.vitest.ts`). Verify: 122 of 123 tests pass, and the one failure is the ratchet with `holdout_top1.correct: live=51 baseline=50. improvement detected`.
 - [x] T018 Confirm the packet is listed under its parent (`specs/sk-doc/hub-routing-and-surfaces/graph-metadata.json`). Verify: `rg -c '008-hub-vocabulary-drift' specs/sk-doc/hub-routing-and-surfaces/graph-metadata.json` prints 1 or more.
-- [ ] T019 Hand the committed branch to the 008-command-surfacing-build session, which merges it and recaptures the baseline once (`A/tests/parity/fixtures/scorer-eval-baseline.json`). Verify: on the merged branch `tests/parity/scorer-eval-baseline-ratchet.vitest.ts` passes and `node S/ci-hub-vocabulary-source.cjs` prints `drift=0`.
+- [x] T019 Hand the committed branch to the 008-command-surfacing-build session, which merges it and recaptures the baseline once (`A/tests/parity/fixtures/scorer-eval-baseline.json`). Verify: on the merged branch `tests/parity/scorer-eval-baseline-ratchet.vitest.ts` passes and `node S/ci-hub-vocabulary-source.cjs` prints `drift=0`. Evidence: merged into `worktrees/352-command-surfacing-research` as 2276ba1364. The baseline was recaptured once there in 23e7eee17b (holdout top-1 50 to 51 of 65) and the routing corpus pin in 0238274ed8. On the merged branch the ratchet test printed `Tests  7 passed (7)` and `ci-hub-vocabulary-source.cjs` printed `checked=7 hub(s), drift=0` and `RESULT: PASSED`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -78,7 +78,7 @@ contextType: "general"
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 - [x] `node S/ci-hub-vocabulary-source.cjs` prints `checked=7 hub(s), drift=0` and `RESULT: PASSED`
