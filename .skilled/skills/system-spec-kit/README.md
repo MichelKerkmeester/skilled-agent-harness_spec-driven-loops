@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.38.0
+version: 2.7.39.0
 ---
 
 # System Spec Kit
@@ -86,7 +86,7 @@ Embeddings are local-first. The runtime probes Ollama first with the default `no
 
 **Session relaunch**
 
-- Ships off until `SYSTEM_SESSION_RELAUNCH_ENABLED` turns it on, or a runtime's own `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` turns it on or off for that runtime.
+- Ships on for Claude Code and off for every other runtime until `SYSTEM_SESSION_RELAUNCH_ENABLED` turns it on, or a runtime's own `SYSTEM_SESSION_RELAUNCH_<RUNTIME>_ENABLED` turns it on or off for that runtime.
 - `skilled-loop` (`.skilled/bin/`) then relaunches a near-limit session in a fresh runtime in the same terminal, on its own for Claude Code, Codex, Pi and OpenCode and through `/speckit:handoff` for Cursor and Devin: the handoff note links to the bound packet, `/speckit:save` runs before the hop and `/speckit:resume` after the claim, while the seed carries the session's Gate 3 answer.
 - Inside the loop the nudge asks for a hop, and outside it only for a note the session keeps through compaction.
 - Sourcing `.skilled/bin/skilled-loop-shell.sh` from the shell profile starts every interactive runtime under the wrapper, also in a repository that links `.skilled`. The shim runs only a wrapper inside the sourced checkout, a linked worktree registered to it or a checkout listed in `SKILLED_LOOP_TRUSTED_CHECKOUTS`.
