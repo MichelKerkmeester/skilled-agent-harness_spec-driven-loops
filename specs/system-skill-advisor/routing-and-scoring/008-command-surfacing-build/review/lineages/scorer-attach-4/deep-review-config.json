@@ -1,0 +1,109 @@
+{
+  "topic": "Review: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "sessionId": "fanout-scorer-attach-4-1794669272137-9v23rz",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "migrationWindowEndsAt": "",
+  "maxIterations": 4,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": {
+    "minIterations": 2,
+    "convergenceMode": "default",
+    "stopPolicy": "fail-closed"
+  },
+  "stopPolicy": "convergence",
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "createdAt": "2026-11-14T15:16:34Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "reasoningEffort": "max",
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "reviewFocus": "Code review pass four of command surfacing. Scope: specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/review-scope-4.txt lists the changed files, one per line as area TAB path, the code this packet changed since review pass three (commit 0cdc9fa3ef). Review the files whose area equals your lineage label (last folder of config.fanout_lineage_artifact_dir) without its -4 suffix, plus shared docs that describe them. Every finding is P0, P1 or P2 with file:line and a concrete input that shows it. Check: behaviour on claude, codex, opencode, pi, devin and dsh; whether a refusal, a question or a mention of a command can still attach or start a mutating command; whether the transcript scorer counts a load, a followed step or an offer that did not happen (Codex exec bodies, rg and grep, heredocs, cd, partner-side commands, paired arms, Wilson ranges); holdout hygiene, so no tune, fix or report path reads or leaks holdout rows; docs that disagree with code. HOLDOUT RULE: never open command-prompts.jsonl or holdout-prompts.jsonl except through jq 'del(.prompt)', never run git diff, git show or git log -p on a path that includes command-prompts.jsonl without the pathspec ':(exclude)**/command-prompts.jsonl', and never print a prompt whose split is holdout: counts only. The reviewer changes no code and writes only inside its lineage folder. It never edits goal.md or any file outside its lineage folder.",
+  "reviewScopeFiles": [
+    ".skilled/skills/system-skill-advisor/runtime/handlers/advisor-recommend.ts",
+    ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/doctor-helper-handoff.ts",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/command-meaning-anchor.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/doctor-helper-handoff.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/handlers/advisor-recommend-compiled-route-option.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/scorer/doctor-handoff-command.vitest.ts",
+    ".skilled/skills/system-skill-advisor/runtime/tests/scorer/typed-command-owner.vitest.ts"
+  ],
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "skill_agent",
+      "agent_cross_runtime",
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".skilled/skills/system-deep-loop/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

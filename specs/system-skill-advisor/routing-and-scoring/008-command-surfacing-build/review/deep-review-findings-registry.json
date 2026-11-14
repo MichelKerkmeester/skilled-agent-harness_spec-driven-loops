@@ -1,12 +1,56 @@
 {
   "mergedFrom": [
+    "accuracy-runner",
     "accuracy-runner-2",
+    "accuracy-runner-4",
+    "advisor-runtime-3",
+    "doctor-docs-3",
+    "doctor-docs-4",
+    "doctor-install",
     "doctor-install-2",
+    "hook-close-3c",
+    "hook-confirm-3b",
+    "noedit-close-3c",
+    "noedit-confirm-3b",
+    "render-hooks-plugin",
     "render-hooks-plugin-2",
-    "scorer-attach-2"
+    "render-hooks-plugin-4",
+    "scorer-attach",
+    "scorer-attach-2",
+    "scorer-attach-4"
   ],
   "lineageExecutors": {
+    "accuracy-runner": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
     "accuracy-runner-2": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "accuracy-runner-4": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "advisor-runtime-3": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "doctor-docs-3": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "doctor-docs-4": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "doctor-install": {
       "kind": "cli-opencode",
       "model": "opencode-go/deepseek-v4.1-flash",
       "reasoningEffort": "max"
@@ -16,7 +60,42 @@
       "model": "opencode-go/deepseek-v4.1-flash",
       "reasoningEffort": "max"
     },
+    "hook-close-3c": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "hook-confirm-3b": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "noedit-close-3c": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "noedit-confirm-3b": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "render-hooks-plugin": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
     "render-hooks-plugin-2": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "render-hooks-plugin-4": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "scorer-attach": {
       "kind": "cli-opencode",
       "model": "opencode-go/deepseek-v4.1-flash",
       "reasoningEffort": "max"
@@ -25,9 +104,14 @@
       "kind": "cli-opencode",
       "model": "opencode-go/deepseek-v4.1-flash",
       "reasoningEffort": "max"
+    },
+    "scorer-attach-4": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
     }
   },
-  "mergedVerdict": "PASS",
+  "mergedVerdict": "CONDITIONAL",
   "openFindings": [
     {
       "findingId": "iter3-P2-backfill-log-code-execution",
@@ -94,6 +178,313 @@
       ]
     },
     {
+      "findingId": "NE3-P1-001",
+      "severity": "P1",
+      "title": "`make no changes to` reads a genuine no-edit request as a change request",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 289,
+      "description": "",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "noedit-confirm-3b"
+      ]
+    },
+    {
+      "findingId": "AR3-P2-001",
+      "severity": "P2",
+      "title": "`make no changes` reads a scope-limiting change request as a no-edit request",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 289,
+      "description": "",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "advisor-runtime-3"
+      ]
+    },
+    {
+      "findingId": "HC3-P2-002",
+      "severity": "P2",
+      "title": "A command that starts after a shell keyword or the command builtin is not read as a command start",
+      "file": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+      "line": 240,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "hook-close-3c"
+      ]
+    },
+    {
+      "findingId": "SA4-P1-002",
+      "severity": "P1",
+      "title": "A coordinated refusal names the second command without a lead, so the typed path still delivers it",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 414,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach-4"
+      ]
+    },
+    {
+      "findingId": "SA4-P1-003",
+      "severity": "P2",
+      "title": "A correction inside one document still attaches the creation workflow when the sentence carries a generic creation word",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 487,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach-4"
+      ]
+    },
+    {
+      "findingId": "R1-P2-004",
+      "severity": "P2",
+      "title": "A corrupt Devin sessions.db suppresses the transcript fallback",
+      "file": ".skilled/hooks/shared/session-readers/devin.mjs",
+      "line": 395,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin"
+      ]
+    },
+    {
+      "findingId": "R3-P2-001--16e5737e0e56",
+      "severity": "P2",
+      "title": "A documented timeout consumer never reads the timeout variable",
+      "file": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+      "line": 176,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin"
+      ],
+      "_conflictOf": "R3-P2-001",
+      "_conflict_id": "R3-P2-001--16e5737e0e56",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--0e0d904eb571",
+          "peerLineages": [
+            "scorer-attach"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "A DSH operator message with no source object is silently reclassified as injected",
+      "file": ".skilled/hooks/shared/session-readers/dsh.mjs",
+      "line": 195,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin"
+      ]
+    },
+    {
+      "findingId": "DR1-P1-001",
+      "severity": "P1",
+      "title": "A failed write mid-apply leaves a half-embedded tree and prints no undo",
+      "file": ".skilled/commands/doctor/scripts/agents-md-embed.cjs",
+      "line": 1364,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install"
+      ]
+    },
+    {
       "findingId": "iter5-P2-quoted-path-restore",
       "severity": "P2",
       "title": "A file name git quotes cannot be restored, so one space in a created path stops the arm and leaves the file",
@@ -123,6 +514,354 @@
       "mergedFindingIds": [],
       "_lineages": [
         "accuracy-runner-2"
+      ]
+    },
+    {
+      "findingId": "R4-P2-001--09ff48e9a0b9",
+      "severity": "P2",
+      "title": "A fourth hand-spelled runtime list sits outside the parity test that exists to catch exactly this",
+      "file": ".skilled/hooks/shared/session-readers/index.mjs",
+      "line": 28,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin"
+      ],
+      "_conflictOf": "R4-P2-001",
+      "_conflict_id": "R4-P2-001--09ff48e9a0b9",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--c63b4b48e481",
+          "peerLineages": [
+            "render-hooks-plugin-4"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--d1528b81a2ca",
+          "peerLineages": [
+            "scorer-attach"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "iter1-P2-heredoc-delimiter",
+      "severity": "P2",
+      "title": "A heredoc whose delimiter is not a bare identifier is read as commands",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 647,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-4"
+      ]
+    },
+    {
+      "findingId": "NE3-P2-003",
+      "severity": "P2",
+      "title": "A long flag whose value is attached by shell quoting still reports ok for a command node refuses to run",
+      "file": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+      "line": 232,
+      "description": "",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "noedit-confirm-3b"
+      ]
+    },
+    {
+      "findingId": "iter5-P2-credential-hardening-allowlist",
+      "severity": "P2",
+      "title": "A measured turn inherits every credential the runner carries except the GitHub trio",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+      "line": 782,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner"
+      ]
+    },
+    {
+      "findingId": "HC3B-P2-001",
+      "severity": "P2",
+      "title": "A node argument node itself rejects still lets the next word read as the script",
+      "file": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+      "line": 276,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "hook-confirm-3b"
+      ]
+    },
+    {
+      "findingId": "HC3-P2-001",
+      "severity": "P2",
+      "title": "A node flag with a space-separated value is read as the script word, so a working hook is reported missing",
+      "file": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+      "line": 222,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "hook-close-3c"
+      ]
+    },
+    {
+      "findingId": "SA4-P2-001",
+      "severity": "P2",
+      "title": "A question or statement that names a doctor command with the noun command still passes that command row",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      "line": 1209,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach-4"
+      ]
+    },
+    {
+      "findingId": "SA4-P1-001",
+      "severity": "P2",
+      "title": "A refusal typed with the retired command name still delivers the live mutating command",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 240,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        },
+        {
+          "iteration": 3,
+          "from": "P1",
+          "to": "P2",
+          "reason": "Severity adjusted in later delta"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach-4"
+      ]
+    },
+    {
+      "findingId": "NC3-P2-003",
+      "severity": "P2",
+      "title": "A separated value for a valid node flag is read as the hook script",
+      "file": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+      "line": 222,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "noedit-close-3c"
+      ]
+    },
+    {
+      "findingId": "iter1-P2-shell-read-not-start",
+      "severity": "P2",
+      "title": "A shell read counts as a workflow load but not as a start or a loop",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 913,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-4"
       ]
     },
     {
@@ -158,6 +897,70 @@
       ]
     },
     {
+      "findingId": "DR1-P2-001",
+      "severity": "P2",
+      "title": "A symlinked .codex/AGENTS.md reports PASS while the manifest declares that path absent",
+      "file": ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+      "line": 709,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install"
+      ]
+    },
+    {
+      "findingId": "DR4-P1-001",
+      "severity": "P1",
+      "title": "A symlinked REPO RULES.md or .cursor/rules/repo-local.md is written through, so apply mutates a file its plan never named",
+      "file": ".skilled/commands/doctor/scripts/agents-md-embed.cjs",
+      "line": 783,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install"
+      ]
+    },
+    {
       "findingId": "DR2-P2-007",
       "severity": "P2",
       "title": "A10 counts report-only entries among the copies as expected",
@@ -190,6 +993,224 @@
       ]
     },
     {
+      "findingId": "DR3-P2-001",
+      "severity": "P2",
+      "title": "A10 reports copies as expected for a tree whose CLAUDE.md is missing",
+      "file": ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+      "line": 649,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install"
+      ]
+    },
+    {
+      "findingId": "DR4-P2-001--000d7a5cbe72",
+      "severity": "P2",
+      "title": "A11 malformed-row finding has no specific repair, while the A11 troubleshooting row points at a tool that cannot fix it",
+      "file": ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt",
+      "line": 267,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "4b77fd7145c2434d112195d9e92f72e46aaa875c85febfab581f85eb9330de12",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-docs-4"
+      ],
+      "_conflictOf": "DR4-P2-001",
+      "_conflict_id": "DR4-P2-001--000d7a5cbe72",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "DR4-P2-001",
+          "peerId": "DR4-P2-001--31e58f5aa7f4",
+          "peerLineages": [
+            "doctor-install"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "DR3-P2-002",
+      "severity": "P2",
+      "title": "An absent Codex advisor entry is routed to a command that cannot repair it and a promised repair line is never printed",
+      "file": ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
+      "line": 165,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install"
+      ]
+    },
+    {
+      "findingId": "iter4-P2-paired-arm-key-collision",
+      "severity": "P2",
+      "title": "An arm named paired is silently hidden or overwritten by the summary pair block",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 1911,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-4"
+      ]
+    },
+    {
+      "findingId": "DR3-P1-001",
+      "severity": "P1",
+      "title": "An attached node evaluation flag still reports the hook as wired",
+      "file": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+      "line": 266,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-docs-3"
+      ]
+    },
+    {
+      "findingId": "DR4-P2-001--31e58f5aa7f4",
+      "severity": "P2",
+      "title": "Automatic rollback restores the backup without the allowlist and hash checks the manual restore enforces",
+      "file": ".skilled/commands/doctor/scripts/agents-md-embed.cjs",
+      "line": 1289,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install"
+      ],
+      "_conflictOf": "DR4-P2-001",
+      "_conflict_id": "DR4-P2-001--31e58f5aa7f4",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "DR4-P2-001",
+          "peerId": "DR4-P2-001--000d7a5cbe72",
+          "peerLineages": [
+            "doctor-docs-4"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
       "findingId": "iter2-P2-stderr-cap-hides-busy",
       "severity": "P2",
       "title": "Capping stderr at 1 MiB hides a SQLITE_BUSY marker written past the cap, so the busy retry no longer fires",
@@ -219,6 +1240,281 @@
       "mergedFindingIds": [],
       "_lineages": [
         "render-hooks-plugin-2"
+      ]
+    },
+    {
+      "findingId": "R4-P2-001--c63b4b48e481",
+      "severity": "P2",
+      "title": "Codex opens the caller's locator after containment resolved a different path",
+      "file": ".skilled/hooks/shared/session-readers/codex.mjs",
+      "line": 167,
+      "description": "loadCodexSession records containment.path as source.storePath but reads the bytes from transcriptPath, so the checked file and the opened file can differ.",
+      "findingClass": "security-hardening",
+      "deltaStatus": null,
+      "scopeProof": "rg -n \"readFileSync\\(transcriptPath\" .skilled/hooks/shared/session-readers returns only codex.mjs:167; claude.mjs:219, devin.mjs:356 and dsh.mjs:313 read storePath.",
+      "affectedSurfaceHints": [
+        "loadCodexSession",
+        "source.storePath",
+        "score-command-transcripts.mjs --runtime codex"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin-4"
+      ],
+      "_conflictOf": "R4-P2-001",
+      "_conflict_id": "R4-P2-001--c63b4b48e481",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--09ff48e9a0b9",
+          "peerLineages": [
+            "render-hooks-plugin"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--d1528b81a2ca",
+          "peerLineages": [
+            "scorer-attach"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-001--d1528b81a2ca",
+      "severity": "P2",
+      "title": "COMMAND_POLICIES is generated, drift-guarded and documented as the attach-path policy lookup, but no code reads it",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 123,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach"
+      ],
+      "_conflictOf": "R4-P2-001",
+      "_conflict_id": "R4-P2-001--d1528b81a2ca",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--09ff48e9a0b9",
+          "peerLineages": [
+            "render-hooks-plugin"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--c63b4b48e481",
+          "peerLineages": [
+            "render-hooks-plugin-4"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "iter2-P2-arena-precondition-unverified",
+      "severity": "P2",
+      "title": "Containment is inferred from no git remote with no assertion that the checkout is a prepared arena",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+      "line": 986,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner"
+      ]
+    },
+    {
+      "findingId": "R1-P2-002--fabc628596e7",
+      "severity": "P2",
+      "title": "Containment is proven on the resolved path while the bytes are opened from the caller path",
+      "file": ".skilled/hooks/shared/session-readers/claude.mjs",
+      "line": 217,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin"
+      ],
+      "_conflictOf": "R1-P2-002",
+      "_conflict_id": "R1-P2-002--fabc628596e7",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-002",
+          "peerId": "R1-P2-002--95282927956e",
+          "peerLineages": [
+            "scorer-attach"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-002--828881666f76",
+      "severity": "P2",
+      "title": "Dead empty conditional in primaryIntentBonus",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/fusion.ts",
+      "line": 750,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach"
+      ],
+      "_conflictOf": "R4-P2-002",
+      "_conflict_id": "R4-P2-002--828881666f76",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-002",
+          "peerId": "R4-P2-002--de3d8b259d8e",
+          "peerLineages": [
+            "render-hooks-plugin"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-002",
+          "peerId": "R4-P2-002--15eee53d06a8",
+          "peerLineages": [
+            "render-hooks-plugin-4"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-001",
+      "severity": "P2",
+      "title": "Deep-loop depth gate is satisfied by any typed /deep: prefix, not the attached command",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 385,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach"
       ]
     },
     {
@@ -286,6 +1582,102 @@
       ]
     },
     {
+      "findingId": "DR5-P2-002",
+      "severity": "P2",
+      "title": "Hook wiring counts a marker anywhere in the event payload so a mention is read as a wired entry",
+      "file": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+      "line": 123,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install"
+      ]
+    },
+    {
+      "findingId": "R2-P2-001",
+      "severity": "P2",
+      "title": "Hub-attached commands skip the no-edit gate the command scorer applies",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 353,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach"
+      ]
+    },
+    {
+      "findingId": "NC3-P2-002",
+      "severity": "P2",
+      "title": "just show and just list read a two-step change request as a no-edit request",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 292,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "noedit-close-3c"
+      ]
+    },
+    {
       "findingId": "iter2-P2-cost-script-child-brief",
       "severity": "P2",
       "title": "measure-brief-cost.mjs measures the child-session brief when it runs from a dispatched worker",
@@ -318,6 +1710,38 @@
       ]
     },
     {
+      "findingId": "R1-P2-005",
+      "severity": "P2",
+      "title": "needsMode withholding is defeated when the skill also has a generated command row",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+      "line": 226,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin"
+      ]
+    },
+    {
       "findingId": "SA2-P2-002",
       "severity": "P2",
       "title": "NO_EDIT_REQUEST misses contractions and no-changes wording",
@@ -347,6 +1771,70 @@
       "mergedFindingIds": [],
       "_lineages": [
         "scorer-attach-2"
+      ]
+    },
+    {
+      "findingId": "NC3-P1-001",
+      "severity": "P1",
+      "title": "NO_EDIT_REQUEST omits the write verbs, so dont create it yet keeps a mutating command",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 292,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "noedit-close-3c"
+      ]
+    },
+    {
+      "findingId": "iter1-P2-offer-reached-unknown",
+      "severity": "P2",
+      "title": "offerReached counts an unknown brief state as reached",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 1293,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner"
       ]
     },
     {
@@ -414,6 +1902,70 @@
       ]
     },
     {
+      "findingId": "iter1-P2-readme-inventory-drift",
+      "severity": "P2",
+      "title": "Routing-accuracy README structure table and code-file count have drifted from the folder",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "line": 29,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner"
+      ]
+    },
+    {
+      "findingId": "iter3-P2-readme-restore-exit3",
+      "severity": "P2",
+      "title": "Runner README describes an unconditional restore and omits the exit code that skips it",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "line": 113,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner"
+      ]
+    },
+    {
       "findingId": "iter4-P2-tests-readme-description",
       "severity": "P2",
       "title": "runtime/tests/README.md describes the playbook inventory test as a routing-fixture test",
@@ -446,6 +1998,38 @@
       ]
     },
     {
+      "findingId": "DR2-P2-003",
+      "severity": "P2",
+      "title": "setup.md documents one out-of-repository write while the workflow declares an empty allowlist",
+      "file": ".skilled/commands/doctor/setup.md",
+      "line": 75,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install"
+      ]
+    },
+    {
       "findingId": "DR2-P2-006",
       "severity": "P2",
       "title": "setup.md names SKILL_ADVISOR_DEBUG as the switch that turns hook-health records on, but the hook records every prompt by default",
@@ -475,6 +2059,56 @@
       "mergedFindingIds": [],
       "_lineages": [
         "doctor-install-2"
+      ]
+    },
+    {
+      "findingId": "R4-P2-003--c007a1fddd18",
+      "severity": "P2",
+      "title": "The advisor README calls the companion policy run/start/ask and omits the child form the renderer prints",
+      "file": ".skilled/skills/system-skill-advisor/README.md",
+      "line": 121,
+      "description": "The README says the companion carries run, start or ask, but a dispatched child prints parent-named only for start, ask and writing run, as the pinned test at doctor-brief-render.vitest.ts:84 shows.",
+      "findingClass": "documentation-gap",
+      "deltaStatus": null,
+      "scopeProof": "rg -n -F 'where the policy is run, start or ask' .skilled/skills/system-skill-advisor/README.md prints line 121; render.ts:216 returns PARENT_NAMED_POLICY; doctor-brief-render.vitest.ts:76-84 pins both the read-only run and the parent-named child form.",
+      "affectedSurfaceHints": [
+        "advisor README companion paragraph",
+        "hook reference child sentence",
+        "render.ts parent-named only branch",
+        "phase 025 doc sync"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin-4"
+      ],
+      "_conflictOf": "R4-P2-003",
+      "_conflict_id": "R4-P2-003--c007a1fddd18",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-003",
+          "peerId": "R4-P2-003--4cbfa5969bb7",
+          "peerLineages": [
+            "render-hooks-plugin"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
@@ -542,6 +2176,265 @@
       ]
     },
     {
+      "findingId": "SA4-P2-005",
+      "severity": "P2",
+      "title": "The changed test tables leave all four residual behaviors unpinned",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+      "line": 39,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach-4"
+      ]
+    },
+    {
+      "findingId": "DR5-P2-003",
+      "severity": "P2",
+      "title": "The check and the embed engines read the same router table by different rules so a malformed row is missing to one and present to the other",
+      "file": ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+      "line": 809,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install"
+      ]
+    },
+    {
+      "findingId": "R2-P2-003",
+      "severity": "P2",
+      "title": "The child downgrade reads mutability from the skill row, not from the command that is printed",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+      "line": 233,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin"
+      ]
+    },
+    {
+      "findingId": "R4-P2-002--de3d8b259d8e",
+      "severity": "P2",
+      "title": "The child-session marker is interpreted twice, once through an exported constant and once as a hard-coded literal",
+      "file": ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs",
+      "line": 101,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin"
+      ],
+      "_conflictOf": "R4-P2-002",
+      "_conflict_id": "R4-P2-002--de3d8b259d8e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-002",
+          "peerId": "R4-P2-002--828881666f76",
+          "peerLineages": [
+            "scorer-attach"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-002",
+          "peerId": "R4-P2-002--15eee53d06a8",
+          "peerLineages": [
+            "render-hooks-plugin-4"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "DR1-P2-002",
+      "severity": "P2",
+      "title": "The CLAUDE.md pointer verdict claims every line names AGENTS.md while only one line must",
+      "file": ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+      "line": 731,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install"
+      ]
+    },
+    {
+      "findingId": "HC3-P1-001",
+      "severity": "P1",
+      "title": "The contracted \"make changes\" instruction is not in the no-edit vocabulary, so a mutating command is offered on a plain no-edit prompt",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 292,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "hook-close-3c"
+      ]
+    },
+    {
+      "findingId": "R3-P2-002--ecbea1260371",
+      "severity": "P2",
+      "title": "The documented recommendation contract omits the field that decides the child-session downgrade",
+      "file": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+      "line": 41,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin"
+      ],
+      "_conflictOf": "R3-P2-002",
+      "_conflict_id": "R3-P2-002--ecbea1260371",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-002",
+          "peerId": "R3-P2-002--5522ea1fe8dd",
+          "peerLineages": [
+            "scorer-attach"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
       "findingId": "DR2-P2-008",
       "severity": "P2",
       "title": "The embed route names the backup folder timestamp while the engine names it by plan digest and may fall back outside the repository",
@@ -574,6 +2467,38 @@
       ]
     },
     {
+      "findingId": "DR2-P2-002",
+      "severity": "P2",
+      "title": "The embedder route probes OLLAMA_BASE_URL but starts and pulls against the default local host",
+      "file": ".skilled/commands/doctor/assets/doctor-skill-advisor-embedder.yaml",
+      "line": 89,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install"
+      ]
+    },
+    {
       "findingId": "DR2-P2-004",
       "severity": "P2",
       "title": "The exit-3 contract has no branch for a restore that throws, so the route can misstate a partly written tree",
@@ -603,6 +2528,326 @@
       "mergedFindingIds": [],
       "_lineages": [
         "doctor-install-2"
+      ]
+    },
+    {
+      "findingId": "NE3-P2-002",
+      "severity": "P2",
+      "title": "The guard matches a literal single space, so line-break and punctuation variants keep the pass-three defect",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 289,
+      "description": "",
+      "findingClass": "class-of-bug",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "noedit-confirm-3b"
+      ]
+    },
+    {
+      "findingId": "iter2-P2-live-holdout-guard-baseline-only",
+      "severity": "P2",
+      "title": "The holdout publication guard reads the baseline, not the live capture",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts",
+      "line": 181,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-4"
+      ]
+    },
+    {
+      "findingId": "iter4-P2-bench-runtime-matrix-incomplete",
+      "severity": "P2",
+      "title": "The hook-brief bench declares a seven-runtime matrix but defines two runtimes, and fails the moment benches are enabled",
+      "file": ".skilled/skills/system-skill-advisor/runtime/bench/hook-brief-signal-noise.bench.ts",
+      "line": 26,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner"
+      ]
+    },
+    {
+      "findingId": "HC3B-P2-004",
+      "severity": "P2",
+      "title": "The hook-check table has no case for a leading word node does not run, so the false ok is untested",
+      "file": ".skilled/commands/doctor/scripts/tests/hook-wiring-check.test.cjs",
+      "line": 249,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "hook-confirm-3b"
+      ]
+    },
+    {
+      "findingId": "iter5-P2-holdout-secondary-split-publication",
+      "severity": "P2",
+      "title": "The in-corpus secondary holdout split is published per row and pinned by a recapture instruction",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs",
+      "line": 537,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner"
+      ]
+    },
+    {
+      "findingId": "DR2-P2-001",
+      "severity": "P2",
+      "title": "The install guide offers six runtimes while calling the accepted set seven, and never names dsh",
+      "file": ".skilled/commands/doctor/assets/doctor-install-presentation.txt",
+      "line": 78,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install"
+      ]
+    },
+    {
+      "findingId": "HC3B-P2-002",
+      "severity": "P2",
+      "title": "The lookahead word list is too narrow: an adverb or a different preposition keeps the old false no-edit reading",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 289,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "hook-confirm-3b"
+      ]
+    },
+    {
+      "findingId": "R2-P2-002",
+      "severity": "P2",
+      "title": "The low-level advisor spawn accumulates child output without a byte cap",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
+      "line": 239,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin"
+      ]
+    },
+    {
+      "findingId": "HC3B-P1-001",
+      "severity": "P1",
+      "title": "The make-no-changes lookahead is over-broad: a genuine no-edit request that names its object loses the guard",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 289,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "hook-confirm-3b"
+      ]
+    },
+    {
+      "findingId": "SA4-P2-003",
+      "severity": "P2",
+      "title": "The meaning-anchor feature doc still reports the old test count",
+      "file": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md",
+      "line": 65,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach-4"
       ]
     },
     {
@@ -670,7 +2915,252 @@
       ]
     },
     {
-      "findingId": "iter3-P2-phase007-open-evidence",
+      "findingId": "iter3-P2-attached-metrics-unpinned",
+      "severity": "P2",
+      "title": "The new stage and fit counts are not held to the committed baseline",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts",
+      "line": 268,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-4"
+      ]
+    },
+    {
+      "findingId": "HC3B-P2-003",
+      "severity": "P2",
+      "title": "The no-edit guard table has no genuine object-bearing no-edit row, so the regression ships with a green suite",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+      "line": 30,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "hook-confirm-3b"
+      ]
+    },
+    {
+      "findingId": "R4-P2-002--15eee53d06a8",
+      "severity": "P2",
+      "title": "The OpenCode top-only request can strip the head command from the first passing row",
+      "file": ".opencode/plugins/system-skill-advisor.js",
+      "line": 858,
+      "description": "compiledRouteTopOnly enriches index 0 only, while the renderer leads with the first passing row; a failing row 0 spends the lookup and a passing row 1 leads without its command.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "system-skill-advisor.js:858 sends the option; advisor-recommend.ts:462 returns early for index > 0; render.ts:530-540 takes the first passing row.",
+      "affectedSurfaceHints": [
+        "advisorCliRequest",
+        "enrichCompiledRoutes",
+        "renderAdvisorBrief head selection",
+        "phase 025 top-only documentation"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin-4"
+      ],
+      "_conflictOf": "R4-P2-002",
+      "_conflict_id": "R4-P2-002--15eee53d06a8",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-002",
+          "peerId": "R4-P2-002--828881666f76",
+          "peerLineages": [
+            "scorer-attach"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-002",
+          "peerId": "R4-P2-002--de3d8b259d8e",
+          "peerLineages": [
+            "render-hooks-plugin"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-003--4cbfa5969bb7",
+      "severity": "P2",
+      "title": "The operator-facing direct-call example puts the prompt in argv, against the guarantee the hook path keeps",
+      "file": "AGENTS.md",
+      "line": 65,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin"
+      ],
+      "_conflictOf": "R4-P2-003",
+      "_conflict_id": "R4-P2-003--4cbfa5969bb7",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-003",
+          "peerId": "R4-P2-003--c007a1fddd18",
+          "peerLineages": [
+            "render-hooks-plugin-4"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "iter3-P2-phase007-open-evidence--7c7568bb5f9c",
+      "severity": "P2",
+      "title": "The packet phase map leaves the per-runtime behaviour proof open while marking later phases complete",
+      "file": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md",
+      "line": 120,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner"
+      ],
+      "_conflictOf": "iter3-P2-phase007-open-evidence",
+      "_conflict_id": "iter3-P2-phase007-open-evidence--7c7568bb5f9c",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iter3-P2-phase007-open-evidence",
+          "peerId": "iter3-P2-phase007-open-evidence--778b7b81a1ec",
+          "peerLineages": [
+            "accuracy-runner-2"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "iter1-P1-offeredas-not-persisted",
+      "severity": "P1",
+      "title": "The partner-side offer field is computed and then dropped by both offer writers",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs",
+      "line": 486,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-4"
+      ]
+    },
+    {
+      "findingId": "iter3-P2-phase007-open-evidence--778b7b81a1ec",
       "severity": "P2",
       "title": "The pass-one phase-map finding is only half fixed: the reason lives in the phase child, not in the map the finding named",
       "file": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/spec.md",
@@ -699,6 +3189,51 @@
       "mergedFindingIds": [],
       "_lineages": [
         "accuracy-runner-2"
+      ],
+      "_conflictOf": "iter3-P2-phase007-open-evidence",
+      "_conflict_id": "iter3-P2-phase007-open-evidence--778b7b81a1ec",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "iter3-P2-phase007-open-evidence",
+          "peerId": "iter3-P2-phase007-open-evidence--7c7568bb5f9c",
+          "peerLineages": [
+            "accuracy-runner"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "SA4-P2-004",
+      "severity": "P2",
+      "title": "The phase 020 requirement still states a weak-cue bar of 10 while the accepted implementation uses 9",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/doctor-helper-handoff.ts",
+      "line": 54,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach-4"
       ]
     },
     {
@@ -766,6 +3301,134 @@
       ]
     },
     {
+      "findingId": "DR1-P2-003",
+      "severity": "P2",
+      "title": "The preservation proof fourth claim is computed and never enforced",
+      "file": ".skilled/commands/doctor/scripts/agents-md-embed.cjs",
+      "line": 598,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install"
+      ]
+    },
+    {
+      "findingId": "iter3-P2-pair-doc-shared-rows",
+      "severity": "P2",
+      "title": "The README promises a paired block for any runtime that scored both arms, but the code requires a shared row",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "line": 122,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-4"
+      ]
+    },
+    {
+      "findingId": "SA4-P2-002",
+      "severity": "P2",
+      "title": "The recommend feature doc still says a hub suppresses a command its own command row already offers",
+      "file": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+      "line": 39,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach-4"
+      ]
+    },
+    {
+      "findingId": "iter2-P1-fit-decline-ungated",
+      "severity": "P1",
+      "title": "The refusal and question rows can still carry a command, and no gate consumes the count",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs",
+      "line": 595,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-4"
+      ]
+    },
+    {
       "findingId": "iter5-P2-orphaned-route-summary",
       "severity": "P2",
       "title": "The removed compiled-route line left its per-prompt summary computation and response field without a consumer",
@@ -795,6 +3458,51 @@
       "mergedFindingIds": [],
       "_lineages": [
         "render-hooks-plugin-2"
+      ]
+    },
+    {
+      "findingId": "R3-P2-002--5522ea1fe8dd",
+      "severity": "P2",
+      "title": "The runtime coverage sentence omits dsh while the canonical runtime set and the hook readers include it",
+      "file": ".skilled/skills/system-skill-advisor/ARCHITECTURE.md",
+      "line": 142,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach"
+      ],
+      "_conflictOf": "R3-P2-002",
+      "_conflict_id": "R3-P2-002--5522ea1fe8dd",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-002",
+          "peerId": "R3-P2-002--ecbea1260371",
+          "peerLineages": [
+            "render-hooks-plugin"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
@@ -830,6 +3538,102 @@
       ]
     },
     {
+      "findingId": "DR3-P2-004",
+      "severity": "P2",
+      "title": "The scripts README says the check runs three owner tools as children while it runs four",
+      "file": ".skilled/commands/doctor/scripts/README.markdown",
+      "line": 102,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install"
+      ]
+    },
+    {
+      "findingId": "iter4-P2-g2-label-grammar-duplication",
+      "severity": "P2",
+      "title": "The started-command set row ids are a second source of truth for labels the scorer reconstructs from a regex",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 929,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner"
+      ]
+    },
+    {
+      "findingId": "DR3-P2-003",
+      "severity": "P2",
+      "title": "The symlink check output contract says OK on engine exit 0 though its hook step can end the run as WARN",
+      "file": ".skilled/commands/doctor/assets/doctor-symlink-check.yaml",
+      "line": 67,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install"
+      ]
+    },
+    {
       "findingId": "iter5-P2-scorer-header-ordered-report",
       "severity": "P2",
       "title": "The transcript scorer's header promises an ordered read/write report the CLI does not print",
@@ -859,6 +3663,70 @@
       "mergedFindingIds": [],
       "_lineages": [
         "accuracy-runner-2"
+      ]
+    },
+    {
+      "findingId": "DR5-P2-001",
+      "severity": "P2",
+      "title": "The two sibling hook checks disagree on a value flag whose next token starts with a dash",
+      "file": ".skilled/commands/doctor/scripts/codex-hook-approval-check.cjs",
+      "line": 59,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "doctor-install"
+      ]
+    },
+    {
+      "findingId": "iter4-P2-unscored-only-dead-field",
+      "severity": "P2",
+      "title": "The workflow block unscoredOnly count is never incremented",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 1629,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-4"
       ]
     },
     {
@@ -892,9 +3760,195 @@
       "_lineages": [
         "scorer-attach-2"
       ]
+    },
+    {
+      "findingId": "R3-P2-001--0e0d904eb571",
+      "severity": "P2",
+      "title": "Two docs added by this change state 45 TypeScript-served command rows; the generated artifact holds 46",
+      "file": ".skilled/skills/system-skill-advisor/README.md",
+      "line": 176,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach"
+      ],
+      "_conflictOf": "R3-P2-001",
+      "_conflict_id": "R3-P2-001--0e0d904eb571",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--16e5737e0e56",
+          "peerLineages": [
+            "render-hooks-plugin"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R1-P2-002--95282927956e",
+      "severity": "P2",
+      "title": "Typed-command scan reads a document reference as the command",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      "line": 266,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "scorer-attach"
+      ],
+      "_conflictOf": "R1-P2-002",
+      "_conflict_id": "R1-P2-002--95282927956e",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-002",
+          "peerId": "R1-P2-002--fabc628596e7",
+          "peerLineages": [
+            "render-hooks-plugin"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
     }
   ],
   "resolvedFindings": [
+    {
+      "findingId": "iter2-P1-credential-reach-bypassed-permissions",
+      "severity": "P1",
+      "title": "A fully-permissioned measured turn inherits operator credentials and can reach hosts the repo-remote guard does not cover",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+      "line": 782,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner"
+      ]
+    },
+    {
+      "findingId": "iter1-P1-holdout-baseline-publication",
+      "severity": "P1",
+      "title": "Committed baseline publishes per-row holdout outcomes and a test pins them",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs",
+      "line": 537,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner"
+      ]
+    },
+    {
+      "findingId": "R2-P1-001",
+      "severity": "P1",
+      "title": "The child-session command downgrade is decided only by a process-wide env flag",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/render.ts",
+      "line": 522,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "resolved",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "render-hooks-plugin"
+      ]
+    },
     {
       "findingId": "iter2-P2-hook-health-doc-scope",
       "severity": "P2",
@@ -930,12 +3984,12 @@
   ],
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 0,
-    "P2": 27
+    "P1": 10,
+    "P2": 97
   },
-  "openFindingsCount": 27,
-  "resolvedFindingsCount": 1,
+  "openFindingsCount": 107,
+  "resolvedFindingsCount": 4,
   "activeP0": 0,
-  "activeP1": 0,
-  "activeP2": 27
+  "activeP1": 10,
+  "activeP2": 97
 }

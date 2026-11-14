@@ -1,0 +1,181 @@
+{
+  "sessionId": "fanout-render-hooks-plugin-4-1794669272137-9v23rz",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "converged",
+    "totalIterations": 4,
+    "timestamp": "2026-11-14T15:53:10.772Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R4-P2-001",
+      "severity": "P2",
+      "title": "Codex opens the caller's locator after containment resolved a different path",
+      "file": ".skilled/hooks/shared/session-readers/codex.mjs",
+      "line": 167,
+      "description": "loadCodexSession records containment.path as source.storePath but reads the bytes from transcriptPath, so the checked file and the opened file can differ.",
+      "findingClass": "security-hardening",
+      "deltaStatus": null,
+      "scopeProof": "rg -n \"readFileSync\\(transcriptPath\" .skilled/hooks/shared/session-readers returns only codex.mjs:167; claude.mjs:219, devin.mjs:356 and dsh.mjs:313 read storePath.",
+      "affectedSurfaceHints": [
+        "loadCodexSession",
+        "source.storePath",
+        "score-command-transcripts.mjs --runtime codex"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-002",
+      "severity": "P2",
+      "title": "The OpenCode top-only request can strip the head command from the first passing row",
+      "file": ".opencode/plugins/system-skill-advisor.js",
+      "line": 858,
+      "description": "compiledRouteTopOnly enriches index 0 only, while the renderer leads with the first passing row; a failing row 0 spends the lookup and a passing row 1 leads without its command.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "system-skill-advisor.js:858 sends the option; advisor-recommend.ts:462 returns early for index > 0; render.ts:530-540 takes the first passing row.",
+      "affectedSurfaceHints": [
+        "advisorCliRequest",
+        "enrichCompiledRoutes",
+        "renderAdvisorBrief head selection",
+        "phase 025 top-only documentation"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-003",
+      "severity": "P2",
+      "title": "The advisor README calls the companion policy run/start/ask and omits the child form the renderer prints",
+      "file": ".skilled/skills/system-skill-advisor/README.md",
+      "line": 121,
+      "description": "The README says the companion carries run, start or ask, but a dispatched child prints parent-named only for start, ask and writing run, as the pinned test at doctor-brief-render.vitest.ts:84 shows.",
+      "findingClass": "documentation-gap",
+      "deltaStatus": null,
+      "scopeProof": "rg -n -F 'where the policy is run, start or ask' .skilled/skills/system-skill-advisor/README.md prints line 121; render.ts:216 returns PARENT_NAMED_POLICY; doctor-brief-render.vitest.ts:76-84 pins both the read-only run and the parent-named child form.",
+      "affectedSurfaceHints": [
+        "advisor README companion paragraph",
+        "hook reference child sentence",
+        "render.ts parent-named only branch",
+        "phase 025 doc sync"
+      ],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 3
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

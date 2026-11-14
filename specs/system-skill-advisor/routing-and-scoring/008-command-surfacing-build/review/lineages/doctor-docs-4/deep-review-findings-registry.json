@@ -1,0 +1,787 @@
+{
+  "sessionId": "fanout-doctor-docs-4-1794669272137-9v23rz",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 3,
+    "timestamp": "2026-11-14T15:53:35.951Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "DR4-P2-001",
+      "severity": "P2",
+      "title": "A11 malformed-row finding has no specific repair, while the A11 troubleshooting row points at a tool that cannot fix it",
+      "file": ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt",
+      "line": 267,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "4b77fd7145c2434d112195d9e92f72e46aaa875c85febfab581f85eb9330de12",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "DR4-P2-001",
+      "severity": "P2",
+      "title": "A11 malformed-row finding has no specific repair, while the A11 troubleshooting row points at a tool that cannot fix it",
+      "file": ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt",
+      "line": 267,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "4b77fd7145c2434d112195d9e92f72e46aaa875c85febfab581f85eb9330de12",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    {
+      "findingId": "DR4-P2-001",
+      "severity": "P2",
+      "title": "A11 malformed-row finding has no specific repair, while the A11 troubleshooting row points at a tool that cannot fix it",
+      "file": ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt",
+      "line": 267,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": "4b77fd7145c2434d112195d9e92f72e46aaa875c85febfab581f85eb9330de12",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "behavioral_contract",
+      "cross_runtime_parity",
+      "derived_data_sync",
+      "docs_code_divergence",
+      "hidden_coupling",
+      "holdout_leakage",
+      "maintainability_style",
+      "mutating_attachment"
+    ],
+    "ruledOut": [
+      "behavioral_contract",
+      "cross_runtime_parity",
+      "derived_data_sync",
+      "feature_catalog_drift",
+      "hidden_coupling",
+      "holdout_leakage",
+      "maintainability_style",
+      "mutating_attachment"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "behavioral_contract": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3
+        ]
+      },
+      "docs_code_divergence": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3
+        ]
+      },
+      "cross_runtime_parity": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3
+        ]
+      },
+      "derived_data_sync": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3
+        ]
+      },
+      "holdout_leakage": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3
+        ]
+      },
+      "mutating_attachment": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2,
+          3
+        ]
+      },
+      "feature_catalog_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "maintainability_style": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "hidden_coupling": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-presentation.txt:89"
+      ],
+      "bugClass": "cross_runtime_parity",
+      "disposition": "ruled_out",
+      "rationale": "No cross-runtime divergence.",
+      "evidenceRefs": [
+        "spec-gate-core.mjs:154",
+        "gate-3-menu-parity.test.mjs:26"
+      ],
+      "reason": "The line is plain text read by every runtime and matches the single canonical constant; the parity guard covers it."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/_routes.yaml:396-406,797-806"
+      ],
+      "bugClass": "derived_data_sync",
+      "disposition": "ruled_out",
+      "rationale": "The source and derived surfaces agree.",
+      "evidenceRefs": [
+        "command-bridges.generated.json",
+        "doctor-helper-handoff.vitest.ts:118-128"
+      ],
+      "reason": "The deriver was rerun and the generated data no longer carries any removed phrase."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/_routes.yaml:396-406,797-806"
+      ],
+      "bugClass": "holdout_leakage",
+      "disposition": "ruled_out",
+      "rationale": "Holdout hygiene held.",
+      "evidenceRefs": [
+        "review-brief-4.txt:1"
+      ],
+      "reason": "No command-prompts.jsonl or holdout-prompts.jsonl read occurred; the search excluded both files."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/_routes.yaml:64-828",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json"
+      ],
+      "bugClass": "mutating_attachment",
+      "disposition": "ruled_out",
+      "rationale": "No unprompted mutating route exists.",
+      "evidenceRefs": [
+        "derive-command-bridges.cjs:485-496",
+        "command-bridges.generated.json",
+        "command-attach.ts:470-483",
+        "command-attach-guards.vitest.ts:138-247"
+      ],
+      "reason": "Every mutating doctor route asks first, and the attach guard suppresses refusals and command-only mentions."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".claude/commands/create/sk-skill.md",
+        ".codex/prompts/create-sk-skill.md",
+        ".cursor/commands/create-sk-skill.md",
+        ".pi/prompts/create-sk-skill.md",
+        ".dsh/prompts/create-sk-skill.md"
+      ],
+      "bugClass": "cross_runtime_parity",
+      "disposition": "ruled_out",
+      "rationale": "No cross-runtime divergence.",
+      "evidenceRefs": [
+        ".claude/commands/create/sk-skill.md",
+        ".cursor/commands/create-sk-skill.md",
+        ".codex/prompts/create-sk-skill.md",
+        ".pi/prompts/create-sk-skill.md",
+        ".dsh/prompts/create-sk-skill.md",
+        ".devin/config.json",
+        ".claude/agents/markdown.md",
+        ".codex/agents/markdown.toml"
+      ],
+      "reason": "The renamed command is consistent on every runtime that carries commands, and the changed presentation is runtime-neutral."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-011",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs:798-809"
+      ],
+      "bugClass": "behavioral_contract",
+      "disposition": "ruled_out",
+      "rationale": "No new behavioral-contract issue.",
+      "evidenceRefs": [
+        "agents-md-check.cjs:798-809"
+      ],
+      "reason": "The count arithmetic is unchanged and the malformed row keeps its rule path in the test."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-012",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/_routes.yaml:396-406,797-806"
+      ],
+      "bugClass": "holdout_leakage",
+      "disposition": "ruled_out",
+      "rationale": "Holdout hygiene held.",
+      "evidenceRefs": [
+        "a494145dd0 commit body",
+        "review-brief-4.txt:1"
+      ],
+      "reason": "No command-prompts.jsonl or holdout-prompts.jsonl read occurred."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md:27-39"
+      ],
+      "bugClass": "feature_catalog_drift",
+      "disposition": "ruled_out",
+      "rationale": "No catalog drift.",
+      "evidenceRefs": [
+        "doctor-command-routing.md:27-39"
+      ],
+      "reason": "The catalog claims match the generated policy and reach-probe behavior."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-014",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs:798-809",
+        ".skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs:742-765",
+        ".skilled/commands/create/assets/create-skill-presentation.txt:86-90"
+      ],
+      "bugClass": "maintainability_style",
+      "disposition": "ruled_out",
+      "rationale": "The changed hunks pass the local style probes.",
+      "evidenceRefs": [
+        "git diff --check",
+        "agents-md-check.cjs",
+        "agents-md-check.test.cjs",
+        "agents-md-check.cjs:798-799",
+        "agents-md-check.test.cjs:763-764"
+      ],
+      "reason": "No style, comment-hygiene or test-shape regression is present in the changed lines."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-015",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs:798-809"
+      ],
+      "bugClass": "hidden_coupling",
+      "disposition": "ruled_out",
+      "rationale": "A future line family is not a current case; recorded as a note only.",
+      "evidenceRefs": [
+        "agents-md-check.cjs:798-809",
+        "agents-md-check.test.cjs:760-764"
+      ],
+      "reason": "No current input produces a wrong count, and the changed test covers the subtraction."
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/commands/create/assets/create-skill-presentation.txt:89"
+      ],
+      "bugClass": "cross_runtime_parity",
+      "disposition": "ruled_out",
+      "rationale": "No cross-runtime divergence.",
+      "evidenceRefs": [
+        "spec-gate-core.mjs:154",
+        "gate-3-menu-parity.test.mjs:26"
+      ],
+      "proof": "The line is plain text read by every runtime and matches the single canonical constant; the parity guard covers it."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/_routes.yaml:396-406,797-806"
+      ],
+      "bugClass": "derived_data_sync",
+      "disposition": "ruled_out",
+      "rationale": "The source and derived surfaces agree.",
+      "evidenceRefs": [
+        "command-bridges.generated.json",
+        "doctor-helper-handoff.vitest.ts:118-128"
+      ],
+      "proof": "The deriver was rerun and the generated data no longer carries any removed phrase."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/_routes.yaml:396-406,797-806"
+      ],
+      "bugClass": "holdout_leakage",
+      "disposition": "ruled_out",
+      "rationale": "Holdout hygiene held.",
+      "evidenceRefs": [
+        "review-brief-4.txt:1"
+      ],
+      "proof": "No command-prompts.jsonl or holdout-prompts.jsonl read occurred; the search excluded both files."
+    },
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs"
+      ],
+      "bugClass": "phantom_scorer_count",
+      "disposition": "not_applicable",
+      "rationale": "Out of this area's scope.",
+      "evidenceRefs": [
+        "review-scope-4.txt:6-9"
+      ],
+      "proof": "The doctor-docs area has no transcript-scoring code; the scorer paths belong to the accuracy-runner and scorer-attach areas."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-008",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/_routes.yaml:64-828",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json"
+      ],
+      "bugClass": "mutating_attachment",
+      "disposition": "ruled_out",
+      "rationale": "No unprompted mutating route exists.",
+      "evidenceRefs": [
+        "derive-command-bridges.cjs:485-496",
+        "command-bridges.generated.json",
+        "command-attach.ts:470-483",
+        "command-attach-guards.vitest.ts:138-247"
+      ],
+      "proof": "Every mutating doctor route asks first, and the attach guard suppresses refusals and command-only mentions."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".claude/commands/create/sk-skill.md",
+        ".codex/prompts/create-sk-skill.md",
+        ".cursor/commands/create-sk-skill.md",
+        ".pi/prompts/create-sk-skill.md",
+        ".dsh/prompts/create-sk-skill.md"
+      ],
+      "bugClass": "cross_runtime_parity",
+      "disposition": "ruled_out",
+      "rationale": "No cross-runtime divergence.",
+      "evidenceRefs": [
+        ".claude/commands/create/sk-skill.md",
+        ".cursor/commands/create-sk-skill.md",
+        ".codex/prompts/create-sk-skill.md",
+        ".pi/prompts/create-sk-skill.md",
+        ".dsh/prompts/create-sk-skill.md",
+        ".devin/config.json",
+        ".claude/agents/markdown.md",
+        ".codex/agents/markdown.toml"
+      ],
+      "proof": "The renamed command is consistent on every runtime that carries commands, and the changed presentation is runtime-neutral."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-011",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs:798-809"
+      ],
+      "bugClass": "behavioral_contract",
+      "disposition": "ruled_out",
+      "rationale": "No new behavioral-contract issue.",
+      "evidenceRefs": [
+        "agents-md-check.cjs:798-809"
+      ],
+      "proof": "The count arithmetic is unchanged and the malformed row keeps its rule path in the test."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-012",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/commands/doctor/_routes.yaml:396-406,797-806"
+      ],
+      "bugClass": "holdout_leakage",
+      "disposition": "ruled_out",
+      "rationale": "Holdout hygiene held.",
+      "evidenceRefs": [
+        "a494145dd0 commit body",
+        "review-brief-4.txt:1"
+      ],
+      "proof": "No command-prompts.jsonl or holdout-prompts.jsonl read occurred."
+    },
+    {
+      "iteration": 2,
+      "id": "SL-013",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md:27-39"
+      ],
+      "bugClass": "feature_catalog_drift",
+      "disposition": "ruled_out",
+      "rationale": "No catalog drift.",
+      "evidenceRefs": [
+        "doctor-command-routing.md:27-39"
+      ],
+      "proof": "The catalog claims match the generated policy and reach-probe behavior."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-014",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs:798-809",
+        ".skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs:742-765",
+        ".skilled/commands/create/assets/create-skill-presentation.txt:86-90"
+      ],
+      "bugClass": "maintainability_style",
+      "disposition": "ruled_out",
+      "rationale": "The changed hunks pass the local style probes.",
+      "evidenceRefs": [
+        "git diff --check",
+        "agents-md-check.cjs",
+        "agents-md-check.test.cjs",
+        "agents-md-check.cjs:798-799",
+        "agents-md-check.test.cjs:763-764"
+      ],
+      "proof": "No style, comment-hygiene or test-shape regression is present in the changed lines."
+    },
+    {
+      "iteration": 3,
+      "id": "SL-015",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/commands/doctor/scripts/agents-md-check.cjs:798-809"
+      ],
+      "bugClass": "hidden_coupling",
+      "disposition": "ruled_out",
+      "rationale": "A future line family is not a current case; recorded as a note only.",
+      "evidenceRefs": [
+        "agents-md-check.cjs:798-809",
+        "agents-md-check.test.cjs:760-764"
+      ],
+      "proof": "No current input produces a wrong count, and the changed test covers the subtraction."
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "behavioral_contract",
+      "docs_code_divergence",
+      "mutating_attachment",
+      "cross_runtime_parity",
+      "derived_data_sync",
+      "holdout_leakage",
+      "maintainability_style",
+      "hidden_coupling"
+    ],
+    "covered": [
+      "behavioral_contract",
+      "docs_code_divergence",
+      "mutating_attachment",
+      "cross_runtime_parity",
+      "derived_data_sync",
+      "holdout_leakage",
+      "maintainability_style",
+      "hidden_coupling"
+    ],
+    "ruledOut": [
+      "behavioral_contract",
+      "mutating_attachment",
+      "cross_runtime_parity",
+      "derived_data_sync",
+      "holdout_leakage",
+      "maintainability_style",
+      "hidden_coupling"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 5,
+      "executed": 5,
+      "pass": 4,
+      "partial": 1,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 0,
+          "partial": 0,
+          "pass": 3,
+          "skipped": 0
+        },
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md:216",
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation/tasks.md:115",
+          "a494145dd0 commit body"
+        ],
+        "findingRefs": [],
+        "gateClass": "hard",
+        "protocolId": "spec_code",
+        "status": "pass",
+        "summary": "The changed detail and phrase removal match the A-2 alignment item, the T027 contract and the 016 floor requirement."
+      },
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 0,
+          "partial": 0,
+          "pass": 3,
+          "skipped": 0
+        },
+        "evidence": [
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation/acceptance-criteria.md:72",
+          "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/016-claude-create-reach-and-doctor-default/acceptance-criteria.md:58-62"
+        ],
+        "findingRefs": [
+          "DR4-P2-001"
+        ],
+        "gateClass": "hard",
+        "protocolId": "checklist_evidence",
+        "status": "pass",
+        "summary": "AC-017, AC-003, AC-005 and AC-007 remain Met; the carried P2 is outside the checklist rows."
+      },
+      {
+        "applicable": false,
+        "counts": {
+          "fail": 0,
+          "partial": 0,
+          "pass": 0,
+          "skipped": 1
+        },
+        "evidence": [],
+        "findingRefs": [],
+        "gateClass": "advisory",
+        "protocolId": "skill_agent",
+        "status": "notApplicable",
+        "summary": "No skill/agent pair changed."
+      },
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 0,
+          "partial": 0,
+          "pass": 1,
+          "skipped": 0
+        },
+        "evidence": [
+          ".claude/commands/create/sk-skill.md",
+          ".cursor/commands/create-sk-skill.md",
+          ".codex/prompts/create-sk-skill.md",
+          ".pi/prompts/create-sk-skill.md",
+          ".dsh/prompts/create-sk-skill.md"
+        ],
+        "findingRefs": [],
+        "gateClass": "advisory",
+        "protocolId": "agent_cross_runtime",
+        "status": "pass",
+        "summary": "The create command is consistent on every command-carrying runtime; the changed presentation is runtime-neutral."
+      },
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 0,
+          "partial": 0,
+          "pass": 1,
+          "skipped": 0
+        },
+        "evidence": [
+          ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/doctor-command-routing.md:27-39"
+        ],
+        "findingRefs": [],
+        "gateClass": "advisory",
+        "protocolId": "feature_catalog_code",
+        "status": "pass",
+        "summary": "The catalog matches the generated policy and reach-probe behavior."
+      },
+      {
+        "applicable": true,
+        "counts": {
+          "fail": 0,
+          "partial": 1,
+          "pass": 0,
+          "skipped": 0
+        },
+        "evidence": [
+          ".skilled/manual-testing-playbook/doctor-commands/doctor-agents-md-check.md:30",
+          ".skilled/manual-testing-playbook/doctor-commands/doctor-agents-md-check.md:102"
+        ],
+        "findingRefs": [
+          "DR4-P2-001"
+        ],
+        "gateClass": "advisory",
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "summary": "The carried A11 repair mapping gap remains; the setup and update playbooks use typed commands and do not quote the removed phrases."
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

@@ -1,0 +1,269 @@
+{
+  "type": "iteration",
+  "iteration": 1,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-doctor-docs-4-1794669272137-9v23rz",
+  "status": "complete",
+  "focus": "correctness",
+  "dimensions": ["correctness"],
+  "filesReviewed": [
+    ".skilled/commands/doctor/scripts/agents-md-check.cjs:798-809",
+    ".skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs:742-765",
+    ".skilled/commands/doctor/_routes.yaml:396-406",
+    ".skilled/commands/doctor/_routes.yaml:797-806",
+    ".skilled/commands/create/assets/create-skill-presentation.txt:86-90",
+    ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt:258-283",
+    ".skilled/commands/doctor/assets/doctor-agents-md-check.yaml:52-69",
+    ".skilled/commands/doctor/scripts/agents-md-embed.cjs:782-804",
+    ".skilled/commands/create/sk-skill.md:30-41",
+    ".skilled/commands/create/assets/create-skill-auto.yaml:465-480",
+    ".skilled/commands/create/assets/create-skill-confirm.yaml:511-526",
+    ".skilled/skills/system-spec-kit/runtime/hooks/lib/spec-gate/spec-gate-core.mjs:154",
+    ".skilled/skills/system-spec-kit/runtime/tests/hooks/gate-3-menu-parity.test.mjs:20-57",
+    ".skilled/skills/system-skill-advisor/runtime/lib/scorer/doctor-helper-handoff.ts:37-38,168-188",
+    ".skilled/skills/system-skill-advisor/runtime/tests/doctor-helper-handoff.vitest.ts:112-133",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+    ".skilled/skills/system-spec-kit/references/structure/folder-structure.md:99-152"
+  ],
+  "findingsCount": 1,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "findingsNew": ["DR4-P2-001"],
+  "findingDetails": [
+    {
+      "id": "DR4-P2-001",
+      "severity": "P2",
+      "title": "A11 malformed-row finding has no specific repair, while the A11 troubleshooting row points at a tool that cannot fix it",
+      "category": "maintainability",
+      "dimension": "correctness",
+      "file": ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt:267",
+      "line": 267,
+      "case": "A consumer's REPO RULES.md trigger row has four cells where the header has three and still carries its rule path. A11 prints '0 shipped row(s) missing, 1 malformed row(s); [repo-rules summary] (FINDING)'; the A11 troubleshooting row says to run /doctor:agents-md embed; embed adds no row because nothing is missing and reports 'no other row was touched'; the malformed row remains and the rerun reports the same finding.",
+      "evidence": "The A11-specific troubleshooting row names missing rows only and points at embed (doctor-agents-md-presentation.txt:267). The embed engine's router repair only calls addRouterRows and prints 'no other row was touched' (agents-md-embed.cjs:782-794). The changed detail makes a malformed row a finding with zero missing rows (agents-md-check.cjs:798-809). The generic FINDING row at doctor-agents-md-presentation.txt:262 still says to read the detail and fix the requirement.",
+      "recommendation": "Extend the A11 row to name the malformed case and its actual repair (correct the row's cell count in REPO RULES.md), or state that embed only adds missing rows and cannot rewrite a malformed one.",
+      "findingClass": "class-of-bug",
+      "scopeProof": "rg -n 'A11|missing router rows|malformed' .skilled/commands/doctor/assets/doctor-agents-md-presentation.txt finds one A11-specific row at :267; the only other repair is the generic FINDING row at :262. agents-md-embed.cjs:782-804 shows the router repair only appends missing rows and never rewrites an existing row.",
+      "affectedSurfaceHints": ["A11 row", "doctor-agents-md troubleshooting table", "agents-md-embed addRouterRows", "manual-testing-playbook doctor-agents-md-check"],
+      "content_hash": "4b77fd7145c2434d112195d9e92f72e46aaa875c85febfab581f85eb9330de12",
+      "confidence": 0.82,
+      "downgradeTrigger": "If the generic FINDING row at doctor-agents-md-presentation.txt:262 is accepted as the named repair for every A11 cause, downgrade this to a documentation observation.",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active"
+    }
+  ],
+  "traceabilityChecks": {
+    "results": [
+      {
+        "protocolId": "spec_code",
+        "status": "pass",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {"pass": 3, "partial": 0, "fail": 0, "skipped": 0},
+        "evidence": ["specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md:216", "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation/tasks.md:115", ".skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs:763-764"],
+        "findingRefs": [],
+        "summary": "The changed detail matches the A-2 alignment item and the T027 malformed-row contract; the new test pins it."
+      },
+      {
+        "protocolId": "checklist_evidence",
+        "status": "partial",
+        "gateClass": "hard",
+        "applicable": true,
+        "counts": {"pass": 1, "partial": 1, "fail": 0, "skipped": 0},
+        "evidence": ["specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/014-review-remediation/acceptance-criteria.md:72", ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt:267"],
+        "findingRefs": ["DR4-P2-001"],
+        "summary": "AC-017 is met for the malformed line and the no-missing case; no checklist row requires a repair mapping for that case, so the gap is advisory."
+      },
+      {
+        "protocolId": "skill_agent",
+        "status": "notApplicable",
+        "gateClass": "advisory",
+        "applicable": false,
+        "counts": {"pass": 0, "partial": 0, "fail": 0, "skipped": 1},
+        "evidence": [],
+        "findingRefs": [],
+        "summary": "The changed files are a doctor command, a route manifest and a create presentation; no skill/agent pair changed."
+      },
+      {
+        "protocolId": "agent_cross_runtime",
+        "status": "pass",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {"pass": 1, "partial": 0, "fail": 0, "skipped": 0},
+        "evidence": [".skilled/commands/create/assets/create-skill-presentation.txt:89", ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json"],
+        "findingRefs": [],
+        "summary": "The presentation is plain text read by every runtime; the command routers are mirrored per runtime and none carries the presentation wording; the derived bridge data is in sync."
+      },
+      {
+        "protocolId": "feature_catalog_code",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {"pass": 0, "partial": 1, "fail": 0, "skipped": 0},
+        "evidence": [],
+        "findingRefs": [],
+        "summary": "Deferred to the iteration-2 traceability pass; the doctor route and create command catalog descriptions are not yet cross-read."
+      },
+      {
+        "protocolId": "playbook_capability",
+        "status": "partial",
+        "gateClass": "advisory",
+        "applicable": true,
+        "counts": {"pass": 0, "partial": 1, "fail": 0, "skipped": 0},
+        "evidence": [".skilled/manual-testing-playbook/doctor-commands/doctor-agents-md-check.md:30", ".skilled/manual-testing-playbook/doctor-commands/doctor-agents-md-check.md:102"],
+        "findingRefs": ["DR4-P2-001"],
+        "summary": "The playbook requires a repair for each finding and treats a finding without its repair as a FAIL; the A11-specific row covers missing rows only, and the generic row covers the malformed case only by inference."
+      }
+    ]
+  },
+  "newFindingsRatio": 1.0,
+  "sessionId": "fanout-doctor-docs-4-1794669272137-9v23rz",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-14T15:34:44Z",
+  "durationMs": 300000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "standard",
+    "enforcement": "warn",
+    "reason": "Four changed files plus shared docs and cross-file repair contracts; the diff is small but the traceability surface spans the doctor presentation, the embed engine and the create command.",
+    "evidenceRefs": [".skilled/commands/doctor/scripts/agents-md-check.cjs:798-809", ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt:267", ".skilled/commands/create/assets/create-skill-presentation.txt:89"]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      ".skilled/commands/doctor/scripts/agents-md-check.cjs",
+      ".skilled/commands/doctor/scripts/tests/agents-md-check.test.cjs",
+      ".skilled/commands/doctor/_routes.yaml",
+      ".skilled/commands/create/assets/create-skill-presentation.txt",
+      ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt",
+      ".skilled/commands/doctor/scripts/agents-md-embed.cjs",
+      ".skilled/commands/create/assets/create-skill-auto.yaml"
+    ],
+    "selectionReason": "The review-scope-4.txt area doctor-docs names the first four; the remaining three are the direct consumers and repair surfaces named by the changed code and its presentation.",
+    "discoveryMethods": ["direct_read", "exact_search", "git_diff_stat"],
+    "omittedHighRiskTargets": ["command-prompts.jsonl (holdout; not opened)", "holdout-prompts.jsonl (not opened)"],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "unavailable",
+    "evidenceRefs": ["review-scope-4.txt:6-9", "review-brief-4.txt:1"]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": ["behavioral_contract", "docs_code_divergence", "mutating_attachment", "cross_runtime_parity", "derived_data_sync", "holdout_leakage"],
+    "covered": ["behavioral_contract", "docs_code_divergence", "cross_runtime_parity", "derived_data_sync", "holdout_leakage"],
+    "ruledOut": ["cross_runtime_parity", "derived_data_sync", "holdout_leakage"],
+    "deferred": ["mutating_attachment"],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [".skilled/commands/doctor/scripts/agents-md-check.cjs:798-809"],
+      "bugClass": "behavioral_contract",
+      "hypothesis": "The new malformed count can disagree with the rows the check actually prints.",
+      "searchActions": [
+        {"method": "direct_read", "queryOrPath": "agents-md-check.cjs:757-839", "result": "lines holds each missing entry once and each malformed row once; the subtraction is the malformed count for the tested case.", "evidenceRefs": ["agents-md-check.cjs:772-809"]},
+        {"method": "direct_read", "queryOrPath": "agents-md-check.test.cjs:742-765", "result": "the test keeps the rule path and asserts the new detail prefix.", "evidenceRefs": ["agents-md-check.test.cjs:760-764"]}
+      ],
+      "disposition": "finding",
+      "linkedFindingId": "DR4-P2-001",
+      "rationale": "The count is correct; the downstream repair mapping is incomplete."
+    },
+    {
+      "id": "SL-002",
+      "dimension": "traceability",
+      "targetRefs": [".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt:267"],
+      "bugClass": "docs_code_divergence",
+      "hypothesis": "The A11-specific repair row may no longer match every A11 finding cause.",
+      "searchActions": [
+        {"method": "direct_read", "queryOrPath": "doctor-agents-md-presentation.txt:258-283", "result": "one A11-specific row covers missing rows only; the generic FINDING row covers any other cause by instruction.", "evidenceRefs": ["doctor-agents-md-presentation.txt:262", "doctor-agents-md-presentation.txt:267"]},
+        {"method": "direct_read", "queryOrPath": "agents-md-embed.cjs:782-804", "result": "embed only appends missing rows and reports 'no other row was touched'.", "evidenceRefs": ["agents-md-embed.cjs:794"]}
+      ],
+      "disposition": "finding",
+      "linkedFindingId": "DR4-P2-001",
+      "rationale": "A malformed row with zero missing rows gets a repair that cannot fix it."
+    },
+    {
+      "id": "SL-003",
+      "dimension": "security",
+      "targetRefs": [".skilled/commands/doctor/_routes.yaml"],
+      "bugClass": "mutating_attachment",
+      "hypothesis": "A question, refusal or mention may still attach a mutating doctor route after the phrase removal.",
+      "searchActions": [
+        {"method": "exact_search", "queryOrPath": "command-bridges.generated.json for the six removed phrases", "result": "none of the six remains in the derived data.", "evidenceRefs": ["command-bridges.generated.json"]}
+      ],
+      "disposition": "deferred",
+      "deferredReason": "The full attach policy, route mutation classes and helper thresholds are the iteration-2 security pass; iteration 1 only verified the removed phrases left the derived data.",
+      "rationale": "The phrase removal reached the derived surface; the attach path itself is not yet audited."
+    },
+    {
+      "id": "SL-004",
+      "dimension": "traceability",
+      "targetRefs": [".skilled/commands/create/assets/create-skill-presentation.txt:89"],
+      "bugClass": "cross_runtime_parity",
+      "hypothesis": "The changed option C wording may diverge across runtimes or from the canonical Gate 3 constant.",
+      "searchActions": [
+        {"method": "exact_search", "queryOrPath": "spec-gate-core.mjs:154", "result": "the constant matches the line verbatim.", "evidenceRefs": ["spec-gate-core.mjs:154"]},
+        {"method": "direct_read", "queryOrPath": "gate-3-menu-parity.test.mjs:20-57", "result": "the presentation is in the parity file list; no runtime branch exists.", "evidenceRefs": ["gate-3-menu-parity.test.mjs:26"]}
+      ],
+      "disposition": "ruled_out",
+      "ruledOutReason": "The line is plain text read by every runtime and matches the single canonical constant; the parity guard covers it.",
+      "rationale": "No cross-runtime divergence."
+    },
+    {
+      "id": "SL-005",
+      "dimension": "correctness",
+      "targetRefs": [".skilled/commands/doctor/_routes.yaml:396-406,797-806"],
+      "bugClass": "derived_data_sync",
+      "hypothesis": "The removed phrases may still live in the derived bridge data or the Python markers.",
+      "searchActions": [
+        {"method": "exact_search", "queryOrPath": "command-bridges.generated.json for each removed phrase", "result": "all six queries returned false.", "evidenceRefs": ["command-bridges.generated.json"]},
+        {"method": "exact_search", "queryOrPath": "repo-wide rg excluding specs, changelogs and both prompt corpora", "result": "no tracked source hit outside the test that names a near-match.", "evidenceRefs": ["doctor-helper-handoff.vitest.ts:118-128"]}
+      ],
+      "disposition": "ruled_out",
+      "ruledOutReason": "The deriver was rerun and the generated data no longer carries any removed phrase.",
+      "rationale": "The source and derived surfaces agree."
+    },
+    {
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [".skilled/commands/doctor/_routes.yaml:396-406,797-806"],
+      "bugClass": "holdout_leakage",
+      "hypothesis": "Reviewing the changed route phrases may read or print a holdout prompt.",
+      "searchActions": [
+        {"method": "exact_search", "queryOrPath": "rg with --glob '!**/command-prompts.jsonl' --glob '!**/holdout-prompts.jsonl'", "result": "no prompt corpus was opened; only a tune row already materialized in a scratch artifact was seen.", "evidenceRefs": ["review-brief-4.txt:1"]}
+      ],
+      "disposition": "ruled_out",
+      "ruledOutReason": "No command-prompts.jsonl or holdout-prompts.jsonl read occurred; the search excluded both files.",
+      "rationale": "Holdout hygiene held."
+    },
+    {
+      "id": "SL-007",
+      "dimension": "correctness",
+      "targetRefs": [".skilled/commands/doctor/scripts/agents-md-check.cjs"],
+      "bugClass": "phantom_scorer_count",
+      "hypothesis": "The changed files may make the transcript scorer count a load, step or offer that did not happen.",
+      "searchActions": [
+        {"method": "direct_read", "queryOrPath": "the four changed files", "result": "none contains transcript-scoring code; the only scorer-facing change is the manifest-to-bridge data.", "evidenceRefs": ["review-scope-4.txt:6-9"]}
+      ],
+      "disposition": "not_applicable",
+      "notApplicableReason": "The doctor-docs area has no transcript-scoring code; the scorer paths belong to the accuracy-runner and scorer-attach areas.",
+      "rationale": "Out of this area's scope."
+    }
+  ],
+  "graphEvents": [
+    {"type": "node", "id": "file:doctor-agents-md-presentation", "kind": "FILE", "label": "doctor agents-md presentation"},
+    {"type": "node", "id": "file:agents-md-check", "kind": "FILE", "label": "agents-md check engine"},
+    {"type": "node", "id": "finding:DR4-P2-001", "kind": "FINDING", "label": "A11 malformed repair gap"},
+    {"type": "node", "id": "evidence:embed-router-repair", "kind": "EVIDENCE", "label": "embed addRouterRows:794"},
+    {"type": "edge", "id": "edge:finding-presentation", "source": "finding:DR4-P2-001", "target": "file:doctor-agents-md-presentation", "relation": "IN_FILE"},
+    {"type": "edge", "id": "edge:finding-check", "source": "finding:DR4-P2-001", "target": "file:agents-md-check", "relation": "IN_FILE"},
+    {"type": "edge", "id": "edge:evidence-finding", "source": "evidence:embed-router-repair", "target": "finding:DR4-P2-001", "relation": "EVIDENCE_FOR"}
+  ]
+}
