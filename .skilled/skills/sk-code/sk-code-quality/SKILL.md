@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: "sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists."
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.13.19.0
+version: 1.13.20.0
 metadata:
   family: sk-code
 ---
@@ -70,7 +70,7 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
 
 - This mode ships no house-style checklist. The universal floor and the universal style guide apply on every surface, and each surface's own checklists carry its house style.
   `../sk-code-skilled/assets/checklists/universal-checklist.md` is the SKILLED baseline, loaded when SKILLED is a resolved surface of the target, and the SKILLED JavaScript and CSS house checks sit under `../sk-code-skilled/assets/checklists/js-css-style/`.
-- `../sk-code-skilled/assets/checklists/` contains OpenCode authoring checklists for skills, agents, commands, MCP servers, language files, and config; the spec-folder checklist is owned by `system-spec-kit`.
+- `../sk-code-skilled/assets/checklists/` contains SKILLED authoring checklists for skills, agents, commands, MCP servers, language files, and config; the spec-folder checklist is owned by `system-spec-kit`.
 - `scripts/quality-gate.cjs` is the runner. It reads the change, runs the built-in checks, probes the enforcement layers, lists the checklists the declarations name and prints one verdict. It writes no file.
   The only commands it runs beyond its own are the ones a repository's committed `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` names, each as an argv array under a deadline and the workspace guard, and only once the repository is trusted (`references/quality-config.md` section 8).
   A command a manifest implies is reported as a suggestion it never runs.
@@ -144,7 +144,7 @@ The live `.skilled/scripts/git-hooks/pre-commit` also runs the agent-mirror-sync
 The older `.skilled/hooks/git/pre-commit` and `scripts/hooks/claude-posttooluse.sh` are compatibility helpers kept for direct tests. Neither is an installed hook.
 
 Run `node scripts/quality-gate.cjs`, which calls `scripts/check-comment-hygiene.sh` once over every modified file that can contain comments.
-A finding on a changed line blocks.
+A finding blocks when it is P0, exact and on a changed line.
 A finding on an unchanged line of a touched file blocks only when `layers` reports the pre-commit or CI layer `present`, because that layer scans whole files and would fail the change anyway.
 Otherwise it is P1 touched-file debt the change did not write.
 
@@ -292,6 +292,8 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 - [`references/runner-contract.md`](references/runner-contract.md) - The runner's CLI, gate values, verdict, envelope grammar, rule ids and reader rules.
 - [`references/quality-config.md`](references/quality-config.md) - The repository config `.skilled/skills/sk-code/sk-code-quality/repository/quality.json`: schema, discovery order, merge rule, error codes, trust boundary and known limits.
 - [`assets/quality-defaults.json`](assets/quality-defaults.json) - The runner's base layer: excluded paths, sensor settings and the checklist rows this mode owns.
+- [`assets/comment-syntax.json`](assets/comment-syntax.json) - The language table: the extensions, shebangs and comment syntax the runner and the comment-hygiene checker read.
+- [`assets/quality-config.template.json`](assets/quality-config.template.json) - A starting repository config that holds every key and passes the schema.
 - [`../sk-code-skilled/assets/checklists/universal-checklist.md`](../sk-code-skilled/assets/checklists/universal-checklist.md) - SKILLED quality baseline, loaded when SKILLED is a resolved surface.
 - [`../sk-code-skilled/assets/checklists/skill-authoring.md`](../sk-code-skilled/assets/checklists/skill-authoring.md) - Skill authoring checklist.
 - [`../sk-code-skilled/assets/checklists/agent-authoring.md`](../sk-code-skilled/assets/checklists/agent-authoring.md) - Agent authoring checklist.
@@ -323,3 +325,8 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 
 - [`../shared/references/universal/code-quality-standards.md`](../shared/references/universal/code-quality-standards.md) - Shared code quality standards.
 - [`references/code-style-guide.md`](references/code-style-guide.md) - This mode's code style and comment hygiene guide.
+
+### Manual Testing Playbook
+
+- [`manual-testing-playbook/manual-testing-playbook.md`](manual-testing-playbook/manual-testing-playbook.md) - The root index of the manual scenarios, with one file per scenario under `manual-testing-playbook/quality-gate/`.
+- Validate the package with `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook`, run from the repository root.

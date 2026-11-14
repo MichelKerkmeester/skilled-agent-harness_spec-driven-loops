@@ -8,7 +8,7 @@ trigger_phrases:
   - "commenting universal rules"
 importance_tier: normal
 contextType: implementation
-version: 2.3.2.0
+version: 2.3.3.0
 ---
 
 # Universal Code Style Guide
@@ -114,7 +114,7 @@ Delete it. Git history preserves it. Commented code is cognitive load with no pa
 
 ### Describe current behavior, not history
 
-**CHK-CMT-07 (P1):** each comment describes what the code does now, never how it got there, what it used to do or which change introduced it. A comment that narrates its own history is wrong the moment the next change lands. Before: `// this check used to live in the old loader`. After: `// skips blank lines so the count stays true`. This rule adds to the ephemeral-pointer rule below and never softens it.
+**P1:** each comment describes what the code does now, never how it got there, what it used to do or which change introduced it. A comment that narrates its own history is wrong the moment the next change lands. Before: `// this check used to live in the old loader`. After: `// skips blank lines so the count stays true`. This rule adds to the ephemeral-pointer rule below and never softens it.
 
 ### No ephemeral-artifact pointers
 

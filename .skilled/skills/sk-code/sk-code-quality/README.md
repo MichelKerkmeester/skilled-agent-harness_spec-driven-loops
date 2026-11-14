@@ -8,7 +8,7 @@ trigger_phrases:
   - "authoring checklist"
 importance_tier: important
 contextType: implementation
-version: 1.3.9.0
+version: 1.3.10.0
 ---
 
 # sk-code-quality
@@ -27,6 +27,8 @@ version: 1.3.9.0
 | **Invoke with** | `quality gate`, `code quality`, `comment hygiene`, `authoring checklist`, `check before done` |
 | **Works on** | Any repository: the runner checks the change with the universal floor and the checks the repository names. In this repository it also loads the SKILLED checklists for skills, agents, commands, specs, MCP servers, scripts, config and language files |
 | **Produces** | In-place quality fixes plus a handoff that states the runner's verdict, the checklists used, the hygiene rules switched off and any remaining risk |
+
+**Version authority.** `SKILL.md` carries the packet's release version, which matches the newest entry under `changelog/`. The `version` in this file and in `ROUTER.md` counts that document's own revisions, the same split the hub `SKILL.md` states for the hub's files.
 
 ### Why This Mode Exists
 
@@ -84,13 +86,14 @@ The mode sits between implementation and verification. It runs the quality runne
 
 | Severity | Meaning | Gate effect |
 |---|---|---|
-| **P0** | Correctness, safety, broken contract, forbidden comment metadata, unchecked generated drift or missing checklist evidence | Blocks completion until fixed or escalated |
+| **P0** | Correctness, safety, broken contract or forbidden comment metadata | Blocks completion until fixed or escalated |
+| **UNVERIFIED** | Unchecked generated drift, missing required checklist evidence, a required check that produced no evidence, or two override sources at one level that disagree on a rule | Neither clean nor blocked. The claim stays open until verification proves it or reports it open |
 | **P1** | Maintainability or authoring-contract issue that would confuse future work | Fixed before handoff unless the user accepts a documented risk |
 | **P2** | Local polish or minor consistency issue with low behavioral risk | Fixed when cheap, otherwise deferred with a documented reason |
 
 ### Target-Path Routing
 
-OpenCode authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-skilled`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. `node scripts/quality-gate.cjs --explain <path> [<path>...]` answers for a whole change in one call. For each file it names the surfaces, the folder each surface loads from and every checklist with the seat that declared it, plus each checklist's parsed `## Rule overrides` rows. It runs nothing and writes nothing. It exits 2 when every path resolves, and 3 (ERROR) on a usage error or a missing path.
+SKILLED authoring targets route to specific checklists: skills, agents, commands, MCP servers, language files and config each have their own checklist under `sk-code-skilled`. Spec folders route to the spec-folder authoring checklist that `system-spec-kit` owns. `node scripts/quality-gate.cjs --explain <path> [<path>...]` answers for a whole change in one call. For each file it names the surfaces, the folder each surface loads from and every checklist with the seat that declared it, plus each checklist's parsed `## Rule overrides` rows. It runs nothing and writes nothing. It exits 2 when every path resolves, and 3 (ERROR) on a usage error or a missing path.
 
 ### Rules Your Repository Can Change
 
@@ -138,6 +141,7 @@ Use it when a change is already written and needs standards enforcement before f
 | Distribution drift | `.skilled/skills/sk-code/sk-code-quality/scripts/check-dist-staleness.sh <changed-file>` prints a banner when the package that holds the file is stale or cannot be checked, and nothing when it is current. This per-file form never rebuilds. It always exits 0 because it warns and does not gate. Run it directly, not through `bash`, because it is a Python program |
 | Ceiling markers | `.skilled/skills/sk-code/sk-code-quality/scripts/ceiling-report.sh` prints one line per `ceiling:` or `intentional-limit:` marker and a closing `markers=N no-trigger=N no-signal=N` line, and exits 0 because it reports and does not gate |
 | README structure | `python3 .skilled/skills/sk-doc/scripts/validate_document.py .skilled/skills/sk-code/sk-code-quality/README.md --type readme` reports zero issues |
+| Manual playbook | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-code/sk-code-quality/manual-testing-playbook` prints `PASS` with `violations=0 warnings=0`. The scenarios under `manual-testing-playbook/quality-gate/` run in a live session |
 | Final claim | Hand to the surface verification workflow (`workflow-verify.md`). This mode does not make done or works claims |
 
 ---
@@ -148,10 +152,11 @@ Use it when a change is already written and needs standards enforcement before f
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Runtime contract for the quality mode |
 | [`ROUTER.md`](./ROUTER.md) | Machine router: intent map, resource map and routing pseudocode |
+| [`manual-testing-playbook/manual-testing-playbook.md`](./manual-testing-playbook/manual-testing-playbook.md) | Manual scenarios that validate the quality gate |
 | [`references/runner-contract.md`](./references/runner-contract.md) | The runner's CLI, exit codes, states, verdict, envelope grammar and rule ids |
 | [`references/code-style-guide.md`](./references/code-style-guide.md) | This mode's code style and comment-hygiene guide |
 | [`scripts/quality-gate.cjs`](./scripts/quality-gate.cjs) | The quality runner, one verdict per change in any repository |
-| [`../sk-code-skilled/assets/checklists/`](../sk-code-skilled/assets/checklists/) | Target-path OpenCode authoring checklists for skills, agents, commands, MCP servers, language files and config |
+| [`../sk-code-skilled/assets/checklists/`](../sk-code-skilled/assets/checklists/) | Target-path SKILLED authoring checklists for skills, agents, commands, MCP servers, language files and config |
 | [`spec-folder-authoring-checklist.md`](../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md) | Spec-folder authoring checklist, owned by `system-spec-kit` |
 | [`scripts/check-comment-hygiene.sh`](./scripts/check-comment-hygiene.sh) | Comment-hygiene checker, which the runner calls once per run |
 | [`scripts/check-dist-staleness.sh`](./scripts/check-dist-staleness.sh) | Generated artifact drift checker |
