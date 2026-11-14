@@ -1499,7 +1499,9 @@ test('should-relaunch exits zero and prints JSON for an armed fresh record', (t)
 
 test('should-relaunch exits one and prints the pending decline reason as JSON', (t) => {
   const sandbox = createSandbox(t);
-  writeRelaunchRecord(sandbox, { version: 1, status: 'pending', loopId: LOOP_ID, hops: 0 });
+  writeRelaunchRecord(sandbox, {
+    version: 1, status: 'pending', loopId: LOOP_ID, handoff: '/handoffs/note.md', hops: 0,
+  });
   const result = runCli(sandbox, ['should-relaunch', '--loop-id', LOOP_ID]);
   assert.equal(result.status, 1, result.stderr);
   assert.match(result.stdout.trim(), /^\{.*\}$/);

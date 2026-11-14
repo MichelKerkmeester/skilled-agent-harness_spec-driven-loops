@@ -902,7 +902,9 @@ test('arm returns null when the record cannot be read', (t) => {
 
 test('unarm records disarmed status and the supplied reason', (t) => {
   const sandbox = createSandbox(t);
-  writeRelaunchRecord(sandbox, { loopId: LOOP_ID, status: 'armed', armedAt: NOW.toISOString() });
+  writeRelaunchRecord(sandbox, {
+    loopId: LOOP_ID, status: 'armed', handoff: '/handoffs/note.md', armedAt: NOW.toISOString(),
+  });
   const record = unarm({ loopId: LOOP_ID, env: sandbox.env, reason: 'killer-timeout', now: NOW });
   assert.equal(record.status, 'disarmed');
   assert.equal(record.disarmReason, 'killer-timeout');
@@ -913,6 +915,7 @@ test('unarm leaves the record armed when expectedArmId is stale', (t) => {
   writeRelaunchRecord(sandbox, {
     loopId: LOOP_ID,
     status: 'armed',
+    handoff: '/handoffs/note.md',
     armedAt: NOW.toISOString(),
     armId: 'arm-current-0001',
   });
@@ -932,6 +935,7 @@ test('unarm disarms the record when expectedArmId matches', (t) => {
   writeRelaunchRecord(sandbox, {
     loopId: LOOP_ID,
     status: 'armed',
+    handoff: '/handoffs/note.md',
     armedAt: NOW.toISOString(),
     armId: 'arm-current-0001',
   });
@@ -950,7 +954,7 @@ test('unarm disarms the record when expectedArmId matches', (t) => {
 
 test('readRelaunchFile returns the parsed record or null when absent', (t) => {
   const sandbox = createSandbox(t);
-  const record = { version: 1, status: 'pending', loopId: LOOP_ID };
+  const record = { version: 1, status: 'pending', loopId: LOOP_ID, handoff: '/handoffs/note.md' };
   writeRelaunchRecord(sandbox, record);
   assert.deepEqual(readRelaunchFile(LOOP_ID, sandbox.env), record);
   assert.equal(readRelaunchFile('loop-missing', sandbox.env), null);
@@ -1019,6 +1023,29 @@ test('readRelaunchFile treats invalid JSON as absent and logs the loop id', (t) 
   const lines = fs.readFileSync(logPath, 'utf8').trimEnd().split('\n');
   assert.equal(lines.length, 1);
   assert.match(lines[0], new RegExp(' corrupt-relaunch-file loop=' + LOOP_ID + '$'));
+});
+
+test('readRelaunchFile treats a record with no handoff as absent and logs the loop id', (t) => {
+  const sandbox = createSandbox(t);
+  const filePath = relaunchFilePath(LOOP_ID, sandbox.env);
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, JSON.stringify({ version: 1, status: 'pending', loopId: LOOP_ID }));
+
+  assert.equal(readRelaunchFile(LOOP_ID, sandbox.env), null);
+  const logPath = path.join(stateDir(sandbox.env), 'relaunch.log');
+  const lines = fs.readFileSync(logPath, 'utf8').trimEnd().split('\n');
+  assert.equal(lines.length, 1);
+  assert.match(lines[0], new RegExp(' corrupt-relaunch-file loop=' + LOOP_ID + '$'));
+});
+
+test('readRelaunchFile keeps a record whose handoff is an empty string', (t) => {
+  const sandbox = createSandbox(t);
+  const filePath = relaunchFilePath(LOOP_ID, sandbox.env);
+  const record = { version: 1, status: 'disarmed', loopId: LOOP_ID, handoff: '' };
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, JSON.stringify(record));
+
+  assert.deepEqual(readRelaunchFile(LOOP_ID, sandbox.env), record);
 });
 
 test('readRelaunchFile still returns null when the corruption log write fails', (t) => {

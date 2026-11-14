@@ -136,7 +136,10 @@ test('context-nudge logs the unknown window once per session', async (t) => {
   assert.equal(allSkippedLines.length, 2);
 });
 
-function createPendingRecord(sandbox, loopId, sessionId, handoffPath, status = 'pending') {
+function createPendingRecord(
+  sandbox, loopId, sessionId, handoffPath = path.join(sandbox.repoRoot, 'handoff.md'),
+  status = 'pending',
+) {
   const stateDir = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch');
   fs.mkdirSync(stateDir, { recursive: true });
   const recordPath = path.join(stateDir, `relaunch-${loopId}.json`);
@@ -959,6 +962,31 @@ test('stop-arm logs missing-transcript-path and marks the pending record deferre
   assert.ok(Number.isFinite(Date.parse(deferredAt)), deferredAt);
   const log = fs.readFileSync(path.join(stateDir, 'relaunch.log'), 'utf8');
   assert.match(log, /missing-transcript-path/);
+});
+
+test('stop-arm arms nothing for a pending record that names no note', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const { stateDir, recordPath, record } = createPendingRecord(sandbox, loopId, SESSION_ID);
+  const { handoff: _handoff, ...withoutNote } = record;
+  fs.writeFileSync(recordPath, JSON.stringify(withoutNote));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const spawns = installKillerRecorder(sandbox);
+
+  const result = await runAdapter(sandbox, STOP_ARM_PATH, {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 10),
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+  });
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), withoutNote);
+  assert.deepEqual(spawns(), []);
+  const log = fs.readFileSync(path.join(stateDir, 'relaunch.log'), 'utf8');
+  assert.match(log, /corrupt-relaunch-file/);
 });
 
 test('stop-arm logs an async killer spawn error and leaves the record armed', async (t) => {

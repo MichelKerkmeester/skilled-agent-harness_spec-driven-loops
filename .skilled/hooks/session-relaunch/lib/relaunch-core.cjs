@@ -1232,8 +1232,9 @@ function withdrawRecord({ loopId, reason, accept, env = process.env, now }) {
  *
  * @param {string} loopId - Wrapper process identifier.
  * @param {NodeJS.ProcessEnv} [env=process.env] - Runtime environment.
- * @returns {Object|null} Parsed record, or null when absent or invalid JSON.
- * A corrupt record is logged and treated as absent; logging may create the directory.
+ * @returns {Object|null} Parsed record, or null when absent, invalid JSON or without a
+ * `handoff` string. A corrupt record is logged and treated as absent; logging may create
+ * the directory.
  */
 function readRelaunchFile(loopId, env = process.env) {
   const directory = stateDir(env);
@@ -1255,17 +1256,24 @@ function readRelaunchFile(loopId, env = process.env) {
     throw error;
   }
 
+  let record = null;
   try {
-    return JSON.parse(contents);
+    record = JSON.parse(contents);
   } catch (error) {
     if (!(error instanceof SyntaxError)) throw error;
-    // The log is best-effort: a state-dir failure must not turn a corrupt
-    // record into a thrown read.
-    try {
-      appendLog('corrupt-relaunch-file', { loop: loopId }, env);
-    } catch {}
-    return null;
   }
+  // Every writer stamps the note a record hands over, an empty one for a record that has
+  // none left. A record with no such field was not written here, and reading it as pending
+  // would let a Stop arm a hop that has no note to claim.
+  if (record !== null && typeof record === 'object' && typeof record.handoff === 'string') {
+    return record;
+  }
+  // The log is best-effort: a state-dir failure must not turn a corrupt
+  // record into a thrown read.
+  try {
+    appendLog('corrupt-relaunch-file', { loop: loopId }, env);
+  } catch {}
+  return null;
 }
 
 /**

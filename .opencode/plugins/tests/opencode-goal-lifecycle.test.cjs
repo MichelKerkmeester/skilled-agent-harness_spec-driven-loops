@@ -211,7 +211,7 @@ test('a pending relaunch record suppresses the goal continuation', async () => w
     });
     await writeFile(
       join(relaunchDir, `relaunch-${loopId}.json`),
-      JSON.stringify({ status, sessionId: sessionID }),
+      JSON.stringify({ status, sessionId: sessionID, handoff: join(stateDir, 'handoff.md') }),
       'utf8',
     );
 
