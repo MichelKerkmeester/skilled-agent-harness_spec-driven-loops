@@ -53,6 +53,7 @@
       ".skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/advisor-disabled.vitest.ts",
       ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts",
+      "scratch/review/report.txt",
       "scratch/planning/direct-call-matrix.sh",
       "scratch/planning/import-closure.mjs"
     ],
@@ -160,6 +161,12 @@
         "source": "derived"
       },
       {
+        "name": "report.txt",
+        "kind": "file",
+        "path": "scratch/review/report.txt",
+        "source": "derived"
+      },
+      {
         "name": "direct-call-matrix.sh",
         "kind": "script",
         "path": "scratch/planning/direct-call-matrix.sh",
@@ -194,17 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A model in the behaviour arm's off arm, or a user who exports `SYSTEMSKILLADVISORHOOKDISABLED=1`, runs the Gate 2 direct call and still gets `sk-doc → /create:readme (start)` from the warm daemon, or two skill rows from the local scorer when no daemon answers",
     "created_at": "2026-11-14T22:11:47Z",
-    "last_save_at": "2026-11-14T23:20:43.038Z",
+    "last_save_at": "2026-11-14T23:26:15.453Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,12 +214,12 @@
       "tasks.md",
       "acceptance-criteria.md"
     ],
-    "source_fingerprint": "sha256:2a119b3b2bfcce3e1910eea2f18e2502077c075044203744094566453e01f940",
+    "source_fingerprint": "sha256:01686180a02e230267727c098a79b732d991242f54d52083617e1ef817fa1796",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "892bf2932d062878f76a1a7b81365344bf519e016dccc2aaab3491cb1f7ae84e",
+      "spec.md": "1e1c15980a84ec5d717fb2d2ff8f703b67d9ffebc994122690a30809fa707b84",
       "plan.md": "0811ddf5ff5cb8f2e23bbfb1d0667538e111d8bef100d468f3d0fbe4f8c72313",
-      "tasks.md": "b08e96014966614bd67fe1746fa229d29a1329e0c49fef0a7420071af38201c8"
+      "tasks.md": "1e6fdc93cc36fb32b25e40b41e129c1cb14ce6e8cb62b5754f338b525918a15b"
     },
     "last_active_at": null
   }

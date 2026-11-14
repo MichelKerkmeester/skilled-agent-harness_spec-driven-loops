@@ -9,7 +9,7 @@ trigger_phrases:
   - "advisor hook smoke tests"
 importance_tier: important
 contextType: implementation
-version: 3.6.13.0
+version: 3.6.14.0
 ---
 
 # Skill Advisor Hook Reference
@@ -173,7 +173,7 @@ The advisor is enabled by default. Truthy disable values are `1`, `true`, `yes`,
 | `SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED=1` | Legacy alias for the OpenCode plugin. |
 | `SYSTEM_HOOKS_DISABLED=1` | Master switch that disables this concern along with every other repo hook. |
 
-The direct call decides in the caller's own process. `node .skilled/bin/skill-advisor.cjs advisor_recommend` reads the two `_HOOK_DISABLED` names, each set to exactly `1`, before it connects to a daemon or runs the local scorer, and prints the empty envelope with `ADVISOR_DISABLED`, so a daemon started without the switch never answers a caller who set it. The other names in this table and the values `true`, `yes` and `on` act on the adapters only, and the direct call still answers under them.
+The direct call decides in the caller's own process. `node .skilled/bin/skill-advisor.cjs advisor_recommend` reads the two `_HOOK_DISABLED` names, each set to exactly `1`, before it connects to a daemon or runs the local scorer, and prints the empty envelope with `ADVISOR_DISABLED`, so a daemon started without the switch never answers a caller who set it. The other names in this table and the values `true`, `yes` and `on` act on the adapters only, and the direct call still answers under them. The launcher does not pass the two `_HOOK_DISABLED` names to a daemon it starts, so a flagged command that happens to start the daemon does not leave it abstaining for every later caller.
 
 Additional controls: `SPECKIT_SKILL_ADVISOR_FORCE_LOCAL=1` (force local Python fallback where supported) and `--force-native` / `--force-local` / `--threshold` / `--stdin` (Python shim flags, default threshold `0.8`). `SPECKIT_OPENCODE_HOOK_TIMEOUT_MS` (default 3000) is owned by the `system-skill-advisor` hub: its live consumers are `runtime/lib/subprocess.ts`, `skill-advisor-brief.ts`, the OpenCode bridge and `skill_advisor.py`. On timeout the OpenCode bridge serves prompt-safe stale context with a timeout marker. OpenCode tuning: `SYSTEM_SKILL_ADVISOR_CACHE_TTL_MS` (default 5 min), `SYSTEM_SKILL_ADVISOR_MAX_TOKENS` (default 80), `SYSTEM_SKILL_ADVISOR_MAX_BRIEF_CHARS` (default 2 KiB), `SYSTEM_SKILL_ADVISOR_MAX_PROMPT_BYTES` (default 64 KiB, measured on the whole stdin request after JSON escaping), `SYSTEM_SKILL_ADVISOR_COMPILED_ROUTE_BOUNDING` (kept for existing configs: the transform adds no compiled-route line, so it changes only the `bounded_compiled_route_summary` status field).
 

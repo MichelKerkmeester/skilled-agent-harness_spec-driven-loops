@@ -255,7 +255,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - Empty input: a switch set to an empty string, `0` or `true` does not disable the direct call, the exact-`1` rule the handler already has. A module test row pins `true`.
 - Maximum input: both names set print the `SYSTEM_` name in the reason, because the canonical name is checked first, as the handler's comment says.
-- Failure path: under the switch the client answers before the daemon's input schema runs, so a `workspaceRoot` the daemon's allowlist would refuse gets the abstain envelope naming its resolved path instead of an invalid-params error, and `--warm-only` gets the abstain with exit 0 instead of the retryable exit 75. Neither returns a recommendation.
+- Failure path: under the switch the client answers before the daemon's input schema runs, so input the CLI manifest allows and the daemon's schema refuses, such as `"topK": 1.5`, gets the abstain envelope instead of an invalid-params error (the CLI cannot send a `workspaceRoot`, so the client always resolves its own), and `--warm-only` gets the abstain with exit 0 instead of the retryable exit 75. Neither returns a recommendation.
 <!-- /ANCHOR:edge-cases -->
 
 ---
