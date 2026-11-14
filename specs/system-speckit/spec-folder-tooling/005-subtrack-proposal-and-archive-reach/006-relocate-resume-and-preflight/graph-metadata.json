@@ -34,17 +34,21 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts",
+      "scratch/build-evidence.md",
+      "scratch/ledger-readers.txt",
+      "scratch/baseline.txt",
       "runtime/cli/tests/relocate.vitest.ts",
       ".skilled/skills/sk-doc/shared/scripts/relocation-ledger.json",
-      "runtime/cli/spec/relocate.mjs",
-      ".skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs"
+      "runtime/cli/spec/relocate.mjs"
     ],
     "entities": [
       {
@@ -78,21 +82,39 @@
         "source": "derived"
       },
       {
+        "name": "relocate.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs",
+        "source": "derived"
+      },
+      {
         "name": "relocate.vitest.ts",
         "kind": "test",
-        "path": "runtime/cli/tests/relocate.vitest.ts",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/build-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "ledger-readers.txt",
+        "kind": "file",
+        "path": "scratch/ledger-readers.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
         "source": "derived"
       },
       {
         "name": "relocation-ledger.json",
         "kind": "config",
         "path": ".skilled/skills/sk-doc/shared/scripts/relocation-ledger.json",
-        "source": "derived"
-      },
-      {
-        "name": "relocate.mjs",
-        "kind": "file",
-        "path": "runtime/cli/spec/relocate.mjs",
         "source": "derived"
       },
       {
@@ -172,29 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "its",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`relocate.mjs` tells the operator to rerun the same map after a failed step, but the rerun cannot always finish the work",
     "created_at": "2026-11-14T06:10:59Z",
-    "last_save_at": "2026-11-14T06:58:57.897Z",
+    "last_save_at": "2026-11-14T09:23:35.778Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0051cd4ddc6b30fe89b99be6c14870f4292b9bf0433ee893d0d9fbfe1419c6f3",
+    "source_fingerprint": "sha256:9fe4db0e68a86c6888cd5cc8334167bc8b8bff5402ffb41c093f291d43a7260c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f228b5cf51ce341866e3cd4b64f1d514ff6dcdb4b38e31dfadb261f0d5812c9f",
+      "spec.md": "fe344dbbe460bb8b82374a78214c203eb8765499dc6cee943389dcd19a80e7b2",
       "plan.md": "4042322fba64667d84a2b20986eeeb8e5eebb3fad3dc1bb41ad0b767e56432a3",
-      "tasks.md": "9e342483e984ddbec5fb2959a967cddf5a43c3a14bfc4a6dc021aab37f3bac92",
-      "implementation-summary.md": "286a84016904484c9e4e836933cad1894b3f7121c52d1c66c075d958f2f8fdc2"
+      "tasks.md": "5784a3a636d679a1fc09465505195d422cf465f79eddda79f1c47b8cb6096a6d",
+      "implementation-summary.md": "5872b75a800c9ae85269a79db62cb11c31418a8ffd190aff52391eaa3d407020"
     },
     "last_active_at": null
   }

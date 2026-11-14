@@ -130,11 +130,13 @@ and findings belong here.
 | Final state 2026-11-13 | Complete | All five phases and the parent spec.md say Complete and every acceptance-criteria.md says Closeable: Yes. No Unmet row is left. Trigger index regenerated in f1cfed3d20 and its check exited 0 with 0 untrusted docs, not rerun after the final closeout edits. Answered: the fixture question is closed by Q003 and ADR-001. Later commits 5fefd819e1, 36b3a68ab7, c21b0cc040 and f1cfed3d20. The final closeout edits are uncommitted. Nothing is pushed or merged |
 | Criterion 5 re-proof | Done | The first phrase stopped being archive-only once these documents quoted it. A title phrase from an archived sk-doc packet that no live document holds exits 1 by default and 0 with --include-archive, 4 of 4 lines labeled archived. search.md no longer states a dated result for its example phrase |
 | Remediation planned 2026-11-14 | Done | Two code reviews in scratch/review-20261114-*.md. Phases 006 to 010 scaffolded by create.sh --phase --parent at Level 1 and planned. spec.md is In Progress. No code changed |
-| 006-relocate-resume-and-preflight | Pending | Planned. Closes A1, A3, A4, A5 and B6 |
-| 007-phase-map-and-prearchive-rewrites | Pending | Planned. Closes A2 and A8. Waits for 006 |
-| 008-restore-and-phase-numbering | Pending | Planned. Closes A6, A7 and A9. Waits for 006 and 007 |
-| 009-proposal-search-and-routing | Pending | Planned. Closes A11, A12, B7 and B8 |
-| 010-real-pipeline-tests | Pending | Planned. Closes A10. Waits for 006, 007 and 008 |
+| 006-relocate-resume-and-preflight | Done | `5e9f6f83be`. A1, A3, A4, A5 and B6 closed. Relocate and archive suites 77 to 88 passed, full CLI suite 2580 passed, 0 failed |
+| 007-phase-map-and-prearchive-rewrites | Done | `2202b6b0f7`. A2 and A8 closed. Suites 88 to 94 passed, full CLI suite 2586 passed, 0 failed |
+| 008-restore-and-phase-numbering | Done | `31493fb263`. A6, A7 and A9 closed. Suites 98 to 107 passed, full CLI suite 2595 passed, 0 failed |
+| 009-proposal-search-and-routing | Partly done | `242c719451` (A11, A12) and `0701a31ae5` (B7). B8 blocked for the operator, question in the 009 goal log. Full CLI suite 2599 passed, advisor suite 1716 passed |
+| 010-real-pipeline-tests | Done | `5d84ff0e25`. A10 closed. New suite 4 passed, fails on the migrate mutant. Full CLI suite 2603 passed, 0 failed |
+| Criteria re-proved 2026-11-14 after 006 to 010 | Done | 1: real pipeline suite applies a map twice and resumes after a failed late step, through the true writers in a temp repository. 2: suggest-subtracks cases feed the printed map to the relocate preflight, exit 1. 3: the find prints 40 on the worktree, archive-numbering and phase numbering cases pass. 4: an archive-only sentence gives 0 paths without the flag, 1 with it and archivedPaths 1. 5: renumber cases leave no old folder name in the parent spec.md. 6: npm test 2603 passed, 0 failed, and the real pipeline suite exits 1 against the migrate mutant. 7: see validation |
+| Docs written by the orchestrator | Deviation | The claude2 account hit its usage limit. The operator chose that this session writes the phase docs from the saved build evidence |
 
 ### Deviations and findings
 

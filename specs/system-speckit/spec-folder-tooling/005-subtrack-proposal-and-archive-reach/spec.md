@@ -157,11 +157,11 @@ Audit summary only. Per-phase detail lives in each child's `plan.md`. Paths with
 | 3 | 003-subtrack-archive-and-numbering/ | `z_archive/` on every declared subtrack and numbering that counts archived packets | Complete. Code in `5f3e19712e` |
 | 4 | 004-archive-search-and-json/ | Opt-in archive search, recursive archive validation and archived JSON health | Complete. Code in `05a83a7d88`, metadata in `55e73d37b5`. All eight criteria `Met` |
 | 5 | 005-tests-and-closeout/ | Vitest suites for phases 1 to 4, real-tree checks and packet closeout | Complete. Suites in `5fefd819e1` and `36b3a68ab7`. Ten criteria `Met`, AC-008 `Superseded` by ADR-001 |
-| 6 | 006-relocate-resume-and-preflight/ | A rerun of the same map finishes any stopped step, and the preflight refuses a source that never existed and two spellings of one folder. Closes A1, A3, A4, A5 and B6 | Planned |
-| 7 | 007-phase-map-and-prearchive-rewrites/ | Bare sibling names in a phase parent's documents and the id a packet had before it was archived are rewritten. Closes A2 and A8 | Planned |
-| 8 | 008-restore-and-phase-numbering/ | The restore verdict, the mixed-track refusal on restore and phase numbering that counts archived phases. Closes A6, A7 and A9 | Planned |
-| 9 | 009-proposal-search-and-routing/ | The archived marker in the path record, proposals the preflight accepts and two advisor signals. Closes A11, A12, B7 and B8 | Planned |
-| 10 | 010-real-pipeline-tests/ | One suite that runs the true writers and the resume paths. Closes A10 | Planned |
+| 6 | 006-relocate-resume-and-preflight/ | A rerun of the same map finishes any stopped step, and the preflight refuses a source that never existed and two spellings of one folder. Closes A1, A3, A4, A5 and B6 | Complete |
+| 7 | 007-phase-map-and-prearchive-rewrites/ | Bare sibling names in a phase parent's documents and the id a packet had before it was archived are rewritten. Closes A2 and A8 | Complete |
+| 8 | 008-restore-and-phase-numbering/ | The restore verdict, the mixed-track refusal on restore and phase numbering that counts archived phases. Closes A6, A7 and A9 | Complete |
+| 9 | 009-proposal-search-and-routing/ | The archived marker in the path record, proposals the preflight accepts and two advisor signals. Closes A11, A12, B7 and B8 | In Progress |
+| 10 | 010-real-pipeline-tests/ | One suite that runs the true writers and the resume paths. Closes A10 | Complete |
 
 ### Phase Transition Rules
 

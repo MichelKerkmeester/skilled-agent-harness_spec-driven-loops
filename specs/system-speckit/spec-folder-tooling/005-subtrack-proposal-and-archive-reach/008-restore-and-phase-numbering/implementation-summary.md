@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Nothing is built yet. This phase is planned, and this file records that state until implementation starts."
+description: "A restore that landed is reported as done, a restore that would mix a track is refused, and a new phase is numbered past the parent's archive."
 trigger_phrases:
   - "restore and phase numbering implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,20 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/008-restore-and-phase-numbering"
-    last_updated_at: "2026-11-14T06:11:01Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Planned the phase; no code changed"
-    next_safe_action: "Wait for the phase 006 and 007 commits, then run T001"
+    last_updated_at: "2026-11-14T09:30:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Built and verified all three requirements, committed 31493fb263"
+    next_safe_action: "None for this phase"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh"
+      - ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh"
+      - ".skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-008-restore-and-phase-numbering"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 008-restore-and-phase-numbering |
-| **Completed** | Not completed. Planned on 2026-11-14 |
+| **Completed** | 2026-11-14, commit `31493fb263` |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,17 +48,24 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing is built yet. The phase is planned and no file outside this folder has changed.
+A renumbering restore whose steps all landed is now reported as done. A restore that would put a flat packet beside sub-tracks is refused before anything moves. A new phase takes a number above every live and archived phase.
 
 ### Phase 8: restore-and-phase-numbering
 
-When built, a restore onto a new number reports what happened, a restore never leaves a flat packet beside sub-tracks, and a new phase never takes the number of an archived one. `spec.md` holds the three requirements.
+- **Exit status 3.** `relocate.mjs` exits 3 when every step and the close's sweep passed and the only failure is a moved packet's own validation. A rerun after it finds nothing to do. Any other failure still exits 2. The header and the `relocate.mjs` row of `spec/README.md` state the new status.
+- **Restore reads it.** `restore_on_next_number` in `archive.sh` captures the status under `set -euo pipefail`. On 3 it prints the `Restored:` line and one warning naming the packet and exits 0. Any other non-zero still prints `Restore did not finish` and exits 1.
+- **Mixed-track refusal.** Before either restore path moves anything, `refuse_mixed_track_restore` runs the relocate dry run and refuses only when its output holds `would hold flat packets`. The error names the track and the `relocate.mjs` command that moves the packet into a sub-track. Every other preflight result leaves the restore as it was, so an archive followed by a restore with no commit in between still works.
+- **Phase numbering.** The phase numbering loop in `create.sh` also reads the parent's `z_archive/`, while the predecessor link stays on the highest live phase.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None | None | Implementation has not started |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs` | Modified | Exit status 3 |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/README.md` | Modified | The exit codes row |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh` | Modified | Status 3 handling and the mixed-track refusal |
+| `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh` | Modified | Archive-aware phase numbering |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts`, `archive-track.vitest.ts`, `archive-numbering.vitest.ts` | Modified | Nine cases |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -63,7 +73,7 @@ When built, a restore onto a new number reports what happened, a restore never l
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. `tasks.md` lists the order: reproduce A6, A7 and A9 in a `mktemp` copy, list the callers of `relocate.mjs`, add one failing case per requirement, fix, rerun the reproductions and the three suites.
+Three briefs went to DeepSeek V4.1 Flash at max reasoning through `dsh`, each writing its failing cases first. The orchestrator reran the three suites after each brief, checked `bash -n` and `node --check`, ran the full CLI suite and committed. The reports are in `scratch/build-evidence.md`, and the callers of `relocate.mjs` are in `scratch/relocate-callers.txt`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -73,8 +83,9 @@ Not delivered. `tasks.md` lists the order: reproduce A6, A7 and A9 in a `mktemp`
 
 | Decision | Why |
 |----------|-----|
-| One added exit status in `relocate.mjs` for a close whose only failure is a moved packet's validation | Exit 2 covers a failed step and a failed closing validation today, so the restore cannot tell a stopped run from a finished one |
-| The restore asks the relocate preflight for the mixed-track rule | The preflight already holds the rule, and the parent spec lists the copies of the sub-track predicate as a separate change |
+| One added exit status rather than a flag | `archive.sh` is the only caller that reads the status, and an unaware caller still treats 3 as a failure |
+| The earlier case for an always-failing moved packet now expects 3 on run 1 | This phase changes that outcome deliberately |
+| The refusal asks the relocate preflight instead of copying the sub-track rule | The rule already has several copies, so this phase does not add another |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -84,9 +95,11 @@ Not delivered. `tasks.md` lists the order: reproduce A6, A7 and A9 in a `mktemp`
 
 | Check | Result |
 |-------|--------|
-| Two of the suites this phase extends, before any change, `vitest run` on `relocate.vitest.ts` and `archive-track.vitest.ts`, 2026-11-14 | PASS: `Test Files  2 passed (2)`, `Tests  77 passed (77)`, exit 0 |
-| The numbering loop as measured while planning, `grep -n 'for dir in "$FEATURE_DIR"' create.sh`, 2026-11-14 | Confirms A9: line 1808 globs live phase folders only |
-| Acceptance checks of REQ-001 to REQ-003 | Not run. Implementation has not started |
+| Three suites, baseline after phase 007 | 98 passed |
+| The same suites after each brief | 100, 104, 107 passed, exit 0 |
+| `bash -n archive.sh`, `bash -n create.sh`, `node --check relocate.mjs` | Exit 0 each |
+| Full CLI `npm test` after the phase | PASS: 2595 passed, 0 failed, exit 0 |
+| `validate.sh --strict` on this folder | `RESULT: PASSED` |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -94,7 +107,9 @@ Not delivered. `tasks.md` lists the order: reproduce A6, A7 and A9 in a `mktemp`
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Archived packets that fail validation** A restored packet that failed strict validation before it was archived still fails after the restore. The restore names it in a warning. Run `validate.sh <packet> --strict` and repair the packet itself.
+1. **Suggested command.** The refusal keeps the archived packet's own `NNN-slug` in the command it names. If that number is taken in the sub-track, the operator adjusts it.
+2. **Several sub-tracks.** The message names the first declared sub-track in glob order. Choosing one stays out of scope.
+3. **Phase count.** With an archived phase, the `Phase N of M` total counts the archived number too.
 <!-- /ANCHOR:limitations -->
 
 ---

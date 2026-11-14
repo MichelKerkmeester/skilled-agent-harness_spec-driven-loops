@@ -34,13 +34,20 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/relocate-real-pipeline.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/subtrack-tree.mjs",
+      "scratch/build-evidence.md",
+      "scratch/mutation.txt",
+      "scratch/reproduce.txt",
+      "tests/relocate-real-pipeline.vitest.ts",
+      "runtime/cli/tests/relocate-real-pipeline.vitest.ts",
       "tests/fixtures/subtrack-tree.mjs"
     ],
     "entities": [
@@ -75,9 +82,33 @@
         "source": "derived"
       },
       {
+        "name": "relocate-real-pipeline.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/relocate-real-pipeline.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "subtrack-tree.mjs",
         "kind": "file",
-        "path": "tests/fixtures/subtrack-tree.mjs",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/subtrack-tree.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/build-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "mutation.txt",
+        "kind": "file",
+        "path": "scratch/mutation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "reproduce.txt",
+        "kind": "file",
+        "path": "scratch/reproduce.txt",
         "source": "derived"
       },
       {
@@ -163,35 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Test Files",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "its",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "one",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`relocate.vitest.ts` and `archive-track.vitest.ts` copy `relocate.mjs` into a temp tree and replace every writer it drives with a stub, as the lines below show",
     "created_at": "2026-11-14T06:11:02Z",
-    "last_save_at": "2026-11-14T06:59:02.986Z",
+    "last_save_at": "2026-11-14T09:23:41.112Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:980bbfea3daf7588cba56500c88e3d639e79e10de57caea6950b9bc2d916ffa8",
+    "source_fingerprint": "sha256:76a48cf20c6ce67791d7b5fcf974710c98b5a17508cd1751ca46dba1842f553f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "439bf527df14b43a0d89e36e98260052ca860a49649b08092a3aec05c46d8999",
+      "spec.md": "6f5d2773987d6de04bbf6cb385634b918d16088c3b8535ca4345c6d44d36d8f6",
       "plan.md": "9d2414ff8ff2ea348dfca88d65adc8f48b78a3330235c3aea7c525097e9333ae",
-      "tasks.md": "3c2e911978d4e93a7ec19b132d6ea2170e513b21959e76a969e30a1ed23f0da6",
-      "implementation-summary.md": "37eeee9290058b72d9d027ee992572bf959a83297d321ca10dfcf41af61f8897"
+      "tasks.md": "23a7f0d22ade74211eb2f946c58256efc680b772a7a3439847cd99890c01f66d",
+      "implementation-summary.md": "36862f4ee1b3b195d6650256be1bcc1d24a2141fb7ac0f5eafda3de9c6d8e0ac"
     },
     "last_active_at": null
   }

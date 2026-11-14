@@ -1,0 +1,7 @@
+# A10 reproduction, 2026-11-14 (orchestrator run)
+
+## A10
+The two stubbed suites run against MUTANT in place (relocate.mjs line 1604 replaced by a comment, restored afterwards):
+tests/relocate.vitest.ts tests/archive-track.vitest.ts: Test Files 1 failed | 1 passed (2), Tests 1 failed | 100 passed (101), exit 1.
+
+Difference from the review: reviewer A found both suites green on this mutation. They now fail once, because phase 006 added a case whose stubbed migrate step fails on its first call and writes the parent chain on its second, so a removed migrate call is now visible to the stubbed suite too. The stubbed suites still cannot see what the true writers write; the real pipeline suite covers that.

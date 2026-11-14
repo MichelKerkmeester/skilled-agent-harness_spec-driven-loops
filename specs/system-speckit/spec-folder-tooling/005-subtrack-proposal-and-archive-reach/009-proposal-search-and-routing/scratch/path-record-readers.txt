@@ -1,0 +1,13 @@
+# Readers of the path recipe JSON record, 2026-11-14
+
+.skilled/commands/speckit/assets/search-presentation.txt:115:| Evidence field per the ranking tuple | `<field>` — `trigger_phrases`, `title-or-description`, `anchor-marker`, or `body`, verbatim as `rg-wrapper.mjs` emits them |
+.skilled/commands/speckit/assets/search-presentation.txt:126:- The `(+N more in this file)` suffix and the `HIDDEN` slot come from a `rg-wrapper.mjs` record with `schemaVersion: 3`, which keeps the first-ranked row per file and cuts at `--limit` files (default 20, `--limit 0` uncapped). Omit the suffix when `moreInFile` is 0.
+.skilled/commands/speckit/README.txt:100:| Free-text evidence | default | `rg-wrapper.mjs structured`, which runs the `retrieval-conventions.md` Section 2.1 recipe |
+.skilled/commands/speckit/README.txt:103:| Archived packets too | `--include-archive` | Any `rg-wrapper.mjs` recipe (`structured`, `path` or `count`) without the `!**/z_archive/**` glob, plus a second invocation over the `description.json` and `graph-metadata.json` files of archived packets |
+.skilled/commands/speckit/README.txt:107:The `rg-wrapper.mjs` structured lane keeps the highest-ranked row per file, and `/speckit:search` runs its default lane through it. The wrapper's `--limit` defaults to 20 files, and `--limit 0` is uncapped. JSON uses `schemaVersion: 3` and reports `moreInFile`, `matchCount`, `fileCount`, `hidden: { files, matches }`, `limit` and `truncated`. The path-only and count recipes take the same limit and report the files they hid.
+.skilled/skills/system-spec-kit/runtime/cli/ops/retrofit-convention.mjs:80:import { RECIPES, search } from '../retrieval/rg-wrapper.mjs';
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs:30://   node rg-wrapper.mjs <structured|path|count> <phrase> [--root <dir>]
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json:97273:      "rg-wrapper --include-archive"
+.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json:97276:      "rg-wrapper structured file limit"
+
+Reading: one production reader, retrofit-convention.mjs (line 482), calls search() and reads command, exitCode, outcome, matchCount, fileCount and stderr, never paths. The rest are docs and presentation text. paths is unchanged and archivedPaths sits beside it, so no reader breaks. The text output of the path recipe with --include-archive was compared old (31493fb263) against new: identical, 14 lines.

@@ -218,7 +218,7 @@
     ],
     "causal_summary": "Subtracks exist in system-spec-kit only as a hand-written declaration, one level deep, and three gaps follow from that",
     "created_at": "2026-11-13T10:07:28Z",
-    "last_save_at": "2026-11-14T06:59:42.456Z",
+    "last_save_at": "2026-11-14T09:23:34.434Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -226,10 +226,10 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:d810df2d0deb7bec14dd867383b4a57b112d21dcc652d0f8fc77392d138a0890",
+    "source_fingerprint": "sha256:b664a2757b795adeec0d18f8fdbc5f2022441cd7750f1b4bd78b4783a8451d87",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a56a0129ef110aaf0a46e4fed4764ae232662ac7ead84ffbd71d9331c179b2c6",
+      "spec.md": "600f74fdd68bd587f462bc16cd773ff43f008c6a1d9856f6d23dae989bbf262b",
       "decision-record.md": "7aa0e23091f01ee58b4e97dd2a448181b99938153fdc6ce9bbc15fa69eeb934e"
     },
     "last_active_child_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout",

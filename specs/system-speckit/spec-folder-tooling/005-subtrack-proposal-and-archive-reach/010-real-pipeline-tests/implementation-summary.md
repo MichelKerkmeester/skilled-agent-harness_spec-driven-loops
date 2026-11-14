@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Nothing is built yet. This phase is planned, and this file records that state until implementation starts."
+description: "A new suite runs relocate.mjs and archive.sh with the true writers in a temp repository, so a removed pipeline step now fails a test."
 trigger_phrases:
   - "real pipeline tests implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests"
-    last_updated_at: "2026-11-14T06:11:03Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Planned the phase; no code changed"
-    next_safe_action: "Wait for the phase 006 to 008 commits, then run T001"
+    last_updated_at: "2026-11-14T09:30:00Z"
+    last_updated_by: "orchestrator"
+    recent_action: "Built and verified the real pipeline suite, committed 5d84ff0e25"
+    next_safe_action: "None for this phase"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/system-spec-kit/runtime/cli/tests/relocate-real-pipeline.vitest.ts"
+      - ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/subtrack-tree.mjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-010-real-pipeline-tests"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -36,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 010-real-pipeline-tests |
-| **Completed** | Not completed. Planned on 2026-11-14 |
+| **Completed** | 2026-11-14, commit `5d84ff0e25` |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,17 +47,20 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing is built yet. The phase is planned and no file outside this folder has changed.
+`relocate-real-pipeline.vitest.ts` runs `relocate.mjs` and `archive.sh` with the true writers in a committed temp repository, so a removed pipeline step now fails a test.
 
 ### Phase 10: real-pipeline-tests
 
-When built, one suite runs `relocate.mjs` and `archive.sh` with the true writers in a temp repository and fails when a pipeline step is removed. `spec.md` holds the five requirements.
+- **Builder.** `buildRealPipelineRepo` in `fixtures/subtrack-tree.mjs` builds the repository with copies of the writers that write beside themselves, `node_modules` linked and the `@spec-kit` packages pointed at the copies. The worker's report lists what each writer reads and writes.
+- **Guard.** `beforeAll` and `afterAll` compare `git status --porcelain` of the stores the writers touch in the real checkout and fail on any difference.
+- **Cases.** A sub-track map applied twice, reading `description.json`, `graph-metadata.json`, the track's `children_ids` and a strict validation. A resume after the redirect table step fails once, and one after the identity step fails once, each through a wrapper around the true writer. A renumbering restore through the true `archive.sh`.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None | None | Implementation has not started |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/relocate-real-pipeline.vitest.ts` | Created | Four cases and the guard |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/subtrack-tree.mjs` | Modified | The builder and its helpers, added beside the existing ones |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -63,7 +68,7 @@ When built, one suite runs `relocate.mjs` and `archive.sh` with the true writers
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Not delivered. `tasks.md` lists the order: record the existing suites staying green on a mutated script, list what each writer loads, build the temp repository, add the four cases, then run the mutation check and the full suite.
+Two `dsh` briefs to DeepSeek V4.1 Flash at max reasoning: the builder, guard and happy path first, then the resume and restore cases. The orchestrator reran the suite, ran the mutation check itself in two forms and ran the full CLI suite. Evidence: `scratch/build-evidence.md`, `scratch/mutation.txt`, `scratch/reproduce.txt`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -73,8 +78,9 @@ Not delivered. `tasks.md` lists the order: record the existing suites staying gr
 
 | Decision | Why |
 |----------|-----|
-| A new suite file beside the stubbed ones | The shared setup of `relocate.vitest.ts` writes the stubs every case in that file runs against |
-| A writer that writes under its own location runs from a copy in the temp repository | `relocate.mjs` takes the repository from the working directory, but where each writer writes is not known until T002 lists it, and the real checkout must stay unchanged |
+| Extend `subtrack-tree.mjs` instead of a new fixture file | The builder could be added beside the existing ones without changing them |
+| Run writers that write beside themselves from copies | `generate-trigger-index.mjs` and the `validate.sh` freshness cache would otherwise write into the real checkout |
+| `RELOCATE_REAL_PIPELINE_SOURCE` points the suite at another `relocate.mjs` | It exists only for the mutation check and is unset by default |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -84,8 +90,11 @@ Not delivered. `tasks.md` lists the order: record the existing suites staying gr
 
 | Check | Result |
 |-------|--------|
-| The two stubbed suites, 2026-11-14 | PASS: `Test Files  2 passed (2)`, `Tests  77 passed (77)`, exit 0, 31.66 s |
-| Acceptance checks of REQ-001 to REQ-005 | Not run. Implementation has not started |
+| New suite on the committed scripts | 4 passed, exit 0, about 31 s |
+| New suite with the migrate call removed | Fails on the `parentChain` assertion, exit 1 (`scratch/mutation.txt`) |
+| The two stubbed suites on the same mutant | 1 of 101 failed, exit 1. Reviewer A saw them green; a phase 006 case now catches it (`scratch/reproduce.txt`) |
+| Full CLI `npm test` | PASS: 212 files, 2603 passed, 0 failed, exit 0 |
+| `validate.sh --strict --recursive` on the parent | `RESULT: PASSED` for each folder |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -93,7 +102,8 @@ Not delivered. `tasks.md` lists the order: record the existing suites staying gr
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Compiled runtime** The true writers need the compiled runtime, so the suite cannot pass on a stale build. Build the runtime, then rerun the suite.
+1. **Runtime freshness.** The builder fails with the rebuild command when the checkout's compiled runtime is stale, so the suite needs a built runtime.
+2. **Timing.** No separate timing file was written. The suite takes about 31 s for four cases.
 <!-- /ANCHOR:limitations -->
 
 ---

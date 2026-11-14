@@ -34,13 +34,17 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts",
+      "scratch/build-evidence.md",
       "runtime/cli/spec/relocate.mjs"
     ],
     "entities": [
@@ -77,7 +81,25 @@
       {
         "name": "relocate.mjs",
         "kind": "file",
-        "path": "runtime/cli/spec/relocate.mjs",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "relocate.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "archive-track.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/build-evidence.md",
         "source": "derived"
       },
       {
@@ -169,29 +191,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "its",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`relocate.mjs` finds an old id with the pattern below, which matches a multi-segment id or a root packet after `specs/`",
     "created_at": "2026-11-14T06:11:00Z",
-    "last_save_at": "2026-11-14T06:58:59.190Z",
+    "last_save_at": "2026-11-14T09:23:37.133Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fe0395ce5d369938d1f1dec918bcb9a2b6b0c4b4d405a89bb3578b9f8eaa16be",
+    "source_fingerprint": "sha256:1fa7a1ff0072dcf11661f4da2b31bfd0052afd95f46338364512e432e20a3fdd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4d20ac54c59ca331b39fec7795f76655a3ea60b462c692a197fc53c234d3642c",
+      "spec.md": "a7463c8fac87987e99400a17a540e4136f0a95338a50c6166641b2c93fb24681",
       "plan.md": "f2ec79263bfc5c0037cbd9e6135c064e582df91eed7b51589287631daa8a07d3",
-      "tasks.md": "5fb3b947c6b988085bf3eac7100a1fa123d90495fa5671391985ab4b46f2a916",
-      "implementation-summary.md": "31693ec68cc04b5d151a7adb40a195ca29b72e02ee50f8390778dbb13dcf0ee5"
+      "tasks.md": "96b24927ec08413ebac941935d157a9406ab2edafe33843833c94672e656be29",
+      "implementation-summary.md": "248d0c6aa74ec2a66451ac15448e171ea2e0ba4f40d9c28c2c97a549171566a9"
     },
     "last_active_at": null
   }

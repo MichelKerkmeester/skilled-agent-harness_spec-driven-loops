@@ -34,13 +34,21 @@
       "three"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
+      "spec/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts",
+      "scratch/build-evidence.md",
+      "scratch/relocate-callers.txt",
       "runtime/cli/spec/README.md"
     ],
     "entities": [
@@ -77,7 +85,43 @@
       {
         "name": "README.md",
         "kind": "doc",
-        "path": "runtime/cli/spec/README.md",
+        "path": "spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "relocate.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "archive.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+        "source": "derived"
+      },
+      {
+        "name": "create.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/create.sh",
+        "source": "derived"
+      },
+      {
+        "name": "relocate.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/build-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "relocate-callers.txt",
+        "kind": "file",
+        "path": "scratch/relocate-callers.txt",
         "source": "derived"
       },
       {
@@ -151,47 +195,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "its",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "the",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "one",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three archive paths end in a state the operator decisions forbid",
     "created_at": "2026-11-14T06:11:00Z",
-    "last_save_at": "2026-11-14T06:59:00.469Z",
+    "last_save_at": "2026-11-14T09:23:38.487Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +209,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d672583f8b82d2ee31223700993a2ba5b52fd7f0f3b1f09183f0906eaa3ec158",
+    "source_fingerprint": "sha256:3c54c3bcc302fdf0736eb90acfe732dffa7edbceb1181e4d824c5434c22c895d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1bed3d3118f7c3eb186dd0bb25ffcbc5f624820614e78989849950d9471fc92c",
+      "spec.md": "4778f5cbf262ff208ca8d01948d1bf6276a34918df71d39ba190f6379ef3e55d",
       "plan.md": "39b52d19ebd0e3c721c9a41ea617c5ec403bc61f5483ba5feb3c0f8f9bc6e6d7",
-      "tasks.md": "4b927f0f10215a1af06b9e4fc0ed357c9821d65e84b7fa2bb5dfa6e2b04ea5f2",
-      "implementation-summary.md": "27893a2797733cdf561b2801eb86b22c246d6ed33d78800ea72dafcbd53ad988"
+      "tasks.md": "a86b139c544350d5f23ddf7f3effbd3f36544e8bd186722adad834f6316bfbb6",
+      "implementation-summary.md": "cf82b33be90eea4360b9b901a816bb9fae47ddbf159a19f5998b4b7b95b32e33"
     },
     "last_active_at": null
   }

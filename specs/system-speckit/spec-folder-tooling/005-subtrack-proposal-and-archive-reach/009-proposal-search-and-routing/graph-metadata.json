@@ -34,14 +34,26 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/commands/speckit/search.md"
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/suggest-subtracks.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/rg-include-archive.vitest.ts",
+      ".skilled/skills/system-spec-kit/graph-metadata.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+      "scratch/build-evidence-code.md",
+      "scratch/build-evidence-signals.md",
+      "scratch/reproduce.txt",
+      "scratch/after.txt",
+      "scratch/path-record-readers.txt",
+      ".skilled/commands/speckit/search.md",
+      "scratch/baseline.txt"
     ],
     "entities": [
       {
@@ -75,13 +87,91 @@
         "source": "derived"
       },
       {
+        "name": "rg-wrapper.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "suggest-subtracks.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/suggest-subtracks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "rg-include-archive.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/rg-include-archive.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "scorer-eval-baseline.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence-code.md",
+        "kind": "doc",
+        "path": "scratch/build-evidence-code.md",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence-signals.md",
+        "kind": "doc",
+        "path": "scratch/build-evidence-signals.md",
+        "source": "derived"
+      },
+      {
+        "name": "reproduce.txt",
+        "kind": "file",
+        "path": "scratch/reproduce.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "path-record-readers.txt",
+        "kind": "file",
+        "path": "scratch/path-record-readers.txt",
+        "source": "derived"
+      },
+      {
         "name": "search.md",
         "kind": "doc",
         "path": ".skilled/commands/speckit/search.md",
         "source": "derived"
       },
       {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -109,89 +199,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern In",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "its",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "three",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "one",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The path recipe of `rg-wrapper.mjs` labels archived hits in text output, but its JSON record lists them as plain strings, as the block below shows",
     "created_at": "2026-11-14T06:11:01Z",
-    "last_save_at": "2026-11-14T06:59:01.722Z",
+    "last_save_at": "2026-11-14T09:23:39.749Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:700a991d32b40e7a1afede014c639dc59515152cfe7e0fa123501209a73037b9",
+    "source_fingerprint": "sha256:f164c5f5b245b7852e40d2f9d0917a59d636b1da019c7cd5f71b7a96a95d521a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3dcc867ca615cd98aa8a93d45cc5a45a916a73d8be0e07f195e7fded6765bb82",
+      "spec.md": "c8278cfd4870ff63c4041ea202acafa238147fac75aa9af50ddf9d27335a0808",
       "plan.md": "d97587411079c4ca0399f26b7c65313d947a16f3d065745193c06bb4c66de1f6",
-      "tasks.md": "2136e41fa88a59973a00d4ec80dbd96721b3d24067443016d913d42b434da26c",
-      "implementation-summary.md": "6876c20452af6500bfc138a09067c28801f0032e635b1a7b03b13560e90a985b"
+      "tasks.md": "95d3cf94ff8e2282cf5261614e0e246f48d32654aff91791c9071a9013f248fd",
+      "implementation-summary.md": "13930314612665867e3c29782a0710ae528ee54411a4bf9570e6f3104663ade1"
     },
     "last_active_at": null
   }
