@@ -19,14 +19,14 @@
     "several",
     "in-session"
   ],
-  "lastUpdated": "2026-11-14T11:28:01.652Z",
+  "lastUpdated": "2026-11-14T19:47:16.935Z",
   "specId": "006",
   "folderSlug": "purpose-retention-across-handovers",
   "parentChain": [
     "system-speckit",
     "spec-authoring-and-continuity"
   ],
-  "memorySequence": 8,
+  "memorySequence": 9,
   "memoryNameHistory": [
     "13-11-26_22-18__deep-research-finished-two-deepseek-lineages-of.md",
     "13-11-26_23-18__packet-006-became-a-phase-parent-with-five.md",
@@ -35,6 +35,7 @@
     "14-11-26_06-35__the-follow-up-plan-landed-on-origin-main-at.md",
     "14-11-26_08-30__resumed-the-purpose-carry-packet-had-fable-5-2.md",
     "14-11-26_08-30__purpose-retention-across-handovers-keep-a-packet.md",
-    "14-11-26_12-28__deep-review-of-the-34-non-spec-files-changed-by.md"
+    "14-11-26_12-28__deep-review-of-the-34-non-spec-files-changed-by.md",
+    "14-11-26_20-47__purpose-carry-phases-006-to-013-built-reviewed-by.md"
   ]
 }

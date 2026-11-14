@@ -131,6 +131,7 @@ and findings belong here.
 | Operator confirmation for compiled-route-surface-hint.test.cjs line 163 | Assumed | fix open items is read as the acknowledgement. Phase 002 CHK-012 is ticked with that reading as its evidence |
 | Five completion criteria rerun from the final state | Done | Ledger open rows 0. Probe replay 13 of 13 frontend, 1 of 1 review, 0 of 8 negative. Battery STATUS=OK legs=9 exit 0. No acceptance file lacks Closeable Yes over 9 files. Recursive strict validation RESULT: PASSED on 10 lines. Parent status Complete |
 | Operator answer 2026-11-14: ledger row H7 gets a new packet with hub-router.json as the authority | Done | AskUserQuestion answer. The packet goes under specs/sk-code/hub-architecture, aligns the two prose rows to the JSON under decision D3 and adds sk-code-ci to vocabularyMirrors |
+| Operator instruction 2026-11-14: include the sk-code work in the v4.0.2.1 release notes | Done | Six existing lines of .skilled/changelog/skilled/v4.0.2.1.md carry the frontend reach fix, the keyword guard, the setup check and the component versions. No line was added, on the operator's answer, because the file is at the shape check's ceilings |
 
 ### Deviations and findings
 

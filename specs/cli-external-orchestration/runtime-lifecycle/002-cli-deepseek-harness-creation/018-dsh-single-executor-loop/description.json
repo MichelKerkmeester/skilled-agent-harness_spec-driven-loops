@@ -1,11 +1,12 @@
 {
+  "level": "2",
   "specFolder": "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop",
   "description": "Phase 18: dsh-single-executor-loop",
   "keywords": [
     "phase",
     "dsh-single-executor-loop"
   ],
-  "lastUpdated": "2026-11-14T10:25:58.386Z",
+  "lastUpdated": "2026-11-14T19:47:20.013Z",
   "specId": "018",
   "folderSlug": "dsh-single-executor-loop",
   "parentChain": [
@@ -13,7 +14,8 @@
     "runtime-lifecycle",
     "002-cli-deepseek-harness-creation"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_20-47__a-single-cli-deepseek-harness-lineage-now-runs-in.md"
+  ]
 }
