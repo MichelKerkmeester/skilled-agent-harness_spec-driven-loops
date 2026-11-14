@@ -110,7 +110,6 @@ function normalizeMode(mode) {
   const trimmed = mode.trim();
   if (trimmed === 'research' || trimmed === 'deep-research') return 'deep-research';
   if (trimmed === 'review' || trimmed === 'deep-review') return 'deep-review';
-  if (trimmed === 'ai-council' || trimmed === 'council' || trimmed === 'deep-ai-council' || trimmed === 'deep-council') return 'deep-ai-council';
   return trimmed;
 }
 
@@ -133,15 +132,6 @@ async function resolveModeAdapter(mode) {
         createRegistry: mod.createDeepReviewEventRegistry,
         prepareEvent: mod.prepareDeepReviewEvent,
         isEventStem: mod.isDeepReviewEventStem,
-      };
-    }
-    case 'deep-ai-council': {
-      const mod = await import('../lib/deep-ai-council-ledger-schema/index.ts');
-      return {
-        normalizedMode: 'deep-ai-council',
-        createRegistry: mod.createDeepAiCouncilEventRegistry,
-        prepareEvent: mod.prepareDeepAiCouncilEvent,
-        isEventStem: mod.isDeepAiCouncilEventStem,
       };
     }
     default:

@@ -78,7 +78,6 @@ const CONVERGENCE_FLAGS = [
   'registryPath',
   'reportedNovelty',
   'reportedNoveltyThreshold',
-  'roundId',
   'securitySensitiveFixScope',
   'sessionId',
   'slidingWindowSize',
@@ -315,7 +314,7 @@ function jsonOut(payload) {
 }
 
 function observabilityPathForDb(dbModule) {
-  const dbDir = dbModule?.COVERAGE_GRAPH_DATABASE_DIR ?? dbModule?.COUNCIL_GRAPH_STORAGE_DIR;
+  const dbDir = dbModule?.COVERAGE_GRAPH_DATABASE_DIR;
   return typeof dbDir === 'string' && dbDir.trim() !== ''
     ? path.join(dbDir, OBSERVABILITY_EVENTS_FILENAME)
     : null;
@@ -1634,8 +1633,8 @@ async function main() {
   const specFolder = validateNamespaceValue(ensureString(args, 'specFolder'), 'specFolder', inputError);
   const loopType = ensureString(args, 'loopType');
   const sessionId = validateNamespaceValue(ensureString(args, 'sessionId'), 'sessionId', inputError);
-  if (loopType !== 'research' && loopType !== 'review' && loopType !== 'council' && loopType !== 'context') {
-    throw inputError('loopType must be "research", "review", "council", or "context"');
+  if (loopType !== 'research' && loopType !== 'review' && loopType !== 'context') {
+    throw inputError('loopType must be "research", "review", or "context"');
   }
   const stopDecisionRequested = args.stopDecision === true;
   if (stopDecisionRequested && loopType !== 'research' && loopType !== 'review') {
@@ -1650,32 +1649,10 @@ async function main() {
   let db = null;
 
   try {
-    const isCouncil = loopType === 'council';
-    db = isCouncil
-      ? await import('../lib/council/council-graph-db.ts')
-      : await import('../lib/coverage-graph/coverage-graph-db.ts');
+    db = await import('../lib/coverage-graph/coverage-graph-db.ts');
     if (readOnly) db.openReadOnlyDb();
     installSignalHandlers(() => db?.closeDb());
     maybeThrowTestFault();
-    if (isCouncil) {
-      const persistCouncilSnapshot = asBoolean(args.persistSnapshot) && !readOnly;
-      if (persistCouncilSnapshot && !args.roundId) {
-        throw inputError('--round-id is required when --persist-snapshot is true for council convergence');
-      }
-      const councilConvergence = require('../lib/council/convergence.cjs');
-      const data = await councilConvergence.evaluateCouncilConvergence(ns, {
-        roundId: args.roundId,
-        persistSnapshot: persistCouncilSnapshot,
-      });
-      if (readOnly) {
-        data.readOnly = true;
-        data.databasePresent = db.isReadOnlyDbPresent();
-      }
-      const payload = councilConvergence.bridgePayload(data);
-      if (!readOnly) appendConvergenceObservabilityEvent(db, payload, ns);
-      jsonOut(payload);
-      return;
-    }
 
     const signalsLib = await import('../lib/coverage-graph/coverage-graph-signals.ts');
     const queryLib = await import('../lib/coverage-graph/coverage-graph-query.ts');

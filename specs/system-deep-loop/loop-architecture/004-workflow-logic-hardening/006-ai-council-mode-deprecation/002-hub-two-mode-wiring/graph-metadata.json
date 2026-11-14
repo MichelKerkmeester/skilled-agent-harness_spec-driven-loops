@@ -46,13 +46,8 @@
       ".skilled/skills/system-deep-loop/mode-registry.json",
       ".skilled/skills/system-deep-loop/leaf-manifest.json",
       ".skilled/skills/system-deep-loop/SKILL.md",
-      ".skilled/commands/deep/ai-council.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
       ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
-      ".claude/commands/deep/ai-council.md",
-      ".cursor/commands/deep-ai-council.md",
-      ".opencode/commands/deep/ai-council.md",
-      ".dsh/prompts/deep-ai-council.md",
       ".skilled/bin/compiled-route-sync.cjs"
     ],
     "entities": [
@@ -117,21 +112,9 @@
         "source": "derived"
       },
       {
-        "name": "ai-council.md",
-        "kind": "doc",
-        "path": ".skilled/commands/deep/ai-council.md",
-        "source": "derived"
-      },
-      {
         "name": "compile-command-contracts.cjs",
         "kind": "file",
         "path": ".skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "deep-ai-council.md",
-        "kind": "doc",
-        "path": ".cursor/commands/deep-ai-council.md",
         "source": "derived"
       },
       {
@@ -199,11 +182,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow After",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The hub still registers `ai-council` as a workflow mode, so a council request routes into `system-deep-loop`",
     "created_at": "2026-11-14T20:19:49Z",
-    "last_save_at": "2026-11-14T20:32:12.828Z",
+    "last_save_at": "2026-11-14T23:03:58.930Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,7 +209,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cf87a352b4eb5b20a9ee01802165ff99ec7ba171363feeafddc3ea2d44f871e3",
+    "source_fingerprint": "sha256:d50731bf3ecb701684b4cf652ede46dbd7200ee0812b02a82f068ab2055c0ca2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "148aa75c5792367a888b9769993248796f3815b986e4de64096292d660880993",

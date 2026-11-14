@@ -7,7 +7,7 @@ trigger_phrases:
   - "doctor deep-loop"
 importance_tier: normal
 contextType: implementation
-version: 1.4.4.0
+version: 1.4.5.0
 ---
 
 # Deep Loop Runtime Integration Points
@@ -97,7 +97,7 @@ The runtime tests are collected by this skill's own config, `runtime/vitest.conf
 Production imports resolve from this skill's own `node_modules` via bare specifiers — no reach-in to a sibling skill's installed packages:
 
 - `executor-config.ts` and `prompt-pack.ts` import `zod` (declared in this skill's `package.json`).
-- `coverage-graph-db.ts`, `coverage-graph-signals.ts`, and `council/council-graph-db.ts` import `better-sqlite3` (declared here; pinned to the same version `system-spec-kit` uses so the native binding stays ABI-compatible).
+- `coverage-graph-db.ts` and `coverage-graph-signals.ts` import `better-sqlite3` (declared here; pinned to the same version `system-spec-kit` uses so the native binding stays ABI-compatible).
 - The `*.cjs` scripts boot the tsx loader through `require.resolve('tsx')`, which resolves from this skill's own `node_modules`.
 
 The dependency versions are kept in lockstep with `system-spec-kit` (see `package.json`), which is why graph metadata still lists `system-spec-kit` under `depends_on`. The suite runs via `npm test` (local `vitest.config.ts`).
@@ -153,8 +153,6 @@ The following consumers were surfaced by a deep-research audit and were absent f
 
 | # | Consumer | Path | Integration Shape |
 |---|----------|------|-------------------|
-| 1 | `/deep:ai-council` command | `.skilled/commands/deep/assets/deep-ai-council-{auto,confirm}.yaml` | Loads 3 `lib/council/*.cjs` modules via require() for multi-seat dispatch + round-state JSONL + adjudicator scoring |
-| 2 | `deep-ai-council` orchestration | `.skilled/skills/system-deep-loop/deep-ai-council/scripts/orchestrate-{session,topic}.cjs` | 8 require() calls across all 5 `lib/council/*.cjs` modules |
 | 3 | `/doctor:deep-loop` route manifest | `.skilled/commands/doctor/_routes.yaml:58-74` | Deep-loop entry has 3 `script_invocations` and 4 `trigger_phrases`. All three calls use `--read-only` |
 | 6 | Legacy MCP server READMEs | `.skilled/skills/system-spec-kit/runtime/lib/deep-loop/README.md:25-68` + `.../handlers/coverage-graph/README.md` | Original-location stubs documenting the runtime move |
 

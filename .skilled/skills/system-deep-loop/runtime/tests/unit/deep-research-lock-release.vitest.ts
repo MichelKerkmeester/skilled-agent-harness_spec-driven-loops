@@ -31,7 +31,6 @@ const REVIEW_YAML_PATH = resolve(ASSETS, 'deep-review.yaml');
 const YAML_PATHS = [
   'deep-research',
   'deep-review',
-  'deep-ai-council-auto', 'deep-ai-council-confirm',
 ].map((name) => resolve(ASSETS, `${name}.yaml`));
 
 const tempDirs: string[] = [];

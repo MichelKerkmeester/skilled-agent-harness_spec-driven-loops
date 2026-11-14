@@ -78,6 +78,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Child docs authored | Done | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and `goal.md` written on 2026-11-14 when phase 006 was split into five children. Implementation has not started. |
+| T018-T038, T094 hub two-mode wiring | done, committed adbba5a06a | parent-skill-check prints declares 2 modes and OK; check-contract-drift prints OK commands=2; compiled-route-guard all hubs fresh |
 
 ### Deviations and findings
 

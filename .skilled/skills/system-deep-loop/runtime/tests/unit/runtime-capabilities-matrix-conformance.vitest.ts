@@ -11,12 +11,9 @@ import { resolve } from 'node:path';
 const nodeRequire = createRequire(import.meta.url);
 
 // The centralized resolver is the contract every graph-backed mode's matrix must
-// honor to be consumable via a per-skill shim. Three matrices exist and they
-// diverge by design: research + review ship the array schema the resolver reads;
-// deep-ai-council ships a council-specific object schema with no resolver shim. This
-// guard drives each matrix through the resolver so a silent per-mode schema
-// change (either a conformant matrix regressing, or the council matrix quietly
-// adopting the resolver shape without a shim) fails CI.
+// honor to be consumable via a per-skill shim. Research and review both ship the
+// array schema the resolver reads, and this guard drives each matrix through the
+// resolver so a silent per-mode schema change fails CI.
 const RUNTIME_MODULE = '../../lib/deep-loop/runtime-capabilities.cjs';
 const { createRuntimeCapabilities } = nodeRequire(RUNTIME_MODULE) as {
   createRuntimeCapabilities: (opts: { label: string; defaultCapabilityPath: string }) => {
@@ -41,8 +38,6 @@ const RESOLVER_CONFORMANT = [
   },
 ];
 
-const COUNCIL_MATRIX = resolve(WORKFLOWS, 'deep-ai-council', 'assets', 'runtime-capabilities.json');
-
 // Every graph-backed mode mirrors the same supported runtime targets, so a matrix
 // that drops one (or grows an unannounced one) is per-mode drift.
 describe('runtime_capabilities matrix conformance (resolver-driven)', () => {
@@ -50,7 +45,6 @@ describe('runtime_capabilities matrix conformance (resolver-driven)', () => {
     for (const { path } of RESOLVER_CONFORMANT) {
       expect(existsSync(path), `${path} missing`).toBe(true);
     }
-    expect(existsSync(COUNCIL_MATRIX), `${COUNCIL_MATRIX} missing`).toBe(true);
   });
 
   describe.each(RESOLVER_CONFORMANT)('$label matrix', ({ label, path, expectedRuntimeIds }) => {
@@ -77,36 +71,6 @@ describe('runtime_capabilities matrix conformance (resolver-driven)', () => {
       expect(() => api.resolveRuntimeCapability('ghost')).toThrow(
         new RegExp(`Unknown ${label} runtime "ghost"`),
       );
-    });
-  });
-
-  // The council matrix is intentionally NOT resolver-shaped. Pinning this keeps
-  // the divergence explicit: if deep-ai-council ever adopts the array schema it must
-  // also gain a shim + move into RESOLVER_CONFORMANT, and this assertion is the
-  // tripwire that forces that conversation.
-  describe('deep-ai-council matrix (deliberate non-conformant council schema)', () => {
-    const council = nodeRequire(COUNCIL_MATRIX) as {
-      schemaVersion: string;
-      stopPolicy: string;
-      runtimes: Record<string, { agentPath: string }>;
-    };
-
-    it('declares the fail-closed stop policy', () => {
-      expect(council.stopPolicy).toBe('fail-closed');
-    });
-
-    it('declares the council-specific schema version', () => {
-      expect(council.schemaVersion).toBe('deep-ai-council.runtime-capabilities.v1');
-    });
-
-    it('keys runtimes as an object, not the resolver array shape', () => {
-      expect(Array.isArray(council.runtimes)).toBe(false);
-      expect([...Object.keys(council.runtimes)].sort()).toEqual(['claude', 'opencode']);
-    });
-
-    it('throws when forced through the array-only resolver (proves the divergence is real)', () => {
-      const api = createRuntimeCapabilities({ label: 'deep-ai-council', defaultCapabilityPath: COUNCIL_MATRIX });
-      expect(() => api.listRuntimeCapabilityIds()).toThrow(/missing runtimes array/);
     });
   });
 });

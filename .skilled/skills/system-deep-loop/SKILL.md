@@ -61,7 +61,7 @@ Run the compiled-routing directive in [`ROUTER.md`](./ROUTER.md) before selectin
 - **`runtimeLoopType`**: the graph-backed convergence key that `runtime/scripts/convergence.cjs` consumes, validated against `research|review`, explicitly `null` for a custom backend and never inferred from `workflowMode`.
 - **`backendKind`**: `runtime-loop-type` for both modes, which run on the `runtime/` convergence backend.
 - **mode packet**: one of the two nested folders that owns its mode's convergence, state and artifact contract.
-- **`runtime/`**: the frozen, MCP-free layer every mode consumes, holding the executor config, atomic state, coverage graph, Bayesian scoring, fan-out and council primitives.
+- **`runtime/`**: the frozen, MCP-free layer every mode consumes, holding the executor config, atomic state, coverage graph, Bayesian scoring, fan-out and the seat-dispatch file the divergent pivot uses.
 - **`mode-registry.json`**: the registry that owns each mode's discriminator and its authoritative `packet` path.
 - **`hub-router.json`**: stage one's signals, vocabulary classes and tie-break order.
 - **`vocabularyClasses`**: the authored deep-loop vocabulary that stage one scores.
@@ -87,7 +87,7 @@ Mode packets have **no per-packet `graph-metadata.json`**. Only this hub carries
 
 ### Backend
 All modes consume `runtime/`, a frozen, MCP-free layer.
-It provides executor config, prompt-pack, validation, atomic state, coverage-graph, Bayesian scoring, fan-out and the council primitives.
+It provides executor config, prompt-pack, validation, atomic state, coverage-graph, Bayesian scoring, fan-out and the seat-dispatch file the divergent pivot uses.
 
 - The offline fan-out pair replay at `runtime/scripts/score-fanout-pairs.cjs` reads the merge's own decisions on near-line and cross-body pairs.
 - It compares a backend's judgment with the operator's labels and makes no model call by default.

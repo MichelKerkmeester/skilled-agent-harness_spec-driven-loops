@@ -134,7 +134,7 @@ Seventeen command files cover the diagnostic surface, one per owner, with one en
 | Helper | `/doctor:helper [<problem in plain words>] [--json]` | Rank the doctor commands that fit a described problem from its route phrases, show the class and the reason on every line, run a read-only pick in place and hand a writing pick back as one line |
 | Spec-Kit Retrieval | `/doctor:speckit` | Diagnose the generated trigger index, its lookup and the ripgrep retrieval recipes |
 | Skill Advisor | `/doctor:skill-advisor <target> [flags]` | Re-tune routing, rebuild the skill graph, or audit graph freshness, router reach, description budget and parent-skill structure |
-| Deep-Loop | `/doctor:deep-loop [--scope=<scope>]` | Diagnose deep-loop coverage graphs and convergence for research, review and council runs |
+| Deep-Loop | `/doctor:deep-loop [--scope=<scope>]` | Diagnose deep-loop coverage graphs and convergence for research and review runs |
 | Runtime Mirrors | `/doctor:runtime-mirrors` | Check that the agent, command, prompt and hook mirrors are in sync with `.skilled` |
 | sk-code Setup | `/doctor:sk-code [setup\|quality] [--prompt=<text>] [--dry-run]` | Run the sk-code setup battery read-only, or check the repository quality config and create `.skilled/skills/sk-code/sk-code-quality/repository/quality.json` once after an approved plan, naming each repair |
 | CI | `/doctor:ci [report\|scaffold\|toggle] [--json] [--sha=<sha>] [--no-gh]` | List GitHub Actions workflows with their switch state, scaffold a new workflow or toggle one CI switch |

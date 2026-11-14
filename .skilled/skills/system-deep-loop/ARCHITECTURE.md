@@ -7,7 +7,7 @@ trigger_phrases:
   - "mode append gateway flow"
   - "deep-loop package topology"
 importance_tier: "important"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # Architecture: system-deep-loop
@@ -54,7 +54,7 @@ The package owns three authored zones:
 │  └──────────────────────────────┬─────────────────────────────┘  │
 │                                 ▼                                │
 │  ┌────────────────────────────────────────────────────────────┐  │
-│  │ runtime/database/ deep-loop and council SQLite graphs      │  │
+│  │ runtime/database/ deep-loop graph, legacy council database │  │
 │  └────────────────────────────────────────────────────────────┘  │
 └──────────────────────────────────────────────────────────────────┘
 ```
@@ -88,7 +88,7 @@ Allowed dependency direction:
 - `runtime/lib/<domain>/ ──▶ runtime/lib/<sibling>/index` through the public barrel
 - `runtime/tests/ ──▶ runtime/lib/` and `runtime/scripts/`
 
-Two `lib/` modules reach back into `scripts/`: `deep-loop/jsonl-repair.ts` and `council/convergence.cjs` take the writer lock from `runtime/scripts/lib/cli-guards.cjs`. Those are the only exceptions to the direction above.
+One `lib/` module reaches back into `scripts/`: `deep-loop/jsonl-repair.ts` takes the writer lock from `runtime/scripts/lib/cli-guards.cjs`. That is the only exception to the direction above.
 
 ---
 
@@ -118,7 +118,7 @@ Two `lib/` modules reach back into `scripts/`: `deep-loop/jsonl-repair.ts` and `
 
 **Fan-out.** `fanout-run.cjs`, `fanout-pool.cjs`, `fanout-merge.cjs` and `fanout-salvage.cjs` run lineages as CLI subprocesses under a concurrency cap, merge their outputs deterministically and recover artifacts from captured output. `hierarchical-budgets/` bounds the waves and their budgets.
 
-**Council.** `lib/council/` and `database/council-graph.sqlite` hold the AI Council graph, its convergence and the seat primitives.
+**Seat dispatch.** `runtime/lib/council/multi-seat-dispatch.cjs` is the one helper left in `lib/council/`: it runs the pivot seats a stalled research or review run convenes. `database/council-graph.sqlite` is a legacy file that no script reads or writes.
 
 ---
 

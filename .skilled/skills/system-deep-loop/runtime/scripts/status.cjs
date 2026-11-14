@@ -88,7 +88,7 @@ function jsonOut(payload) {
 }
 
 function observabilityPathForDb(dbModule) {
-  const dbDir = dbModule?.COVERAGE_GRAPH_DATABASE_DIR ?? dbModule?.COUNCIL_GRAPH_STORAGE_DIR;
+  const dbDir = dbModule?.COVERAGE_GRAPH_DATABASE_DIR;
   return typeof dbDir === 'string' && dbDir.trim() !== ''
     ? path.join(dbDir, OBSERVABILITY_EVENTS_FILENAME)
     : null;
@@ -120,60 +120,17 @@ async function main() {
   const specFolder = validateNamespaceValue(ensureString(args, 'specFolder'), 'specFolder', inputError);
   const loopType = ensureString(args, 'loopType');
   const sessionId = validateNamespaceValue(ensureString(args, 'sessionId'), 'sessionId', inputError);
-  if (loopType !== 'research' && loopType !== 'review' && loopType !== 'council' && loopType !== 'context') throw inputError('loopType must be "research", "review", "council", or "context"');
+  if (loopType !== 'research' && loopType !== 'review' && loopType !== 'context') throw inputError('loopType must be "research", "review", or "context"');
 
   const ns = { specFolder, loopType, sessionId };
   const readOnly = args.readOnly === true;
   let db = null;
 
   try {
-    const isCouncil = loopType === 'council';
-    db = isCouncil
-      ? await import('../lib/council/council-graph-db.ts')
-      : await import('../lib/coverage-graph/coverage-graph-db.ts');
+    db = await import('../lib/coverage-graph/coverage-graph-db.ts');
     if (readOnly) db.openReadOnlyDb();
     installSignalHandlers(() => db?.closeDb());
     maybeThrowTestFault();
-    if (isCouncil) {
-      const convergence = require('../lib/council/convergence.cjs');
-      const councilNs = { specFolder, sessionId };
-      const stats = db.getStats(specFolder, sessionId);
-      const readiness = stats.totalNodes === 0 ? 'empty' : 'ready';
-      const data = {
-        namespace: ns,
-        scopeMode: 'session',
-        ...(readOnly ? { readOnly: true, databasePresent: db.isReadOnlyDbPresent() } : {}),
-        readiness,
-        sourceOfTruth: 'derived_from_ai_council_artifacts',
-        notes: [
-          'Council graph rows are derived from packet-local ai-council artifacts and may be rebuilt.',
-        ],
-        recovery: {
-          mode: 'derived_replay',
-          boundedCleanup: 'delete rows for this specFolder/sessionId from council_nodes, council_edges, and council_snapshots, then replay ai-council artifacts',
-          artifactAuthority: 'ai-council/**',
-          safeActions: [
-            'keep ai-council/** artifacts unchanged',
-            'discard only derived council graph rows for this namespace',
-            'replay nodes and edges from packet-local artifacts',
-            'rerun status.cjs --loop-type council and convergence.cjs --loop-type council',
-          ],
-        },
-        totalNodes: stats.totalNodes,
-        totalEdges: stats.totalEdges,
-        nodesByKind: stats.nodesByKind,
-        edgesByRelation: stats.edgesByRelation,
-        snapshotCount: stats.snapshotCount,
-        schemaVersion: stats.schemaVersion,
-        dbFileSize: stats.dbFileSize,
-        signals: stats.totalNodes > 0 ? await convergence.computeCouncilSignals({ ...councilNs, loopType }) : null,
-        momentum: null,
-      };
-      const payload = { status: 'ok', data, schemaVersion: data.schemaVersion, rowCount: data.totalNodes + data.totalEdges };
-      if (!readOnly) appendStatusObservabilityEvent(db, payload, ns);
-      jsonOut(payload);
-      return;
-    }
 
     const signals = await import('../lib/coverage-graph/coverage-graph-signals.ts');
     const nodes = db.getNodes(ns);

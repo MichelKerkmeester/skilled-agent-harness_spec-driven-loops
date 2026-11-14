@@ -76,6 +76,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Child docs authored | Done | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and `goal.md` written on 2026-11-14 when phase 006 was split into five children. Implementation has not started. |
+| T057-T064 advisor council lanes | done, committed adbba5a06a with child... | advisor suite 1707 passed after the census fix; holdout top-1 50/66 -> 49/64, other scorer metrics unchanged |
 
 ### Deviations and findings
 

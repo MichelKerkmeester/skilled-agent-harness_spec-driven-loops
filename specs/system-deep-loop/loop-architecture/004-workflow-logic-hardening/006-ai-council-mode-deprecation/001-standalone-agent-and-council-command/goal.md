@@ -84,6 +84,7 @@ and findings belong here.
 | Files outside the spec file list | Changed as direct consumers | command-contract.json (speckit family), both command README.txt indexes, command-prompts.jsonl plus the recaptured command-routing-baseline.json, command-metadata-e2e census 27 to 28, agent-permission-denials.json, the compiled deep-ai-council contract (it records the agent digest), multi-ai-council-runtime-parity.vitest.ts. |
 | Deep Route wording | Deviation | orchestrate.md names the two remaining deep agents. The spec file table said three, the registry keeps research and review. |
 | Rollback without a shell | Design note | The agent cannot move or hash a file, so a rolled-back round is marked by rollback and artifact_superseded events and its files stay in place. The artifact_written checksum event is no longer written. Event timestamps are the agent's own estimate, because it has no clock. |
+| AC-009 advisor clause | passes | advisor_recommend for the council prompt returns /speckit:ai-council at 0.8412 after the hub lanes left and a read-only lift for the command row was added in fusion.ts |
 
 ### Deviations and findings
 

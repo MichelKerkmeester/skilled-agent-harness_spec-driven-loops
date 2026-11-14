@@ -100,29 +100,6 @@ function seedConvergedContextGraph(namespace: ScriptNamespace) {
   ]);
 }
 
-function seedPassingCouncilGraph(namespace: ScriptNamespace) {
-  return runScript('upsert', [
-    ...namespaceArgs(namespace),
-    '--nodes',
-    JSON.stringify([
-      { id: 'seat-a', kind: 'SEAT', name: 'Analytical seat' },
-      { id: 'seat-b', kind: 'SEAT', name: 'Critical seat' },
-      { id: 'claim-1', kind: 'CLAIM', name: 'Graph is dedicated' },
-      { id: 'evidence-1', kind: 'EVIDENCE', name: 'Artifact contract is stable' },
-      { id: 'decision-1', kind: 'DECISION', name: 'Implement council graph', metadata: { confidence: 0.82 } },
-      { id: 'recommendation-1', kind: 'RECOMMENDATION', name: 'Keep graph derived', metadata: { confidence: 0.88 } },
-    ]),
-    '--edges',
-    JSON.stringify([
-      { id: 'agree-a', sourceId: 'seat-a', targetId: 'decision-1', relation: 'AGREES_WITH' },
-      { id: 'agree-b', sourceId: 'seat-b', targetId: 'decision-1', relation: 'AGREES_WITH' },
-      { id: 'support-1', sourceId: 'claim-1', targetId: 'decision-1', relation: 'SUPPORTS' },
-      { id: 'evidence-1', sourceId: 'evidence-1', targetId: 'decision-1', relation: 'EVIDENCE_FOR' },
-      { id: 'recommends-1', sourceId: 'decision-1', targetId: 'recommendation-1', relation: 'RECOMMENDS' },
-    ]),
-  ]);
-}
-
 function uniqueContextNamespace(): ScriptNamespace {
   return { ...uniqueNamespace('convergence'), loopType: 'context' } as unknown as ScriptNamespace;
 }
@@ -665,24 +642,6 @@ describe('convergence profile parity pins', () => {
       { signal: 'agreementRate', value: 1, threshold: 0.5, passed: true, role: 'blocking_guard' },
       { signal: 'relevanceFloor', value: 1, threshold: 0.5, passed: true, role: 'blocking_guard' },
       { signal: 'dependencyCompleteness', value: 1, threshold: 0.7, passed: true, role: 'weighted' },
-    ]);
-  });
-
-  it('pins council threshold trace and score semantics', () => {
-    const council = uniqueNamespace('convergence', 'council');
-    namespaces.push(council);
-    expect(seedPassingCouncilGraph(council).exitCode).toBe(0);
-
-    const result = runScript('convergence', namespaceArgs(council));
-
-    expect(result.json.graph_decision).toBe('STOP_ALLOWED');
-    expect(result.json.graph_convergence_score).toBe(0.878);
-    expect(result.json.graph_trace_json).toEqual([
-      { signal: 'agreementRatio', value: 1, threshold: 0.67, passed: true },
-      { signal: 'dissentDensity', value: 0, threshold: 0.25, passed: true },
-      { signal: 'evidenceDepth', value: 1, threshold: 1, passed: true },
-      { signal: 'unresolvedCriticalDisagreements', value: 0, threshold: 0, passed: true },
-      { signal: 'decisionConfidence', value: 0.85, threshold: 0.65, passed: true },
     ]);
   });
 

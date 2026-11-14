@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The `ai-council` agent body points at `deep-ai-council/scripts/persist-artifacts.cjs`, the packet structure references and `runtime/scripts/append-mode-event.cjs`, and it tells the agent to run `node` while its frontmatter says `bash: deny`",
     "created_at": "2026-11-14T20:19:48Z",
-    "last_save_at": "2026-11-14T21:34:11.330Z",
+    "last_save_at": "2026-11-14T23:03:58.930Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aaa522872b64f40363133c474972c453b82290d868588a8e80337e06bce4bbc0",
+    "source_fingerprint": "sha256:889b5d45e1bbd5505b897eb692fc79c91ecb9881342b8e46cecbc51fe01491a8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a493a577ab008ff654abc60765db549d4cee4dfd9035db7e302f577f57671054",

@@ -12,7 +12,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-This folder contains the executable test surface for the runtime. The suites cover domain modules, CLI boundaries, integration flows, lifecycle behavior, council coordination, fixtures and shared child-process helpers.
+This folder contains the executable test surface for the runtime. The suites cover domain modules, CLI boundaries, integration flows, lifecycle behavior, seat dispatch, fixtures and shared child-process helpers.
 
 The tests document contracts through assertions. They do not define a separate public runtime API.
 
@@ -40,7 +40,7 @@ tests/
 | File | Responsibility |
 |---|---|
 | `.gitkeep` | Keeps the test root present in source distributions. |
-| `council-graph-value-report.json` | Recorded graph-value report input or output used by integration coverage. |
+| `council-graph-value-report.json` | Recorded graph-value report retained from the retired council graph scenarios; no current test reads it. |
 | `executor-audit-cli-branch-receipts.test.ts` | Checks executor audit receipts across the CLI branch dispatch styles. |
 | `executor-audit-receipts.test.ts` | Checks executor provenance and dispatch receipt behavior. |
 | `receipt-crypto.test.ts` | Checks receipt key derivation, signing and verification. |
@@ -51,8 +51,8 @@ tests/
 
 | Suite | Coverage |
 |---|---|
-| [`council/README.md`](council/README.md) | Council dispatch, scoring, cost and session-state contracts |
-| [`fixtures/README.md`](fixtures/README.md) | Shared event and council graph fixtures |
+| [`council/README.md`](council/README.md) | Seat dispatch used by the divergent pivot |
+| [`fixtures/README.md`](fixtures/README.md) | Shared event and ledger fixtures |
 | [`helpers/README.md`](helpers/README.md) | Child-process helpers used by multiple suites |
 | [`hierarchical-budgets/README.md`](hierarchical-budgets/README.md) | Budget reserve, settle and recovery behavior |
 | [`integration/README.md`](integration/README.md) | CLI, graph, review-depth and pivot flows |

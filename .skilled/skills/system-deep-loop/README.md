@@ -6,7 +6,7 @@ trigger_phrases:
   - "deep loop workflows"
   - "deep research review"
   - "deep-loop hub routing"
-version: 1.6.8.0
+version: 1.6.9.0
 ---
 
 # system-deep-loop
@@ -90,7 +90,7 @@ The mode packets carry no `graph-metadata.json` of their own, so the advisor dis
 
 Active `/deep:*` commands and deep agents (`deep-research` and `deep-review`) dispatch into the matching mode packet. `@context` remains the one-shot retrieval agent.
 
-`/doctor:deep-loop [--scope=research|review|council|both|all]` reads a run's coverage graph and convergence through the loop's own scripts.
+`/doctor:deep-loop [--scope=research|review|both|all]` reads a run's coverage graph and convergence through the loop's own scripts.
 
 ### Related Skills
 

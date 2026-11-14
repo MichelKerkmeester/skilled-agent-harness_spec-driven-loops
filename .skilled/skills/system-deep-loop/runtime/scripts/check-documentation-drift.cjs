@@ -11,13 +11,11 @@ const SKILL_ROOT = path.resolve(__dirname, '..', '..');
 const REPO_ROOT = path.resolve(SKILL_ROOT, '..', '..', '..');
 const REGISTRY_PATH = path.join(SKILL_ROOT, 'mode-registry.json');
 const HUB_README = path.join(SKILL_ROOT, 'README.md');
-const COUNCIL_PLAYBOOK = path.join(SKILL_ROOT, 'deep-ai-council', 'manual-testing-playbook');
 const REPORT_ROOT = path.join(SKILL_ROOT, 'benchmark', 'reports');
 const REPORT_INDEX = path.join(REPORT_ROOT, 'README.md');
 const LINK_DOCS = [
   HUB_README,
   path.join(SKILL_ROOT, 'deep-research', 'README.md'),
-  path.join(SKILL_ROOT, 'deep-ai-council', 'README.md'),
   path.join(SKILL_ROOT, 'runtime', 'README.md'),
   path.join(SKILL_ROOT, 'runtime', 'scripts', 'README.md'),
   path.join(SKILL_ROOT, 'deep-review', 'SKILL.md'),
@@ -95,26 +93,6 @@ function registryCounts(registry) {
     families: packets.length,
     packets,
   };
-}
-
-function scenarioIndex(playbookRoot, prefix) {
-  const indexPath = path.join(playbookRoot, 'manual-testing-playbook.md');
-  const index = read(indexPath);
-  const declared = Number(index.match(/provides (\d+) deterministic scenarios/u)?.[1] ?? 0);
-  const files = [];
-  function walk(folder) {
-    for (const entry of fs.readdirSync(folder, { withFileTypes: true })) {
-      const child = path.join(folder, entry.name);
-      if (entry.isDirectory()) walk(child);
-      else if (entry.name.endsWith('.md') && child !== indexPath) files.push(child);
-    }
-  }
-  walk(playbookRoot);
-  const ids = unique(files.flatMap((filePath) => {
-    const content = read(filePath);
-    return [...content.matchAll(new RegExp(`\\b${prefix}-\\d+\\b`, 'gu'))].map((match) => match[0]);
-  }));
-  return { declared, files: ids.length, ids };
 }
 
 function reportFolders() {
@@ -385,13 +363,7 @@ function runChecks(args) {
     if (!fs.existsSync(path.join(SKILL_ROOT, packet))) errors.push(`registry packet missing: ${packet}`);
     if (!read(HUB_README).includes(`${packet}/`)) errors.push(`registry packet absent from hub index: ${packet}`);
   }
-  if (counts.families !== 3) errors.push(`family count mismatch: ${counts.families}`);
-  if (!args.linksOnly && !args.reportsOnly) {
-    for (const [root, prefix] of [[COUNCIL_PLAYBOOK, 'DAC']]) {
-      const scenarios = scenarioIndex(root, prefix);
-      if (scenarios.declared !== scenarios.files) errors.push(`${prefix} scenario index mismatch: declared=${scenarios.declared} files=${scenarios.files}`);
-    }
-  }
+  if (counts.families !== 2) errors.push(`family count mismatch: ${counts.families}`);
   if (!args.linksOnly) {
     const folders = reportFolders();
     let indexed = indexedReportFolders();
