@@ -79,6 +79,7 @@ and findings belong here.
 | Finding outside the phase: two more lines say OpenCode for the tree | Open | sk-code-skilled/SKILL.md lines 90 and 94. The logged finding named line 13 only |
 | Assumption: fix open items is the acknowledgement CHK-012 of phase 002 waited on | Recorded | The operator's instruction of 2026-11-14 named the open items. The line is ticked with that instruction as evidence |
 | Continuity saved | Done | Full-auto save on 2026-11-14 after the docs commit 3422a19f52. The trigger index was not regenerated |
+| Operator instruction 2026-11-14: fix open | Done | Code bcb8bbab3f. The verification scenario expects tests 46, which its seven files print. Lines 90 and 94 of sk-code-skilled/SKILL.md say SKILLED. Packet version 2.2.2.0. The two findings above are closed |
 
 ### Deviations and findings
 

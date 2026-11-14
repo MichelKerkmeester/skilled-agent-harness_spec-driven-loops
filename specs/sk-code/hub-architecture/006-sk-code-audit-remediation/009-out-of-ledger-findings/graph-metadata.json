@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Phases 006 to 008 could edit one packet each and fix only rows the ledger names",
     "created_at": "2026-11-14T16:51:37Z",
-    "last_save_at": "2026-11-14T17:11:35.998Z",
+    "last_save_at": "2026-11-14T19:16:33.162Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,7 +216,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:207e04cf854b4f69a51ea2743a7caf059760c20b017b09f435acc367a34a02c8",
+    "source_fingerprint": "sha256:39a8e19ba102f917a6f547eb7baf9039a2d8db10a1972c7be3f2c59a7ae14e7f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7c6702aa393e156161eda40d4b8e40b5853d480bf815f8bd03b6498e6c66a4ed",
