@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.22.0
+version: 1.0.23.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -257,7 +257,7 @@ Run the Claude adapter suite:
 node --test .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
 ~~~
 
-Evidence: a context-nudge payload with an invalid session id produces no output. A Stop payload without `transcript_path` leaves the record pending and logs `missing-transcript-path`. PASS when both cases keep their stated outputs and state. FAIL when the invalid id is injected or the Stop hook arms without a transcript path.
+Evidence: a context-nudge payload with an invalid session id produces no output. A Stop payload without `transcript_path` keeps the record pending, stamps `deferredAt` on it and logs `missing-transcript-path`. PASS when both cases keep their stated outputs and state. FAIL when the invalid id is injected or the Stop hook arms without a transcript path.
 
 #### Killer lock and signal checks (Automatable)
 
@@ -926,7 +926,7 @@ diff="$repo_root/specs/hooks-plugins-extensions/session-turn-boundaries/002-sess
 sandbox="$(mktemp -d)/sandbox"; out="$(mktemp -d)"
 bash "$harness/build-sandbox.sh" claude "$sandbox" 3990 "$repo_root"
 patch -o "$out/run-hop-worker.sh" "$harness/run-hop.sh" "$diff"
-ln -s "$harness/goal-records.cjs" "$out/goal-records.cjs"
+cp "$harness/goal-records.cjs" "$out/goal-records.cjs"
 NO_GOAL=1 bash "$out/run-hop-worker.sh" claude "$sandbox" "$out" worker
 bash "$harness/finish-run.sh" claude "$out"
 ~~~
