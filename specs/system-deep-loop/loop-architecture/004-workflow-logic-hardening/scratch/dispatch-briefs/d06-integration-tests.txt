@@ -1,0 +1,191 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/382-deep-loop-workflow-logic-hardening
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: You are a test author. Add test cases to exactly one existing test file, nothing
+else. Do not edit any other file. Do not implement the feature. Do not write spec ids, task
+ids or spec paths in comments. Do not commit.
+
+ALLOWED WRITE PATH (only this one file, append only: do not change existing tests):
+- .skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts
+
+BANNED OPERATIONS: git commit, git push, git checkout, git reset, git stash, rm, mv, any
+write outside the allowed path, any package install. Do NOT edit convergence.cjs.
+
+CONTEXT: runtime/scripts/convergence.cjs will get a `--stop-decision` mode in a later
+change. You write its command-line tests first. They are EXPECTED TO FAIL today with exit
+code 3 (unknown flag). Do not make them pass.
+
+READ FIRST: the allowed file (its imports, `seedConvergedResearchGraph`, the `namespaces`
+array, `afterEach`, and the two tests that use `DEEP_LOOP_TEST_FAULT`), and
+tests/helpers/spawn-cjs.ts functions `runScript`, `uniqueNamespace`, `namespaceArgs`,
+`seedReviewNode`.
+
+=== THE --stop-decision MODE OF convergence.cjs (input reading rules) ===
+
+New flags (the parser turns `--config-path` into `configPath`):
+  --stop-decision                  boolean switch. Without it the script behaves exactly as today.
+  --config-path <file>             REQUIRED with --stop-decision. Loop config JSON.
+  --state-log <file>               REQUIRED with --stop-decision. JSON-lines state log.
+  --registry-path <file>           optional. Findings registry JSON. Missing file = {}.
+  --iteration-count <n>            optional. Default: number of distinct iteration records.
+  --stuck-count <n>                optional. Default 0.
+  --security-sensitive-fix-scope <true|false>   review only, default false.
+  --fix-replay-required-rows <n>   review only, default 0.
+  --fix-replay-passing-rows <n>    review only, default 0.
+
+Errors (all through the existing `inputError`, so the script exits 3 with {"status":"error"}):
+  --stop-decision with a loop type other than research or review;
+  --config-path or --state-log missing, or naming a file that does not exist or is not JSON.
+
+Output: the normal payload plus one extra top-level key `stop_decision`, which is
+`buildStopDecision(input)`. Both existing output paths get it: the empty-graph early return
+(graphDecision is then 'CONTINUE') and the normal path.
+
+Graph failure rule: with --stop-decision, an error thrown while opening or evaluating the
+graph that is NOT an input error (err.code !== 'INPUT_VALIDATION') must not fail the script.
+The script then prints {"status":"ok","data":null,"graph_decision":null,"graph_error":"<message>",
+"stop_decision":{...}} with graphDecision null, and exits 0. Without --stop-decision the
+existing error behavior is unchanged (the tests around DEEP_LOOP_TEST_FAULT still pass).
+
+Building the input object:
+  loopType           the --loop-type value.
+  config.maxIterations        config.maxIterations (number), else Infinity is NOT allowed: use null.
+  config.minIterations        config.minIterations, else config.antiConvergence.minIterations, else 0;
+                              never above maxIterations.
+  config.convergenceThreshold config.convergenceThreshold (number) else null.
+  config.stopPolicy           config.stopPolicy when it is 'convergence' or 'max-iterations', else 'convergence'.
+  config.stuckThreshold       config.stuckThreshold (number), else 3 for research and 2 for review.
+  config.convergenceMode      the value the existing `readConvergenceModeConfig(args)` resolves when the
+                              --convergence-mode flag is given, else config.antiConvergence.convergenceMode,
+                              else 'default'.
+  State log: one JSON object per line. Skip blank and unparsable lines.
+    iteration records = rows with type === 'iteration'. The iteration number is `iteration`, else `run`.
+    When two rows share a number keep the later one. Order by number ascending.
+    evidence records = iteration records whose status is not 'thought'.
+  ratios             research: `newInfoRatio` of each evidence record. review: `newFindingsRatio`.
+                     Skip records where it is not a finite number.
+  iterationCount     --iteration-count, else the number of iteration records.
+  stuckCount         --stuck-count, else 0.
+  graphDecision      the graph decision ('STOP_ALLOWED' | 'STOP_BLOCKED' | 'CONTINUE'), null on graph failure.
+  graphBlockers      the graph blockers array, [] when none.
+  research (null for review):
+    answeredCount    registry.metrics.resolvedQuestions (number), else registry.resolvedQuestions.length, else 0.
+    totalQuestions   answeredCount + (registry.metrics.openQuestions (number), else registry.openQuestions.length, else 0).
+    iterationRecords evidence records mapped to { answeredQuestions, keyQuestions } (copy the field only when it is an array).
+    answeredQuestionSourceCounts
+                     null when the graph has no QUESTION node that is the target of an ANSWERS edge, or on graph failure.
+                     Otherwise an object keyed by the question node's id: for each QUESTION node that is the
+                     target of at least one ANSWERS edge, the number of distinct SOURCE nodes cited (CITES edge,
+                     finding -> source) by the FINDING nodes that ANSWER it. Keys sorted alphabetically.
+  review (null for research):
+    totalDimensions / missingDimensions
+                     dimensions = config.reviewDimensions (array), else the keys of registry.dimensionCoverage.
+                     missing = the dimensions whose registry.dimensionCoverage[name] is not true.
+    coverageAge      walk the evidence records in order, accumulating each record's `dimensions` array.
+                     Find the first record after which every dimension is covered. coverageAge = the number
+                     of evidence records AFTER that one. 0 when coverage is never complete.
+    traceabilityCovered
+                     true when registry.traceability.summary.gatingFailures is 0 (or the summary is absent
+                     and config.crossReference.core is empty or absent) AND every id in
+                     config.crossReference.core has an entry in registry.traceability.results whose
+                     `protocolId` equals it and whose `status` (lowercased) is not '', 'pending',
+                     'deferred' or 'skipped'. Otherwise false.
+    activeP0, activeP1   registry.findingsBySeverity.P0 / .P1 (numbers), else 0.
+    evidenceBackedP0P1   count of registry.openFindings entries with severity 'P0' or 'P1' whose `file`
+                         and `line` are both non-null.
+    hotspotSaturated     true/false = the `passed` value of the graph trace entry with signal
+                         'hotspotSaturation'; null when the graph is empty or failed.
+    lastClaimAdjudicationPassed
+                     the `passed` value of the LAST state-log row with type 'event' and event
+                     'claim_adjudication' when it is a boolean, else null.
+    securitySensitiveFixScope, fixReplayRequiredRows, fixReplayPassingRows   from the three flags.
+    reviewDepthSchemaVersion, reviewDepthApplicability   from the last iteration record, else null.
+    searchDebt           registry.searchDebt (array) else [].
+    candidateCovered     registry.candidateCoverage.covered (array) else [].
+    requiredBugClasses   registry.searchCoverage.requiredBugClasses (array) else [].
+    graphCoverageMode    registry.searchCoverage.graphCoverageMode (string) else null.
+    fallbackCoveredBugClasses
+                     distinct `bugClass` values of `searchLedger` rows, across all iteration records, that
+                     have a non-empty `evidenceRefs` array and at least one `searchActions[].method` in
+                     direct_read, exact_grep, semantic_search, producer_consumer_trace,
+                     negative_test_inspection. Sorted alphabetically.
+
+=== WHAT TO WRITE ===
+
+Append ONE new block at the end of the file: `describe('convergence.cjs stop-decision', () => { ... })`.
+Add a helper inside it that creates a temp directory (`mkdtempSync` under `os.tmpdir()`),
+writes `config.json`, `state.jsonl` and `registry.json` from objects, and returns the three
+paths. Remove the temp directories in an `afterEach` inside the block.
+
+Research fixture: config { maxIterations: 10, minIterations: 3, convergenceThreshold: 0.05,
+stopPolicy: 'convergence', stuckThreshold: 3 }; state log with three rows
+{ type: 'iteration', iteration: N, status: 'complete', newInfoRatio: 0.4 / 0.3 / 0.2,
+answeredQuestions: ['q1'], keyQuestions: ['q1'] }; registry
+{ metrics: { resolvedQuestions: 1, openQuestions: 0 } }.
+Review fixture: config { maxIterations: 7, convergenceThreshold: 0.10, stopPolicy:
+'convergence', stuckThreshold: 2, reviewDimensions: ['correctness'], crossReference:
+{ core: [] } }; state log with two rows { type: 'iteration', iteration: N, status:
+'complete', newFindingsRatio: 0.3 / 0.2, dimensions: ['correctness'] }; registry
+{ dimensionCoverage: { correctness: true }, findingsBySeverity: { P0: 0, P1: 0, P2: 0 },
+openFindings: [] }.
+
+Tests (each `it` name starts with the words shown):
+1. 'prints the nine stop_decision fields for research': seed with
+   `seedConvergedResearchGraph`, run with `--stop-decision --config-path .. --state-log ..
+   --registry-path ..`. Expect exit 0, status 'ok', and `Object.keys(json.stop_decision)` to
+   equal ['decision', 'stopReason', 'reasonDetail', 'weightedStopScore', 'signals', 'gates',
+   'blockedBy', 'graphDecision', 'inputs']. Expect inputs.iterationCount 3,
+   inputs.ratios [0.4, 0.3, 0.2], inputs.research.answeredCount 1, totalQuestions 1, and
+   inputs.research.answeredQuestionSourceCounts to equal { 'question-1': 2 }.
+2. 'prints the nine stop_decision fields for review': seed with `seedReviewNode`, review
+   namespace, same key-order check. Expect inputs.review.missingDimensions [],
+   inputs.review.coverageAge 1 and inputs.review.activeP0 0.
+3. 'is byte-identical across two runs': run the research command twice (do NOT pass
+   --persist-snapshot) and expect JSON.stringify(json.stop_decision) of both to be equal.
+4. 'keeps deciding on an empty graph': no seeding. Expect exit 0, graph_decision
+   'CONTINUE', stop_decision.graphDecision 'CONTINUE', stop_decision.decision 'CONTINUE',
+   stop_decision.stopReason null and stop_decision.reasonDetail 'graph_convergence_continue'
+   (every question is answered, so there is a candidate and the graph says continue).
+5. 'treats a graph failure as a missing graph decision': research command with
+   `env: { ...process.env, DEEP_LOOP_TEST_FAULT: 'script' }`. Expect exit 0, status 'ok',
+   graph_decision null, stop_decision.graphDecision null, decision 'CONTINUE', stopReason
+   null, reasonDetail 'graphDecisionMissing'. Add the same check with fault 'db'.
+6. 'stops at the cap even when the graph failed': same as 5 with `--iteration-count 10`.
+   Expect decision 'STOP' and stopReason 'maxIterationsReached'.
+7. 'echoes the judgment inputs and fails the replay gate': review command with
+   `--security-sensitive-fix-scope true --fix-replay-required-rows 2 --fix-replay-passing-rows 1`.
+   Expect inputs.review.securitySensitiveFixScope true, fixReplayRequiredRows 2,
+   fixReplayPassingRows 1 and gates.fixCompletenessReplayGate.pass false.
+8. 'reads the last claim adjudication event': review state log with an extra row
+   { type: 'event', event: 'claim_adjudication', passed: false }. Expect
+   inputs.review.lastClaimAdjudicationPassed false.
+9. 'exits 3 when the config file is missing': --config-path pointing at a file that does
+   not exist. Expect exit 3 and json.status 'error'. Same for a missing --state-log.
+10. 'exits 3 for a loop type that has no stop decision': `--loop-type context
+    --stop-decision` with valid files. Expect exit 3 and json.status 'error'.
+11. 'adds nothing without the flag': the plain research command with no --stop-decision.
+    Expect `'stop_decision' in json` to be false.
+
+VERIFY (run from the repository root and print the last 12 lines of output):
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/integration/convergence-script.vitest.ts)
+
+EXPECTED: no syntax or import error. The tests that existed before all still pass. The
+new tests fail (test 11 may pass). Failing new tests are the correct result today.
+
+RETURN: the test summary lines and how many tests you added.

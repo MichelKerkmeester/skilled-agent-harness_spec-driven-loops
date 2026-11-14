@@ -17,6 +17,7 @@
       "deterministic stop decision tasks",
       "deterministic stop decision acceptance criteria",
       "deterministic stop decision goal",
+      "001-deterministic-stop-decision operator decisions",
       "deterministic stop decision implementation summary"
     ],
     "key_topics": [
@@ -29,27 +30,31 @@
       "acceptance",
       "criteria",
       "goal",
-      "implementation",
-      "summary",
-      "orchestrating"
+      "001-deterministic-stop-decision",
+      "operator",
+      "decisions"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
       ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+      ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
       ".skilled/commands/deep/assets/deep-research-confirm.yaml",
       ".skilled/commands/deep/assets/deep-review-auto.yaml",
       ".skilled/commands/deep/assets/deep-review-confirm.yaml",
-      ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/lifecycle-taxonomy.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-policy-yaml-parity.vitest.ts"
     ],
@@ -85,6 +90,12 @@
         "source": "derived"
       },
       {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
@@ -97,9 +108,27 @@
         "source": "derived"
       },
       {
+        "name": "lifecycle-taxonomy.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
+        "source": "derived"
+      },
+      {
         "name": "deep-research-auto.yaml",
         "kind": "config",
         "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
         "source": "derived"
       },
       {
@@ -121,21 +150,21 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "lifecycle-taxonomy.cjs",
-        "kind": "file",
-        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
-        "source": "derived"
-      },
-      {
         "name": "lifecycle-taxonomy.vitest.ts",
         "kind": "test",
         "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/lifecycle-taxonomy.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stop-decision.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stop-decision-yaml-contract.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts",
         "source": "derived"
       },
       {
@@ -173,36 +202,12 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase Context This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The orchestrating model computes the stop vote by hand from prose in `stepcheckconvergence`, so two runs over the same state can stop at different iterations",
     "created_at": "2026-11-14T11:33:17Z",
-    "last_save_at": "2026-11-14T12:22:32.830Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-14T14:46:16.213Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -210,15 +215,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dca0d1cb51f0caebdaf009bf3ee23b461945ec4bdf7e7649aab514a96740d472",
+    "source_fingerprint": "sha256:dc887a36e1625feab1a6db8251cacb4af36ee8483be5447f750131b7046719c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a876267df217e4ca79b9c87aa3825da50610bf79083b9645a7f6e514a8a4d748",
+      "spec.md": "e86b27dd0b76a7c33ed6ef42830069414aa53d29f87f61ddbaca41871d70b991",
       "plan.md": "ffe9ca9f720c7db7f9e00c4dc0afbc35b56db6e36d374e9a3c45af6f7dbedb6b",
-      "tasks.md": "96253e6552c717b4d61893b69592d75a41d129ef840f11f3031b08672b3f6985",
-      "implementation-summary.md": "b065fd879830ad05eccaf3797347a76fc492aa151ea3dee08fd03b5cc21cf403"
+      "tasks.md": "46b5abff370a5073b2bff61e5efedd1c00e796d575d0da2c1bf47d77ef31f9aa",
+      "decision-record.md": "b0cbf8247d649a3c333362331a90433ed702701a6ea574541584c5c9334bcd60",
+      "implementation-summary.md": "cfffc267aa651e4228c30a33cccbb3f9d349af6a515e29116f32377dc867d4bc"
     },
     "last_active_at": null
   }

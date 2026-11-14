@@ -145,7 +145,7 @@ Per-phase detail lives in each child's `plan.md`. Where a child's own file list 
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-deterministic-stop-decision/ | A runtime script computes the whole stop decision, with one stop-reason list, the configured review threshold and one rule for a missing graph decision | Pending |
+| 1 | 001-deterministic-stop-decision/ | A runtime script computes the whole stop decision, with one stop-reason list, the configured review threshold and one rule for a missing graph decision | Complete |
 | 2 | 002-persisted-loop-state-and-failure-policy/ | Counters come from the state log, failed iterations stay out of the vote, one failure rule holds and the reducer alone writes the dashboard | Pending |
 | 3 | 003-lifecycle-lock-and-limits/ | Research restart works like review restart, the lock outlives the longest dispatch and is released on every halt, and the duration cap is enforced | Pending |
 | 4 | 004-workflow-single-source-and-drift-guard/ | One workflow file per command serves both modes, dry run works everywhere, the files shrink and a guard test stops the drift from returning | Pending |
