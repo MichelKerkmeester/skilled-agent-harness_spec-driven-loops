@@ -1,5 +1,5 @@
 {
-  "manifestHash": "c28e60e545d2b50b850df9397204e50ed1a2e176f746b2cc7678a5ada0bb4f1f",
+  "manifestHash": "f775c470e3111403fb4f7b704a902c38f8edc0eabc6577e48f6cf94207a63579",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -31485,6 +31485,9 @@
     "council max rounds exceeded": [
       "council max rounds exceeded"
     ],
+    "council one round per invocation": [
+      "council one round per invocation"
+    ],
     "council orchestrator stop rule": [
       "council orchestrator stop rule"
     ],
@@ -35171,6 +35174,9 @@
     "deep ai council 1 8 10 0": [
       "deep-ai-council 1.8.10.0"
     ],
+    "deep ai council 1 8 11 0": [
+      "deep-ai-council 1.8.11.0"
+    ],
     "deep ai council 1 8 2 0": [
       "deep-ai-council 1.8.2.0"
     ],
@@ -35560,6 +35566,9 @@
     ],
     "deep ai council v1 8 10 0": [
       "deep-ai-council v1.8.10.0"
+    ],
+    "deep ai council v1 8 11 0": [
+      "deep-ai-council v1.8.11.0"
     ],
     "deep ai council v1 8 2 0": [
       "deep-ai-council v1.8.2.0"

@@ -7,7 +7,7 @@ trigger_phrases:
   - "persist-artifacts parser contract"
 importance_tier: "important"
 contextType: "implementation"
-version: 1.7.1.0
+version: 1.7.2.0
 ---
 
 # AI Council Output Schema
@@ -139,6 +139,6 @@ Do not change one surface alone. Split-brain between §8 prose, parser behavior,
 
 ## 7. CROSS-REFERENCES
 
-- Agent body: `.skilled/agents/ai-council.md` §8 OUTPUT FORMAT and §16 Caller Persistence Protocol
+- Agent body: `.skilled/agents/ai-council.md` §8 OUTPUT FORMAT; persistence rules in `references/patterns/command-wiring.md`
 - Runtime mirror: `.claude/agents/ai-council.md`
 - Helper: `.skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs`

@@ -33,28 +33,28 @@
       "ai-council"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
+      "scratch/after.txt",
       ".skilled/agents/ai-council.md",
-      ".skilled/agents/orchestrate.md",
-      "scratch/measure.sh",
       ".claude/agents/ai-council.md",
+      ".skilled/agents/agent-registry.json",
+      ".skilled/agents/orchestrate.md",
+      ".claude/agents/orchestrate.md",
+      "scratch/baseline-tests.txt",
+      "scratch/emdash-before.txt",
+      "scratch/measure.sh",
       ".pi/agents/ai-council.md",
       ".codex/agents/ai-council.toml",
       ".dsh/agents/ai-council.patch.yml",
-      ".skilled/agents/agent-registry.json",
       ".skilled/agents/README.txt",
-      ".claude/agents/orchestrate.md",
       ".skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md",
-      ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md",
-      ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md",
-      ".skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md",
-      ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/depth-and-failure-handling/resume-after-interrupted-state.md"
+      ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md"
     ],
     "entities": [
       {
@@ -88,15 +88,39 @@
         "source": "derived"
       },
       {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
         "name": "ai-council.md",
         "kind": "doc",
         "path": ".skilled/agents/ai-council.md",
         "source": "derived"
       },
       {
+        "name": "agent-registry.json",
+        "kind": "config",
+        "path": ".skilled/agents/agent-registry.json",
+        "source": "derived"
+      },
+      {
         "name": "orchestrate.md",
         "kind": "doc",
         "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline-tests.txt",
+        "kind": "file",
+        "path": "scratch/baseline-tests.txt",
+        "source": "derived"
+      },
+      {
+        "name": "emdash-before.txt",
+        "kind": "file",
+        "path": "scratch/emdash-before.txt",
         "source": "derived"
       },
       {
@@ -118,12 +142,6 @@
         "source": "derived"
       },
       {
-        "name": "agent-registry.json",
-        "kind": "config",
-        "path": ".skilled/agents/agent-registry.json",
-        "source": "derived"
-      },
-      {
         "name": "README.txt",
         "kind": "file",
         "path": ".skilled/agents/README.txt",
@@ -139,24 +157,6 @@
         "name": "convergence-signals.md",
         "kind": "doc",
         "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/convergence/convergence-signals.md",
-        "source": "derived"
-      },
-      {
-        "name": "command-wiring.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md",
-        "source": "derived"
-      },
-      {
-        "name": "scoring-rubric.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md",
-        "source": "derived"
-      },
-      {
-        "name": "resume-after-interrupted-state.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/depth-and-failure-handling/resume-after-interrupted-state.md",
         "source": "derived"
       },
       {
@@ -204,7 +204,7 @@
     ],
     "causal_summary": "`ai-council.md` says it is the sole writer of `ai-council/` (line 739), while the registry tells `@orchestrate` to run `persist-artifacts.cjs` after the agent returns (`agent-registry.json:44`) and `/deep:ai-council` persists each seat through its own script (`orchestrate-session.cjs:417`)",
     "created_at": "2026-11-14T20:19:19Z",
-    "last_save_at": "2026-11-14T21:25:07.407Z",
+    "last_save_at": "2026-11-14T23:47:18.636Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e2a2b95eba3d01103524fc7e8c0aefe027e0f399a5e49182749a482b24035540",
+    "source_fingerprint": "sha256:8d0291018b91f1d9278a0c8ebaca11e291abab6830ffc6ebf0244e2d1795a09d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a0081f80b26dfe95a4376e0928d7847ca7dcd7cb43c314265b317e37bbd5be92",
+      "spec.md": "5fa51e6097e875f9026fc00f0daa7e6f91e117e6d16a13f0adc25471bde95c9a",
       "plan.md": "a5467bd3b5286bfd07cabe5e1bb03510c0ad631183e0bb8a99b3dae61fbe163c",
-      "tasks.md": "f5c3ec4d924d0b0ffef88e7c3f8a2c7491fa4062e50808ba6434e8620114ac3c",
-      "implementation-summary.md": "223989550e176864057c9e51bfca17357b3aef912586dedd6d8005a695df3ed9"
+      "tasks.md": "8a5f1cd30832b020565a5c4002de5c3954327b464a6aade48cb692ac07bbdb2b",
+      "implementation-summary.md": "454f37d1fe6b9d2dff724c7fade6f596dfec29865651d8e86602e123f8be6dbf"
     },
     "last_active_at": null
   }

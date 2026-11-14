@@ -8,7 +8,7 @@ trigger_phrases:
   - "council comparison table"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.1.0
+version: 1.7.2.0
 ---
 
 # AI Council Scoring Rubric
@@ -146,7 +146,7 @@ The critique should be adversarial but fair. A trade-off is not automatically a 
 
 Run reconciliation when any of these are true:
 
-- scores are within 15 points;
+- the lead is under 25 points (see Lead Thresholds);
 - assumptions conflict;
 - the leading plan has unresolved high-severity risk;
 - all seats propose essentially the same approach;
@@ -167,11 +167,11 @@ Adversarial cross-critique counters convergence bias and shallow consensus.
 
 It is required when:
 
-- strategies are within 15 points after initial scoring;
+- the Lead Thresholds table marks critique Required;
 - all seats propose the same approach;
 - a single assumption carries the plan.
 
-Skip only when one seat leads by 25+ points and no critical risk is unresolved.
+Skip only on the table's first row: a lead of 25 or more with no critical risk unresolved.
 
 ### HUNTER
 
@@ -260,11 +260,22 @@ If convergence is artificial:
 
 Use this matrix after scoring and critique.
 
+### Lead Thresholds
+
+The lead is the top seat's total minus the runner-up's total after initial scoring.
+
+| Lead | Cross-critique | Then |
+| --- | --- | --- |
+| Lead of 25 or more, no critical risk unresolved | Optional | Adopt the leader, note alternatives |
+| Lead of 15 to 24 | Required | Adopt the leader, note alternatives |
+| Lead of 10 to 14 | Required | Adopt the leader and merge complementary elements |
+| Lead under 10 | Required | Merge the best elements of the top two |
+| All seats under 50 | Not applicable | Escalate: the task may need reframing |
+
+Cross-critique is also required, whatever the lead, when all seats propose the same approach, when assumptions conflict or when one assumption carries the plan.
+
 | Scenario | Action |
 | --- | --- |
-| Clear winner (>15 point lead) | Adopt winner, note alternatives |
-| Close race (<10 point spread) | Merge best elements from top 2 |
-| All low scores (<50) | Escalate: task may need reframing |
 | Contradictory approaches | Present both to user with trade-off analysis |
 | Strategy timeout/failure | Score remaining seats, note incomplete data |
 | Simulated external vantage only | Label it as simulated; do not imply external execution |

@@ -11,7 +11,7 @@ trigger_phrases:
   - "council strategy count"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.4.0
+version: 1.7.5.0
 ---
 
 # AI Council Seat Diversity Patterns
@@ -46,16 +46,16 @@ Seat diversity is the council's first quality gate. A council that repeats the s
 
 ## 2. STRATEGY LENSES
 
-Use different strategy lenses for each seat. The temperature values describe the intended reasoning posture from the agent body; they are guidance for prompt framing, not a requirement to mutate runtime temperature settings when the runtime does not expose them.
+Use different strategy lenses for each seat. A lens is a reasoning posture the seat prompt states; it does not change any runtime sampling setting.
 
-| Strategy | Temp | Reasoning Lens | Best For |
-| --- | --- | --- | --- |
-| Analytical | 0.1 | Systematic decomposition, formal analysis | Structure, correctness |
-| Creative | 0.5 | Lateral thinking, novel approaches | Innovation, alternatives |
-| Critical | 0.2 | Edge cases, failure modes, security | Robustness, safety |
-| Pragmatic | 0.3 | Simplest working solution, MVP focus | Quick wins, prototypes |
-| Holistic | 0.4 | System-wide impact, architecture fit | Integration, scale |
-| Research | 0.2 | Evidence gathering, source validation, unknown reduction | Ambiguous requirements, external facts |
+| Strategy | Reasoning Lens | Best For |
+| --- | --- | --- |
+| Analytical | Systematic decomposition, formal analysis | Structure, correctness |
+| Creative | Lateral thinking, novel approaches | Innovation, alternatives |
+| Critical | Edge cases, failure modes, security | Robustness, safety |
+| Pragmatic | Simplest working solution, MVP focus | Quick wins, prototypes |
+| Holistic | System-wide impact, architecture fit | Integration, scale |
+| Research | Evidence gathering, source validation, unknown reduction | Ambiguous requirements, external facts |
 
 ---
 
@@ -281,7 +281,7 @@ Respect user-selected custom strategies up to the maximum of three PER ROUND. If
 
 ## 7. CROSS-REFERENCES
 
-- Agent body: `.skilled/agents/ai-council.md` §3 and §16.
+- Agent body: `.skilled/agents/ai-council.md` §3; persistence rules in `command-wiring.md`.
 - Decision context: local doctor command ADRs ADR-001.
 - Scoring rubric: `../scoring/scoring-rubric.md`.
 - Depth dispatch: `../convergence/depth-dispatch.md`.

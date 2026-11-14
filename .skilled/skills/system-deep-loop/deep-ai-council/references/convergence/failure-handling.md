@@ -9,7 +9,7 @@ trigger_phrases:
   - "insufficient vantage diversity"
 importance_tier: "normal"
 contextType: "planning"
-version: 1.7.1.0
+version: 1.7.2.0
 ---
 
 # AI Council Failure Handling
@@ -277,11 +277,20 @@ ai-council/failed/round-NNN-<timestamp>/
 
 Then append `artifact_superseded` rows for artifacts from that round.
 
+Rollback is scoped to one `round-NNN` unit. The caller does it, not the agent: it records the `rollback` event through the append gateway, moves the round's artifacts and records an `artifact_superseded` event for every artifact the round wrote. The agent has no Bash and cannot move files.
+
+### Operator Recovery
+
+1. Inspect `ai-council/failed/round-NNN-<timestamp>/` for forensic context.
+2. Treat the failed round as non-canonical. Do not move files back into `seats/`, `deliberations/` or `critiques/` by hand.
+3. Start a fresh council dispatch for the next round, or ask the orchestrator to reframe the task. In-place retry is out of scope.
+4. Leave the rollback and supersede events in state history. v1 readers ignore unknown events; v1.2 readers use them for audit and completeness summaries.
+
 ---
 
 ## 7. CROSS-REFERENCES
 
-- Agent body: `.skilled/agents/ai-council.md` §10 FAILURE HANDLING and §17 ROLLBACK FOR OPERATORS.
+- Agent body: `.skilled/agents/ai-council.md` §10 FAILURE HANDLING, and §7 RULES for the pointer to this reference.
 - State format: `../structure/state-format.md`.
 - Scoring rubric: `../scoring/scoring-rubric.md`.
 - Convergence signals: `convergence-signals.md`.

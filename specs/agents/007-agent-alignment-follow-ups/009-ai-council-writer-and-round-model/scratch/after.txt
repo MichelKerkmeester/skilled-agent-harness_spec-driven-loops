@@ -1,0 +1,86 @@
+# REQ-001
+$ rg -c --include-zero 'persist-artifacts' .skilled/agents/agent-registry.json
+0
+exit=1
+$ rg -c --include-zero '^  (write|edit): deny' .skilled/agents/ai-council.md
+0
+exit=1
+# REQ-002
+$ rg -c --include-zero 'exit 0 receipt' .skilled/agents/ai-council.md
+0
+exit=1
+# REQ-003
+$ rg -c --include-zero 'refresh' .skilled/agents/ai-council.md
+0
+exit=1
+$ rg -n 'gateway refreshes|refreshed by the append gateway|refreshes the read-only' .skilled/skills/system-deep-loop/deep-ai-council/references
+exit=1
+# REQ-004
+$ rg -c --include-zero 'repeat from step 3' .skilled/agents/ai-council.md
+0
+exit=1
+$ rg -n 'one round per invocation' .skilled/agents/ai-council.md | cut -c1-80
+398:This agent runs one round per invocation, then returns. The caller owns the 
+exit=0
+# REQ-005
+$ node .skilled/bin/sync-agent-roster.cjs --check
+agent-roster: OK
+exit=0
+$ node .skilled/bin/check-agent-mirror-sync.cjs | tail -1
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+exit=0
+$ node .skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs --command deep/ai-council | diff -q - .skilled/commands/deep/assets/compiled/deep-ai-council.contract.markdown
+exit=0
+council suites: see after-tests.txt
+# REQ-006
+$ rg -n 'max_rounds. defaults to 3' .skilled/agents/ai-council.md .skilled/skills/system-deep-loop/deep-ai-council/references | cut -c1-110
+.skilled/agents/ai-council.md:398:This agent runs one round per invocation, then returns. The caller owns the 
+.skilled/skills/system-deep-loop/deep-ai-council/references/structure/folder-layout.md:57:`ai-council-config.j
+.skilled/skills/system-deep-loop/deep-ai-council/references/structure/state-format.md:227:`@ai-council` runs o
+exit=0
+# REQ-007
+$ rg -c --include-zero 'Otherwise, operate at Depth 0' .skilled/agents/ai-council.md
+0
+exit=1
+$ rg -c --include-zero 'fallback when no nesting|operate as Depth 0' .skilled/skills/system-deep-loop/deep-ai-council/references/convergence/depth-dispatch.md
+0
+exit=1
+# REQ-008
+$ rg -c --include-zero 'External AI vantage|temperature <TEMP>' .skilled/agents/ai-council.md
+0
+exit=1
+$ rg -c --include-zero '^\| Strategy \| Temp' .skilled/agents/ai-council.md .skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md
+.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/seat-diversity-patterns.md:0
+.skilled/agents/ai-council.md:0
+exit=1
+$ rg -c 'AI Vantage Target' .skilled/agents/ai-council.md
+3
+exit=0
+# REQ-009
+$ rg -c --include-zero 'within 15 points|>15 point lead|<10 point spread|within 10 points|25\+ points' .skilled/agents/ai-council.md .skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md
+.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md:0
+.skilled/agents/ai-council.md:0
+exit=1
+$ rg -c 'Lead of 15 to 24' .skilled/agents/ai-council.md .skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md
+.skilled/skills/system-deep-loop/deep-ai-council/references/scoring/scoring-rubric.md:1
+.skilled/agents/ai-council.md:1
+exit=0
+# REQ-010
+$ wc -l < .skilled/agents/ai-council.md
+     595
+exit=0
+$ rg -n '§1[2-9]' .skilled/agents/ai-council.md .claude/agents/ai-council.md .skilled/skills/system-deep-loop/deep-ai-council -g '!**/changelog/**'
+exit=1
+$ rg -c --include-zero 'Twelve files' .skilled/agents/agent-registry.json
+0
+exit=1
+# CHK-031
+$ rg -n '^  (write|edit|bash|patch):' .skilled/agents/ai-council.md
+8:  write: allow
+9:  edit: allow
+10:  bash: deny
+18:  patch: deny
+exit=0
+# CHK-010
+$ node -e "JSON.parse(require('fs').readFileSync('.skilled/agents/agent-registry.json','utf8'))"
+exit=0

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "fce7162333708e9b78fe8804ff9b693fc03a28f71bd2e0481f972b4a0ea086fb",
+  "corpusHash": "c3504de3d49707f4e6d0dbd071ac209606cc3dbec095056fc1db5f9d1f1474c2",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27332,
+  "includedPathCount": 27333,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7550,6 +7550,7 @@
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.0.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.1.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.10.0.md",
+    ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.11.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.2.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.3.0.md",
     ".skilled/skills/system-deep-loop/deep-ai-council/changelog/v1.8.4.0.md",
@@ -27364,7 +27365,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "c28e60e545d2b50b850df9397204e50ed1a2e176f746b2cc7678a5ada0bb4f1f",
+  "manifestHash": "f775c470e3111403fb4f7b704a902c38f8edc0eabc6577e48f6cf94207a63579",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
