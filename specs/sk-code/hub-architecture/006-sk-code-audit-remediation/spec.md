@@ -141,7 +141,7 @@ Every audit finding is either fixed with a command that proves it or closed with
 | 002-frontend-reach | 003-frontend-content | Every `frontend` probe and the `review` probe name the frontend surface, and no `negative` probe does | The probe replay in `002-frontend-reach/plan.md` section 5 |
 | 003-frontend-content | 004-vocabulary-single-source | The frontend playbook holds one scenario per intent and its validator exits 0 | `validate-playbook-package.cjs --package` on the frontend playbook |
 | 004-vocabulary-single-source | 005-hub-router-alignment | A one-keyword mutation in any vocabulary copy fails the router-sync guard | `node --test` on `verify-router-sync.test.cjs` |
-| 005-hub-router-alignment | 006-skilled-packet-fixes | The setup battery prints `STATUS=PASS failed=0` | `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` |
+| 005-hub-router-alignment | 006-skilled-packet-fixes | The setup battery prints `STATUS=OK legs=9` and exits 0 | `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` |
 | 006-skilled-packet-fixes | 007-review-packet-fixes | No `SK` ledger row has `-` as its fix evidence | `grep -c '^| SK-.*| - |$' findings-ledger.md` prints 0 |
 | 007-review-packet-fixes | 008-quality-packet-fixes | No `RV` ledger row has `-` as its fix evidence | `grep -c '^| RV-.*| - |$' findings-ledger.md` prints 0 |
 <!-- /ANCHOR:phase-map -->

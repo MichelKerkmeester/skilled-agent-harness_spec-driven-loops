@@ -53,7 +53,7 @@ Frozen choices. Changing one is an amendment.
 
 - [ ] The path check in `plan.md` section 5 prints `missing 0` for every backtick path in `ROUTER.md` sections 1 to 7, brace forms expanded.
 - [ ] `rg -c 'workflow-implement.md' .skilled/skills/sk-code/ROUTER.md` prints 2 or more, and `bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh` exits 0.
-- [ ] `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` ends with `STATUS=PASS failed=0`.
+- [ ] `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` ends with `STATUS=OK legs=9` and exits 0.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment --strict --quiet` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
@@ -78,6 +78,7 @@ and findings belong here.
 | Deviation: the battery pass line is STATUS=OK legs=9 | Recorded | ADR-001. The criteria quote STATUS=PASS failed=0, a line the battery has never printed |
 | Deviation: the 22 Pi entry files are unchanged | Recorded | ADR-003. The mirror-parity gate requires one re-export line per file, so the guard skips the header rule for such a file. Operator answer of 2026-11-14 |
 | Deviation: one blank line removed from skilled-loop-shell.sh, no set added | Recorded | ADR-002. Operator answer of 2026-11-14 |
+| Operator answer 2026-11-14: the criterion reads the battery's pass line | Done | The parent goal's third criterion was amended to STATUS=OK legs=9 with exit 0, and this goal's second criterion matches it |
 
 ### Deviations and findings
 

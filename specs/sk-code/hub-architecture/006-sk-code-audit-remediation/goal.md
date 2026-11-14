@@ -85,7 +85,7 @@ string, not these files.
 
 - [ ] `grep -c '| - |$' specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md` prints 0, so every finding row carries fix evidence or `no change`.
 - [ ] For every line tagged `frontend` in `specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/scratch/probes.txt`, `node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "<prompt>"` prints a decision that contains `"workflowMode":"sk-code-frontend"`, and for every line tagged `negative` it does not.
-- [ ] `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` ends with `STATUS=PASS failed=0` and exits 0.
+- [ ] `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` ends with `STATUS=OK legs=9` and exits 0.
 - [ ] `grep -L 'Closeable:\*\* Yes' specs/sk-code/hub-architecture/006-sk-code-audit-remediation/0*/acceptance-criteria.md` prints nothing.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/hub-architecture/006-sk-code-audit-remediation --recursive --strict --quiet` prints `RESULT: PASSED` on every line.
 <!-- /ANCHOR:completion -->
@@ -124,6 +124,7 @@ and findings belong here.
 | Phase 007 review packet fixes | Done | Code 1dca9e88ad. No RV row has a dash as its fix evidence. Packet version 1.9.17.0. One finding outside the ledger is in the phase 007 goal log for the operator |
 | Phase 008 quality packet fixes | Done | Code 3c7926322b. No QL row has a dash as its fix evidence. Packet version 1.13.20.0. Two findings outside the ledger are in the phase 008 goal log for the operator |
 | Session of 2026-11-14 closed phases 007 and 008 | Done | Code 1dca9e88ad and 3c7926322b. Criteria 1, 2, 4 and 5 pass as written. Criterion 3 prints STATUS=OK legs=9 with exit 0, and its text waits on the operator |
+| Operator answer 2026-11-14: amend criterion 3 to the line the battery prints | Done | The criterion now reads STATUS=OK legs=9 with exit 0. The phase 005 goal and the parent phase map row match it. Phase 005 ADR-001 holds the reasoning |
 
 ### Deviations and findings
 

@@ -207,7 +207,7 @@
     ],
     "causal_summary": "A reader who follows hub `ROUTER.md` section 4 is sent to files that do not exist, because the prose still names the pre-split language files",
     "created_at": "2026-11-14T12:01:53Z",
-    "last_save_at": "2026-11-14T15:58:27.623Z",
+    "last_save_at": "2026-11-14T16:47:47.959Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,7 +219,7 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:65967db1a45e446186ea9d4e405eff628351a043a345b9fb79144ee27a70d3b0",
+    "source_fingerprint": "sha256:c544d15810b5dcb3b2da7aa21bac77854d639a495e740ab1b263a1b8fd5116e9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "751588b84e4eec5f363bf16d989d9342b43402e673e888fba168a26b93f0f966",
