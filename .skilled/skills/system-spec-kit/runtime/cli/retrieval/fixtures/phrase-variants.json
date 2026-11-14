@@ -1,5 +1,5 @@
 {
-  "manifestHash": "84161c0e911a3a373c653f136f1203e3470bc5d37f457be21fa4bac8d0df2d5f",
+  "manifestHash": "0336e9098cdb17733da8e2522c39752e563550a796b3e78f9e22f79df48acd69",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1290,6 +1290,9 @@
     ],
     "005 aggregator tasks": [
       "005 aggregator tasks"
+    ],
+    "005 alignment report fixes operator decisions": [
+      "005-alignment-report-fixes operator decisions"
     ],
     "005 claudest adr": [
       "005-claudest adr"
@@ -11480,6 +11483,18 @@
     ],
     "alignment report digest boundary": [
       "alignment report digest boundary"
+    ],
+    "alignment report fixes": [
+      "alignment report fixes"
+    ],
+    "alignment report fixes implementation summary": [
+      "alignment report fixes implementation summary"
+    ],
+    "alignment report fixes plan": [
+      "alignment report fixes plan"
+    ],
+    "alignment report fixes tasks": [
+      "alignment report fixes tasks"
     ],
     "alignment resume continuity projection": [
       "alignment resume continuity projection"
@@ -82748,6 +82763,9 @@
     "phase 5 advisor negation and routing": [
       "phase 5 advisor negation and routing"
     ],
+    "phase 5 alignment report fixes": [
+      "phase 5 alignment report fixes"
+    ],
     "phase 5 authoring card routing": [
       "phase 5 authoring card routing"
     ],
@@ -92091,6 +92109,9 @@
     ],
     "registry split closure gate": [
       "registry split closure gate"
+    ],
+    "registry step scope": [
+      "registry step scope"
     ],
     "registry validate daemon startup": [
       "registry validate daemon startup"
@@ -108041,6 +108062,9 @@
     "sk create agent 1 0 8 0": [
       "sk-create-agent 1.0.8.0"
     ],
+    "sk create agent 1 0 9 0": [
+      "sk-create-agent 1.0.9.0"
+    ],
     "sk create agent implementation summary": [
       "sk create agent implementation summary"
     ],
@@ -108091,6 +108115,9 @@
     ],
     "sk create agent v1 0 8 0": [
       "sk-create-agent v1.0.8.0"
+    ],
+    "sk create agent v1 0 9 0": [
+      "sk-create-agent v1.0.9.0"
     ],
     "sk create benchmark": [
       "sk create benchmark"

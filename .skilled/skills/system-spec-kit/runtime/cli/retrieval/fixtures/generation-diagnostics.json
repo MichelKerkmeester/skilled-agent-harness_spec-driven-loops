@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 49,
-    "missing-frontmatter": 6789,
-    "ok": 18723,
+    "missing-frontmatter": 6790,
+    "ok": 18729,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27142,
+  "documentsScanned": 27149,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "84161c0e911a3a373c653f136f1203e3470bc5d37f457be21fa4bac8d0df2d5f",
+  "manifestHash": "0336e9098cdb17733da8e2522c39752e563550a796b3e78f9e22f79df48acd69",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 43581,
+      "ok": 43590,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -28874,6 +28874,12 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
+      "path": ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/body-validation/registry-record-before-roster-check.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
       "path": ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/body-validation/required-agent-sections.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -53233,6 +53239,10 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/scratch",
       "reason": "excluded directory"
     },
     {
