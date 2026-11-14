@@ -9,9 +9,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage"
-    last_updated_at: "2026-11-14T14:45:00Z"
-    last_updated_by: "documentation-agent"
-    recent_action: "Recorded the document build, its red and green runs and the twelve citation pins"
+    last_updated_at: "2026-11-14T14:00:44Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Closed the phase against fix commit 72bc2bf988"
     next_safe_action: "The operator decides the merge"
     blockers: []
     key_files: [".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md", ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md", ".skilled/commands/speckit/handoff.md"]
@@ -84,6 +84,8 @@ Documents only, so the check is a document check. `scratch/doc-checks.sh` assert
 The baseline ran before the first edit: the four sk-doc checks and the runtime mirror check each exited 0 (`scratch/baseline.txt`). The same five commands ran after the edits and each exited 0 (`scratch/verification.txt`), with the same two playbook warnings and the same fixture `ALL PASS` line, so this phase introduced no new warning. The mirror check printed `PASS: 256 mirrors across 10 trees are in sync.`.
 
 The citation edits changed document bytes, so `validate.sh --strict` first failed on a stale graph fingerprint for children 004 and 013. `repair-derived --apply` re-derived their graph metadata, and the rerun of both validations printed `Errors: 0  Warnings: 0` and `RESULT: PASSED`. The skill graph at `.skilled/skills/system-spec-kit/graph-metadata.json` did not change, and no trigger phrase was added.
+
+The fix commit `72bc2bf988` (`Commit-Id` 0014057) changes 29 files: 16 Markdown, the derived `graph-metadata.json` of children 004, 013 and 019, and the 11 new files of this child, ten of them scratch evidence. No code file changed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -134,7 +136,7 @@ The citation edits changed document bytes, so `validate.sh --strict` first faile
 ## Known Limitations
 
 1. **No code suite runs here.** This child changes no code and adds no test. `scratch/doc-checks.sh` and the five sk-doc and mirror commands are the evidence, and they read the documents rather than the runtime.
-2. **Two checklist items wait for the fix commit.** T015 and CHK-010 read the commit stat, and CHK-FIX-007 needs the commit id in `goal.md`; no commit exists until the orchestrator makes one, so the phase's own Verification Summary reports 11/12 P0 and 10/11 P1. T015's "Markdown files only" wording also needs the derived `graph-metadata.json` files accepted, because editing a citation changes the closed child's source fingerprint and the write scope names those repairs.
+2. **The fix commit holds derived JSON and new scratch files.** T015 and CHK-010 read the commit stat, and CHK-FIX-007 names its id. The commit carries three derived `graph-metadata.json` files and eleven new files, because editing a citation changes the closed child's source fingerprint and the scratch evidence is committed. No code file is in it.
 3. **The catalog paragraphs summarize.** They name each behavior and its log line, and the relaunch README keeps the longer path. A reader who needs the exact branch reads the code or the README.
 4. **The two closed children moved their derived metadata.** Editing their Markdown changed the source fingerprint, so `repair-derived --apply` rewrote each `graph-metadata.json`. No prose of either child changed beyond the twelve citations.
 5. **The Pi and OpenCode and command-runtimes playbooks still do not name the change notice.** Parent decision D3 leaves them out because the shared wrapper suite they already run covers it; the Claude playbook is where the notice is documented.

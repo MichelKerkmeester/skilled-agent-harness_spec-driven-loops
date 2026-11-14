@@ -24,7 +24,7 @@ contextType: "general"
 | **Priority** | P2 |
 | **Status** | Complete |
 | **Created** | 2026-11-14 |
-| **Branch** | Not chosen yet. The operator picks a worktree or the current branch before the build |
+| **Branch** | `worktrees/380-relaunch-review-fixes`. Children 015 to 019 were built there |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 19 of 19 |
 | **Predecessor** | 018-sk-git-rebase-sentence |

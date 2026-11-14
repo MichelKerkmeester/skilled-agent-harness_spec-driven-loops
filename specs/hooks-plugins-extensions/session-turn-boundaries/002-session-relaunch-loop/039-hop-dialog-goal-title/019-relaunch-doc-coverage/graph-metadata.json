@@ -37,7 +37,7 @@
       "scenario"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The HS-8 block of the Claude playbook copies a helper with `cp` (`session-relaunch-claude.md:929`), and the prose below it says the check \"links\" it (`:934`)",
     "created_at": "2026-11-14T11:42:59Z",
-    "last_save_at": "2026-11-14T13:54:45.304Z",
+    "last_save_at": "2026-11-14T14:03:57.364Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,13 +219,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:dec734bb9a80a0f71e2dc738075304e106b73426537b406a1a5536844296b293",
+    "source_fingerprint": "sha256:320c4aac96f97535fa83e17135f514624228953ad5850e12e381e5aedce1ccb9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e070efaa32e23c0559c9fd05d0894ec58d297626a46ddcb766e44f4913cf57c1",
+      "spec.md": "a40104033f023dd943bd40eb5e9f1ece7cd83850dde8e4c217f9fa9b96bd149a",
       "plan.md": "29b7eb9f226404f51070ecb53cbc8533896bdc1e9bde3c6caf576069da2b65cd",
-      "tasks.md": "d07c48f6d03be1b34f8c73c9b5dbd0c5f786f04966a4007c667f835b9975ce6f",
-      "implementation-summary.md": "b3da5a175c6c772c7aca70a962653bb149a21ea916bbd2e796f4cc21ac921cdc"
+      "tasks.md": "b05caf154cee5dc2228cb80aec1aa1ba7bbfb75f0c353e92e3ebd66d8cda3526",
+      "implementation-summary.md": "8edccb1aa1053c460c8889d5948ff78278859edf6d0460f61af2c4a974a2a692"
     },
     "last_active_at": null
   }

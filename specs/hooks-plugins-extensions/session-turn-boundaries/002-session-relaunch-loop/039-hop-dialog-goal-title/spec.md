@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title"
-    last_updated_at: "2026-11-14T12:00:00Z"
+    last_updated_at: "2026-11-14T14:00:44Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Planned children 015 to 019 from the third review round of 2026-11-14"
-    next_safe_action: "Operator picks the workspace, then build children 015 to 019 in order"
+    recent_action: "Closed all nineteen children, six criteria pass"
+    next_safe_action: "The operator decides the merge"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "8d16c027-15a3-4944-a1d2-eef7cc2cb0b8"
       parent_session_id: null
-    completion_pct: 74
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,9 +45,9 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-13 |
-| **Branch** | `worktrees/366-hop-after-question-dialog` for children 001 to 003, merged on 2026-11-13. `worktrees/373-relaunch-gap-fixes` for children 004 to 014. Children 015 to 019 have no workspace yet, and the operator picks one before the build |
+| **Branch** | `worktrees/366-hop-after-question-dialog` for children 001 to 003, merged on 2026-11-13. `worktrees/373-relaunch-gap-fixes` for children 004 to 014. `worktrees/380-relaunch-review-fixes` for children 015 to 019 |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop |
 | **Predecessor** | 038-goal-and-workflow-resume |
@@ -105,7 +105,7 @@ A Claude Code hand-over cannot be parked behind a question dialog. Its receiver 
 - The ended-goal mark is read from the note the session claimed last, and a missing or unreadable session log keeps it.
 - A Claude Stop with no transcript path prints one line saying the next prompt withdraws the hop because the transcript was missing.
 - The sk-git rebase sentence is rewritten from a throwaway-repository probe, with sk-git at `1.11.12.0` and its changelog entry.
-- The Claude playbook, the feature catalog and the handoff command document describe the shipped behavior, eight moved citations in children 004 and 013 name their commit, and the trigger phrase question for an ended goal has a recorded answer.
+- The Claude playbook, the feature catalog and the handoff command document describe the shipped behavior, twelve moved citations in children 004 and 013 name their commit, and the trigger phrase question for an ended goal has a recorded answer.
 
 ### Out of Scope
 - The Pi, OpenCode, Codex, Cursor and Devin adapters. Children 001 to 003 change Claude Code only. Children from 004 may also change the shared wrapper, the shared relaunch core, tests and documents, and none edits another runtime's adapter.
@@ -184,12 +184,12 @@ Files touched across all phases, for the audit trail. Each child's `plan.md` hol
 | 11 | 011-goal-fallback-bound/ | The packet goal fallback considers the note's folder and its parent and no packet further up | Complete |
 | 12 | 012-wrapper-notice-log/ | The wrapper appends one `wrapper-changed` line to `relaunch.log` when it prints the change note, and prints and logs nothing when its file cannot be read at the hop | Complete |
 | 13 | 013-conformance-stamp-pin/ | The shared conformance case for a Stop that cannot arm asserts a deferral stamp for Claude and none for a runtime that does not stamp | Complete |
-| 14 | 014-review-wording-fixes/ | Six wording fixes: the README sentence on a missing goal packet, the comment in `readRelaunchFile`, the Stop comment with one test note, `goal_ended` in the handoff command document and one more limitation in the summary of child 010 | Pending |
+| 14 | 014-review-wording-fixes/ | Six wording fixes: the README sentence on a missing goal packet, the comment in `readRelaunchFile`, the Stop comment with one test note, `goal_ended` in the handoff command document and one more limitation in the summary of child 010 | Complete |
 | 15 | 015-wrapper-start-checksum/ | The wrapper reports a change of its own file only when it read a checksum at loop start and at the hop, tested with a `cksum` stub that fails on its first call | Complete |
 | 16 | 016-ended-goal-mark-match/ | The ended-goal mark is read from the note a session claimed last, and a missing or unreadable session log keeps it | Complete |
 | 17 | 017-missing-transcript-notice/ | A Claude Stop with no transcript path prints one line saying the next prompt withdraws the hop because the transcript was missing | Complete |
 | 18 | 018-sk-git-rebase-sentence/ | The sk-git rebase sentence is rewritten from a throwaway-repository probe, and sk-git moves to `1.11.12.0` with a changelog entry | Complete |
-| 19 | 019-relaunch-doc-coverage/ | The Claude playbook, the feature catalog and the handoff command document describe the shipped behavior, eight moved citations name their commit, and the trigger phrase question is answered | Planned |
+| 19 | 019-relaunch-doc-coverage/ | The Claude playbook, the feature catalog and the handoff command document describe the shipped behavior, twelve moved citations name their commit, and the trigger phrase question is answered | Complete |
 
 ### Phase Transition Rules
 

@@ -63,7 +63,7 @@ contextType: "general"
 - [x] T012 Run sk-doc's playbook and catalog checks (`.skilled/skills/system-spec-kit`). Verify: `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/system-spec-kit/manual-testing-playbook`, `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --strict`, `python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py` and `python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/tests/test_validator_fixtures.py` each exit 0, or fail only as the baseline in `PHASE/scratch/baseline.txt` did. Result: all four exited 0 in `scratch/verification.txt`, and the fixture suite printed `ALL PASS`.
 - [x] T013 Run the runtime mirror check after the handoff edit (`.skilled/commands`). Verify: `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` prints `PASS` and exits 0. Result: `[runtime-mirror-sync] PASS: 256 mirrors across 10 trees are in sync.` with exit 0.
 - [x] T014 Validate children 004 and 013 after the citation edits (`PKT`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh PKT/004-wrapper-change-notice --strict` and the same for `PKT/013-conformance-stamp-pin` each print `RESULT: PASSED`. Result: both printed `Errors: 0  Warnings: 0` and `RESULT: PASSED`, after `repair-derived --apply` re-derived their graph metadata.
-- [ ] T015 Check the commit touches documents only (`FIX`). Verify: `git show --stat FIX` lists Markdown files only and `git show FIX | rg -c '^new file'` prints nothing with exit 1. Result: not run in this build; no fix commit exists yet, and the orchestrator runs it after committing.
+- [x] T015 Check the commit touches documents only (`FIX`). Verify: `git show --name-status FIX` lists Markdown, the three derived `graph-metadata.json` files and the scratch files, and no code file. Result: `FIX` is `72bc2bf988` (`Commit-Id` 0014057). It changes 29 files: 16 Markdown, the derived `graph-metadata.json` of children 004, 013 and 019, and 10 scratch files of this child. No code file changed.
 - [x] T016 Validate the phase folder (`PHASE`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage --strict` prints `RESULT: PASSED`. Result: `Errors: 0  Warnings: 0`, `RESULT: PASSED`, exit 0, `scratch/validate.txt:53`, `:55`.
 <!-- /ANCHOR:phase-3 -->
 
@@ -72,7 +72,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`. Pending: T015 waits for the fix commit; T001 to T014 and T016 are done.
+- [x] All tasks marked `[x]`. Result: T001 to T016 are done after fix commit `72bc2bf988`.
 - [x] No `[B]` blocked tasks remaining. Result: none is marked `[B]`.
 - [x] Manual verification passed: every new sentence was read against the line or test it names (T011). Result: `scratch/citations.txt`.
 <!-- /ANCHOR:completion -->
@@ -120,7 +120,7 @@ A blocked task is marked `[B]` with its reason in `goal.md`. A `[B]` on T001 blo
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] No code file changes: `git show --stat FIX` lists Markdown files only (T015). Pending: no fix commit exists yet.
+- [x] CHK-010 [P0] No code file changes: `git show --name-status FIX` lists Markdown, the derived `graph-metadata.json` files and the scratch files (T015). Result: `72bc2bf988` changes 29 files, none of them code.
 - [x] CHK-011 [P0] Each new sentence names a source line or a test (T011). Result: `scratch/citations.txt`.
 - [x] CHK-012 [P1] No sentence in the playbook or the catalog repeats another in the same document. Result: the new sentences state different behaviors in different sections, and a read of the diff found no repeat.
 <!-- /ANCHOR:code-quality -->
@@ -146,7 +146,7 @@ A blocked task is marked `[B]` with its reason in `goal.md`. A `[B]` on T001 blo
 - [x] CHK-FIX-004 [P0] N/A: no security, path, parser or redaction fix. Result: N/A.
 - [x] CHK-FIX-005 [P1] Matrix axes listed in plan.md: behavior crossed with document. Result: plan.md §FIX ADDENDUM lists them.
 - [x] CHK-FIX-006 [P1] Each citation edit keeps its line number and adds its commit. Result: ten 183 lines and two 1469 lines keep their numbers and name `c69f278cfc` and `89e246760e`.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the fix commit, named in `goal.md` section 4. Pending: no fix commit exists yet.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the fix commit, named in `goal.md` section 4. Result: `goal.md` section 4 names `72bc2bf988` (`Commit-Id` 0014057).
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -185,11 +185,11 @@ A blocked task is marked `[B]` with its reason in `goal.md`. A `[B]` on T001 blo
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 11/12 |
-| P1 Items | 11 | 10/11 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 11 | 11/11 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-11-14. The two open items, CHK-010 and CHK-FIX-007, read the fix commit the orchestrator makes after this build.
+**Verification Date**: 2026-11-14. Every item is verified, and CHK-010 and CHK-FIX-007 read fix commit `72bc2bf988`.
 <!-- /ANCHOR:summary -->
 
 ---

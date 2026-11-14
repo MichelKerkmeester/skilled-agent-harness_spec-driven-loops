@@ -8,9 +8,9 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage"
-    last_updated_at: "2026-11-14T14:45:00Z"
-    last_updated_by: "documentation-agent"
-    recent_action: "Recorded the document build, its red and green runs and the twelve citation pins"
+    last_updated_at: "2026-11-14T14:00:44Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Recorded fix commit 72bc2bf988 and closed the checklist items that waited on it"
     next_safe_action: "The operator decides the merge"
     blockers: []
     key_files: [".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md", ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md", ".skilled/commands/speckit/handoff.md"]
@@ -87,6 +87,7 @@ and findings belong here.
 | Build | Done | 2026-11-14: the two wrong lines, the playbook evidence, the catalog sections and the twelve pins landed. `scratch/doc-checks.sh` printed `checks: 14, failed: 14` with exit 1 against the `HEAD` blobs (`scratch/red.txt`) and `checks: 14, failed: 0` with exit 0 on the tree (`scratch/green.txt`). The four sk-doc checks, the mirror `PASS` line, the strict validation of children 004 and 013 and this phase's own strict validation all exited 0 (`scratch/verification.txt`, `scratch/validate.txt`) |
 | Trigger phrase question | Done | The decision stands: no phrase. The advisor returned no recommendation for the ended-goal prompt and `graph-metadata.json` is unchanged |
 | Same-class producers | Done | `rg -l 'goal_packet'` names five documents: the relaunch catalog entry, the Claude playbook, the Pi and OpenCode playbook, the command-runtimes playbook and the handoff command. The catalog and the Claude playbook gain `goal_ended` here. The Pi and OpenCode and command-runtimes playbooks stay unchanged because the mark and the Stop notice are Claude only, per parent decision D3, and the handoff command already names `goal_ended` and now says the switch turns both fields off |
+| Fix commit | Done | 2026-11-14: `72bc2bf988` (`Commit-Id` 0014057) changes 29 files: 16 Markdown, the derived `graph-metadata.json` of children 004, 013 and 019, and 11 new files of this child, 10 of them scratch evidence. No code file changed. The phase status, T015, CHK-010 and CHK-FIX-007 were closed against it |
 | Merge and push | Pending | Parent decision D4: nothing is merged or pushed without the operator |
 
 ### Deviations and findings

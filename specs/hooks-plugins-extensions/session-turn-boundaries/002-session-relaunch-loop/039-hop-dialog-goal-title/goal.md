@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title"
-    last_updated_at: "2026-11-14T12:00:00Z"
+    last_updated_at: "2026-11-14T14:00:44Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Bound children 015 to 019 from the third review round of 2026-11-14"
-    next_safe_action: "Operator picks the workspace, then build children 015 to 019 in order"
+    recent_action: "All nineteen children are built and the six completion criteria pass"
+    next_safe_action: "The operator decides the merge"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "8d16c027-15a3-4944-a1d2-eef7cc2cb0b8"
       parent_session_id: null
-    completion_pct: 74
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -93,12 +93,12 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title --recursive --strict` prints `RESULT: PASSED` twenty times and never `RESULT: FAILED`
-- [ ] `rg -c '\| Unmet \|' specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/*/acceptance-criteria.md` prints no line
-- [ ] `env -u AI_SESSION_CHILD node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs` exits 0
-- [ ] `env -u AI_SESSION_CHILD node --test .skilled/hooks/goal/**/*.test.cjs .skilled/hooks/goal/**/*.test.mjs` exits 0
-- [ ] `npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts` exits 0
-- [ ] `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check` and `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` both print `PASS`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title --recursive --strict` prints `RESULT: PASSED` twenty times and never `RESULT: FAILED`
+- [x] `rg -c '\| Unmet \|' specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/*/acceptance-criteria.md` prints no line
+- [x] `env -u AI_SESSION_CHILD node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs` exits 0
+- [x] `env -u AI_SESSION_CHILD node --test .skilled/hooks/goal/**/*.test.cjs .skilled/hooks/goal/**/*.test.mjs` exits 0
+- [x] `npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts` exits 0
+- [x] `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-hook-registrations.cjs --check` and `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` both print `PASS`
 <!-- /ANCHOR:completion -->
 
 ---
@@ -140,6 +140,8 @@ and findings belong here.
 | Third review round, other findings | Done | Item 13, the `run-lanes.cjs` findings parser, goes to local-skilled-alignment and item 14, the deep-review reducer, to system-deep-loop. The test count in `.skilled/hooks/README.md` predates this packet. None dropped, every finding held. Child 013 holds ten moved citations in six files and child 004 holds two, twelve in all, and all twelve were true at the commit that wrote them |
 | Third review round, goal budget | Done | Five binding rows and the criterion count took the slice from 3,994 to 4,229. Cuts in section 3 order: the objective stops restating child goals (step 4, 218 characters), "chose to close" became "chose" (step 4), D2 drops a repeated "the shared" (step 5). Now 3,991 at packet_budget=ok, D1 to D4 keep their meaning. Criteria unticked, completion_pct 74, slice resent |
 | Plan verifier and D1 readings | Done | 2026-11-14: a Fable 5.2 high verifier read the plan: 015, 017, 018 READY, 016 and 019 FIX-FIRST. Fixed: 016 T008 count, 019 citations now ten in 013 and two in 004. Operator: "Accept both (Recommended)" for 016 holding two code fixes and 018, 019 as extra document children |
+| Completion criteria, all nineteen children | Done | 2026-11-14, one after another from the final state. Criterion 1: RESULT: PASSED twenty times, no FAILED, exit 0. Criterion 2: no line, exit 1. Criterion 3: tests 1553, pass 1553, fail 0, exit 0, from 1550. Criterion 4: tests 200, pass 200, fail 0, exit 0. Criterion 5: Tests 62 passed (62), exit 0. Criterion 6: both checks PASS, exit 0 |
+| Commits, children 015 to 019 | Done | 2026-11-14 on branch worktrees/380-relaunch-review-fixes: plan 2830ac92bc (0014021), 015 f99d3c442d (0014025), 016 c37531f72b (0014029), 017 78f9d39501 (0014033), 018 21ceaa9772 (0014041), records 7759159a3f (0014050), 019 72bc2bf988 (0014057) |
 
 ### Deviations and findings
 
