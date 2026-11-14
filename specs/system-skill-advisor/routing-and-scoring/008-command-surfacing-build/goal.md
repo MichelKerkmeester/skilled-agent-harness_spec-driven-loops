@@ -290,6 +290,9 @@ and findings belong here.
 | Review pass four, confirming round | Closed, 0 open P0 and P1 | Rounds 4b and 4c, two lineages each, 10 iterations. Last ratios 4b 0 and 1, 4c 0 and 0.6667 (README findings only, on cap). Adjudicated 2 P1, both reproduced and fixed (T028 and T031, db14c22bb0), 7 P2: 5 fixed, 1 rejected as unreachable, 1 spec wording fixed. No round past 4c |
 | Correction to the confirming round row and the pass-four merge rows | Recorded | Rounds 4b and 4c ran 11 iterations (3, 3, 3 and 2), not 10. The merged activeP1 reads 12 after the rerun merge over 22 lineages, not 10: 5 raw pass-four P1 and 7 from passes one to three. Pass four closes with 0 open P0 and P1 (review/review-report.md, decision P052) |
 | Phase 028 direct-call off switch | Complete | 88d8bebcd7: the direct call abstains on 5 of 5 off lines, warm and fresh, both orders. Phase 026 T032 may rerun |
+| Fresh rows frozen | Recorded | sha256 8eacd881511b2081e3d35918d071643aa34747e27df3b693ad96cda5bd84b1bb at c4f1b1452a, 36 rows |
+| Arm target | Fixed before the first session | Met when the exact one-sided sign test over gained and lost rows, pooled over six runtimes, prints p below 0.05, the on arm starts no command on any decline row, and the sealed reach floor holds (at least 1 of 44 holdout rows fixture, 4 of 44 real embedding). A row gains when on followed on more of its two runs than off. A row whose arms scored different run counts is unpaired and in no count.... |
+| Arm start rule | Fixed before the first session | A run starts a command by a skill call naming it, a COMMAND started line, a host expansion, or a read of its document plus a write in the checkout. A read alone is a lookup |
 
 ### Deviations and findings
 

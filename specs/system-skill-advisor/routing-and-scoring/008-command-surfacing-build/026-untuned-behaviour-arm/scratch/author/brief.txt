@@ -1,0 +1,113 @@
+ROLE
+You write 36 test requests, the kind a developer types to an AI coding assistant in this repository. Each request is one JSON line in one new file.
+
+OUTPUT FILE
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl
+Create it once. Write each row once, as one JSON line. Do not rewrite, reorder or replace a row after writing it.
+
+RULES
+- Open no other file. Everything you need is in this brief.
+- Run no command, script or tool on a draft row, and never run the skill advisor.
+- Write each request in plain words, as a user would ask. Never name the slash command in a fit row.
+- Each request is new text. Do not copy wording from the listing below beyond the subject itself.
+
+THE THREE CLASSES AND THEIR COUNTS (36 rows)
+
+1. Fit rows: 20 rows, ids fresh-fit-01 to fresh-fit-20.
+A fit row is a plain request that one listed command's workflow fits, written as a user asks without naming the command.
+- 10 rows whose command has policy start, 5 whose policy is run and 5 whose policy is ask.
+- At least 15 distinct commands across the 20 rows.
+- Each of the command families create, deep, design, doctor, prompt and speckit (the word after the slash) at least twice.
+- expected_command is the command exactly as the listing writes it before the first space (for example /create:readme). expected_policy and expected_top are that line's policy and skill.
+Shape:
+{"id":"fresh-fit-01","row_type":"plain","split":"fresh","prompt":"<text>","expected_command":"<the command as listed>","expected_policy":"<its listed policy>","expected_top":"<its listed skill>","source":"authored-blind"}
+
+2. Skill-only rows: 8 rows, ids fresh-skill-01 to fresh-skill-08.
+A skill-only row is a request that one of the nine skills below owns and that no listed command's workflow fits, such as a code fix, a commit or a question about the code.
+- At least four distinct skills across the 8 rows, and at most two rows per skill.
+Shape:
+{"id":"fresh-skill-01","row_type":"skill-only","split":"fresh","prompt":"<text>","expected_command":null,"expected_policy":null,"expected_top":"<one of the nine skills>","source":"authored-blind"}
+
+3. Decline rows: 8 rows, two of each kind, ids fresh-decline-<kind>-01 and fresh-decline-<kind>-02.
+A decline row names or resembles a command's subject and must not start it.
+- refusal: the user says not to use the command or its workflow.
+- question: the user asks what a command does or whether to use it.
+- small-edit: a fix of a few characters in an artifact a create command owns.
+- app-problem: a fault in the user's own application that shares words with a doctor target.
+Shape (all three expected fields are null):
+{"id":"fresh-decline-refusal-01","row_type":"decline","decline_kind":"refusal","split":"fresh","prompt":"<text>","expected_command":null,"expected_policy":null,"expected_top":null,"source":"authored-blind"}
+The kinds are refusal, question, small-edit and app-problem, so the ids are fresh-decline-refusal-01, fresh-decline-refusal-02, fresh-decline-question-01, fresh-decline-question-02, fresh-decline-small-edit-01, fresh-decline-small-edit-02, fresh-decline-app-problem-01 and fresh-decline-app-problem-02.
+
+THE NINE SKILLS
+sk-code sk-design sk-doc sk-git sk-prompt system-deep-loop system-skill-advisor system-skilled-doctor system-spec-kit
+
+THE COMMAND LISTING (command, then its route when it has one, its policy and its owner skill)
+/create:agent | policy start | skill sk-doc
+/create:benchmark | policy start | skill sk-doc
+/create:changelog | policy ask | skill sk-doc
+/create:command | policy start | skill sk-doc
+/create:diff | policy start | skill sk-doc
+/create:feature-catalog | policy start | skill sk-doc
+/create:goal | policy start | skill sk-doc
+/create:manual-testing-playbook | policy start | skill sk-doc
+/create:readme | policy start | skill sk-doc
+/create:repo-rule | policy start | skill sk-doc
+/create:sk-skill | policy start | skill sk-doc
+/create:skill-parent | policy start | skill sk-doc
+/create:with-human-voice | policy start | skill sk-doc
+/deep:ai-council | policy ask | skill system-deep-loop
+/deep:research | policy ask | skill system-deep-loop
+/deep:review | policy ask | skill system-deep-loop
+/design:chart | policy start | skill sk-design
+/design:diagram | policy start | skill sk-design
+/design:extract | policy ask | skill sk-design
+/doctor:agents-md check | policy run | skill system-skilled-doctor
+/doctor:agents-md embed | policy ask | skill system-skilled-doctor
+/doctor:agents-md restore | policy ask | skill system-skilled-doctor
+/doctor:ci report | policy run | skill sk-code
+/doctor:ci scaffold | policy ask | skill sk-code
+/doctor:ci toggle | policy ask | skill sk-code
+/doctor:deep-loop deep-loop | policy run | skill system-deep-loop
+/doctor:env list | policy run | skill system-skilled-doctor
+/doctor:env select | policy ask | skill system-skilled-doctor
+/doctor:git hooks | policy ask | skill sk-git
+/doctor:git setup | policy run | skill sk-git
+/doctor:git standards | policy ask | skill sk-git
+/doctor:helper helper | policy run | skill system-skilled-doctor
+/doctor:install guide | policy run | skill system-skilled-doctor
+/doctor:mcp debug | policy ask | skill system-skilled-doctor
+/doctor:mcp install | policy ask | skill system-skilled-doctor
+/doctor:overlay apply | policy ask | skill system-skilled-doctor
+/doctor:overlay repin | policy ask | skill system-skilled-doctor
+/doctor:overlay status | policy run | skill system-skilled-doctor
+/doctor:runtime-mirrors runtime-mirrors | policy run | skill system-skilled-doctor
+/doctor:setup setup | policy run | skill system-skilled-doctor
+/doctor:sk-code quality | policy ask | skill sk-code
+/doctor:sk-code setup | policy run | skill sk-code
+/doctor:sk-skill check | policy run | skill sk-doc
+/doctor:sk-skill convert | policy ask | skill sk-doc
+/doctor:skill-advisor embedder | policy ask | skill system-skill-advisor
+/doctor:skill-advisor parent-skill | policy run | skill system-skill-advisor
+/doctor:skill-advisor rebuild | policy ask | skill system-skill-advisor
+/doctor:skill-advisor router-reach | policy run | skill system-skill-advisor
+/doctor:skill-advisor skill-budget | policy run | skill system-skill-advisor
+/doctor:skill-advisor skill-graph-freshness | policy run | skill system-skill-advisor
+/doctor:skill-advisor tune | policy ask | skill system-skill-advisor
+/doctor:speckit speckit-retrieval | policy run | skill system-skilled-doctor
+/doctor:symlink check | policy run | skill system-skilled-doctor
+/doctor:symlink link | policy ask | skill system-skilled-doctor
+/doctor:symlink unlink | policy ask | skill system-skilled-doctor
+/doctor:update align | policy start | skill system-skilled-doctor
+/doctor:update apply | policy ask | skill system-skilled-doctor
+/doctor:update check | policy run | skill system-skilled-doctor
+/doctor:update compat | policy ask | skill system-skilled-doctor
+/doctor:update record-base | policy ask | skill system-skilled-doctor
+/doctor:update rollback | policy ask | skill system-skilled-doctor
+/prompt:improve | policy start | skill sk-prompt
+/speckit:complete | policy start | skill system-spec-kit
+/speckit:handoff | policy ask | skill system-spec-kit
+/speckit:implement | policy start | skill system-spec-kit
+/speckit:plan | policy start | skill system-spec-kit
+/speckit:resume | policy start | skill system-spec-kit
+/speckit:save | policy start | skill system-spec-kit
+/speckit:search | policy run | skill system-spec-kit
