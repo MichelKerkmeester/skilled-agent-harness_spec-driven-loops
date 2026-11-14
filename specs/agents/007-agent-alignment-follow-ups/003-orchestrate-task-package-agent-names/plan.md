@@ -35,15 +35,15 @@ Change one line in `.skilled/agents/orchestrate.md`. The `Agent:` line of the ta
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `sed -n 211p .skilled/agents/orchestrate.md` still prints the eight-name line
-- [ ] The command that writes the runtime copies is named in `scratch/baseline.txt`
-- [ ] The operator's answer on the pointer or the generated line is recorded in `spec.md` section 7
+- [x] `sed -n 211p .skilled/agents/orchestrate.md` still prints the eight-name line
+- [x] The command that writes the runtime copies is named in `scratch/baseline.txt`
+- [x] The operator's answer on the pointer or the generated line is recorded in `spec.md` section 7
 
 ### Definition of Done
-- [ ] Every requirement in `spec.md` section 4 holds
-- [ ] `node .skilled/bin/sync-agent-roster.cjs --check` prints `agent-roster: OK`
-- [ ] `node .skilled/bin/check-agent-mirror-sync.cjs` prints `all comparable mirrors in sync`
-- [ ] Docs updated (spec/plan/tasks)
+- [x] Every requirement in `spec.md` section 4 holds
+- [x] `node .skilled/bin/sync-agent-roster.cjs --check` prints `agent-roster: OK`
+- [x] `node .skilled/bin/check-agent-mirror-sync.cjs` prints `all comparable mirrors in sync`
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -59,7 +59,7 @@ Single value change.
 - **The generated `routing-table` block in the same file**: Already written from `agent-registry.json`. It becomes the only list of agents the template relies on, and it is not edited.
 
 ### Data Flow
-The orchestrator fills the task template for each delegation. For the `Agent:` field it reads the routing table in section 3 of its own file, picks the agent whose task type fits and writes that name. A new agent reaches the table through the registry, so the template needs no edit when the roster grows.
+The orchestrator fills the task template for each delegation. For the `Agent:` field it reads the routing table in section 2 of its own file, picks the agent whose task type fits and writes that name. A new agent reaches the table through the registry, so the template needs no edit when the roster grows.
 <!-- /ANCHOR:architecture -->
 
 
@@ -78,7 +78,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:testing -->
 ## 5. TESTING STRATEGY
 
-`rg -c '^├─ Agent: @code' .skilled/agents/orchestrate.md` prints no line after the change and 1 before it, which is the negative control. `node .skilled/bin/sync-agent-roster.cjs --check` prints `agent-roster: OK` and `node .skilled/bin/check-agent-mirror-sync.cjs` prints `all comparable mirrors in sync`, both at exit 0.
+`rg -c '^├─ Agent: @code . @context' .skilled/agents/orchestrate.md` prints no line after the change and 1 before it, which is the negative control. `node .skilled/bin/sync-agent-roster.cjs --check` prints `agent-roster: OK` and `node .skilled/bin/check-agent-mirror-sync.cjs` prints `all comparable mirrors in sync`, both at exit 0.
 <!-- /ANCHOR:testing -->
 
 ---

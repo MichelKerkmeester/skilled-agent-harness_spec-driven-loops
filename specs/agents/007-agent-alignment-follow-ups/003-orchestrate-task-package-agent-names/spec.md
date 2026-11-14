@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/384-agent-alignment-follow-ups` |
 | **Parent Spec** | ../spec.md |
@@ -78,7 +78,7 @@ agent-roster: OK
 ## 3. SCOPE
 
 ### In Scope
-- Replace the eight names on the `Agent:` line with a bracketed instruction to name one agent from the generated routing table in section 3 of the same file
+- Replace the eight names on the `Agent:` line with a bracketed instruction to name one agent from the generated routing table in section 2 of the same file
 - Check that the `Subagent Type:` line below it, which says `the Agent line without the @`, still reads correctly against the new line
 - Regenerate the runtime copies of `orchestrate.md` with the mirror sync the repository already has
 - Run the roster check and the mirror check from the final state
@@ -107,7 +107,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The `Agent:` line of the task template names no agent by hand. | `rg -c '^├─ Agent: @code' .skilled/agents/orchestrate.md` prints no line |
+| REQ-001 | The `Agent:` line of the task template names no agent by hand. | `rg -c '^├─ Agent: @code . @context' .skilled/agents/orchestrate.md` prints no line |
 | REQ-002 | The line tells the orchestrator where the valid names are. | `rg -c '^├─ Agent: \[.*routing table' .skilled/agents/orchestrate.md` prints 1 |
 | REQ-003 | The generated routing table the line points at names the two agents the hand-typed list left out. | `rg -c '@design' .skilled/agents/orchestrate.md` and `rg -c '@prompt-improver' .skilled/agents/orchestrate.md` each print 3, the count before the change |
 
@@ -116,7 +116,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-004 | The roster check and the agent mirror check pass from the final state. | `node .skilled/bin/sync-agent-roster.cjs --check` prints `agent-roster: OK`, and `node .skilled/bin/check-agent-mirror-sync.cjs` prints `all comparable mirrors in sync` and exits 0 |
-| REQ-005 | Only the one line changes in `orchestrate.md`. | `git diff --numstat main -- .skilled/agents/orchestrate.md` reports 1 line added and 1 line removed |
+| REQ-005 | Only the one line changes in `orchestrate.md`. | `git diff --numstat` against the commit before the edit reports 1 line added and 1 line removed for `.skilled/agents/orchestrate.md` |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -148,6 +148,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - How should the line stop drifting: a pointer, or a line the roster script writes from the registry? Decision at planning: the pointer. It changes one existing value and adds no code. The generated line would add a fourth block kind to `sync-agent-roster.cjs` and its test, and no failure of the pointer is known that would justify it. Operator answer: the pointer (2026-11-14).
 - The alternative not taken, kept in case a run shows a wrong pick: the script finds the line by its `├─ Agent: ` prefix inside the fence, with no marker comments, writes the ten names in priority order, and `--check` fails when the line differs. Files to Change then gains `.skilled/bin/sync-agent-roster.cjs` and `.skilled/bin/sync-agent-roster.vitest.ts`.
+- Corrections made during implementation, 2026-11-14. The generated routing table sits in section 2 of `orchestrate.md`, not section 3 as the plan first said. The search `rg -c '^├─ Agent: @code'` also matches an example task at line 405 of the file, so it printed 2 before the change and 1 after. The acceptance search is now `'^├─ Agent: @code . @context'`, which matches only the template line. The local `main` ref in the worktree is stale, so line counts are taken against the commit before the edit.
 <!-- /ANCHOR:questions -->
 
 ---
