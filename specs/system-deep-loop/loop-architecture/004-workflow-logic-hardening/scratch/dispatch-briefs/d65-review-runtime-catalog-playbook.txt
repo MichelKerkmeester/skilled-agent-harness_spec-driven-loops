@@ -1,0 +1,36 @@
+ALLOWED WRITE PATHS (S = .skilled/skills/system-deep-loop): every *.md file under
+.skilled/skills/system-deep-loop/deep-review/feature-catalog .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook .skilled/skills/system-deep-loop/runtime/feature-catalog .skilled/skills/system-deep-loop/runtime/manual-testing-playbook
+
+CONTEXT: a script already replaced every old workflow file name in these folders with the
+single file name. Your job is the follow-up that a script cannot do. Work file by file. List the
+files to visit with:
+  git diff --name-only -- .skilled/skills/system-deep-loop/deep-review/feature-catalog .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook .skilled/skills/system-deep-loop/runtime/feature-catalog .skilled/skills/system-deep-loop/runtime/manual-testing-playbook
+(run from the repository root, with S expanded). Visit only those files.
+
+PER FILE:
+1. A table or list that named the auto file and the confirm file on two lines now names the
+   same file twice. Merge the two rows into one row that describes the single workflow. Keep any
+   detail that only one of the two rows held.
+2. Leftover short forms such as "auto.yaml", "confirm.yaml", "_confirm.yaml", "the auto YAML",
+   "the confirm YAML", "both workflows", "both YAMLs": reword for one workflow file with two
+   execution modes (F1). A sentence about a real mode difference says "in auto mode" or "in
+   confirm mode".
+3. Every rg or grep command in the file that searches a workflow file: run it from the
+   repository root. If it prints at least one line, leave it. If it prints nothing, the anchor
+   moved or was renamed: find the step or key in the single file with grep -n and correct the
+   pattern. Inline Node bodies moved out of the workflows into S/runtime/scripts/
+   (loop-heartbeat.cjs, run-now-sentinel.cjs, iteration-graph-upsert.cjs, divergent-pivot.cjs,
+   dispatch-iteration.cjs), so an anchor that was inside such a body is now in that script:
+   point the command at the script. A command that lists the same file twice lists it once.
+4. A sentence that contradicts F2, F3, F4, F5 or F6 is corrected. A sentence that is still true
+   stays byte for byte.
+5. Fix every line the facts checker reports for the file (a wrong path gets the real path).
+
+CHECKS (repository root):
+  rg -n '\b(auto|confirm|_confirm)\.yaml|both (workflows|YAMLs)|(auto|confirm) YAML' .skilled/skills/system-deep-loop/deep-review/feature-catalog .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook .skilled/skills/system-deep-loop/runtime/feature-catalog .skilled/skills/system-deep-loop/runtime/manual-testing-playbook -g '*.md'      prints nothing
+  rg -n 'deep-(research|review)\.yaml[^|]{0,40}deep-(research|review)\.yaml' .skilled/skills/system-deep-loop/deep-review/feature-catalog .skilled/skills/system-deep-loop/deep-review/manual-testing-playbook .skilled/skills/system-deep-loop/runtime/feature-catalog .skilled/skills/system-deep-loop/runtime/manual-testing-playbook -g '*.md'              every hit names two DIFFERENT files
+  node .skilled/skills/system-deep-loop/runtime/scripts/check-documentation-drift.cjs --facts | grep -E '(deep-review|runtime)/(feature-catalog|manual-testing-playbook)/'      prints nothing
+
+REPORT: the number of files visited, then for each file where you changed a grep or rg pattern:
+`<file>: <old pattern> -> <new pattern>`. Then every command that still prints nothing and why.
+Then the output of each check.

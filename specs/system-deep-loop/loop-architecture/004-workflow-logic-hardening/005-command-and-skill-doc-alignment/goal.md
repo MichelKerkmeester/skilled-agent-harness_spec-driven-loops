@@ -58,11 +58,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node .skilled/skills/system-deep-loop/runtime/scripts/check-documentation-drift.cjs --facts` exited 1 on the start commit and `node .skilled/skills/system-deep-loop/runtime/scripts/check-documentation-drift.cjs` exits 0 with `"errors": []` on the final tree.
-- [ ] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/check-documentation-drift.vitest.ts tests/unit/typo-flags.vitest.ts` exits 0.
-- [ ] `rg -n 'opencode run|research topic' .skilled/commands/deep/research.md .skilled/commands/deep/review.md` prints nothing.
-- [ ] `rg -n 'max 12|nine executor kinds|never replace|@orchestrate dispatches' .skilled/skills/system-deep-loop/deep-research/SKILL.md .skilled/skills/system-deep-loop/deep-review/SKILL.md` prints nothing.
-- [ ] Every row in `acceptance-criteria.md` is `Met`, and `validate.sh` on this folder with `--strict` prints `RESULT: PASSED`.
+- [x] `node .skilled/skills/system-deep-loop/runtime/scripts/check-documentation-drift.cjs --facts` exited 1 on the start commit and `node .skilled/skills/system-deep-loop/runtime/scripts/check-documentation-drift.cjs` exits 0 with `"errors": []` on the final tree.
+- [x] `cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/check-documentation-drift.vitest.ts tests/unit/typo-flags.vitest.ts` exits 0.
+- [x] `rg -n 'opencode run|research topic' .skilled/commands/deep/research.md .skilled/commands/deep/review.md` prints nothing.
+- [x] `rg -n 'max 12|nine executor kinds|never replace|@orchestrate dispatches' .skilled/skills/system-deep-loop/deep-research/SKILL.md .skilled/skills/system-deep-loop/deep-review/SKILL.md` prints nothing.
+- [x] Every row in `acceptance-criteria.md` is `Met`, and `validate.sh` on this folder with `--strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -80,6 +80,22 @@ and findings belong here.
 |------|-------|----------|
 | Spec docs authored | Done | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and `goal.md` written on 2026-11-14. Implementation has not started. |
 | Operator answers recorded | Done | Six answers from 2026-11-14 folded into all five docs. REQ-013 to REQ-019 and AC-013 to AC-019 added. |
+| Setup | Done | Phases 001 to 004 read Complete. Inventory rerun: 127 files against the 131 baseline, saved as scratch/doc-inventory.txt. Checker baseline exit 0 with errors [] |
+| Facts check, failing first | Done | d60 added --facts and its test, 25 passed and the live-tree case fails. First live run: 463 errors (1 count, 460 file, 2 routing), saved as scratch/facts-before.json after four false-positive rules were tuned (439). It names deep-research/SKILL.md:92, deep-review/SKILL.md:59 and the research.md routing step |
+| Old workflow names renamed by script | Done | 127 skill doc files under deep-research, deep-review and runtime. Facts errors fell to 45 |
+| Agent files | Done | Budget numbers in deep-research and the two twin rows in deep-review replaced in .skilled, .claude and .dsh, Pi and Codex regenerated. check-agent-mirror-sync --all OK |
+| Docs outside the mode packets | Done | sk-create-command example, command-authoring checklist, speckit README tree, folder-structure.md and two lines in cli-opencode destructive-scope-violations.md name files that exist |
+| Command docs, presentation files, hub doc and snapshot generator | Done | d61 diff read and its checks rerun: contract drift OK commands=3, 75 and 21 contract tests passed. By hand: ARCHITECTURE.md paths, render-contract-snapshot.cjs file name plus regenerated snapshot, confirm-only failure gate row in both presentation files, dry-run sentence in both command docs and legacy bodies |
+| Research skill doc, README and references (d62) | Done | 9 files, diff read line by line, failure and evidence filters confirmed at convergence.cjs 1321 and 1573, d62 checks all pass |
+| Review skill doc, references and integration points (d63) | Done | 9 files, diff read line by line, replaced file references confirmed on disk, composite key at coverage-graph-db.ts 250, signals import at convergence.cjs 1680, d63 checks all pass |
+| Research feature catalog and playbook (d64) | Done | 66 files, every non-rename change read, new search terms confirmed in convergence.cjs and deep-research.yaml. Three sentences corrected by hand: the missing graph decision in graph-convergence.md and the catalog index, and minIterationsNotReached restored to the no-pivot list |
+| Review and runtime catalogs and playbooks (d65) | Done | 60 files, every non-rename change read, the rewritten native fan-out scenario confirmed against deep-review.yaml 305 to 332, check-documentation-drift.cjs --facts prints errors [] on my rerun |
+| Changelogs | Done | Five entries, one per changed packet, each PASS in check_changelog_shape.py. Four SKILL.md versions bumped to match |
+| Deviation: fixture root | Done | The checker first read an environment variable for test fixtures. CHK-031 and CHK-FIX-006 require none, so it now takes --facts-root=<dir>. The 11 checker cases pass |
+| Deviation: T002 | Recorded | rg -c maxDurationReached on convergence.cjs prints nothing. The reason is in runtime/lib/deep-loop/lifecycle-taxonomy.cjs lines 14 and 56 and in both workflow files. Phase 003 put the duration stop in the workflow, so the docs attribute it to the loop |
+| Deviation: files outside the task list | Done | render-contract-snapshot.cjs and its regenerated snapshot (the facts check reported the snapshot), both legacy bodies (dry-run sentence only), and research.md line 62 where research topic became topic so the goal criterion prints nothing |
+| Phase 004 findings carried | Recorded | The dry-run sentence now says every packet stops at directory creation. The halt_hook_rule and safe_operations overlap stays open, listed in implementation-summary.md |
+| Commits | Done | Code and docs under .skilled plus the agent mirrors: 9d02835e46 on worktrees/382-deep-loop-workflow-logic-hardening. Final tree: 183 test files, 3028 passed, 8 skipped, 0 failed, exit 0, typecheck exit 0, contract drift OK commands=3. Nothing pushed |
 
 ### Deviations and findings
 

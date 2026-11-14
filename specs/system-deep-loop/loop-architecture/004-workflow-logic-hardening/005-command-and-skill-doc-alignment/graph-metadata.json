@@ -35,7 +35,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -44,18 +44,19 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/check-documentation-drift.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/check-documentation-drift.vitest.ts",
       ".skilled/commands/deep/research.md",
-      ".skilled/commands/deep/review.md",
       ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
       ".skilled/agents/deep-research.md",
+      ".skilled/commands/speckit/README.txt",
+      ".skilled/commands/deep/review.md",
+      ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
       ".skilled/agents/deep-review.md",
       ".skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md",
       ".skilled/skills/sk-doc/sk-create-command/SKILL.md",
       ".skilled/skills/sk-code/sk-code-skilled/assets/checklists/command-authoring.md",
-      ".skilled/skills/system-spec-kit/README.md",
-      ".claude/agents/deep-research.md",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-contract-parity.vitest.ts"
+      ".skilled/skills/system-spec-kit/README.md"
     ],
     "entities": [
       {
@@ -101,9 +102,9 @@
         "source": "derived"
       },
       {
-        "name": "review.md",
-        "kind": "doc",
-        "path": ".skilled/commands/deep/review.md",
+        "name": "check-documentation-drift.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/check-documentation-drift.vitest.ts",
         "source": "derived"
       },
       {
@@ -113,15 +114,33 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+        "name": "deep-research.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
         "source": "derived"
       },
       {
         "name": "deep-research.md",
         "kind": "doc",
         "path": ".skilled/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
         "source": "derived"
       },
       {
@@ -146,12 +165,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-review-contract-parity.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-contract-parity.vitest.ts",
         "source": "derived"
       },
       {
@@ -189,23 +202,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "An operator or agent who reads the deep-research or deep-review docs gets facts that the running loop does not follow",
     "created_at": "2026-11-14T11:33:22Z",
-    "last_save_at": "2026-11-14T12:01:50.881Z",
+    "last_save_at": "2026-11-14T20:15:05.004Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +217,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4a8c0681a8a9b4884705b2221119a58f12719f4fc225e5f79797082252aa06d3",
+    "source_fingerprint": "sha256:c74b501449048cdc1fc4684c64f958a98a2897bb9b2d04820729193ba50a3098",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "80d5f98151549461d1b0d4e3cc406d1c811ffb848f0ecac2b2269efd48fa5824",
+      "spec.md": "0ea175100ebce331b719682c413a2334052b8f390b2521bf4d50a6a1aa5ed843",
       "plan.md": "399929471e02724d66f499835771101a934d0f22fa692ad4e88ee2610ac92acb",
-      "tasks.md": "5853aac02aee0123ac66350861725f5c20684095182680e6aaefa92878dbefda",
-      "implementation-summary.md": "6da8c61f2e3ce6b06bc7e7c7ad623cf143479b958d942f8db3e1f916f7e4fc78"
+      "tasks.md": "ba572aa35432ddd152002feb8c3ff22511264890ab765f688a382ce123dcbd8e",
+      "implementation-summary.md": "43c9da402eb7e2c37a967b82ab932a2372c0f8ec52514a55f551e86ae5b0c9af"
     },
     "last_active_at": null
   }

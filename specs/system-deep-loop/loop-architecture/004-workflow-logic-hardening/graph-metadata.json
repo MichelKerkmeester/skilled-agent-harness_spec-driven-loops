@@ -159,17 +159,17 @@
     ],
     "causal_summary": "An operator who runs `/deep:research` or `/deep:review` cannot trust why a run stopped or whether two runs of the same state would stop at the same point",
     "created_at": "2026-11-14T11:33:16Z",
-    "last_save_at": "2026-11-14T19:10:49.442Z",
+    "last_save_at": "2026-11-14T20:15:18.219Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:d2c9f6759ff4e4845edcded1976ff6e759b9f4fd6a6e6b0037ee570ee886870b",
+    "source_fingerprint": "sha256:9e5cf8dc1c04d887396bdb28695a4f11e55b81f508d336532a99de9341aaacf1",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "51ea347cc4714d9912d9b352c641e11e75d25d8fd40bd397efa0ec1a09b01f5f",
+      "spec.md": "1102ddcd526c1aa3d07b08cb1c2caf0adcdf4825a97f233195c2efffcb0588ea",
       "decision-record.md": "ca05326fa0e46ae6bcbe724b2e22e49b567fc8e852fbf12432aee3b81141313d"
     },
     "last_active_child_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision",
