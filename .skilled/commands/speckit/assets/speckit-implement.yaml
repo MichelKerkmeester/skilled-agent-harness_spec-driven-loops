@@ -381,25 +381,27 @@ agent_availability:
 # ─────────────────────────────────────────────────────────────────
 quality_gates:
   enabled: true
+  exists_rule: "A check that a packet document exists passes only when the file exists and `rg -c 'YOUR_VALUE_HERE:' <file>` finds no match. Every check whose id ends in _exists is decided by this rule, and a failed check names the file."
   pre_implementation:
     location: "Before Step 6"
-    threshold: 70
+    pass_when: every check passes
     blocking: hard
     checks:
-      - { id: prerequisites_complete, points: 30 }
-      - { id: plan_clarity, points: 25, criteria: "Pass only when plan.md states a concrete technical approach and affected files; fail if a material design choice remains." }
-      - { id: task_breakdown_quality, points: 25 }
-    on_fail: "PRE-IMPLEMENTATION GATE FAILED ({score}/100). Fix issues before coding."
+      - { id: prerequisites_complete, from: step_1_review_plan_and_spec, criteria: "check-prerequisites.sh exited 0 and spec.md and plan.md exist." }
+      - { id: plan_clarity, from: step_1_review_plan_and_spec, criteria: "plan.md states a concrete technical approach and affected files, and leaves no material design choice open." }
+      - { id: tasks_exists, from: step_2_task_breakdown, criteria: "tasks.md passes exists_rule." }
+      - { id: task_breakdown_quality, from: step_3_analysis, criteria: "The consistency analysis reports no CRITICAL or HIGH finding and no P0 requirement without a task." }
+    on_fail: "PRE-IMPLEMENTATION GATE FAILED. Failed checks: {failed_checks}. Fix each one before coding."
   post_implementation:
     location: "After Step 7"
-    threshold: 70
+    pass_when: every check passes
     blocking: hard
     checks:
-      - { id: all_tasks_complete, points: 30 }
-      - { id: tests_pass, points: 25 }
-      - { id: summary_exists, points: 25 }
-      - { id: checklist_verified, points: 20 }
-    on_fail: "POST-IMPLEMENTATION GATE FAILED ({score}/100). Fix blocking issues."
+      - { id: all_tasks_complete, from: step_6_development, criteria: "tasks.md holds no unchecked task line." }
+      - { id: checklist_verified, from: step_6_7_acceptance_verify, criteria: "Every acceptance-criteria row is Met, Waived or Superseded and every P0 checklist item is marked [x] (Level 2+)." }
+      - { id: tests_pass, from: step_7_completion, criteria: "The test command for the changed surface exited 0 in this run." }
+      - { id: summary_exists, from: step_7_completion, criteria: "implementation-summary.md passes exists_rule." }
+    on_fail: "POST-IMPLEMENTATION GATE FAILED. Failed checks: {failed_checks}. Fix each one before the save."
 
 # ─────────────────────────────────────────────────────────────────
 # CIRCUIT BREAKER
@@ -473,7 +475,7 @@ workflow:
     code_search_guidance:
       example_queries: ["project structure entry points", "similar feature implementation", "existing utility patterns"]
     activities:
-    - Run check-prerequisites.sh --json --require-tasks
+    - Run check-prerequisites.sh --json
     - Verify spec.md and plan.md exist
     - Load and review all planning artifacts
     - Understand requirements, analyze approach, identify dependencies, note constraints
@@ -495,13 +497,12 @@ workflow:
         - { label: "Review Spec", description: "Show spec.md for reference" }
 
   step_2_task_breakdown:
-    purpose: Create or validate tasks.md (Level 1+ requirement)
+    purpose: Validate tasks.md, or write it when it is missing or unfilled (Level 1+ requirement)
     activities:
-    - Load plan.md for tech stack and architecture
-    - Load spec.md for user stories and priorities
+    - "Apply quality_gates.exists_rule to tasks.md. When the file passes, validate it against plan.md and spec.md and do not rewrite it"
+    - "When tasks.md is missing or fails exists_rule, write it from plan.md and spec.md with the steps below"
     - Generate tasks organized by user story with dependency graph
     - Mark parallel-executable tasks with [P], define phases, generate estimates
-    - Create/validate tasks.md
     outputs: [tasks.md]
     template: .skilled/skills/system-spec-kit/templates/core/tasks.md.tmpl
     template_prompt_contract:
@@ -525,7 +526,8 @@ workflow:
 
   step_3_analysis:
     purpose: Verify consistency across all artifacts
-    activities: [Build requirements inventory, Build task coverage mapping, Run consistency checks, Generate gap analysis]
+    activities: [Build requirements inventory, Build task coverage mapping, Run consistency checks, "Assign severity levels (CRITICAL, HIGH, MEDIUM, LOW)", Generate gap analysis]
+    on_fail: "A CRITICAL or HIGH finding, or a P0 requirement that no task covers, stops the run before development. For a tasks.md finding, return to step_2_task_breakdown, fix tasks.md and rerun this step. For a spec.md or plan.md finding, STOP and name /speckit:plan. After the third failed round, STOP and report the open findings. MEDIUM and LOW findings are recorded in the report and do not block."
     outputs: [consistency_report, coverage_verification]
     validation: consistency_verified
     checkpoint:

@@ -494,43 +494,40 @@ agent_availability:
 # ─────────────────────────────────────────────────────────────────
 quality_gates:
   enabled: true
+  exists_rule: "A check that a packet document exists passes only when the file exists and `rg -c 'YOUR_VALUE_HERE:' <file>` finds no match. Every check whose id ends in _exists is decided by this rule, and a failed check names the file."
   pre_execution:
     location: "Before Step 1"
-    threshold: 70
+    pass_when: every check passes
     blocking: hard
     checks:
-      - { id: feature_description, points: 30 }
-      - { id: spec_path_valid, points: 30 }
-      - { id: execution_mode_set, points: 20 }
-      - { id: continuity_ladder_walked, points: 20 }
-    on_fail: "Pre-execution gate below threshold. Missing: {missing_checks}. Hard block."
+      - { id: feature_description, from: invocation, criteria: "A non-empty feature description is bound from the command arguments or from the step_0.5_intake_branch bind." }
+      - { id: spec_path_valid, from: step_0.5_intake_branch, criteria: "On the single-packet path the spec folder exists, because the intake Emit phase created it. Under :with-phases only a well-formed path is required, because P3 creates the folder after Step 1." }
+      - { id: execution_mode_set, from: invocation, criteria: "execution_mode is bound to auto, confirm or autopilot." }
+    on_fail: "Pre-execution gate failed. Failed checks: {failed_checks}. Hard block."
   planning_gate:
     location: "Between Step 7 and Step 8"
-    threshold: 70
+    pass_when: every check passes
     blocking: hard
     critical: true
     checks:
-      - { id: spec_exists, points: 20 }
-      - { id: spec_no_clarification, points: 5 }
-      - { id: plan_exists, points: 20 }
-      - { id: plan_has_approach, points: 5 }
-      - { id: tasks_exists, points: 20 }
-      - { id: tasks_has_format, points: 5 }
-      - { id: checklist_verified, points: 15 }
-      - { id: review_approval, points: 10 }
-    on_fail: "PLANNING GATE BLOCKED ({score}/100, need 70). Missing: {missing_checks}. HALTED."
-    review_integration: { blocking: true, on_review_fail: "P0 items blocking. Address before implementation." }
+      - { id: spec_exists, from: step_3_specification, criteria: "spec.md passes exists_rule." }
+      - { id: spec_no_clarification, from: step_4_clarification, criteria: "spec.md holds no [NEEDS CLARIFICATION] marker." }
+      - { id: plan_exists, from: step_6_planning, criteria: "plan.md passes exists_rule." }
+      - { id: plan_has_approach, from: step_6_planning, criteria: "plan.md states the technical approach and the files it changes." }
+      - { id: tasks_exists, from: step_7_task_breakdown, criteria: "tasks.md passes exists_rule." }
+      - { id: tasks_has_format, from: step_7_task_breakdown, criteria: "Every task line in tasks.md follows the task format of the tasks template." }
+    on_fail: "PLANNING GATE BLOCKED. Failed checks: {failed_checks}. Return to the producing step of each failed check. HALTED."
   post_execution:
     location: "Between Step 13 and Step 13.5"
-    threshold: 70
+    pass_when: every check passes
     blocking: hard
     checks:
-      - { id: tasks_complete, points: 30 }
-      - { id: summary_exists, points: 25 }
-      - { id: summary_sections, points: 15 }
-      - { id: memory_saved, points: 20 }
-      - { id: validation_passed, points: 10 }
-    on_fail: "Post-execution gate below threshold. Missing: {missing_checks}. Complete before done."
+      - { id: tasks_complete, from: step_10_development, criteria: "tasks.md holds no unchecked task line." }
+      - { id: summary_exists, from: step_12_completion, criteria: "implementation-summary.md passes exists_rule." }
+      - { id: summary_sections, from: step_12_completion, criteria: "implementation-summary.md holds every section the step 12 summary_document lists." }
+      - { id: validation_passed, from: step_12_completion, criteria: "validate.sh --strict printed RESULT: PASSED for the spec folder in this run." }
+      - { id: memory_saved, from: step_13_save_context, criteria: "The continuity writer exited 0 for this packet in this run." }
+    on_fail: "Post-execution gate failed. Failed checks: {failed_checks}. Complete each one before done."
 
 # ─────────────────────────────────────────────────────────────────
 # CIRCUIT BREAKER
@@ -574,10 +571,7 @@ workflow_enforcement:
   skip_allowed: false
   phase_gate:
     location: "Between Step 7 and Step 8"
-    requirements:
-    - "spec.md exists and has no [NEEDS CLARIFICATION] markers"
-    - "plan.md exists with technical approach"
-    - "tasks.md exists with all tasks listed"
+    requirements: "The checks of quality_gates.planning_gate. This gate restates none of them."
     action_if_failed: "STOP and return to incomplete step"
   step_completion_rule: |
     FOR EACH STEP: Execute ALL activities → Verify ALL outputs → Mark step complete → THEN proceed
@@ -1036,14 +1030,7 @@ workflow:
 
     phase_gate_checkpoint:
       trigger: "After Step 7 completes"
-      action: |
-        STOP and verify Phase Gate:
-        1. spec.md exists → If not, return to Step 3
-        2. plan.md exists and states a technical approach, meaning the approach and the files it changes → If not, return to Step 6
-        3. tasks.md exists → If not, this step failed
-        4. No [NEEDS CLARIFICATION] in spec.md
-        5. Mark "PHASE GATE: PASSED"
-        6. ONLY THEN proceed to Step 8
+      action: "STOP and evaluate quality_gates.planning_gate. When every check passes, mark PHASE GATE: PASSED and proceed to Step 8. When a check fails, return to the producing step of that check."
       enforcement: HARD_BLOCK
     checkpoint:
       applies_to: confirm
@@ -1070,6 +1057,7 @@ workflow:
     - Assign severity levels (CRITICAL, HIGH, MEDIUM, LOW)
     - Generate consistency report, coverage verification, gap analysis
     - Suggest remediations (non-destructive, user must approve)
+    on_fail: "A CRITICAL or HIGH finding, or a P0 requirement that no task covers, stops the run before development. Return to the step that wrote the named artifact: step_3_specification for spec.md, step_6_planning for plan.md, step_7_task_breakdown for tasks.md. Fix it and rerun this step. After the third failed round, STOP and report the open findings. MEDIUM and LOW findings are recorded in the report and do not block."
     outputs: [consistency_report, coverage_verification, alignment_check, gap_analysis]
     validation: consistency_verified
     checkpoint:

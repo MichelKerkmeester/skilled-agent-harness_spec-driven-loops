@@ -413,26 +413,26 @@ agent_availability:
 # ─────────────────────────────────────────────────────────────────
 quality_gates:
   enabled: true
+  exists_rule: "A check that a packet document exists passes only when the file exists and `rg -c 'YOUR_VALUE_HERE:' <file>` finds no match. Every check whose id ends in _exists is decided by this rule, and a failed check names the file."
   pre_execution:
     location: "Before Step 1"
-    threshold: 70
+    pass_when: every check passes
     blocking: hard
     checks:
-      - { id: feature_description, points: 30 }
-      - { id: spec_path_valid, points: 30 }
-      - { id: no_blocking_deps, points: 20 }
-      - { id: execution_mode_set, points: 20 }
-    on_fail: "Pre-execution gate below threshold. Missing: {missing_checks}."
+      - { id: feature_description, from: invocation, criteria: "A non-empty feature description is bound from the command arguments or from the step_0.5_intake_branch bind." }
+      - { id: spec_path_valid, from: step_0.5_intake_branch, criteria: "On the single-packet path the spec folder exists, because the intake Emit phase created it. Under :with-phases only a well-formed path is required, because P3 creates the folder after Step 1." }
+      - { id: execution_mode_set, from: invocation, criteria: "execution_mode is bound to auto, confirm or autopilot." }
+    on_fail: "Pre-execution gate failed. Failed checks: {failed_checks}. Fix each one before Step 1."
   post_execution:
     location: "After Step 6"
-    threshold: 70
+    pass_when: every check passes
     blocking: hard
     checks:
-      - { id: spec_exists, points: 25 }
-      - { id: plan_exists, points: 25 }
-      - { id: tasks_exists, points: 20 }
-      - { id: context_saved, points: 15 }
-    on_fail: "Post-execution gate below threshold. Missing: {missing_checks}."
+      - { id: spec_exists, from: step_3_specification, criteria: "spec.md passes exists_rule." }
+      - { id: plan_exists, from: step_5_planning, criteria: "plan.md passes exists_rule." }
+      - { id: tasks_exists, from: step_5_5_task_breakdown, criteria: "tasks.md passes exists_rule." }
+      - { id: context_saved, from: step_6_save_context, criteria: "The continuity writer exited 0 for this packet in this run." }
+    on_fail: "Post-execution gate failed. Failed checks: {failed_checks}. Return to the producing step of each failed check and rerun the gate."
 
 # ─────────────────────────────────────────────────────────────────
 # CIRCUIT BREAKER
