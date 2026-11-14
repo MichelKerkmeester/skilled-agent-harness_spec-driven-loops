@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Keep a packet's core purpose across handovers and compactions"
-description: "A packet keeps its mechanics across relaunch hops and compactions but loses why the work exists and whom it serves. This research packet finds where the purpose drops and names the smallest change that keeps it."
+description: "A packet keeps its mechanics across relaunch hops and compactions but loses why the work exists and whom it serves. This packet found where the purpose drops, and its phase children build the change that keeps it in front of the next session on a resume, a relaunch, a compaction and a continuity save."
 trigger_phrases:
   - "purpose retention across handovers"
   - "keep a packet s core purpose across handovers"
@@ -33,7 +33,7 @@ contextType: "general"
 <!-- FILL: State the problem in two sentences: what breaks, and for whom. GOOD: The rotate-logs script never deletes old archives, so a host that copies `logs/archive` fills its disk. WEAK: The script has issues with output. -->
 
 ### Problem Statement
-The operator reported on 2026-11-13 that the core reason, problem, purpose or user need behind a piece of work gets lost after several in-session handovers (relaunch hops) or context compactions. The session keeps the mechanics, such as files, commits and the next action, and loses why the work exists and whom it serves.
+The operator reported on 2026-11-13 that the core reason, problem, purpose or user need behind a piece of work gets lost after several in-session handovers (relaunch hops) or context compactions. The session keeps the mechanics, such as files, commits and the next action, and loses why the work exists and whom it serves. The operator wants a packet's purpose to survive a resume, a relaunch, a compaction and a continuity save, so the next AI still sees why the work exists.
 
 Observed in the reporting session:
 - The context recovered after a compaction listed active files, word-reference counts and recent topics, and carried no statement of the work's purpose.
@@ -44,8 +44,12 @@ Observed in the reporting session:
 
 All template paths are under `.skilled/skills/system-spec-kit/`.
 
+Where the work stands on 2026-11-14. The research ran first and found that the purpose is written once, in `spec.md`, and that no hop read it back. Phases 001 to 005 then built the carry on all four hops and are on main. An independent review found the result partly aligned with the need: every hop now carries a purpose line, but the line is one sentence read only under an exact `### Purpose` heading, the hops state three different rules and three of the four hops have not been seen in a real run. Phases 006 to 010 plan the answers to that review.
+
 ### Purpose
-Find where a packet's problem, purpose and user need are dropped on each hop, and name the smallest change to system-spec-kit logic or templates that keeps them in front of the next session.
+Keep a packet's purpose, the reason the work exists and whom it serves, in front of the next AI after a resume, a relaunch, a compaction and a continuity save.
+
+The research in `research/research.md` found where the purpose was dropped on each hop. The phase children in the map below build the change and close what the review found.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
@@ -68,25 +72,28 @@ $ rg -n '^## [0-9]' .skilled/skills/system-spec-kit/templates/addons/handover.md
 <!-- FILL: List three to five things this change does, each starting with a verb. Before you list a new file, module, option, layer or dependency, name what fails today without it, or drop it. GOOD: Add a `--keep <n>` option that deletes all but the newest n archives in `logs/archive/`. WEAK: Update the script and docs. -->
 
 ### In Scope
-- Read `.skilled/skills/system-spec-kit/`, `.skilled/commands/speckit/`, `.skilled/skills/system-deep-loop/` and `specs/` without changing them.
-- Trace each hop surface and record what it reads, what it emits and whether the purpose travels.
-- Sample real packets under `specs/` to measure whether the purpose is restated, shortened or absent after hops.
-- Cite every claim as `[SOURCE: path:line]` in `research/research.md`.
+- Trace each hop surface, record what it reads and emits and whether the purpose travels, and cite every claim as `[SOURCE: path:line]` in `research/research.md`. Done on 2026-11-13.
+- Carry the packet purpose into the resume brief, the relaunch note, the context recovered after a compaction and the continuity save, and make an unfilled purpose in a new phase parent fail a check. Built in phase children 001 to 005.
+- Close the defects found during that build and the findings of the independent review of 2026-11-14. Planned in phase children 006 to 010.
+- Hold the phase map, the handoff criteria and the per-finding decisions for those children in this document.
 
 ### Out of Scope
-- Any edit outside this packet's `research/` folder - this run is read-only research.
-- Any implementation - a later packet plans and builds what the research recommends.
+- Build detail in this document - every edit, task and check lives in the phase child that owns it.
+- Writing a purpose for live phase parents that never had one - nothing is written there to carry. They are listed in `006-purpose-carry-follow-ups/scratch/phase-parents-without-purpose-text.txt` for the operator to order as separate work.
+- Running the hooks from anything other than the built `dist/` folder - every hook in this repository runs from that build, and the drift message already tells an operator to rebuild.
+- A default reader for the stored `packet_purpose` value - the operator chose to build the field knowing that only the opt-in authored snapshot renders it (decision Q006).
 - Any change to Barter repositories - they are outside this repository.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `research/research.md` | Create | The synthesis that answers the five research questions |
-| `research/resource-map.md` | Create | The map of files the lineages read |
-| `research/lineages/` | Create | One folder per lineage with its iteration state |
+| `research/research.md` | Create | The synthesis that answers the five research questions. Done |
+| `research/resource-map.md` | Create | The map of files the lineages read. Done |
+| `research/lineages/` | Create | One folder per lineage with its iteration state. Done |
+| `spec.md` | Modify | The phase map, the handoff criteria and the review decisions |
 
-No file outside this packet changes.
+This document's own work changes no file outside the packet. Each phase child lists the files it changes in section 3 of its own `spec.md`.
 <!-- /ANCHOR:scope -->
 
 ---
@@ -108,6 +115,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 |----|-------------|---------------------|
 | REQ-002 | `research/research.md` names one recommended change with its cost and how to validate it | `research/research.md` holds one recommendation with a cost and a validation step |
 | REQ-003 | `research/research.md` lists what was ruled out and why | `research/research.md` holds a ruled-out list with one reason per item |
+| REQ-004 | The purpose carry for the four hops is built and on main | `git log --no-walk --format=%h eaba5ab89e 3d237cd97a f0d8c03036 0837fcd5a2 191ce39bad` prints five hashes, one per phase 001 to 005 |
+| REQ-005 | Every finding of the independent review of 2026-11-14 has a recorded decision | The table under "Independent Review of 2026-11-14" in section 7 holds one row per finding, 1 to 10, plus row A for the alignment gap, each with a decision and a reason |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -118,7 +127,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - **SC-001**: `research/research.md` answers the five questions, and every citation the orchestrating session opens resolves to the cited line.
 - **SC-002**: `research/research.md` names one recommended change with its cost and validation, and lists what was ruled out.
-- **SC-003**: `git status --short` shows no change outside this packet after the run.
+- **SC-003**: `git status --short` shows no change outside this packet after the research run.
+- **SC-004**: A real session shows the packet's purpose line after a resume, a relaunch, a compaction and a continuity save. Open on 2026-11-14: only the continuity save has live evidence. A real compaction, a real relaunch and an operator-run `/speckit:resume` have not been observed.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -158,6 +168,41 @@ Findings of the 2026-11-13 deep-research run, two lineages of five iterations on
 - Ruled out: parent-level acceptance criteria, a new parent purpose section (one already exists) and a template or validator change alone.
 - Full answers, orchestrator citation checks and limits: `research/research.md`.
 <!-- END GENERATED: deep-research/spec-findings -->
+
+### Independent Review of 2026-11-14
+
+An independent review of phases 001 to 005 and of the plan for phase 006 returned ten findings and the verdict "partly aligned". Each finding was checked against the code or the documents before it was planned for. This planning session could not start `node`, so findings were confirmed by reading the code and by `rg` counts, and the reviewer's run-time numbers are quoted as the reviewer's.
+
+| Finding | Decision | Reason |
+|---------|----------|--------|
+| 1. The helper reads a purpose only under an exact `### Purpose` heading | Planned in 007 | Confirmed by the counts in the Measured Behavior block of `007-purpose-reader-coverage/spec.md`: most live files that lack the heading state a purpose another way |
+| 2. Phase 006 claims every live phase parent states its reason and fixes five | Folded into 006 | Its Purpose and REQ-001 now claim only that no parent holds the scaffold sentence. Parents with no purpose text stay out of scope and are listed |
+| 3. The first-sentence rule yields a list marker, a line cut at an abbreviation or a line cut at 300 characters, and the problem is never carried | Planned in 007 and 010 | 007 fixes the list marker and the abbreviation cut and keeps the cap, which the stored field's limit depends on. 010 carries the problem sentence after a compaction and waits for the operator's yes |
+| 4. The compaction line needs exactly one pinned packet | Planned in 009 | Confirmed in `session-stop.ts:234-238`. The recovery falls back to the folder the cached brief names |
+| 5. The stored `packet_purpose` has no default reader | Declined | The operator built it knowing this (decision Q006), and every continuity write copies the purpose again, so a stale copy lasts only until the next save |
+| 6. The relaunch rule differs from the other hops | Planned in 008 | Confirmed: the files that state the rule use different labels, and `handoff.md` and `nudge.cjs` have no scaffold skip |
+| 7. Three hops run only from the git-ignored build | Declined | Every hook in this repository runs from `dist/`, so this is the runtime's standing contract and not part of carrying a purpose |
+| 8. This document and the five summaries are stale | Done in this update | The Problem Statement, Purpose and scope above state the need and the build, and each summary names its landing commit |
+| 9. The spec folder path is not held inside the project | Planned in 009 | Confirmed in `session-prime.ts:232` and in the Pi adapter at line 79 |
+| 10. Test gaps | Split across 006, 008 and 009 | 006 edit E15 tests the non-Draft gate, 008 pins the nudge labels and, through edit E9, the resume `purpose_row` label, and 009 moves the compaction tests to repo-relative folders. The resume hop is prose a model follows, so its rule text gets a pin and not a behavior test |
+| A. Devin and OpenCode get no purpose after a compaction (review, Alignment section) | Deferred | Devin's `PostCompaction` hook has never been observed firing (`.devin/SYNC.md:139`), so a purpose line there could not be proven. OpenCode is a real gap: after `session.compacted`, `.opencode/plugins/session-history-lookup.js` already adds a `## History Lookup` section to the system text, so a purpose line could ride on that path. It is deferred, not declined, and left to the operator to schedule as its own phase |
+
+### Plan Verification of 2026-11-14
+
+A second independent model verified phases 006 to 010 and returned "ready with fixes". The orchestrating session confirmed its one P1 by running the relaunch suite: 1014 of 1014 pass in a normal shell and 957 of 1014 with `AI_SESSION_CHILD=1`, the variable every dispatched worker carries, because the relaunch hook turns itself off for a child session. Phase 008 now runs that suite with `env -u AI_SESSION_CHILD`. The other fixes are in place: 007's coverage claim reads 272 of 292, 009 walks a folder up to its nearest `spec.md` and reads the brief's folder line only above `Recent context:`, and 010 carries its measured continuity baseline of 43 tests.
+
+### Operator Decisions of 2026-11-14
+
+- Phase 010 is built.
+- The parent gets a `goal.md` through `/create:goal`, with the Objective drafted from the original user need.
+- Phase 011 backfills the 21 live phase parents that state no purpose.
+- Edit E2 of phase 006 is widened to cover the later children of the local embeddings parent.
+- Phase 008 pins the resume `purpose_row` label in the command workflow test.
+- The parent's own summary names its landing commits.
+
+### Build Order
+
+Build the phases in number order, 006 to 011, one at a time. The order is not only a dependency chain: phase 009 raises `hook-session-start.vitest.ts` from 23 to 27 tests and phase 008 raises the command workflow test from 148 to 150 passes, so the Setup baselines quoted in 006 and 007 hold only before 008 and 009 are built.
 <!-- /ANCHOR:questions -->
 
 ---
@@ -176,7 +221,12 @@ Findings of the 2026-11-13 deep-research run, two lineages of five iterations on
 | 3 | 003-relaunch-goal-quote/ | The relaunch note Goal opens with the packet purpose | Complete |
 | 4 | 004-compaction-purpose-line/ | The context injected after a compaction carries the packet purpose, and the shared purpose helper | Complete |
 | 5 | 005-continuity-purpose-field/ | The continuity block carries the purpose and the recovery Goal shows it | Complete |
-| 6 | 006-purpose-carry-follow-ups/ | Real purposes for five live phase parents, the PreCompact folder line for `specs/` paths and resume asset brief rows that match the presentation file | Draft |
+| 6 | 006-purpose-carry-follow-ups/ | Real purposes for the five live phase parents that hold the scaffold sentence, the PreCompact folder line for `specs/` paths, resume asset brief rows that match the presentation file and a test that an unfilled parent purpose fails the gate once the parent leaves Draft | Draft |
+| 7 | 007-purpose-reader-coverage/ | The purpose helper reads a purpose written under another heading or as an inline `Purpose:` label, and no longer returns a list marker or a line cut at an abbreviation | Draft |
+| 8 | 008-hop-purpose-rule-parity/ | The relaunch note, the nudge text and the resume assets state the same purpose rule and labels as the helper, with the scaffold skip | Draft |
+| 9 | 009-compaction-purpose-folder/ | The compaction recovery finds the packet when the session touched more than one, holds the folder path inside the project, and its tests use repo-relative folders | Draft |
+| 10 | 010-problem-sentence-carry/ | The context recovered after a compaction also carries the first sentence of the Problem Statement. The operator said yes on 2026-11-14 | Draft |
+| 11 | 011-empty-parent-purpose-backfill/ | One authored purpose sentence in each of the 21 live phase parents that state none, reviewed by the operator before commit | Draft |
 
 ### Phase Transition Rules
 
@@ -194,4 +244,9 @@ Findings of the 2026-11-13 deep-research run, two lineages of five iterations on
 | 003-relaunch-goal-quote | 004-compaction-purpose-line | None. The compaction hook does not depend on the relaunch note | Each phase passes `validate.sh --strict` on its own |
 | 004-compaction-purpose-line | 005-continuity-purpose-field | Phase 004 is built and merged, because phase 005 imports the purpose helper that 004 creates | `runtime/lib/spec/packet-purpose.ts` exists and its tests pass |
 | 005-continuity-purpose-field | 006-purpose-carry-follow-ups | None from phase 005. Edits E13 and E14 replace the `reply_format` line phase 002 wrote, so they apply while that line reads as phase 002 left it | `rg -c -F` on the E13 and E14 search texts in `006-purpose-carry-follow-ups/plan.md` prints 1 for each asset |
+| 006-purpose-carry-follow-ups | 007-purpose-reader-coverage | None. Phase 007 edits the purpose helper and its tests, which phase 006 does not touch | Each phase passes `validate.sh --strict` on its own |
+| 007-purpose-reader-coverage | 008-hop-purpose-rule-parity | Phase 007 is built, because phase 008 writes into the hop files the rule the widened helper follows | `rg -c '^const PURPOSE_SECTION_HEADING' .skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts` prints 1 |
+| 008-hop-purpose-rule-parity | 009-compaction-purpose-folder | None from phase 008. Phase 009 takes effect for folders under `specs/` only once phase 006 edit E11 is built | `rg -c -F '(?:\.opencode\/)?specs\/' .skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts` prints 1 once edit E11 is built. It prints nothing today |
+| 009-compaction-purpose-folder | 010-problem-sentence-carry | Phases 007 and 009 are built and the operator has said yes to carrying the problem sentence, which widens the Purpose-only design the operator approved | `rg -c -F 'function paragraphAfter' .skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts` and `rg -c -F 'folderNamedInBrief' .skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts` each print a count of 1 or more |
+| 010-problem-sentence-carry | 011-empty-parent-purpose-backfill | None from phase 010. Phase 011 writes the exact `### Purpose` heading the current helper reads, so it needs no earlier phase. It runs last so its sentences are reviewed against the final rule | `node 011-empty-parent-purpose-backfill/scratch/check-backfill.mjs \| tail -1` prints `own purpose: 0 of 21` before it starts |
 <!-- /ANCHOR:phase-map -->

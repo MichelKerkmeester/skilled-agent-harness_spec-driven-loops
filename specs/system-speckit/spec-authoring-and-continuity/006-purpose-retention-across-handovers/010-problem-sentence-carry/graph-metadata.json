@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/010-problem-sentence-carry",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/010-problem-sentence-carry",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "problem sentence carry",
+      "phase 10 problem sentence carry",
+      "problem line after compaction",
+      "problem statement beside the purpose",
+      "problem sentence carry plan",
+      "problem sentence carry tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "problem sentence carry implementation summary"
+    ],
+    "key_topics": [
+      "problem",
+      "sentence",
+      "carry",
+      "phase",
+      "line",
+      "compaction",
+      "statement",
+      "beside",
+      "purpose",
+      "plan",
+      "tasks",
+      "packet"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/packet-purpose.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/hook-session-start.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/history-locator-adapters.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/lib/spec/README.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/README.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/pi/README.md",
+      "runtime/cli/core/workflow.ts",
+      "runtime/lib/spec/packet-purpose.ts",
+      "runtime/hooks/claude/session-prime.ts",
+      "runtime/hooks/pi/session-compact-context.ts",
+      "runtime/cli/tests/save-continuity-write.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "packet-purpose.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-compact-context.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "packet-purpose.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/packet-purpose.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-session-start.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hook-session-start.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "history-locator-adapters.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/history-locator-adapters.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": "runtime/cli/core/workflow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "save-continuity-write.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/save-continuity-write.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fourteen",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator reported that the core reason, problem or user need of a packet is lost across handovers and compactions",
+    "created_at": "2026-11-14T06:14:06Z",
+    "last_save_at": "2026-11-14T07:26:27.132Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:f6acf7a603ce603a9f95a5b4816ad1d6f8de5e478e73e0af93f33b21552ca623",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "c2bbd97e3d6a7e23b6d5a1d06c3abf3a5b88d23cb183bcb485f6ff61f9b29a88",
+      "plan.md": "c488234dab4f8482d4beafe2cf429c2a5774a00dd0922c216a7d0cfde9e7a864",
+      "tasks.md": "00ac74cec45c6fe3056caf43320e9b004ea6633f00d9839d04d934b5957eb5fe",
+      "implementation-summary.md": "44d684e1bf59975c450dc49cf49d127b04369444fdcc8a458f9c4f1b97fd1fae"
+    },
+    "last_active_at": null
+  }
+}

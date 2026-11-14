@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/009-compaction-purpose-folder",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/009-compaction-purpose-folder",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "compaction purpose folder",
+      "phase 9 compaction purpose folder",
+      "last spec folder containment",
+      "purpose line missing after compaction",
+      "folder named in brief",
+      "compaction purpose folder plan",
+      "compaction purpose folder tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "compaction purpose folder implementation summary"
+    ],
+    "key_topics": [
+      "compaction",
+      "purpose",
+      "folder",
+      "phase",
+      "last",
+      "spec",
+      "containment",
+      "line",
+      "missing",
+      "named",
+      "brief",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "runtime/hooks/claude/session-prime.ts",
+      "runtime/hooks/pi/session-compact-context.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
+      ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/hook-session-start.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/history-locator-adapters.vitest.ts",
+      "dist/hooks/claude/session-prime.js",
+      "dist/lib/spec/packet-purpose.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": "runtime/hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-compact-context.ts",
+        "kind": "code",
+        "path": "runtime/hooks/pi/session-compact-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-session-start.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hook-session-start.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "history-locator-adapters.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/history-locator-adapters.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.js",
+        "kind": "code",
+        "path": "dist/hooks/claude/session-prime.js",
+        "source": "derived"
+      },
+      {
+        "name": "packet-purpose.js",
+        "kind": "code",
+        "path": "dist/lib/spec/packet-purpose.js",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Nine",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Check",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The context recovered after a compaction opens with the packet's purpose only when hook state holds a `lastSpecFolder`",
+    "created_at": "2026-11-14T06:14:05Z",
+    "last_save_at": "2026-11-14T07:26:25.320Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:15c489834e77e245a88551e50c883a3383d18921f1f3b6ff6c3314b0ea2db83e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ebde28f2f19be463462c1baee3b06d8142d76e572da38af44eff7a961794fccb",
+      "plan.md": "1a9a0bafbc969bb53487434f92c80ec1b9f064fede2d43266fd2dc5d6be5203f",
+      "tasks.md": "5780c65484946ed52e85349664421d797333d51131833b09c89872f35e3c77d9",
+      "implementation-summary.md": "a85ca12cf4cdf03023f669e32c41e5483c5858f2a2cdc2455dee16cca56f19d0"
+    },
+    "last_active_at": null
+  }
+}

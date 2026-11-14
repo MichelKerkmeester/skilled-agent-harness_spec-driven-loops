@@ -18,6 +18,10 @@
       "resume brief reply format rows",
       "purpose carry follow ups plan",
       "purpose carry follow ups tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "purpose carry follow ups implementation summary"
     ],
     "key_topics": [
@@ -40,11 +44,14 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md",
+      "scratch/phase-parents-without-purpose-text.txt",
       "scratch/check-brief-rows.py",
       ".skilled/commands/speckit/resume.md",
       ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
       "runtime/tests/hook-precompact.vitest.ts",
+      "runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts",
       "runtime/hooks/claude/session-prime.ts",
       "specs/mcp-tooling/z_archive/003-mcp-figma-transfer/spec.md",
       "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/spec.md",
@@ -53,10 +60,7 @@
       "specs/system-speckit/runtime-and-release/001-system-speckit-v4/004-decisions-and-notes-system/spec.md",
       "specs/system-speckit/runtime-and-release/001-system-speckit-v4/030-spec-kit-simplification-research/spec.md",
       ".skilled/skills/system-spec-kit/runtime/tests/hook-precompact.vitest.ts",
-      ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
-      ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
-      "dist/hooks/claude/compact-inject.js",
-      ".claude/settings.json"
+      ".skilled/commands/speckit/assets/speckit-resume-auto.yaml"
     ],
     "entities": [
       {
@@ -78,9 +82,21 @@
         "source": "derived"
       },
       {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-parents-without-purpose-text.txt",
+        "kind": "file",
+        "path": "scratch/phase-parents-without-purpose-text.txt",
         "source": "derived"
       },
       {
@@ -108,6 +124,12 @@
         "source": "derived"
       },
       {
+        "name": "scaffold-passes-its-own-gate.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "session-prime.ts",
         "kind": "code",
         "path": "runtime/hooks/claude/session-prime.ts",
@@ -117,24 +139,6 @@
         "name": "speckit-resume-auto.yaml",
         "kind": "config",
         "path": ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "speckit-resume-confirm.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "compact-inject.js",
-        "kind": "code",
-        "path": "dist/hooks/claude/compact-inject.js",
-        "source": "derived"
-      },
-      {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".claude/settings.json",
         "source": "derived"
       },
       {
@@ -206,22 +210,23 @@
     ],
     "causal_summary": "The parent exists because the reason for a piece of work got lost across session handovers and compactions",
     "created_at": "2026-11-14T05:10:09Z",
-    "last_save_at": "2026-11-14T05:35:18.094Z",
+    "last_save_at": "2026-11-14T07:26:19.789Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4697b45debb9a3f3959452035ea1a8dcf0fdb9b0c0781b087d79956d36888b34",
+    "source_fingerprint": "sha256:10eeacacda6e67a84b89084b15e9f201d2136e82ae44a71472b47ee06a1283c3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f967e7ca78872359838a2bc21637b4a157550f0e207d695c2a84f21ecf3f98e6",
-      "plan.md": "2936563486d62ae6ba9eb989da81c2c8df12168f182f75e23c12746fd5b57238",
-      "tasks.md": "300600f605cd45b28209959058f04e49e2e20804058f302e399fe0a9ef640690",
-      "implementation-summary.md": "1dee7b3b643aeec0770469a2645f7338b52251b25e57d53de0e960014944f48b"
+      "spec.md": "93599742d0779b0ab28cfa59ee88bc64accb286a309af0aae94bb9b6e4e7476d",
+      "plan.md": "26a6f9f1ebd30cb9cb3715d102d0cc3783e523d019855078a559a5b0ed58ab0a",
+      "tasks.md": "31b8bf6c50b4aabf96bc94423b1555284fa9dd45b03d0545b604061b23139024",
+      "implementation-summary.md": "4585c620358e7c0a01d48601400f257b56c3d1649a47097e9cec285e2475d041"
     },
     "last_active_at": null
   }

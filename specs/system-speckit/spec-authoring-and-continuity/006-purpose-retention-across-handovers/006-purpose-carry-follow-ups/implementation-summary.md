@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Planned, not built. This phase holds the plan for fourteen edits that close three defects found while building phases 001 to 005. No file outside this packet has changed yet."
+description: "Planned, not built. This phase holds the plan for fifteen edits that close three defects found while building phases 001 to 005 and one test gap the independent review found. No file outside this packet has changed yet."
 trigger_phrases:
   - "purpose carry follow ups implementation summary"
 importance_tier: "normal"
@@ -12,7 +12,7 @@ _memory:
     last_updated_by: "generate-context"
     recent_action: "Planned the three follow-up fixes and pushed the plan to origin/main"
     next_safe_action: "Review the five parent purposes in plan.md steps E1 to E10, then build with /speckit:implement"
-    packet_purpose: "Purpose: After this phase, every live phase parent states its own reason in its Purpose, the brief cached before a compaction names the active packet for folders under `specs/` and the resume workflow assets list the same brief rows as the presentation file."
+    packet_purpose: "Purpose: After this phase, no live phase parent carries the scaffold purpose sentence, the brief cached before a compaction names the active packet for folders under `specs/` and the resume workflow assets list the same brief rows as the presentation file."
     blockers: []
     key_files:
       - ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts"
@@ -64,12 +64,15 @@ Nothing is built yet. The operator chose to plan the three follow-up defects as 
 
 All three defects were confirmed on 2026-11-14. Five live phase parents carry the scaffold purpose sentence. The PreCompact folder detection returns nothing for a `specs/` path and the cached brief holds no `Active spec folder:` line. The resume assets list six brief rows where the presentation file lists ten. `plan.md` section 4 holds the fourteen edits and the source docs behind each new parent purpose.
 
+An independent review on 2026-11-14 led to three changes in this plan. The Purpose and REQ-001 in `spec.md` no longer say that every live phase parent states a purpose, because the edits rewrite the five parents that hold the scaffold sentence and no others. Edit E15 adds one assertion that a new phase parent which leaves Draft with an unfilled purpose fails the gate. The live phase parents with a bracket placeholder or no purpose text are listed in `scratch/phase-parents-without-purpose-text.txt` and stay out of scope. Edits E1 to E14 are unchanged.
+
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
 | `spec.md`, `plan.md`, `tasks.md` | Created | The plan for the fourteen edits |
 | `scratch/check-brief-rows.py` | Created | Compares the resume brief rows in the presentation file with each asset's `reply_format` |
+| `scratch/phase-parents-without-purpose-text.txt` | Created | Lists the live phase parents that have no purpose to carry, and how the list was made |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -103,7 +106,7 @@ Not delivered. Planning ran the three Measured Behavior commands in `spec.md`, c
 | Check | Result |
 |-------|--------|
 | Baselines in `plan.md` section 5 | Recorded 2026-11-14: hook tests 40 of 40, phase workflow 148 of 148, 256 mirrors in sync, `yaml ok`, typecheck exit 0, five parents `RESULT: PASSED` |
-| The fourteen edits | Not run. Tasks T005 to T025 are open |
+| The fifteen edits | Not run. Tasks T005 to T028 are open |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -113,6 +116,8 @@ Not delivered. Planning ran the three Measured Behavior commands in `spec.md`, c
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
 1. **No check proves a parent Purpose is true.** The five new sentences come from the child docs named under each edit in `plan.md`. The workaround is for the builder to reread those docs before each edit.
+2. **The local embeddings Purpose in E2 may not cover every child.** The reviewer read it as fitting children 001 to 029 and noted about fifteen later children under that parent that are not about embeddings. That reading was not rechecked for this plan. The sentence is left as approved.
+3. **Some live phase parents still have no purpose after this phase.** They are listed in `scratch/phase-parents-without-purpose-text.txt`.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Plan: Phase 6: purpose-carry-follow-ups"
-description: "Fourteen literal search-and-replace edits across nine files: ten that give five phase parents a real Problem Statement and Purpose, two that make the PreCompact folder detection match specs/ paths with one test, and two that align the resume assets' reply_format with the presentation file."
+description: "Fourteen literal search-and-replace edits across nine files: ten that give five phase parents a real Problem Statement and Purpose, two that make the PreCompact folder detection match specs/ paths with one test, and two that align the resume assets' reply_format with the presentation file. A fifteenth edit in a tenth file, added after the independent review, asserts that a non-Draft phase parent with an unfilled purpose fails the gate."
 trigger_phrases:
   - "purpose carry follow ups plan"
 importance_tier: "normal"
@@ -27,7 +27,7 @@ contextType: "general"
 | **Testing** | vitest from `.skilled/skills/system-spec-kit/node_modules`, plain `node` for the phase workflow and mirror checks, `python3` with `yaml`, `rg` and `validate.sh` |
 
 ### Overview
-Fourteen literal edits close three defects. E1 to E10 replace the scaffold Problem Statement and Purpose in five phase parents with text taken from their own children. E11 widens one regex in the Claude PreCompact hook to the one the Stop hook already uses and E12 adds the test that proves the brief line. E13 and E14 replace one `reply_format` line in each resume asset with the presentation file's brief rows. The proof is the three Measured Behavior commands in `spec.md`, the two hook test files, the phase workflow test, the mirror check and `validate.sh` on each edited parent.
+Fourteen literal edits close three defects. E1 to E10 replace the scaffold Problem Statement and Purpose in five phase parents with text taken from their own children. E11 widens one regex in the Claude PreCompact hook to the one the Stop hook already uses and E12 adds the test that proves the brief line. E13 and E14 replace one `reply_format` line in each resume asset with the presentation file's brief rows. E15, added on 2026-11-14 after the independent review, adds one assertion to the scaffold gate test. The proof is the three Measured Behavior commands in `spec.md`, the two hook test files, the phase workflow test, the mirror check and `validate.sh` on each edited parent.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -39,7 +39,7 @@ Fourteen literal edits close three defects. E1 to E10 replace the scaffold Probl
 ### Definition of Ready
 - [ ] The baseline commands in section 5 print the numbers recorded there
 - [ ] Each search text in section 4 matches exactly once in its file (`rg -c -F`, or `rg -U -c -F` for E12, prints 1)
-- [ ] `git status --short` lists none of the nine files in section 4 before the first edit
+- [ ] `git status --short` lists none of the ten files in section 4 before the first edit
 
 ### Definition of Done
 - [ ] All REQ rows in `spec.md` have evidence in `tasks.md`
@@ -94,7 +94,7 @@ Memory search and code search sent their text to the Voyage cloud API, because `
 ```
 
 ### E2. Local embeddings parent, Purpose
-File: `specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/spec.md`. Count: 1. Source: the parent's own closing summary, which says the live `auto` cascade has since moved to Ollama then hf-local, and the child `017-llama-cpp-default-flip`.
+File: `specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/spec.md`. Count: 1. Source: the parent's own closing summary, which says the live `auto` cascade has since moved to Ollama then hf-local, and the child `017-llama-cpp-default-flip`. Widened on 2026-11-14 at the operator's request: children 030 to 055 cover the memory and code-index runtime around the embedder (worker fixes, the `mk-spec-memory` namespace rename, runtime config parity, README and skill alignment), which the first wording left out.
 
 Search text:
 ```text
@@ -102,7 +102,7 @@ Keep parent documentation lean while child phases own detailed plans, tasks, che
 ```
 Replacement:
 ```text
-Run memory and code embeddings on this machine with a local model, and keep that local embedding runtime working as later phases change its default backend.
+Run memory and code embeddings on this machine with a local model, then keep the local memory and code-index runtime built on it working and aligned, which later phases extended to its workers, namespace, configs and docs.
 ```
 
 ### E3. Install scripts and doctor parent, Problem Statement
@@ -269,6 +269,33 @@ Replacement:
   reply_format: ["Spec", "Purpose (omit when none)", "Confidence: high|medium|low | Source", "Now", "Last confirmed", "Next safe action", "Blockers", "Progress", "Why this is next"]
 ```
 
+### Added after the independent review: the gate blocks a non-Draft parent (E15)
+
+### E15. One assertion that an unfilled parent purpose fails outside Draft
+File: `.skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts` (line 123). Count: 1, counted on 2026-11-14 at `bd79708c2f`. The assertion sits inside the existing phase-parent test, so the test count does not change. It fails today for one reason no current test covers: nothing checks that the unfilled token blocks. The expected output is what phase 001 task T015 recorded from a hand-run sandbox: `x PLACEHOLDER_FILLED: 2 placeholder(s) found` and exit 2. This edit was not run at planning time.
+
+Search text:
+```text
+    expect(parentSpec, 'the parent default reads as a scaffold placeholder').not.toMatch(/^\s*recent_action:\s*"?Initiali[sz]ed?\s/mu);
+```
+Replacement:
+```text
+    expect(parentSpec, 'the parent default reads as a scaffold placeholder').not.toMatch(/^\s*recent_action:\s*"?Initiali[sz]ed?\s/mu);
+
+    // The open question has to block as well as show: a parent that leaves
+    // Draft with its purpose still unfilled must fail on the unfilled token.
+    fs.writeFileSync(
+      path.join(parent, 'spec.md'),
+      parentSpec.replace('| **Status** | Draft |', '| **Status** | In Progress |'),
+    );
+    const undrafted = spawnSync('bash', [validateScript, parent, '--strict', '--no-recursive'], {
+      cwd: sandbox,
+      encoding: 'utf8',
+    });
+    expect(undrafted.stdout, 'a non-Draft parent with an unfilled purpose passed the gate').toMatch(/PLACEHOLDER_FILLED: \d+ placeholder\(s\) found/u);
+    expect(undrafted.status).toBe(2);
+```
+
 Before this plan was written, E11 was applied to a scratch copy of the built hook and E13 and E14 to scratch copies of both assets. The patched hook returned `specs/system-speckit/x/y` and its brief held `Active spec folder: specs/system-speckit/x/y`. The E12 assertions all held on it. Both patched assets loaded with `yaml.safe_load`, and `check-brief-rows.py` printed `match` for both.
 <!-- /ANCHOR:phases -->
 
@@ -288,6 +315,7 @@ Run each command below before E1 and again after E14 and the build. The baseline
 | `node .skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/sync-runtime-mirrors.cjs --check` | `PASS: 256 mirrors across 10 trees are in sync.`, exit 0 | unchanged |
 | `python3 -c "import yaml,sys; [yaml.safe_load(open(f)) for f in sys.argv[1:]]; print('yaml ok')" .skilled/commands/speckit/assets/speckit-resume-auto.yaml .skilled/commands/speckit/assets/speckit-resume-confirm.yaml` | `yaml ok`, exit 0 | unchanged |
 | `CI=1 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <parent> --strict`, first `Summary` and `RESULT` lines, for each parent in section 4 | local embeddings errors 0 warnings 1, install scripts 0 and 0, template reduction 0 and 0, decisions and notes 0 and 0, simplification research 0 and 0, each `RESULT: PASSED` | no more errors or warnings than the baseline, each `RESULT: PASSED` |
+| `npx vitest run runtime/cli/tests/scaffold-golden-snapshots.vitest.ts runtime/cli/tests/template-version-parity.vitest.ts runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts runtime/cli/tests/placeholder-token-gate.vitest.ts --config vitest.config.ts`, run from `.skilled/skills/system-spec-kit` | `Test Files  4 passed (4)`, `Tests  99 passed (99)`, exit 0. Recorded by phase 001 on 2026-11-14, not rerun for this plan | unchanged, with one more assertion inside an existing test |
 | The three Measured Behavior commands in `spec.md` | 5 files listed, `specs/ -> null` and 0 brief lines, `differ` for both assets | no files listed, `specs/ -> "specs/system-speckit/x/y"` and 1 brief line, `match` for both assets |
 
 `CI=1` stops `validate.sh` from repairing a Draft packet's derived metadata on its own, so the baseline run writes nothing. The second Measured Behavior command reads the built `dist/` file, so it shows the fix only after `npm run build`.
@@ -312,7 +340,7 @@ The resume assets have one copy each, under `.skilled/commands/speckit/assets/`.
 ## 7. ROLLBACK PLAN
 <!-- FILL: Name the trigger and the one command that reverts the change. GOOD: Trigger: `--keep 3` removes an archive newer than the three kept. Revert the one commit. WEAK: Roll back if needed. -->
 
-Trigger: a command in section 5 moves from its baseline in a way the After column does not name, or a parent validates with more errors than before. Before commit, run `git checkout -- <file>` for the nine files in section 4 and `npm run build` in the runtime folder. After commit, revert that one commit and rebuild.
+Trigger: a command in section 5 moves from its baseline in a way the After column does not name, or a parent validates with more errors than before. Before commit, run `git checkout -- <file>` for the ten files in section 4 and `npm run build` in the runtime folder. After commit, revert that one commit and rebuild.
 <!-- /ANCHOR:rollback -->
 
 ---

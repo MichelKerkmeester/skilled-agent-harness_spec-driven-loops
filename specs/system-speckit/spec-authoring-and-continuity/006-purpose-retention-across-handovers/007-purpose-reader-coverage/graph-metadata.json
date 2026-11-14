@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/007-purpose-reader-coverage",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/007-purpose-reader-coverage",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "purpose reader coverage",
+      "phase 7 purpose reader coverage",
+      "problem and purpose heading without subheading",
+      "inline purpose label",
+      "packet purpose first sentence abbreviation",
+      "purpose reader coverage plan",
+      "purpose reader coverage tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "purpose reader coverage implementation summary"
+    ],
+    "key_topics": [
+      "purpose",
+      "reader",
+      "coverage",
+      "phase",
+      "problem",
+      "heading",
+      "without",
+      "subheading",
+      "inline",
+      "label",
+      "packet",
+      "first"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "scratch/probe-reader.mjs",
+      ".skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts",
+      "runtime/tests/packet-purpose.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/packet-purpose.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/lib/spec/README.md",
+      "dist/lib/spec/packet-purpose.js",
+      "runtime/lib/spec/packet-purpose.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/hook-session-start.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/dist/lib/spec/packet-purpose.js"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "probe-reader.mjs",
+        "kind": "file",
+        "path": "scratch/probe-reader.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "packet-purpose.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts",
+        "source": "derived"
+      },
+      {
+        "name": "packet-purpose.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/packet-purpose.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "packet-purpose.js",
+        "kind": "code",
+        "path": "dist/lib/spec/packet-purpose.js",
+        "source": "derived"
+      },
+      {
+        "name": "hook-session-start.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/hook-session-start.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Seven",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Extend",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The operator wants the next AI to see why a packet exists after a compaction or a continuity save",
+    "created_at": "2026-11-14T06:14:04Z",
+    "last_save_at": "2026-11-14T07:26:21.534Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:da870d547f44f8e7d1ec9595edaabae739455378783a9d5252e70bd1ae8aa1aa",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "af5750867270c2abaa98c6a4a11ae9bfdbc0beee888e2a38b071829461d0cb5d",
+      "plan.md": "32772208a59c3369517829aecd2a7ccac9daf66e8e0df915d477cc13c29444f9",
+      "tasks.md": "765b55a223d9851267bc8d372f55c6a42748137211a0cd7d44a0383046dc2c57",
+      "implementation-summary.md": "771deecb91894fdc0acf99d9ccd0cec20a64cddf7cff93e4d1d1fe1efd401591"
+    },
+    "last_active_at": null
+  }
+}

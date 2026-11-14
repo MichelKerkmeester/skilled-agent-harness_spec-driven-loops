@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/007-purpose-reader-coverage",
+  "description": "Phase 7: purpose-reader-coverage",
+  "keywords": [
+    "phase",
+    "purpose-reader-coverage"
+  ],
+  "lastUpdated": "2026-11-14T06:14:05.127Z",
+  "specId": "007",
+  "folderSlug": "purpose-reader-coverage",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "006-purpose-retention-across-handovers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

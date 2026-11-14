@@ -43,6 +43,7 @@ Edit tasks name the edit in `plan.md` section 4. That section holds the search t
 - [ ] T002 Capture the command and mirror baselines (`.skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js`). Verify: it prints `Result: passed=148 failed=0`, and `sync-runtime-mirrors.cjs --check` prints `PASS: 256 mirrors across 10 trees are in sync.`
 - [ ] T003 Capture the five parent validation baselines (each parent `spec.md` in `plan.md` E1 to E10). Verify: `CI=1 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <parent> --strict` prints a first `Summary` line of `Errors: 0  Warnings: 1` for the local embeddings parent and `Errors: 0  Warnings: 0` for the other four, each followed by `RESULT: PASSED`.
 - [ ] T004 Confirm every search text matches once (`$C/plan.md`). Verify: `rg -c -F -- '<search text>' <file>` prints `1` for E1 to E11, E13 and E14, and `rg -U -c -F` prints `1` for E12.
+- [ ] T026 Capture the scaffold gate test baseline, added with E15 after the independent review (`.skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts`). Verify: the four-file `npx vitest run` command in `plan.md` section 5, run from `.skilled/skills/system-spec-kit`, prints `Test Files  4 passed (4)` and `Tests  99 passed (99)`, and `rg -c -F -- '<E15 search text>' <file>` prints `1`.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -65,6 +66,7 @@ Edit tasks name the edit in `plan.md` section 4. That section holds the search t
 - [ ] T016 Apply E12, the `specs/` folder test (`.skilled/skills/system-spec-kit/runtime/tests/hook-precompact.vitest.ts`). Verify: `rg -c -F 'names it in the brief' <file>` prints `1`.
 - [ ] T017 Apply E13, the auto asset `reply_format` (`$A/speckit-resume-auto.yaml`). Verify: `rg -c -F '"Why this is next"]' $A/speckit-resume-auto.yaml` prints `1`.
 - [ ] T018 Apply E14, the confirm asset `reply_format` (`$A/speckit-resume-confirm.yaml`). Verify: `rg -c -F '"Why this is next"]' $A/speckit-resume-confirm.yaml` prints `1`.
+- [ ] T027 Apply E15, the assertion that a non-Draft parent with an unfilled purpose fails (`.skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts`). Verify: `rg -c -F 'PLACEHOLDER_FILLED' .skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts` prints `1`.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -79,7 +81,8 @@ Edit tasks name the edit in `plan.md` section 4. That section holds the search t
 - [ ] T022 REQ-004: each rewritten parent still validates (the five parent `spec.md` files). Verify: `CI=1 bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <parent> --strict` prints the T003 `Summary` line or a better one, and `RESULT: PASSED`, for each parent.
 - [ ] T023 REQ-005: the purpose line and the command checks are unchanged (`.skilled/skills/system-spec-kit/runtime/tests/hook-session-start.vitest.ts`). Verify: the T001 command prints `(23 tests)` for this file and `Tests  41 passed (41)` in total, the T002 commands print the T002 lines and the YAML load in `plan.md` section 5 prints `yaml ok`.
 - [ ] T024 REQ-006: the runtime typechecks and the built hook carries the fix (`.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/compact-inject.js`). Verify: `(runtime) npm run typecheck` and `(runtime) npm run build` exit 0, then the second Measured Behavior command in `spec.md` prints `specs/ -> "specs/system-speckit/x/y"` and `Active spec folder lines in brief: 1`.
-- [ ] T025 Confirm only the nine planned files changed (`git status`). Verify: `git status --short` lists the nine files in `plan.md` section 4 and this packet's own docs, and nothing else.
+- [ ] T028 REQ-007: the scaffold gate test proves the block (`.skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts`). Verify: the T026 command prints `Test Files  4 passed (4)` and `Tests  99 passed (99)`.
+- [ ] T025 Confirm only the ten planned files changed (`git status`). Verify: `git status --short` lists the ten files in `plan.md` section 4 and this packet's own docs, and nothing else.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -101,7 +104,9 @@ Edit tasks name the edit in `plan.md` section 4. That section holds the search t
 <!-- FILL: Name the spec and plan files. Add the decision record when the packet has one. GOOD: Specification: `spec.md`. Plan: `plan.md`. WEAK: See the other docs. -->
 
 - **Specification**: See `spec.md`
-- **Plan**: See `plan.md`, section 4 for the fourteen edits and section 5 for the baselines
+- **Plan**: See `plan.md`, section 4 for the fifteen edits and section 5 for the baselines
+
+Tasks T026 to T028 were added on 2026-11-14 after the independent review. They sit in the phase they belong to and keep their own numbers, so T001 to T025 are not renumbered. T025 runs last.
 <!-- /ANCHOR:cross-refs -->
 
 ---

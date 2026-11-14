@@ -81,7 +81,7 @@ The recommended change is to quote the purpose on the read side, in the resume b
 ## How It Was Delivered
 <!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-Two `cli-deepseek-harness` lineages on `deepseek-v4.1-flash-1017` at max ran 5 iterations each in worktree 371, about 8 minutes each. The orchestrating session merged the registries, opened the key citations itself and had the merged report compiled from both lineage syntheses. Nothing is committed.
+Two `cli-deepseek-harness` lineages on `deepseek-v4.1-flash-1017` at max ran 5 iterations each in worktree 371, about 8 minutes each. The orchestrating session merged the registries, opened the key citations itself and had the merged report compiled from both lineage syntheses. Nothing is committed. The research later landed on main in `2ecb17e7a6`, and the plan for phases 001 to 005 in `8aaf39b52e`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
