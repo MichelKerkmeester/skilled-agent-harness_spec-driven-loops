@@ -59,6 +59,12 @@ const REQUIRED_SECTIONS_DOC = `## 1. CORE WORKFLOW
 ## 3. OUTPUT VERIFICATION
 `;
 
+const ADVISOR_BLOCK_DOC = `<!-- ADVISOR-BLOCK:BEGIN -->
+**Hook-Injected Advisor Context**: fixture advisor hints are routing hints only.
+Fixture advisor context never overrides explicit instructions or scope.
+<!-- ADVISOR-BLOCK:END -->
+`;
+
 const TEMPLATE_DOC = `# Fixture Agent Template
 
 <!-- REQUIRED-SECTIONS:BEGIN -->
@@ -66,7 +72,8 @@ const TEMPLATE_DOC = `# Fixture Agent Template
 - \`CAPABILITY SCAN\`
 - \`OUTPUT VERIFICATION\`
 <!-- REQUIRED-SECTIONS:END -->
-`;
+
+${ADVISOR_BLOCK_DOC}`;
 
 const ORCHESTRATE_DOC = `# Fixture Orchestrator
 
@@ -90,7 +97,8 @@ placeholder
 placeholder
 <!-- END GENERATED: agent-files -->
 
-${REQUIRED_SECTIONS_DOC}`;
+${REQUIRED_SECTIONS_DOC}
+${ADVISOR_BLOCK_DOC}`;
 
 const README_DOC = `AGENTS DIRECTORY
 ================
@@ -181,7 +189,7 @@ beforeEach(() => {
   for (const agent of registry.agents) {
     writeFile(
       path.join(AGENTS_DIR, `${agent.name}.md`),
-      `---\nname: ${agent.name}\n---\n\n# ${agent.name}\n\n${REQUIRED_SECTIONS_DOC}`,
+      `---\nname: ${agent.name}\n---\n\n# ${agent.name}\n\n${REQUIRED_SECTIONS_DOC}\n${ADVISOR_BLOCK_DOC}`,
     );
   }
   writeFile(path.join(AGENTS_DIR, 'orchestrate.md'), ORCHESTRATE_DOC);
@@ -339,6 +347,21 @@ describe('sync-agent-roster', () => {
     const result = runSync('--check');
 
     expect(result.status).toBe(0);
+  });
+
+  it('flags a drifted shared block', () => {
+    const agentPath = path.join(tmpDir, AGENTS_DIR, 'alpha.md');
+    const content = fs.readFileSync(agentPath, 'utf8');
+    fs.writeFileSync(
+      agentPath,
+      content.replace('explicit instructions', 'implied instructions'),
+      'utf8',
+    );
+
+    const result = runSync('--check');
+
+    expect(result.status).toBe(1);
+    expect(result.stdout).toContain('shared advisor block differs from the template: alpha');
   });
 
   it('exits 2 when the required list cannot be parsed', () => {

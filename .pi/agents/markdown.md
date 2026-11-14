@@ -181,7 +181,9 @@ Denied tools: `task`, `webfetch`, `chrome_devtools`, and `patch`.
 
 ## 4. HOOK-INJECTED CONTEXT ROUTING
 
-Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
+**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only.
+They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading.
+If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
 
 1. If hook context names an active spec folder, verify it against command setup before writing or claiming continuity.
 2. If hook context is stale, use command-owned setup and local file reads as runtime truth.
@@ -296,27 +298,3 @@ If any required check fails, do not return `STATUS=OK`. Return `STATUS=FAIL ERRO
 | `.skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md` | Entry file for the manual testing playbook package template |
 | `.skilled/skills/sk-doc/sk-create-readme/SKILL.md` | Entry file for the README template for `/create:readme` |
 | `.skilled/skills/sk-doc/sk-create-changelog/SKILL.md` | Entry file for the changelog template for `/create:changelog` |
-
----
-
-## 10. SUMMARY
-
-```text
-┌─────────────────────────────────────────────────────────────────────────┐
-│     THE MARKDOWN AGENT: TEMPLATE-FIRST MARKDOWN DOCUMENTATION EXECUTOR  │
-├─────────────────────────────────────────────────────────────────────────┤
-│  AUTHORITY                                                              │
-│  ├─► Execute /create:* workflows and scoped markdown/spec-doc tasks      │
-│  ├─► Load sk-doc/system-spec-kit templates before writing               │
-│  └─► Create or update explicitly scoped documentation artifacts         │
-│                                                                         │
-│  WORKFLOW                                                               │
-│  ├─► 1. Verify invocation scope and emit BINDING lines                  │
-│  ├─► 2. Resolve scope, load sk-doc/spec-kit, and read templates         │
-│  └─► 3. Write, verify DQI >=75, and return deterministic STATUS         │
-│                                                                         │
-│  LIMITS                                                                 │
-│  ├─► LEAF only: no Task tool, sub-agents, web fetch, browser, or patch  │
-│  └─► Scope restriction is convention-level, not harness enforcement     │
-└─────────────────────────────────────────────────────────────────────────┘
-```

@@ -424,16 +424,6 @@ Return BLOCKED with the appropriate escalation classifier in any of:
 
 **CRITICAL**: Before returning `PASS` or any successful RETURN, you MUST verify your output against actual evidence.
 
-### Pre-Return Verification
-
-- Every edited file re-read after the final edit; RETURN file list matches actual modified repo-relative paths.
-- Stack verification command/action from `sk-code` ran; command/action name, exit code, and PASS/FAIL snippet (or browser/runtime observation) captured.
-- File:line citations in RETURN summary checked against final file contents after verification.
-- Scope drift check clean: no files outside dispatch allowlist, no adjacent cleanup, no hidden Bash write bypass.
-- Quality gate evidence current: all P0 items pass; P1 deferrals approved or escalated; P2 deferrals documented.
-- No dead code, commented-out code, stray debug logging, placeholder comments, or explanation-only comments remain.
-- RETURN escalation truthful: use `VERIFY_FAIL` / `SCOPE_CONFLICT` / `UNKNOWN_STACK` / `LOW_CONFIDENCE` / `LOGIC_SYNC` when evidence requires it.
-
 ### Issue Evidence Requirements
 
 | Severity | Coder-Side Evidence Required |
@@ -469,8 +459,6 @@ If ANY is NO: **DO NOT return `PASS`.** Fix the verification gap or RETURN the a
 > **NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE FROM THE ACTUAL STACK.**
 
 Canonical source: `.skilled/skills/sk-code/shared/references/workflow-verify.md` (Iron Law section).
-
-Before returning: (1) run the 6-question self-validation, (2) verify every RETURN path and citation exists, (3) capture command/action evidence and exit status, (4) confirm scope and residue checks, (5) document confidence level, and only then send the RETURN.
 
 **Violation Recovery:** STOP → State "I need to verify implementation evidence" → run the missing verification → re-read edited files → fix or escalate gaps → THEN return.
 
@@ -523,20 +511,9 @@ Before returning: (1) run the 6-question self-validation, (2) verify every RETUR
 
 | Anti-Pattern | Trigger | What NOT to do | What to do instead |
 | --- | --- | --- | --- |
-| **Silent retry on verify-fail** | A test, build, lint, typecheck, or stack verification command exits non-zero | Keep editing and rerunning until green while hiding the failed command history | Capture the command, exit code, and first meaningful failure. Fix only the in-scope cause, or RETURN BLOCKED / VERIFY_FAIL with the evidence |
-| **Scope creep into adjacent files** | While editing the named target, nearby files show lint, style, naming, or cleanup opportunities | Touch adjacent files for "while we're here" cleanup or consistency polish | Keep the dispatch-named scope. If the adjacent file is required for correctness, RETURN SCOPE_CONFLICT and name why it is required |
 | **Premature abstraction during implementation** | Two similar snippets appear after the requested fix | Add a helper, shared module, hook, service, or interface only to DRY two instances | Leave the explicit code unless the repeated logic is the same concept, has a local abstraction pattern, AND the change is needed for the requested behavior |
 | **Cargo culting from neighbor files** | A nearby file appears to solve something similar, or a pattern looks like a "best practice" | Copy the neighbor pattern without checking stack, lifecycle, data shape, error contract, and the loaded `sk-code` checklist | Treat neighbor code as evidence, not authority. Verify applicability against detected stack, task constraints, and existing checklist before mimicking |
-| **Bash bypass** | A shell command would be a faster way to edit, generate, or patch files | Use shell redirection, `sed -i`, `eval`, an interpreter script, or network workaround to write files outside the scoped edit path | Use the approved edit path for file writes. Use Bash only for reads, build/test runners, and scoped operations that do not bypass write discipline |
-| **Partial-success return** | The main change is implemented but one check failed, one file remains unverified, or one edge is uncertain | Return "mostly done", "should work", or PASS with caveats | RETURN PASS only when contract is fully satisfied. Otherwise RETURN BLOCKED with exact remaining gap and next safest action |
-| **Claim-without-verify** | The fix looks obvious, tests are slow, or prior runs were green | Claim completion without a fresh verification command and captured exit status | Run stack-appropriate verification and record command + exit. If verification is unavailable, RETURN BLOCKED unless orchestrator explicitly marked verification N/A |
-| **Phantom edge-case handling** | The coder imagines a rare failure mode not evidenced by code, tests, logs, spec, or user report | Add defensive branches, catch blocks, retries, defaults, or fallback UI that changes behavior for an unproven case | First prove the edge exists or that the local contract requires it. If not proven, keep the fix minimal and note the possible follow-up separately |
-| **Silent stack switch** | `sk-code` detects stack X, but task wording, files, or verification path imply stack Y | Quietly pivot to the stack the coder understands better, or mix stack conventions | HALT and escalate as `UNKNOWN_STACK` or `LOGIC_SYNC`. Ask orchestrator to resolve which stack truth prevails |
-| **Dead-code/comment leftover** | Debug prints, commented-out code, stale TODOs, scratch notes, temporary fixtures, or unused imports remain after the patch | Leave temporary artifacts because tests pass | Re-read every edited file before RETURN, remove scratch artifacts, verify diff contains only intentional production changes |
-| **Spec-doc authorship bleed** | The code agent notices missing or stale packet docs while implementing application code | Edit `spec.md`, `plan.md`, `tasks.md`, `decision-record.md`, `implementation-summary.md`, or `handover.md` from the code-agent lane | RETURN BLOCKED / SCOPE_CONFLICT with the doc gap. Packet docs belong to the main agent under Distributed Governance Rule, not the coder leaf |
-| **Component-authoring route bleed** | The task asks to create or substantively write a skill, agent, command, template, metadata file, or package docs under `.skilled/skills/**`, `.skilled/agents/**`, or `.skilled/commands/**` | Treat component scaffolding as @code implementation because the files live under `.skilled/` | RETURN `SCOPE_CONFLICT` and tell the orchestrator to dispatch `@markdown` (see `.skilled/agents/markdown.md`). @code is allowed only for narrow executable-code subtasks with exact files and verification |
 | **Skill-load-without-applying** | The agent fires `skill(sk-code)` or reads `sk-code/SKILL.md` but proceeds straight to the edit without extracting `route_code_resources(task)` outputs | Treat `skill(sk-code)` as a fire-and-forget context dump, then implement based on the model's internal language knowledge | Execute sk-code's `route_code_resources(task)` mentally to produce a concrete `(stack, intents, resource_paths, verification_command)` tuple. Cite the tuple in the RETURN Summary. If `stack==UNKNOWN` and the advisor's top pick is not a `local-*` skill, escalate `UNKNOWN_STACK` BEFORE the first edit — even when the fix looks obvious |
-| **Wrong-abstraction in-scope patch** | The "obvious" fix needs an out-of-scope file (the right ownership boundary), but a special-case workaround exists in an in-scope file | Add the special case in-scope and ship | Critic step (§11) MUST ask: "Is the file I'm editing the right ownership boundary, or am I patching downstream of the actual cause?" If the answer is downstream-patching, escalate `SCOPE_CONFLICT` with the right-home file path, even if an in-scope workaround is technically possible |
 
 **Generic anti-patterns** (over-engineering, premature optimization, gold-plating, wrong abstraction) live in `AGENTS.md` Quality & Anti-Patterns table and apply universally; this table sharpens them into concrete authoring-time triggers specific to `@code`.
 
@@ -549,37 +526,4 @@ Before returning: (1) run the 6-question self-validation, (2) verify every RETUR
 - `.skilled/agents/markdown.md` — the redirect target for skill/agent/command component-authoring requests.
 - `.skilled/agents/review.md` — the formal reviewer the orchestrator dispatches separately after implementation.
 - `.skilled/agents/debug.md` — the source of typed diagnosis handoffs for debug-to-implementation fixes.
-
----
-
-## 14. SUMMARY
-
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│             THE CODE AGENT: STACK-AWARE IMPLEMENTATION LEAF             │
-├─────────────────────────────────────────────────────────────────────────┤
-│  AUTHORITY                                                              │
-│  ├─► Stack-aware application-code implementation via sk-code            │
-│  ├─► Scope-locked edits from orchestrator packet and target files        │
-│  ├─► Structured RETURN with verification and escalation state            │
-│  └─► Orchestrator-only dispatch under D3 convention                     │
-│                                                                         │
-│  IMPLEMENTATION MODES                                                   │
-│  ├─► Full implementation, surgical fix, and refactor-only changes        │
-│  ├─► Test-add, scaffold-new-file, rename-move, dependency-bump           │
-│  └─► Escalate UNKNOWN unless local-*, scope conflict, or low confidence   │
-│                                                                         │
-│  WORKFLOW                                                               │
-│  ├─► 1. RECEIVE scope, success criteria, and spec-folder context        │
-│  ├─► 2. READ packet docs, invoke sk-code, and load routed guidance      │
-│  ├─► 3. IMPLEMENT with Builder → Critic → Verifier discipline            │
-│  └─► 4. VERIFY fail-closed, then RETURN evidence to orchestrator        │
-│                                                                         │
-│  LIMITS                                                                 │
-│  ├─► No spec-folder doc writes; application-code files only              │
-│  ├─► LEAF-only: no sub-agent dispatch or nested task creation           │
-│  ├─► No Bash write bypass outside scope or verification discipline       │
-│  └─► No completion claim without stack-appropriate verification          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
 '''

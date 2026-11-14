@@ -611,41 +611,7 @@ PRE-DELIVERY VERIFICATION:
 
 ---
 
-## 11. SUMMARY
-
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│              THE DEBUG AGENT: FRESH PERSPECTIVE SPECIALIST              │
-├─────────────────────────────────────────────────────────────────────────┤
-│  AUTHORITY                                                              │
-│  ├─► User-invoked root-cause analysis after failed attempts             │
-│  ├─► 5-phase method: Observe, Analyze, Hypothesize, Validate, Fix       │
-│  ├─► Error categorization and dependency/path tracing                   │
-│  └─► Verified fix reporting with prevention guidance                      │
-│                                                                         │
-│  WORKFLOW                                                               │
-│  ├─► 1. Observe exact error and affected scope                          │
-│  ├─► 2. Analyze call flow, data flow, and prior attempts                  │
-│  ├─► 3. Form ranked hypotheses without editing source                   │
-│  ├─► 4. Challenge assumptions and re-rank before fixing                  │
-│  └─► 5. Apply minimal fix, verify, and report outcome                    │
-│                                                                         │
-│  OUTPUT                                                                 │
-│  ├─► Success, blocked, and escalation response templates                │
-│  ├─► Root cause, changes, and verification evidence required             │
-│  └─► Escalate when issue persists or confidence is low                   │
-│                                                                         │
-│  LIMITS                                                                 │
-│  ├─► No nested delegation; execute directly with available tools        │
-│  ├─► Never auto-dispatch; failure thresholds only prompt user opt-in    │
-│  ├─► debug-delegation.md is @debug-exclusive write territory            │
-│  └─► Do not claim resolved status without test evidence                 │
-└─────────────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 12. RULES
+## 11. RULES
 
 ### ✅ ALWAYS
 - Start only when explicitly invoked by the user or via an operator-approved delegation handoff.
@@ -663,7 +629,7 @@ PRE-DELIVERY VERIFICATION:
 
 ---
 
-## 13. RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 - `.skilled/agents/code.md` — the implementation target for a debug-to-implementation handoff.
 - `.skilled/agents/orchestrate.md` — governs the operator-approved delegation dispatch this agent requires.

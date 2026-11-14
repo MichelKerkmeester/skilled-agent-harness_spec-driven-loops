@@ -237,6 +237,42 @@ function unreadableRequiredSections(reason) {
   process.exit(2);
 }
 
+// Every agent file repeats the advisor block because a runtime loads one agent
+// file at a time, so a copy that drifts from the template stays invisible until
+// that agent runs. Reading the block from the template keeps this script from
+// holding a second copy that could drift from the wording it enforces.
+function sharedAdvisorBlock() {
+  let source;
+  try {
+    source = fs.readFileSync(TEMPLATE.path, 'utf8');
+  } catch (err) {
+    unreadableAdvisorBlock(err.message);
+  }
+  const lines = source.split('\n');
+  const begin = lines.findIndex((line) => line.trim() === '<!-- ADVISOR-BLOCK:BEGIN -->');
+  if (begin === -1) {
+    unreadableAdvisorBlock('missing ADVISOR-BLOCK:BEGIN marker');
+  }
+  const end = lines.findIndex(
+    (line, index) => index > begin && line.trim() === '<!-- ADVISOR-BLOCK:END -->',
+  );
+  if (end === -1) {
+    unreadableAdvisorBlock('missing ADVISOR-BLOCK:END marker');
+  }
+  const block = lines.slice(begin + 1, end);
+  if (block.every((line) => line.trim() === '')) {
+    unreadableAdvisorBlock('the block is empty');
+  }
+  return block;
+}
+
+function unreadableAdvisorBlock(reason) {
+  console.error(
+    `sync-agent-roster.cjs: cannot read the shared advisor block from ${TEMPLATE.relative}: ${reason}`,
+  );
+  process.exit(2);
+}
+
 // A file's numbered headings only mean something against the template list, so
 // this comparison reads them outside fenced blocks, honors the record's declared
 // exceptions, and reports presence and order in one place per agent.
@@ -300,6 +336,17 @@ function templateProblems(name, required, record) {
   return problems;
 }
 
+// A copy of the block only counts when it matches the template byte for byte,
+// so this comparison looks for the whole block on consecutive lines and treats
+// any changed word, casing or indentation as drift the check must report.
+function advisorBlockProblems(name, block) {
+  const lines = fs.readFileSync(path.join(AGENTS_DIR, `${name}.md`), 'utf8').split('\n');
+  const found = lines.some((_line, start) =>
+    block.every((expected, offset) => lines[start + offset] === expected),
+  );
+  return found ? [] : [`shared advisor block differs from the template: ${name}`];
+}
+
 // Markers are matched by their prefix through the block name, so the trailing
 // "edit ... and run ..." hint on a begin marker may change without hiding it.
 function findBlock(lines, file, name) {
@@ -358,6 +405,7 @@ function checkMode(registry) {
   const problems = [];
   const agents = registryAgents(registry);
   const required = requiredSections();
+  const sharedBlock = sharedAdvisorBlock();
   const recordsByName = new Map(agents.map((agent) => [agent.name, agent]));
 
   if (agents.length === 0) {
@@ -390,6 +438,7 @@ function checkMode(registry) {
   for (const name of agentFiles) {
     problems.push(...skillPathProblems(name));
     problems.push(...templateProblems(name, required, recordsByName.get(name)));
+    problems.push(...advisorBlockProblems(name, sharedBlock));
   }
 
   for (const block of BLOCKS) {
