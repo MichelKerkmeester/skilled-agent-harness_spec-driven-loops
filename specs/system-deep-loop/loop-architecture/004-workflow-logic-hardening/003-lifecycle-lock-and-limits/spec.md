@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -284,7 +284,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - Which stop reason does the duration stop use? Answered by the operator on 2026-11-14: `maxDurationReached`, which phase 001 adds to the frozen list.
 - Settled: the duration clock starts at the current generation's config `createdAt`. A resume keeps it and a restart resets it, so paused and waiting time counts. Adopted as the default on 2026-11-14: announced to the operator, who did not object.
-- A fact to check in code, not a decision: is a native dispatch bounded by `timeoutSeconds`? The REQ-007 work reads the native dispatch path first, and adds a separate native bound only when the answer is no. Recorded in `goal.md` section 4.
+- Answered in code: a native dispatch was not bounded by `timeoutSeconds`. The `if_native` branch held no timeout, so it now carries the same `timeout_seconds` line as the CLI branches. Recorded in `goal.md` section 4.
 <!-- /ANCHOR:questions -->
 
 ---

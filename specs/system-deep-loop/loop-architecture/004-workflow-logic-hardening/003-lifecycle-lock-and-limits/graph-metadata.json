@@ -34,7 +34,7 @@
       "operator"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -43,15 +43,19 @@
       "goal.md",
       "implementation-summary.md",
       ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      ".skilled/commands/deep/research.md",
+      ".skilled/commands/deep/assets/deep-research-presentation.txt",
+      ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-lock-release.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts",
       ".skilled/commands/deep/assets/deep-research-confirm.yaml",
       ".skilled/commands/deep/assets/deep-review-auto.yaml",
       ".skilled/commands/deep/assets/deep-review-confirm.yaml",
-      ".skilled/commands/deep/research.md",
-      ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
-      ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
       ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-lock-release.vitest.ts"
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-lock-lifetime.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-max-duration.vitest.ts"
     ],
     "entities": [
       {
@@ -97,6 +101,42 @@
         "source": "derived"
       },
       {
+        "name": "deep-research-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research.contract.markdown",
+        "kind": "file",
+        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-ledger-types.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-restart-lifecycle.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-restart-lifecycle.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-lock-release.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-lock-release.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-ledger-stem-producers.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "deep-research-confirm.yaml",
         "kind": "config",
         "path": ".skilled/commands/deep/assets/deep-research-confirm.yaml",
@@ -115,33 +155,21 @@
         "source": "derived"
       },
       {
-        "name": "deep-research-presentation.txt",
-        "kind": "file",
-        "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-ledger-types.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research.contract.markdown",
-        "kind": "file",
-        "path": ".skilled/commands/deep/assets/compiled/deep-research.contract.markdown",
-        "source": "derived"
-      },
-      {
         "name": "deep-review.contract.markdown",
         "kind": "file",
         "path": ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
         "source": "derived"
       },
       {
-        "name": "deep-research-lock-release.vitest.ts",
+        "name": "workflow-lock-lifetime.vitest.ts",
         "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-lock-release.vitest.ts",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-lock-lifetime.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-max-duration.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/workflow-max-duration.vitest.ts",
         "source": "derived"
       },
       {
@@ -173,35 +201,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement An",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Change",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "An operator cannot restart a deep-research run in auto mode, because the research command exposes no restart flag and `stepclassifysession` never selects its `onrestart` branch",
     "created_at": "2026-11-14T11:33:19Z",
-    "last_save_at": "2026-11-14T12:22:48.087Z",
+    "last_save_at": "2026-11-14T16:31:29.477Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:e123b150d6e1ebe30d8dc94a90f5d6b641e48f24d29076952c1393f9bff770d4",
+    "source_fingerprint": "sha256:511a7126ebd63f593faec258a6824023fe7c6cd5389d0ad4a943b87ce64a0e54",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1d2091c0db26829ce93c8cca9971afb7672b32366261669cc7471b2c48825963",
+      "spec.md": "f442aa63100494fe44455cf8788461b48f109b6bbd26c66676bd64970dd9a0ae",
       "plan.md": "28f1ca6a1599afd0aa0c9968abbc8a0586c206c8473f3d2e335ba4f6938ddeab",
-      "tasks.md": "557818b095852f3128f7e36ef51b0035d9200d9f53c80c9673399840e224f414",
-      "implementation-summary.md": "29e1c1fd5036e6f8e6c421d03813ac97df541a8968edf4708ceaf30464104c2b"
+      "tasks.md": "41a8fcdd487d2881293e7ff50a20dfbb24576682421eb848981ed34e4e5be23f",
+      "implementation-summary.md": "237c0ce72fd0624cab3710b6bbcde2d14f7e2ba088d220871f7950845785396b"
     },
     "last_active_at": null
   }
