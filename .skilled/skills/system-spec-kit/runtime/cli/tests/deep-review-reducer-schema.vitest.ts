@@ -82,13 +82,11 @@ describe('deep-review reducer and schema contract', () => {
     expect(config.fileProtection['.deep-review-pause']).toBe('operator-controlled');
   });
 
-  it('wires reducer refresh and machine-owned report guidance into both review workflows', () => {
-    const autoYaml = readWorkspaceFile('.skilled/commands/deep/assets/deep-review-auto.yaml');
-    const confirmYaml = readWorkspaceFile('.skilled/commands/deep/assets/deep-review-confirm.yaml');
+  it('wires reducer refresh and machine-owned report guidance into the review workflow', () => {
+    const reviewWorkflow = readWorkspaceFile('.skilled/commands/deep/assets/deep-review.yaml');
 
     for (const [docPath, content] of [
-      ['auto', autoYaml],
-      ['confirm', confirmYaml],
+      ['deep-review.yaml', reviewWorkflow],
     ] as const) {
       expect(content, `${docPath} workflow should include reducer refresh step`).toContain('step_reduce_review_state:');
       expect(content, `${docPath} workflow should read the canonical state log`).toContain(

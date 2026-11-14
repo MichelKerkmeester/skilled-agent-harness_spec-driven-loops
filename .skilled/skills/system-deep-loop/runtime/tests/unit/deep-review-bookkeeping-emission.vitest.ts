@@ -26,7 +26,7 @@ const ASSETS_DIR = resolve(
   '.skilled', 'commands', 'deep', 'assets',
 );
 
-const WORKFLOW_FILES = ['deep-review-auto.yaml', 'deep-review-confirm.yaml'] as const;
+const WORKFLOW_FILE = 'deep-review.yaml';
 
 type DirectiveKey = 'append_to_jsonl' | 'append_jsonl' | 'bookkeeping_log';
 
@@ -280,93 +280,80 @@ const RUN_OPEN_ROW: Record<string, unknown> = {
 };
 
 describe('deep-review bookkeeping emission', () => {
-  for (const file of WORKFLOW_FILES) {
-    it(`routes only gateway-accepted rows through the append directives in ${file}`, () => {
-      const filePath = join(ASSETS_DIR, file);
-      const directives = extractDirectives(filePath);
-      expect(directives.length).toBeGreaterThan(0);
+  it('routes only gateway-accepted rows through the append directives', () => {
+    const file = WORKFLOW_FILE;
+    const filePath = join(ASSETS_DIR, file);
+    const directives = extractDirectives(filePath);
+    expect(directives.length).toBeGreaterThan(0);
 
-      const label = file.replace(/[^A-Za-z0-9]+/g, '-');
-      const runDirectory = createTempDir(`run-${label}`);
-      const authorityRoot = createTempDir(`auth-${label}`);
-      const openResult = runGateway(runDirectory, authorityRoot, RUN_OPEN_ROW, 'run-open');
-      expect(openResult.exitCode, `run open refused: ${openResult.reason}`).toBe(0);
+    const label = file.replace(/[^A-Za-z0-9]+/g, '-');
+    const runDirectory = createTempDir(`run-${label}`);
+    const authorityRoot = createTempDir(`auth-${label}`);
+    const openResult = runGateway(runDirectory, authorityRoot, RUN_OPEN_ROW, 'run-open');
+    expect(openResult.exitCode, `run open refused: ${openResult.reason}`).toBe(0);
 
-      const refusedEvents = new Set<string>();
-      for (const directive of directives) {
-        const result = runGateway(
-          runDirectory,
-          authorityRoot,
-          directive.row,
-          `line-${directive.line}`,
-        );
-        if (result.exitCode === 1 && directive.event) refusedEvents.add(directive.event);
+    const refusedEvents = new Set<string>();
+    for (const directive of directives) {
+      const result = runGateway(
+        runDirectory,
+        authorityRoot,
+        directive.row,
+        `line-${directive.line}`,
+      );
+      if (result.exitCode === 1 && directive.event) refusedEvents.add(directive.event);
 
-        if (directive.key === 'append_to_jsonl' || directive.key === 'append_jsonl') {
-          expect(
-            result.exitCode,
-            `${file}:${directive.line} ${directive.key} event=${directive.event ?? '-'} `
-              + `was refused by the gateway: ${result.reason}`,
-          ).toBe(0);
-        }
-      }
-
-      const pinned = readPinnedEvents(filePath);
-      const bookkeepingEvents = [
-        ...new Set(
-          directives
-            .filter((directive) => directive.key === 'bookkeeping_log')
-            .map((directive) => directive.event)
-            .filter((event): event is string => event !== null),
-        ),
-      ];
-
-      for (const event of bookkeepingEvents) {
-        expect(
-          pinned.has(event),
-          `${file}: bookkeeping_log event ${event} is missing from `
-            + 'state_write_protocol.pinned_bookkeeping.events',
-        ).toBe(true);
-        expect(
-          refusedEvents.has(event),
-          `${file}: bookkeeping_log event ${event} was accepted by the gateway, `
-            + 'so the declaration pins a row that is routable',
-        ).toBe(true);
-      }
-
-      for (const event of pinned) {
-        const result = runGateway(
-          runDirectory,
-          authorityRoot,
-          { type: 'event', event, mode: 'review' },
-          `pinned-${event}`,
-        );
+      if (directive.key === 'append_to_jsonl' || directive.key === 'append_jsonl') {
         expect(
           result.exitCode,
-          `${file}: pinned_bookkeeping event ${event} was not refused by the gateway `
-            + `(exit ${result.exitCode}), so the declaration is stale`,
-        ).toBe(1);
+          `${file}:${directive.line} ${directive.key} event=${directive.event ?? '-'} `
+            + `was refused by the gateway: ${result.reason}`,
+        ).toBe(0);
       }
-    }, 240_000);
-  }
-
-  it('lists the same pinned events in both review workflows', () => {
-    const perFile = WORKFLOW_FILES.map((file) => ({
-      file,
-      pinned: readPinnedEvents(join(ASSETS_DIR, file)),
-    }));
-
-    for (const { file, pinned } of perFile) {
-      expect(
-        pinned.size,
-        `${file}: state_write_protocol.pinned_bookkeeping declares no events`,
-      ).toBeGreaterThan(0);
     }
 
-    const [first, second] = perFile;
+    const pinned = readPinnedEvents(filePath);
+    const bookkeepingEvents = [
+      ...new Set(
+        directives
+          .filter((directive) => directive.key === 'bookkeeping_log')
+          .map((directive) => directive.event)
+          .filter((event): event is string => event !== null),
+      ),
+    ];
+
+    for (const event of bookkeepingEvents) {
+      expect(
+        pinned.has(event),
+        `${file}: bookkeeping_log event ${event} is missing from `
+          + 'state_write_protocol.pinned_bookkeeping.events',
+      ).toBe(true);
+      expect(
+        refusedEvents.has(event),
+        `${file}: bookkeeping_log event ${event} was accepted by the gateway, `
+          + 'so the declaration pins a row that is routable',
+      ).toBe(true);
+    }
+
+    for (const event of pinned) {
+      const result = runGateway(
+        runDirectory,
+        authorityRoot,
+        { type: 'event', event, mode: 'review' },
+        `pinned-${event}`,
+      );
+      expect(
+        result.exitCode,
+        `${file}: pinned_bookkeeping event ${event} was not refused by the gateway `
+          + `(exit ${result.exitCode}), so the declaration is stale`,
+      ).toBe(1);
+    }
+  }, 240_000);
+
+  it('declares pinned bookkeeping events in the review workflow', () => {
+    const pinned = readPinnedEvents(join(ASSETS_DIR, WORKFLOW_FILE));
     expect(
-      [...first.pinned].sort(),
-      `pinned_bookkeeping disagreement between ${first.file} and ${second.file}`,
-    ).toEqual([...second.pinned].sort());
+      pinned.size,
+      `${WORKFLOW_FILE}: state_write_protocol.pinned_bookkeeping declares no events`,
+    ).toBeGreaterThan(0);
   });
 });

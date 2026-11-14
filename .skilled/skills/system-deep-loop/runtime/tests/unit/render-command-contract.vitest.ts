@@ -199,10 +199,8 @@ describe('render-command-contract', () => {
 // site that omits a flag therefore pins that knob to the runner default and the
 // operator's configured value never reaches a lineage.
 const FANOUT_CALL_SITES = [
-  { command: 'deep/review', variant: 'auto', yaml: '.skilled/commands/deep/assets/deep-review-auto.yaml' },
-  { command: 'deep/review', variant: 'confirm', yaml: '.skilled/commands/deep/assets/deep-review-confirm.yaml' },
-  { command: 'deep/research', variant: 'auto', yaml: '.skilled/commands/deep/assets/deep-research-auto.yaml' },
-  { command: 'deep/research', variant: 'confirm', yaml: '.skilled/commands/deep/assets/deep-research-confirm.yaml' },
+  { command: 'deep/review', yaml: '.skilled/commands/deep/assets/deep-review.yaml' },
+  { command: 'deep/research', yaml: '.skilled/commands/deep/assets/deep-research.yaml' },
 ] as const;
 
 const FANOUT_FLAGS = [
@@ -237,7 +235,7 @@ function renderFanoutCommand(step: string): string {
 }
 
 describe('fan-out call-site contract', () => {
-  it.each(FANOUT_CALL_SITES)('$command $variant passes every convergence flag to the runner', ({ yaml }) => {
+  it.each(FANOUT_CALL_SITES)('$command passes every convergence flag to the runner', ({ yaml }) => {
     const rendered = renderFanoutCommand(fanoutSpawnStep(yaml));
 
     expect(rendered).toContain('fanout-run.cjs');
@@ -246,7 +244,7 @@ describe('fan-out call-site contract', () => {
     }
   });
 
-  it.each(FANOUT_CALL_SITES)('$command $variant spawns lineages only through the runner', ({ yaml }) => {
+  it.each(FANOUT_CALL_SITES)('$command spawns lineages only through the runner', ({ yaml }) => {
     const step = fanoutSpawnStep(yaml);
 
     expect(step).toContain('fanout-run.cjs');
@@ -258,20 +256,18 @@ describe('fan-out call-site contract', () => {
   });
 });
 
-// ── Confirm-variant parity contract ─────────────────────────────────────────
+// ── Single-file two-mode contract ───────────────────────────────────────────
 //
-// Each loop ships two command contracts: an unattended `auto` variant and an
-// interactive `confirm` variant. They are edited independently, so one can drop
-// a step the other still runs and nothing renders both to notice. A confirm
-// variant may legitimately omit an auto step when the interactive surface does
-// the same work at an operator gate, but the omission has to be declared in
-// that contract's `confirm_parity` census with the reason. These guards pin the
-// census and the record-shape bindings so the pair cannot drift silently again.
-const PARITY_PAIRS = [
+// Each loop ships one command contract that runs unattended and interactive
+// alike. Blocks that only run interactively carry `applies_to: confirm` (the
+// approval gates are the confirm-only surface); every other step runs in both
+// modes. A second per-mode file, or a gate without the marker, would silently
+// diverge from this one. These guards pin the marker and the shared
+// record-shape bindings.
+const SINGLE_CONTRACTS = [
   {
     command: 'deep/review',
-    auto: '.skilled/commands/deep/assets/deep-review-auto.yaml',
-    confirm: '.skilled/commands/deep/assets/deep-review-confirm.yaml',
+    yaml: '.skilled/commands/deep/assets/deep-review.yaml',
     gatewaySteps: ['step_evaluate_results', 'step_post_iteration_claim_adjudication', 'step_convergence_report'],
     configBindings: ['stopPolicy: "{stop_policy}"'],
     // Review opens its run as a gateway event built from the config file, so the
@@ -280,8 +276,7 @@ const PARITY_PAIRS = [
   },
   {
     command: 'deep/research',
-    auto: '.skilled/commands/deep/assets/deep-research-auto.yaml',
-    confirm: '.skilled/commands/deep/assets/deep-research-confirm.yaml',
+    yaml: '.skilled/commands/deep/assets/deep-research.yaml',
     gatewaySteps: ['step_convergence_report'],
     configBindings: ['lineage.sessionId: "{session_id_init}"'],
     // Research opens its run as a gateway event built from the config file, so the
@@ -290,50 +285,34 @@ const PARITY_PAIRS = [
   },
 ] as const;
 
-const STEP_KEY_RE = /^\s*-?\s*(step_[a-z0-9_]+):/gm;
-
 function readContract(yamlPath: string): string {
   return readFileSync(workspacePath(yamlPath), 'utf8');
 }
 
-// The census names steps that are intentionally absent, so its entries are not
-// workflow steps and must be stripped before the step-key census.
-function stepKeys(source: string): Set<string> {
-  const census = censusBlock(source);
-  const body = census === null ? source : source.replace(census, '');
-  return new Set([...body.matchAll(STEP_KEY_RE)].map((match) => match[1]));
-}
-
-// The census lives in a column-0 block so a following top-level key bounds it.
-function censusBlock(source: string): string | null {
-  const start = source.indexOf('\nconfirm_parity:');
-  if (start === -1) return null;
-  const tail = source.slice(start + 1);
-  const end = tail.search(/\n\S/);
-  return end === -1 ? tail : tail.slice(0, end);
-}
-
-function censusBlockOrThrow(source: string): string {
-  const block = censusBlock(source);
-  if (block === null) throw new Error('confirm contract has no confirm_parity census');
-  return block;
-}
-
-function censusSection(block: string, section: string): string {
-  const start = block.indexOf(`\n  ${section}:`);
-  if (start === -1) throw new Error(`confirm_parity has no ${section} section`);
-  const tail = block.slice(start + 1);
-  const end = tail.slice(section.length + 3).search(/\n {2}\S/);
-  return end === -1 ? tail : tail.slice(0, section.length + 3 + end + 1);
-}
-
-function censusOmissions(block: string): Map<string, string> {
-  const entries = new Map<string, string>();
-  for (const line of censusSection(block, 'omitted_steps').split('\n')) {
-    const match = /^ {4}(step_[a-z0-9_]+):\s*(.+?)\s*$/.exec(line);
-    if (match) entries.set(match[1], match[2]);
+// The approval gates are the confirm-only surface. A gate block runs until the
+// next line at or above its own indentation, and the marker may sit a line or
+// two above the key on the branch that carries the gate.
+function approvalGateBlocks(source: string): string[] {
+  const lines = source.split('\n');
+  const blocks: string[] = [];
+  for (const [index, line] of lines.entries()) {
+    if (!/^\s*gate_[a-z0-9_]+:\s*$/.test(line)) continue;
+    const indent = line.search(/\S/);
+    const block: string[] = [];
+    for (let above = index - 1; above >= 0 && index - above <= 3; above -= 1) {
+      const candidate = lines[above];
+      if (candidate.trim() === '') continue;
+      if (candidate.search(/\S/) !== indent) break;
+      if (/^\s*applies_to:\s*confirm\s*$/.test(candidate)) block.push(candidate);
+    }
+    block.push(line);
+    for (const next of lines.slice(index + 1)) {
+      if (next.trim() !== '' && next.search(/\S/) <= indent) break;
+      block.push(next);
+    }
+    if (block.some((entry) => entry.trim() === 'type: approval_gate')) blocks.push(block.join('\n'));
   }
-  return entries;
+  return blocks;
 }
 
 function stepBlock(source: string, key: string, indent = 6): string | null {
@@ -345,71 +324,43 @@ function stepBlock(source: string, key: string, indent = 6): string | null {
   return end === -1 ? tail : tail.slice(0, marker.length + end + 1);
 }
 
-describe('confirm-variant parity contract', () => {
-  it.each(PARITY_PAIRS)('$command: every auto step is present in the confirm contract or declared in its census', (pair) => {
-    const autoSteps = stepKeys(readContract(pair.auto));
-    const confirmSteps = stepKeys(readContract(pair.confirm));
-    const omissions = censusOmissions(censusBlockOrThrow(readContract(pair.confirm)));
+describe('single-file two-mode contract', () => {
+  it.each(SINGLE_CONTRACTS)('$command carries no per-mode parity census', ({ yaml }) => {
+    expect(readContract(yaml)).not.toMatch(/\nconfirm_parity:/);
+  });
 
-    for (const step of autoSteps) {
-      if (confirmSteps.has(step)) continue;
-      expect(
-        omissions.has(step),
-        `${pair.confirm}: ${step} is absent from the confirm contract and is not declared in confirm_parity.omitted_steps`,
-      ).toBe(true);
+  it.each(SINGLE_CONTRACTS)('$command marks every confirm-only approval gate with applies_to: confirm', ({ yaml }) => {
+    const gates = approvalGateBlocks(readContract(yaml));
+
+    expect(gates.length).toBeGreaterThan(0);
+    for (const gate of gates) {
+      expect(gate, `${yaml}: an approval gate is missing applies_to: confirm`).toContain('applies_to: confirm');
     }
   });
 
-  it.each(PARITY_PAIRS)('$command: the census names only auto steps the confirm contract truly omits', (pair) => {
-    const autoSteps = stepKeys(readContract(pair.auto));
-    const confirmSteps = stepKeys(readContract(pair.confirm));
-    const omissions = censusOmissions(censusBlockOrThrow(readContract(pair.confirm)));
+  it.each(SINGLE_CONTRACTS)('$command binds the config and line-one record placeholders', ({ yaml, configBindings, recordBindings }) => {
+    const contract = readContract(yaml);
+    const config = stepBlock(contract, 'step_create_config') ?? '';
+    const record = stepBlock(contract, 'step_create_state_log') ?? '';
 
-    expect(omissions.size).toBeGreaterThan(0);
-    for (const [step, reason] of omissions) {
-      expect(autoSteps.has(step), `${pair.confirm}: census names ${step}, which its auto twin does not define`).toBe(true);
-      expect(confirmSteps.has(step), `${pair.confirm}: census names ${step}, which the confirm contract also defines`).toBe(false);
-      expect(
-        reason.replace(/^["']|["']$/g, '').length,
-        `${pair.confirm}: census entry ${step} must state why the interactive surface differs`,
-      ).toBeGreaterThan(30);
+    for (const binding of configBindings) {
+      expect(config, `${yaml}: config is missing ${binding}`).toContain(binding);
     }
+    for (const fragment of recordBindings) {
+      expect(record, `${yaml}: line-one config record is missing ${fragment}`).toContain(fragment);
+    }
+    expect(record).not.toContain('"emit":true');
   });
 
-  it.each(PARITY_PAIRS)('$command: both variants bind the same config and line-one record placeholders', (pair) => {
-    const auto = readContract(pair.auto);
-    const confirm = readContract(pair.confirm);
-    const autoConfig = stepBlock(auto, 'step_create_config', 6) ?? '';
-    const confirmConfig = stepBlock(confirm, 'step_create_config', 6) ?? '';
-    const autoRecord = stepBlock(auto, 'step_create_state_log', 6) ?? '';
-    const confirmRecord = stepBlock(confirm, 'step_create_state_log', 6) ?? '';
+  it.each(SINGLE_CONTRACTS)('$command wires the state-record steps through the append gateway', ({ yaml, gatewaySteps }) => {
+    const contract = readContract(yaml);
 
-    for (const binding of pair.configBindings) {
-      expect(autoConfig, `${pair.auto}: config is missing ${binding}`).toContain(binding);
-      expect(confirmConfig, `${pair.confirm}: config is missing ${binding}`).toContain(binding);
-    }
-    for (const fragment of pair.recordBindings) {
-      expect(autoRecord, `${pair.auto}: line-one config record is missing ${fragment}`).toContain(fragment);
-      expect(confirmRecord, `${pair.confirm}: line-one config record is missing ${fragment}`).toContain(fragment);
-    }
-    for (const record of [autoRecord, confirmRecord]) {
-      expect(record).not.toContain('"emit":true');
-    }
-  });
-
-  it.each(PARITY_PAIRS)('$command: both variants wire the same state-record steps through the append gateway', (pair) => {
-    const auto = readContract(pair.auto);
-    const confirm = readContract(pair.confirm);
-
-    for (const step of pair.gatewaySteps) {
-      const autoStep = stepBlock(auto, step);
-      const confirmStep = stepBlock(confirm, step);
-      expect(autoStep, `${pair.auto}: ${step} not found`).not.toBeNull();
-      expect(confirmStep, `${pair.confirm}: ${step} not found`).not.toBeNull();
+    for (const step of gatewaySteps) {
+      const block = stepBlock(contract, step);
+      expect(block, `${yaml}: ${step} not found`).not.toBeNull();
       // A canonical record written beside the state log is dropped by the next
-      // projection refresh, so both variants must stage it through the gateway.
-      expect(autoStep ?? '', `${pair.auto}: ${step} must stage its record through the gateway`).toContain('append-mode-event.cjs');
-      expect(confirmStep ?? '', `${pair.confirm}: ${step} must stage its record through the gateway`).toContain('append-mode-event.cjs');
+      // projection refresh, so the step must stage it through the gateway.
+      expect(block ?? '', `${yaml}: ${step} must stage its record through the gateway`).toContain('append-mode-event.cjs');
     }
   });
 });

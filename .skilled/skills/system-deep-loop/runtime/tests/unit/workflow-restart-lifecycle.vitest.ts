@@ -2,7 +2,7 @@
 // MODULE: Workflow Restart Lifecycle Contract
 // ───────────────────────────────────────────────────────────────────
 
-// The restart path is text in four workflow assets: a prior lineage is read
+// The restart path is text in the two workflow assets: a prior lineage is read
 // before the archive, the archive moves the packet exactly once, and the new
 // gen values reach the config and the ledger. These cases read the assets as
 // plain text and run the archive and binding commands against temp folders, so
@@ -48,17 +48,13 @@ interface WorkflowFile {
   readonly label: string;
   readonly file: string;
   readonly kind: 'research' | 'review';
-  readonly mode: 'auto' | 'confirm';
 }
 
 const FILES: readonly WorkflowFile[] = [
-  { label: 'research auto', file: 'deep-research-auto.yaml', kind: 'research', mode: 'auto' },
-  { label: 'research confirm', file: 'deep-research-confirm.yaml', kind: 'research', mode: 'confirm' },
-  { label: 'review auto', file: 'deep-review-auto.yaml', kind: 'review', mode: 'auto' },
-  { label: 'review confirm', file: 'deep-review-confirm.yaml', kind: 'review', mode: 'confirm' },
+  { label: 'research', file: 'deep-research.yaml', kind: 'research' },
+  { label: 'review', file: 'deep-review.yaml', kind: 'review' },
 ];
 const RESEARCH_FILES = FILES.filter((entry) => entry.kind === 'research');
-const AUTO_FILES = FILES.filter((entry) => entry.mode === 'auto');
 
 const LINEAGE_VALUES_LINES = [
   '        lineage_values:',
@@ -195,18 +191,20 @@ function makeRepoScratchDir(prefix: string): string {
   return dir;
 }
 
-function restartBlock(entry: WorkflowFile, text: string): string {
-  return entry.mode === 'auto'
-    ? topLevelStep(text, 'step_apply_lifecycle_request')
-    : keyBlock(phaseStep(text, 'step_classify_session'), 'on_restart_choice');
+function restartBlock(text: string): string {
+  return topLevelStep(text, 'step_apply_lifecycle_request');
+}
+
+function confirmRestartBlock(text: string): string {
+  return keyBlock(phaseStep(text, 'step_classify_session'), 'on_restart_choice');
 }
 
 function autoArchiveCommand(): string {
-  return archiveCommand(topLevelStep(fileText('deep-research-auto.yaml'), 'step_apply_lifecycle_request'));
+  return archiveCommand(restartBlock(fileText('deep-research.yaml')));
 }
 
 function bindCommand(entry: WorkflowFile): string {
-  return blockScalar(keyBlock(restartBlock(entry, fileText(entry.file)), 'bind_prior_lineage'), 'command');
+  return blockScalar(keyBlock(restartBlock(fileText(entry.file)), 'bind_prior_lineage'), 'command');
 }
 
 afterEach(() => {
@@ -232,7 +230,7 @@ describe('workflow restart lifecycle', () => {
   });
 
   for (const { label, file } of RESEARCH_FILES) {
-    it(`research flags: ${label} preflight requires lineage_mode`, () => {
+    it(`${label} flags: preflight requires lineage_mode`, () => {
       const preflight = phaseStep(fileText(file), 'step_preflight_contract');
       expect(preflight).not.toBe('');
       const requiredLine = preflight
@@ -243,7 +241,7 @@ describe('workflow restart lifecycle', () => {
     });
   }
 
-  for (const { label, file } of AUTO_FILES) {
+  for (const { label, file } of FILES) {
     it(`${label} restart order: the archive runs before fan-out, directories and the lock`, () => {
       const text = fileText(file);
       const archiveAt = text.indexOf('\n  step_apply_lifecycle_request:\n');
@@ -269,15 +267,15 @@ describe('workflow restart lifecycle', () => {
       expect(tail).not.toContain('mv {state_paths.packet_dir}');
       expect(tail).not.toContain('mv "{state_paths.packet_dir}"');
 
-      if (entry.mode === 'confirm') {
-        const restartChoice = keyBlock(phaseStep(text, 'step_classify_session'), 'on_restart_choice');
-        expect(restartChoice).not.toBe('');
-        expect(restartChoice).toContain('! -name "$(basename "{state_paths.lock_file}")"');
-        expect(restartChoice).toContain(
-          'mkdir -p "{state_paths.prompt_dir}" "{state_paths.iteration_dir}" "{state_paths.delta_dir}"',
-        );
-        expect(restartChoice).toContain('on_fail: "Halt with STATUS=FAIL through step_release_lock');
-      }
+      // The classified restart branch is confirm-only. It archives into the
+      // existing archive root and leaves the held lock file in place.
+      const restartChoice = confirmRestartBlock(text);
+      expect(restartChoice).not.toBe('');
+      expect(restartChoice).toContain('! -name "$(basename "{state_paths.lock_file}")"');
+      expect(restartChoice).toContain(
+        'mkdir -p "{state_paths.prompt_dir}" "{state_paths.iteration_dir}" "{state_paths.delta_dir}"',
+      );
+      expect(restartChoice).toContain('on_fail: "Halt with STATUS=FAIL through step_release_lock');
     });
   }
 
@@ -332,7 +330,7 @@ describe('workflow restart lifecycle', () => {
 
   it('no post-lock move: the confirm archive keeps the held lock file in place', () => {
     const command = archiveCommand(
-      keyBlock(phaseStep(fileText('deep-research-confirm.yaml'), 'step_classify_session'), 'on_restart_choice'),
+      confirmRestartBlock(fileText('deep-research.yaml')),
     );
     expect(command).not.toBe('');
 
@@ -368,20 +366,19 @@ describe('workflow restart lifecycle', () => {
 
   for (const entry of FILES) {
     it(`prior lineage binding: ${entry.label} reads the old config before the archive`, () => {
-      const block = restartBlock(entry, fileText(entry.file));
-      expect(block).not.toBe('');
-
-      const bindAt = block.indexOf('bind_prior_lineage:');
-      expect(bindAt).not.toBe(-1);
-      const archiveMarker = entry.mode === 'auto'
-        ? 'mv "{state_paths.packet_dir}"'
-        : 'find "{state_paths.packet_dir}"';
-      const archiveAt = block.indexOf(archiveMarker);
-      expect(archiveAt).not.toBe(-1);
-      expect(bindAt).toBeLessThan(archiveAt);
-
-      const command = blockScalar(keyBlock(block, 'bind_prior_lineage'), 'command');
-      expect(command).not.toBe('');
+      const text = fileText(entry.file);
+      const restartPaths = [
+        {
+          label: 'step_apply_lifecycle_request',
+          block: restartBlock(text),
+          archiveMarker: 'mv "{state_paths.packet_dir}"',
+        },
+        {
+          label: 'step_classify_session.on_restart_choice',
+          block: confirmRestartBlock(text),
+          archiveMarker: 'find "{state_paths.packet_dir}"',
+        },
+      ];
 
       const dir = makeTempDir('workflow-restart-');
       const configPath = join(dir, 'deep-research-config.json');
@@ -391,19 +388,33 @@ describe('workflow restart lifecycle', () => {
         : { sessionId: 'sess-old', generation: 2 };
       writeFileSync(configPath, JSON.stringify(prior));
 
-      const run = runShell(render(command, {
-        '{state_paths.config}': configPath,
-        '{state_paths.state_log}': stateLogPath,
-      }));
-      expect(run.status, String(run.stdout) + String(run.stderr)).toBe(0);
-      const binding = lastJsonLine(run.stdout);
-      expect(binding).toMatchObject({ priorSessionId: 'sess-old', priorGeneration: 2 });
-      expect(binding.priorTailDigest).toMatch(/^[0-9a-f]{64}$/);
+      for (const restartPath of restartPaths) {
+        const block = restartPath.block;
+        expect(block, restartPath.label).not.toBe('');
+
+        const bindAt = block.indexOf('bind_prior_lineage:');
+        expect(bindAt, restartPath.label).not.toBe(-1);
+        const archiveAt = block.indexOf(restartPath.archiveMarker);
+        expect(archiveAt, restartPath.label).not.toBe(-1);
+        expect(bindAt, restartPath.label).toBeLessThan(archiveAt);
+
+        const command = blockScalar(keyBlock(block, 'bind_prior_lineage'), 'command');
+        expect(command, restartPath.label).not.toBe('');
+
+        const run = runShell(render(command, {
+          '{state_paths.config}': configPath,
+          '{state_paths.state_log}': stateLogPath,
+        }));
+        expect(run.status, String(run.stdout) + String(run.stderr)).toBe(0);
+        const binding = lastJsonLine(run.stdout);
+        expect(binding).toMatchObject({ priorSessionId: 'sess-old', priorGeneration: 2 });
+        expect(binding.priorTailDigest).toMatch(/^[0-9a-f]{64}$/);
+      }
     });
   }
 
   it('restart projection: the gateway records run_restarted after run_initialized', () => {
-    const text = fileText('deep-research-auto.yaml');
+    const text = fileText('deep-research.yaml');
     const openCommand = blockScalar(phaseStep(text, 'step_create_state_log'), 'command');
     expect(openCommand).not.toBe('');
 
@@ -477,12 +488,11 @@ describe('workflow restart lifecycle', () => {
     expect(restarted).toMatchObject({ event: 'restarted', generation: 3 });
   });
 
-  it('restart projection: the ledger table marks run_restarted spoken by both research workflows', () => {
+  it('restart projection: the ledger table marks run_restarted spoken by the research workflow', () => {
     expect(DEEP_RESEARCH_STEM_PRODUCERS['deep_research.run_restarted']).toEqual({
       status: 'spoken',
       producers: [
-        '.skilled/commands/deep/assets/deep-research-auto.yaml',
-        '.skilled/commands/deep/assets/deep-research-confirm.yaml',
+        '.skilled/commands/deep/assets/deep-research.yaml',
       ],
     });
   });
@@ -607,7 +617,7 @@ describe('workflow restart lifecycle', () => {
 
   it('prior lineage binding: the binding fails only when the old config is unreadable', () => {
     const entry = RESEARCH_FILES[0];
-    const block = restartBlock(entry, fileText(entry.file));
+    const block = restartBlock(fileText(entry.file));
     expect(block).not.toBe('');
 
     const command = blockScalar(keyBlock(block, 'bind_prior_lineage'), 'command');

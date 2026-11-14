@@ -39,9 +39,7 @@ Load the presentation contract before showing startup questions, dashboards, che
 >    - `convergenceThreshold`
 >    - `stop_policy` (default `convergence` unless `--stop-policy=max-iterations` is present)
 >    - `dry_run` (default false unless `--dry-run` is present)
-> 2. Load the corresponding YAML file from `assets/` only after all setup values are resolved:
->    - Auto: `deep-research-auto.yaml`
->    - Confirm: `deep-research-confirm.yaml`
+> 2. Load the workflow YAML from `assets/` only after all setup values are resolved: `deep-research.yaml`. The mode binds `execution_mode` to `auto` or `confirm`.
 > 3. Execute the YAML workflow step by step using those resolved values
 >
 > This command is **general-agent based** — it orchestrates the deep-research loop. The Unified Setup Phase (the BLOCKED gate) is a HARD BLOCK; it may not be skipped.
@@ -63,20 +61,20 @@ You were invoked via `opencode run --command deep/research` with the `:auto` suf
 
 - DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
 - DO NOT halt for the repo-wide `CLAUDE.md` Gate-3 documentation gate. Under AUTONOMOUS execution with a validated prebound spec folder, Gate 3 is already satisfied by that folder (the prebound spec folder is your write authority).
-- PROCEED immediately: load the auto workflow YAML and dispatch the `deep-research` agent to run ONE iteration of the research loop over the bound target.
+- PROCEED immediately: load the workflow YAML with `execution_mode` bound to `auto` and dispatch the `deep-research` agent to run ONE iteration of the research loop over the bound target.
 - DISPATCH ONLY: You dispatch `deep-research` to run one iteration.
   You do NOT read, edit, patch or run the research loop over the target yourself.
-  The auto workflow YAML owns the loop itself.
+  The workflow YAML owns the loop itself.
   It owns setup, dispatch-per-iteration, reducer sync, convergence checks, synthesis and all loop-level artifact writes.
   The `deep-research` leaf owns only its own single-iteration artifacts.
   Mixing your inline work with the dispatch is a route violation.
-- ROUTE PROOF: dispatch through the auto workflow with its prompt pack so `deep-research` writes each iteration state record with the route-proof fields present — `target_agent: "deep-research"`, `resolved_route`, `agent_definition_loaded: true`, and `mode: "research"`. A completed run whose iteration state records omit these fields is an incomplete delegation and does not pass.
+- ROUTE PROOF: dispatch through the workflow with `execution_mode` bound to `auto` and its prompt pack so `deep-research` writes each iteration state record with the route-proof fields present — `target_agent: "deep-research"`, `resolved_route`, `agent_definition_loaded: true`, and `mode: "research"`. A completed run whose iteration state records omit these fields is an incomplete delegation and does not pass.
 
 Your job is to DISPATCH `deep-research` to run ONE iteration of the research loop over the bound target.
 You do NOT run the loop yourself.
 You do NOT review or analyze this contract.
 You do NOT summarize this contract.
-The auto workflow YAML owns the loop itself.
+The workflow YAML owns the loop itself.
 It owns setup, dispatch-per-iteration, reducer sync, convergence, synthesis and loop-level writes.
 This contract is your instruction set.
 The research target is the bound spec_folder/target named in your message, never this document.
@@ -88,8 +86,7 @@ The research target is the bound spec_folder/target named in your message, never
 | Purpose | Asset |
 |---------|-------|
 | Presentation source of truth | `.skilled/commands/deep/assets/deep-research-presentation.txt` |
-| Auto workflow | `.skilled/commands/deep/assets/deep-research-auto.yaml` |
-| Confirm workflow | `.skilled/commands/deep/assets/deep-research-confirm.yaml` |
+| Workflow | `.skilled/commands/deep/assets/deep-research.yaml` (`execution_mode` binds to `auto` or `confirm`) |
 
 ---
 
@@ -97,10 +94,10 @@ The research target is the bound spec_folder/target named in your message, never
 
 1. Parse `$ARGUMENTS` for attached suffixes: `:auto` sets `execution_mode = AUTONOMOUS`; `:confirm` sets `execution_mode = INTERACTIVE`; no suffix sets `execution_mode = ASK`.
 2. Treat `--max-iterations`, `--convergence`, `--lineage-timeout-hours`, `--stop-policy`, `--dry-run`, `--spec-folder`, lifecycle flags (`--restart`, `--lineage-mode`), `--executor`, `--model`, `--config-dir`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count`, `--executors`, `--concurrency`, and `--no-resource-map` as workflow inputs, not execution modes.
-3. For `:auto`, resolve setup from `$ARGUMENTS` flags, any `PRE-BOUND SETUP ANSWERS:` marker block, scope-extracted spec-folder paths, and the presentation contract's default resolution table. When all required fields are resolved, persist `{artifact_dir}/deep-research-config.json`, bind runtime YAML placeholders, and load `.skilled/commands/deep/assets/deep-research-auto.yaml`.
+3. For `:auto`, resolve setup from `$ARGUMENTS` flags, any `PRE-BOUND SETUP ANSWERS:` marker block, scope-extracted spec-folder paths, and the presentation contract's default resolution table. When all required fields are resolved, persist `{artifact_dir}/deep-research-config.json`, bind runtime YAML placeholders, and load `.skilled/commands/deep/assets/deep-research.yaml` with `execution_mode` bound to `auto`.
 4. In `:auto`, ask a targeted Tier-2 question only for `spec_folder` when the topic is present, names no resolvable spec folder, and the folder choice is ambiguous. Missing `research_topic` is absence, not ambiguity; use the named-missing-inputs fail-fast format from the auto-mode contract and do not load YAML.
-5. For `:confirm`, use the presentation contract's consolidated setup prompt to bind missing setup values, then load `.skilled/commands/deep/assets/deep-research-confirm.yaml`.
-6. For no suffix, use the presentation contract's consolidated setup prompt to choose execution mode and bind missing setup values, then route the resolved interactive choice to the matching YAML.
+5. For `:confirm`, use the presentation contract's consolidated setup prompt to bind missing setup values, then load `.skilled/commands/deep/assets/deep-research.yaml` with `execution_mode` bound to `confirm`.
+6. For no suffix, use the presentation contract's consolidated setup prompt to choose execution mode and bind missing setup values, then load `.skilled/commands/deep/assets/deep-research.yaml` with `execution_mode` bound to the chosen mode.
 7. Lightweight read-only discovery for related spec folders or prior memory may support setup, but it must feed the single consolidated prompt and never split setup questions.
 8. After the selected workflow asset is loaded, execute it step by step using the resolved setup values.
 
@@ -144,9 +141,10 @@ in the prompt body binds the same values without an interactive prompt.
 
 ### Dry-Run Flag
 
-`--dry-run` is a first-class flag on the confirm flow, not a third execution mode. It still performs real setup resolution, artifact-root resolution, focus selection, prompt rendering, and convergence reads when those steps can run without side effects.
+`--dry-run` is a first-class flag in both execution modes, not a third execution mode. It still performs real setup resolution, artifact-root resolution, focus selection, prompt rendering, and convergence reads when those steps can run without side effects.
 
-When `dry_run=true`, the confirm YAML emits `dry_run_halt` JSONL preview lines to terminal output instead of appending to the live state log, and halts before executor dispatch, persistent state mutation, reducer refresh, or child-lineage spawn.
+When `dry_run=true`, the workflow emits `dry_run_halt` JSONL preview lines to terminal output instead of appending to the live state log, and halts before executor dispatch, persistent state mutation, reducer refresh, or child-lineage spawn.
+Under dry run the setup phase binds its values in memory and does not persist `{artifact_dir}/deep-research-config.json`.
 A fresh packet will stop at the first persistent state boundary.
 An existing packet can read current state and convergence signals, render the next prompt for preview, then stop before dispatch.
 
@@ -156,8 +154,7 @@ An existing packet can read current state and convergence signals, render the ne
 
 | Mode | Target |
 |------|----------|
-| `:auto` | `.skilled/commands/deep/assets/deep-research-auto.yaml` |
-| `:confirm` or interactive choice | `.skilled/commands/deep/assets/deep-research-confirm.yaml` |
+| `:auto` or `:confirm` | `.skilled/commands/deep/assets/deep-research.yaml`, with `execution_mode` bound to `auto` or `confirm` |
 
 ---
 

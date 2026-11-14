@@ -69,10 +69,16 @@ afterEach(() => {
 });
 
 const fanoutMergeScript = join(runtimeRoot, 'scripts', 'fanout-merge.cjs');
-const researchWorkflowPaths = [
-  resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-research-auto.yaml'),
-  resolve(runtimeRoot, '..', '..', '..', 'commands', 'deep', 'assets', 'deep-research-confirm.yaml'),
-];
+const researchWorkflowPath = resolve(
+  runtimeRoot,
+  '..',
+  '..',
+  '..',
+  'commands',
+  'deep',
+  'assets',
+  'deep-research.yaml',
+);
 
 function registryBytes(value: unknown): string {
   return JSON.stringify(value);
@@ -1020,56 +1026,50 @@ describe('reconstructResearchRegistryFromState — leaf-only lineage fallback', 
 });
 
 describe('research synthesis lineage evidence', () => {
-  it('keeps duplicate iteration basenames distinct and completes against all lineage findings in both workflows', () => {
-    for (const yamlPath of researchWorkflowPaths) {
-      const workflow = readFileSync(yamlPath, 'utf8');
-      expect(workflow).toContain('{state_paths.packet_dir}/lineages/*/iterations/iteration-*.md');
-      expect(workflow).toContain('Duplicate basenames from different lineages are distinct synthesis inputs');
-      expect(runSynthesisInvariant(yamlPath, ['alpha finding', 'beta finding'])).toMatchObject({
-        event: 'synthesis_complete',
-        totalIterations: 2,
-      });
-    }
+  it('keeps duplicate iteration basenames distinct and completes against all lineage findings', () => {
+    const workflow = readFileSync(researchWorkflowPath, 'utf8');
+    expect(workflow).toContain('{state_paths.packet_dir}/lineages/*/iterations/iteration-*.md');
+    expect(workflow).toContain('Duplicate basenames from different lineages are distinct synthesis inputs');
+    expect(runSynthesisInvariant(researchWorkflowPath, ['alpha finding', 'beta finding'])).toMatchObject({
+      event: 'synthesis_complete',
+      totalIterations: 2,
+    });
   });
 
-  it('reports incomplete synthesis when one lineage finding is missing from the registry in both workflows', () => {
-    for (const yamlPath of researchWorkflowPaths) {
-      expect(runSynthesisInvariant(yamlPath, ['alpha finding'], 2)).toMatchObject({
-        event: 'synthesis_incomplete',
-        severity: 'error',
-        totalIterations: 2,
-        identifiableFindingCount: 2,
-        missingStructuredFindingCount: 1,
-        invariantFailures: expect.arrayContaining([
-          'structured_state_findings_partially_reflected_in_registry',
-          'structured_state_findings_missing_from_registry',
-        ]),
-      });
-    }
+  it('reports incomplete synthesis when one lineage finding is missing from the registry', () => {
+    expect(runSynthesisInvariant(researchWorkflowPath, ['alpha finding'], 2)).toMatchObject({
+      event: 'synthesis_incomplete',
+      severity: 'error',
+      totalIterations: 2,
+      identifiableFindingCount: 2,
+      missingStructuredFindingCount: 1,
+      invariantFailures: expect.arrayContaining([
+        'structured_state_findings_partially_reflected_in_registry',
+        'structured_state_findings_missing_from_registry',
+      ]),
+    });
   });
 
-  it('fails synthesis when any lineage state row is malformed in both workflows', () => {
-    for (const yamlPath of researchWorkflowPaths) {
-      expect(runSynthesisInvariant(yamlPath, ['alpha finding', 'beta finding'], 2, true)).toMatchObject({
-        event: 'synthesis_incomplete',
-        severity: 'error',
-        stateParseFailureCount: 1,
-        invariantFailures: expect.arrayContaining(['state_jsonl_parse_failure']),
-      });
-    }
+  it('fails synthesis when any lineage state row is malformed', () => {
+    expect(runSynthesisInvariant(researchWorkflowPath, ['alpha finding', 'beta finding'], 2, true)).toMatchObject({
+      event: 'synthesis_incomplete',
+      severity: 'error',
+      stateParseFailureCount: 1,
+      invariantFailures: expect.arrayContaining(['state_jsonl_parse_failure']),
+    });
   });
 
-  it('keeps confirm-mode resource-map emission bound to the parsed command flag', () => {
-    const confirmWorkflow = readFileSync(researchWorkflowPaths[1], 'utf8');
-    expect(confirmWorkflow).toContain('resource_map.emit: "{resource_map_emit}"');
+  it('keeps resource-map emission bound to the parsed command flag', () => {
+    const workflow = readFileSync(researchWorkflowPath, 'utf8');
+    expect(workflow).toContain('resource_map.emit: "{resource_map_emit}"');
     // The run no longer writes the flat state-log row; it opens through the gateway and reads
     // every bound value, the emission flag included, from the config file the step is handed.
-    const runOpenStep = confirmWorkflow.slice(
-      confirmWorkflow.indexOf('      step_create_state_log:\n'),
-      confirmWorkflow.indexOf('      step_create_strategy:\n'),
+    const runOpenStep = workflow.slice(
+      workflow.indexOf('      step_create_state_log:\n'),
+      workflow.indexOf('      step_create_strategy:\n'),
     );
     expect(runOpenStep).toContain('fs.readFileSync(configPath)');
-    expect(confirmWorkflow).not.toContain('resource_map.emit: true');
+    expect(workflow).not.toContain('resource_map.emit: true');
   });
 });
 

@@ -1,6 +1,6 @@
 ---
 description: "Autonomous deep-review loop: iterative code audit with convergence detection. Modes :auto, :confirm."
-argument-hint: "<target> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--restart]"
+argument-hint: "<target> [:auto|:confirm] [--spec-folder=PATH] [--max-iterations=N] [--executor=TYPE] [--concurrency=N] [--dry-run] [--restart]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 ---
 
@@ -15,6 +15,7 @@ Thin router for the deep-review loop. This command verifies the orchestrating ag
 - **MARKDOWN OWNS SETUP**: resolve setup inputs here first, then hand off to YAML.
 - **YAML START CONDITION**: do not load YAML until ALL required inputs are bound:
   - `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`, `lineage_mode`
+  - `dry_run` (default false unless `--dry-run` is present)
 
 ## 1. ROUTER CONTRACT
 
@@ -34,20 +35,20 @@ You were invoked via `opencode run --command deep/review` with the `:auto` suffi
 
 - DO NOT emit the consolidated setup question (target/mode, research topic, Spec Folder A/B/C/D, execution mode, max iterations, executor). The bound spec_folder is your write authority; do not ask which spec folder should own the writes.
 - DO NOT halt for the repo-wide `CLAUDE.md` Gate-3 documentation gate. Under AUTONOMOUS execution with a validated prebound spec folder, Gate 3 is already satisfied by that folder (the prebound spec folder is your write authority).
-- PROCEED immediately: load the auto workflow YAML and dispatch the `deep-review` agent to run ONE iteration of the review loop over the bound target.
+- PROCEED immediately: load the workflow YAML with `execution_mode` bound to `auto` and dispatch the `deep-review` agent to run ONE iteration of the review loop over the bound target.
 - DISPATCH ONLY: You dispatch `deep-review` to run one iteration.
   You do NOT read, edit, patch or run the review loop over the target yourself.
-  The auto workflow YAML owns the loop itself.
+  The workflow YAML owns the loop itself.
   It owns setup, dispatch-per-iteration, reducer sync, convergence checks, synthesis and all loop-level artifact writes.
   The `deep-review` leaf owns only its own single-iteration artifacts.
   Mixing your inline work with the dispatch is a route violation.
-- ROUTE PROOF: dispatch through the auto workflow with its prompt pack so `deep-review` writes each iteration state record with the route-proof fields present — `target_agent: "deep-review"`, `resolved_route`, `agent_definition_loaded: true`, and `mode: "review"`. A completed run whose iteration state records omit these fields is an incomplete delegation and does not pass.
+- ROUTE PROOF: dispatch through the workflow with `execution_mode` bound to `auto` and its prompt pack so `deep-review` writes each iteration state record with the route-proof fields present — `target_agent: "deep-review"`, `resolved_route`, `agent_definition_loaded: true`, and `mode: "review"`. A completed run whose iteration state records omit these fields is an incomplete delegation and does not pass.
 
 Your job is to DISPATCH `deep-review` to run ONE iteration of the review loop over the bound target.
 You do NOT run the loop yourself.
 You do NOT review or analyze this contract.
 You do NOT summarize this contract.
-The auto workflow YAML owns the loop itself.
+The workflow YAML owns the loop itself.
 It owns setup, dispatch-per-iteration, reducer sync, convergence, synthesis and loop-level writes.
 This contract is your instruction set.
 The review target is the bound spec_folder/target named in your message, never this document.
@@ -59,19 +60,18 @@ The review target is the bound spec_folder/target named in your message, never t
 | Purpose | Asset |
 |---------|-------|
 | Presentation source of truth | `.skilled/commands/deep/assets/deep-review-presentation.txt` |
-| Auto workflow | `.skilled/commands/deep/assets/deep-review-auto.yaml` |
-| Confirm workflow | `.skilled/commands/deep/assets/deep-review-confirm.yaml` |
+| Workflow | `.skilled/commands/deep/assets/deep-review.yaml` (`execution_mode` binds to `auto` or `confirm`) |
 
 ---
 
 ## 3. MODE ROUTING
 
 1. Parse `$ARGUMENTS` for attached command suffixes (`:auto` or `:confirm`). Canonical mode syntax is `/deep:review:auto` and `/deep:review:confirm`.
-2. Treat target text, `--max-iterations`, `--convergence`, `--lineage-timeout-hours`, `--stop-policy`, `--spec-folder`, `--review-focus`, lifecycle flags (`--restart`, `--lineage-mode`), executor flags, fan-out flags, the internal `--fanout-lineage-artifact-dir`, and pre-bound setup answers as workflow inputs, not execution modes.
+2. Treat target text, `--max-iterations`, `--convergence`, `--lineage-timeout-hours`, `--stop-policy`, `--dry-run`, `--spec-folder`, `--review-focus`, lifecycle flags (`--restart`, `--lineage-mode`), executor flags, fan-out flags, the internal `--fanout-lineage-artifact-dir`, and pre-bound setup answers as workflow inputs, not execution modes.
 3. If `:auto` is present, set `execution_mode = AUTONOMOUS` and resolve required setup inputs through the presentation contract's three-tier auto setup resolution before loading YAML.
 4. If `:confirm` is present, set `execution_mode = INTERACTIVE` and use the presentation contract's consolidated setup prompt before loading YAML.
 5. If no mode suffix is present, set `execution_mode = ASK` and use the presentation contract's consolidated setup prompt to ask for execution mode.
-6. Load the selected workflow asset only after `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`, and `lineage_mode` are bound.
+6. Load the selected workflow asset only after `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`, `lineage_mode` and `dry_run` are bound.
 
 ### Workflow Flag Surface
 
@@ -88,6 +88,7 @@ into `config`.
 | `--lineage-timeout-hours` | `N` | See Lineage Timeout Flag below. |
 | `--stop-policy` | `convergence` \| `max-iterations` | See Stop Policy Flag below. |
 | `--no-resource-map` | no value | Suppresses the resource-map write; the review report still emits. |
+| `--dry-run` | no value | See Dry-Run Flag below. |
 | `--review-focus` | `"TEXT"` | Optional operator focus that every iteration covers in addition to its dimension, in single-executor and fan-out runs alike. It is cut to one line of at most 1000 characters, stored as `reviewFocus` in the config and shown in the review report. |
 | `--restart`, `--lineage-mode` | `auto` \| `resume` \| `restart` | Session lifecycle intent, default `auto`. `resume` keeps the same `sessionId` and archives nothing; `restart`, which bare `--restart` selects, opens a new `sessionId` at generation+1 and archives the prior `review/`. `fork` and `completed-continue` are deferred and rejected. |
 | `--executor` | `TYPE` | Selects the executor kind, and is repeatable. Each occurrence opens a group accepting `--model=X`, `--config-dir=PATH`, `--reasoning-effort=LEVEL`, `--service-tier=TIER`, `--executor-timeout=SECONDS`, `--iters=N`, `--count=N` and `--label=X`. Which of those a given kind supports is in the presentation asset. |
@@ -114,14 +115,22 @@ prompt body binds the same values without an interactive prompt.
 The default `convergence` stops at legal convergence or `config.maxIterations`, whichever comes first.
 `max-iterations` treats convergence as telemetry only and forces the loop to continue until `config.maxIterations`, which is useful for forced-depth runs.
 
+### Dry-Run Flag
+
+`--dry-run` is a first-class flag in both execution modes, not a third execution mode. It still performs real setup resolution, artifact-root resolution, focus selection, prompt rendering and convergence reads when those steps can run without side effects.
+
+When `dry_run=true`, the workflow emits `dry_run_halt` JSONL preview lines to terminal output instead of appending to the live state log, and halts before executor dispatch, persistent state mutation, reducer refresh or child-lineage spawn.
+Under dry run the setup phase binds its values in memory and does not persist `{artifact_dir}/deep-review-config.json`.
+A fresh packet will stop at the first persistent state boundary.
+An existing packet can read current state and convergence signals, render the next prompt for preview, then stop before dispatch.
+
 ---
 
 ## 4. EXECUTION TARGETS
 
 | Mode | Target |
 |------|----------|
-| `:auto` | `.skilled/commands/deep/assets/deep-review-auto.yaml` |
-| `:confirm` or interactive choice | `.skilled/commands/deep/assets/deep-review-confirm.yaml` |
+| `:auto` or `:confirm` | `.skilled/commands/deep/assets/deep-review.yaml`, with `execution_mode` bound to `auto` or `confirm` |
 
 ---
 

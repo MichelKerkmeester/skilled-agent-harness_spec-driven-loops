@@ -13,10 +13,8 @@ import { resolve } from 'node:path';
 // stop_decision object.
 const ASSETS = resolve(__dirname, '..', '..', '..', '..', '..', 'commands', 'deep', 'assets');
 const FILES = [
-  'deep-research-auto.yaml',
-  'deep-research-confirm.yaml',
-  'deep-review-auto.yaml',
-  'deep-review-confirm.yaml',
+  'deep-research.yaml',
+  'deep-review.yaml',
 ];
 const FORBIDDEN_IN_STEP = [
   'MAD(',
@@ -70,12 +68,13 @@ describe.each(FILES)('%s', (file) => {
   });
 
   it('hands the divergent pivot the fine cause, not the coarse stop reason', () => {
-    const lines = text.split('\n').filter((line) => line.includes('triggerReason:'));
+    const lines = text
+      .split('\n')
+      .filter((line) => line.includes('--trigger-reason "{reason_detail}"'));
     expect(lines.length).toBe(1);
-    expect(lines[0]).toContain("'{reason_detail}'");
   });
 
-  if (file.startsWith('deep-review-')) {
+  if (file.startsWith('deep-review')) {
     it('holds no hardcoded 0.05 threshold', () => {
       expect(text).not.toMatch(/0\.05\b/);
     });

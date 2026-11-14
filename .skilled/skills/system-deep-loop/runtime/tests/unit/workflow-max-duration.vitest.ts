@@ -32,10 +32,8 @@ const REPO_ROOT = resolve(SKILLS_ROOT, '..');
 const ASSETS = resolve(SKILLS_ROOT, 'commands', 'deep', 'assets');
 
 const FILES = [
-  'deep-research-auto',
-  'deep-research-confirm',
-  'deep-review-auto',
-  'deep-review-confirm',
+  'deep-research',
+  'deep-review',
 ];
 
 const MAX_DURATION_MINUTES = 120;

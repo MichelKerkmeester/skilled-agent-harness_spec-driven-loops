@@ -1,6 +1,6 @@
-# ─────────────────────────────────────────────────────────────────
-# DEEP RESEARCH: AUTONOMOUS DEEP RESEARCH LOOP (AUTO MODE)
-# ─────────────────────────────────────────────────────────────────
+# ────────
+# DEEP RESEARCH: DEEP RESEARCH LOOP (AUTO AND CONFIRM MODES)
+# ────────
 # YAML PREDICATE GRAMMAR CONTRACT:
 # - This asset does not currently use typed BooleanExpr predicates under
 #   `when:`; flow control is branch-label-driven (`on_resume`, `on_fresh`,
@@ -16,7 +16,7 @@
 #   and JSONL state-log appends. The workflow classifies resume as
 #   write-path below (see `gate3_classification` fields) so Gate 3 trigger
 #   extraction can surface resume correctly rather than false-negative.
-# ─────────────────────────────────────────────────────────────────
+# ────────
 role: Deep Research Loop Manager
 purpose: Iterative deep research with convergence detection
 action: Run deep-research loop from initialization through synthesis
@@ -28,17 +28,40 @@ operating_mode:
   tracking: progressive_research_state
   validation: convergence_detection
 
-# ─────────────────────────────────────────────────────────────────
+# ────────
 # OPERATING PRINCIPLES
-# ─────────────────────────────────────────────────────────────────
+# ────────
 operating_principles:
   core: "Fresh context per iteration + externalized state = no context degradation"
   approach: "Dispatch focused agent, evaluate convergence, repeat or stop"
   mandate: "Never hold findings in memory; write everything to files"
 
-# ─────────────────────────────────────────────────────────────────
+# ────────
+# EXECUTION MODE
+# ────────
+execution_mode:
+  source: "$ARGUMENTS"
+  values: [auto, confirm]
+  default: confirm
+  rule: "Every step, executor branch and flag in this file runs in both modes. Under confirm, also execute every block marked applies_to: confirm at the place that carries it, and apply the mode_overrides.confirm wording. Under auto, skip every block marked applies_to: confirm and keep the autonomous wording of this file."
+mode_overrides:
+  confirm:
+    purpose: "Iterative deep research with convergence detection and user approval gates"
+    action: "Run deep-research loop with user confirmation at each phase transition"
+    workflow_execution: "interactive"
+    approvals: "multi_gate"
+    approach: "Dispatch focused agent, show results, get approval, repeat or stop"
+    mandate: "Never hold findings in memory; write everything to files. Pause for user at each gate."
+    phase_loop_purpose: "Dispatch agent iterations with approval at each step"
+    lock_not_acquired: "If acquired=false, stop and present recovery choices: another deep-research run already holds this packet."
+    agent_dispatch_timeout: "Retry once with reduced scope. If second timeout, mark as 'timeout' and show to user for decision."
+    continuity_save_failure: "Preserve the research/ packet as backup. Inform user."
+    rules_always: [pause_at_approval_gates, present_clear_options_at_each_gate]
+    rules_never: [proceed_past_approval_gate_without_user_response, auto_approve_on_behalf_of_user]
+
+# ────────
 # USER INPUTS (from setup phase)
-# ─────────────────────────────────────────────────────────────────
+# ────────
 user_inputs:
   research_topic: "[RESEARCH_TOPIC] - Topic to investigate deeply. REQUIRED."
   spec_folder: "[SPEC_FOLDER] - Spec folder path. REQUIRED."
@@ -47,10 +70,43 @@ user_inputs:
   convergence_threshold: "[CONVERGENCE_THRESHOLD] - Stop threshold. Default: 0.05."
   convergence_mode: "[default|off|sliding-window|divergent] - Convergence policy modifier. Default: default."
   stop_policy: "[convergence|max-iterations] - Convergence stop policy; max-iterations forces the loop to run every iteration. Default: convergence."
+  dry_run: "[DRY_RUN] - Boolean pre-flight flag. Default: false."
+  lineage_timeout_hours: "[LINEAGE_TIMEOUT_HOURS] - Optional per-lineage wall-clock ceiling in hours for fan-out runs, at most 4. Default: unset, which keeps the 4 hour ceiling."
 
-# ─────────────────────────────────────────────────────────────────
+# ────────
+# DRY-RUN CONTROL
+# ────────
+dry_run_control:
+  enabled_when: "dry_run == true"
+  default: false
+  modes: [auto, confirm]
+  purpose: "Run safe setup and read-only inspection, then stop before side effects."
+  safe_operations:
+    - "Resolve setup inputs and artifact roots."
+    - "Read current state, strategy, focus, and convergence signals."
+    - "Render the next prompt to terminal preview without writing prompt files."
+  forbidden_operations:
+    - "Executor dispatch."
+    - "Persistent state, queue, lock, git index, memory, or graph mutation."
+    - "Reducer refresh or generated artifact writes."
+    - "Child-lineage spawn."
+  event_policy:
+    event_name: dry_run_halt
+    sink: "terminal JSONL preview only; never append to {state_paths.state_log}"
+    required_fields: [type, event, mode, boundary, step, timestamp]
+    optional_fields: [run, sessionId, generation, detail]
+    default_halt_event: '{"type":"event","event":"dry_run_halt","mode":"research","boundary":"{dry_run_boundary}","step":"{step_name}","timestamp":"{ISO_8601_NOW}"}'
+    preview_only: "A step or branch marked dry_run_event_policy: preview-only still runs its read and classify work. It prints the event it would append as a terminal JSONL preview line and appends nothing."
+  halt_hook_rule: "Before executing any command, dispatch, edit, output, template write, append_to_jsonl, append_jsonl, log_event, mcp_tool, write, or git-index mutation in a step tagged with dry_run_boundary, emit event_policy.default_halt_event with that step's name and boundary to the terminal and halt. This holds in both execution modes."
+  boundary_labels:
+    child_spawn: "child-spawn"
+    state_mutation: "state-mutation"
+    dispatch: "dispatch"
+    reducer_refresh: "reducer-refresh"
+
+# ────────
 # CONTEXT LOADING
-# ─────────────────────────────────────────────────────────────────
+# ────────
 context_loading:
   trigger: "At workflow START, before phase_init"
   purpose: "Load prior research context for the topic and buffer it until strategy.md exists"
@@ -70,9 +126,9 @@ context_loading:
     if_context_found: "Store full results as prior_context plus a concise prior_context_summary; inject after strategy.md is created."
     if_no_context: "Set prior_context and prior_context_summary to 'None' and continue."
 
-# ─────────────────────────────────────────────────────────────────
+# ────────
 # SKILL REFERENCE
-# ─────────────────────────────────────────────────────────────────
+# ────────
 skill_reference:
   skill: system-deep-loop
   skill_md: .skilled/skills/system-deep-loop/deep-research/SKILL.md
@@ -85,9 +141,9 @@ skill_reference:
     config: .skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json
     strategy: .skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md
 
-# ─────────────────────────────────────────────────────────────────
+# ────────
 # AGENT CONFIGURATION
-# ─────────────────────────────────────────────────────────────────
+# ────────
 agent_config:
   agent: deep-research
   agent_file: ".skilled/agents/deep-research.md"
@@ -98,19 +154,19 @@ agent_config:
   mcp_servers: []
   tool_call_budget: { target: 12, max: 24 }
 
-# ─────────────────────────────────────────────────────────────────
+# ────────
 # STATE FILE PATHS
-# ─────────────────────────────────────────────────────────────────
-# ─────────────────────────────────────────────────────────────────
+# ────────
+# ────────
 # CANONICAL STATE WRITE MECHANISM
-# ─────────────────────────────────────────────────────────────────
+# ────────
 state_write_protocol:
   mechanism: "append-gateway"
   command: "node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs --mode research --run-directory {artifact_dir} --event-json <record file>"
   applies_to: "every append_to_jsonl and append_jsonl directive in this workflow"
   refusal_handling: "halt on exit 2; never fall back to a direct file write. Exit 1 on a row that is still routed through the gateway is a workflow defect and halts; the pinned_bookkeeping rows are recorded through bookkeeping_log and are never routed."
   pinned_bookkeeping:
-    events: [config_warning, graph_convergence, lock_released, schema_mismatch, maxDurationReached]
+    events: [config_warning, graph_convergence, lock_released, manualStop, pivot_confirm_accepted, schema_mismatch, maxDurationReached]
     directive: "bookkeeping_log"
     handling: "These rows are workflow bookkeeping that the research ledger schema pins to the legacy path: they have no lossless research-event target, so the gateway would refuse them with exit 1 and write nothing. They are never sent to the gateway. The step prints the row in its log line and continues; none of them is a halt condition."
   contract: |
@@ -172,9 +228,16 @@ state_paths:
   archive_root: "{artifact_archive_root}"
   synthesis_snapshot_pattern: "{artifact_dir}/synthesis-v{generation}.md"
 
-# ─────────────────────────────────────────────────────────────────
+# ────────
 # WORKFLOW
-# ─────────────────────────────────────────────────────────────────
+# ────────
+
+gate_defaults:
+  after_gate_refresh_lock:
+    action: "Refresh the packet lock heartbeat immediately after the operator response"
+    command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+    on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet, so run step_release_lock and stop rather than continue without it."
+
 workflow:
 
   step_resolve_artifact_root:
@@ -206,16 +269,16 @@ workflow:
         reducer_artifact_arg: ""
 
   step_apply_lifecycle_request:
-    description: "Honor explicit auto-mode restart before fan-out or normal initialization"
+    description: "Honor an explicit restart request before fan-out or normal initialization"
+    dry_run_boundary: "state-mutation"
     skip_when: "lineage_mode != 'restart'"
     instructions: |
-      This is the autonomous equivalent of the confirm-mode restart choice. Run it
-      immediately after artifact resolution and before fan-out so old packet files
-      cannot be merged with fresh lineage outputs. A restart request must never
-      fall back to auto-resume. In auto mode, the explicit restart flag is operator
-      authorization to archive the resolved research packet, so do not ask for a
-      second confirmation. Rollback is to move the timestamped archive back to
-      the packet directory.
+      Run this step in both execution modes, immediately after artifact resolution
+      and before fan-out, so old packet files cannot be merged with fresh lineage
+      outputs. A restart request must never fall back to resume. The explicit
+      restart flag is operator authorization to archive the resolved research packet,
+      so do not ask for a second confirmation. Rollback is to move the timestamped
+      archive back to the packet directory.
     bind_prior_lineage:
       action: "Read the session id and generation of the packet that is about to be archived"
       command: |
@@ -265,6 +328,7 @@ workflow:
   step_fanout_spawn:
     description: "Spawn fan-out lineages; skip and proceed to phase_init normally when single-executor"
     skip_when: "config.fanout is absent"
+    dry_run_boundary: "child-spawn"
     instructions: |
       Fan-out mode is active. Spawn all lineages. Each lineage runs the full loop in its own
       isolated sub-packet under {artifact_dir}/lineages/{label}/.
@@ -291,10 +355,11 @@ workflow:
             --convergence-mode {convergence_mode}
         working_directory: "{repo_root}"
         wait_for_completion: true
+        optional_flags: "When lineage_timeout_hours is bound, append `--lineage-timeout-hours {lineage_timeout_hours}` to the command. When it is unset, append nothing, which keeps the 4 hour ceiling."
 
-  # ═══════════════════════════════════════════════════════════════
+  # ════════
   # PHASE 1: INITIALIZATION
-  # ═══════════════════════════════════════════════════════════════
+  # ════════
   phase_init:
     purpose: Create all state files for the research session
     steps:
@@ -303,6 +368,7 @@ workflow:
         action: "Validate required setup bindings and executable workflow contract before any file writes"
         verify:
           - required_values_present: [research_topic, spec_folder, lineage_mode, max_iterations, convergence_threshold, convergence_mode, stop_policy]
+          - dry_run_normalized: "Boolean true or false before workflow loading; absent flag resolves to false."
           - spec_folder_is_within: "specs/ or .opencode/specs/ (canonicalize alias roots before validation)"
           - unresolved_placeholders: "FAIL if any user-facing template references placeholders not produced by earlier steps"
           - tool_contract: "FAIL if executable steps reference tools outside the command allowlist"
@@ -310,6 +376,7 @@ workflow:
 
       step_create_directories:
         action: "Create spec folder and research packet directories if they don't exist"
+        dry_run_boundary: "state-mutation"
         command: "mkdir -p {state_paths.prompt_dir} {state_paths.iteration_dir} {state_paths.delta_dir}"
 
       step_detect_resource_map:
@@ -341,9 +408,10 @@ workflow:
 
       step_acquire_lock:
         action: "Acquire the single-writer advisory lock before session classification"
+        dry_run_boundary: "state-mutation"
         ttl_ms: "lock_ttl_ms = max(1800000, executor_timeout * 1000). executor_timeout is the bound dispatch timeout in seconds, 900 when unset. The lock is stale after twice this value, so it outlives the longest allowed dispatch."
         command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs acquire --lock-path {state_paths.lock_file} --packet-id {spec_folder} --ttl-ms {lock_ttl_ms}"
-        on_acquire: "Capture lock.ownerPid as captured_owner_pid and lock.acquireNonce as captured_acquire_nonce from the JSON output, and reuse both for every release below. If acquired=false, fail closed: another deep-research run already holds this packet."
+        on_acquire: "Capture lock.ownerPid as captured_owner_pid and lock.acquireNonce as captured_acquire_nonce from the JSON output, and reuse both for every release below. If acquired=false, fail closed: another deep-research run already holds this packet. Under confirm, mode_overrides.confirm.lock_not_acquired applies instead."
         note: "Uses the promoted runtime/ loop-lock CLI (single source of truth: stale-lock reclaim, clean owner-scoped release). macOS/BSD locking is advisory — best-effort single-writer, not a hard mutex across host calls. Acquire reclaims a stale lock itself and reports the old holder under `reclaimed`. A lock is stale when its heartbeat is older than twice its TTL, or when its owning process is known to be dead. No confirmation step exists in either mode: log a `reclaimed` holder and continue."
         # Lock-cleanup contract: the lock file MUST be released on every terminal exit path that follows acquisition.
         # Runtimes honoring step_acquire_lock are required to perform this cleanup before halting or pausing.
@@ -378,6 +446,70 @@ workflow:
           log: "Auto-resume: state artifacts are complete and consistent. Continue the same lineage (sessionId unchanged, generation unchanged, no archive)."
           append_jsonl: '{"type":"event","event":"resumed","mode":"research","sessionId":"{session_id}","parentSessionId":"{session_id}","lineageMode":"resume","continuedFromRun":{iteration_count},"generation":{generation},"archivedPath":null,"timestamp":"{ISO_8601_NOW}"}'
           skip_to: phase_loop
+          confirm_choice:
+            applies_to: confirm
+            preempts: "Under confirm this block runs in place of the sibling log, append_jsonl and skip_to keys of on_resume. Under auto it is skipped and those keys run."
+            show_dashboard: "{state_paths.dashboard}"
+            ask: "Existing research session is consistent. Resume where it left off, or restart (archive the current research packet under the root-level research_archive/ tree and start a fresh session)?"
+            after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
+            options: [resume, restart, cancel]
+            on_resume_choice:
+              dry_run_boundary: "state-mutation"
+              set:
+                lineage_mode: "resume"
+                parent_session_id: "{session_id}"
+              append_jsonl: '{"type":"event","event":"resumed","mode":"research","sessionId":"{session_id}","parentSessionId":"{session_id}","lineageMode":"resume","continuedFromRun":{iteration_count},"archivedPath":null,"timestamp":"{ISO_8601_NOW}","generation":{generation}}'
+              skip_to: gate_init_approval
+            on_restart_choice:
+              dry_run_boundary: "state-mutation"
+              bind_prior_lineage:
+                action: "Read the session id and generation of the packet that is about to be archived"
+                command: |
+                  node -e '
+                    const fs = require("fs");
+                    const crypto = require("crypto");
+                    let priorSessionId = null;
+                    let priorGeneration = 0;
+                    try {
+                      const config = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
+                      const lineage = config.lineage || config;
+                      priorSessionId = typeof lineage.sessionId === "string" ? lineage.sessionId : null;
+                      priorGeneration = Number(lineage.generation) || 0;
+                    } catch (error) {
+                      if (error.code !== "ENOENT") {
+                        console.error("The old config cannot be read: " + error.message);
+                        process.exit(1);
+                      }
+                    }
+                    let priorTailDigest = crypto.createHash("sha256").update("").digest("hex");
+                    try {
+                      priorTailDigest = crypto.createHash("sha256").update(fs.readFileSync(process.argv[2])).digest("hex");
+                    } catch (error) {
+                      if (error.code !== "ENOENT") throw error;
+                    }
+                    console.log(JSON.stringify({ priorSessionId, priorGeneration, priorTailDigest }));
+                  ' "{state_paths.config}" "{state_paths.state_log}"
+                outputs:
+                  - prior_session_id: "priorSessionId from the JSON output, null when no old config exists"
+                  - prior_generation: "priorGeneration from the JSON output, 0 when no old config exists"
+                  - prior_tail_digest: "priorTailDigest from the JSON output: the sha256 of the old state log bytes, or of zero bytes when no old state log exists"
+                on_fail: "Halt with STATUS=FAIL through step_release_lock. The old config is unreadable, so repair or archive the packet by hand."
+              command: |
+                if [ -e "{state_paths.archive_root}/{timestamp_slug}" ]; then
+                  echo "The archive folder {state_paths.archive_root}/{timestamp_slug} is already there." >&2
+                  exit 1
+                fi
+                mkdir -p "{state_paths.archive_root}/{timestamp_slug}" || exit 1
+                find "{state_paths.packet_dir}" -mindepth 1 -maxdepth 1 ! -name "$(basename "{state_paths.lock_file}")" -exec mv {} "{state_paths.archive_root}/{timestamp_slug}/" \; || exit 1
+                mkdir -p "{state_paths.prompt_dir}" "{state_paths.iteration_dir}" "{state_paths.delta_dir}"
+              on_fail: "Halt with STATUS=FAIL through step_release_lock. Never fall back to resume."
+              set:
+                lineage_mode: "restart"
+              skip_to: step_create_config
+            on_cancel_choice:
+              halt: true
+              release_lock: step_release_lock
+              message: "Research session preserved. Manually archive or edit research/ before re-running."
         on_restart:
           action: "Nothing is archived here. step_apply_lifecycle_request archived the packet before the lock was taken, so a restart run reaches this step as fresh and continues as on_fresh."
         note_deferred_branches: "fork and completed-continue are deferred and no longer runtime-supported in this release. The reducer still reads `lineageMode` from config for dashboards and analysis, but only `new`, `resume`, and `restart` are live. See deep-research/references/protocol/loop-protocol.md §Lifecycle Branch Contract for the one-session contract."
@@ -407,6 +539,7 @@ workflow:
 
       step_create_config:
         action: "Create deep-research-config.json from template"
+        dry_run_boundary: "state-mutation"
         template: .skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json
         lineage_values:
           generation_init: "{prior_generation + 1} when lineage_mode == 'restart', else 1"
@@ -431,7 +564,7 @@ workflow:
           resource_map.emit: "{resource_map_emit}"
           createdAt: "{ISO_8601_NOW}"
           status: "initialized"
-          executionMode: "auto"
+          executionMode: "{execution_mode}"
           lineage.sessionId: "{session_id_init}"
           lineage.parentSessionId: "{parent_session_id_init}"
           lineage.lineageMode: "{lineage_mode_init}"
@@ -443,6 +576,7 @@ workflow:
 
       step_create_state_log:
         action: "Open the research run by appending deep_research.run_initialized through the gateway"
+        dry_run_boundary: "state-mutation"
         note: |
           The state log is a projection rebuilt by the gateway. Recording the run's opening in
           the ledger gives every later state append the same authorized, ordered source.
@@ -503,10 +637,12 @@ workflow:
         action: "Record deep_research.run_restarted after the run-open row, so the restart marker never precedes deep_research.run_initialized"
         bind:
           restart_lineage_id: "{prior_session_id} when it is not null, else {session_id_init}"
+        dry_run_boundary: "state-mutation"
         append_jsonl: '{"stem":"deep_research.run_restarted","scope":{"runId":"{session_id_init}","lineageId":"{restart_lineage_id}"},"data":{"priorTailDigest":"{prior_tail_digest}","archivedLineageId":"{restart_lineage_id}","restartReason":"Restart requested: the prior research packet was archived and a new lineage segment opened.","generation":{generation_init},"compatibilityDecision":"exact","recoveryReceiptRef":"none"}}'
 
       step_create_strategy:
         action: "Create strategy file from template with initial questions"
+        dry_run_boundary: "state-mutation"
         template: .skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md
         populate:
           topic: "{research_topic}"
@@ -519,22 +655,26 @@ workflow:
 
       step_create_registry:
         action: "Initialize reducer-owned findings registry"
+        dry_run_boundary: "state-mutation"
         content: '{"openQuestions":[],"resolvedQuestions":[],"keyFindings":[],"ruledOutDirections":[],"metrics":{"iterationsCompleted":0,"openQuestions":0,"resolvedQuestions":0,"keyFindings":0,"convergenceScore":0,"coverageBySources":{}}}'
         output: "{state_paths.registry}"
 
       step_enrich_strategy_context:
         action: "Ensure Known Context is written only after strategy.md exists"
         condition: "prior_context_found"
+        dry_run_boundary: "state-mutation"
         edit: "{state_paths.strategy}"
         note: "Append or replace the Known Context section with prior_context_summary and retained detail from prior_context"
 
       step_enrich_strategy_resource_map:
         action: "Inject resource-map status into Known Context after strategy.md exists"
+        dry_run_boundary: "state-mutation"
         edit: "{state_paths.strategy}"
         note: "When resource_map_present is true, append the resource_map_known_context snapshot. When false, append 'resource-map.md not present; skipping coverage gate'."
 
       step_detect_spec_present:
         action: "Classify late-INIT spec.md state after the durable research packet exists"
+        dry_run_event_policy: preview-only
         inspect:
           - "{spec_folder}/spec.md"
           - "{state_paths.lock_file}"
@@ -548,8 +688,37 @@ workflow:
           - normalized_topic: "Trim, lowercase, and collapse whitespace in research_topic before dedupe checks"
         append_to_jsonl: '{"type":"event","event":"spec_check_result","folder_state":"{folder_state}","normalized_topic":"{normalized_topic}","specPath":"{spec_folder}/spec.md","lockPath":"{state_paths.lock_file}","timestamp":"{ISO_8601_NOW}"}'
 
+      gate_preinit_spec_mutation_approval:
+        applies_to: confirm
+        type: approval_gate
+        purpose: "Approve the planned pre-init spec.md mutation before LOOP starts"
+        present: |
+          ## Pre-Init Spec Check
+
+          **Folder State**: {folder_state}
+          **Spec Path**: {spec_folder}/spec.md
+          **Normalized Topic**: {normalized_topic}
+          **Lock File**: {state_paths.lock_file}
+
+          Planned branch:
+          - `no-spec` -> seed Level 1 `spec.md` with `<!-- DR-SEED:REQUIREMENTS -->` and `<!-- DR-SEED:SCOPE -->`
+          - `spec-present` -> append bounded context in `Open Questions` and `Research Context`
+          - `spec-just-created-by-this-run` -> verify markers and continue without duplicate mutation
+          - `conflict-detected` -> halt fail-closed
+
+          Options:
+          A) Approve pre-init branch
+          B) Revise the planned branch
+          C) Cancel
+        wait_for: "User response"
+        after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
+        on_A: { proceed_to: step_preinit_spec_branch }
+        on_B: { action: "Adjust the planned pre-init mutation inputs", return_to: gate_preinit_spec_mutation_approval }
+        on_C: { action: "Cancel workflow after releasing the advisory lock during cleanup", status: "CANCELLED", release_lock: step_release_lock }
+
       step_preinit_spec_branch:
         action: "Run the bounded pre-init spec branch required by spec_check_protocol"
+        dry_run_boundary: "state-mutation"
         protocol_reference: ".skilled/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md"
         branches:
           no-spec:
@@ -603,45 +772,7 @@ workflow:
         skip_when: "config.fanout is present"
         canonical_lifecycle_event: "iteration_start"
         command: |
-          node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
-          import { readFileSync } from 'node:fs';
-
-          import { appendJsonlIfChangedAtomic } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts';
-          import observabilityEvents from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs';
-
-          const { appendObservabilityEvent } = observabilityEvents;
-          const config = JSON.parse(readFileSync('{state_paths.config}', 'utf8'));
-          const timestamp = '{ISO_8601_NOW}';
-          const sessionId = String(config.lineage?.sessionId ?? '{AUTO_SESSION_ID}');
-          const generation = Number(config.lineage?.generation ?? 1);
-          const observabilityPath = '{state_paths.packet_dir}/observability-events.jsonl';
-          const row = {
-            event: 'started',
-            label: 'single',
-            at: timestamp,
-            duration_ms: 0,
-            loop_type: 'research',
-            sessionId,
-            generation,
-            gauges: { iterations: 0, elapsed_ms: 0, score: 0 },
-          };
-
-          const appended = appendJsonlIfChangedAtomic('{state_paths.status_ledger}', row, {
-            diffData: { event: row.event, label: row.label, sessionId, generation, gauges: { iterations: 0, score: 0 } },
-            diffField: 'state_hash',
-          });
-          if (appended) {
-            try {
-              appendObservabilityEvent(observabilityPath, row, {
-                producer: 'deep-research-auto',
-                stream: 'single-loop-telemetry',
-                subject: { label: row.label, sessionId, generation },
-                event: row.event,
-                status: 'running',
-              });
-            } catch {}
-          }
-          EOF
+          node .skilled/skills/system-deep-loop/runtime/scripts/loop-heartbeat.cjs --phase started --execution-mode "{execution_mode}" --config "{state_paths.config}" --status-ledger "{state_paths.status_ledger}" --packet-dir "{state_paths.packet_dir}" --timestamp "{ISO_8601_NOW}" --session-id "{AUTO_SESSION_ID}"
         working_directory: "{repo_root}"
         outputs:
           - status_ledger_started: "A fan-out-shaped status row with label single and event started"
@@ -650,9 +781,38 @@ workflow:
         log: "Initialization complete. Config, state, and strategy files created."
         set: { current_iteration: 1, current_segment: 1 }
 
-  # ═══════════════════════════════════════════════════════════════
+      # ─── APPROVAL GATE: Post-Init ───
+      gate_init_approval:
+        applies_to: confirm
+        type: approval_gate
+        purpose: "Show initialization results and get approval to start loop"
+        present: |
+          ## Initialization Complete
+
+          **Topic**: {research_topic}
+          **Max Iterations**: {max_iterations}
+          **Convergence Threshold**: {convergence_threshold}
+          **Known Context Summary**: {prior_context_summary}
+          **Folder State**: {folder_state}
+
+          Review `{state_paths.strategy}` for the initial key questions and next focus.
+          Review `{spec_folder}/spec.md` for the approved pre-init branch and any DR seed markers or context notes.
+          Reducer-owned state will live in `{state_paths.registry}` and `{state_paths.dashboard}`.
+          **State files located in**: {state_paths.packet_dir}/
+
+          Options:
+          A) Start research loop
+          B) Adjust questions or parameters
+          C) Cancel
+        wait_for: "User response"
+        after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
+        on_A: { set: { current_iteration: 1, current_segment: 1 }, proceed_to: phase_loop }
+        on_B: { action: "Apply user adjustments to strategy.md and/or config", return_to: gate_init_approval }
+        on_C: { action: "Cancel workflow", status: "CANCELLED", release_lock: step_release_lock }
+
+  # ════════
   # PHASE 2: ITERATION LOOP
-  # ═══════════════════════════════════════════════════════════════
+  # ════════
   phase_loop:
     purpose: Dispatch agent iterations until convergence
     repeat: true
@@ -693,6 +853,7 @@ workflow:
       step_record_artifact_migration:
         action: "Record a legacy artifact alias read once per session, after the run is open"
         skip_when: "legacy_migration_detected != true or migration_recorded == true"
+        dry_run_boundary: "state-mutation"
         append_jsonl: '{"type":"event","event":"migration","legacyPath":"{legacy_path}","canonicalPath":"{canonical_path}","timestamp":"{ISO_8601_NOW}"}'
         set: { migration_recorded: true }
 
@@ -748,77 +909,7 @@ workflow:
       step_run_now_check:
         action: "Detect and consume a one-shot run-now sentinel before pause/convergence/dispatch"
         command: |
-          GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
-          [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
-          EVENT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/deep-research-run-now.XXXXXX")"
-          node - "$EVENT_DIR" <<'EOF'
-          const { existsSync, renameSync, unlinkSync, writeFileSync } = require('node:fs');
-          const { join } = require('node:path');
-
-          const eventDir = process.argv[2];
-          const sentinelPath = "{state_paths.run_now_sentinel}";
-          const pausePath = "{state_paths.pause_sentinel}";
-          const sessionId = "{config.lineage.sessionId}";
-          const generation = Number("{config.lineage.generation}");
-          const run = Number("{current_iteration}");
-
-          // The state log is a projection the gateway rebuilds from the ledger, so a
-          // run-now row is staged as a canonical ledger event and appended by the
-          // gateway; a write beside the projection is dropped by the next refresh.
-          // The loop boundary has no lineage identity yet, so the session names both
-          // scope halves rather than inventing a second identifier.
-          const scope = { runId: sessionId, lineageId: sessionId };
-
-          let sequence = 0;
-
-          function record(event, fields) {
-            sequence += 1;
-            writeFileSync(
-              join(eventDir, `${String(sequence).padStart(2, "0")}-${event}.json`),
-              JSON.stringify({
-                stem: `deep_research.${event}`,
-                scope,
-                data: { mode: "research", run, sessionId, generation, ...fields },
-              }),
-              "utf8",
-            );
-          }
-
-          if (existsSync(sentinelPath)) {
-            record("run_now_requested", { sentinelPath });
-            if (existsSync(pausePath)) {
-              record("run_now_rejected", {
-                sentinelPath,
-                reason: "loop_paused",
-                pauseSentinelPath: pausePath,
-              });
-            } else {
-              const claimPath = `${sentinelPath}.consuming.${process.pid}.${Date.now()}`;
-              try {
-                renameSync(sentinelPath, claimPath);
-                unlinkSync(claimPath);
-                record("run_now_accepted", {
-                  sentinelPath,
-                  dispatchEvent: "iteration_start",
-                });
-              } catch (error) {
-                if (!error || error.code !== "ENOENT") {
-                  throw error;
-                }
-              }
-            }
-          }
-          EOF
-          for eventFile in "$EVENT_DIR"/*.json; do
-            [ -e "$eventFile" ] || continue
-            node "$GATEWAY" --mode research --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$eventFile"
-            GATEWAY_STATUS=$?
-            if [ "$GATEWAY_STATUS" -ne 0 ]; then
-              rm -rf "$EVENT_DIR"
-              exit "$GATEWAY_STATUS"
-            fi
-          done
-          rm -rf "$EVENT_DIR"
+          node .skilled/skills/system-deep-loop/runtime/scripts/run-now-sentinel.cjs check --sentinel "{state_paths.run_now_sentinel}" --pause-sentinel "{state_paths.pause_sentinel}" --state-log "{state_paths.state_log}" --session-id "{config.lineage.sessionId}" --generation "{config.lineage.generation}" --run "{current_iteration}"
         outputs:
           - run_now_requested: "Emitted when {state_paths.run_now_sentinel} exists at the loop boundary"
           - run_now_accepted: "Emitted after the sentinel is atomically renamed and deleted before dispatch"
@@ -828,6 +919,7 @@ workflow:
         action: "Check for pause sentinel file"
         check: "Does {state_paths.pause_sentinel} exist?"
         if_exists:
+          dry_run_event_policy: preview-only
           append_jsonl: '{"type":"event","event":"userPaused","mode":"research","run":{current_iteration},"stopReason":"userPaused","sentinelPath":"{state_paths.pause_sentinel}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
           message: "Research paused. Delete research/.deep-research-pause to resume."
           halt: true
@@ -838,17 +930,21 @@ workflow:
       step_validate_convergence_config:
         action: "Validate convergence floor settings when loading config"
         if_min_iterations_missing:
+          dry_run_event_policy: preview-only
           bookkeeping_log: '{"type":"event","event":"config_warning","mode":"research","field":"minIterations","fallback":0,"message":"minIterations missing; using no convergence floor for backward compatibility.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
           log: "minIterations missing; using no convergence floor for backward compatibility."
         if_min_iterations_clamped:
+          dry_run_event_policy: preview-only
           bookkeeping_log: '{"type":"event","event":"config_warning","mode":"research","field":"minIterations","configured":{min_iterations_raw},"effective":{effective_min_iterations},"maxIterations":{max_iterations},"message":"minIterations exceeds maxIterations; clamping to the hard cap.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
           log: "minIterations exceeds maxIterations; clamping to the hard cap."
         if_convergence_mode_invalid:
-          bookkeeping_log: '{"type":"event","event":"config_warning","mode":"research","field":"convergenceMode","fallback":"default","message":"Unsupported convergenceMode; using default convergence behavior.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          dry_run_event_policy: preview-only
+          bookkeeping_log: '{"type":"event","event":"config_warning","mode":"research","field":"antiConvergence.convergenceMode","fallback":"default","message":"Unsupported convergenceMode; using default convergence behavior.","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
           log: "Unsupported convergenceMode; using default convergence behavior."
 
       step_graph_convergence:
         action: "Run convergence.cjs once: it evaluates the coverage graph, persists the graph snapshot and computes the whole stop decision"
+        dry_run_event_policy: preview-only
         bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}" --convergence-mode "{convergence_mode}" --persist-snapshot --iteration "{current_iteration}" --stop-decision --config-path "{state_paths.config}" --state-log "{state_paths.state_log}" --registry-path "{state_paths.registry}" --iteration-count "{iteration_count}"'
         note: "The script is the only place the stop decision is computed. step_check_convergence branches on its stop_decision output."
         outputs:
@@ -921,12 +1017,14 @@ workflow:
       step_emit_min_iterations_guard_pass:
         action: "Persist a first-class event when the convergence floor clears"
         if_pass:
+          dry_run_event_policy: preview-only
           append_jsonl: '{"type":"event","event":"min_iterations_guard_pass","mode":"research","run":{current_iteration},"iterationCount":{iteration_count},"minIterations":{effective_min_iterations},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
           log: "Minimum iteration floor cleared for convergence stopping."
 
       step_emit_blocked_stop:
         action: "Persist a first-class blocked_stop event when the legal-stop decision tree returns blocked"
         if_blocked:
+          dry_run_event_policy: preview-only
           append_to_jsonl: '{"type":"event","event":"blocked_stop","mode":"research","run":{current_iteration},"blockedBy":{blocked_by_json},"gateResults":{"convergence":{"pass":{gate_convergence_pass},"score":{gate_convergence_score}},"keyQuestionCoverage":{"pass":{gate_key_question_coverage_pass},"answered":{answered_count},"total":{total_questions}},"evidenceDensity":{"pass":{gate_evidence_density_pass},"sources":{gate_evidence_density_sources}},"hotspotSaturation":{"pass":{gate_hotspot_saturation_pass}}},"recoveryStrategy":"{recovery_strategy}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
           log: "Graph convergence blocked STOP. Failed blockers: {blocked_by_csv}. Recovery strategy: {recovery_strategy}"
           set:
@@ -936,6 +1034,25 @@ workflow:
 
       step_handle_convergence:
         action: "Act on convergence decision"
+        if_consecutive_failures:
+          applies_to: confirm
+          when: "stop_decision.reasonDetail == 'consecutiveFailures'. This branch runs instead of if_stop."
+          gate_consecutive_failures:
+            type: approval_gate
+            purpose: "In confirm mode, ask the operator Retry / Skip / Cancel before synthesis starts."
+            present: |
+              **{consecutive_failure_count} iterations in a row failed.**
+
+              Options:
+              A) Retry: dispatch the next iteration with the same focus
+              B) Skip: dispatch the next iteration with the next focus
+              C) Cancel: end the run with no synthesis
+            wait_for: "User response"
+            after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
+            on_A: { set: { decision: "CONTINUE" }, proceed_to: step_rejected_pattern_cache }
+            on_B: { action: "Advance next_focus to the next focus in strategy.md", set: { decision: "CONTINUE" }, proceed_to: step_rejected_pattern_cache }
+            on_C: { action: "Cancel workflow", status: "CANCELLED", release_lock: step_release_lock }
+          note: "The failure count is rebuilt from the state log, so this gate asks again after each further failed iteration and stops asking once an iteration completes."
         if_stop:
           branch_on: "convergence_mode == 'divergent' AND stop_decision.reasonDetail is in ['composite_converged', 'all_questions_answered']"
           if_divergent_eligible:
@@ -947,39 +1064,9 @@ workflow:
             steps:
               step_prepare_divergent_pivot:
                 action: "Generate state-grounded research candidates and prepare or resume the pivot transaction"
+                dry_run_boundary: "state-mutation"
                 command: |
-                  node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
-                  import {
-                    buildResearchPivotPreparationInput,
-                    renderResearchPivotSeatPrompt,
-                  } from './.skilled/skills/system-deep-loop/deep-research/scripts/divergent-research-pivot.ts';
-                  import {
-                    preparePivotTransaction,
-                  } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
-
-                  const input = buildResearchPivotPreparationInput({
-                    artifactRoot: '{state_paths.packet_dir}',
-                    configPath: '{state_paths.config}',
-                    stateLogPath: '{state_paths.state_log}',
-                    strategyPath: '{state_paths.strategy}',
-                    registryPath: '{state_paths.registry}',
-                    currentIteration: Number('{current_iteration}'),
-                    maxIterations: Number('{max_iterations}'),
-                    triggerReason: '{reason_detail}',
-                  });
-                  const prepared = await preparePivotTransaction(input);
-                  const seatPrompts = prepared.status === 'pending'
-                    ? Object.fromEntries(prepared.missingSeats.map((seat) => [
-                        seat.id,
-                        renderResearchPivotSeatPrompt(seat, prepared.dispatchContext),
-                      ]))
-                    : {};
-                  process.stdout.write(`${JSON.stringify({
-                    ...prepared,
-                    seatPrompts,
-                    boundaryRejections: input.boundaryRejections,
-                  })}\n`);
-                  EOF
+                  node .skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs prepare --loop-type research --artifact-root "{state_paths.packet_dir}" --config "{state_paths.config}" --state-log "{state_paths.state_log}" --strategy "{state_paths.strategy}" --registry "{state_paths.registry}" --current-iteration "{current_iteration}" --max-iterations "{max_iterations}" --trigger-reason "{reason_detail}"
                 working_directory: "{repo_root}"
                 outputs:
                   - pivot_prepare_json: "The complete parsed JSON result"
@@ -988,122 +1075,46 @@ workflow:
                   - pivot_paths_json: "paths from the prepare result as JSON"
                   - pivot_resumed: "resumed from the prepare result"
                   - pivot_missing_seat_ids: "missingSeats ids from a pending result"
-                  - pivot_seat_001_json: "The seat-001 mandate object from missingSeats"
-                  - pivot_seat_002_json: "The seat-002 mandate object from missingSeats"
-                  - pivot_seat_003_json: "The seat-003 mandate object from missingSeats"
-                  - pivot_seat_001_prompt: "seatPrompts['seat-001']"
-                  - pivot_seat_002_prompt: "seatPrompts['seat-002']"
-                  - pivot_seat_003_prompt: "seatPrompts['seat-003']"
+                  - pivot_seat_json: "For the current seat_id, its mandate object from missingSeats"
+                  - pivot_seat_prompt: "For the current seat_id, seatPrompts[seat_id]"
                   - pivot_dispatch_context_json: "dispatchContext from a pending result as JSON"
                 short_circuit: "When status is completed or failed, skip all dispatch and record steps and bind this result as pivot_result."
 
-              step_dispatch_pivot_seat_001:
-                action: "Natively dispatch the analytical research direction-selection seat"
-                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-001'"
+              step_dispatch_pivot_seat:
+                action: "Natively dispatch one research direction-selection seat"
+                for_each: "seat_id in [seat-001, seat-002, seat-003], in that order. Run this step and then step_record_pivot_seat for one seat before the next seat starts. Seat roles: seat-001 analytical, seat-002 critical, seat-003 pragmatic."
+                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain seat_id"
+                dry_run_boundary: "dispatch"
                 capture_timing: true
                 if_native:
                   dispatch:
                     agent: deep-research
                     model: opus
-                    context_source: "pivot_seat_001_prompt"
+                    context_source: "pivot_seat_prompt"
                   wait_for_completion: true
-                failure_contract: "A native dispatch failure binds status=rejected, a {name,message} error, and the measured timestamps/duration, then proceeds to step_record_pivot_seat_001."
+                failure_contract: "A native dispatch failure binds status=rejected, a {name,message} error, and the measured timestamps/duration, then proceeds to step_record_pivot_seat."
                 outputs:
-                  - pivot_seat_001_dispatch_status: "fulfilled or rejected"
-                  - pivot_seat_001_output_json: "Raw native return serialized as JSON when fulfilled"
-                  - pivot_seat_001_error_json: "{name,message} when rejected"
-                  - pivot_seat_001_started_at_iso: "Dispatch start timestamp"
-                  - pivot_seat_001_completed_at_iso: "Dispatch completion timestamp"
-                  - pivot_seat_001_duration_ms: "Dispatch duration in milliseconds"
+                  - pivot_seat_dispatch_status: "fulfilled or rejected"
+                  - pivot_seat_output_json: "Raw native return serialized as JSON when fulfilled, else null"
+                  - pivot_seat_error_json: "{name,message} when rejected, else null"
+                  - pivot_seat_started_at_iso: "Dispatch start timestamp"
+                  - pivot_seat_completed_at_iso: "Dispatch completion timestamp"
+                  - pivot_seat_duration_ms: "Dispatch duration in milliseconds"
 
-              step_record_pivot_seat_001:
-                action: "Durably record the seat-001 native dispatch outcome"
-                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-001'"
+              step_record_pivot_seat:
+                action: "Durably record the native dispatch outcome of the seat just dispatched"
+                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain seat_id"
                 command: |
-                  node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
-                  import { recordPivotSeatResult } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
-                  const status = '{pivot_seat_001_dispatch_status}';
-                  const outcome = status === 'fulfilled'
-                    ? { status, output: {pivot_seat_001_output_json}, startedAtIso: '{pivot_seat_001_started_at_iso}', completedAtIso: '{pivot_seat_001_completed_at_iso}', durationMs: Number('{pivot_seat_001_duration_ms}') }
-                    : { status: 'rejected', error: {pivot_seat_001_error_json}, startedAtIso: '{pivot_seat_001_started_at_iso}', completedAtIso: '{pivot_seat_001_completed_at_iso}', durationMs: Number('{pivot_seat_001_duration_ms}') };
-                  process.stdout.write(`${JSON.stringify(recordPivotSeatResult({ paths: {pivot_paths_json}, pivotId: '{pivot_id}', seat: {pivot_seat_001_json}, outcome }))}\n`);
-                  EOF
-                working_directory: "{repo_root}"
-
-              step_dispatch_pivot_seat_002:
-                action: "Natively dispatch the critical research direction-selection seat"
-                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-002'"
-                capture_timing: true
-                if_native:
-                  dispatch:
-                    agent: deep-research
-                    model: opus
-                    context_source: "pivot_seat_002_prompt"
-                  wait_for_completion: true
-                failure_contract: "A native dispatch failure binds status=rejected, a {name,message} error, and the measured timestamps/duration, then proceeds to step_record_pivot_seat_002."
-                outputs:
-                  - pivot_seat_002_dispatch_status: "fulfilled or rejected"
-                  - pivot_seat_002_output_json: "Raw native return serialized as JSON when fulfilled"
-                  - pivot_seat_002_error_json: "{name,message} when rejected"
-                  - pivot_seat_002_started_at_iso: "Dispatch start timestamp"
-                  - pivot_seat_002_completed_at_iso: "Dispatch completion timestamp"
-                  - pivot_seat_002_duration_ms: "Dispatch duration in milliseconds"
-
-              step_record_pivot_seat_002:
-                action: "Durably record the seat-002 native dispatch outcome"
-                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-002'"
-                command: |
-                  node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
-                  import { recordPivotSeatResult } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
-                  const status = '{pivot_seat_002_dispatch_status}';
-                  const outcome = status === 'fulfilled'
-                    ? { status, output: {pivot_seat_002_output_json}, startedAtIso: '{pivot_seat_002_started_at_iso}', completedAtIso: '{pivot_seat_002_completed_at_iso}', durationMs: Number('{pivot_seat_002_duration_ms}') }
-                    : { status: 'rejected', error: {pivot_seat_002_error_json}, startedAtIso: '{pivot_seat_002_started_at_iso}', completedAtIso: '{pivot_seat_002_completed_at_iso}', durationMs: Number('{pivot_seat_002_duration_ms}') };
-                  process.stdout.write(`${JSON.stringify(recordPivotSeatResult({ paths: {pivot_paths_json}, pivotId: '{pivot_id}', seat: {pivot_seat_002_json}, outcome }))}\n`);
-                  EOF
-                working_directory: "{repo_root}"
-
-              step_dispatch_pivot_seat_003:
-                action: "Natively dispatch the pragmatic research direction-selection seat"
-                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-003'"
-                capture_timing: true
-                if_native:
-                  dispatch:
-                    agent: deep-research
-                    model: opus
-                    context_source: "pivot_seat_003_prompt"
-                  wait_for_completion: true
-                failure_contract: "A native dispatch failure binds status=rejected, a {name,message} error, and the measured timestamps/duration, then proceeds to step_record_pivot_seat_003."
-                outputs:
-                  - pivot_seat_003_dispatch_status: "fulfilled or rejected"
-                  - pivot_seat_003_output_json: "Raw native return serialized as JSON when fulfilled"
-                  - pivot_seat_003_error_json: "{name,message} when rejected"
-                  - pivot_seat_003_started_at_iso: "Dispatch start timestamp"
-                  - pivot_seat_003_completed_at_iso: "Dispatch completion timestamp"
-                  - pivot_seat_003_duration_ms: "Dispatch duration in milliseconds"
-
-              step_record_pivot_seat_003:
-                action: "Durably record the seat-003 native dispatch outcome"
-                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain 'seat-003'"
-                command: |
-                  node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
-                  import { recordPivotSeatResult } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
-                  const status = '{pivot_seat_003_dispatch_status}';
-                  const outcome = status === 'fulfilled'
-                    ? { status, output: {pivot_seat_003_output_json}, startedAtIso: '{pivot_seat_003_started_at_iso}', completedAtIso: '{pivot_seat_003_completed_at_iso}', durationMs: Number('{pivot_seat_003_duration_ms}') }
-                    : { status: 'rejected', error: {pivot_seat_003_error_json}, startedAtIso: '{pivot_seat_003_started_at_iso}', completedAtIso: '{pivot_seat_003_completed_at_iso}', durationMs: Number('{pivot_seat_003_duration_ms}') };
-                  process.stdout.write(`${JSON.stringify(recordPivotSeatResult({ paths: {pivot_paths_json}, pivotId: '{pivot_id}', seat: {pivot_seat_003_json}, outcome }))}\n`);
-                  EOF
+                  node .skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs record-seat <<'PIVOT_SEAT'
+                  {"paths":{pivot_paths_json},"pivotId":"{pivot_id}","seat":{pivot_seat_json},"status":"{pivot_seat_dispatch_status}","output":{pivot_seat_output_json},"error":{pivot_seat_error_json},"startedAtIso":"{pivot_seat_started_at_iso}","completedAtIso":"{pivot_seat_completed_at_iso}","durationMs":"{pivot_seat_duration_ms}"}
+                  PIVOT_SEAT
                 working_directory: "{repo_root}"
 
               step_finalize_divergent_pivot:
                 action: "Finalize the prepared pivot after all missing native seats are durable"
                 skip_when: "pivot_prepare_status != 'pending'"
                 command: |
-                  node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
-                  import { finalizePivotTransaction } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/divergent-pivot.ts';
-                  process.stdout.write(`${JSON.stringify(finalizePivotTransaction({ paths: {pivot_paths_json}, pivotId: '{pivot_id}', resumed: {pivot_resumed} }))}\n`);
-                  EOF
+                  node .skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs finalize --paths-json '{pivot_paths_json}' --pivot-id "{pivot_id}" --resumed "{pivot_resumed}"
                 working_directory: "{repo_root}"
                 outputs:
                   - pivot_finalize_json: "The complete parsed final result"
@@ -1118,6 +1129,38 @@ workflow:
                 action: "Adopt a successful focus or fail closed to the existing synthesis path"
                 branch_on: "pivot_result.status"
                 if_completed:
+                  gate_divergent_pivot_choice:
+                    applies_to: confirm
+                    type: approval_gate
+                    purpose: "Approve the Council-selected research direction before it becomes the next focus"
+                    order: "Under confirm this gate runs before the set, command, log and proceed_to of this branch."
+                    present: |
+                      ## Divergent Pivot Candidate
+
+                      **Pivot**: {pivot_result.pivotId}
+                      **Council-selected candidate**: {pivot_result.selectedCandidate.id}
+                      **Focus**: {pivot_result.restoredFocus}
+                      **Agreement**: {pivot_result.agreement.endorsementCount}/3 material endorsements
+                      **Saturated direction**: {pivot_result.completedEvent.previousFocus}
+
+                      The Phase 2 adapter exposes an ordered candidate frontier and agreement tallies, but no ranked-candidate score contract. Choosing a different ranked candidate is therefore unavailable in this phase rather than inferred from array order.
+
+                      Options:
+                      A) Accept the Council-selected candidate and continue
+                      B) Choose a different ranked candidate (unavailable: no ranking contract)
+                      C) manualStop and proceed to the existing pre-synthesis gate
+                    wait_for: "User response"
+                    after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
+                    on_A:
+                      bookkeeping_log: '{"type":"event","event":"pivot_confirm_accepted","mode":"research","run":{current_iteration},"pivotId":"{pivot_result.pivotId}","selectedCandidate":{pivot_result.selectedCandidate},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+                      continue: "Run the set, command, log and proceed_to of this branch."
+                    on_B:
+                      message: "No ranked alternative can be selected because the adapter exposes no ranking score or rank contract."
+                      return_to: gate_divergent_pivot_choice
+                    on_C:
+                      bookkeeping_log: '{"type":"event","event":"manualStop","mode":"research","run":{current_iteration},"stopReason":"manualStop","pivotId":"{pivot_result.pivotId}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+                      set: { reason: "manualStop" }
+                      skip_to: gate_pre_synthesis
                   set:
                     next_focus: "{pivot_result.restoredFocus}"
                     pivot_lineage: "Pivot {pivot_result.pivotId} selected {pivot_result.selectedCandidate.id} from source iteration {current_iteration}."
@@ -1126,6 +1169,41 @@ workflow:
                   log: "Divergent pivot {pivot_result.pivotId} restored focus to {pivot_result.restoredFocus}; continuing iteration {current_iteration}."
                   proceed_to: step_rejected_pattern_cache
                 if_failed:
+                  gate_divergent_pivot_override:
+                    applies_to: confirm
+                    type: approval_gate
+                    purpose: "Offer the audited operator override when a failed pivot is recoverable"
+                    condition: "Runs only when pivot_result.failedEvent.recoverableByOverride == true AND pivot_result.agreement.reason == 'insufficient_endorsement'. Otherwise this gate is skipped and the branch fails closed as written."
+                    order: "Under confirm this gate runs before the log and skip_to of this branch."
+                    present: |
+                      ## Divergent Pivot Did Not Converge
+
+                      **Pivot**: {pivot_result.pivotId}
+                      **Failure**: {pivot_result.failureReason}
+                      **Agreement tallies**: {pivot_result.agreement.tallies}
+
+                      The adapter marked this insufficient-endorsement failure as recoverable by explicit operator override. The candidate frontier is unranked; any override must name an accepted candidate id and provide a rationale.
+
+                      Options:
+                      A) Fail closed to synthesis
+                      B) Explicitly override with accepted candidate id + rationale
+                      C) manualStop and proceed to the existing pre-synthesis gate
+                    wait_for: "User response"
+                    after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
+                    on_A: { continue: "Fail closed: run the log and skip_to of this branch." }
+                    on_B:
+                      action: "Read pivot_result.paths.configPath, validate the supplied id against acceptedCandidates, bind the exact candidate and persisted previousFocus/saturatedDirections/frontier, and reject ids outside that frontier."
+                      append_jsonl: '{"type":"event","event":"pivot_override_accepted","mode":"research","run":{current_iteration},"pivotId":"{pivot_result.pivotId}","selectedCandidate":{operator_selected_candidate},"selectedFrontier":{operator_selected_frontier},"previousFocus":"{operator_previous_focus}","saturatedDirections":{operator_saturated_directions},"reason":"{operator_override_rationale}","agreementReason":"insufficient_endorsement","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+                      set:
+                        next_focus: "{operator_selected_candidate.focus}"
+                        pivot_lineage: "Pivot {pivot_result.pivotId} used an audited insufficient-endorsement override for {operator_selected_candidate.id}."
+                        saturated_directions: "{operator_saturated_directions}"
+                      command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
+                      proceed_to: step_rejected_pattern_cache
+                    on_C:
+                      bookkeeping_log: '{"type":"event","event":"manualStop","mode":"research","run":{current_iteration},"stopReason":"manualStop","pivotId":"{pivot_result.pivotId}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+                      set: { reason: "manualStop" }
+                      skip_to: gate_pre_synthesis
                   log: "Divergent pivot {pivot_result.pivotId} failed closed ({pivot_result.failureReason}); proceeding to synthesis."
                   skip_to: phase_synthesis
             on_error:
@@ -1135,6 +1213,7 @@ workflow:
             log: "Loop stopping. Reason: {reason}"
             skip_to: phase_synthesis
         if_stuck_recovery:
+          dry_run_event_policy: preview-only
           append_jsonl: '{"type":"event","event":"stuckRecovery","mode":"research","run":{current_iteration},"stopReason":"stuckRecovery","fromIteration":{current_iteration},"outcome":"recovered","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
           log: "Stuck detected ({stuck_count} consecutive no-progress). Entering recovery."
           set: { next_focus: "RECOVERY: Widen scope. Try fundamentally different approach. Least-explored question: {least_explored}" }
@@ -1237,6 +1316,36 @@ workflow:
           triggers only when a previous iteration's rendered prompt literally starts with a
           review marker, indicating a nested research-of-review dispatch.
 
+      # ─── APPROVAL GATE: Pre-Iteration ───
+      gate_pre_iteration:
+        applies_to: confirm
+        skip_when: "The operator already approved the next dispatch in this pass through gate_consecutive_failures, gate_divergent_pivot_choice or gate_divergent_pivot_override."
+        type: approval_gate
+        purpose: "Show planned focus and get approval before dispatching agent"
+        present: |
+          ## Iteration {current_iteration} of {max_iterations}
+
+          **Focus**: {next_focus}
+          **Remaining Questions**: {remaining_questions}
+          **Last newInfoRatio**: {last_newInfoRatio}
+          **Stuck Count**: {stuck_count}
+
+          Options:
+          A) Proceed with this focus
+          B) Change focus to: [user provides new focus]
+          C) Stop loop and synthesize now
+          D) Cancel entirely
+        wait_for: "User response"
+        after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
+        on_A: { proceed_to: step_dispatch_iteration }
+        on_B: { action: "Update next_focus to user's choice", proceed_to: step_dispatch_iteration }
+        on_C:
+          action: "Record the operator-requested manual stop before synthesis"
+          bookkeeping_log: '{"type":"event","event":"manualStop","mode":"research","run":{current_iteration},"stopReason":"manualStop","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          set: { reason: "manualStop" }
+          proceed_to: gate_pre_synthesis
+        on_D: { action: "Cancel workflow", status: "CANCELLED", release_lock: step_release_lock }
+
       step_dispatch_iteration:
         action: "Dispatch one iteration via the selected executor"
         pre_dispatch_refresh_lock:
@@ -1247,6 +1356,12 @@ workflow:
           action: "Refresh the packet lock heartbeat immediately after the dispatch returns"
           command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
           on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. Run step_release_lock and stop rather than continue without it."
+        dry_run_boundary: "dispatch"
+        dry_run_preview:
+          before_halt:
+            - "Generate the state summary."
+            - "Render the prompt pack to terminal preview without writing the prompt file."
+            - "Show the selected executor branch and command or native dispatch target that would run."
         resolve_executor:
           source: "config.executor"
           loader: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts#parseExecutorConfig"
@@ -1263,6 +1378,7 @@ workflow:
             template_path: ".skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl"
             renderer: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/prompt-pack.ts#renderPromptPack"
             output_path: "{state_paths.prompt_dir}/iteration-{current_iteration}.md"
+            dry_run_output: "Render in memory and print to terminal preview; do not write output_path."
             variables:
               state_summary: "{state_summary}"
               research_topic: "{research_topic}"
@@ -1282,13 +1398,14 @@ workflow:
               state_paths_iteration_pattern: "{state_paths.iteration_pattern}"
               state_paths_delta_pattern: "{state_paths.delta_pattern}"
         pre_dispatch_audit:
-          skip_when: "config.executor.kind == 'native'"
+          skip_when: "config.executor.kind == 'native' or dry_run == true"
           call: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts#writeFirstRecordExecutor"
           args:
             stateLogPath: "{state_paths.state_log}"
             executor: "{config.executor}"
             iteration: "{current_iteration}"
         branch_on: "config.executor.kind"
+        cli_dispatch_args: '--loop-type research --repo-root "{repo_root}" --prompt-file "{state_paths.prompt_dir}/iteration-{current_iteration}.md" --state-log "{state_paths.state_log}" --packet-dir "{state_paths.packet_dir}" --artifact-dir "{artifact_dir}" --iteration "{current_iteration}" --generation "{config.lineage.generation}" --session-id "{config.lineage.sessionId}" --model "{config.executor.model}" --reasoning-effort "{config.executor.reasoningEffort}" --service-tier "{config.executor.serviceTier}" --sandbox-mode "{config.executor.sandboxMode}" --timeout-seconds "{config.executor.timeoutSeconds}"'
         if_native:
           dispatch:
             agent: deep-research
@@ -1298,74 +1415,14 @@ workflow:
           wait_for_completion: true
         if_cli_deepseek_harness:
           command: |
-            node --input-type=module <<'EOF'
-            console.error('cli-deepseek-harness runs only as a fan-out lineage; rerun with --count=2 or a second --executor group, or choose another executor kind');
-            process.exit(2);
-            EOF
+            node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-deepseek-harness
           working_directory: "{repo_root}"
           wait_for_completion: true
           notes:
             - "Fails closed before any dispatch receipt is written; the pre_dispatch_audit provenance row for the attempted executor remains"
         if_cli_claude_code:
           command: |
-            node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
-            import { readFileSync } from 'node:fs';
-            import { createHash } from 'node:crypto';
-            import { createRequire } from 'node:module';
-
-            import { runAuditedExecutorCommand } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
-            import { resolveClaudePermissionMode } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
-
-            const require = createRequire(import.meta.url);
-            const { withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
-            const executor = {
-              kind: 'cli-claude-code',
-              model: '{config.executor.model}',
-              reasoningEffort: '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}',
-              serviceTier: '{config.executor.serviceTier}' === 'null' ? null : '{config.executor.serviceTier}',
-              sandboxMode: '{config.executor.sandboxMode}' === 'null' ? null : '{config.executor.sandboxMode}',
-              timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
-            };
-            const args = [
-              '-p',
-              withAgentPersona('deep-research', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), '{repo_root}'),
-              '--model',
-              executor.model,
-              '--permission-mode',
-              resolveClaudePermissionMode(executor.sandboxMode),
-              '--output-format',
-              'text',
-            ];
-            if (executor.reasoningEffort) {
-              args.push('--effort', executor.reasoningEffort);
-            }
-
-            const dispatchFacts = {
-              command: 'deep/research',
-              mode: 'research',
-              specFolder: '{spec_folder}',
-              artifactDir: '{state_paths.packet_dir}',
-              iteration: Number('{current_iteration}'),
-              executorKind: '{config.executor.kind}',
-              branchId: '{config.executor.kind}',
-              sessionId: '{config.lineage.sessionId}',
-              generation: Number('{config.lineage.generation}'),
-            };
-            const dispatchId = 'research-i{current_iteration}-g{config.lineage.generation}';
-            process.exit(
-              runAuditedExecutorCommand({
-                command: 'claude',
-                args,
-                cwd: '{repo_root}',
-                timeoutSeconds: executor.timeoutSeconds,
-                stateLogPath: '{state_paths.state_log}',
-                executor,
-                iteration: Number('{current_iteration}'),
-                receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
-                dispatchId,
-              }),
-            );
-            EOF
+            node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-claude-code {cli_dispatch_args}
           working_directory: "{repo_root}"
           timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
@@ -1375,99 +1432,7 @@ workflow:
             - "claude-code supports --effort for reasoning depth"
         if_cli_cursor:
           command: |
-            node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
-            import { readFileSync } from 'node:fs';
-            import { createRequire } from 'node:module';
-            import { runAuditedExecutorCommand } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
-            import { resolveSandboxMode, resolveClaudePermissionMode } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
-            import {
-              snapshotOutOfScopeDirtyPaths,
-              enforceWriteContainment,
-            } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts';
-
-            // cursor-agent/devin/pi have no single-executor branch of their own, so
-            // without this they silently degrade to native. The command builder is the
-            // same one the fan-out lineage path uses, so the enforced model allowlist,
-            // headless write-mode flags, and binary preflight stay one source of truth.
-            // It throws (fail closed) when the binary is absent or the model is off the
-            // allowlist, so a requested CLI executor never becomes native.
-            const require = createRequire(import.meta.url);
-            const { buildLineageCommand, withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
-
-            const kind = '{config.executor.kind}';
-            const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
-            const timeoutSeconds = Number('{config.executor.timeoutSeconds}');
-            // The iteration must write its own iteration file, delta and state record,
-            // so the leaf runs workspace-write; the builder maps that to each CLI's real
-            // write-permitting headless flags.
-            const sandboxMode = 'workspace-write';
-            const lineage = { kind, model, sandboxMode };
-            const resolvedSandbox = resolveSandboxMode(sandboxMode);
-            const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
-
-            const repoRoot = '{repo_root}';
-            const promptBody = withAgentPersona('deep-research', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), repoRoot);
-            const { command, args, input } = buildLineageCommand(
-              lineage,
-              promptBody,
-              resolvedSandbox,
-              resolvedPermission,
-              { env: process.env, cwd: repoRoot },
-            );
-
-            const executor = {
-              kind,
-              model,
-              configDir: null,
-              reasoningEffort: null,
-              serviceTier: null,
-              sandboxMode,
-              timeoutSeconds,
-              governor: null,
-            };
-            const dispatchId = 'research-i{current_iteration}-g{config.lineage.generation}';
-            const artifactDir = '{artifact_dir}';
-            const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot, artifactDir });
-            const dispatchExit = runAuditedExecutorCommand({
-              command,
-              args,
-              cwd: repoRoot,
-              timeoutSeconds,
-              stateLogPath: '{state_paths.state_log}',
-              executor,
-              iteration: Number('{current_iteration}'),
-              input,
-              receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
-              dispatchId,
-            });
-            const containment = enforceWriteContainment({
-              repoRoot,
-              artifactDir,
-              preDispatchDirtyPaths,
-              stateLogPath: '{state_paths.state_log}',
-              iteration: Number('{current_iteration}'),
-              label: dispatchId,
-            });
-            if (containment.violations.length > 0) {
-              console.error(
-                'write-containment advisory: detected ' + containment.violations.length
-                  + ' out-of-scope path(s), left on disk: '
-                  + containment.violations.map((v) => v.path).join(', '),
-              );
-            }
-            // A path that was already dirty before the dispatch and changed during it is held out of
-            // violations. enforceWriteContainment records it in the state log as containment_contested;
-            // this prints it so the run's own output says so too.
-            if (containment.contested.length > 0) {
-              console.error(
-                'write-containment contested: ' + containment.contested.length
-                  + ' path(s) already dirty before the dispatch changed during it, left on disk: '
-                  + containment.contested.map((v) => v.path).join(', ')
-                  + '\n' + containment.contestedNote,
-              );
-            }
-            process.exit(dispatchExit);
-            EOF
+            node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-cursor {cli_dispatch_args}
           working_directory: "{repo_root}"
           timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
@@ -1476,99 +1441,7 @@ workflow:
             - "Fails closed when cursor-agent is absent or the model is off the allowlist (buildLineageCommand throws, exit non-zero) — a requested cli-cursor executor never degrades to native"
         if_cli_devin:
           command: |
-            node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
-            import { readFileSync } from 'node:fs';
-            import { createRequire } from 'node:module';
-            import { runAuditedExecutorCommand } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
-            import { resolveSandboxMode, resolveClaudePermissionMode } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
-            import {
-              snapshotOutOfScopeDirtyPaths,
-              enforceWriteContainment,
-            } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts';
-
-            // cursor-agent/devin/pi have no single-executor branch of their own, so
-            // without this they silently degrade to native. The command builder is the
-            // same one the fan-out lineage path uses, so the enforced model allowlist,
-            // headless write-mode flags, and binary preflight stay one source of truth.
-            // It throws (fail closed) when the binary is absent or the model is off the
-            // allowlist, so a requested CLI executor never becomes native.
-            const require = createRequire(import.meta.url);
-            const { buildLineageCommand, withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
-
-            const kind = '{config.executor.kind}';
-            const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
-            const timeoutSeconds = Number('{config.executor.timeoutSeconds}');
-            // The iteration must write its own iteration file, delta and state record,
-            // so the leaf runs workspace-write; the builder maps that to each CLI's real
-            // write-permitting headless flags.
-            const sandboxMode = 'workspace-write';
-            const lineage = { kind, model, sandboxMode };
-            const resolvedSandbox = resolveSandboxMode(sandboxMode);
-            const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
-
-            const repoRoot = '{repo_root}';
-            const promptBody = withAgentPersona('deep-research', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), repoRoot);
-            const { command, args, input } = buildLineageCommand(
-              lineage,
-              promptBody,
-              resolvedSandbox,
-              resolvedPermission,
-              { env: process.env, cwd: repoRoot },
-            );
-
-            const executor = {
-              kind,
-              model,
-              configDir: null,
-              reasoningEffort: null,
-              serviceTier: null,
-              sandboxMode,
-              timeoutSeconds,
-              governor: null,
-            };
-            const dispatchId = 'research-i{current_iteration}-g{config.lineage.generation}';
-            const artifactDir = '{artifact_dir}';
-            const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot, artifactDir });
-            const dispatchExit = runAuditedExecutorCommand({
-              command,
-              args,
-              cwd: repoRoot,
-              timeoutSeconds,
-              stateLogPath: '{state_paths.state_log}',
-              executor,
-              iteration: Number('{current_iteration}'),
-              input,
-              receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
-              dispatchId,
-            });
-            const containment = enforceWriteContainment({
-              repoRoot,
-              artifactDir,
-              preDispatchDirtyPaths,
-              stateLogPath: '{state_paths.state_log}',
-              iteration: Number('{current_iteration}'),
-              label: dispatchId,
-            });
-            if (containment.violations.length > 0) {
-              console.error(
-                'write-containment advisory: detected ' + containment.violations.length
-                  + ' out-of-scope path(s), left on disk: '
-                  + containment.violations.map((v) => v.path).join(', '),
-              );
-            }
-            // A path that was already dirty before the dispatch and changed during it is held out of
-            // violations. enforceWriteContainment records it in the state log as containment_contested;
-            // this prints it so the run's own output says so too.
-            if (containment.contested.length > 0) {
-              console.error(
-                'write-containment contested: ' + containment.contested.length
-                  + ' path(s) already dirty before the dispatch changed during it, left on disk: '
-                  + containment.contested.map((v) => v.path).join(', ')
-                  + '\n' + containment.contestedNote,
-              );
-            }
-            process.exit(dispatchExit);
-            EOF
+            node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-devin {cli_dispatch_args}
           working_directory: "{repo_root}"
           timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
@@ -1577,100 +1450,7 @@ workflow:
             - "Fails closed when devin is absent or the model is off the allowlist (buildLineageCommand throws, exit non-zero) — a requested cli-devin executor never degrades to native"
         if_cli_pi:
           command: |
-            node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
-            import { readFileSync } from 'node:fs';
-            import { createRequire } from 'node:module';
-            import { runAuditedExecutorCommand } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
-            import { resolveSandboxMode, resolveClaudePermissionMode } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
-            import {
-              snapshotOutOfScopeDirtyPaths,
-              enforceWriteContainment,
-            } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts';
-
-            // cursor-agent/devin/pi have no single-executor branch of their own, so
-            // without this they silently degrade to native. The command builder is the
-            // same one the fan-out lineage path uses, so the enforced model allowlist,
-            // headless write-mode flags, and binary preflight stay one source of truth.
-            // It throws (fail closed) when the binary is absent or the model is off the
-            // allowlist, so a requested CLI executor never becomes native.
-            const require = createRequire(import.meta.url);
-            const { buildLineageCommand, withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
-
-            const kind = '{config.executor.kind}';
-            const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
-            const timeoutSeconds = Number('{config.executor.timeoutSeconds}');
-            // The iteration must write its own iteration file, delta and state record,
-            // so the leaf runs workspace-write; the builder maps that to each CLI's real
-            // write-permitting headless flags.
-            const sandboxMode = 'workspace-write';
-            const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
-            const lineage = { kind, model, sandboxMode, reasoningEffort };
-            const resolvedSandbox = resolveSandboxMode(sandboxMode);
-            const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
-
-            const repoRoot = '{repo_root}';
-            const promptBody = withAgentPersona('deep-research', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), repoRoot);
-            const { command, args, input } = buildLineageCommand(
-              lineage,
-              promptBody,
-              resolvedSandbox,
-              resolvedPermission,
-              { env: process.env, cwd: repoRoot },
-            );
-
-            const executor = {
-              kind,
-              model,
-              configDir: null,
-              reasoningEffort,
-              serviceTier: null,
-              sandboxMode,
-              timeoutSeconds,
-              governor: null,
-            };
-            const dispatchId = 'research-i{current_iteration}-g{config.lineage.generation}';
-            const artifactDir = '{artifact_dir}';
-            const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot, artifactDir });
-            const dispatchExit = runAuditedExecutorCommand({
-              command,
-              args,
-              cwd: repoRoot,
-              timeoutSeconds,
-              stateLogPath: '{state_paths.state_log}',
-              executor,
-              iteration: Number('{current_iteration}'),
-              input,
-              receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
-              dispatchId,
-            });
-            const containment = enforceWriteContainment({
-              repoRoot,
-              artifactDir,
-              preDispatchDirtyPaths,
-              stateLogPath: '{state_paths.state_log}',
-              iteration: Number('{current_iteration}'),
-              label: dispatchId,
-            });
-            if (containment.violations.length > 0) {
-              console.error(
-                'write-containment advisory: detected ' + containment.violations.length
-                  + ' out-of-scope path(s), left on disk: '
-                  + containment.violations.map((v) => v.path).join(', '),
-              );
-            }
-            // A path that was already dirty before the dispatch and changed during it is held out of
-            // violations. enforceWriteContainment records it in the state log as containment_contested;
-            // this prints it so the run's own output says so too.
-            if (containment.contested.length > 0) {
-              console.error(
-                'write-containment contested: ' + containment.contested.length
-                  + ' path(s) already dirty before the dispatch changed during it, left on disk: '
-                  + containment.contested.map((v) => v.path).join(', ')
-                  + '\n' + containment.contestedNote,
-              );
-            }
-            process.exit(dispatchExit);
-            EOF
+            node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-pi {cli_dispatch_args}
           working_directory: "{repo_root}"
           timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
@@ -1689,73 +1469,7 @@ workflow:
             serviceTier: "{config.executor.serviceTier}"
         if_cli_opencode:
           command: |
-            node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
-            import { readFileSync } from 'node:fs';
-            import { createRequire } from 'node:module';
-            import { createHash } from 'node:crypto';
-
-            import { runAuditedExecutorCommand } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
-            import { resolveClaudePermissionMode } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts';
-
-            const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
-            const require = createRequire(import.meta.url);
-            const { buildLineageCommand, withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
-            const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
-            const sandboxMode = '{config.executor.sandboxMode}' === 'null' ? 'danger-full-access' : '{config.executor.sandboxMode}';
-            const executor = {
-              kind: 'cli-opencode',
-              model,
-              configDir: null,
-              reasoningEffort,
-              serviceTier: null,
-              sandboxMode,
-              timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
-              governor: null,
-            };
-            const promptBody = withAgentPersona('deep-research', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), '{repo_root}');
-            const message = 'Resolved route: mode=research; target_agent=@deep-research; execution=single_iteration; state_source=externalized_files; do_not_switch_mode=true'
-              + '\n\n'
-              + promptBody;
-
-            const lineage = { kind: 'cli-opencode', model, reasoningEffort, sandboxMode };
-            const resolvedPermission = resolveClaudePermissionMode(sandboxMode);
-            const repoRoot = '{repo_root}';
-            const { command, args, input, cwd } = buildLineageCommand(
-              lineage,
-              message,
-              sandboxMode,
-              resolvedPermission,
-              { env: process.env, cwd: repoRoot, directoryRoot: repoRoot },
-            );
-
-            const dispatchFacts = {
-              command: 'deep/research',
-              mode: 'research',
-              specFolder: '{spec_folder}',
-              artifactDir: '{state_paths.packet_dir}',
-              iteration: Number('{current_iteration}'),
-              executorKind: '{config.executor.kind}',
-              branchId: '{config.executor.kind}',
-              sessionId: '{config.lineage.sessionId}',
-              generation: Number('{config.lineage.generation}'),
-            };
-            const dispatchId = 'research-i{current_iteration}-g{config.lineage.generation}';
-            process.exit(
-              runAuditedExecutorCommand({
-                command,
-                args,
-                cwd: cwd || repoRoot,
-                timeoutSeconds: executor.timeoutSeconds,
-                stateLogPath: '{state_paths.state_log}',
-                executor,
-                iteration: Number('{current_iteration}'),
-                // buildLineageCommand returns empty input, so stdin is closed for OpenCode.
-                input,
-                receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
-                dispatchId,
-              }),
-            );
-            EOF
+            node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-opencode {cli_dispatch_args}
           working_directory: "{repo_root}"
           timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
@@ -1768,132 +1482,7 @@ workflow:
             - "cli-opencode self-invocation guard: this branch must only run from a non-OpenCode dispatch surface (Claude Code/raw shell). the `cli-external-orchestration/cli-opencode` mode's SKILL.md (`.skilled/skills/cli-external-orchestration/cli-opencode/SKILL.md`) §SELF-INVOCATION PROHIBITED contract is the authoritative gate"
         if_cli_codex:
           command: |
-            node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
-            import { readFileSync } from 'node:fs';
-            import { execFileSync } from 'node:child_process';
-            import { createRequire } from 'node:module';
-
-            import {
-              RECURSION_GUARD_EXIT_CODE,
-              formatRecursionGuardRefusal,
-              runAuditedExecutorCommand,
-              validateExecutorDispatchAllowed,
-            } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts';
-            import {
-              snapshotOutOfScopeDirtyPaths,
-              enforceWriteContainment,
-            } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts';
-
-            // Fail closed: a requested codex executor must dispatch codex or abort,
-            // never silently degrade to another executor. Undetected absence is what
-            // got Codex deprecated before, so the branch exits non-zero when the
-            // binary is missing instead of falling through to a native/other path.
-            let codexAvailable = false;
-            try {
-              execFileSync('/bin/sh', ['-c', 'command -v codex >/dev/null 2>&1'], { stdio: 'ignore' });
-              codexAvailable = true;
-            } catch {}
-            if (!codexAvailable) {
-              console.error('cli-codex executor unavailable: command -v codex failed');
-              process.exit(1);
-            }
-
-            const reasoningEffort = '{config.executor.reasoningEffort}' === 'null' ? null : '{config.executor.reasoningEffort}';
-            const serviceTier = '{config.executor.serviceTier}' === 'null' ? null : '{config.executor.serviceTier}';
-            const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
-            const executor = {
-              kind: 'cli-codex',
-              model,
-              configDir: null,
-              reasoningEffort,
-              serviceTier,
-              sandboxMode: 'workspace-write',
-              timeoutSeconds: Number('{config.executor.timeoutSeconds}'),
-              governor: null,
-            };
-
-            // Refuse before any spawn and before any receipt is written, so a refusal can
-            // never be mistaken for a real attempt. A process that is already a CLI lineage
-            // or a codex session must run the iteration itself, not delegate it onward.
-            const guardVerdict = validateExecutorDispatchAllowed(executor, { env: process.env });
-            if (!guardVerdict.allowed) {
-              console.error(formatRecursionGuardRefusal(guardVerdict, executor));
-              process.exit(RECURSION_GUARD_EXIT_CODE);
-            }
-
-            const require = createRequire(import.meta.url);
-            const { withAgentPersona } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
-            const promptBody = withAgentPersona('deep-research', readFileSync('{state_paths.prompt_dir}/iteration-{current_iteration}.md', 'utf8'), '{repo_root}');
-
-            // codex reads the iteration prompt from stdin via the trailing '-'. A research
-            // iteration must WRITE its own iteration file, delta and state record, so the
-            // sandbox is workspace-write — read-only would block those required writes.
-            // approval_policy=never keeps the run non-interactive.
-            const args = ['exec'];
-            if (model) {
-              args.push('--model', model);
-            }
-            args.push('-c', 'model_reasoning_effort=' + (reasoningEffort || 'medium'));
-            if (serviceTier) {
-              args.push('-c', 'service_tier=' + serviceTier);
-            }
-            args.push('-c', 'approval_policy=never', '--sandbox', executor.sandboxMode, '-');
-
-            const dispatchId = 'research-i{current_iteration}-g{config.lineage.generation}';
-            const repoRoot = '{repo_root}';
-            const artifactDir = '{artifact_dir}';
-            const preDispatchDirtyPaths = snapshotOutOfScopeDirtyPaths({ repoRoot, artifactDir });
-            const dispatchExit = runAuditedExecutorCommand({
-              command: 'codex',
-              args,
-              cwd: repoRoot,
-              timeoutSeconds: executor.timeoutSeconds,
-              stateLogPath: '{state_paths.state_log}',
-              executor,
-              iteration: Number('{current_iteration}'),
-              input: promptBody,
-              receiptDir: '{state_paths.packet_dir}/dispatch-receipts',
-              dispatchId,
-            });
-            // Structural write-containment: the artifact-dir boundary is prompt-only, so a
-            // workspace-write leaf can write anywhere in the repo. The guard diffs the tree
-            // after the dispatch and reports every NEW out-of-artifact-dir path. Its remedy
-            // PRESERVES by default -- event recorded, copy quarantined, bytes left on disk --
-            // because a path it cannot attribute may belong to a concurrent writer, so a
-            // revert here would destroy work this lane never wrote; reverting is opt-in per
-            // run and is not implied by this call. Remedy authority, both modes:
-            // runtime/lib/deep-loop/write-containment.ts. A violation is reported below and
-            // left on disk, never made fatal here: what the run does about it is the
-            // verdict's to decide. The leaf's own writes under artifactDir (iteration
-            // file/delta/state record) are never flagged.
-            const containment = enforceWriteContainment({
-              repoRoot,
-              artifactDir,
-              preDispatchDirtyPaths,
-              stateLogPath: '{state_paths.state_log}',
-              iteration: Number('{current_iteration}'),
-              label: dispatchId,
-            });
-            if (containment.violations.length > 0) {
-              console.error(
-                'write-containment advisory: detected ' + containment.violations.length
-                  + ' out-of-scope path(s), left on disk: '
-                  + containment.violations.map((v) => v.path).join(', '),
-              );
-            }
-            // A path that was already dirty before the dispatch and changed during it is held out of
-            // violations. enforceWriteContainment records it in the state log as containment_contested;
-            // this prints it so the run's own output says so too.
-            if (containment.contested.length > 0) {
-              console.error(
-                'write-containment contested: ' + containment.contested.length
-                  + ' path(s) already dirty before the dispatch changed during it, left on disk: '
-                  + containment.contested.map((v) => v.path).join(', ')
-                  + '\n' + containment.contestedNote,
-              );
-            }
-            process.exit(dispatchExit);
-            EOF
+            node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-codex {cli_dispatch_args}
           working_directory: "{repo_root}"
           timeout_seconds: "{config.executor.timeoutSeconds}"
           wait_for_completion: true
@@ -1950,56 +1539,7 @@ workflow:
       step_run_now_restore_check:
         action: "Record a run-now sentinel recreated during the completed dispatch"
         command: |
-          GATEWAY=".skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs"
-          [ -f "$GATEWAY" ] || GATEWAY="scripts/append-mode-event.cjs"
-          EVENT_DIR="$(mktemp -d "${TMPDIR:-/tmp}/deep-research-run-now.XXXXXX")"
-          node - "$EVENT_DIR" <<'EOF'
-          const { existsSync, readFileSync, writeFileSync } = require('node:fs');
-          const { join } = require('node:path');
-
-          const eventDir = process.argv[2];
-          const stateLogPath = "{state_paths.state_log}";
-          const sentinelPath = "{state_paths.run_now_sentinel}";
-          const sessionId = "{config.lineage.sessionId}";
-          const generation = Number("{config.lineage.generation}");
-          const run = Number("{current_iteration}");
-
-          function hasAcceptedCurrentRun() {
-            if (!existsSync(stateLogPath)) return false;
-            const lines = readFileSync(stateLogPath, "utf8").trim().split(/\r?\n/).filter(Boolean);
-            for (let index = lines.length - 1; index >= 0; index -= 1) {
-              const record = JSON.parse(lines[index]);
-              if (record.run !== run || record.sessionId !== sessionId) continue;
-              if (record.event === "run_now_accepted") return true;
-              if (record.event === "run_now_rejected") return false;
-            }
-            return false;
-          }
-
-          if (existsSync(sentinelPath) && hasAcceptedCurrentRun()) {
-            // The restored-sentinel row is staged for the gateway: the projection is
-            // rebuilt from the ledger, so appending beside it loses the row.
-            writeFileSync(
-              join(eventDir, "01-run_now_restored.json"),
-              JSON.stringify({
-                stem: "deep_research.run_now_restored",
-                scope: { runId: sessionId, lineageId: sessionId },
-                data: { mode: "research", run, sessionId, generation, sentinelPath },
-              }),
-              "utf8",
-            );
-          }
-          EOF
-          for eventFile in "$EVENT_DIR"/*.json; do
-            [ -e "$eventFile" ] || continue
-            node "$GATEWAY" --mode research --run-directory "$(dirname "{state_paths.state_log}")" --event-json "$eventFile"
-            GATEWAY_STATUS=$?
-            if [ "$GATEWAY_STATUS" -ne 0 ]; then
-              rm -rf "$EVENT_DIR"
-              exit "$GATEWAY_STATUS"
-            fi
-          done
-          rm -rf "$EVENT_DIR"
+          node .skilled/skills/system-deep-loop/runtime/scripts/run-now-sentinel.cjs restore --sentinel "{state_paths.run_now_sentinel}" --state-log "{state_paths.state_log}" --session-id "{config.lineage.sessionId}" --generation "{config.lineage.generation}" --run "{current_iteration}"
         outputs:
           - run_now_restored: "Emitted when an operator recreates the sentinel before the accepted dispatch completes"
 
@@ -2020,6 +1560,7 @@ workflow:
 
       step_reduce_state:
         action: "Run the reducer to synchronize registry, dashboard, and strategy"
+        dry_run_boundary: "reducer-refresh"
         command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} {reducer_artifact_arg}"
         inputs:
           latestJSONLDelta: "Latest JSONL records written since the previous iteration"
@@ -2041,88 +1582,10 @@ workflow:
 
       step_graph_upsert:
         action: "Persist the latest iteration graph delta after the reducer refresh and after the iteration file exists"
+        dry_run_boundary: "state-mutation"
         note: "Skips with an informational line and exit 0 when this iteration carries no graph events."
         command: |
-          node <<'EOF'
-          const { existsSync, readFileSync } = require('node:fs');
-          const { join } = require('node:path');
-          const { spawnSync } = require('node:child_process');
-
-          const deltaDir = '{state_paths.delta_dir}';
-          const stateLogPath = '{state_paths.state_log}';
-          const iteration = Number('{current_iteration}');
-          const specFolder = '{spec_folder}';
-          const sessionId = '{config.lineage.sessionId}';
-
-          function parseJsonLines(raw, source) {
-            const records = [];
-            for (const line of raw.split(/\r?\n/)) {
-              const trimmed = line.trim();
-              if (!trimmed) continue;
-              try {
-                records.push(JSON.parse(trimmed));
-              } catch (error) {
-                process.stderr.write(`deep-research graph upsert: skipped malformed line in ${source}: ${error.message}\n`);
-              }
-            }
-            return records;
-          }
-
-          function latestGraphEvents(records) {
-            for (let index = records.length - 1; index >= 0; index -= 1) {
-              const record = records[index];
-              if (record && record.type === 'iteration') {
-                return Array.isArray(record.graphEvents) ? record.graphEvents : [];
-              }
-            }
-            return [];
-          }
-
-          const deltaPath = join(deltaDir, `iter-${String(iteration).padStart(3, '0')}.jsonl`);
-          const sourcePath = existsSync(deltaPath) ? deltaPath : stateLogPath;
-          const records = existsSync(sourcePath) ? parseJsonLines(readFileSync(sourcePath, 'utf8'), sourcePath) : [];
-          const events = latestGraphEvents(records);
-
-          const nodes = [];
-          const edges = [];
-          for (const event of events) {
-            if (!event || typeof event !== 'object') continue;
-            if (event.type === 'node') {
-              nodes.push({ ...event, name: event.label ?? event.name ?? event.id });
-            } else if (event.type === 'edge') {
-              edges.push({
-                ...event,
-                sourceId: event.sourceId ?? event.source,
-                targetId: event.targetId ?? event.target,
-                relation: String(event.relation ?? '').toUpperCase(),
-              });
-            }
-          }
-
-          if (nodes.length === 0 && edges.length === 0) {
-            process.stdout.write(`deep-research graph upsert: no graph events for iteration ${iteration}; skipping\n`);
-            process.exit(0);
-          }
-
-          const upsert = spawnSync(
-            process.execPath,
-            [
-              '.skilled/skills/system-deep-loop/runtime/scripts/upsert.cjs',
-              '--spec-folder', specFolder,
-              '--loop-type', 'research',
-              '--session-id', sessionId,
-              '--nodes', JSON.stringify(nodes),
-              '--edges', JSON.stringify(edges),
-            ],
-            { encoding: 'utf8' },
-          );
-          if (upsert.error) {
-            process.stderr.write(`deep-research graph upsert: failed to spawn upsert.cjs: ${upsert.error.message}\n`);
-          }
-          if (upsert.stdout) process.stdout.write(upsert.stdout);
-          if (upsert.stderr) process.stderr.write(upsert.stderr);
-          process.exit(upsert.status === null ? 1 : upsert.status);
-          EOF
+          node .skilled/skills/system-deep-loop/runtime/scripts/iteration-graph-upsert.cjs --delta-dir "{state_paths.delta_dir}" --state-log "{state_paths.state_log}" --iteration "{current_iteration}" --spec-folder "{spec_folder}" --session-id "{config.lineage.sessionId}"
 
       step_refresh_lineage_context:
         action: "Refresh the focused context line from lineage-local state before the next prompt render"
@@ -2174,77 +1637,44 @@ workflow:
         action: "Emit a single-loop progress row when iteration state changes"
         skip_when: "config.fanout is present"
         command: |
-          node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
-          import { existsSync, readFileSync } from 'node:fs';
-
-          import { appendJsonlIfChangedAtomic } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts';
-          import observabilityEvents from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs';
-
-          const { appendObservabilityEvent } = observabilityEvents;
-          const stateLogPath = '{state_paths.state_log}';
-          const timestamp = '{ISO_8601_NOW}';
-          const sessionId = '{config.lineage.sessionId}';
-          const generation = Number('{config.lineage.generation}');
-          const observabilityPath = '{state_paths.packet_dir}/observability-events.jsonl';
-
-          function readRecords(path) {
-            if (!existsSync(path)) return [];
-            return readFileSync(path, 'utf8')
-              .split(/\r?\n/)
-              .map((line) => line.trim())
-              .filter(Boolean)
-              .map((line) => JSON.parse(line));
-          }
-
-          function elapsedSince(value) {
-            const startedAtMs = Date.parse(String(value ?? ''));
-            const nowMs = Date.parse(timestamp);
-            if (!Number.isFinite(startedAtMs) || !Number.isFinite(nowMs)) return 0;
-            return Math.max(0, nowMs - startedAtMs);
-          }
-
-          const records = readRecords(stateLogPath);
-          const iterations = records.filter((record) => record.type === 'iteration');
-          const latest = iterations.at(-1) ?? {};
-          const startedAt = records.find((record) => typeof record.createdAt === 'string')?.createdAt
-            ?? records.find((record) => typeof record.timestamp === 'string')?.timestamp
-            ?? timestamp;
-          const elapsedMs = elapsedSince(startedAt);
-          const score = Number.isFinite(Number(latest.newInfoRatio)) ? Number(latest.newInfoRatio) : 0;
-          const run = Number.isFinite(Number(latest.run)) ? Number(latest.run) : Number('{current_iteration}');
-          const status = typeof latest.status === 'string' ? latest.status : 'unknown';
-          const row = {
-            event: 'progress',
-            label: 'single',
-            at: timestamp,
-            duration_ms: elapsedMs,
-            loop_type: 'research',
-            sessionId,
-            generation,
-            run,
-            status,
-            gauges: { iterations: iterations.length, elapsed_ms: elapsedMs, score },
-          };
-
-          const appended = appendJsonlIfChangedAtomic('{state_paths.status_ledger}', row, {
-            diffData: { event: row.event, label: row.label, sessionId, generation, run, status, gauges: { iterations: iterations.length, score } },
-            diffField: 'state_hash',
-          });
-          if (appended) {
-            try {
-              appendObservabilityEvent(observabilityPath, row, {
-                producer: 'deep-research-auto',
-                stream: 'single-loop-telemetry',
-                subject: { label: row.label, sessionId, generation, run },
-                event: row.event,
-                status,
-              });
-            } catch {}
-          }
-          EOF
+          node .skilled/skills/system-deep-loop/runtime/scripts/loop-heartbeat.cjs --phase progress --execution-mode "{execution_mode}" --state-log "{state_paths.state_log}" --status-ledger "{state_paths.status_ledger}" --packet-dir "{state_paths.packet_dir}" --timestamp "{ISO_8601_NOW}" --session-id "{config.lineage.sessionId}" --generation "{config.lineage.generation}" --run "{current_iteration}"
         working_directory: "{repo_root}"
         outputs:
           - status_ledger_progress: "A fan-out-shaped status row with label single and event progress"
+
+      # ─── APPROVAL GATE: Post-Iteration ───
+      gate_post_iteration:
+        applies_to: confirm
+        type: approval_gate
+        purpose: "Show iteration results and get approval for next step"
+        present: |
+          ## Iteration {current_iteration} Results
+
+          **Focus**: {latest_focus}
+          **Findings**: {findings_count}
+          **newInfoRatio**: {newInfoRatio}
+          **Status**: {status}
+          **Remaining Questions**: {remaining_questions}
+          **Stuck Count**: {stuck_count}
+
+          **Recent Iteration Summary**:
+          {last_3_summaries}
+
+          Options:
+          A) Continue to next iteration
+          B) Continue with adjusted focus: [user provides]
+          C) Stop loop and synthesize
+          D) Cancel entirely
+        wait_for: "User response"
+        after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
+        on_A: { proceed_to: step_update_tracking }
+        on_B: { action: "Set next_focus to user's choice in strategy.md", proceed_to: step_update_tracking }
+        on_C:
+          action: "Record the operator-requested manual stop before synthesis"
+          bookkeeping_log: '{"type":"event","event":"manualStop","mode":"research","run":{current_iteration},"stopReason":"manualStop","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+          set: { reason: "manualStop" }
+          proceed_to: gate_pre_synthesis
+        on_D: { action: "Cancel workflow", status: "CANCELLED", release_lock: step_release_lock }
 
       step_update_tracking:
         action: "Update loop tracking variables"
@@ -2256,9 +1686,9 @@ workflow:
         action: "Return to step_read_state for next iteration"
         goto: step_read_state
 
-  # ═══════════════════════════════════════════════════════════════
+  # ════════
   # PHASE 3: SYNTHESIS
-  # ═══════════════════════════════════════════════════════════════
+  # ════════
   phase_synthesis:
     purpose: Compile all iteration findings into final research/research.md
     steps:
@@ -2266,6 +1696,7 @@ workflow:
       step_fanout_merge:
         description: "Merge N lineage registries into one consolidated registry; skip when single-executor"
         skip_when: "config.fanout is absent"
+        dry_run_boundary: "reducer-refresh"
         command: |
           node .skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs \
             --loop-type research \
@@ -2299,6 +1730,31 @@ workflow:
           - divergence_summary: "Read registry.divergence and summarize saturated directions, completed pivots, failures, overrides, Council artifact refs, and remaining frontier; else 'no divergent pivots recorded'"
           - reason: "Use the latest synthesis/recovery stop reason if present, else the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached.)"
 
+      # ─── APPROVAL GATE: Pre-Synthesis ───
+      gate_pre_synthesis:
+        applies_to: confirm
+        type: approval_gate
+        purpose: "Show loop summary and get approval to synthesize"
+        present: |
+          ## Research Loop Complete
+
+          **Total Iterations**: {iteration_count}
+          **Stop Reason**: {reason}
+          **Questions Answered**: {answered_count}/{total_questions}
+          **Recent Iteration Summary**: {last_3_summaries}
+
+          Review the iteration files in `{state_paths.iteration_dir}/` if you want more detail before synthesis.
+
+          Options:
+          A) Proceed to synthesis
+          B) Run more iterations (increase max)
+          C) Cancel (keep iteration files)
+        wait_for: "User response"
+        after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
+        on_A: { proceed_to: step_read_all_iterations }
+        on_B: { action: "Increase max_iterations, return to loop", proceed_to: phase_loop }
+        on_C: { action: "Cancel synthesis, keep artifacts", status: "PARTIAL" }
+
       step_read_all_iterations:
         action: "Read all iteration files and strategy"
         read_patterns:
@@ -2310,6 +1766,7 @@ workflow:
 
       step_emit_resource_map:
         action: "Emit {state_paths.resource_map_output} from converged research deltas unless config.resource_map.emit is false"
+        dry_run_boundary: "reducer-refresh"
         branch_on: "config.fanout"
         if_present:
           command: "node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs {spec_folder} --emit-resource-map --fanout-resource-map-only"
@@ -2328,6 +1785,7 @@ workflow:
 
       step_compile_research:
         action: "Compile or finalize research/research.md"
+        dry_run_boundary: "state-mutation"
         instructions: |
           If research/research.md exists (progressive synthesis was active):
             1. Read current research/research.md
@@ -2351,6 +1809,7 @@ workflow:
 
       step_convergence_report:
         action: "Generate and append convergence report"
+        dry_run_boundary: "state-mutation"
         report: |
           ## Convergence Report
           - Stop reason: {reason}
@@ -2388,8 +1847,39 @@ workflow:
           rm -rf "$EVENT_DIR"
           exit "$NODE_STATUS"
 
+      gate_post_synthesis_spec_writeback:
+        applies_to: confirm
+        type: approval_gate
+        purpose: "Approve bounded spec.md write-back before memory-save review"
+        present: |
+          ## Post-Synthesis Spec Write-Back
+
+          **Source of truth**: `{state_paths.research_output}`
+          **Target**: `{spec_folder}/spec.md`
+          **Generated Fence**:
+          - `<!-- BEGIN GENERATED: deep-research/spec-findings -->`
+          - `<!-- END GENERATED: deep-research/spec-findings -->`
+
+          Planned action:
+          - replace exactly one generated findings block under the chosen host anchor
+          - fail closed on missing host anchor, duplicate markers, or human edits inside the machine-owned block
+
+          Options:
+          A) Approve write-back
+          B) Revise before write-back
+          C) Defer spec.md write-back
+        wait_for: "User response"
+        after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
+        on_A: { proceed_to: step_writeback_spec_findings }
+        on_B: { action: "Adjust the synthesis or write-back inputs", return_to: gate_post_synthesis_spec_writeback }
+        on_C:
+          dry_run_event_policy: preview-only
+          append_to_jsonl: '{"type":"spec_mutation","event":"spec_synthesis_deferred","reason":"confirm_mode_deferred_writeback","generatedFence":"deep-research/spec-findings","timestamp":"{ISO_8601_NOW}"}'
+          proceed_to: step_update_config_status
+
       step_writeback_spec_findings:
         action: "Write or replace the bounded generated findings block in spec.md before config completion"
+        dry_run_boundary: "state-mutation"
         edit: "{spec_folder}/spec.md"
         host_anchor: "Use the chosen host anchor required by spec_check_protocol"
         generated_fence_begin: "<!-- BEGIN GENERATED: deep-research/spec-findings -->"
@@ -2416,6 +1906,7 @@ workflow:
 
       step_update_config_status:
         action: "Mark config as complete"
+        dry_run_boundary: "state-mutation"
         edit: "{state_paths.config}"
         set_field: { status: "complete" }
 
@@ -2424,81 +1915,7 @@ workflow:
         skip_when: "config.fanout is present"
         terminal_events: [completed, failed, stopped]
         command: |
-          node --import "$(node -p "require.resolve('tsx', { paths: ['.skilled/skills/system-deep-loop/runtime'] })")" --input-type=module <<'EOF'
-          import { existsSync, readFileSync } from 'node:fs';
-
-          import { appendJsonlIfChangedAtomic } from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/atomic-state.ts';
-          import observabilityEvents from './.skilled/skills/system-deep-loop/runtime/lib/deep-loop/observability-events.cjs';
-
-          const { appendObservabilityEvent } = observabilityEvents;
-          const stateLogPath = '{state_paths.state_log}';
-          const config = JSON.parse(readFileSync('{state_paths.config}', 'utf8'));
-          const timestamp = '{ISO_8601_NOW}';
-          const sessionId = String(config.lineage?.sessionId ?? '{config.lineage.sessionId}');
-          const generation = Number(config.lineage?.generation ?? '{config.lineage.generation}');
-          const reason = '{reason}';
-          const observabilityPath = '{state_paths.packet_dir}/observability-events.jsonl';
-
-          function readRecords(path) {
-            if (!existsSync(path)) return [];
-            return readFileSync(path, 'utf8')
-              .split(/\r?\n/)
-              .map((line) => line.trim())
-              .filter(Boolean)
-              .map((line) => JSON.parse(line));
-          }
-
-          function elapsedSince(value) {
-            const startedAtMs = Date.parse(String(value ?? ''));
-            const nowMs = Date.parse(timestamp);
-            if (!Number.isFinite(startedAtMs) || !Number.isFinite(nowMs)) return 0;
-            return Math.max(0, nowMs - startedAtMs);
-          }
-
-          function terminalEvent(stopReason) {
-            if (stopReason === 'manualStop' || stopReason === 'userPaused') return 'stopped';
-            if (stopReason === 'error') return 'failed';
-            return 'completed';
-          }
-
-          const records = readRecords(stateLogPath);
-          const iterations = records.filter((record) => record.type === 'iteration');
-          const latest = iterations.at(-1) ?? {};
-          const startedAt = records.find((record) => typeof record.createdAt === 'string')?.createdAt
-            ?? records.find((record) => typeof record.timestamp === 'string')?.timestamp
-            ?? timestamp;
-          const elapsedMs = elapsedSince(startedAt);
-          const score = Number.isFinite(Number(latest.newInfoRatio)) ? Number(latest.newInfoRatio) : 0;
-          const event = terminalEvent(reason);
-          const row = {
-            event,
-            label: 'single',
-            terminal: true,
-            reason,
-            at: timestamp,
-            duration_ms: elapsedMs,
-            loop_type: 'research',
-            sessionId,
-            generation,
-            gauges: { iterations: iterations.length, elapsed_ms: elapsedMs, score },
-          };
-
-          const appended = appendJsonlIfChangedAtomic('{state_paths.status_ledger}', row, {
-            diffData: { event, label: row.label, reason, sessionId, generation, gauges: { iterations: iterations.length, score } },
-            diffField: 'state_hash',
-          });
-          if (appended) {
-            try {
-              appendObservabilityEvent(observabilityPath, row, {
-                producer: 'deep-research-auto',
-                stream: 'single-loop-telemetry',
-                subject: { label: row.label, sessionId, generation, reason },
-                event,
-                status: event,
-              });
-            } catch {}
-          }
-          EOF
+          node .skilled/skills/system-deep-loop/runtime/scripts/loop-heartbeat.cjs --phase terminal --execution-mode "{execution_mode}" --config "{state_paths.config}" --state-log "{state_paths.state_log}" --status-ledger "{state_paths.status_ledger}" --packet-dir "{state_paths.packet_dir}" --timestamp "{ISO_8601_NOW}" --session-id "{config.lineage.sessionId}" --generation "{config.lineage.generation}" --reason "{reason}"
         working_directory: "{repo_root}"
         outputs:
           - status_ledger_terminal: "A fan-out-shaped status row with label single and event completed, failed, or stopped"
@@ -2506,19 +1923,44 @@ workflow:
       step_stage_artifact_dir:
         skip_when: "config.fanout_lineage_artifact_dir is present"
         action: "Stage all skill-owned artifacts under artifact_dir for the operator's next git commit"
+        dry_run_boundary: "state-mutation"
         command: 'git add -- "{state_paths.packet_dir}" ":(exclude){state_paths.packet_dir}/.deep-research.lock" ":(exclude){state_paths.packet_dir}/.deep-research-pause" ":(exclude){state_paths.packet_dir}/.deep-research-run-now" ":(exclude){state_paths.packet_dir}/.legacy-projection-watermarks"'
         note: "Skill-owned contract: without this stage step, operators who do `git add research-report.md` lose the iteration trail (iterations/, deltas/, state.jsonl, strategy, etc.). Staging the whole artifact_dir keeps the audit trail intact. Operators retain commit authority and can `git restore --staged {path}` to unstage anything before commit. Failure is non-fatal: log warning and continue. The exclude pathspecs keep the live lock file, the pause and run-now sentinels, and the legacy projection watermark directory out of the index; locks-and-fencing-v1, ledgers, deltas, iterations and the state log stay staged."
         on_fail: "Log warning. Do not block synthesis. The artifact_dir may be outside a git repo (e.g., temp test fixture) which is a valid case."
 
-  # ═══════════════════════════════════════════════════════════════
+      # ─── APPROVAL GATE: Post-Synthesis ───
+      gate_post_synthesis:
+        applies_to: confirm
+        type: approval_gate
+        purpose: "Show synthesis results and get approval"
+        present: |
+          ## Synthesis Complete
+
+          **research/research.md** has been compiled with findings from {iteration_count} iterations.
+          **Remaining Questions**: {remaining_questions_list}
+          Review `{state_paths.research_output}` before deciding whether to save memory.
+          Confirm-mode cleanup keeps the advisory lock until save, skip-save, or cancellation cleanup resolves.
+
+          Options:
+          A) Approve and save to memory
+          B) Request revisions to research/research.md
+          C) Skip memory save
+        wait_for: "User response"
+        after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
+        on_A: { proceed_to: phase_save }
+        on_B: { action: "Apply user revisions", return_to: gate_post_synthesis }
+        on_C: { proceed_to: completion }
+
+  # ════════
   # PHASE 4: SAVE
-  # ═══════════════════════════════════════════════════════════════
+  # ════════
   phase_save:
     purpose: Preserve research context in the packet's canonical continuity documents
     steps:
 
       step_compose_save_payload:
         action: "Compose the structured JSON payload consumed by generate-context.js"
+        dry_run_boundary: "state-mutation"
         output: "/tmp/save-context-data-<session-id>.json"
         requirements:
           - "Write this file before invoking generate-context.js; the loader fails closed if the explicit JSON file is absent."
@@ -2536,6 +1978,7 @@ workflow:
 
       step_generate_context:
         action: "Route continuity content into the correct canonical spec document via generate-context.js"
+        dry_run_boundary: "state-mutation"
         command: "node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json {spec_folder}"
         critical_rule: "NEVER manually author files under retired memory/ paths (the runtime rejects them); use generate-context.js so the save routes into decision-record.md, implementation-summary.md, or handover.md"
 
@@ -2546,12 +1989,13 @@ workflow:
 
       step_release_lock:
         action: "Release the single-writer lock after save, skip-save, or cancellation cleanup has resolved"
+        dry_run_boundary: "state-mutation"
         command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs release --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
         bookkeeping_log: '{"type":"event","event":"lock_released","path":"{state_paths.lock_file}","releasePhase":"save","timestamp":"{ISO_8601_NOW}"}'
 
-  # ═══════════════════════════════════════════════════════════════
+  # ════════
   # COMPLETION
-  # ═══════════════════════════════════════════════════════════════
+  # ════════
   completion:
     message: |
       Deep research complete.
@@ -2570,19 +2014,22 @@ workflow:
       - "/deep:research [new-topic] (for related deep research)"
       - "/speckit:save {spec_folder} (refresh canonical continuity before the next session)"
 
-# ─────────────────────────────────────────────────────────────────
+# ────────
 # ERROR RECOVERY
-# ─────────────────────────────────────────────────────────────────
+# ────────
 error_recovery:
   agent_dispatch_timeout: "Retry once with reduced scope (fewer research actions). If second timeout, mark as 'timeout' and continue."
   state_file_missing: "If JSONL missing during loop, reconstruct from iteration files. If strategy missing, create minimal version."
   consecutive_failures: "See step_check_convergence rule 1a. The script counts trailing failed iterations from the state log and returns stop reason error."
   continuity_save_failure: "Preserve the research/ packet as backup. Log warning."
 
-# ─────────────────────────────────────────────────────────────────
+# ────────
 # RULES
-# ─────────────────────────────────────────────────────────────────
+# ────────
 rules:
+  DRY_RUN_OVERRIDES:
+    - "When dry_run is true, dry_run_control overrides default dispatch, write, reducer, continuity-save, and child-spawn requirements."
+    - "Dry-run preview events are emitted to terminal output only and are not persisted."
   ALWAYS:
     - follow_workflow_phases_in_order
     - dispatch_deep_research_agent_per_iteration
@@ -2599,9 +2046,9 @@ rules:
     - overwrite_jsonl_state_log
     - proceed_without_state_file_verification
 
-# ─────────────────────────────────────────────────────────────────
+# ────────
 # REFERENCE-ONLY APPENDIX
-# ─────────────────────────────────────────────────────────────────
+# ────────
 reference_only_appendix:
   checkpoint_commit:
     note: "Checkpoint commits are intentionally excluded from workflow.steps."

@@ -9,13 +9,22 @@ import { describe, expect, it } from 'vitest';
 import { EXECUTOR_KINDS, executorConfigSchema } from '../../lib/deep-loop/executor-config.js';
 
 const ASSETS = resolve(__dirname, '..', '..', '..', '..', '..', 'commands', 'deep', 'assets');
+const DISPATCH_SCRIPT = resolve(__dirname, '..', '..', 'scripts', 'dispatch-iteration.cjs');
 const WORKFLOW_YAMLS = [
-  'deep-research-auto.yaml',
-  'deep-research-confirm.yaml',
-  'deep-review-auto.yaml',
-  'deep-review-confirm.yaml',
+  'deep-research.yaml',
+  'deep-review.yaml',
 ];
 const EXECUTOR_FIELDS = Object.keys(executorConfigSchema.shape);
+const EXECUTOR_BRANCHES = [
+  'if_native',
+  'if_cli_claude_code',
+  'if_cli_codex',
+  'if_cli_cursor',
+  'if_cli_devin',
+  'if_cli_pi',
+  'if_cli_opencode',
+  'if_cli_deepseek_harness',
+] as const;
 
 function unknownBranchKinds(yaml: string): string[] {
   return [...new Set([...yaml.matchAll(/^\s*if_cli_([a-z0-9_]+):/gm)]
@@ -33,28 +42,30 @@ function rejectedPureFlags(yaml: string): string[] {
   return [...yaml.matchAll(/\B--pure\b/g)].map(() => '--pure');
 }
 
-function missingNonNativeBranches(yaml: string, kinds: readonly string[]): string[] {
-  const branches = new Set([...yaml.matchAll(/^\s*if_cli_([a-z0-9_]+):/gm)]
-    .map((match) => `cli-${match[1].replaceAll('_', '-')}`));
-  return kinds.filter((kind) => kind !== 'native' && !branches.has(kind));
+function stepText(yaml: string, step: string): string {
+  const start = yaml.indexOf(`      ${step}:\n`);
+  if (start === -1) return '';
+  const rest = yaml.slice(start + 1);
+  const end = rest.search(/\n      step_[a-z_]+:\n/);
+  return end === -1 ? rest : rest.slice(0, end);
 }
 
-function opencodeBranchesMissingBuilder(yaml: string): number[] {
-  const lines = yaml.split(/\r?\n/);
-  const missing: number[] = [];
-  for (let index = 0; index < lines.length; index += 1) {
-    const branch = /^(\s*)if_cli_opencode:\s*$/.exec(lines[index]);
-    if (!branch) continue;
-    const indent = branch[1].length;
-    let end = index + 1;
-    while (end < lines.length) {
-      const line = lines[end];
-      if (line.trim() && /^\s*/.exec(line)![0].length <= indent) break;
-      end += 1;
-    }
-    if (!lines.slice(index + 1, end).join('\n').includes('buildLineageCommand')) missing.push(index + 1);
+function branchOccurrences(step: string, branch: string): number {
+  return [...step.matchAll(new RegExp(`^\\s*${branch}:\\s*$`, 'gm'))].length;
+}
+
+function branchBody(step: string, branch: string): string {
+  const lines = step.split(/\r?\n/);
+  const start = lines.findIndex((line) => new RegExp(`^\\s*${branch}:\\s*$`).test(line));
+  if (start === -1) return '';
+  const indent = /^\s*/.exec(lines[start])![0].length;
+  let end = start + 1;
+  while (end < lines.length) {
+    const line = lines[end];
+    if (line.trim() && /^\s*/.exec(line)![0].length <= indent) break;
+    end += 1;
   }
-  return missing;
+  return lines.slice(start + 1, end).join('\n');
 }
 
 function readWorkflows(): Map<string, string> {
@@ -79,17 +90,27 @@ describe('deep-loop executor branch contract', () => {
     expect(rejectedPureFlags('command: opencode --pure')).toEqual(['--pure']);
   });
 
-  it('includes each non-native executor branch in both auto workflows', () => {
-    for (const file of ['deep-research-auto.yaml', 'deep-review-auto.yaml']) {
-      expect(missingNonNativeBranches(workflows.get(file)!, EXECUTOR_KINDS)).toEqual([]);
+  it('defines each executor branch exactly once inside step_dispatch_iteration', () => {
+    for (const [file, yaml] of workflows) {
+      const step = stepText(yaml, 'step_dispatch_iteration');
+      expect(step.length, file).toBeGreaterThan(0);
+      expect(
+        EXECUTOR_BRANCHES.filter((branch) => branchOccurrences(step, branch) !== 1),
+        file,
+      ).toEqual([]);
     }
-    expect(missingNonNativeBranches('if_cli_codex:\n', ['native', 'cli-codex', 'cli-cursor']))
-      .toEqual(['cli-cursor']);
+    expect(branchOccurrences('if_cli_codex:\n        if_cli_codex:\n', 'if_cli_codex')).toBe(2);
   });
 
-  it('builds OpenCode dispatch commands through buildLineageCommand', () => {
-    for (const yaml of workflows.values()) expect(opencodeBranchesMissingBuilder(yaml)).toEqual([]);
-    expect(opencodeBranchesMissingBuilder('if_cli_opencode:\n  command: opencode run\n'))
-      .toEqual([1]);
+  it('routes the OpenCode branch through dispatch-iteration.cjs', () => {
+    for (const [file, yaml] of workflows) {
+      const step = stepText(yaml, 'step_dispatch_iteration');
+      expect(branchBody(step, 'if_cli_opencode'), file)
+        .toContain('dispatch-iteration.cjs --executor cli-opencode');
+    }
+  });
+
+  it('builds lineage commands through buildLineageCommand in dispatch-iteration.cjs', () => {
+    expect(readFileSync(DISPATCH_SCRIPT, 'utf8')).toContain('buildLineageCommand');
   });
 });

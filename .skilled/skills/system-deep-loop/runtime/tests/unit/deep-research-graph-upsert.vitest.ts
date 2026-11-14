@@ -6,7 +6,7 @@
 // state log is a gateway-refreshed projection that does not carry the
 // iteration's graphEvents, so an upsert driven from the state log never
 // sees a node or an edge. These tests render the step command out of both
-// research workflows, point it at a scratch artifact directory, and prove
+// research workflow, point it at a scratch artifact directory, and prove
 // the coverage database receives exactly what the delta file declared.
 
 // ───────────────────────────────────────────────────────────────────
@@ -36,8 +36,7 @@ const SESSION_ID = 'session-graph-upsert-fixture';
 const ITERATION = '1';
 
 const WORKFLOW_PATHS = [
-  resolve(REPO_ROOT, '.skilled', 'commands', 'deep', 'assets', 'deep-research-auto.yaml'),
-  resolve(REPO_ROOT, '.skilled', 'commands', 'deep', 'assets', 'deep-research-confirm.yaml'),
+  resolve(REPO_ROOT, '.skilled', 'commands', 'deep', 'assets', 'deep-research.yaml'),
 ] as const;
 
 // QUESTION and FINDING are research node kinds, and ANSWERS is a research

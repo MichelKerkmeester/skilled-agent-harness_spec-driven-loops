@@ -24,13 +24,13 @@ const REPO_ROOT = resolve(SKILLS_ROOT, '..');
 const LOOP_LOCK_CLI = resolve(runtimeRoot, 'scripts', 'loop-lock.cjs');
 
 const ASSETS = resolve(SKILLS_ROOT, 'commands', 'deep', 'assets');
-const AUTO_YAML_PATH = resolve(ASSETS, 'deep-research-auto.yaml');
-const REVIEW_AUTO_YAML_PATH = resolve(ASSETS, 'deep-review-auto.yaml');
+const RESEARCH_YAML_PATH = resolve(ASSETS, 'deep-research.yaml');
+const REVIEW_YAML_PATH = resolve(ASSETS, 'deep-review.yaml');
 // Every workflow that takes the loop lock: acquire stamps a nonce, and release
 // refuses without it, so a release line that drops it leaves the lock behind.
 const YAML_PATHS = [
-  'deep-research-auto', 'deep-research-confirm',
-  'deep-review-auto', 'deep-review-confirm',
+  'deep-research',
+  'deep-review',
   'deep-ai-council-auto', 'deep-ai-council-confirm',
 ].map((name) => resolve(ASSETS, `${name}.yaml`));
 
@@ -86,7 +86,7 @@ describe('deep-loop lock release carries the acquire nonce', () => {
     });
   }
 
-  for (const yamlPath of [AUTO_YAML_PATH, REVIEW_AUTO_YAML_PATH]) it(`releases the ${basename(yamlPath)} lock when given the acquired owner pid and nonce`, () => {
+  for (const yamlPath of [RESEARCH_YAML_PATH, REVIEW_YAML_PATH]) it(`releases the ${basename(yamlPath)} lock when given the acquired owner pid and nonce`, () => {
     const dir = mkdtempSync(join(tmpdir(), 'deep-loop-lock-release-'));
     tempDirs.push(dir);
     const lockPath = join(dir, '.deep-loop.lock');
@@ -132,10 +132,8 @@ describe('deep-loop lock release carries the acquire nonce', () => {
 
 describe('every terminal path after the acquire releases the lock', () => {
   const LOCKED_WORKFLOWS = [
-    'deep-research-auto',
-    'deep-research-confirm',
-    'deep-review-auto',
-    'deep-review-confirm',
+    'deep-research',
+    'deep-review',
   ];
 
   for (const name of LOCKED_WORKFLOWS) {
@@ -188,7 +186,10 @@ describe('every terminal path after the acquire releases the lock', () => {
         }
       }
 
-      for (let index = 0; index < acquireIndex; index += 1) {
+      // Shared defaults sit above the `workflow:` key and run only where a step refers to them,
+      // so the order check covers the step sequence alone.
+      const workflowStart = Math.max(0, lines.findIndex((line) => line.trim() === 'workflow:'));
+      for (let index = workflowStart; index < acquireIndex; index += 1) {
         if (lines[index].includes('step_release_lock')) {
           problems.push(`line ${index + 1}: step_release_lock appears before the lock is acquired`);
         }

@@ -25,8 +25,8 @@ afterEach(() => {
 });
 
 // The literal block under `command: |` in the step, with its indentation removed.
-function initStepCommand(variant: 'auto' | 'confirm'): string {
-  const yaml = readFileSync(join(REPO_ROOT, `.skilled/commands/deep/assets/deep-review-${variant}.yaml`), 'utf8');
+function initStepCommand(): string {
+  const yaml = readFileSync(join(REPO_ROOT, '.skilled/commands/deep/assets/deep-review.yaml'), 'utf8');
   const lines = yaml.split('\n');
   const stepAt = lines.findIndex((line) => line.trim() === 'step_create_state_log:');
   const commandAt = lines.findIndex((line, i) => i > stepAt && line.trim() === 'command: |');
@@ -38,15 +38,15 @@ function initStepCommand(variant: 'auto' | 'confirm'): string {
   return body.join('\n');
 }
 
-function workflowLines(variant: 'auto' | 'confirm'): string[] {
-  return readFileSync(join(REPO_ROOT, `.skilled/commands/deep/assets/deep-review-${variant}.yaml`), 'utf8').split('\n');
+function workflowLines(): string[] {
+  return readFileSync(join(REPO_ROOT, '.skilled/commands/deep/assets/deep-review.yaml'), 'utf8').split('\n');
 }
 
 // The lines of one step, from its key to the next key at the same depth.
-function stepLines(variant: 'auto' | 'confirm', step: string): string[] {
-  const lines = workflowLines(variant);
+function stepLines(step: string): string[] {
+  const lines = workflowLines();
   const start = lines.findIndex((line) => line.trim() === `${step}:`);
-  if (start < 0) throw new Error(`${step} is missing from deep-review-${variant}.yaml`);
+  if (start < 0) throw new Error(`${step} is missing from deep-review.yaml`);
   const depth = lines[start].length - lines[start].trimStart().length;
   const end = lines.findIndex((line, i) => i > start && line.trim() !== ''
     && line.length - line.trimStart().length <= depth);
@@ -202,39 +202,39 @@ describe('deep-review run open', () => {
   // a fresh packet into a partial one, and a moved state log the ledger never
   // produced refuses every append. The move only rehomes files; the run is
   // opened first and the migration row is recorded at the top of the loop.
-  it.each(['auto', 'confirm'] as const)('the %s workflow records the migration row after classification and the run open', (variant) => {
-    const lines = workflowLines(variant);
+  it('records the migration row after classification and the run open', () => {
+    const lines = workflowLines();
     const lineOf = (key: string): number => lines.findIndex((line) => line.trim() === `${key}:`);
-    const rehome = stepLines(variant, 'step_migrate_legacy_review_state').join('\n');
+    const rehome = stepLines('step_migrate_legacy_review_state').join('\n');
     expect(rehome).not.toMatch(/append-mode-event|deep_review\.migration/);
 
-    const record = stepLines(variant, 'step_record_artifact_migration');
+    const record = stepLines('step_record_artifact_migration');
     expect(lineOf('step_record_artifact_migration')).toBeGreaterThan(lineOf('step_classify_session'));
     expect(lineOf('step_record_artifact_migration')).toBeGreaterThan(lineOf('step_create_state_log'));
     expect(lineOf('step_record_artifact_migration')).toBeGreaterThan(lineOf('phase_loop'));
     expect(JSON.parse(render(appendRow(record), '/spec'))).toMatchObject({ stem: 'deep_review.migration' });
     expect(record.join('\n')).toMatch(/skip_when: "legacy_migration_detected != true or migration_recorded == true"/);
-    if (variant === 'confirm') expect(record.join('\n')).toMatch(/dry_run_boundary: "state-mutation"/);
+    expect(record.join('\n')).toMatch(/dry_run_boundary: "state-mutation"/);
   });
 
-  it.each(['auto', 'confirm'] as const)('the %s move leaves a fresh packet without a state log and records nothing', (variant) => {
+  it('the move leaves a fresh packet without a state log and records nothing', () => {
     const root = mkdtempSync(join(tmpdir(), 'deep-review-fresh-'));
     scratch.push(root);
     const specFolder = join(root, 'spec');
     mkdirSync(specFolder);
-    const move = bash(render(blockScalar(stepLines(variant, 'step_migrate_legacy_review_state'), 'command'), specFolder));
+    const move = bash(render(blockScalar(stepLines('step_migrate_legacy_review_state'), 'command'), specFolder));
     expect(move.status, move.stdout + move.stderr).toBe(0);
     expect(move.stdout).not.toContain('LEGACY_REVIEW_STATE_MOVED');
     expect(existsSync(join(specFolder, 'review', 'deep-review-state.jsonl'))).toBe(false);
     expect(existsSync(join(specFolder, 'review', 'deep-review-ledger'))).toBe(false);
   });
 
-  it.each(['auto', 'confirm'] as const)('the %s workflow carries a moved legacy state log through the gateway and keeps the migration row', (variant) => {
+  it('carries a moved legacy state log through the gateway and keeps the migration row', () => {
     const { specFolder, legacyLog } = scratchEraPacket();
     const dir = join(specFolder, 'review');
 
     // Before classification: the files move and nothing reaches the gateway.
-    const move = bash(render(blockScalar(stepLines(variant, 'step_migrate_legacy_review_state'), 'command'), specFolder));
+    const move = bash(render(blockScalar(stepLines('step_migrate_legacy_review_state'), 'command'), specFolder));
     expect(move.status, move.stdout + move.stderr).toBe(0);
     expect(move.stdout).toContain('LEGACY_REVIEW_STATE_MOVED');
     expect(readFileSync(join(dir, 'deep-review-state.jsonl'), 'utf8')).toBe(legacyLog);
@@ -242,10 +242,10 @@ describe('deep-review run open', () => {
 
     // After classification: the hand-written log is set aside, the run opens
     // from the moved config, and the legacy iteration rows are replayed.
-    const adopt = stepLines(variant, 'step_classify_session');
+    const adopt = stepLines('step_classify_session');
     const setAside = bash(render(blockScalar(adopt, 'set_aside_command'), specFolder));
     expect(setAside.status, setAside.stdout + setAside.stderr).toBe(0);
-    const open = bash(render(initStepCommand(variant), specFolder));
+    const open = bash(render(initStepCommand(), specFolder));
     expect(open.status, open.stdout + open.stderr).toBe(0);
     const replay = bash(render(blockScalar(adopt, 'replay_command'), specFolder));
     expect(replay.status, replay.stdout + replay.stderr).toBe(0);
@@ -256,7 +256,7 @@ describe('deep-review run open', () => {
     expect(readFileSync(join(dir, 'deep-review-state.legacy.jsonl'), 'utf8')).toBe(legacyLog);
 
     // At the top of the loop: the migration row goes through the real gateway.
-    const migration = gateway(dir, JSON.parse(render(appendRow(stepLines(variant, 'step_record_artifact_migration')), specFolder)));
+    const migration = gateway(dir, JSON.parse(render(appendRow(stepLines('step_record_artifact_migration')), specFolder)));
     expect(migration.status, migration.stdout).toBe(0);
 
     // A later append replaces the projection, and every carried row survives it.
@@ -276,9 +276,9 @@ describe('deep-review run open', () => {
     expect(rows[4]).toEqual(later);
   });
 
-  it.each(['auto', 'confirm'] as const)('the %s init step opens the run so later appends project', (variant) => {
+  it('the init step opens the run so later appends project', () => {
     const dir = reviewDir();
-    const command = initStepCommand(variant)
+    const command = initStepCommand()
       .replaceAll('{state_paths.config}', join(dir, 'deep-review-config.json'))
       .replaceAll('{state_paths.state_log}', join(dir, 'deep-review-state.jsonl'));
     const init = spawnSync('bash', ['-c', command], { cwd: REPO_ROOT, encoding: 'utf8' });
@@ -292,9 +292,9 @@ describe('deep-review run open', () => {
     expect(rows[1]).toEqual(iterationRecord());
   });
 
-  it.each(['auto', 'confirm'] as const)('the %s init step projects the configured topic into the config row', (variant) => {
+  it('the init step projects the configured topic into the config row', () => {
     const dir = reviewDir();
-    const command = initStepCommand(variant)
+    const command = initStepCommand()
       .replaceAll('{state_paths.config}', join(dir, 'deep-review-config.json'))
       .replaceAll('{state_paths.state_log}', join(dir, 'deep-review-state.jsonl'));
     const init = spawnSync('bash', ['-c', command], { cwd: REPO_ROOT, encoding: 'utf8' });

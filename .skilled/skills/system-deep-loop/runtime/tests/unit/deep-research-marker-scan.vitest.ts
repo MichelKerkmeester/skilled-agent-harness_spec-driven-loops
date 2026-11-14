@@ -20,9 +20,7 @@ import { runtimeRoot } from '../helpers/spawn-cjs';
 const SKILLS_ROOT = resolve(runtimeRoot, '..', '..', '..');
 const TEMPLATE_PATH = resolve(runtimeRoot, '..', 'deep-research', 'assets', 'prompt-pack-iteration.md.tmpl');
 
-const AUTO_YAML_PATH = resolve(SKILLS_ROOT, 'commands', 'deep', 'assets', 'deep-research-auto.yaml');
-const CONFIRM_YAML_PATH = resolve(SKILLS_ROOT, 'commands', 'deep', 'assets', 'deep-research-confirm.yaml');
-const YAML_PATHS = [AUTO_YAML_PATH, CONFIRM_YAML_PATH];
+const YAML_PATH = resolve(SKILLS_ROOT, 'commands', 'deep', 'assets', 'deep-research.yaml');
 
 // ───────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -57,17 +55,15 @@ function markerScanConfig(yamlPath: string): { canonicalHeader: string; nestedMa
 describe('deep research marker scan never matches its own canonical header', () => {
   const templateFirstLine = readFileSync(TEMPLATE_PATH, 'utf8').split(/\r?\n/u)[0]?.trim() ?? '';
 
-  for (const yamlPath of YAML_PATHS) {
-    it(`matches only review markers in ${basename(yamlPath)}`, () => {
-      const { canonicalHeader, nestedMarkerPattern } = markerScanConfig(yamlPath);
-      const nestedMarker = new RegExp(nestedMarkerPattern, 'u');
+  it(`matches only review markers in ${basename(YAML_PATH)}`, () => {
+    const { canonicalHeader, nestedMarkerPattern } = markerScanConfig(YAML_PATH);
+    const nestedMarker = new RegExp(nestedMarkerPattern, 'u');
 
-      expect(canonicalHeader).toBe(templateFirstLine);
-      expect(nestedMarker.test(templateFirstLine)).toBe(false);
-      expect(nestedMarker.test('DEEP-REVIEW')).toBe(true);
-      expect(nestedMarker.test('CODE-REVIEW')).toBe(true);
-      expect(nestedMarker.test('DEEP-RESEARCH extra')).toBe(false);
-      expect(nestedMarker.test('')).toBe(false);
-    });
-  }
+    expect(canonicalHeader).toBe(templateFirstLine);
+    expect(nestedMarker.test(templateFirstLine)).toBe(false);
+    expect(nestedMarker.test('DEEP-REVIEW')).toBe(true);
+    expect(nestedMarker.test('CODE-REVIEW')).toBe(true);
+    expect(nestedMarker.test('DEEP-RESEARCH extra')).toBe(false);
+    expect(nestedMarker.test('')).toBe(false);
+  });
 });

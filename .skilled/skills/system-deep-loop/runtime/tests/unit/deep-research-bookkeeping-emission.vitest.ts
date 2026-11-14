@@ -26,7 +26,7 @@ const ASSETS_DIR = resolve(
   '.skilled', 'commands', 'deep', 'assets',
 );
 
-const WORKFLOW_FILES = ['deep-research-auto.yaml', 'deep-research-confirm.yaml'] as const;
+const WORKFLOW_FILE = 'deep-research.yaml';
 
 type DirectiveKey = 'append_to_jsonl' | 'append_jsonl' | 'log_event' | 'bookkeeping_log';
 
@@ -209,114 +209,100 @@ const RUN_OPEN_ROW: Record<string, unknown> = {
 };
 
 describe('deep-research bookkeeping emission', () => {
-  for (const file of WORKFLOW_FILES) {
-    it(`routes only gateway-accepted rows through the append directives in ${file}`, () => {
-      const filePath = join(ASSETS_DIR, file);
-      const directives = extractDirectives(filePath);
-      expect(directives.length).toBeGreaterThan(0);
+  it('routes only gateway-accepted rows through the append directives', () => {
+    const file = WORKFLOW_FILE;
+    const filePath = join(ASSETS_DIR, file);
+    const directives = extractDirectives(filePath);
+    expect(directives.length).toBeGreaterThan(0);
 
-      const label = file.replace(/[^A-Za-z0-9]+/g, '-');
-      const runDirectory = createTempDir(`run-${label}`);
-      const authorityRoot = createTempDir(`auth-${label}`);
-      const openResult = runGateway(runDirectory, authorityRoot, RUN_OPEN_ROW, 'run-open');
-      expect(openResult.exitCode, `run open refused: ${openResult.reason}`).toBe(0);
+    const label = file.replace(/[^A-Za-z0-9]+/g, '-');
+    const runDirectory = createTempDir(`run-${label}`);
+    const authorityRoot = createTempDir(`auth-${label}`);
+    const openResult = runGateway(runDirectory, authorityRoot, RUN_OPEN_ROW, 'run-open');
+    expect(openResult.exitCode, `run open refused: ${openResult.reason}`).toBe(0);
 
-      const refusedEvents = new Set<string>();
-      for (const directive of directives) {
-        const result = runGateway(
-          runDirectory,
-          authorityRoot,
-          directive.row,
-          `line-${directive.line}`,
-        );
-        if (result.exitCode === 1 && directive.event) refusedEvents.add(directive.event);
+    const refusedEvents = new Set<string>();
+    for (const directive of directives) {
+      const result = runGateway(
+        runDirectory,
+        authorityRoot,
+        directive.row,
+        `line-${directive.line}`,
+      );
+      if (result.exitCode === 1 && directive.event) refusedEvents.add(directive.event);
 
-        // A log_event row is appended through the gateway like the append
-        // directives, so a refused row there halts the step just the same.
-        if (directive.key !== 'bookkeeping_log') {
-          expect(
-            result.exitCode,
-            `${file}:${directive.line} ${directive.key} event=${directive.event ?? '-'} `
-              + `was refused by the gateway: ${result.reason}`,
-          ).toBe(0);
-        }
-      }
-
-      const pinned = readPinnedEvents(filePath);
-      const bookkeepingEvents = [
-        ...new Set(
-          directives
-            .filter((directive) => directive.key === 'bookkeeping_log')
-            .map((directive) => directive.event)
-            .filter((event): event is string => event !== null),
-        ),
-      ];
-
-      for (const event of bookkeepingEvents) {
+      // A log_event row is appended through the gateway like the append
+      // directives, so a refused row there halts the step just the same.
+      if (directive.key !== 'bookkeeping_log') {
         expect(
-          pinned.has(event),
-          `${file}: bookkeeping_log event ${event} is missing from `
-            + 'state_write_protocol.pinned_bookkeeping.events',
-        ).toBe(true);
+          result.exitCode,
+          `${file}:${directive.line} ${directive.key} event=${directive.event ?? '-'} `
+            + `was refused by the gateway: ${result.reason}`,
+        ).toBe(0);
       }
-
-      for (const event of pinned) {
-        expect(
-          refusedEvents.has(event),
-          `${file}: pinned_bookkeeping event ${event} is not refused by the gateway, `
-            + 'so the declaration is stale',
-        ).toBe(true);
-      }
-    }, 240_000);
-  }
-
-  it('lists the same pinned events in both workflows for the events they share', () => {
-    const perFile = WORKFLOW_FILES.map((file) => {
-      const filePath = join(ASSETS_DIR, file);
-      const directives = extractDirectives(filePath);
-      return {
-        file,
-        events: new Set(
-          directives
-            .map((directive) => directive.event)
-            .filter((event): event is string => event !== null),
-        ),
-        pinned: readPinnedEvents(filePath),
-      };
-    });
-
-    const [first, second] = perFile;
-    for (const event of first.events) {
-      if (!second.events.has(event)) continue;
-      expect(
-        second.pinned.has(event),
-        `pinned_bookkeeping disagreement for the shared event ${event} `
-          + `between ${first.file} and ${second.file}`,
-      ).toBe(first.pinned.has(event));
     }
+
+    const pinned = readPinnedEvents(filePath);
+    const bookkeepingEvents = [
+      ...new Set(
+        directives
+          .filter((directive) => directive.key === 'bookkeeping_log')
+          .map((directive) => directive.event)
+          .filter((event): event is string => event !== null),
+      ),
+    ];
+
+    for (const event of bookkeepingEvents) {
+      expect(
+        pinned.has(event),
+        `${file}: bookkeeping_log event ${event} is missing from `
+          + 'state_write_protocol.pinned_bookkeeping.events',
+      ).toBe(true);
+    }
+
+    for (const event of pinned) {
+      expect(
+        refusedEvents.has(event),
+        `${file}: pinned_bookkeeping event ${event} is not refused by the gateway, `
+          + 'so the declaration is stale',
+      ).toBe(true);
+    }
+  }, 240_000);
+
+  // The two declarations must name the same rows in one file: every pinned event
+  // is emitted by a bookkeeping_log directive, and every bookkeeping_log event is
+  // pinned. A row that is declared pinned but routed through an append directive
+  // (or the reverse) would halt a step or hide a refusal.
+  it('keeps the pinned bookkeeping declaration in step with the bookkeeping directives', () => {
+    const filePath = join(ASSETS_DIR, WORKFLOW_FILE);
+    const directives = extractDirectives(filePath);
+    const bookkeepingEvents = directives
+      .filter((directive) => directive.key === 'bookkeeping_log')
+      .map((directive) => directive.event)
+      .filter((event): event is string => event !== null);
+
+    expect([...new Set(bookkeepingEvents)].sort()).toEqual([...readPinnedEvents(filePath)].sort());
   });
 
   // Appending the migration row before session classification would create the
   // state log and turn a fresh packet into a partial one, so it is recorded only
   // once the run is classified and opened, and then through the gateway.
-  for (const file of WORKFLOW_FILES) {
-    it(`appends the migration row after session classification and the run open in ${file}`, () => {
-      const filePath = join(ASSETS_DIR, file);
-      const lines = readFileSync(filePath, 'utf8').split('\n');
-      const lineOf = (pattern: RegExp): number => lines.findIndex((line) => pattern.test(line)) + 1;
-      const migrations = extractDirectives(filePath).filter((directive) => directive.event === 'migration');
+  it('appends the migration row after session classification and the run open', () => {
+    const filePath = join(ASSETS_DIR, WORKFLOW_FILE);
+    const lines = readFileSync(filePath, 'utf8').split('\n');
+    const lineOf = (pattern: RegExp): number => lines.findIndex((line) => pattern.test(line)) + 1;
+    const migrations = extractDirectives(filePath).filter((directive) => directive.event === 'migration');
 
-      expect(migrations.map((directive) => directive.key)).toEqual(['append_jsonl']);
-      expect(migrations[0].line).toBeGreaterThan(lineOf(/^\s*step_classify_session:\s*$/));
-      expect(migrations[0].line).toBeGreaterThan(lineOf(/^\s*step_create_state_log:\s*$/));
-      expect(lines.some((line) => /log_only_bookkeeping/.test(line))).toBe(false);
-    });
-  }
+    expect(migrations.map((directive) => directive.key)).toEqual(['append_jsonl']);
+    expect(migrations[0].line).toBeGreaterThan(lineOf(/^\s*step_classify_session:\s*$/));
+    expect(migrations[0].line).toBeGreaterThan(lineOf(/^\s*step_create_state_log:\s*$/));
+    expect(lines.some((line) => /log_only_bookkeeping/.test(line))).toBe(false);
+  });
 
   // A hand-edited state log is replaced at the next projection in a ledger-backed
   // run, so the halt has to name the gateway command that records the removal.
   it('names the gateway path for a removal or reset when every candidate is rejected', () => {
-    const text = readFileSync(join(ASSETS_DIR, 'deep-research-auto.yaml'), 'utf8');
+    const text = readFileSync(join(ASSETS_DIR, WORKFLOW_FILE), 'utf8');
     const halt = text.slice(text.indexOf('if_all_candidates_suppressed:'));
     const message = halt.slice(0, halt.indexOf('\n\n'));
     expect(message).toContain(

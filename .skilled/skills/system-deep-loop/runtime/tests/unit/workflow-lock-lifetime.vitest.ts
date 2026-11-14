@@ -25,10 +25,8 @@ const ASSETS = resolve(SKILLS_ROOT, 'commands', 'deep', 'assets');
 const LOOP_LOCK_CLI = resolve(runtimeRoot, 'scripts', 'loop-lock.cjs');
 
 const FILES = [
-  'deep-research-auto',
-  'deep-research-confirm',
-  'deep-review-auto',
-  'deep-review-confirm',
+  'deep-research',
+  'deep-review',
 ];
 
 const REFRESH_COMMAND =

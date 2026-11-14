@@ -8,7 +8,7 @@ This workflow gathers all setup inputs in one prompt. Confirm mode still include
 
 For `:confirm` or no suffix, the consolidated setup prompt MUST be the first visible response. No implementation or file-modifying tool calls before asking. Lightweight read-only discovery to suggest a spec folder or load prior context is allowed, then ask ALL questions immediately and wait.
 
-For `:auto`, do not emit the consolidated prompt by default. Resolve setup with the three-tier branch below, then load the auto YAML only after all required values are bound.
+For `:auto`, do not emit the consolidated prompt by default. Resolve setup with the three-tier branch below, then load the workflow YAML only after all required values are bound.
 
 ### `:auto` Setup Resolution
 
@@ -16,13 +16,21 @@ Setup contract: see `.skilled/skills/system-spec-kit/references/workflows/auto-m
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-research-auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-research.yaml` with `execution_mode` bound to `auto`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed. Missing `research_topic` is absence, not ambiguity — go to Tier 3.
 
 3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:research:auto` as the command name. Exit non-zero. Do not load YAML.
 
 `:confirm` path stays unchanged — see the consolidated setup prompt section below.
+
+### Dry-Run Halt
+
+`--dry-run` binds `dry_run=true` in both execution modes.
+Setup then binds its values in memory and skips the Tier 1 config persist, so no `deep-research-config.json` is written.
+The workflow then prints `dry_run_halt` preview lines and stops before any dispatch or state write.
+Show the operator the halt line and say that nothing was written.
+Both execution modes run the telemetry heartbeat and the run-now check.
 
 ### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
 

@@ -78,8 +78,8 @@ Each body recognizes attached command modes:
 
 | Suffix | Behavior |
 |---|---|
-| `:auto` | Resolve supported inputs non-interactively and load the auto workflow. |
-| `:confirm` | Ask the consolidated setup question and load the confirm workflow. |
+| `:auto` | Resolve supported inputs non-interactively and load the command's workflow with execution_mode `auto`. |
+| `:confirm` | Ask the consolidated setup question and load the command's workflow with execution_mode `confirm`. |
 | No suffix | Ask for execution mode through the command's setup flow. |
 
 Inputs such as target paths, iteration limits, convergence settings and executor choices remain workflow inputs rather than execution modes.

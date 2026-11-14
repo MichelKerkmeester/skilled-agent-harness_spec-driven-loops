@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/research.md",
-      "sha256": "22c4958bf36a15da251cd09fdd8e88720650b5e970ff7f2cb7c3f12007d5e2f0",
+      "sha256": "6d1c302623a4a3294724fa5bd9baa153bc61280008546ba8051815da81f244e8",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      "sha256": "264cb2ff1c7a81374daaae8e812b4a0a00b58a4866bfc77bb75d89bfa53da683",
+      "sha256": "be9565d5d07c1757e9c5918929d86abc915298c99524be7689eabe44b6c242b4",
       "section": "full"
     },
     {
@@ -21,13 +21,8 @@
       "section": "full"
     },
     {
-      "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
-      "sha256": "6cea79064139130106129962a21b895396df32128e6dee4fc935155ede135989",
-      "section": "full"
-    },
-    {
-      "path": ".skilled/commands/deep/assets/deep-research-confirm.yaml",
-      "sha256": "fc62807a25f0f81436af4168d8da5d23eeecdab3b07db46425b478a23fe8e4f7",
+      "path": ".skilled/commands/deep/assets/deep-research.yaml",
+      "sha256": "97b088d45677e591592b3cba2261df2343719fd00c77cef4b57f203c2b6c545a",
       "section": "full"
     },
     {
@@ -91,7 +86,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "d6295bfa42e80b64f972abeee41a333ebcdb66e24ca6ca23b588cf77a448083a"
+  "compiledBodyDigest": "4b5ba2835858c634aa70c46bd4481a803e37184abc7b939cdb1089d689884127"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:research
@@ -117,20 +112,19 @@ Your job is to DISPATCH `deep-research` to run ONE iteration of the research loo
 1. `.skilled/commands/deep/research.md`
 2. `.skilled/commands/deep/assets/deep-research-presentation.txt`
 3. `.skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md`
-4. `.skilled/commands/deep/assets/deep-research-auto.yaml`
-5. `.skilled/commands/deep/assets/deep-research-confirm.yaml`
-6. `.skilled/skills/system-deep-loop/mode-registry.json`
-7. `.skilled/skills/system-deep-loop/SKILL.md`
-8. `.skilled/skills/system-deep-loop/deep-research/SKILL.md`
-9. `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
-10. `.skilled/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md`
-11. `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
-12. `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
-13. `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json`
-14. `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md`
-15. `.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl`
-16. `.skilled/agents/deep-research.md`
-17. `.skilled/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs`
+4. `.skilled/commands/deep/assets/deep-research.yaml`
+5. `.skilled/skills/system-deep-loop/mode-registry.json`
+6. `.skilled/skills/system-deep-loop/SKILL.md`
+7. `.skilled/skills/system-deep-loop/deep-research/SKILL.md`
+8. `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
+9. `.skilled/skills/system-deep-loop/deep-research/references/protocol/spec-check-protocol.md`
+10. `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
+11. `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
+12. `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-config.json`
+13. `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md`
+14. `.skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl`
+15. `.skilled/agents/deep-research.md`
+16. `.skilled/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs`
 
 ## gate3Precedence
 
@@ -165,13 +159,21 @@ Setup contract: see `.skilled/skills/system-spec-kit/references/workflows/auto-m
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-research-auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{artifact_dir}/deep-research-config.json` (shape: `researchTopic`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `executionMode: "auto"`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-research.yaml` with `execution_mode` bound to `auto`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed. Missing `research_topic` is absence, not ambiguity — go to Tier 3.
 
 3. **Tier 3 — Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:research:auto` as the command name. Exit non-zero. Do not load YAML.
 
 `:confirm` path stays unchanged — see the consolidated setup prompt section below.
+
+### Dry-Run Halt
+
+`--dry-run` binds `dry_run=true` in both execution modes.
+Setup then binds its values in memory and skips the Tier 1 config persist, so no `deep-research-config.json` is written.
+The workflow then prints `dry_run_halt` preview lines and stops before any dispatch or state write.
+Show the operator the halt line and say that nothing was written.
+Both execution modes run the telemetry heartbeat and the run-now check.
 
 ### PRE-BOUND SETUP ANSWERS Schema (for `:auto` non-interactive dispatch)
 
@@ -383,8 +385,7 @@ optionalFields:
   - "resource_map_emit"
   - "fanout_executors"
   - "fanout_concurrency"
-autoWorkflow: .skilled/commands/deep/assets/deep-research-auto.yaml
-confirmWorkflow: .skilled/commands/deep/assets/deep-research-confirm.yaml
+workflow: .skilled/commands/deep/assets/deep-research.yaml
 ```
 
 ## outputTemplate
