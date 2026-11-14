@@ -54,8 +54,8 @@ _memory:
 | Q018 | The phase 009 routing change gets a review task: phase 013 adds both routing files to the review manifest and reviews the change. | Not stated. | None | 013-skill-docs-and-housekeeping REQ-008 |
 | Q019 | Phase 011 is built now, in a new git worktree: 378, branch worktrees/378-relocate-restore-fixes. | Not stated. | None | 011-relocate-and-restore-fixes |
 | Q020 | DeepSeek V4.1 Flash through dsh implements the phase 011 code. | Not stated. | None | 011-relocate-and-restore-fixes scratch worker reports |
-| Q021 | The phase 011 build runs on the pinned dsh 0.2.2-rc.1, called by its absolute path, after the global dsh changed to 0.2.2-rc.3. | Not stated. | None | 011-relocate-and-restore-fixes implementation-summary.md |
-| Q022 | dsh is re-pinned to 0.2.2-rc.3, in a packet of its own outside this one. | Not stated. | None | Not carried in this packet; the re-pin packet is not started |
+| Q021 | Reinstall dsh 0.2.2-rc.1 for the phase 011 build, after the global dsh changed to 0.2.2-rc.3. The build called the pinned rc.1 by its absolute path. | Not stated. | None | 011-relocate-and-restore-fixes implementation-summary.md |
+| Q022 | dsh is re-pinned to 0.2.2-rc.3, in a packet of its own outside this one. | The chosen option read: re-pin offline first as hard-rules.json requires, in its own packet; phase 011 stays on rc.1 meanwhile. | None | Not carried in this packet; the re-pin packet is not started |
 | Q023 | The main checkout's uncommitted copies of the phase 011 to 013 planning files are removed before worktree 378 merges into main, not now. | Not stated. | None | The session handoff note of 2026-11-14 |
 <!-- /ANCHOR:operator-decisions -->
 

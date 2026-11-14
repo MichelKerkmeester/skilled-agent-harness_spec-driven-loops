@@ -53,6 +53,7 @@
       "scratch/after-f1.txt",
       "scratch/baseline.txt",
       "tests/fixtures/subtrack-tree.mjs",
+      "core/workflow.ts",
       "scratch/bare-name-prefixes.txt"
     ],
     "entities": [
@@ -159,6 +160,12 @@
         "source": "derived"
       },
       {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": "core/workflow.ts",
+        "source": "derived"
+      },
+      {
         "name": "bare-name-prefixes.txt",
         "kind": "file",
         "path": "scratch/bare-name-prefixes.txt",
@@ -193,18 +200,12 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "The Fable",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`relocate.mjs` promises that rerunning a stopped map finishes it, and for one case it does not",
     "created_at": "2026-11-14T11:10:39Z",
-    "last_save_at": "2026-11-14T13:11:16.951Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-14T13:14:36.452Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -213,13 +214,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:da3fda9403ab65b441f2ae36dfa7bb74be72e07c4cb96cd77a34a71fdb986bf1",
+    "source_fingerprint": "sha256:a841c728c7a7d485dfb7706184023af559fcc4325fd1a1fabe3e222ceb2db563",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7c3dcc621c326a42db9a128ad0c51b69e0a0f989f9caf38b73df5deab6ecf85f",
       "plan.md": "e205200abd67056634d9419b46b9c0a30fecb5e4fe21d1a0a4266d8085ae697b",
       "tasks.md": "a4fb6a37c8be2b7ae462f33885d9ae66955b449d518b7bb3c5828f80f78168cd",
-      "implementation-summary.md": "12013fd9e0086f1faf1552ad5da517890fb391032687c4da07b78ed25208ada1"
+      "implementation-summary.md": "94cc7c12b224885fd2cf5e33ea1d41cf576f4e36b25e3cbc714217b9138eab16"
     },
     "last_active_at": null
   }

@@ -221,7 +221,7 @@
     ],
     "causal_summary": "Subtracks exist in system-spec-kit only as a hand-written declaration, one level deep, and three gaps follow from that",
     "created_at": "2026-11-13T10:07:28Z",
-    "last_save_at": "2026-11-14T13:10:32.352Z",
+    "last_save_at": "2026-11-14T13:18:23.051Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -229,13 +229,13 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:d4023e593622ce33289f49509ea83a3e1d3a32190a1b73e3a04ce4a65690cf0a",
+    "source_fingerprint": "sha256:ca815f0dfb6a8fc2e3d85c7a953e713504768957ba387e9871dc10c0ed4bf759",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "aa9457c16561ec8baaaae9fb3aa0197a5d0b62575bff44e56bb32f58f1c4fe8b",
-      "decision-record.md": "132b3f6b92947ba5ac4f9858cbfe3a29f0ef3b964f52adef9eb3c29eef1df7fd"
+      "decision-record.md": "90e061b9abe4712e1fbec5425d42a5a666940ba767525e26d52a5e2c94cc59af"
     },
-    "last_active_child_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout",
-    "last_active_at": "2026-11-13T15:00:54.317Z"
+    "last_active_child_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/011-relocate-and-restore-fixes",
+    "last_active_at": "2026-11-14T13:14:36.494Z"
   }
 }

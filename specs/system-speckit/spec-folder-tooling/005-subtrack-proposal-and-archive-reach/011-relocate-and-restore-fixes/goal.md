@@ -55,12 +55,12 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] In a `mktemp` copy, a re-parent stopped after its move is finished by `relocate.mjs --apply` with no row for the old name left in the old parent's `spec.md` and a map row in the new parent's, and the next run prints `relocate: nothing to do`
-- [ ] A close validation that prints no `RESULT` line exits 2 and the rerun validates again, and one that prints `RESULT: FAILED` exits 3
-- [ ] A renumber leaves `other-track/003-gamma` unchanged in the parent's `spec.md` and rewrites `005-p/003-gamma` and `../003-gamma/spec.md`
-- [ ] A restore into a flat track runs no `relocate.mjs` process before its move, and the mixed-track refusal case still exits 1
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh --help` names the mixed-track refusal and the status 3 outcome
-- [ ] From `.skilled/skills/system-spec-kit/runtime/cli`, `npm test` exits 0 with no failure absent from the baseline
+- [x] In a `mktemp` copy, a re-parent stopped after its move is finished by `relocate.mjs --apply` with no row for the old name left in the old parent's `spec.md` and a map row in the new parent's, and the next run prints `relocate: nothing to do` Evidence: scratch/after-f1.txt, both re-parent cases pass in temp repositories.
+- [x] A close validation that prints no `RESULT` line exits 2 and the rerun validates again, and one that prints `RESULT: FAILED` exits 3 Evidence: scratch/worker-011b.md cases, orchestrator rerun 115 passed, exit 0.
+- [x] A renumber leaves `other-track/003-gamma` unchanged in the parent's `spec.md` and rewrites `005-p/003-gamma` and `../003-gamma/spec.md` Evidence: scratch/worker-011d.md case `leaves a bare phase name that follows another folder name`, 115 passed.
+- [x] A restore into a flat track runs no `relocate.mjs` process before its move, and the mixed-track refusal case still exits 1 Evidence: scratch/worker-011e.md, the recording stub sees no call; the refusal case still exits 1.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh --help` names the mixed-track refusal and the status 3 outcome Evidence: `archive.sh --help | rg -c` printed 2; the second line is the restored-with-warning outcome that status 3 produces.
+- [x] From `.skilled/skills/system-spec-kit/runtime/cli`, `npm test` exits 0 with no failure absent from the baseline Evidence: 212 files, 2613 passed, 0 failed, exit 0 against the 2603 baseline.
 <!-- /ANCHOR:completion -->
 
 ---
