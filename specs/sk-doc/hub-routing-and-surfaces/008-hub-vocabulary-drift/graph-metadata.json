@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Commit 7af52ef940 (command surfacing, 2026-11-13) added nine phrases to the `vocabularyClasses` of two `hub-router.json` files and did not carry them to the hubs' root `ROUTER.md`",
     "created_at": "2026-11-13T21:40:26Z",
-    "last_save_at": "2026-11-14T16:46:43.264Z",
+    "last_save_at": "2026-11-14T18:07:16.866Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:8627aa348379c039ab86c648e187a87bc8132ff3ffa3e0ec334d522ba2a04123",
+    "source_fingerprint": "sha256:968a0a55369da9c9659485a53859cb84735be1858b83871d473cbd3d50b68ccb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c8c2f97ef5b43cea73ad936d47f3c4a4313eab995e7823b26f8c6d9429664af3",
       "plan.md": "1f8ccd6139541fd89980b5d1c6aad37db5438376dad6a14dce25ee8e3904e90d",
       "tasks.md": "e9630433f44cd2c2f6e9fcab0461c2e22eb19be599505bf05644a35def4eb2da",
-      "implementation-summary.md": "b3cd418efa7fd32cc8bceabfe9916cac012cb7593e7f32877b4dc3098e258414"
+      "implementation-summary.md": "07094f46304449b05c9ca0e5130309e6daa442d438b46ed7cb63a14acfaf3aa5"
     },
     "last_active_at": null
   }

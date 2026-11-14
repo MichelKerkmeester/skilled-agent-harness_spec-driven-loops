@@ -1,5 +1,5 @@
 {
-  "manifestHash": "577dd5117637e4610ef7652620fad5f9e222e8b6d2a27005a8a76e82cb89a936",
+  "manifestHash": "9a4284da930a21b5df022357ba33532e273104671f0e26edfae836b57ff3de05",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -53953,6 +53953,9 @@
     "general cleanup omnibus": [
       "general cleanup omnibus"
     ],
+    "generate command routers check exits 1": [
+      "generate-command-routers check exits 1"
+    ],
     "generate command routers clean": [
       "generate-command-routers clean"
     ],
@@ -83297,6 +83300,9 @@
     "phase 9 research fixes": [
       "phase 9 research fixes"
     ],
+    "phase 9 resume contract owned assets": [
+      "phase 9 resume contract owned assets"
+    ],
     "phase 9 review closeout": [
       "phase 9 review closeout"
     ],
@@ -96154,6 +96160,18 @@
     ],
     "resume continue devin live run": [
       "resume-continue Devin live run"
+    ],
+    "resume contract owned assets": [
+      "resume contract owned assets"
+    ],
+    "resume contract owned assets implementation summary": [
+      "resume contract owned assets implementation summary"
+    ],
+    "resume contract owned assets plan": [
+      "resume contract owned assets plan"
+    ],
+    "resume contract owned assets tasks": [
+      "resume contract owned assets tasks"
     ],
     "resume detection and single workflow": [
       "resume detection and single workflow"
@@ -117077,6 +117095,9 @@
     ],
     "speckit resume": [
       "speckit:resume"
+    ],
+    "speckit resume path drift": [
+      "speckit resume path drift"
     ],
     "speckit retired vocabulary and dead paths": [
       "speckit retired vocabulary and dead paths"

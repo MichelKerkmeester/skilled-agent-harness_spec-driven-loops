@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "resume contract owned assets",
+      "phase 9 resume contract owned assets",
+      "speckit resume path drift",
+      "generate-command-routers check exits 1",
+      "resume contract owned assets plan",
+      "resume contract owned assets tasks",
+      "resume contract owned assets implementation summary"
+    ],
+    "key_topics": [
+      "resume",
+      "contract",
+      "owned",
+      "assets",
+      "phase",
+      "speckit",
+      "path",
+      "drift",
+      "generate-command-routers",
+      "check",
+      "exits",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      "tests/typo-flags.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/codex/generate-command-routers.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/typo-flags.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "typo-flags.vitest.ts",
+        "kind": "test",
+        "path": "tests/typo-flags.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-command-routers.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/codex/generate-command-routers.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Kit Check",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "exit",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 5 merged `speckit-resume-auto.yaml` and `speckit-resume-confirm.yaml` into one `speckit-resume.yaml` and updated the contract's execution targets, but two `ownedassets` rows still name the deleted files",
+    "created_at": "2026-11-14T17:56:31Z",
+    "last_save_at": "2026-11-14T18:05:06.759Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:e4478e4e38203817567bbbf1103f4a3c66d74f2b790978ac1788601ddea32afd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d9132eff4ad210686b1a1dfade3d5df5ba7102e9dc518861bd40811c0725a821",
+      "plan.md": "7bccb8d103cee37aade36920097d08c6261f9cff99996d0943cccb8d1e9b3d23",
+      "tasks.md": "3c95e26aa0658d815c86d23338b6b934cfe7b06ab2ade7468023cf5c3540ffd0",
+      "implementation-summary.md": "683e2c201253b01e9bb89ce371f56d5708bc337238bd17335fa5bfc2b0cd698e"
+    },
+    "last_active_at": null
+  }
+}
