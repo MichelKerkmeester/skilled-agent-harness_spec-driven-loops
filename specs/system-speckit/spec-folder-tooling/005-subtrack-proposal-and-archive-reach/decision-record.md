@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach"
     last_updated_at: "2026-11-14T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Added operator decisions Q010 to Q013 of 2026-11-14 by hand"
+    recent_action: "Added operator decisions Q010 to Q018 of 2026-11-14 by hand"
     next_safe_action: "Review the recorded operator decisions"
     blockers: []
     key_files: []
@@ -49,6 +49,9 @@ _memory:
 | Q013 | Reviewer B findings 1 to 5 are handed to the 008 command surfacing session and are not planned in this packet. | Not stated. | None | spec.md Handed to the 008 session, goal.md log |
 | Q014 | B8 is accepted as a known miss: sub-track requests that name a skill track keep routing to that skill, with system-spec-kit as a passing second candidate. No scorer change and no skill or track name in a signal. | Not stated. | None | 009-proposal-search-and-routing tasks.md T010, goal.md log |
 | Q015 | Branch worktrees/375-subtrack-review-remediation is merged to main and pushed after origin/main is merged into it and the suites rerun. | Not stated. | None | goal.md log |
+| Q016 | The P1 and P2 findings of the two reviews of the finished packet are fixed in three phases: 011 code, 012 feature catalog and playbook, 013 skill documents, changelog and packet records. | Not stated. | None | spec.md Operator Decisions, goal.md D6, children 011 to 013 |
+| Q017 | This session writes the planning documents for phases 011 to 013. | Not stated. The recommended option said the session already holds both reviews and the traced code paths. | Q012 for the planning of phases 011 to 013 | spec.md Operator Decisions |
+| Q018 | The phase 009 routing change gets a review task: phase 013 adds both routing files to the review manifest and reviews the change. | Not stated. | None | 013-skill-docs-and-housekeeping REQ-008 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -285,6 +288,33 @@ Asked through AskUserQuestion on 2026-11-14. Question: what should happen to bra
 Operator answer:
 ```text
 Merge to main and push (Recommended)
+```
+
+### Q016
+
+Asked through AskUserQuestion on 2026-11-14. Question: accept the split of the fixes into phase 011 for code and phase 012 for docs. Options: 011 code and 012 docs, one phase 011, or three phases with docs split into 012 catalog and playbook and 013 skill documents, references, changelog and READMEs.
+
+Operator answer:
+```text
+Three phases
+```
+
+### Q017
+
+Asked through AskUserQuestion on 2026-11-14. Question: who writes the planning documents for the new phases. Options: this session, or Fable 5.2 high through claude2 as Q012 says.
+
+Operator answer:
+```text
+This session (Recommended)
+```
+
+### Q018
+
+Asked through AskUserQuestion on 2026-11-14. Question: how the plan handles the phase 009 routing change that no reviewer judged. Options: add a review task, or accept it as reviewed.
+
+Operator answer:
+```text
+Add a review task (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

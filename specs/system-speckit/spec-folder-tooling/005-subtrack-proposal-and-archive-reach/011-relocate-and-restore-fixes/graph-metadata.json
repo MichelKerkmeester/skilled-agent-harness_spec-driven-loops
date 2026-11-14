@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/011-relocate-and-restore-fixes",
+  "spec_folder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/011-relocate-and-restore-fixes",
+  "parent_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "relocate and restore fixes",
+      "phase 11 relocate and restore fixes",
+      "re-parent resume phase rows",
+      "relocate and restore fixes plan",
+      "relocate and restore fixes tasks",
+      "relocate and restore fixes goal"
+    ],
+    "key_topics": [
+      "relocate",
+      "restore",
+      "phase",
+      "re-parent",
+      "resume",
+      "rows",
+      "plan",
+      "tasks",
+      "goal",
+      "mjs",
+      "promises",
+      "rerunning"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Fable",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Verify",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decisions Frozen",
+        "kind": "proper_noun",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "exit",
+        "kind": "key_phrase",
+        "path": "goal.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`relocate.mjs` promises that rerunning a stopped map finishes it, and for one case it does not",
+    "created_at": "2026-11-14T11:10:39Z",
+    "last_save_at": "2026-11-14T11:35:11.298Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:387472c3af2388bbfcf0445e47f84a53d030233d1cf11dbec731c6337d641efa",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f1ffff3e2fd0d038dcf3fb167f771bf37ce59a4ccb184198824a37d0d60f4a69",
+      "plan.md": "e205200abd67056634d9419b46b9c0a30fecb5e4fe21d1a0a4266d8085ae697b",
+      "tasks.md": "b6ab61b14db084d881f5cac35e80032ffe23815c666195ad1da6a1d6cc9cf53a"
+    },
+    "last_active_at": null
+  }
+}

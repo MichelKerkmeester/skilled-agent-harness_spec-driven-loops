@@ -1,0 +1,515 @@
+{
+  "sessionId": "fanout-dsh-2-1794652127582-mfqldk",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-11-14T10:38:39.435Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "SKILL.md next-number helper still ignores archived packets",
+      "file": ".skilled/skills/system-spec-kit/SKILL.md",
+      "line": 295,
+      "description": "The documented next-number one-liner counts only live root folders while create.sh counts archived packets at the root and phase paths.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Relocation feature catalog omits relocate.mjs exit status 3",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-packet-relocation.md",
+      "line": 66,
+      "description": "The catalog lists only statuses 0, 1 and 2 and assigns a failed close to 2, while relocate.mjs returns 3 for a landed move whose packet validation failed.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Lifecycle catalog restore paragraph contradicts phase 008 verdict and omits mixed-track refusal",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md",
+      "line": 45,
+      "description": "The catalog says a failed relocate run makes a restore exit 1 and omits the mixed-track refusal, while archive.sh treats status 3 as success and refuses a mixed-track restore.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "title": "Retrieval contract documents archive marking only for the structured and count JSON recipes",
+      "file": ".skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md",
+      "line": 84,
+      "description": "The retrieval contract omits the path recipe archivedPaths field added in phase 009.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "archive.sh key-file row omits the phase 008 restore guards",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+      "line": 114,
+      "description": "The archive.sh key-file row documents the next-number restore and symlink refusals but omits the mixed-track refusal and the status-3 restore verdict.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "title": "Structure reference still says the proposal has exactly three non-answer cases",
+      "file": ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+      "line": 141,
+      "description": "The structure reference lists three non-answer cases and omits the phase 009 non-NNN-slug refusal.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "title": "Phase guidance does not say an archived phase counts when numbering a new one",
+      "file": ".skilled/skills/system-spec-kit/references/structure/phase-definitions.md",
+      "line": 255,
+      "description": "The phase guidance says next sequential without stating that z_archive phases count.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "title": "SKILL.md script list omits the relocation, proposal and archive entrypoints",
+      "file": ".skilled/skills/system-spec-kit/SKILL.md",
+      "line": 317,
+      "description": "The SKILL.md script list omits relocate.mjs, suggest-subtracks.mjs and archive.sh.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "title": "Changelog exit-code and archive-JSON paragraphs predate phases 008 and 009",
+      "file": ".skilled/skills/system-spec-kit/changelog/v2.13.0.0.md",
+      "line": 67,
+      "description": "The changelog omits status 3 and archivedPaths.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F010",
+      "severity": "P2",
+      "title": "Relocation catalog rewrite step still describes only whole-path ids",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-packet-relocation.md",
+      "line": 44,
+      "description": "The catalog omits the bare sibling-name and pre-archive id rewrites added in phase 007.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F011",
+      "severity": "P2",
+      "title": "Archive-search catalog says path recipe paths stay plain strings and never names archivedPaths",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/retrieval/rg-archive-search.md",
+      "line": 28,
+      "description": "The catalog omits the archivedPaths field beside paths.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F012",
+      "severity": "P2",
+      "title": "Relocation playbook has no status-3 or resume scenario",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-packet-relocation.md",
+      "line": 226,
+      "description": "The playbook Pass/Fail row never exercises the late-step resume or status 3.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F013",
+      "severity": "P2",
+      "title": "Proposal playbook never feeds the printed map to the relocation preflight",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/sub-track-proposal.md",
+      "line": 169,
+      "description": "The playbook never runs relocate.mjs --map and has no non-NNN-slug fixture.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F014",
+      "severity": "P2",
+      "title": "Archive-search playbook Pass/Fail row checks text output only and not the path JSON record",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/retrieval/rg-archive-search.md",
+      "line": 176,
+      "description": "The playbook never asserts archivedPaths on the path recipe.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "F015",
+      "severity": "P2",
+      "title": "Sub-track proposal catalog non-answer enumeration omits the non-NNN-slug refusal",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/sub-track-proposal.md",
+      "line": 30,
+      "description": "Sub-track proposal catalog non-answer enumeration omits the non-NNN-slug refusal",
+      "findingClass": "documentation",
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "dimension": "correctness",
+      "firstSeen": 5,
+      "lastSeen": 5,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 5,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 4,
+    "P2": 11
+  },
+  "openFindingsCount": 15,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.9677,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

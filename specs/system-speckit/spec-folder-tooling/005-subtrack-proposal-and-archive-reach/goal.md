@@ -44,11 +44,12 @@ Frozen choices. Changing one is an amendment.
 
 | ID | Decision |
 |----|----------|
-| D1 | Archive search is opt-in and live: ripgrep plus per-packet JSON. No archive index is committed and CI is unchanged. |
+| D1 | Archive search is opt-in and live. No archive index is committed and CI is unchanged. |
 | D2 | Mixed tracks stay forbidden. A subtrack proposal is a whole-track map. |
-| D3 | Moving or renumbering a packet is done by `relocate.mjs` alone. No hand edits and no AI fix-up work. |
+| D3 | Moving or renumbering a packet is done by `relocate.mjs` alone, with no hand edits. |
 | D4 | Next-number allocation counts archived packets. |
-| D5 | Phases are built and verified one at a time. 006 to 010 close reviewer A findings 1 to 12 and reviewer B findings 6 to 8 of 2026-11-14. |
+| D5 | Phases are built and verified one at a time. |
+| D6 | Phases 011 to 013 close the P1 and P2 findings in `review/`. |
 
 <!-- /ANCHOR:directive -->
 
@@ -72,6 +73,9 @@ phase and binds as if written here.
 | 008-restore-and-phase-numbering | `008-restore-and-phase-numbering/goal.md` |
 | 009-proposal-search-and-routing | `009-proposal-search-and-routing/goal.md` |
 | 010-real-pipeline-tests | `010-real-pipeline-tests/goal.md` |
+| 011-relocate-and-restore-fixes | `011-relocate-and-restore-fixes/goal.md` |
+| 012-catalog-and-playbook-alignment | `012-catalog-and-playbook-alignment/goal.md` |
+| 013-skill-docs-and-housekeeping | `013-skill-docs-and-housekeeping/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -85,13 +89,13 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] In a throwaway copy, `relocate.mjs --map <sample> --apply` exits 0 and a second run exits 0 with nothing to do, and after a late step fails once a rerun exits 0 and the next run prints `nothing to do`
+- [ ] In a throwaway copy, `relocate.mjs --map <sample> --apply` exits 0 and a second run prints `nothing to do`, and after a late step fails once a rerun exits 0 and the next prints `nothing to do`
 - [ ] `suggest-subtracks.mjs --track <flat track with more than 8 live packets>` prints a map that `relocate.mjs --map` accepts in preflight
 - [ ] `find specs -mindepth 3 -maxdepth 3 -type d -name z_archive -not -path "specs/*/[0-9][0-9][0-9]-*/*"` prints 40 paths, `create.sh --track demo` creates `008-*` beside `001-a` and `z_archive/007-b`, and `create.sh --phase --parent` numbers a new phase above an archived one
 - [ ] A phrase that lives only under `specs/sk-doc/z_archive/` returns a hit labeled `archived` with `--include-archive` and no hit without it, and the `--json` path record marks the same paths
 - [ ] After `relocate.mjs --renumber <phase parent> --apply`, `rg` for a phase's old folder name in its parent `spec.md` prints nothing
 - [ ] `cd .skilled/skills/system-spec-kit/runtime/cli && npm test` exits 0 with no failure absent from the baseline, and `relocate-real-pipeline.vitest.ts` exits 1 with the migrate call removed from a scratch `relocate.mjs`
-- [ ] `validate.sh specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach --strict --recursive` prints `RESULT: PASSED` 11 times
+- [ ] `validate.sh <this folder> --strict --recursive` prints `RESULT: PASSED` 14 times
 <!-- /ANCHOR:completion -->
 
 ---
@@ -159,5 +163,6 @@ and findings belong here.
 | Operator decisions 2026-11-14 | Four rows in `decision-record.md`. Q010: remediation runs as new children 006 onward and the parent goal is updated. Q011: the work happens in git worktree 375, created from `origin/main`. Q012: planning and plan verification by fresh Fable 5.2 instances at high effort through claude2, implementation by DeepSeek V4.1 Flash at max reasoning through the dsh harness. Q013: reviewer B findings 1 to 5 go to the 008 command surfacing session. |
 | Plan verified 2026-11-14 | An independent verifier returned 17 findings, four of them ones that would have produced a wrong fix or a false done. All 17 are applied in the documents of phases 006 to 010 and here. Phase 006 D5 records the default taken for the first: a moved packet's own validation verdict never keeps a map open. |
 | Amendment 2026-11-14: exit status 3 | Phase 008 adds one exit status to `relocate.mjs`. It amends REQ-001 and REQ-012 of phase 001, which is not edited. The record is in spec.md Operator Decisions. |
+| Amendment 2026-11-14: phases 011 to 013 | Two reviews of the finished packet, DeepSeek V4.1 Flash in `review/review-report.md` and Fable 5.2 in `review/fable-5-2-review.md`, returned CONDITIONAL with no P0. Decision D6 and three children close them, on operator decisions Q016 to Q018. Criterion 7 counts 14 `RESULT: PASSED` lines. The criteria stay at seven: 011 is observable in the first criterion, a rerun finishing a stopped map, and 012 and 013 in each child goal. |
 | Residual against D3 | After a renumber or a re-parent, the Phase column number of a map row, a `Phase N` title and a `Phase N of M` row keep the old number. Phase 007 rewrites folder names only and lists the numbers as out of scope. Not planned. |
 <!-- /ANCHOR:log -->

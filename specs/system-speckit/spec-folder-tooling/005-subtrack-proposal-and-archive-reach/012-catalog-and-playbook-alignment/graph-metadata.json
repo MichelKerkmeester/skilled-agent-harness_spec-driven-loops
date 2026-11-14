@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/012-catalog-and-playbook-alignment",
+  "spec_folder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/012-catalog-and-playbook-alignment",
+  "parent_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "catalog and playbook alignment",
+      "phase 12 catalog and playbook alignment",
+      "feature catalog relocation exit 3",
+      "catalog and playbook alignment plan",
+      "catalog and playbook alignment tasks",
+      "catalog and playbook alignment goal"
+    ],
+    "key_topics": [
+      "catalog",
+      "playbook",
+      "alignment",
+      "phase",
+      "feature",
+      "relocation",
+      "exit",
+      "plan",
+      "tasks",
+      "goal",
+      "phases",
+      "changed"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      ".skilled/skills/sk-doc/sk-create-feature-catalog/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-manual-testing-playbook/SKILL.md",
+      "runtime/cli/spec/README.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-feature-catalog/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/cli/spec/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Phases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Script",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Every Verify",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phases 006 to 010 changed what `relocate.mjs`, `archive.sh`, `rg-wrapper.mjs` and `suggest-subtracks.mjs` do, and only `runtime/cli/spec/README.md` was updated for one of those changes",
+    "created_at": "2026-11-14T11:10:41Z",
+    "last_save_at": "2026-11-14T11:35:12.714Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:ad404fb73bc0b7c8fd602da50f5ec385e772d0e882f5c26f53c138c7ac5d510d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "e8f1284fa3bef1468d80b8e4786c741b559375d65618918130c5d6489219aa9c",
+      "plan.md": "02641aa44ef76f2dc221fe3cdf35527b0237e91145767355a14421f8fd25e075",
+      "tasks.md": "994f607a5dcb5f71afb65f832e844c9428fec4104903a61ab98f9f9dd4a17961"
+    },
+    "last_active_at": null
+  }
+}
