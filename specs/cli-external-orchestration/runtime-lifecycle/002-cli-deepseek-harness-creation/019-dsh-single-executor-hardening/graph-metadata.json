@@ -19,6 +19,7 @@
       "dsh single executor hardening tasks",
       "dsh single executor hardening acceptance criteria",
       "dsh single executor hardening goal",
+      "019-dsh-single-executor-hardening operator decisions",
       "dsh single executor hardening implementation summary"
     ],
     "key_topics": [
@@ -43,6 +44,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts",
       ".skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs",
@@ -56,8 +58,7 @@
       ".skilled/commands/deep/assets/deep-research-confirm.yaml",
       ".skilled/commands/deep/assets/deep-research-presentation.txt",
       ".skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts"
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
     ],
     "entities": [
       {
@@ -88,6 +89,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -175,12 +182,6 @@
         "source": "derived"
       },
       {
-        "name": "executor-branch-contract.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -207,8 +208,8 @@
     ],
     "causal_summary": "Phase 018 lets `/deep:review` and `/deep:research` run one DeepSeek Harness lineage, but four of the Fable review's P2 points on that plan are still open",
     "created_at": "2026-11-14T11:27:24Z",
-    "last_save_at": "2026-11-14T19:17:05.827Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-14T19:47:23.231Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -216,15 +217,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:79509d19d574fc097d90cd85cc87b1d8950fce6eadc9b7b04232a74346f721fe",
+    "source_fingerprint": "sha256:cf134ef97a79b214c318381a340c8d8e6b053b070bdc06215e516ed315856fc6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "43c14ef3bb006b8bf35ee06a908a95dffff465e9d48288492da2e938ddbf965c",
       "plan.md": "8915a4cf8360fe3213419267b141ba1528e8228be90eda2bad645eabef7ab036",
       "tasks.md": "0f3e13207787dda45f6a1771e500d0d8236dce493be0a482301f511a2447d33f",
-      "implementation-summary.md": "e3a1c016f4cfed9af87ce50f921c8c65176becf6e4e2d17366c262e73a22709a"
+      "decision-record.md": "96bd26d03df75a72898b48c6c40fca8447d3f53df86faec77367e6764773255b",
+      "implementation-summary.md": "97f44d1cef3ec6142963f77bde22723e7973fbd3ccd9d0f38ddbe25484d94cf8"
     },
     "last_active_at": null
   }
