@@ -146,8 +146,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 <!-- ANCHOR:questions -->
 ## 7. OPEN QUESTIONS
 
-- How should the line stop drifting: a pointer, or a line the roster script writes from the registry? Decision at planning: the pointer. It changes one existing value and adds no code. The generated line would add a fourth block kind to `sync-agent-roster.cjs` and its test, and no failure of the pointer is known that would justify it. The operator can overrule this before implementation.
-- If the operator chooses the generated line: the script finds the line by its `├─ Agent: ` prefix inside the fence, with no marker comments, writes the ten names in priority order, and `--check` fails when the line differs. Files to Change then gains `.skilled/bin/sync-agent-roster.cjs` and `.skilled/bin/sync-agent-roster.vitest.ts`.
+- How should the line stop drifting: a pointer, or a line the roster script writes from the registry? Decision at planning: the pointer. It changes one existing value and adds no code. The generated line would add a fourth block kind to `sync-agent-roster.cjs` and its test, and no failure of the pointer is known that would justify it. Operator answer: the pointer (2026-11-14).
+- The alternative not taken, kept in case a run shows a wrong pick: the script finds the line by its `├─ Agent: ` prefix inside the fence, with no marker comments, writes the ten names in priority order, and `--check` fails when the line differs. Files to Change then gains `.skilled/bin/sync-agent-roster.cjs` and `.skilled/bin/sync-agent-roster.vitest.ts`.
 <!-- /ANCHOR:questions -->
 
 ---

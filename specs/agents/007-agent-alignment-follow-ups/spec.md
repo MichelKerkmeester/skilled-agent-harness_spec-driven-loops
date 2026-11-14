@@ -136,7 +136,7 @@ Each of the four findings ends as a shipped fix or as a recorded decision that n
 
 - The level helper scored the whole work at 37 and recommended no phases. The operator chose one phased packet with four children on 2026-11-14, so each finding keeps its own evidence and its own close.
 - The four phases change four different artifacts and do not depend on each other. The order in the map is the order the findings were recorded, and any phase can run first.
-- Phase 3: the planning default replaces the hand-typed list with a pointer to the generated routing table. The alternative makes the roster script write that one line from the registry. The child's `spec.md` section 7 holds both, and the operator can overrule the default before implementation.
+- Phase 3: the planning default replaces the hand-typed list with a pointer to the generated routing table. The alternative makes the roster script write that one line from the registry. The child's `spec.md` section 7 holds both. Operator answer: the pointer (2026-11-14).
 - The executor model for implementation is not chosen. The predecessor packet used DeepSeek V4.1 Flash at max through OpenCode on LLM Gateway, by an operator instruction that covered that packet only.
 <!-- /ANCHOR:questions -->
 

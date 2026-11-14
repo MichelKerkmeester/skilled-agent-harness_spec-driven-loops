@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Line 211 of `.skilled/agents/orchestrate.md` is the `Agent:` line of the template the orchestrator fills for every task it delegates",
     "created_at": "2026-11-14T15:48:59Z",
-    "last_save_at": "2026-11-14T15:59:59.228Z",
+    "last_save_at": "2026-11-14T16:05:16.372Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,10 +201,10 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:921768d25eaea17d42ad66e73b5e0fb6450135e0b138ced2a0204dd974ebce0b",
+    "source_fingerprint": "sha256:d080d7cb5895cf035822276d6cb914a8bf9beca6f9e4f14e3f1fb27ccb67ed3b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "38c859a8466f8a440564274f005e0198cbd722bee290343d75c4d1f5a4cbe2b6",
+      "spec.md": "61ca1b77f1e7c2822068cb2ff6f91653005548b5ced9e0ad25508f752bf845cc",
       "plan.md": "9daaeadc8d11579de1cb193c6d1d59c8549de77e5c63af783781ad7941688675",
       "tasks.md": "f36a0638c27b9abbe6e36350afd6c4b2f50063c11c7c26d113fdfe894b790111",
       "implementation-summary.md": "19d289594c6a1be7deeb6dcb02e4fe4b00ba090cad832f747b80712b465e5714"
