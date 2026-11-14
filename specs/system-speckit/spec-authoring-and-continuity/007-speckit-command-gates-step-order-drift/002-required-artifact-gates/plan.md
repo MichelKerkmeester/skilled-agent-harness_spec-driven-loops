@@ -37,14 +37,14 @@ The change rewrites the `quality_gates` blocks of `speckit-plan.yaml`, `speckit-
 <!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Phase 1 is Complete: `rg -c '\| Unmet \|' ../001-step-order-acceptance-after-development/acceptance-criteria.md` prints nothing.
-- [ ] The baseline is captured: `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` prints `Result: passed=150 failed=0` or the count phase 1 left.
-- [ ] Phase 1 has inserted plan's task breakdown step: `rg -c '^  step_5_5_task_breakdown:' .skilled/commands/speckit/assets/speckit-plan.yaml` prints 1. Today it prints nothing and exits 1.
+- [x] Phase 1 is Complete: `rg -c '\| Unmet \|' ../001-step-order-acceptance-after-development/acceptance-criteria.md` prints nothing.
+- [x] The baseline is captured: `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` prints `Result: passed=150 failed=0` or the count phase 1 left.
+- [x] Phase 1 has inserted plan's task breakdown step: `rg -c '^  step_5_5_task_breakdown:' .skilled/commands/speckit/assets/speckit-plan.yaml` prints 1. Today it prints nothing and exits 1.
 
 ### Definition of Done
-- [ ] Every row in `acceptance-criteria.md` is `Met` with its command output recorded.
-- [ ] `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` prints `failed=0` with a pass count no lower than the baseline.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this folder> --strict` prints `RESULT: PASSED`.
+- [x] Every row in `acceptance-criteria.md` is `Met` with its command output recorded.
+- [x] `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` prints `failed=0` with a pass count no lower than the baseline.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this folder> --strict` prints `RESULT: PASSED`.
 <!-- /ANCHOR:quality-gates -->
 
 ---

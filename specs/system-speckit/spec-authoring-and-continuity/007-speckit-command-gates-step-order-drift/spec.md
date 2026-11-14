@@ -203,7 +203,7 @@ All paths are under `.skilled/commands/speckit/`. Per-phase detail lives in each
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 1 | 001-step-order-acceptance-after-development/ | Every verification step runs after the work it verifies, and each gate sits where its checks can be true | Complete |
-| 2 | 002-required-artifact-gates/ | Gates require their artifacts and checks. No points, and no check without a step behind it | Pending |
+| 2 | 002-required-artifact-gates/ | Gates require their artifacts and checks. No points, and no check without a step behind it | Complete |
 | 3 | 003-execution-mode-and-autopilot-contract/ | Auto, confirm and autopilot each have one contract in all three lifecycle workflows and their presentation files | Pending |
 | 4 | 004-code-review-and-dispatch-policy/ | The code review step is dispatched, and plan has one dispatch policy | Pending |
 | 5 | 005-resume-detection-and-single-workflow/ | Resume opens the calling session's packet and runs from one workflow file | Pending |

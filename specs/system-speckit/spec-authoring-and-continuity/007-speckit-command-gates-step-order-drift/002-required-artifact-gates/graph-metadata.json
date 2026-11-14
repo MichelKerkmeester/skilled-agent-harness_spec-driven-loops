@@ -33,7 +33,7 @@
       "gate"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -44,7 +44,8 @@
       ".skilled/commands/speckit/assets/speckit-implement.yaml",
       ".skilled/commands/speckit/assets/speckit-complete.yaml",
       "templates/spec-kit-docs.json",
-      ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js"
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js",
+      "scratch/gate-inventory.txt"
     ],
     "entities": [
       {
@@ -105,6 +106,12 @@
         "name": "test-phase-command-workflows.js",
         "kind": "code",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js",
+        "source": "derived"
+      },
+      {
+        "name": "gate-inventory.txt",
+        "kind": "file",
+        "path": "scratch/gate-inventory.txt",
         "source": "derived"
       },
       {
@@ -184,17 +191,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every gate in the three lifecycle workflows sums points against a threshold of 70, so an agent that follows it literally passes a gate with a required artifact missing",
     "created_at": "2026-11-14T11:33:19Z",
-    "last_save_at": "2026-11-14T12:20:59.059Z",
+    "last_save_at": "2026-11-14T13:06:23.608Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +205,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3414e26b14beb78d3c448cd0366ceab23c5b28e3ba71c614f9c3f70439327e75",
+    "source_fingerprint": "sha256:24711732063bba43db22deba4e2c79f52602ff27231f69e1c1349867953ec45e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b53a7eb0cf45b8bb9efdc7e06127fe61b1c9dc6500cda9fd1db6256812143cdf",
-      "plan.md": "077b9f7b8f817aebf78973110e17280e53aebe676f1708b4a0954570a88164f1",
-      "tasks.md": "a2d9c58fa57ceec8a7f0be0dde4540850154374425834c7dd7989b7a2a45aae6",
-      "implementation-summary.md": "5a73418f6e5e453959b5623846aa587a01b711cb49a2477faf8372f3054a0b1f"
+      "spec.md": "bc847bbd1128584480d7b1b263bfa57c4e86b6b686344012455bd0c1c8b874dc",
+      "plan.md": "9842b261d76142891349c7d1e8ed026f26da8e5e32163c1c203c0cbc3cca7b28",
+      "tasks.md": "c466c1181a7d98bba97634f814b3d978a6678f3cb8c174d2830c1bdad5758ed0",
+      "implementation-summary.md": "afd907c60c955106acb37b81f6299efcd93f2affcabb12772c68939c503774fb"
     },
     "last_active_at": null
   }
