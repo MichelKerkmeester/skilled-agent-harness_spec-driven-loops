@@ -1,1 +1,0 @@
-../.skilled/repo-rules/communication-decisions.md
