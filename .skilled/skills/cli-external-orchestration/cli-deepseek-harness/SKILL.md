@@ -8,7 +8,7 @@ version: 1.0.0.0
 # DeepSeek Harness CLI Orchestrator - Cross-AI Task Delegation
 
 > **Experimental executor kind.** LLM Gateway `deepseek-v4.1-flash-1017` is verified on dsh
-> 0.2.2-rc.1 (2026-11-06) and is the default route. OpenCode Go `deepseek-v4.1-flash` was
+> 0.2.2-rc.3 (2026-11-14) and is the default route. OpenCode Go `deepseek-v4.1-flash` was
 > proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1` and stays out
 > of defaults.
 

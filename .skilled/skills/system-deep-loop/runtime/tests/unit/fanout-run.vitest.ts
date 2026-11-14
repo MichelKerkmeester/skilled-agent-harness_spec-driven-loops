@@ -172,7 +172,7 @@ function writeStubBinary(binDir: string, name: string): string {
     [
       '#!/bin/sh',
       ...(name === 'opencode' ? [OPENCODE_VERSION_PROBE] : []),
-      ...(name === 'dsh' ? ['if [ "$1" = "--version" ]; then echo 0.2.2-rc.1; exit 0; fi'] : []),
+      ...(name === 'dsh' ? ['if [ "$1" = "--version" ]; then echo 0.2.2-rc.3; exit 0; fi'] : []),
       'write_fanout_artifacts',
       ...(name === 'dsh'
         ? ['printf \'{"type":"final","reason":{"kind":"completed"}}\\n\'']
@@ -1851,7 +1851,7 @@ describe('fanout-run.cjs — cli-deepseek-harness adapter', () => {
     validateDshCompletion: (exitCode: number, stdout: string, stderr?: string) => string | null;
   };
 
-  function writeDshStub(binDir: string, version = '0.2.2-rc.1'): string {
+  function writeDshStub(binDir: string, version = '0.2.2-rc.3'): string {
     const stubPath = join(binDir, 'dsh');
     writeFileSync(stubPath, `#!/bin/sh\nif [ "$1" = "--version" ]; then printf '%s\\n' '${version}'; exit 0; fi\nexit 0\n`, { mode: 0o755 });
     return stubPath;
@@ -1886,7 +1886,7 @@ describe('fanout-run.cjs — cli-deepseek-harness adapter', () => {
 
     expect([...DSH_ALLOWED_MODELS]).toEqual([...DSH_SUPPORTED_MODELS]);
     expect(DSH_DEFAULT_MODEL).toBe(TS_DSH_DEFAULT_MODEL);
-    expect(DSH_VERSION).toBe('0.2.2-rc.1');
+    expect(DSH_VERSION).toBe('0.2.2-rc.3');
     const command = buildLineageCommand({
       kind: 'cli-deepseek-harness',
       model: 'deepseek-v4.1-flash',
@@ -1982,7 +1982,7 @@ describe('fanout-run.cjs — cli-deepseek-harness adapter', () => {
     };
     expect(() => buildLineageCommand(
       { kind: 'cli-deepseek-harness' }, 'p', 'workspace-write', 'default', opts,
-    )).toThrow(/requires dsh 0\.2\.2-rc\.1; found '0\.2\.2-alpha\.3'/);
+    )).toThrow(/requires dsh 0\.2\.2-rc\.3; found '0\.2\.2-alpha\.3'/);
   });
 
   it.each([
@@ -2006,7 +2006,7 @@ describe('fanout-run.cjs — cli-deepseek-harness adapter', () => {
     const binDir = makeTempDir('fanout-run-dsh-home-bin-');
     writeFileSync(join(binDir, 'dsh'), [
       '#!/bin/sh',
-      'if [ "$1" = "--version" ]; then printf "0.2.2-rc.1\\n"; exit 0; fi',
+      'if [ "$1" = "--version" ]; then printf "0.2.2-rc.3\\n"; exit 0; fi',
       'lineage_dir=$(dirname "$SPECKIT_DEEPSEEK_HARNESS_STATE_DIR")',
       'mkdir -p "$lineage_dir"',
       'printf "%s\\n" "$@" > "$lineage_dir/dsh-argv.txt"',

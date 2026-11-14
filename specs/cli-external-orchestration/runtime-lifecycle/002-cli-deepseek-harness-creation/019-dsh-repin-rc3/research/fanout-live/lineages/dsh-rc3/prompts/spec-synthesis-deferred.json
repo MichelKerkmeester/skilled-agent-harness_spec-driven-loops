@@ -1,0 +1,1 @@
+{"type":"spec_mutation","event":"spec_synthesis_deferred","reason":"Bounded spec.md pre-init mutation and post-synthesis findings write-back are outside this fan-out lineage's write surface; research.md carries the canonical synthesis for the merge to consume.","generatedFence":"deep-research/spec-findings","timestamp":"2026-11-14T13:22:20.000Z"}

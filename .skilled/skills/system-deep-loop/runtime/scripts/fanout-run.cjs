@@ -2945,7 +2945,7 @@ const DSH_ALLOWED_MODELS = new Set([
   'deepseek-v4.1-flash',
 ]);
 const DSH_DEFAULT_MODEL = 'deepseek-v4.1-flash-1017';
-const DSH_VERSION = '0.2.2-rc.1';
+const DSH_VERSION = '0.2.2-rc.3';
 const DSH_PERSONA_NAME = /^[a-z0-9][a-z0-9-]{0,63}$/;
 
 // A lineage can throw between creating its harness home and spawning, which skips the

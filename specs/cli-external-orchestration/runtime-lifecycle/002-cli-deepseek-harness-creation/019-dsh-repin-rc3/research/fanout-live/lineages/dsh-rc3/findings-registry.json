@@ -1,0 +1,224 @@
+{
+  "sessionId": "fanout-dsh-rc3-1794662312097-eo5r8r",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 1,
+    "answeredCount": 4,
+    "totalQuestions": 4,
+    "timestamp": "2026-11-14T13:22:17.907Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-which-checked-in-route-patches-under-dsh-patches-declare-an-endpoint-model-id-an",
+      "inboxId": null,
+      "text": "Which checked-in route patches under .dsh/patches/ declare an endpoint, model id and reasoning effort?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-what-endpoint-model-id-and-reasoning-effort-does-the-llmgateway-route-patch-decl",
+      "inboxId": null,
+      "text": "What endpoint, model id and reasoning effort does the llmgateway route patch declare?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-3-what-endpoint-model-id-and-reasoning-effort-does-the-opencode-go-route-patch-dec",
+      "inboxId": null,
+      "text": "What endpoint, model id and reasoning effort does the opencode-go route patch declare?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-4-do-the-remaining-dsh-patches-files-declare-any-routing-values",
+      "inboxId": null,
+      "text": "Do the remaining .dsh/patches/ files declare any routing values?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-checked-in-route-patches-under-dsh-patches-declare-an-endpoint-model-id-an",
+      "inboxId": null,
+      "text": "Which checked-in route patches under .dsh/patches/ declare an endpoint, model id and reasoning effort?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-what-endpoint-model-id-and-reasoning-effort-does-the-llmgateway-route-patch-decl",
+      "inboxId": null,
+      "text": "What endpoint, model id and reasoning effort does the llmgateway route patch declare?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-3-what-endpoint-model-id-and-reasoning-effort-does-the-opencode-go-route-patch-dec",
+      "inboxId": null,
+      "text": "What endpoint, model id and reasoning effort does the opencode-go route patch declare?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-4-do-the-remaining-dsh-patches-files-declare-any-routing-values",
+      "inboxId": null,
+      "text": "Do the remaining .dsh/patches/ files declare any routing values?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-1-route-llmgateway-deepseek-patch-yml-declares-the-llm-gateway-endpoint-https-api-",
+      "text": "`route-llmgateway-deepseek.patch.yml` declares the LLM Gateway endpoint `https://api.llmgateway.io/v1`, model id `deepseek-v4.1-flash-1017` (display name \"DeepSeek V4.1 Flash\"), and `reasoningEffort: max`, selecting the `off` / `high` / `max` ladder. The provider is `openai-completions` with `thinkingFormat: deepseek` and `supportsDeveloperRole: false`. [SOURCE: .dsh/patches/route-llmgateway-deepseek.patch.yml:9] [SOURCE: .dsh/patches/route-llmgateway-deepseek.patch.yml:14] [SOURCE: .dsh/patches/route-llmgateway-deepseek.patch.yml:24]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.dsh/patches/route-llmgateway-deepseek.patch.yml` (lines 1-24)",
+        "`.dsh/patches/route-opencode-go-deepseek.patch.yml` (lines 1-25)",
+        "`.dsh/patches/guards.patch.yml` (lines 1-6)",
+        "`.dsh/patches/lineage.patch.yml` (lines 1-22)",
+        "`.dsh/patches/mcp-code-mode.patch.yml` (lines 1-35)"
+      ]
+    },
+    {
+      "id": "finding-1-2-route-opencode-go-deepseek-patch-yml-declares-the-opencode-go-endpoint-https-ope",
+      "text": "`route-opencode-go-deepseek.patch.yml` declares the OpenCode Go endpoint `https://opencode.ai/zen/go/v1`, model id `deepseek-v4.1-flash`, and `reasoningEffort: max` with the same `off` / `high` / `max` ladder. It uses the same `openai-completions` + DeepSeek thinking compatibility shape; its header says the endpoint is unverified until a keyed run proves it. [SOURCE: .dsh/patches/route-opencode-go-deepseek.patch.yml:10] [SOURCE: .dsh/patches/route-opencode-go-deepseek.patch.yml:15] [SOURCE: .dsh/patches/route-opencode-go-deepseek.patch.yml:25] [SOURCE: .dsh/patches/route-opencode-go-deepseek.patch.yml:2]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.dsh/patches/route-llmgateway-deepseek.patch.yml` (lines 1-24)",
+        "`.dsh/patches/route-opencode-go-deepseek.patch.yml` (lines 1-25)",
+        "`.dsh/patches/guards.patch.yml` (lines 1-6)",
+        "`.dsh/patches/lineage.patch.yml` (lines 1-22)",
+        "`.dsh/patches/mcp-code-mode.patch.yml` (lines 1-35)"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-other-three-patches-declare-no-endpoint-model-id-or-reasoning-effort-guards-",
+      "text": "The other three patches declare no endpoint, model id, or reasoning effort: `guards.patch.yml` inserts the `repo-guards` plugin, `lineage.patch.yml` disables telemetry/session/goal/plan components and inserts a lineage-leaf marker, and `mcp-code-mode.patch.yml` mounts a `code_mode` MCP server over stdio. [SOURCE: .dsh/patches/guards.patch.yml:3] [SOURCE: .dsh/patches/lineage.patch.yml:2] [SOURCE: .dsh/patches/mcp-code-mode.patch.yml:4]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.dsh/patches/route-llmgateway-deepseek.patch.yml` (lines 1-24)",
+        "`.dsh/patches/route-opencode-go-deepseek.patch.yml` (lines 1-25)",
+        "`.dsh/patches/guards.patch.yml` (lines 1-6)",
+        "`.dsh/patches/lineage.patch.yml` (lines 1-22)",
+        "`.dsh/patches/mcp-code-mode.patch.yml` (lines 1-35)"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "ruled-out-a5483ec525f6",
+      "text": "Inferring a base default route: both route patches override `agent-default-model`; the base default is not declared in these files, so no claim is made about it.",
+      "contentHash": "a5483ec525f6",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-fb1177ae9862",
+      "text": "Searching outside `.dsh/patches/` for route declarations: the question is explicitly scoped to the checked-in patches, and no other source was needed.",
+      "contentHash": "fb1177ae9862",
+      "addedAtIteration": 1
+    },
+    {
+      "id": "ruled-out-3e1c09b82f3e",
+      "text": "Treating `mcp-code-mode.patch.yml` as a route patch: it declares an MCP server (`serverName: code_mode`, `transport: stdio`) and no provider, endpoint, model, or reasoning keys. [SOURCE: .dsh/patches/mcp-code-mode.patch.yml:6]",
+      "contentHash": "3e1c09b82f3e",
+      "addedAtIteration": 1
+    }
+  ],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 1,
+    "openQuestions": 0,
+    "resolvedQuestions": 4,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 3,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 1,
+    "coverageBySources": {
+      "code": 5,
+      "other": 5
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/376-dsh-single-executor-loop/specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-repin-rc3/research/fanout-live/lineages/dsh-rc3/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}
