@@ -6,15 +6,16 @@
     "phase",
     "trim-duplicated-and-dead-agent-text"
   ],
-  "lastUpdated": "2026-11-14T13:32:22.585Z",
+  "lastUpdated": "2026-11-14T14:05:03.299Z",
   "specId": "005",
   "folderSlug": "trim-duplicated-and-dead-agent-text",
   "parentChain": [
     "agents",
     "006-agent-contract-and-registry-alignment"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "14-11-26_14-32__phase-005-setup-is-committed-and-nothing-is-cut.md"
+    "14-11-26_14-32__phase-005-setup-is-committed-and-nothing-is-cut.md",
+    "14-11-26_15-05__closed-phase-005-nine-agent-files-lost-their-box.md"
   ]
 }

@@ -194,19 +194,19 @@
     ],
     "causal_summary": "The eleven files in `.skilled/agents/` define how every agent in this repository behaves, and an audit on 2026-11-14 found five kinds of defect in them",
     "created_at": "2026-11-14T11:36:20Z",
-    "last_save_at": "2026-11-14T13:32:22.604Z",
+    "last_save_at": "2026-11-14T14:05:41.982Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:898f19f2039a2597e3f31313da7e0397cb4bb39ec378309d5fd8e83dbe596214",
+    "source_fingerprint": "sha256:c6f66d46f9ffd7932924ca93f90707b7535006b04fff92e85ee5368ce0f50a86",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "021ce7b5d1171b408cbc4b5017fa2c3edd22200fe76acb944ab4d275b39bf98b"
+      "spec.md": "efb63dda4c7f3ca463d1cfe0edeeaec59fe83f9bdd52e7de83f92dcdcda7def1"
     },
     "last_active_child_id": "agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text",
-    "last_active_at": "2026-11-14T13:32:22.604Z"
+    "last_active_at": "2026-11-14T14:05:03.344Z"
   }
 }

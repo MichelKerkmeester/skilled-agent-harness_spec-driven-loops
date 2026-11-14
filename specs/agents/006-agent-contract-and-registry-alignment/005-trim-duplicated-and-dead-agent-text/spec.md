@@ -20,7 +20,7 @@ contextType: "general"
 |---|---|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/377-agent-contract-and-registry-alignment` |
 | **Parent Spec** | ../spec.md |
@@ -200,6 +200,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - Should the summaries go at all? They restate the file, yet a closing recap may help a model hold its limits. Operator answer: remove them and test three agents before and after (2026-11-14). An agent that loses a limit gets its summary back as a named exception.
 - Is 50,000 words the right target? It is the measured total less the blocks named in scope, about 2,600 words. Decision: keep it as a ceiling, not a goal. No rule is cut to reach it.
+- What if the planned cuts stop above the ceiling? They did: the files held 53,367 words at the start, not 52,568, and the cuts end at 50,856. Operator answer: waive the ceiling at the measured total (2026-11-14, ADR-001).
+- Eight summaries or nine? Nine. `deep-review.md` has one whose AUTHORITY line is indented differently, so the search in Measured Behavior missed it. Operator answer: remove all nine (2026-11-14).
 <!-- /ANCHOR:questions -->
 
 ---

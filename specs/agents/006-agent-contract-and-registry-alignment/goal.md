@@ -114,6 +114,7 @@ and findings belong here.
 | Phase 002 registry and generated rosters | Complete | 8 of 8 acceptance rows Met, roster check exit 0, 4 tests passed |
 | Phase 003 skill binding through routers | Complete | 7 of 7 acceptance rows Met, roster check exit 0 with the path check on, 7 tests passed |
 | Phase 004 template conformance and drift check | Complete | 7 of 7 acceptance rows Met, roster check exit 0 with the outline check on, 12 tests passed |
+| Phase 005 trim duplicated and dead agent text | Complete | 7 of 8 acceptance rows Met and AC-007 waived by ADR-001, roster check exit 0 with the shared-block check on, 13 tests passed, 50,856 words |
 
 ### Deviations and findings
 
