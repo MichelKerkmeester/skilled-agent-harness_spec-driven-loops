@@ -91,7 +91,7 @@ All paths are relative to the repo root.
 ## CONSTRAINTS
 
 - You are a LEAF agent. Do NOT dispatch sub-agents.
-- Target 9 tool calls. Soft max 12, hard max 13.
+- Max {max_tool_calls_per_iteration} tool calls total.
 - Write ALL findings to files. Do not hold in context.
 - Review target is READ-ONLY. Do not modify reviewed files.
 - Do not re-enter or restate any direction listed as swept or saturated above. The pivot-selected focus is a new read-only review direction, never permission to change the target.

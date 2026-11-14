@@ -22,12 +22,12 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
-      "sha256": "a7d960e299975bc958bdc3c757c67fb482ce5a9c10b22966604975505844ddfe",
+      "sha256": "bf812703b5483387ff60ee0574f28058133c9b7c00d1ad077b73f32938f53bd8",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-confirm.yaml",
-      "sha256": "0d198b234291a0107b99ee0c137d33ffe93be8f29803a102be4b8b3a5e7424af",
+      "sha256": "ecbfac5e77f246edb9ffdd98c0b811e10ee435c61f72e55574a904f66ed14653",
       "section": "full"
     },
     {
@@ -42,12 +42,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "0b70e8815059318b2c2eb23405e2121d878ad48d5f716456b4aaa8b5873d8787",
+      "sha256": "42d6ace163bea91542eb95e5b211970759d907e208495672d49aef97464f0a06",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "f2abb7d154cfd71a8473eec52aadce15e0be2ec2fddf5f213b90c3fdee66b872",
+      "sha256": "c54db77ffc023569972b250053c407791cec7d7704b887eafcb746cd067df2ad",
       "section": "full"
     },
     {
@@ -67,17 +67,17 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
-      "sha256": "072d35003ddf6fa9915ed521f44b7045fd24c7ef9ce0a9ceade2877ad26d73e3",
+      "sha256": "d0d4715bf781985515e4ced469c9b12ff8f4c5b481f9ffe9b8f706987f42a438",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "42aae41d16f155b6fa599b119f071d5ec6b32a172be46700278b364509a8bdb7",
+      "sha256": "b697d88fc6457211c623debcb9b8c2c073358e355a3547d09d0cd9ea549559c1",
       "section": "full"
     },
     {
       "path": ".skilled/agents/deep-review.md",
-      "sha256": "9b423d761f2b4664ea96d7bc011e7017f66368b1a8537de1e9ad8e2ad7a01bbc",
+      "sha256": "6f0c8ab6c06a0601782ae9361394e8084ce2467f87a6c3f21f0c862a39a49741",
       "section": "full"
     },
     {

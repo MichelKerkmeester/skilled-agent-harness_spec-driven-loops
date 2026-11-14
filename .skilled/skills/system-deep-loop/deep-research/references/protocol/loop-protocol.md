@@ -10,7 +10,7 @@ trigger_phrases:
   - "research synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.14.7.0
+version: 1.14.8.0
 ---
 
 # Loop Protocol Reference
@@ -304,7 +304,7 @@ The dispatch context may include a suggested `focusTrack` label (e.g., `"focusTr
 #### Step 3a: Per-Iteration Budget
 
 After dispatch, the orchestrator monitors the running iteration against budget limits:
-- **Tool call count**: tracked against `config.maxToolCallsPerIteration` (default: 12)
+- **Tool call count**: tracked against `config.maxToolCallsPerIteration`
 - **Elapsed time**: tracked against `config.maxMinutesPerIteration` (default: 10)
 - If either limit is exceeded and no iteration file has been written yet:
   1. Mark the iteration as `"status": "timeout"` in the JSONL record

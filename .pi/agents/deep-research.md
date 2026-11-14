@@ -53,7 +53,7 @@ This agent is LEAF-only.
 - NEVER create sub-tasks or dispatch sub-agents.
 - NEVER use the Task tool.
 - Keep research actions self-contained in this single execution.
-- If delegation is needed, document it in findings and recommend it for a future iteration.
+- If delegation is requested, emit `REFUSE: nested Task tool dispatch is forbidden for LEAF agents. Returning partial findings instead.` Then document it in findings and recommend it for a future iteration.
 
 Before any write, enforce the packet scope lock:
 - Allowed write root is the resolved local-owner research packet only: root-spec `{spec_folder}/research/`, or the child/sub-phase local `research/` packet supplied by the orchestrator.
@@ -173,7 +173,7 @@ Perform 3-5 focused research actions.
 | ripgrep recipe (`retrieval-conventions.md`) | Prior research findings | Find related spec work |
 | Bash | Bounded data gathering | `wc -l`, `jq` for JSON parsing |
 
-**Budget**: Target 8-11 total tool calls, hard max 12. Reserve enough calls for artifact creation and verification; if approaching the limit, stop researching and write findings. Do not skip output verification to spend a final call on more research.
+**Budget**: the `Max N tool calls` line of the iteration prompt. The mandatory steps need 12, so stop researching while 5 calls remain for the writes and the check. Do not skip output verification to spend a final call on more research.
 
 **Citation rule**: Every finding must cite a source:
 - `[SOURCE: https://url]` for web sources
@@ -352,7 +352,6 @@ The orchestrator generates the dashboard and findings registry after each iterat
 | Ripgrep recipes in `retrieval-conventions.md` | Find prior research across spec docs and skill docs |
 | Trigger index lookup plus the packet continuity ladder | Load context for the research topic |
 
-**Daemon-free retrieval:** every retrieval path this agent uses reads committed files, so nothing can hang on a background service.
 Keyed lookup runs `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` and free-text evidence uses the ripgrep recipes in `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`.
 Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
 
@@ -398,16 +397,7 @@ Apply Tier 1-2 error handling:
 
 ### Tool Call Budget
 
-| Iteration Phase | Target Calls | Max Calls |
-|-----------------|--------------|-----------|
-| Read state | 2 | 3 |
-| Boundary and focus checks | 1 | 2 |
-| Research actions | 3-5 | 6 |
-| Write outputs | 2-3 | 3 |
-| Verify outputs | 1 | 1 |
-| **Total** | **8-11** | **12** |
-
-If approaching 12 tool calls, stop research and write/verify the findings already gathered.
+The budget is the `Max N tool calls` line of the iteration prompt, rendered from `config.maxToolCallsPerIteration`. Stop research while 5 calls remain, and write and verify the findings already gathered.
 
 ---
 
@@ -459,7 +449,7 @@ Verify iteration-NNN.md does not already exist before writing
 - Report newInfoRatio honestly in JSONL record
 - Record strategy recommendations in the iteration file so the reducer can sync them
 - Respect "Exhausted Approaches" -- never retry them
-- Stay within tool call budget (target 8-11, max 12)
+- Stay within the tool call budget, the `Max N tool calls` line of the iteration prompt
 - Apply Tier 1-2 error recovery for tool/source failures before reporting errors
 - Document ambiguity, contradictions, missing dependencies, and partial success when they affect the iteration
 - Verify the gateway receipt (exit 0) and exactly-one new iteration record in the refreshed projection before returning
@@ -539,25 +529,25 @@ Before returning, verify:
 
 ```text
 ITERATION VERIFICATION:
-[x] State files read at start (config + JSONL + strategy.md)
-[x] Packet-local write boundary verified before writes
-[x] Focus determined from strategy or key questions
-[x] Exhausted approaches checked before choosing focus (BLOCKED respected)
-[x] Ambiguity, contradictions, missing dependencies, and partial success classified when present
-[x] Research actions executed (3-5 actions minimum) or status explicitly justifies a narrower evidence path
-[x] research/iterations/iteration-NNN.md created with findings
-[x] Iteration file was newly created, not overwritten
-[x] All findings have source or inference citations
-[x] Contradictory evidence, if present, is cited on both sides and not overclaimed
-[x] Reducer-owned strategy/dashboard/registry will have enough data to sync
-[x] Iteration recorded through the append gateway (exit 0); refreshed deep-research-state.jsonl projection shows exactly one new record
-[x] Any idea capture uses idea_observed only; no idea_promoted or idea_rejected emitted by the leaf
-[x] newInfoRatio calculated and reported honestly
-[x] Reflection section written with causal analysis
-[x] research/research.md updated only if progressive synthesis enabled
-[x] No reducer-owned files edited directly
-[x] No write escaped the resolved packet root
-[x] No sub-agents dispatched (LEAF compliance)
+[ ] State files read at start (config + JSONL + strategy.md)
+[ ] Packet-local write boundary verified before writes
+[ ] Focus determined from strategy or key questions
+[ ] Exhausted approaches checked before choosing focus (BLOCKED respected)
+[ ] Ambiguity, contradictions, missing dependencies, and partial success classified when present
+[ ] Research actions executed (3-5 actions minimum) or status explicitly justifies a narrower evidence path
+[ ] research/iterations/iteration-NNN.md created with findings
+[ ] Iteration file was newly created, not overwritten
+[ ] All findings have source or inference citations
+[ ] Contradictory evidence, if present, is cited on both sides and not overclaimed
+[ ] Reducer-owned strategy/dashboard/registry will have enough data to sync
+[ ] Iteration recorded through the append gateway (exit 0); refreshed deep-research-state.jsonl projection shows exactly one new record
+[ ] Any idea capture uses idea_observed only; no idea_promoted or idea_rejected emitted by the leaf
+[ ] newInfoRatio calculated and reported honestly
+[ ] Reflection section written with causal analysis
+[ ] research/research.md updated only if progressive synthesis enabled
+[ ] No reducer-owned files edited directly
+[ ] No write escaped the resolved packet root
+[ ] No sub-agents dispatched (LEAF compliance)
 ```
 
 If any item fails, fix it before returning. If unfixable, report the specific failure with status `error`.

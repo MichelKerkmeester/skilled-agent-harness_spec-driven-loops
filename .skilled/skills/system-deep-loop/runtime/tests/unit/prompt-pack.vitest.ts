@@ -139,6 +139,7 @@ describe('prompt-pack', () => {
       state_summary: 'Review summary block',
       current_iteration: 3,
       max_iterations: 6,
+      max_tool_calls_per_iteration: 24,
       next_dimension: 'traceability',
       review_target: 'lib/deep-loop',
       review_scope_files: 'file-a.ts, file-b.ts',
@@ -164,6 +165,7 @@ describe('prompt-pack', () => {
     expect(researchRendered).toContain('Runtime helper ownership?');
     expect(researchRendered).toContain('State Log: .skilled/skills/system-deep-loop/deep-research/runtime/state.jsonl');
     expect(reviewRendered).toContain('Dimension: traceability');
+    expect(reviewRendered).toContain('Max 24 tool calls total.');
     expect(reviewRendered).toContain('Findings Registry: .skilled/skills/system-deep-loop/deep-review/runtime/findings.json');
   });
 });
