@@ -147,6 +147,7 @@ and findings belong here.
 | Commits, children 020 to 023 | Done | 2026-11-14 on branch worktrees/385-epic-review-fixes: plan 4fe6d63152, 020 1640b29745, 021 8415fb23ef, 022 2638731a9d, 023 a5fdd860b4. The orchestrator confirmed each code child's test fails on the old file and passes on the new one |
 | Completion criteria, all twenty-three children | Done | 2026-11-14, one after another from the final state. Criterion 1: RESULT: PASSED twenty-four times, no FAILED, exit 0. Criterion 2: no line, exit 1. Criterion 3: tests 1555, pass 1555, fail 0, exit 0, from 1553. Criterion 4: tests 200, pass 200, fail 0, exit 0. Criterion 5: Tests 62 passed (62), exit 0. Criterion 6: both checks PASS, exit 0 |
 | Operator decisions saved | Done | 2026-11-14: /speckit:save --full-auto wrote 26 operator answers of this session to decision-record.md and continuity to child 023 |
+| HS-9 live hop | Done | 2026-11-14: PASS on Claude Code 2.1.325. Guard denied AskUserQuestion after prepare, receiver started on /goal with the packet slice, --name carried as (2), note handed-over, claimed and done. Evidence 023-epic-review-doc-fixes/scratch/hs9-live-run.md |
 
 ### Deviations and findings
 
