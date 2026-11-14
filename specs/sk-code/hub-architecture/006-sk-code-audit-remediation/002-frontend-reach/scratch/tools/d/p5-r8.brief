@@ -1,0 +1,17 @@
+TASK: one literal replacement and one line removal in one file.
+
+FILE: .skilled/skills/sk-code/ROUTER.md (read the subsection `### Surface-aware loading (route-time)` and the section `## 10. RELATED RESOURCES` only)
+
+EDIT 1. In the bullet that starts with `- the `shared/` entries the matched intents map`, replace the literal text
+`workflow-debug.md` under DEBUGGING and `workflow-verify.md` under VERIFICATION
+with the literal text
+`workflow-implement.md` under IMPLEMENTATION, `workflow-debug.md` under DEBUGGING and `workflow-verify.md` under VERIFICATION
+Keep the rest of that bullet byte for byte.
+
+EDIT 2. In the section `## 10. RELATED RESOURCES`, delete the whole bullet line that starts with `- Barter equivalent:`. Keep the three bullets above it and the blank line and `---` line below it.
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'barter/' .skilled/skills/sk-code/ROUTER.md; echo "exit $?"; rg -c 'workflow-implement.md. under IMPLEMENTATION' .skilled/skills/sk-code/ROUTER.md
+Expected output: `exit 1` then `1`

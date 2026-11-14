@@ -1,0 +1,22 @@
+TASK: replace one block of one file.
+
+FILE: .skilled/skills/sk-code/ROUTER.md (read the subsection `### Authoring checklist gating`, from that heading to the heading `### CI Workflow Map`, only)
+
+EDIT. Under the heading `### Authoring checklist gating` there is one sentence that starts with `When SKILLED intent is`, a blank line, a table header row `| Authoring target | Checklist |`, a `| --- | --- |` row, and four rows that start with `| New skill |`, `| New agent |`, `| New command |` and `| New MCP server |`. Replace all of that, from the sentence through the `| New MCP server |` row, with the text between the marker lines below. Keep the heading above it. Keep the last table row, which starts with `| Spec folder write |`, byte for byte, directly under the new rows.
+
+<<<TEXT
+`RESOURCE_MAP` maps the four authoring checklists under IMPLEMENTATION, and route-time loading defers every `assets/` entry (§8). Open one only when the target matches its selector. This is the one statement of the rule. `sk-code-skilled/SKILL.md` and `sk-code-quality/SKILL.md` repeat the MCP server selector in the same words.
+
+| Selector | Checklist |
+| --- | --- |
+| Target under `.skilled/skills/` | `sk-code-skilled/assets/checklists/skill-authoring.md` |
+| Target under `.skilled/agents/` | `sk-code-skilled/assets/checklists/agent-authoring.md` |
+| Target under `.skilled/commands/` | `sk-code-skilled/assets/checklists/command-authoring.md` |
+| Target is MCP server source: a file that defines an MCP server, registers its tools or sets how it starts | `sk-code-skilled/assets/checklists/mcp-server-authoring.md` |
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'authoring-new-X|by judgment' .skilled/skills/sk-code/ROUTER.md; echo "exit $?"; sed -n '/^### Authoring checklist gating/,/^### CI Workflow Map/p' .skilled/skills/sk-code/ROUTER.md | rg -c '^\| (Target|Spec folder write) '
+Expected output: `exit 1` then `5`

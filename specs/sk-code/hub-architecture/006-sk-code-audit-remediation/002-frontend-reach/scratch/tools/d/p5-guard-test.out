@@ -1,0 +1,10 @@
+FILES CHANGED: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py
+
+VERIFY: `python3 -c "import ast; ast.parse(open('.skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py').read()); print('parsed')"; rg -c 'def test_single_line_reexport_skips_ts_module_header' .skilled/skills/sk-code/sk-code-skilled/assets/scripts/test_verify_alignment_drift.py` -> output:
+```
+parsed
+1
+```
+exit status 0. `git diff` on the file shows a single 13-line addition (new `test_single_line_reexport_skips_ts_module_header` method, blank-line separators intact on both sides); no other hunk.
+
+NOTES: First insertion consumed the blank line that separated the two methods (the method landed flush against `def test_warning_only_exit_code_is_zero_by_default`); a second pass restored it — the net diff is now clean. The working tree also carries many pre-existing staged/unstaged changes from other workers (`.skilled/bin/skilled-loop-shell.sh`, `sk-code` router/registry files, `verify_alignment_drift.py`, checklists, `specs/` scratch artifacts); I did not touch any of them and did not run git state-changing commands. The new test relies on `self.module` and `self.write_file` exactly as the sibling test does.

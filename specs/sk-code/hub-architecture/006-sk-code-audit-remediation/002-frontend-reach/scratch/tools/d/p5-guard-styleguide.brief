@@ -1,0 +1,15 @@
+TASK: append one sentence to one paragraph in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md (read lines 32 to 40 only)
+
+EDIT. Line 36 is one paragraph that starts with `All TypeScript files MUST begin with a module header block` and ends with `A hand-written declaration file still needs the header.` Make two changes on that line. First, replace the words `The one exception is a` with `One exception is a`. Second, append one space and the sentence between the marker lines below to the end of that same line.
+
+<<<TEXT
+The other exception is a file that holds only one `export { default } from '<path>';` line, because it is an entry point with no module body.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'One exception is a `.d.ts`.*The other exception is a file that holds only one' .skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md
+Expected output: `1`

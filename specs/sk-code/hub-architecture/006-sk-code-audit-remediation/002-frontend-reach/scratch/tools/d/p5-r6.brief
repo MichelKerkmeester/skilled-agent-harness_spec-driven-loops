@@ -1,0 +1,16 @@
+TASK: insert two table rows into one file.
+
+FILE: .skilled/skills/sk-code/ROUTER.md (read the section `## 5. VERIFICATION COMMANDS`, from that heading to the heading `## 6. UNKNOWN FALLBACK`, only)
+
+EDIT. The table in that section holds a row that starts with `| SKILLED |` and a row that starts with `| UNKNOWN |`. Insert the two rows between the marker lines below after the `| SKILLED |` row and before the `| UNKNOWN |` row. Keep both existing rows byte for byte.
+
+<<<TEXT
+| `sk-code-ci` | The changed workflow checked against each rule in `sk-code-ci/references/ci-workflow-standards.md`, which the quality runner names for `.github/workflows/**`, plus a run of the changed workflow or the reason it could not run |
+| `sk-code-frontend` | The changed file checked against `sk-code-frontend/references/frontend-practice.md`, which the quality runner names for stylesheet, markup and component files, plus the page rendered in a browser. A Figma comparison records the five passes in `sk-code-frontend/references/figma-to-code.md` |
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+sed -n '/^## 5\./,/^## 6\./p' .skilled/skills/sk-code/ROUTER.md | rg -c 'sk-code-ci|sk-code-frontend'
+Expected output: `2`

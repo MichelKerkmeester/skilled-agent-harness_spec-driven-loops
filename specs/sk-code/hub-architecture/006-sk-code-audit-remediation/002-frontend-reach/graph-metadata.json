@@ -205,7 +205,7 @@
     ],
     "causal_summary": "An agent that asks the sk-code hub for help with everyday web work gets `defer` and no frontend evidence: 12 of the 13 frontend probes fail to route",
     "created_at": "2026-11-14T12:01:49Z",
-    "last_save_at": "2026-11-14T13:44:05.248Z",
+    "last_save_at": "2026-11-14T15:57:07.251Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,12 +216,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a973195dd6bb35955ac460659771aabddc20e5d4c063d65895b5539823536252",
+    "source_fingerprint": "sha256:fb41eda369ea391d4ff0dd02252046d46a7165b224fbda9a577e60265b0476bc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "67126238e9721e05f943dd87ff150daea639975926e80de384b9042c798594b4",
       "plan.md": "072128ee8f94b63d803c8c581c09b68765df9712d9297ddcf8ed54f294e6a40c",
-      "tasks.md": "f6d7a4176c3dde5d259e4949d5bd39f13c9959e65c04dd49acc993433deb36c5",
+      "tasks.md": "b9c23a1660c45a9e15c8a1bd1e8fe97d8ede327fa6da0ea5d491e095a01fa938",
       "implementation-summary.md": "e76e33cacbbe0983028d6b1fd830a270a8a29bae0c641bff4142979041573f9d"
     },
     "last_active_at": null

@@ -1,0 +1,3 @@
+FILES CHANGED: .skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md
+VERIFY: rg -c 'One exception is a `.d.ts`.*The other exception is a file that holds only one' .skilled/skills/sk-code/sk-code-skilled/references/typescript/style-guide/overview-strict-and-naming.md -> `1` (exit status 0)
+NOTES: none

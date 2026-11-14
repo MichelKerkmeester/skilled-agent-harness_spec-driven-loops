@@ -121,7 +121,7 @@ Every audit finding is either fixed with a command that proves it or closed with
 | 2 | 002-frontend-reach/ | Add frontend file markers and everyday vocabulary, remove bare-word keywords and prove reach with 22 fixed probes | Complete |
 | 3 | 003-frontend-content/ | Make the frontend packet's load rule, references, playbook and checklist row agree with its router | Complete |
 | 4 | 004-vocabulary-single-source/ | Remove the prose copy of the vocabulary and make the router-sync guard fail when the remaining copies differ | Complete |
-| 5 | 005-hub-router-alignment/ | Align hub router prose with its map for all three surfaces, route the implement doctrine and turn the setup battery green | Pending |
+| 5 | 005-hub-router-alignment/ | Align hub router prose with its map for all three surfaces, route the implement doctrine and turn the setup battery green | Complete |
 | 6 | 006-skilled-packet-fixes/ | Fix the confirmed `SK` rows in `sk-code-skilled` | Pending |
 | 7 | 007-review-packet-fixes/ | Fix the confirmed `RV` rows in `sk-code-review` | Pending |
 | 8 | 008-quality-packet-fixes/ | Fix the confirmed `QL` rows in `sk-code-quality` | Pending |

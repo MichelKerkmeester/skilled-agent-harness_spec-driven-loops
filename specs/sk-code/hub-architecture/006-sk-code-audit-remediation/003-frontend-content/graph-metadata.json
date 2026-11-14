@@ -36,7 +36,7 @@
       "reference"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -56,7 +56,8 @@
       ".skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md",
       ".skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md",
       ".skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md",
-      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh"
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+      ".skilled/skills/sk-code/changelog/v3.12.0.0.md"
     ],
     "entities": [
       {
@@ -174,6 +175,12 @@
         "source": "derived"
       },
       {
+        "name": "v3.12.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/changelog/v3.12.0.0.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -196,17 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Once a request reaches `sk-code-frontend`, the packet tells the agent two different things about what to load: `SKILL.md` says to read the web layer first, and the router skips it for visual, motion and Figma intents",
     "created_at": "2026-11-14T12:01:51Z",
-    "last_save_at": "2026-11-14T14:31:53.116Z",
+    "last_save_at": "2026-11-14T15:57:11.261Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,12 +219,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5caeb746c81c03ce80b00b9301406b6161eb047274290e9d0cd95889ad2aadb3",
+    "source_fingerprint": "sha256:93706aa98320ad10bb23a70a9e10286e6759ee81c26053ba748de42e11d107a4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "0aec05af2393bf3a6f1982876925e86a641184b1cab6a4af0671e3159b3ec2c1",
       "plan.md": "886ef180cd05d4773178a80623c66106eee72ca9228ba450250373653acc5ac6",
-      "tasks.md": "6e0271e762fc386097eadbff59627d13c868032499dd646d1d539f997b0cdfe0",
+      "tasks.md": "a550c763cfff186ad1402973918248bf9c7a31f5bb0031adeb9dffc430c5a4b5",
       "decision-record.md": "8f1885ce85106256bf4e01e25dbc901b2dcdbd649d27cc9ee056633fb95744ab",
       "implementation-summary.md": "29dc12f11a95577fc78be8357e944313435f051fba83d59cbd19c2bd5e875645"
     },

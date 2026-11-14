@@ -164,7 +164,7 @@ Run every command from the repository root. A path with no folder in front of it
 
 - [x] CHK-040 [P1] `spec.md`, `plan.md` and `tasks.md` name the same files and the same gate command [EVIDENCE: the three documents name the same files and the same validate.sh command]
 - [x] CHK-041 [P1] No code comment added in this phase carries a spec path, a task id or a finding id [EVIDENCE: no code comment was added]
-- [ ] CHK-042 [P2] The packet or hub release note names the ledger rows this phase closed [DEFERRED: one hub changelog entry is written when the last phase closes, so the hub version moves once]
+- [x] CHK-042 [P2] The packet or hub release note names the ledger rows this phase closed [EVIDENCE: `.skilled/skills/sk-code/changelog/v3.12.0.0.md`, written in phase 005 at `19214454c5`, names this phase's rows]
 <!-- /ANCHOR:docs -->
 
 ---
@@ -185,7 +185,7 @@ Run every command from the repository root. A path with no folder in front of it
 |---|---|---|
 | P0 Items | 10 | 10/10 |
 | P1 Items | 12 | 11/12 |
-| P2 Items | 1 | 0/1 |
+| P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-11-14
 <!-- /ANCHOR:summary -->

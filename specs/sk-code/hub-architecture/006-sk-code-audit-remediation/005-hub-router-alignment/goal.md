@@ -72,6 +72,12 @@ and findings belong here.
 |------|-------|----------|
 | Spec, plan, tasks and acceptance criteria authored | Done | Written on 2026-11-14 from the audit evidence in `../001-finding-verification/` |
 | Implementation | Pending | Not started |
+| Phase 005 closed | Done | Code 19214454c5. Seven criteria Met, AC-003 Superseded by ADR-001. Rows H2 to H6, SK-07 and QL-09 carry fix evidence. 23 DeepSeek V4.1 Flash dispatches through cli-pi |
+| Battery callers, task T003 | Recorded | rg found the doctor route file (two rows), doctor-setup.yaml (exit 0 passes, any other exit fails), doctor-sk-code-setup.yaml, the battery's own test file and six documents. No caller reads a STATUS=PASS line |
+| Edge cases | Recorded | The spec-folder row of section 4 holds no hub path and the path check skips it. The Rust row names three folders that exist and the check prints missing 0. With SPECKIT_COMPILED_ROUTING=0 the battery prints STATUS=FAIL failed=2 and exits 1 |
+| Deviation: the battery pass line is STATUS=OK legs=9 | Recorded | ADR-001. The criteria quote STATUS=PASS failed=0, a line the battery has never printed |
+| Deviation: the 22 Pi entry files are unchanged | Recorded | ADR-003. The mirror-parity gate requires one re-export line per file, so the guard skips the header rule for such a file. Operator answer of 2026-11-14 |
+| Deviation: one blank line removed from skilled-loop-shell.sh, no set added | Recorded | ADR-002. Operator answer of 2026-11-14 |
 
 ### Deviations and findings
 

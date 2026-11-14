@@ -1,0 +1,5 @@
+FILES CHANGED: .skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md
+
+VERIFY: rg -c 'still needs the header. A file that holds only one `export \{ default \} from' .skilled/skills/sk-code/sk-code-skilled/assets/checklists/typescript-checklist.md -> `1` (exit 0)
+
+NOTES: The applied edit reported "1 line replaced, 1 line added" rather than a single in-place line replacement; I re-read lines 48-52 and confirmed the paragraph is one intact line with no blank line or duplicate introduced. Nothing else touched.

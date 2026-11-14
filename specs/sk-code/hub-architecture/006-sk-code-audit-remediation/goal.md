@@ -117,6 +117,9 @@ and findings belong here.
 | Phase 003 frontend content | Done | Code 62507384e6. Rows F5 to F13 carry fix evidence. 27 DeepSeek V4.1 Flash dispatches through cli-pi. Operator answers of 2026-11-14 corrected the rule count to 57 and accepted 586 lines under ADR-001 |
 | Operator answer 2026-11-14: phase 004 guards the frontend copies and records the sk-code-ci drift | Done | AskUserQuestion answer. CI holds 72 keywords in hub-router.json, 58 in the hub ROUTER.md row and 12 in the packet row, so no CI keyword changes in phase 004 |
 | Phase 004 vocabulary single source | Done | Code 9a9bbb76aa. Row H1 carries fix evidence. New ledger row H7 records the sk-code-ci keyword copies, 72, 58 and 12, left for a later packet on the operator's answer |
+| Phase 005 hub router alignment | Done | Code 19214454c5. Rows H2 to H6, SK-07 and QL-09 carry fix evidence. Hub version 3.12.0.0 with a release note naming the rows of phases 002 to 005. The battery ends STATUS=OK legs=9 and exits 0 |
+| Operator answers 2026-11-14 for phase 005 | Done | Remove one blank line from skilled-loop-shell.sh in place of a top-level set. Revert the 22 Pi extension headers and exempt one-line re-export files in the drift guard, because the mirror-parity gate requires one line per file |
+| Criterion 3 quotes a line the battery never prints | Open | The battery's pass line is STATUS=OK legs=9 with exit 0. Phase 005 ADR-001 records it. The criterion text is frozen, so the operator decides whether to amend it |
 
 ### Deviations and findings
 

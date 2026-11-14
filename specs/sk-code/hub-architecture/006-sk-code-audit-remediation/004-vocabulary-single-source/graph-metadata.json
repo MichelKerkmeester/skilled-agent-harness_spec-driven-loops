@@ -36,7 +36,7 @@
       "mirrors"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -52,7 +52,8 @@
       ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
       ".skilled/skills/sk-code/hub-router.json",
       ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
-      "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md"
+      "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md",
+      ".skilled/skills/sk-code/changelog/v3.12.0.0.md"
     ],
     "entities": [
       {
@@ -146,6 +147,12 @@
         "source": "derived"
       },
       {
+        "name": "v3.12.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/changelog/v3.12.0.0.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -192,17 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Remove",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A frontend keyword lives in five hand-edited places: two classes in `hub-router.json`, the aliases in `mode-registry.json`, the hub `ROUTER.md` block, the packet `ROUTER.md` block and the packet's prose list",
     "created_at": "2026-11-14T12:01:52Z",
-    "last_save_at": "2026-11-14T14:41:24.246Z",
+    "last_save_at": "2026-11-14T15:57:14.043Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,12 +215,12 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c3b245759fe7208d2e4bfb885f15cef1132247f1e6be4327670931a0e4aeccb3",
+    "source_fingerprint": "sha256:b15af7941711f643969c32b48d2c505b32aa5d2b99c7a7cae4dd19a2dd19cd07",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "763544dd2e053ac55619f425ff674f9ae7b472a44f2565a5735564d0419ca472",
       "plan.md": "2b31fb890f63b297f0cd0b45574771f60035bace0c4cc6f08586ca14c775b9bf",
-      "tasks.md": "d60ae515c99243b2cb6ab82b9b92a30cf89a714e933b443f0a37f2b85a881e3d",
+      "tasks.md": "27fcee87c81c59b53cf03cf200eeeb9ea5add428c13db6ce8bb370f256c14fec",
       "decision-record.md": "99dcea993ac3b077264f79264af9c435544257d58b9ca4d373467a3d6a87386b",
       "implementation-summary.md": "4cf494a89ff6b2d40222607a4f62085fddcc696a96e83efa70aa293b1fede23c"
     },
