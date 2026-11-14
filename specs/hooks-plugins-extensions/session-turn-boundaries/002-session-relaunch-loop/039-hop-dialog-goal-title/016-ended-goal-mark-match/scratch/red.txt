@@ -1,0 +1,68 @@
+$ env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='ended-goal mark counts only|session log cannot be read' .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
+
+✖ the ended-goal mark counts only from the note this session claimed last (25.366458ms)
+✖ a goal the sender ended stays ended when the session log cannot be read (11.649917ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 107.533958
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2958:1
+✖ the ended-goal mark counts only from the note this session claimed last (25.366458ms)
+  AssertionError [ERR_ASSERTION]: the note claimed last says nothing about an ending
+  + actual - expected
+  
+    {
+  +   ended: true,
+  +   packet: '',
+  -   ended: false,
+  -   packet: 'specs/hooks/023-session-relaunch-loop',
+      reason: ''
+    }
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/380-relaunch-review-fixes/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2985:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: { packet: '', reason: '', ended: true },
+    expected: { packet: 'specs/hooks/023-session-relaunch-loop', reason: '', ended: false },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2993:1
+✖ a goal the sender ended stays ended when the session log cannot be read (11.649917ms)
+  AssertionError [ERR_ASSERTION]: no log found
+  + actual - expected
+  
+    {
+  +   ended: false,
+  -   ended: true,
+      packet: '',
+      reason: ''
+    }
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/380-relaunch-review-fixes/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:3016:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: { packet: '', reason: '', ended: false },
+    expected: { packet: '', reason: '', ended: true },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+exit=1

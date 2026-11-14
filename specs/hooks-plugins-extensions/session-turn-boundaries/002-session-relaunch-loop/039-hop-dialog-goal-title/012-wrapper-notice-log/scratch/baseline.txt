@@ -1,0 +1,8 @@
+# Suite baseline, taken before any edit in this packet.
+# Tree: 2026-11-14 after merging main (commit be56fabc7b).
+# Command: env -u AI_SESSION_CHILD -u OPENCODE_DB node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs
+# Observed on that tree and recorded here per T001, which does not rerun it:
+tests 1548
+pass 1548
+fail 0
+exit 0

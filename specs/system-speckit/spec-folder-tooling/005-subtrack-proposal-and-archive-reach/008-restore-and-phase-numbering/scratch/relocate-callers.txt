@@ -1,0 +1,11 @@
+# Callers of relocate.mjs that read its exit status, 2026-11-14
+
+$ rg -n "relocate\.mjs" .skilled --glob "!*.md" --glob "!node_modules/**" --glob "!*.vitest.ts" --glob "!*.json"
+.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:85:      number, counting archived packets, through relocate.mjs
+.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:367:    local relocate_script="$SCRIPT_DIR/relocate.mjs"
+.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:399:# archived, so the restored packet cannot collide with either. relocate.mjs then
+.skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh:408:    local relocate_script="$SCRIPT_DIR/relocate.mjs"
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/subtrack-tree.mjs:509:    fs.copyFileSync(options.relocateSource, path.join(tempRuntime, 'cli', 'spec', 'relocate.mjs'));
+.skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/subtrack-tree.mjs:539:      relocate: path.join(tempRuntime, 'cli', 'spec', 'relocate.mjs'),
+
+Reading: archive.sh is the only production caller. At line 367 refuse_mixed_track_restore runs a dry run and reads only its output for the mixed-track line. At line 408 restore_on_next_number runs the apply and reads the status: 3 is a finished restore with a warning, any other non-zero is a failure. The test fixture copies relocate.mjs and does not read its status.

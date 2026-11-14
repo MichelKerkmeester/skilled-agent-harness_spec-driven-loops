@@ -33,6 +33,9 @@ _memory:
 # 018: Code embedder swap to nomic-ai/CodeRankEmbed (phase parent)
 
 <!-- ANCHOR:overview -->
+### Purpose
+Establish and harden the CocoIndex code-retrieval stack around a code-tuned embedder, from the initial swap and bake-off through registry, pipeline, and review work.
+
 ## 1. OVERVIEW
 
 CocoIndex (semantic code search) currently uses `sbert/google/embeddinggemma-300m` — a general-text embedder, not code-tuned. Code Graph's `mk-code-index` reaches CocoIndex through a bridge in `lib/`, so swapping CocoIndex's embedder also affects Code Graph's semantic queries.

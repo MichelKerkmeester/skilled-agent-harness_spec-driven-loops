@@ -1,0 +1,4 @@
+tests 1550
+pass 1550
+fail 0
+exit 0

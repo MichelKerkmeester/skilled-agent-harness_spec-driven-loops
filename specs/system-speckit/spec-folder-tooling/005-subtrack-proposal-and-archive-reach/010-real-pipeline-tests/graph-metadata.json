@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests",
+  "spec_folder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests",
+  "parent_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "real pipeline tests",
+      "phase 10 real pipeline tests",
+      "relocate suite with the true writers",
+      "real pipeline tests plan",
+      "real pipeline tests tasks",
+      "real pipeline tests goal",
+      "real pipeline tests implementation summary"
+    ],
+    "key_topics": [
+      "real",
+      "pipeline",
+      "tests",
+      "phase",
+      "relocate",
+      "suite",
+      "true",
+      "writers",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/relocate-real-pipeline.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/subtrack-tree.mjs",
+      "scratch/build-evidence.md",
+      "scratch/mutation.txt",
+      "scratch/reproduce.txt",
+      "tests/relocate-real-pipeline.vitest.ts",
+      "runtime/cli/tests/relocate-real-pipeline.vitest.ts",
+      "tests/fixtures/subtrack-tree.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "relocate-real-pipeline.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/relocate-real-pipeline.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "subtrack-tree.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/fixtures/subtrack-tree.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/build-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "mutation.txt",
+        "kind": "file",
+        "path": "scratch/mutation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "reproduce.txt",
+        "kind": "file",
+        "path": "scratch/reproduce.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Temp",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`relocate.vitest.ts` and `archive-track.vitest.ts` copy `relocate.mjs` into a temp tree and replace every writer it drives with a stub, as the lines below show",
+    "created_at": "2026-11-14T06:11:02Z",
+    "last_save_at": "2026-11-14T09:23:41.112Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:76a48cf20c6ce67791d7b5fcf974710c98b5a17508cd1751ca46dba1842f553f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6f5d2773987d6de04bbf6cb385634b918d16088c3b8535ca4345c6d44d36d8f6",
+      "plan.md": "9d2414ff8ff2ea348dfca88d65adc8f48b78a3330235c3aea7c525097e9333ae",
+      "tasks.md": "23a7f0d22ade74211eb2f946c58256efc680b772a7a3439847cd99890c01f66d",
+      "implementation-summary.md": "36862f4ee1b3b195d6650256be1bcc1d24a2141fb7ac0f5eafda3de9c6d8e0ac"
+    },
+    "last_active_at": null
+  }
+}

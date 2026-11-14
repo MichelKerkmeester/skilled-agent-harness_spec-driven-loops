@@ -244,7 +244,7 @@
     ],
     "causal_summary": "A session near the context limit needs to write a handoff note, end and restart in the same terminal",
     "created_at": "2026-10-16T20:16:19Z",
-    "last_save_at": "2026-11-13T19:57:45.239Z",
+    "last_save_at": "2026-11-14T07:30:18.606Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -252,10 +252,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:2b54b31c2b2d680aaa9706cafd734b3c6e0fb8141abae788459192071541de7a",
+    "source_fingerprint": "sha256:a51bc4ddc1855483660be83bad4dde75f086d97bc6b515988ab74cc541bfb3ed",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "57e29f80546143c5ad2533f21ac5cbdcf89c169ba49a0c414f172ef409b4c645",
+      "spec.md": "8a9e959345d2a0a5638cb7f91c8e169aa3aa5f8dc8127190efa7ec1af6547c3e",
       "research/research.md": "cd715f66fe738274ad12d39730f4c477ce7e636d424fd5c75d0c9ad949f3d338"
     },
     "last_active_child_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume",

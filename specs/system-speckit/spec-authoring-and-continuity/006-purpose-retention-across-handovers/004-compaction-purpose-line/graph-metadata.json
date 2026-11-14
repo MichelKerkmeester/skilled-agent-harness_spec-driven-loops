@@ -17,6 +17,10 @@
       "resolvePacketPurpose helper",
       "compaction purpose line plan",
       "compaction purpose line tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
       "compaction purpose line implementation summary"
     ],
     "key_topics": [
@@ -29,9 +33,9 @@
       "helper",
       "plan",
       "tasks",
-      "implementation",
-      "summary",
-      "parent"
+      "goal",
+      "durable",
+      "directive"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -39,6 +43,7 @@
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md",
       ".skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts",
       ".skilled/skills/system-spec-kit/runtime/tests/packet-purpose.vitest.ts",
@@ -54,8 +59,7 @@
       "runtime/lib/spec/packet-purpose.ts",
       "runtime/hooks/claude/session-prime.ts",
       "runtime/hooks/pi/session-compact-context.ts",
-      "runtime/hooks/claude/compact-inject.ts",
-      "runtime/hooks/devin/post-compaction.cjs"
+      "runtime/hooks/claude/compact-inject.ts"
     ],
     "entities": [
       {
@@ -74,6 +78,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
         "source": "derived"
       },
       {
@@ -134,12 +144,6 @@
         "name": "compact-inject.ts",
         "kind": "code",
         "path": "runtime/hooks/claude/compact-inject.ts",
-        "source": "derived"
-      },
-      {
-        "name": "post-compaction.cjs",
-        "kind": "file",
-        "path": "runtime/hooks/devin/post-compaction.cjs",
         "source": "derived"
       },
       {
@@ -205,22 +209,23 @@
     ],
     "causal_summary": "The parent exists to keep a packet's problem, purpose and user need in front of the next session across relaunch hops and compactions, because the purpose is written once in `spec.md` and no hop reads it back",
     "created_at": "2026-11-13T21:41:52Z",
-    "last_save_at": "2026-11-13T23:44:22.153Z",
+    "last_save_at": "2026-11-14T07:26:17.083Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
+      "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b5eb4a4ce0ef7dcc94cb66ef5ce745955dc2110de32b1f5f311253059b80a541",
+    "source_fingerprint": "sha256:73960ccbf5a043e9a0842ace33abdbf59fdde0af408784bf775c0e0014168d03",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c753abc0a7ae87630224f36bcfa4f9bf9d04375dfc5d5ebee3e3da27de6624f1",
       "plan.md": "38989f83936d66a5133bfee3c5ed6f8675fe4bddbf661f18449d4cca5690ff75",
       "tasks.md": "368b275db4d0f6c9c00f27f66f324249f0f9d6246d7e9b8bbc28d4ec4ef88599",
-      "implementation-summary.md": "bdf7bcc3263021051496e03ee8081462c423be3e72c1750e2ae5622fa78cd0a2"
+      "implementation-summary.md": "ace7bb00b04eaad88a66d6f398aec046df4f19888a619d0e4c2cda8f29abc035"
     },
     "last_active_at": null
   }

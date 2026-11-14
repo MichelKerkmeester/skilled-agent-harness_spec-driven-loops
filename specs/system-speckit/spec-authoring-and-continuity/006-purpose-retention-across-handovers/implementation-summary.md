@@ -17,7 +17,7 @@ _memory:
       - "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research/research.md"
       - "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md"
     session_dedup:
-      fingerprint: "sha256:a9e090cc0814231b3d53fff7965df883b1cf4deb229defddd01a4611f2bc8af6"
+      fingerprint: "sha256:87ee5f1a62a2d0268f234cec7d1b800e2d18541ede7944655aea930ccee49fb1"
       session_id: "scaffold-006-purpose-retention-across-handovers"
       parent_session_id: null
     session_ref:
@@ -81,7 +81,9 @@ The recommended change is to quote the purpose on the read side, in the resume b
 ## How It Was Delivered
 <!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-Two `cli-deepseek-harness` lineages on `deepseek-v4.1-flash-1017` at max ran 5 iterations each in worktree 371, about 8 minutes each. The orchestrating session merged the registries, opened the key citations itself and had the merged report compiled from both lineage syntheses. Nothing is committed.
+Two `cli-deepseek-harness` lineages on `deepseek-v4.1-flash-1017` at max ran 5 iterations each in worktree 371, about 8 minutes each. The orchestrating session merged the registries, opened the key citations itself and had the merged report compiled from both lineage syntheses. Nothing is committed. The research later landed on main in `2ecb17e7a6`, and the plan for phases 001 to 005 in `8aaf39b52e`.
+
+Phases 006 to 011 were built on 2026-11-14 on branch `worktrees/374-purpose-carry-follow-ups`, one DeepSeek V4.1 Flash max worker per phase through `cli-deepseek-harness`, each checked by the orchestrator against its baselines before its commit: 006 `43bff36f9d`, 007 `e102ba83be`, 008 `f9f96bdc39`, 009 `e129af3719`, 010 `fce8b5d81c` and 011 `e686356a6d`. None is on origin/main yet. Pushing and merging each wait for an operator yes.
 <!-- /ANCHOR:how-delivered -->
 
 ---

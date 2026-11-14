@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "hooks/023-session-relaunch-loop/033-research-remediation"
+    packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation"
     last_updated_at: "2026-10-25T13:42:16Z"
     last_updated_by: "orchestrator"
     recent_action: "Authored the durable directive"
@@ -81,11 +81,11 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] All nine child folders print `RESULT: PASSED` under `validate.sh --strict`, with every row in their `acceptance-criteria.md` files Met
-- [ ] `validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation --recursive --strict` prints `RESULT: PASSED`
-- [ ] A Claude Code session launched through `skilled-loop` with `--model claude-sonnet-5-5 --effort low` and switched to Opus at medium effort relaunches with Opus and `--effort medium`, shown in its recorded receiver process arguments
+- [x] All nine child folders print `RESULT: PASSED` under `validate.sh --strict`, with every row in their `acceptance-criteria.md` files Met
+- [x] `validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation --recursive --strict` prints `RESULT: PASSED`
+- [x] A Claude Code session launched through `skilled-loop` with `--model claude-sonnet-5-5 --effort low` and switched to Opus at medium effort relaunches with Opus and `--effort medium`, shown in its recorded receiver process arguments
 - [ ] A live Pi hop armed on `agent_settled` is recorded with its `relaunch.log` hop line
-- [ ] `node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/session-relaunch.test.cjs` and `npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts` both exit 0, with neither pass count below its count before phase 001
+- [x] `node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/session-relaunch.test.cjs` and `npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts` both exit 0, with neither pass count below its count before phase 001
 <!-- /ANCHOR:completion -->
 
 ---
@@ -102,6 +102,10 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Parent and nine children scaffolded, briefs written | Done | `scratch/briefs/` holds nine briefs |
+| Criteria 1 and 2 | Done | 2026-11-14 in worktree 373: the recursive strict validation printed `Errors: 0  Warnings: 0` and `RESULT: PASSED` ten times, for this folder and its nine children, exit 0. The nine `acceptance-criteria.md` files hold 51 rows and every one is Met |
+| Criterion 3 | Done | Recorded by child 001 on 2026-10-25 as AC-005: `001-model-effort-atomic-replay/scratch/claude-hop-medium/processes-receiver.txt:1` shows the receiver running `claude --model claude-opus-5-5 --effort medium` under wrapper pid 58459 |
+| Criterion 4 | Open | Child 009 ran a live Pi hop on 2026-10-25 and its AC-005 is Met: `009-pi-arm-on-agent-settled/scratch/pi-settled-live/relaunch-record-armed.json` holds `"status":"armed"` and `history.txt` holds the `handed-over`, `claimed` and `done` lines with `(hop 1)`. No `relaunch.log` was saved for that run, so the hop line this criterion names cannot be shown and the box stays unticked |
+| Criterion 5 | Done | 2026-11-14 in worktree 373 at `eba587cae7`, with no other process running: the `node --test` command exited 0 with tests 1026, pass 1026, fail 0, against 868 before phase 001. The `vitest` command exited 0 with 62 of 62 tests passed, against 54. The output is in `039-hop-dialog-goal-title/009-document-corrections/scratch/criterion-5-033.txt` |
 
 ### Deviations and findings
 

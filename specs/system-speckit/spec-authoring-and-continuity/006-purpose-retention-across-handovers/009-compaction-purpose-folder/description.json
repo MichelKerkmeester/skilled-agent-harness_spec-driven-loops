@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/009-compaction-purpose-folder",
+  "description": "Phase 9: compaction-purpose-folder",
+  "keywords": [
+    "phase",
+    "compaction-purpose-folder"
+  ],
+  "lastUpdated": "2026-11-14T06:14:06.410Z",
+  "specId": "009",
+  "folderSlug": "compaction-purpose-folder",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "006-purpose-retention-across-handovers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

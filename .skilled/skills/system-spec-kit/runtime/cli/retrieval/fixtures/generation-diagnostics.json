@@ -1,11 +1,11 @@
 {
   "counts": {
     "duplicate-phrase": 49,
-    "missing-frontmatter": 6756,
-    "ok": 18385,
+    "missing-frontmatter": 6780,
+    "ok": 18597,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 26771,
+  "documentsScanned": 27007,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "6e7567bfadfbdc9d0255a2cf65b92cd8bb1012346018eaf9efaf632285afd559",
+  "manifestHash": "291f1c5a9eb125507113db3288677a95a5034fac92d2f672ff06e4c1e2795300",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 43122,
+      "ok": 43407,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -35504,6 +35504,150 @@
     },
     {
       "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/deep-review-dashboard.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/deep-review-strategy.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-001.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-002.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-003.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-004.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-005.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-006.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-007.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-008.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-009.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-010.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-1.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-10.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-2.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-3.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-4.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-5.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-6.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-7.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-8.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 1,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-9.md",
+      "reason": "no opening frontmatter delimiter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/resource-map.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
+      "line": 2,
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/review-report.md",
+      "reason": "no trigger_phrases key in frontmatter"
+    },
+    {
+      "category": "missing-frontmatter",
       "line": 1,
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/research/research.md",
       "reason": "no opening frontmatter delimiter"
@@ -52998,6 +53142,30 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/scratch",
       "reason": "excluded directory"
     },
@@ -55499,6 +55667,70 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/004-wrapper-change-notice/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/005-parked-record-escape/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/006-record-without-handoff/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/007-killer-test-margin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/008-history-test-database-env/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/010-goal-ending-carry/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/011-goal-fallback-bound/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/012-wrapper-notice-log/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/013-conformance-stamp-pin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage/scratch",
       "reason": "excluded directory"
     },
     {
@@ -59402,6 +59634,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/025-release-notes-and-doc-sync/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages",
       "reason": "excluded directory"
     },
@@ -63150,6 +63390,26 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/007-purpose-reader-coverage/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/008-hop-purpose-rule-parity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/009-compaction-purpose-folder/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/010-problem-sentence-carry/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research/deep-research-audit-ledger",
       "reason": "excluded directory"
     },
@@ -63567,6 +63827,26 @@
     },
     {
       "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/006-relocate-resume-and-preflight/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/007-phase-map-and-prearchive-rewrites/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/008-restore-and-phase-numbering/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/009-proposal-search-and-routing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests/scratch",
       "reason": "excluded directory"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "2002c28d5864cdbbc41ec47c7089abde715742d490b9fd9c61f07d37ac050886",
+  "corpusHash": "e63dd7686c5f4ff95fc3ca9d8ce31cd154cae8e124a42bf6bba21fc0809771e2",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26771,
+  "includedPathCount": 27007,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -788,6 +788,7 @@
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.14.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.15.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.15.1.md",
+    ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.16.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.3.0.md",
     ".skilled/skills/cli-external-orchestration/cli-codex/changelog/v1.9.4.0.md",
@@ -7222,6 +7223,7 @@
     ".skilled/skills/sk-git/changelog/v1.11.1.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.10.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.11.0.md",
+    ".skilled/skills/sk-git/changelog/v1.11.12.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.2.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.3.0.md",
     ".skilled/skills/sk-git/changelog/v1.11.4.0.md",
@@ -9404,6 +9406,47 @@
     "specs/agents/005-haiku-explore-and-context-agents/plan.md",
     "specs/agents/005-haiku-explore-and-context-agents/spec.md",
     "specs/agents/005-haiku-explore-and-context-agents/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/acceptance-criteria.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/decision-record.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/implementation-summary.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/plan.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/spec.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/acceptance-criteria.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/implementation-summary.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/plan.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/spec.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/acceptance-criteria.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/implementation-summary.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/plan.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/spec.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/acceptance-criteria.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/decision-record.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/implementation-summary.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/plan.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/spec.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/acceptance-criteria.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/decision-record.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/implementation-summary.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/plan.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/spec.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/acceptance-criteria.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/implementation-summary.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/plan.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/spec.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/implementation-summary.md",
@@ -12008,8 +12051,128 @@
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/plan.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/004-wrapper-change-notice/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/004-wrapper-change-notice/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/004-wrapper-change-notice/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/004-wrapper-change-notice/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/004-wrapper-change-notice/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/004-wrapper-change-notice/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/005-parked-record-escape/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/005-parked-record-escape/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/005-parked-record-escape/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/005-parked-record-escape/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/005-parked-record-escape/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/005-parked-record-escape/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/006-record-without-handoff/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/006-record-without-handoff/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/006-record-without-handoff/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/006-record-without-handoff/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/006-record-without-handoff/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/006-record-without-handoff/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/007-killer-test-margin/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/007-killer-test-margin/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/007-killer-test-margin/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/007-killer-test-margin/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/007-killer-test-margin/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/007-killer-test-margin/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/008-history-test-database-env/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/008-history-test-database-env/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/008-history-test-database-env/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/008-history-test-database-env/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/008-history-test-database-env/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/008-history-test-database-env/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/010-goal-ending-carry/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/010-goal-ending-carry/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/010-goal-ending-carry/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/010-goal-ending-carry/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/010-goal-ending-carry/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/010-goal-ending-carry/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/011-goal-fallback-bound/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/011-goal-fallback-bound/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/011-goal-fallback-bound/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/011-goal-fallback-bound/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/011-goal-fallback-bound/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/011-goal-fallback-bound/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/012-wrapper-notice-log/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/012-wrapper-notice-log/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/012-wrapper-notice-log/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/012-wrapper-notice-log/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/012-wrapper-notice-log/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/012-wrapper-notice-log/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/013-conformance-stamp-pin/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/013-conformance-stamp-pin/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/013-conformance-stamp-pin/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/013-conformance-stamp-pin/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/013-conformance-stamp-pin/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/013-conformance-stamp-pin/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage/tasks.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/goal.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/research/research.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/deep-review-dashboard.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/deep-review-strategy.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-001.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-002.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-003.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-004.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-005.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-006.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-007.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-008.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-009.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/iterations/iteration-010.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-1.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-10.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-2.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-3.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-4.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-5.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-6.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-7.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-8.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/prompts/iteration-9.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/resource-map.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/review-report.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/goal.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/research/research.md",
@@ -18107,24 +18270,39 @@
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/tasks.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/acceptance-criteria.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/goal.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/implementation-summary.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/tasks.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/acceptance-criteria.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/goal.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/implementation-summary.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/tasks.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/022-workflow-measure-soundness/acceptance-criteria.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/022-workflow-measure-soundness/goal.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/022-workflow-measure-soundness/implementation-summary.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/022-workflow-measure-soundness/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/022-workflow-measure-soundness/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/022-workflow-measure-soundness/tasks.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/acceptance-criteria.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/goal.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/implementation-summary.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation/goal.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation/implementation-summary.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/025-release-notes-and-doc-sync/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/025-release-notes-and-doc-sync/goal.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/025-release-notes-and-doc-sync/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/025-release-notes-and-doc-sync/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/025-release-notes-and-doc-sync/tasks.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/fanout-attribution-pass-1.md",
@@ -26353,31 +26531,64 @@
     "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/review/review-report.md",
     "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/005-goldfish-cold-read-plan-review/synthesis.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/001-parent-purpose-scaffold/goal.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/001-parent-purpose-scaffold/implementation-summary.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/001-parent-purpose-scaffold/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/001-parent-purpose-scaffold/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/001-parent-purpose-scaffold/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/002-resume-purpose-row/goal.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/002-resume-purpose-row/implementation-summary.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/002-resume-purpose-row/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/002-resume-purpose-row/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/002-resume-purpose-row/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/003-relaunch-goal-quote/goal.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/003-relaunch-goal-quote/implementation-summary.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/003-relaunch-goal-quote/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/003-relaunch-goal-quote/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/003-relaunch-goal-quote/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/004-compaction-purpose-line/goal.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/004-compaction-purpose-line/implementation-summary.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/004-compaction-purpose-line/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/004-compaction-purpose-line/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/004-compaction-purpose-line/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/005-continuity-purpose-field/goal.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/005-continuity-purpose-field/implementation-summary.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/005-continuity-purpose-field/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/005-continuity-purpose-field/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/005-continuity-purpose-field/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups/decision-record.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups/goal.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups/implementation-summary.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/007-purpose-reader-coverage/goal.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/007-purpose-reader-coverage/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/007-purpose-reader-coverage/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/007-purpose-reader-coverage/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/007-purpose-reader-coverage/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/008-hop-purpose-rule-parity/goal.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/008-hop-purpose-rule-parity/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/008-hop-purpose-rule-parity/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/008-hop-purpose-rule-parity/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/008-hop-purpose-rule-parity/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/009-compaction-purpose-folder/goal.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/009-compaction-purpose-folder/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/009-compaction-purpose-folder/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/009-compaction-purpose-folder/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/009-compaction-purpose-folder/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/010-problem-sentence-carry/goal.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/010-problem-sentence-carry/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/010-problem-sentence-carry/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/010-problem-sentence-carry/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/010-problem-sentence-carry/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill/goal.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill/tasks.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/decision-record.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/goal.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/implementation-summary.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research/research.md",
@@ -26798,12 +27009,37 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/plan.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/spec.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/006-relocate-resume-and-preflight/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/006-relocate-resume-and-preflight/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/006-relocate-resume-and-preflight/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/006-relocate-resume-and-preflight/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/006-relocate-resume-and-preflight/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/007-phase-map-and-prearchive-rewrites/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/007-phase-map-and-prearchive-rewrites/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/007-phase-map-and-prearchive-rewrites/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/007-phase-map-and-prearchive-rewrites/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/007-phase-map-and-prearchive-rewrites/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/008-restore-and-phase-numbering/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/008-restore-and-phase-numbering/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/008-restore-and-phase-numbering/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/008-restore-and-phase-numbering/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/008-restore-and-phase-numbering/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/009-proposal-search-and-routing/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/009-proposal-search-and-routing/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/009-proposal-search-and-routing/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/009-proposal-search-and-routing/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/009-proposal-search-and-routing/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests/tasks.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/decision-record.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/goal.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6e7567bfadfbdc9d0255a2cf65b92cd8bb1012346018eaf9efaf632285afd559",
+  "manifestHash": "291f1c5a9eb125507113db3288677a95a5034fac92d2f672ff06e4c1e2795300",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27807,6 +28043,30 @@
     },
     {
       "path": "specs/agents/005-haiku-explore-and-context-agents/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/scratch",
       "reason": "excluded directory"
     },
     {
@@ -30311,6 +30571,70 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/004-wrapper-change-notice/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/005-parked-record-escape/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/006-record-without-handoff/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/007-killer-test-margin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/008-history-test-database-env/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/010-goal-ending-carry/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/011-goal-fallback-bound/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/012-wrapper-notice-log/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/013-conformance-stamp-pin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage/scratch",
       "reason": "excluded directory"
     },
     {
@@ -34214,6 +34538,14 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/025-release-notes-and-doc-sync/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages",
       "reason": "excluded directory"
     },
@@ -37962,6 +38294,26 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/007-purpose-reader-coverage/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/008-hop-purpose-rule-parity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/009-compaction-purpose-folder/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/010-problem-sentence-carry/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research/deep-research-audit-ledger",
       "reason": "excluded directory"
     },
@@ -38379,6 +38731,26 @@
     },
     {
       "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/006-relocate-resume-and-preflight/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/007-phase-map-and-prearchive-rewrites/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/008-restore-and-phase-numbering/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/009-proposal-search-and-routing/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests/scratch",
       "reason": "excluded directory"
     },
     {

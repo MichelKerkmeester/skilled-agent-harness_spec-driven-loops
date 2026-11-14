@@ -106,7 +106,7 @@ test('handoff text includes the note, frontmatter, all four sections and prepare
   assert.equal(handoffLines[sectionLine + 2], SPEC_FOLDER_GUIDANCE);
   const goalGuidance = handoffLines[sectionLine + 3];
   assert.ok(goalGuidance.startsWith(GOAL_GUIDANCE_START), text);
-  for (const part of ['### Purpose', 'from parent', 'goal.md']) {
+  for (const part of ['### Purpose', 'Parent purpose (', 'Goal objective:', 'Keep parent documentation lean']) {
     assert.ok(goalGuidance.includes(part), `goal guidance misses ${part}`);
   }
 

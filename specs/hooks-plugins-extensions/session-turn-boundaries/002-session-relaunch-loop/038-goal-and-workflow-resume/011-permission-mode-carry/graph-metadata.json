@@ -205,7 +205,7 @@
     ],
     "causal_summary": "A Claude session moved into another permission mode after launch, for example with Shift+Tab into `acceptEdits`, restarts in the launch mode after a hop",
     "created_at": "2026-11-13T08:49:33Z",
-    "last_save_at": "2026-11-13T12:18:14.378Z",
+    "last_save_at": "2026-11-14T05:43:14.461Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3f0d33cc309ad27c80cf4b7caa106601a63847376ca965d1c5c67591b6db37f3",
+    "source_fingerprint": "sha256:11e77878d372b0481e3abff3666d353ddca5ef237e7e0f64232821b846b3344e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d50ba6b32e73f14d47f07c440039893103a2a0d6e64c139d79ee95a19ea68f40",
       "plan.md": "7e308033cb4799e7f7c8ecc70054b3413ce10d0ff7f101e84b9047f7efbad3d0",
       "tasks.md": "56bb175008928531f6bf316ef69d71e664470f3502c6203df1d0537b02de9211",
-      "implementation-summary.md": "ba0423ca7cee8f0ef5eccb763f6afe4c8cc69c31951bc1e33f53096595244c4d"
+      "implementation-summary.md": "e6ef15616f69d611a42714aaa049abeac3ff2f5e989165f2bf4b1da531a6dc93"
     },
     "last_active_at": null
   }

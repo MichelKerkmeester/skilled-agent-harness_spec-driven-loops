@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 6: purpose-carry-follow-ups"
-description: "Building the five purpose-carry phases surfaced three defects outside them. Five live phase parents still carry the scaffold purpose sentence, the PreCompact brief names no spec folder for packets under specs/ and the resume workflow assets list different brief rows than the presentation file. This phase plans the fourteen edits that close them."
+description: "Building the five purpose-carry phases surfaced three defects outside them. Five live phase parents still carry the scaffold purpose sentence, the PreCompact brief names no spec folder for packets under specs/ and the resume workflow assets list different brief rows than the presentation file. This phase plans the fourteen edits that close them, and a fifteenth that closes one test gap the independent review found."
 trigger_phrases:
   - "purpose carry follow ups"
   - "phase 6 purpose carry follow ups"
@@ -24,13 +24,13 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/371-purpose-retention-research` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 6 of 6 |
+| **Phase** | 6 of 10 |
 | **Predecessor** | 005-continuity-purpose-field |
-| **Successor** | None |
+| **Successor** | 007-purpose-reader-coverage |
 | **Handoff Criteria** | The five parents print no scaffold purpose sentence, the two hook test files pass 41 of 41, the phase workflow test prints `passed=148 failed=0` and the brief-row check prints `match` for both resume assets |
 <!-- /ANCHOR:metadata -->
 
@@ -41,7 +41,7 @@ contextType: "general"
 
 This is **Phase 6** of the Carry a packet's purpose across handovers and compactions specification.
 
-**Scope Boundary**: Three defects found while building phases 001 to 005. The `### Problem Statement` and `### Purpose` text of five live phase parents, the folder regex in the Claude PreCompact hook with one new test and the `reply_format` line of the two resume workflow assets. No change to the purpose helper, the resume `purpose_row` rule, the relaunch note, the scaffold templates or the continuity block.
+**Scope Boundary**: Three defects found while building phases 001 to 005. The `### Problem Statement` and `### Purpose` text of five live phase parents, the folder regex in the Claude PreCompact hook with one new test and the `reply_format` line of the two resume workflow assets. Added after the independent review of 2026-11-14: one assertion in the scaffold gate test. No change to the purpose helper, the resume `purpose_row` rule, the relaunch note, the scaffold templates or the continuity block.
 
 **Dependencies**:
 - None blocking. Phases 001 to 005 are built. The five parent rewrites make the parent purpose that phases 002 and 004 already read show up for those parents' children.
@@ -50,6 +50,7 @@ This is **Phase 6** of the Carry a packet's purpose across handovers and compact
 - Real Problem Statement and Purpose text in five phase parent `spec.md` files
 - `detectSpecFolder` in `.skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts` matching `specs/` paths, with one new test in `runtime/tests/hook-precompact.vitest.ts`
 - A `reply_format` line in both resume workflow assets that lists the presentation file's brief rows
+- One assertion in `runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts` that a new phase parent which leaves Draft with an unfilled purpose fails the gate
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -63,8 +64,12 @@ The parent exists because the reason for a piece of work got lost across session
 
 Building them surfaced three defects outside those phases. First, five live phase parents still hold the scaffold sentence that begins "Keep parent documentation lean" as their Purpose, and their Problem Statement only restates the folder title. A resume or compaction on one of their children finds no real parent purpose to quote. Second, `detectSpecFolder` in `compact-inject.ts` matches only `.opencode/specs/` paths, so in this repository, where packets live under `specs/`, the PreCompact brief never prints its `Active spec folder:` line. Third, the `reply_format` line in the two resume workflow assets lists six rows while the presentation file's Resume Brief lists ten, and the two name the source row and its values differently.
 
+The independent review of 2026-11-14 added a fourth item. Phase 001 made an unfilled purpose in a new phase parent fail the gate once the parent leaves Draft, and that was proven in a hand-run sandbox only. `scaffold-passes-its-own-gate.vitest.ts` asserts that the unfilled token is present and never that it blocks.
+
 ### Purpose
-After this phase, every live phase parent states its own reason in its Purpose, the brief cached before a compaction names the active packet for folders under `specs/` and the resume workflow assets list the same brief rows as the presentation file.
+After this phase, no live phase parent carries the scaffold purpose sentence, the brief cached before a compaction names the active packet for folders under `specs/` and the resume workflow assets list the same brief rows as the presentation file.
+
+This phase does not make every live phase parent state a purpose. It rewrites the five parents that hold the scaffold sentence. Parents that state a purpose under another heading are read after phase 007, and the parents with a bracket placeholder or no purpose text are listed in Out of Scope.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->
@@ -109,8 +114,11 @@ What the second defect does and does not block. The `## Packet Purpose` section 
 - Replace the Problem Statement and Purpose of the five parents in the Measured Behavior list with text taken from each parent's title and its children's own docs.
 - Widen the folder regex in `detectSpecFolder` in `compact-inject.ts` to the one `session-stop.ts:49` already uses, and add one test that proves the brief prints `Active spec folder:` for a `specs/` path.
 - Replace `reply_format` in both resume workflow assets with the row labels of the presentation file's Resume Brief, in the same order.
+- Assert in the scaffold gate test that a new phase parent set to `In Progress` with its purpose token unfilled fails validation on that token.
 
 ### Out of Scope
+- The live phase parents whose Purpose is a bracket placeholder or that hold no purpose text, listed with their count and how they were found in `scratch/phase-parents-without-purpose-text.txt` - nothing is written there to carry, and a true purpose for a packet in another track needs someone who knows that work. The operator decides whether to order that backfill.
+- The live phase parents that state a purpose under a heading other than `### Purpose` - phase 007 widens the reader for them, so their text needs no edit.
 - The phase maps of `004-decisions-and-notes-system` and `003-install-scripts-doctor-realignment`, which still hold `[Phase N scope]` and `[Criteria TBD]` rows - a separate cleanup, and the Purpose rewrite does not depend on it.
 - The unfilled Problem Statement and Purpose of the four children of `003-install-scripts-doctor-realignment` and of `004-decisions-and-notes-system/001-decisions-system-analysis` - child docs, not parent purposes.
 - The archived `specs/mcp-tooling/z_archive/003-mcp-figma-transfer/spec.md`, which also holds the scaffold sentence - archived packets are not resumed.
@@ -130,6 +138,7 @@ What the second defect does and does not block. The `## Packet Purpose` section 
 | `.skilled/skills/system-spec-kit/runtime/tests/hook-precompact.vitest.ts` | Modify | One test for a `specs/` folder and the brief line |
 | `.skilled/commands/speckit/assets/speckit-resume-auto.yaml` | Modify | `reply_format` lists the presentation rows |
 | `.skilled/commands/speckit/assets/speckit-resume-confirm.yaml` | Modify | `reply_format` lists the presentation rows |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts` | Modify | One assertion that a non-Draft parent with an unfilled purpose fails |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -143,7 +152,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | No live phase parent outside this packet carries the scaffold purpose sentence | The first Measured Behavior command piped to `wc -l` prints `0` |
+| REQ-001 | No live phase parent outside this packet carries the scaffold purpose sentence. This covers that one sentence only, and makes no claim that every live phase parent states a purpose | The first Measured Behavior command piped to `wc -l` prints `0` |
 | REQ-002 | `detectSpecFolder` in `compact-inject.ts` returns the folder for a `specs/` path and the merged brief prints its `Active spec folder:` line | `../node_modules/.bin/vitest run --config vitest.config.ts runtime/tests/hook-precompact.vitest.ts`, run from `.skilled/skills/system-spec-kit/runtime`, prints `Tests  18 passed (18)` |
 | REQ-003 | Both resume workflow assets list the presentation file's brief rows in order | `python3 <this folder>/scratch/check-brief-rows.py` with the presentation file and both assets prints `speckit-resume-auto.yaml match` and `speckit-resume-confirm.yaml match` |
 
@@ -154,6 +163,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-004 | Each of the five rewritten parents still validates | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <parent> --strict` prints `RESULT: PASSED` on its first RESULT line for each parent, with no more errors or warnings than the baseline in `plan.md` section 5 |
 | REQ-005 | The purpose line from phase 004 and the existing command checks are unchanged | `hook-session-start.vitest.ts` prints 23 passed, `test-phase-command-workflows.js` prints `Result: passed=148 failed=0`, `sync-runtime-mirrors.cjs --check` prints `PASS: 256 mirrors across 10 trees are in sync.` and the YAML load prints `yaml ok` |
 | REQ-006 | The runtime still typechecks and the built hook carries the fix | `npm run typecheck` and `npm run build` in `.skilled/skills/system-spec-kit/runtime` exit 0, and the second Measured Behavior command prints `specs/ -> "specs/system-speckit/x/y"` and `Active spec folder lines in brief: 1` |
+| REQ-007 | A test proves that a new phase parent which leaves Draft with an unfilled purpose fails the gate | `npx vitest run runtime/cli/tests/scaffold-golden-snapshots.vitest.ts runtime/cli/tests/template-version-parity.vitest.ts runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts runtime/cli/tests/placeholder-token-gate.vitest.ts --config vitest.config.ts`, run from `.skilled/skills/system-spec-kit`, prints `Test Files  4 passed (4)` and `Tests  99 passed (99)`, and `rg -c -F 'PLACEHOLDER_FILLED' .skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts` prints `1` |
 <!-- /ANCHOR:requirements -->
 
 ---

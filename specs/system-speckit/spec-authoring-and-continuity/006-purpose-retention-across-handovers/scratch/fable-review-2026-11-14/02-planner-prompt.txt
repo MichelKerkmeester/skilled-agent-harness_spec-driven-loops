@@ -1,0 +1,35 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/374-purpose-carry-follow-ups
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 are set, which AGENTS.md defines as the autonomous child-dispatch exemption. Nobody is at a prompt. Your write authority is bound to ONE folder and everything under it:
+  specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers
+Write nothing outside it. Do not edit code, hooks, YAML assets or any other packet. Do not commit. Proceed directly to the work and do not print A/B/C/D options.
+
+ROLE
+You are a planner. You write spec docs only. Load system-spec-kit (.skilled/skills/system-spec-kit/SKILL.md) and follow its templates and the authoring card it names. Write plain prose with no em dashes.
+
+ORIGINAL USER NEED
+The core reason, problem or user need of a spec packet gets lost over in-session handovers and compactions. The operator wants a packet's purpose to survive a resume, a relaunch, a compaction and a continuity save, so the next AI still sees why the work exists.
+
+INPUT
+An independent review of the work is at:
+  /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/ef52f514-275d-4013-b7bd-ab365324057d/scratchpad/fable-review/review.md
+Read it in full. The orchestrator independently confirmed findings 1 and 2: of 2959 live spec.md files (excluding z_archive, scratch and lineages), 292 lack an exact `### Purpose` heading; 274 name a purpose under another heading and 33 use an inline `Purpose:` label. Treat every other finding as a claim: confirm it against the code or docs before you plan for it.
+Current state: children 001 to 005 are built and on main (commits eaba5ab89e, 3d237cd97a, f0d8c03036, 0837fcd5a2, 191ce39bad). Child 006-purpose-carry-follow-ups is planned and NOT built (spec.md, plan.md, tasks.md hold edits E1 to E14 and tasks T001 to T025). The operator approved E1 to E14 before this review. The parent has no goal.md.
+
+TASK
+Plan the remediation for the review's findings. Decide per finding, with a one-line reason each: plan it, fold it into an existing child, or decline it as out of scope for the original need.
+1. Update child 006 where a finding belongs there. At minimum fix the mismatch in finding 2: child 006's Purpose and REQ-001 must not claim more than its tasks prove. Keep E1 to E14 intact unless a finding shows one is wrong; add new edits after E14 rather than renumbering.
+2. Add new phase children (007, 008, ...) under the parent for work that does not fit 006, for example widening the purpose reader in finding 1 or the cross-hop consistency in finding 6. Create them with .skilled/skills/system-spec-kit/runtime/cli/spec/create.sh using the phase-child form the script documents. Each new child gets spec.md, plan.md and tasks.md at Level 1 unless recommend-level.sh says higher. Each task names an exact file and a Verify command with the exact output it must print. Leave no design choice open in plan.md.
+3. Update the parent's spec.md (finding 8): its Problem Statement and Purpose must state the original user need and its scope must reflect that build children exist. Update the parent's phase map and any child list so the new children appear. Fix the stale "Nothing is committed" statements in the 001 to 005 implementation summaries only by adding the landing commit, without rewriting their content.
+4. Goals: if a goal.md exists in any touched folder, update it to match. Do not create a new goal.md; instead, in your final answer, say whether one would help and draft its Objective sentence.
+5. Run `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <folder> --strict` on the parent with --recursive if the script supports it, otherwise on the parent and each touched child. Repair until each prints RESULT: PASSED. Use repair-derived.cjs for derived metadata if validate asks.
+
+FINAL ANSWER FORMAT
+1. A per-finding table: finding number, decision (planned in <child> / folded into 006 / declined), one-line reason.
+2. The list of files you created or changed.
+3. Each validate command you ran and its RESULT line.
+4. The goal recommendation from step 4.
+5. Open questions only the operator can answer, if any.

@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review wording fixes",
+      "phase 14 review wording fixes",
+      "relaunch comments and README corrected after review",
+      "goal_ended in the handoff command document",
+      "review wording fixes plan",
+      "review wording fixes tasks",
+      "review wording fixes acceptance criteria",
+      "review wording fixes goal",
+      "review wording fixes implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "wording",
+      "phase",
+      "relaunch",
+      "comments",
+      "readme",
+      "corrected",
+      "handoff",
+      "command",
+      "document",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/README.md",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+      ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+      ".skilled/commands/speckit/handoff.md",
+      ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+      "runtime/data/trigger-index.json",
+      "scratch/withdraw-tests.txt",
+      "scratch/suite.txt",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/010-goal-ending-carry/implementation-summary.md",
+      "scratch/baseline.txt",
+      "retrieval/fixtures/corpus-manifest.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "stop-arm.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "claude-adapters.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "trigger-index.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/runtime/data/trigger-index.json",
+        "source": "derived"
+      },
+      {
+        "name": "withdraw-tests.txt",
+        "kind": "file",
+        "path": "scratch/withdraw-tests.txt",
+        "source": "derived"
+      },
+      {
+        "name": "suite.txt",
+        "kind": "file",
+        "path": "scratch/suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "corpus-manifest.json",
+        "kind": "config",
+        "path": "retrieval/fixtures/corpus-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Stop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Two reviews of 2026-11-14 found texts that say something the code does not do",
+    "created_at": "2026-11-14T06:07:02Z",
+    "last_save_at": "2026-11-14T07:25:41.220Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:7639c71f5d7b3cf4e75496de67f8b246850d5b34bc38c580e4c44417be60064a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "4d9c706d37cba364c6ac588ccbdcfca96d1b888a57e230ab6a22903088f5396b",
+      "plan.md": "0514c0e3450e665ef96b15c852779625b7b1c6f29b823a7abf6c7fee3f50266b",
+      "tasks.md": "cc86b805fc564346b87c84bcc354488522ed3d6379565580248d8e7a86b3047f",
+      "implementation-summary.md": "591dea9bd6e06a3d0fe6c3795bb2f26b148a4853ca4fe5c421d91215e17b37a7"
+    },
+    "last_active_at": null
+  }
+}

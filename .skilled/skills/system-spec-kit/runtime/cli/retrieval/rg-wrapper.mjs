@@ -258,6 +258,7 @@ export function isArchivedPath(candidate) {
  * @param {string} phrase Literal phrase.
  * @param {{ cwd?: string, includeArchive?: boolean, limit?: number, roots?: ReadonlyArray<string> }} [options] Execution context.
  * @returns {{
+ *   archivedPaths?: string[],
  *   command: string,
  *   counts: Array<{ archived?: boolean, count: number, path: string }> | null,
  *   exitCode: number,
@@ -376,6 +377,9 @@ export function search(recipe, phrase, options = {}) {
   if (recipe === 'path') {
     // The path recipe stops at one match per file, so it has no match total.
     record.paths = lines.sort().slice(0, keep);
+    // `paths` stays a list of plain strings for its readers; the archived subset
+    // is reported beside it so a JSON consumer can label those files.
+    record.archivedPaths = record.paths.filter(isArchivedPath);
     record.hidden = { files: lines.length - record.paths.length, matches: null };
     record.truncated = record.hidden.files > 0;
     return record;

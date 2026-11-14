@@ -72,7 +72,7 @@ The template stamp and its manifest entry moved from `v2.2` to `v2.3`, which is 
 ## How It Was Delivered
 <!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-On 2026-11-14 one DeepSeek Harness worker (`dsh --profile headless`, LLM Gateway `deepseek-v4.1-flash-1017` at max) applied the plan's literal edits in worktree 371. It exited 0 with a `completed` final event and ran no builds or tests. Its handback was a claim, so the orchestrating session checked the files itself. It found the replacement text present in 9 of the plan's 10 blocks. The tenth is an intermediate text that a later step of the same plan replaces. It built the runtime and the cli (both exit 0) and reran the gates. Nothing is committed.
+On 2026-11-14 one DeepSeek Harness worker (`dsh --profile headless`, LLM Gateway `deepseek-v4.1-flash-1017` at max) applied the plan's literal edits in worktree 371. It exited 0 with a `completed` final event and ran no builds or tests. Its handback was a claim, so the orchestrating session checked the files itself. It found the replacement text present in 9 of the plan's 10 blocks. The tenth is an intermediate text that a later step of the same plan replaces. It built the runtime and the cli (both exit 0) and reran the gates. Nothing is committed. Added later: this phase landed on main as commit `eaba5ab89e`.
 <!-- /ANCHOR:how-delivered -->
 
 ---

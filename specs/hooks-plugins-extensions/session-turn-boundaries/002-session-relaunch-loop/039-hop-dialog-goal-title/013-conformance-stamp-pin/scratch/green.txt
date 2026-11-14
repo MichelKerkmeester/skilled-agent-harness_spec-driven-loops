@@ -1,0 +1,13 @@
+all proof mutations reverted: Claude marked, Codex and every other entry unmarked
+$ env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='no process below the loop' .skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs
+✔ claude: an arm leaves the record pending when no process below the loop is found (45.73275ms)
+✔ codex: an arm leaves the record pending when no process below the loop is found (10.19575ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 91.510667
+exit=0

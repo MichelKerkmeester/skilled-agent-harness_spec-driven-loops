@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill",
+  "description": "Phase 11: empty-parent-purpose-backfill",
+  "keywords": [
+    "phase",
+    "empty-parent-purpose-backfill"
+  ],
+  "lastUpdated": "2026-11-14T07:20:49.490Z",
+  "specId": "011",
+  "folderSlug": "empty-parent-purpose-backfill",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "006-purpose-retention-across-handovers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

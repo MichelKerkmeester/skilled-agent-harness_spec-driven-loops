@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "planning"
 _memory:
   continuity:
-    packet_pointer: "scaffold/011-permission-mode-carry"
+    packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/011-permission-mode-carry"
     last_updated_at: "2026-11-13T08:49:33Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the durable directive"

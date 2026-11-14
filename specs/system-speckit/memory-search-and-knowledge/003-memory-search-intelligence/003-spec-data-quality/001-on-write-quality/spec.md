@@ -39,6 +39,9 @@ Groups the on-write quality gates for authored specs, trigger propagation, schem
 | **Parent Spec** | ../spec.md |
 | **Successor** | ../002-retroactive-automation/spec.md |
 
+### Purpose
+Make the on-write quality gates for authored specs navigable as one track, from trigger propagation and schema enforcement through provenance, integrity, and per-surface validation.
+
 ## PHASE DOCUMENTATION MAP
 
 | Child | Description |

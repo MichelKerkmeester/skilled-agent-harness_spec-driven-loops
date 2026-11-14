@@ -90,6 +90,12 @@
         "source": "derived"
       },
       {
+        "name": "Purpose Decide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "hooks",
         "kind": "key_phrase",
         "path": "spec.md",
@@ -102,19 +108,13 @@
         "source": "derived"
       },
       {
+        "name": "Purpose",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "1. PROBLEM",
-        "kind": "heading",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "2. THE CONSTRAINT THAT SHAPES THE ANSWER",
-        "kind": "heading",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "3. PORTABILITY",
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
@@ -180,9 +180,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Decide from repository evidence which repo rules, if any, are better served by a prompt-time injection hook than by the Gate 5 load, and design the selectivity that keeps injection off most turns.",
+    "causal_summary": "Decide from repository evidence which repo rules, if any, a prompt-time hook should carry instead of the Gate 5 load, and design the selectivity that keeps injection off most turns",
     "created_at": "2026-09-12T00:00:00Z",
-    "last_save_at": "2026-11-10T05:10:18.323Z",
+    "last_save_at": "2026-11-14T08:04:03.667Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -190,10 +190,10 @@
       "plan.md",
       "tasks.md"
     ],
-    "source_fingerprint": "sha256:29c2be8e86cd2fe07a4d53c5f1eb541014e83ab944458680951cc7057a99735a",
+    "source_fingerprint": "sha256:329268509fe3412fcef03e5df18f85cc2f2a004b065cf7edf599d2685142855e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6dfd9ebf810cfa4ba61e0d5d273f7989985726ea45246403c840b3836e5489c9",
+      "spec.md": "30a8de68fab3db8807cb8f7c0c02d58dd0d4cc65109dcc81ed330d7646d52842",
       "plan.md": "8bbdb186bf8e68f5b89e5c475e485be9d65aae3165e1ac212855f40317e633e7",
       "tasks.md": "e6dd76caeba3d1e9b50606440f56ba3ae93cb47f7b857b5b08e92456ca1807b5"
     },

@@ -45,12 +45,12 @@
       "embedder",
       "adapter",
       "architecture",
-      "parent",
-      "ollama",
-      "hf-local",
-      "nomic",
-      "cascade",
-      "coderankembed"
+      "move",
+      "memory",
+      "search",
+      "onto",
+      "local",
+      "embedders"
     ],
     "importance_tier": "important",
     "status": "in_progress",
@@ -69,6 +69,12 @@
         "name": "graph-metadata.json",
         "kind": "config",
         "path": "graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Move",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -100,26 +106,20 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Handler Verification Blocked",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "mk-spec-memory stack parent for adapter architecture, Ollama + hf-local Nomic cascade, Nomic/CodeRankEmbed default, retrieval-rescue closure, and later metadata repair packets. mxbai was tested and rolled back.",
+    "causal_summary": "Move memory search onto local embedders behind one adapter interface, then keep that stack fast, measured and correct, from the backend cascade and default model through its cache, startup and metadata repair",
     "created_at": "2026-05-18T07:50:58.091Z",
-    "last_save_at": "2026-11-10T05:46:26.176Z",
+    "last_save_at": "2026-11-14T08:19:09.077Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:248144e9daf863149cd4d69efd1143b6cfc762f238e9163d8fe13f6ad0bbfcd9",
+    "source_fingerprint": "sha256:ff8470d0acd2a6ed1411849ca17f6066e851e87248754fca6d285c83fcbbe607",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "816c6526aa3bd557ddb5065da63776886e1b4c5303931cf0b3dfaeb17e0c794d"
+      "spec.md": "dccbf01952138d7da8b6066b4f20f52532e6ba46a7efc9e8814d2ef882ef7672"
     },
     "last_active_child_id": "system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/015-cascade-reorder-and-nomic-hf-local-default",
     "last_active_at": null

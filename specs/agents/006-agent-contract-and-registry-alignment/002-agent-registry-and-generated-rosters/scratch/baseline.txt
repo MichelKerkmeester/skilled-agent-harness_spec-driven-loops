@@ -1,0 +1,10 @@
+# Baseline at 0a72104ead
+
+$ ls .skilled/agents/*.md | wc -l
+      11
+
+$ rg -c -e '@design' -e '@prompt-improver' .skilled/agents/orchestrate.md || echo 0
+0
+
+$ rg -l --no-config -e '@design\b' -e 'agents/design\.md' .skilled/commands | wc -l
+       0

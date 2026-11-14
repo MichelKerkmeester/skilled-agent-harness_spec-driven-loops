@@ -211,7 +211,7 @@ test('a pending relaunch record suppresses the goal continuation', async () => w
     });
     await writeFile(
       join(relaunchDir, `relaunch-${loopId}.json`),
-      JSON.stringify({ status, sessionId: sessionID }),
+      JSON.stringify({ status, sessionId: sessionID, handoff: join(stateDir, 'handoff.md') }),
       'utf8',
     );
 
@@ -315,7 +315,7 @@ test('the plugin record path is the one the relaunch core reads', async () => wi
       roots: [workspace],
       env: process.env,
     });
-    assert.deepEqual(result, { packet: packetPath, reason: '' });
+    assert.deepEqual(result, { packet: packetPath, reason: '', ended: false });
   } finally {
     restoreEnv('OPENCODE_GOAL_STATE_DIR', originalGoalStateDir);
     await rm(workspace, { recursive: true, force: true });

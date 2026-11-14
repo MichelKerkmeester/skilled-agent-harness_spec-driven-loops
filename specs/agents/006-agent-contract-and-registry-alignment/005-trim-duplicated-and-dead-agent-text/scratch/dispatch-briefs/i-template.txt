@@ -1,0 +1,6 @@
+Make the agent template say that agent files carry no closing summary, and give it the one
+canonical copy of the advisor block that every agent file repeats. The eleven agent files are
+about to lose their box-drawn summaries, and a check will compare each file's advisor block
+with the copy between the two new markers.
+
+This file has no twin; ignore the twin instructions in RUN CONTEXT.

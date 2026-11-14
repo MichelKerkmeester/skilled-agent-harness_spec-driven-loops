@@ -1,0 +1,13 @@
+✔ context-nudge withdraws a deferred handoff when the operator sends a prompt (45.864583ms)
+✔ context-nudge keeps a deferred handoff when a background task reports back (31.944333ms)
+✔ stop-arm logs missing-transcript-path and marks the pending record deferred (69.468875ms)
+✔ stop-arm marks the pending record deferred when no process below the loop can be found (85.206667ms)
+✔ stop-arm marks the pending record deferred when arming throws (45.0725ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 312.453792

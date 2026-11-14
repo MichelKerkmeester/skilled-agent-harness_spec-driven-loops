@@ -1,0 +1,10 @@
+✔ claude: an arm leaves the record pending when no process below the loop is found (48.314458ms)
+✔ codex: an arm leaves the record pending when no process below the loop is found (9.942083ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 95.6735

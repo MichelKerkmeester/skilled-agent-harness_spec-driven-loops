@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/008-hop-purpose-rule-parity",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/008-hop-purpose-rule-parity",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "hop purpose rule parity",
+      "phase 8 hop purpose rule parity",
+      "purpose line label shapes",
+      "relaunch note scaffold sentence",
+      "parent purpose label",
+      "hop purpose rule parity plan",
+      "hop purpose rule parity tasks",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "hop purpose rule parity implementation summary"
+    ],
+    "key_topics": [
+      "hop",
+      "purpose",
+      "rule",
+      "parity",
+      "phase",
+      "line",
+      "label",
+      "shapes",
+      "relaunch",
+      "note",
+      "scaffold",
+      "sentence"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/speckit/handoff.md",
+      ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+      ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
+      ".skilled/commands/speckit/assets/speckit-resume-presentation.txt",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js",
+      ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
+      ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
+      ".skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/nudge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-resume-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-resume-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/speckit/assets/speckit-resume-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "test-phase-command-workflows.js",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-resume-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "packet-purpose.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Nine",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A packet's purpose is meant to read the same after every hop, so the next AI recognizes it as the one fixed line in a context that otherwise changes",
+    "created_at": "2026-11-14T06:14:05Z",
+    "last_save_at": "2026-11-14T07:51:28.173Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9f2642587c7463aba5d057bae24ef8cc636785f4b284128940acef18d3ee61bb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "9d19567606918d559070316ce541d4dd816a676be5b827b9e839e47bbad9d21a",
+      "plan.md": "e7788853510f3f7b3e05025b44c28f59084cd4449c085ca3a1f4f55a4d920cd9",
+      "tasks.md": "562627907dfba205fe06cb9c78bc6a2ab28fb18324662c47e3f0e89668d31ea6",
+      "implementation-summary.md": "9b2f61271fd7b7ee57e9ebecd9070253ea3570510237989897e5681fde98004e"
+    },
+    "last_active_at": null
+  }
+}

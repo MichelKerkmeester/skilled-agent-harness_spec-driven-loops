@@ -1,0 +1,12 @@
+# Mutation check, 2026-11-14 (orchestrator runs)
+
+MUTANT: relocate.mjs with line 1604, the `description identity (migrate-generated-json --only)` childStep, replaced by a comment. Run from runtime/cli with `../../node_modules/.bin/vitest run --config ../../vitest.config.ts --project cli`.
+
+## New suite against the committed script
+tests/relocate-real-pipeline.vitest.ts: Tests 4 passed (4), exit 0 (30.6 s).
+
+## New suite against MUTANT (RELOCATE_REAL_PIPELINE_SOURCE pointed at a scratch copy, after 010a)
+Tests 1 failed (1), "AssertionError: the migrate step must record the new parent chain", exit 1.
+
+## New suite against MUTANT in place (after 010b, file restored afterwards)
+Tests 4 failed (4), the parent chain assertion named, exit 1.

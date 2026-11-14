@@ -33,6 +33,9 @@ _memory:
 # 021: Skill docs alignment for 016-019 changes (phase parent)
 
 <!-- ANCHOR:overview -->
+### Purpose
+Align the skill documentation with the shipped embedder architecture so stale defaults are corrected and new users get one coherent pluggability narrative across both MCPs.
+
 ## 1. OVERVIEW
 
 This session shipped large architectural changes (pluggable embedders 016, retrieval rescue 016/004 ADR-009/010/011, Nomic/CodeRankEmbed current default, CocoIndex CodeRankEmbed swap, registered_embedders + INSTALL_GUIDE 019/001+002) but the broader documentation surface — skill MDs, references/, assets/, the root README — wasn't audited for stale references.

@@ -63,10 +63,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-This phased decomposition tracks spec-kit simplification research across independently executable child phase folders.
+The system-spec-kit skill had grown by accretion across its retrieval system, CLI package, shared package, templates and validator rules. No one had mapped which parts were live or weighed what each part costs against what it protects.
 
 ### Purpose
-Keep parent documentation lean while child phases own detailed plans, tasks, verification, and continuity.
+Find with file and line evidence what in system-spec-kit can be simplified, merged or removed, then fix every finding that reproduces.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->

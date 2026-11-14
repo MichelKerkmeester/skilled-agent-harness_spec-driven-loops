@@ -11,10 +11,10 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach"
-    last_updated_at: "2026-11-13T00:00:00Z"
-    last_updated_by: "scaffold"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Execute against the completion criteria"
+    last_updated_at: "2026-11-14T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Folded the completion criteria to seven and cited decision rows Q010 to Q013"
+    next_safe_action: "Start phase 006-relocate-resume-and-preflight"
     blockers: []
     key_files: []
     session_dedup:
@@ -48,7 +48,7 @@ Frozen choices. Changing one is an amendment.
 | D2 | Mixed tracks stay forbidden. A subtrack proposal is a whole-track map. |
 | D3 | Moving or renumbering a packet is done by `relocate.mjs` alone. No hand edits and no AI fix-up work. |
 | D4 | Next-number allocation counts archived packets. |
-| D5 | The work runs as five phases, built and verified one at a time. |
+| D5 | Phases are built and verified one at a time. 006 to 010 close reviewer A findings 1 to 12 and reviewer B findings 6 to 8 of 2026-11-14. |
 
 <!-- /ANCHOR:directive -->
 
@@ -67,6 +67,11 @@ phase and binds as if written here.
 | 003-subtrack-archive-and-numbering | `003-subtrack-archive-and-numbering/goal.md` |
 | 004-archive-search-and-json | `004-archive-search-and-json/goal.md` |
 | 005-tests-and-closeout | `005-tests-and-closeout/goal.md` |
+| 006-relocate-resume-and-preflight | `006-relocate-resume-and-preflight/goal.md` |
+| 007-phase-map-and-prearchive-rewrites | `007-phase-map-and-prearchive-rewrites/goal.md` |
+| 008-restore-and-phase-numbering | `008-restore-and-phase-numbering/goal.md` |
+| 009-proposal-search-and-routing | `009-proposal-search-and-routing/goal.md` |
+| 010-real-pipeline-tests | `010-real-pipeline-tests/goal.md` |
 
 **Precedence.** Decisions above outrank child detail. Child detail outranks any
 summary of it. Name a conflict rather than resolving it silently.
@@ -80,13 +85,13 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] In a throwaway copy, `relocate.mjs --map <sample> --apply` exits 0 and a second run exits 0 with nothing to do
+- [ ] In a throwaway copy, `relocate.mjs --map <sample> --apply` exits 0 and a second run exits 0 with nothing to do, and after a late step fails once a rerun exits 0 and the next run prints `nothing to do`
 - [ ] `suggest-subtracks.mjs --track <flat track with more than 8 live packets>` prints a map that `relocate.mjs --map` accepts in preflight
-- [ ] `find specs -mindepth 3 -maxdepth 3 -type d -name z_archive -not -path "specs/*/[0-9][0-9][0-9]-*/*"` prints 40 paths
-- [ ] With `specs/demo/001-a` live and `specs/demo/z_archive/007-b` archived, `create.sh --track demo` creates `008-*`
-- [ ] A phrase that lives only under `specs/sk-doc/z_archive/` returns a hit labeled `archived` with `--include-archive` and no hit without it
-- [ ] `cd .skilled/skills/system-spec-kit/runtime/cli && npm test` exits 0 with no failure absent from the baseline
-- [ ] `validate.sh specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach --strict --recursive` prints `RESULT: PASSED` six times
+- [ ] `find specs -mindepth 3 -maxdepth 3 -type d -name z_archive -not -path "specs/*/[0-9][0-9][0-9]-*/*"` prints 40 paths, `create.sh --track demo` creates `008-*` beside `001-a` and `z_archive/007-b`, and `create.sh --phase --parent` numbers a new phase above an archived one
+- [ ] A phrase that lives only under `specs/sk-doc/z_archive/` returns a hit labeled `archived` with `--include-archive` and no hit without it, and the `--json` path record marks the same paths
+- [ ] After `relocate.mjs --renumber <phase parent> --apply`, `rg` for a phase's old folder name in its parent `spec.md` prints nothing
+- [ ] `cd .skilled/skills/system-spec-kit/runtime/cli && npm test` exits 0 with no failure absent from the baseline, and `relocate-real-pipeline.vitest.ts` exits 1 with the migrate call removed from a scratch `relocate.mjs`
+- [ ] `validate.sh specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach --strict --recursive` prints `RESULT: PASSED` 11 times
 <!-- /ANCHOR:completion -->
 
 ---
@@ -124,6 +129,15 @@ and findings belong here.
 | Criterion 7 strict recursive validation | Done | validate.sh on this folder with --strict --recursive printed RESULT: PASSED six times, run by the final closeout worker after the last document edit and the last repair-derived.cjs --apply |
 | Final state 2026-11-13 | Complete | All five phases and the parent spec.md say Complete and every acceptance-criteria.md says Closeable: Yes. No Unmet row is left. Trigger index regenerated in f1cfed3d20 and its check exited 0 with 0 untrusted docs, not rerun after the final closeout edits. Answered: the fixture question is closed by Q003 and ADR-001. Later commits 5fefd819e1, 36b3a68ab7, c21b0cc040 and f1cfed3d20. The final closeout edits are uncommitted. Nothing is pushed or merged |
 | Criterion 5 re-proof | Done | The first phrase stopped being archive-only once these documents quoted it. A title phrase from an archived sk-doc packet that no live document holds exits 1 by default and 0 with --include-archive, 4 of 4 lines labeled archived. search.md no longer states a dated result for its example phrase |
+| Remediation planned 2026-11-14 | Done | Two code reviews in scratch/review-20261114-*.md. Phases 006 to 010 scaffolded by create.sh --phase --parent at Level 1 and planned. spec.md is In Progress. No code changed |
+| 006-relocate-resume-and-preflight | Done | `5e9f6f83be`. A1, A3, A4, A5 and B6 closed. Relocate and archive suites 77 to 88 passed, full CLI suite 2580 passed, 0 failed |
+| 007-phase-map-and-prearchive-rewrites | Done | `2202b6b0f7`. A2 and A8 closed. Suites 88 to 94 passed, full CLI suite 2586 passed, 0 failed |
+| 008-restore-and-phase-numbering | Done | `31493fb263`. A6, A7 and A9 closed. Suites 98 to 107 passed, full CLI suite 2595 passed, 0 failed |
+| 009-proposal-search-and-routing | Done | `242c719451` (A11, A12) and `0701a31ae5` (B7). B8 accepted as a known miss by the operator (decision Q014). Full CLI suite 2599 passed, advisor suite 1716 passed |
+| 010-real-pipeline-tests | Done | `5d84ff0e25`. A10 closed. New suite 4 passed, fails on the migrate mutant. Full CLI suite 2603 passed, 0 failed |
+| Criteria re-proved 2026-11-14 after 006 to 010 | Done | 1: real pipeline suite applies a map twice and resumes after a failed late step, through the true writers in a temp repository. 2: suggest-subtracks cases feed the printed map to the relocate preflight, exit 1. 3: the find prints 40 on the worktree, archive-numbering and phase numbering cases pass. 4: an archive-only sentence gives 0 paths without the flag, 1 with it and archivedPaths 1. 5: renumber cases leave no old folder name in the parent spec.md. 6: npm test 2603 passed, 0 failed, and the real pipeline suite exits 1 against the migrate mutant. 7: see validation |
+| Criteria 2 and 3 rerun on the final tree 2026-11-14 | Done | The earlier criteria row leaned on tests for 2 and 3, so both were rerun literally in a throwaway clone of `96ea4dc02a` with its own runtime build. 2: a 10-packet track `clus` with a track root, `suggest-subtracks.mjs --track clus` exit 0 with a 10-entry map in two groups, `relocate.mjs --map` dry run exit 1 with `moves=10 moved=0 rewrites=21 identity=10 roots=3 ledger=10` and no refusal, `git status --porcelain` empty before and after. 3: with `specs/demo/001-a` live and `z_archive/007-b` archived by `archive.sh`, `create.sh --track demo --skip-branch` exit 0 created `008-next-one`. With `002-gamma` archived from a two-phase parent, `create.sh --phase --parent` created `003-delta` with Predecessor `001-alpha`. Clone deleted afterwards |
+| Docs written by the orchestrator | Deviation | The claude2 account hit its usage limit. The operator chose that this session writes the phase docs from the saved build evidence |
 
 ### Deviations and findings
 
@@ -137,4 +151,13 @@ and findings belong here.
 | Answered: `speckit-implement.yaml` line 71 | Phase 002 changed it. Option C was changed on every surface by operator decision, `speckit-implement.yaml` included, and the phase 002 summary lists the file as modified. |
 | Answered: sweep exit code | Phase 003 kept the planned default. The missing-archive line of `sweep-track-roots.mjs` is an advisory diagnostic on the working tree and leaves the exit code alone. The operator has not ruled on it. On this worktree the sweep exits 0 with no missing-archive line. |
 | Open question: fixture for the proposal check | Phase 005 AC-008 and completion criterion 2 name a real flat track with more than eight packets. None exists, and the largest holds 6. The check passed on a 10-packet fixture track in a clone. Does the operator accept the fixture through a decision record? |
+| Amendment 2026-11-14: decision D5 | D5 said the work runs as five phases. It now names phases 006 to 010 and the findings they close, reviewer A 1 to 12 and reviewer B 6 to 8, on operator decision Q010 in `decision-record.md`. |
+| Amendment 2026-11-14: criterion 7 | The count of `RESULT: PASSED` lines went from six to 11, because the parent now has ten children. |
+| Amendment 2026-11-14: criteria folded to seven | Each remediation criterion joined the existing criterion on its surface, and the routing check lives in the 009 child goal. Each phase stays observable: 006 in the first criterion, 008 in the third, 009 in the fourth, 007 in the fifth and 010 in the sixth. The fold answers the earlier open question on the count of 12, which `check-goal.cjs` reported as `criteria-count`. |
+| Handed to the 008 session | Reviewer B findings 1 to 5 concern the hub vocabulary packet on another session's branch. They are handed to the 008 command surfacing session by operator decision Q013, listed in spec.md and not planned here. |
+| Not planned: renumber resume | A stopped `--renumber` run leaves no map to rerun. Reviewer A reports it under the handover claims, not as a numbered finding. Phase 006 lists it as out of scope. |
+| Operator decisions 2026-11-14 | Four rows in `decision-record.md`. Q010: remediation runs as new children 006 onward and the parent goal is updated. Q011: the work happens in git worktree 375, created from `origin/main`. Q012: planning and plan verification by fresh Fable 5.2 instances at high effort through claude2, implementation by DeepSeek V4.1 Flash at max reasoning through the dsh harness. Q013: reviewer B findings 1 to 5 go to the 008 command surfacing session. |
+| Plan verified 2026-11-14 | An independent verifier returned 17 findings, four of them ones that would have produced a wrong fix or a false done. All 17 are applied in the documents of phases 006 to 010 and here. Phase 006 D5 records the default taken for the first: a moved packet's own validation verdict never keeps a map open. |
+| Amendment 2026-11-14: exit status 3 | Phase 008 adds one exit status to `relocate.mjs`. It amends REQ-001 and REQ-012 of phase 001, which is not edited. The record is in spec.md Operator Decisions. |
+| Residual against D3 | After a renumber or a re-parent, the Phase column number of a map row, a `Phase N` title and a `Phase N of M` row keep the old number. Phase 007 rewrites folder names only and lists the numbers as out of scope. Not planned. |
 <!-- /ANCHOR:log -->

@@ -85,7 +85,7 @@ This is **Phase 16** of the Deep research into improving search intelligence and
 [What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Research search intelligence and AI output behavior for commands versus conversations, so both topics are examined before any downstream work builds on them.
 <!-- /ANCHOR:problem -->
 
 ---

@@ -15,6 +15,7 @@ Model and effort: no agent file here pins a model. Dispatched routes pass model 
   explicitly; manual invocation inherits the runtime default, so a silent tree means no pin,
   not an unowned setting.
 
+# BEGIN GENERATED: readme-roster. Edit agent-registry.json, then run node .skilled/bin/sync-agent-roster.cjs
 Agents:
   ai-council:       multi-strategy AI Council planning, writes only ai-council artifacts
   code:             application-code implementation via sk-code, write-capable LEAF dispatched only by orchestrate
@@ -27,3 +28,4 @@ Agents:
   orchestrate:      senior multi-agent orchestration, decomposition, delegation and synthesis
   prompt-improver:  prompt-engineering specialist, framework selection and CLEAR validation
   review:           read-only code-review specialist, pattern validation and quality scoring
+# END GENERATED: readme-roster

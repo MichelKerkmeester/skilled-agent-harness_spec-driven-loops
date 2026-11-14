@@ -1,0 +1,109 @@
+# Command: env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='goal has ended|stays ended for a receiver|mark of an ended goal|marks an ended Claude goal' .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs
+✖ resolveGoalPacketResult says when the Claude goal has ended (4.074166ms)
+✖ a goal the sender ended stays ended for a receiver that sets none (5.26275ms)
+✖ recordGoalPacket writes and removes the mark of an ended goal (1.836ms)
+✖ prepare marks an ended Claude goal in the note and keeps it ended one hop later (231.484625ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 278.053458
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2863:1
+✖ resolveGoalPacketResult says when the Claude goal has ended (4.074166ms)
+  AssertionError [ERR_ASSERTION]: a met goal
+  + actual - expected
+  
+  + undefined
+  - true
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2877:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2890:1
+✖ a goal the sender ended stays ended for a receiver that sets none (5.26275ms)
+  AssertionError [ERR_ASSERTION]: the claimed note says nothing about an ending
+  + actual - expected
+  
+    {
+  -   ended: false,
+      packet: 'specs/hooks/023-session-relaunch-loop',
+      reason: ''
+    }
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2911:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: { packet: 'specs/hooks/023-session-relaunch-loop', reason: '' },
+    expected: { packet: 'specs/hooks/023-session-relaunch-loop', reason: '', ended: false },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:3101:1
+✖ recordGoalPacket writes and removes the mark of an ended goal (1.836ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:3109:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at node:internal/test_runner/test:1305:31
+      at node:internal/process/task_queues:158:7
+      at AsyncResource.runInAsyncScope (node:async_hooks:226:14)
+      at AsyncResource.runMicrotask (node:internal/process/task_queues:155:8) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2773:1
+✖ prepare marks an ended Claude goal in the note and keeps it ended one hop later (231.484625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   ended: undefined,
+  -   ended: 'true',
+      packet: undefined
+    }
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2807:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { packet: undefined, ended: undefined },
+    expected: { packet: undefined, ended: 'true' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

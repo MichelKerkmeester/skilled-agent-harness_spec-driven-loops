@@ -1,0 +1,37 @@
+red run of the changed assertion. An assertion change cannot fail before it is written,
+so this is the first failing run, taken with the new helper in place and the Claude
+stamp call at claude/stop-arm.mjs:183 removed from the working tree.
+$ env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='no process below the loop' .skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs
+✖ claude: an arm leaves the record pending when no process below the loop is found (45.186084ms)
+✔ codex: an arm leaves the record pending when no process below the loop is found (11.067334ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 93.102584
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs:497:5
+✖ claude: an arm leaves the record pending when no process below the loop is found (45.186084ms)
+  AssertionError [ERR_ASSERTION]: a stamping runtime writes a string stamp
+  + actual - expected
+  
+  + 'undefined'
+  - 'string'
+  
+      at Object.assertStillPending [as check] (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs:419:12)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs:505:15)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'string',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+exit=1

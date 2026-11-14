@@ -1,0 +1,33 @@
+# Command: env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='wrapper file' .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs
+✖ a hop says so when the wrapper file changed after the loop started (765.851334ms)
+✔ a hop prints no change notice when the wrapper file is unchanged (608.988083ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1410.328042
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:295:1
+✖ a hop says so when the wrapper file changed after the loop started (765.851334ms)
+  AssertionError [ERR_ASSERTION]: warning: the relaunched session ended before claiming /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-6IrVJT/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md; its handoff note was not claimed
+  
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:310:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

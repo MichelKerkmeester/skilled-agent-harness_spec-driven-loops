@@ -121,6 +121,19 @@ describe('a scaffold passes the gate it ships with', () => {
     // No save ever rewrites a phase parent's own continuity lines, so a default
     // that reads as a scaffold placeholder would fail every finished parent.
     expect(parentSpec, 'the parent default reads as a scaffold placeholder').not.toMatch(/^\s*recent_action:\s*"?Initiali[sz]ed?\s/mu);
+
+    // The open question has to block as well as show: a parent that leaves
+    // Draft with its purpose still unfilled must fail on the unfilled token.
+    fs.writeFileSync(
+      path.join(parent, 'spec.md'),
+      parentSpec.replace('| **Status** | Draft |', '| **Status** | In Progress |'),
+    );
+    const undrafted = spawnSync('bash', [validateScript, parent, '--strict', '--no-recursive'], {
+      cwd: sandbox,
+      encoding: 'utf8',
+    });
+    expect(undrafted.stdout, 'a non-Draft parent with an unfilled purpose passed the gate').toMatch(/PLACEHOLDER_FILLED: \d+ placeholder\(s\) found/u);
+    expect(undrafted.status).toBe(2);
   });
 
   it('creates every document its level contract calls for', { timeout: 120_000 }, () => {

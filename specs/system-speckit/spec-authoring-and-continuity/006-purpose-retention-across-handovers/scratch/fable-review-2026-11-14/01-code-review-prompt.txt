@@ -1,0 +1,39 @@
+CODE-REVIEW
+
+REPOSITORY ROOT: /Users/michelkerkmeester/MEGA/Development/Skilled
+Every read and command uses this root.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 are set, which this repository's AGENTS.md defines as the autonomous child-dispatch exemption. Nobody is at a prompt. The spec folder is:
+  specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers
+This is a READ-ONLY review. Write no files, edit nothing, commit nothing. Your whole deliverable is your final text answer.
+
+ROLE
+You are a fresh, independent senior reviewer. You have no stake in this work. Another model built it; judge it on the evidence you read and run.
+
+ORIGINAL USER NEED (the operator's words, paraphrased by the builder)
+The core reason, problem or user need of a spec packet gets lost over in-session handovers and compactions. The operator wants a packet's purpose to survive: after a resume, a session relaunch (handoff note), a context compaction and a continuity save, the next AI should still see why the work exists.
+
+WHAT TO REVIEW
+1. The parent packet docs: spec.md, decision-record.md and research/ under the spec folder above, plus each child folder 001 to 006 (spec.md, plan.md, tasks.md, implementation-summary.md). Child 006 is planned, not built: review its plan.md edits E1 to E14 as proposed changes.
+2. The five code commits, all on main. Read each with `git show <hash>`:
+   eaba5ab89e fix(system-spec-kit): make an unfilled purpose in a new phase parent fail a check
+   3d237cd97a fix(system-spec-kit): show the packet purpose in the resume brief
+   f0d8c03036 fix(session-relaunch): open the relaunch note's Goal with the packet purpose
+   0837fcd5a2 fix(system-spec-kit): carry the packet purpose into the context after a compaction
+   191ce39bad feat(system-spec-kit): keep the packet purpose in the continuity block
+3. Load the sk-code skill (.skilled/skills/sk-code/SKILL.md and its ROUTER.md) and use its code-review mode and the SKILLED TypeScript surface for the code standard.
+
+QUESTIONS TO ANSWER
+A. Correctness: bugs, wrong edge cases (missing spec.md, placeholder or scaffold Purpose, nested phase parents, multi-sentence Purpose, `.opencode/specs` vs `specs/` paths, very long Purpose, Markdown inside Purpose), regressions, dead paths, tests that assert nothing. You may run read-only checks, for example the vitest files the commits touched (run from .skilled/skills/system-spec-kit/runtime with ../node_modules/.bin/vitest run --config vitest.config.ts <file>). Do not run builds.
+B. Logic and coverage: does each of the four hops (resume, relaunch, compaction, continuity save) actually carry the purpose end to end, from spec.md to what the next AI sees? Name any hop where the chain breaks or depends on a built dist/ file that may be stale.
+C. Alignment: does the work as built and planned still serve the original user need above, or has it drifted into something narrower or different? Is anything the need requires missing? Is anything built that the need does not ask for?
+D. Child 006 plan: are E1 to E14 correct and sufficient, and do the five rewritten parent Purposes state each parent's real reason, judged against those parents' own child docs?
+
+OUTPUT FORMAT
+Start with one line: VERDICT: ALIGNED | PARTLY ALIGNED | DRIFTED, then one sentence why.
+Then FINDINGS, most severe first. Each finding: severity (P0 blocks the need, P1 should fix, P2 minor), file:line, what is wrong, a concrete failure scenario, and the evidence you read or ran (command plus the output line). Mark each finding OBSERVED (you ran or read it) or INFERRED.
+Then ALIGNMENT: short answer to C.
+Then CHILD 006: short answer to D.
+Then WHAT I DID NOT CHECK.
+Plain prose, no em dashes. Do not pad: if you find nothing at a severity, say so.

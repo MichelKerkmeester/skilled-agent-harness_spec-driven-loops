@@ -1,0 +1,18 @@
+$ env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='missing-transcript-path and marks|withdraw' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
+✔ context-nudge withdraws a deferred handoff when the operator sends a prompt (55.2965ms)
+✔ context-nudge records the withdrawal in the hop history (75.815625ms)
+✔ context-nudge records no withdrawal for a prompt that withdrew nothing (56.4735ms)
+✔ the withdraw prompt carries only the notice, then one nudge comes a step above its fill (305.755667ms)
+✔ context-nudge withdraws an armed handoff when the operator sends a prompt (51.793125ms)
+✔ stop-arm logs missing-transcript-path and marks the pending record deferred (86.80625ms)
+✔ compact-pointer tells a session whose hand-over was withdrawn not to claim the stale note (78.8675ms)
+✔ compact-pointer keeps the claim seed for a disarmed record that is not a withdrawal of this note (114.396333ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 866.656709
+exit=0

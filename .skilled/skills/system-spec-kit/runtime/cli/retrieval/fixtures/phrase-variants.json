@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6e7567bfadfbdc9d0255a2cf65b92cd8bb1012346018eaf9efaf632285afd559",
+  "manifestHash": "291f1c5a9eb125507113db3288677a95a5034fac92d2f672ff06e4c1e2795300",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -103,6 +103,9 @@
     ],
     "001 eval benchmark fidelity implementation summary": [
       "001-eval-benchmark-fidelity implementation summary"
+    ],
+    "001 fix agent contract contradictions operator decisions": [
+      "001-fix-agent-contract-contradictions operator decisions"
     ],
     "001 fix mcp stress cycle doc observability": [
       "001-fix-mcp-stress-cycle-doc-observability"
@@ -976,6 +979,9 @@
     "004 1 1 alignment phase": [
       "004 1:1 alignment phase"
     ],
+    "004 agent template conformance and drift check operator decisions": [
+      "004-agent-template-conformance-and-drift-check operator decisions"
+    ],
     "004 alignment fixes operator decisions": [
       "004-alignment-fixes operator decisions"
     ],
@@ -1522,6 +1528,9 @@
     "005 tests and closeout operator decisions": [
       "005-tests-and-closeout operator decisions"
     ],
+    "005 trim duplicated and dead agent text operator decisions": [
+      "005-trim-duplicated-and-dead-agent-text operator decisions"
+    ],
     "005 vestigial embedding readiness gate removal": [
       "005-vestigial-embedding-readiness-gate-removal"
     ],
@@ -1662,6 +1671,9 @@
     ],
     "006 playbook run and remediation rollup": [
       "006-playbook-run-and-remediation rollup"
+    ],
+    "006 purpose carry follow ups operator decisions": [
+      "006-purpose-carry-follow-ups operator decisions"
     ],
     "006 purpose retention across handovers operator decisions": [
       "006-purpose-retention-across-handovers operator decisions"
@@ -8631,6 +8643,9 @@
     "advisor changelog rename tasks": [
       "advisor changelog rename tasks"
     ],
+    "advisor changelog v1 1 0 0 extension": [
+      "advisor changelog v1.1.0.0 extension"
+    ],
     "advisor child budget verdict": [
       "advisor child budget verdict"
     ],
@@ -10001,6 +10016,9 @@
     "agent config deep research iter": [
       "agent-config-deep-research-iter"
     ],
+    "agent contract and registry alignment phase parent spec": [
+      "agent contract and registry alignment phase parent spec"
+    ],
     "agent creation overflow": [
       "agent creation overflow"
     ],
@@ -10452,6 +10470,21 @@
     "agent readme conformance": [
       "agent readme conformance"
     ],
+    "agent registry and generated rosters": [
+      "agent registry and generated rosters"
+    ],
+    "agent registry and generated rosters acceptance criteria": [
+      "agent registry and generated rosters acceptance criteria"
+    ],
+    "agent registry and generated rosters implementation summary": [
+      "agent registry and generated rosters implementation summary"
+    ],
+    "agent registry and generated rosters plan": [
+      "agent registry and generated rosters plan"
+    ],
+    "agent registry and generated rosters tasks": [
+      "agent registry and generated rosters tasks"
+    ],
     "agent routing documentation": [
       "agent routing documentation"
     ],
@@ -10481,6 +10514,21 @@
     ],
     "agent template amendment": [
       "agent template amendment"
+    ],
+    "agent template conformance and drift check": [
+      "agent template conformance and drift check"
+    ],
+    "agent template conformance and drift check acceptance criteria": [
+      "agent template conformance and drift check acceptance criteria"
+    ],
+    "agent template conformance and drift check plan": [
+      "agent template conformance and drift check plan"
+    ],
+    "agent template conformance and drift check tasks": [
+      "agent template conformance and drift check tasks"
+    ],
+    "agent template conformance implementation summary": [
+      "agent template conformance implementation summary"
     ],
     "agent template critical important": [
       "agent template critical important"
@@ -12555,6 +12603,9 @@
     "archive sh track": [
       "archive.sh track"
     ],
+    "archived label in path search json": [
+      "archived label in path search json"
+    ],
     "archived label in ripgrep results": [
       "archived label in ripgrep results"
     ],
@@ -12977,6 +13028,9 @@
     ],
     "assertrollbackhashguard task": [
       "assertRollbackHashGuard task"
+    ],
+    "assertstillpending deferredat per runtime": [
+      "assertStillPending deferredAt per runtime"
     ],
     "assess a proposed thinking discipline against agents md": [
       "assess a proposed thinking discipline against agents md"
@@ -14015,6 +14069,9 @@
     ],
     "bare integer reference hit rate": [
       "bare integer reference hit rate"
+    ],
+    "bare sibling folder name in a phase map": [
+      "bare sibling folder name in a phase map"
     ],
     "bare string statement hygiene": [
       "bare string statement hygiene"
@@ -15464,6 +15521,9 @@
     ],
     "brief head parity goal": [
       "brief head parity goal"
+    ],
+    "brief head parity implementation summary": [
+      "brief head parity implementation summary"
     ],
     "brief head parity plan": [
       "brief head parity plan"
@@ -19870,6 +19930,9 @@
     "cjs jsdoc documentation drift": [
       "cjs jsdoc documentation drift"
     ],
+    "cksum stub wrapper test": [
+      "cksum stub wrapper test"
+    ],
     "cl 001": [
       "cl-001"
     ],
@@ -21331,6 +21394,9 @@
     "cli codex 1 9 15 1": [
       "cli-codex 1.9.15.1"
     ],
+    "cli codex 1 9 16 0": [
+      "cli-codex 1.9.16.0"
+    ],
     "cli codex 1 9 2 0": [
       "cli-codex 1.9.2.0"
     ],
@@ -21555,6 +21621,9 @@
     ],
     "cli codex v1 9 15 1": [
       "cli-codex v1.9.15.1"
+    ],
+    "cli codex v1 9 16 0": [
+      "cli-codex v1.9.16.0"
     ],
     "cli codex v1 9 2 0": [
       "cli-codex v1.9.2.0"
@@ -27056,6 +27125,24 @@
     "codex payload probe plan": [
       "codex payload probe plan"
     ],
+    "codex persona tool mapping": [
+      "codex persona tool mapping"
+    ],
+    "codex persona tool mapping acceptance criteria": [
+      "codex persona tool mapping acceptance criteria"
+    ],
+    "codex persona tool mapping implementation summary": [
+      "codex persona tool mapping implementation summary"
+    ],
+    "codex persona tool mapping line": [
+      "codex persona tool mapping line"
+    ],
+    "codex persona tool mapping plan": [
+      "codex persona tool mapping plan"
+    ],
+    "codex persona tool mapping tasks": [
+      "codex persona tool mapping tasks"
+    ],
     "codex pi sync agents": [
       "codex pi sync agents"
     ],
@@ -27161,6 +27248,9 @@
     ],
     "codex shape fold in plan": [
       "codex shape fold-in plan"
+    ],
+    "codex shell steps without command text": [
+      "codex shell steps without command text"
     ],
     "codex shell tool test node test": [
       "codex shell tool test node test"
@@ -27645,6 +27735,9 @@
     ],
     "command offer fit guards goal": [
       "command offer fit guards goal"
+    ],
+    "command offer fit guards implementation summary": [
+      "command offer fit guards implementation summary"
     ],
     "command offer fit guards plan": [
       "command offer fit guards plan"
@@ -28323,6 +28416,18 @@
     ],
     "compaction pointer staleness tasks": [
       "compaction pointer staleness tasks"
+    ],
+    "compaction purpose folder": [
+      "compaction purpose folder"
+    ],
+    "compaction purpose folder implementation summary": [
+      "compaction purpose folder implementation summary"
+    ],
+    "compaction purpose folder plan": [
+      "compaction purpose folder plan"
+    ],
+    "compaction purpose folder tasks": [
+      "compaction purpose folder tasks"
     ],
     "compaction purpose line": [
       "compaction purpose line"
@@ -29352,6 +29457,24 @@
     ],
     "conformance scope rulings": [
       "conformance scope rulings"
+    ],
+    "conformance stamp pin": [
+      "conformance stamp pin"
+    ],
+    "conformance stamp pin acceptance criteria": [
+      "conformance stamp pin acceptance criteria"
+    ],
+    "conformance stamp pin goal": [
+      "conformance stamp pin goal"
+    ],
+    "conformance stamp pin implementation summary": [
+      "conformance stamp pin implementation summary"
+    ],
+    "conformance stamp pin plan": [
+      "conformance stamp pin plan"
+    ],
+    "conformance stamp pin tasks": [
+      "conformance stamp pin tasks"
     ],
     "consecutive liveness probe failures": [
       "consecutive liveness probe failures"
@@ -43764,6 +43887,24 @@
     "doctrine reconciliation tasks": [
       "doctrine reconciliation tasks"
     ],
+    "document corrections": [
+      "document corrections"
+    ],
+    "document corrections acceptance criteria": [
+      "document corrections acceptance criteria"
+    ],
+    "document corrections goal": [
+      "document corrections goal"
+    ],
+    "document corrections implementation summary": [
+      "document corrections implementation summary"
+    ],
+    "document corrections plan": [
+      "document corrections plan"
+    ],
+    "document corrections tasks": [
+      "document corrections tasks"
+    ],
     "document diff": [
       "document diff"
     ],
@@ -46269,6 +46410,18 @@
     "empty packet closure gate": [
       "empty packet closure gate"
     ],
+    "empty parent purpose backfill": [
+      "empty parent purpose backfill"
+    ],
+    "empty parent purpose backfill implementation summary": [
+      "empty parent purpose backfill implementation summary"
+    ],
+    "empty parent purpose backfill plan": [
+      "empty parent purpose backfill plan"
+    ],
+    "empty parent purpose backfill tasks": [
+      "empty parent purpose backfill tasks"
+    ],
     "empty phase child skipped": [
       "empty phase child skipped"
     ],
@@ -46280,6 +46433,9 @@
     ],
     "empty recommendation reported as outage": [
       "empty recommendation reported as outage"
+    ],
+    "empty start checksum false wrapper change note": [
+      "empty start checksum false wrapper change note"
     ],
     "empty trigger phrases": [
       "empty trigger phrases"
@@ -46358,6 +46514,27 @@
     ],
     "end with next steps": [
       "end with next steps"
+    ],
+    "ended claude goal comes back after a hop": [
+      "ended claude goal comes back after a hop"
+    ],
+    "ended goal mark match": [
+      "ended goal mark match"
+    ],
+    "ended goal mark match acceptance criteria": [
+      "ended goal mark match acceptance criteria"
+    ],
+    "ended goal mark match goal": [
+      "ended goal mark match goal"
+    ],
+    "ended goal mark match implementation summary": [
+      "ended goal mark match implementation summary"
+    ],
+    "ended goal mark match plan": [
+      "ended goal mark match plan"
+    ],
+    "ended goal mark match tasks": [
+      "ended goal mark match tasks"
     ],
     "endless sessions readme": [
       "endless sessions readme"
@@ -48696,6 +48873,24 @@
     "fable mode tasks": [
       "fable mode tasks"
     ],
+    "fable review remediation": [
+      "fable review remediation"
+    ],
+    "fable review remediation acceptance criteria": [
+      "fable review remediation acceptance criteria"
+    ],
+    "fable review remediation goal": [
+      "fable review remediation goal"
+    ],
+    "fable review remediation implementation summary": [
+      "fable review remediation implementation summary"
+    ],
+    "fable review remediation plan": [
+      "fable review remediation plan"
+    ],
+    "fable review remediation tasks": [
+      "fable review remediation tasks"
+    ],
     "fable review synthesis": [
       "Fable review synthesis"
     ],
@@ -48968,6 +49163,9 @@
     ],
     "false now doc corrections": [
       "false-now doc corrections"
+    ],
+    "false wrapper change note on unreadable file": [
+      "false wrapper change note on unreadable file"
     ],
     "falsifier discipline": [
       "falsifier discipline"
@@ -50916,6 +51114,21 @@
     "fix 1 db relocation": [
       "fix 1 db relocation"
     ],
+    "fix agent contract contradictions": [
+      "fix agent contract contradictions"
+    ],
+    "fix agent contract contradictions acceptance criteria": [
+      "fix agent contract contradictions acceptance criteria"
+    ],
+    "fix agent contract contradictions implementation summary": [
+      "fix agent contract contradictions implementation summary"
+    ],
+    "fix agent contract contradictions plan": [
+      "fix agent contract contradictions plan"
+    ],
+    "fix agent contract contradictions tasks": [
+      "fix agent contract contradictions tasks"
+    ],
     "fix audit findings": [
       "fix audit findings"
     ],
@@ -51578,6 +51791,9 @@
     ],
     "folder name recorded in summary": [
       "folder name recorded in summary"
+    ],
+    "folder named in brief": [
+      "folder named in brief"
     ],
     "folder nesting visualization": [
       "folder nesting visualization"
@@ -54934,6 +55150,36 @@
     "goal durable slice contract": [
       "goal durable slice contract"
     ],
+    "goal ended in the handoff command document": [
+      "goal_ended in the handoff command document"
+    ],
+    "goal ended kept when the session log cannot be read": [
+      "goal_ended kept when the session log cannot be read"
+    ],
+    "goal ended mark from the note claimed last": [
+      "goal_ended mark from the note claimed last"
+    ],
+    "goal ended note field": [
+      "goal_ended note field"
+    ],
+    "goal ending carry": [
+      "goal ending carry"
+    ],
+    "goal ending carry acceptance criteria": [
+      "goal ending carry acceptance criteria"
+    ],
+    "goal ending carry goal": [
+      "goal ending carry goal"
+    ],
+    "goal ending carry implementation summary": [
+      "goal ending carry implementation summary"
+    ],
+    "goal ending carry plan": [
+      "goal ending carry plan"
+    ],
+    "goal ending carry tasks": [
+      "goal ending carry tasks"
+    ],
     "goal exemplar status": [
       "goal exemplar status"
     ],
@@ -54942,6 +55188,24 @@
     ],
     "goal facet packet purpose": [
       "goal facet packet purpose"
+    ],
+    "goal fallback bound": [
+      "goal fallback bound"
+    ],
+    "goal fallback bound acceptance criteria": [
+      "goal fallback bound acceptance criteria"
+    ],
+    "goal fallback bound goal": [
+      "goal fallback bound goal"
+    ],
+    "goal fallback bound implementation summary": [
+      "goal fallback bound implementation summary"
+    ],
+    "goal fallback bound plan": [
+      "goal fallback bound plan"
+    ],
+    "goal fallback bound tasks": [
+      "goal fallback bound tasks"
     ],
     "goal file addon": [
       "goal file addon"
@@ -58034,6 +58298,24 @@
     "history rewrite tasks": [
       "history rewrite tasks"
     ],
+    "history test database env": [
+      "history test database env"
+    ],
+    "history test database env acceptance criteria": [
+      "history test database env acceptance criteria"
+    ],
+    "history test database env goal": [
+      "history test database env goal"
+    ],
+    "history test database env implementation summary": [
+      "history test database env implementation summary"
+    ],
+    "history test database env plan": [
+      "history test database env plan"
+    ],
+    "history test database env tasks": [
+      "history test database env tasks"
+    ],
     "hmac fingerprint dotenv": [
       "hmac fingerprint dotenv"
     ],
@@ -58636,6 +58918,21 @@
     ],
     "hop notice": [
       "hop notice"
+    ],
+    "hop purpose rule parity": [
+      "hop purpose rule parity"
+    ],
+    "hop purpose rule parity implementation summary": [
+      "hop purpose rule parity implementation summary"
+    ],
+    "hop purpose rule parity plan": [
+      "hop purpose rule parity plan"
+    ],
+    "hop purpose rule parity tasks": [
+      "hop purpose rule parity tasks"
+    ],
+    "hop withdrawn because the transcript was missing": [
+      "hop withdrawn because the transcript was missing"
     ],
     "host index folder setting": [
       "host index folder setting"
@@ -60455,6 +60752,9 @@
     "inline gate renderer level gating": [
       "inline-gate-renderer level gating"
     ],
+    "inline purpose label": [
+      "inline purpose label"
+    ],
     "inline word level highlighting": [
       "inline word-level highlighting"
     ],
@@ -62096,6 +62396,9 @@
     "kill scoping tasks": [
       "kill scoping tasks"
     ],
+    "killer grace period test flaky": [
+      "killer grace period test flaky"
+    ],
     "killer notice subtitle": [
       "killer notice subtitle"
     ],
@@ -62104,6 +62407,24 @@
     ],
     "killer test harness": [
       "killer test harness"
+    ],
+    "killer test margin": [
+      "killer test margin"
+    ],
+    "killer test margin acceptance criteria": [
+      "killer test margin acceptance criteria"
+    ],
+    "killer test margin goal": [
+      "killer test margin goal"
+    ],
+    "killer test margin implementation summary": [
+      "killer test margin implementation summary"
+    ],
+    "killer test margin plan": [
+      "killer test margin plan"
+    ],
+    "killer test margin tasks": [
+      "killer test margin tasks"
     ],
     "killer test spawn race": [
       "killer test spawn race"
@@ -62116,6 +62437,9 @@
     ],
     "killer test spawn race tasks": [
       "killer test spawn race tasks"
+    ],
+    "killer timeoutms 450": [
+      "killer timeoutMs 450"
     ],
     "kimi k2 6 24 scenario run": [
       "kimi-k2.6 24-- scenario run"
@@ -62542,6 +62866,9 @@
     ],
     "last dedup checked at dedup marker": [
       "last_dedup_checked_at dedup marker"
+    ],
+    "last spec folder containment": [
+      "last spec folder containment"
     ],
     "late hook payload test": [
       "late hook payload test"
@@ -71694,6 +72021,24 @@
     "missing sub track metadata seed": [
       "missing sub-track metadata seed"
     ],
+    "missing transcript notice": [
+      "missing transcript notice"
+    ],
+    "missing transcript notice acceptance criteria": [
+      "missing transcript notice acceptance criteria"
+    ],
+    "missing transcript notice goal": [
+      "missing transcript notice goal"
+    ],
+    "missing transcript notice implementation summary": [
+      "missing transcript notice implementation summary"
+    ],
+    "missing transcript notice plan": [
+      "missing transcript notice plan"
+    ],
+    "missing transcript notice tasks": [
+      "missing transcript notice tasks"
+    ],
     "missing value file behavior": [
       "missing value file behavior"
     ],
@@ -76100,6 +76445,9 @@
     "opencode cross repo dispatch": [
       "opencode cross-repo dispatch"
     ],
+    "opencode db history lookup test": [
+      "opencode_db history lookup test"
+    ],
     "opencode db isolation": [
       "opencode db isolation"
     ],
@@ -78688,6 +79036,9 @@
     "packet goal fallback acceptance criteria": [
       "packet goal fallback acceptance criteria"
     ],
+    "packet goal fallback ancestor limit": [
+      "packet goal fallback ancestor limit"
+    ],
     "packet goal fallback goal": [
       "packet goal fallback goal"
     ],
@@ -78768,6 +79119,9 @@
     ],
     "packet purpose continuity field": [
       "packet_purpose continuity field"
+    ],
+    "packet purpose first sentence abbreviation": [
+      "packet purpose first sentence abbreviation"
     ],
     "packet registration": [
       "packet registration"
@@ -78931,6 +79285,9 @@
     "parent goal authoring tasks": [
       "parent goal authoring tasks"
     ],
+    "parent goal binding rows 038 and 039": [
+      "parent goal binding rows 038 and 039"
+    ],
     "parent goal blank": [
       "parent goal blank"
     ],
@@ -79044,6 +79401,9 @@
     ],
     "parent packet template leftovers": [
       "parent packet template leftovers"
+    ],
+    "parent purpose label": [
+      "parent purpose label"
     ],
     "parent purpose scaffold": [
       "parent purpose scaffold"
@@ -79176,6 +79536,27 @@
     ],
     "parity verification": [
       "parity verification"
+    ],
+    "parked record escape": [
+      "parked record escape"
+    ],
+    "parked record escape acceptance criteria": [
+      "parked record escape acceptance criteria"
+    ],
+    "parked record escape goal": [
+      "parked record escape goal"
+    ],
+    "parked record escape implementation summary": [
+      "parked record escape implementation summary"
+    ],
+    "parked record escape plan": [
+      "parked record escape plan"
+    ],
+    "parked record escape tasks": [
+      "parked record escape tasks"
+    ],
+    "parked record stamp conformance case": [
+      "parked record stamp conformance case"
     ],
     "parse bool flag reports unrecognized": [
       "parse-bool-flag reports unrecognized"
@@ -79572,6 +79953,9 @@
     ],
     "peer adapter benchmark": [
       "peer adapter benchmark"
+    ],
+    "pending relaunch record prompt withdraw": [
+      "pending relaunch record prompt withdraw"
     ],
     "pending temporal candidates status": [
       "pending temporal candidates status"
@@ -80462,6 +80846,9 @@
     "phase 020 code audit": [
       "phase 020 code audit"
     ],
+    "phase 033 complete": [
+      "phase 033 complete"
+    ],
     "phase 052": [
       "phase 052"
     ],
@@ -80521,6 +80908,9 @@
     ],
     "phase 1 doc version contract": [
       "phase 1 doc version contract"
+    ],
+    "phase 1 fix agent contract contradictions": [
+      "phase 1 fix agent contract contradictions"
     ],
     "phase 1 frontend surface mode": [
       "phase 1 frontend surface mode"
@@ -80666,6 +81056,9 @@
     "phase 10 final gate ledger": [
       "phase 10 final gate ledger"
     ],
+    "phase 10 goal ending carry": [
+      "phase 10 goal ending carry"
+    ],
     "phase 10 mixed track sweep guard": [
       "phase 10 mixed track sweep guard"
     ],
@@ -80687,8 +81080,14 @@
     "phase 10 post fix research": [
       "phase 10 post fix research"
     ],
+    "phase 10 problem sentence carry": [
+      "phase 10 problem sentence carry"
+    ],
     "phase 10 reachability and attribution": [
       "phase 10 reachability and attribution"
+    ],
+    "phase 10 real pipeline tests": [
+      "phase 10 real pipeline tests"
     ],
     "phase 10 reference readability research": [
       "phase 10 reference readability research"
@@ -80744,11 +81143,17 @@
     "phase 11 decisions rule delivery": [
       "phase 11 decisions rule delivery"
     ],
+    "phase 11 empty parent purpose backfill": [
+      "phase 11 empty parent purpose backfill"
+    ],
     "phase 11 gateway enforcement": [
       "phase 11 gateway enforcement"
     ],
     "phase 11 goal drift remediation": [
       "phase 11 goal drift remediation"
+    ],
+    "phase 11 goal fallback bound": [
+      "phase 11 goal fallback bound"
     ],
     "phase 11 hub registration and routing": [
       "phase 11 hub registration and routing"
@@ -80861,6 +81266,9 @@
     "phase 12 verification and release": [
       "phase 12 verification and release"
     ],
+    "phase 12 wrapper notice log": [
+      "phase 12 wrapper notice log"
+    ],
     "phase 126 implementation summary": [
       "phase 126 implementation summary"
     ],
@@ -80890,6 +81298,9 @@
     ],
     "phase 13 cli external orchestration": [
       "phase 13 cli external orchestration"
+    ],
+    "phase 13 conformance stamp pin": [
+      "phase 13 conformance stamp pin"
     ],
     "phase 13 corpus wide validation repair": [
       "phase 13 corpus wide validation repair"
@@ -80959,6 +81370,9 @@
     ],
     "phase 14 review remediation": [
       "phase 14 review remediation"
+    ],
+    "phase 14 review wording fixes": [
+      "phase 14 review wording fixes"
     ],
     "phase 14 sk create skill": [
       "phase 14 sk create skill"
@@ -81044,6 +81458,9 @@
     "phase 15 v4 0 0 13 changelog": [
       "phase 15 v4 0 0 13 changelog"
     ],
+    "phase 15 wrapper start checksum": [
+      "phase 15 wrapper start checksum"
+    ],
     "phase 16 align sk design": [
       "phase 16 align sk design"
     ],
@@ -81061,6 +81478,9 @@
     ],
     "phase 16 closure gate": [
       "phase 16 closure gate"
+    ],
+    "phase 16 ended goal mark match": [
+      "phase 16 ended goal mark match"
     ],
     "phase 16 handover trigger review": [
       "phase 16 handover trigger review"
@@ -81112,6 +81532,9 @@
     ],
     "phase 17 measured behavior and draft metadata": [
       "phase 17 measured behavior and draft metadata"
+    ],
+    "phase 17 missing transcript notice": [
+      "phase 17 missing transcript notice"
     ],
     "phase 17 over engineering cuts": [
       "phase 17 over engineering cuts"
@@ -81167,6 +81590,9 @@
     "phase 18 runner gaps": [
       "phase 18 runner gaps"
     ],
+    "phase 18 sk git rebase sentence": [
+      "phase 18 sk git rebase sentence"
+    ],
     "phase 18 tasks": [
       "phase 18 tasks"
     ],
@@ -81200,6 +81626,9 @@
     "phase 19 plugins compat docs": [
       "phase 19 plugins compat docs"
     ],
+    "phase 19 relaunch doc coverage": [
+      "phase 19 relaunch doc coverage"
+    ],
     "phase 19 routing miss fixes": [
       "phase 19 routing miss fixes"
     ],
@@ -81220,6 +81649,9 @@
     ],
     "phase 2 agent improvement inventory": [
       "phase 2 agent improvement inventory"
+    ],
+    "phase 2 agent registry and generated rosters": [
+      "phase 2 agent registry and generated rosters"
     ],
     "phase 2 authoring hubs": [
       "phase 2 authoring hubs"
@@ -81548,6 +81980,9 @@
     "phase 23 untuned outcome evidence": [
       "phase 23 untuned outcome evidence"
     ],
+    "phase 24 fable review remediation": [
+      "phase 24 fable review remediation"
+    ],
     "phase 24 goal rebind claude codex hermes probes": [
       "phase 24 goal rebind claude codex hermes probes"
     ],
@@ -81580,6 +82015,9 @@
     ],
     "phase 25 goal binding record and launcher": [
       "phase 25 goal binding record and launcher"
+    ],
+    "phase 25 release notes and doc sync": [
+      "phase 25 release notes and doc sync"
     ],
     "phase 26 alignment findings fixes": [
       "phase 26 alignment findings fixes"
@@ -81785,6 +82223,9 @@
     "phase 3 sk git playbook changelog": [
       "phase 3 sk git playbook changelog"
     ],
+    "phase 3 skill binding through routers": [
+      "phase 3 skill binding through routers"
+    ],
     "phase 3 split upgrade legacy": [
       "phase 3 split upgrade legacy"
     ],
@@ -81871,6 +82312,9 @@
     ],
     "phase 4 advisor hooks relaunch": [
       "phase 4 advisor hooks relaunch"
+    ],
+    "phase 4 agent template conformance and drift check": [
+      "phase 4 agent template conformance and drift check"
     ],
     "phase 4 agents commands config": [
       "phase 4 agents commands config"
@@ -82064,6 +82508,9 @@
     "phase 4 webflow checker fix": [
       "phase 4 webflow checker fix"
     ],
+    "phase 4 wrapper change notice": [
+      "phase 4 wrapper change notice"
+    ],
     "phase 40 dispatch lint held fixes": [
       "phase 40 dispatch lint held fixes"
     ],
@@ -82196,6 +82643,9 @@
     "phase 5 packet and standalone migration": [
       "phase 5 packet and standalone migration"
     ],
+    "phase 5 parked record escape": [
+      "phase 5 parked record escape"
+    ],
     "phase 5 persisted hops validation": [
       "phase 5 persisted hops validation"
     ],
@@ -82268,6 +82718,9 @@
     "phase 5 tests and closeout": [
       "phase 5 tests and closeout"
     ],
+    "phase 5 trim duplicated and dead agent text": [
+      "phase 5 trim duplicated and dead agent text"
+    ],
     "phase 5 version aware guards": [
       "phase 5 version aware guards"
     ],
@@ -82327,6 +82780,9 @@
     ],
     "phase 6 closure gate": [
       "phase 6 closure gate"
+    ],
+    "phase 6 codex persona tool mapping": [
+      "phase 6 codex persona tool mapping"
     ],
     "phase 6 compiled route content check": [
       "phase 6 compiled route content check"
@@ -82409,6 +82865,9 @@
     "phase 6 purpose carry follow ups": [
       "phase 6 purpose carry follow ups"
     ],
+    "phase 6 record without handoff": [
+      "phase 6 record without handoff"
+    ],
     "phase 6 regeneration acceptance criteria": [
       "phase 6 regeneration acceptance criteria"
     ],
@@ -82420,6 +82879,9 @@
     ],
     "phase 6 release conformance review": [
       "phase 6 release conformance review"
+    ],
+    "phase 6 relocate resume and preflight": [
+      "phase 6 relocate resume and preflight"
     ],
     "phase 6 remediation deep review": [
       "phase 6 remediation deep review"
@@ -82565,6 +83027,9 @@
     "phase 7 install guidance and setup helper": [
       "phase 7 install guidance and setup helper"
     ],
+    "phase 7 killer test margin": [
+      "phase 7 killer test margin"
+    ],
     "phase 7 lineage reducer compliance": [
       "phase 7 lineage reducer compliance"
     ],
@@ -82580,8 +83045,14 @@
     "phase 7 per runtime behaviour proof": [
       "phase 7 per runtime behaviour proof"
     ],
+    "phase 7 phase map and prearchive rewrites": [
+      "phase 7 phase map and prearchive rewrites"
+    ],
     "phase 7 playbook catalog readme alignment": [
       "phase 7 playbook catalog readme alignment"
+    ],
+    "phase 7 purpose reader coverage": [
+      "phase 7 purpose reader coverage"
     ],
     "phase 7 remediation deep review": [
       "phase 7 remediation deep review"
@@ -82691,6 +83162,12 @@
     "phase 8 embedder setup and cost": [
       "phase 8 embedder setup and cost"
     ],
+    "phase 8 history test database env": [
+      "phase 8 history test database env"
+    ],
+    "phase 8 hop purpose rule parity": [
+      "phase 8 hop purpose rule parity"
+    ],
     "phase 8 hub gap report": [
       "phase 8 hub gap report"
     ],
@@ -82720,6 +83197,9 @@
     ],
     "phase 8 remediation deep review": [
       "phase 8 remediation deep review"
+    ],
+    "phase 8 restore and phase numbering": [
+      "phase 8 restore and phase numbering"
     ],
     "phase 8 review 3 remediation": [
       "phase 8 review 3 remediation"
@@ -82772,6 +83252,9 @@
     "phase 9 command surfacing research": [
       "phase 9 command surfacing research"
     ],
+    "phase 9 compaction purpose folder": [
+      "phase 9 compaction purpose folder"
+    ],
     "phase 9 doctor ci review wiring": [
       "phase 9 doctor ci review wiring"
     ],
@@ -82786,6 +83269,9 @@
     ],
     "phase 9 doctor update compatibility": [
       "phase 9 doctor update compatibility"
+    ],
+    "phase 9 document corrections": [
+      "phase 9 document corrections"
     ],
     "phase 9 dsh context guards and goal bridge": [
       "phase 9 dsh context guards and goal bridge"
@@ -82825,6 +83311,9 @@
     ],
     "phase 9 pi guard classification": [
       "phase 9 pi guard classification"
+    ],
+    "phase 9 proposal search and routing": [
+      "phase 9 proposal search and routing"
     ],
     "phase 9 reducer config message": [
       "phase 9 reducer config message"
@@ -83061,6 +83550,21 @@
     "phase main loop cli branches buildlineagecommand": [
       "phase_main_loop cli branches buildLineageCommand"
     ],
+    "phase map and prearchive rewrites": [
+      "phase map and prearchive rewrites"
+    ],
+    "phase map and prearchive rewrites goal": [
+      "phase map and prearchive rewrites goal"
+    ],
+    "phase map and prearchive rewrites implementation summary": [
+      "phase map and prearchive rewrites implementation summary"
+    ],
+    "phase map and prearchive rewrites plan": [
+      "phase map and prearchive rewrites plan"
+    ],
+    "phase map and prearchive rewrites tasks": [
+      "phase map and prearchive rewrites tasks"
+    ],
     "phase map repair evidence": [
       "phase map repair evidence"
     ],
@@ -83093,6 +83597,9 @@
     ],
     "phase names tasks": [
       "phase names tasks"
+    ],
+    "phase numbering counts archived phases": [
+      "phase numbering counts archived phases"
     ],
     "phase one analysis plan": [
       "phase one analysis plan"
@@ -84900,6 +85407,9 @@
     ],
     "playbook backticked path rules": [
       "playbook backticked path rules"
+    ],
+    "playbook case names": [
+      "playbook case names"
     ],
     "playbook catalog readme alignment": [
       "playbook catalog readme alignment"
@@ -86839,14 +87349,35 @@
     "probemodelserver": [
       "probeModelServer"
     ],
+    "problem and purpose heading without subheading": [
+      "problem and purpose heading without subheading"
+    ],
     "problem first overview": [
       "problem-first overview"
     ],
     "problem first readme": [
       "problem-first readme"
     ],
+    "problem line after compaction": [
+      "problem line after compaction"
+    ],
+    "problem sentence carry": [
+      "problem sentence carry"
+    ],
+    "problem sentence carry implementation summary": [
+      "problem sentence carry implementation summary"
+    ],
+    "problem sentence carry plan": [
+      "problem sentence carry plan"
+    ],
+    "problem sentence carry tasks": [
+      "problem sentence carry tasks"
+    ],
     "problem statement": [
       "problem statement"
+    ],
+    "problem statement beside the purpose": [
+      "problem statement beside the purpose"
     ],
     "procedural benchmark gate task": [
       "procedural benchmark gate task"
@@ -87557,6 +88088,21 @@
     "propagate enhances": [
       "propagate enhances"
     ],
+    "proposal search and routing": [
+      "proposal search and routing"
+    ],
+    "proposal search and routing goal": [
+      "proposal search and routing goal"
+    ],
+    "proposal search and routing implementation summary": [
+      "proposal search and routing implementation summary"
+    ],
+    "proposal search and routing plan": [
+      "proposal search and routing plan"
+    ],
+    "proposal search and routing tasks": [
+      "proposal search and routing tasks"
+    ],
     "propose sub tracks": [
       "propose sub-tracks"
     ],
@@ -87926,6 +88472,24 @@
     ],
     "purpose line in the handoff note goal": [
       "purpose line in the handoff note goal"
+    ],
+    "purpose line label shapes": [
+      "purpose line label shapes"
+    ],
+    "purpose line missing after compaction": [
+      "purpose line missing after compaction"
+    ],
+    "purpose reader coverage": [
+      "purpose reader coverage"
+    ],
+    "purpose reader coverage implementation summary": [
+      "purpose reader coverage implementation summary"
+    ],
+    "purpose reader coverage plan": [
+      "purpose reader coverage plan"
+    ],
+    "purpose reader coverage tasks": [
+      "purpose reader coverage tasks"
     ],
     "purpose retention across handovers": [
       "purpose retention across handovers"
@@ -89742,6 +90306,9 @@
     "readonlyrouteallowed sk git": [
       "readOnlyRouteAllowed sk-git"
     ],
+    "readrelaunchfile corrupt relaunch file": [
+      "readRelaunchFile corrupt relaunch file"
+    ],
     "ready once latch cache into reindex": [
       "ready-once latch cache-into-reindex"
     ],
@@ -89759,6 +90326,21 @@
     ],
     "real packet goal evidence": [
       "real packet goal evidence"
+    ],
+    "real pipeline tests": [
+      "real pipeline tests"
+    ],
+    "real pipeline tests goal": [
+      "real pipeline tests goal"
+    ],
+    "real pipeline tests implementation summary": [
+      "real pipeline tests implementation summary"
+    ],
+    "real pipeline tests plan": [
+      "real pipeline tests plan"
+    ],
+    "real pipeline tests tasks": [
+      "real pipeline tests tasks"
     ],
     "real tree census": [
       "real tree census"
@@ -89897,6 +90479,15 @@
     ],
     "rebase abort rewound branch": [
       "rebase abort rewound branch"
+    ],
+    "rebase commit id": [
+      "rebase commit id"
+    ],
+    "rebase commit id probe": [
+      "rebase commit id probe"
+    ],
+    "rebase re mints commit id": [
+      "rebase re-mints commit id"
     ],
     "rebase spike": [
       "rebase spike"
@@ -90230,6 +90821,24 @@
     ],
     "record this as a decision routing": [
       "record this as a decision routing"
+    ],
+    "record without handoff": [
+      "record without handoff"
+    ],
+    "record without handoff acceptance criteria": [
+      "record without handoff acceptance criteria"
+    ],
+    "record without handoff goal": [
+      "record without handoff goal"
+    ],
+    "record without handoff implementation summary": [
+      "record without handoff implementation summary"
+    ],
+    "record without handoff plan": [
+      "record without handoff plan"
+    ],
+    "record without handoff tasks": [
+      "record without handoff tasks"
     ],
     "recorded adjacent defects": [
       "recorded adjacent defects"
@@ -90940,6 +91549,9 @@
     "refusal outcomes inverted grading": [
       "refusal outcomes inverted grading"
     ],
+    "refusal wording mention reader": [
+      "refusal wording mention reader"
+    ],
     "refuse a refuted claim": [
       "refuse a refuted claim"
     ],
@@ -91418,6 +92030,9 @@
     "relaunch cancel and test isolation tasks": [
       "relaunch cancel and test isolation tasks"
     ],
+    "relaunch comments and readme corrected after review": [
+      "relaunch comments and README corrected after review"
+    ],
     "relaunch coverage gaps": [
       "relaunch coverage gaps"
     ],
@@ -91435,6 +92050,24 @@
     ],
     "relaunch coverage gaps tasks": [
       "relaunch coverage gaps tasks"
+    ],
+    "relaunch doc coverage": [
+      "relaunch doc coverage"
+    ],
+    "relaunch doc coverage acceptance criteria": [
+      "relaunch doc coverage acceptance criteria"
+    ],
+    "relaunch doc coverage goal": [
+      "relaunch doc coverage goal"
+    ],
+    "relaunch doc coverage implementation summary": [
+      "relaunch doc coverage implementation summary"
+    ],
+    "relaunch doc coverage plan": [
+      "relaunch doc coverage plan"
+    ],
+    "relaunch doc coverage tasks": [
+      "relaunch doc coverage tasks"
     ],
     "relaunch effort flag": [
       "relaunch effort flag"
@@ -91496,8 +92129,20 @@
     "relaunch model and effort tasks": [
       "relaunch model and effort tasks"
     ],
+    "relaunch note scaffold sentence": [
+      "relaunch note scaffold sentence"
+    ],
+    "relaunch playbook catalog catch up": [
+      "relaunch playbook catalog catch-up"
+    ],
+    "relaunch playbook wrapper change notice scenario": [
+      "relaunch playbook wrapper change notice scenario"
+    ],
     "relaunch prepare claim": [
       "relaunch prepare claim"
+    ],
+    "relaunch record no handoff field": [
+      "relaunch record no handoff field"
     ],
     "relaunch record state": [
       "relaunch record state"
@@ -92336,6 +92981,21 @@
     "release notes": [
       "release notes"
     ],
+    "release notes and doc sync": [
+      "release notes and doc sync"
+    ],
+    "release notes and doc sync acceptance criteria": [
+      "release notes and doc sync acceptance criteria"
+    ],
+    "release notes and doc sync goal": [
+      "release notes and doc sync goal"
+    ],
+    "release notes and doc sync plan": [
+      "release notes and doc sync plan"
+    ],
+    "release notes and doc sync tasks": [
+      "release notes and doc sync tasks"
+    ],
     "release notes corrections": [
       "release notes corrections"
     ],
@@ -92496,6 +93156,24 @@
     "relocate mjs move renumber re parent": [
       "relocate.mjs move renumber re-parent"
     ],
+    "relocate rerun finishes late steps": [
+      "relocate rerun finishes late steps"
+    ],
+    "relocate resume and preflight": [
+      "relocate resume and preflight"
+    ],
+    "relocate resume and preflight goal": [
+      "relocate resume and preflight goal"
+    ],
+    "relocate resume and preflight implementation summary": [
+      "relocate resume and preflight implementation summary"
+    ],
+    "relocate resume and preflight plan": [
+      "relocate resume and preflight plan"
+    ],
+    "relocate resume and preflight tasks": [
+      "relocate resume and preflight tasks"
+    ],
     "relocate specs folder": [
       "relocate specs folder"
     ],
@@ -92516,6 +93194,9 @@
     ],
     "relocate specs folder relocation implications research changelog": [
       "relocate specs folder relocation implications research changelog"
+    ],
+    "relocate suite with the true writers": [
+      "relocate suite with the true writers"
     ],
     "relocation engine": [
       "relocation engine"
@@ -95288,6 +95969,21 @@
     "restart loop fix shipped": [
       "restart loop fix shipped"
     ],
+    "restore and phase numbering": [
+      "restore and phase numbering"
+    ],
+    "restore and phase numbering goal": [
+      "restore and phase numbering goal"
+    ],
+    "restore and phase numbering implementation summary": [
+      "restore and phase numbering implementation summary"
+    ],
+    "restore and phase numbering plan": [
+      "restore and phase numbering plan"
+    ],
+    "restore and phase numbering tasks": [
+      "restore and phase numbering tasks"
+    ],
     "restore by count verification": [
       "restore by count verification"
     ],
@@ -97073,6 +97769,24 @@
     ],
     "review verdict conditional six findings": [
       "review verdict conditional six findings"
+    ],
+    "review wording fixes": [
+      "review wording fixes"
+    ],
+    "review wording fixes acceptance criteria": [
+      "review wording fixes acceptance criteria"
+    ],
+    "review wording fixes goal": [
+      "review wording fixes goal"
+    ],
+    "review wording fixes implementation summary": [
+      "review wording fixes implementation summary"
+    ],
+    "review wording fixes plan": [
+      "review wording fixes plan"
+    ],
+    "review wording fixes tasks": [
+      "review wording fixes tasks"
     ],
     "review working memory": [
       "review working memory"
@@ -99028,6 +99742,9 @@
     ],
     "running workers line": [
       "running workers line"
+    ],
+    "running wrapper stale code notice": [
+      "running wrapper stale code notice"
     ],
     "runs failed emails": [
       "runs failed emails"
@@ -102472,6 +103189,9 @@
     ],
     "session relaunch enable flag plan": [
       "session relaunch enable flag plan"
+    ],
+    "session relaunch feature catalog goal ended wrapper notice": [
+      "session relaunch feature catalog goal_ended wrapper notice"
     ],
     "session relaunch fixtures": [
       "session relaunch fixtures"
@@ -110109,6 +110829,9 @@
     "sk git 1 11 11 0": [
       "sk-git 1.11.11.0"
     ],
+    "sk git 1 11 12 0": [
+      "sk-git 1.11.12.0"
+    ],
     "sk git 1 11 2 0": [
       "sk-git 1.11.2.0"
     ],
@@ -110253,6 +110976,9 @@
     "sk git commit contract update": [
       "sk-git commit contract update"
     ],
+    "sk git commit id rebase probe": [
+      "sk-git commit id rebase probe"
+    ],
     "sk git customization": [
       "sk-git customization"
     ],
@@ -110300,6 +111026,24 @@
     ],
     "sk git playbook changelog tasks": [
       "sk git playbook changelog tasks"
+    ],
+    "sk git rebase sentence": [
+      "sk-git rebase sentence"
+    ],
+    "sk git rebase sentence acceptance criteria": [
+      "sk-git rebase sentence acceptance criteria"
+    ],
+    "sk git rebase sentence goal": [
+      "sk-git rebase sentence goal"
+    ],
+    "sk git rebase sentence implementation summary": [
+      "sk-git rebase sentence implementation summary"
+    ],
+    "sk git rebase sentence plan": [
+      "sk-git rebase sentence plan"
+    ],
+    "sk git rebase sentence tasks": [
+      "sk-git rebase sentence tasks"
     ],
     "sk git reference frontmatter": [
       "sk-git reference frontmatter"
@@ -110393,6 +111137,9 @@
     ],
     "sk git v1 11 11 0": [
       "sk-git v1.11.11.0"
+    ],
+    "sk git v1 11 12 0": [
+      "sk-git v1.11.12.0"
     ],
     "sk git v1 11 2 0": [
       "sk-git v1.11.2.0"
@@ -111999,6 +112746,21 @@
     "skill benchmark upcaster tasks": [
       "skill benchmark upcaster tasks"
     ],
+    "skill binding through routers": [
+      "skill binding through routers"
+    ],
+    "skill binding through routers acceptance criteria": [
+      "skill binding through routers acceptance criteria"
+    ],
+    "skill binding through routers implementation summary": [
+      "skill binding through routers implementation summary"
+    ],
+    "skill binding through routers plan": [
+      "skill binding through routers plan"
+    ],
+    "skill binding through routers tasks": [
+      "skill binding through routers tasks"
+    ],
     "skill brief is back": [
       "skill brief is back"
     ],
@@ -112942,6 +113704,9 @@
     ],
     "skilled links task list": [
       "skilled links task list"
+    ],
+    "skilled loop changed on disk": [
+      "skilled-loop changed on disk"
     ],
     "skilled loop claude": [
       "skilled-loop claude"
@@ -116754,6 +117519,9 @@
     "stale all minilm voyage wording fix": [
       "stale all-MiniLM voyage wording fix"
     ],
+    "stale ancestor packet goal on hop": [
+      "stale ancestor packet goal on hop"
+    ],
     "stale audit p0 closure": [
       "stale audit P0 closure"
     ],
@@ -117639,6 +118407,9 @@
       "STOP_ALLOWED STOP_BLOCKED",
       "stop allowed stop blocked"
     ],
+    "stop arm deferred stamp": [
+      "stop arm deferred stamp"
+    ],
     "stop browser session": [
       "stop browser session"
     ],
@@ -117753,6 +118524,9 @@
     "stop vote signals": [
       "stop vote signals"
     ],
+    "stop without transcript path prints a notice": [
+      "stop without transcript path prints a notice"
+    ],
     "stopping clocks implementation": [
       "stopping clocks implementation"
     ],
@@ -117776,6 +118550,9 @@
     ],
     "store coverage graph records": [
       "store coverage graph records"
+    ],
+    "store unreadable inherited database name": [
+      "store_unreadable inherited database name"
     ],
     "strategic milestones": [
       "strategic milestones"
@@ -124647,6 +125424,21 @@
     "trigger write merge": [
       "trigger write merge"
     ],
+    "trim duplicated and dead agent text": [
+      "trim duplicated and dead agent text"
+    ],
+    "trim duplicated and dead agent text acceptance criteria": [
+      "trim duplicated and dead agent text acceptance criteria"
+    ],
+    "trim duplicated and dead agent text implementation summary": [
+      "trim duplicated and dead agent text implementation summary"
+    ],
+    "trim duplicated and dead agent text plan": [
+      "trim duplicated and dead agent text plan"
+    ],
+    "trim duplicated and dead agent text tasks": [
+      "trim duplicated and dead agent text tasks"
+    ],
     "trim targeted verdict": [
       "trim-targeted verdict"
     ],
@@ -125750,6 +126542,9 @@
     ],
     "untuned outcome evidence goal": [
       "untuned outcome evidence goal"
+    ],
+    "untuned outcome evidence implementation summary": [
+      "untuned outcome evidence implementation summary"
     ],
     "untuned outcome evidence plan": [
       "untuned outcome evidence plan"
@@ -129384,6 +130179,9 @@
     "workflow measure soundness goal": [
       "workflow measure soundness goal"
     ],
+    "workflow measure soundness implementation summary": [
+      "workflow measure soundness implementation summary"
+    ],
     "workflow measure soundness plan": [
       "workflow measure soundness plan"
     ],
@@ -129832,8 +130630,65 @@
     "wrapper breakout probe": [
       "wrapper breakout probe"
     ],
+    "wrapper change notice": [
+      "wrapper change notice"
+    ],
+    "wrapper change notice acceptance criteria": [
+      "wrapper change notice acceptance criteria"
+    ],
+    "wrapper change notice goal": [
+      "wrapper change notice goal"
+    ],
+    "wrapper change notice implementation summary": [
+      "wrapper change notice implementation summary"
+    ],
+    "wrapper change notice plan": [
+      "wrapper change notice plan"
+    ],
+    "wrapper change notice tasks": [
+      "wrapper change notice tasks"
+    ],
+    "wrapper changed relaunch log line": [
+      "wrapper-changed relaunch log line"
+    ],
+    "wrapper notice log": [
+      "wrapper notice log"
+    ],
+    "wrapper notice log acceptance criteria": [
+      "wrapper notice log acceptance criteria"
+    ],
+    "wrapper notice log goal": [
+      "wrapper notice log goal"
+    ],
+    "wrapper notice log implementation summary": [
+      "wrapper notice log implementation summary"
+    ],
+    "wrapper notice log plan": [
+      "wrapper notice log plan"
+    ],
+    "wrapper notice log tasks": [
+      "wrapper notice log tasks"
+    ],
     "wrapper session reads main checkout": [
       "wrapper session reads main checkout"
+    ],
+    "wrapper start checksum": [
+      "wrapper start checksum"
+    ],
+    "wrapper start checksum acceptance criteria": [
+      "wrapper start checksum acceptance criteria"
+    ],
+    "wrapper start checksum goal": [
+      "wrapper start checksum goal"
+    ],
+    "wrapper start checksum implementation summary": [
+      "wrapper start checksum implementation summary"
+    ],
+    "wrapper start checksum plan": [
+      "wrapper start checksum plan"
+    ],
+    "wrapper start checksum tasks": [
+      "wrapper start checksum tasks"
     ],
     "wrapper writes iteration artifacts": [
       "wrapper writes iteration artifacts"

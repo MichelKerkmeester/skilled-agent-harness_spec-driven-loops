@@ -8,7 +8,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/002-resume-purpose-row"
-    last_updated_at: "2026-11-14T05:19:53Z"
+    last_updated_at: "2026-11-14T05:35:16Z"
     last_updated_by: "generate-context"
     recent_action: "Built the Purpose row, pushed it and recorded two agent-followed runs"
     next_safe_action: "Run /speckit:resume on this phase from an operator prompt to close T019 and T020"
@@ -25,8 +25,8 @@ _memory:
     session_ref:
       runtime: "claude"
       sessionId: "af01c830-4ea5-4abe-b6ed-dd0c4d9b1b45"
-      workspace: "/Users/michelkerkmeester/worktrees/public/371-purpose-retention-research"
-      savedAt: "2026-11-14T05:19:53Z"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-14T05:35:16Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 90
@@ -79,7 +79,7 @@ Both resume workflow assets now list `spec` among the supporting docs, put `Purp
 ## How It Was Delivered
 <!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-On 2026-11-14 one DeepSeek Harness worker (`dsh --profile headless`, LLM Gateway `deepseek-v4.1-flash-1017` at max) applied the plan's literal edits in worktree 371. It exited 0 with a `completed` final event and ran no builds or tests. Its handback was a claim, so the orchestrating session checked the files itself. It found the replacement text present in 9 of 9 edits. It built the runtime and the cli (both exit 0) and reran the gates. Nothing is committed.
+On 2026-11-14 one DeepSeek Harness worker (`dsh --profile headless`, LLM Gateway `deepseek-v4.1-flash-1017` at max) applied the plan's literal edits in worktree 371. It exited 0 with a `completed` final event and ran no builds or tests. Its handback was a claim, so the orchestrating session checked the files itself. It found the replacement text present in 9 of 9 edits. It built the runtime and the cli (both exit 0) and reran the gates. Nothing is committed. Added later: this phase landed on main as commit `3d237cd97a`.
 
 On 2026-11-14 an agent then followed `speckit-resume-auto.yaml` and the presentation file as a session would, twice and read-only. The check found one ambiguity and the orchestrating session fixed it (see Deviations below).
 <!-- /ANCHOR:how-delivered -->

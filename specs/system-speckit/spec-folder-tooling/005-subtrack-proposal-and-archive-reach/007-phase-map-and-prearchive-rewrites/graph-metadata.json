@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/007-phase-map-and-prearchive-rewrites",
+  "spec_folder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/007-phase-map-and-prearchive-rewrites",
+  "parent_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "phase map and prearchive rewrites",
+      "phase 7 phase map and prearchive rewrites",
+      "bare sibling folder name in a phase map",
+      "phase map and prearchive rewrites plan",
+      "phase map and prearchive rewrites tasks",
+      "phase map and prearchive rewrites goal",
+      "phase map and prearchive rewrites implementation summary"
+    ],
+    "key_topics": [
+      "phase",
+      "map",
+      "prearchive",
+      "rewrites",
+      "bare",
+      "sibling",
+      "folder",
+      "name",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts",
+      "scratch/build-evidence.md",
+      "runtime/cli/spec/relocate.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "relocate.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "relocate.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/relocate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "archive-track.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/archive-track.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence.md",
+        "kind": "doc",
+        "path": "scratch/build-evidence.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`relocate.mjs` finds an old id with the pattern below, which matches a multi-segment id or a root packet after `specs/`",
+    "created_at": "2026-11-14T06:11:00Z",
+    "last_save_at": "2026-11-14T09:23:37.133Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1fa7a1ff0072dcf11661f4da2b31bfd0052afd95f46338364512e432e20a3fdd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a7463c8fac87987e99400a17a540e4136f0a95338a50c6166641b2c93fb24681",
+      "plan.md": "f2ec79263bfc5c0037cbd9e6135c064e582df91eed7b51589287631daa8a07d3",
+      "tasks.md": "96b24927ec08413ebac941935d157a9406ab2edafe33843833c94672e656be29",
+      "implementation-summary.md": "248d0c6aa74ec2a66451ac15448e171ea2e0ba4f40d9c28c2c97a549171566a9"
+    },
+    "last_active_at": null
+  }
+}

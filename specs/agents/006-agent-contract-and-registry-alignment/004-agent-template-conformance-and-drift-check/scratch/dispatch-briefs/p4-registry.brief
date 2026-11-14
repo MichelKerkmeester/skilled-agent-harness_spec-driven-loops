@@ -1,0 +1,48 @@
+Depth: 1. You are dispatched by the orchestrator. This is a data-file task: add one field to four
+records of one JSON file. The roster check now compares each agent file with the agent template's
+required sections, and four agents differ from that list on purpose. Each difference is recorded
+with its reason so the check passes and the reason stays visible.
+
+File (exactly one, it has no twin; ignore the twin instructions in RUN CONTEXT):
+1. .skilled/agents/agent-registry.json
+
+In the `agents` array, add a `templateExceptions` field as the LAST field of these four records
+(directly after the record's `summary` field). Keep the file's two-space indentation, key order
+and trailing newline. Change no other record and no other field.
+
+Record `code`:
+      "templateExceptions": [
+        {
+          "section": "OUTPUT FORMAT",
+          "reason": "It returns a fixed contract under RETURN CONTRACT, and the orchestrator cites that section by that name."
+        }
+      ]
+Record `deep-review`:
+      "templateExceptions": [
+        {
+          "section": "OUTPUT FORMAT",
+          "reason": "Its output is the iteration file and the state rows that its REVIEW CONTRACT section defines, so a second format section would restate them."
+        }
+      ]
+Record `orchestrate`:
+      "templateExceptions": [
+        {
+          "section": "OUTPUT FORMAT",
+          "reason": "It delivers a synthesis shaped by the request under SYNTHESIS & DELIVERY and has no fixed output shape of its own."
+        }
+      ]
+Record `ai-council`:
+      "templateExceptions": [
+        {
+          "section": "HOOK-INJECTED CONTEXT ROUTING",
+          "reason": "Twelve files in the deep-ai-council skill cite this agent's sections 3 to 17 by number, so the section sits after them and no cited number moves."
+        }
+      ]
+
+Exception to BANNED OPERATIONS for this brief: you may run the two verification commands below.
+
+Verification (run both, paste the output in the handback):
+  node -e "const r=require('./.skilled/agents/agent-registry.json');console.log(r.agents.filter(a=>a.templateExceptions).map(a=>a.name+':'+a.templateExceptions[0].section).join(' | '))"
+      # expect: ai-council:HOOK-INJECTED CONTEXT ROUTING | code:OUTPUT FORMAT | deep-review:OUTPUT FORMAT | orchestrate:OUTPUT FORMAT  (order follows the file)
+  node .skilled/bin/sync-agent-roster.cjs --check; echo "exit=$?"
+      # expect: agent-roster: OK and exit=0. If it prints a problem, do not edit anything else: list it under NOTES.

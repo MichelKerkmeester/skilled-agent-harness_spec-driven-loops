@@ -1,0 +1,63 @@
+# Baselines before any 009 edit, 2026-11-14
+
+Suites (rg-include-archive, rg-wrapper-recipes, suggest-subtracks): Test Files 3 passed (3), Tests 39 passed (39), exit 0.
+
+## Scorer baseline (capture-scorer-eval-baseline.mjs, read-only, at 31493fb263)
+
+```json
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-10-11",
+  "capturedAtSha": "31493fb263",
+  "corpusSha256": "sha256:4146b002802d010e4d9d3ddf4c07b0738e59a55fab590b2c51e1ed3d4da1e115",
+  "holdoutSha256": "sha256:e8c637d3f59fbba18521c78bc238c5c86dc60d9f8b40c2c921c42ac49766a4cf",
+  "ambiguitySha256": "sha256:62423738cab74cf499d98f2e835e8e78c25e2b57e3c1b6994d8a2bd0bfb88491",
+  "env": {
+    "SKILL_ADVISOR_DISABLE_BUILTIN_SEMANTIC": "1",
+    "SYSTEM_SKILL_ADVISOR_DB_DIR": "<empty-dir>",
+    "projectionSource": "filesystem"
+  },
+  "metrics": {
+    "full_corpus_top1": {
+      "correct": 161,
+      "total": 195,
+      "accuracy": 0.8256
+    },
+    "unknown_count": {
+      "value": 13
+    },
+    "gold_none_false_fire": {
+      "value": 5
+    },
+    "holdout_top1": {
+      "correct": 50,
+      "total": 66,
+      "accuracy": 0.7576
+    },
+    "ambiguity_top1": {
+      "correct": 21,
+      "total": 24,
+      "accuracy": 0.875,
+      "tau": 0.03
+    },
+    "buckets": {
+      "review": {
+        "correct": 25,
+        "total": 31,
+        "accuracy": 0.8065
+      },
+      "memory_save": {
+        "correct": 28,
+        "total": 32,
+        "accuracy": 0.875
+      },
+      "delegation": {
+        "correct": 20,
+        "total": 20,
+        "accuracy": 1
+      }
+    }
+  }
+}
+
+```

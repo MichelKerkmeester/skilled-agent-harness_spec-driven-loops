@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/008-hop-purpose-rule-parity",
+  "description": "Phase 8: hop-purpose-rule-parity",
+  "keywords": [
+    "phase",
+    "hop-purpose-rule-parity"
+  ],
+  "lastUpdated": "2026-11-14T06:14:05.769Z",
+  "specId": "008",
+  "folderSlug": "hop-purpose-rule-parity",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "006-purpose-retention-across-handovers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

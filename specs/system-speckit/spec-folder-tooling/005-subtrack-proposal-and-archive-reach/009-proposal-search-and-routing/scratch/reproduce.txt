@@ -1,0 +1,14 @@
+# B7 and B8 scores before any change, pinned regime, 2026-11-14
+
+## B7 and B8
+
+suggest sub-tracks for the sk-code track => sk-code:0.6586 system-spec-kit:0.2279
+suggest sub-tracks for the sk-git track => sk-git:0.5717 system-spec-kit:0.2220
+suggest sub-tracks for the sk-doc track => sk-doc:0.6566 system-spec-kit:0.3102
+look up a phrase in the archived spec packets => system-spec-kit:0.4303 sk-code:0.2597 sk-doc:0.2456
+refactor the sk-code skill router so it loads faster => sk-code:0.7608 cli-external-orchestration:0.2794 sk-doc:0.2246
+track down why a vitest suite is flaky => sk-code:0.5274
+keep track of the open review comments => sk-code:0.5710
+Review the routing packet and create a follow-up task list only if the evidence is weak. => sk-code:0.6363 system-spec-kit:0.6262 mcp-tooling:0.5823
+
+Scores are the advisor score field; the reviewer quoted a different field, so the numbers differ while the order matches. The rr-iter3-135 prompt is the last line. A11 and A12 were reproduced as failing tests first, see build-evidence-code.md.

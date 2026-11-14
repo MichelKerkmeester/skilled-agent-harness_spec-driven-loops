@@ -1,0 +1,2 @@
+- .skilled/bin/sync-agent-roster.cjs
+- .skilled/bin/sync-agent-roster.vitest.ts

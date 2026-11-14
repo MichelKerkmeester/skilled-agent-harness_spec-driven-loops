@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/010-problem-sentence-carry",
+  "description": "Phase 10: problem-sentence-carry",
+  "keywords": [
+    "phase",
+    "problem-sentence-carry"
+  ],
+  "lastUpdated": "2026-11-14T06:14:07.067Z",
+  "specId": "010",
+  "folderSlug": "problem-sentence-carry",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "006-purpose-retention-across-handovers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

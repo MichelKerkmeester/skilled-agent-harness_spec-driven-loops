@@ -57,7 +57,7 @@ This is **Phase 11** of the Manually check and refine every skill and mode for r
 [YOUR_VALUE_HERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
 
 ### Purpose
-[YOUR_VALUE_HERE: One-sentence outcome statement. What does success look like?]
+Read every in-scope system-deep-loop doc file by file and refine it for readability, layout and structure with no claim changed, so the skill meets its sk-doc template and the parent rubric.
 <!-- /ANCHOR:problem -->
 
 <!-- ANCHOR:measured-behavior -->

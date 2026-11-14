@@ -1805,19 +1805,28 @@ if [[ "$PHASE_MODE" = true ]]; then
     # ── Build child folder name list ──
     PHASE_START_INDEX=1
     if [[ "$APPEND_TO_EXISTING_PARENT" = true ]]; then
-        for dir in "$FEATURE_DIR"/[0-9][0-9][0-9]-*/; do
+        # An archived phase keeps its number, so a new child must clear both the
+        # live children and the parent's archive. Only a live child can be the
+        # predecessor of the new one.
+        _highest_phase=0
+        _highest_live=0
+        for dir in "$FEATURE_DIR"/[0-9][0-9][0-9]-*/ "$FEATURE_DIR"/z_archive/[0-9][0-9][0-9]-*/; do
             if [[ -d "$dir" ]]; then
                 _dirname="${dir%/}"
                 _dirname="${_dirname##*/}"
                 _num="${_dirname%%-*}"
                 _num=$((10#${_num}))
-                if [[ $_num -gt $EXISTING_PHASE_COUNT ]]; then
-                    EXISTING_PHASE_COUNT=$_num
+                if [[ $_num -gt $_highest_phase ]]; then
+                    _highest_phase=$_num
+                fi
+                if [[ "$dir" != "$FEATURE_DIR"/z_archive/* ]] && [[ $_num -gt $_highest_live ]]; then
+                    _highest_live=$_num
                     LAST_EXISTING_PHASE="$_dirname"
                 fi
             fi
         done
-        PHASE_START_INDEX=$((EXISTING_PHASE_COUNT + 1))
+        EXISTING_PHASE_COUNT=$_highest_phase
+        PHASE_START_INDEX=$((_highest_phase + 1))
     fi
 
     TOTAL_PHASES=$((EXISTING_PHASE_COUNT + PHASE_COUNT))

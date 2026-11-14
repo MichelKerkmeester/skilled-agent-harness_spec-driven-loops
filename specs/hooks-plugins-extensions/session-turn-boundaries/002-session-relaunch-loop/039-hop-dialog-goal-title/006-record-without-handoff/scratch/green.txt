@@ -1,0 +1,14 @@
+# Command: env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='no handoff|names no note|handoff is an empty string' .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs .skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
+✔ stop-arm arms nothing for a pending record that names no note (68.307583ms)
+✔ readRelaunchFile treats a record with no handoff as absent and logs the loop id (15.6335ms)
+✔ readRelaunchFile keeps a record whose handoff is an empty string (1.376667ms)
+✔ shouldRelaunch declines a fresh armed record that names no handoff or no cwd (0.82075ms)
+✔ subagent-guard lets a question dialog through over a pending record that names no note (46.766459ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 104.238834

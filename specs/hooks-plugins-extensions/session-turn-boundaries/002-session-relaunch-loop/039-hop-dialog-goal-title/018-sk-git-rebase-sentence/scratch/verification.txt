@@ -1,0 +1,27 @@
+$ env -u AI_SESSION_CHILD -u OPENCODE_DB node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify --skill sk-git
+[verify] 78 files | ok=78
+exit=0
+
+$ env -u AI_SESSION_CHILD -u OPENCODE_DB python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/sk-git
+Skill: .skilled/skills/sk-git
+Detected kind: standalone
+- package_skill.py --check: PASS (exit 0)
+exit=0
+
+$ env -u AI_SESSION_CHILD -u OPENCODE_DB python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-git/SKILL.md
+
+✅ VALID: .skilled/skills/sk-git/SKILL.md
+Document type: skill
+Total issues: 0
+exit=0
+
+$ git diff --quiet HEAD -- .skilled/scripts/git-hooks
+exit=0
+
+$ rg -n "^version:" .skilled/skills/sk-git/SKILL.md
+6:version: 1.11.12.0
+exit=0
+
+$ ls .skilled/skills/sk-git/changelog/v1.11.12.0.md
+.skilled/skills/sk-git/changelog/v1.11.12.0.md
+exit=0

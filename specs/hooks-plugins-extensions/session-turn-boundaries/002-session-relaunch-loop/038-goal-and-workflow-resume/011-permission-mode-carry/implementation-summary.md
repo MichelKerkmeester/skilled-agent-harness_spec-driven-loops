@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/011-permission-mode-carry"
-    last_updated_at: "2026-11-13T10:55:10Z"
+    last_updated_at: "2026-11-14T07:10:00Z"
     last_updated_by: "implementation-agent"
-    recent_action: "Built and verified the permission-mode carry except the two live facts"
-    next_safe_action: "Run T001 and T002 in a live Claude session to close AC-001"
+    recent_action: "Rewrote the two limitation rows the live checks of 2026-11-13 had made stale"
+    next_safe_action: "None. AC-001 is Met and the bypass question is recorded as a limitation"
     blockers: []
     key_files: []
     session_dedup:
@@ -112,9 +112,9 @@ The full five files passed with 493 tests, 493 pass and `fail 0` on exit 0. The 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The two live facts are unrecorded.** T001 and T002 need a live Claude session, which this build did not have, so they are marked `[B]` and AC-001 stays Unmet. A Stop payload that reports `default` is outside the accepted set and keeps the launch mode with a warning; a live `bypassPermissions` replays only beside a launch unlocking flag. Run both checks in a live Claude session to close the packet.
+1. **The two live facts were recorded after the build, not before it.** T001 and T002 need a live Claude session, which the build did not have. The orchestrator ran both on Claude Code 2.1.323 on 2026-11-13, `scratch/live-checks.md` holds the four result lines and AC-001 is Met. One question stays open: the bypass run passed with no second flag, but on a machine whose settings already default to `bypassPermissions`, so it does not show whether the flag is needed elsewhere. The wrapper keeps the stricter rule and replays a live `bypassPermissions` only beside a launch unlocking flag.
 2. **The planned baseline moved.** The plan recorded 158 `session-relaunch-cli` tests; the tree held 162 when the build started because work landed after planning. The final five-file total is 493, not the planned 489.
-3. **A live `default` mode is deliberately not mapped.** Without a recorded spelling for the default mode, the wrapper treats it as unusable rather than guessing a CLI value, so an unchanged session keeps the launch mode.
+3. **A live `default` mode is carried.** The live checks showed that the Stop payload reports `default` and that the CLI accepts `--permission-mode default` (`scratch/live-checks.md`), although `claude --help` does not list it. The wrapper accepts it as a seventh value (`permission_mode_is_valid` in `.skilled/bin/skilled-loop`), and the wrapper test `a live default permission mode replaces the launch mode` shows the hop carrying `--permission-mode default`.
 <!-- /ANCHOR:limitations -->
 
 ---

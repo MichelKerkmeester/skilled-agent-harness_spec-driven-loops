@@ -1,0 +1,68 @@
+# Command: env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='marks the pending record deferred' .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
+✖ stop-arm logs missing-transcript-path and marks the pending record deferred (67.81725ms)
+✖ stop-arm marks the pending record deferred when no process below the loop can be found (74.96675ms)
+✖ stop-arm marks the pending record deferred when arming throws (37.319375ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 0
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 220.25225
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:937:1
+✖ stop-arm logs missing-transcript-path and marks the pending record deferred (67.81725ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(Number.isFinite(Date.parse(deferredAt)), deferredAt)
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:959:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1314:1
+✖ stop-arm marks the pending record deferred when no process below the loop can be found (74.96675ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(Number.isFinite(Date.parse(deferredAt)), deferredAt)
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1334:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1343:1
+✖ stop-arm marks the pending record deferred when arming throws (37.319375ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(Number.isFinite(Date.parse(deferredAt)), deferredAt)
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1374:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

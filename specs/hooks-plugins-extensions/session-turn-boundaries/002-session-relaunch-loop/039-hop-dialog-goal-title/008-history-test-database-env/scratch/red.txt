@@ -1,0 +1,32 @@
+# Command: env -u AI_SESSION_CHILD OPENCODE_DB=other-session.db node --test .opencode/plugins/tests/session-history-lookup.test.cjs
+✖ a compacted session started in a subfolder gets an offer that redeems (243.895708ms)
+✔ a second request keeps the offer and another session gets none (89.196167ms)
+✔ a folder outside any checkout gets no offer and saves no locator (120.2735ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 488.451333
+
+✖ failing tests:
+
+test at .opencode/plugins/tests/session-history-lookup.test.cjs:120:1
+✖ a compacted session started in a subfolder gets an offer that redeems (243.895708ms)
+  Error: Command failed: bash -c (cd "$(git rev-parse --show-toplevel)" && SPECKIT_RUNTIME=opencode node .skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js --session 'ses_hl_97016_a' --handle 'hl1_c6a61952e306ad47456e9c3e106bf05f' browse '{"direction":"backward"}')
+      at genericNodeError (node:internal/errors:999:15)
+      at wrappedFn (node:internal/errors:544:14)
+      at checkExecSyncError (node:child_process:990:11)
+      at execFileSync (node:child_process:1026:15)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.opencode/plugins/tests/session-history-lookup.test.cjs:133:17)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    status: 2,
+    signal: null,
+    output: [ null, '{"ok":false,"code":"store_unreadable"}\n', '' ],
+    pid: 97048,
+    stdout: '{"ok":false,"code":"store_unreadable"}\n',
+    stderr: ''
+  }

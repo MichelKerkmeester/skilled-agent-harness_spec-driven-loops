@@ -142,17 +142,17 @@
     ],
     "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-11-04T07:15:58Z",
-    "last_save_at": "2026-11-10T05:26:16.982Z",
+    "last_save_at": "2026-11-14T08:06:58.875Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:f7834f7be746744679039ce10c438158c06efdc23627081f23201d302ca92493",
+    "source_fingerprint": "sha256:96fb7a1e61bff8f9052d343363323b78f9b5473d7028c19f47a9b1f62bc96748",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "943eaeb86efba69393d551ca642b9743734a1be2631777e3a98525e65a5a6dc9"
+      "spec.md": "0e88bb69c6efa980c1c88252666d37b46d507beb43769367589914a37c69f0d7"
     },
     "last_active_at": null
   }

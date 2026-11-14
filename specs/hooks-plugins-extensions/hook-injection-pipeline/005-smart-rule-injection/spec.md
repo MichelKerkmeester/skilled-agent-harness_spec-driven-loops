@@ -35,6 +35,9 @@ _memory:
 
 # Feature Specification: Smart rule injection via hooks
 
+### Purpose
+Decide from repository evidence which repo rules, if any, a prompt-time hook should carry instead of the Gate 5 load, and design the selectivity that keeps injection off most turns.
+
 ## 1. PROBLEM
 
 Repo rules load at Gate 5, which fires on the first write of a session. A read-only turn

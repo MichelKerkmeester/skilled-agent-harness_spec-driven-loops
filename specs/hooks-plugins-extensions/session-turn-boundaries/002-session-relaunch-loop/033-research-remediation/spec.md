@@ -9,17 +9,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation"
-    last_updated_at: "2026-10-25T13:42:16Z"
+    last_updated_at: "2026-11-14T07:00:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Scaffolded the phase parent and nine Draft children with briefs"
-    next_safe_action: "Fill each child's spec docs from its brief in scratch/briefs, then build wave 1"
+    recent_action: "Set the status and the nine phase rows to Complete after a recursive strict validation passed ten times"
+    next_safe_action: "None for the nine children. The goal's Pi criterion still lacks a saved relaunch.log hop line"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-033-research-remediation"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-10-25 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -110,15 +110,15 @@ Each child phase fixes one item with a failing-first test, and the children that
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-model-effort-atomic-replay/ | R1: a relaunch takes its effort from the same entry as its model, so a session switched to Opus medium relaunches as Opus medium | Draft |
-| 2 | 002-consume-locked-withdraw/ | R2: consume reads and removes the record under one lock and reports `withdrawn: true`, which the wrapper treats as a decline | Draft |
-| 3 | 003-manual-claim-live-settings/ | R3: the printed manual claim command uses the record's live model and effort | Draft |
-| 4 | 004-manual-claim-goal-binding/ | R4: a manual first launch with a claim seed reads and exports the note's goal packet | Draft |
-| 5 | 005-persisted-hops-validation/ | R5: `shouldRelaunch` rejects persisted hops that are not a non-negative integer | Draft |
-| 6 | 006-relaunch-coverage-gaps/ | R6: tests for `--server=URL`, a missing binary, concurrent claims and a reused note with the goal switch off | Draft |
-| 7 | 007-compaction-pointer-staleness/ | B2: the after-compaction pointer names the note's `created_at` and asks for git evidence | Draft |
-| 8 | 008-claim-error-per-state/ | B3: `claimHandoff` errors say what done, claimed and missing status mean | Draft |
-| 9 | 009-pi-arm-on-agent-settled/ | B4: the Pi extension arms on `agent_settled` | Draft |
+| 1 | 001-model-effort-atomic-replay/ | R1: a relaunch takes its effort from the same entry as its model, so a session switched to Opus medium relaunches as Opus medium | Complete |
+| 2 | 002-consume-locked-withdraw/ | R2: consume reads and removes the record under one lock and reports `withdrawn: true`, which the wrapper treats as a decline | Complete |
+| 3 | 003-manual-claim-live-settings/ | R3: the printed manual claim command uses the record's live model and effort | Complete |
+| 4 | 004-manual-claim-goal-binding/ | R4: a manual first launch with a claim seed reads and exports the note's goal packet | Complete |
+| 5 | 005-persisted-hops-validation/ | R5: `shouldRelaunch` rejects persisted hops that are not a non-negative integer | Complete |
+| 6 | 006-relaunch-coverage-gaps/ | R6: tests for `--server=URL`, a missing binary, concurrent claims and a reused note with the goal switch off | Complete |
+| 7 | 007-compaction-pointer-staleness/ | B2: the after-compaction pointer names the note's `created_at` and asks for git evidence | Complete |
+| 8 | 008-claim-error-per-state/ | B3: `claimHandoff` errors say what done, claimed and missing status mean | Complete |
+| 9 | 009-pi-arm-on-agent-settled/ | B4: the Pi extension arms on `agent_settled` | Complete |
 
 ### Dependencies and Parallel Waves
 

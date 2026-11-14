@@ -201,6 +201,16 @@ describe('precompact hook', () => {
         `Continue in ${folder}`,
       ])).toBe(folder);
     });
+
+    it('detects a spec folder under a top-level specs directory and names it in the brief', async () => {
+      const folder = 'specs/system-speckit/x/y';
+      const lines = [`Read /repo/${folder}/spec.md during compaction`];
+
+      expect(detectSpecFolder(lines)).toBe(folder);
+      expect(detectSpecFolder(['Checking unrelated output that names no packet'])).toBeNull();
+      const result = await buildMergedCompactResult(lines);
+      expect(result.text).toContain(`Active spec folder: ${folder}`);
+    });
   });
 
   describe('recovered context brief', () => {

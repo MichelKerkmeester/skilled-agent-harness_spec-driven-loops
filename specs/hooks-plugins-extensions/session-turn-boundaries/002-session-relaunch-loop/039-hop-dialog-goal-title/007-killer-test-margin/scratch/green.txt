@@ -1,0 +1,22 @@
+# timeoutMs: 1000 (after the change). Same command, same machine, two rounds.
+round 1: parallel runs: 160, failed runs: 0
+round 2: parallel runs: 160, failed runs: 0
+# One run of round 2:
+✔ killer keeps the record armed when the target exits during its grace period (2239.291125ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2403.47575
+# The whole file, run alone:
+ℹ tests 64
+ℹ suites 0
+ℹ pass 64
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 40372.851167

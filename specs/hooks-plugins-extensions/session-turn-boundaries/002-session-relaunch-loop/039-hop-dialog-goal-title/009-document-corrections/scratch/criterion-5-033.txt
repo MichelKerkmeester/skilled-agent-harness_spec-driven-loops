@@ -1,0 +1,20 @@
+# 2026-11-14T05:42Z, worktree 373 at eba587cae7 plus the uncommitted document fixes, no other process running
+$ node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/session-relaunch.test.cjs
+exit 0
+ℹ tests 1026
+ℹ suites 0
+ℹ pass 1026
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 42326.703166
+
+$ npx vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts
+exit 0
+
+ Test Files  1 passed (1)
+      Tests  62 passed (62)
+   Start at  06:42:34
+   Duration  444ms (tests 94%, import 4%, transform 2%)
+

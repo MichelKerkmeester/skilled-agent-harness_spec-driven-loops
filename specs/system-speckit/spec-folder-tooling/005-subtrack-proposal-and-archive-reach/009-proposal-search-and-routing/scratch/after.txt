@@ -1,0 +1,13 @@
+# After the 009 changes, 2026-11-14
+
+## A11
+COUNT printed 2 2 (2 0 before). With an archive-only sentence: without the flag 0 paths, with --include-archive 1 path and archivedPaths 1.
+
+## A12
+suggest-subtracks cases pass: the printed map passes relocate --map dry run with exit 1; a 003_under packet is named and no map printed.
+
+## B7
+rr-iter3-135 system-spec-kit score with the new signal 0.613602, with the signal removed 0.613602 (equal). 'look up a phrase in the archived spec packets' ranks system-spec-kit first (0.430304). Scorer full corpus 161 -> 160; the only moved row is rr-iter3-135 (gold system-spec-kit, now sk-code), the review prompt whose earlier win was the accidental findings match.
+
+## B8
+Blocked. The three track prompts still rank the named skill first. Best wording without any skill or track name ('suggest sub-tracks') put system-spec-kit first for the sk-git and sk-doc prompts but left the sk-code prompt 0.017779 short (sk-code 0.665710, system-spec-kit 0.647931), so it was reverted. Controls kept their top skill throughout.

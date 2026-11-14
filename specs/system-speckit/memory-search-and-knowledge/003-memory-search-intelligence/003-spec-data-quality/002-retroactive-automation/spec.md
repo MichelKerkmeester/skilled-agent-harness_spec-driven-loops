@@ -40,6 +40,9 @@ Groups retroactive and scheduled data-quality automation phases, including sweep
 | **Predecessor** | ../001-on-write-quality/spec.md |
 | **Successor** | ../003-retrieval-gated-tuning/spec.md |
 
+### Purpose
+Automate data-quality repair and enrichment for existing packet records after write time through scheduled sweeps, doctor routing, and retrieval feedback.
+
 ## PHASE DOCUMENTATION MAP
 
 | Child | Description |

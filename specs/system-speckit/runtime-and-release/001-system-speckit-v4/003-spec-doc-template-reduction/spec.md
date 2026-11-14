@@ -66,10 +66,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-This phased decomposition tracks Reduce and optimize spec-kit doc templates; merge tasks and checklist; less bloat, better historic context and small-model legibility across independently executable child phase folders.
+The spec-kit doc templates rendered more text than an author needed. Every scaffolded doc carried instruction comments, continuity was written in more than one doc and verification lived in a separate checklist beside `tasks.md`, so a small model had more to read and more copies to keep in step.
 
 ### Purpose
-Keep parent documentation lean while child phases own detailed plans, tasks, checklists, and continuity.
+Cut the templates down to what each doc needs, with one home for continuity and one for verification, without changing the derived status of any packet already shipped.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->

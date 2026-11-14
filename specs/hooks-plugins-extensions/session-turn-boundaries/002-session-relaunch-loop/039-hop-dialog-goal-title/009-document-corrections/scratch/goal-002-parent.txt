@@ -1,0 +1,34 @@
+# Command: node .skilled/hooks/goal/bin/goal.cjs packet specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop --workspace <worktree root>
+packet_durable_chars=3993
+packet_budget=ok
+
+# Command: node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop
+[check-goal] packet=<002 parent>
+[check-goal] 1/5 FAIL missing-binding-row findings=22
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 012-ci-red-check-repairs/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 013-live-hop-and-notice-reason/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 014-handover-docs-promotion/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 015-v4-0-0-13-changelog/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 016-handover-trigger-review/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 017-hop-history/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 018-outside-loop-handoff/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 019-fork-compact-pointer-research/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 020-fork-session-guards/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 021-fork-nudge-and-precompact-guards/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 022-runtime-certainty-claude-pi-opencode/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 023-relaunch-cancel-and-test-isolation/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 024-goal-rebind-claude-codex-hermes-probes/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 025-goal-binding-record-and-launcher/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 026-goal-rebind-shared-core-and-opencode/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 027-goal-rebind-claude-and-codex/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 028-goal-rebind-live-proof-and-docs/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 029-relaunch-evidence-gaps-and-playbook-drift/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 030-opencode2-killer-target/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 031-relaunch-model-and-effort/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 032-opencode2-standalone-replay/goal.md
+[check-goal] FINDING missing-binding-row <002 parent>: no binding-table target row for 037-relaunch-test-speed/goal.md
+[check-goal] 2/5 PASS placeholder findings=0
+[check-goal] 3/5 PASS criteria-count findings=0
+[check-goal] 4/5 PASS parent-budget findings=0
+[check-goal] 5/5 PASS frontmatter-fence findings=0
+[check-goal] RESULT: FAILED (4/5 checks)

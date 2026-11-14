@@ -65,7 +65,7 @@ _memory:
 [One-paragraph problem statement — what needs solving and why]
 
 ### Purpose
-[One-paragraph purpose — what this phased decomposition achieves]
+Establish a verdict for each of the chart and diagram modes through a four-iteration deep review run on two models.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->

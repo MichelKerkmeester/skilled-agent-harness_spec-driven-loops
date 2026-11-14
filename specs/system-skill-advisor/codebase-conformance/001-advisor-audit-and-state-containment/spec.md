@@ -81,7 +81,7 @@ This is **Phase 18** of the Skill advisor surface audit and stray state-director
 [What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]
 
 ### Purpose
-[One-sentence outcome statement. What does success look like?]
+Contain the advisor's leaked state directories and audit its code surface, so runtime writers stop escaping their root and every audit finding gets a verified disposition.
 <!-- /ANCHOR:problem -->
 
 ---

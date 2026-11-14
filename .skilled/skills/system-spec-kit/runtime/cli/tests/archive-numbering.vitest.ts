@@ -129,3 +129,34 @@ describe('create.sh numbers after archived packets', () => {
       .toBe('specs/006-after-archive');
   });
 });
+
+describe('create.sh numbers an appended phase after archived phases', () => {
+  it('skips a number held by an archived phase and keeps a live predecessor', () => {
+    packet('specs', '001-parent');
+    packet('specs/001-parent', '001-alpha');
+    archive('specs/001-parent', '002-gamma');
+
+    expect(create([
+      '--phase', '--parent', 'specs/001-parent',
+      '--phase-names', 'delta', 'Appended delta',
+    ])).toBe('specs/001-parent');
+
+    const childSpec = path.join(workspace, 'specs/001-parent', '003-delta', 'spec.md');
+    expect(fs.existsSync(childSpec)).toBe(true);
+    expect(fs.readFileSync(childSpec, 'utf8'))
+      .toMatch(/^\| \*\*Predecessor\*\* \| 001-alpha \|$/mu);
+  });
+
+  it('numbers after a live phase when the archive holds only a lower number', () => {
+    packet('specs', '001-parent');
+    packet('specs/001-parent', '002-beta');
+    archive('specs/001-parent', '001-old');
+
+    expect(create([
+      '--phase', '--parent', 'specs/001-parent',
+      '--phase-names', 'delta', 'Appended delta',
+    ])).toBe('specs/001-parent');
+
+    expect(fs.existsSync(path.join(workspace, 'specs/001-parent', '003-delta', 'spec.md'))).toBe(true);
+  });
+});

@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/009-proposal-search-and-routing",
+  "spec_folder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/009-proposal-search-and-routing",
+  "parent_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "proposal search and routing",
+      "phase 9 proposal search and routing",
+      "archived label in path search json",
+      "proposal search and routing plan",
+      "proposal search and routing tasks",
+      "proposal search and routing goal",
+      "proposal search and routing implementation summary"
+    ],
+    "key_topics": [
+      "proposal",
+      "search",
+      "routing",
+      "phase",
+      "archived",
+      "label",
+      "path",
+      "json",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/suggest-subtracks.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/rg-include-archive.vitest.ts",
+      ".skilled/skills/system-spec-kit/graph-metadata.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+      "scratch/build-evidence-code.md",
+      "scratch/build-evidence-signals.md",
+      "scratch/reproduce.txt",
+      "scratch/after.txt",
+      "scratch/path-record-readers.txt",
+      ".skilled/commands/speckit/search.md",
+      "scratch/baseline.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "rg-wrapper.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "suggest-subtracks.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/spec/suggest-subtracks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "rg-include-archive.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/rg-include-archive.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "scorer-eval-baseline.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence-code.md",
+        "kind": "doc",
+        "path": "scratch/build-evidence-code.md",
+        "source": "derived"
+      },
+      {
+        "name": "build-evidence-signals.md",
+        "kind": "doc",
+        "path": "scratch/build-evidence-signals.md",
+        "source": "derived"
+      },
+      {
+        "name": "reproduce.txt",
+        "kind": "file",
+        "path": "scratch/reproduce.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "path-record-readers.txt",
+        "kind": "file",
+        "path": "scratch/path-record-readers.txt",
+        "source": "derived"
+      },
+      {
+        "name": "search.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/search.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The path recipe of `rg-wrapper.mjs` labels archived hits in text output, but its JSON record lists them as plain strings, as the block below shows",
+    "created_at": "2026-11-14T06:11:01Z",
+    "last_save_at": "2026-11-14T09:42:32.389Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:843ee708e5a8cfa2122ddfe431ac71a28a2fb37f7a9f3d7b092e9851e576e6b3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "21e3ddc21120d2a3ec9ad0d52f94c3ce87dc948598e0e757f3d934e35d5518c3",
+      "plan.md": "d97587411079c4ca0399f26b7c65313d947a16f3d065745193c06bb4c66de1f6",
+      "tasks.md": "d059c928b17ed986f415b46a7c971946ada37fd58b675f22cf659d24d5ff66b4",
+      "implementation-summary.md": "153391f27b9e8ca786e0df839eeef268b61a6bfbdd924941cdfb55854e22b5f4"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,95 @@
+# Command: env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='no handoff|names no note|handoff is an empty string' .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs .skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs
+✖ stop-arm arms nothing for a pending record that names no note (80.89625ms)
+✖ readRelaunchFile treats a record with no handoff as absent and logs the loop id (5.27375ms)
+✔ readRelaunchFile keeps a record whose handoff is an empty string (1.297792ms)
+✔ shouldRelaunch declines a fresh armed record that names no handoff or no cwd (0.814875ms)
+✖ subagent-guard lets a question dialog through over a pending record that names no note (36.103125ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 2
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 116.693083
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:964:1
+✖ stop-arm arms nothing for a pending record that names no note (80.89625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   armId: '871dfec6-f3f1-4257-af08-09c96885f2d1',
+  +   armedAt: '2026-11-14T04:58:48.850Z',
+      cwd: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-adapter-f7FqWj/repo',
+      hops: 0,
+      loopId: '94661',
+      name: null,
+  +   permissionMode: 'bypassPermissions',
+      preparedAt: '2026-11-14T04:58:48.779Z',
+      runtime: 'claude',
+      sessionId: 'session-adapter-00000001',
+  +   status: 'armed',
+  -   status: 'pending',
+      version: 1
+    }
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:983:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { version: 1, status: 'armed', loopId: '94661', sessionId: 'session-adapter-00000001', runtime: 'claude', name: null, cwd: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-adapter-f7FqWj/repo', hops: 0, preparedAt: '2026-11-14T04:58:48.779Z', permissionMode: 'bypassPermissions', armedAt: '2026-11-14T04:58:48.850Z', armId: '871dfec6-f3f1-4257-af08-09c96885f2d1' },
+    expected: { version: 1, status: 'pending', loopId: '94661', sessionId: 'session-adapter-00000001', runtime: 'claude', name: null, cwd: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-adapter-f7FqWj/repo', hops: 0, preparedAt: '2026-11-14T04:58:48.779Z' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1024:1
+✖ readRelaunchFile treats a record with no handoff as absent and logs the loop id (5.27375ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + {
+  +   loopId: 'loop-test-00000001',
+  +   status: 'pending',
+  +   version: 1
+  + }
+  - null
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:1030:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { version: 1, status: 'pending', loopId: 'loop-test-00000001' },
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:298:1
+✖ subagent-guard lets a question dialog through over a pending record that names no note (36.103125ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"[session-relaunch] A hand-over is prepared for this session and only goes live when this turn ends. A question dialog keeps the turn open, so the hop would never run. End this turn now and put the question in the handoff note at undefined for the next session, or call the hand-over off first with `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs cancel --loop-id loop-question-0001`."}}'
+  - ''
+  
+      at assertSilent (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:115:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:303:3)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"[session-relaunch] A hand-over is prepared for this session and only goes live when this turn ends. A question dialog keeps the turn open, so the hop would never run. End this turn now and put the question in the handoff note at undefined for the next session, or call the hand-over off first with `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs cancel --loop-id loop-question-0001`."}}',
+    expected: '',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

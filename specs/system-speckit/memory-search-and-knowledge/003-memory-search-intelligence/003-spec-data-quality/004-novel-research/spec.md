@@ -40,6 +40,9 @@ Groups novel research tracks for contradiction detection, embedding drift, examp
 | **Predecessor** | ../003-retrieval-gated-tuning/spec.md |
 | **Successor** | ../005-shared-engine-and-research/spec.md |
 
+### Purpose
+Explore data-quality capabilities the current corpus lacks, keeping each novel detector or queue report-only so new signal never mutates a document silently.
+
 ## PHASE DOCUMENTATION MAP
 
 | Child | Description |
