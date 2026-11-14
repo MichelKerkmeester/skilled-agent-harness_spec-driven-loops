@@ -1,5 +1,5 @@
 {
-  "manifestHash": "dd9a61ac82867cff9c9137244119b9bb7f9150e5c7bd8b4a1f169ee4d5c61246",
+  "manifestHash": "88299af07ac17d48c836d1546dbf73d59743aa1371d3d96e9a6aaef36fef1c08",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11376,6 +11376,24 @@
     "alignment label gate verification": [
       "alignment label gate verification"
     ],
+    "alignment lane result parser": [
+      "alignment lane result parser"
+    ],
+    "alignment lane result parser acceptance criteria": [
+      "alignment lane result parser acceptance criteria"
+    ],
+    "alignment lane result parser goal": [
+      "alignment lane result parser goal"
+    ],
+    "alignment lane result parser plan": [
+      "alignment lane result parser plan"
+    ],
+    "alignment lane result parser summary": [
+      "alignment lane result parser summary"
+    ],
+    "alignment lane result parser tasks": [
+      "alignment lane result parser tasks"
+    ],
     "alignment mode removed": [
       "alignment mode removed"
     ],
@@ -12647,6 +12665,9 @@
     ],
     "arm withdrawal on new turn": [
       "arm withdrawal on new turn"
+    ],
+    "armed record with no live killer denies a question dialog": [
+      "armed record with no live killer denies a question dialog"
     ],
     "artifact certificate binding": [
       "artifact certificate binding"
@@ -20426,6 +20447,9 @@
     "claude goal copy block tasks": [
       "claude goal copy block tasks"
     ],
+    "claude goal log tail cap": [
+      "claude goal log tail cap"
+    ],
     "claude hook": [
       "claude hook"
     ],
@@ -20594,6 +20618,9 @@
     ],
     "claude start hook goal": [
       "claude start hook goal"
+    ],
+    "claude stop cannot arm prints a notice": [
+      "claude stop cannot arm prints a notice"
     ],
     "claude stop notice and crons": [
       "claude stop notice and crons"
@@ -32223,6 +32250,9 @@
     "criterion superseded not fabricated": [
       "criterion superseded not fabricated"
     ],
+    "critic json parser": [
+      "critic json parser"
+    ],
     "cron replaced by block gate": [
       "cron replaced by block gate"
     ],
@@ -38231,6 +38261,9 @@
     "deep review findings fix plan": [
       "deep review findings fix plan"
     ],
+    "deep review findings registry count": [
+      "deep review findings registry count"
+    ],
     "deep review findings registry json": [
       "deep-review-findings-registry.json"
     ],
@@ -44061,6 +44094,9 @@
     "dotenv write refused": [
       "dotenv write refused"
     ],
+    "double counted refinement finding": [
+      "double counted refinement finding"
+    ],
     "double quoted variables": [
       "double quoted variables"
     ],
@@ -47055,6 +47091,24 @@
     "epic follow up review tasks": [
       "epic follow up review tasks"
     ],
+    "epic review doc fixes": [
+      "epic review doc fixes"
+    ],
+    "epic review doc fixes acceptance criteria": [
+      "epic review doc fixes acceptance criteria"
+    ],
+    "epic review doc fixes goal": [
+      "epic review doc fixes goal"
+    ],
+    "epic review doc fixes implementation summary": [
+      "epic review doc fixes implementation summary"
+    ],
+    "epic review doc fixes plan": [
+      "epic review doc fixes plan"
+    ],
+    "epic review doc fixes tasks": [
+      "epic review doc fixes tasks"
+    ],
     "epic review fixes": [
       "epic review fixes"
     ],
@@ -49052,6 +49106,9 @@
     ],
     "false add pathspec matches nothing": [
       "false add-pathspec-matches-nothing"
+    ],
+    "false blocked traceability entries": [
+      "false blocked traceability entries"
     ],
     "false confirm before and after": [
       "false confirm before and after"
@@ -51671,6 +51728,9 @@
     ],
     "fold one off repairs tasks": [
       "fold one off repairs tasks"
+    ],
+    "fold refinement finding plan": [
+      "fold refinement finding plan"
     ],
     "fold remaining one offs": [
       "fold remaining one-offs"
@@ -55671,6 +55731,24 @@
     ],
     "goal runtime state": [
       "goal runtime state"
+    ],
+    "goal scan large log": [
+      "goal scan large log"
+    ],
+    "goal scan large log acceptance criteria": [
+      "goal scan large log acceptance criteria"
+    ],
+    "goal scan large log goal": [
+      "goal scan large log goal"
+    ],
+    "goal scan large log implementation summary": [
+      "goal scan large log implementation summary"
+    ],
+    "goal scan large log plan": [
+      "goal scan large log plan"
+    ],
+    "goal scan large log tasks": [
+      "goal scan large log tasks"
     ],
     "goal scope resolver": [
       "goal scope resolver"
@@ -62722,6 +62800,12 @@
     ],
     "last dedup checked at dedup marker": [
       "last_dedup_checked_at dedup marker"
+    ],
+    "last findings object": [
+      "last findings object"
+    ],
+    "last findings object plan": [
+      "last findings object plan"
     ],
     "last spec folder containment": [
       "last spec folder containment"
@@ -78160,6 +78244,9 @@
     "over budget parent goal": [
       "over-budget parent goal"
     ],
+    "over cap goal log superseded criterion": [
+      "over-cap goal log superseded criterion"
+    ],
     "over capping strong queries": [
       "over-capping strong queries"
     ],
@@ -78889,11 +78976,17 @@
     "packet goal fallback ancestor limit": [
       "packet goal fallback ancestor limit"
     ],
+    "packet goal fallback decision record": [
+      "packet goal fallback decision record"
+    ],
     "packet goal fallback goal": [
       "packet goal fallback goal"
     ],
     "packet goal fallback implementation summary": [
       "packet goal fallback implementation summary"
+    ],
+    "packet goal fallback over 16 mb": [
+      "packet goal fallback over 16 MB"
     ],
     "packet goal fallback plan": [
       "packet goal fallback plan"
@@ -81716,6 +81809,9 @@
     "phase 20 plugins purity dual export": [
       "phase 20 plugins purity dual export"
     ],
+    "phase 20 question guard killer gone": [
+      "phase 20 question guard killer gone"
+    ],
     "phase 20 rename plan": [
       "phase 20 rename plan"
     ],
@@ -81745,6 +81841,9 @@
     ],
     "phase 21 fork nudge and precompact guards": [
       "phase 21 fork nudge and precompact guards"
+    ],
+    "phase 21 goal scan large log": [
+      "phase 21 goal scan large log"
     ],
     "phase 21 host root marker refresh": [
       "phase 21 host root marker refresh"
@@ -81791,6 +81890,9 @@
     "phase 22 runtime certainty claude pi opencode": [
       "phase 22 runtime certainty claude pi opencode"
     ],
+    "phase 22 stop park notices": [
+      "phase 22 stop park notices"
+    ],
     "phase 22 tasks": [
       "phase 22 tasks"
     ],
@@ -81799,6 +81901,9 @@
     ],
     "phase 23 deep review remediation": [
       "phase 23 deep review remediation"
+    ],
+    "phase 23 epic review doc fixes": [
+      "phase 23 epic review doc fixes"
     ],
     "phase 23 readme freshness research": [
       "phase 23 readme freshness research"
@@ -88995,6 +89100,27 @@
     "question entropy": [
       "question entropy"
     ],
+    "question guard and generated title documentation": [
+      "question guard and generated title documentation"
+    ],
+    "question guard killer gone": [
+      "question guard killer gone"
+    ],
+    "question guard killer gone acceptance criteria": [
+      "question guard killer gone acceptance criteria"
+    ],
+    "question guard killer gone goal": [
+      "question guard killer gone goal"
+    ],
+    "question guard killer gone implementation summary": [
+      "question guard killer gone implementation summary"
+    ],
+    "question guard killer gone plan": [
+      "question guard killer gone plan"
+    ],
+    "question guard killer gone tasks": [
+      "question guard killer gone tasks"
+    ],
     "question origin provenance": [
       "question origin provenance"
     ],
@@ -90906,6 +91032,24 @@
     "reducer records terminal stop metadata": [
       "reducer records terminal stop metadata"
     ],
+    "reducer traceability and refines": [
+      "reducer traceability and refines"
+    ],
+    "reducer traceability and refines acceptance criteria": [
+      "reducer traceability and refines acceptance criteria"
+    ],
+    "reducer traceability and refines goal": [
+      "reducer traceability and refines goal"
+    ],
+    "reducer traceability and refines implementation summary": [
+      "reducer traceability and refines implementation summary"
+    ],
+    "reducer traceability and refines plan": [
+      "reducer traceability and refines plan"
+    ],
+    "reducer traceability and refines tasks": [
+      "reducer traceability and refines tasks"
+    ],
     "reelection default on": [
       "reelection default on"
     ],
@@ -91921,6 +92065,9 @@
     ],
     "relaunch goal quote tasks": [
       "relaunch goal quote tasks"
+    ],
+    "relaunch guard and generated title docs": [
+      "relaunch guard and generated title docs"
     ],
     "relaunch live proof run set": [
       "relaunch live proof run set"
@@ -99407,6 +99554,12 @@
     "run javascript in browser cli": [
       "run javascript in browser cli"
     ],
+    "run lanes findings object": [
+      "run-lanes findings object"
+    ],
+    "run lanes findings repair": [
+      "run-lanes findings repair"
+    ],
     "run manual playbook scenario": [
       "run manual playbook scenario"
     ],
@@ -100657,6 +100810,9 @@
     ],
     "save writer continuity tasks": [
       "save writer continuity tasks"
+    ],
+    "saved acceptance evidence": [
+      "saved acceptance evidence"
     ],
     "savemode refactor memory save": [
       "savemode refactor memory save"
@@ -118275,6 +118431,24 @@
     "stop pagination after n tasks": [
       "stop pagination after n tasks"
     ],
+    "stop park notices": [
+      "stop park notices"
+    ],
+    "stop park notices acceptance criteria": [
+      "stop park notices acceptance criteria"
+    ],
+    "stop park notices goal": [
+      "stop park notices goal"
+    ],
+    "stop park notices implementation summary": [
+      "stop park notices implementation summary"
+    ],
+    "stop park notices plan": [
+      "stop park notices plan"
+    ],
+    "stop park notices tasks": [
+      "stop park notices tasks"
+    ],
     "stop policy event name": [
       "stop policy event name"
     ],
@@ -118896,6 +119070,9 @@
     ],
     "subagent dispatch policy": [
       "subagent dispatch policy"
+    ],
+    "subagent guard armable verdict": [
+      "subagent guard armable verdict"
     ],
     "subagent guard cancel consume": [
       "subagent guard cancel consume"
@@ -122206,6 +122383,9 @@
     ],
     "target authority preamble": [
       "target authority preamble"
+    ],
+    "target pid arm error systemmessage": [
+      "target pid arm error systemMessage"
     ],
     "target signal enoent": [
       "target-signal ENOENT"
