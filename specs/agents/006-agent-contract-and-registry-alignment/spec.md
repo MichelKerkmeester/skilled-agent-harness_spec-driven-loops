@@ -112,7 +112,7 @@ Every agent file states one contract its permissions allow, reaches skills throu
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-fix-agent-contract-contradictions/ | Make each agent file state one consistent contract: permissions, return values, step order, delegation and current wording | Pending |
+| 1 | 001-fix-agent-contract-contradictions/ | Make each agent file state one consistent contract: permissions, return values, step order, delegation and current wording | Complete |
 | 2 | 002-agent-registry-and-generated-rosters/ | Add one agent registry and generate the orchestrator rosters from it, so `design` and `prompt-improver` become routable | Pending |
 | 3 | 003-skill-binding-through-routers/ | Bind agents to skills through each skill's own entry point and router, and check that every cited skill path exists | Pending |
 | 4 | 004-agent-template-conformance-and-drift-check/ | Bring the eleven files onto the agent template's current outline and add a check that fails when one drifts from it | Pending |

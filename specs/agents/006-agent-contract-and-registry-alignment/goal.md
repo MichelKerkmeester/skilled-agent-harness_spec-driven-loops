@@ -110,6 +110,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase opened | Pending | |
+| Phase 001 contract contradictions | Complete | 10 of 10 acceptance rows Met, mirror check exit 0 |
 
 ### Deviations and findings
 

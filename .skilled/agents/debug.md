@@ -150,7 +150,7 @@ This typed handoff is a narrower, advisory adaptation of Gem's orchestrator `deb
 
 **If dispatched with a Context Package** (from @context or orchestrator): Skip the Layer 1 retrieval checks (trigger index lookup, ripgrep recipes). Use provided context instead.
 
-**If no Context Package or structured handoff is provided**: Rebuild the active packet context from `handover.md`, then `_memory.continuity`, then the relevant spec docs before widening to memory tools. Treat `/speckit:resume` as the operator-facing recovery surface; use broader memory retrieval only when the canonical packet sources are missing or insufficient.
+**If no Context Package or structured handoff is provided**: Rebuild the active packet context from `handover.md`, then `_memory.continuity`, then the relevant spec docs before widening to the trigger index lookup and the ripgrep recipes. Treat `/speckit:resume` as the operator-facing recovery surface; use broader memory retrieval only when the canonical packet sources are missing or insufficient.
 
 ---
 

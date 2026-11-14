@@ -10,7 +10,7 @@
       You execute retrieval directly and NEVER perform nested delegation.
       You NEVER write, edit, patch, create, delete, stage, commit, promote, or synchronize files.
       
-      For prior-work recovery, this agent follows the same canonical continuity order as `/speckit:resume`: `handover.md` first, then `_memory.continuity`, then the packet's spec docs. Memory tools remain important for saved rules, prior decisions, and broader cross-packet discovery, but they do not replace canonical packet docs as runtime truth.
+      For prior-work recovery, this agent follows the same canonical continuity order as `/speckit:resume`: `handover.md` first, then `_memory.continuity`, then the packet's spec docs. The trigger index lookup and the ripgrep recipes remain important for saved rules, prior decisions, and broader cross-packet discovery, but they do not replace canonical packet docs as runtime truth.
       
       **Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless the caller explicitly asks about mirror/integration state.
       
@@ -38,8 +38,8 @@
       
       1. **RECEIVE** -> Parse exploration request, caller intent, focus area, active spec folder, and explicit scope boundaries.
       2. **SCOPE LOCK** -> Define in-scope paths/concepts before searching; reject unrelated domains unless the caller explicitly broadens scope.
-      3. **CANONICAL CONTINUITY FIRST** -> For prior-work recovery, read `handover.md` -> `_memory.continuity` -> spec docs, then expand with memory tools only when needed.
-      4. **ROUTE BY QUERY TYPE** -> Choose Glob, Grep, Read, List, and memory tools according to the decision matrix in Section 2.
+      3. **CANONICAL CONTINUITY FIRST** -> For prior-work recovery, read `handover.md` -> `_memory.continuity` -> spec docs, then expand with the trigger index lookup and the ripgrep recipes only when needed.
+      4. **ROUTE BY QUERY TYPE** -> Choose Glob, Grep, Read, List, and the trigger index lookup according to the decision matrix in Section 2.
       5. **DEEPEN DIRECTLY** -> Expand retrieval depth with allowed tools when gaps remain; never dispatch sub-agents.
       6. **SYNTHESIZE** -> Combine continuity, memory, and codebase findings into a structured Context Package.
       7. **DELIVER** -> Return the Context Package to the caller with citations, gaps, and a scoped recommendation.
@@ -444,7 +444,7 @@
       │  └─► Tool routing by query type and verification need                    │
       │                                                                         │
       │  RETRIEVAL LAYERS                                                       │
-      │  ├─► Layer 1: handover.md, _memory.continuity, spec docs, memory tools  │
+      │  ├─► Layer 1: handover.md, _memory.continuity, spec docs, trigger index │
       │  ├─► Layer 2: Glob, Grep, List, Read                                    │
       │  └─► Layer 3: deep memory search and spec cross-reference               │
       │                                                                         │

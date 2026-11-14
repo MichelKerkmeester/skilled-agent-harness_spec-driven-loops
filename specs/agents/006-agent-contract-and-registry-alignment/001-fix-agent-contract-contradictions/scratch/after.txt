@@ -1,0 +1,106 @@
+# After, taken on the working tree above commit 0d6afbafc4
+
+## Baseline searches rerun
+
+The exact command is in `baseline.txt`. Three of its patterns are paraphrased on the line below so the retired phrases do not appear in this file.
+$ rg -n --no-heading -e "never runs shell commands" -e "No files were modified by" -e "the retired fast-path phrase" -e "RETURN is the retired value" -e "the retired profile phrase" -e "^### Step [9]" .skilled/agents | cut -c1-100
+.skilled/agents/deep-research.md:304:### Step 9: Write Delta
+.skilled/agents/ai-council.md:24:The Multi-AI Council is a scoped-write planning architect that seek
+
+$ rg -c -i "memory tools" .skilled/agents   (no output, exit 1)
+
+The line 'never runs shell commands' stays: it is now true, because no rule asks the council to run a script.
+
+## Each replaced sentence and the rule it keeps
+
+The new line for every replaced line, per file. The old lines are in `git diff` for this phase's commit; they are left out here so the retired words do not appear in this file.
+
+.skilled/agents/ai-council.md
+  The AI Council is a LEAF when another agent dispatches it, and may dispatch council seats only when the operator invokes it directly.
+  
+  - Preserve context via canonical packet sources first, then the trigger index lookup and the ripgrep recipes only when needed.
+  - **Persist `ai-council/**` artifacts with Write and Edit BEFORE claiming completion.** Write each file in the shape §12 gives; the named writers of `lib/persist-artifacts.cjs` produce the same shapes, and the calling workflow runs that helper, never this agent.
+    The calling workflow records every state event (`round_start` + `seat_returned` x N + `deliberation_synthesized` + `round_end` + `council_complete`) through the append gateway (`append-mode-event.cjs --mode ai-council`), which refreshes the read-only `ai-council-state.jsonl` projection from the ledger. Bash is denied here, so name each event in the report, in order, for the calling workflow to 
+  - No code or spec files were modified by the Multi-AI Council. The `ai-council/**` artifacts listed in this report were written.
+  [] Every state event (`round_start`, `seat_returned` per dispatched seat, `deliberation_synthesized`, `round_end`, `council_complete`) is named in the report, in order, for the calling workflow to record through the append gateway.
+  [] Every artifact written above is listed with its path, so the calling workflow can record an `artifact_written` event for it; the `ai-council-state.jsonl` projection is never written directly.
+  1. **First call** (no `ai-council/` folder exists at the resolved packet path): execute these steps in order.
+     Each writer name below names the shape of a file this agent writes with Write or Edit.
+     Each "record ... through the append gateway" below is done by the calling workflow (`append-mode-event.cjs --mode ai-council`, exit 0 receipt); this agent names the event in its report and runs no script.
+  The council writes packet artifacts with Write and Edit, under `<packet>/ai-council/`, as each round closes.
+  The shapes are the ones the named writers of `.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs` produce: `writeConfig`, `writeStrategyMd`, `writeSeat`, `writeDeliberation`, `writeCritique`, and `writeReport`.
+  The calling workflow runs that helper script when a run needs it; this agent never does.
+  State events are recorded by the calling workflow through the append gateway, which refreshes the read-only `ai-council-state.jsonl` projection from the ledger.
+  **The calling workflow records state through the append gateway** (shown for reference; this agent never runs it):
+
+.skilled/agents/code.md
+  **If dispatched with `Complexity: low`:** Compress §10 Builder/Critic/Verifier into a single mental check ("am I about to RETURN PASS without fresh verification evidence?").
+  | **1: Full Implementation** | "Implement/build/add feature...", multi-file behavior change, new workflow, or task with acceptance criteria spanning code and tests. | Complete requested behavior using `sk-code` Phase 0-3 as needed. | Skips nothing. Phase 0 may be brief if complexity is low; RECEIVE → READ PACKET → INVOKE `sk-code` → IMPLEMENT → QUALITY → VERIFY → RETURN all required. | `PASS` or 
+  | **2: Surgical Fix** | "Fix this bug/error/failing check...", narrow failing path, named function/file, or orchestrator-provided diagnosis. | Minimal corrective edit with regression protection. | Skips broad Phase 0 and unrelated packet expansion when dispatch includes structured context. Does NOT skip targeted read, sk-code, implementation, verification, RETURN evidence. | `PASS` or `BLOCKED`; 
+  | **3: Refactor Only** | "Refactor/restructure/clean up this area without behavior change..." with explicit no-behavior-change constraint. | Preserve behavior while improving structure, readability, ownership boundaries, or duplication. | Skips new feature design and product acceptance expansion. Skips behavior changes unless required to preserve existing contracts. Does NOT skip caller/contract 
+  | **4: Test Add** | "Add coverage/test for...", "write regression test...", "cover this case..." where production behavior is intended to stay stable. | Add or adjust tests, fixtures, and minimal test support only. | Skips production implementation unless the test exposes a verified bug or needs a tiny in-scope test seam. Skips broad refactor and feature work. | `PASS` or `BLOCKED`; tests added/c
+  | **5: Scaffold New File** | "Create/scaffold a new module/file/command/component..." with expected shape but limited behavior. | Create the requested file structure and minimal integration points following `sk-code` stack conventions. | Skips full feature completion beyond the requested scaffold. Skips broad caller migration unless explicitly requested. Does NOT skip template/pattern reads or sy
+  | **6: Rename/Move** | "Rename/move this file/symbol/path..." with behavior intended unchanged. | Mechanical relocation plus import/reference updates. | Skips behavior implementation, new tests, and refactor opportunism. Does NOT skip reference search, dependent import updates, verification. | `PASS` or `BLOCKED`; old → new path/name map; references updated; compatibility shims if any; commands p
+  | **7: Dependency Bump** | "Bump/update/upgrade dependency..." including lockfile, config, or compatibility task. | Update dependency metadata and handle required compatibility changes. | Skips unrelated feature work and broad modernization. Skips source edits unless required by dependency change. Does NOT skip changelog/API check or verification. | `PASS` or `BLOCKED`; package/version changes; l
+  Use this rubric before returning `PASS` or any completion-equivalent status. The score is a communication aid, not a way to average away blockers. Any P0 blocks completion regardless of total score. Any unresolved P1 blocks completion unless the orchestrator explicitly approves deferral.
+  | **EXCELLENT** | 90-100 | PASS | Return `PASS` with changed files and verification evidence (no P0/P1 remains) |
+  | **ACCEPTABLE** | 70-89 | PASS | Return `PASS` with notes; documented P2s; any approved P1 deferrals |
+  | **P1** | REQUIRED | Spec mismatch, correctness bug, integration break, required-checklist violation, missing boundary test, unresolved verify-fail with plausible in-scope fix | Must fix before `PASS` unless orchestrator explicitly approves deferral. |
+  | **P2** | SUGGESTION | Non-blocking polish, minor maintainability improvement, extra test coverage, documentation refinement, low-risk performance cleanup | Does not block `PASS`; document as follow-up when relevant. |
+  - Return "mostly done" or "should work" — RETURN is `PASS`, `FAIL` or `BLOCKED` only
+  **CRITICAL**: Before returning `PASS` or any successful RETURN, you MUST verify your output against actual evidence.
+  Before returning `PASS` or any successful RETURN, answer these 7 questions. **All must be YES.**
+  If ANY is NO: **DO NOT return `PASS`.** Fix the verification gap or RETURN the appropriate escalation.
+  | **LOW** | Any required verification missing/failed; edited file not re-read; stack identity uncertain; scope requires unnamed files; Bash/write discipline questionable; rubric < 70 | **DO NOT RETURN PASS.** RETURN BLOCKED with the specific missing evidence or failed command. |
+  **Purpose:** Counter premature-completion bias — claiming `PASS` because the patch feels complete, because a command eventually passed, because the orchestrator is waiting, or because nearby code patterns looked reusable without proving they fit.
+  **When:** Required before returning `PASS` for any non-fast-path implementation and for any candidate P0/P1 implementation concern, verification gap, scope-risk decision, or meaningful deferral. Skip in fast-path surgical-fix or trivial mode when the edit is narrow, acceptance criteria are obvious, and fresh verification evidence already proves the claim.
+  - Scoring mindset: make the code work, meet acceptance criteria, return `PASS` quickly.
+  - Ask: "What is the shortest truthful path to `PASS`, and what evidence supports it?"
+  - Accept `PASS` only when Builder's defense covers every material Critic challenge with final-file, command, test, or runtime evidence.
+  | [claim or concern] | [evidence-backed defense] | [specific challenge] | PASS / CAVEATED / BLOCKED | [ship / fix first / escalate] |
+  **Sycophancy Warning:** If you notice yourself wanting to claim `PASS` because the orchestrator is waiting / the work feels complete — that is the bias this protocol exists to catch. Trust evidence, not completion pressure.
+  | **Partial-success return** | The main change is implemented but one check failed, one file remains unverified, or one edge is uncertain | Return "mostly done", "should work", or PASS with caveats | RETURN PASS only when contract is fully satisfied. Otherwise RETURN BLOCKED with exact remaining gap and next safest action |
+
+.skilled/agents/context.md
+  For prior-work recovery, this agent follows the same canonical continuity order as `/speckit:resume`: `handover.md` first, then `_memory.continuity`, then the packet's spec docs. The trigger index lookup and the ripgrep recipes remain important for saved rules, prior decisions, and broader cross-packet discovery, but they do not replace canonical packet docs as runtime truth.
+  3. **CANONICAL CONTINUITY FIRST** -> For prior-work recovery, read `handover.md` -> `_memory.continuity` -> spec docs, then expand with the trigger index lookup and the ripgrep recipes only when needed.
+  4. **ROUTE BY QUERY TYPE** -> Choose Glob, Grep, Read, List, and the trigger index lookup according to the decision matrix in Section 2.
+  │  ├─► Layer 1: handover.md, _memory.continuity, spec docs, trigger index │
+
+.skilled/agents/debug.md
+  **If no Context Package or structured handoff is provided**: Rebuild the active packet context from `handover.md`, then `_memory.continuity`, then the relevant spec docs before widening to the trigger index lookup and the ripgrep recipes. Treat `/speckit:resume` as the operator-facing recovery surface; use broader memory retrieval only when the canonical packet sources are missing or insufficient
+
+.skilled/agents/deep-research.md
+  7. RESPECT REDUCER ─> Leave strategy, registry and dashboard to the workflow reducer
+  9. WRITE DELTA ─────> Create research/deltas/iter-NNN.jsonl (canonical record on line 1 + delta rows; a reducer artifact)
+  10. UPDATE RESEARCH ─> Progressively update research/research.md when enabled
+  11. VERIFY OUTPUTS ─> Check narrative, gateway receipt, delta, citations, and scope
+  ### Step 10: Update Research (Progressive)
+  ### Step 11: Verify Outputs
+
+.skilled/agents/deep-review.md
+  Use Read, Write, Edit, Grep, Glob, Bash and the trigger index lookup only within the declared scope and budget. For detailed tool behavior, reference upstream tool docs.
+
+.skilled/agents/orchestrate.md
+  | 1        | ALL codebase exploration, file search, pattern discovery, context loading | `@context`             | LEAF | Trigger index lookup, Glob, Grep, Read                                                    | `"context"`   |
+  | 2        | Evidence / iterative investigation                                        | `@deep-research`       | LEAF | `system-spec-kit`, `deep-research`                                             | `"deep-research"`   |
+  | 3        | Multi-strategy planning and architecture synthesis                        | `@ai-council`         | LEAF | Multi-lens planning rubric (planning-only)                                        | `"ai-council"`   |
+  | 4        | `/create:*` documentation and component creation command execution        | `@markdown`        | LEAF | `sk-doc`, `system-spec-kit` when spec tracking applies                            | `"markdown"`   |
+  | 5        | Code review / security                                                    | `@review`              | LEAF | `sk-code` code-review mode (findings-first baseline + router-selected surface evidence)    | `"review"`   |
+  | 6        | Deep-loop iterative code-audit pass (`/deep:review` only — explicit deep-loop convergence request, not a one-shot review) | `@deep-review` | LEAF | `system-spec-kit`, `deep-review` | `"deep-review"` |
+  | 7        | Implementation / testing                                                  | `@code`                | LEAF | `sk-code` (stack-agnostic; sk-code performs detection at dispatch time); orchestrator dispatches `@review` separately for formal review | `"code"`   |
+  | 8        | Debugging when `failure_count >= 3` — workflow surfaces a prompted offer; user opts in via the runtime's delegation tool. Never auto-dispatched. | `@debug`               | LEAF | Code analysis tools                                                               | `"debug"`   |
+  This orchestrator enforces **single-hop delegation**. Nested sub-agent dispatch is illegal.
+  The AI Council is a LEAF when another agent dispatches it, and may dispatch council seats only when the operator invokes it directly.
+  
+  3. **SET** `subagent_type` to the agent's own name, for example `subagent_type: "context"`, so the runtime loads that agent's own tool limits. Use `subagent_type: "general-purpose"` only on a runtime whose delegation tool registers no named agents.
+  3. `subagent_type` MUST name the same agent as the `Agent:` line. The `"general-purpose"` wrapper, used only where a runtime registers no named agents, does not make a mismatched prompt safe.
+  ├─ Subagent Type: [the agent's own name, the Agent line without the @ | "general-purpose" only on a runtime with no named agents]
+  Sub-orchestrator fan-out is disabled here because nested dispatch is illegal. When work is large, keep orchestration at depth 0 and run additional waves directly from the top-level orchestrator.
+  **Action:** ALWAYS dispatch `@context` (subagent_type: `"context"`). @context performs direct retrieval only and returns structured Context Packages.
+
+.skilled/agents/review.md
+  **If dispatched with `Complexity: low`:** LOAD STANDARDS still runs, because the verdict is judged against the standards it loads. Skip the broad search in step 4 (ANALYZE) and the advisory score in step 5 (EVALUATE), and review the named files directly against the loaded floor. Max 5 tool calls. Minimum deliverable: the verdict with key findings.
+
+## Mirror check
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK

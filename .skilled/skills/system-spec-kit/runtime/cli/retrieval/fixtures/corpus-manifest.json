@@ -1,5 +1,5 @@
 {
-  "corpusHash": "77b3c86be3d1f2c9a8e707e21729f596fc298e2887bc1ff640978850addbb7e9",
+  "corpusHash": "3d21d9044e10435fa7eb1c7bfe4eb5be2e5df44e3cfb34291cc71f235efcf016",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26862,
+  "includedPathCount": 26864,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9401,7 +9401,9 @@
     "specs/agents/005-haiku-explore-and-context-agents/spec.md",
     "specs/agents/005-haiku-explore-and-context-agents/tasks.md",
     "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/acceptance-criteria.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/decision-record.md",
     "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/implementation-summary.md",
     "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/plan.md",
     "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/spec.md",
     "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/tasks.md",
@@ -26894,7 +26896,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "17b25335b6de2aef664afb12d65395fdd4355f238eabda4938a52bec109f2931",
+  "manifestHash": "26bf8485aa75390288350073b29064933c6ec2448ecb7c6026679add3b7477f3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

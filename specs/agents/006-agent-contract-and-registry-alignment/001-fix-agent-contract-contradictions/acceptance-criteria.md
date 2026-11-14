@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** 006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-14
 <!-- /ANCHOR:metadata -->
 
@@ -51,16 +51,16 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given `ai-council.md` with `bash: deny`, When the persistence rules are read, Then no rule tells the agent itself to run a `node` command and the calling workflow is named as the runner | `rg -n 'Persist .ai-council/\*\*. artifacts directly via' .skilled/agents/ai-council.md` prints no line, and `rg -c 'calling workflow' .skilled/agents/ai-council.md` prints 2 or more | Unmet | - |
-| AC-002 | REQ-002 | Given `orchestrate.md`, When the agent loading protocol is read, Then it names the agent's own type for dispatch and the wrapper only for a runtime with no named agents | `rg -n 'all custom agents use the general subagent type' .skilled/agents/orchestrate.md` prints no line, and `rg -c '"general"' .skilled/agents/orchestrate.md` prints no line | Unmet | - |
-| AC-003 | REQ-003 | Given the rewritten dispatch instruction, When `context` is dispatched on Claude Code and asked to write `scratch/probe.txt`, Then the write is refused and the file does not exist | `scratch/dispatch-probe.md` records the dispatch and the refusal, and `ls scratch/probe.txt` reports no such file | Unmet | - |
-| AC-004 | REQ-004 | Given `code.md`, When the return template and the NEVER rules are read, Then both name `PASS`, `FAIL` and `BLOCKED` and neither names `DONE` | `rg -n 'RETURN is .DONE.' .skilled/agents/code.md` prints no line, and `rg -c 'RETURN: <PASS' .skilled/agents/code.md` prints 1 | Unmet | - |
-| AC-005 | REQ-005 | Given the edited canonical files, When the mirror check runs, Then every comparable copy is in sync | `node .skilled/bin/check-agent-mirror-sync.cjs` ends with `all comparable mirrors in sync` and exits 0 | Unmet | - |
-| AC-006 | REQ-006 | Given a review dispatched with `Complexity: low`, When the fast path is read, Then step 3 still runs and the skipped steps are named | `rg -n 'Skip steps 3-5' .skilled/agents/review.md` prints no line, and `rg -c 'LOAD STANDARDS still runs' .skilled/agents/review.md` prints 1 | Unmet | - |
-| AC-007 | REQ-007 | Given `deep-research.md`, When the overview list and the `### Step` headings are compared, Then they name the same steps in the same order and no number repeats | `rg -c '^### Step 9' .skilled/agents/deep-research.md` prints 1, and `scratch/step-order.md` shows the two lists side by side with no difference | Unmet | - |
-| AC-008 | REQ-008 | Given the council report template, When the planning-only boundary is read, Then it says no code or spec files were modified and the `ai-council/` artifacts were written | `rg -n 'No files were modified by the Multi-AI Council' .skilled/agents/ai-council.md` prints no line | Unmet | - |
-| AC-009 | REQ-009 | Given both files, When the council's delegation rule is read in each, Then both say it is a leaf when dispatched by another agent and may dispatch seats only when the operator invokes it directly | `rg -c 'only when the operator invokes it directly' .skilled/agents/ai-council.md .skilled/agents/orchestrate.md` prints 1 or more for each file | Unmet | - |
-| AC-010 | REQ-010 | Given the eleven agent files, When they are searched for the retired names, Then nothing matches | `rg -n -i -e 'memory tools' -e 'copilot profile' .skilled/agents` prints no line | Unmet | - |
+| AC-001 | REQ-001 | Given `ai-council.md` with `bash: deny`, When the persistence rules are read, Then no rule tells the agent itself to run a `node` command and the calling workflow is named as the runner | `rg -n 'Persist .ai-council/\*\*. artifacts directly via' .skilled/agents/ai-council.md` prints no line, and `rg -c 'calling workflow' .skilled/agents/ai-council.md` prints 2 or more. Observed 2026-11-14: the first search printed no line and the count printed 8 | Met | - |
+| AC-002 | REQ-002 | Given `orchestrate.md`, When the agent loading protocol is read, Then it names the agent's own type for dispatch and the wrapper only for a runtime with no named agents | `rg -n 'all custom agents use the general subagent type' .skilled/agents/orchestrate.md` prints no line, and `rg -c '"general"' .skilled/agents/orchestrate.md` prints no line. Observed 2026-11-14: both searches printed no line | Met | - |
+| AC-003 | REQ-003 | Given the rewritten dispatch instruction, When `context` is dispatched on Claude Code and asked to write `scratch/probe.txt`, Then the write is refused and the file does not exist | `scratch/dispatch-probe.md` records the dispatch and the refusal, and `ls scratch/probe.txt` reports no such file. Observed 2026-11-14: the agent reported only Read, Grep and Glob and refused, and `ls scratch/probe.txt` reported no such file | Met | - |
+| AC-004 | REQ-004 | Given `code.md`, When the return template and the NEVER rules are read, Then both name `PASS`, `FAIL` and `BLOCKED` and neither names `DONE` | `rg -n 'RETURN is .DONE.' .skilled/agents/code.md` prints no line, and `rg -c 'RETURN: <PASS' .skilled/agents/code.md` prints 1. Observed 2026-11-14: the first search printed no line and the count printed 1 | Met | - |
+| AC-005 | REQ-005 | Given the edited canonical files, When the mirror check runs, Then every comparable copy is in sync | `node .skilled/bin/check-agent-mirror-sync.cjs` ends with `all comparable mirrors in sync` and exits 0. Observed 2026-11-14: the check printed `11 agent(s) checked — all comparable mirrors in sync — OK` and exited 0 | Met | - |
+| AC-006 | REQ-006 | Given a review dispatched with `Complexity: low`, When the fast path is read, Then step 3 still runs and the skipped steps are named | `rg -n 'Skip steps 3-5' .skilled/agents/review.md` prints no line, and `rg -c 'LOAD STANDARDS still runs' .skilled/agents/review.md` prints 1. Observed 2026-11-14: the first search printed no line and the count printed 1 | Met | - |
+| AC-007 | REQ-007 | Given `deep-research.md`, When the overview list and the `### Step` headings are compared, Then they name the same steps in the same order and no number repeats | `rg -c '^### Step 9' .skilled/agents/deep-research.md` prints 1, and `scratch/step-order.md` shows the two lists side by side with no difference. Observed 2026-11-14: the count printed 1 and `scratch/step-order.md` shows eleven matching rows | Met | - |
+| AC-008 | REQ-008 | Given the council report template, When the planning-only boundary is read, Then it says no code or spec files were modified and the `ai-council/` artifacts were written | `rg -n 'No files were modified by the Multi-AI Council' .skilled/agents/ai-council.md` prints no line. Observed 2026-11-14: the search printed no line | Met | - |
+| AC-009 | REQ-009 | Given both files, When the council's delegation rule is read in each, Then both say it is a leaf when dispatched by another agent and may dispatch seats only when the operator invokes it directly | `rg -c 'only when the operator invokes it directly' .skilled/agents/ai-council.md .skilled/agents/orchestrate.md` prints 1 or more for each file. Observed 2026-11-14: the count printed 1 for each file | Met | - |
+| AC-010 | REQ-010 | Given the eleven agent files, When they are searched for the retired names, Then nothing matches | `rg -n -i -e 'memory tools' -e 'copilot profile' .skilled/agents` prints no line. Observed 2026-11-14: the search printed no line | Met | - |
 
 ### Status values
 
@@ -85,7 +85,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-No criterion has been verified yet, because this phase is planned and not implemented.
+All ten criteria are `Met`, each with the output observed on 2026-11-14.
 <!-- /ANCHOR:closure -->

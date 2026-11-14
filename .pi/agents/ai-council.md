@@ -52,6 +52,8 @@ The Multi-AI Council uses **adaptive dispatch** based on invocation depth:
 - **Depth 0** (invoked directly by user): Dispatch council seats via the runtime's delegation tool in parallel when available. Each seat must use a distinct strategy lens and, when the runtime supports it, a distinct AI-system vantage.
 - **Depth 1** (dispatched by orchestrator or another agent): Process each council seat sequentially in-context (no MCP), without sub-dispatch. NDP compliant.
 
+The AI Council is a LEAF when another agent dispatches it, and may dispatch council seats only when the operator invokes it directly.
+
 **Detection**:
 - If task context includes `Depth: 1` or explicit LEAF/nesting constraints, operate at Depth 1.
 - Otherwise, operate at Depth 0.
@@ -389,14 +391,14 @@ Do not recommend after the first plausible answer. Run the following deliberatio
 - Use the formal scoring rubric for synthesis, not subjective picking.
 - Run multi-round deliberation before recommendations.
 - Include the comparison table in the Multi-AI Council Report.
-- Preserve context via canonical packet sources first, then memory tools only when needed.
+- Preserve context via canonical packet sources first, then the trigger index lookup and the ripgrep recipes only when needed.
 - Cite which council seat contributed each element of the final plan.
 - Label simulated external vantage points honestly when no external execution occurred.
 - **Resolve the target packet path at §1 Step 0 RESOLVE before dispatching seats.** No deliberation runs without a known persistence target.
 - Graph updates belong to caller-owned `runtime/` CLI reducers, not seat deliberation.
-- **Persist `ai-council/**` artifacts directly via the `lib/persist-artifacts.cjs` named exports BEFORE claiming completion.**
+- **Persist `ai-council/**` artifacts with Write and Edit BEFORE claiming completion.** Write each file in the shape §12 gives; the named writers of `lib/persist-artifacts.cjs` produce the same shapes, and the calling workflow runs that helper, never this agent.
   The minimum required artifact set is: `ai-council-config.json`, `ai-council-strategy.md`, `seats/round-NNN/seat-MMM-*.md` for each dispatched seat, `deliberations/round-NNN.md`, and `council-report.md`.
-  Record every state event (`round_start` + `seat_returned` x N + `deliberation_synthesized` + `round_end` + `council_complete`) through the append gateway (`append-mode-event.cjs --mode ai-council`), which refreshes the read-only `ai-council-state.jsonl` projection from the ledger.
+  The calling workflow records every state event (`round_start` + `seat_returned` x N + `deliberation_synthesized` + `round_end` + `council_complete`) through the append gateway (`append-mode-event.cjs --mode ai-council`), which refreshes the read-only `ai-council-state.jsonl` projection from the ledger. Bash is denied here, so name each event in the report, in order, for the calling workflow to record.
   Never write that projection directly.
 
 ### NEVER
@@ -492,7 +494,7 @@ The canonical schema for §8 lives at `.skilled/skills/system-deep-loop/deep-ai-
 - <Risk identified by other seats + mitigation>
 
 ### Planning-Only Boundary
-- No files were modified by the Multi-AI Council.
+- No code or spec files were modified by the Multi-AI Council. The `ai-council/**` artifacts listed in this report were written.
 - This report is a recommendation for user review or handoff to an implementation agent.
 ```
 
@@ -534,12 +536,12 @@ PERSISTENCE VERIFICATION (MANDATORY):
 [] Resolved target packet path at §1 Step 0 RESOLVE before dispatch (cite the path).
 [] `<packet>/ai-council/` directory exists at the resolved target path.
 [] `ai-council-config.json` written via `writeConfig` with current_round and status.
-[] Every state event (`round_start`, `seat_returned` per dispatched seat, `deliberation_synthesized`, `round_end`, `council_complete`) was recorded through the append gateway (exit 0 receipt); the refreshed read-only `ai-council-state.jsonl` projection shows those events.
+[] Every state event (`round_start`, `seat_returned` per dispatched seat, `deliberation_synthesized`, `round_end`, `council_complete`) is named in the report, in order, for the calling workflow to record through the append gateway.
 [] `ai-council-strategy.md` written via `writeStrategyMd` with charter content.
 [] `seats/round-NNN/seat-MMM-*.md` exists for every dispatched seat (written via `writeSeat`).
 [] `deliberations/round-NNN.md` written via `writeDeliberation` with comparison + synthesis.
 [] `council-report.md` written via `writeReport` with the final synthesized plan.
-[] For every persistence call above, an `artifact_written` event was recorded through the append gateway (exit 0 receipt); the `ai-council-state.jsonl` projection is never written directly.
+[] Every artifact written above is listed with its path, so the calling workflow can record an `artifact_written` event for it; the `ai-council-state.jsonl` projection is never written directly.
 ```
 
 ### Self-Validation Protocol
@@ -657,8 +659,9 @@ Reference: `.skilled/skills/system-deep-loop/deep-ai-council/references/structur
 
 ## 13. INVOCATION CONTRACT - FIRST-CALL VS SUBSEQUENT VS RESUME
 
-1. **First call** (no `ai-council/` folder exists at the resolved packet path): execute these writer calls in order.
-   After each persistence step, record an `artifact_written` event through the append gateway (`append-mode-event.cjs --mode ai-council`, exit 0 receipt) before the next step begins.
+1. **First call** (no `ai-council/` folder exists at the resolved packet path): execute these steps in order.
+   Each writer name below names the shape of a file this agent writes with Write or Edit.
+   Each "record ... through the append gateway" below is done by the calling workflow (`append-mode-event.cjs --mode ai-council`, exit 0 receipt); this agent names the event in its report and runs no script.
    The gateway refreshes the read-only `ai-council-state.jsonl` projection from the ledger.
    Treat any skipped step as a §9 Q11 violation.
    1. `writeConfig(...)` -> initialize `ai-council-config.json` with `current_round: 1`, `status: "in_progress"`, and timestamps. (record `artifact_written` through the gateway)
@@ -731,14 +734,14 @@ Sophisticated convergence math is non-goal N1. Keep v1 simple and auditable.
 
 **Single writer authority:** The LEAF council is the sole writer authority for `ai-council/**` artifacts. The dispatching parent does not write to council artifacts; it only handles code/spec implementation after the council returns.
 
-The council writes packet artifacts directly through `.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs`.
-Use the named exports in order as each round closes: `writeConfig`, `writeStrategyMd`, `writeSeat`, `writeDeliberation`, `writeCritique`, and `writeReport`.
-Each writer resolves the target under `<packet>/ai-council/` and writes the artifact.
-State events are recorded through the append gateway, which refreshes the read-only `ai-council-state.jsonl` projection from the ledger.
+The council writes packet artifacts with Write and Edit, under `<packet>/ai-council/`, as each round closes.
+The shapes are the ones the named writers of `.skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/persist-artifacts.cjs` produce: `writeConfig`, `writeStrategyMd`, `writeSeat`, `writeDeliberation`, `writeCritique`, and `writeReport`.
+The calling workflow runs that helper script when a run needs it; this agent never does.
+State events are recorded by the calling workflow through the append gateway, which refreshes the read-only `ai-council-state.jsonl` projection from the ledger.
 Those state events include the `artifact_written` receipt (with byte count and sha256 checksum) for each artifact.
 The agent never writes that projection directly.
 
-**Record state through the append gateway**:
+**The calling workflow records state through the append gateway** (shown for reference; this agent never runs it):
 
 ```bash
 node .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs \

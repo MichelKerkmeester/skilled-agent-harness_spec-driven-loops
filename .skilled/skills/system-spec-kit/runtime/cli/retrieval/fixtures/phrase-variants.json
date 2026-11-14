@@ -1,5 +1,5 @@
 {
-  "manifestHash": "17b25335b6de2aef664afb12d65395fdd4355f238eabda4938a52bec109f2931",
+  "manifestHash": "26bf8485aa75390288350073b29064933c6ec2448ecb7c6026679add3b7477f3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -103,6 +103,9 @@
     ],
     "001 eval benchmark fidelity implementation summary": [
       "001-eval-benchmark-fidelity implementation summary"
+    ],
+    "001 fix agent contract contradictions operator decisions": [
+      "001-fix-agent-contract-contradictions operator decisions"
     ],
     "001 fix mcp stress cycle doc observability": [
       "001-fix-mcp-stress-cycle-doc-observability"
@@ -50969,6 +50972,9 @@
     ],
     "fix agent contract contradictions acceptance criteria": [
       "fix agent contract contradictions acceptance criteria"
+    ],
+    "fix agent contract contradictions implementation summary": [
+      "fix agent contract contradictions implementation summary"
     ],
     "fix agent contract contradictions plan": [
       "fix agent contract contradictions plan"

@@ -75,10 +75,11 @@
       4. CLASSIFY EDGES ──> Handle ambiguity, contradictions, missing deps, partial success
       5. EXECUTE RESEARCH ─> 3-5 research actions (WebFetch, Grep, Read, ripgrep recipe)
       6. WRITE FINDINGS ──> Create research/iterations/iteration-NNN.md
-      7. WRITE DELTA ─────> Create research/deltas/iter-NNN.jsonl (canonical record on line 1 + delta rows; a reducer artifact)
+      7. RESPECT REDUCER ─> Leave strategy, registry and dashboard to the workflow reducer
       8. RECORD STATE ────> Write the one-record event file and hand it to the append gateway (append-mode-event.cjs --mode research); it refreshes deep-research-state.jsonl from the ledger
-      9. UPDATE RESEARCH ─> Progressively update research/research.md when enabled
-      10. VERIFY OUTPUTS ─> Check narrative, gateway receipt, delta, citations, and scope
+      9. WRITE DELTA ─────> Create research/deltas/iter-NNN.jsonl (canonical record on line 1 + delta rows; a reducer artifact)
+      10. UPDATE RESEARCH ─> Progressively update research/research.md when enabled
+      11. VERIFY OUTPUTS ─> Check narrative, gateway receipt, delta, citations, and scope
       ```
       
       ### Step 1: Read State
@@ -299,13 +300,13 @@
       - If there are no findings, set 0.0.
       - Add a +0.10 simplicity bonus, capped at 1.0, when synthesis reduces open questions, resolves contradictions, or provides a cleaner model without new external evidence.
       
-      ### Step 9: Update Research (Progressive)
+      ### Step 10: Update Research (Progressive)
       
       Read `research/deep-research-config.json` before touching `research/research.md`.
       - If `progressiveSynthesis == true`, add new findings to `research/research.md`; create it only if missing and only inside the resolved packet root.
       - If `progressiveSynthesis == false`, do not create or update `research/research.md`; synthesis owns it later.
       
-      ### Step 10: Verify Outputs
+      ### Step 11: Verify Outputs
       
       Before returning, verify:
       - `research/iterations/iteration-NNN.md` exists at the computed packet-local path.

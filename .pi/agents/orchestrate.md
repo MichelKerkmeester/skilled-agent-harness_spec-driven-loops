@@ -72,19 +72,19 @@ Steps 1-4 and 9-10 run linear; step 5 (CWB CHECK) branches to parallel or sequen
 
 | Priority | Task Type                                                                 | Agent                  | Tier | Skills                                                                            | subagent_type |
 | -------- | ------------------------------------------------------------------------- | ---------------------- | ---- | --------------------------------------------------------------------------------- | ------------- |
-| 1        | ALL codebase exploration, file search, pattern discovery, context loading | `@context`             | LEAF | Memory tools, Glob, Grep, Read                                                    | `"general"`   |
-| 2        | Evidence / iterative investigation                                        | `@deep-research`       | LEAF | `system-spec-kit`, `deep-research`                                             | `"general"`   |
-| 3        | Multi-strategy planning and architecture synthesis                        | `@ai-council`         | LEAF | Multi-lens planning rubric (planning-only)                                        | `"general"`   |
-| 4        | `/create:*` documentation and component creation command execution        | `@markdown`        | LEAF | `sk-doc`, `system-spec-kit` when spec tracking applies                            | `"general"`   |
-| 5        | Code review / security                                                    | `@review`              | LEAF | `sk-code` code-review mode (findings-first baseline + router-selected surface evidence)    | `"general"`   |
-| 6        | Deep-loop iterative code-audit pass (`/deep:review` only — explicit deep-loop convergence request, not a one-shot review) | `@deep-review` | LEAF | `system-spec-kit`, `deep-review` | `"general"` |
-| 7        | Implementation / testing                                                  | `@code`                | LEAF | `sk-code` (stack-agnostic; sk-code performs detection at dispatch time); orchestrator dispatches `@review` separately for formal review | `"general"`   |
-| 8        | Debugging when `failure_count >= 3` — workflow surfaces a prompted offer; user opts in via the runtime's delegation tool. Never auto-dispatched. | `@debug`               | LEAF | Code analysis tools                                                               | `"general"`   |
+| 1        | ALL codebase exploration, file search, pattern discovery, context loading | `@context`             | LEAF | Trigger index lookup, Glob, Grep, Read                                                    | `"context"`   |
+| 2        | Evidence / iterative investigation                                        | `@deep-research`       | LEAF | `system-spec-kit`, `deep-research`                                             | `"deep-research"`   |
+| 3        | Multi-strategy planning and architecture synthesis                        | `@ai-council`         | LEAF | Multi-lens planning rubric (planning-only)                                        | `"ai-council"`   |
+| 4        | `/create:*` documentation and component creation command execution        | `@markdown`        | LEAF | `sk-doc`, `system-spec-kit` when spec tracking applies                            | `"markdown"`   |
+| 5        | Code review / security                                                    | `@review`              | LEAF | `sk-code` code-review mode (findings-first baseline + router-selected surface evidence)    | `"review"`   |
+| 6        | Deep-loop iterative code-audit pass (`/deep:review` only — explicit deep-loop convergence request, not a one-shot review) | `@deep-review` | LEAF | `system-spec-kit`, `deep-review` | `"deep-review"` |
+| 7        | Implementation / testing                                                  | `@code`                | LEAF | `sk-code` (stack-agnostic; sk-code performs detection at dispatch time); orchestrator dispatches `@review` separately for formal review | `"code"`   |
+| 8        | Debugging when `failure_count >= 3` — workflow surfaces a prompted offer; user opts in via the runtime's delegation tool. Never auto-dispatched. | `@debug`               | LEAF | Code analysis tools                                                               | `"debug"`   |
 | 9        | External CLI execution — ONLY when the user names an executor; never auto-selected | `cli-<mode>` via the `cli-external-orchestration` hub | LEAF | `cli-external-orchestration` → the named `cli-X` packet | n/a (external process) |
 
 ### Nesting Depth Protocol (NDP)
 
-This Copilot profile enforces **single-hop delegation**. Nested sub-agent dispatch is illegal.
+This orchestrator enforces **single-hop delegation**. Nested sub-agent dispatch is illegal.
 
 #### Agent Tier Classification
 
@@ -92,6 +92,8 @@ This Copilot profile enforces **single-hop delegation**. Nested sub-agent dispat
 | ---------------- | -------------------------------- | ------------------------------------------------------------------------------------- |
 | **ORCHESTRATOR** | Can dispatch LEAF agents         | Top-level orchestrator only                                                           |
 | **LEAF**         | MUST NOT dispatch any sub-agents | @context, @code, @markdown, @ai-council, @review, @debug, @deep-research, @deep-review |
+
+The AI Council is a LEAF when another agent dispatches it, and may dispatch council seats only when the operator invokes it directly.
 
 #### Absolute Depth Rules
 
@@ -139,7 +141,7 @@ When dispatching ANY non-orchestrator agent, append this to the delegation promp
 **BEFORE dispatching any custom agent via the runtime's delegation tool, you MUST:**
 1. **READ** the agent's definition file (see File column below)
 2. **INCLUDE** the agent file's content in the delegation prompt (or a focused summary for large files)
-3. **SET** `subagent_type: "general-purpose"` (all custom agents use the general subagent type)
+3. **SET** `subagent_type` to the agent's own name, for example `subagent_type: "context"`, so the runtime loads that agent's own tool limits. Use `subagent_type: "general-purpose"` only on a runtime whose delegation tool registers no named agents.
 
 **Why:** Agent definition files contain specialized instructions, templates, enforcement rules, and quality standards that differentiate them from generic agents. Telling a general agent "you are @debug" is NOT equivalent to loading `debug.md` — it loses the specialized debugging workflow and verification discipline.
 
@@ -151,7 +153,7 @@ Before every sub-agent dispatch, compare the selected route, loaded agent defini
 
 1. The `Agent:` line in the task prompt MUST match the route selected in §2 Agent Selection.
 2. The loaded `Agent Definition` MUST be the file for that same agent.
-3. `subagent_type: "general-purpose"` is only the runtime wrapper; it does not make a mismatched prompt safe.
+3. `subagent_type` MUST name the same agent as the `Agent:` line. The `"general-purpose"` wrapper, used only where a runtime registers no named agents, does not make a mismatched prompt safe.
 4. If a prompt says `Agent: @code`, the selected route MUST be @code, `.skilled/agents/code.md` MUST be loaded, and the work MUST pass @code's component-authoring gate.
 5. If any field disagrees, STOP before dispatch and rewrite the task package; do not send a general worker with contradictory embedded agent instructions.
 
@@ -187,7 +189,7 @@ TASK #N: [Descriptive Title]
 ├─ Boundary: [What this agent MUST NOT do]
 ├─ Agent: @code | @context | @markdown | @deep-research | @deep-review | @ai-council | @review | @debug
 ├─ Deep Route: [for deep routes only: mode=<workflowMode>; target_agent=@<agent>; execution=<single_iteration|loop|session>; source_of_truth=.skilled/skills/system-deep-loop/mode-registry.json | none]
-├─ Subagent Type: "general" (ALL dispatches use "general" — exploration routes through @context)
+├─ Subagent Type: [the agent's own name, the Agent line without the @ | "general-purpose" only on a runtime with no named agents]
 ├─ Agent Definition: [.skilled/agents/<name>.md — MUST be read and included in prompt | "built-in" for @general-purpose]
 ├─ Skills: [Specific skills the agent should use]
 ├─ Output Format: [Structured format with example]
@@ -345,7 +347,7 @@ If DEG does not clearly justify splitting, stay in direct-first mode.
 
 ### Sub-Orchestrator Pattern (Disabled)
 
-Sub-orchestrator fan-out is disabled in this Copilot profile because nested dispatch is illegal. When work is large, keep orchestration at depth 0 and run additional waves directly from the top-level orchestrator.
+Sub-orchestrator fan-out is disabled here because nested dispatch is illegal. When work is large, keep orchestration at depth 0 and run additional waves directly from the top-level orchestrator.
 
 ### Conditional Branching
 
@@ -430,7 +432,7 @@ TASK #2: Implement Notification System
 
 ### Rule 4: Route ALL Exploration Through @context
 **Trigger:** Any task requiring codebase exploration, file search, or pattern discovery.
-**Action:** ALWAYS dispatch `@context` (subagent_type: `"general-purpose"`). @context performs direct retrieval only and returns structured Context Packages.
+**Action:** ALWAYS dispatch `@context` (subagent_type: `"context"`). @context performs direct retrieval only and returns structured Context Packages.
 **Logic:** Direct exploration by other agents bypasses memory checks and structured packaging. @context centralizes memory-first retrieval without nested delegation.
 
 ### Rule 5: Spec Documentation Governance

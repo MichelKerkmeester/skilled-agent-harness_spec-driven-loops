@@ -20,7 +20,8 @@
       "durable directive",
       "completion criteria",
       "goal binding",
-      "001-fix-agent-contract-contradictions operator decisions"
+      "001-fix-agent-contract-contradictions operator decisions",
+      "fix agent contract contradictions implementation summary"
     ],
     "key_topics": [
       "agent",
@@ -37,7 +38,7 @@
       "directive"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -45,17 +46,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "decision-record.md",
+      "implementation-summary.md",
       ".skilled/agents/ai-council.md",
       ".skilled/agents/orchestrate.md",
       ".skilled/agents/code.md",
       ".skilled/agents/review.md",
       ".skilled/agents/deep-research.md",
       ".skilled/agents/context.md",
+      "scratch/after.txt",
       ".skilled/commands/deep/assets/deep-ai-council-auto.yaml",
       ".skilled/bin/agent-mirror-crosswalk.md",
       ".skilled/bin/check-agent-mirror-sync.cjs",
-      ".skilled/commands/speckit/assets/speckit-implement.yaml",
-      ".skilled/agents/README.txt"
+      "scratch/baseline.txt",
+      "scratch/council-script-owners.md",
+      ".skilled/commands/speckit/assets/speckit-implement.yaml"
     ],
     "entities": [
       {
@@ -95,6 +99,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "ai-council.md",
         "kind": "doc",
         "path": ".skilled/agents/ai-council.md",
@@ -131,6 +141,12 @@
         "source": "derived"
       },
       {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
         "name": "deep-ai-council-auto.yaml",
         "kind": "config",
         "path": ".skilled/commands/deep/assets/deep-ai-council-auto.yaml",
@@ -149,15 +165,21 @@
         "source": "derived"
       },
       {
-        "name": "speckit-implement.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/speckit/assets/speckit-implement.yaml",
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
         "source": "derived"
       },
       {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".skilled/agents/README.txt",
+        "name": "council-script-owners.md",
+        "kind": "doc",
+        "path": "scratch/council-script-owners.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-implement.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-implement.yaml",
         "source": "derived"
       },
       {
@@ -183,29 +205,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement Eight",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Eight statements in `.skilled/agents/` cannot all be followed",
     "created_at": "2026-11-14T11:36:20Z",
-    "last_save_at": "2026-11-14T12:09:06.974Z",
+    "last_save_at": "2026-11-14T12:24:08.883Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,15 +218,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:07e010882318cd35155befc45730dd89f1751d1e568284e665d1630b4ee845d7",
+    "source_fingerprint": "sha256:8ef5538e3dca1c9503128d0451b1c3dfad2f7d688741fd2ad5f398fc4cce7517",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "77b383c7d036055bfcdc7f0e26404b5f2e3bbffc14dcbeb8c8879a425d856457",
+      "spec.md": "21750ff508e631338d945410fe0393d5afb75d6802a79aaa4055d08345087b85",
       "plan.md": "8c348a7b66075f631097d436be9b904e2364e1f848507e5cca285743cb76dc43",
-      "tasks.md": "3ef047b0f399e797b307bdc2548eb266a218b9fd3ff05420efae23b53006322f",
-      "decision-record.md": "274596c90db362aa1d0dfad074b6a7bad7742f50c0f07f1b466a5ac568f63969"
+      "tasks.md": "3a8a5faaee701a2553f400ef864e2da223c9895766b22388469cbad57ec38f8e",
+      "decision-record.md": "274596c90db362aa1d0dfad074b6a7bad7742f50c0f07f1b466a5ac568f63969",
+      "implementation-summary.md": "a4bd3c8925a7e4d1b8216801114eddb50556ebc98389c30ecd05a1176f2f9022"
     },
     "last_active_at": null
   }

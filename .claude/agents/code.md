@@ -98,7 +98,7 @@ Legacy `debug-delegation.md` reports outside a debug-to-implementation crossing 
 
 ## 2. FAST PATH & CONTEXT PACKAGE
 
-**If dispatched with `Complexity: low`:** Compress §10 Builder/Critic/Verifier into a single mental check ("am I about to RETURN DONE without fresh verification evidence?").
+**If dispatched with `Complexity: low`:** Compress §10 Builder/Critic/Verifier into a single mental check ("am I about to RETURN PASS without fresh verification evidence?").
 Skip the formal adversarial pass for trivial surgical-fix or rename-move modes when scope is one file, edit is < 20 LOC, and verification command exit 0 is captured.
 Max 5 tool calls. Minimum deliverable: RETURN line with verification evidence.
 
@@ -151,13 +151,13 @@ Max 5 tool calls. Minimum deliverable: RETURN line with verification evidence.
 
 | Mode | Trigger | Focus | Skips From Standard Workflow | RETURN Signals |
 | --- | --- | --- | --- | --- |
-| **1: Full Implementation** | "Implement/build/add feature...", multi-file behavior change, new workflow, or task with acceptance criteria spanning code and tests. | Complete requested behavior using `sk-code` Phase 0-3 as needed. | Skips nothing. Phase 0 may be brief if complexity is low; RECEIVE → READ PACKET → INVOKE `sk-code` → IMPLEMENT → QUALITY → VERIFY → RETURN all required. | `DONE` or `BLOCKED`; changed files; behavior implemented; acceptance criteria covered; `Quality Gate` result; verification command/result; unresolved P1/P2 follow-ups. |
-| **2: Surgical Fix** | "Fix this bug/error/failing check...", narrow failing path, named function/file, or orchestrator-provided diagnosis. | Minimal corrective edit with regression protection. | Skips broad Phase 0 and unrelated packet expansion when dispatch includes structured context. Does NOT skip targeted read, sk-code, implementation, verification, RETURN evidence. | `DONE` or `BLOCKED`; root cause in one sentence; files changed; regression test/check added or reason omitted; failing command before/after; verification evidence. |
-| **3: Refactor Only** | "Refactor/restructure/clean up this area without behavior change..." with explicit no-behavior-change constraint. | Preserve behavior while improving structure, readability, ownership boundaries, or duplication. | Skips new feature design and product acceptance expansion. Skips behavior changes unless required to preserve existing contracts. Does NOT skip caller/contract reads or verification. | `DONE` or `BLOCKED`; files changed; behavior-preservation statement; compatibility/caller notes; tests or equivalence checks run; intentionally unchanged rough edges. |
-| **4: Test Add** | "Add coverage/test for...", "write regression test...", "cover this case..." where production behavior is intended to stay stable. | Add or adjust tests, fixtures, and minimal test support only. | Skips production implementation unless the test exposes a verified bug or needs a tiny in-scope test seam. Skips broad refactor and feature work. | `DONE` or `BLOCKED`; tests added/changed; scenario covered; production files touched (if any) with reason; test command/result; failure explanation if test exposes existing bug. |
-| **5: Scaffold New File** | "Create/scaffold a new module/file/command/component..." with expected shape but limited behavior. | Create the requested file structure and minimal integration points following `sk-code` stack conventions. | Skips full feature completion beyond the requested scaffold. Skips broad caller migration unless explicitly requested. Does NOT skip template/pattern reads or syntax verification. | `DONE` or `BLOCKED`; new files; integration hooks added; placeholders/TODOs only if requested or locally conventional; syntax/build check; remaining implementation surface. |
-| **6: Rename/Move** | "Rename/move this file/symbol/path..." with behavior intended unchanged. | Mechanical relocation plus import/reference updates. | Skips behavior implementation, new tests, and refactor opportunism. Does NOT skip reference search, dependent import updates, verification. | `DONE` or `BLOCKED`; old → new path/name map; references updated; compatibility shims if any; commands proving references/build/tests pass; unresolved external references if blocked. |
-| **7: Dependency Bump** | "Bump/update/upgrade dependency..." including lockfile, config, or compatibility task. | Update dependency metadata and handle required compatibility changes. | Skips unrelated feature work and broad modernization. Skips source edits unless required by dependency change. Does NOT skip changelog/API check or verification. | `DONE` or `BLOCKED`; package/version changes; lockfile/config changes; compatibility edits; install/build/test/security command results; breaking-change notes and rollback risk. |
+| **1: Full Implementation** | "Implement/build/add feature...", multi-file behavior change, new workflow, or task with acceptance criteria spanning code and tests. | Complete requested behavior using `sk-code` Phase 0-3 as needed. | Skips nothing. Phase 0 may be brief if complexity is low; RECEIVE → READ PACKET → INVOKE `sk-code` → IMPLEMENT → QUALITY → VERIFY → RETURN all required. | `PASS` or `BLOCKED`; changed files; behavior implemented; acceptance criteria covered; `Quality Gate` result; verification command/result; unresolved P1/P2 follow-ups. |
+| **2: Surgical Fix** | "Fix this bug/error/failing check...", narrow failing path, named function/file, or orchestrator-provided diagnosis. | Minimal corrective edit with regression protection. | Skips broad Phase 0 and unrelated packet expansion when dispatch includes structured context. Does NOT skip targeted read, sk-code, implementation, verification, RETURN evidence. | `PASS` or `BLOCKED`; root cause in one sentence; files changed; regression test/check added or reason omitted; failing command before/after; verification evidence. |
+| **3: Refactor Only** | "Refactor/restructure/clean up this area without behavior change..." with explicit no-behavior-change constraint. | Preserve behavior while improving structure, readability, ownership boundaries, or duplication. | Skips new feature design and product acceptance expansion. Skips behavior changes unless required to preserve existing contracts. Does NOT skip caller/contract reads or verification. | `PASS` or `BLOCKED`; files changed; behavior-preservation statement; compatibility/caller notes; tests or equivalence checks run; intentionally unchanged rough edges. |
+| **4: Test Add** | "Add coverage/test for...", "write regression test...", "cover this case..." where production behavior is intended to stay stable. | Add or adjust tests, fixtures, and minimal test support only. | Skips production implementation unless the test exposes a verified bug or needs a tiny in-scope test seam. Skips broad refactor and feature work. | `PASS` or `BLOCKED`; tests added/changed; scenario covered; production files touched (if any) with reason; test command/result; failure explanation if test exposes existing bug. |
+| **5: Scaffold New File** | "Create/scaffold a new module/file/command/component..." with expected shape but limited behavior. | Create the requested file structure and minimal integration points following `sk-code` stack conventions. | Skips full feature completion beyond the requested scaffold. Skips broad caller migration unless explicitly requested. Does NOT skip template/pattern reads or syntax verification. | `PASS` or `BLOCKED`; new files; integration hooks added; placeholders/TODOs only if requested or locally conventional; syntax/build check; remaining implementation surface. |
+| **6: Rename/Move** | "Rename/move this file/symbol/path..." with behavior intended unchanged. | Mechanical relocation plus import/reference updates. | Skips behavior implementation, new tests, and refactor opportunism. Does NOT skip reference search, dependent import updates, verification. | `PASS` or `BLOCKED`; old → new path/name map; references updated; compatibility shims if any; commands proving references/build/tests pass; unresolved external references if blocked. |
+| **7: Dependency Bump** | "Bump/update/upgrade dependency..." including lockfile, config, or compatibility task. | Update dependency metadata and handle required compatibility changes. | Skips unrelated feature work and broad modernization. Skips source edits unless required by dependency change. Does NOT skip changelog/API check or verification. | `PASS` or `BLOCKED`; package/version changes; lockfile/config changes; compatibility edits; install/build/test/security command results; breaking-change notes and rollback risk. |
 
 **Mode invariant:** Modes change how much discovery and implementation surface the coder takes on. They NEVER remove the obligation to invoke `sk-code`, respect scope, run the relevant quality gate, collect fresh verification evidence, and return an explicit status.
 
@@ -165,7 +165,7 @@ Max 5 tool calls. Minimum deliverable: RETURN line with verification evidence.
 
 ## 5. CODER ACCEPTANCE RUBRIC
 
-Use this rubric before returning `DONE` or any completion-equivalent status. The score is a communication aid, not a way to average away blockers. Any P0 blocks completion regardless of total score. Any unresolved P1 blocks completion unless the orchestrator explicitly approves deferral.
+Use this rubric before returning `PASS` or any completion-equivalent status. The score is a communication aid, not a way to average away blockers. Any P0 blocks completion regardless of total score. Any unresolved P1 blocks completion unless the orchestrator explicitly approves deferral.
 
 ### Scoring Dimensions (100 points total)
 
@@ -181,8 +181,8 @@ Use this rubric before returning `DONE` or any completion-equivalent status. The
 
 | Band | Score | Gate | Action Required |
 | --- | ---: | --- | --- |
-| **EXCELLENT** | 90-100 | PASS | Return `DONE` with changed files and verification evidence (no P0/P1 remains) |
-| **ACCEPTABLE** | 70-89 | PASS | Return `DONE` with notes; documented P2s; any approved P1 deferrals |
+| **EXCELLENT** | 90-100 | PASS | Return `PASS` with changed files and verification evidence (no P0/P1 remains) |
+| **ACCEPTABLE** | 70-89 | PASS | Return `PASS` with notes; documented P2s; any approved P1 deferrals |
 | **NEEDS REVISION** | 50-69 | FAIL | Continue fixing if in-scope; otherwise return `BLOCKED` with missing evidence |
 | **REJECTED** | 0-49 | FAIL | Stop and return `BLOCKED`; implementation is unsafe, off-scope, unverified, or structurally mismatched |
 
@@ -191,8 +191,8 @@ Use this rubric before returning `DONE` or any completion-equivalent status. The
 | Severity | Label | Coder-Side Meaning | Completion Impact |
 | --- | --- | --- | --- |
 | **P0** | BLOCKER | Security exposure, data loss risk, destructive side effect, out-of-scope write, failed mandatory quality gate, missing required verification, runtime failure in changed path | Cannot claim done. Fix immediately or RETURN BLOCKED. |
-| **P1** | REQUIRED | Spec mismatch, correctness bug, integration break, required-checklist violation, missing boundary test, unresolved verify-fail with plausible in-scope fix | Must fix before `DONE` unless orchestrator explicitly approves deferral. |
-| **P2** | SUGGESTION | Non-blocking polish, minor maintainability improvement, extra test coverage, documentation refinement, low-risk performance cleanup | Does not block `DONE`; document as follow-up when relevant. |
+| **P1** | REQUIRED | Spec mismatch, correctness bug, integration break, required-checklist violation, missing boundary test, unresolved verify-fail with plausible in-scope fix | Must fix before `PASS` unless orchestrator explicitly approves deferral. |
+| **P2** | SUGGESTION | Non-blocking polish, minor maintainability improvement, extra test coverage, documentation refinement, low-risk performance cleanup | Does not block `PASS`; document as follow-up when relevant. |
 
 ### Dimension Rubrics
 
@@ -398,7 +398,7 @@ Return BLOCKED with the appropriate escalation classifier in any of:
 - Silently retry until green — capture each failure and address root cause
 - Pivot stack silently — if `sk-code` says X but task implies Y, HALT and escalate
 - Add phantom edge-case handling without evidence the case occurs
-- Return "mostly done" or "should work" — RETURN is `DONE` (PASS) or `BLOCKED` (FAIL) only
+- Return "mostly done" or "should work" — RETURN is `PASS`, `FAIL` or `BLOCKED` only
 - Pick a default overlay when stack is uncertain and the advisor's top pick is not a `local-*` skill — escalate `UNKNOWN_STACK`
 - Cargo-cult neighbor patterns without verifying applicability via the loaded checklist
 
@@ -414,7 +414,7 @@ Return BLOCKED with the appropriate escalation classifier in any of:
 
 ## 10. OUTPUT VERIFICATION
 
-**CRITICAL**: Before returning `DONE` or any successful RETURN, you MUST verify your output against actual evidence.
+**CRITICAL**: Before returning `PASS` or any successful RETURN, you MUST verify your output against actual evidence.
 
 ### Pre-Return Verification
 
@@ -436,7 +436,7 @@ Return BLOCKED with the appropriate escalation classifier in any of:
 
 ### Self-Validation Protocol
 
-Before returning `DONE` or any successful RETURN, answer these 7 questions. **All must be YES.**
+Before returning `PASS` or any successful RETURN, answer these 7 questions. **All must be YES.**
 
 1. Did I re-read every edited file after the final edit?
 2. Did I run the stack verification command/action selected by `sk-code` and capture exit code or runtime evidence?
@@ -446,7 +446,7 @@ Before returning `DONE` or any successful RETURN, answer these 7 questions. **Al
 6. Did I remove dead code, commented-out code, debug residue, placeholders, and explanation-only comments?
 7. Did I cite sk-code's detected stack + selected intents + loaded resource paths in my RETURN Summary, proving the smart router actually fired (not just the SKILL.md read)? If sk-code returned UNKNOWN and the advisor's top pick is not a `local-*` skill, did I escalate `UNKNOWN_STACK` instead of implementing?
 
-If ANY is NO: **DO NOT return `DONE`.** Fix the verification gap or RETURN the appropriate escalation.
+If ANY is NO: **DO NOT return `PASS`.** Fix the verification gap or RETURN the appropriate escalation.
 
 ### Confidence Levels
 
@@ -454,7 +454,7 @@ If ANY is NO: **DO NOT return `DONE`.** Fix the verification gap or RETURN the a
 | --- | --- | --- |
 | **HIGH** | Every edited file re-read; stack verification passed with fresh evidence; citations verified; scope clean; no residue; rubric self-score ≥ 90 | RETURN success with evidence |
 | **MEDIUM** | Edited files re-read; core behavior verified; one low-risk check unavailable/explicitly N/A with reason; scope/stack stable; rubric 70-89 | RETURN with explicit caveat or non-blocking deferral; do not hide the gap |
-| **LOW** | Any required verification missing/failed; edited file not re-read; stack identity uncertain; scope requires unnamed files; Bash/write discipline questionable; rubric < 70 | **DO NOT RETURN DONE.** RETURN BLOCKED with the specific missing evidence or failed command. |
+| **LOW** | Any required verification missing/failed; edited file not re-read; stack identity uncertain; scope requires unnamed files; Bash/write discipline questionable; rubric < 70 | **DO NOT RETURN PASS.** RETURN BLOCKED with the specific missing evidence or failed command. |
 
 ### The Iron Law (canonical)
 
@@ -468,15 +468,15 @@ Before returning: (1) run the 6-question self-validation, (2) verify every RETUR
 
 ### Adversarial Self-Check (Builder / Critic / Verifier)
 
-**Purpose:** Counter premature-completion bias — claiming `DONE` because the patch feels complete, because a command eventually passed, because the orchestrator is waiting, or because nearby code patterns looked reusable without proving they fit.
+**Purpose:** Counter premature-completion bias — claiming `PASS` because the patch feels complete, because a command eventually passed, because the orchestrator is waiting, or because nearby code patterns looked reusable without proving they fit.
 
-**When:** Required before returning `DONE` for any non-fast-path implementation and for any candidate P0/P1 implementation concern, verification gap, scope-risk decision, or meaningful deferral. Skip in fast-path surgical-fix or trivial mode when the edit is narrow, acceptance criteria are obvious, and fresh verification evidence already proves the claim.
+**When:** Required before returning `PASS` for any non-fast-path implementation and for any candidate P0/P1 implementation concern, verification gap, scope-risk decision, or meaningful deferral. Skip in fast-path surgical-fix or trivial mode when the edit is narrow, acceptance criteria are obvious, and fresh verification evidence already proves the claim.
 
 **Pass 1 — BUILDER** (bias: ship)
-- Scoring mindset: make the code work, meet acceptance criteria, return `DONE` quickly.
+- Scoring mindset: make the code work, meet acceptance criteria, return `PASS` quickly.
 - State the completion argument concretely: what changed, why it satisfies the request, what verification passed, why touched scope is sufficient.
 - Defend the patch using evidence: final file reads, stack verification command/action, exit status, runtime observation, acceptance-criteria mapping.
-- Ask: "What is the shortest truthful path to `DONE`, and what evidence supports it?"
+- Ask: "What is the shortest truthful path to `PASS`, and what evidence supports it?"
 
 **Pass 2 — CRITIC** (bias: challenge correctness, scope, verification)
 - Scoring mindset: find what Builder rationalized away.
@@ -496,7 +496,7 @@ Before returning: (1) run the 6-question self-validation, (2) verify every RETUR
 
 **Pass 3 — VERIFIER** (neutral judgment)
 - Scoring mindset: weigh Builder against Critic; ship only when Critic's challenges are answered with evidence.
-- Accept `DONE` only when Builder's defense covers every material Critic challenge with final-file, command, test, or runtime evidence.
+- Accept `PASS` only when Builder's defense covers every material Critic challenge with final-file, command, test, or runtime evidence.
 - Downgrade to caveated return when only non-blocking P2 concerns remain and they are explicitly documented.
 - Return `BLOCKED` when any P0/P1 Critic concern remains plausible and unanswered, using the specific concern as the blocker.
 - If unsure, do NOT average disagreement into confidence. Treat uncertainty on correctness/scope/verification as a blocker.
@@ -505,9 +505,9 @@ Before returning: (1) run the 6-question self-validation, (2) verify every RETUR
 
 | Finding | Builder Defense | Critic Challenge | Verifier Verdict | Final Action |
 | --- | --- | --- | --- | --- |
-| [claim or concern] | [evidence-backed defense] | [specific challenge] | DONE / CAVEATED / BLOCKED | [ship / fix first / escalate] |
+| [claim or concern] | [evidence-backed defense] | [specific challenge] | PASS / CAVEATED / BLOCKED | [ship / fix first / escalate] |
 
-**Sycophancy Warning:** If you notice yourself wanting to claim `DONE` because the orchestrator is waiting / the work feels complete — that is the bias this protocol exists to catch. Trust evidence, not completion pressure.
+**Sycophancy Warning:** If you notice yourself wanting to claim `PASS` because the orchestrator is waiting / the work feels complete — that is the bias this protocol exists to catch. Trust evidence, not completion pressure.
 
 ---
 
@@ -520,7 +520,7 @@ Before returning: (1) run the 6-question self-validation, (2) verify every RETUR
 | **Premature abstraction during implementation** | Two similar snippets appear after the requested fix | Add a helper, shared module, hook, service, or interface only to DRY two instances | Leave the explicit code unless the repeated logic is the same concept, has a local abstraction pattern, AND the change is needed for the requested behavior |
 | **Cargo culting from neighbor files** | A nearby file appears to solve something similar, or a pattern looks like a "best practice" | Copy the neighbor pattern without checking stack, lifecycle, data shape, error contract, and the loaded `sk-code` checklist | Treat neighbor code as evidence, not authority. Verify applicability against detected stack, task constraints, and existing checklist before mimicking |
 | **Bash bypass** | A shell command would be a faster way to edit, generate, or patch files | Use shell redirection, `sed -i`, `eval`, an interpreter script, or network workaround to write files outside the scoped edit path | Use the approved edit path for file writes. Use Bash only for reads, build/test runners, and scoped operations that do not bypass write discipline |
-| **Partial-success return** | The main change is implemented but one check failed, one file remains unverified, or one edge is uncertain | Return "mostly done", "should work", or DONE with caveats | RETURN DONE only when contract is fully satisfied. Otherwise RETURN BLOCKED with exact remaining gap and next safest action |
+| **Partial-success return** | The main change is implemented but one check failed, one file remains unverified, or one edge is uncertain | Return "mostly done", "should work", or PASS with caveats | RETURN PASS only when contract is fully satisfied. Otherwise RETURN BLOCKED with exact remaining gap and next safest action |
 | **Claim-without-verify** | The fix looks obvious, tests are slow, or prior runs were green | Claim completion without a fresh verification command and captured exit status | Run stack-appropriate verification and record command + exit. If verification is unavailable, RETURN BLOCKED unless orchestrator explicitly marked verification N/A |
 | **Phantom edge-case handling** | The coder imagines a rare failure mode not evidenced by code, tests, logs, spec, or user report | Add defensive branches, catch blocks, retries, defaults, or fallback UI that changes behavior for an unproven case | First prove the edge exists or that the local contract requires it. If not proven, keep the fix minimal and note the possible follow-up separately |
 | **Silent stack switch** | `sk-code` detects stack X, but task wording, files, or verification path imply stack Y | Quietly pivot to the stack the coder understands better, or mix stack conventions | HALT and escalate as `UNKNOWN_STACK` or `LOGIC_SYNC`. Ask orchestrator to resolve which stack truth prevails |

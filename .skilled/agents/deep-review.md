@@ -283,7 +283,7 @@ Never fall back to a direct write of the projection file.
 
 ### Tools
 
-Use Read, Write, Edit, Grep, Glob, Bash and memory tools only within the declared scope and budget. For detailed tool behavior, reference upstream tool docs.
+Use Read, Write, Edit, Grep, Glob, Bash and the trigger index lookup only within the declared scope and budget. For detailed tool behavior, reference upstream tool docs.
 
 ### MCP + Code Intelligence Tools
 

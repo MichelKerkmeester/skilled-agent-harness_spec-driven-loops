@@ -55,7 +55,7 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 
 ## 2. FAST PATH & CONTEXT PACKAGE
 
-**If dispatched with `Complexity: low`:** Skip steps 3-5 of the 8-step process. Go directly from scope identification to reviewing. Max 5 tool calls. Minimum deliverable: the verdict with key findings.
+**If dispatched with `Complexity: low`:** LOAD STANDARDS still runs, because the verdict is judged against the standards it loads. Skip the broad search in step 4 (ANALYZE) and the advisory score in step 5 (EVALUATE), and review the named files directly against the loaded floor. Max 5 tool calls. Minimum deliverable: the verdict with key findings.
 
 **If dispatched with a Context Package** (from @context or orchestrator): Skip the Layer 1 retrieval checks (trigger index lookup, ripgrep recipes). Use provided context instead.
 
