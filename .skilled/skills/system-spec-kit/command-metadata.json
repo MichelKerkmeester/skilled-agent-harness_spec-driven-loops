@@ -2,7 +2,7 @@
   {
     "command": "/speckit:plan",
     "ownerMode": "system-spec-kit",
-    "description": "Planning workflow, 8 steps: spec through plan only. Modes :auto, :confirm, :autopilot; :with-* modifiers.",
+    "description": "Planning workflow, 7 steps: spec through plan only. Modes :auto, :confirm, :autopilot; :with-* modifiers.",
     "argumentHint": "<feature-description> [:auto|:confirm|:autopilot|:unattended|--unattended] [:with-context] [:with-phases] [--level=N]",
     "mutating": "mutates",
     "gate3_location": "spec documents inside the bound spec folder",
@@ -102,7 +102,7 @@
   {
     "command": "/speckit:complete",
     "ownerMode": "system-spec-kit",
-    "description": "End-to-end SpecKit workflow, 14+ steps. Modes :auto, :confirm, :autopilot; :with-* workflow modifiers.",
+    "description": "End-to-end SpecKit workflow, 13 steps. Modes :auto, :confirm, :autopilot; :with-* workflow modifiers.",
     "argumentHint": "<feature-description> [:auto|:confirm|:autopilot|:unattended|--unattended] [:with-research] [:with-context] [:with-phases]",
     "mutating": "mutates",
     "gate3_location": "tracked code and spec documents under the bound spec folder",

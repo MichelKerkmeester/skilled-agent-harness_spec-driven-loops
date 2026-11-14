@@ -34,7 +34,7 @@ checkpoint_options:
 child_dispatch: "When AI_SESSION_CHILD=1 marks a non-interactive worker bound to a lineage directory, Gate 3 is pre-resolved to that directory and the worker does not ask. Interactive sessions always ask."
 
 role: Expert Developer using Smart SpecKit for autonomous planning
-purpose: Spec-driven planning with autonomous execution through step 7
+purpose: Spec-driven planning with autonomous execution through step 6
 action: Run SpecKit from spec to planning with continuous self-validation
 
 runtime_agent_path_resolution:
@@ -122,6 +122,7 @@ field_handling:
     derive_from: "spec_folder path using pattern specs/{NNN}, specs/{NNN-name}, or specs/{NNN-parent}/{NNN-phase} (phase child — use parent NNN as spec_id)"
     fallback: "Extract numeric portion or use timestamp if extraction fails"
   defaults: { spec_folder_empty: "Auto-create specs/{NNN} from highest +001", context_empty: "Infer from request/staging/codebase", issues_empty: "Discover during workflow", environment_empty: "Skip browser testing", scope_empty: "specs/**" }
+  spec_folder_skip: "Q1 option D, Skip documentation: the run stops before step 1 and writes nothing. This command exists to write a packet, so it has no work without one."
   phase_folder_awareness:
     note: "[SPEC_FOLDER] may be a phase child path (e.g., specs/003-name/001-phase/). When Option C targets a phase child or --phase-folder is provided, spec_id derives from the parent folder NNN, not the child NNN. When Option C adds a phase to a parent that has a goal.md, give it a child goal and binding row with /create:goal <parent> phase-add."
     path_pattern: "specs/{NNN-parent}/{NNN-phase}/"
@@ -385,7 +386,7 @@ workflow:
       note: "Healthy folder detected. Skip shared intake-contract execution (`.skilled/skills/system-spec-kit/references/workflows/intake-contract.md` §2-§5) and keep the existing `/plan` setup behavior unchanged."
 
   step_0.6_intake_only_gate:
-    purpose: Terminate the workflow successfully after intake Emit phase when the user passed `--intake-only`, bypassing planning Steps 1-7.
+    purpose: Terminate the workflow successfully after intake Emit phase when the user passed `--intake-only`, bypassing planning Steps 1-6.
     trigger_flag: "--intake-only"
     bound_variable: intake_only
     halt_condition:
@@ -395,14 +396,14 @@ workflow:
         op: "=="
         value: true
       when_legacy_literal: "intake_only == TRUE"
-      behavior: "Emit success summary, set STATUS=OK, and STOP the workflow before step_1_request_analysis is reached. Steps 1-7 MUST NOT execute."
+      behavior: "Emit success summary, set STATUS=OK, and STOP the workflow before step_1_request_analysis is reached. Steps 1-6 MUST NOT execute."
       success_summary_fields:
         - spec_path
         - folder_state
         - start_state
         - published_trio: ["spec.md", "description.json", "graph-metadata.json"]
         - intake_emit_complete: true
-      message: "Intake-only mode complete. Published trio at {spec_path}: spec.md, description.json, graph-metadata.json. Planning Steps 1-7 bypassed. Run /speckit:plan (without --intake-only) to resume planning."
+      message: "Intake-only mode complete. Published trio at {spec_path}: spec.md, description.json, graph-metadata.json. Planning Steps 1-6 bypassed. Run /speckit:plan (without --intake-only) to resume planning."
       exit_status: OK
       presentation: "Render the Intake-Only Result block of speckit-plan-presentation.txt in place of the all-steps success text."
     continue_condition:
@@ -694,7 +695,7 @@ termination:
   after_step: 6
   message: "Planning complete. The workflow ends after step 6, which wrote continuity once."
   remaining_children: "When the run decomposed into phases, name each remaining child folder with its command: /speckit:plan <child-folder>"
-  next_steps: [Review planning docs, Validate technical approach, "Use /speckit:implement:auto or /speckit:implement:confirm"]
+  next_steps: [Review planning docs, Validate technical approach, "Use /speckit:implement <spec-folder> :auto or /speckit:implement <spec-folder> :confirm"]
   enforcement: |
     CRITICAL: If user requests implementation via free text (e.g., "implement this plan",
     "go ahead and build it", "start coding"), you MUST:

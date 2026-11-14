@@ -17,7 +17,7 @@ PRE-BOUND SETUP ANSWERS:
   execution_mode: AUTONOMOUS
   continuation_choice: packet-continuity
   artifact_recovery_choice: continue_anyway
-  memory_choice: fast
+  prior_continuity_choice: fast
   artifacts_valid: true
   continuity_sources_available: yes
 ```
@@ -35,7 +35,7 @@ Unknown fields warn. Malformed lines are parse errors. Marker values override fl
 | `execution_mode` | Yes | `AUTONOMOUS` under `:auto` | No |
 | `continuation_choice` | No | none | Yes, only when handoff and packet continuity disagree |
 | `artifact_recovery_choice` | No | `continue_anyway` under resume auto mode | No |
-| `memory_choice` | No | `fast` | No |
+| `prior_continuity_choice` | No | `fast` | No |
 | `artifacts_valid` | Yes | auto-detect | No |
 | `continuity_sources_available` | No | auto-detect | No |
 

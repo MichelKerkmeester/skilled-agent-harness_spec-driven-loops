@@ -145,6 +145,7 @@ field_handling:
     derive_from: "spec_folder path using pattern specs/{NNN}, specs/{NNN-name}, or specs/{NNN-parent}/{NNN-phase} (phase child — use parent NNN as spec_id)"
     fallback: "Extract numeric portion or use timestamp if extraction fails"
   defaults: { spec_folder_empty: "Auto-create specs/{NNN} from highest +001", context_empty: "Infer from [REQUEST], [STAGING LINK], and codebase exploration", issues_empty: "Investigate and discover during workflow", environment_empty: "Skip browser testing steps", scope_empty: "Use scope_policy.default" }
+  spec_folder_skip: "Q1 option D, Skip documentation: the run stops before step 1 and writes nothing. This command exists to write a packet, so it has no work without one."
   phase_folder_awareness:
     note: "[SPEC_FOLDER] may be a phase child path (e.g., specs/003-name/001-phase/). When Option C targets a phase child or --phase-folder is provided, spec_id derives from the parent folder NNN, not the child NNN. When Option C adds a phase to a parent that has a goal.md, give it a child goal and binding row with /create:goal <parent> phase-add. Predecessor validation required for non-first phases."
     path_pattern: "specs/{NNN-parent}/{NNN-phase}/"
@@ -1117,7 +1118,8 @@ workflow:
 
 # WORKFLOW TERMINATION
 termination:
-  after_step: 13.5
+  after_step: 13
+  autopilot_after_step: 13.5
   message: "SpecKit workflow completed. Step 13 wrote continuity once. The workflow ends after step 13 under confirm and auto, and after step 13.5 under autopilot."
   remaining_children: "When the run decomposed into phases, name each remaining child folder with its command: /speckit:complete <child-folder>"
 

@@ -48,7 +48,7 @@ trigger_phrases:
 
 The `speckit` command group manages the full development lifecycle around spec folders. Commands cover planning, implementation, deep-research, resumption, end-to-end workflows, continuity writing, and lexical retrieval over spec docs and skill docs.
 
-Most commands load a YAML workflow from `assets/` and execute it step by step, supporting `:auto` and `:confirm` execution modes. `save` and `search` are the exception: each is a direct-dispatch router with no mode suffix. `save` routes straight to the continuity writer and `search` routes straight to the trigger-index lookup or a ripgrep recipe.
+Most commands load a YAML workflow from `assets/` and execute it step by step, supporting `:auto` and `:confirm` execution modes, plus `:autopilot` on plan, implement and complete. `save` and `search` are the exception: each is a direct-dispatch router with no mode suffix. `save` routes straight to the continuity writer and `search` routes straight to the trigger-index lookup or a ripgrep recipe.
 
 Retrieval runs on two local mechanisms and no background service:
 
@@ -79,14 +79,14 @@ This document is a routing and reference surface only. Run the command entrypoin
 
 | Command | Invocation | Steps | Description |
 |---------|------------|-------|-------------|
-| **plan** | `/speckit:plan <description> [:auto\|:confirm] [:with-phases]` | 7 | Create spec folder and plan without implementation. `:with-phases` adds phase decomposition pre-workflow |
-| **implement** | `/speckit:implement <spec-folder> [:auto\|:confirm]` | 9 | Execute pre-planned work (requires existing plan.md) |
+| **plan** | `/speckit:plan <feature-description> [:auto\|:confirm\|:autopilot\|:unattended\|--unattended] [:with-context] [:with-phases] [--level=N]` | 7 | Create spec folder and plan without implementation. `:with-phases` adds phase decomposition pre-workflow |
+| **implement** | `/speckit:implement <spec-folder> [:auto\|:confirm\|:autopilot\|:unattended\|--unattended] [--phase-folder=PATH]` | 9 | Execute pre-planned work (requires existing plan.md) |
 | **deep-research** | `/deep:research <topic> [:auto\|:confirm\|:review\|:review:auto\|:review:confirm]` | iterative | Autonomous deep research loop with convergence detection |
 | **deep-review** | `/deep:review <target> [:auto\|:confirm]` | iterative | Autonomous code review loop with severity-weighted findings |
-| **resume** | `/speckit:resume [spec-folder] [:auto\|:confirm]` | varies | Resume or recover work on an existing spec folder |
+| **resume** | `/speckit:resume [spec-folder-path] [:auto\|:confirm] [--phase-folder=<path>] [--no-redirect]` | 5 | Resume or recover work on an existing spec folder |
 | **plan --intake-only** | `/speckit:plan --intake-only [description] [:auto\|:confirm]` | intake-only | Standalone intake that publishes `spec.md`, `description.json`, and `graph-metadata.json` |
-| **complete** | `/speckit:complete <description> [:auto\|:confirm] [:with-research] [:with-phases]` | 14+ | Full end-to-end workflow combining all phases. `:with-phases` adds phase decomposition pre-workflow |
-| **search** | `/speckit:search <query> [--packet <specFolder>] [--triggers] [--paths] [--count] [--include-archive]` | direct-dispatch | Lexical retrieval: trigger-index lookup and the ripgrep recipes over spec docs and skill docs |
+| **complete** | `/speckit:complete <feature-description> [:auto\|:confirm\|:autopilot\|:unattended\|--unattended] [:with-research] [:with-context] [:with-phases]` | 13 | Full end-to-end workflow combining all phases. `:with-phases` adds phase decomposition pre-workflow |
+| **search** | `/speckit:search <query> [--packet <specFolder>] [--triggers] [--paths] [--count] [--limit <n>] [--include-archive]` | direct-dispatch | Lexical retrieval: trigger-index lookup and the ripgrep recipes over spec docs and skill docs |
 | **save** | `/speckit:save <spec-folder>` | direct-dispatch | Write session context into the packet's continuity surfaces |
 | **handoff** | `/speckit:handoff` | 5 | Manual session-relaunch trigger: write the handoff note and arm the loop |
 
@@ -131,7 +131,7 @@ Scope by positional path, not by pattern: `--packet specs/<track>/<NNN-name>` re
 
 ```text
 speckit/
-├── README.txt        # This file, 9-command index and workflow guide
+├── README.txt        # This file, command index and workflow guide
 ├── complete.md       # /speckit:complete - Full end-to-end workflow
 ├── handoff.md        # /speckit:handoff - Manual session-relaunch trigger
 ├── implement.md      # /speckit:implement - Execute planned work
@@ -139,12 +139,17 @@ speckit/
 ├── resume.md         # /speckit:resume - Resume existing work
 ├── save.md           # /speckit:save - Continuity writer front door
 ├── search.md         # /speckit:search - Trigger-index lookup + ripgrep recipes
-└── assets/           # YAML workflow definitions, plus save/search presentation contracts
+└── assets/           # Workflow YAML, shared includes and presentation contracts
     ├── speckit-complete.yaml
     ├── speckit-implement.yaml
     ├── speckit-plan.yaml
-    ├── speckit-save-context-tail.yaml
     ├── speckit-resume.yaml
+    ├── speckit-lifecycle-shared.yaml
+    ├── speckit-save-context-tail.yaml
+    ├── speckit-complete-presentation.txt
+    ├── speckit-implement-presentation.txt
+    ├── speckit-plan-presentation.txt
+    ├── speckit-resume-presentation.txt
     ├── save-presentation.txt
     └── search-presentation.txt
 
@@ -236,17 +241,23 @@ The `complete` command combines research, plan and implement into a single invoc
 |------|--------|----------|
 | **Auto** | `:auto` | Execute all steps without approval prompts |
 | **Confirm** | `:confirm` | Pause at each step and wait for user approval |
+| **Autopilot** | `:autopilot`, `:unattended` or `--unattended` | Plan, implement and complete only. Run unattended in the workspace bound at startup, ask nothing after startup and end with one `SPECKIT_AUTOPILOT_RESULT` line |
 
-The `complete` command supports two additional flags:
+The `complete` command also takes these workflow inputs:
 
 | Flag | Effect |
 |------|--------|
-| `:with-research` | Add research phase before planning |
+| `:with-research` | Runs the research pass before planning |
+| `:with-context` | Loads a context package before planning |
+| `:with-phases` | Decomposes the packet into phase children and plans the first one |
+| `--phases` | Number of phase children to decompose into |
+| `--phase-names` | Names for those children, in order |
+| `--phase-folder` | Targets one existing child instead of decomposing |
 
 Each mode-pair command maps to a YAML workflow file in `assets/`:
 - Plan, implement, complete: one `speckit-<command>.yaml` carrying `execution_mode` (auto, confirm, autopilot), a `checkpoints` list and `mode_overrides.confirm`; confirm-only blocks are marked `applies_to: confirm`
 - Resume: one `speckit-resume.yaml` carrying `execution_mode` (auto, confirm), a `checkpoints` list and `mode_overrides.confirm`
-- Shared tail: `speckit-save-context-tail.yaml` holds the save-context writer, post-save rule and anchor requirements once
+- Shared tail: `speckit-save-context-tail.yaml` holds the save-context writer and the post-save rule once
 
 `save` and `search` carry no `:auto`/`:confirm` suffix. Each is a single-pass direct-dispatch router with its own presentation contract (`save-presentation.txt`, `search-presentation.txt`) and no owned workflow YAML.
 
@@ -268,7 +279,7 @@ Each mode-pair command maps to a YAML workflow file in `assets/`:
 /deep:research "OAuth 2.0 token refresh patterns" :auto
 
 # Decompose a complex feature into phases
-/speckit:plan:auto "Build hybrid RAG search system" :with-phases --phases 3
+/speckit:plan "Build hybrid RAG search system" :auto :with-phases --phases 3
 
 # Save continuity before ending a long session
 /speckit:save specs/012-rate-limiting
