@@ -69,4 +69,9 @@ describe('a typed command without a scorer row leads through its owner', () => {
     ];
     expect(rankedSkills(ranked, 'create a goal for the utils folder')).toEqual(['sk-code', 'sk-doc']);
   });
+
+  it('keeps the order when the prompt refuses the typed command', () => {
+    const ranked = [recommendation('sk-code'), recommendation('sk-doc'), recommendation('sk-prompt')];
+    expect(rankedSkills(ranked, 'do not run /create:goal')).toEqual(['sk-code', 'sk-doc', 'sk-prompt']);
+  });
 });

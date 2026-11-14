@@ -19,8 +19,8 @@
 //      counts, because bare words such as "missing" or "broken" are common in
 //      ordinary work. A skill that passed with none of its own phrases in the
 //      prompt is the exception: there a bare word with a strong ranker match
-//      leads. With no skill passing, a strong ranker match stands in for the
-//      cue.
+//      leads. With no skill passing, a weak cue or no cue needs a strong ranker match,
+//      and only a strong cue hands off on the lower score.
 
 // ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -45,6 +45,13 @@ export const DOCTOR_HELPER_MIN_SCORE = 6;
 
 /** Helper rank score that stands in for a cue when no skill passes. */
 export const DOCTOR_HELPER_UNCUED_MIN_SCORE = 10;
+
+/**
+ * Helper rank score a weak cue needs when no skill passes. A weak cue is a bare
+ * word ordinary work also uses, so it needs a stronger ranker match than a
+ * strong cue, though less than no cue.
+ */
+export const DOCTOR_HELPER_WEAK_CUE_MIN_SCORE = 9;
 
 // A strong cue says a state is wrong or asks for a health or switch change, so
 // it can surface the helper beside a passing skill. A tool or command that does

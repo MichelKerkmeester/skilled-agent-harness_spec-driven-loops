@@ -253,6 +253,7 @@ export interface TypedCommand {
 export function typedCommandForTop(topSkillId: string, prompt: string): TypedCommand | undefined {
   const command = typedCommandIn(prompt);
   if (command === undefined || !Object.hasOwn(TRACKED_COMMANDS, command)) return undefined;
+  if (commandOnlyMentioned(prompt, command)) return undefined;
   const row = TRACKED_COMMANDS[command];
   const sameCommandRow = commandRowFor(topSkillId)?.command === command;
   if (topSkillId !== row.ownerSkillId && !sameCommandRow) return undefined;
@@ -287,6 +288,26 @@ export const DEPTH_WORDING: readonly string[] = [
   'everything you can',
 ];
 
+// A creation workflow scaffolds, reviews and validates a whole document, which is
+// the wrong size for a correction inside one. The list below is the vocabulary
+// that marks that correction, and a line number points at one the same way.
+export const SMALL_EDIT_WORDING: readonly string[] = [
+  'typo',
+  'typos',
+  'spelling',
+  'misspelled',
+  'misspelling',
+  'grammar',
+  'punctuation',
+  'wording',
+  'broken link',
+  'broken links',
+  'dead link',
+  'dead links',
+  'one line',
+  'single line',
+];
+
 // A phrase may carry punctuation a regex would read as a metacharacter, so it is
 // escaped before it is trusted as a pattern.
 function escapePhrase(phrase: string): string {
@@ -297,6 +318,25 @@ function escapePhrase(phrase: string): string {
 // boundary markers keep `thorough` from firing inside a longer word while a
 // multi-word phrase still has to match as a whole.
 const DEPTH_REQUEST = new RegExp(`\\b(?:${DEPTH_WORDING.map(escapePhrase).join('|')})\\b`);
+
+// The line alternative is a pattern rather than a phrase, so it is appended raw
+// beside the escaped vocabulary instead of being escaped with it.
+const SMALL_EDIT_REQUEST = new RegExp(
+  `\\b(?:${SMALL_EDIT_WORDING.map(escapePhrase).join('|')}|line \\d+)\\b`,
+);
+
+// A request that asks for a document to be created or written wants the whole
+// document, even when it names a correction to make afterwards, so this check
+// stands the small-edit gate down.
+const CREATION_REQUEST = /\b(?:creat(?:e|es|ing)|writ(?:e|es|ing)|author(?:ing)?|draft(?:ing)?|scaffold(?:ing)?|generat(?:e|es|ing)|mak(?:e|es|ing)|new|build(?:ing)?|set up|add an?|need an?)\b/;
+
+// A small edit names the correction to make, so the verb is what marks one.
+const CORRECTION_VERB = /\b(?:fix|correct|update|edit|change|tweak|repair)\b/;
+
+// These three creation commands write a whole document that is later corrected in
+// place, so a correction request names an edit to it rather than a new one. Every
+// other creation command names a purpose that a correction word belongs to.
+const SMALL_EDIT_GATED_COMMANDS: ReadonlySet<string> = new Set(['/create:readme', '/create:feature-catalog', '/create:manual-testing-playbook']);
 
 // Wording that asks for an answer and rules out a change. One pattern serves
 // every gate that has to honour it, so a new gate cannot drift from the first.
@@ -311,6 +351,73 @@ export const NO_EDIT_REQUEST = /\b(no edits?|make no changes|no changes yet|with
 // folded to the straight form before the pattern reads it.
 export function isNoEditRequest(text: string): boolean {
   return NO_EDIT_REQUEST.test(text.toLowerCase().replace(/[\u2018\u2019]/g, "'"));
+}
+
+// A refusal or a question reaches its command through a use verb, so the two
+// lists below share this one. A gap holds one or two plain words and no
+// punctuation, because a comma ends the clause that holds the lead.
+export const COMMAND_USE_VERB = '(?:run|start|use|invoke|launch|execute|call|trigger|open|rerun|re-run|kick off)';
+export const COMMAND_GAP_WORDS = "(?:[a-z']+ ){0,2}";
+
+// A command the reader refuses is named without being asked for, so this list
+// holds the leads that mark that naming. A lead must sit directly before the
+// command so a later clause cannot refuse an earlier request, and a gap holds
+// plain words only so a refusal before a comma cannot swallow the request after
+// it.
+export const COMMAND_DECLINE_LEADS: readonly string[] = [
+  `(?:do not|don't|dont|never|not|won't|wont|no longer|cannot|can't) (?!(?:forget|hesitate|fail|mind)\\b)${COMMAND_GAP_WORDS}${COMMAND_USE_VERB} ${COMMAND_GAP_WORDS}`,
+  `(?:skip|skipping|without|instead of|rather than|avoid|not) (?:(?!${COMMAND_USE_VERB}\\b)[a-z']+ ){0,2}`,
+];
+
+// A command the reader asks about is named without being asked for, so this list
+// holds the leads that mark that naming. A lead must sit directly before the
+// command so a later clause cannot turn an earlier request into a question, and
+// a gap holds plain words only so a question before a comma cannot swallow the
+// request after it.
+export const COMMAND_ASK_LEADS: readonly string[] = [
+  "(?:what does|what is|what's|what would|what will|what did|how does|how did|why does|why did|explain|describe|tell me what|tell me how|tell me about|tell me why|difference between|differ from|differs from|different from|undo what|ran|already ran|was running) (?:the )?(?:command )?",
+  `(?:should i|should we|do i need to|when would i) ${COMMAND_USE_VERB} (?:the )?(?:command )?`,
+];
+
+// A bare ask word opens a statement as often as a question, so it marks a naming
+// only when the command it precedes is followed by a question mark before the
+// sentence ends, or when the lead itself opens a sentence.
+export const COMMAND_BARE_ASK_LEAD = '(?:is|does|can|will|would) ';
+
+// A prompt names a command to refuse it or to ask about it as often as it names
+// one to run it, so an offer must read the naming before it trusts the name. The
+// text is folded first, because a keyed apostrophe or a run of spaces must not
+// hide the lead, while a line break survives as the sentence end it is. The
+// boundary before the lead keeps a command name from matching inside a word or a
+// path, and the boundary after it keeps a longer command name from reading as the
+// shorter one. Every occurrence has to carry a lead, because one led naming does
+// not turn a later unled naming into a request.
+export function commandOnlyMentioned(prompt: string, command: string): boolean {
+  const text = prompt
+    .toLowerCase()
+    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/[^\S\n]+/g, ' ')
+    .replace(/ *\n\s*/g, '\n');
+  const name = escapePhrase(command.toLowerCase());
+  const occurrences = [...text.matchAll(new RegExp(`(?:^|[^a-z0-9_/])${name}(?![a-z0-9_-])`, 'g'))];
+  if (occurrences.length === 0) return false;
+  return occurrences.every((occurrence) => {
+    const nameEnd = (occurrence.index ?? 0) + occurrence[0].length;
+    const before = text.slice(0, nameEnd);
+    const led = [...COMMAND_DECLINE_LEADS, ...COMMAND_ASK_LEADS].some((lead) => (
+      new RegExp(`(?:^|[^a-z0-9_/])${lead}${name}$`).test(before)
+    ));
+    if (led) return true;
+    const bareLead = new RegExp(`(?:^|[^a-z0-9_/])${COMMAND_BARE_ASK_LEAD}${name}$`).test(before);
+    if (!bareLead) return false;
+    const tail = text.slice(nameEnd);
+    const sentenceEnd = tail.search(/[.!\n]/);
+    const sentence = sentenceEnd === -1 ? tail : tail.slice(0, sentenceEnd);
+    // A chat question often leaves the question mark off, so a bare ask word that
+    // opens a sentence still asks about the command.
+    return sentence.includes('?')
+      || new RegExp(`(?:^|[.!\\n] *)${COMMAND_BARE_ASK_LEAD}${name}$`).test(before);
+  });
 }
 
 // A compiled route arrives as unvalidated JSON from a separate process, so the
@@ -359,6 +466,19 @@ export function attachCommand(
   if (!Object.prototype.hasOwnProperty.call(modeCommands, skillId)) return undefined;
   const commands = modeCommands[skillId];
   if (!Object.prototype.hasOwnProperty.call(commands, workflowMode)) return undefined;
+
+  // A route can pick the mode because the prompt named its command, so a naming
+  // that refused or asked about the command must not produce the offer.
+  if (commandOnlyMentioned(prompt, commands[workflowMode])) return undefined;
+
+  // A correction inside one document is not a request for a creation workflow,
+  // which scaffolds, reviews and validates a whole one.
+  if (
+    SMALL_EDIT_GATED_COMMANDS.has(commands[workflowMode])
+    && SMALL_EDIT_REQUEST.test(prompt.toLowerCase())
+    && !CREATION_REQUEST.test(prompt.toLowerCase())
+    && CORRECTION_VERB.test(prompt.toLowerCase())
+  ) return undefined;
 
   // Deep-loop commands are the ones that commit the reader to a long, multi-pass
   // run, so they are offered only when the prompt asks for that effort. Typing

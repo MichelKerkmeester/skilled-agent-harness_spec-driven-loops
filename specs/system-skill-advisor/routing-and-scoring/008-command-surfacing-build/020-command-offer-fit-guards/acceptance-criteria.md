@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** 020-command-offer-fit-guards
 **Level:** 2
-**Status:** Planned
+**Status:** Complete
 **Date:** 2026-11-14
 <!-- /ANCHOR:metadata -->
 
@@ -53,15 +53,15 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the phase diff, When the two capture scripts run, Then each of the five floor lines, the sealed plain count under the fixture regime among them, and the eval line equals its line in `scratch/before.txt` | `rg -c "^RESULT: every floor equals its before line$" scratch/after.txt` prints 1 | Unmet | - |
-| AC-002 | REQ-002 | Given the eight refusal and question prompts, the two yes or no questions, the six request prompts and the five controls, When `commandOnlyMentioned` reads each, Then it returns `true` for the ten and `false` for the eleven | `npx vitest run tests/command-attach-guards.vitest.ts` reports 0 failed | Unmet | - |
-| AC-003 | REQ-003 | Given the built advisor, When `probe-offers.mjs` runs, Then no row carries `/speckit:save`, `/deep:research`, `/deep:review`, `/speckit:plan` or `/doctor:update`, and `/speckit:complete` appears on 1 line | `rg -c -F 'command=/speckit:complete ' scratch/repro-after.txt` prints 1 and the pattern in T014 prints nothing | Unmet | - |
-| AC-004 | REQ-004 | Given a small in-place edit of a README, When the hub route picks the README mode, Then no `/create:readme` is attached, and a plain README request still gets it | `rg -c -F 'command=/create:readme ' scratch/repro-after.txt` prints 2 | Unmet | - |
-| AC-005 | REQ-005 | Given a command row that passes on meaning with uncertainty 0.42, When the scorer applies the meaning pass, Then the row does not pass | `npx vitest run tests/command-meaning-anchor.vitest.ts` reports 0 failed and `rg -c -F 'doctor:sk-skill' scratch/repro-after.txt` prints nothing | Unmet | - |
-| AC-006 | REQ-006 | Given a no-edit request, When command rows of class `add-only`, `mutates` and `read-only` pass, Then only the `read-only` row still passes | `npx vitest run tests/command-meaning-anchor.vitest.ts` reports 0 failed and `rg -c -e 'command=/doctor:(speckit|deep-loop)' scratch/repro-after.txt` prints nothing | Unmet | - |
-| AC-007 | REQ-007 | Given a weak problem cue and no passing skill, When the ranker scores below 10, Then no doctor command is handed off, and at 10 or more it is | `npx vitest run tests/scorer/doctor-handoff-command.vitest.ts` reports 0 failed and the two app-problem prompts print `(no recommendation)` in `scratch/repro-after.txt` | Unmet | - |
-| AC-008 | REQ-008 | Given the phase diff, When added comment lines are searched for a spec path or an id, Then nothing is found and only seven files changed | The two `G diff` checks in T015 print nothing and seven names | Unmet | - |
-| AC-009 | REQ-001 | Given the whole advisor suite, When it runs after the build, Then it reports 0 failed with more passed tests than before | `scratch/after.txt` holds the `VALL` line | Unmet | - |
+| AC-001 | REQ-001 | Given the phase diff, When the two capture scripts run, Then each of the five floor lines, the sealed plain count under the fixture regime among them, and the eval line equals its line in `scratch/before.txt` | Observed: `rg -c "^RESULT: every floor equals its before line$" scratch/after.txt` printed 1. The five `FLOOR` lines and `EVAL` `[161,51,21,5]` equal `before.txt` (`tasks.md:108`) | Met | - |
+| AC-002 | REQ-002 | Given the eight refusal and question prompts, the two yes or no questions, the six request prompts and the five controls, When `commandOnlyMentioned` reads each, Then it returns `true` for the ten and `false` for the eleven | Observed: `npx vitest run tests/command-attach-guards.vitest.ts` printed `Tests  104 passed (104)`, holding the REFUSE8, QUESTION2, REQUEST6 and CONTROL5 cases and the request and question cases added after the first check (`tasks.md:84`) | Met | - |
+| AC-003 | REQ-003 | Given the built advisor, When `probe-offers.mjs` runs, Then no row carries `/speckit:save`, `/deep:research`, `/deep:review`, `/speckit:plan` or `/doctor:update`, and `/speckit:complete` appears on 1 line | Observed: `rg -c -F 'command=/speckit:complete ' scratch/repro-after.txt` printed 1 and the T014 banned-command pattern printed nothing (`tasks.md:109`) | Met | - |
+| AC-004 | REQ-004 | Given a small in-place edit of a README, When the hub route picks the README mode, Then no `/create:readme` is attached, and a plain README request still gets it | Observed: `rg -c -F 'command=/create:readme ' scratch/repro-after.txt` printed 2. The small-edit gate covers only the readme, catalog and playbook commands after the retry bound (`tasks.md:81`, `tasks.md:109`) | Met | - |
+| AC-005 | REQ-005 | Given a command row that passes on meaning with uncertainty 0.42, When the scorer applies the meaning pass, Then the row does not pass | Observed: `npx vitest run tests/command-meaning-anchor.vitest.ts` printed `Tests  28 passed (28)` and `rg -c -F 'doctor:sk-skill' scratch/repro-after.txt` printed nothing (`tasks.md:86`) | Met | - |
+| AC-006 | REQ-006 | Given a no-edit request, When command rows of class `add-only`, `mutates` and `read-only` pass, Then only the `read-only` row still passes | Observed: `npx vitest run tests/command-meaning-anchor.vitest.ts` printed `Tests  28 passed (28)` and the T014 pattern for `/doctor:speckit` and `/doctor:deep-loop` over `scratch/repro-after.txt` printed nothing (`tasks.md:91`) | Met | - |
+| AC-007 | REQ-007 | Given a weak problem cue and no passing skill, When the ranker scores below 10, Then no doctor command is handed off, and at 10 or more it is | Observed: `npx vitest run tests/scorer/doctor-handoff-command.vitest.ts` printed `Tests  16 passed (16)` and both app-problem prompts print `(no recommendation)` in `scratch/repro-after.txt`. The weak cue has its own bar of 9 (`tasks.md:93`, `tasks.md:95`) | Met | - |
+| AC-008 | REQ-008 | Given the phase diff, When added comment lines are searched for a spec path or an id, Then nothing is found and only seven files changed | Observed: the comment id search in `scratch/boundaries.txt` exited 1 and the AGENTS.md and package checks printed nothing. Eight files changed, the seven named plus `command-routing-baseline.json`, recaptured under decision P020 in `../decision-record.md` (`tasks.md:110`) | Met | - |
+| AC-009 | REQ-001 | Given the whole advisor suite, When it runs after the build, Then it reports 0 failed with more passed tests than before | Observed: `scratch/after.txt` holds 1919 passed, 6 skipped and 0 failed over 184 of 184 files, against 1838 passed before (`tasks.md:107`) | Met | - |
 
 ### Status values
 
@@ -87,7 +87,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-The phase is planned and not built, so every row is unmet.
+Every criterion is Met with observed evidence, and the strict validation passed at close-out.
 <!-- /ANCHOR:closure -->

@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/352-command-surfacing-research` |
 | **Parent Spec** | ../spec.md |
@@ -141,6 +141,7 @@ cue=weak first=/doctor:symlink link score=11.428 noEdit=false :: the symlink to 
 - An in-place edit that names no correction word - `change the title of the README in the hooks folder` and `add a troubleshooting section to the existing README` still return `sk-doc` with `/create:readme (start)` (`scratch/planning/verify-fix-probe.before.txt`). The small-edit gate reads correction wording only. Telling an edit of an existing document from a request to write one needs the route to know the document exists, which no word list can state, so the class is left to the head-wording decision that waits on the operator.
 - A problem in the user's own project that shares a doctor target's words and scores above the bar - a class, not two prompts. Beside the two prompts above, `the symlink in my node_modules folder is broken after npm install` returns only `/doctor:symlink check (run)`. The weak-cue bar removes the low scores and leaves this class to the matching follow-up.
 - A no-change wording `NO_EDIT_REQUEST` does not hold - T009 reads `isNoEditRequest` as it is, so `the trigger index lookup returns nothing for my packet, leave every file as it is` still returns `/doctor:speckit (run)`. Widening that pattern changes the existing attach gate and the read-only routes that share it, so it is not folded into this phase.
+- A refusal word with no comma before a real request - `dont guess run /speckit:plan`, `not sure use /create:readme`, `i can't wait to run /speckit:save`, `why not run /speckit:plan now`, `not only run /speckit:plan but also write tests` and `don't just run /speckit:plan, also update the docs` read as a mention and lose the command. The user typed the command, so it stays in the prompt, and the lead lists are exported data a later change can narrow.
 - The brief wording, the `Also:` line and the OpenCode head - phase 021.
 
 ### Files to Change

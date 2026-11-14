@@ -170,13 +170,13 @@
         "source": "derived"
       },
       {
-        "name": "skills",
-        "kind": "key_phrase",
+        "name": "Three Opus",
+        "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
       },
       {
-        "name": "a",
+        "name": "skills",
         "kind": "key_phrase",
         "path": "goal.md",
         "source": "derived"
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "A user who chats without typing a command gets an improvised approach from the model, even where a slash command already owns a complete workflow for the task",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-14T07:42:16.267Z",
+    "last_save_at": "2026-11-14T09:34:38.382Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,11 +216,11 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:e2a53b3ca52f9b640a6dfb0a329fe37a8118921830d91d9727a1c064d4c6448a",
+    "source_fingerprint": "sha256:6a3c6c7039446c41b8f73365a0e22bd84249c19937611db387af2b5d237ef06b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "edeb01e4e5c7032ccd4f2d15501c73c1fed92d8b9d8d3edcaf03ebbabd6f52db",
-      "decision-record.md": "bb5f923564397a2fa768a15d5a0dc38b2601e1ddb9733e8d08466d1940c23370"
+      "spec.md": "ce164ede970314a834c619c94597bea665e115b8b850e873d399b8b829d87b70",
+      "decision-record.md": "1afb75ba063cbd5d1c1f5c672d430907dfab55f931ed254d01855c90d866ce09"
     },
     "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/018-holdout-row-retirement",
     "last_active_at": "2026-11-13T22:04:29.402Z"

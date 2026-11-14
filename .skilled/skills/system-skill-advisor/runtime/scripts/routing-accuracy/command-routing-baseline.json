@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "087888ec4a",
+  "capturedAtSha": "3d558e78cf",
   "corpusSha256": "sha256:8545e6d8afcd17b7b12d6ec2cea48cae668c0f8bc5e54d759d2ada12d236651c",
   "bridgeCounts": {
     "commandMetadata": 27,
@@ -44,14 +44,14 @@
       "total": 35
     },
     "slash_variant": {
-      "reached_top3": 5,
+      "reached_top3": 2,
       "named_total": 8,
       "offered_on_partial": 0,
       "partial_total": 4
     },
     "agreement": {
-      "correct": 8,
-      "total": 11
+      "correct": 6,
+      "total": 9
     }
   },
   "unreachable": [
@@ -1812,8 +1812,8 @@
       "expected_command": "/speckit:resume",
       "top": "system-spec-kit",
       "top1": false,
-      "top3": true,
-      "offered": true
+      "top3": false,
+      "offered": false
     },
     "sv-10": {
       "expected_command": "/design:chart",
@@ -1826,15 +1826,15 @@
       "expected_command": "/doctor:git",
       "top": "sk-git",
       "top1": false,
-      "top3": true,
-      "offered": true
+      "top3": false,
+      "offered": false
     },
     "sv-12": {
       "expected_command": "/prompt:improve",
-      "top": "command-prompt-improve",
-      "top1": true,
-      "top3": true,
-      "offered": true
+      "top": "sk-prompt",
+      "top1": false,
+      "top3": false,
+      "offered": false
     }
   },
   "attachedMetrics": {

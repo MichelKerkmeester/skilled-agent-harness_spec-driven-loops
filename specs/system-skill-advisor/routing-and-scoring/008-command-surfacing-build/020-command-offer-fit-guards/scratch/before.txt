@@ -1,0 +1,25 @@
+## G rev-parse --short HEAD
+3d558e78cf
+## G status --porcelain -- $ADV/lib $ADV/tests (nothing below means clean)
+## npm run build in ADV
+exit 0
+@spec-kit/system-skill-advisor dist build attestation recorded
+@spec-kit/system-skill-advisor dist build attestation recorded
+## TC
+exit 0
+## VALL
+exit 0
+ Test Files  184 passed (184)
+      Tests  1838 passed | 6 skipped (1844)
+## FLOOR
+{"correct":24,"total":44}
+{"count":0,"total":35}
+{"own":24,"attached":20,"combined":44,"total":44}
+{"own":13,"attached":15,"combined":28,"total":45}
+{"own":1,"attached":0,"combined":1,"total":44}
+## EVAL
+[161,51,21,5]
+## REAL
+{"correct":24,"total":44}
+{"own":18,"attached":15,"combined":33,"total":45}
+{"own":5,"attached":0,"combined":5,"total":44}

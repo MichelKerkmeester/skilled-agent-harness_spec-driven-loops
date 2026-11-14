@@ -17,7 +17,14 @@ import {
   speckitMetrics,
 } from '../metrics.js';
 import { normalize } from '../affordance-normalizer.js';
-import { COMMAND_ROWS, isNoEditRequest, TRACKED_COMMANDS, typedCommandIn } from '../command-attach.js';
+import {
+  COMMAND_ROWS,
+  commandOnlyMentioned,
+  commandRowFor,
+  isNoEditRequest,
+  TRACKED_COMMANDS,
+  typedCommandIn,
+} from '../command-attach.js';
 import { scoreDerivedLane } from './lanes/derived.js';
 import { scoreExplicitLane } from './lanes/explicit.js';
 import { scoreGraphCausalLaneSplit } from './lanes/graph-causal.js';
@@ -27,6 +34,7 @@ import { applyExecutorDelegationOverride } from './executor-delegation.js';
 import {
   DOCTOR_HELPER_BRIDGE_ID,
   DOCTOR_HELPER_UNCUED_MIN_SCORE,
+  DOCTOR_HELPER_WEAK_CUE_MIN_SCORE,
   doctorProblemCue,
   genericRepairCue,
   matchDoctorProblem,
@@ -895,6 +903,7 @@ export function requireCommandPhraseAnchor(
   confidenceThreshold: number = DEFAULT_CONFIDENCE_THRESHOLD,
   meaningPassed: Set<string> = new Set(),
   meaningEligible: (skillId: string) => boolean = () => true,
+  uncertaintyThreshold: number = DEFAULT_UNCERTAINTY_THRESHOLD,
 ): AdvisorScoredRecommendation[] {
   const cosineByCommandId = new Map<string, number>();
   for (const recommendation of ranked) {
@@ -923,9 +932,12 @@ export function requireCommandPhraseAnchor(
     if (cosine !== undefined
       && cosine >= COMMAND_MEANING_MIN_COSINE
       && cosine - leadingOtherCosine(recommendation.skill) >= COMMAND_MEANING_MARGIN
+      && recommendation.uncertainty <= uncertaintyThreshold
       && meaningEligible(recommendation.skill)) {
       // A meaning match alone rarely clears the threshold on its lane weight, so
       // the anchor lifts the row to it rather than leaving it scored but unpassed.
+      // A row the hooks would drop for its uncertainty must not be reported as
+      // passing, or the direct CLI call shows a head no hook renders.
       meaningPassed.add(recommendation.skill);
       return {
         ...recommendation,
@@ -1156,6 +1168,7 @@ export function applyDoctorHelperHandoff(
   const match = matchDoctorProblem(context.prompt, context.workspaceRoot);
   if (!match && (skillPasses || !genericRepairCue(context.prompt))) return [...ranked];
   if (match && cue === null && match.score < DOCTOR_HELPER_UNCUED_MIN_SCORE) return [...ranked];
+  if (match && cue === 'weak' && match.score < DOCTOR_HELPER_WEAK_CUE_MIN_SCORE) return [...ranked];
   if (match && weakCueOverWords && match.score < DOCTOR_HELPER_UNCUED_MIN_SCORE) return [...ranked];
 
   const handoffId = (match ? runnableDoctorBridgeId(match.runnable, context.projection) : undefined) ?? DOCTOR_HELPER_BRIDGE_ID;
@@ -1180,6 +1193,43 @@ export function applyDoctorHelperHandoff(
   return keepPassingSkillsAboveDoctorBridges([...others, handoff], context.promptLower, context.leadPhrasesById);
 }
 
+// A command row passes on its typed name, so a prompt that names the command to
+// refuse it or ask about it would otherwise pass that row. The skill behind the
+// command keeps its own pass, because refusing the command is not refusing the
+// skill.
+export function withholdMentionedCommands(
+  ranked: readonly AdvisorScoredRecommendation[],
+  prompt: string,
+): AdvisorScoredRecommendation[] {
+  return ranked.map((recommendation) => {
+    if (recommendation.kind !== 'command' || !recommendation.passes_threshold) return recommendation;
+    // A row names a command with its subcommands, while a prompt names only the
+    // base, so both sides are compared on the base alone.
+    const command = commandRowFor(recommendation.skill)?.command.split(' ')[0];
+    if (command === undefined || !commandOnlyMentioned(prompt, command)) return recommendation;
+    return { ...recommendation, passes_threshold: false };
+  });
+}
+
+// A reader who ruled out a change must not be handed a command that writes,
+// whichever path chose it. A command that only reads is still the answer.
+export function withholdWritingCommandsOnNoEdit(
+  ranked: readonly AdvisorScoredRecommendation[],
+  promptLower: string,
+): AdvisorScoredRecommendation[] {
+  if (!isNoEditRequest(promptLower)) return [...ranked];
+  return ranked.map((recommendation) => {
+    if (recommendation.kind !== 'command' || !recommendation.passes_threshold) return recommendation;
+    if (commandRowFor(recommendation.skill)?.mutating === 'read-only') return recommendation;
+    // A command the reader typed and asked for is the request, and the no-edit words limit its scope.
+    const base = commandRowFor(recommendation.skill)?.command.split(' ')[0];
+    if (base !== undefined
+      && typedCommandIn(promptLower) === base
+      && !commandOnlyMentioned(promptLower, base)) return recommendation;
+    return { ...recommendation, passes_threshold: false };
+  });
+}
+
 // A typed command with no scorer row of its own can only reach the reader through
 // its owner, so the owner must lead. With no row the scorer already orders the
 // list, and a command that does have a row competes on its own evidence.
@@ -1189,6 +1239,9 @@ export function rankTypedCommandOwnerFirst(
 ): AdvisorScoredRecommendation[] {
   const command = typedCommandIn(promptLower);
   if (command === undefined || !Object.hasOwn(TRACKED_COMMANDS, command)) return [...ranked];
+  // A command the reader refused must not pull its owner to the front, because
+  // the ranking would then lead with the skill that offers it.
+  if (commandOnlyMentioned(promptLower, command)) return [...ranked];
   const row = TRACKED_COMMANDS[command];
   if (row.scorerRow) return [...ranked];
   const ownerIndex = ranked.findIndex((recommendation) => (
@@ -1540,6 +1593,7 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
     options.confidenceThreshold ?? DEFAULT_CONFIDENCE_THRESHOLD,
     commandMeaningPassed,
     (skillId) => commandMeaningEligible(promptLower, readOnlyExplainer, projectionSkillById.get(skillId)),
+    options.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD,
   );
   const leadPhrasesById = new Map<string, readonly string[]>();
   for (const skill of projection.skills) {
@@ -1557,6 +1611,8 @@ export function scoreAdvisorPrompt(prompt: string, options: AdvisorScoringOption
     uncertaintyThreshold: options.uncertaintyThreshold ?? DEFAULT_UNCERTAINTY_THRESHOLD,
     leadPhrasesById,
   });
+  ranked = withholdMentionedCommands(ranked, prompt);
+  ranked = withholdWritingCommandsOnNoEdit(ranked, promptLower);
   ranked = rankTypedCommandOwnerFirst(ranked, promptLower);
 
   const passing = ranked.filter((recommendation) => recommendation.passes_threshold);

@@ -68,6 +68,15 @@ function scoredIds(prompt: string): string[] {
     .recommendations.map((recommendation) => recommendation.skill);
 }
 
+// Only a passing row is offered, so a case about the hand-off reads the passing
+// doctor rows alone.
+function passingDoctorIds(prompt: string): string[] {
+  return scoreAdvisorPrompt(prompt, { workspaceRoot, projection })
+    .recommendations
+    .filter((recommendation) => recommendation.passes_threshold && recommendation.skill.startsWith(DOCTOR_PREFIX))
+    .map((recommendation) => recommendation.skill);
+}
+
 describe('doctor hand-off command', () => {
   beforeAll(async () => {
     freezeEvalEnv();
@@ -165,6 +174,21 @@ describe('doctor hand-off command', () => {
       .filter((id) => id.startsWith(DOCTOR_PREFIX));
 
     expect(doctorIds).toEqual([]);
+  });
+
+  // A bare word that ordinary work also uses is a weak cue, so it needs a stronger ranker match than a strong cue.
+  it.each([
+    'the environment variable for the database url is missing in production',
+    'the install step in our dockerfile is broken, the overlay filesystem is stale',
+  ])('hands off no doctor command for the app problem %s', (prompt) => {
+    expect(passingDoctorIds(prompt)).toEqual([]);
+  });
+
+  it.each([
+    ['AGENTS.md is missing the shipped sections', 'command-doctor-agents-md-check'],
+    ['the symlink to the skilled checkout is broken', 'command-doctor-helper'],
+  ])('still hands off %s', (prompt, id) => {
+    expect(passingDoctorIds(prompt)).toContain(id);
   });
 });
 
