@@ -6,6 +6,7 @@ import { describe, expect, it } from 'vitest';
 
 import {
   THIN_CONTINUITY_MAX_BYTES,
+  buildContinuityFacets,
   readThinContinuityRecord,
   upsertThinContinuityInMarkdown,
   validateThinContinuityRecord,
@@ -522,5 +523,34 @@ describe('hand-written continuity blocks', () => {
 
     expect(result.ok).toBe(false);
     expect(result.errors.map((error) => error.code)).toContain('MEMORY_007');
+  });
+});
+
+describe('thin continuity packet_purpose', () => {
+  it('keeps the purpose line through a write and a read, and leads the Goal facet with it', () => {
+    const purpose = 'Purpose: Keep why the packet exists in front of the next session.';
+    const written = upsertThinContinuityInMarkdown(makeFrontmatterMarkdown(), {
+      packet_pointer: 'track/purpose-packet',
+      last_updated_at: '2026-11-13T00:00:00Z',
+      last_updated_by: 'purpose-test',
+      recent_action: 'Recorded the fixture purpose',
+      next_safe_action: 'Verify the fixture purpose',
+      packet_purpose: purpose,
+    });
+    expect(written.ok).toBe(true);
+
+    const read = readThinContinuityRecord(written.markdown!);
+    expect(read.record?.packet_purpose).toBe(purpose);
+    expect(buildContinuityFacets(read.record!).goal).toEqual([purpose, 'Verify the fixture purpose']);
+  });
+
+  it('drops a purpose that is not one short line and keeps the rest of the block', () => {
+    const read = readThinContinuityRecord(makeContinuityMarkdown({
+      packet_purpose: JSON.stringify(`Purpose: ${'x'.repeat(600)}`),
+    }));
+
+    expect(read.ok).toBe(true);
+    expect(read.record?.packet_purpose).toBeUndefined();
+    expect(buildContinuityFacets(read.record!).goal).toEqual(['Continue the fixture work']);
   });
 });

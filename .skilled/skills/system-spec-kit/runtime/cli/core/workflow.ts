@@ -65,7 +65,7 @@ import type { ThinFileInput } from './tree-thinning.js';
 import { getSourceCapabilities } from '../utils/source-capabilities.js';
 import { normalizeInputData } from '../utils/input-normalizer.js';
 import type { OperatorDecisionPayload } from '../utils/input-normalizer.js';
-import { readThinContinuityRecord, SESSION_REF_RUNTIME_LOCATOR_KINDS, upsertThinContinuityInMarkdown, writeDecisionRecord, recordConsumedKeys, DecisionRecordWriteError } from '@spec-kit/runtime/api';
+import { formatPacketPurpose, readThinContinuityRecord, resolvePacketPurpose, SESSION_REF_RUNTIME_LOCATOR_KINDS, upsertThinContinuityInMarkdown, writeDecisionRecord, recordConsumedKeys, DecisionRecordWriteError } from '@spec-kit/runtime/api';
 import type { ThinContinuityValidationError } from '@spec-kit/runtime/api';
 import type { RawInputData } from '../utils/input-normalizer.js';
 import { resolveSaveMode, SaveMode } from '../types/save-mode.js';
@@ -462,12 +462,16 @@ function formatContinuityError(error: ThinContinuityValidationError): string {
  * somewhere, and a save that refused them all could never repair one, so a stored
  * value that fails is dropped and named instead, except the two required action
  * fields. Any failure in the payload's own values fails the whole update.
+ *
+ * The purpose line is the writer's own copy of the packet's spec docs. It is set on
+ * every write and never carried, so a packet whose purpose is gone loses the copy too.
  */
 function buildSaveContinuityMarkdown(
   summaryMarkdown: string,
   patch: Record<string, unknown>,
   packetPointer: string,
   now: string,
+  packetPurpose: string | null,
 ): SaveContinuityUpdate {
   const stored = readThinContinuityRecord(summaryMarkdown);
   if (!stored.frontmatter && /^_memory:/m.test(summaryMarkdown)) {
@@ -502,6 +506,7 @@ function buildSaveContinuityMarkdown(
       packet_pointer: packetPointer,
       last_updated_at: now,
       last_updated_by: CONTINUITY_WRITER_ACTOR,
+      ...(packetPurpose ? { packet_purpose: packetPurpose } : {}),
     });
     if (result.ok && result.markdown) {
       return { ok: true, markdown: result.markdown, dropped };
@@ -536,6 +541,7 @@ interface ContinuityWritePlan {
   leafPath: string;
   patch: Record<string, unknown>;
   packetPointer: string;
+  packetPurpose: string | null;
   dropped: string[];
   hostPath: string;
 }
@@ -605,11 +611,14 @@ async function planContinuityWrite(params: {
   }
 
   const packetPointer = getPacketIdFromGraphMetadata(resolution.leafPath);
+  const purpose = resolvePacketPurpose(canonicalPath(resolution.leafPath));
+  const packetPurpose = purpose ? formatPacketPurpose(purpose, projectRoot) : null;
   const update = buildSaveContinuityMarkdown(
     fsSync.readFileSync(hostPath, 'utf8'),
     patch,
     packetPointer,
     new Date().toISOString(),
+    packetPurpose,
   );
   if (!update.ok) {
     throw new Error(`Continuity rejected for ${leafLabel}: ${update.errors.join('; ')}`);
@@ -617,7 +626,7 @@ async function planContinuityWrite(params: {
   if (resolution.route.length > 0) {
     log(`   Continuity routed to ${leafLabel} via ${resolution.route.join(' -> ')}`);
   }
-  return { leafPath: resolution.leafPath, patch, packetPointer, dropped: update.dropped, hostPath };
+  return { leafPath: resolution.leafPath, patch, packetPointer, packetPurpose, dropped: update.dropped, hostPath };
 }
 
 /**
@@ -644,6 +653,7 @@ async function writePlannedContinuity(params: {
       plan.patch,
       plan.packetPointer,
       now,
+      plan.packetPurpose,
     );
     if (!update.ok) {
       throw new Error(`Continuity rejected for ${plan.packetPointer}: ${update.errors.join('; ')}`);
