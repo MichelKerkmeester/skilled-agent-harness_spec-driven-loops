@@ -956,7 +956,7 @@ test('stop-arm logs missing-transcript-path and marks the pending record deferre
   const result = await runAdapter(sandbox, STOP_ARM_PATH, payload);
   assert.equal(result.code, 0, result.stderr);
   assert.equal(result.stdout, '');
-  // The record stays pending for the next Stop, and the mark lets a prompt withdraw it.
+  // The record is marked so a prompt withdraws it, and a Stop with no typed prompt tries again.
   const { deferredAt, ...unchanged } = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
   assert.deepEqual(unchanged, record);
   assert.ok(Number.isFinite(Date.parse(deferredAt)), deferredAt);

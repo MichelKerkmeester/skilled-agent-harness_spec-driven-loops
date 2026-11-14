@@ -129,9 +129,10 @@ async function armPendingRecord(payload, dependencies = {}) {
     }, env);
   }
 
-  // The killer watches the transcript for idleness, so a payload without its
-  // path can never finish arming: the record stays pending for the next Stop
-  // rather than stranding armed with no killer running.
+  // The killer watches the transcript for idleness, so a payload without its path cannot
+  // arm: the record keeps its pending status and gains a deferral mark that lets a prompt
+  // withdraw it, and a Stop with no typed prompt tries again. Arming instead would strand
+  // an armed record with no killer watching it.
   if (typeof payload.transcript_path !== 'string' || !payload.transcript_path) {
     logEvent('missing-transcript-path', { loopId, sessionId: record.sessionId }, env);
     markParked(loopId, env);

@@ -123,6 +123,7 @@ The code is committed as `aee4ae8080` on branch `worktrees/373-relaunch-gap-fixe
 4. **`keep` has no test of its own.** `prepare` and `keep` reach the same helper through `validatedNote`, and only `prepare` runs in the new CLI test.
 5. **The cost of the folder scan is not measured.** A session with no goal entry reads each `.md` note in the outgoing note's folder once.
 6. **The suite count at the commit alone was not rerun.** The 1547 figure is the commit message's. This author reran the suites at `eba587cae7`.
+7. **The mark is matched on the session id that claimed the note.** A receiver whose session id changes after the claim loses the mark and falls back to the packet goal. Whether `/clear` changes a Claude session id is not confirmed.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -1296,9 +1296,9 @@ function readRelaunchFile(loopId, env = process.env) {
   } catch (error) {
     if (!(error instanceof SyntaxError)) throw error;
   }
-  // Every writer stamps the note a record hands over, an empty one for a record that has
-  // none left. A record with no such field was not written here, and reading it as pending
-  // would let a Stop arm a hop that has no note to claim.
+  // `preparePending` is the one writer that sets `handoff`, so a record with no such field
+  // was not written here, and reading it as pending would let a Stop arm a hop that has no
+  // note to claim.
   if (record !== null && typeof record === 'object' && typeof record.handoff === 'string') {
     return record;
   }

@@ -202,7 +202,7 @@
     ],
     "causal_summary": "A Claude sender whose goal was met, failed or cleared hands over no goal",
     "created_at": "2026-11-14T04:47:43Z",
-    "last_save_at": "2026-11-14T05:35:59.976Z",
+    "last_save_at": "2026-11-14T07:24:59.514Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5d437bff0caa504ecd3214b24d9c0a027887b7906b0e8c0a7393ab1c66610006",
+    "source_fingerprint": "sha256:3575747a398b6be359fc6bb62f35ef328d679ffa5f3ed3e38fa532d28dff968a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "eb3687f6be084689f47715084553ba3246d0e17956b983fd84601f613f160f62",
       "plan.md": "04b32401f8831bcfefec428d4379a9d5a629a39fb625969fde2483b27d6127a4",
       "tasks.md": "405babba1ebe2212a2da812c374eb3d72cbfcd7b9f09988d76207cc69e1889aa",
-      "implementation-summary.md": "80bd106d5f80a88a185c944682380cc6358c663d00dab27dbf4d1d731cd6e39a"
+      "implementation-summary.md": "c170aefe6891d0c8cad2171cf146a5558173d3efef9633995810ac91bdd94da2"
     },
     "last_active_at": null
   }
