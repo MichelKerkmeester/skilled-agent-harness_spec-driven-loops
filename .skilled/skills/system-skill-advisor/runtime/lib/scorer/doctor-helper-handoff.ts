@@ -17,8 +17,10 @@
 //      vocabulary ("start a deep review loop"), so a weak match also needs the
 //      prompt to name a problem. Beside a passing skill only a strong cue
 //      counts, because bare words such as "missing" or "broken" are common in
-//      ordinary work. With no skill passing, a strong ranker match stands in
-//      for the cue.
+//      ordinary work. A skill that passed with none of its own phrases in the
+//      prompt is the exception: there a bare word with a strong ranker match
+//      leads. With no skill passing, a strong ranker match stands in for the
+//      cue.
 
 // ───────────────────────────────────────────────────────────────────
 // 1. IMPORTS

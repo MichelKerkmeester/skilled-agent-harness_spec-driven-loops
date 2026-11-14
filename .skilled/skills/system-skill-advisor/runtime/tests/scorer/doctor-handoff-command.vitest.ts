@@ -130,6 +130,24 @@ describe('doctor hand-off command', () => {
     expect(ids.slice(0, 3)).toContain('command-doctor-helper');
   });
 
+  // A skill that passed on shared single words holds no phrase of its own in the
+  // prompt, so a bare problem word with a strong ranker match leads it.
+  it('puts the ranked command before a skill that passed on shared words alone', () => {
+    const ids = scoredIds('the agents md file is missing the gate sections');
+
+    expect(ids[0]).toBe('command-doctor-agents-md-check');
+    expect(ids).toContain('sk-doc');
+  });
+
+  // The same bare problem word beside a skill the prompt names with its own
+  // phrase is ordinary work, however strongly the ranker matches.
+  it('leaves a bare problem word beside a phrase-matched skill with no doctor command', () => {
+    const ids = scoredIds('update the readme because the agents md sections are stale');
+
+    expect(ids[0]).toBe('sk-doc');
+    expect(ids.filter((id) => id.startsWith(DOCTOR_PREFIX))).toEqual([]);
+  });
+
   it('falls back to the helper for a repair request with no ranked command', () => {
     expect(scoredIds('I have a problem and want the right repair path suggested with reasons')[0])
       .toBe('command-doctor-helper');

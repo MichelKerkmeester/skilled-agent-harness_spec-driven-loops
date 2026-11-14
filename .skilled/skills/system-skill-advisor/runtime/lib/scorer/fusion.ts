@@ -1135,17 +1135,28 @@ export function applyDoctorHelperHandoff(
     return [...ranked];
   }
   if (isDoctorCommandTyped(context.promptLower)) return [...ranked];
-  const skillPasses = ranked.some((recommendation) => (
+  const passingSkills = ranked.filter((recommendation) => (
     !isDoctorBridge(recommendation) && recommendation.passes_threshold
   ));
+  const skillPasses = passingSkills.length > 0;
+  // A skill that passed with none of its own phrases in the prompt passed on
+  // shared single words. A command is not allowed to pass that way at all, so
+  // such a pass does not outweigh a named problem the ranker matches strongly.
+  const wordsOnlyPass = skillPasses && passingSkills.every((recommendation) => (
+    !recommendation.laneContributions.some((contribution) => (
+      contribution.lane === 'explicit_author' && contribution.rawScore > 0
+    ))
+  ));
   const cue = doctorProblemCue(context.prompt);
-  if (skillPasses && cue !== 'strong') return [...ranked];
+  const weakCueOverWords = wordsOnlyPass && cue === 'weak';
+  if (skillPasses && cue !== 'strong' && !weakCueOverWords) return [...ranked];
 
   const helperSkill = context.projection.skills.find((skill) => skill.id === DOCTOR_HELPER_BRIDGE_ID);
   if (!helperSkill) return [...ranked];
   const match = matchDoctorProblem(context.prompt, context.workspaceRoot);
   if (!match && (skillPasses || !genericRepairCue(context.prompt))) return [...ranked];
   if (match && cue === null && match.score < DOCTOR_HELPER_UNCUED_MIN_SCORE) return [...ranked];
+  if (match && weakCueOverWords && match.score < DOCTOR_HELPER_UNCUED_MIN_SCORE) return [...ranked];
 
   const handoffId = (match ? runnableDoctorBridgeId(match.runnable, context.projection) : undefined) ?? DOCTOR_HELPER_BRIDGE_ID;
   const handoffSkill = context.projection.skills.find((skill) => skill.id === handoffId) ?? helperSkill;
@@ -1164,11 +1175,9 @@ export function applyDoctorHelperHandoff(
     dominantLane: existing?.dominantLane ?? null,
     lifecycleStatus: handoffSkill.lifecycleStatus,
   };
-  const withHandoff = [
-    ...ranked.filter((recommendation) => recommendation.skill !== handoffId),
-    handoff,
-  ];
-  return keepPassingSkillsAboveDoctorBridges(withHandoff, context.promptLower, context.leadPhrasesById);
+  const others = ranked.filter((recommendation) => recommendation.skill !== handoffId);
+  if (weakCueOverWords) return [handoff, ...others];
+  return keepPassingSkillsAboveDoctorBridges([...others, handoff], context.promptLower, context.leadPhrasesById);
 }
 
 // A typed command with no scorer row of its own can only reach the reader through
