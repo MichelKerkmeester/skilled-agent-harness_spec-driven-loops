@@ -36,7 +36,7 @@
       "acceptance"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -44,20 +44,20 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "scratch/check-parents.mjs",
-      "scratch/sentences.md",
-      ".skilled/hooks/injection-contract.md",
-      "runtime/lib/README.md",
       "specs/hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/spec.md",
       "specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/spec.md",
       "specs/sk-design/020-chart-and-diagram-review/spec.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/packet-purpose-carry.md",
       ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
       ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
       ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/compaction-history-lookup.md",
       ".skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md",
+      ".skilled/hooks/injection-contract.md",
       ".skilled/skills/system-spec-kit/runtime/lib/README.md",
-      ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md",
-      "runtime/lib/spec/packet-purpose.ts"
+      "scratch/check-parents.mjs",
+      "scratch/sentences.md",
+      "runtime/lib/README.md",
+      ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md"
     ],
     "entities": [
       {
@@ -97,27 +97,9 @@
         "source": "derived"
       },
       {
-        "name": "check-parents.mjs",
-        "kind": "file",
-        "path": "scratch/check-parents.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "sentences.md",
+        "name": "packet-purpose-carry.md",
         "kind": "doc",
-        "path": "scratch/sentences.md",
-        "source": "derived"
-      },
-      {
-        "name": "injection-contract.md",
-        "kind": "doc",
-        "path": ".skilled/hooks/injection-contract.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "runtime/lib/README.md",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/packet-purpose-carry.md",
         "source": "derived"
       },
       {
@@ -145,15 +127,33 @@
         "source": "derived"
       },
       {
-        "name": "feature-catalog-snippet-template.md",
+        "name": "injection-contract.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md",
+        "path": ".skilled/hooks/injection-contract.md",
         "source": "derived"
       },
       {
-        "name": "packet-purpose.ts",
-        "kind": "code",
-        "path": "runtime/lib/spec/packet-purpose.ts",
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-parents.mjs",
+        "kind": "file",
+        "path": "scratch/check-parents.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "sentences.md",
+        "kind": "doc",
+        "path": "scratch/sentences.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog-snippet-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-feature-catalog/assets/feature-catalog-snippet-template.md",
         "source": "derived"
       },
       {
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "An operator or a model reading the docs cannot learn that every hop carries the packet's purpose, because no feature catalog entry, playbook scenario, injection contract section or root README passage names it",
     "created_at": "2026-11-14T11:27:14Z",
-    "last_save_at": "2026-11-14T12:10:21.793Z",
+    "last_save_at": "2026-11-14T14:08:28.272Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:deef508c742c016bf07619b9dcf0d6dcd5d0c97f3cd7f228731a7a4023afeb90",
+    "source_fingerprint": "sha256:b2a31b690ead8227ced64def9f4186a4fc70f7f2bd3b5e88adc317ca8134d773",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "140b0558dcdd479c136fc477d2cbbf5c876bebe3d4568fc2f3d45e376a8d50fb",
-      "plan.md": "3f160dedcd1514d52e8b1dbbd3b56e95efcac042e9828e5a29838a1036f3f98d",
-      "tasks.md": "3770b42bd79dabccb1f2afce077a044189bd7dada33a283ace128ecb961b5dd2",
-      "implementation-summary.md": "5dfe84e21e7517b0e06ef473c4f5fede688fa0632e637f5a03f592699c229a94"
+      "spec.md": "b27887fc1e68ada96b35fd75fd677e2ec8ef72486f7c531e30024d1d3afd36e6",
+      "plan.md": "ab69844358688623346596133185a0cd9b2860666d734bcd178503d2e6b52001",
+      "tasks.md": "0465cee873067620f755127c105fb40a9fd1be13db05a13e5e45c89bcf35a0a4",
+      "implementation-summary.md": "8a89c2e0823242b643f831f8c738168f80e08ba30e176b6e860dd814ab850543"
     },
     "last_active_at": null
   }

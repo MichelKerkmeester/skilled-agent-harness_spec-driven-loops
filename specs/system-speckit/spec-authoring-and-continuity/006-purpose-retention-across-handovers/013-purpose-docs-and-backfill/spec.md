@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/376-dsh-single-executor-loop` |
 | **Parent Spec** | ../spec.md |
@@ -234,9 +234,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 10. OPEN QUESTIONS
 <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- Does the operator approve the eleven sentences in `scratch/sentences.md`? This blocks E1 to E11.
-- Should the five packets that lose their only line in phase 012 get a purpose sentence here? Default taken: no, they are five unrelated packets.
-- Should the `sk-design/020` title lose "on two models" as well? Default taken: no, it is outside this phase's file list. It is one line if the operator wants it.
+- Does the operator approve the eleven sentences in `scratch/sentences.md`? Answered by the operator on 2026-11-14: all eleven are approved as written.
+- Should the five packets that lose their only line in phase 012 get a purpose sentence here? Default taken: no, they are five unrelated packets. Answered by the operator on 2026-11-14: no new sentence for them.
+- Should the `sk-design/020` title lose "on two models" as well? Default taken: no, it is outside this phase's file list. It is one line if the operator wants it. Answered by the operator on 2026-11-14: the title stays as it is.
 - Deep-review findings: folded in. R2-P2-002 is items B2, B3 and B5 here, and R4-P2-001 is B6. The other five findings of `../review/review-report.md` belong to phase 012.
 <!-- /ANCHOR:questions -->
 

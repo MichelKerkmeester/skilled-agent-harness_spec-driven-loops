@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Planned, not built. The phase will give eleven parents a real purpose sentence and document the purpose line in the catalog, the playbook, the injection contract and the root README."
+description: "The purpose line is now documented on every hop, and eleven phase parents carry an approved purpose sentence."
 trigger_phrases:
   - "purpose docs and backfill implementation summary"
 importance_tier: "normal"
@@ -9,16 +9,16 @@ _memory:
   continuity:
     packet_pointer: "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill"
     last_updated_at: "2026-11-14T11:27:17Z"
-    last_updated_by: "planner"
-    recent_action: "Planned the phase. Nothing is built"
-    next_safe_action: "Build the phase with /speckit:implement"
+    last_updated_by: "orchestrator-worker"
+    recent_action: "Built and verified the phase"
+    next_safe_action: "Build phase 018 of the DeepSeek Harness packet"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-013-purpose-docs-and-backfill"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,12 +32,11 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 013-purpose-docs-and-backfill |
-| **Completed** | Not built. Planned 2026-11-14 |
+| **Completed** | 2026-11-14 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
 
@@ -45,59 +44,77 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-Nothing yet. This phase is planned. When built, the eleven parents state their own purpose, and the catalog, the playbook, the injection contract, the root README and the library index each describe the purpose line.
+You can now find the purpose line in the docs. The feature catalog, five playbook scenarios, the injection contract and the root README all say which hops carry it and where it comes from. The eight deep-loop parents that stated only a layout sentence now state a purpose, and three earlier sentences no longer overclaim.
+
+### Phase 13: purpose-docs-and-backfill
+
+Every child below the eleven parents now inherits a real purpose instead of a layout note or an overclaim. The new `packet-purpose-carry` entry names the reader, the hops, the line shapes and the tests. One scenario per hop lets an operator check the line by hand.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None yet | Planned | `spec.md` section 3 lists every file the build will change |
+| `specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/00{1..8}-*/spec.md` | Modified | Approved purpose sentences in place of the layout sentence |
+| `specs/hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/spec.md` | Modified | Approved sentence, in the purpose and the frontmatter description |
+| `specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/spec.md` | Modified | Approved sentence |
+| `specs/sk-design/020-chart-and-diagram-review/spec.md` | Modified | Approved sentence that names the one model |
+| `.skilled/skills/system-spec-kit/feature-catalog/context-preservation/packet-purpose-carry.md` | Created | The catalog entry |
+| `.skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md` | Modified | The root section |
+| `.skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md` | Modified | One sentence and a link |
+| `.skilled/skills/system-spec-kit/feature-catalog/context-preservation/compaction-history-lookup.md` | Modified | One sentence and a link |
+| `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/packet-purpose-*.md` | Created | Five scenarios, one per hop |
+| `.skilled/skills/system-spec-kit/manual-testing-playbook/manual-testing-playbook.md` | Modified | Five index rows |
+| `.skilled/hooks/injection-contract.md` | Modified | The `## Packet Purpose` section in two entries |
+| `README.md` | Modified | Six sentences |
+| `.skilled/skills/system-spec-kit/runtime/lib/README.md` | Modified | The `packet-purpose.ts` row names both readers |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-Not delivered. The plan names the order: the Setup baselines, the edits in `plan.md` section 4, then the Verification tasks in `tasks.md`.
+The build started at `97085a45bf` after phase 012 landed, every baseline was rerun and all 24 search texts counted 1. One DeepSeek V4.1 Flash worker at max effort ran through `cli-deepseek-harness` on dsh 0.2.2-rc.3, from a temp cwd with a disposable home, and applied E1 to E20. The orchestrator reran every check itself, fixed the E9 frontmatter description and refreshed the eleven parents' generated metadata. The phase is committed on `worktrees/376-dsh-single-executor-loop`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| Draft sentences wait for the operator | A purpose sentence speaks for the packet's author, so phase 011 set the rule that the operator approves each one |
-| One catalog entry linked from both hop entries | The line crosses several hops, so one entry with two links keeps a single description |
-| One playbook scenario per hop | Each hop prints the line through a different path and fails on its own |
+| All eleven sentences as drafted | The operator approved each one as written |
+| No sentence for the five packets phase 012 left without a line | The operator chose it, because they are five unrelated packets |
+| The `sk-design/020` title stays | The operator chose it. The title is outside this phase's file list |
+| Set the E9 frontmatter description to the approved sentence | It held an older wording of the same reserved purpose, which T006 checks |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| Planning baselines | Recorded in `plan.md` section 5. The after values are not run yet |
+| Parent check | PASS. `layout sentence as purpose: 0 of 11`, all eleven on `packet` |
+| Eleven parents, strict | PASS. Each `RESULT: PASSED (errors=0 warnings=0)` |
+| Catalog package | PASS. `violations=0`, the same 4 notes |
+| Playbook package | PASS. `scenarios=124 ... violations=0 warnings=2`. Before: 119 |
+| Six new docs | PASS. `validate_document.py` exit 0 each, naming guard `EXIT=0` |
+| Docs name the line | PASS. Injection contract 2, index rows 5, both catalog links once, the six README sentences once each |
+| Relaunch suite with `env -u AI_SESSION_CHILD` | PASS. `pass 1028`, `fail 0`, exit 0 |
+| Command workflow test and mirrors | PASS. `passed=150 failed=0`, 256 mirrors, three prompt syncs at 45 |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **Not built.** Each sentence waits on the operator. A rejected sentence leaves its parent printing the layout note until phase 012 stops the reader from taking it, after which that parent prints its own problem or nothing.
+1. **The README phrase count is 5, not 6.** The plan's sentence for line 1175 says `Purpose row quoted from the packet's`, so a search for `packet's purpose` misses it. Search for each sentence instead.
+2. **No scenario was run live.** The scenarios are written and validated. Running one needs an operator session on each runtime.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

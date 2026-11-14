@@ -57,7 +57,7 @@
         "source": "derived"
       },
       {
-        "name": "Root Purpose This",
+        "name": "Root Purpose Build",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -89,16 +89,16 @@
     ],
     "causal_summary": "Live-tools unblock, authorized-ledger substrate, evidence and control services, compatibility and rollback bridge, durable fan-out orchestration, novelty projections, convergence and health, plus the fan-out convergence-mode flag and the spec-protocol ledger events.",
     "created_at": "2026-09-20T08:33:46.461Z",
-    "last_save_at": "2026-11-10T05:40:26.431Z",
+    "last_save_at": "2026-11-14T14:02:40.802Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:df1dccc6cac13317b8ce6fd4d81c3ad85337119b3d4d526660bf3a4a75c99015",
+    "source_fingerprint": "sha256:5ec9e008950229992c821240bad5e23b889ba8a29e2226fcd5719b076e2d04d2",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "62eb10fd60d807fb5892c2de46a8e44ffac930c4235b22a6a11e5cb008a436f5"
+      "spec.md": "fea384567061a0f434cda5a07133a9d02eb29672df19c11ef36bc7e11e30a993"
     },
     "last_active_child_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/009-spec-protocol-ledger-events",
     "last_active_at": null

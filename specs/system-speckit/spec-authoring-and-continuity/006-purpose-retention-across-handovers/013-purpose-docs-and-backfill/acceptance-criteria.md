@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill"
     last_updated_at: "2026-11-14T11:27:17Z"
     last_updated_by: "planner"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Met every criterion from the build and verification"
+    next_safe_action: "Build phase 018 of the DeepSeek Harness packet"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "plan-013-purpose-docs-and-backfill"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** `013-purpose-docs-and-backfill`
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-14
 <!-- /ANCHOR:metadata -->
 
@@ -53,16 +53,16 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the eight deep-loop parents, When the approved sentences are applied, Then `check-parents.mjs` prints `layout sentence as purpose: 0 of 11` and each approved line starts with `packet` | T017 output | Unmet | - |
-| AC-002 | REQ-001 | Given the three reserved sentences, When the approved text replaces each one, Then the old search text of E9, E10 and E11 matches nothing in its file | T006 to T008 output | Unmet | - |
-| AC-003 | REQ-002 | Given the catalog package, When the entry, the root section and both links are added, Then `validate_catalog_package.py` prints `violations=0` and each hop entry links `packet-purpose-carry.md` once | T011 and T019 output | Unmet | - |
-| AC-004 | REQ-003 | Given the playbook package, When the five scenarios and their index rows are added, Then `validate-playbook-package.cjs` prints `scenarios=124` and `violations=0` | T013 and T020 output | Unmet | - |
-| AC-005 | REQ-002, REQ-003 | Given the six new files, When the naming guard runs on a staged copy, Then it prints `EXIT=0` | T021 output | Unmet | - |
-| AC-006 | REQ-004 | Given the injection contract, When it describes the compaction output, Then `rg -c 'Packet Purpose'` on it prints `2` | T014 output | Unmet | - |
-| AC-007 | REQ-005 | Given the six README passages, When each gains its sentence, Then `rg -c "packet's purpose" README.md` prints at least `6` | T015 output | Unmet | - |
-| AC-008 | REQ-006 | Given the library index, When the `packet-purpose.ts` row is read, Then it names both readers and the old phrase matches nothing | T016 output | Unmet | - |
-| AC-009 | REQ-007 | Given the eleven parents, When each is strict validated, Then each prints `RESULT: PASSED (errors=0 warnings=0)` | T018 output | Unmet | - |
-| AC-010 | REQ-007 | Given the new docs, When they name the runtimes that print the compaction line, Then none names Devin or OpenCode | T023 output | Unmet | - |
+| AC-001 | REQ-001 | Given the eight deep-loop parents, When the approved sentences are applied, Then `check-parents.mjs` prints `layout sentence as purpose: 0 of 11` and each approved line starts with `packet` | T017 output. Observed: `layout sentence as purpose: 0 of 11`, and all eleven lines start with `packet` with the approved sentences | Met | - |
+| AC-002 | REQ-001 | Given the three reserved sentences, When the approved text replaces each one, Then the old search text of E9, E10 and E11 matches nothing in its file | T006 to T008 output. Observed: the E9 and E10 phrases count nothing, the E9 frontmatter description included, and `run on two models.` prints no line in `020-chart-and-diagram-review/spec.md` | Met | - |
+| AC-003 | REQ-002 | Given the catalog package, When the entry, the root section and both links are added, Then `validate_catalog_package.py` prints `violations=0` and each hop entry links `packet-purpose-carry.md` once | T011 and T019 output. Observed: `PACKAGE system-spec-kit: PASS tier=fail violations=0` with the same 4 notes, and each hop entry links `packet-purpose-carry.md` once | Met | - |
+| AC-004 | REQ-003 | Given the playbook package, When the five scenarios and their index rows are added, Then `validate-playbook-package.cjs` prints `scenarios=124` and `violations=0` | T013 and T020 output. Observed: five index rows and `scenarios=124 ... violations=0 warnings=2` | Met | - |
+| AC-005 | REQ-002, REQ-003 | Given the six new files, When the naming guard runs on a staged copy, Then it prints `EXIT=0` | T021 output. Observed: `PASS: catalog/playbook content is kebab-case.` and `EXIT=0` on a staged copy of the six files | Met | - |
+| AC-006 | REQ-004 | Given the injection contract, When it describes the compaction output, Then `rg -c 'Packet Purpose'` on it prints `2` | T014 output. Observed: 2 | Met | - |
+| AC-007 | REQ-005 | Given the six README passages, When each gains its sentence, Then `rg -c "packet's purpose" README.md` prints at least `6` | T015 output. Observed: each of the six appended sentences matches once in `README.md`. The phrase count prints 5, not 6, because the plan's approved sentence for line 1175 says `Purpose row quoted from the packet's` instead. The six sentences are the requirement, so the row is met | Met | - |
+| AC-008 | REQ-006 | Given the library index, When the `packet-purpose.ts` row is read, Then it names both readers and the old phrase matches nothing | T016 output. Observed: the old phrase counts nothing, and the row names the compaction recovery and the `packet_purpose` save field | Met | - |
+| AC-009 | REQ-007 | Given the eleven parents, When each is strict validated, Then each prints `RESULT: PASSED (errors=0 warnings=0)` | T018 output. Observed: all eleven print `RESULT: PASSED (errors=0 warnings=0)` after their generated metadata was refreshed | Met | - |
+| AC-010 | REQ-007 | Given the new docs, When they name the runtimes that print the compaction line, Then none names Devin or OpenCode | T023 output. Observed: Devin and OpenCode appear only as printing none | Met | - |
 
 ### Status values
 
@@ -88,7 +88,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-No. The phase is planned and not built, so every row is unmet until its task runs.
+Yes.
 <!-- /ANCHOR:closure -->

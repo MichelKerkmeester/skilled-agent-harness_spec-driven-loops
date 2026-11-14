@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill"
     last_updated_at: "2026-11-14T11:27:17Z"
     last_updated_by: "scaffold"
-    recent_action: "Planned the phase"
-    next_safe_action: "Build the phase with /speckit:implement"
+    recent_action: "Built and verified the phase"
+    next_safe_action: "Build phase 018 of the DeepSeek Harness packet"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "plan-013-purpose-docs-and-backfill"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -55,11 +55,11 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] REQ-001: `check-parents.mjs` prints `layout sentence as purpose: 0 of 11` and the E9 to E11 search texts match nothing (T006 to T008, T017)
-- [ ] REQ-002: the catalog validator prints `violations=0` and each hop entry links `packet-purpose-carry.md` once (T011, T019)
-- [ ] REQ-003: the playbook validator prints `scenarios=124` and `violations=0` (T020)
-- [ ] REQ-004 to REQ-006: the injection contract counts `Packet Purpose` twice, the README carries six sentences and the library row names both readers (T014 to T016)
-- [ ] REQ-007: each of the eleven parents prints `RESULT: PASSED (errors=0 warnings=0)` and no new doc names Devin or OpenCode as printing the line (T018, T023)
+- [x] REQ-001: `check-parents.mjs` prints `layout sentence as purpose: 0 of 11` and the E9 to E11 search texts match nothing (T006 to T008, T017)
+- [x] REQ-002: the catalog validator prints `violations=0` and each hop entry links `packet-purpose-carry.md` once (T011, T019)
+- [x] REQ-003: the playbook validator prints `scenarios=124` and `violations=0` (T020)
+- [x] REQ-004 to REQ-006: the injection contract counts `Packet Purpose` twice, the README carries six sentences and the library row names both readers (T014 to T016)
+- [x] REQ-007: each of the eleven parents prints `RESULT: PASSED (errors=0 warnings=0)` and no new doc names Devin or OpenCode as printing the line (T018, T023)
 <!-- /ANCHOR:completion -->
 
 ---
@@ -77,13 +77,16 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phase planned | Done | 2026-11-14 at `1bedb33577`, baselines in `plan.md` section 5 |
-| Sentence verdicts | Pending | The operator approves, edits or rejects each of the eleven drafts in `scratch/sentences.md` |
-| Phase built | Pending | Waits for phase 012 and the verdicts above |
+| Sentence verdicts | Done | 2026-11-14: the operator approved all eleven sentences as written: the eight deep-loop parents `001` to `008`, `005-smart-rule-injection`, `001-on-write-quality` and `sk-design/020-chart-and-diagram-review`. The `sk-design/020` title stays as it is, and the five packets phase 012 leaves without a line get no sentence |
+| Build start | Done | At `97085a45bf`. Catalog `violations=0` with 4 notes, playbook `scenarios=119`, docs search empty, eleven parents strict PASSED, parent check `0 of 11` with the eight on `ancestor`. All 24 search texts counted 1 |
+| Phase built | Done | One DeepSeek V4.1 Flash max worker on dsh 0.2.2-rc.3 applied E1 to E20 in about ten minutes, exit 0 with a `completed` final event |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
 | Deep-review findings | Folded in from `../review/review-report.md`: R2-P2-002 is items B2, B3 and B5 and R4-P2-001 is item B6. The other five findings belong to phase 012 |
+| E9 frontmatter | The old smart-rule-injection wording also sat in that packet's frontmatter description, which T006 checks. The orchestrator set it to the approved sentence |
+| README count | T015 and AC-007 expect 6 hits of `packet's purpose`. The plan's own sentence for line 1175 does not hold the phrase, so 5 is the correct count, and each of the six sentences is present once |
 | Reserved sentence checked | Fable could not check the `sk-design/020` claim of two models. Its `synthesis.md` lines 26 to 33 show one model produced reports, so the draft names that model |
 <!-- /ANCHOR:log -->

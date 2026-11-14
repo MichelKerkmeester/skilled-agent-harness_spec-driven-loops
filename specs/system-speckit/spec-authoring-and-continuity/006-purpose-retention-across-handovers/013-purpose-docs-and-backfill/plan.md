@@ -37,14 +37,14 @@ E1 to E11 write eleven approved purpose sentences. E12 to E17 add the catalog en
 <!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Phase 012 is built: `rg -c '^export function enclosingPacketFolder\(' .skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts` prints `1`
-- [ ] The operator has approved, edited or rejected each sentence in `scratch/sentences.md`, recorded in `goal.md` section 4
-- [ ] Each search text in section 4 matches once
+- [x] Phase 012 is built: `rg -c '^export function enclosingPacketFolder\(' .skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts` prints `1`
+- [x] The operator has approved, edited or rejected each sentence in `scratch/sentences.md`, recorded in `goal.md` section 4
+- [x] Each search text in section 4 matches once
 
 ### Definition of Done
-- [ ] Every row in `acceptance-criteria.md` is `Met`
-- [ ] `check-parents.mjs` prints `layout sentence as purpose: 0 of 11` and both package validators print `violations=0`
-- [ ] Docs updated (spec/plan/tasks)
+- [x] Every row in `acceptance-criteria.md` is `Met`
+- [x] `check-parents.mjs` prints `layout sentence as purpose: 0 of 11` and both package validators print `violations=0`
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
@@ -243,7 +243,7 @@ Run each command before E1 and again after E20, from the worktree root. Every ba
 
 | Command | Baseline | After the edits |
 |---------|----------|-----------------|
-| `node $C/scratch/check-parents.mjs \| tail -1` | `layout sentence as purpose: 8 of 11` | `layout sentence as purpose: 0 of 11`, and `packet` on all eleven lines with the approved sentences |
+| `node $C/scratch/check-parents.mjs \| tail -1` | `layout sentence as purpose: 8 of 11` at planning. After phase 012 was built, at `97085a45bf`, it prints `0 of 11` with the eight parents on `ancestor`, because the reader now skips the layout sentence | `layout sentence as purpose: 0 of 11`, and `packet` on all eleven lines with the approved sentences |
 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <parent> --strict --quiet` for each line of `scratch/parents.txt` | `RESULT: PASSED (errors=0 warnings=0)` for all eleven | unchanged |
 | `python3 .skilled/skills/sk-doc/sk-create-feature-catalog/scripts/validate_catalog_package.py --package system-spec-kit` | `PACKAGE system-spec-kit: PASS tier=fail violations=0`, 4 notes | `violations=0`, no new note |
 | `node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/system-spec-kit/manual-testing-playbook` | `scenarios=119 ... violations=0 warnings=2` | `scenarios=124 ... violations=0 warnings=2` |
@@ -266,8 +266,8 @@ What no check proves: that a sentence is the real reason for its parent. The ope
 
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
-| Phase 012 built | Internal | Planned | The docs would describe a rule the reader does not follow yet |
-| Operator approval of `scratch/sentences.md` | Internal | Open | E1 to E11 cannot run |
+| Phase 012 built | Internal | Green, `97085a45bf` | The docs would describe a rule the reader does not follow yet |
+| Operator approval of `scratch/sentences.md` | Internal | Green, all eleven approved 2026-11-14 | E1 to E11 cannot run |
 | `node`, `python3`, `rg`, the sk-doc validators | Internal | Green, all ran at planning time | The docs cannot be verified |
 <!-- /ANCHOR:dependencies -->
 
