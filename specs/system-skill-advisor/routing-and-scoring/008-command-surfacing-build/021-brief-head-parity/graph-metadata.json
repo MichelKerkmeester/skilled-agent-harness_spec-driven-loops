@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The recommend handler strips a command from the hub head whenever a lower row carries the same command, unless the caller asked for the top pick alone",
     "created_at": "2026-11-14T06:10:05Z",
-    "last_save_at": "2026-11-14T07:39:01.592Z",
+    "last_save_at": "2026-11-14T08:28:56.215Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,12 +205,12 @@
       "acceptance-criteria.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:4d2cb68c6194b5e5d72c9e09799390e01618a16d1b7b7004d8fc8bece09bd645",
+    "source_fingerprint": "sha256:ab6ffc83089bcc4bf1b70caf3a93594b1e5ac9ef2e4425b2f78c35eb2eec969f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "fe091f964a878b9441dddeef6ba911c89d6b71898daea8d68081b0bf13ef24bf",
       "plan.md": "78059f7c53896cfa0d96007e677045287eb717670934a2af49f4b7c0ee479fc7",
-      "tasks.md": "4b75d7695c5f4e63c8d0778ec20bc7088d319c076f517c2e293ae9d76e0f9617"
+      "tasks.md": "c00c7bf597d3a5fec08c4144ee6d56f64a9ead208c6e59d903df45982e54cbd2"
     },
     "last_active_at": null
   }

@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Every outcome number the packet quotes comes from rows its phrases were written against",
     "created_at": "2026-11-14T06:10:08Z",
-    "last_save_at": "2026-11-14T07:39:04.401Z",
+    "last_save_at": "2026-11-14T08:28:59.349Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,12 +202,12 @@
       "acceptance-criteria.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:29b4c987b0c137c83def0ff44bd31b4f2a9130a59e84f9d16db51f6d287c8367",
+    "source_fingerprint": "sha256:6abbcccb9ab63b23d048ec51d13f7156a85521461ecba1781566b79475796a48",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "113332411b0a31ca56abf02010b4e98d6d0c856f6e60a7feb0c375290b1a6718",
       "plan.md": "181a8cc3703229a1315fcbfa299a082e37cf9b5ff39bde4500f61278943c39cb",
-      "tasks.md": "d037343c82273da1e8e00ab81cd133a47dd6a538a73aa5008da9554d2f534385"
+      "tasks.md": "08043d35da7d8f66363f0645b6e1b934e46cd0dcb500166d502beba1510baf87"
     },
     "last_active_at": null
   }

@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The classifier matches a load only on a read tool or a skill tool, so a model that runs `cat` on the skill's entry document, or reads the command through `.pi/prompts/`, is counted as loading nothing",
     "created_at": "2026-11-14T06:10:06Z",
-    "last_save_at": "2026-11-14T07:39:02.975Z",
+    "last_save_at": "2026-11-14T08:28:57.615Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,12 +207,12 @@
       "acceptance-criteria.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:f1f93028bbcbe12c6ed794ca24b48219482625285cd636c510ed5792c6fc65db",
+    "source_fingerprint": "sha256:5a66b3890423896ea986d79043076a4f914f8a55d0850be948c5f57744cf3794",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "2a07fee1b75574f0d3c5676455093ff8844cf5152c92064a4ac4ce4105ff25af",
       "plan.md": "d9dbb4f1474408c8225a1184b2d611b06944d4483581b3b682ec9fabee7f2c28",
-      "tasks.md": "6a541097c77ad5df35f384e71adb76fcde613a685f0a77aa4ca221b066c77451"
+      "tasks.md": "a0dd07dfdf7191c24ac6adc4ca629af476b15162e83fb6ffb84d862e030681ad"
     },
     "last_active_at": null
   }
