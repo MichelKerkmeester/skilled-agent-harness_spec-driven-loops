@@ -71,6 +71,8 @@ and findings belong here.
 |------|-------|----------|
 | Spec, plan, tasks and acceptance criteria authored | Done | Written on 2026-11-14 from the audit evidence in `../001-finding-verification/` |
 | Implementation | Pending | Not started |
+| Implementation | Done | 37 rows given a verdict on 2026-11-14: 32 Confirmed, 3 Changed, 2 Judgment. Both ledger counts print 0 and strict validation printed RESULT: PASSED |
+| Observation outside the closed list | Recorded | SK-11 counts 15 files over 400 lines where the reader counted 14, and QL-13 counts six where the reader counted two |
 
 ### Deviations and findings
 

@@ -109,6 +109,10 @@ and findings belong here.
 | Operator answer 2026-11-14: sk-code-setup-check.cjs exits non-zero on STATUS=FAIL | Done | AskUserQuestion answer for phase 005 |
 | Operator answer 2026-11-14: .tsx and .jsx are frontend file markers and tokens.css type tokens move to rem | Done | AskUserQuestion answer for phases 002 and 003 |
 | Operator answer 2026-11-14: commit per phase on worktrees/379-sk-code-audit-remediation, no push; build with DeepSeek V4.1 Flash max over LLM Gateway via cli-pi, one change per dispatch | Done | AskUserQuestion answer and operator message |
+| Phase 001 finding verification | Done | No ledger row is Unverified or TBD, router-baseline.txt holds 22 decisions and setup-baseline.txt one STATUS line, commit b1360e7b85 |
+| Row H5 corrected to Changed | Recorded | sk-code-setup-check.cjs already exits 1 on STATUS=FAIL in this tree, so phase 005 keeps only the 23-file drift fix from that row |
+| Phase 002 frontend reach | Done | Code 40b8d7e6b7. Rows F1 to F4 carry fix evidence. 15 DeepSeek V4.1 Flash dispatches through cli-pi |
+| Operator confirmation requested | Open | .skilled/bin/tests/compiled-route-surface-hint.test.cjs line 163 changed outside sk-code under decision D5, because the planned FRONTEND block made its old expectation false |
 
 ### Deviations and findings
 

@@ -194,7 +194,7 @@
     ],
     "causal_summary": "The audit produced 61 findings",
     "created_at": "2026-11-14T12:01:48Z",
-    "last_save_at": "2026-11-14T13:23:08.762Z",
+    "last_save_at": "2026-11-14T13:24:26.244Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +205,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ae2c9d9b0344be0a6d4c6944c1462dcd1863bd987e85ffcec170ec7744ac52c",
+    "source_fingerprint": "sha256:023e1944806b5eb63498e0932e6c89e71dd4ae2e3eca980077c2a9da541d392e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6adedd0ee7333f17058d4b5f017b6a4a112f4b8180db341bd407a87115dbd6cf",

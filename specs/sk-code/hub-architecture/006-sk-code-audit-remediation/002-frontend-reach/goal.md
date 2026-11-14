@@ -73,6 +73,11 @@ and findings belong here.
 |------|-------|----------|
 | Spec, plan, tasks and acceptance criteria authored | Done | Written on 2026-11-14 from the audit evidence in `../001-finding-verification/` |
 | Implementation | Pending | Not started |
+| Implementation | Done | Probe replay 13/13 frontend, 1/1 review, 0/8 negative at 40b8d7e6b7. Guard and sync exit 0, playbook validator PASS, strict validation PASSED |
+| Edge cases | Run | rename the variable returns defer. A prompt matching frontend, CI and SKILLED returns frontend, ci, skilled in tie-break order |
+| Deviation: files outside the Files to Change table | Recorded | Three test expectations, phase-detection.md, the feature catalog sentence and the generated graph-metadata.json changed. One test sits outside sk-code, which parent decision D5 names |
+| Deviation: T012 command | Recorded | The stale artifact was the activation manifest, refreshed with compiled-route-manifest.cjs refresh, not compiled-route-sync.cjs |
+| Deviation: packet router section 2 prose | Recorded | Not extended, because phase 004 replaces it with a pointer to the machine block |
 
 ### Deviations and findings
 
