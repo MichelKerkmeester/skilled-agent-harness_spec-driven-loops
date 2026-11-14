@@ -1,0 +1,354 @@
+## changelog shape
+$ python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md
+FAIL .skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md
+  [spec-line] line 17: drop the (Level 1) label, the line carries paths only
+  [sentence-max] line 15: a sentence of 26 words, ceiling 22. Split it
+  [sentence-max] line 23: a sentence of 34 words, ceiling 22. Split it
+  [sentence-mean] 13.4 words a sentence on average, ceiling 10. Use more, shorter sentences
+SUMMARY files=1 pass=0 fail=1
+exit=1
+
+## roster check
+$ node .skilled/bin/sync-agent-roster.cjs --check
+agent-roster: OK
+exit=0
+
+## mirror check
+$ node .skilled/bin/check-agent-mirror-sync.cjs
+SAME FILE  ai-council [opencode] .opencode/agents/ai-council.md resolves to the canonical file
+NOT COMPARED  ai-council [dsh] .dsh/agents/ai-council.patch.yml (format-not-comparable)
+SAME FILE  code [opencode] .opencode/agents/code.md resolves to the canonical file
+NOT COMPARED  code [dsh] .dsh/agents/code.patch.yml (format-not-comparable)
+SAME FILE  context [opencode] .opencode/agents/context.md resolves to the canonical file
+NOT COMPARED  context [dsh] .dsh/agents/context.patch.yml (format-not-comparable)
+SAME FILE  debug [opencode] .opencode/agents/debug.md resolves to the canonical file
+NOT COMPARED  debug [dsh] .dsh/agents/debug.patch.yml (format-not-comparable)
+SAME FILE  deep-research [opencode] .opencode/agents/deep-research.md resolves to the canonical file
+NOT COMPARED  deep-research [dsh] .dsh/agents/deep-research.patch.yml (format-not-comparable)
+SAME FILE  deep-review [opencode] .opencode/agents/deep-review.md resolves to the canonical file
+NOT COMPARED  deep-review [dsh] .dsh/agents/deep-review.patch.yml (format-not-comparable)
+SAME FILE  design [opencode] .opencode/agents/design.md resolves to the canonical file
+NOT COMPARED  design [dsh] .dsh/agents/design.patch.yml (format-not-comparable)
+SAME FILE  markdown [opencode] .opencode/agents/markdown.md resolves to the canonical file
+NOT COMPARED  markdown [dsh] .dsh/agents/markdown.patch.yml (format-not-comparable)
+SAME FILE  orchestrate [opencode] .opencode/agents/orchestrate.md resolves to the canonical file
+NOT COMPARED  orchestrate [dsh] .dsh/agents/orchestrate.patch.yml (format-not-comparable)
+SAME FILE  prompt-improver [opencode] .opencode/agents/prompt-improver.md resolves to the canonical file
+NOT COMPARED  prompt-improver [dsh] .dsh/agents/prompt-improver.patch.yml (format-not-comparable)
+SAME FILE  review [opencode] .opencode/agents/review.md resolves to the canonical file
+NOT COMPARED  review [dsh] .dsh/agents/review.patch.yml (format-not-comparable)
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+exit=0
+
+## hub vocabulary source
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs --hub sk-doc
+OK    sk-doc                       alias=0 stage-two=0 triggers=0 packets=0 stage-two-reverse=118
+  stage-two-reverse sk-create-skill: "create a new sk" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "skill.md and starter" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "resource_map wiring" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "new capability" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "capability module" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "package a capability" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "mode packets" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "nested packet" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "mode-registry.json" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "hub-router.json" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "rewrite guard" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-skill: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "create a readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "readme for" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "a readme" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "project overview" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "getting started doc" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "intro doc" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "overview doc" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "landing doc" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-readme: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-agent: "@analyze agent" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-agent: "paired /create" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-agent: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-agent: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-agent: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-agent: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-command: "create a command" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-command: "new slash command" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-command: "author a command" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-command: "scaffold a command" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-command: "agent and paired" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-command: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-command: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-command: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-command: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-feature-catalog: "catalog of features" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-feature-catalog: "features overview" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-feature-catalog: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-feature-catalog: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-feature-catalog: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-feature-catalog: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-manual-testing-playbook: "json conversation" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-manual-testing-playbook: "conversation runner" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-manual-testing-playbook: "run-conversation-scenario" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-manual-testing-playbook: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-manual-testing-playbook: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-manual-testing-playbook: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-manual-testing-playbook: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-benchmark: "benchmark authoring" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-benchmark: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-benchmark: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-benchmark: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-benchmark: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-changelog: "version notes" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-changelog: "release summary" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-changelog: "what shipped" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-changelog: "packet changelog" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-changelog: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-changelog: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-changelog: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-changelog: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-diff: "diff document" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-diff: "before/after diff" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-diff: "visual document diff" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-diff: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-diff: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-diff: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-diff: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-frontmatter: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-frontmatter: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-frontmatter: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-frontmatter: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "documentation quality" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "validate documentation" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "validate this document" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "score this doc" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "fail sk-doc standards" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "review the docs" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "review the documentation" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "check the docs" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "check the documentation" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "audit the docs" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "documentation review bar" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "meet our standards" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "token efficiency" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "llms.txt" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "llmstxt" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "reduce tokens" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "fewer tokens" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "compress the doc" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "slim down" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "machine-readable index" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-quality-control: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-repo-rule: "repo rules" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-repo-rule: "always-loaded rule" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-repo-rule: "rule that binds" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-repo-rule: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-repo-rule: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-repo-rule: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-repo-rule: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-with-human-voice: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-with-human-voice: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-with-human-voice: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-with-human-voice: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-goal: "full sk-doc toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-goal: "all templates" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-goal: "entire toolkit" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+  stage-two-reverse sk-create-goal: "everything sk-doc offers" is an intent keyword in ROUTER.md that hub-router.json vocabulary does not route
+
+note: stage-two-reverse=118 term(s) are ROUTER.md intent keywords hub-router.json does not route. Stage two also carries the leaf keywords that pick a file once the mode is chosen, so this leg reports and never fails.
+
+checked=1 hub(s), drift=0
+RESULT: PASSED
+exit=0
+
+## router vocabulary reach
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-router-vocabulary-reach.cjs --hub sk-doc
+OK   sk-doc                       declared=263 wrong-hub=  0 outranked=  0 no-reach=  0 allowed=  6 probe-error=  0 operator-local=  0
+
+checked=1 hub(s), wrong-hub=0, outranked=0, no-reach=0, allowed=6, probe-error=0, operator-local=0
+advisor generation: 9
+RESULT: PASSED
+exit=0
+
+## router intent signals
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/generate-router-intent-signals.cjs --check --hub sk-doc
+OK    sk-doc                       declared=263 signals=280 missing=  0 orphans=  0
+
+checked=1 hub(s), missing=0, orphans=0
+RESULT: PASSED
+exit=0
+
+## parent skill check
+$ node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-doc
+INFO: Parent skill: .skilled/skills/sk-doc
+INFO: Resolved:     /Users/michelkerkmeester/worktrees/public/384-agent-alignment-follow-ups/.skilled/skills/sk-doc
+INFO: Policy: advisory findings count as FAIL; hard failures always FAIL.
+
+PASS: 1a: exactly one graph-metadata.json, located at the hub root
+PASS: 1b: hub skill_id "sk-doc" matches directory name
+PASS: 1c: hub family "sk-util" is in the allowed set
+PASS: 2a: no nested graph-metadata.json inside any packet or shared/
+PASS: 2b: no nested description.json inside any packet or shared/
+PASS: 3a: mode-registry.json exists and parses as JSON
+PASS: 3b: mode-registry.json declares 15 modes
+PASS: 3c: every mode packet resolves to an existing sub-directory
+PASS: 3d: every mode carries the hard discriminator (workflowMode + backendKind)
+PASS: 3d-canon: every mode carries packetKind + toolSurface + grandfatheredFolderMismatch + packetSkillName + aliases
+PASS: 3d-name: every mode folder matches packetSkillName (or is grandfathered)
+PASS: 3d-name-frontmatter: all 15 packet SKILL.md frontmatter name(s) match packetSkillName
+PASS: 3d-files: every packet carries SKILL.md, README.md, and changelog/
+PASS: 3d-alias: all 151 aliases are unique across modes
+PASS: 3e: every mode has an advisorRouting block with a valid routingClass
+INFO: 3g: hub declares no surface packets
+INFO: 3h: hub declares no transport packets
+PASS: 3i: every mode that grants Write declares mutatesWorkspace:true or a writeScopeNote
+PASS: 3k: all 13 bound command(s) stay within their mode toolSurface.allowed
+INFO: 3f: hub declares no extensions (pure 2-tier)
+PASS: 3j: hub allowed-tools equals the union of mode tool surfaces
+INFO: 4a: hub declares no lexical/alias-fold modes — no advisor drift-guard required
+INFO: 4b: registry declares no lexical modes; nothing to cross-check against the advisor
+PASS: 5a: hub-router.json exists and parses as JSON
+PASS: 5b: routerSignals keys match the registry workflowMode set (15)
+PASS: 5c: all 16 referenced vocabulary classes are defined
+PASS: 5d: every router resource path resolves on disk
+PASS: 5e: routerPolicy.tieBreak covers every registered mode
+PASS: 5f: bundleRules reference real modes
+PASS: 5g: base router outcomes present (single, orderedBundle, defer)
+PASS: 5h: routerPolicy.defaultMode is null (surface-primary or no default)
+PASS: 5i: tieBreak orders workflow modes before surface/transport modes
+INFO: 5j: hub declares no command subworkflows
+PASS: 6a: every hub child directory is a registered packet or an allowlisted support dir
+PASS: 6b: every registered mode (15) appears in the hub SKILL.md mode table
+PASS: 6c: every mode-table row whose registry entry declares a command shows that exact command
+PASS: 7a: all changelog entries are real files (no symlinks)
+PASS: 8a: description.json present with the required fields
+PASS: 8b: description.json carries no registry-owned duplicate keys
+PASS: 5k-alias: every registry alias is a keyword of its routerSignal classes
+PASS: 5k-packet: every mode packet is a description keyword
+PASS: 5k-canary: every routerSignals mode is the expected route of a canary case
+PASS: 9a: manual-testing-playbook/ present
+PASS: 9b: benchmark/ baseline present
+PASS: 10a-manifest-source: resourceContractVersion declared and leaf-manifest.json is present, readable, and well-formed
+PASS: 10b-byte-drift: committed leaf-manifest.json matches a fresh regeneration byte for byte
+PASS: 10c-target-collision: no duplicate composite keys; every committed leaf resolves to a disk file or a declared alias
+PASS: 10d-reachability: all 15 manifest mode(s) reach back to a registered mode and vice versa
+PASS: 11a-class: root metadata conforms to class H (declares the complete mode-registry + hub-router pair)
+PASS: 12a-router-contract: root ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: sk-doc/sk-create-agent: ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: sk-doc/sk-create-benchmark: ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: sk-doc/sk-create-changelog: ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: sk-doc/sk-create-command: ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: sk-doc/sk-create-diff: ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: sk-doc/sk-create-feature-catalog: ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: sk-doc/sk-create-frontmatter: ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: sk-doc/sk-create-goal: ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: sk-doc/sk-create-manual-testing-playbook: ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: sk-doc/sk-create-quality-control: ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: sk-doc/sk-create-readme: ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: sk-doc/sk-create-repo-rule: ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: sk-doc/sk-create-skill: ROUTER.md conforms to the two-state contract (active)
+PASS: 12a-router-contract: sk-doc/sk-create-with-human-voice: ROUTER.md conforms to the two-state contract (active)
+PASS: 12b-routing-shape: hub and 14 packet(s) follow the routing canon (0 known debt)
+PASS: 13a-version: all JSON routing files carry the SKILL.md version 2.9.13.0
+PASS: 13b-version: SKILL.md version 2.9.13.0 matches the newest changelog entry
+PASS: 13d-packet-version: 14 mode packet(s) match their newest changelog entry
+
+─────────────────────────────────────────────────────────────────
+OK: parent-skill-check — all hard invariants passed, 0 warnings
+exit=0
+
+## skill graph freshness
+$ node .skilled/commands/doctor/scripts/skill-graph-freshness.cjs --strict
+Skill-graph freshness panel (read-only)
+  compiled skill-graph.json : 14 skills, generated_at 2026-11-14T16:39:32.380150+00:00
+  SQLite skill-graph.sqlite : 14 nodes
+  on-disk graph-metadata    : 14 skills (source of truth)
+  scan rule                 : depth-1 only (direct children of .skilled/skills); nested folders are not read
+  STALE COMPILED: none (generated_at 2026-11-14T16:39:32.380150+00:00, newest source stamp 2026-11-07T00:00:00Z)
+  UNREADABLE graph-metadata: none
+  ZOMBIE (in SQLite, not on disk): none
+  MISSING (on disk, not in SQLite): none
+  FAMILY MISMATCH SQLite vs disk: none
+  GHOST (in compiled json, not on disk): none
+  MISSING (on disk, not in compiled json): none
+  FAMILY MISMATCH compiled vs disk: none
+  SIGNAL DRIFT compiled vs disk: none
+  NULL derived timestamp: none
+  (report-only — the canonical reindex is operator-gated; nothing was written)
+exit=0
+
+## compiled route guard
+$ node .skilled/bin/compiled-route-guard.cjs
+  cli-classifier              fresh
+  cli-external-orchestration  fresh
+  mcp-tooling                 fresh
+  sk-code                     fresh
+  sk-design                   fresh
+  sk-doc                      fresh
+  system-deep-loop            fresh
+
+All hubs fresh or excused: serving matches inputs, and the runtime matches its source.
+exit=0
+
+## frontmatter version
+$ node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify --skill sk-doc
+[verify] 364 files | ok=357  skip-no-frontmatter=7
+exit=0
+
+## playbook package
+$ node .skilled/skills/sk-doc/sk-create-manual-testing-playbook/scripts/validate-playbook-package.cjs --package .skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook
+contract=operator-scenario routing_gold_contract=routing-gold strict=on
+manifest=.skilled/skills/sk-doc/sk-create-manual-testing-playbook/playbook-corpus-manifest.json
+warn_packages=
+PASS package=sk-doc/sk-create-agent tier=FAIL_CLOSED scenarios=6 categories=3 operator=6 routing_gold_excluded=0 violations=0 warnings=0
+exit=0
+exit=0
+
+## playbook topology
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/validate-playbook-topology.cjs --skill-dir .skilled/skills/sk-doc
+PASS  SD-018  agent-dispatch/markdown-agent-cli-claude-code.md  pairs=1  mode=sk-create-changelog
+PASS  SD-020  agent-dispatch/markdown-agent-cli-opencode.md  pairs=1  mode=sk-create-changelog
+PASS  SD-011  cross-cli-dispatch/large-prompt-stress.md  pairs=4  mode=sk-create-skill
+PASS  SD-012  cross-cli-dispatch/multi-step-dispatch.md  pairs=9  mode=sk-create-skill → sk-create-quality-control → sk-create-changelog
+PASS  SD-010  cross-cli-dispatch/short-prompt-baseline.md  pairs=1  mode=sk-create-changelog
+BLOCK (unknown id)  document-validation/citation-drift-census-across-doc-families.md  class=null  excluded_from_denominators=true
+BLOCK (unknown id)  document-validation/citation-drift-scan.md  class=null  excluded_from_denominators=true
+BLOCK (unknown id)  document-validation/shared-frontmatter-value-warning.md  class=null  excluded_from_denominators=true
+PASS  SD-H04  holdout/changelog-natural.md  pairs=1  mode=sk-create-changelog
+PASS  SD-H02  holdout/doc-quality-natural.md  pairs=4  mode=sk-create-quality-control
+PASS  SD-H09  holdout/ind-changelog.md  pairs=1  mode=sk-create-changelog
+PASS  SD-H07  holdout/ind-doc-quality.md  pairs=4  mode=sk-create-quality-control
+PASS  SD-H13  holdout/ind-feature-catalog.md  pairs=1  mode=sk-create-feature-catalog
+PASS  SD-H11  holdout/ind-optimization.md  pairs=2  mode=sk-create-quality-control
+PASS  SD-H08  holdout/ind-readme.md  pairs=2  mode=sk-create-readme
+PASS  SD-H06  holdout/ind-skill-creation.md  pairs=4  mode=sk-create-skill
+PASS  SD-H03  holdout/readme-natural.md  pairs=2  mode=sk-create-readme
+PASS  SD-H01  holdout/skill-creation-natural.md  pairs=4  mode=sk-create-skill
+PASS  SD-003  intent-detection/agent-command.md  pairs=4  mode=sk-create-agent+sk-create-command
+PASS  SD-001  intent-detection/doc-quality.md  pairs=4  mode=sk-create-quality-control
+PASS  SD-016  intent-detection/optimization.md  pairs=2  mode=sk-create-quality-control
+PASS  SD-002  intent-detection/skill-creation.md  pairs=4  mode=sk-create-skill
+PASS  SD-006  resource-loading/mixed-references-assets.md  pairs=2  mode=sk-create-readme
+PASS  SD-004  resource-loading/references-global-only.md  pairs=1  mode=sk-create-with-human-voice
+PASS  SD-015  token-cost-baseline/max-load.md  pairs=121  mode=sk-create-skill+sk-create-skill-parent+sk-create-readme+sk-create-agent+sk-create-command+sk-create-feature-catalog+sk-create-manual-testing-playbook+sk-create-benchmark+sk-create-changelog+sk-create-diff+sk-create-frontmatter+sk-create-quality-control+sk-create-repo-rule+sk-create-with-human-voice
+PASS  SD-014  token-cost-baseline/medium-load.md  pairs=4  mode=sk-create-skill
+PASS  SD-013  token-cost-baseline/minimal-load.md  pairs=1  mode=sk-create-with-human-voice
+PASS  SD-009  unknown-fallback/disambiguation-required.md  pairs=2  mode=sk-create-feature-catalog+sk-create-manual-testing-playbook
+PASS  SD-008  unknown-fallback/no-keyword-match.md  pairs=0  mode=UNKNOWN
+
+verdict=PASS valid=26 blocked=0 unenrolled=3 total=29
+exit=0
+
+## advisor: add my agent to the agent registry
+sk-code 0.232873, sk-doc 0.22074, mcp-tooling 0.198383
+
+## advisor: the agent registry needs a record for my new persona
+(no recommendation)
+

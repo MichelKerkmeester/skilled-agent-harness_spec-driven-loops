@@ -1,0 +1,28 @@
+[
+  {
+    "id": "B-2",
+    "source_id": "B-2",
+    "lane": "B",
+    "surface": "S2",
+    "standard": "sk-doc/sk-create-skill",
+    "severity": "P2",
+    "fix_class": "judgment",
+    "file": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json",
+    "line": "2",
+    "issue": "Commit 869d4391bf added `version: 2.13.1.0` to `.skilled/skills/system-spec-kit/changelog/v2.13.1.0.md`, a document inside the retrieval corpus, but the committed fixtures were not regenerated. `corpusHash` still hashes the tree before that edit: substituting the pre-fix bytes reproduces the committed `6e395dc4...` exactly, while the current tree hashes to `9b36f10b...`. Regeneration changes only `corpusHash` and `manifestHash` in this file and `manifestHash` in `trigger-index.json` (line 2), `generation-diagnostics.json` (line 30) and `phrase-variants.json` (line 2); all 26,965 paths and every trigger phrase stay identical. No lookup answer changes, and `generate-trigger-index.mjs --check` still reports `fresh: true` because it compares per-document phrases, not `corpusHash` -- but the fixture's declared snapshot identity is one edit behind the tree it claims to describe. Fix: rerun `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs` and commit the four regenerated files.",
+    "evidence": {
+      "cmd": "node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --out $SCRATCH/gen2/trigger-index.json --quiet; then compare the four generated files with the committed ones",
+      "exit": 0,
+      "out": "generated corpusHash: 9b36f10b76321640bd9ed5269195c34222331a819200af0787d3c2e74219b196\ncommitted corpusHash: 6e395dc41c892399a2635c6eb934bc674a76ab932775409a4dddd1da096d3979\npaths identical: True | counts: 26965 26965\nmanifestHash: adfb1d11a4f3cd4f2cf24e75f348cccb127b263b42fa7ee22d76635076e1843e vs 53dd18fad3acccb6f60e5548a6b066cb2c4eb9cd50ee594ca39184be86b64966"
+    },
+    "fix": null,
+    "inferred": false,
+    "outside_scope": false,
+    "outside_reason": null,
+    "critic_override": {
+      "verdict": "duplicate",
+      "note": "B-2 reports the same stale retrieval snapshot as A-1: both name `.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json:2` and the same four outputs to regenerate. A-1 also records the post-merge trigger-index rebuild consequence, so B-2 is the duplicate.",
+      "lane_severity": "P2"
+    }
+  }
+]
