@@ -1,0 +1,92 @@
+# Baseline of reducer-owning tests, taken before any edit
+# Date: 2026-11-14
+
+## node --test deep-review summary fallback
+$ env -u AI_SESSION_CHILD node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-summary-fallback.test.cjs
+[deep-review] reduce-state summary fallback regression passed
+✔ .skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-summary-fallback.test.cjs (222.334292ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 229.002708
+EXIT: 0
+
+## node --test shared progress record
+$ env -u AI_SESSION_CHILD node --test .skilled/skills/system-deep-loop/shared/progress/progress-record.test.cjs
+[progress-record] 13/13 assertions passed
+✔ .skilled/skills/system-deep-loop/shared/progress/progress-record.test.cjs (55.2765ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 60.092875
+EXIT: 0
+
+## vitest: deep-loop runtime unit tests that require runtime/scripts/reduce-state.cjs
+$ env -u AI_SESSION_CHILD ../../../node_modules/.bin/vitest run tests/unit/deep-review-deltas-contract.vitest.ts tests/unit/deep-review-state-contract.vitest.ts tests/unit/deep-review-state-reducer.vitest.ts tests/unit/deep-review-strategy-heading.vitest.ts  (workdir .skilled/skills/system-deep-loop/runtime)
+
+ RUN  v5.1.0 /Users/michelkerkmeester/worktrees/public/385-epic-review-fixes/.skilled/skills/system-deep-loop/runtime
+
+
+ Test Files  4 passed (4)
+      Tests  34 passed (34)
+   Start at  18:13:08
+   Duration  390ms (transform 63%, import 14%, setup 10%, tests 9%, worker 4%)
+
+EXIT: 0
+
+## vitest: deep-loop runtime unit tests that require runtime/scripts/reduce-state.cjs
+$ env -u AI_SESSION_CHILD ../../../node_modules/.bin/vitest run tests/unit/deep-review-deltas-contract.vitest.ts tests/unit/deep-review-state-contract.vitest.ts tests/unit/deep-review-state-reducer.vitest.ts tests/unit/deep-review-strategy-heading.vitest.ts  (workdir .skilled/skills/system-deep-loop/runtime)
+
+ RUN  v5.1.0 /Users/michelkerkmeester/worktrees/public/385-epic-review-fixes/.skilled/skills/system-deep-loop/runtime
+
+
+ Test Files  4 passed (4)
+      Tests  34 passed (34)
+   Start at  18:13:15
+   Duration  163ms (transform 35%, import 28%, tests 22%, setup 10%, worker 5%)
+
+EXIT: 0
+
+## vitest: system-spec-kit tests that require or spawn runtime/scripts/reduce-state.cjs
+$ env -u AI_SESSION_CHILD node_modules/.bin/vitest run --config .skilled/skills/system-spec-kit/runtime/vitest.config.ts cli/tests/reducer-backlog-remediation.vitest.ts cli/tests/review-reducer-fail-closed.vitest.ts cli/tests/deep-review-reducer-schema.vitest.ts tests/review-depth-reducer.vitest.ts  (workdir .skilled)
+
+ RUN  v5.1.0 /Users/michelkerkmeester/worktrees/public/385-epic-review-fixes/.skilled/skills/system-spec-kit
+
+ ✓ runtime/tests/review-depth-reducer.vitest.ts (1 test) 10ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  18:13:19
+   Duration  93ms (tests 33%, transform 26%, import 18%, setup 13%, worker 9%)
+
+EXIT: 0
+
+## vitest: system-spec-kit cli project, tests that require or spawn runtime/scripts/reduce-state.cjs
+$ env -u AI_SESSION_CHILD ../../../../node_modules/.bin/vitest run --config ../../vitest.config.ts --project cli tests/reducer-backlog-remediation.vitest.ts tests/review-reducer-fail-closed.vitest.ts tests/deep-review-reducer-schema.vitest.ts  (workdir .skilled/skills/system-spec-kit/runtime/cli)
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (../../vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - ESM syntax in a file loaded as CommonJS (vitest.config.ts:5:1). Use a `.mjs` extension or set `"type": "module"` in the closest package.json
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v5.1.0 /Users/michelkerkmeester/worktrees/public/385-epic-review-fixes/.skilled/skills/system-spec-kit/runtime/cli
+
+
+ Test Files  3 passed (3)
+      Tests  22 passed (22)
+   Start at  18:13:42
+   Duration  119ms (transform 36%, tests 28%, import 15%, setup 11%, worker 9%)
+
+EXIT: 0

@@ -8,17 +8,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/review-lineage/004-reducer-traceability-and-refines"
-    last_updated_at: "2026-11-14T17:20:00Z"
-    last_updated_by: "planner"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Build the planned reducer change and tests"
+    last_updated_at: "2026-11-14T18:30:00Z"
+    last_updated_by: "builder"
+    recent_action: "Ticked every completion criterion with its observed command result"
+    next_safe_action: "None"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "planner-004-reducer-traceability-and-refines"
+      session_id: "builder-004-reducer-traceability-and-refines"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -54,10 +54,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-traceability-and-refines.test.cjs` exits 0 with no failing case.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines --strict` prints `RESULT: PASSED`.
-- [ ] `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines` exits 0.
-- [ ] `rg -n "refines" .skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl` prints one line.
+- [x] `node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-traceability-and-refines.test.cjs` exits 0 with no failing case. Observed 2026-11-14: 4 tests, 4 pass, 0 fail, exit 0.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines --strict` prints `RESULT: PASSED`. Observed 2026-11-14, exit 0.
+- [x] `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines` exits 0. Observed 2026-11-14: `RESULT: PASSED (5/5 checks)`.
+- [x] `rg -n "refines" .skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl` prints one line. Observed 2026-11-14: line 165.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -74,8 +74,9 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet planned | Done | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and this goal exist |
-| Reducer change | Pending | Planned in `plan.md` and `tasks.md` |
-| Tests | Pending | The new test file is planned, not written |
+| Reducer change | Done | `parseIterationFile` reads only `Dead Ends`, both converters carry `refines`, `upsertFinding` folds a resolved target and the churn buckets ignore same-severity transitions |
+| Tests | Done | Four cases pass in `reduce-state-traceability-and-refines.test.cjs`, red and green runs saved in `scratch/` |
+| Compatibility | Done | 10 existing files and 59 existing tests pass before and after the change |
 
 ### Deviations and findings
 

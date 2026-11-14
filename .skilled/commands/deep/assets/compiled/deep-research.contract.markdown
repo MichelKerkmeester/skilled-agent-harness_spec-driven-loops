@@ -82,7 +82,7 @@
     },
     {
       "path": ".skilled/agents/deep-research.md",
-      "sha256": "c414b17113c2f00e17986ac50da04c35d8f843812efcb417073841bdf81b2be2",
+      "sha256": "968dda813ed1e5e30f79a8a6779ca07b8508264ab1dac570afa82b6c197c0f82",
       "section": "full"
     },
     {

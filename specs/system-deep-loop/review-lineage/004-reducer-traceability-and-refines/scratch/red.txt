@@ -1,0 +1,68 @@
+# Red run: new owning test file before the reducer edit
+# Date: 2026-11-14
+
+$ env -u AI_SESSION_CHILD node --test .skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-traceability-and-refines.test.cjs
+✖ traceability checks do not become blocked dead ends (12.380584ms)
+✖ a refines row folds into its target (2.503125ms)
+✔ an unknown refines target falls back to the ordinary insert path (2.072959ms)
+✔ an id reuse without refines keeps both findings (1.997167ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 2
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 61.826
+
+✖ failing tests:
+
+test at .skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-traceability-and-refines.test.cjs:256:1
+✖ traceability checks do not become blocked dead ends (12.380584ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   'checklist_evidence: deferred',
+  +   'feature_catalog_code: partial',
+  +   'agent_cross_runtime: deferred',
+  +   'playbook_capability: partial'
+  + ]
+  - []
+  
+      at testTraceabilityChecksDoNotBecomeBlockedDeadEnds (/Users/michelkerkmeester/worktrees/public/385-epic-review-fixes/.skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-traceability-and-refines.test.cjs:163:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/385-epic-review-fixes/.skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-traceability-and-refines.test.cjs:257:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'checklist_evidence: deferred', 'feature_catalog_code: partial', 'agent_cross_runtime: deferred', 'playbook_capability: partial' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-traceability-and-refines.test.cjs:260:1
+✖ a refines row folds into its target (2.503125ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 1
+  
+      at testRefinesRowFoldsIntoItsTarget (/Users/michelkerkmeester/worktrees/public/385-epic-review-fixes/.skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-traceability-and-refines.test.cjs:197:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/385-epic-review-fixes/.skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-traceability-and-refines.test.cjs:261:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+EXIT: 1
