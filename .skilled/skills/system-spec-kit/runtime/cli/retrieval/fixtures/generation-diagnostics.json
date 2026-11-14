@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6804,
-    "ok": 18837,
+    "ok": 18843,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27271,
+  "documentsScanned": 27277,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "a79c1b22313aaa17f05b1f2e5fa811cbd379b813cfe1a3004719ab50687de59f",
+  "manifestHash": "7d9c333a76d1093c1994a5208b0774181914df0ecc477a8687bd52b7c9097c76",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 43758,
+      "ok": 43768,
       "prose-sentence": 20,
       "single-token": 156,
       "stop-word-only": 1,
@@ -58435,6 +58435,10 @@
     },
     {
       "path": "specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/scratch",
       "reason": "excluded directory"
     },
     {

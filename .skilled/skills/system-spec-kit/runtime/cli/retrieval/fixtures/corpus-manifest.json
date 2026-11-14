@@ -1,5 +1,5 @@
 {
-  "corpusHash": "b733fa245e4733990dfa7599728211adf600ac55fab1b83dade21f8c20c614bf",
+  "corpusHash": "6f4b414b8a2d9ef802afa185c7ba20084c196b3eae91d7a80886f348320cf409",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27271,
+  "includedPathCount": 27277,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6535,6 +6535,7 @@
     ".skilled/skills/sk-doc/changelog/v2.9.11.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.12.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.13.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.9.14.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.4.0.md",
@@ -6768,6 +6769,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.2.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.3.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.1.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component-conversation.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
@@ -15555,6 +15557,10 @@
     "specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/research/research.md",
     "specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/tasks.md",
     "specs/sk-doc/document-standards/003-changelog-system/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/timeline.md",
     "specs/sk-doc/document-standards/004-security-policy-alignment/goal.md",
@@ -27303,7 +27309,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "a79c1b22313aaa17f05b1f2e5fa811cbd379b813cfe1a3004719ab50687de59f",
+  "manifestHash": "7d9c333a76d1093c1994a5208b0774181914df0ecc477a8687bd52b7c9097c76",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33459,6 +33465,10 @@
     },
     {
       "path": "specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/scratch",
       "reason": "excluded directory"
     },
     {
