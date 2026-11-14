@@ -17,7 +17,12 @@
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/011-goal-fallback-bound",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/012-wrapper-notice-log",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/013-conformance-stamp-pin",
-    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes"
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage"
   ],
   "manual": {
     "depends_on": [],
@@ -52,17 +57,18 @@
       "criteria"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
       "research/research.md",
       ".claude/settings.json",
+      ".skilled/commands/assets/local-skilled-alignment/run-lanes.cjs",
+      ".skilled/hooks/README.md",
       ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs",
       ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs",
       ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
       ".skilled/hooks/session-relaunch/claude/README.md",
-      ".skilled/hooks/README.md",
       ".skilled/hooks/session-relaunch/README.md",
       ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
       ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
@@ -72,8 +78,7 @@
       ".skilled/hooks/session-relaunch/tests/context-usage.test.cjs",
       ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-harness.cjs",
       ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
-      ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
-      ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"
+      ".skilled/hooks/session-relaunch/claude/stop-arm.mjs"
     ],
     "entities": [
       {
@@ -101,6 +106,18 @@
         "source": "derived"
       },
       {
+        "name": "run-lanes.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/assets/local-skilled-alignment/run-lanes.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/README.md",
+        "source": "derived"
+      },
+      {
         "name": "subagent-guard.mjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/claude/subagent-guard.mjs",
@@ -116,12 +133,6 @@
         "name": "hook-registry.json",
         "kind": "config",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/runtime-mirrors/hook-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/hooks/session-relaunch/claude/README.md",
         "source": "derived"
       },
       {
@@ -179,12 +190,6 @@
         "source": "derived"
       },
       {
-        "name": "claude-adapters.test.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -203,6 +208,12 @@
         "source": "derived"
       },
       {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -213,17 +224,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three gaps showed on 2026-11-13 in Claude Code sessions that hand over near the context limit",
     "created_at": "2026-11-13T18:47:10Z",
-    "last_save_at": "2026-11-14T07:30:16.463Z",
+    "last_save_at": "2026-11-14T12:23:49.639Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -231,10 +236,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:a38435e6c04531e5b36aa3eebcda9eed1b400ffa422dfb78935d8cf97a5ee3b3",
+    "source_fingerprint": "sha256:1579c834a6e418958e96a04a5a15a0e114919e97a9c4c5d56c385aaca5faa337",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "3690ceaa456af89cd793520ab4401c6ae7ac0723688556affeeb3c1e29a3fe3c",
+      "spec.md": "31265ef9d902ee0cc04597eb01ac3455f7b14b50e71c8142b1d30ecdb185bff5",
       "research/research.md": "f0daad5f191298d68bc32ec2f1767ebd28c3694400bd86b804bbb2b6014e0cf2"
     },
     "last_active_at": null
