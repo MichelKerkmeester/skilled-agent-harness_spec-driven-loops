@@ -27,9 +27,9 @@ contextType: "general"
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/389-resume-contract-owned-assets` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 9 of 9 |
+| **Phase** | 9 of 10 |
 | **Predecessor** | 008-router-readme-presentation-alignment |
-| **Successor** | None |
+| **Successor** | 010-fix-alignment-report-findings-for-speckit-command-surfaces |
 | **Handoff Criteria** | `generate-command-routers.cjs --check` exits 0 and the CLI vitest project passes on main |
 <!-- /ANCHOR:metadata -->
 

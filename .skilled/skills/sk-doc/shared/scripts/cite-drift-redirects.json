@@ -1,8 +1,8 @@
 {
   "source": {
     "command": "git log -M --diff-filter=R --name-status --format= HEAD",
-    "commit": "5285608745fe243e633c6e396345611e32744113",
-    "renameRecords": 455348,
+    "commit": "e13f670cb913efbf2c96388293653ee855af43b4",
+    "renameRecords": 579755,
     "minRecords": 50,
     "minAgreement": 0.95,
     "derivedBy": "deriveRedirects in cite-drift-scan.mjs"
@@ -237,8 +237,14 @@
       "agreement": 1
     },
     {
-      "from": ".opencode/skills/sk-code/code-skilled/",
-      "to": ".opencode/skills/sk-code/sk-code-skilled/",
+      "from": ".opencode/skills/sk-code/code-implement/references/webflow/",
+      "to": ".opencode/skills/sk-code/webflow/references/",
+      "records": 56,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-code/code-opencode/",
+      "to": ".opencode/skills/sk-code/sk-code-opencode/",
       "records": 98,
       "agreement": 1
     },
@@ -249,8 +255,14 @@
       "agreement": 1
     },
     {
+      "from": ".opencode/skills/sk-code/code-webflow/",
+      "to": ".opencode/skills/sk-code/sk-code-webflow/",
+      "records": 151,
+      "agreement": 1
+    },
+    {
       "from": ".opencode/skills/sk-code/opencode/",
-      "to": ".opencode/skills/sk-code/code-skilled/",
+      "to": ".opencode/skills/sk-code/code-opencode/",
       "records": 64,
       "agreement": 1
     },
@@ -258,6 +270,12 @@
       "from": ".opencode/skills/sk-code/review/",
       "to": ".opencode/skills/sk-code/code-review/",
       "records": 88,
+      "agreement": 1
+    },
+    {
+      "from": ".opencode/skills/sk-code/webflow/",
+      "to": ".opencode/skills/sk-code/code-webflow/",
+      "records": 116,
       "agreement": 1
     },
     {
@@ -963,14 +981,14 @@
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/sk-code/hub-architecture/001-sk-code-parent/",
+      "from": ".opencode/specs/sk-code/001-sk-code-parent/",
       "to": ".opencode/specs/sk-code/017-sk-code-parent/",
       "records": 217,
       "agreement": 1
     },
     {
       "from": ".opencode/specs/sk-code/999-sk-code-parent/",
-      "to": ".opencode/specs/sk-code/hub-architecture/001-sk-code-parent/",
+      "to": ".opencode/specs/sk-code/001-sk-code-parent/",
       "records": 208,
       "agreement": 1
     },
@@ -1870,7 +1888,7 @@
     },
     {
       "from": ".opencode/specs/system-deep-loop/034-deep-loop-innovation/",
-      "to": ".opencode/specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/",
+      "to": ".opencode/specs/system-deep-loop/036-deep-loop-innovation/",
       "records": 844,
       "agreement": 1
     },
@@ -3699,128 +3717,128 @@
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/",
-      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/",
+      "from": ".opencode/specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/",
+      "to": ".opencode/specs/system-speckit/026-graph-and-context-optimization/002-spec-kit-internals/002-template-levels/",
       "records": 303,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/004-code-graph/",
+      "from": ".opencode/specs/system-speckit/026-graph-and-context-optimization/004-code-graph/",
       "to": ".opencode/specs/system-code-graph/007-code-graph-buildout/",
       "records": 1357,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-037-system-code-graph-comprehensive-deep-review/",
+      "from": ".opencode/specs/system-speckit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-037-system-code-graph-comprehensive-deep-review/",
       "to": ".opencode/specs/system-code-graph/z_archive/023-system-code-graph-comprehensive-deep-review/",
       "records": 56,
       "agreement": 1
     },
     {
       "from": ".opencode/specs/system-speckit/027-graph-and-context-optimization/",
-      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/",
+      "to": ".opencode/specs/system-speckit/026-graph-and-context-optimization/",
       "records": 9583,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/",
+      "from": ".opencode/specs/system-speckit/027-xce-research-based-refinement/003-advisor-and-codegraph/002-xce-feature-adoption-advisor-codegraph/",
       "to": ".opencode/specs/system-code-graph/009-advisor-codegraph-shared-features/",
       "records": 85,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-speckit-memory/",
-      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/001-speckit-memory/",
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/001-speckit-memory/",
       "records": 317,
       "agreement": 0.9968
     },
     {
-      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-speckit-memory/research/",
-      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-speckit-memory/research/",
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/research/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-speckit-memory/research/",
       "records": 381,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-code-graph/",
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-code-graph/",
       "to": ".opencode/specs/system-code-graph/001-code-graph-core/",
       "records": 315,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-spec-data-quality/004-novel-research/",
-      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/004-novel-research/",
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/004-novel-research/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/004-novel-research/",
       "records": 52,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-spec-data-quality/005-shared-engine-and-research/",
-      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/005-shared-engine-and-research/",
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/005-shared-engine-and-research/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/005-shared-engine-and-research/",
       "records": 54,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/",
-      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/006-generated-metadata-build/",
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/006-generated-metadata-build/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/scratch/topology-migration-backup/identity-backups/002-spec-data-quality/006-generated-metadata-build/",
       "records": 87,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-spec-data-quality/029-vague-query-model-benchmark/",
-      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/vague-query-model-benchmark/",
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/029-vague-query-model-benchmark/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/vague-query-model-benchmark/",
       "records": 288,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-spec-data-quality/research/",
-      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/research/",
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/research/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/research/",
       "records": 136,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-skill-advisor/research/",
-      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-skill-advisor/research/",
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/003-skill-advisor/research/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-skill-advisor/research/",
       "records": 150,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/029-vague-query-model-benchmark/",
-      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/002-spec-data-quality/029-vague-query-model-benchmark/",
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/029-vague-query-model-benchmark/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/002-spec-data-quality/029-vague-query-model-benchmark/",
       "records": 288,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/004-deep-loop/",
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/004-deep-loop/",
       "to": ".opencode/specs/system-deep-loop/038-deep-loop-runtime/",
       "records": 234,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/005-spec-data-quality/",
-      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/",
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/005-spec-data-quality/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/003-spec-data-quality/",
       "records": 1069,
       "agreement": 1
     },
     {
-      "from": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/",
-      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/",
+      "from": ".opencode/specs/system-speckit/028-memory-search-intelligence/016-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/001-speckit-memory/031-fix-deep-dive-p0-p2-findings-for-mk-spec-memory/",
       "records": 122,
       "agreement": 1
     },
     {
       "from": ".opencode/specs/system-speckit/028-xce-research-based-refinement/",
-      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/",
+      "to": ".opencode/specs/system-speckit/027-xce-research-based-refinement/",
       "records": 4721,
       "agreement": 1
     },
     {
       "from": ".opencode/specs/system-speckit/029-memory-search-intelligence/",
-      "to": ".opencode/specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/",
+      "to": ".opencode/specs/system-speckit/028-memory-search-intelligence/",
       "records": 3783,
       "agreement": 1
     },
     {
       "from": ".opencode/specs/system-speckit/042-spec-root-resolution-hardening/",
-      "to": ".opencode/specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/",
+      "to": ".opencode/specs/system-speckit/029-spec-root-resolution-hardening/",
       "records": 130,
       "agreement": 1
     },
@@ -3849,6 +3867,12 @@
       "agreement": 1
     },
     {
+      "from": ".skilled/skills/sk-code/sk-code-opencode/",
+      "to": ".skilled/skills/sk-code/sk-code-skilled/",
+      "records": 115,
+      "agreement": 1
+    },
+    {
       "from": "packages/",
       "to": ".opencode/skills/sk-communication/",
       "records": 207,
@@ -3870,6 +3894,66 @@
       "from": "skills/",
       "to": "skill/",
       "records": 170,
+      "agreement": 1
+    },
+    {
+      "from": "specs/agents-md/007-turn-closeout-next-steps/",
+      "to": "specs/agents-md/repo-rule-operations/001-turn-closeout-next-steps/",
+      "records": 114,
+      "agreement": 1
+    },
+    {
+      "from": "specs/agents-md/008-repo-rule-system-integration/",
+      "to": "specs/agents-md/instruction-file-architecture/003-repo-rule-system-integration/",
+      "records": 84,
+      "agreement": 0.9882
+    },
+    {
+      "from": "specs/agents-md/009-turn-closeout-next-steps/",
+      "to": "specs/agents-md/007-turn-closeout-next-steps/",
+      "records": 114,
+      "agreement": 1
+    },
+    {
+      "from": "specs/agents-md/010-repo-rule-system-integration/",
+      "to": "specs/agents-md/008-repo-rule-system-integration/",
+      "records": 84,
+      "agreement": 0.9882
+    },
+    {
+      "from": "specs/agents-md/012-repo-rule-advisor-surfacing/",
+      "to": "specs/agents-md/repo-rule-operations/002-repo-rule-advisor-surfacing/",
+      "records": 355,
+      "agreement": 0.9971
+    },
+    {
+      "from": "specs/agents-md/016-doctor-agents-md/",
+      "to": "specs/agents-md/instruction-surface-integrity/004-doctor-agents-md/",
+      "records": 90,
+      "agreement": 1
+    },
+    {
+      "from": "specs/agents-md/016-repo-rule-advisor-surfacing/",
+      "to": "specs/agents-md/012-repo-rule-advisor-surfacing/",
+      "records": 349,
+      "agreement": 0.9971
+    },
+    {
+      "from": "specs/agents-md/017-v4-0-1-0-rules-refresh/",
+      "to": "specs/agents-md/instruction-surface-integrity/005-v4-0-1-0-rules-refresh/",
+      "records": 53,
+      "agreement": 0.9814
+    },
+    {
+      "from": "specs/agents-md/021-doctor-agents-md/",
+      "to": "specs/agents-md/016-doctor-agents-md/",
+      "records": 90,
+      "agreement": 1
+    },
+    {
+      "from": "specs/agents/",
+      "to": "specs/agents-md/",
+      "records": 840,
       "agreement": 1
     },
     {
@@ -3903,14 +3987,122 @@
       "agreement": 1
     },
     {
+      "from": "specs/cli-external-orchestration/071-cli-hermes-creation/",
+      "to": "specs/cli-external-orchestration/runtime-lifecycle/001-cli-hermes-creation/",
+      "records": 325,
+      "agreement": 1
+    },
+    {
       "from": "specs/cli-external-orchestration/074-cli-jev-creation/",
-      "to": "specs/cli-classifier/001-cli-jev-creation/",
+      "to": "specs/cli-jev/001-cli-jev-creation/",
       "records": 93,
       "agreement": 1
     },
     {
+      "from": "specs/cli-external-orchestration/082-opencode-v1-v2-dual-compat/",
+      "to": "specs/cli-external-orchestration/opencode-platform/002-opencode-v1-v2-dual-compat/",
+      "records": 2928,
+      "agreement": 0.9996
+    },
+    {
+      "from": "specs/cli-external-orchestration/085-cli-deepseek-harness-creation/",
+      "to": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/",
+      "records": 611,
+      "agreement": 1
+    },
+    {
+      "from": "specs/cli-jev/",
+      "to": "specs/cli-classifier/",
+      "records": 7826,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/",
+      "to": "specs/hooks-plugins-extensions/hook-injection-pipeline/",
+      "records": 473,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/003-goal-hooks-cross-runtime/",
+      "to": "specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/",
+      "records": 52,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/007-fable-governor-pi-hook/",
+      "to": "specs/hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/",
+      "records": 95,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/008-pi-caching-like-reasonix/",
+      "to": "specs/hooks-plugins-extensions/pi-extensions/002-pi-caching-like-reasonix/",
+      "records": 428,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/009-goal-isolation/",
+      "to": "specs/hooks-plugins-extensions/goal-and-directive-hooks/004-goal-isolation/",
+      "records": 58,
+      "agreement": 0.983
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/011-pi-fast-mode-w-subagent-support/",
+      "to": "specs/hooks-plugins-extensions/pi-extensions/003-pi-fast-mode-w-subagent-support/",
+      "records": 120,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/016-cache-optimizer-absorbs-deep-pi/",
+      "to": "specs/hooks-plugins-extensions/pi-extensions/006-cache-optimizer-absorbs-deep-pi/",
+      "records": 58,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/018-cache-optimizer-improvement-research/",
+      "to": "specs/hooks-plugins-extensions/pi-extensions/008-cache-optimizer-improvement-research/",
+      "records": 51,
+      "agreement": 0.9807
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/021-compat-opt-in-and-image-declaration/",
+      "to": "specs/hooks-plugins-extensions/pi-extensions/010-compat-opt-in-and-image-declaration/",
+      "records": 100,
+      "agreement": 0.99
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/022-smart-rule-injection/",
+      "to": "specs/hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection/",
+      "records": 98,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/023-session-relaunch-loop/",
+      "to": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/",
+      "records": 1975,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/027-ask-surface-enforcement/",
+      "to": "specs/hooks-plugins-extensions/session-turn-boundaries/003-ask-surface-enforcement/",
+      "records": 180,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks-plugins-extensions/028-sweet-search-integration/",
+      "to": "specs/hooks-plugins-extensions/retrieval-integrations/001-sweet-search-integration/",
+      "records": 316,
+      "agreement": 1
+    },
+    {
+      "from": "specs/hooks/",
+      "to": "specs/hooks-plugins-extensions/",
+      "records": 3797,
+      "agreement": 1
+    },
+    {
       "from": "specs/hooks/001-per-prompt-injection-audit/",
-      "to": "specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/per-prompt-injection-audit/",
+      "to": "specs/hooks/002-injection-bloat-reduction/per-prompt-injection-audit/",
       "records": 86,
       "agreement": 1
     },
@@ -3921,14 +4113,92 @@
       "agreement": 1
     },
     {
+      "from": "specs/mcp-tooling/019-official-obsidian-cli/",
+      "to": "specs/mcp-tooling/mcp-obsidian/001-official-obsidian-cli/",
+      "records": 531,
+      "agreement": 0.9981
+    },
+    {
+      "from": "specs/sk-code/",
+      "to": "specs/sk-code/hub-architecture/",
+      "records": 343,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-code/002-rust-standards-for-code-opencode/",
+      "to": "specs/sk-code/002-rust-standards-for-code-skilled/",
+      "records": 111,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-code/007-sk-code-obsidian-surface/",
+      "to": "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/",
+      "records": 98,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-code/011-sk-code-poinytail-based-refinement/",
+      "to": "specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/",
+      "records": 4720,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/research/",
+      "to": "specs/sk-code/011-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/001-authoring-ux-research/research/",
+      "records": 95,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-code/012-sk-code-skilled-rename/",
+      "to": "specs/sk-code/hub-architecture/004-sk-code-skilled-rename/",
+      "records": 115,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-code/013-private-surface-skills/",
+      "to": "specs/sk-code/hub-architecture/005-private-surface-skills/",
+      "records": 242,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-code/014-code-modes-research/",
+      "to": "specs/sk-code/quality-and-review-modes/001-code-modes-research/",
+      "records": 382,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-code/015-quality-agnostic-gate/",
+      "to": "specs/sk-code/quality-and-review-modes/002-quality-agnostic-gate/",
+      "records": 130,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-code/016-review-mode-followups/",
+      "to": "specs/sk-code/quality-and-review-modes/003-review-mode-followups/",
+      "records": 50,
+      "agreement": 0.9803
+    },
+    {
+      "from": "specs/sk-code/017-portable-code-modes/",
+      "to": "specs/sk-code/quality-and-review-modes/004-portable-code-modes/",
+      "records": 138,
+      "agreement": 1
+    },
+    {
       "from": "specs/sk-code/017-sk-code-parent/",
-      "to": "specs/sk-code/hub-architecture/001-sk-code-parent/",
+      "to": "specs/sk-code/001-sk-code-parent/",
       "records": 239,
       "agreement": 1
     },
     {
-      "from": "specs/sk-code/018-rust-standards-for-code-skilled/",
-      "to": "specs/sk-code/hub-architecture/002-rust-standards-for-code-skilled/",
+      "from": "specs/sk-code/018-frontend-upstream-proposals/",
+      "to": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/",
+      "records": 395,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-code/018-rust-standards-for-code-opencode/",
+      "to": "specs/sk-code/002-rust-standards-for-code-opencode/",
       "records": 125,
       "agreement": 1
     },
@@ -3937,6 +4207,36 @@
       "to": "specs/sk-doc/032-split-doc-template-alignment/",
       "records": 164,
       "agreement": 1
+    },
+    {
+      "from": "specs/sk-code/019-surface-consistency-research/",
+      "to": "specs/sk-code/code-surfaces/006-surface-consistency-research/",
+      "records": 111,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-code/025-sk-code-obsidian-surface/",
+      "to": "specs/sk-code/007-sk-code-obsidian-surface/",
+      "records": 84,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-code/code-surfaces/002-sk-code-obsidian-surface/",
+      "to": "specs/sk-code/code-surfaces/003-sk-code-obsidian-surface/",
+      "records": 98,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-code/code-surfaces/005-frontend-upstream-proposals/",
+      "to": "specs/sk-code/code-surfaces/006-frontend-upstream-proposals/",
+      "records": 407,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-code/code-surfaces/006-surface-consistency-research/",
+      "to": "specs/sk-code/code-surfaces/001-surface-consistency-research/",
+      "records": 110,
+      "agreement": 0.9909
     },
     {
       "from": "specs/sk-design/",
@@ -3957,15 +4257,195 @@
       "agreement": 1
     },
     {
+      "from": "specs/sk-doc/049-frontmatter-and-description-budget/",
+      "to": "specs/sk-doc/document-standards/001-frontmatter-and-description-budget/",
+      "records": 101,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/049-sk-create-frontmatter/",
+      "to": "specs/sk-doc/049-frontmatter-and-description-budget/001-sk-create-frontmatter/",
+      "records": 91,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/051-hub-routing-quality/",
+      "to": "specs/sk-doc/hub-routing-and-surfaces/001-hub-routing-quality/",
+      "records": 675,
+      "agreement": 1
+    },
+    {
       "from": "specs/sk-doc/051-sk-create-chart/",
       "to": "specs/sk-design/018-sk-design-parent-v2/001-sk-create-chart/",
       "records": 1514,
       "agreement": 1
     },
     {
+      "from": "specs/sk-doc/052-routing-completeness/",
+      "to": "specs/sk-doc/051-hub-routing-quality/001-routing-completeness/",
+      "records": 88,
+      "agreement": 0.9887
+    },
+    {
       "from": "specs/sk-doc/053-chart-visual-overhaul/",
       "to": "specs/sk-doc/051-sk-create-chart/009-chart-visual-overhaul/",
       "records": 179,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/053-governance-doc-alignment/",
+      "to": "specs/sk-doc/hub-routing-and-surfaces/003-governance-doc-alignment/",
+      "records": 90,
+      "agreement": 0.989
+    },
+    {
+      "from": "specs/sk-doc/054-governance-doc-alignment/",
+      "to": "specs/sk-doc/053-governance-doc-alignment/",
+      "records": 92,
+      "agreement": 0.9892
+    },
+    {
+      "from": "specs/sk-doc/055-changelog-system/",
+      "to": "specs/sk-doc/document-standards/003-changelog-system/",
+      "records": 252,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/055-governance-doc-alignment/",
+      "to": "specs/sk-doc/054-governance-doc-alignment/",
+      "records": 90,
+      "agreement": 0.989
+    },
+    {
+      "from": "specs/sk-doc/056-changelog-system/",
+      "to": "specs/sk-doc/055-changelog-system/",
+      "records": 194,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/056-create-goal-mode/",
+      "to": "specs/sk-doc/authoring-modes-and-playbooks/002-create-goal-mode/",
+      "records": 390,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/057-create-goal-mode/",
+      "to": "specs/sk-doc/056-create-goal-mode/",
+      "records": 391,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/057-doc-validation-off-switches/",
+      "to": "specs/sk-doc/doc-validation-tooling/001-doc-validation-off-switches/",
+      "records": 78,
+      "agreement": 0.9873
+    },
+    {
+      "from": "specs/sk-doc/058-doc-validation-off-switches/",
+      "to": "specs/sk-doc/057-doc-validation-off-switches/",
+      "records": 80,
+      "agreement": 0.9876
+    },
+    {
+      "from": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/",
+      "to": "specs/sk-doc/authoring-modes-and-playbooks/003-feature-catalog-template-anchor-deprecation/",
+      "records": 134,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/059-skill-changelog-retrofit/",
+      "to": "specs/sk-doc/056-changelog-system/002-skill-changelog-retrofit/",
+      "records": 145,
+      "agreement": 0.9931
+    },
+    {
+      "from": "specs/sk-doc/060-create-goal-mode/",
+      "to": "specs/sk-doc/057-create-goal-mode/",
+      "records": 391,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/",
+      "to": "specs/sk-doc/059-feature-catalog-template-anchor-deprecation/",
+      "records": 134,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/062-doc-validation-off-switches/",
+      "to": "specs/sk-doc/058-doc-validation-off-switches/",
+      "records": 78,
+      "agreement": 0.9873
+    },
+    {
+      "from": "specs/sk-doc/062-readme-validation-debt/",
+      "to": "specs/sk-doc/doc-validation-tooling/002-readme-validation-debt/",
+      "records": 72,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/064-readme-validation-debt/",
+      "to": "specs/sk-doc/062-readme-validation-debt/",
+      "records": 72,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/064-reference-template-debt/",
+      "to": "specs/sk-doc/doc-validation-tooling/003-reference-template-debt/",
+      "records": 256,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/065-conversation-playbook-scenarios/",
+      "to": "specs/sk-doc/authoring-modes-and-playbooks/004-conversation-playbook-scenarios/",
+      "records": 1469,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/066-feature-catalog-template-anchor-deprecation/",
+      "to": "specs/sk-doc/060-feature-catalog-template-anchor-deprecation/",
+      "records": 134,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/066-reference-template-debt/",
+      "to": "specs/sk-doc/064-reference-template-debt/",
+      "records": 259,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/066-skill-readability-refinement/",
+      "to": "specs/sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/",
+      "records": 1762,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/067-doctor-sk-skill-command/",
+      "to": "specs/commands/004-doctor-sk-skill-command/",
+      "records": 103,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/070-repo-doc-debt/",
+      "to": "specs/sk-doc/064-readme-validation-debt/001-repo-doc-debt/",
+      "records": 52,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/072-skill-routing-and-clarity/",
+      "to": "specs/sk-doc/051-hub-routing-quality/002-skill-routing-and-clarity/",
+      "records": 587,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/074-reference-template-debt/",
+      "to": "specs/sk-doc/066-reference-template-debt/",
+      "records": 261,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-doc/075-doctor-sk-skill-command/",
+      "to": "specs/sk-doc/067-doctor-sk-skill-command/",
+      "records": 113,
       "agreement": 1
     },
     {
@@ -3975,128 +4455,344 @@
       "agreement": 1
     },
     {
+      "from": "specs/sk-git/028-crawlable-commit-history/",
+      "to": "specs/sk-git/commit-standards/001-crawlable-commit-history/",
+      "records": 328,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-git/032-template-driven-message-enforcement/",
+      "to": "specs/sk-git/commit-standards/004-template-driven-message-enforcement/",
+      "records": 85,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-git/033-git-setup-customization/",
+      "to": "specs/sk-git/commit-standards/005-git-setup-customization/",
+      "records": 401,
+      "agreement": 1
+    },
+    {
+      "from": "specs/sk-git/035-fsmonitor-daemon-and-worktree-relocation-regression/",
+      "to": "specs/sk-git/worktree-lifecycle/004-fsmonitor-daemon-and-worktree-relocation-regression/",
+      "records": 166,
+      "agreement": 1
+    },
+    {
       "from": "specs/system-deep-loop/",
       "to": "specs/system-deep-loop/z_archive/",
       "records": 1467,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-deep-loop-market-research/",
-      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research/",
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/001-deep-loop-market-research/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research/",
       "records": 64,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/",
-      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/",
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/",
+      "records": 209,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/002-deep-loop-effectiveness-and-fanout/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/001-research-inputs-and-architecture/002-deep-loop-effectiveness-and-fanout/",
       "records": 88,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/007-shared-evidence-and-control-services/",
-      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/",
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/",
+      "records": 247,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-shared-evidence-and-control-services/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/003-shared-evidence-and-control-services/",
       "records": 52,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/009-fanout-fanin-durable-orchestration/",
-      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/",
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/009-fanout-fanin-durable-orchestration/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/005-fanout-fanin-durable-orchestration/",
       "records": 54,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/",
-      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/",
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/",
+      "records": 460,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/",
       "records": 436,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/016-whole-system-gate/",
-      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/",
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/",
+      "records": 230,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/016-whole-system-gate/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate/",
       "records": 146,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/018-drift-census-and-plan-revalidation/",
-      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation/",
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/018-drift-census-and-plan-revalidation/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/003-drift-census-and-plan-revalidation/",
       "records": 76,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/047-executor-wiring-and-parity/",
-      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/",
-      "records": 80,
-      "agreement": 1
-    },
-    {
-      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/007-shared-evidence-and-control-services/",
-      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/007-shared-evidence-and-control-services/",
-      "records": 52,
-      "agreement": 1
-    },
-    {
-      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/009-fanout-fanin-durable-orchestration/",
-      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration/009-fanout-fanin-durable-orchestration/",
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/005-blocker-closeout/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/005-blocker-closeout/",
       "records": 54,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/013-mode-and-lane-migrations/",
-      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/",
-      "records": 435,
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/",
+      "records": 438,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/016-whole-system-gate/",
-      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/016-whole-system-gate/",
-      "records": 146,
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/",
+      "records": 1003,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/018-drift-census-and-plan-revalidation/",
-      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/018-drift-census-and-plan-revalidation/",
-      "records": 76,
-      "agreement": 1
-    },
-    {
-      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/047-executor-wiring-and-parity/",
-      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/047-executor-wiring-and-parity/",
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/047-executor-wiring-and-parity/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/002-executor-wiring-and-parity/",
       "records": 80,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/057-phase-consolidation-research/",
-      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/009-phase-consolidation-research/",
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/007-shared-evidence-and-control-services/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/007-shared-evidence-and-control-services/",
+      "records": 52,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/009-fanout-fanin-durable-orchestration/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/002-substrate-and-orchestration/009-fanout-fanin-durable-orchestration/",
+      "records": 54,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/009-innovation-gap-remediation/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/009-innovation-gap-remediation/",
+      "records": 68,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/012-runtime-enablement/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/012-runtime-enablement/",
+      "records": 200,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/013-mode-and-lane-migrations/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/",
+      "records": 435,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/016-whole-system-gate/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/016-whole-system-gate/",
+      "records": 146,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/018-drift-census-and-plan-revalidation/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/004-gate-closeout-and-drift/018-drift-census-and-plan-revalidation/",
+      "records": 76,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/047-executor-wiring-and-parity/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/047-executor-wiring-and-parity/",
+      "records": 80,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/057-phase-consolidation-research/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/009-phase-consolidation-research/",
       "records": 95,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/changelog/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/",
-      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/changelog/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/",
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/changelog/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/changelog/",
+      "records": 206,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/changelog/003-mode-contracts-migration-and-cutover/013-mode-and-lane-migrations/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/changelog/003-mode-contracts-migration-and-cutover/002-mode-and-lane-migrations/",
       "records": 64,
       "agreement": 1
     },
     {
-      "from": "specs/system-deep-loop/loop-architecture/002-graph-engineering/context/GraphARC-main/",
-      "to": "specs/system-deep-loop/loop-architecture/002-graph-engineering/context/graph-arch/",
+      "from": "specs/system-deep-loop/036-deep-loop-innovation/scratch/",
+      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/scratch/",
+      "records": 74,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/037-graph-engineering/",
+      "to": "specs/system-deep-loop/loop-architecture/002-graph-engineering/",
+      "records": 556,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/037-graph-engineering/context/GraphARC-main/",
+      "to": "specs/system-deep-loop/037-graph-engineering/context/graph-arch/",
       "records": 204,
       "agreement": 1
     },
     {
+      "from": "specs/system-deep-loop/038-review-and-cli-lineage/",
+      "to": "specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/",
+      "records": 146,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-deep-loop/039-deprecate-improvement-modes/",
+      "to": "specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/",
+      "records": 339,
+      "agreement": 1
+    },
+    {
       "from": "specs/system-deep-loop/045-fanout-write-containment-hardening/",
-      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening/",
       "records": 764,
       "agreement": 0.9986
     },
     {
       "from": "specs/system-deep-loop/049-deep-loop-alignment-review/",
-      "to": "specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/",
+      "to": "specs/system-deep-loop/036-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review/",
       "records": 314,
       "agreement": 1
     },
     {
+      "from": "specs/system-skill-advisor/023-routing-perfection-research/",
+      "to": "specs/system-skill-advisor/routing-and-scoring/002-routing-perfection-research/",
+      "records": 61,
+      "agreement": 0.9838
+    },
+    {
+      "from": "specs/system-skill-advisor/024-mcp-decommission-cli-front-door/",
+      "to": "specs/system-skill-advisor/host-integrations/001-mcp-decommission-cli-front-door/",
+      "records": 279,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-skill-advisor/024-routing-perfection-research/",
+      "to": "specs/system-skill-advisor/023-routing-perfection-research/",
+      "records": 61,
+      "agreement": 0.9838
+    },
+    {
+      "from": "specs/system-skill-advisor/025-mcp-decommission-cli-front-door/",
+      "to": "specs/system-skill-advisor/024-mcp-decommission-cli-front-door/",
+      "records": 279,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/",
+      "to": "specs/system-skill-advisor/host-integrations/003-pi-skill-orchestrator-based-research-refinement/",
+      "records": 950,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-skill-advisor/030-doctor-command-surfacing/",
+      "to": "specs/system-skill-advisor/routing-and-scoring/003-doctor-command-surfacing/",
+      "records": 365,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-skill-advisor/030-pi-skill-orchestrator-based-research-refinement/",
+      "to": "specs/system-skill-advisor/027-pi-skill-orchestrator-based-research-refinement/",
+      "records": 950,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-skill-advisor/034-doctor-command-guidance/",
+      "to": "specs/system-skill-advisor/030-doctor-command-surfacing/001-doctor-command-guidance/",
+      "records": 202,
+      "agreement": 0.995
+    },
+    {
+      "from": "specs/system-skill-advisor/035-doctor-command-routing/",
+      "to": "specs/system-skill-advisor/030-doctor-command-surfacing/002-doctor-command-routing/",
+      "records": 159,
+      "agreement": 0.9937
+    },
+    {
+      "from": "specs/system-speckit/026-graph-and-context-optimization/",
+      "to": "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/",
+      "records": 9268,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/027-xce-research-based-refinement/",
+      "to": "specs/system-speckit/memory-search-and-knowledge/002-xce-research-based-refinement/",
+      "records": 4671,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/028-memory-search-intelligence/",
+      "to": "specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/",
+      "records": 3696,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/029-spec-folder-lifecycle/",
+      "to": "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/",
+      "records": 1701,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/029-spec-root-resolution-hardening/",
+      "to": "specs/system-speckit/029-spec-folder-lifecycle/001-spec-root-resolution-hardening/",
+      "records": 65,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/030-memory-reindex-embed-performance/",
+      "to": "specs/system-speckit/memory-search-and-knowledge/004-memory-reindex-embed-performance/",
+      "records": 106,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/031-memory-reindex-embed-performance/",
+      "to": "specs/system-speckit/030-memory-reindex-embed-performance/",
+      "records": 106,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/031-system-speckit-v4/",
+      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/",
+      "records": 7144,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/032-relocate-specs-folder/",
+      "to": "specs/system-speckit/029-spec-folder-lifecycle/002-relocate-specs-folder/",
+      "records": 184,
+      "agreement": 1
+    },
+    {
       "from": "specs/system-speckit/033-spec-kit-template-optimization/",
-      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/008-template-contracts-and-acceptance-criteria/",
+      "to": "specs/system-speckit/033-system-speckit-v4/008-template-contracts-and-acceptance-criteria/",
       "records": 200,
       "agreement": 1
     },
@@ -4113,9 +4809,21 @@
       "agreement": 1
     },
     {
-      "from": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/036-goal-unification/",
-      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/038-goal-unification/",
+      "from": "specs/system-speckit/033-system-speckit-v4/",
+      "to": "specs/system-speckit/031-system-speckit-v4/",
+      "records": 7163,
+      "agreement": 0.9998
+    },
+    {
+      "from": "specs/system-speckit/033-system-speckit-v4/036-goal-unification/",
+      "to": "specs/system-speckit/033-system-speckit-v4/038-goal-unification/",
       "records": 450,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/034-spec-folder-tooling/",
+      "to": "specs/system-speckit/029-spec-folder-lifecycle/003-spec-folder-tooling/",
+      "records": 1388,
       "agreement": 1
     },
     {
@@ -4126,68 +4834,182 @@
     },
     {
       "from": "specs/system-speckit/035-spec-kit-simplification-research/",
-      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/030-spec-kit-simplification-research/",
+      "to": "specs/system-speckit/033-system-speckit-v4/030-spec-kit-simplification-research/",
       "records": 713,
       "agreement": 1
     },
     {
+      "from": "specs/system-speckit/036-doctor-audit-and-fixes/",
+      "to": "specs/commands/002-doctor-audit-and-fixes/",
+      "records": 634,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/036-open-knowledge-format-adoption/",
+      "to": "specs/system-speckit/memory-search-and-knowledge/006-open-knowledge-format-adoption/",
+      "records": 675,
+      "agreement": 1
+    },
+    {
       "from": "specs/system-speckit/036-recorded-findings-closure/",
-      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/032-recorded-findings-closure/",
+      "to": "specs/system-speckit/033-system-speckit-v4/032-recorded-findings-closure/",
       "records": 150,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/036-spec-doc-template-reduction/",
-      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/",
+      "to": "specs/system-speckit/033-system-speckit-v4/003-spec-doc-template-reduction/",
       "records": 323,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/037-decisions-memory-redesign/",
-      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/004-decisions-and-notes-system/",
+      "to": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/",
       "records": 52,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/037-decisions-memory-redesign/001-analysis/",
-      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/004-decisions-and-notes-system/001-decisions-system-analysis/",
+      "to": "specs/system-speckit/033-system-speckit-v4/004-decisions-and-notes-system/001-decisions-system-analysis/",
       "records": 96,
       "agreement": 0.9896
     },
     {
+      "from": "specs/system-speckit/037-open-knowledge-format-adoption/",
+      "to": "specs/system-speckit/036-open-knowledge-format-adoption/",
+      "records": 934,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/039-ci-workflow-efficiency/",
+      "to": "specs/system-speckit/repo-operations/002-ci-workflow-efficiency/",
+      "records": 2531,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/040-ci-workflow-efficiency/",
+      "to": "specs/system-speckit/039-ci-workflow-efficiency/",
+      "records": 2550,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/040-weak-model-spec-authoring/",
+      "to": "specs/system-speckit/spec-authoring-and-continuity/003-weak-model-spec-authoring/",
+      "records": 7125,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/041-weak-model-spec-authoring/",
+      "to": "specs/system-speckit/040-weak-model-spec-authoring/",
+      "records": 7293,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/041-write-recipe-fixes/",
+      "to": "specs/system-speckit/029-spec-folder-lifecycle/004-write-recipe-fixes/",
+      "records": 74,
+      "agreement": 1
+    },
+    {
       "from": "specs/system-speckit/042-nested-goal-template-addon/",
-      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/010-goal-file-addon/",
+      "to": "specs/system-speckit/033-system-speckit-v4/010-goal-file-addon/",
       "records": 88,
       "agreement": 1
     },
     {
+      "from": "specs/system-speckit/043-decision-capture/",
+      "to": "specs/system-speckit/spec-authoring-and-continuity/004-decision-capture/",
+      "records": 1607,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/044-named-subtracks-and-host-repos/",
+      "to": "specs/system-speckit/spec-folder-tooling/002-named-subtracks-and-host-repos/",
+      "records": 169,
+      "agreement": 0.9941
+    },
+    {
       "from": "specs/system-speckit/045-daemon-and-test-harness-hardening/",
-      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/014-daemon-and-test-harness-hardening/",
+      "to": "specs/system-speckit/033-system-speckit-v4/014-daemon-and-test-harness-hardening/",
       "records": 61,
       "agreement": 1
     },
     {
+      "from": "specs/system-speckit/047-v4-release-line-research/",
+      "to": "specs/system-speckit/runtime-and-release/004-v4-release-line-research/",
+      "records": 1060,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/048-doctor-command-audit/",
+      "to": "specs/system-speckit/036-doctor-audit-and-fixes/001-doctor-command-audit/",
+      "records": 236,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/049-doctor-audit-followups/",
+      "to": "specs/system-speckit/036-doctor-audit-and-fixes/002-doctor-audit-followups/",
+      "records": 394,
+      "agreement": 1
+    },
+    {
       "from": "specs/system-speckit/049-memory-decommission/",
-      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/",
+      "to": "specs/system-speckit/033-system-speckit-v4/017-memory-database-decommission/",
       "records": 362,
       "agreement": 1
     },
     {
+      "from": "specs/system-speckit/050-open-knowledge-format-adoption/",
+      "to": "specs/system-speckit/037-open-knowledge-format-adoption/",
+      "records": 926,
+      "agreement": 1
+    },
+    {
       "from": "specs/system-speckit/052-memory-decommission-landing/",
-      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/019-memory-decommission-branch-landing/",
+      "to": "specs/system-speckit/033-system-speckit-v4/019-memory-decommission-branch-landing/",
       "records": 96,
       "agreement": 1
     },
     {
+      "from": "specs/system-speckit/053-ci-workflow-efficiency/",
+      "to": "specs/system-speckit/040-ci-workflow-efficiency/",
+      "records": 2542,
+      "agreement": 1
+    },
+    {
       "from": "specs/system-speckit/053-spec-kit-runtime-rename/",
-      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/020-runtime-package-rename/",
+      "to": "specs/system-speckit/033-system-speckit-v4/020-runtime-package-rename/",
       "records": 137,
       "agreement": 1
     },
     {
       "from": "specs/system-speckit/054-decommission-debt-fixes/",
-      "to": "specs/system-speckit/runtime-and-release/001-system-speckit-v4/021-decommission-debt-and-cli-nesting/",
+      "to": "specs/system-speckit/033-system-speckit-v4/021-decommission-debt-and-cli-nesting/",
       "records": 652,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/054-weak-model-spec-authoring/",
+      "to": "specs/system-speckit/041-weak-model-spec-authoring/",
+      "records": 7126,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/054-weak-model-spec-authoring/review/lineages/luna/",
+      "to": "specs/system-speckit/054-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/lineages/luna/",
+      "records": 78,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/054-weak-model-spec-authoring/review/lineages/pi-deepseek-1/",
+      "to": "specs/system-speckit/054-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/lineages/pi-deepseek-1/",
+      "records": 83,
+      "agreement": 1
+    },
+    {
+      "from": "specs/system-speckit/054-weak-model-spec-authoring/review/lineages/pi-deepseek-2/",
+      "to": "specs/system-speckit/054-weak-model-spec-authoring/review-archive/2026-10-27T06-07-30Z/lineages/pi-deepseek-2/",
+      "records": 60,
       "agreement": 1
     }
   ]

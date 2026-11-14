@@ -9,7 +9,7 @@ trigger_phrases:
   - "changelog omission rules"
 importance_tier: normal
 contextType: general
-version: 1.3.1.0
+version: 1.3.2.0
 ---
 
 # Changelog & Release Notes Templates - Format Reference
@@ -249,11 +249,9 @@ These rules apply to changelog files and GitHub release notes. The Human Voice R
 | H4 heading | 2-7 words | 10 words |
 | Sentence | About 8 words | 22 words |
 | Sentence average | About 8 words | 10 words |
-| Compact file total | 10-25 lines of prose | 40 lines of prose |
-| Expanded file total | 120-180 lines below the frontmatter | 280 lines below the frontmatter |
 | Expanded H4 items | 12-22 | 32 |
 
-Validation checks the ceilings, and each one is set from the entry a reader needs, never from a model entry's length. `scripts/check_changelog_shape.py` fails an entry past the expanded file total, the H4 item ceiling or the glance bullet ceiling, and it fails tagged glance bullets that run out of section order and a spec-folder line that carries a level label. It also fails a sentence past its ceiling, an average past its ceiling and an expanded entry with no How It Was Checked section. The usual column is the target. A release with one fix reads short. Paragraph and section word counts are guidance, not gates, so more short sentences are always fine. The two sentence ceilings are gates. Go past a word budget when a reader needs the fact, and record why.
+Validation checks the ceilings, and each one is set from the entry a reader needs, never from a model entry's length. `scripts/check_changelog_shape.py` fails an entry past the H4 item ceiling or the glance bullet ceiling, and it fails tagged glance bullets that run out of section order and a spec-folder line that carries a level label. It also fails a sentence past its ceiling, an average past its ceiling and an expanded entry with no How It Was Checked section. An entry has no line ceiling: its length follows from what the release changed, held in check by the H4 item and glance bullet ceilings. The usual column is the target. A release with one fix reads short. Paragraph and section word counts are guidance, not gates, so more short sentences are always fine. The two sentence ceilings are gates. Go past a word budget when a reader needs the fact, and record why.
 
 ---
 

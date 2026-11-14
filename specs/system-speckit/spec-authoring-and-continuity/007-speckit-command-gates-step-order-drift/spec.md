@@ -211,6 +211,7 @@ All paths are under `.skilled/commands/speckit/`. Per-phase detail lives in each
 | 7 | 007-shared-blocks-and-retired-mechanisms/ | Repeated blocks live once, and retired mechanisms and unenforceable ceremony are gone | Complete |
 | 8 | 008-router-readme-presentation-alignment/ | Routers, README, presentation files and asset names match the workflows | Complete |
 | 9 | 009-resume-contract-owned-assets/ | The command contract names only the single resume workflow for `/speckit:resume` | Complete |
+| 10 | 010-fix-alignment-report-findings-for-speckit-command-surfaces/ | The findings of the alignment check on this packet are closed at their sources: stale step counts, text that names removed files and modes, command metadata, two contract tests and three routing misses | Complete |
 
 ### Phase Transition Rules
 
@@ -231,6 +232,7 @@ All paths are under `.skilled/commands/speckit/`. Per-phase detail lives in each
 | 006-save-search-handoff-contracts | 007-shared-blocks-and-retired-mechanisms | Save, search and handoff contracts are single and findings S1 to S14 are closed | Phase 6 `acceptance-criteria.md` has no `Unmet` row |
 | 007-shared-blocks-and-retired-mechanisms | 008-router-readme-presentation-alignment | The workflows have their final step lists and blocks, and findings B1 to B11 are closed | Phase 7 `acceptance-criteria.md` has no `Unmet` row |
 | 008-router-readme-presentation-alignment | 009-resume-contract-owned-assets | Routers and assets match the workflows, and the contract still names the deleted resume workflow files | `generate-command-routers.cjs --check` exits 0 with all routers clean |
+| 009-resume-contract-owned-assets | 010-fix-alignment-report-findings-for-speckit-command-surfaces | The command contract names the single resume workflow, and the alignment check of the packet has run | Phase 9 `acceptance-criteria.md` has no `Unmet` row |
 <!-- /ANCHOR:phase-map -->
 
 ---

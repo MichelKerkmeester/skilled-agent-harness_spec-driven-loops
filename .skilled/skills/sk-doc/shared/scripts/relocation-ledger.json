@@ -1,4 +1,20 @@
 {
   "schema_version": 1,
-  "batches": []
+  "batches": [
+    {
+      "applied_at": "2026-11-14T20:15:02.538Z",
+      "base_commit": "e13f670cb913efbf2c96388293653ee855af43b4",
+      "steps": {
+        "redirects": true,
+        "triggerIndex": true,
+        "sweep": true
+      },
+      "moves": [
+        {
+          "from": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-fix-alignment-report-findings-for-speckit-command-surfaces",
+          "to": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces"
+        }
+      ]
+    }
+  ]
 }

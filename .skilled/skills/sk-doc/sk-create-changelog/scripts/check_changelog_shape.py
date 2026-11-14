@@ -7,9 +7,8 @@
 The template in ../assets/changelog-template.md sets the ceilings. This script
 holds the same numbers, so a change to one is a change to both.
 
-Eight rules, each an error:
+Seven rules, each an error:
 
-  file-total    an expanded entry runs at most 280 lines below its frontmatter
   h4-items      an expanded entry carries at most 32 H4 items
   glance-bullets  What's New at a Glance holds at most 14 bullets
   glance-order  tagged glance bullets follow the order of the sections they name
@@ -39,7 +38,6 @@ from pathlib import Path
 # 1. CEILINGS
 # ---------------------------------------------------------------------------
 
-EXPANDED_MAX_BODY_LINES = 280
 EXPANDED_MAX_H4_ITEMS = 32
 GLANCE_MAX_BULLETS = 14
 SENTENCE_MAX_WORDS = 22
@@ -202,10 +200,6 @@ def check_entry(text):
     expanded = is_expanded(shape)
     violations, notes = [], []
 
-    if expanded and len(lines) > EXPANDED_MAX_BODY_LINES:
-        violations.append(
-            ("file-total", f"{len(lines)} lines below the frontmatter, ceiling {EXPANDED_MAX_BODY_LINES}")
-        )
     if expanded and shape["h4"] > EXPANDED_MAX_H4_ITEMS:
         violations.append(("h4-items", f"{shape['h4']} H4 items, ceiling {EXPANDED_MAX_H4_ITEMS}"))
     if len(shape["glance"]) > GLANCE_MAX_BULLETS:

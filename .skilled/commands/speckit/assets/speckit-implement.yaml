@@ -8,7 +8,7 @@ execution_mode:
   values: [auto, confirm, autopilot]
   default: confirm
   rule: "Under confirm, execute every checkpoint block in order at the step that carries it, and apply the mode_overrides.confirm wording. Under auto or autopilot, skip every block whose applies_to is confirm and every checkpoint_confirm flag and keep the autonomous wording of this file. Under autopilot, the unattended_autopilot block of this file is the contract for the workspace, the terminal result, the reason codes and the task metadata."
-checkpoints: [step_1_review_plan_and_spec, step_2_task_breakdown, step_3_analysis, step_4_acceptance_criteria, step_5_implementation_check, step_6_development, step_7_completion, step_8_save_context, step_6_7_acceptance_verify]
+checkpoints: [step_1_review_plan_and_spec, step_2_task_breakdown, step_3_analysis, step_4_acceptance_criteria, step_5_implementation_check, step_6_development, step_6_7_acceptance_verify, step_7_completion, step_8_save_context]
 mode_overrides:
   confirm:
     role: "Expert Developer using Smart SpecKit for interactive implementation"

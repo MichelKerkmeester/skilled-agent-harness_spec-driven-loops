@@ -81,6 +81,23 @@ function testPhaseCommandContracts() {
       readFile(completeAutoYaml).includes(phasePointer),
     'phase workflow assets route to create.sh --phase'
   );
+
+  // The lifecycle workflows read these blocks through a pointer, not a copy,
+  // so a dropped pointer removes the block from that workflow without an error.
+  const sharedText = readFile(lifecycleShared);
+  for (const block of ['predicate_grammar', 'checkpoint_options', 'documentation_levels']) {
+    assertTrue(
+      new RegExp(`^${block}:`, 'm').test(sharedText),
+      `shared lifecycle asset defines the ${block} block`
+    );
+    for (const workflow of ['plan', 'implement', 'complete']) {
+      const workflowText = readFile(path.join(ASSETS_ROOT, `speckit-${workflow}.yaml`));
+      assertTrue(
+        workflowText.includes(`shared_tail: "assets/speckit-lifecycle-shared.yaml#${block}"`),
+        `/speckit:${workflow} points at the shared ${block} block`
+      );
+    }
+  }
 }
 
 function testPhaseFolderContracts() {

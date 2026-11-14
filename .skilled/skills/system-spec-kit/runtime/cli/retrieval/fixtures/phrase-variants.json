@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2ae1f7e27538f00c5a1ff6850e8384a288f10da906da0b39082afa1460cfaae9",
+  "manifestHash": "b042005130a3a09fdf868986fc713cf69508d898a9ad0ea15a58da39ff0fa0df",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -2320,6 +2320,9 @@
     ],
     "009 feedback aggregator": [
       "009 feedback aggregator"
+    ],
+    "009 fix alignment report findings for speckit command surfaces operator decisions": [
+      "009-fix-alignment-report-findings-for-speckit-command-surfaces operator decisions"
     ],
     "009 fp16 plan": [
       "009 fp16 plan"
@@ -51507,6 +51510,21 @@
     "fix agent contract contradictions tasks": [
       "fix agent contract contradictions tasks"
     ],
+    "fix alignment report findings for speckit command surfaces": [
+      "fix alignment report findings for speckit command surfaces"
+    ],
+    "fix alignment report findings for speckit command surfaces acceptance criteria": [
+      "fix alignment report findings for speckit command surfaces acceptance criteria"
+    ],
+    "fix alignment report findings for speckit command surfaces implementation summary": [
+      "fix alignment report findings for speckit command surfaces implementation summary"
+    ],
+    "fix alignment report findings for speckit command surfaces plan": [
+      "fix alignment report findings for speckit command surfaces plan"
+    ],
+    "fix alignment report findings for speckit command surfaces tasks": [
+      "fix alignment report findings for speckit command surfaces tasks"
+    ],
     "fix audit findings": [
       "fix audit findings"
     ],
@@ -81632,6 +81650,9 @@
     "phase 10 final gate ledger": [
       "phase 10 final gate ledger"
     ],
+    "phase 10 fix alignment report findings for speckit": [
+      "phase 10 fix alignment report findings for speckit"
+    ],
     "phase 10 goal ending carry": [
       "phase 10 goal ending carry"
     ],
@@ -93809,6 +93830,9 @@
     "release line split tasks": [
       "release-line-split tasks"
     ],
+    "release note line ceiling removed": [
+      "release note line ceiling removed"
+    ],
     "release notes": [
       "release notes"
     ],
@@ -94461,6 +94485,18 @@
     "remove react native from sk code": [
       "remove react native from sk-code"
     ],
+    "remove release size limit": [
+      "remove release size limit"
+    ],
+    "remove release size limit implementation summary": [
+      "remove release size limit implementation summary"
+    ],
+    "remove release size limit plan": [
+      "remove release size limit plan"
+    ],
+    "remove release size limit tasks": [
+      "remove release size limit tasks"
+    ],
     "remove repo parent skill": [
       "remove repo parent skill"
     ],
@@ -94508,6 +94544,9 @@
     ],
     "remove task mcp": [
       "remove task mcp"
+    ],
+    "remove the file total line ceiling from release": [
+      "remove the file total line ceiling from release"
     ],
     "remove the llmgateway gpt 6 luna route": [
       "remove the llmgateway gpt 6 luna route"
@@ -106541,6 +106580,9 @@
     "sk code ci 1 1 16 0": [
       "sk-code-ci 1.1.16.0"
     ],
+    "sk code ci 1 1 17 0": [
+      "sk-code-ci 1.1.17.0"
+    ],
     "sk code ci 1 1 2 0": [
       "sk-code-ci 1.1.2.0"
     ],
@@ -106646,6 +106688,9 @@
     ],
     "sk code ci v1 1 16 0": [
       "sk-code-ci v1.1.16.0"
+    ],
+    "sk code ci v1 1 17 0": [
+      "sk-code-ci v1.1.17.0"
     ],
     "sk code ci v1 1 2 0": [
       "sk-code-ci v1.1.2.0"
@@ -108860,6 +108905,9 @@
     "sk create changelog 1 5 0 0": [
       "sk-create-changelog 1.5.0.0"
     ],
+    "sk create changelog 1 5 1 0": [
+      "sk-create-changelog 1.5.1.0"
+    ],
     "sk create changelog concise default": [
       "sk-create-changelog concise default"
     ],
@@ -108967,6 +109015,9 @@
     ],
     "sk create changelog v1 5 0 0": [
       "sk-create-changelog v1.5.0.0"
+    ],
+    "sk create changelog v1 5 1 0": [
+      "sk-create-changelog v1.5.1.0"
     ],
     "sk create changelog v4 style changelog": [
       "sk create changelog v4 style changelog"
@@ -111275,6 +111326,9 @@
     "sk doc 2 9 13 0": [
       "sk-doc 2.9.13.0"
     ],
+    "sk doc 2 9 14 0": [
+      "sk-doc 2.9.14.0"
+    ],
     "sk doc 2 9 2 0": [
       "sk-doc 2.9.2.0"
     ],
@@ -111781,6 +111835,9 @@
     ],
     "sk doc v2 9 13 0": [
       "sk-doc v2.9.13.0"
+    ],
+    "sk doc v2 9 14 0": [
+      "sk-doc v2.9.14.0"
     ],
     "sk doc v2 9 2 0": [
       "sk-doc v2.9.2.0"

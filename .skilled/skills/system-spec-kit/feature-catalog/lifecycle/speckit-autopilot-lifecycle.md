@@ -7,7 +7,7 @@ trigger_phrases:
   - "SPECKIT_AUTOPILOT_RESULT"
   - "branch-preserved speckit failure"
   - "unattended task metadata"
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Speckit autopilot lifecycle
@@ -24,7 +24,7 @@ This is distinct from `:auto`: `:auto` removes ordinary confirmation prompts, wh
 
 ### Router Contract
 
-The three command routers parse `:autopilot`, `:unattended` and `--unattended` as execution mode `autopilot`. They explicitly do not alias those flags to `:auto`. `/speckit:complete` and `/speckit:implement` route to their auto workflow assets with branch-preserved failure semantics, while `/speckit:plan` routes to its auto workflow with unattended task metadata required.
+The three command routers parse `:autopilot`, `:unattended` and `--unattended` as execution mode `autopilot`. They explicitly do not alias those flags to `:auto`. All three route to their single workflow asset with `execution_mode` bound to `autopilot`. Each asset's `unattended_autopilot` block carries the same contract: the workspace choice, the terminal result, the merge rule, branch-preserved failure semantics and the unattended task metadata.
 
 ### Terminal Result Contract
 
