@@ -81,16 +81,16 @@
     ],
     "causal_summary": "[What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-07-27T15:47:28Z",
-    "last_save_at": "2026-11-10T05:35:38.943Z",
+    "last_save_at": "2026-11-14T08:07:05.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:7863e3a9be53ba925ba8b01a4978917a43361747302be0e8ed5e653018cb5b4a",
+    "source_fingerprint": "sha256:fe07eedec11d35311537cdf299e7028c920a71e9cd8bbf5a612096fa3e9d830f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4d9a48f7fdab6f757afbc1c2a9b5874c65eeea3bb34155febdb32e4d5961d401"
+      "spec.md": "1626c94ece3069284e47836b090c72580643250b7a40d309f510c63553ef4e7f"
     },
     "last_active_child_id": "system-skill-advisor/codebase-conformance/001-advisor-audit-and-state-containment/001-state-directory-containment",
     "last_active_at": null

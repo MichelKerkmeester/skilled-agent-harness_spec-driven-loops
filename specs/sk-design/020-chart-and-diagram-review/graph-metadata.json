@@ -74,7 +74,7 @@
         "source": "derived"
       },
       {
-        "name": "Phase Documentation Map",
+        "name": "Purpose Establish",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -82,16 +82,16 @@
     ],
     "causal_summary": "[One-paragraph problem statement — what needs solving and why]",
     "created_at": "2026-09-11T17:13:02Z",
-    "last_save_at": "2026-09-24T06:58:00.685Z",
+    "last_save_at": "2026-11-14T08:05:51.929Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:156033621627f2c76848d61a20852619764945cbea1cba7d8c6ac2bea46d725d",
+    "source_fingerprint": "sha256:b14d2d988741b17c9f226ad40925468e5949fbcb3f8a08673993dd2ff29c7953",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4d6bc490fee4300d0d7449bdcdebac75484a9efa0a24bd0987a92202c9babc8a"
+      "spec.md": "a7f306dbcd725ba8d6a116aa0e6bd3ef32e12dbd6760e4ee9b588370ce122ba6"
     },
     "last_active_at": null
   }

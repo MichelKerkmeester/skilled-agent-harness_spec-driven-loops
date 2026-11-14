@@ -164,17 +164,17 @@
     ],
     "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
     "created_at": "2026-11-04T07:15:56Z",
-    "last_save_at": "2026-11-10T05:26:14.099Z",
+    "last_save_at": "2026-11-14T08:06:40.764Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:b9d24e66d86e2562ebb3de331d8d6ebf742f770f856212d4b876d91b53a0ec07",
+    "source_fingerprint": "sha256:39d16947426f67eb99e0282a7b2670cf18d2e0dbd6b3f797fdd6f89522aa97cd",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ee318329639cd0842d7b7e2aa2c47f171b43631a6f72a799461c0cc01a9f7ae7"
+      "spec.md": "53a5023e6a8ba18bb596a17f6522d0bc7ccb03f6ea884d32865343d7fdf53324"
     },
     "last_active_child_id": "sk-doc/authoring-modes-and-playbooks/005-skill-readability-refinement/008-sk-doc/014-sk-create-skill",
     "last_active_at": "2026-11-05T05:22:46.434Z"

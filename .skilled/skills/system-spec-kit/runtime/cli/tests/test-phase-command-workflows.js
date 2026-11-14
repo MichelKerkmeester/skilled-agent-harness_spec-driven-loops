@@ -137,6 +137,13 @@ function testAssetPhaseFolderNotes() {
       hasPhaseFolderContract,
       `${yaml} includes phase-folder/phase-child contract`
     );
+
+    if (yaml.startsWith('speckit-resume-')) {
+      assertTrue(
+        text.includes('purpose_row:') && text.includes('Parent purpose (<repo-relative parent folder>)'),
+        `${yaml} keeps the shared purpose label shape in purpose_row`
+      );
+    }
   }
 }
 

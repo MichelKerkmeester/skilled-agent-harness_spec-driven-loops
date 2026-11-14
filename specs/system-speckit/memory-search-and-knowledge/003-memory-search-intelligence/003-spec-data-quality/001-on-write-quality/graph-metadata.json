@@ -34,11 +34,11 @@
       "on-write",
       "phase",
       "parent",
-      "subgroup",
-      "spec-data-quality",
-      "track",
-      "authored-spec",
-      "gates"
+      "gates",
+      "authored",
+      "specs",
+      "navigable",
+      "one"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -84,24 +84,24 @@
         "source": "derived"
       },
       {
-        "name": "Extend Quality Loop Authored",
+        "name": "Purpose Make",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "On-Write Quality subgroup of the spec-data-quality track: on-write authored-spec quality gates.",
+    "causal_summary": "Make the on-write quality gates for authored specs navigable as one track, from trigger propagation and schema enforcement through provenance, integrity, and per-surface validation",
     "created_at": "2026-06-27T17:25:23.276Z",
-    "last_save_at": "2026-11-10T05:47:41.214Z",
+    "last_save_at": "2026-11-14T08:04:53.572Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:60e97657d7ddefabde4bea709c241e24ee7161581c58762f2751b50ac50a3c11",
+    "source_fingerprint": "sha256:237d8e8d76421817c90878b424eb31fb2f2d692efdeb4db7fbb7f792e3e42341",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a6b34e7e58e4d1d62caff24ce0d4167d9366176e06c2034db48ea9f31b41113b"
+      "spec.md": "44b510b44e0491817c99e760e0d1d7db1e73edf1bb162a9e63eb46fdd601c0c5"
     },
     "last_active_child_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage",
     "last_active_at": null

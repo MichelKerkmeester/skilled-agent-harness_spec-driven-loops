@@ -11,7 +11,7 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
-import { join, resolve } from "node:path";
+import { join, resolve, sep } from "node:path";
 import { tmpdir } from "node:os";
 import * as hookFlags from "../../../../../hooks/shared/hook-flags.mjs";
 import {
@@ -69,15 +69,24 @@ function readLastSpecFolder(cwd: string, sessionId: string): string | null {
  */
 async function readPacketPurposeSection(cwd: string, specFolder: string): Promise<string | null> {
   try {
-    type PacketPurpose = { text: string; source: "packet" | "ancestor" | "goal"; folder: string };
-    const { formatPacketPurpose, resolvePacketPurpose } = await import(
+    type PacketPurpose = { text: string; source: "packet" | "ancestor" | "goal"; folder: string; problem: string | null };
+    const { formatPacketProblem, formatPacketPurpose, resolvePacketPurpose } = await import(
       "../../dist/lib/spec/packet-purpose.js"
     ) as {
       resolvePacketPurpose: (specFolderAbsPath: string) => PacketPurpose | null;
       formatPacketPurpose: (purpose: PacketPurpose, projectRoot: string) => string;
+      formatPacketProblem: (purpose: PacketPurpose) => string | null;
     };
-    const purpose = resolvePacketPurpose(resolve(cwd, specFolder));
-    return purpose ? `## Packet Purpose\n${formatPacketPurpose(purpose, cwd)}` : null;
+    const root = resolve(cwd);
+    const folder = resolve(root, specFolder);
+    // The folder is read from a temp state file, so a value that leaves the
+    // project is refused before any file is opened.
+    if (!folder.startsWith(root + sep)) return null;
+    const purpose = resolvePacketPurpose(folder);
+    if (!purpose) return null;
+    const line = formatPacketPurpose(purpose, root);
+    const problem = formatPacketProblem(purpose);
+    return `## Packet Purpose\n${problem ? `${line}\n${problem}` : line}`;
   } catch {
     return null;
   }

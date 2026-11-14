@@ -40,6 +40,9 @@ Groups retrieval-gated tuning phases that adjust chunk prefixes, production reca
 | **Predecessor** | ../002-retroactive-automation/spec.md |
 | **Successor** | ../004-novel-research/spec.md |
 
+### Purpose
+Tune retrieval for evidence-aware search quality, gating each change behind a production recall measurement so a gain is proven before it becomes a default.
+
 ## PHASE DOCUMENTATION MAP
 
 | Child | Description |

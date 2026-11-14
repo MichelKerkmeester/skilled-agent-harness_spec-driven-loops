@@ -33,6 +33,9 @@ _memory:
 # 016/005: Cross-cutting quality (phase parent)
 
 <!-- ANCHOR:overview -->
+### Purpose
+Hold the quality, verification and documentation work that spans the memory and code embedder stacks, so the playbooks, benchmarks, install steps and skill docs stay correct across both.
+
 ## 1. OVERVIEW
 
 This phase parent groups the cross-cutting quality + verification + docs work that spans multiple 016 stacks (001 foundation + 002 mk-spec-memory + 003 skill-advisor + 004 cocoindex). Each child sweeps across the per-stack work to ensure alignment + correctness.

@@ -27,11 +27,11 @@
       "quality",
       "phase",
       "parent",
-      "subgroup",
-      "spec-data-quality",
-      "track",
-      "scheduled",
-      "doctor"
+      "automate",
+      "data-quality",
+      "repair",
+      "enrichment",
+      "existing"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -76,24 +76,24 @@
         "source": "derived"
       },
       {
-        "name": "Retrieval Feedback Edge",
+        "name": "Purpose Automate",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Retroactive Automation subgroup of the spec-data-quality track: scheduled/doctor/feedback automation over stored metadata.",
+    "causal_summary": "Automate data-quality repair and enrichment for existing packet records after write time through scheduled sweeps, doctor routing, and retrieval feedback",
     "created_at": "2026-06-27T17:25:35.599Z",
-    "last_save_at": "2026-11-10T05:47:43.394Z",
+    "last_save_at": "2026-11-14T08:05:05.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:18c0ccb55ab5f29a6fd0cc1e27773eb4afdd9156ca7c45efe05ac73559a3b5e5",
+    "source_fingerprint": "sha256:cc6b1d23cf55e39c6528a504af25e1f57f12a64d24a834f95b0292eb16a7c093",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8bcc9104c4957278d0d8c2782454bc0139f57558a7dd5c85361710c4d09ffae8"
+      "spec.md": "4feb473075e68a3f6424b5006e1cb708e45beab07fdda118ef6d41027264543b"
     },
     "last_active_child_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/002-retroactive-automation/002-doctor-dq-route",
     "last_active_at": null

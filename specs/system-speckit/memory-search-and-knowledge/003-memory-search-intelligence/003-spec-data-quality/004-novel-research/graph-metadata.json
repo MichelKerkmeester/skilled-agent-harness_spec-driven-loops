@@ -31,11 +31,11 @@
       "quality",
       "phase",
       "parent",
-      "subgroup",
-      "spec-data-quality",
-      "track",
+      "explore",
       "data-quality",
-      "ideas"
+      "capabilities",
+      "current",
+      "corpus"
     ],
     "importance_tier": "normal",
     "status": "planned",
@@ -80,24 +80,24 @@
         "source": "derived"
       },
       {
-        "name": "Novel Contradiction Detection",
+        "name": "Purpose Explore",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Novel Research subgroup of the spec-data-quality track: novel data-quality research ideas.",
+    "causal_summary": "Explore data-quality capabilities the current corpus lacks, keeping each novel detector or queue report-only so new signal never mutates a document silently",
     "created_at": "2026-06-27T17:25:47.076Z",
-    "last_save_at": "2026-11-10T05:47:44.078Z",
+    "last_save_at": "2026-11-14T08:05:17.804Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e082bfdc5a0737919992508ea5bce3320395933089b49f239e8ec39afaff6a2d",
+    "source_fingerprint": "sha256:b2a2e096e8f086d82ccef46657d92a0535815a6e5f255acc8e80e731db04e8b5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "bad99ba7a86e6456a4433b95cbbcd2fed258863bc75dc0183be9e638cecd4b29"
+      "spec.md": "2773eaffe4758751f53b057da79e4c4e8fc83716f1a341161acd5f10a1261fd1"
     },
     "last_active_child_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/004-novel-research/001-novel-contradiction-detection",
     "last_active_at": null

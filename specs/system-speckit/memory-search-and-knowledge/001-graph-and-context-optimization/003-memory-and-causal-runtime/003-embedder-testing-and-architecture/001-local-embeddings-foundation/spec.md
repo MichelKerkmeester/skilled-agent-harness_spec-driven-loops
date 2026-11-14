@@ -62,10 +62,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-This phased decomposition tracks Local embeddings Setup A — EmbeddingGemma-300m for code, EmbeddingGemma-300m for memory across independently executable child phase folders.
+Memory search and code search sent their text to the Voyage cloud API, because `EMBEDDINGS_PROVIDER=auto` picked Voyage whenever a Voyage key was exported. A local model could not simply take over: both embedding providers prepended Nomic's prefixes whatever model was loaded, the local models were not on disk and the vector stores held vectors from older models.
 
 ### Purpose
-Keep parent documentation lean while child phases own detailed plans, tasks, checklists, and continuity.
+Run memory and code embeddings on this machine with a local model, then keep the local memory and code-index runtime built on it working and aligned, which later phases extended to its workers, namespace, configs and docs.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 

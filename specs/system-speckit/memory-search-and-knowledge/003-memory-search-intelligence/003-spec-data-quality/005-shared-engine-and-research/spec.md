@@ -40,6 +40,9 @@ Groups the shared safe-fix engine, retrieval-floor experiments, governance rollo
 | **Predecessor** | ../004-novel-research/spec.md |
 | **Successor** | ../006-generated-metadata-build/spec.md |
 
+### Purpose
+Supply the shared engine and the measured, governed groundwork the data-quality build depends on, so its front doors cannot diverge and its rollout cannot drift out of safe order.
+
 ## PHASE DOCUMENTATION MAP
 
 | Child | Description |

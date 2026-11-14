@@ -67,10 +67,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-This phased decomposition tracks Deprecate constitutional memory; build a separate actively-used decisions and notes system integrated with spec and skill across independently executable child phase folders.
+The constitutional memory tier looked like a steering layer, but its rules were already inlined in the root instruction docs and it surfaced only when the model chose to call `memory_search`. It still had a cost, because ADR-shaped searches pulled its files by default and the indexer kept scanning its folder.
 
 ### Purpose
-Keep parent documentation lean while child phases own detailed plans, tasks, checklists, and continuity.
+Retire the constitutional memory tier without losing any of the steering it was meant to give.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
