@@ -2,7 +2,7 @@
 name: sk-code-skilled
 description: "sk-code SKILLED surface: system-code evidence (TypeScript/Python/shell/Rust/config standards, language-agnostic patterns, hooks, alignment verification, and skill/agent/command/MCP authoring checklists) plus shared implement/debug/verify workflow doctrine."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 2.1.18.0
+version: 2.2.0.0
 metadata:
   family: sk-code
   packetKind: surface
@@ -10,7 +10,7 @@ metadata:
 
 # Skilled Surface — System-Code Evidence
 
-**Domain evidence** and shared workflow doctrine for OpenCode system code (the `.skilled/` tree: skills, agents, commands, plugins, MCP servers, config, changelogs, and runtime bridge wiring). This surface owns the implement -> debug -> verify phases through the workflow references below, then slices evidence by the detected language so a TypeScript task never pulls the Python/shell/config guides.
+**Domain evidence** and shared workflow doctrine for OpenCode system code (the `.skilled/` tree: skills, agents, commands, plugins, MCP servers, config, changelogs, and runtime bridge wiring). This surface carries the implement -> debug -> verify doctrine through the workflow references below, then slices evidence by the detected language so a TypeScript task never pulls the Python/shell/config guides.
 
 Detection has two steps:
 
@@ -30,7 +30,7 @@ napi-rs and wasm-bindgen vocabulary are additional intent signals, not cross-pro
 
 - The task touches `.skilled/` system code — a skill, agent, command, plugin, MCP server, or descriptor/config.
 - The active workflow phase needs a language standard, a language-agnostic organization pattern, a hook contract, an alignment-verification procedure, or an authoring checklist.
-- This surface owns edits, tests, and verification through the workflow references; hand off formal findings-first review to `sk-code-review` and author-side quality gates to `sk-code-quality`.
+- The paired workflow mode owns edits, tests and verification, and applies the workflow references this surface carries. Hand off formal findings-first review to `sk-code-review` and author-side quality gates to `sk-code-quality`.
 
 ---
 
@@ -118,7 +118,7 @@ Authoring and validation assets:
   - `references/shared/alignment-verification-automation.md`
   - `references/shared/hooks.md`
 
-Workflow: `references/workflow-implement.md`, `references/workflow-debug.md` and `references/workflow-verify.md` link to the hub's shared implement -> debug -> verify doctrine in `../../shared/references/`; the split shared, language, hook and alignment resources above apply on top of it.
+Workflow: `references/workflow-implement.md`, `references/workflow-debug.md` and `references/workflow-verify.md` link to the hub's shared implement -> debug -> verify doctrine in `../shared/references/`; the split shared, language, hook and alignment resources above apply on top of it.
 
 ---
 
@@ -129,18 +129,13 @@ Workflow: `references/workflow-implement.md`, `references/workflow-debug.md` and
 - **Alignment drift is a verification gate.** Before any completion claim, re-run the four live sk-code drift guards on a system-code change through the single entry point `scripts/run-all-drift-guards.sh`.
   - `assets/scripts/verify_alignment_drift.py` checks language integrity, plus dead RESOURCE_MAP routes with `--check-router`.
   - `assets/scripts/verify_stack_folders.py` checks that language reference folders resolve.
-  - `assets/scripts/verify-router-sync.cjs` is the router-sync guard. It restores the four checks of the `sk-code-router-sync.vitest.ts` suite, which was deleted, and the wrapper runs every leg of it: 1a, 1b, 2, 3 and 4.
-    - Check (1): router paths exist on disk, every routable doc is routed, and every full path the prose maps name is routed.
-    - Check (2): the parent RESOURCE_MAP equals the union of the surface children's maps plus the parent tier.
-    - Check (3): compiled route-gold destinations, `leaf-manifest.json` and this RESOURCE_MAP agree through `qualifiedIdToLeaf`.
-    - Check (4): every playbook routing scenario's `expected_resource` is emitted by the router.
-  - The dead-path part of check (1) is also checked by `--check-router`. Leg 1b, the orphan-doc walk, fails on any reference or asset doc that no router names. It allowlists only the three shared workflow docs, which each surface reaches through a symlink.
+  - `assets/scripts/verify-router-sync.cjs` is the router-sync guard, and the wrapper runs every leg of it. `references/shared/alignment-verification-automation.md` lists its four checks, the legs and what covers each. That file is the one place the list is kept.
   - `.github/workflows/routing-registry-drift.yml` covers the compiled side of (3) and (4) in CI only, with the admission step warn-only.
   - The documentation claim guard (`assets/scripts/verify-doc-claims.cjs`) reads the sk-code prose the other guards skip, from the hub folder on disk.
     It checks that path references resolve and that no retired packet name remains.
     It also checks that every surface count matches the surface modes in `mode-registry.json`, and that every file the `ROUTER.md` load-tier prose says loads on every route is in `DEFAULT_RESOURCE`.
     Lines that keep a legacy name on purpose sit in its allowlist with a reason. See `references/shared/alignment-verification-automation.md`.
-  The wrapper scans repository content only: the files git tracks, so ignored trees, sibling worktrees and vendored clones stay out of a gate they can never pass. It exits 0 on a clean tree, so a completion claim requires wrapper rc 0 rather than a delta against a backlog.
+  The wrapper scans repository content only: the files git tracks, so ignored trees, sibling worktrees and vendored clones stay out of a gate they can never pass. When Git is missing or the hub is not a repository, the orphan-doc walk keeps the full walked list. It exits 0 on a clean tree, so a completion claim requires wrapper rc 0 rather than a delta against a backlog.
 - **Rust preserves the TypeScript contract.** Rust napi-rs, WASM/WASI, and sidecar modules are compatibility implementations, not independent behavior authorities. JS-visible bytes, six-decimal numeric behavior, comparator tie-breaks, deterministic IDs, collection order, DTOs, and error shapes must remain identical to the TypeScript oracle.
 - **Touched-language set, not one-per-task.** Most `.skilled/` tasks touch a single language. Keep that slice tight and use the shared tier for cross-language rules.
 

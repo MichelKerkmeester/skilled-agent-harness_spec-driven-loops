@@ -8,7 +8,7 @@ trigger_phrases:
   - "numbered all caps sections"
 importance_tier: normal
 contextType: implementation
-version: 1.1.2.0
+version: 1.1.3.0
 ---
 
 # SKILLED House Code Quality Checklist
@@ -375,3 +375,4 @@ The SKILLED surface changes one rule of the review default lens. The rows below 
 - [Python Style Guide](../../references/python/style-guide.md)
 - [Shell Style Guide](../../references/shell/style-guide/overview-structure-and-naming.md)
 - [Config Style Guide](../../references/config/style-guide.md)
+- [Rust Style Guide](../../references/rust/style-guide/overview-and-file-header.md) - split into seven topic parts
