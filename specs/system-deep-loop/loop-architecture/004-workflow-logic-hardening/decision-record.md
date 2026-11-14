@@ -43,6 +43,7 @@ _memory:
 | Q007 | The phase 004 size requirement reads: each single workflow file is smaller than both twins it replaces. The 140000 and 155000 byte caps are dropped. | The merged files measured 144394 and 158517 bytes and lossless cuts reached about 2900 bytes per file. | The byte caps in phase 004 REQ-010 | 004 REQ-010, AC-010 |
 | Q008 | The council keeps a typed command, `/speckit:ai-council`, beside the standalone agent. This is D3 option B of phase 006. | Not stated. The operator first asked why the speckit family and whether the agent keeps its spec folder support, and chose the command after both were answered. | The "Not decided" row Q001 in `001-deterministic-stop-decision/decision-record.md` | 006 REQ-009, 006 `goal.md` D3 |
 | Q009 | Phase 006 becomes a phase parent with child phases before any implementation starts. | Not stated. | None | 006-ai-council-mode-deprecation/spec.md |
+| Q010 | The `ai-council` agent sets `patch: allow` and keeps `bash: deny`. | On OpenCode 2.3.0 an agent that denies both bash and patch gets no file-writing tool, so the agent could not write its `ai-council/` artifacts. A dispatch with patch allowed wrote the full artifact set and refused an out-of-scope path. | The `patch: deny` line in the agent frontmatter. Decision D8 of phase 006 is unchanged: bash stays denied. | 006-ai-council-mode-deprecation/001-standalone-agent-and-council-command |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -228,6 +229,26 @@ Split now
 Answer:
 ```text
 Split now
+```
+
+### Q010
+<!-- source: claude:7e68d9a9-33b2-4c03-bda7-37e786b5d688:AskUserQuestion:1 -->
+
+Question:
+```text
+On OpenCode 2 the ai-council agent has no file-writing tool: it allows write and edit but denies bash and patch, and OpenCode 2 only exposes a write tool when patch (or bash) is allowed. A test dispatch with patch allowed wrote the full ai-council artifact set correctly and refused an out-of-scope path. Which permission change should the council agent get?
+```
+
+Options:
+```text
+patch: allow (Recommended)
+bash: allow
+Leave permissions as they are
+```
+
+Answer:
+```text
+patch: allow (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

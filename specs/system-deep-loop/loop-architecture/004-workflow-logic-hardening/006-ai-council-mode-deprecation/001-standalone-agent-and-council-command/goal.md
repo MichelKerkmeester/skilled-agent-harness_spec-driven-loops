@@ -77,6 +77,13 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Child docs authored | Done | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and `goal.md` written on 2026-11-14 when phase 006 was split into five children. Implementation has not started. |
+| Setup T001 to T005 | Done | Commit c67864c53c. gate-baseline.md holds 58 gates at a55b1f3d58, six of them failing before this phase. exceptions.md lists 25 history paths and its existence check exits 0. |
+| Agent and command, T006 to T017 and T099 | Done, AC-009 advisor clause open | Commit 34692583f9. Agent mirror checks, the three generators with --check, command-catalog-mirror-check and the advisor typecheck exit 0. The REQ-008 search prints nothing. The T017 find count prints 6. T099 on OpenCode 2.3.0 wrote seven files under ai-council/ and nothing outside the probe packet. |
+| AC-009 advisor clause | Unmet until child 004 | The live scorer finds command-speckit-ai-council for the council prompt, but the hub council lanes in aliases.ts and lanes/explicit.ts compete and both rows drop to 0.25 confidence. Child 004 removes those lanes. Child 001 closes after that rerun. Children 002 to 004 proceed meanwhile, which departs from the Complete check in T095. |
+| patch: allow | Operator decision Q010 | OpenCode 2.3.0 gives an agent a write tool only when patch or bash is allowed. The agent sets patch: allow and keeps bash: deny. |
+| Files outside the spec file list | Changed as direct consumers | command-contract.json (speckit family), both command README.txt indexes, command-prompts.jsonl plus the recaptured command-routing-baseline.json, command-metadata-e2e census 27 to 28, agent-permission-denials.json, the compiled deep-ai-council contract (it records the agent digest), multi-ai-council-runtime-parity.vitest.ts. |
+| Deep Route wording | Deviation | orchestrate.md names the two remaining deep agents. The spec file table said three, the registry keeps research and review. |
+| Rollback without a shell | Design note | The agent cannot move or hash a file, so a rolled-back round is marked by rollback and artifact_superseded events and its files stay in place. The artifact_written checksum event is no longer written. Event timestamps are the agent's own estimate, because it has no clock. |
 
 ### Deviations and findings
 
