@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/376-dsh-single-executor-loop` |
 | **Parent Spec** | ../spec.md |
@@ -282,8 +282,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 10. OPEN QUESTIONS
 <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- C6, where should executor identity live? Option A: the pre-dispatch audit appends a ledger event that carries the executor, so the projection keeps it. Option B: the dispatch receipts are the identity record, `writeFirstRecordExecutor` stops writing a row the projection drops, and the review report reads the receipts. Default taken: neither is built until the operator chooses, and REQ-009 records the deferral.
-- C1, is 24 hours the right sweep age? Default taken: yes.
+- C6, where should executor identity live? Option A: the pre-dispatch audit appends a ledger event that carries the executor, so the projection keeps it. Option B: the dispatch receipts are the identity record, `writeFirstRecordExecutor` stops writing a row the projection drops, and the review report reads the receipts. Default taken: neither is built until the operator chooses, and REQ-009 records the deferral. Answered by the operator on 2026-11-14: C6 is deferred. Neither option is built in this phase, and the gap is recorded.
+- C1, is 24 hours the right sweep age? Default taken: yes. Answered by the operator on 2026-11-14: yes, 24 hours.
 - Deep-review findings: folded in. The three loop-health observations in `REV/review-report.md` lines 78, 201 and 210 are items C7, C8 and C6. Its seven numbered findings are about purpose carry and belong to phases 012 and 013 of the purpose packet.
 <!-- /ANCHOR:questions -->
 

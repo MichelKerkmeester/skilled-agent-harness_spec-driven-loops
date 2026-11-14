@@ -197,9 +197,14 @@ type RunAuditedExecutorCommandInput = {
   // For the cli-deepseek-harness single-lineage branch only: its fresh harness home and
   // spec-folder marker are keys the per-kind allowlist drops on purpose. They are merged
   // after the filter, so only the values the caller names reach the child, never an
-  // inherited one. Another kind that needs a key widens its allowlist instead. Only the
-  // synchronous runner reads this field and completionCheck.
+  // inherited one. Another kind that needs a key widens its allowlist instead. The allowed
+  // keys are exactly those in DISPATCH_ENV_KEYS for the kind; any other key is refused
+  // before a receipt is written or a child is spawned. Only the synchronous runner reads
+  // this field and completionCheck.
   dispatchEnv?: Record<string, string>;
+  // The harness prints a JSON event stream the orchestrator never reads, so a caller can
+  // keep that stream off the terminal and record only how many bytes it held.
+  echoStdout?: boolean;
   // A clean exit does not prove a good run for every CLI. When set, it judges the
   // output of a child that exited 0, and a non-null reason is recorded as a crash.
   completionCheck?: (exitCode: number, stdout: string, stderr: string) => string | null;
@@ -1194,6 +1199,25 @@ export function classifyExecutorUnavailable(stdout: string, stderr: string): str
   return null;
 }
 
+// A dispatchEnv key the per-kind env filter drops on purpose is merged after that filter,
+// so this list is the only place that says which keys a caller may name. A kind with no
+// entry allows none: a caller that needs one widens this list for that kind first.
+const DISPATCH_ENV_KEYS: Readonly<Partial<Record<ExecutorKind, readonly string[]>>> = {
+  'cli-deepseek-harness': ['DSH_HOME', 'DSH_SPEC_FOLDER', 'SYSTEM_SPEC_GATE_DISABLED', 'AI_SESSION_CHILD'],
+};
+
+// Check the caller-named keys at the one boundary that merges them, so no later caller can
+// slip PATH or a secret past the per-kind filter.
+function assertDispatchEnvAllowed(input: RunAuditedExecutorCommandInput): void {
+  const kind = getExecutorKind(input.executor);
+  const allowed = DISPATCH_ENV_KEYS[kind] ?? [];
+  for (const key of Object.keys(input.dispatchEnv ?? {})) {
+    if (!allowed.includes(key)) {
+      throw new Error(`dispatchEnv key ${key} is not allowed for ${kind}`);
+    }
+  }
+}
+
 /**
  * Run a non-native executor command synchronously and log dispatch failures.
  *
@@ -1215,6 +1239,10 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
     return RECURSION_GUARD_EXIT_CODE;
   }
 
+  // A refused key must fail before the INTENT receipt, so no receipt records a dispatch
+  // whose environment the runner would not have allowed.
+  assertDispatchEnvAllowed(input);
+
   // Pre-dispatch INTENT receipt (engine-signed, no child id yet). Null when the
   // caller did not opt into receipts.
   const receiptCtx = beginReceipt(input);
@@ -1231,7 +1259,13 @@ export function runAuditedExecutorCommand(input: RunAuditedExecutorCommandInput)
     ...(typeof input.input === 'string' ? { input: input.input } : {}),
   });
 
-  if (typeof result.stdout === 'string' && result.stdout.length > 0) {
+  if (input.echoStdout === false) {
+    // The child still produced the stream the checks below read. Only the terminal copy
+    // is skipped, so a caller can log its size without replaying every event. An empty
+    // stream still logs its size, so a silent child reads as 0 bytes, not as no line.
+    const stdoutBytes = typeof result.stdout === 'string' ? Buffer.byteLength(result.stdout) : 0;
+    process.stderr.write(`[executor-audit] child stdout ${stdoutBytes} bytes, not echoed\n`);
+  } else if (typeof result.stdout === 'string' && result.stdout.length > 0) {
     process.stdout.write(result.stdout);
   }
   if (typeof result.stderr === 'string' && result.stderr.length > 0) {

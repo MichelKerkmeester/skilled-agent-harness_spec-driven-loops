@@ -1169,6 +1169,11 @@ workflow:
         resolve_executor:
           source: "config.executor"
           loader: ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts#parseExecutorConfig"
+        unsupported_executor_guard:
+          skip_when: "config.executor.kind in ['native', 'cli-claude-code', 'cli-opencode']"
+          message: "UNSUPPORTED_EXECUTOR: :confirm has no branch for {config.executor.kind}. Run it with :auto, which branches every executor kind."
+          exit_code: 2
+          halt: true
         pre_dispatch:
           generate_summary: |
             STATE SUMMARY (auto-generated):

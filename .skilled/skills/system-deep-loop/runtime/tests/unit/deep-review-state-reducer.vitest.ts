@@ -31,7 +31,14 @@ const { reduceReviewState } = nodeRequire('../../scripts/reduce-state.cjs') as {
     strategyPath: string;
     registry: {
       openFindingsCount: number;
-      openFindings: { findingId: string; severity: string; title: string; file: string | null }[];
+      openFindings: {
+        findingId: string;
+        severity: string;
+        title: string;
+        file: string | null;
+        line?: number | null;
+        lastSeen?: number;
+      }[];
     };
     dashboard: string;
   };
@@ -519,5 +526,47 @@ describe('reduceReviewState — dashboard iteration rows', () => {
 
     expect(result.dashboard).toContain('corrected attempt');
     expect(result.dashboard).not.toContain('first attempt');
+  });
+});
+
+describe('reduceReviewState — re-verified findings at shifted lines', () => {
+  it('folds a moved line into the first row and keeps a reused id with another title', () => {
+    const { specFolder, reviewDir } = makeReviewDir();
+    writeFileSync(join(reviewDir, 'deep-review-config.json'), JSON.stringify({ maxIterations: 5, reviewTarget: 'shifted-line-proof' }));
+    writeFileSync(join(reviewDir, 'deep-review-state.jsonl'), '');
+    const deltasDir = join(reviewDir, 'deltas');
+    mkdirSync(deltasDir, { recursive: true });
+    const row = (iteration: number, id: string, title: string, line: number) => JSON.stringify({
+      type: 'finding',
+      iteration,
+      id,
+      severity: 'P1',
+      title,
+      file: `src/guard.cjs:${line}`,
+    });
+    writeFileSync(
+      join(deltasDir, 'iter-001.jsonl'),
+      `${row(1, 'R1-P1-001', 'Guard compares paths lexically', 27)}\n`
+      + `${row(1, 'R1-P1-002', 'First title', 10)}\n`,
+    );
+    writeFileSync(
+      join(deltasDir, 'iter-002.jsonl'),
+      `${row(2, 'R1-P1-001', 'Guard compares paths lexically', 24)}\n`
+      + `${row(2, 'R1-P1-002', 'Another title', 10)}\n`,
+    );
+
+    const result = reduceReviewState(specFolder, { write: false, artifactDir: reviewDir });
+    const rows = result.registry.openFindings;
+
+    // The same id, file and title is one finding even when its line moved. The first
+    // row stays canonical and only lastSeen advances.
+    expect(result.registry.openFindingsCount).toBe(3);
+    const moved = rows.filter((finding) => finding.findingId === 'R1-P1-001');
+    expect(moved).toHaveLength(1);
+    expect(moved[0].line).toBe(27);
+    expect(moved[0].lastSeen).toBe(2);
+
+    // The reused id with a different title is a different finding, so both survive.
+    expect(rows.filter((finding) => finding.findingId === 'R1-P1-002')).toHaveLength(2);
   });
 });

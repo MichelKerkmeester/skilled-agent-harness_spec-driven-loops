@@ -1233,7 +1233,7 @@ workflow:
             // recursion guard reads every ancestor command line, the shell running this step
             // carries the heredoc text, and such a word would refuse the dispatch as nested.
             const require = createRequire(import.meta.url);
-            const { buildLineageCommand, withAgentPersona, validateDshCompletion } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
+            const { buildLineageCommand, withAgentPersona, validateDshCompletion, sweepStaleDshHomes } = require('./.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs');
 
             const kind = '{config.executor.kind}';
             const model = '{config.executor.model}' === 'null' ? null : '{config.executor.model}';
@@ -1283,6 +1283,7 @@ workflow:
             // drops every DSH_ key, so the home and the absolute spec folder the repo-guards goal
             // bridge reads ride in dispatchEnv. DSH_HOME on this process would instead trip the
             // nested-dispatch guard.
+            sweepStaleDshHomes();
             const dshHome = mkdtempSync(path.join(os.tmpdir(), 'dsh-home-'));
             let dispatchExit;
             try {
@@ -1308,6 +1309,7 @@ workflow:
                 // The harness can exit 0 after a guard plugin failed to load, so its event
                 // stream and stderr are judged as well as its exit code.
                 completionCheck: validateDshCompletion,
+                echoStdout: false,
               });
             } finally {
               rmSync(dshHome, { recursive: true, force: true });
@@ -1345,7 +1347,7 @@ workflow:
           wait_for_completion: true
           notes:
             - "cli-deepseek-harness single-executor: builds through the shared fan-out command builder (buildLineageCommand), so the pinned harness release, the model allowlist and the route, lineage and guards patches stay one source of truth. runAuditedExecutorCommand emits INTENT + COMPLETION receipts"
-            - "The harness starts in the artifact directory, never the repository root, with a fresh DSH_HOME outside the checkout. DSH_HOME, DSH_SPEC_FOLDER, SYSTEM_SPEC_GATE_DISABLED and AI_SESSION_CHILD reach the child through dispatchEnv, and the home is removed in a finally block"
+            - "The harness starts in the artifact directory, never the repository root, with a fresh DSH_HOME outside the checkout. DSH_HOME, DSH_SPEC_FOLDER, SYSTEM_SPEC_GATE_DISABLED and AI_SESSION_CHILD reach the child through dispatchEnv, and the home is removed in a finally block. The event stream is judged and counted, not echoed"
             - "The prompt opens with a REPOSITORY ROOT line, because the prompt pack's paths and gateway call are repo-relative while the harness starts in the artifact directory"
             - "The child timeout is 30 s under the step timeout (at least half of it), so the finally block removes the home before any outer kill"
             - "validateDshCompletion judges a clean exit, so a plugin that did not activate or a missing final event records a crash dispatch_failure"

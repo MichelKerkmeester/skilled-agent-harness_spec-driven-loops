@@ -210,7 +210,7 @@ Baselines, run from the worktree root on 2026-11-14 at `1bedb33577`:
 | `cd $DL && npx vitest run` on the drift and compile tests | `23 passed` | `23 passed` |
 | `node $DL/scripts/check-contract-drift.cjs` | `[CONTRACT DRIFT] OK commands=3` | the same |
 | `cd $DL && npm run typecheck` | exit 0 | exit 0 |
-| `cd $DL && npx vitest run` | `1 failed \| 2893 passed \| 8 skipped (2902)` | the same one failure, more passed |
+| `cd $DL && npx vitest run` | `1 failed \| 2893 passed \| 8 skipped (2902)` at planning. At the build start, after phase 019, it printed `Test Files  173 passed (173)` and `Tests  2894 passed \| 8 skipped (2902)`, so the timing test passed that run | no new failure, more passed. The `fanout-pool.vitest.ts` timing test may fail alone, as at planning |
 | `node .skilled/bin/compiled-route-guard.cjs` | `system-deep-loop            fresh`, exit 0 | the same after the commit hook re-mints |
 | `convergence.cjs --read-only` on the `$REV` session graph | `"dimensionCoverage":0.5`, `STOP_BLOCKED` | unchanged, the stored graph is not rebuilt. The E13 graph built the same way reads `1` |
 

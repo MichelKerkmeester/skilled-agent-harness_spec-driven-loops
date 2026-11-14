@@ -66,10 +66,10 @@ const DSH_SINGLE_BRANCH_TOKENS = [
 ];
 
 // A branch body runs from its key to the next line at the same or a shallower indent.
-function dshSingleBranchGaps(yaml: string): string[] {
+function dshSingleBranchText(yaml: string): string {
   const lines = yaml.split(/\r?\n/);
   const start = lines.findIndex((line) => /^\s*if_cli_deepseek_harness:\s*$/.test(line));
-  if (start === -1) return ['if_cli_deepseek_harness'];
+  if (start === -1) return '';
   const indent = /^\s*/.exec(lines[start])![0].length;
   let end = start + 1;
   while (end < lines.length) {
@@ -77,7 +77,12 @@ function dshSingleBranchGaps(yaml: string): string[] {
     if (line.trim() && /^\s*/.exec(line)![0].length <= indent) break;
     end += 1;
   }
-  const body = lines.slice(start + 1, end).join('\n');
+  return lines.slice(start + 1, end).join('\n');
+}
+
+function dshSingleBranchGaps(yaml: string): string[] {
+  const body = dshSingleBranchText(yaml);
+  if (body === '') return ['if_cli_deepseek_harness'];
   // The ancestry recursion guard reads the parent shell's command line, which carries
   // the heredoc text, so a bare harness binary word there refuses the dispatch as nested.
   const bareBinary = body
@@ -134,5 +139,42 @@ describe('deep-loop executor branch contract', () => {
     }
     expect(dshSingleBranchGaps('if_cli_deepseek_harness:\n  command: dsh\nif_cli_pi:\n  DSH_HOME\n'))
       .toEqual([...DSH_SINGLE_BRANCH_TOKENS, 'bare dsh word']);
+  });
+
+  it('sweeps stale harness homes before it mints a new one in both auto workflows', () => {
+    for (const file of ['deep-research-auto.yaml', 'deep-review-auto.yaml']) {
+      const body = dshSingleBranchText(workflows.get(file)!);
+      const sweepAt = body.indexOf('sweepStaleDshHomes();');
+      const mintAt = body.indexOf("mkdtempSync(path.join(os.tmpdir(), 'dsh-home-'))");
+      expect(sweepAt, file).toBeGreaterThanOrEqual(0);
+      expect(mintAt, file).toBeGreaterThan(sweepAt);
+      expect(body, file).toMatch(/sweepStaleDshHomes\(\);\n\s+const dshHome = mkdtempSync/);
+    }
+    expect(dshSingleBranchText('if_cli_deepseek_harness:\n  command: buildLineageCommand\nif_cli_pi:\n'))
+      .not.toContain('sweepStaleDshHomes');
+  });
+
+  it('passes echoStdout false so the harness event stream is counted rather than echoed', () => {
+    for (const file of ['deep-research-auto.yaml', 'deep-review-auto.yaml']) {
+      const body = dshSingleBranchText(workflows.get(file)!);
+      expect(body, file).toContain('echoStdout: false');
+      expect(body, file).toMatch(/completionCheck: validateDshCompletion,\n\s+echoStdout: false,/);
+    }
+    expect(dshSingleBranchText('if_cli_deepseek_harness:\n  command: buildLineageCommand\nif_cli_pi:\n'))
+      .not.toContain('echoStdout');
+  });
+
+  it('refuses a :confirm executor kind that the workflow has no branch for', () => {
+    const allowed = ['native', 'cli-claude-code', 'cli-opencode'];
+    for (const file of ['deep-research-confirm.yaml', 'deep-review-confirm.yaml']) {
+      const yaml = workflows.get(file)!;
+      const guard = /unsupported_executor_guard:\s*\n\s*skip_when: "([^"]+)"\s*\n\s*message: "([^"]+)"\s*\n\s*exit_code: 2\s*\n\s*halt: true/.exec(yaml);
+      expect(guard, file).not.toBeNull();
+      expect(guard![1], file).toBe("config.executor.kind in ['native', 'cli-claude-code', 'cli-opencode']");
+      for (const kind of allowed) expect(guard![1], file).toContain(`'${kind}'`);
+      expect(guard![2], file).toContain('UNSUPPORTED_EXECUTOR');
+      expect(guard![2], file).toContain(':auto');
+    }
+    expect(/unsupported_executor_guard:/.test('if_cli_codex:\n  command: codex\n')).toBe(false);
   });
 });

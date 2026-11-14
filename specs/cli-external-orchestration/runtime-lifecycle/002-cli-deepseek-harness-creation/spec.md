@@ -143,7 +143,7 @@ Summary for audit only. Each child's plan.md holds the detail.
 | 15 | 015-dsh-hook-parity/ | Hook and plugin parity with OpenCode and Pi, interactive and leaf split, hook library layout | Complete |
 | 16 | 016-ci-red-check-repairs/ | Repair the five CI workflows left red: the committed private DSH prompt, the dsh-on-PATH dispatch test, playbook contract violations and two stale sk-doc baselines | Complete |
 | 17 | 017-dsh-single-executor-loop/ | Run one dsh lineage in `/deep:review` and `/deep:research` `:auto` through the shared builder with an isolated home and a completion check | Complete |
-| 18 | 018-dsh-single-executor-hardening/ | Close the open Fable P2 points on the single dsh lineage and the three loop faults its first live review exposed: stale home sweep, a per-kind `dispatchEnv` list, no stdout echo, a `:confirm` refusal, one registry row per finding and canonical dimension ids | Pending |
+| 18 | 018-dsh-single-executor-hardening/ | Close the open Fable P2 points on the single dsh lineage and the three loop faults its first live review exposed: stale home sweep, a per-kind `dispatchEnv` list, no stdout echo, a `:confirm` refusal, one registry row per finding and canonical dimension ids | Complete |
 | 19 | 019-dsh-repin-rc3/ | Repin dsh from 0.2.2-rc.1 to the installed 0.2.2-rc.3 and repeat the runbook's route, confinement, reasoning and fan-out probes on it | Complete |
 
 ### Phase Transition Rules
