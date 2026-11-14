@@ -164,7 +164,7 @@
       | @markdown | `.skilled/agents/markdown.md` | Template-first documentation executor for `/create:*`, scoped markdown, and spec-doc authoring |
       | @review | `.skilled/agents/review.md` | Codebase-agnostic code review; verdict follows severity, score is advisory |
       | @deep-review | `.skilled/agents/deep-review.md` | LEAF agent; iterative code-audit dimension pass, P0/P1/P2 findings, JSONL state |
-      | @code | `.skilled/agents/code.md` | Application-code LEAF; sk-code stack delegation; D3 convention-floor caller-restriction (`Depth: 1` marker required); fail-closed verify |
+      | @code | `.skilled/agents/code.md` | Application-code LEAF; sk-code stack delegation; usually dispatched by @orchestrate; fail-closed verify |
       | @debug | `.skilled/agents/debug.md` | Isolated by design (no conversation context) |
       | @design | `.skilled/agents/design.md` | Write-capable LEAF; decides UI values and measures a live surface into a Style Reference |
       | @prompt-improver | `.skilled/agents/prompt-improver.md` | Read-only LEAF; returns a structured prompt package and never executes it |
@@ -885,7 +885,7 @@
       ## 11. RELATED RESOURCES
       
       - `.skilled/agents/context.md` — the LEAF that routes ALL exploration, file search, and pattern discovery.
-      - `.skilled/agents/code.md` — the LEAF for implementation and testing, gated by a `Depth: 1` marker.
+      - `.skilled/agents/code.md` — the LEAF for implementation and testing.
       - `.skilled/agents/review.md` — the LEAF for code review and security scoring.
       - `.skilled/agents/debug.md` — the LEAF offered only after repeated failures, and only with operator opt-in.
       - `.skilled/agents/markdown.md` — the LEAF for `/create:*` documentation and component-authoring commands.

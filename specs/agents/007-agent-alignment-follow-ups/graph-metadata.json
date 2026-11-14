@@ -166,18 +166,18 @@
     ],
     "causal_summary": "The packet `agents/006-agent-contract-and-registry-alignment` closed on 2026-11-14 and recorded four findings outside its scope",
     "created_at": "2026-11-14T15:48:56Z",
-    "last_save_at": "2026-11-14T21:52:56.872Z",
+    "last_save_at": "2026-11-14T22:58:54.367Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:38f80e313883c85b7d58782210ffeeed64a03aa9c9ab64be6ce19eee886f066b",
+    "source_fingerprint": "sha256:f2fb7d71579ae96f396eb27d58d354a824c491e7ad8b027ebbe04fbb90b7ad00",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "aeb870b766e0b336e78f243ff6ab8f34b4846e60e8c26bd950660ece52e239b1"
+      "spec.md": "032270bebadf01890ad379355f68ec346256aec4eb2f5f1a7262d217941d0165"
     },
-    "last_active_child_id": "agents/007-agent-alignment-follow-ups/006-shared-agent-contract",
-    "last_active_at": "2026-11-14T21:52:45.653Z"
+    "last_active_child_id": "agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status",
+    "last_active_at": "2026-11-14T22:56:51.690Z"
   }
 }

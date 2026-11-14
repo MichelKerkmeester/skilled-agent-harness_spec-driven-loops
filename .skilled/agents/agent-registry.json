@@ -104,7 +104,7 @@
       ],
       "taskType": "Implementation / testing",
       "skills": "`sk-code` (stack-agnostic; sk-code performs detection at dispatch time); orchestrator dispatches `@review` separately for formal review",
-      "notes": "Application-code LEAF; sk-code stack delegation; D3 convention-floor caller-restriction (`Depth: 1` marker required); fail-closed verify",
+      "notes": "Application-code LEAF; sk-code stack delegation; usually dispatched by @orchestrate; fail-closed verify",
       "summary": "application-code implementation via sk-code, write-capable LEAF dispatched only by orchestrate",
       "templateExceptions": [
         {

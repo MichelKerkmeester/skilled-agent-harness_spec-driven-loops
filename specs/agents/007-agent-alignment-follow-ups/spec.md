@@ -131,7 +131,7 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 4 | 004-agent-authoring-registry-step/ | Add the registry record to the agent authoring workflow so a new agent file passes the roster check | Complete |
 | 5 | 005-alignment-report-fixes/ | Fix the ten distinct findings of the alignment check on phases 1 to 4, in the skill, the command, the playbook, the READMEs, the routing vocabulary and the release notes | Complete |
 | 6 | 006-shared-agent-contract/ | Give each shared rule one source: tool budgets (deep-loop workflows, fast-path caps, the orchestrator's split footer), the canonical refusal string, the untrusted-content rule and self-attested checklists and scores | Complete |
-| 7 | 007-code-agent-retry-and-status/ | State one retry rule in the code agent, define FAIL against BLOCKED, unify the unknown-route status and remove the gate that never fires | Planned |
+| 7 | 007-code-agent-retry-and-status/ | State one retry rule in the code agent, define FAIL against BLOCKED, unify the unknown-route status and remove the gate that never fires | Complete |
 | 8 | 008-orchestrate-routing-and-retry/ | Route deep work in the orchestrator to the commands, keep one retry ladder and one spec-doc owner, stop double-loading definitions and bring the file to 600 lines | Planned |
 | 9 | 009-ai-council-writer-and-round-model/ | Name one writer for ai-council artifacts, make completion question 11 satisfiable, run one round per invocation and bring the file to 600 lines | Planned |
 | 10 | 010-deep-loop-leaf-state-and-status/ | Make the deep-research and deep-review leaves agree with themselves on status values, state-log writes, bindings and the FAIL mapping | Planned |

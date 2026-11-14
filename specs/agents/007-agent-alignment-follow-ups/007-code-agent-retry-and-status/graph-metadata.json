@@ -33,27 +33,28 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "scratch/after.txt",
       ".skilled/agents/code.md",
+      ".skilled/agents/agent-registry.json",
+      ".skilled/agents/orchestrate.md",
       ".claude/agents/code.md",
+      ".claude/agents/orchestrate.md",
       ".cursor/agents/code.md",
       ".devin/agents/code/AGENT.md",
       ".pi/agents/code.md",
       ".codex/agents/code.toml",
       ".dsh/agents/code.patch.yml",
-      ".skilled/agents/agent-registry.json",
-      ".skilled/agents/orchestrate.md",
-      ".claude/agents/orchestrate.md",
       ".pi/agents/orchestrate.md",
       ".codex/agents/orchestrate.toml",
       ".dsh/agents/orchestrate.patch.yml",
-      ".skilled/commands/speckit/assets/speckit-implement.yaml",
-      ".opencode/plugins/tests/speckit-review-dispatch-contract.test.cjs"
+      "scratch/baseline.txt",
+      ".skilled/commands/speckit/assets/speckit-implement.yaml"
     ],
     "entities": [
       {
@@ -81,9 +82,27 @@
         "source": "derived"
       },
       {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
         "name": "code.md",
         "kind": "doc",
         "path": ".skilled/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-registry.json",
+        "kind": "config",
+        "path": ".skilled/agents/agent-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".skilled/agents/orchestrate.md",
         "source": "derived"
       },
       {
@@ -105,18 +124,6 @@
         "source": "derived"
       },
       {
-        "name": "agent-registry.json",
-        "kind": "config",
-        "path": ".skilled/agents/agent-registry.json",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrate.md",
-        "kind": "doc",
-        "path": ".skilled/agents/orchestrate.md",
-        "source": "derived"
-      },
-      {
         "name": "orchestrate.toml",
         "kind": "file",
         "path": ".codex/agents/orchestrate.toml",
@@ -129,15 +136,15 @@
         "source": "derived"
       },
       {
-        "name": "speckit-implement.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/speckit/assets/speckit-implement.yaml",
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
         "source": "derived"
       },
       {
-        "name": "speckit-review-dispatch-contract.test.cjs",
-        "kind": "file",
-        "path": ".opencode/plugins/tests/speckit-review-dispatch-contract.test.cjs",
+        "name": "speckit-implement.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-implement.yaml",
         "source": "derived"
       },
       {
@@ -193,17 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Each Measured Behavior",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`code.md` step 6 says \"NO internal retry",
     "created_at": "2026-11-14T20:19:17Z",
-    "last_save_at": "2026-11-14T20:47:45.953Z",
+    "last_save_at": "2026-11-14T23:00:01.763Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +213,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9cdbf8e720a1e107ecc35af37a10bf9c8a6718588bf530160542f28ae6d825dd",
+    "source_fingerprint": "sha256:13c974ae898bc0c301d371e33cf5619a7860de837dae91acae266d15349bc8c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "d497985738a7dff5454b132c2870ea662de1daf5478e2f37b4da5d1f65fcb625",
+      "spec.md": "cfffc20c53aa63a87cfbe3ba675409ae28a53a948e0dd9896e197dada7976f7b",
       "plan.md": "ea008373efdfd83d00e30486eaa87ba7955107dd0eb740b34b1d50b02c69d62c",
-      "tasks.md": "7df8a9ca2f6dc68493eb5ba6ba74f94226f83e5522700a74ffaad070f5d833b9",
-      "implementation-summary.md": "28cb2cea6bb6a2f5dbda948dc0ad5097e7b157b8ce830176bc6e4d7e8a33faa1"
+      "tasks.md": "149b1a18c1ba9696e278f829c0b10c1eb9e66c899b12ed38de108881820d2ffe",
+      "implementation-summary.md": "21d6006c657713dd11346f5eecec8f3bcf4f1202b3ce848bd59d38278476f486"
     },
     "last_active_at": null
   }
