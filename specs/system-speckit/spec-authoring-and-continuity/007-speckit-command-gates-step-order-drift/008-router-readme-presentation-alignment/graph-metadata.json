@@ -47,6 +47,7 @@
       ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
       ".skilled/commands/speckit/assets/speckit-resume-presentation.txt",
       ".skilled/commands/speckit/assets/speckit-plan.yaml",
+      "scratch/baseline.txt",
       ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs"
     ],
     "entities": [
@@ -114,6 +115,12 @@
         "name": "speckit-plan.yaml",
         "kind": "config",
         "path": ".skilled/commands/speckit/assets/speckit-plan.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
         "source": "derived"
       },
       {
@@ -187,18 +194,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Workflow Flag Surface",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The router, the workflow, the presentation file and `README.txt` of one command state different facts, so an agent or operator who trusts any one of them is misled",
     "created_at": "2026-11-14T11:33:25Z",
-    "last_save_at": "2026-11-14T12:22:02.432Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-14T16:17:29.999Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -207,13 +208,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:6ac53931dfdb02a10f91bd16a91d0269a254afba6b3f23c083d1ee8d663b7b69",
+    "source_fingerprint": "sha256:bbb9e5e67b36d23c4bebd4d2155bd07ca3bcd7041ea0ca2c9c6c3c35e7b70d98",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6838260fb16982cf5f198d82dc5f1fe197956f2f6025b4f5aa0f6a25f3a413c4",
       "plan.md": "9a68f5fbe595f40d6857ec5934477d5b9fa40b9cb8d850f11850e24bc44e18f4",
       "tasks.md": "07581692b544011b5431bd4d05a3886996f1ee22cb476a9c3ae10bcb9901c9bc",
-      "implementation-summary.md": "d0e82171b87bd5e4876f83db9b33d224d85350d99b46420ca3713c234e018d63"
+      "implementation-summary.md": "a151025ec8aa81bc74d1d14af15d9a15c78891ec948c64c613b676e6472216eb"
     },
     "last_active_at": null
   }

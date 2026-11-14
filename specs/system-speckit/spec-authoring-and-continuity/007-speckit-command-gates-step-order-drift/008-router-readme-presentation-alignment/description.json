@@ -1,11 +1,12 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment",
   "description": "Phase 8: router-readme-presentation-alignment",
   "keywords": [
     "phase",
     "router-readme-presentation-alignment"
   ],
-  "lastUpdated": "2026-11-14T11:33:26.033Z",
+  "lastUpdated": "2026-11-14T16:17:29.999Z",
   "specId": "008",
   "folderSlug": "router-readme-presentation-alignment",
   "parentChain": [
@@ -13,7 +14,8 @@
     "spec-authoring-and-continuity",
     "007-speckit-command-gates-step-order-drift"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_17-17__phase-7-is-closed-at-40a11edf58-and-c987501c48.md"
+  ]
 }

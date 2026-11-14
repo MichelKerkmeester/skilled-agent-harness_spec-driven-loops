@@ -8,17 +8,30 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment"
-    last_updated_at: "2026-11-14T11:33:26Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-14T16:17:29Z"
+    last_updated_by: "generate-context"
+    recent_action: "Saved the phase 8 CHECK baseline and edited nothing in the repository"
+    next_safe_action: "Run /speckit:implement on phase 8"
+    packet_purpose: "Purpose: Every count, flag, file name, artifact and next step that a router, a presentation file or `README.txt` states is derived from the workflow or router that owns it, and a named check proves each one."
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/commands/speckit/README.txt"
+      - ".skilled/commands/speckit/assets/speckit-plan-presentation.txt"
+      - ".skilled/commands/speckit/assets/speckit-implement-presentation.txt"
+      - ".skilled/commands/speckit/assets/speckit-complete-presentation.txt"
+      - ".skilled/commands/speckit/assets/speckit-resume-presentation.txt"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-008-router-readme-presentation-alignment"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "7d6d5694-6f2f-49e3-badd-e5c0396985cc"
+      workspace: "/Users/michelkerkmeester/worktrees/public/381-speckit-command-gates-step-order-drift"
+      savedAt: "2026-11-14T16:17:29Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 5
     open_questions: []
     answered_questions: []
 ---
