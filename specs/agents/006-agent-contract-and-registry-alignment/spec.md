@@ -115,7 +115,7 @@ Every agent file states one contract its permissions allow, reaches skills throu
 | 1 | 001-fix-agent-contract-contradictions/ | Make each agent file state one consistent contract: permissions, return values, step order, delegation and current wording | Complete |
 | 2 | 002-agent-registry-and-generated-rosters/ | Add one agent registry and generate the orchestrator rosters from it, so `design` and `prompt-improver` become routable | Complete |
 | 3 | 003-skill-binding-through-routers/ | Bind agents to skills through each skill's own entry point and router, and check that every cited skill path exists | Complete |
-| 4 | 004-agent-template-conformance-and-drift-check/ | Bring the eleven files onto the agent template's current outline and add a check that fails when one drifts from it | Pending |
+| 4 | 004-agent-template-conformance-and-drift-check/ | Bring the eleven files onto the agent template's current outline and add a check that fails when one drifts from it | Complete |
 | 5 | 005-trim-duplicated-and-dead-agent-text/ | Remove restated summaries and repeated sections, and hold the one shared block identical across files | Pending |
 | 6 | 006-codex-persona-tool-mapping/ | Add a tool-mapping line to persona injection so a Codex child given a read-only persona still reads files | Pending |
 

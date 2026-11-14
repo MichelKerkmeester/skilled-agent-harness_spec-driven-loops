@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ee335614a73dd83377f82401c1db79dcd4e66845492a4f2864c5d5dd8adb6123",
+  "corpusHash": "67a3ce79d721b1407782bd30199df1c5700d18aaaf7364a83808f2ef12009278",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26866,
+  "includedPathCount": 26868,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9420,7 +9420,9 @@
     "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/spec.md",
     "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/tasks.md",
     "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/acceptance-criteria.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/decision-record.md",
     "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/implementation-summary.md",
     "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/plan.md",
     "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/spec.md",
     "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/tasks.md",
@@ -26898,7 +26900,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "4aafb79255a6e08388073d717b7395becabaeea9ebe297cee9d3a85c4f517871",
+  "manifestHash": "b6af2f515c51d068f622d2c9ced5491ca30f8c624324a5a9b5ba2055859315a8",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

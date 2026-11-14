@@ -194,19 +194,19 @@
     ],
     "causal_summary": "The eleven files in `.skilled/agents/` define how every agent in this repository behaves, and an audit on 2026-11-14 found five kinds of defect in them",
     "created_at": "2026-11-14T11:36:20Z",
-    "last_save_at": "2026-11-14T13:05:00.826Z",
+    "last_save_at": "2026-11-14T13:26:14.675Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:a18ee34ad5dafa73c087e116b16c69ed830aeecbeb1d23f47d8a43c0a6fb9c2c",
+    "source_fingerprint": "sha256:898f19f2039a2597e3f31313da7e0397cb4bb39ec378309d5fd8e83dbe596214",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1984b28df3f3ac7fa16839616d98470feeafa03dc208e83f2de4c9f07b1d268a"
+      "spec.md": "021ce7b5d1171b408cbc4b5017fa2c3edd22200fe76acb944ab4d275b39bf98b"
     },
-    "last_active_child_id": "agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers",
-    "last_active_at": "2026-11-14T13:05:00.826Z"
+    "last_active_child_id": "agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check",
+    "last_active_at": "2026-11-14T13:26:02.101Z"
   }
 }

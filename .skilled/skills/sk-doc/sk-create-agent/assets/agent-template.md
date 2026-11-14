@@ -8,7 +8,7 @@ trigger_phrases:
   - "specialist agent structure"
 importance_tier: normal
 contextType: general
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # Agent Template - Specialist Agent Structure
@@ -150,6 +150,21 @@ The `name` value and emitted filename stem must both match `^[a-z0-9]+(?:-[a-z0-
 ## 3. REQUIRED BODY STRUCTURE
 
 Every production agent should include these body elements in this order.
+
+### Required Sections
+
+The list between the two markers is the outline every agent file must carry, in this order. `node .skilled/bin/sync-agent-roster.cjs --check` reads the list from here and fails when an agent file lacks an entry, names it differently or orders it differently. A heading meets an entry when its text after the section number starts with the entry, so `## 0. ILLEGAL NESTING (HARD BLOCK)` meets `ILLEGAL NESTING`. An agent whose role makes an entry wrong for it records that under `templateExceptions` in `.skilled/agents/agent-registry.json`, with the section and a reason. Every other section in this template is optional: `0b`, `RUNTIME PARAMETERS`, `SUMMARY` and any section an agent adds for its own role. Run the check after every edit to this list.
+
+<!-- REQUIRED-SECTIONS:BEGIN -->
+- `ILLEGAL NESTING`
+- `CORE WORKFLOW`
+- `CAPABILITY SCAN`
+- `HOOK-INJECTED CONTEXT ROUTING`
+- `OUTPUT FORMAT`
+- `OUTPUT VERIFICATION`
+- `ANTI-PATTERNS`
+- `RELATED RESOURCES`
+<!-- REQUIRED-SECTIONS:END -->
 
 ### H1 + Boilerplate
 
@@ -794,9 +809,9 @@ Verify every path exists before shipping. A resource list full of dead paths is 
 
 The `@deep-review` / `@deep-research` family (both `.skilled/agents/` and `.claude/agents/` mirrors) is a blessed alternate section vocabulary for per-iteration loop workers, carrying the same responsibilities as the generic skeleton under lane-named headings.
 
-- **Full shape** (`deep-review`): `## 0. ILLEGAL NESTING (HARD BLOCK)` → `## 0b. INPUT + SCOPE GATES (HARD BLOCK)` → `## 1. CORE WORKFLOW -- Single <lane> Iteration` → `## 2. ROUTING SCAN` → `## 3. <lane> CONTRACT` (`REVIEW CONTRACT`) → `## 4. STATE MANAGEMENT + WRITE SAFETY` → `## 5. <lane> ADVERSARIAL CHECK (Tiered)` (`ADVERSARIAL SELF-CHECK`) → `## 6. RULES` → `## 7. OUTPUT VERIFICATION` → `## 8. ANTI-PATTERNS` → `## 9. SUMMARY`.
-- **Lean variant** (`deep-research`): no `§0b`, `## 3. ITERATION PROTOCOL` replaces the CONTRACT, `## 4. STATE MANAGEMENT` drops the `+ WRITE SAFETY` suffix, `RULES` moves to `## 5`, and `## 6. OUTPUT FORMAT` is added, then OUTPUT VERIFICATION / ANTI-PATTERNS / SUMMARY.
-- Only `## 1. CORE WORKFLOW` is validator-required. The dialect keeps every boundary, capability, verification, and anti-pattern responsibility of the generic skeleton. Reference files: `.skilled/agents/{deep-review,deep-research}.md` and their `.claude/agents/` mirrors.
+- **Full shape** (`deep-review`): `## 0. ILLEGAL NESTING (HARD BLOCK)` → `## 0b. INPUT + SCOPE GATES (HARD BLOCK)` → `## 1. CORE WORKFLOW -- Single <lane> Iteration` → `## 2. CAPABILITY SCAN` → `## 3. HOOK-INJECTED CONTEXT ROUTING` → `## 4. <lane> CONTRACT` (`REVIEW CONTRACT`) → `## 5. STATE MANAGEMENT + WRITE SAFETY` → `## 6. <lane> ADVERSARIAL CHECK (Tiered)` (`ADVERSARIAL SELF-CHECK`) → `## 7. RULES` → `## 8. OUTPUT VERIFICATION` → `## 9. ANTI-PATTERNS` → `## 10. RELATED RESOURCES` → `## 11. SUMMARY`.
+- **Lean variant** (`deep-research`): no `§0b`, `## 4. ITERATION PROTOCOL` replaces the CONTRACT, `## 5. STATE MANAGEMENT` drops the `+ WRITE SAFETY` suffix, `RULES` moves to `## 6`, and `## 7. OUTPUT FORMAT` is added, then OUTPUT VERIFICATION / ANTI-PATTERNS / RELATED RESOURCES / SUMMARY.
+- The required-sections list in section 3 binds this dialect too, and `deep-review` records its one exception in the registry. The dialect keeps every boundary, capability, verification, and anti-pattern responsibility of the generic skeleton. Reference files: `.skilled/agents/{deep-review,deep-research}.md` and their `.claude/agents/` mirrors.
 
 ---
 

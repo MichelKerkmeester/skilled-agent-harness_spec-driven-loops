@@ -1,5 +1,5 @@
 {
-  "manifestHash": "4aafb79255a6e08388073d717b7395becabaeea9ebe297cee9d3a85c4f517871",
+  "manifestHash": "b6af2f515c51d068f622d2c9ced5491ca30f8c624324a5a9b5ba2055859315a8",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -978,6 +978,9 @@
     ],
     "004 1 1 alignment phase": [
       "004 1:1 alignment phase"
+    ],
+    "004 agent template conformance and drift check operator decisions": [
+      "004-agent-template-conformance-and-drift-check operator decisions"
     ],
     "004 alignment fixes operator decisions": [
       "004-alignment-fixes operator decisions"
@@ -10514,6 +10517,9 @@
     ],
     "agent template conformance and drift check tasks": [
       "agent template conformance and drift check tasks"
+    ],
+    "agent template conformance implementation summary": [
+      "agent template conformance implementation summary"
     ],
     "agent template critical important": [
       "agent template critical important"

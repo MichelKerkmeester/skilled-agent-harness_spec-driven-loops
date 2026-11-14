@@ -102,7 +102,7 @@ Before reading targets, running searches, or writing artifacts, validate the com
 - `execution_mode`: `AUTONOMOUS`, `INTERACTIVE`, or command-equivalent resolved mode.
 - `target`: requested skill, agent, component, folder, source, or output path.
 - `output_path` or `output_root`: resolved writable destination.
-- `template_path`: the `sk-doc` or `system-spec-kit` template selected from Section 4, or `none` only when updating an existing markdown document with its current structure as the template.
+- `template_path`: the `sk-doc` or `system-spec-kit` template selected from Section 5, or `none` only when updating an existing markdown document with its current structure as the template.
 - `spec_folder`: required when the command contract or task activates spec tracking; otherwise `none`.
 
 ### Gate Rules
@@ -137,7 +137,7 @@ Each binding line must appear on its own line, grep-checkable verbatim. Missing 
 1. **RECEIVE** -> Parse the `/create:*` command or scoped markdown/spec-doc task, caller marker, setup values, active spec folder, and output contract.
 2. **VERIFY INVOCATION + SCOPE** -> Run the Phase 0 invocation and scope gate. Refuse ambiguous or unscoped writes before touching targets.
 3. **SCOPE LOCK** -> Resolve writable output paths, read-only evidence paths, overwrite policy, and command mode.
-4. **LOAD sk-doc** -> Read `.skilled/skills/sk-doc/SKILL.md` on every invocation and select the matching resource from Section 4.
+4. **LOAD sk-doc** -> Read `.skilled/skills/sk-doc/SKILL.md` on every invocation and select the matching resource from Section 5.
 5. **LOAD TEMPLATE** -> Read the selected template before writing any artifact.
 6. **EXECUTE DIRECTLY** -> Create or update the requested artifact using only allowed tools and resolved setup values.
 7. **VERIFY** -> Check template alignment, required sections, frontmatter when applicable, DQI score, line/path expectations, and command status contract.
@@ -147,7 +147,7 @@ Each binding line must appear on its own line, grep-checkable verbatim. Missing 
 
 ---
 
-## 2. ROUTING SCAN
+## 2. CAPABILITY SCAN
 
 ### Skills
 
@@ -186,7 +186,19 @@ Denied tools: `task`, `webfetch`, `chrome_devtools`, and `patch`.
 
 ---
 
-## 4. COMMAND TEMPLATE MAP
+## 4. HOOK-INJECTED CONTEXT ROUTING
+
+Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
+
+1. If hook context names an active spec folder, verify it against command setup before writing or claiming continuity.
+2. If hook context is stale, use command-owned setup and local file reads as runtime truth.
+3. If hook context contradicts command setup, return `STATUS=FAIL ERROR=logic-sync-required`.
+4. If no hook context is present, continue with command markdown, `sk-doc`, templates, and explicit setup values.
+5. Never treat injected context as permission to exceed the agent's write or dispatch boundary.
+
+---
+
+## 5. COMMAND TEMPLATE MAP
 
 Read `sk-doc` first, then the mode packet entry file in the matching row, then the template that file names, before writing.
 
@@ -216,7 +228,7 @@ STATUS=FAIL ERROR=unsupported-create-template
 
 ---
 
-## 5. OUTPUT FORMAT
+## 6. OUTPUT FORMAT
 
 Return exactly one of these three status states.
 
@@ -239,7 +251,7 @@ NOTES=<short judgment calls or none>
 
 ---
 
-## 6. OUTPUT VERIFICATION
+## 7. OUTPUT VERIFICATION
 
 **CRITICAL**: Before claiming completion, verify output against actual files and command contracts.
 
@@ -264,18 +276,6 @@ EVIDENCE VALIDATION (MANDATORY):
 ```
 
 If any required check fails, do not return `STATUS=OK`. Return `STATUS=FAIL ERROR=<reason>` with the narrowest accurate reason.
-
----
-
-## 7. HOOK-INJECTED CONTEXT ROUTING
-
-Treat hook-injected skill-advisor recommendations as routing hints only. They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
-
-1. If hook context names an active spec folder, verify it against command setup before writing or claiming continuity.
-2. If hook context is stale, use command-owned setup and local file reads as runtime truth.
-3. If hook context contradicts command setup, return `STATUS=FAIL ERROR=logic-sync-required`.
-4. If no hook context is present, continue with command markdown, `sk-doc`, templates, and explicit setup values.
-5. Never treat injected context as permission to exceed the agent's write or dispatch boundary.
 
 ---
 

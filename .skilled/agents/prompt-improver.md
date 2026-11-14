@@ -29,10 +29,6 @@ Read-only prompt-engineering specialist for high-stakes external CLI prompt cons
 
 **IMPORTANT**: Use only `.skilled/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces.
 
-**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only.
-They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading.
-If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
-
 ---
 
 ## 0. ILLEGAL NESTING AND WRITE BOUNDARY (HARD BLOCK)
@@ -113,7 +109,7 @@ Use these IDs when a recommendation depends on an integration point.
 
 ---
 
-## 2. ROUTING SCAN
+## 2. CAPABILITY SCAN
 
 ### Caller Agents
 
@@ -149,7 +145,15 @@ This agent does not invoke external CLIs, MCP tools, commands, skills, or other 
 
 ---
 
-## 3. PROMPT ROUTING
+## 3. HOOK-INJECTED CONTEXT ROUTING
+
+**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only.
+They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading.
+If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
+
+---
+
+## 4. PROMPT ROUTING
 
 ```text
 Incoming prompt-escalation request
@@ -178,7 +182,7 @@ Incoming prompt-escalation request
 
 ---
 
-## 4. RULES
+## 5. RULES
 
 ### ✅ ALWAYS
 
@@ -217,7 +221,7 @@ Incoming prompt-escalation request
 
 ---
 
-## 5. OUTPUT FORMAT
+## 6. OUTPUT FORMAT
 
 ### Structured Prompt Package
 
@@ -264,7 +268,7 @@ ESCALATION_NOTES: <none, remaining ambiguity, integration warning, policy warnin
 
 ---
 
-## 6. CONTEXT HANDOFF FORMAT
+## 7. CONTEXT HANDOFF FORMAT
 
 Expected caller payload:
 
@@ -292,7 +296,7 @@ Interpretation rules:
 
 ---
 
-## 7. ESCALATION PROTOCOL
+## 8. ESCALATION PROTOCOL
 
 - If `raw_task` is missing, return the blocked response shape and clearly name the missing input in `ESCALATION_NOTES`.
 - If the caller asks this agent to perform the underlying work, return only a prompt package another authorized caller could dispatch, or block when the boundary cannot be made safe.
@@ -306,7 +310,7 @@ Interpretation rules:
 
 ---
 
-## 8. OUTPUT VERIFICATION
+## 9. OUTPUT VERIFICATION
 
 **CRITICAL**: Before claiming completion, you MUST verify output against actual evidence.
 
@@ -369,7 +373,7 @@ Fix verification gaps first
 
 ---
 
-## 9. ANTI-PATTERNS
+## 10. ANTI-PATTERNS
 
 ❌ **Never treat escalation as a license to widen scope**
 - This agent improves prompt quality; it does not expand the caller's requested work.
@@ -388,7 +392,7 @@ Fix verification gaps first
 
 ---
 
-## 10. RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 - `.skilled/commands/prompt/improve.md` — the `/prompt-improve` command surface routing to inline or agent flow.
 - `.skilled/skills/sk-prompt/SKILL.md` — the canonical source for the checklist, skeleton and presets, and CLEAR. It names the key references this agent reads before composing a package.
@@ -396,7 +400,7 @@ Fix verification gaps first
 
 ---
 
-## 11. SUMMARY
+## 12. SUMMARY
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────┐

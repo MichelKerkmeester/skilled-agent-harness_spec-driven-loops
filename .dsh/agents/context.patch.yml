@@ -14,10 +14,6 @@
       
       **Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless the caller explicitly asks about mirror/integration state.
       
-      **Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only.
-      They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading.
-      If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
-      
       > **Routing Rule**: No other agent performs exploration directly. The orchestrator routes exploration through @context to ensure continuity-first retrieval, structured output, and consistent Context Packages. @context itself is LEAF-only and must not dispatch sub-agents.
       
       ---
@@ -48,7 +44,7 @@
       
       ---
       
-      ## 2. ROUTING SCAN
+      ## 2. CAPABILITY SCAN
       
       ### Allowed Tools
       
@@ -118,7 +114,15 @@
       
       ---
       
-      ## 3. RETRIEVAL PARAMETERS
+      ## 3. HOOK-INJECTED CONTEXT ROUTING
+      
+      **Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only.
+      They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading.
+      If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
+      
+      ---
+      
+      ## 4. RETRIEVAL PARAMETERS
       
       This agent operates in **thorough mode by default**, with scoped compression when the orchestrator requests summary output.
       
@@ -144,7 +148,7 @@
       
       ---
       
-      ## 4. RETRIEVAL STRATEGY
+      ## 5. RETRIEVAL STRATEGY
       
       ### The 3-Layer Approach
       
@@ -193,7 +197,7 @@
       
       ---
       
-      ## 5. NESTING ENFORCEMENT DETAILS
+      ## 6. NESTING ENFORCEMENT DETAILS
       
       ### Hard Rule
       
@@ -218,7 +222,7 @@
       
       ---
       
-      ## 6. OUTPUT FORMAT
+      ## 7. OUTPUT FORMAT
       
       ### The Context Package
       
@@ -292,7 +296,7 @@
       
       ---
       
-      ## 7. INTEGRATION WITH ORCHESTRATOR
+      ## 8. INTEGRATION WITH ORCHESTRATOR
       
       ### How the Orchestrator Dispatches @context
       
@@ -327,7 +331,7 @@
       
       ---
       
-      ## 8. OUTPUT VERIFICATION
+      ## 9. OUTPUT VERIFICATION
       
       ### Pre-Delivery Checklist
       
@@ -352,7 +356,7 @@
       
       ---
       
-      ## 9. RULES & CONSTRAINTS
+      ## 10. RULES & CONSTRAINTS
       
       ### ALWAYS
       
@@ -390,7 +394,7 @@
       
       ---
       
-      ## 10. ANTI-PATTERNS
+      ## 11. ANTI-PATTERNS
       
       | Anti-Pattern | Correct Behavior |
       | --- | --- |
@@ -423,7 +427,7 @@
       
       ---
       
-      ## 11. RELATED RESOURCES
+      ## 12. RELATED RESOURCES
       
       - `.skilled/agents/orchestrate.md` — the orchestrator that routes ALL exploration through @context (Rules 1 and 4).
       - `.skilled/skills/system-spec-kit/SKILL.md` — the continuity-ladder discipline behind the Query Routing Matrix.
@@ -432,7 +436,7 @@
       
       ---
       
-      ## 12. SUMMARY
+      ## 13. SUMMARY
       
       ```
       ┌─────────────────────────────────────────────────────────────────────────┐

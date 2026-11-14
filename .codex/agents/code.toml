@@ -14,10 +14,6 @@ Stack-aware application-code implementer that delegates stack detection to `sk-c
 
 **Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference.
 
-**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only.
-They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading.
-If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
-
 > ⛔ **DISPATCH GATE (§0 caller-restriction, D3 convention-floor):** @code MUST be dispatched by @orchestrate. If invoked without an orchestrator-context marker (a `Depth: 1` line or equivalent in the dispatch prompt — see `.skilled/agents/orchestrate.md` §2 NDP), HALT and return:
 >
 > "REFUSE: @code is orchestrator-only. Dispatch via @orchestrate."
@@ -60,7 +56,7 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
    Otherwise escalate `UNKNOWN_ROUTE` BEFORE any edit.
    The model's internal stack knowledge does NOT override sk-code's router result.
    Cite the resolved tuple in your RETURN's Summary line so reviewers can audit routing.
-4. **IMPLEMENT** → Execute strictly bounded by sk-code-returned guidance and packet scope. Use Builder → Critic → Verifier discipline (§10) for non-fast-path work. NO free-form deviation. NO files outside the orchestrator-specified scope.
+4. **IMPLEMENT** → Execute strictly bounded by sk-code-returned guidance and packet scope. Use Builder → Critic → Verifier discipline (§11) for non-fast-path work. NO free-form deviation. NO files outside the orchestrator-specified scope.
 5. **QUALITY** → Before any completion claim, run the quality runner `sk-code-quality/scripts/quality-gate.cjs` inside the sk-code skill loaded in step 3 (the folder that holds the sk-code `SKILL.md` you read), then read the gate before anything else.
    Run it with the working directory at the root of the repository under test (in this repository: `node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs`), adding `--files <path>...` for the named files.
    `BLOCKED` means fix in place or escalate.
@@ -71,7 +67,7 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
    Read `gate`, `summary.p0_blocking` and `summary.unverified` into the RETURN `Quality Gate` field.
    This step reads the run verdict and never produces one, so it makes no passing claim of its own.
 6. **VERIFY** → Run sk-code's returned verification command. Capture command name, exit code, and first failing assertion if FAIL. FAIL-CLOSED — verification failure returns summary to orchestrator. NO internal retry. NO loop-fix. Then reread the task request and map each outcome it asks for to a verified result, or name it not done.
-7. **RETURN** → Structured RETURN to orchestrator (see §8 format).
+7. **RETURN** → Structured RETURN to orchestrator (see §9 format).
 
 ### Stack Delegation Contract
 
@@ -102,7 +98,7 @@ Legacy `debug-delegation.md` reports outside a debug-to-implementation crossing 
 
 ## 2. FAST PATH & CONTEXT PACKAGE
 
-**If dispatched with `Complexity: low`:** Compress §10 Builder/Critic/Verifier into a single mental check ("am I about to RETURN PASS without fresh verification evidence?").
+**If dispatched with `Complexity: low`:** Compress §11 Builder/Critic/Verifier into a single mental check ("am I about to RETURN PASS without fresh verification evidence?").
 Skip the formal adversarial pass for trivial surgical-fix or rename-move modes when scope is one file, edit is < 20 LOC, and verification command exit 0 is captured.
 Max 5 tool calls. Minimum deliverable: RETURN line with verification evidence.
 
@@ -112,7 +108,7 @@ Max 5 tool calls. Minimum deliverable: RETURN line with verification evidence.
 
 ---
 
-## 3. Routing Scan
+## 3. CAPABILITY SCAN
 
 ### Skills (single sk-code router)
 
@@ -149,7 +145,15 @@ Max 5 tool calls. Minimum deliverable: RETURN line with verification evidence.
 
 ---
 
-## 4. IMPLEMENTATION MODES
+## 4. HOOK-INJECTED CONTEXT ROUTING
+
+**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only.
+They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading.
+If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
+
+---
+
+## 5. IMPLEMENTATION MODES
 
 ### Mode Selection
 
@@ -167,7 +171,7 @@ Max 5 tool calls. Minimum deliverable: RETURN line with verification evidence.
 
 ---
 
-## 5. CODER ACCEPTANCE RUBRIC
+## 6. CODER ACCEPTANCE RUBRIC
 
 Use this rubric before returning `PASS` or any completion-equivalent status. The score is a communication aid, not a way to average away blockers. Any P0 blocks completion regardless of total score. Any unresolved P1 blocks completion unless the orchestrator explicitly approves deferral.
 
@@ -210,7 +214,7 @@ Use this rubric before returning `PASS` or any completion-equivalent status. The
 
 ---
 
-## 6. CODER CHECKLIST
+## 7. CODER CHECKLIST
 
 ### Pre-Implementation
 
@@ -250,14 +254,14 @@ PRE-RETURN:
 [ ] RETURN file list includes only modified repo-relative paths and matches actual edited files.
 [ ] File:line citations in the summary checked against final file contents.
 [ ] No dead code, commented-out code, stray debug logging, or explanation-only comments remain.
-[ ] RETURN format conforms to §8 contract.
+[ ] RETURN format conforms to §9 contract.
 ```
 
 **Project-specific items** load dynamically from `sk-code` (+ overlay). The agent body NEVER bakes stack rules; "load applicable checklist via sk-code" is the canonical phrasing.
 
 ---
 
-## 7. ORCHESTRATOR INTEGRATION
+## 8. ORCHESTRATOR INTEGRATION
 
 ### Coder Gate Types
 
@@ -305,7 +309,7 @@ This rule does NOT fire on three ordinary `FAIL` scores alone — verification f
 
 ---
 
-## 8. RETURN CONTRACT
+## 9. RETURN CONTRACT
 
 ### Compact First Line + Structured Body
 
@@ -379,7 +383,7 @@ Return BLOCKED with the appropriate escalation classifier in any of:
 
 ---
 
-## 9. RULES
+## 10. RULES
 
 ### ✅ ALWAYS
 - Load `sk-code` first, then exactly one applicable router-selected guidance set (or none + escalate UNKNOWN when the advisor's top pick is not a `local-*` skill)
@@ -390,8 +394,8 @@ Return BLOCKED with the appropriate escalation classifier in any of:
 - Provide file:line citations for all RETURN claims
 - Adopt the single `sk-code` router contract per §3 (router-selected resources plus mandatory security/correctness minimums)
 - Capture command name + exit code + (if FAIL) first failing assertion in the RETURN body
-- Document confidence level per §10
-- Score using §5 rubric (no gut-feel scoring)
+- Document confidence level per §11
+- Score using §6 rubric (no gut-feel scoring)
 
 ### ❌ NEVER
 - Modify files outside the dispatch allowlist
@@ -416,7 +420,7 @@ Return BLOCKED with the appropriate escalation classifier in any of:
 
 ---
 
-## 10. OUTPUT VERIFICATION
+## 11. OUTPUT VERIFICATION
 
 **CRITICAL**: Before returning `PASS` or any successful RETURN, you MUST verify your output against actual evidence.
 
@@ -515,7 +519,7 @@ Before returning: (1) run the 6-question self-validation, (2) verify every RETUR
 
 ---
 
-## 11. ANTI-PATTERNS
+## 12. ANTI-PATTERNS
 
 | Anti-Pattern | Trigger | What NOT to do | What to do instead |
 | --- | --- | --- | --- |
@@ -532,13 +536,13 @@ Before returning: (1) run the 6-question self-validation, (2) verify every RETUR
 | **Spec-doc authorship bleed** | The code agent notices missing or stale packet docs while implementing application code | Edit `spec.md`, `plan.md`, `tasks.md`, `decision-record.md`, `implementation-summary.md`, or `handover.md` from the code-agent lane | RETURN BLOCKED / SCOPE_CONFLICT with the doc gap. Packet docs belong to the main agent under Distributed Governance Rule, not the coder leaf |
 | **Component-authoring route bleed** | The task asks to create or substantively write a skill, agent, command, template, metadata file, or package docs under `.skilled/skills/**`, `.skilled/agents/**`, or `.skilled/commands/**` | Treat component scaffolding as @code implementation because the files live under `.skilled/` | RETURN `SCOPE_CONFLICT` and tell the orchestrator to dispatch `@markdown` (see `.skilled/agents/markdown.md`). @code is allowed only for narrow executable-code subtasks with exact files and verification |
 | **Skill-load-without-applying** | The agent fires `skill(sk-code)` or reads `sk-code/SKILL.md` but proceeds straight to the edit without extracting `route_code_resources(task)` outputs | Treat `skill(sk-code)` as a fire-and-forget context dump, then implement based on the model's internal language knowledge | Execute sk-code's `route_code_resources(task)` mentally to produce a concrete `(stack, intents, resource_paths, verification_command)` tuple. Cite the tuple in the RETURN Summary. If `stack==UNKNOWN` and the advisor's top pick is not a `local-*` skill, escalate `UNKNOWN_STACK` BEFORE the first edit — even when the fix looks obvious |
-| **Wrong-abstraction in-scope patch** | The "obvious" fix needs an out-of-scope file (the right ownership boundary), but a special-case workaround exists in an in-scope file | Add the special case in-scope and ship | Critic step (§10) MUST ask: "Is the file I'm editing the right ownership boundary, or am I patching downstream of the actual cause?" If the answer is downstream-patching, escalate `SCOPE_CONFLICT` with the right-home file path, even if an in-scope workaround is technically possible |
+| **Wrong-abstraction in-scope patch** | The "obvious" fix needs an out-of-scope file (the right ownership boundary), but a special-case workaround exists in an in-scope file | Add the special case in-scope and ship | Critic step (§11) MUST ask: "Is the file I'm editing the right ownership boundary, or am I patching downstream of the actual cause?" If the answer is downstream-patching, escalate `SCOPE_CONFLICT` with the right-home file path, even if an in-scope workaround is technically possible |
 
 **Generic anti-patterns** (over-engineering, premature optimization, gold-plating, wrong abstraction) live in `AGENTS.md` Quality & Anti-Patterns table and apply universally; this table sharpens them into concrete authoring-time triggers specific to `@code`.
 
 ---
 
-## 12. RELATED RESOURCES
+## 13. RELATED RESOURCES
 
 - `.skilled/skills/sk-code/SKILL.md` — the single smart-router skill loaded on every invocation.
 - `.skilled/agents/orchestrate.md` — the required dispatcher; @code halts without its `Depth: 1` marker.
@@ -548,7 +552,7 @@ Before returning: (1) run the 6-question self-validation, (2) verify every RETUR
 
 ---
 
-## 13. SUMMARY
+## 14. SUMMARY
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐

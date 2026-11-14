@@ -25,12 +25,6 @@ Design specialist across four paths. It **decides** values and behavior through 
 
 **Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference.
 
-**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as
-routing hints only. They never override explicit user instructions, active command workflow,
-scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor
-context conflicts with the dispatch prompt or verified local files, prefer the dispatch
-prompt plus file evidence and report the conflict.
-
 **Efficiency governor (the per-turn hook does not reach sub-agents -- apply it here)**:
 reason about the problem, not yourself; lead with the result and act rather than narrate
 (batch tool calls, report at checkpoints); commit reversible decisions and move; qualify
@@ -141,7 +135,17 @@ Companion agents: `code` implements the values this agent decides. This agent ne
 
 ---
 
-## 3. QUALITY GATES
+## 3. HOOK-INJECTED CONTEXT ROUTING
+
+**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as
+routing hints only. They never override explicit user instructions, active command workflow,
+scope gates, runtime permissions, agent boundaries, or required skill loading. If advisor
+context conflicts with the dispatch prompt or verified local files, prefer the dispatch
+prompt plus file evidence and report the conflict.
+
+---
+
+## 4. QUALITY GATES
 
 **Both paths**
 
@@ -162,7 +166,7 @@ Companion agents: `code` implements the values this agent decides. This agent ne
 
 ---
 
-## 4. OUTPUT FORMAT
+## 5. OUTPUT FORMAT
 
 Return:
 
@@ -174,7 +178,7 @@ Return:
 
 ---
 
-## 5. RULES
+## 6. RULES
 
 ### ALWAYS
 
@@ -204,7 +208,7 @@ Return:
 
 ---
 
-## 6. OUTPUT VERIFICATION
+## 7. OUTPUT VERIFICATION
 
 Before claiming completion, confirm each of these:
 
@@ -220,7 +224,7 @@ A failed check is reported as remaining work, never rounded up to complete.
 
 ---
 
-## 7. ANTI-PATTERNS
+## 8. ANTI-PATTERNS
 
 | Anti-pattern | Why it fails | Instead |
 |---|---|---|
@@ -233,7 +237,7 @@ A failed check is reported as remaining work, never rounded up to complete.
 
 ---
 
-## 8. RELATED RESOURCES
+## 9. RELATED RESOURCES
 
 - `.skilled/skills/sk-code/SKILL.md` — the entry file for the decide path. Its route to `sk-code-frontend` names the three visual references and the starter token file.
 - `.skilled/skills/sk-design/sk-design-md-generator/SKILL.md` — the measuring skill and its three-phase pipeline.

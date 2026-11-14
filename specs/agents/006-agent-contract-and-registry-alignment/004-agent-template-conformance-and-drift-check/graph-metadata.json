@@ -19,7 +19,9 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "004-agent-template-conformance-and-drift-check operator decisions",
+      "agent template conformance implementation summary"
     ],
     "key_topics": [
       "agent",
@@ -36,28 +38,28 @@
       "goal"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      "scratch/required-sections.md",
-      ".skilled/agents/agent-registry.json",
+      "decision-record.md",
+      "implementation-summary.md",
       ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
-      ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
-      ".skilled/bin/README.md",
       ".skilled/bin/sync-agent-roster.cjs",
       ".skilled/bin/sync-agent-roster.vitest.ts",
-      ".skilled/bin/check-agent-mirror-sync.cjs",
-      "scratch/section-refs.md",
-      ".skilled/agents/orchestrate.md",
-      "scratch/baseline.txt",
+      ".skilled/agents/agent-registry.json",
+      ".skilled/bin/README.md",
+      ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+      "scratch/outline-move.py",
       "scratch/move-parity.md",
-      ".skilled/agents/code.md",
-      ".skilled/agents/context.md",
-      ".skilled/agents/review.md"
+      "scratch/section-refs.md",
+      "scratch/required-sections.md",
+      ".skilled/bin/check-agent-mirror-sync.cjs",
+      ".skilled/agents/orchestrate.md",
+      "scratch/baseline.txt"
     ],
     "entities": [
       {
@@ -91,33 +93,21 @@
         "source": "derived"
       },
       {
-        "name": "required-sections.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": "scratch/required-sections.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "agent-registry.json",
-        "kind": "config",
-        "path": ".skilled/agents/agent-registry.json",
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
         "name": "agent-template.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/bin/README.md",
         "source": "derived"
       },
       {
@@ -133,15 +123,51 @@
         "source": "derived"
       },
       {
-        "name": "check-agent-mirror-sync.cjs",
+        "name": "agent-registry.json",
+        "kind": "config",
+        "path": ".skilled/agents/agent-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/bin/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "outline-move.py",
         "kind": "file",
-        "path": ".skilled/bin/check-agent-mirror-sync.cjs",
+        "path": "scratch/outline-move.py",
+        "source": "derived"
+      },
+      {
+        "name": "move-parity.md",
+        "kind": "doc",
+        "path": "scratch/move-parity.md",
         "source": "derived"
       },
       {
         "name": "section-refs.md",
         "kind": "doc",
         "path": "scratch/section-refs.md",
+        "source": "derived"
+      },
+      {
+        "name": "required-sections.md",
+        "kind": "doc",
+        "path": "scratch/required-sections.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-agent-mirror-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/check-agent-mirror-sync.cjs",
         "source": "derived"
       },
       {
@@ -154,30 +180,6 @@
         "name": "baseline.txt",
         "kind": "file",
         "path": "scratch/baseline.txt",
-        "source": "derived"
-      },
-      {
-        "name": "move-parity.md",
-        "kind": "doc",
-        "path": "scratch/move-parity.md",
-        "source": "derived"
-      },
-      {
-        "name": "code.md",
-        "kind": "doc",
-        "path": ".skilled/agents/code.md",
-        "source": "derived"
-      },
-      {
-        "name": "context.md",
-        "kind": "doc",
-        "path": ".skilled/agents/context.md",
-        "source": "derived"
-      },
-      {
-        "name": "review.md",
-        "kind": "doc",
-        "path": ".skilled/agents/review.md",
         "source": "derived"
       },
       {
@@ -207,22 +209,26 @@
     ],
     "causal_summary": "`sk-doc/sk-create-agent/assets/agent-template.md` names the skills section `CAPABILITY SCAN`, gives hook-injected advisor context its own section and defines an input and scope gate numbered `0b`",
     "created_at": "2026-11-14T11:36:23Z",
-    "last_save_at": "2026-11-14T13:16:42.135Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-14T13:26:02.030Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md"
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f4742609e673f9f94dbe4493c6b546c6d2991bdbfe48f1cf6909509a571c0a6f",
+    "source_fingerprint": "sha256:fbc7d94b9e7ca252942b638ee637482f33c5791c0bf63dbbe69af00a9561e0fa",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1fd9c48749d0235b5488377f57c794bc012022e4820d13975ba7077e140f8f77",
+      "spec.md": "6009c31ce9ef831dd135daa5c81c273531cc31f4ec492d50453423536e39cda1",
       "plan.md": "e3b2aaabf083b9c9e93e4016ce56b12cb288bde01175c342e5b727834615eb34",
-      "tasks.md": "61558b58e8d875cbff201302fe00b745e65ce02ec9df59fc6704c24b5eed4260"
+      "tasks.md": "a7238c764b973bc48755456c6cf0e5c5e7ec73e450fa47d632bb53413269ebaa",
+      "decision-record.md": "a84b0ad325374531a40eb7081c8c6fda7354998e36845b1bd824f638bf202883",
+      "implementation-summary.md": "f10132835adc7640e10df69a48f158edfe28ad4f28f16f3692943fd1bdbcc744"
     },
     "last_active_at": null
   }

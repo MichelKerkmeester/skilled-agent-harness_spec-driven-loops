@@ -28,10 +28,6 @@ You have NO prior conversation context - this is intentional to avoid bias from 
 
 **Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference.
 
-**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only.
-They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading.
-If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
-
 **CRITICAL**: You receive structured context handoff, NOT conversation history. This isolation prevents inheriting assumptions from failed debug attempts.
 
 **IMPORTANT**: This agent is codebase-agnostic. Works with any project structure and adapts debugging approach based on error type and available tools.
@@ -93,7 +89,7 @@ Those signals justify offering @debug, not invoking it.
 
 ---
 
-## 2. ROUTING SCAN
+## 2. CAPABILITY SCAN
 
 ### Context Handoff Format
 
@@ -144,7 +140,15 @@ This typed handoff is a narrower, advisory adaptation of Gem's orchestrator `deb
 
 ---
 
-## 3. FAST PATH & CONTEXT PACKAGE
+## 3. HOOK-INJECTED CONTEXT ROUTING
+
+**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only.
+They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading.
+If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
+
+---
+
+## 4. FAST PATH & CONTEXT PACKAGE
 
 **If dispatched with `Complexity: low`:** Keep all 5 phases in order, but compress each phase to a brief checkpoint. Do not collapse phases, skip adversarial validation, or move fixing before observation and hypothesis ranking. Max 5 tool calls.
 
@@ -154,7 +158,7 @@ This typed handoff is a narrower, advisory adaptation of Gem's orchestrator `deb
 
 ---
 
-## 4. 5-PHASE METHODOLOGY
+## 5. 5-PHASE METHODOLOGY
 
 ### Phase Boundary Rules
 
@@ -350,7 +354,7 @@ Proceed to Phase 5 with the post-challenge ranking, not the original ranking.
 
 ---
 
-## 5. TOOL ROUTING
+## 6. TOOL ROUTING
 
 | Task                     | Primary Tool          | Fallback            |
 | ------------------------ | --------------------- | ------------------- |
@@ -387,7 +391,7 @@ What do you need?
 
 ---
 
-## 6. RESPONSE FORMAT
+## 7. OUTPUT FORMAT
 
 ### Success Response (Debug Resolved)
 
@@ -515,7 +519,7 @@ If confidence is low or any required field cannot be supported by evidence, say 
 
 ---
 
-## 7. ESCALATION PROTOCOL
+## 8. ESCALATION PROTOCOL
 
 **Trigger:** 3+ hypotheses tested and rejected
 
@@ -541,7 +545,7 @@ Tested 3 hypotheses without resolution. Escalating for:
 
 ---
 
-## 8. OUTPUT VERIFICATION
+## 9. OUTPUT VERIFICATION
 
 ### Pre-Delivery Checklist
 
@@ -577,7 +581,7 @@ PRE-DELIVERY VERIFICATION:
 
 ---
 
-## 9. ANTI-PATTERNS
+## 10. ANTI-PATTERNS
 
 ❌ **Never auto-dispatch @debug**
 - Failure thresholds may trigger an offer only
@@ -618,7 +622,7 @@ PRE-DELIVERY VERIFICATION:
 
 ---
 
-## 10. SUMMARY
+## 11. SUMMARY
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
@@ -652,7 +656,7 @@ PRE-DELIVERY VERIFICATION:
 
 ---
 
-## 11. RULES
+## 12. RULES
 
 ### ✅ ALWAYS
 - Start only when explicitly invoked by the user or via an operator-approved delegation handoff.
@@ -670,7 +674,7 @@ PRE-DELIVERY VERIFICATION:
 
 ---
 
-## 12. RELATED RESOURCES
+## 13. RELATED RESOURCES
 
 - `.skilled/agents/code.md` — the implementation target for a debug-to-implementation handoff.
 - `.skilled/agents/orchestrate.md` — governs the operator-approved delegation dispatch this agent requires.

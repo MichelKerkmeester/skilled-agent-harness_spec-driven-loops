@@ -194,7 +194,7 @@ Follow this order for new agents and material rewrites:
 10. Add explicit output verification, anti-patterns, and related resources.
 11. Link supporting skills, commands, references, and companion agents rather than copying their full guidance.
 12. Remove template placeholders and check that the document stays focused on the runtime role.
-13. Validate markdown structure, frontmatter, runtime placement, permission consistency, and related links.
+13. Validate markdown structure, frontmatter, runtime placement, permission consistency, and related links. Run `node .skilled/bin/sync-agent-roster.cjs --check` after adding or editing an agent file and after editing the required-sections list in `assets/agent-template.md`: it compares every agent's outline with that list.
 14. Deliver only after validation passes or after reporting the exact blocker.
 
 When the user invokes `/create:agent`, treat the command as the preferred entry point, but keep this same creation contract as the source of truth for the generated file.

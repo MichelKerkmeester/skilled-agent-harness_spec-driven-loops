@@ -26,6 +26,19 @@ const REPO_ROOT = path.resolve(__dirname, '..', '..');
 const AGENTS_DIR = path.join(REPO_ROOT, '.skilled', 'agents');
 const REGISTRY_PATH = path.join(AGENTS_DIR, 'agent-registry.json');
 
+const TEMPLATE = {
+  path: path.join(
+    REPO_ROOT,
+    '.skilled',
+    'skills',
+    'sk-doc',
+    'sk-create-agent',
+    'assets',
+    'agent-template.md',
+  ),
+  relative: '.skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md',
+};
+
 const ORCHESTRATE = {
   path: path.join(AGENTS_DIR, 'orchestrate.md'),
   relative: '.skilled/agents/orchestrate.md',
@@ -179,6 +192,114 @@ function skillPathProblems(agentName) {
   return problems;
 }
 
+// The template owns the required-section list, so the check reads it at run time
+// and holds no second copy that could drift from the guidance it enforces. A
+// list that cannot be read is fatal rather than an absent check.
+function requiredSections() {
+  let source;
+  try {
+    source = fs.readFileSync(TEMPLATE.path, 'utf8');
+  } catch (err) {
+    unreadableRequiredSections(err.message);
+  }
+  const lines = source.split('\n');
+  const begin = lines.findIndex((line) => line.trim() === '<!-- REQUIRED-SECTIONS:BEGIN -->');
+  if (begin === -1) {
+    unreadableRequiredSections('missing REQUIRED-SECTIONS:BEGIN marker');
+  }
+  const end = lines.findIndex(
+    (line, index) => index > begin && line.trim() === '<!-- REQUIRED-SECTIONS:END -->',
+  );
+  if (end === -1) {
+    unreadableRequiredSections('missing REQUIRED-SECTIONS:END marker');
+  }
+  const entries = [];
+  for (const line of lines.slice(begin + 1, end)) {
+    if (line.trim() === '') {
+      continue;
+    }
+    const entry = /^- `([^`]+)`$/.exec(line.trim());
+    if (entry === null) {
+      unreadableRequiredSections(`line is not a backticked section title: ${line.trim()}`);
+    }
+    entries.push(entry[1]);
+  }
+  if (entries.length === 0) {
+    unreadableRequiredSections('the list is empty');
+  }
+  return entries;
+}
+
+function unreadableRequiredSections(reason) {
+  console.error(
+    `sync-agent-roster.cjs: cannot read the required sections from ${TEMPLATE.relative}: ${reason}`,
+  );
+  process.exit(2);
+}
+
+// A file's numbered headings only mean something against the template list, so
+// this comparison reads them outside fenced blocks, honors the record's declared
+// exceptions, and reports presence and order in one place per agent.
+function templateProblems(name, required, record) {
+  const problems = [];
+  const exceptions = Array.isArray(record && record.templateExceptions)
+    ? record.templateExceptions
+    : [];
+  const excepted = new Set();
+  for (const exception of exceptions) {
+    const section = exception && exception.section;
+    const reason = exception && exception.reason;
+    if (!required.includes(section)) {
+      problems.push(`template exception names no required section: ${name}: ${section}`);
+    } else {
+      excepted.add(section);
+    }
+    if (typeof reason !== 'string' || reason.trim() === '') {
+      problems.push(`template exception without a reason: ${name}: ${section}`);
+    }
+  }
+
+  const source = fs.readFileSync(path.join(AGENTS_DIR, `${name}.md`), 'utf8');
+  const headings = [];
+  let inFence = false;
+  for (const line of source.split('\n')) {
+    if (line.startsWith('```')) {
+      inFence = !inFence;
+      continue;
+    }
+    if (inFence) {
+      continue;
+    }
+    const heading = /^## (\d+)\. (.+)$/.exec(line);
+    if (heading !== null) {
+      headings.push(heading[2].trim());
+    }
+  }
+
+  if (headings.length === 0) {
+    problems.push(`agent file has no numbered sections: ${name}`);
+    return problems;
+  }
+
+  let lastPosition = -1;
+  for (const entry of required) {
+    if (excepted.has(entry)) {
+      continue;
+    }
+    const position = headings.findIndex((title) => title.startsWith(entry));
+    if (position === -1) {
+      problems.push(`missing required section: ${name}: ${entry}`);
+      continue;
+    }
+    if (position < lastPosition) {
+      problems.push(`required section out of order: ${name}: ${entry}`);
+      continue;
+    }
+    lastPosition = position;
+  }
+  return problems;
+}
+
 // Markers are matched by their prefix through the block name, so the trailing
 // "edit ... and run ..." hint on a begin marker may change without hiding it.
 function findBlock(lines, file, name) {
@@ -236,6 +357,8 @@ function writeMode(registry) {
 function checkMode(registry) {
   const problems = [];
   const agents = registryAgents(registry);
+  const required = requiredSections();
+  const recordsByName = new Map(agents.map((agent) => [agent.name, agent]));
 
   if (agents.length === 0) {
     problems.push('registry holds no agents');
@@ -266,6 +389,7 @@ function checkMode(registry) {
 
   for (const name of agentFiles) {
     problems.push(...skillPathProblems(name));
+    problems.push(...templateProblems(name, required, recordsByName.get(name)));
   }
 
   for (const block of BLOCKS) {

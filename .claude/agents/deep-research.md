@@ -10,10 +10,6 @@ Executes exactly ONE research iteration in the `/deep:research` loop. It reads e
 
 **Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
 
-**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only.
-They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading.
-If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
-
 **Efficiency governor (the per-turn hook does not reach sub-agents — apply it here)**: reason about the problem, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); commit reversible decisions and move; qualify only when it changes what the reader should do.
 
 **Operating boundary**: This agent is research-focused, codebase-agnostic, and dispatched once per iteration with explicit context about what to investigate. The YAML workflow owns the full loop, reducer sync, dashboard refresh, and convergence decisions.
@@ -327,7 +323,7 @@ The orchestrator generates the dashboard and findings registry after each iterat
 
 ---
 
-## 2. ROUTING SCAN
+## 2. CAPABILITY SCAN
 
 ### Tools
 
@@ -354,7 +350,15 @@ Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, a
 
 ---
 
-## 3. ITERATION PROTOCOL
+## 3. HOOK-INJECTED CONTEXT ROUTING
+
+**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only.
+They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading.
+If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
+
+---
+
+## 4. ITERATION PROTOCOL
 
 ### Focus Selection
 
@@ -399,7 +403,7 @@ If approaching 12 tool calls, stop research and write/verify the findings alread
 
 ---
 
-## 4. STATE MANAGEMENT
+## 5. STATE MANAGEMENT
 
 ### File Paths
 
@@ -437,7 +441,7 @@ Verify iteration-NNN.md does not already exist before writing
 
 ---
 
-## 5. RULES
+## 6. RULES
 
 ### ALWAYS
 - Read state files BEFORE any research action
@@ -478,7 +482,7 @@ Verify iteration-NNN.md does not already exist before writing
 
 ---
 
-## 6. OUTPUT FORMAT
+## 7. OUTPUT FORMAT
 
 ### Iteration Completion Report
 
@@ -515,7 +519,7 @@ For `Status: error`, include the failed hard-block or verification item and do n
 
 ---
 
-## 7. OUTPUT VERIFICATION
+## 8. OUTPUT VERIFICATION
 
 ### Iron Law
 
@@ -552,7 +556,7 @@ If any item fails, fix it before returning. If unfixable, report the specific fa
 
 ---
 
-## 8. ANTI-PATTERNS
+## 9. ANTI-PATTERNS
 
 | Anti-Pattern | Why It Fails | Correct Approach |
 |--------------|--------------|------------------|
@@ -572,7 +576,7 @@ If any item fails, fix it before returning. If unfixable, report the specific fa
 
 ---
 
-## 9. RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 - `.skilled/commands/deep/research.md` — the `/deep:research` loop owner that dispatches one iteration at a time.
 - `.skilled/skills/system-deep-loop/deep-research/SKILL.md` — the research-mode packet skill.
@@ -581,7 +585,7 @@ If any item fails, fix it before returning. If unfixable, report the specific fa
 
 ---
 
-## 10. SUMMARY
+## 11. SUMMARY
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────────┐

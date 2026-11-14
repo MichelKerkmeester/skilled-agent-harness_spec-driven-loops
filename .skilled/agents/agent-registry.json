@@ -42,7 +42,13 @@
       "taskType": "Multi-strategy planning and architecture synthesis",
       "skills": "Multi-lens planning rubric (planning-only)",
       "notes": "Planning-only multi-strategy architect (max 3 strategies). Post-dispatch responsibility: when @orchestrate dispatches at Depth 1, run `node .skilled/skills/system-deep-loop/deep-ai-council/scripts/persist-artifacts.cjs <packet>` after the LEAF returns to persist `ai-council/` artifacts (see ai-council persistence protocol). If the LEAF's returned report shows `max_rounds` reached without a converged plan (check `current_round >= max_rounds` in `ai-council-config.json`), add `--not-converged` to that invocation — the helper cannot detect max-round exhaustion on its own and defaults to `convergence:true` otherwise.",
-      "summary": "multi-strategy AI Council planning, writes only ai-council artifacts"
+      "summary": "multi-strategy AI Council planning, writes only ai-council artifacts",
+      "templateExceptions": [
+        {
+          "section": "HOOK-INJECTED CONTEXT ROUTING",
+          "reason": "Twelve files in the deep-ai-council skill cite this agent's sections 3 to 17 by number, so the section sits after them and no cited number moves."
+        }
+      ]
     },
     {
       "name": "markdown",
@@ -81,7 +87,13 @@
       "taskType": "Deep-loop iterative code-audit pass (`/deep:review` only — explicit deep-loop convergence request, not a one-shot review)",
       "skills": "`system-spec-kit`, `deep-review`",
       "notes": "LEAF agent; iterative code-audit dimension pass, P0/P1/P2 findings, JSONL state",
-      "summary": "deep-review iteration agent, one dimension per pass with P0/P1/P2 findings"
+      "summary": "deep-review iteration agent, one dimension per pass with P0/P1/P2 findings",
+      "templateExceptions": [
+        {
+          "section": "OUTPUT FORMAT",
+          "reason": "Its output is the iteration file and the state rows that its REVIEW CONTRACT section defines, so a second format section would restate them."
+        }
+      ]
     },
     {
       "name": "code",
@@ -93,7 +105,13 @@
       "taskType": "Implementation / testing",
       "skills": "`sk-code` (stack-agnostic; sk-code performs detection at dispatch time); orchestrator dispatches `@review` separately for formal review",
       "notes": "Application-code LEAF; sk-code stack delegation; D3 convention-floor caller-restriction (`Depth: 1` marker required); fail-closed verify",
-      "summary": "application-code implementation via sk-code, write-capable LEAF dispatched only by orchestrate"
+      "summary": "application-code implementation via sk-code, write-capable LEAF dispatched only by orchestrate",
+      "templateExceptions": [
+        {
+          "section": "OUTPUT FORMAT",
+          "reason": "It returns a fixed contract under RETURN CONTRACT, and the orchestrator cites that section by that name."
+        }
+      ]
     },
     {
       "name": "debug",
@@ -143,7 +161,13 @@
       "taskType": "Task decomposition, delegation, evaluation and synthesis",
       "skills": "n/a",
       "notes": "Top-level orchestrator; the only agent that dispatches others",
-      "summary": "senior multi-agent orchestration, decomposition, delegation and synthesis"
+      "summary": "senior multi-agent orchestration, decomposition, delegation and synthesis",
+      "templateExceptions": [
+        {
+          "section": "OUTPUT FORMAT",
+          "reason": "It delivers a synthesis shaped by the request under SYNTHESIS & DELIVERY and has no fixed output shape of its own."
+        }
+      ]
     }
   ],
   "routingExtras": [

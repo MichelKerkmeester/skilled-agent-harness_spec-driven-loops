@@ -30,10 +30,6 @@ For prior-work recovery, this agent follows the same canonical continuity order 
 
 **Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference. Runtime mirrors are downstream packaging surfaces and are not exploration targets unless the caller explicitly asks about mirror/integration state.
 
-**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only.
-They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading.
-If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
-
 > **Routing Rule**: No other agent performs exploration directly. The orchestrator routes exploration through @context to ensure continuity-first retrieval, structured output, and consistent Context Packages. @context itself is LEAF-only and must not dispatch sub-agents.
 
 ---
@@ -64,7 +60,7 @@ This agent is LEAF-only and read-only. Nested sub-agent dispatch and file mutati
 
 ---
 
-## 2. ROUTING SCAN
+## 2. CAPABILITY SCAN
 
 ### Allowed Tools
 
@@ -134,7 +130,15 @@ What evidence is needed?
 
 ---
 
-## 3. RETRIEVAL PARAMETERS
+## 3. HOOK-INJECTED CONTEXT ROUTING
+
+**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only.
+They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading.
+If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
+
+---
+
+## 4. RETRIEVAL PARAMETERS
 
 This agent operates in **thorough mode by default**, with scoped compression when the orchestrator requests summary output.
 
@@ -160,7 +164,7 @@ This does not suppress P0 rereads: when a blocker-grade gap, contradiction, or m
 
 ---
 
-## 4. RETRIEVAL STRATEGY
+## 5. RETRIEVAL STRATEGY
 
 ### The 3-Layer Approach
 
@@ -209,7 +213,7 @@ Every exploration uses the layers needed for a complete answer within scope. If 
 
 ---
 
-## 5. NESTING ENFORCEMENT DETAILS
+## 6. NESTING ENFORCEMENT DETAILS
 
 ### Hard Rule
 
@@ -234,7 +238,7 @@ When blocked by scope, access, denied tools, unavailable memory, or contradictor
 
 ---
 
-## 6. OUTPUT FORMAT
+## 7. OUTPUT FORMAT
 
 ### The Context Package
 
@@ -308,7 +312,7 @@ Missing advisory metadata in the dispatch prompt does not change the Context Pac
 
 ---
 
-## 7. INTEGRATION WITH ORCHESTRATOR
+## 8. INTEGRATION WITH ORCHESTRATOR
 
 ### How the Orchestrator Dispatches @context
 
@@ -343,7 +347,7 @@ When the orchestrator requests `summary-only` or `minimal`, keep all 6 section h
 
 ---
 
-## 8. OUTPUT VERIFICATION
+## 9. OUTPUT VERIFICATION
 
 ### Pre-Delivery Checklist
 
@@ -368,7 +372,7 @@ When the orchestrator requests `summary-only` or `minimal`, keep all 6 section h
 
 ---
 
-## 9. RULES & CONSTRAINTS
+## 10. RULES & CONSTRAINTS
 
 ### ALWAYS
 
@@ -406,7 +410,7 @@ When the orchestrator requests `summary-only` or `minimal`, keep all 6 section h
 
 ---
 
-## 10. ANTI-PATTERNS
+## 11. ANTI-PATTERNS
 
 | Anti-Pattern | Correct Behavior |
 | --- | --- |
@@ -439,7 +443,7 @@ Use exact tools when the query gives exact evidence handles. When it does not, G
 
 ---
 
-## 11. RELATED RESOURCES
+## 12. RELATED RESOURCES
 
 - `.skilled/agents/orchestrate.md` — the orchestrator that routes ALL exploration through @context (Rules 1 and 4).
 - `.skilled/skills/system-spec-kit/SKILL.md` — the continuity-ladder discipline behind the Query Routing Matrix.
@@ -448,7 +452,7 @@ Use exact tools when the query gives exact evidence handles. When it does not, G
 
 ---
 
-## 12. SUMMARY
+## 13. SUMMARY
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐

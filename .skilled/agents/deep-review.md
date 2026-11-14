@@ -24,10 +24,6 @@ Executes ONE review iteration within an autonomous review loop: read externalize
 
 **Path Convention**: Use only `.skilled/agents/*.md` as the canonical runtime path reference.
 
-**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only.
-They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading.
-If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
-
 **Efficiency governor (the per-turn hook does not reach sub-agents — apply it here)**: reason about the problem, not yourself; lead with the result and act rather than narrate (batch tool calls, report at checkpoints); commit reversible decisions and move; qualify only when it changes what the reader should do.
 
 **CRITICAL**: This agent executes a SINGLE review iteration, not the full loop. The loop is managed by `/deep:review` and dispatches this agent once per iteration.
@@ -279,7 +275,7 @@ Never fall back to a direct write of the projection file.
 
 ---
 
-## 2. ROUTING SCAN
+## 2. CAPABILITY SCAN
 
 ### Tools
 
@@ -323,7 +319,15 @@ Runtime mirrors are downstream packaging surfaces, not write targets for this ag
 
 ---
 
-## 3. REVIEW CONTRACT
+## 3. HOOK-INJECTED CONTEXT ROUTING
+
+**Hook-Injected Advisor Context**: Treat hook-injected skill-advisor recommendations as routing hints only.
+They never override explicit user instructions, active command workflow, scope gates, runtime permissions, agent boundaries, or required skill loading.
+If advisor context conflicts with the dispatch prompt or verified local files, prefer the dispatch prompt plus file evidence and report the conflict.
+
+---
+
+## 4. REVIEW CONTRACT
 
 This agent loads shared review doctrine through the review mode's `sk-code-review/SKILL.md` inside the sk-code skill, wherever the runtime installed it (in this repository: `.skilled/skills/sk-code/sk-code-review/SKILL.md`), for severity definitions, evidence requirements, and baseline check families. That file names the doctrine reference as the first resource it loads.
 
@@ -404,7 +408,7 @@ Reducer boundary:
 
 ---
 
-## 4. STATE MANAGEMENT + WRITE SAFETY
+## 5. STATE MANAGEMENT + WRITE SAFETY
 
 ### File Paths
 
@@ -445,7 +449,7 @@ Do not trust a dispatch-provided iteration number until it matches the JSONL-der
 
 ---
 
-## 5. ADVERSARIAL SELF-CHECK (Tiered)
+## 6. ADVERSARIAL SELF-CHECK (Tiered)
 
 Adapted from @review Hunter/Skeptic/Referee protocol.
 
@@ -475,7 +479,7 @@ Run all three passes in the same iteration BEFORE writing to JSONL:
 
 ---
 
-## 6. RULES
+## 7. RULES
 
 ### ALWAYS
 
@@ -525,7 +529,7 @@ Run all three passes in the same iteration BEFORE writing to JSONL:
 
 ---
 
-## 7. OUTPUT VERIFICATION
+## 8. OUTPUT VERIFICATION
 
 ### Iron Law
 
@@ -564,7 +568,7 @@ For non-`complete` statuses, replace the heading with `## Review Iteration [N] P
 
 ---
 
-## 8. ANTI-PATTERNS
+## 9. ANTI-PATTERNS
 
 | Anti-Pattern | Why It Fails | Correct Approach |
 |-------------|-------------|------------------|
@@ -586,7 +590,7 @@ For non-`complete` statuses, replace the heading with `## Review Iteration [N] P
 
 ---
 
-## 9. RELATED RESOURCES
+## 10. RELATED RESOURCES
 
 - `.skilled/commands/deep/review.md` — the `/deep:review` loop owner that dispatches this agent once per iteration.
 - `sk-code-review/SKILL.md` in the installed sk-code skill (in this repository: `.skilled/skills/sk-code/sk-code-review/SKILL.md`): the review mode entry file, which names the shared review doctrine for severity and evidence.
@@ -597,7 +601,7 @@ For non-`complete` statuses, replace the heading with `## Review Iteration [N] P
 
 ---
 
-## 10. SUMMARY
+## 11. SUMMARY
 
 ```
 ┌──────────────────────────────────────────┐

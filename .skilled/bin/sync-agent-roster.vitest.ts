@@ -11,6 +11,7 @@ const SCRIPTS_DIR = '.skilled/bin';
 const AGENTS_DIR = '.skilled/agents';
 const SCRIPT_NAME = 'sync-agent-roster.cjs';
 const REGISTRY_NAME = 'agent-registry.json';
+const TEMPLATE_PATH = '.skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md';
 
 type AgentRecord = {
   name: string;
@@ -21,6 +22,7 @@ type AgentRecord = {
   skills: string;
   notes: string;
   summary: string;
+  templateExceptions?: Array<{ section: string; reason: string }>;
 };
 
 type Registry = {
@@ -50,6 +52,22 @@ const ROUTED_NAMES = [
   'juliet',
 ];
 
+const REQUIRED_SECTIONS_DOC = `## 1. CORE WORKFLOW
+
+## 2. CAPABILITY SCAN
+
+## 3. OUTPUT VERIFICATION
+`;
+
+const TEMPLATE_DOC = `# Fixture Agent Template
+
+<!-- REQUIRED-SECTIONS:BEGIN -->
+- \`CORE WORKFLOW\`
+- \`CAPABILITY SCAN\`
+- \`OUTPUT VERIFICATION\`
+<!-- REQUIRED-SECTIONS:END -->
+`;
+
 const ORCHESTRATE_DOC = `# Fixture Orchestrator
 
 ## 2. ROUTING SCAN
@@ -71,7 +89,8 @@ placeholder
 <!-- BEGIN GENERATED: agent-files. Edit agent-registry.json, then run node .skilled/bin/sync-agent-roster.cjs -->
 placeholder
 <!-- END GENERATED: agent-files -->
-`;
+
+${REQUIRED_SECTIONS_DOC}`;
 
 const README_DOC = `AGENTS DIRECTORY
 ================
@@ -160,10 +179,14 @@ beforeEach(() => {
   const registry = buildRegistry();
   writeRegistry(registry);
   for (const agent of registry.agents) {
-    writeFile(path.join(AGENTS_DIR, `${agent.name}.md`), `---\nname: ${agent.name}\n---\n\n# ${agent.name}\n`);
+    writeFile(
+      path.join(AGENTS_DIR, `${agent.name}.md`),
+      `---\nname: ${agent.name}\n---\n\n# ${agent.name}\n\n${REQUIRED_SECTIONS_DOC}`,
+    );
   }
   writeFile(path.join(AGENTS_DIR, 'orchestrate.md'), ORCHESTRATE_DOC);
   writeFile(path.join(AGENTS_DIR, 'README.txt'), README_DOC);
+  writeFile(TEMPLATE_PATH, TEMPLATE_DOC);
 
   const generated = runSync();
   expect(generated.status).toBe(0);
@@ -253,5 +276,79 @@ describe('sync-agent-roster', () => {
 
     expect(result.status).toBe(0);
     expect(result.stdout).toContain('agent-roster: OK');
+  });
+
+  it('flags a missing section', () => {
+    const agentPath = path.join(tmpDir, AGENTS_DIR, 'alpha.md');
+    const content = fs.readFileSync(agentPath, 'utf8');
+    fs.writeFileSync(agentPath, content.replace('## 2. CAPABILITY SCAN\n', ''), 'utf8');
+
+    const result = runSync('--check');
+
+    expect(result.status).toBe(1);
+    expect(result.stdout).toContain('missing required section:');
+    expect(result.stdout).toContain('alpha');
+    expect(result.stdout).toContain('CAPABILITY SCAN');
+  });
+
+  it('flags a renamed section', () => {
+    const agentPath = path.join(tmpDir, AGENTS_DIR, 'alpha.md');
+    const content = fs.readFileSync(agentPath, 'utf8');
+    fs.writeFileSync(agentPath, content.replace('## 2. CAPABILITY SCAN', '## 2. ROUTING SCAN'), 'utf8');
+
+    const result = runSync('--check');
+
+    expect(result.status).toBe(1);
+    expect(result.stdout).toContain('missing required section:');
+    expect(result.stdout).toContain('alpha');
+    expect(result.stdout).toContain('CAPABILITY SCAN');
+  });
+
+  it('flags an out-of-order section', () => {
+    const agentPath = path.join(tmpDir, AGENTS_DIR, 'alpha.md');
+    const content = fs.readFileSync(agentPath, 'utf8');
+    fs.writeFileSync(
+      agentPath,
+      content.replace(
+        '## 2. CAPABILITY SCAN\n\n## 3. OUTPUT VERIFICATION',
+        '## 2. OUTPUT VERIFICATION\n\n## 3. CAPABILITY SCAN',
+      ),
+      'utf8',
+    );
+
+    const result = runSync('--check');
+
+    expect(result.status).toBe(1);
+    expect(result.stdout).toContain('required section out of order:');
+  });
+
+  it('accepts a section the registry excepts', () => {
+    const agentPath = path.join(tmpDir, AGENTS_DIR, 'alpha.md');
+    const content = fs.readFileSync(agentPath, 'utf8');
+    fs.writeFileSync(agentPath, content.replace('## 2. CAPABILITY SCAN\n', ''), 'utf8');
+    const registry = readRegistry();
+    const record = registry.agents.find((agent) => agent.name === 'alpha');
+    if (record === undefined) {
+      throw new Error('fixture record missing');
+    }
+    record.templateExceptions = [
+      { section: 'CAPABILITY SCAN', reason: 'this role scans no capabilities' },
+    ];
+    writeRegistry(registry);
+
+    const result = runSync('--check');
+
+    expect(result.status).toBe(0);
+  });
+
+  it('exits 2 when the required list cannot be parsed', () => {
+    const templatePath = path.join(tmpDir, TEMPLATE_PATH);
+    const content = fs.readFileSync(templatePath, 'utf8');
+    fs.writeFileSync(templatePath, content.replace('<!-- REQUIRED-SECTIONS:END -->\n', ''), 'utf8');
+
+    const result = runSync('--check');
+
+    expect(result.status).toBe(2);
+    expect(result.stderr).toContain('cannot read the required sections');
   });
 });
