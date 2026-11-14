@@ -2823,6 +2823,30 @@ test('resolveGoalPacket gives a Claude sender with no goal entry the nearest unf
   assert.equal(claude(), '', 'a slice over the budget cannot be sent');
 });
 
+// A goal far above the note's folder may belong to work the session never touched, so the
+// search stops at the folder's parent.
+test('resolveGoalPacket looks no further up than the parent of the note folder', (t) => {
+  const sandbox = createSandbox(t);
+  const roots = [sandbox.repoRoot];
+  writeGoalBudget(sandbox.repoRoot);
+  const leaf = `${GOAL_PACKET}/001-leaf-phase`;
+  fs.mkdirSync(path.join(sandbox.repoRoot, leaf), { recursive: true });
+  const claude = (specFolder) => resolveGoalPacket({
+    runtime: 'claude',
+    sessionId: GOAL_SESSION_ID,
+    specFolder,
+    roots,
+    env: writeClaudeLog(sandbox, [{ type: 'user', message: { content: 'hello' } }]),
+  });
+
+  writeGoalPacket(sandbox.repoRoot, GOAL_PARENT, packetGoalText());
+  assert.equal(claude(leaf), '', 'the only open goal is two levels up');
+  assert.equal(claude(GOAL_PACKET), GOAL_PARENT, 'the same goal is the parent of this folder');
+
+  writeGoalPacket(sandbox.repoRoot, GOAL_PACKET, packetGoalText());
+  assert.equal(claude(leaf), GOAL_PACKET, 'the parent of the note folder holds an open goal');
+});
+
 test('resolveGoalPacket leaves an ended or unreadable Claude goal uncarried', (t) => {
   const sandbox = createSandbox(t);
   const roots = [sandbox.repoRoot];

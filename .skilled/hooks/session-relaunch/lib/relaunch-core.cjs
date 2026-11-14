@@ -672,9 +672,13 @@ function claudeGoalPacketResult({ sessionId, specFolder, roots, handoffPath, env
     // own, so its log is silent and the note it claimed is what still says so.
     if (claimedNoteEndedGoal(handoffPath, sessionId)) return { ...none, ended: true };
     if (!whole) return none;
+    // Nothing ties a packet goal to this session beyond where the note sits, so only the
+    // note's folder and its parent count. A leaf phase binds through its parent, which is
+    // why the parent is kept, and a goal further up may belong to work the session never did.
+    const nearby = lineage.slice(0, 2);
     return {
       ...none,
-      packet: firstUsablePacket(lineage, roots, (candidate) => packetGoalIsSettable(candidate, roots)),
+      packet: firstUsablePacket(nearby, roots, (candidate) => packetGoalIsSettable(candidate, roots)),
     };
   }
   if (!latest.active) return { ...none, ended: true };
