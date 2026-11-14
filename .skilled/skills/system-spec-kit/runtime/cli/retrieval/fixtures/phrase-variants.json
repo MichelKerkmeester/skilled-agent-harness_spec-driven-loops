@@ -1,5 +1,5 @@
 {
-  "manifestHash": "423d4a85127e81f7c90cdf44239e382e54faf0d3d6ec70c87d6b2d87f0e5f4fc",
+  "manifestHash": "1f8730e7f14c825fc9c8f9507478cd6f0e7d349ebe90ff6049eedc76546ccd0f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10493,6 +10493,9 @@
     ],
     "agent registry and generated rosters tasks": [
       "agent registry and generated rosters tasks"
+    ],
+    "agent registry step": [
+      "agent registry step"
     ],
     "agent routing documentation": [
       "agent routing documentation"
@@ -107372,6 +107375,9 @@
     "sk create agent 1 0 7 0": [
       "sk-create-agent 1.0.7.0"
     ],
+    "sk create agent 1 0 8 0": [
+      "sk-create-agent 1.0.8.0"
+    ],
     "sk create agent implementation summary": [
       "sk create agent implementation summary"
     ],
@@ -107419,6 +107425,9 @@
     ],
     "sk create agent v1 0 7 0": [
       "sk-create-agent v1.0.7.0"
+    ],
+    "sk create agent v1 0 8 0": [
+      "sk-create-agent v1.0.8.0"
     ],
     "sk create benchmark": [
       "sk create benchmark"

@@ -1,0 +1,25 @@
+# Baseline at 63e6261895
+
+## Measured Behavior, rerun
+$ rg -c -i 'tool mapping' .skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md || echo 0
+0
+$ rg -n -o 'Harness tool names are lowercase \([^)]*\)' .skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md
+61:Harness tool names are lowercase (`bash`, `write`, `edit`, `subagent`)
+
+## T002
+dsh path: /Users/michelkerkmeester/.local/bin/dsh
+dsh version: 0.2.2-rc.3. The pin in references/cli-reference.md line 53 and in hard-rules.json (pinned-version-required) is 0.2.2-rc.1, so the installed version is NOT the pin.
+pin waiver: the operator chose "Waive the pin for this probe" through the question tool on 2026-11-14. Both runs below ran on 0.2.2-rc.3 and say nothing certain about 0.2.2-rc.1.
+route: LLM Gateway, .dsh/patches/route-llmgateway-deepseek.patch.yml, model deepseek-v4.1-flash-1017 at max
+route key variable: LLMGATEWAY_API_KEY, checked by name with a non-empty test. Its value was never printed.
+route key set: yes
+
+## T003
+harness tools: the model-facing read tool is `read`, taking `file_path`. Observed in the control run's event stream (scratch/dsh-control-events.jsonl, the one tool_call event).
+The composed config (`--dump-config`, exit 0, empty stderr, DSH_HOME in a scratch directory) lists the tool packages and not the model-facing names: tool-bash, tool-pwsh, tool-jobs, tool-fs, tool-fs-search, tool-skill, tool-subagent, tool-web and others.
+The names of the search tools from tool-fs-search were not observed, because neither run called one.
+The skill's own sentence, "Harness tool names are lowercase (`bash`, `write`, `edit`, `subagent`)", is an incomplete list: it leaves out `read`.
+
+## Dispatch shape used for both runs
+cd "$RUN_DIR" && printf '%s' "$PROMPT" | AI_SESSION_CHILD=1 DSH_HOME="$RUN_DIR/.dsh-home" dsh --profile headless --patch <root>/.dsh/patches/route-llmgateway-deepseek.patch.yml --patch <root>/.dsh/patches/lineage.patch.yml --patch <root>/.dsh/patches/guards.patch.yml --json --permission-mode read-only --approval-policy never --add-dir <root> -
+RUN_DIR was a scratch directory outside the checkout with a fresh DSH_HOME for each run. `--add-dir <root>` names the worktree so the child may read the file there. stdout, stderr and the exit code were kept apart.

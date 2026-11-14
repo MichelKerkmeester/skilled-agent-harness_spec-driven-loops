@@ -32,12 +32,20 @@
       "skill"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "scratch/baseline.txt",
+      "scratch/dsh-control-prompt.txt",
+      "scratch/dsh-probe-prompt.txt",
+      "scratch/dsh-control-report.txt",
+      "scratch/dsh-probe-report.txt",
+      "scratch/dsh-control-events.jsonl",
+      "scratch/dsh-probe-events.jsonl",
+      "scratch/verdict.md",
       ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md",
       ".skilled/skills/cli-external-orchestration/SKILL.md",
       ".skilled/agents/README.txt"
@@ -65,6 +73,54 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-control-prompt.txt",
+        "kind": "file",
+        "path": "scratch/dsh-control-prompt.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-probe-prompt.txt",
+        "kind": "file",
+        "path": "scratch/dsh-probe-prompt.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-control-report.txt",
+        "kind": "file",
+        "path": "scratch/dsh-control-report.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-probe-report.txt",
+        "kind": "file",
+        "path": "scratch/dsh-probe-report.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-control-events.jsonl",
+        "kind": "file",
+        "path": "scratch/dsh-control-events.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "dsh-probe-events.jsonl",
+        "kind": "file",
+        "path": "scratch/dsh-probe-events.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "verdict.md",
+        "kind": "doc",
+        "path": "scratch/verdict.md",
         "source": "derived"
       },
       {
@@ -138,60 +194,12 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Measured Behavior",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "their",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "one",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Rule 7 of `cli-deepseek-harness/SKILL.md` requires every dispatch to inline the agent persona, and the personas name Read, Grep and Glob",
     "created_at": "2026-11-14T15:48:57Z",
-    "last_save_at": "2026-11-14T15:59:53.805Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-14T16:33:11.475Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -199,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b691c94e4c76bb53772a0c9de800bb05581b579a3c05218bb6bb9ad53cd73843",
+    "source_fingerprint": "sha256:5b4914a59031410c51a687e0ba253f7b461c4d28ccd055dfc4f051ba39f1d137",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c9c9691127c003b6c7446b675be357427365a8ce0fb4ed21e5a5eec5367a7903",
-      "plan.md": "2c2499b18f16dd8f1c27ba30d8bc062f1a78c8ab8b9b4797f8a50ff961cfce7f",
-      "tasks.md": "a80957423db2d63f074b601bb0a0009ae43dc126cc1a5574c77f3e6e71386125",
-      "implementation-summary.md": "718a825e2d0081b61748f811bb79491e6f9e4111420782ac0f446872d6e5d072"
+      "spec.md": "f4c50145059d385ad513e3171e8b824344492e2c2bb6bb62fb2bf8232cb0ca5d",
+      "plan.md": "88cbc3c747a090712e98e2e9de4b4e75270cda2afd9b75d22a71537d61a21d8f",
+      "tasks.md": "36b3b299386cd4432015db0a868398dfd54c3cf86a66702e78fd6a69d26b9fd3",
+      "implementation-summary.md": "680e73510f13fc72f842f5952fca361b96dcd604f5b70be68893f18fb4ec22ce"
     },
     "last_active_at": null
   }

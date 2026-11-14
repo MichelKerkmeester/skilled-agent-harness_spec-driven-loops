@@ -17,3 +17,10 @@ Logged in using ChatGPT
 
 ## T003
 dispatch flags: codex exec --model gpt-6-luna -c model_reasoning_effort="medium" -c service_tier="fast" --sandbox read-only -o <report file> "<prompt>" </dev/null, started in the worktree root. Read from cli-codex/SKILL.md: line 86 (the OAuth-ready default), ALWAYS rule 3 (read-only for analysis) and ALWAYS rule 6 (stdin from /dev/null). No mapping line is added, because the missing line is what this phase tests.
+
+## T002
+$ npx vitest run tests/unit/fanout-run.vitest.ts tests/fanout-loop-prompt-in-process.test.ts   (in .skilled/skills/system-deep-loop/runtime)
+ Test Files  2 passed (2)
+      Tests  191 passed (191)
+exit=0
+vitest baseline: 191 passed

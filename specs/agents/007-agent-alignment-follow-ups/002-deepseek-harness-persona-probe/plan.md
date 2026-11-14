@@ -35,15 +35,15 @@ Two live harness runs decide whether the skill changes. The control inlines the 
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md` has been read before the first dispatch
-- [ ] `command -v dsh` prints a path and the version equals the pin in the skill's `references/cli-reference.md`
-- [ ] The key variable of the chosen route is set, checked by name and never printed
-- [ ] Both prompts are saved under `scratch/`
+- [x] `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md` has been read before the first dispatch
+- [x] `command -v dsh` prints a path and the version equals the pin in the skill's `references/cli-reference.md`
+- [x] The key variable of the chosen route is set, checked by name and never printed
+- [x] Both prompts are saved under `scratch/`
 
 ### Definition of Done
-- [ ] Every requirement in `spec.md` section 4 holds for the verdict reached
-- [ ] `rg -c '^verdict: ' scratch/verdict.md` prints 1
-- [ ] Docs updated (spec/plan/tasks)
+- [x] Every requirement in `spec.md` section 4 holds for the verdict reached
+- [x] `rg -c '^verdict: ' scratch/verdict.md` prints 1
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

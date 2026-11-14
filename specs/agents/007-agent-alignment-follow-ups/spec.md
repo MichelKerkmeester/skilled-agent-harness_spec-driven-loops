@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/384-agent-alignment-follow-ups` |
 | **Parent Spec** | None, this is the packet root |
@@ -108,10 +108,10 @@ Each of the four findings ends as a shipped fix or as a recorded decision that n
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-fanout-persona-tool-mapping/ | Probe a Codex child with the persona the fan-out runner inlines, and add a tool-mapping line to the runner only when a run reads nothing | Pending |
-| 2 | 002-deepseek-harness-persona-probe/ | Run one read-only harness dispatch with the `context` persona, with and without a tool-mapping line, and record which one reads its file | Pending |
-| 3 | 003-orchestrate-task-package-agent-names/ | Replace the eight hand-typed agent names in the orchestrator's task template with a pointer to the generated routing table | Pending |
-| 4 | 004-agent-authoring-registry-step/ | Add the registry record to the agent authoring workflow so a new agent file passes the roster check | Pending |
+| 1 | 001-fanout-persona-tool-mapping/ | Probe a Codex child with the persona the fan-out runner inlines, and add a tool-mapping line to the runner only when a run reads nothing | Complete |
+| 2 | 002-deepseek-harness-persona-probe/ | Run one read-only harness dispatch with the `context` persona, with and without a tool-mapping line, and record which one reads its file | Complete |
+| 3 | 003-orchestrate-task-package-agent-names/ | Replace the eight hand-typed agent names in the orchestrator's task template with a pointer to the generated routing table | Complete |
+| 4 | 004-agent-authoring-registry-step/ | Add the registry record to the agent authoring workflow so a new agent file passes the roster check | Complete |
 
 ### Phase Transition Rules
 
@@ -126,7 +126,7 @@ Each of the four findings ends as a shipped fix or as a recorded decision that n
 |------|-----|----------|--------------|
 | 001-fanout-persona-tool-mapping | 002-deepseek-harness-persona-probe | The decision for the fan-out runner is recorded with its three probe reports | `rg -c '^decision: ' specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/scratch/decision.md` prints 1 |
 | 002-deepseek-harness-persona-probe | 003-orchestrate-task-package-agent-names | The harness verdict is recorded with both report files | `rg -c '^verdict: ' specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/scratch/verdict.md` prints 1 |
-| 003-orchestrate-task-package-agent-names | 004-agent-authoring-registry-step | The task template holds no hand-typed agent list and the runtime copies match | `rg -c '^├─ Agent: @code' .skilled/agents/orchestrate.md` prints no line, and `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0 |
+| 003-orchestrate-task-package-agent-names | 004-agent-authoring-registry-step | The task template holds no hand-typed agent list and the runtime copies match | `rg -c '^├─ Agent: @code . @context' .skilled/agents/orchestrate.md` prints no line, and `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0 |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -137,7 +137,8 @@ Each of the four findings ends as a shipped fix or as a recorded decision that n
 - The level helper scored the whole work at 37 and recommended no phases. The operator chose one phased packet with four children on 2026-11-14, so each finding keeps its own evidence and its own close.
 - The four phases change four different artifacts and do not depend on each other. The order in the map is the order the findings were recorded, and any phase can run first.
 - Phase 3: the planning default replaces the hand-typed list with a pointer to the generated routing table. The alternative makes the roster script write that one line from the registry. The child's `spec.md` section 7 holds both. Operator answer: the pointer (2026-11-14).
-- The executor model for implementation is not chosen. The predecessor packet used DeepSeek V4.1 Flash at max through OpenCode on LLM Gateway, by an operator instruction that covered that packet only.
+- The executor model for implementation: DeepSeek V4.1 Flash at max through OpenCode on LLM Gateway, by operator instruction on 2026-11-14.
+- Outcome, 2026-11-14: phases 1 and 2 closed on a recorded decision with no file changed, because every live run read its file. Phases 3 and 4 shipped their change. The rows in Files to Change marked `only on a failed probe` and `only on a failed control` were therefore not touched.
 <!-- /ANCHOR:questions -->
 
 ---

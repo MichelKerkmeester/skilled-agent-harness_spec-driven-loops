@@ -112,17 +112,18 @@
     ],
     "causal_summary": "The packet `agents/006-agent-contract-and-registry-alignment` closed on 2026-11-14 and recorded four findings outside its scope",
     "created_at": "2026-11-14T15:48:56Z",
-    "last_save_at": "2026-11-14T16:05:04.841Z",
+    "last_save_at": "2026-11-14T16:33:16.852Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f5f054c89a0c701a9c660b221960ba91fff25d2078bca62186bb389b36c799a3",
+    "source_fingerprint": "sha256:8d7ac58ea8d2911e5781c8064dc9abe6a6e1f27c5f87a3bcf164f0ed078cd222",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c01325ebe75d6bc4e77baf7047e300eb29cd828f2b34564220ceff57abdd3a7c"
+      "spec.md": "b4837c91101b371878a1d8b395d734eacf8126c843584f74dbcd297d3917b6bb"
     },
-    "last_active_at": null
+    "last_active_child_id": "agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step",
+    "last_active_at": "2026-11-14T16:33:16.852Z"
   }
 }

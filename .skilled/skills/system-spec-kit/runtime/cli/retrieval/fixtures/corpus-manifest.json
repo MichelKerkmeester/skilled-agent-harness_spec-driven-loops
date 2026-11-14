@@ -1,5 +1,5 @@
 {
-  "corpusHash": "5419a2860d96d2d2079e448bd5ef229498034343fba0b2f6c9d578667273275c",
+  "corpusHash": "a92bc8d4ca7f9f1436277297835c480918e3a2adb8dcce7d03ea23d192787a37",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26944,
+  "includedPathCount": 26945,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6668,6 +6668,7 @@
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.5.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.6.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.7.0.md",
+    ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/body-validation/leaf-denies-delegation.md",
     ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/body-validation/required-agent-sections.md",
     ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/component-choice/named-runtime-persona.md",
@@ -26976,7 +26977,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "423d4a85127e81f7c90cdf44239e382e54faf0d3d6ec70c87d6b2d87f0e5f4fc",
+  "manifestHash": "1f8730e7f14c825fc9c8f9507478cd6f0e7d349ebe90ff6049eedc76546ccd0f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

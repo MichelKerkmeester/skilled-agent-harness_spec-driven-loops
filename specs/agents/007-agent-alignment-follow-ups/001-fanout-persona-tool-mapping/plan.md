@@ -35,15 +35,15 @@ Three live read-only Codex runs decide whether the fan-out runner changes at all
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] `codex login status` reports a ChatGPT login
-- [ ] `.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md` has been read before the first dispatch
-- [ ] `scratch/baseline.txt` holds the Measured Behavior output and the vitest counts
+- [x] `codex login status` reports a ChatGPT login
+- [x] `.skilled/skills/cli-external-orchestration/cli-codex/SKILL.md` has been read before the first dispatch
+- [x] `scratch/baseline.txt` holds the Measured Behavior output and the vitest counts
 
 ### Definition of Done
-- [ ] Every requirement in `spec.md` section 4 holds for the branch the decision selected
-- [ ] `rg -c '^decision: ' scratch/decision.md` prints 1
-- [ ] `npx vitest run tests/unit/fanout-run.vitest.ts tests/fanout-loop-prompt-in-process.test.ts` exits 0 in `.skilled/skills/system-deep-loop/runtime`
-- [ ] Docs updated (spec/plan/tasks)
+- [x] Every requirement in `spec.md` section 4 holds for the branch the decision selected
+- [x] `rg -c '^decision: ' scratch/decision.md` prints 1
+- [x] `npx vitest run tests/unit/fanout-run.vitest.ts tests/fanout-loop-prompt-in-process.test.ts` exits 0 in `.skilled/skills/system-deep-loop/runtime`
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---
