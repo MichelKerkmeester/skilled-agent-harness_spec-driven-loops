@@ -137,6 +137,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 |------------|------|--------|-------------------|
 | Phase 024 closed and committed | Internal | Complete, a1c31b6f38 | Lane S cannot start, because both phases edit the scorer |
 | Phase 027 closed and committed | Internal | Planned | T002 stops, because phase 027 changes the start rule, both run-log writers and the stored start counts this phase freezes |
+| Phase 028 closed and committed | Internal | Planned, `../028-direct-call-off-switch/` (P053) | T032 stays `[B]` and no arena is built, because an off-arm model that runs the Gate 2 direct call would still get a command |
 | The B-6 commit to `AGENTS.md` | Internal, the coordinator's | Not made at planning | The arena build waits (T038) |
 | The operator's Codex hook approval | Operator | Approved in principle (Q061), the act is pending | No Codex session starts. The arm runs on five runtimes and Codex waits in the goal log |
 | Free disk for six arenas | External | Unchecked | T039 stops below 45 GB free |
@@ -171,7 +172,7 @@ Setup ──► Implementation (lanes R and S in parallel, lane D after both, th
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
 | Setup | Phases 024 and 027 closed | Implementation |
-| Implementation | Setup. Each lane runs its tasks in order. The run waits on the B-6 commit and the Codex approval | Verification |
+| Implementation | Setup. Each lane runs its tasks in order. T032 and the arena build wait on phase 028, and the run waits on the B-6 commit and the Codex approval | Verification |
 | Verification | Every session scored or logged, the cap held | Close and phase 025 |
 <!-- /ANCHOR:phase-deps -->
 

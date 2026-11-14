@@ -27,8 +27,8 @@ contextType: "general"
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/352-command-surfacing-research` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 26 of 27 |
-| **Predecessor** | 027-review-pass-four-remediation |
+| **Phase** | 26 of 28 |
+| **Predecessor** | 028-direct-call-off-switch |
 | **Successor** | 025-release-notes-and-doc-sync |
 | **Handoff Criteria** | Every task in `tasks.md` is `[x]` or recorded with its reason, the advisor suite reports 0 failed, `scratch/arm-evidence.txt` holds the followed, paired, pooled, starts and delivery lines printed by the committed scorer, the parent goal log holds the arm verdict, the step reader row and the B-5 row, and strict validation prints `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
@@ -45,6 +45,7 @@ This is **Phase 26** of the build that makes the skill advisor surface every tra
 **Dependencies**:
 - Phase 024 is Complete and committed, because this phase edits the transcript scorer that phase last changed (T002 checks).
 - Phase 027 is Complete and committed, because it changes the scorer's start rule and both run-log writers before this phase builds on them, so the stored summaries T002 records come from the fixed scorer (T002 checks, P044).
+- Phase 028 is Complete and committed, because the off arm's Gate 2 direct call must abstain under the switch before T032 can pass or any arena is built. Phase 028 makes the CLI client decide the switch in the caller's process, and T032 reruns after it (P053).
 - The coordinator has committed the B-6 edit to the `AGENTS.md` Gate 2 bullet before the arena build (T038 checks).
 - The operator approves the Codex project hooks in the prepared Codex arena (T040, Q061).
 - Phase 025 starts after this phase closes, so the release notes can state the arm's result (P040).
@@ -297,7 +298,7 @@ None blocks planning. Each point the dispatch left open is decided below and rec
 
 - A1. Level: `recommend-level.sh --loc 750 --files 7` printed Level 1. Decision: Level 2, because `acceptance-criteria.md` is the closure gate, as P001 and P025 decided for phases 020 to 025.
 - A2. The switch: the runner sets `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED` and `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED` itself, because the names the report gives are read by nothing and the allowlist passes no `SYSTEM_` name. Both arms strip inherited disable names and the master switches, so `SYSTEM_HOOKS_DISABLED` is never used and the arms differ only in the advisor.
-- A3. Off means the advisor fully off: the same switch makes the Gate 2 direct call abstain (`ADV/handlers/advisor-recommend.ts:164-167`), so an off-arm model that runs it gets no command either. The `AGENTS.md` text is the same in both arms.
+- A3. Off means the advisor fully off: the same switch makes the Gate 2 direct call abstain, so an off-arm model that runs it gets no command either. The `AGENTS.md` text is the same in both arms. This was false at plan time: the only check sat in the daemon's handler (`ADV/handlers/advisor-recommend.ts:164-167`, `:726`), which reads the daemon's own environment, and the client's local-scorer fallback read no switch, so T032 found the direct call still recommending under `OFF`. Phase 028 fixes it at the caller: the CLI client and the handler both decide through `ADV/lib/advisor-disabled.ts`, and the client does so in the caller's process before it asks a daemon or runs the local scorer (P053). The assumption holds once phase 028 is committed and T032's rerun prints 1 for the direct call under `OFF`.
 - A4. A delivery contradiction is `true` in `off` or `false` in `on`. `unknown` is not one.
 - A5. A command start on a decline or skill-only row is defined in the Pre-registered Target, over every command in the bridge table.
 - A6. Skill-only rows name one of the nine skills that own a command, so the scorer counts them as owned with no change to its owner lookup. Phase 023's blind set used `mcp-code-mode` for four rows, which this scorer reads as no owner.

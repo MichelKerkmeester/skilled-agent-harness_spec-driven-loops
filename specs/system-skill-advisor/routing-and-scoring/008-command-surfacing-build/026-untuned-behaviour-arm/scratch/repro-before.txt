@@ -1,0 +1,28 @@
+$ node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs --print-argv claude --arm off
+run-command-behaviour.mjs: --arm: expected one of pre, post, smoke, g2
+usage: run-command-behaviour.mjs --print-argv <runtime>
+       run-command-behaviour.mjs --list <set>
+       run-command-behaviour.mjs --runtime <runtime> (--set <set> | --row-id <id>...)
+         --out <run-log> [--arm <arm>] [--fixture <dir>] [--dry-run]
+       run-command-behaviour.mjs --backfill <run-log> --out <new-log> [--brief-only]
+exit 2
+$ node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs --list fresh
+run-command-behaviour.mjs: unknown set: fresh
+usage: run-command-behaviour.mjs --print-argv <runtime>
+       run-command-behaviour.mjs --list <set>
+       run-command-behaviour.mjs --runtime <runtime> (--set <set> | --row-id <id>...)
+         --out <run-log> [--arm <arm>] [--fixture <dir>] [--dry-run]
+       run-command-behaviour.mjs --backfill <run-log> --out <new-log> [--brief-only]
+exit 2
+$ ls .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl
+ls: .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/behaviour-fresh-prompts.jsonl: No such file or directory
+exit 1
+$ SYSTEM_SKILL_ADVISOR_HOOK_DISABLED=1 SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 node --input-type=module -e "const m = await import('./.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs'); console.log(Object.keys(m.childEnv('/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.dvNSkPSAEI/gh')).filter((k) => k.includes('SKILL_ADVISOR')).join(' '))"
+SPECKIT_SKILL_ADVISOR_HOOK_DISABLED
+exit 0
+$ node .skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs --summary specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/026-untuned-behaviour-arm/scratch/repro/two-runs.jsonl --pair off,on --json | jq -c '{onRuns: .claude.on.runs, offRuns: .claude.off.runs, pooled: has("pooled")}'
+{"onRuns":1,"offRuns":1,"pooled":false}
+exit 0
+$ jq -r '[.entries[].skillId] | unique | join(" ")' .skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json
+sk-code sk-design sk-doc sk-git sk-prompt system-deep-loop system-skill-advisor system-skilled-doctor system-spec-kit
+exit 0

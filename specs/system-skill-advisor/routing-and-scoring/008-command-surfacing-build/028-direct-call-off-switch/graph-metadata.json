@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/028-direct-call-off-switch",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/028-direct-call-off-switch",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "direct call off switch",
+      "phase 28 direct call off switch",
+      "advisor disabled flag cli client",
+      "warm daemon ignores disable flag",
+      "direct call off switch plan",
+      "direct call off switch tasks",
+      "direct call off switch acceptance criteria"
+    ],
+    "key_topics": [
+      "direct",
+      "call",
+      "switch",
+      "phase",
+      "advisor",
+      "disabled",
+      "flag",
+      "cli",
+      "client",
+      "warm",
+      "daemon",
+      "ignores"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      ".skilled/bin/skill-advisor.cjs",
+      ".opencode/plugins/system-skill-advisor.js",
+      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts",
+      "scratch/planning/direct-call-matrix.sh",
+      "scratch/planning/import-closure.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/skill-advisor.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/system-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts",
+        "source": "derived"
+      },
+      {
+        "name": "skill-advisor-cli-stale-daemon-retry.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "direct-call-matrix.sh",
+        "kind": "script",
+        "path": "scratch/planning/direct-call-matrix.sh",
+        "source": "derived"
+      },
+      {
+        "name": "import-closure.mjs",
+        "kind": "file",
+        "path": "scratch/planning/import-closure.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Decide",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A model in the behaviour arm's off arm, or a user who exports `SYSTEMSKILLADVISORHOOKDISABLED=1`, runs the Gate 2 direct call and still gets `sk-doc → /create:readme (start)` from the warm daemon, or two skill rows from the local scorer when no daemon answers",
+    "created_at": "2026-11-14T22:11:47Z",
+    "last_save_at": "2026-11-14T22:42:34.782Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md"
+    ],
+    "source_fingerprint": "sha256:76ca7ce71cd00f93146053ac9703141210814acf8b073dd050fbc0b7ed1d74c3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "892bf2932d062878f76a1a7b81365344bf519e016dccc2aaab3491cb1f7ae84e",
+      "plan.md": "0811ddf5ff5cb8f2e23bbfb1d0667538e111d8bef100d468f3d0fbe4f8c72313",
+      "tasks.md": "476c23218d31d39799636f32874b6a5a93149b1804e4b67acfeceab27f4bac46"
+    },
+    "last_active_at": null
+  }
+}

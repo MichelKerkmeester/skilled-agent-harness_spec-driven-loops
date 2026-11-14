@@ -1,0 +1,24 @@
+## BUILD
+exit 0
+## TC
+exit 0
+## VX behaviour-guards
+ Test Files  1 passed (1)
+      Tests  30 passed (30)
+exit 0
+## VX transcript-score
+ Test Files  1 passed (1)
+      Tests  193 passed (193)
+exit 0
+## VALL
+ Test Files  184 passed (184)
+      Tests  2101 passed | 6 skipped (2107)
+exit 0
+## summary after
+exit 0
+## summary after pair
+exit 0
+## cmp summary
+exit 0
+## cmp pair
+exit 0

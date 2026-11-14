@@ -44,6 +44,9 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/summary-before.json",
+      "scratch/summary-before-pair.json",
+      "scratch/repro-before.txt",
       ".skilled/commands/create/readme.md",
       ".skilled/hooks/shared/session-readers/index.mjs"
     ],
@@ -82,6 +85,24 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "summary-before.json",
+        "kind": "config",
+        "path": "scratch/summary-before.json",
+        "source": "derived"
+      },
+      {
+        "name": "summary-before-pair.json",
+        "kind": "config",
+        "path": "scratch/summary-before-pair.json",
+        "source": "derived"
+      },
+      {
+        "name": "repro-before.txt",
+        "kind": "file",
+        "path": "scratch/repro-before.txt",
         "source": "derived"
       },
       {
@@ -173,29 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Claude Code",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Arm Design",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every outcome number the packet quotes comes from rows its phrases were written against, each run once, in arms that differ in the scorer, the wording and the brief, so an operator cannot tell whether the brief caused a single followed workflow (`../023-untuned-outcome-evidence/scratch/outcome-evidence.txt:15-35`)",
     "created_at": "2026-11-14T15:37:12Z",
-    "last_save_at": "2026-11-14T20:07:53.106Z",
+    "last_save_at": "2026-11-14T22:28:53.670Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,12 +209,12 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d41c37e71f031f4ba799da7f2d231c108a1949ef11ece3924f9fd31fd2541670",
+    "source_fingerprint": "sha256:2d5c86abf35eb9e6d39535b8b4da76ef259afe5f2d062b06aae423e5221af52f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "a80ea286ca890f16c361ec6e8b70c96c74c7676ed75ca23436ab034fe372d3e9",
-      "plan.md": "2ddcb3397f32e752bc804980b29e40aedf4cffd71bc18836297cc8d0a7e4755b",
-      "tasks.md": "5f141c2bae390833a258452dc19f0ec98cea2d26a90ff01119c2a022b8ab47ec",
+      "spec.md": "06d2d721bf3bd1867b7236e7031527210fdc7560a650fc2deb8b7318750ea00a",
+      "plan.md": "08f48ed3fe423c27618dce940525b2b7c09d0f272a91ba93b9e1095061b03999",
+      "tasks.md": "feb08ef1c940dfa13820651837fc326da4217e8d736407810c092ed9a9e57499",
       "implementation-summary.md": "53148443c5324d460e3dd18874f92e39ef428d325dbba19e5167ea0589e6c3ac"
     },
     "last_active_at": null
