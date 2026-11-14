@@ -46,8 +46,14 @@
       ".skilled/agents/code.md",
       ".skilled/agents/context.md",
       ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+      ".skilled/bin/sync-agent-roster.cjs",
+      "scratch/removal-map.md",
+      ".skilled/agents/agent-registry.json",
       ".skilled/bin/check-agent-mirror-sync.cjs",
       ".skilled/agents/design.md",
+      "scratch/baseline.txt",
+      "scratch/dispatch-before.md",
+      ".skilled/bin/sync-agent-roster.vitest.ts",
       ".skilled/agents/ai-council.md",
       ".skilled/bin/agent-mirror-crosswalk.md",
       ".skilled/skills/sk-doc/sk-create-agent/references/common-pitfalls.md"
@@ -102,6 +108,24 @@
         "source": "derived"
       },
       {
+        "name": "sync-agent-roster.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/sync-agent-roster.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "removal-map.md",
+        "kind": "doc",
+        "path": "scratch/removal-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-registry.json",
+        "kind": "config",
+        "path": ".skilled/agents/agent-registry.json",
+        "source": "derived"
+      },
+      {
         "name": "check-agent-mirror-sync.cjs",
         "kind": "file",
         "path": ".skilled/bin/check-agent-mirror-sync.cjs",
@@ -111,6 +135,24 @@
         "name": "design.md",
         "kind": "doc",
         "path": ".skilled/agents/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-before.md",
+        "kind": "doc",
+        "path": "scratch/dispatch-before.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agent-roster.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/sync-agent-roster.vitest.ts",
         "source": "derived"
       },
       {
@@ -160,48 +202,12 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Map",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Map",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The three-sentence advisor-context rule is copied into every agent file with small wording differences, so one edit means eleven",
     "created_at": "2026-11-14T11:36:24Z",
-    "last_save_at": "2026-11-14T11:59:06.627Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-14T13:32:22.585Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
