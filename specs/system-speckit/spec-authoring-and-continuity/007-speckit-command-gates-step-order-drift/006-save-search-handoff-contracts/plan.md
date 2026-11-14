@@ -37,14 +37,14 @@ The change edits the save tail, the three save, search and handoff routers, the 
 <!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Phase 5 is Complete: `rg -c '^\| AC-[0-9]+ .*\| Unmet \|' ../005-resume-detection-and-single-workflow/acceptance-criteria.md` prints nothing and exits 1
-- [ ] The baseline holds: `test-phase-command-workflows.js` prints `passed=150 failed=0` and `boolean-expr.test.ts` prints `fail 0`
-- [ ] The test-file edit is in scope, decided 2026-11-14: `rg -c 'Decided 2026-11-14' spec.md` run in this folder prints at least 1
+- [x] Phase 5 is Complete: `rg -c '^\| AC-[0-9]+ .*\| Unmet \|' ../005-resume-detection-and-single-workflow/acceptance-criteria.md` prints nothing and exits 1
+- [x] The baseline holds: `test-phase-command-workflows.js` prints `passed=151 failed=0`, the count phase 5 left and `boolean-expr.test.ts` prints `fail 0`
+- [x] The test-file edit is in scope, decided 2026-11-14: `rg -c 'Decided 2026-11-14' spec.md` run in this folder prints at least 1
 
 ### Definition of Done
-- [ ] Every row in `acceptance-criteria.md` is `Met`
-- [ ] `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` prints `failed=0` and `node --import tsx --test tests/boolean-expr.test.ts` from `.skilled/skills/system-spec-kit/shared` prints `fail 0`
-- [ ] `validate.sh` on this folder with `--strict` prints `RESULT: PASSED`
+- [x] Every row in `acceptance-criteria.md` is `Met`
+- [x] `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` prints `failed=0` and `node --import tsx --test tests/boolean-expr.test.ts` from `.skilled/skills/system-spec-kit/shared` prints `fail 0`
+- [x] `validate.sh` on this folder with `--strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:quality-gates -->
 
 ---
