@@ -2,7 +2,7 @@
 name: sk-code-skilled
 description: "sk-code SKILLED surface: system-code evidence (TypeScript/Python/shell/Rust/config standards, language-agnostic patterns, hooks, alignment verification, and skill/agent/command/MCP authoring checklists) plus shared implement/debug/verify workflow doctrine."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 2.2.0.0
+version: 2.2.1.0
 metadata:
   family: sk-code
   packetKind: surface
@@ -10,7 +10,7 @@ metadata:
 
 # Skilled Surface — System-Code Evidence
 
-**Domain evidence** and shared workflow doctrine for OpenCode system code (the `.skilled/` tree: skills, agents, commands, plugins, MCP servers, config, changelogs, and runtime bridge wiring). This surface carries the implement -> debug -> verify doctrine through the workflow references below, then slices evidence by the detected language so a TypeScript task never pulls the Python/shell/config guides.
+**Domain evidence** and shared workflow doctrine for SKILLED system code (the `.skilled/` tree: skills, agents, commands, plugins, MCP servers, config, changelogs, and runtime bridge wiring). This surface carries the implement -> debug -> verify doctrine through the workflow references below, then slices evidence by the detected language so a TypeScript task never pulls the Python/shell/config guides.
 
 Detection has two steps:
 

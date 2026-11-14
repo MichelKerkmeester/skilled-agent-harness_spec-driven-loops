@@ -8,7 +8,7 @@ trigger_phrases:
   - "authoring checklist"
 importance_tier: important
 contextType: implementation
-version: 1.3.10.0
+version: 1.3.11.0
 ---
 
 # sk-code-quality
@@ -23,7 +23,7 @@ version: 1.3.10.0
 
 | Aspect | What you get |
 |---|---|
-| **Use it for** | Post-implementation quality checks, P0/P1/P2 author-side fixes, comment hygiene and OpenCode target-path checklists |
+| **Use it for** | Post-implementation quality checks, P0/P1/P2 author-side fixes, comment hygiene and SKILLED target-path checklists |
 | **Invoke with** | `quality gate`, `code quality`, `comment hygiene`, `authoring checklist`, `check before done` |
 | **Works on** | Any repository: the runner checks the change with the universal floor and the checks the repository names. In this repository it also loads the SKILLED checklists for skills, agents, commands, specs, MCP servers, scripts, config and language files |
 | **Produces** | In-place quality fixes plus a handoff that states the runner's verdict, the checklists used, the hygiene rules switched off and any remaining risk |
@@ -44,8 +44,8 @@ The mode's headline strength is routing by target path: every surface family lan
 
 | Target family | What the mode knows how to check |
 |---|---|
-| **OpenCode skills** | loads the skill-authoring checklist by target path |
-| **OpenCode agents and commands** | routes to the agent-authoring and command-authoring checklists |
+| **SKILLED skills** | loads the skill-authoring checklist by target path |
+| **SKILLED agents and commands** | routes to the agent-authoring and command-authoring checklists |
 | **Spec folders** | routes to the spec-folder authoring checklist that `system-spec-kit` owns |
 | **MCP servers** | routes to the MCP-server-authoring checklist |
 | **Language files and config** | applies the language-specific and config checklists |

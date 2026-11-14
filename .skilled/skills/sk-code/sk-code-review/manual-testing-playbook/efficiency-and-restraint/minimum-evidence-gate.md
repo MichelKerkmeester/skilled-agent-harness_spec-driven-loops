@@ -1,7 +1,7 @@
 ---
 title: "CR-033 -- Opt-in minimum evidence gate"
 description: "This scenario validates the M-2 minimum-evidence gate for `CR-033`. It focuses on the opt-in SK_CODE_REVIEW_MIN_CHANGED_LINES threshold, the numstat changed-line count, the exact skip status line for a small non-sensitive diff, and the sensitive-path taxonomy that forces the full review anyway."
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # CR-033 -- Opt-in minimum evidence gate
@@ -176,7 +176,7 @@ Both counting transcripts, both changed-path lists, the skip output file, the fi
 | File | Role |
 |---|---|
 | `../../SKILL.md` | Section 8.2 M-2 enable gate, counting command, six never-skip classes and skip behavior |
-| `../../references/pr-state-dedup.md` | The sibling M-1 gate the depth alias maps `lite` onto |
+| `../../references/pr-state-dedup.md` | The sibling M-1 gate |
 | `../../scripts/check-review-final-line.js` | Accepts the skip status only as the whole output |
 | `../../scripts/README.md` | States the whole-output rule the checker enforces |
 

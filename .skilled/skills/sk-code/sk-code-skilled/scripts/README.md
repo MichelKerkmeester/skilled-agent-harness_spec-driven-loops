@@ -1,7 +1,7 @@
 ---
 title: "Scripts: drift-guard gate runner"
 description: "Single entry point that runs all sk-code drift guards as one completion gate."
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # Scripts
@@ -10,7 +10,7 @@ version: 1.0.4.0
 
 ## 1. OVERVIEW
 
-`scripts/` holds the one drift-guard entrypoint for the `sk-code-skilled` surface. It runs four drift guards (alignment-drift, stack-folder, router-sync, doc-claims) in sequence and exits non-zero if any fails, so a completion gate never has to remember separate commands. The router-sync guard (`assets/scripts/verify-router-sync.cjs`) runs as five legs. [`alignment-verification-automation.md`](../references/shared/alignment-verification-automation.md) lists the four checks behind them, what covers each and what the orphan-doc leg does when Git is missing. The doc-claims guard (`assets/scripts/verify-doc-claims.cjs`) checks the sk-code prose: path references resolve, no retired packet name remains, every surface count matches the surface modes in `mode-registry.json` and the `ROUTER.md` load-tier claims match `DEFAULT_RESOURCE`.
+`scripts/` holds the one drift-guard entrypoint for the `sk-code-skilled` surface. It runs four drift guards (alignment-drift, stack-folder, router-sync, doc-claims) in sequence and exits non-zero if any fails, so a completion gate never has to remember separate commands. The router-sync guard (`../assets/scripts/verify-router-sync.cjs`) runs as five legs. [`alignment-verification-automation.md`](../references/shared/alignment-verification-automation.md) lists the four checks behind them, what covers each and what the orphan-doc leg does when Git is missing. The doc-claims guard (`../assets/scripts/verify-doc-claims.cjs`) checks the sk-code prose: path references resolve, no retired packet name remains, every surface count matches the surface modes in `mode-registry.json` and the `ROUTER.md` load-tier claims match `DEFAULT_RESOURCE`.
 
 ---
 

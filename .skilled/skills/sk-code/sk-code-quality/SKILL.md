@@ -2,7 +2,7 @@
 name: sk-code-quality
 description: "sk-code quality gate after implementation, before verification: P0/P1/P2 author checks, comment hygiene, and surface checklists."
 allowed-tools: [Read, Edit, Bash, Grep, Glob]
-version: 1.13.20.0
+version: 1.13.21.0
 metadata:
   family: sk-code
 ---
@@ -100,7 +100,7 @@ Read [`ROUTER.md`](./ROUTER.md) before selecting skill-local resources; open onl
 | CONDITIONAL | `.skilled/commands/` target | `../sk-code-skilled/assets/checklists/command-authoring.md` |
 | CONDITIONAL | `specs/` target | `../../system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` (system-spec-kit) |
 | CONDITIONAL | MCP server source | `../sk-code-skilled/assets/checklists/mcp-server-authoring.md` |
-| CONDITIONAL | OpenCode JavaScript, TypeScript, Python, Shell, Rust, JSON, or JSONC files | `../sk-code-skilled/assets/checklists/javascript-checklist.md`, `../sk-code-skilled/assets/checklists/typescript-checklist.md`, `../sk-code-skilled/assets/checklists/python-checklist.md`, `../sk-code-skilled/assets/checklists/shell-checklist.md`, `../sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md`, `../sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`, `../sk-code-skilled/assets/checklists/rust-checklist/p1-required.md`, `../sk-code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`, `../sk-code-skilled/assets/checklists/config-checklist.md` as applicable |
+| CONDITIONAL | SKILLED JavaScript, TypeScript, Python, Shell, Rust, JSON, or JSONC files | `../sk-code-skilled/assets/checklists/javascript-checklist.md`, `../sk-code-skilled/assets/checklists/typescript-checklist.md`, `../sk-code-skilled/assets/checklists/python-checklist.md`, `../sk-code-skilled/assets/checklists/shell-checklist.md`, `../sk-code-skilled/assets/checklists/rust-checklist/overview-and-p0-parity.md`, `../sk-code-skilled/assets/checklists/rust-checklist/p0-safety-and-boundary-discipline.md`, `../sk-code-skilled/assets/checklists/rust-checklist/p1-required.md`, `../sk-code-skilled/assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md`, `../sk-code-skilled/assets/checklists/config-checklist.md` as applicable |
 | CONDITIONAL | Generated distribution artifacts or mirrored outputs changed | `scripts/check-dist-staleness.sh` |
 | ON_DEMAND | Debt pass, before a release or a reviewer asks what limits the code knowingly accepts | `scripts/ceiling-report.sh` |
 | ON_DEMAND | Need the legacy write-time hook's behavior, which no runtime registers | `scripts/hooks/claude-posttooluse.sh` |
