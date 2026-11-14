@@ -1,0 +1,21 @@
+TASK: two literal replacements in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-quality/README.md (read lines 93 to 97 and lines 154 to 160 only)
+
+EDIT 1. In the line that starts with `OpenCode authoring targets route to specific checklists`, replace the literal text
+OpenCode authoring targets route
+with the literal text
+SKILLED authoring targets route
+Keep the rest of that line byte for byte.
+
+EDIT 2. In the table row that starts with ``| [`../sk-code-skilled/assets/checklists/`]``, replace the literal text
+Target-path OpenCode authoring checklists
+with the literal text
+Target-path SKILLED authoring checklists
+Keep the rest of that line byte for byte.
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'OpenCode authoring' .skilled/skills/sk-code/sk-code-quality/README.md; echo "exit $?"
+Expected output: `exit 1`

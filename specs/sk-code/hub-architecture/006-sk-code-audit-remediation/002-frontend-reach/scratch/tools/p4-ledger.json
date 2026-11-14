@@ -1,0 +1,1 @@
+{"H1": "Fixed in `9a9bbb76aa`. With one keyword removed from `code-frontend-aliases` in a scratch copy of the hub, `verify-router-sync.cjs --checks 2` exits 1 and names `hub-router.json`, saved in `004-vocabulary-single-source/scratch/mutation.txt`. On the clean tree it prints `PASS check 2`, and `rg -c 'fires on' .skilled/skills/sk-code/sk-code-frontend/ROUTER.md` exits 1"}

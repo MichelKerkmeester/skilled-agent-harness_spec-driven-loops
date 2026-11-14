@@ -1,0 +1,29 @@
+TASK: shorten one tree block and add seven table rows in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/scripts/README.md (read lines 15 to 38 only)
+
+EDIT 1. Under the heading `## 2. CONTENTS` there is a fenced `text` block that lists `scripts/`, `run-all-drift-guards.sh`, `tests/` and five test file names. Replace the lines inside the fence with the three lines between the marker lines below. Keep the opening fence line and the closing fence line.
+
+<<<TEXT
+scripts/
++-- run-all-drift-guards.sh
+`-- tests/                  # nine test files, one table row each below
+TEXT>>>
+
+EDIT 2. The table under the fence has a row that starts with ``| `tests/verify-doc-claims.test.cjs` |``. Directly after that row, insert the seven rows between the marker lines below. Keep every existing row byte for byte.
+
+<<<TEXT
+| `tests/run-all-drift-guards.test.cjs` | Proves the wrapper's pass, warn and fail aggregation, including the exit 1 path. |
+| `tests/verify-router-sync-git-timeout.test.cjs` | Proves the orphan-doc leg bounds its `git check-ignore` call, with a stub git first on `PATH`. |
+| `tests/declared-surfaces-parity.test.cjs` | Proves the replay library and the plugin declare the same surfaces for the live hub. |
+| `tests/quality-checklist-map.test.cjs` | Proves the `SKILLED` quality checklist map in `SKILL.md` matches the quality defaults and the surface declarations. |
+| `tests/router-stage-two-quality.test.cjs` | Proves stage-two intent selection for a restraint request. |
+| `tests/router-file-resolver.test.cjs` | Proves the machine router resolver picks the one document that declares a skill's router. |
+| `tests/router-replay-lib-resolver.test.cjs` | Proves `parseRouter` in the replay library reads the document the resolver names. |
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+ls .skilled/skills/sk-code/sk-code-skilled/scripts/tests/*.test.cjs | wc -l; rg -c '\.test\.cjs' .skilled/skills/sk-code/sk-code-skilled/scripts/README.md
+Expected output: `9` then `9`

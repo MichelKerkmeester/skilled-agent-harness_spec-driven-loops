@@ -60,8 +60,9 @@ function deniesRelaunchCommand(payload) {
 
 // Only the Stop event arms a prepared hand-over, and a question dialog holds the turn
 // open until the operator answers. A sender that asks after prepare therefore never
-// reaches Stop and sits at its context limit with a record nothing will act on. Once
-// the record is armed the killer ends the idle session, so only a pending one is held.
+// reaches Stop and sits at its context limit with a record nothing will act on, so every
+// record that can still be armed is held. A live killer ends the idle session itself, so
+// the dialog is allowed once one owns the loop's lock.
 function pendingHandOver(payload, env) {
   if (payload === null || typeof payload !== 'object') return null;
   if (payload.tool_name !== QUESTION_TOOL) return null;
@@ -81,7 +82,7 @@ function pendingHandOver(payload, env) {
     runtime: 'claude',
     env,
   });
-  return verdict.reason === 'pending' ? record : null;
+  return verdict.armable ? record : null;
 }
 
 function questionDenialReason(record) {

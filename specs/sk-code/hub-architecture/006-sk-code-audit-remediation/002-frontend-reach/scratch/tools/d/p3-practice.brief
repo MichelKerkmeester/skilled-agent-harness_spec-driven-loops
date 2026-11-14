@@ -1,0 +1,14 @@
+TASK: one literal line edit in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md (read lines 93 to 100 only)
+
+EDIT, the first paragraph under the heading `## 6. LAYERS AND TOPIC FILES`. Replace:
+Load this core, the web layer and the one topic file the change touches. Load a second topic file only when the change crosses into it.
+with:
+Load this core first. Web intents add the web layer and the one web topic file the change touches. The visual, motion and Figma intents add the files the packet router maps for them, without the web layer. Load a second topic file only when the change crosses into it.
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'visual, motion and Figma intents' .skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md
+Expected output: `1`

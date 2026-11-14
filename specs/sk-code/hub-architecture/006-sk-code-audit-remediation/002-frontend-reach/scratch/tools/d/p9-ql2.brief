@@ -1,0 +1,13 @@
+TASK: one literal replacement in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-quality/SKILL.md (read lines 101 to 104 only)
+
+EDIT. In the table row that starts with `| CONDITIONAL | OpenCode JavaScript, TypeScript,`, replace the literal text
+| CONDITIONAL | OpenCode JavaScript, TypeScript,
+with the literal text
+| CONDITIONAL | SKILLED JavaScript, TypeScript,
+Keep the rest of that line byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'OpenCode' .skilled/skills/sk-code/sk-code-quality/SKILL.md; echo "exit $?"
+Expected output: `1` then `exit 0`

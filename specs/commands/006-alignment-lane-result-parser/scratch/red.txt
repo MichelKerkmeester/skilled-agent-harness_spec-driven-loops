@@ -1,0 +1,103 @@
+$ env -u AI_SESSION_CHILD node --test .skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs
+▶ runner extracts findings and enforces timeout watchdog rules
+  ✔ writes a findings object for valid lane output (213.236084ms)
+  ✔ writes timeout reason for a sleeping lane (4064.286208ms)
+  ✔ kills a lane with an old pending non-test tool call (288.869667ms)
+  ✔ lets a matching test runner reach the hard timeout (4070.10825ms)
+✔ runner extracts findings and enforces timeout watchdog rules (8643.431417ms)
+▶ --preset selects a cli-pi preset and rejects an unknown name
+  ✔ runs the selected preset instead of the lanes block (99.820833ms)
+  ✔ exits 2 for an unknown preset name (47.46225ms)
+✔ --preset selects a cli-pi preset and rejects an unknown name (150.877417ms)
+▶ cli-opencode and cli-codex presets build their own argv, and --critic writes critic.json
+  ✔ cli-opencode puts the model behind -m and the prompt last (95.776208ms)
+  ✔ cli-codex runs read-only with the pinned effort and tier (87.045083ms)
+  ✔ an unknown kind exits 2 (51.303334ms)
+  ✔ --critic runs the critic block and writes critic.json in the run folder (85.232583ms)
+  ✔ --critic refuses a native critic (53.231291ms)
+✔ cli-opencode and cli-codex presets build their own argv, and --critic writes critic.json (378.699709ms)
+▶ recovers the last top-level findings object from messy transcripts
+  ✖ recovers a lane object after prose with a brace and quote (124.849125ms)
+  ✖ prefers the lane object over a later nested findings object (123.701ms)
+  ✖ recovers a pretty-printed critic object (113.414167ms)
+  ✔ records no JSON object with findings and removes a stale result (103.601584ms)
+✖ recovers the last top-level findings object from messy transcripts (472.783292ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 15
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9699.702625
+
+✖ failing tests:
+
+test at ../../../MEGA/Development/Skilled/.skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs:289:11
+✖ recovers a lane object after prose with a brace and quote (124.849125ms)
+  Error: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/run-lanes-parser-test-QK2X9H/run-prose-brace/lanes/A.json'
+      at Object.readFileSync (node:fs:624:20)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs:294:21)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs:289:11)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/run-lanes-parser-test-QK2X9H/run-prose-brace/lanes/A.json'
+  }
+
+test at ../../../MEGA/Development/Skilled/.skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs:300:11
+✖ prefers the lane object over a later nested findings object (123.701ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+      findings: [
+        {
+  +       id: 'wrong'
+  -       id: 'L1'
+        }
+      ],
+  -   lane: 'A'
+    }
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs:305:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs:300:11)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { findings: [ [Object] ] },
+    expected: { lane: 'A', findings: [ [Object] ] },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at ../../../MEGA/Development/Skilled/.skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs:312:11
+✖ recovers a pretty-printed critic object (113.414167ms)
+  Error: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/run-lanes-parser-test-QK2X9H/run-critic-pretty/critic.json'
+      at Object.readFileSync (node:fs:624:20)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs:332:21)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at TestContext.test (node:internal/test_runner/test:400:20)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/MEGA/Development/Skilled/.skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs:312:11)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/run-lanes-parser-test-QK2X9H/run-critic-pretty/critic.json'
+  }
+EXIT_STATUS=1

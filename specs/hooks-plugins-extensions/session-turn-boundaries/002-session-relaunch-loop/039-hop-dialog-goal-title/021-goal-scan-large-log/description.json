@@ -1,0 +1,20 @@
+{
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/021-goal-scan-large-log",
+  "description": "Phase 21: goal-scan-large-log",
+  "keywords": [
+    "phase",
+    "goal-scan-large-log"
+  ],
+  "lastUpdated": "2026-11-14T16:13:55.553Z",
+  "specId": "021",
+  "folderSlug": "goal-scan-large-log",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
+    "039-hop-dialog-goal-title"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

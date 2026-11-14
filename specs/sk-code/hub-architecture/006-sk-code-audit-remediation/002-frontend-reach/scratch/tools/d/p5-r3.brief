@@ -1,0 +1,24 @@
+TASK: replace one short block of one file.
+
+FILE: .skilled/skills/sk-code/ROUTER.md (read the subsection `### Implementation shared tier`, about lines 100 to 108, only)
+
+EDIT. Under the heading `### Implementation shared tier` there is one sentence that starts with `IMPLEMENTATION loads the shared organization and naming baseline:`, a blank line, and two bullet lines. Replace that sentence, the blank line and the two bullets with the text between the marker lines below. Keep the heading `### Implementation shared tier` and the heading `### Intent overlay` that follows.
+
+<<<TEXT
+IMPLEMENTATION loads the shared build doctrine and the organization and naming baseline:
+
+- `shared/references/workflow-implement.md`
+- `sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md`
+- `sk-code-skilled/references/shared/universal-patterns/organization-security-and-examples.md`
+- `sk-code-skilled/references/shared/code-organization/overview-and-module-organization.md`
+- `sk-code-skilled/references/shared/code-organization/imports-and-exports.md`
+- `sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md`
+
+It also maps the four authoring checklists, which open only as the authoring checklist gating below states.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+sed -n '/^### Implementation shared tier/,/^### Intent overlay/p' .skilled/skills/sk-code/ROUTER.md | rg -c '^- `'
+Expected output: `6`

@@ -1,0 +1,5 @@
+# Recursive strict validation, final state, 2026-11-14, commit 2638731a9d
+
+exit=0
+folders_passed=24
+folders_failed=0

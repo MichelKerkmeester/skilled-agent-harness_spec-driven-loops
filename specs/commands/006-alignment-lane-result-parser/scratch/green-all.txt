@@ -1,0 +1,72 @@
+$ env -u AI_SESSION_CHILD node --test .skilled/commands/assets/local-skilled-alignment/tests/
+✔ holds a failed probe without critic support (159.500959ms)
+✔ counts a probe upheld by either source or finding id (190.148041ms)
+✔ plans kept findings by owner and scope, with literals first (132.189208ms)
+✔ writes outputs without lanes or a critic (133.966708ms)
+✔ applies an override that names a failed battery row by its own id (115.657834ms)
+✔ a checkout that carries the command is the root, from any folder inside it (103.52925ms)
+✔ a checkout without the command falls back to the path beside the scripts (52.4225ms)
+✔ a folder outside any git checkout falls back to the path beside the scripts (20.461375ms)
+✔ applies one unique match and records its line (79.635834ms)
+✔ a later fix on the same file sees the earlier replacement (61.326459ms)
+✔ missing old text and missing files are skipped (58.807208ms)
+✔ doubled and overlapping old text is skipped with its occurrence count (63.367875ms)
+✔ an already applied replacement is reported (56.518875ms)
+✔ outside-scope and judgment findings are not candidates (56.603834ms)
+✔ paths outside the root are refused, including symlink escapes (91.280958ms)
+✔ dry-run leaves the file unchanged and records a multiline diff (79.98275ms)
+✔ --only applies the named finding ids (60.010666ms)
+✔ usage errors and unreadable findings exit with status 2 (128.500292ms)
+✔ an added skill changelog passes when the open notes name the skill (84.614875ms)
+✔ an added skill changelog fails when the notes never name the skill whole (69.074708ms)
+✔ the open notes are the newest by version, not by filename order (57.020292ms)
+✔ an added SKILL.md needs its frontmatter name in notes and README (65.820084ms)
+✔ a scope with nothing added requires nothing (52.410417ms)
+✔ no root release notes is an error rather than a finding (54.989917ms)
+✔ keeps the 10 newest of 12 run folders (92.777875ms)
+✔ ignores entries without a run marker and nested run folders (57.465125ms)
+✔ removes scratch only for kept runs with report.md (64.111208ms)
+✔ dry-run reports run and scratch deletions without removing them (56.270209ms)
+✔ refuses filesystem, home and repository roots (229.328958ms)
+✔ refuses a non-positive or non-integer keep count (230.915667ms)
+✔ writes a bounded owner summary for a one-commit range (253.197791ms)
+✔ rows-out selects failing and cannot-run rows only (93.791833ms)
+✔ classifies rows and findings, and reports open status (64.12275ms)
+✔ a fix that extends the old text resolves once applied, and stays open where it was not (71.091208ms)
+✔ review-only findings do not make the recheck open (61.501208ms)
+✔ unreadable input and invalid arguments exit 2 (132.660792ms)
+✔ an untouched path outside every owner root says why the scope is empty (362.306875ms)
+✔ an untouched skill reports the empty diff without claiming it is outside the owner roots (668.699709ms)
+✔ a path with a changed file carries no note (662.191458ms)
+▶ runner extracts findings and enforces timeout watchdog rules
+  ✔ writes a findings object for valid lane output (138.813875ms)
+  ✔ writes timeout reason for a sleeping lane (4068.854084ms)
+  ✔ kills a lane with an old pending non-test tool call (281.148791ms)
+  ✔ lets a matching test runner reach the hard timeout (4093.763709ms)
+✔ runner extracts findings and enforces timeout watchdog rules (8594.964542ms)
+▶ --preset selects a cli-pi preset and rejects an unknown name
+  ✔ runs the selected preset instead of the lanes block (169.728584ms)
+  ✔ exits 2 for an unknown preset name (70.323792ms)
+✔ --preset selects a cli-pi preset and rejects an unknown name (246.112583ms)
+▶ cli-opencode and cli-codex presets build their own argv, and --critic writes critic.json
+  ✔ cli-opencode puts the model behind -m and the prompt last (126.178333ms)
+  ✔ cli-codex runs read-only with the pinned effort and tier (98.0805ms)
+  ✔ an unknown kind exits 2 (59.87175ms)
+  ✔ --critic runs the critic block and writes critic.json in the run folder (154.245458ms)
+  ✔ --critic refuses a native critic (54.297125ms)
+✔ cli-opencode and cli-codex presets build their own argv, and --critic writes critic.json (501.82775ms)
+▶ recovers the last top-level findings object from messy transcripts
+  ✔ recovers a lane object after prose with a brace and quote (214.459958ms)
+  ✔ prefers the lane object over a later nested findings object (113.285583ms)
+  ✔ recovers a pretty-printed critic object (196.530375ms)
+  ✔ records no JSON object with findings and removes a stale result (103.61675ms)
+✔ recovers the last top-level findings object from messy transcripts (639.219375ms)
+ℹ tests 58
+ℹ suites 0
+ℹ pass 58
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10076.877333
+EXIT_STATUS=0

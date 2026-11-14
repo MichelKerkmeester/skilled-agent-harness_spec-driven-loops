@@ -24,7 +24,7 @@ const { assertSnapshotUnchanged } = require('./fixtures.cjs');
 // 2. CASES
 // ─────────────────────────────────────────────────────────────────────────────
 
-test('F01 foreign polyglot: seven seeded labels block and the surface stays unknown', () => withRepo({
+test('F01 foreign polyglot: seven seeded labels block and only the stylesheet detects a surface', () => withRepo({
   base: { 'README.txt': 'fixture\n' },
   change: {
     'a.go': 'package a\n\n// see ' + ADR_LABEL + '\nfunc A() {}\n',
@@ -39,7 +39,7 @@ test('F01 foreign polyglot: seven seeded labels block and the surface stays unkn
   const { status, verdict } = assertSnapshotUnchanged(repo, () => repo.run([]));
   assert.equal(status, 1);
   assert.equal(verdict.gate, 'BLOCKED');
-  assert.deepEqual(verdict.resolved_surface, ['unknown']);
+  assert.deepEqual(verdict.resolved_surface, ['FRONTEND']);
   const blocking = hygieneFindings(verdict).filter((entry) => entry.blocking && entry.confidence === 'exact');
   assert.equal(blocking.length, 7);
   assert.deepEqual(blocking.map((entry) => entry.file).sort(), ['a.go', 'b.rs', 'c.yaml', 'd.css', 'e.py', 'f.ts', 'g.mts']);

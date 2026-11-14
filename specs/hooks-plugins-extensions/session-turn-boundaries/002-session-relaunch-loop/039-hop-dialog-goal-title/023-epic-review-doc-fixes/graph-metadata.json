@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title",
+  "status_review_required": true,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "epic review doc fixes",
+      "phase 23 epic review doc fixes",
+      "question guard and generated title documentation",
+      "saved acceptance evidence",
+      "epic review doc fixes plan",
+      "epic review doc fixes tasks",
+      "epic review doc fixes acceptance criteria",
+      "epic review doc fixes goal",
+      "epic review doc fixes implementation summary",
+      "relaunch guard and generated title docs"
+    ],
+    "key_topics": [
+      "epic",
+      "review",
+      "doc",
+      "phase",
+      "question",
+      "guard",
+      "title",
+      "documentation",
+      "saved",
+      "acceptance",
+      "evidence",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/claude/README.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      "scratch/baseline.txt",
+      "scratch/verification.txt",
+      "scratch/final-suite.txt",
+      "scratch/goal-suite.txt",
+      "scratch/pi-suite.txt",
+      "scratch/checks.txt",
+      "scratch/citations.txt",
+      "scratch/validate-folders.txt",
+      "scratch/validate-recursive.txt",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/claude/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-loop.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-claude.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "verification.txt",
+        "kind": "file",
+        "path": "scratch/verification.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-suite.txt",
+        "kind": "file",
+        "path": "scratch/final-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "goal-suite.txt",
+        "kind": "file",
+        "path": "scratch/goal-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "pi-suite.txt",
+        "kind": "file",
+        "path": "scratch/pi-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "checks.txt",
+        "kind": "file",
+        "path": "scratch/checks.txt",
+        "source": "derived"
+      },
+      {
+        "name": "citations.txt",
+        "kind": "file",
+        "path": "scratch/citations.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-folders.txt",
+        "kind": "file",
+        "path": "scratch/validate-folders.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-recursive.txt",
+        "kind": "file",
+        "path": "scratch/validate-recursive.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 2026-11-14 whole-epic review left four document findings",
+    "created_at": "2026-11-14T16:13:57Z",
+    "last_save_at": "2026-11-14T17:40:24.145Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:18e4bb8f57232465d5a8dd3fc57f27973ff40f3bd7620202a742e6618c334d06",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "95168e7e4811af949d5c814578408d11f87a1fd9a0607039611afe22f49c2c27",
+      "plan.md": "2d44632d91fe5ca30e2626bb8f5376a5d468e32a525d5b3f8d73853313da4ea0",
+      "tasks.md": "d914c937b647ce98b0ac7bab3e6f338a577f871e151645d4dfa297c2b7e3441f",
+      "implementation-summary.md": "69c00337a3ce56263895f078c1292d16ff39d25659e4b3632eb1ecfb03d3cba2"
+    },
+    "last_active_at": null
+  }
+}

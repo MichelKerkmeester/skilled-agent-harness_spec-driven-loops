@@ -341,12 +341,15 @@ function parseIterationFile(iterationPath) {
   const headingMatch = markdown.match(/^#\s+Iteration\s+\d+\s*[-:]\s+(.+)$/m);
 
   // Support both old schema (Focus/Findings/Ruled Out/Dead Ends/Assessment)
-  // and live schema (Dispatcher/Files Reviewed/Findings - New/Traceability Checks/
-  // Confirmed-Clean/Next Focus).
+  // and live schema (Dispatcher/Files Reviewed/Findings - New/Confirmed-Clean/
+  // Next Focus).
   const focusSection = extractSection(markdown, 'Focus') || extractSection(markdown, 'Dispatcher');
   const findingsSection = extractSection(markdown, 'Findings') || extractSection(markdown, 'Findings - New');
   const ruledOutSection = extractSection(markdown, 'Ruled Out') || extractSection(markdown, 'Confirmed-Clean Surfaces') || extractSection(markdown, 'Confirmed-Clean');
-  const deadEndsSection = extractSection(markdown, 'Dead Ends') || extractSection(markdown, 'Traceability Checks');
+  // Traceability Checks records protocol status, which the structured
+  // traceabilityChecks rollup already owns. Only an explicit Dead Ends section
+  // names a direction the review ruled out.
+  const deadEndsSection = extractSection(markdown, 'Dead Ends');
   const nextFocusSection = extractSection(markdown, 'Recommended Next Focus') || extractSection(markdown, 'Next Focus (recommendation)') || extractSection(markdown, 'Next Focus');
   const assessmentSection = extractSection(markdown, 'Assessment');
   const filesReviewedSection = extractSection(markdown, 'Files Reviewed');
@@ -668,6 +671,9 @@ function deltaRecordToFinding(record) {
     contentHash: typeof record.content_hash === 'string' && record.content_hash
       ? record.content_hash
       : (typeof record.contentHash === 'string' && record.contentHash ? record.contentHash : null),
+    // A refinement names the finding it sharpens. The observed producer spelling
+    // refinementOf is accepted as an alias so both row shapes fold the same way.
+    refines: normalizeText(record.refines || record.refinementOf || '') || null,
   };
 }
 
@@ -750,6 +756,7 @@ function findingDetailToFinding(detail, record, index) {
     contentHash: typeof detail.content_hash === 'string' && detail.content_hash
       ? detail.content_hash
       : (typeof detail.contentHash === 'string' && detail.contentHash ? detail.contentHash : null),
+    refines: normalizeText(detail.refines || detail.refinementOf || '') || null,
   };
 }
 
@@ -951,6 +958,29 @@ function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [
   function upsertFinding(finding, run, iteration, initialReason, adjustmentReason) {
     const claimAdjudication = claimAdjudicationByFinding.get(finding.findingId);
     const canonicalSeverity = claimAdjudication?.finalSeverity || finding.severity;
+    // A refinement names the finding it sharpens rather than a new finding. Fold
+    // it into that target before the id-reuse split below, so the registry keeps
+    // one entry and the target carries the newer wording. An unresolved value
+    // falls through to the ordinary insert path.
+    const refinesId = normalizeText(finding.refines || '');
+    const refinesTarget = refinesId ? findingById.get(refinesId) : undefined;
+    if (refinesTarget) {
+      refinesTarget.lastSeen = run;
+      if (finding.title) {
+        refinesTarget.title = finding.title;
+      }
+      if (finding.description) {
+        refinesTarget.description = finding.description;
+      }
+      refinesTarget.transitions.push({
+        iteration: run,
+        from: refinesTarget.severity,
+        to: canonicalSeverity,
+        reason: 'Refinement of an earlier finding',
+      });
+      refinesTarget.severity = canonicalSeverity;
+      return;
+    }
     const existing = findingById.get(finding.findingId);
     // findingId is only unique per source (per-iteration counters, parallel
     // dispatch) -- two genuinely distinct findings can reuse the same id.
@@ -1707,14 +1737,15 @@ function buildRegistry(strategyDimensions, iterationFiles, iterationRecords, con
   const persistentSameSeverity = openFindings.filter((finding) => {
     if (finding.lastSeen - finding.firstSeen < 1) return false;
     const transitions = Array.isArray(finding.transitions) ? finding.transitions : [];
-    // Exclude the initial discovery transition from the "no change" count
-    const nontrivialTransitions = transitions.filter((t) => t.from !== null);
+    // Exclude the initial discovery transition and any transition that records
+    // the same severity on both sides, which a refinement can add without churn.
+    const nontrivialTransitions = transitions.filter((t) => t.from !== null && t.from !== t.to);
     return nontrivialTransitions.length === 0;
   });
 
   const severityChanged = openFindings.filter((finding) => {
     const transitions = Array.isArray(finding.transitions) ? finding.transitions : [];
-    const nontrivialTransitions = transitions.filter((t) => t.from !== null);
+    const nontrivialTransitions = transitions.filter((t) => t.from !== null && t.from !== t.to);
     return nontrivialTransitions.length > 0;
   });
 

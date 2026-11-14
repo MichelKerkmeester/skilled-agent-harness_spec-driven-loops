@@ -1,0 +1,19 @@
+{
+  "specFolder": "sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content",
+  "description": "Phase 3: frontend-content",
+  "keywords": [
+    "phase",
+    "frontend-content"
+  ],
+  "lastUpdated": "2026-11-14T12:01:51.987Z",
+  "specId": "003",
+  "folderSlug": "frontend-content",
+  "parentChain": [
+    "sk-code",
+    "hub-architecture",
+    "006-sk-code-audit-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

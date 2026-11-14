@@ -1,0 +1,16 @@
+TASK: replace five lines with two lines in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-review/SKILL.md (read lines 104 to 118 only)
+
+EDIT. Under the heading `#### Reach Calibration` there are five consecutive lines. The first starts with ``A `P0` or `P1` finding names its reach in its `Case:` line:`` and the fifth starts with `The full rule is`. Replace those five lines with the two lines between the marker lines below. Keep the heading, the blank line after the heading and the blank line before `#### Numeric Severity Calibration`.
+
+<<<TEXT
+A `P0` or `P1` finding names its reach in its `Case:` line, and a finding that cannot name one is `P2`.
+The rule, its exceptions for validated input and for data that crosses a trust boundary, and the limit on the low-confidence escalation rule are in [`review-core.md`](./references/review-core.md) section 2.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'outside that contract' .skilled/skills/sk-code/sk-code-review/SKILL.md; echo "exit $?"
+Expected output: `exit 1`

@@ -1,0 +1,16 @@
+TASK: replace one table row with two table rows in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-quality/README.md (read lines 83 to 90 only)
+
+EDIT. In the table under `### The P0/P1/P2 Gate`, replace the whole row that starts with `| **P0** |` with the two lines between the marker lines below. The rows that start with `| **P1** |` and `| **P2** |` stay as they are, directly after the two new lines.
+
+<<<TEXT
+| **P0** | Correctness, safety, broken contract or forbidden comment metadata | Blocks completion until fixed or escalated |
+| **UNVERIFIED** | Unchecked generated drift, missing required checklist evidence, a required check that produced no evidence, or two override sources at one level that disagree on a rule | Neither clean nor blocked. The claim stays open until verification proves it or reports it open |
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -n 'generated drift' .skilled/skills/sk-code/sk-code-quality/README.md | cut -c1-22
+Expected output: one line, `88:| **UNVERIFIED** | U`

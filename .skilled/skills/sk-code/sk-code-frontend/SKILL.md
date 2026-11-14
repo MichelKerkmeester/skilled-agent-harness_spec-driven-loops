@@ -2,13 +2,13 @@
 name: sk-code-frontend
 description: Read-only frontend evidence for stack-agnostic web practice, visual values, topic references, and Figma checks.
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 1.1.0.0
+version: 1.2.0.0
 metadata:
   family: sk-code
   packetKind: surface
 ---
 
-<!-- Keywords: frontend surface, web markup css, figma to code -->
+<!-- Keywords: frontend surface, web markup css, visual values, motion and interaction, figma to code -->
 
 # Frontend Surface: Stack-Agnostic Web Practice
 
@@ -44,7 +44,7 @@ Validate the package with the operator-scenario contract:
 
 ## 3. SMART ROUTING
 
-Read [`ROUTER.md`](./ROUTER.md) for the intent map, topic-file loading conditions, and machine router. The core loads by default, followed by the matching web or Figma-to-code reference.
+Read [`ROUTER.md`](./ROUTER.md) for the intent map, topic-file loading conditions, and machine router. The core loads by default, followed by the web layer for a web intent or the mapped files for a visual, motion or Figma intent.
 
 ---
 
@@ -52,7 +52,7 @@ Read [`ROUTER.md`](./ROUTER.md) for the intent map, topic-file loading condition
 
 ### ✅ ALWAYS
 
-- Read the shared principles and the web layer before applying a topic reference.
+- Read the shared principles first. Web intents add the web layer, and visual, motion and Figma intents add the files [`ROUTER.md`](./ROUTER.md) maps for them without it.
 - Load a topic file when its condition in [`ROUTER.md`](./ROUTER.md) applies.
 - Use installed design tokens and report a missing token instead of inventing a value.
 - Mark a Figma pass `NOT RUN` with its reason; the overall verdict is `INCOMPLETE` when any pass cannot run.

@@ -1,0 +1,214 @@
+diff --git a/run-lanes.cjs b/run-lanes.cjs
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b726ec67-1d85-4833-b219-c038e184d696/scratchpad/backup-local-skilled-alignment/run-lanes.cjs	2026-11-06 11:13:09
++++ .skilled/commands/assets/local-skilled-alignment/run-lanes.cjs	2026-11-14 18:49:20
+@@ -323,19 +323,13 @@
+   return 'stalled: ' + detail + ' pending ' + Math.floor(oldest.ageSeconds) + 's';
+ }
+ 
+-function findFindingsObject(rawText) {
+-  const starts = [];
++function matchObjectEnd(text, start) {
++  let depth = 0;
+   let inString = false;
+   let escaped = false;
+-  let findings = null;
+-
+-  for (let index = 0; index < rawText.length; index += 1) {
+-    const character = rawText[index];
+-    if (starts.length === 0) {
+-      if (character === '{') starts.push(index);
+-      continue;
+-    }
+ 
++  for (let index = start; index < text.length; index += 1) {
++    const character = text[index];
+     if (inString) {
+       if (escaped) escaped = false;
+       else if (character === '\\') escaped = true;
+@@ -347,21 +341,42 @@
+       continue;
+     }
+     if (character === '{') {
+-      starts.push(index);
++      depth += 1;
+       continue;
+     }
+     if (character !== '}') continue;
++    depth -= 1;
++    if (depth === 0) return index;
++  }
++  return -1;
++}
+ 
+-    const start = starts.pop();
++function findFindingsObject(rawText, options = {}) {
++  const parsed = [];
++  // Each brace is its own parse start: prose before the real object can leave a quote or brace unbalanced.
++  for (let start = rawText.indexOf('{'); start !== -1; start = rawText.indexOf('{', start + 1)) {
++    const end = matchObjectEnd(rawText, start);
++    if (end === -1) continue;
+     try {
+-      const candidate = JSON.parse(rawText.slice(start, index + 1));
+-      if (isRecord(candidate) && Array.isArray(candidate.findings)) findings = candidate;
++      parsed.push({ start, end, value: JSON.parse(rawText.slice(start, end + 1)) });
+     } catch {
+       // Non-JSON braces in diagnostic output are ignored.
+     }
+-    if (starts.length === 0) inString = false;
+   }
+-  return findings;
++
++  // A findings array nested inside another object is not a lane result, even when the outer object has none.
++  const topLevel = parsed.filter((entry) => isRecord(entry.value)
++    && Array.isArray(entry.value.findings)
++    && !parsed.some((other) => other.start < entry.start && other.end > entry.end));
++  if (topLevel.length === 0) return null;
++
++  if (options.expectLane) {
++    for (let index = topLevel.length - 1; index >= 0; index -= 1) {
++      const lane = topLevel[index].value.lane;
++      if (typeof lane === 'string' && lane.trim()) return topLevel[index].value;
++    }
++  }
++  return topLevel[topLevel.length - 1].value;
+ }
+ 
+ function clearLaneTimers(state) {
+@@ -408,7 +423,7 @@
+       let reason = laneExitReason(state);
+       let findings = null;
+       if (!reason) {
+-        findings = findFindingsObject(fs.readFileSync(state.rawPath, 'utf8'));
++        findings = findFindingsObject(fs.readFileSync(state.rawPath, 'utf8'), { expectLane: state.id !== 'critic' });
+         if (!findings) reason = 'no JSON object with findings';
+       }
+ 
+
+diff --git a/tests/run-lanes.test.cjs b/tests/run-lanes.test.cjs
+--- /private/tmp/claude-501/-Users-michelkerkmeester-MEGA-Development-Skilled/b726ec67-1d85-4833-b219-c038e184d696/scratchpad/backup-local-skilled-alignment/tests/run-lanes.test.cjs	2026-11-06 11:13:31
++++ .skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs	2026-11-14 18:48:33
+@@ -39,6 +39,9 @@
+     "if (mode === 'json') {",
+     "  process.stdout.write('stub output\\n{\"lane\":\"A\",\"findings\":[]}\\n', () => process.exit(0));",
+     '}',
++    "if (mode === 'raw') {",
++    "  process.stdout.write(process.env.STUB_STDOUT || '', () => process.exit(0));",
++    '}',
+     "if (mode === 'stall') {",
+     "  const event = { timestamp: new Date(Date.now() - 10000).toISOString(), message: { role: 'assistant', content: [{ type: 'toolCall', id: 't1', name: 'bash', arguments: { command: 'sleep 99' } }] } };",
+     "  fs.writeFileSync(path.join(sessions, 'x.jsonl'), JSON.stringify(event) + '\\n');",
+@@ -49,7 +52,7 @@
+   fs.chmodSync(file, 0o755);
+ }
+ 
+-function laneConfig(stubPath, mode, patterns = []) {
++function laneConfig(stubPath, mode, patterns = [], env = {}) {
+   return {
+     binary: stubPath,
+     model: 'stub-model',
+@@ -57,21 +60,22 @@
+     mode: 'text',
+     tools: 'bash',
+     flags: [],
+-    env: { STUB_MODE: mode },
++    env: { STUB_MODE: mode, ...env },
+     timeoutSeconds: 4,
+     stallSeconds: 2,
+     testRunnerPatterns: patterns,
+   };
+ }
+ 
+-function runScenario(testRoot, stubPath, name, mode, patterns = []) {
++function runScenario(testRoot, stubPath, name, mode, patterns = [], env = {}, beforeRun = null) {
+   const runDir = path.join(testRoot, 'run-' + name);
+   const scratchRoot = path.join(testRoot, 'scratch-' + name);
+   const lanesDir = path.join(runDir, 'lanes');
+   const configPath = path.join(testRoot, 'config-' + name + '.json');
+   fs.mkdirSync(lanesDir, { recursive: true });
+   fs.writeFileSync(path.join(lanesDir, 'A.prompt.txt'), 'Inspect the fixture.');
+-  fs.writeFileSync(configPath, JSON.stringify({ lanes: laneConfig(stubPath, mode, patterns) }));
++  fs.writeFileSync(configPath, JSON.stringify({ lanes: laneConfig(stubPath, mode, patterns, env) }));
++  if (beforeRun) beforeRun(lanesDir);
+ 
+   const result = spawnSync(process.execPath, [
+     RUNNER,
+@@ -272,5 +276,79 @@
+       { ...document, critic: { kind: 'native', agent: 'review' } });
+     assert.equal(result.status, 2);
+     assert.match(result.stderr, /critic is native/);
++  });
++});
++
++test('recovers the last top-level findings object from messy transcripts', { timeout: 30000 }, async (t) => {
++  const testRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'run-lanes-parser-test-'));
++  t.after(() => fs.rmSync(testRoot, { recursive: true, force: true }));
++
++  const stubPath = path.join(testRoot, 'stub-lane');
++  writeStubBinary(stubPath);
++
++  await t.test('recovers a lane object after prose with a brace and quote', () => {
++    const transcript = 'Diagnostic {partial "quoted\n{"lane":"A","findings":[{"id":"L1"}]}\n';
++    const result = runScenario(testRoot, stubPath, 'prose-brace', 'raw', [], { STUB_STDOUT: transcript });
++    const lanesDir = path.join(result.runDir, 'lanes');
++    assert.deepEqual(
++      JSON.parse(fs.readFileSync(path.join(lanesDir, 'A.json'), 'utf8')),
++      { lane: 'A', findings: [{ id: 'L1' }] },
++    );
++    assert.equal(fs.existsSync(path.join(lanesDir, 'A.error.txt')), false);
++  });
++
++  await t.test('prefers the lane object over a later nested findings object', () => {
++    const transcript = '{"lane":"A","findings":[{"id":"L1"}]}\n'
++      + '{"tool":"report","result":{"findings":[{"id":"wrong"}]}}\n';
++    const result = runScenario(testRoot, stubPath, 'nested-object', 'raw', [], { STUB_STDOUT: transcript });
++    const lanesDir = path.join(result.runDir, 'lanes');
++    assert.deepEqual(
++      JSON.parse(fs.readFileSync(path.join(lanesDir, 'A.json'), 'utf8')),
++      { lane: 'A', findings: [{ id: 'L1' }] },
++    );
++    assert.equal(fs.existsSync(path.join(lanesDir, 'A.error.txt')), false);
++  });
++
++  await t.test('recovers a pretty-printed critic object', () => {
++    const transcript = [
++      'Diagnostic {partial "quoted',
++      '```json',
++      '{',
++      '  "findings": [',
++      '    { "id": "C1" }',
++      '  ]',
++      '}',
++      '```',
++      '',
++    ].join('\n');
++    const promptPath = path.join(testRoot, 'critic.prompt.md');
++    fs.writeFileSync(promptPath, 'Criticize the lanes.');
++    const document = { critic: laneConfig(stubPath, 'raw', [], { STUB_STDOUT: transcript }) };
++    const result = runPresetCase(testRoot, 'critic-pretty', ['--critic', promptPath], document);
++    assert.ifError(result.error);
++    assert.equal(result.status, 0, result.stderr);
++    const runDir = path.join(testRoot, 'run-critic-pretty');
++    assert.deepEqual(
++      JSON.parse(fs.readFileSync(path.join(runDir, 'critic.json'), 'utf8')),
++      { findings: [{ id: 'C1' }] },
++    );
++    assert.equal(fs.existsSync(path.join(runDir, 'critic.error.txt')), false);
+   });
++
++  await t.test('records no JSON object with findings and removes a stale result', () => {
++    const transcript = 'Diagnostic {partial "quoted\nno findings object here\n';
++    const result = runScenario(
++      testRoot,
++      stubPath,
++      'no-match',
++      'raw',
++      [],
++      { STUB_STDOUT: transcript },
++      (lanesDir) => fs.writeFileSync(path.join(lanesDir, 'A.json'), '{"stale":true}\n'),
++    );
++    const lanesDir = path.join(result.runDir, 'lanes');
++    assert.equal(fs.existsSync(path.join(lanesDir, 'A.json')), false);
++    assert.equal(fs.readFileSync(path.join(lanesDir, 'A.error.txt'), 'utf8').trim(), 'no JSON object with findings');
++    assert.equal(readStatus(result.runDir).reason, 'no JSON object with findings');
++  });
+ });

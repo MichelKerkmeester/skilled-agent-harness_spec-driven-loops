@@ -8,7 +8,7 @@ trigger_phrases:
   - "declare an sk-code surface"
 importance_tier: important
 contextType: general
-version: 2.2.15.0
+version: 2.2.16.0
 ---
 
 # Router Reference - Code Surface Detection
@@ -41,7 +41,7 @@ Detect **where the work is happening** before deciding which standards apply. Th
 | SKILLED | The hub's own code under `.skilled/`: skills, agents, commands, MCP servers, plugins, scripts, tests and JSON or YAML config. It is the one fallback surface | A stack a specific surface declares |
 | UNKNOWN | The result when no declared surface matches | Any standard beyond the universal floor, the quality runner's built-in checks and the checks and checklists the repository's quality config names, each with its overrides applied, until the operator names the surface and its commands. The spec-folder authoring checklist needs the SKILLED surface |
 
-`sk-code-ci` and `sk-code-frontend` are surface packets with no detection block. The hub bundles each from request vocabulary alone, so detection never returns either.
+`sk-code-frontend` is the hub's own specific surface. Its `FRONTEND` block declares the file markers `.css`, `.scss`, `.html`, `.tsx`, `.jsx`, `.vue` and `.svelte`, so a stylesheet, markup or component file detects FRONTEND ahead of SKILLED. `sk-code-ci` is a surface packet with no detection block. The hub bundles it from request vocabulary alone, so detection never returns it.
 
 ---
 
@@ -175,7 +175,7 @@ YAML is live hub config: command routers, workflow contracts and each command's 
 | Changed file inside a symlinked `.skilled/skills/local-*` skill | Not SKILLED | The file resolves to another repository |
 | Changed `src/2_javascript/slider.js`, with a declared specific surface naming `src/2_javascript/` | That surface | A declared specific surface outranks the fallback |
 | Changed `src/2_javascript/slider.js` and `.opencode/agents/code.md`, with a declared specific surface naming `src/2_javascript/` | **That surface**, then SKILLED as second evidence | Specific surfaces lead, and the fallback still loads for the hub file |
-| Changed `apps/desktop/src/styles/app.css` and `.opencode/agents/code.md`, with no specific surface declared | SKILLED | The fallback is the only declared surface that matches |
+| Changed `apps/desktop/src/styles/app.css` and `.opencode/agents/code.md` | **FRONTEND**, then SKILLED as second evidence | The `.css` file marker matches the hub's specific surface, and the fallback still loads for the hub file |
 | Router replay of request text naming `.skilled/skills/x/foo.ts` | SKILLED | Text-only detection matches the fallback's markers in the request |
 | A prompt that bundles SKILLED and CI, sent with `--surface-hint SKILLED` | CI first, then SKILLED | A hint that names the fallback never moves it ahead of another surface |
 | Root `package.json` with no `.skilled/` target | UNKNOWN | No declared surface owns generic Node.js |

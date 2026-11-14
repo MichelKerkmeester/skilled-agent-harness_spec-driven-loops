@@ -1,0 +1,13 @@
+TASK: one literal replacement in one table row of one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/manual-testing-playbook.md (read lines 480 to 490 only)
+
+EDIT. In the table row that starts with ``| `scripts/tests/verify-router-sync-git-timeout.test.cjs` |``, replace the literal text
+Leg 1b's bounded `git check-ignore`
+with the literal text
+The bounded `git check-ignore` of leg 1b
+Keep the rest of the row byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -l 'Leg 1b' .skilled/skills/sk-code/sk-code-skilled --glob '*.md' | wc -l
+Expected output: a number. Report it as printed.

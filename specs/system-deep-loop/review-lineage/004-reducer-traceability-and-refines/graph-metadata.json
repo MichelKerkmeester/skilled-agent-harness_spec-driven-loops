@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/review-lineage/004-reducer-traceability-and-refines",
+  "spec_folder": "system-deep-loop/review-lineage/004-reducer-traceability-and-refines",
+  "parent_id": "system-deep-loop/review-lineage",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "reducer traceability and refines",
+      "false blocked traceability entries",
+      "double counted refinement finding",
+      "deep review findings registry count",
+      "reducer traceability and refines plan",
+      "fold refinement finding plan",
+      "reducer traceability and refines tasks",
+      "reducer traceability and refines acceptance criteria",
+      "reducer traceability and refines goal",
+      "reducer traceability and refines implementation summary"
+    ],
+    "key_topics": [
+      "reducer",
+      "traceability",
+      "refines",
+      "false",
+      "blocked",
+      "entries",
+      "double",
+      "counted",
+      "refinement",
+      "finding",
+      "deep",
+      "review"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+      ".skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-traceability-and-refines.test.cjs",
+      ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
+      "scratch/baseline.txt",
+      "scratch/red.txt",
+      "scratch/green.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "reduce-state-traceability-and-refines.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-review/scripts/tests/reduce-state-traceability-and-refines.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-pack-iteration.md.tmpl",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Traceability Checks",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dead Ends",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior Measured",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Change",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`parseIterationFile` maps the `Traceability Checks` section to dead ends when an iteration has no `Dead Ends` section (`.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs:349`)",
+    "created_at": "2026-11-14T17:02:08Z",
+    "last_save_at": "2026-11-14T17:22:36.067Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:80161cdfe9ebaeb07667464967aeca1c1be116a49a630cf2f8dac959cadc8206",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "466b5291faa32de85861c0803242e4379e9e1f87426b32bc2be8366aa7971d51",
+      "plan.md": "b2c8ce8d3cf92624d84b2c70d43abb05d92bb5adb6bd5d6fcf9e04c759fc3576",
+      "tasks.md": "e4d4540005bc00310ddb053c4d516307e2064683cdb0a70e0fb0cdbf0b9b1161",
+      "implementation-summary.md": "37aa0d3daf3e1807defef16866cede1fd13ae4af1e273419382ba59718dbf65f"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,27 @@
+$ env -u AI_SESSION_CHILD node --test .skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs
+▶ runner extracts findings and enforces timeout watchdog rules
+  ✔ writes a findings object for valid lane output (277.668333ms)
+  ✔ writes timeout reason for a sleeping lane (4085.573916ms)
+  ✔ kills a lane with an old pending non-test tool call (321.584333ms)
+  ✔ lets a matching test runner reach the hard timeout (4108.460375ms)
+✔ runner extracts findings and enforces timeout watchdog rules (8815.253334ms)
+▶ --preset selects a cli-pi preset and rejects an unknown name
+  ✔ runs the selected preset instead of the lanes block (143.404667ms)
+  ✔ exits 2 for an unknown preset name (48.445667ms)
+✔ --preset selects a cli-pi preset and rejects an unknown name (196.038667ms)
+▶ cli-opencode and cli-codex presets build their own argv, and --critic writes critic.json
+  ✔ cli-opencode puts the model behind -m and the prompt last (99.911125ms)
+  ✔ cli-codex runs read-only with the pinned effort and tier (94.187625ms)
+  ✔ an unknown kind exits 2 (47.433959ms)
+  ✔ --critic runs the critic block and writes critic.json in the run folder (97.571625ms)
+  ✔ --critic refuses a native critic (83.694917ms)
+✔ cli-opencode and cli-codex presets build their own argv, and --critic writes critic.json (436.186834ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9503.567084
+EXIT_STATUS=0

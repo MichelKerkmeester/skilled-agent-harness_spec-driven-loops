@@ -1,0 +1,11 @@
+Failure path, run on 2026-11-14 before the phase 007 code commit.
+
+$ sed -i "" "s/No review is approved while a P0 finding is unaddressed\./No review is approved while a P0 finding is open./" .skilled/skills/sk-code/sk-code-review/SKILL.md
+$ node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js
+MISSING: .skilled/skills/sk-code/sk-code-review/SKILL.md: extension floor missing from "### Extension Floors": "No review is approved while a P0 finding is unaddressed."
+BLOCKED: 1 rule invariant(s) drifted. Restore the load-bearing wording in the file(s) above so every copy agrees.
+exit=1
+
+$ git checkout is not used. The line is restored from a copy taken before the edit.
+$ node .skilled/skills/sk-code/sk-code-review/scripts/check-rule-copies.js
+exit=0

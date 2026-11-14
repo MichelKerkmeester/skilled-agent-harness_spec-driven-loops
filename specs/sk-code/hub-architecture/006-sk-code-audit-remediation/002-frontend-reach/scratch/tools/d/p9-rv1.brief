@@ -1,0 +1,13 @@
+TASK: one literal replacement in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/efficiency-and-restraint/minimum-evidence-gate.md (read lines 175 to 182 only)
+
+EDIT. In the table row that starts with ``| `../../references/pr-state-dedup.md` |``, replace the literal text
+The sibling M-1 gate the depth alias maps `lite` onto
+with the literal text
+The sibling M-1 gate
+Keep the rest of that line byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'depth alias maps' .skilled/skills/sk-code/sk-code-review/manual-testing-playbook/efficiency-and-restraint/minimum-evidence-gate.md; echo "exit $?"
+Expected output: `exit 1`

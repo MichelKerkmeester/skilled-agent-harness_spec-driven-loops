@@ -1,0 +1,15 @@
+TASK: append one sentence to one bullet line in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/ROUTER.md (read lines 31 to 35 only)
+
+EDIT. The bullet line that starts with `- **IMPLEMENTATION**` ends with the text `` and `assets/checklists/mcp-server-authoring.md`. `` Append one space and the sentence between the marker lines below to the end of that same line.
+
+<<<TEXT
+Each checklist opens only when the target matches its selector, which the hub's `../ROUTER.md` section 4 states.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'mcp-server-authoring.md`. Each checklist opens only when the target matches its selector' .skilled/skills/sk-code/sk-code-skilled/ROUTER.md
+Expected output: `1`

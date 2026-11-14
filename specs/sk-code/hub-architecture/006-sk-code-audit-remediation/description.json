@@ -1,0 +1,25 @@
+{
+  "specFolder": "sk-code/hub-architecture/006-sk-code-audit-remediation",
+  "description": "Fix every finding from the sk-code and sk-code-frontend audit across the hub and its five packets",
+  "keywords": [
+    "every",
+    "finding",
+    "sk-code",
+    "sk-code-frontend",
+    "audit",
+    "across",
+    "hub",
+    "five",
+    "packets"
+  ],
+  "lastUpdated": "2026-11-14T12:01:48.456Z",
+  "specId": "006",
+  "folderSlug": "sk-code-audit-remediation",
+  "parentChain": [
+    "sk-code",
+    "hub-architecture"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

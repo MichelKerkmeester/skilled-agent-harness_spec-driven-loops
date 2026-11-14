@@ -1,5 +1,5 @@
 {
-  "corpusHash": "8f07c4092b71b472e5a9db6634aff6112d140cb787b7cd1e01b381130a1188de",
+  "corpusHash": "6cf066957c39ee04d89f96dadbae7a0e6a177b7249c1789ee0bd7a9b35f80100",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27014,
+  "includedPathCount": 27142,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -3019,6 +3019,8 @@
     ".skilled/skills/sk-code/changelog/v3.11.4.0.md",
     ".skilled/skills/sk-code/changelog/v3.11.5.0.md",
     ".skilled/skills/sk-code/changelog/v3.11.6.0.md",
+    ".skilled/skills/sk-code/changelog/v3.12.0.0.md",
+    ".skilled/skills/sk-code/changelog/v3.12.1.0.md",
     ".skilled/skills/sk-code/changelog/v3.2.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.3.0.0.md",
     ".skilled/skills/sk-code/changelog/v3.4.0.0.md",
@@ -3083,6 +3085,9 @@
     ".skilled/skills/sk-code/manual-testing-playbook/language-sub-detection/skilled-typescript.md",
     ".skilled/skills/sk-code/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/manual-testing-playbook/plugins-and-hooks/post-edit-quality-router.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-negative-probes.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-reach.md",
+    ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-review-bundle.md",
     ".skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/skcode-vs-skdoc.md",
     ".skilled/skills/sk-code/manual-testing-playbook/skill-advisor-integration/advisor-probe-battery.md",
     ".skilled/skills/sk-code/manual-testing-playbook/surface-detection/skilled-detection.md",
@@ -3110,6 +3115,7 @@
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.13.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.14.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.15.0.md",
+    ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.16.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.2.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.3.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.4.0.md",
@@ -3140,9 +3146,18 @@
     ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.0.3.0.md",
     ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.0.4.0.md",
     ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.1.0.0.md",
+    ".skilled/skills/sk-code/sk-code-frontend/changelog/v1.2.0.0.md",
     ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/figma-check.md",
     ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/frontend-web.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/motion-interaction.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/visual-hierarchy.md",
     ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/visual-values.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-accessibility.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-cascade.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-elements.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-internationalization.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-layout.md",
+    ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/web-performance.md",
     ".skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-code/sk-code-frontend/references/figma-to-code.md",
     ".skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md",
@@ -3196,6 +3211,8 @@
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.18.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.19.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.2.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.20.0.md",
+    ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.21.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.3.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.4.0.md",
     ".skilled/skills/sk-code/sk-code-quality/changelog/v1.13.5.0.md",
@@ -3292,6 +3309,8 @@
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.14.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.15.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.16.0.md",
+    ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.17.0.md",
+    ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.18.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.2.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.3.0.md",
     ".skilled/skills/sk-code/sk-code-review/changelog/v1.9.4.0.md",
@@ -3421,6 +3440,8 @@
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.7.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.8.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.9.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.2.0.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.2.1.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/code-quality-gate.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/implementation-authoring.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
@@ -11029,6 +11050,12 @@
     "specs/commands/005-doctor-symlink-install/006-doctor-helper-handoff/spec.md",
     "specs/commands/005-doctor-symlink-install/006-doctor-helper-handoff/tasks.md",
     "specs/commands/005-doctor-symlink-install/spec.md",
+    "specs/commands/006-alignment-lane-result-parser/acceptance-criteria.md",
+    "specs/commands/006-alignment-lane-result-parser/goal.md",
+    "specs/commands/006-alignment-lane-result-parser/implementation-summary.md",
+    "specs/commands/006-alignment-lane-result-parser/plan.md",
+    "specs/commands/006-alignment-lane-result-parser/spec.md",
+    "specs/commands/006-alignment-lane-result-parser/tasks.md",
     "specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/001-goal-core-and-state/implementation-summary.md",
     "specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/001-goal-core-and-state/plan.md",
     "specs/hooks-plugins-extensions/goal-and-directive-hooks/001-goal-hooks-cross-runtime/001-goal-core-and-state/spec.md",
@@ -12059,6 +12086,7 @@
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/tasks.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/decision-record.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/goal.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/implementation-summary.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/plan.md",
@@ -12166,6 +12194,30 @@
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage/plan.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage/spec.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/020-question-guard-killer-gone/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/020-question-guard-killer-gone/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/020-question-guard-killer-gone/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/020-question-guard-killer-gone/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/020-question-guard-killer-gone/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/020-question-guard-killer-gone/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/021-goal-scan-large-log/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/021-goal-scan-large-log/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/021-goal-scan-large-log/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/021-goal-scan-large-log/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/021-goal-scan-large-log/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/021-goal-scan-large-log/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/022-stop-park-notices/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/022-stop-park-notices/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/022-stop-park-notices/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/022-stop-park-notices/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/022-stop-park-notices/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/022-stop-park-notices/tasks.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes/acceptance-criteria.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes/goal.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes/implementation-summary.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes/plan.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes/spec.md",
+    "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes/tasks.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/goal.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/research/research.md",
     "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/review/deep-review-dashboard.md",
@@ -13677,6 +13729,72 @@
     "specs/sk-code/hub-architecture/005-private-surface-skills/review/fanout-attribution.md",
     "specs/sk-code/hub-architecture/005-private-surface-skills/review/review-report.md",
     "specs/sk-code/hub-architecture/005-private-surface-skills/spec.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/goal.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/implementation-summary.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/plan.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/spec.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/tasks.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/goal.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/implementation-summary.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/plan.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/spec.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/tasks.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content/decision-record.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content/goal.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content/implementation-summary.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content/plan.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content/spec.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content/tasks.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source/decision-record.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source/goal.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source/implementation-summary.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source/plan.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source/spec.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source/tasks.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/decision-record.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/goal.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/implementation-summary.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/plan.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/spec.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/tasks.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/006-skilled-packet-fixes/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/006-skilled-packet-fixes/goal.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/006-skilled-packet-fixes/implementation-summary.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/006-skilled-packet-fixes/plan.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/006-skilled-packet-fixes/spec.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/006-skilled-packet-fixes/tasks.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes/goal.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes/implementation-summary.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes/plan.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes/spec.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes/tasks.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes/goal.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes/implementation-summary.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes/plan.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes/spec.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes/tasks.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings/goal.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings/implementation-summary.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings/plan.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings/spec.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings/tasks.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/goal.md",
+    "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/spec.md",
+    "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/acceptance-criteria.md",
+    "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/goal.md",
+    "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/implementation-summary.md",
+    "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/plan.md",
+    "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/spec.md",
+    "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/tasks.md",
     "specs/sk-code/quality-and-review-modes/001-code-modes-research/001-quality-mode-research/acceptance-criteria.md",
     "specs/sk-code/quality-and-review-modes/001-code-modes-research/001-quality-mode-research/decision-record.md",
     "specs/sk-code/quality-and-review-modes/001-code-modes-research/001-quality-mode-research/goal.md",
@@ -17641,6 +17759,12 @@
     "specs/system-deep-loop/review-lineage/003-fanout-resume-and-containment/plan.md",
     "specs/system-deep-loop/review-lineage/003-fanout-resume-and-containment/spec.md",
     "specs/system-deep-loop/review-lineage/003-fanout-resume-and-containment/tasks.md",
+    "specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines/acceptance-criteria.md",
+    "specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines/goal.md",
+    "specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines/implementation-summary.md",
+    "specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines/plan.md",
+    "specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines/spec.md",
+    "specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines/tasks.md",
     "specs/system-deep-loop/runtime-concurrency/001-cli-pi-worktree-extension-clash/acceptance-criteria.md",
     "specs/system-deep-loop/runtime-concurrency/001-cli-pi-worktree-extension-clash/implementation-summary.md",
     "specs/system-deep-loop/runtime-concurrency/001-cli-pi-worktree-extension-clash/plan.md",
@@ -26581,6 +26705,10 @@
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets/tasks.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/spec.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/plan.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/spec.md",
@@ -27046,7 +27174,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "577dd5117637e4610ef7652620fad5f9e222e8b6d2a27005a8a76e82cb89a936",
+  "manifestHash": "84161c0e911a3a373c653f136f1203e3470bc5d37f457be21fa4bac8d0df2d5f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29813,6 +29941,10 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/commands/006-alignment-lane-result-parser/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/hooks-plugins-extensions/goal-and-directive-hooks/003-fable-governor-pi-hook/001-research/scratch",
       "reason": "excluded directory"
     },
@@ -30666,6 +30798,22 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/019-relaunch-doc-coverage/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/020-question-guard-killer-gone/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/021-goal-scan-large-log/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/022-stop-park-notices/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes/scratch",
       "reason": "excluded directory"
     },
     {
@@ -31674,6 +31822,46 @@
     },
     {
       "path": "specs/sk-code/hub-architecture/005-private-surface-skills/review/lineages",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/002-frontend-reach/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/005-hub-router-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/006-skilled-packet-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/008-quality-packet-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-code/hub-architecture/007-ci-vocabulary-single-source/scratch",
       "reason": "excluded directory"
     },
     {
@@ -34182,6 +34370,10 @@
     },
     {
       "path": "specs/system-deep-loop/review-lineage/003-fanout-resume-and-containment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/review-lineage/004-reducer-traceability-and-refines/scratch",
       "reason": "excluded directory"
     },
     {
@@ -38342,6 +38534,10 @@
     },
     {
       "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets/scratch",
       "reason": "excluded directory"
     },
     {

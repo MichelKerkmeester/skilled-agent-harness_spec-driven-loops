@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source",
+  "spec_folder": "sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source",
+  "parent_id": "sk-code/hub-architecture/006-sk-code-audit-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vocabulary single source",
+      "phase 4 vocabulary single source",
+      "vocabulary single source plan",
+      "vocabulary single source tasks",
+      "vocabulary single source acceptance criteria",
+      "vocabulary single source goal",
+      "vocabulary single source decision record",
+      "vocabulary mirrors decision",
+      "vocabulary single source implementation summary"
+    ],
+    "key_topics": [
+      "vocabulary",
+      "single",
+      "source",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "decision",
+      "record",
+      "mirrors"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/mutation.txt",
+      ".skilled/skills/sk-code/sk-code-frontend/ROUTER.md",
+      ".skilled/skills/sk-code/mode-registry.json",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
+      ".skilled/skills/sk-code/hub-router.json",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+      "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md",
+      ".skilled/skills/sk-code/changelog/v3.12.0.0.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mutation.txt",
+        "kind": "file",
+        "path": "scratch/mutation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "verify-router-sync.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "run-all-drift-guards.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+        "source": "derived"
+      },
+      {
+        "name": "findings-ledger.md",
+        "kind": "doc",
+        "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md",
+        "source": "derived"
+      },
+      {
+        "name": "v3.12.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/changelog/v3.12.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A frontend keyword lives in five hand-edited places: two classes in `hub-router.json`, the aliases in `mode-registry.json`, the hub `ROUTER.md` block, the packet `ROUTER.md` block and the packet's prose list",
+    "created_at": "2026-11-14T12:01:52Z",
+    "last_save_at": "2026-11-14T15:57:14.043Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b15af7941711f643969c32b48d2c505b32aa5d2b99c7a7cae4dd19a2dd19cd07",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "763544dd2e053ac55619f425ff674f9ae7b472a44f2565a5735564d0419ca472",
+      "plan.md": "2b31fb890f63b297f0cd0b45574771f60035bace0c4cc6f08586ca14c775b9bf",
+      "tasks.md": "27fcee87c81c59b53cf03cf200eeeb9ea5add428c13db6ce8bb370f256c14fec",
+      "decision-record.md": "99dcea993ac3b077264f79264af9c435544257d58b9ca4d373467a3d6a87386b",
+      "implementation-summary.md": "4cf494a89ff6b2d40222607a4f62085fddcc696a96e83efa70aa293b1fede23c"
+    },
+    "last_active_at": null
+  }
+}

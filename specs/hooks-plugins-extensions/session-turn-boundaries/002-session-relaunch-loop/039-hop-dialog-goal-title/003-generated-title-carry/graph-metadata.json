@@ -202,7 +202,7 @@
     ],
     "causal_summary": "A Claude hop carried only a launch `--name` or a `/rename` title, which Claude logs as a `custom-title` entry",
     "created_at": "2026-11-13T16:59:14Z",
-    "last_save_at": "2026-11-13T19:56:00.169Z",
+    "last_save_at": "2026-11-14T17:34:31.784Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,7 +213,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5b123f12e0242be209f954cc9af9989e487d3ee731e4ec896c175944a9b6a209",
+    "source_fingerprint": "sha256:4f5896f09979d9aeb33f8c9f830c02ecfbb5bc69d26e3c2c4c7e24e3b7155243",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f1e4d654f31016cbe94b5f65f70486a734ce9bbff394ea1bc3af0f8cf47c37f4",

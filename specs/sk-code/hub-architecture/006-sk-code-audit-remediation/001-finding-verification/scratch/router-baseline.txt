@@ -1,0 +1,66 @@
+frontend	fix the responsive grid layout on the pricing page
+{"hubId":"sk-code","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+frontend	make the navbar sticky with css
+{"hubId":"sk-code","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+frontend	build a modal with a focus trap in React
+{"hubId":"sk-code","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+frontend	improve LCP on the landing page
+{"hubId":"sk-code","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+frontend	add a dark mode toggle to the site
+{"hubId":"sk-code","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+frontend	the button text has poor contrast
+{"hubId":"sk-code","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+frontend	style the form inputs and error messages
+{"hubId":"sk-code","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+frontend	write a css animation for the loading spinner
+{"hubId":"sk-code","action":"route","selectionKind":"single","targets":[{"backendKind":"evidence-base","packetId":"sk-code-frontend","packetKind":"surface","skillId":"sk-code","workflowMode":"sk-code-frontend"}],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+frontend	implement the checkout page from the figma file
+{"hubId":"sk-code","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+frontend	center a div vertically
+{"hubId":"sk-code","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+frontend	add i18n support with rtl languages
+{"hubId":"sk-code","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+frontend	optimize images and lazy loading on the homepage
+{"hubId":"sk-code","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+frontend	make the table scroll horizontally on mobile
+{"hubId":"sk-code","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+review	review my react component for accessibility issues
+{"hubId":"sk-code","action":"route","selectionKind":"single","targets":[{"backendKind":"review-cache","packetId":"sk-code-review","packetKind":"workflow","skillId":"sk-code","workflowMode":"sk-code-review"}],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+negative	add left padding to the binary buffer before hashing
+{"hubId":"sk-code","action":"route","selectionKind":"single","targets":[{"backendKind":"evidence-base","packetId":"sk-code-frontend","packetKind":"surface","skillId":"sk-code","workflowMode":"sk-code-frontend"}],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+negative	hover over the symbol to debug the typescript type error
+{"hubId":"sk-code","action":"route","selectionKind":"single","targets":[{"backendKind":"evidence-base","packetId":"sk-code-skilled","packetKind":"surface","skillId":"sk-code","workflowMode":"sk-code-skilled"}],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+negative	pad the string with zeros in the python formatter
+{"hubId":"sk-code","action":"route","selectionKind":"single","targets":[{"backendKind":"evidence-base","packetId":"sk-code-skilled","packetKind":"surface","skillId":"sk-code","workflowMode":"sk-code-skilled"}],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+negative	easing the migration of the shell scripts to bash 5
+{"hubId":"sk-code","action":"route","selectionKind":"single","targets":[{"backendKind":"evidence-base","packetId":"sk-code-skilled","packetKind":"surface","skillId":"sk-code","workflowMode":"sk-code-skilled"}],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+negative	the transition between workflow states fails in the reducer
+{"hubId":"sk-code","action":"defer","selectionKind":null,"targets":[],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+negative	add a hover provider to the language server
+{"hubId":"sk-code","action":"route","selectionKind":"single","targets":[{"backendKind":"evidence-base","packetId":"sk-code-frontend","packetKind":"surface","skillId":"sk-code","workflowMode":"sk-code-frontend"}],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+negative	fix the contrast stretch in the image processing python script
+{"hubId":"sk-code","action":"route","selectionKind":"single","targets":[{"backendKind":"evidence-base","packetId":"sk-code-skilled","packetKind":"surface","skillId":"sk-code","workflowMode":"sk-code-skilled"}],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0
+negative	the shadow copy of the config file is stale
+{"hubId":"sk-code","action":"route","selectionKind":"single","targets":[{"backendKind":"evidence-base","packetId":"sk-code-skilled","packetKind":"surface","skillId":"sk-code","workflowMode":"sk-code-skilled"}],"effectivePolicyHash":"5bdf768e5ef6e2799ea8ad6b5312b52218e90e338873bdfa467433ae699261e4","generation":2}
+exit=0

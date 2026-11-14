@@ -1,0 +1,31 @@
+TASK: replace the type scale block in one CSS file.
+
+FILE: .skilled/skills/sk-code/sk-code-frontend/assets/tokens.css (read lines 6 to 20 only)
+
+WHY: text sized in rem follows the reader's browser font-size setting, and text sized in px does not.
+
+EDIT, lines 13 to 16. Replace these four lines:
+  /* ---- Type scale: px/rem only, never em ---- */
+  --text-xs:  12px;   --text-sm:  14px;   --text-base:16px;   --text-lg:  18px;
+  --text-xl:  20px;   --text-2xl: 24px;   --text-3xl: 30px;   --text-4xl: 36px;
+  --text-5xl: 48px;   --text-6xl: 60px;   --text-7xl: 72px;
+with these thirteen lines, two comment lines and eleven token lines:
+  /* ---- Type scale: rem, so text follows the reader's browser font size. Never em.
+         The comment beside each step is its size at the 16px browser default. ---- */
+  --text-xs:   0.75rem;    /* 12px */
+  --text-sm:   0.875rem;   /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg:   1.125rem;   /* 18px */
+  --text-xl:   1.25rem;    /* 20px */
+  --text-2xl:  1.5rem;     /* 24px */
+  --text-3xl:  1.875rem;   /* 30px */
+  --text-4xl:  2.25rem;    /* 36px */
+  --text-5xl:  3rem;       /* 48px */
+  --text-6xl:  3.75rem;    /* 60px */
+  --text-7xl:  4.5rem;     /* 72px */
+
+Change nothing else. One file changes. Do not touch the spacing tokens or any other block.
+
+VERIFY (run from the repository root):
+rg -c -- '--text-[a-z0-9]+: *[0-9.]+px' .skilled/skills/sk-code/sk-code-frontend/assets/tokens.css; echo "exit $?"; rg -c -- '--text-[a-z0-9]+: +[0-9.]+rem;' .skilled/skills/sk-code/sk-code-frontend/assets/tokens.css
+Expected output: `exit 1` then `11`

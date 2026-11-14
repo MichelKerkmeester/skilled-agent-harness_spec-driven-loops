@@ -1,0 +1,9 @@
+TASK: one literal replacement in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md (read lines 119 to 123 only)
+
+EDIT. On the line that starts with `Workflow: `, replace the literal text `../../shared/references/` with `../shared/references/`. Keep the rest of the line byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c '\.\./\.\./shared/references' .skilled/skills/sk-code/sk-code-skilled/SKILL.md; echo "exit $?"; ls .skilled/skills/sk-code/sk-code-skilled/../shared/references | wc -l
+Expected output: `exit 1` then a number above 0

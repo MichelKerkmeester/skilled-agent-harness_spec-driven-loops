@@ -1,0 +1,13 @@
+TASK: one literal replacement in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-quality/ROUTER.md (read lines 26 to 31 only)
+
+EDIT. In the line that starts with `what happens when nothing matches.`, replace the literal text
+Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
+with the literal text
+Paths are relative to this skill folder, and the shared floor and the SKILLED checklists sit one level up, under `../shared/` and `../sk-code-skilled/`. No resource other than `DEFAULT_RESOURCE`
+Keep the rest of that line and the next line byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'Every path below stays inside this skill folder' .skilled/skills/sk-code/sk-code-quality/ROUTER.md; echo "exit $?"
+Expected output: `exit 1`

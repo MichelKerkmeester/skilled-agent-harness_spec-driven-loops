@@ -577,9 +577,24 @@ def is_compiler_emitted_declaration(path: str, lines: List[str]) -> bool:
     return bool(tail) and tail[-1].startswith("//# sourceMappingURL=")
 
 
+SINGLE_REEXPORT_PATTERN = re.compile(r"^export \{ default \} from (['\"])[^'\"]+\1;$")
+
+
+def is_single_line_reexport(lines: List[str]) -> bool:
+    """A file that holds only one default re-export is an entry point, not a module.
+
+    A runtime that loads entry files from a fixed folder can require each one to be
+    exactly that line, so a header cannot be added without failing the loader's check.
+    """
+    body = [line.strip() for line in lines if line.strip()]
+    return len(body) == 1 and bool(SINGLE_REEXPORT_PATTERN.match(body[0]))
+
+
 def check_typescript(path: str, lines: List[str]) -> List[Finding]:
     findings: List[Finding] = []
     if should_skip_ts_module_header(path) or is_compiler_emitted_declaration(path, lines):
+        return findings
+    if is_single_line_reexport(lines):
         return findings
 
     module_marker = find_line(lines[:40], r"MODULE:")

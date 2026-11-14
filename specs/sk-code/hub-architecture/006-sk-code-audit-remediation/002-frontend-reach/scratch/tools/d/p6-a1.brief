@@ -1,0 +1,21 @@
+TASK: two literal replacements in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md (read lines 11 to 35 only)
+
+EDIT 1. On line 13, replace the literal text
+This surface owns the implement -> debug -> verify phases through the workflow references below, then slices
+with the literal text
+This surface carries the implement -> debug -> verify doctrine through the workflow references below, then slices
+Keep the rest of line 13 byte for byte.
+
+EDIT 2. Replace the whole bullet line that starts with `- This surface owns edits, tests, and verification` with the one line between the marker lines below.
+
+<<<TEXT
+- The paired workflow mode owns edits, tests and verification, and applies the workflow references this surface carries. Hand off formal findings-first review to `sk-code-review` and author-side quality gates to `sk-code-quality`.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'This surface owns' .skilled/skills/sk-code/sk-code-skilled/SKILL.md; echo "exit $?"
+Expected output: `exit 1`

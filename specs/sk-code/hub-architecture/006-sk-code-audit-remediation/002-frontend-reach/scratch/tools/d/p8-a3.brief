@@ -1,0 +1,16 @@
+TASK: insert two bullet lines in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-quality/SKILL.md (read lines 288 to 297 only)
+
+EDIT. Under the heading `### Quality References And Assets`, find the bullet line that starts with ``- [`assets/quality-defaults.json`](assets/quality-defaults.json)``. Do not change it. Directly after it, insert the two lines between the marker lines below.
+
+<<<TEXT
+- [`assets/comment-syntax.json`](assets/comment-syntax.json) - The language table: the extensions, shebangs and comment syntax the runner and the comment-hygiene checker read.
+- [`assets/quality-config.template.json`](assets/quality-config.template.json) - A starting repository config that holds every key and passes the schema.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'comment-syntax.json|quality-config.template.json' .skilled/skills/sk-code/sk-code-quality/SKILL.md; echo "exit $?"
+Expected output: `2` then `exit 0`

@@ -1,0 +1,19 @@
+TASK: replace one paragraph and one table row in one Markdown file.
+
+FILE: .skilled/skills/sk-code/shared/references/stack-detection.md (read lines 36 to 46 and lines 176 to 180 only)
+
+EDIT 1, line 44. Replace:
+`sk-code-ci` and `sk-code-frontend` are surface packets with no detection block. The hub bundles each from request vocabulary alone, so detection never returns either.
+with:
+`sk-code-frontend` is the hub's own specific surface. Its `FRONTEND` block declares the file markers `.css`, `.scss`, `.html`, `.tsx`, `.jsx`, `.vue` and `.svelte`, so a stylesheet, markup or component file detects FRONTEND ahead of SKILLED. `sk-code-ci` is a surface packet with no detection block. The hub bundles it from request vocabulary alone, so detection never returns it.
+
+EDIT 2, line 178. Replace the whole table row:
+| Changed `apps/desktop/src/styles/app.css` and `.opencode/agents/code.md`, with no specific surface declared | SKILLED | The fallback is the only declared surface that matches |
+with:
+| Changed `apps/desktop/src/styles/app.css` and `.opencode/agents/code.md` | **FRONTEND**, then SKILLED as second evidence | The `.css` file marker matches the hub's specific surface, and the fallback still loads for the hub file |
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+grep -c 'FRONTEND' .skilled/skills/sk-code/shared/references/stack-detection.md
+Expected output: 4

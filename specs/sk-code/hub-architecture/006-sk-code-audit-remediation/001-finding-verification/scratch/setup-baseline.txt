@@ -1,0 +1,93 @@
+## node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs
+/doctor:sk-code setup (read-only; writes nothing)
+PASS  provisioning        require.resolve('@spec-kit/shared/frontmatter/parse-frontmatter.js')
+PASS  parent-skill        node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code
+PASS  root-metadata       node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
+PASS  guard               node .skilled/bin/compiled-route-guard.cjs --json
+PASS  sync                node .skilled/bin/compiled-route-sync.cjs --check
+FAIL  drift-guards        bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
+      FAIL: alignment-drift  (verify_alignment_drift.py --check-router)
+      repair: fix each FAIL guard above, then rerun bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
+PASS  derived-freshness   node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs --format json
+PASS  probe               node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "fix a typescript bug in the opencode plugin"
+PASS  quality             python3, executables, tables, node --test .skilled/skills/sk-code/sk-code-quality/scripts/tests, quality route probe
+STATUS=FAIL failed=1 skipped=0
+exit=1
+## bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
+── alignment-drift  (verify_alignment_drift.py --check-router)
+[alignment-drift] FAIL
+Scanned files: 18738
+Findings: 44
+Errors: 23
+Warnings: 21
+
+Actionable findings:
+- .opencode/plugins/ask-surface-guard.js:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- .opencode/plugins/lib/opencode-goal-core.js:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- .opencode/plugins/lib/tool-identity.js:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- .pi/extensions/ask-surface-guard.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/classifier-injection-screen.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/completion-evidence.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/decision-capture.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/dispatch-audit.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/dispatch-preflight-lint.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/env-secret-guard.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/git-message-gate.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/git-preflight-advisory.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/goal-context.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/mcp-route-guard.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/overlay-guard.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/post-edit-quality.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/prompt-advisor.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/session-compact-context.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/session-relaunch.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/session-start-advisories.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/session-start-context.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/session-stop-context.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/spec-gate-classify.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/spec-gate-enforce.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .pi/extensions/task-dispatch-guard.ts:1 [TS-MODULE-HEADER] [ERROR] Missing TypeScript module header marker (`MODULE:`) near file top. Fix: Add the standard TS header block with `MODULE:` in the first 40 lines.
+- .skilled/bin/skilled-loop-shell.sh:1 [SH-STRICT-MODE] [ERROR] Missing `set -uo pipefail` strict mode declaration. Fix: Add `set -uo pipefail` (or `set -euo pipefail`) near the top of the script.
+- specs/hooks-plugins-extensions/hook-injection-pipeline/002-injection-bloat-reduction/019-pi-directive-startup-compaction-only/pi-dedup-test.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/001-authoring-ux-research/research/lineages/t3-dsflash-llmgw/.executor-state/check-citations.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/001-authoring-ux-research/research/lineages/t3-dsflash-llmgw/.executor-state/check-research-citations.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/001-authoring-ux-research/research/lineages/t3-dsflash-llmgw/.executor-state/init-event.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/sk-code/hub-architecture/003-sk-code-poinytail-based-refinement/014-skill-authoring-ux-research/001-authoring-ux-research/research/lineages/t3-dsflash-llmgw/.executor-state/make-synthesis-event.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/sk-git/commit-standards/001-crawlable-commit-history/007-git-workflow-run-failures/research/lineages/deepseek/assemble-research.sh:1 [SH-STRICT-MODE] [WARN] Missing `set -uo pipefail` strict mode declaration. Fix: Add `set -uo pipefail` (or `set -euo pipefail`) near the top of the script.
+- specs/sk-git/commit-standards/001-crawlable-commit-history/007-git-workflow-run-failures/research/lineages/deepseek/verify.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance/.gateway-events/build-iteration-002.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance/.gateway-events/build-iteration-003.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance/.gateway-events/build-iteration-004.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/performance/.gateway-events/build-iteration-005.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-cost-2/.state-events/write-iter-001.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-cost-2/.state-events/write-iter-002.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/009-ux-performance-cross-cli-research/research/lineages/ux-cost-2/.state-events/write-iter-003.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/system-skilled-doctor/001-skill-and-overlay-build/009-overlay-write-checks-follow-up/review/lineages/opus/gateway-events/build-run-open.cjs:1 [JS-USE-STRICT] [WARN] Missing `'use strict';` near file top. Fix: Add `'use strict';` within the first 40 lines for JS runtime scripts.
+- specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity/research/002-copilot-hook-followup-deep-review-remediation/run-iterations.sh:1 [SH-SHEBANG] [WARN] Missing canonical bash shebang. Fix: Set first line to `#!/usr/bin/env bash`.
+- specs/system-speckit/runtime-and-release/004-v4-release-line-research/research/verification/run-batch.sh:1 [SH-STRICT-MODE] [WARN] Missing `set -uo pipefail` strict mode declaration. Fix: Add `set -uo pipefail` (or `set -euo pipefail`) near the top of the script.
+- .skilled/commands/doctor/scripts/tests/fixtures/sk-skill-check/skills/dual/SKILL.md:1 [ROUTER-DUAL-DECLARATION] [WARN] Machine router declared in both SKILL.md and ROUTER.md; neither is read. Fix: Keep the router in one document: leave it in ROUTER.md and point SKILL.md at that file.
+FAIL: alignment-drift  (verify_alignment_drift.py --check-router)
+
+── stack-folders    (verify_stack_folders.py)
+OK: 6 language folder(s) all resolve — config, javascript, python, rust, shell, typescript
+PASS: stack-folders    (verify_stack_folders.py)
+
+── router-sync      (verify-router-sync.cjs --checks 1a,1b,2,3,4)
+PASS check 1a: machine-router paths exist and the prose maps are routed
+PASS check 1b: every routable reference or asset doc is routed
+PASS check 2: surface RESOURCE_MAP equals the children union plus the parent tier
+PASS check 3: compiled destinations, leaf-manifest and code-skilled RESOURCE_MAP agree
+PASS check 4: playbook expected_resource is emitted by the router
+router-sync: 5/5 checks passed
+PASS: router-sync      (verify-router-sync.cjs --checks 1a,1b,2,3,4)
+
+── doc-claims       (verify-doc-claims.cjs)
+PASS check paths: path references in the hub docs resolve on disk
+PASS check names: no retired packet names remain
+PASS check surfaces: surface counts match mode-registry.json
+PASS check tiers: ROUTER.md load-tier claims match DEFAULT_RESOURCE
+doc-claims: 4/4 checks passed
+PASS: doc-claims       (verify-doc-claims.cjs)
+
+run-all-drift-guards: 1 guard(s) FAILED
+exit=1

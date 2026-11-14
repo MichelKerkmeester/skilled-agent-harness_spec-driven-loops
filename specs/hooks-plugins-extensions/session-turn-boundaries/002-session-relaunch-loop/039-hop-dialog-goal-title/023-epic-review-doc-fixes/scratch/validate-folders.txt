@@ -1,0 +1,23 @@
+# Strict validation of every edited folder, final state, 2026-11-14, commit 2638731a9d
+
+== 001-sender-dialog-after-prepare
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+== 002-packet-goal-fallback
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+== 003-generated-title-carry
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+== 005-parked-record-escape
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+== 007-killer-test-margin
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+== 011-goal-fallback-bound
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+== 023-epic-review-doc-fixes
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED

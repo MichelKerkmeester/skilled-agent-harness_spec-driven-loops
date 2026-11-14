@@ -1,0 +1,26 @@
+TASK: author one new manual testing playbook scenario file.
+
+NEW FILE: .skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-review-bundle.md
+
+FORMAT: copy the structure of the sibling file .skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/skcode-vs-skdoc.md exactly (read that one file in full first): the same frontmatter keys (title, description, version: 1.0.0.0), the H1 equal to the title, then the sections "## 1. OVERVIEW", "## 2. SCENARIO CONTRACT", "## 3. TEST EXECUTION" (with the sub-headings Preconditions, Exact Command Sequence, Expected Signals, Pass/Fail Criteria, Failure Triage and the "Evidence:" line), "## 4. SOURCE FILES" and "## 5. SOURCE METADATA", separated by "---" dividers the same way. In section 2 keep both the fenced "**Exact prompt**" block and the single line that starts with "Prompt: " followed by the same prompt in backticks.
+Write plain sentences. No em dash, no semicolon. Do not mention any spec folder, task id or finding id.
+In section 5 use: Group: Routing Disambiguation, the Playbook ID below, Created 2026-11-14, Critical path: No, Destructive: No, Concurrent-safe: Yes, Last validated: 2026-11-14.
+In section 4 list: ../manual-testing-playbook.md, .skilled/skills/sk-code/hub-router.json (the frontend vocabulary classes), .skilled/skills/sk-code/mode-registry.json (the FRONTEND detection block) and .skilled/bin/compiled-route.cjs. End section 4 with the line: Catalog: `feature-catalog/two-axis-registry-driven-routing/two-axis-registry-driven-routing.md`, the entry that states how the hub bundles a surface packet beside a workflow mode.
+Create exactly one file. Do not edit any other file.
+
+CONTENT
+Playbook ID: RD-004. Title: "RD-004: A UI Review Bundles the Frontend Surface".
+What it verifies: a review request about a UI component returns the review mode first and the frontend surface second, so the reviewer reads the frontend standards as evidence. The risk it guards: the review keyword alone outscored every frontend phrase, so a UI review loaded no frontend reference.
+Realistic user request: a developer asks for a review of a component and names accessibility.
+Exact prompt:
+review my react component for accessibility issues
+Preconditions: node is callable, and `node .skilled/bin/compiled-route-guard.cjs --json` reports the sk-code hub as fresh.
+Exact Command Sequence: 1. run: node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "review my react component for accessibility issues" > /tmp/skc-RD004-route.txt  2. run: grep -o '"workflowMode":"[a-z-]*"' /tmp/skc-RD004-route.txt
+Expected signals: "selectionKind":"surfaceBundle", and the second command prints "workflowMode":"sk-code-review" on its first line and "workflowMode":"sk-code-frontend" on its second line.
+PASS iff the route holds exactly those two targets in that order. FAIL iff sk-code-frontend is missing, or it is the only target, or it comes first.
+Evidence: /tmp/skc-RD004-route.txt
+Failure triage: 1. The router bundles two modes only when their scores tie, and each distinct matched phrase scores once. 2. If sk-code-frontend is missing, no frontend phrase matched, so add one review-oriented phrase to the code-frontend-review class in hub-router.json. 3. If sk-code-frontend is the only target, two frontend phrases matched the prompt and outscored the review mode, so remove the broader of the two. 4. Never edit the prompt to make it pass.
+
+VERIFY (run from the repository root):
+grep -c '^## [1-5]\. ' .skilled/skills/sk-code/manual-testing-playbook/routing-disambiguation/frontend-review-bundle.md
+Expected output: 5

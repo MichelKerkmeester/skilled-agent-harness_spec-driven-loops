@@ -162,4 +162,6 @@ Example delta file contents (one review iteration):
 {"type":"ruled_out","direction":"...","reason":"...","iteration":3}
 ```
 
+- When a finding sharpens one already recorded, set `"refines":"<existing finding id>"` on its row, and omit `refines` for a finding that is new.
+
 All three artifacts are REQUIRED. The post_dispatch_validate step fails the iteration if any artifact is missing, malformed, or if the state-log append uses the wrong record type (`iteration_delta` etc.).

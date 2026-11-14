@@ -1,0 +1,15 @@
+Failure path for the CI vocabulary packet, run on 2026-11-14 from the repository root.
+
+$ remove the keyword "ci job" from the CI_WORKFLOW row of .skilled/skills/sk-code/sk-code-ci/ROUTER.md
+$ node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs --checks 2
+FAIL check 2: surface RESOURCE_MAP equals the children union plus the parent tier, and the vocabulary copies agree (2 problem(s))
+  - sk-code-ci keyword "ci job" is in hub-router.json and missing from sk-code-ci INTENT_SIGNALS
+  - sk-code-ci keyword "ci job" is in ROUTER.md INTENT_SIGNALS and missing from sk-code-ci INTENT_SIGNALS
+router-sync: 0/1 checks passed
+exit=1
+
+$ restore the file from its copy
+$ node .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify-router-sync.cjs --checks 2
+PASS check 2: surface RESOURCE_MAP equals the children union plus the parent tier, and the vocabulary copies agree
+router-sync: 1/1 checks passed
+exit=0
