@@ -1,0 +1,18 @@
+{
+  "specFolder": "agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check",
+  "description": "Phase 4: agent-template-conformance-and-drift-check",
+  "keywords": [
+    "phase",
+    "agent-template-conformance-and-drift-check"
+  ],
+  "lastUpdated": "2026-11-14T11:36:23.744Z",
+  "specId": "004",
+  "folderSlug": "agent-template-conformance-and-drift-check",
+  "parentChain": [
+    "agents",
+    "006-agent-contract-and-registry-alignment"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
