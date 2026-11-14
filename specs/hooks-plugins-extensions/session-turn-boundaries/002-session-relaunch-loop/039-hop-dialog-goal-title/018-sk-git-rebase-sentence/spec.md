@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | Not chosen yet. The operator picks a worktree or the current branch before the build |
 | **Parent Spec** | ../spec.md |

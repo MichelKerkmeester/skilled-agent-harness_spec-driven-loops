@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match"
     last_updated_at: "2026-11-14T16:20:00Z"
     last_updated_by: "code-agent"
-    recent_action: "Recorded the claimed-last mark and its runs"
-    next_safe_action: "The orchestrator commits the three files and runs T014 against the fix commit"
+    recent_action: "Recorded the claimed-last mark and fix commit c37531f72b (Commit-Id 0014029)"
+    next_safe_action: "The operator decides the merge"
     blockers: []
     key_files: [".skilled/hooks/session-relaunch/lib/relaunch-core.cjs", ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs", ".skilled/hooks/session-relaunch/README.md"]
     session_dedup:
@@ -72,7 +72,7 @@ The helper now keeps the note with the greatest `claimed_at`, with a note that c
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Test first. Both new tests were written and watched to fail before the core edit, and the selected run is saved to `scratch/red.txt` with the command and `exit=1`: tests 2, pass 0, fail 2, with both new tests `✖`. The core edit then made the four-test run print tests 4, pass 4, fail 0 and exit 0, saved to `scratch/green.txt`. The whole relaunch and OpenCode plugin suite ran last with `AI_SESSION_CHILD` and `OPENCODE_DB` unset: tests 1553, pass 1553, fail 0, exit 0, saved to `scratch/final-suite.txt`, two above the 1551 baseline in `scratch/baseline.txt`. `node --check` exited 0 on the core and on the test file. The build changed three files and added none. The fix commit, and the commit-scoped check of T014, are the orchestrator's after this build.
+Test first. Both new tests were written and watched to fail before the core edit, and the selected run is saved to `scratch/red.txt` with the command and `exit=1`: tests 2, pass 0, fail 2, with both new tests `✖`. The core edit then made the four-test run print tests 4, pass 4, fail 0 and exit 0, saved to `scratch/green.txt`. The whole relaunch and OpenCode plugin suite ran last with `AI_SESSION_CHILD` and `OPENCODE_DB` unset: tests 1553, pass 1553, fail 0, exit 0, saved to `scratch/final-suite.txt`, two above the 1551 baseline in `scratch/baseline.txt`. `node --check` exited 0 on the core and on the test file. The build changed three files and added none. The fix commit is `c37531f72b` (Commit-Id 0014029), which changes the core, the test file and the README plus this child's records and adds no file outside this child, as T014 records.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -103,7 +103,7 @@ Test first. Both new tests were written and watched to fail before the core edit
 | `rg -c 'claimedNoteEndedGoal\(handoffPath, sessionId\)' .skilled/hooks/session-relaunch/lib/relaunch-core.cjs` | PASS: printed 4, the definition at `:635` and the three calls at `:668`, `:676` and `:686` |
 | `rg -n 'goal_ended' .skilled/hooks/session-relaunch/lib .skilled/hooks/session-relaunch/bin` | PASS: one reader at `relaunch-core.cjs:652` and the untouched writer at `:973`, `:996` and `:997` |
 | `rg -c 'claimed last'` and the old-sentence search on the README | PASS: `claimed last` printed 1 at `:182` with exit 0; the old unreadable-log sentence printed nothing with exit 1 |
-| `git diff --stat` of the working tree | PASS: three files, all modifications, no new file. The commit-scoped form waits on the fix commit and is T014 |
+| `git show --stat c37531f72b` and the two filters of the fix commit | PASS: 12 files, the core, the test file and the README among them, all the rest inside this child. The new-file filter outside the child and the `goal_<field>:` filter both printed nothing with exit 1. Commit-Id 0014029 |
 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match --strict` | PASS: Errors 0, Warnings 0, `RESULT: PASSED`, exit 0 |
 <!-- /ANCHOR:verification -->
 
@@ -114,7 +114,7 @@ Test first. Both new tests were written and watched to fail before the core edit
 
 1. **The mark is still matched on the claiming session id.** Whether a Claude session id changes on `/clear` is unconfirmed, so a mark written under an older id is not read by the new one. The limit child 014 recorded stays.
 2. **No live hop was run.** The tests call `resolveGoalPacketResult` against notes written in a sandbox and a log written or deliberately unreadable there, so neither a real hand-over nor a real Claude log is exercised.
-3. **The commit-scoped proof is deferred.** The working tree changes three files and adds none, but `git show --stat` and the `new file` count need the fix commit, which the orchestrator lands and checks with T014.
+3. **The commit-scoped proof is narrower than a live check.** The fix commit `c37531f72b` (Commit-Id 0014029) changes the three files and adds none outside this child, but no live hop ran and no real Claude log was read. One suite run failed an advisor queue-timing test under load average 30, and that test passed three times alone before the clean rerun.
 <!-- /ANCHOR:limitations -->
 
 ---

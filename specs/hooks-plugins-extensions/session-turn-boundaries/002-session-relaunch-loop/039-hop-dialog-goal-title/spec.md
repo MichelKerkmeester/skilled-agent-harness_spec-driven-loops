@@ -185,10 +185,10 @@ Files touched across all phases, for the audit trail. Each child's `plan.md` hol
 | 12 | 012-wrapper-notice-log/ | The wrapper appends one `wrapper-changed` line to `relaunch.log` when it prints the change note, and prints and logs nothing when its file cannot be read at the hop | Complete |
 | 13 | 013-conformance-stamp-pin/ | The shared conformance case for a Stop that cannot arm asserts a deferral stamp for Claude and none for a runtime that does not stamp | Complete |
 | 14 | 014-review-wording-fixes/ | Six wording fixes: the README sentence on a missing goal packet, the comment in `readRelaunchFile`, the Stop comment with one test note, `goal_ended` in the handoff command document and one more limitation in the summary of child 010 | Pending |
-| 15 | 015-wrapper-start-checksum/ | The wrapper reports a change of its own file only when it read a checksum at loop start and at the hop, tested with a `cksum` stub that fails on its first call | Planned |
-| 16 | 016-ended-goal-mark-match/ | The ended-goal mark is read from the note a session claimed last, and a missing or unreadable session log keeps it | Planned |
-| 17 | 017-missing-transcript-notice/ | A Claude Stop with no transcript path prints one line saying the next prompt withdraws the hop because the transcript was missing | Planned |
-| 18 | 018-sk-git-rebase-sentence/ | The sk-git rebase sentence is rewritten from a throwaway-repository probe, and sk-git moves to `1.11.12.0` with a changelog entry | Planned |
+| 15 | 015-wrapper-start-checksum/ | The wrapper reports a change of its own file only when it read a checksum at loop start and at the hop, tested with a `cksum` stub that fails on its first call | Complete |
+| 16 | 016-ended-goal-mark-match/ | The ended-goal mark is read from the note a session claimed last, and a missing or unreadable session log keeps it | Complete |
+| 17 | 017-missing-transcript-notice/ | A Claude Stop with no transcript path prints one line saying the next prompt withdraws the hop because the transcript was missing | Complete |
+| 18 | 018-sk-git-rebase-sentence/ | The sk-git rebase sentence is rewritten from a throwaway-repository probe, and sk-git moves to `1.11.12.0` with a changelog entry | Complete |
 | 19 | 019-relaunch-doc-coverage/ | The Claude playbook, the feature catalog and the handoff command document describe the shipped behavior, eight moved citations name their commit, and the trigger phrase question is answered | Planned |
 
 ### Phase Transition Rules

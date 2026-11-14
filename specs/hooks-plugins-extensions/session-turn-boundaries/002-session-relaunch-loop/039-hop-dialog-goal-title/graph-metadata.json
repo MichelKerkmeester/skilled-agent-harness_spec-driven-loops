@@ -228,7 +228,7 @@
     ],
     "causal_summary": "Three gaps showed on 2026-11-13 in Claude Code sessions that hand over near the context limit",
     "created_at": "2026-11-13T18:47:10Z",
-    "last_save_at": "2026-11-14T12:23:49.639Z",
+    "last_save_at": "2026-11-14T13:32:43.996Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -236,10 +236,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:1579c834a6e418958e96a04a5a15a0e114919e97a9c4c5d56c385aaca5faa337",
+    "source_fingerprint": "sha256:e49bff9525bcca13651211c0d4de07c49706fa2aac97e7453dc86d60ad26dca6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "31265ef9d902ee0cc04597eb01ac3455f7b14b50e71c8142b1d30ecdb185bff5",
+      "spec.md": "6245f6b8771dfa925b364ac02b124554b717de39ee1082e109e52cbfc74fb4fe",
       "research/research.md": "f0daad5f191298d68bc32ec2f1767ebd28c3694400bd86b804bbb2b6014e0cf2"
     },
     "last_active_at": null

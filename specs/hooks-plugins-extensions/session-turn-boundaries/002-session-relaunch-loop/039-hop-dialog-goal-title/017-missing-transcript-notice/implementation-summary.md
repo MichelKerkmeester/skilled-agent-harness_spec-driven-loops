@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice"
     last_updated_at: "2026-11-14T18:10:00Z"
     last_updated_by: "code-agent"
-    recent_action: "Recorded the missing-transcript notice and its runs"
-    next_safe_action: "The orchestrator commits the four files and runs T013 against the fix commit"
+    recent_action: "Recorded the missing-transcript notice and fix commit 78f9d39501 (Commit-Id 0014033)"
+    next_safe_action: "The operator decides the merge"
     blockers: []
     key_files: [".skilled/hooks/session-relaunch/claude/stop-arm.mjs", ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs", ".skilled/hooks/session-relaunch/README.md", ".skilled/hooks/session-relaunch/claude/README.md"]
     session_dedup:
@@ -70,7 +70,7 @@ The comment above the branch now says why the line prints here: the prompt that 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Test first. The missing-transcript test was changed to expect the notice and run before the source edit: `scratch/red.txt` records tests 1, pass 0, fail 1, exit 1, and the assertion reads `stdout is empty: the missing-transcript Stop printed no notice`. The branch edit then made the same command print tests 1, pass 1, fail 0 and exit 0, saved to `scratch/green.txt`. The withdrawal tests ran before the edit at tests 8, pass 8, fail 0, exit 0 (`scratch/withdraw-tests.txt`), so the path the notice explains was still the path that withdraws. The Claude adapter and conformance suites reported tests 115, pass 115, fail 0, exit 0, and the whole relaunch and OpenCode plugin suite reported tests 1553, pass 1553, fail 0, exit 0, equal to the 1553 baseline in `scratch/baseline.txt` (`scratch/final-suite.txt`). `node --check` exited 0 on the adapter and on the test file, and an injected `write` that throws left the hook resolving `null` with the record stamped and one `stop-arm-error stage=notice` line. The build changed four files and added none. The fix commit, and the commit-scoped check of T013, are the orchestrator's after this build.
+Test first. The missing-transcript test was changed to expect the notice and run before the source edit: `scratch/red.txt` records tests 1, pass 0, fail 1, exit 1, and the assertion reads `stdout is empty: the missing-transcript Stop printed no notice`. The branch edit then made the same command print tests 1, pass 1, fail 0 and exit 0, saved to `scratch/green.txt`. The withdrawal tests ran before the edit at tests 8, pass 8, fail 0, exit 0 (`scratch/withdraw-tests.txt`), so the path the notice explains was still the path that withdraws. The Claude adapter and conformance suites reported tests 115, pass 115, fail 0, exit 0, and the whole relaunch and OpenCode plugin suite reported tests 1553, pass 1553, fail 0, exit 0, equal to the 1553 baseline in `scratch/baseline.txt` (`scratch/final-suite.txt`). `node --check` exited 0 on the adapter and on the test file, and an injected `write` that throws left the hook resolving `null` with the record stamped and one `stop-arm-error stage=notice` line. The build changed four files and added none. The fix commit is `78f9d39501` (Commit-Id 0014033), which changes the two READMEs, the adapter and the test file plus this child's records and adds no file outside this child, as T013 records. Hook registration and runtime mirror checks both printed `PASS`.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -104,7 +104,7 @@ Test first. The missing-transcript test was changed to expect the notice and run
 | `rg -c 'could not arm the hop because this Stop carried no transcript path' .skilled/hooks/session-relaunch/claude/stop-arm.mjs` | PASS: printed 1, exit 0, at `.skilled/hooks/session-relaunch/claude/stop-arm.mjs:146` |
 | `rg -c 'no transcript path' .skilled/hooks/session-relaunch/README.md .skilled/hooks/session-relaunch/claude/README.md` | PASS: printed 1 for each file, exit 0, at `.skilled/hooks/session-relaunch/README.md:134` and `.skilled/hooks/session-relaunch/claude/README.md:27` |
 | An injected `write` that throws, run through `armPendingRecord` with a pending record and no transcript path | PASS: resolved `null` without rejecting, `deferredAt` stayed a string, one `stop-arm-error stage=notice` line and one `missing-transcript-path` line were logged, so the hook still exits 0 |
-| `git diff --stat` and `git status --porcelain` of the working tree | PASS: four files, all modifications, and no new tracked file. The commit-scoped form needs the fix commit and is T013 |
+| `git show --stat 78f9d39501`, the new-file filter and the log-event count of the fix commit | PASS: 16 files, the four code and document files among them, all the rest inside this child. The new-file filter outside the child printed nothing with exit 1 and the added `logEvent('` count printed 1, the reused `stop-arm-error`. Commit-Id 0014033 |
 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice --strict` | PASS: Errors 0, Warnings 0, `RESULT: PASSED`, exit 0, after `repair-derived.cjs --apply` reported `inspected=1 repaired=1 failed=0`. AC coverage 6/6 with evidence and the packet reported closeable |
 <!-- /ANCHOR:verification -->
 
@@ -115,7 +115,7 @@ Test first. The missing-transcript test was changed to expect the notice and run
 
 1. **No live Stop was run.** The notice's delivery depends on Claude showing a Stop `systemMessage` when the turn ends, the contract the background-task notice already relies on. Nothing in this build observed a real Claude session show it.
 2. **The write-failure path has no committed test.** A `write` that throws was verified once through an injected seam, not through the spawned hook, and no test in the suite drives that branch. The changed test covers the successful write only.
-3. **The commit-scoped proof is deferred.** The working tree changes four files and adds none, but `git show --stat` and the `new file` count need the fix commit, which the orchestrator lands and checks with T013.
+3. **The commit-scoped proof is narrower than a live Stop.** The fix commit `78f9d39501` (Commit-Id 0014033) changes the four files and adds none outside this child, and the hook registration and runtime mirror checks printed `PASS`, but no real Claude session showed the notice.
 4. **Repeated Stops print the line each time.** A runtime that never sends `transcript_path` gets one line per Stop and one stamp per Stop. That is the cause the operator has to fix, and nothing deduplicates it.
 <!-- /ANCHOR:limitations -->
 

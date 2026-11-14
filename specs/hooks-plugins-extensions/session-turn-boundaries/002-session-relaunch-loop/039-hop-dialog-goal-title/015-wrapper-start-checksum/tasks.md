@@ -62,7 +62,7 @@ contextType: "general"
 - [x] T009 Run the five tests the name pattern selects (`RL/tests/skilled-loop-wrapper-launch-arguments.test.cjs`). Verify: the command of T005 exits 0 with `tests 5`, `pass 5` and `fail 0`, saved to `PHASE/scratch/green.txt`. Observed: `scratch/green.txt` prints `✔` for all five at `:2` to `:6`, `ℹ tests 5` at `:7`, `ℹ pass 5` at `:9`, `ℹ fail 0` at `:10` and `exit=0` at `:15`.
 - [x] T010 Run the relaunch and OpenCode plugin suites (`RL/tests` and `.opencode/plugins/tests`). Verify: the command of T001 exits 0 with `fail 0` and a `tests` count one above the one in `PHASE/scratch/baseline.txt`, saved to `PHASE/scratch/final-suite.txt`. Observed: `scratch/final-suite.txt` prints `ℹ tests 1551` at `:1564`, `ℹ pass 1551` at `:1566`, `ℹ fail 0` at `:1567` and `exit=0` at `:1572`, one above the 1550 baseline.
 - [x] T011 Check the wrapper parses (`.skilled/bin/skilled-loop`). Verify: `bash -n .skilled/bin/skilled-loop` exits 0. Observed: exited 0.
-- [ ] T012 Check that the fix adds no file and no record key (`FIX`). Verify: `git show --stat FIX` lists the wrapper and the test file, plus the README only when T008 changed it, and `git show FIX | rg -c '^new file'` prints nothing with exit 1. Deferred: the orchestrator runs this against the fix commit after committing, per the dispatch. Working-tree evidence: `git diff --stat` lists `.skilled/bin/skilled-loop` and the test file only, both modifications, and adds no file.
+- [x] T012 Check that the fix adds no file and no record key (`FIX`). Verify: `git show --stat f99d3c442d` lists the wrapper and the test file plus the documents and scratch files of this child, and `git show --diff-filter=A --name-only f99d3c442d | rg -v '015-wrapper-start-checksum/'` prints nothing with exit 1. Observed 2026-11-14 against commit `f99d3c442d` (Commit-Id 0014025): the stat lists 11 files, `.skilled/bin/skilled-loop` and `.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs` among them, and the new-file filter outside the child printed nothing with exit 1.
 - [x] T013 Validate the phase folder (`PHASE`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum --strict` prints `RESULT: PASSED`. Observed 2026-11-14: Errors 0, Warnings 0, `RESULT: PASSED`, exit 0, after `repair-derived.cjs --apply` rewrote the generated metadata.
 <!-- /ANCHOR:phase-3 -->
 
@@ -71,7 +71,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] Every task is resolved: T001 to T011 and T013 are complete, and T012 is deferred to the orchestrator, which runs it against the fix commit after committing.
+- [x] Every task is resolved: T001 to T013 are complete, and T012 ran against the fix commit `f99d3c442d` (Commit-Id 0014025).
 - [x] No `[B]` blocked tasks remaining: no task is blocked.
 - [x] Manual verification passed: `scratch/red.txt` shows the new test failing (tests 5, pass 4, fail 1, exit 1) and `scratch/green.txt` shows 5 of 5 (tests 5, pass 5, fail 0, exit 0).
 <!-- /ANCHOR:completion -->
@@ -144,7 +144,7 @@ A blocked task is marked `[B]` with its reason in `goal.md`. A `[B]` on T001 blo
 - [x] CHK-FIX-004 [P0] N/A: no security, path, parser or redaction fix. The invariant is that a change is reported only when both checksums were read and differ: the condition now tests both values before it compares them.
 - [x] CHK-FIX-005 [P1] Matrix axes listed in plan.md: start read crossed with hop read, with the row each test covers. Plan section FIX ADDENDUM lists the six rows; the new test pins the empty start read with a hop read that succeeds.
 - [x] CHK-FIX-006 [P1] The tests run with `AI_SESSION_CHILD` and `OPENCODE_DB` unset. Every recorded run in `scratch/red.txt`, `scratch/green.txt` and `scratch/final-suite.txt` starts with `env -u AI_SESSION_CHILD -u OPENCODE_DB`.
-- [x] CHK-FIX-007 [P1] Evidence is pinned to the fix commit, named in `goal.md` section 4. The goal log names the tree state this work started from; the fix commit is the orchestrator's to land, and T012 pins the commit-scoped evidence to it.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the fix commit `f99d3c442d` (Commit-Id 0014025), named in `goal.md` section 4. Observed 2026-11-14: T012 checks that commit, and `goal.md` section 4 names it with its file list.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -187,7 +187,7 @@ A blocked task is marked `[B]` with its reason in `goal.md`. A `[B]` on T001 blo
 | P1 Items | 11 | 11/11 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-11-14. Every row above was checked from a recorded run or a searched source. T012 is the one deferral: it needs the fix commit, which the orchestrator lands after the build.
+**Verification Date**: 2026-11-14. Every row above was checked from a recorded run, a searched source or the fix commit `f99d3c442d` (Commit-Id 0014025). No row is deferred.
 <!-- /ANCHOR:summary -->
 
 ---

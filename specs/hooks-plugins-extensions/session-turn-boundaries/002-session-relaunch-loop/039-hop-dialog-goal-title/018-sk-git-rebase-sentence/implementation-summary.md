@@ -11,8 +11,8 @@ _memory:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence"
     last_updated_at: "2026-11-14T13:30:00Z"
     last_updated_by: "documentation-agent"
-    recent_action: "Recorded the corrected rebase sentence, the four-case probe and the version bump"
-    next_safe_action: "The orchestrator commits the scoped files and runs T013 against the fix commit"
+    recent_action: "Recorded fix commit 21ceaa9772 and its changelog outside the child"
+    next_safe_action: "The operator decides the merge"
     blockers: []
     key_files: [".skilled/skills/sk-git/SKILL.md", ".skilled/skills/sk-git/changelog/v1.11.12.0.md"]
     session_dedup:
@@ -69,7 +69,7 @@ The old sentence said a rebase keeps an id whenever the replayed message still c
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Test first. The check script asserts the old sentence is gone, the new sentence names both conditions, the version and changelog exist, the probe holds four cases, and sk-doc's checks pass. Before the edit it reported `checks: 10, failed: 5` with exit 1 (`scratch/red.txt`). After the edit it reported `checks: 10, failed: 0` with exit 0 (`scratch/green.txt`). The probe ran with `env -u AI_SESSION_CHILD -u OPENCODE_DB` on git 2.50.1 and exited 0. The version check printed `[verify] 78 files | ok=78` with exit 0. The package check printed `PASS` with exit 0. The document check printed `VALID` with 0 issues and exit 0. `git diff --quiet HEAD -- .skilled/scripts/git-hooks` exited 0. The strict validation printed `RESULT: PASSED` with 0 errors and 0 warnings. The build changed `SKILL.md` and the phase 9 criteria, added the changelog and the scratch evidence, and updated the child records. The fix commit and its T013 check are the orchestrator's.
+Test first. The check script asserts the old sentence is gone, the new sentence names both conditions, the version and changelog exist, the probe holds four cases, and sk-doc's checks pass. Before the edit it reported `checks: 10, failed: 5` with exit 1 (`scratch/red.txt`). After the edit it reported `checks: 10, failed: 0` with exit 0 (`scratch/green.txt`). The probe ran with `env -u AI_SESSION_CHILD -u OPENCODE_DB` on git 2.50.1 and exited 0. The version check printed `[verify] 78 files | ok=78` with exit 0. The package check printed `PASS` with exit 0. The document check printed `VALID` with 0 issues and exit 0. `git diff --quiet HEAD -- .skilled/scripts/git-hooks` exited 0. The strict validation printed `RESULT: PASSED` with 0 errors and 0 warnings. The build changed `SKILL.md` and the phase 9 criteria, added the changelog and the scratch evidence, and updated the child records. The fix commit is `21ceaa9772` (Commit-Id 0014041). It lands `SKILL.md`, the changelog, the phase 9 criteria and its repaired graph metadata, and this child's records. The orchestrator split the new `SKILL.md` sentence at its semicolon into two sentences before the commit. T013 read the commit: the changelog is the one new file outside this child.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -106,6 +106,7 @@ Test first. The check script asserts the old sentence is gone, the new sentence 
 | `python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/skills/sk-git/changelog/v1.11.12.0.md` | PASS: `SUMMARY files=1 pass=1 fail=0`, exit 0 |
 | `python3 .skilled/skills/sk-doc/sk-create-with-human-voice/scripts/hvr_scan.py .skilled/skills/sk-git/changelog/v1.11.12.0.md` | PASS: 0 hard blockers, exit 0 |
 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence --strict` | PASS: Errors 0, Warnings 0, `RESULT: PASSED`, exit 0. `scratch/validate.txt` holds the run |
+| `git show --stat 21ceaa9772` and the new-file filter of the fix commit | PASS: 18 files, and `git show --diff-filter=A --name-only 21ceaa9772 \| rg -v '018-sk-git-rebase-sentence/'` printed only `.skilled/skills/sk-git/changelog/v1.11.12.0.md`, the one new file outside this child. Commit-Id 0014041 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -114,11 +115,11 @@ Test first. The check script asserts the old sentence is gone, the new sentence 
 ## Known Limitations
 
 1. **No code suite runs here.** This child changes no code, so the four-case probe and the check script are the evidence. The hook test is unchanged and was not extended.
-2. **The fix commit is not checked.** T013 needs the commit the orchestrator lands, and it checks the `git show --stat` file list and the new-file count. Until then the working tree evidence is the proof.
+2. **The fix commit carries one new file outside the child.** Commit `21ceaa9772` (Commit-Id 0014041) lands the changelog as that file, and T013 read both the file list and the new-file filter.
 3. **The 16 kept ids stay partly open.** `scratch/reflog-2041.txt` shows 16 reflog lines, not 16 commits. The 13 replayed picks kept their ids, one commit was not replayed, and the backend is not recorded. The `--apply` probe case reproduces the kept ids, and that is an inference rather than a recorded cause.
 4. **One git version was probed.** The probe ran on git 2.50.1. A different version or backend can behave differently, and the sentence names the backend behavior the probe saw.
-5. **The child `spec.md` still reads Draft.** The build's write authority named the child records, not `spec.md`, so the orchestrator can set the status when it lands the fix commit.
-6. **The phase 9 derived metadata is stale.** The dated note changed `009-document-corrections/acceptance-criteria.md`, and `validate.sh` on that folder now fails `GENERATED_METADATA_INTEGRITY` with `SOURCE_FINGERPRINT_MISMATCH`. The note is the only allowed edit there, so the orchestrator runs `repair-derived.cjs` on the 009 folder.
+5. **The child `spec.md` status moved after the commit.** The fix commit carries the records, and the status was set to Complete with this record pass.
+6. **The phase 9 derived metadata moved with the note.** The dated note changed `009-document-corrections/acceptance-criteria.md`, and its `graph-metadata.json` was repaired in the same fix commit. No other edit was made there.
 <!-- /ANCHOR:limitations -->
 
 ---

@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence"
     last_updated_at: "2026-11-14T13:30:00Z"
     last_updated_by: "documentation-agent"
-    recent_action: "Ran the probe and corrected the sentence"
-    next_safe_action: "The orchestrator commits the scoped files and runs T013 against the fix commit"
+    recent_action: "Recorded fix commit 21ceaa9772 (Commit-Id 0014041) and its scoped file list"
+    next_safe_action: "The operator decides the merge"
     blockers: []
     key_files: [".skilled/skills/sk-git/SKILL.md", ".skilled/skills/sk-git/changelog/v1.11.12.0.md"]
     session_dedup:
@@ -83,7 +83,8 @@ and findings belong here.
 | Code read | Done | 2026-11-14 at `99d197475d`: the hook re-mints on `CHERRY_PICK_HEAD` at lines 125, 240 and 286 and never names a rebase, and its test has no rebase case. The output is quoted in `spec.md` Measured Behavior |
 | Plan documents | Done | 2026-11-14: spec, plan, tasks, criteria and this goal written. `implementation-summary.md` is written after the build |
 | Evidence | Done | `scratch/red.txt` records 5 failing checks with exit 1 before the edit. `scratch/green.txt` records 10 of 10 passing with exit 0 after it. `scratch/verification.txt` records the version, package, document and hook checks |
-| Build | Done | 2026-11-14: tasks T001 to T012 and T014 ran. The probe saved four cases on git 2.50.1, the sentence and version changed, the changelog entry exists, and the checks passed. T013 waits for the orchestrator's fix commit |
+| Build | Done | 2026-11-14: tasks T001 to T012 and T014 ran. The probe saved four cases on git 2.50.1, the sentence and version changed, the changelog entry exists, and the checks passed |
+| Fix commit | Done | 2026-11-14: `21ceaa9772`, Commit-Id 0014041. It changes `.skilled/skills/sk-git/SKILL.md`, adds `.skilled/skills/sk-git/changelog/v1.11.12.0.md`, edits the phase 9 acceptance row and its graph metadata, and carries this child's records. The changelog is the one new file outside the child. The new sentence was split at its semicolon into two sentences before the commit. Hooks unchanged. `frontmatter-version.mjs verify` printed 78 of 78 ok, the skill package check printed `PASS`, and the sentence check printed 10 of 10 |
 | Merge and push | Pending | Parent decision D4: nothing is merged or pushed without the operator |
 
 ### Deviations and findings
@@ -94,5 +95,5 @@ and findings belong here.
 | Phase 9 row | AC-004 of phase 9 was Met on a search for the sentence, not on the hook. It keeps its status and gains a dated note, because the criterion as written was met and the sentence it checked was wrong |
 | 16 kept ids | Open, with the check done. `scratch/reflog-2041.txt` lists the 16 reflog lines of the 2026-11-13 20:41 rebase: one start, 13 picks and two finish lines. All 13 replayed picks kept their id while their hashes changed, and 2549786f28 was not replayed. The count 16 names reflog lines, not commits. Which backend that rebase used is not recorded, and the probe's `--apply` case reproduces the kept ids |
 | Sentence claims | The new sentence maps to the probe. A moved-base pick re-mints because `CHERRY_PICK_HEAD` is set (case 1). A reword keeps the id because the hook runs with `source=commit` and no `CHERRY_PICK_HEAD` (case 3). A commit the rebase leaves in place keeps it because no hook runs (case 2). `git rebase --apply` keeps it because no hook runs (case 4). The repository asks for ids in every case through `skilled.trustRepoHooks true` and the copied allocator |
-| Phase 9 metadata | The dated note changes `009-document-corrections/acceptance-criteria.md`, so that folder's `graph-metadata.json` fingerprint is stale. `validate.sh` there fails `GENERATED_METADATA_INTEGRITY` with `SOURCE_FINGERPRINT_MISMATCH`. The note is the only allowed edit there, so the orchestrator runs `repair-derived.cjs` on the 009 folder |
+| Phase 9 metadata | The dated note changes `009-document-corrections/acceptance-criteria.md`, so that folder's `graph-metadata.json` fingerprint went stale. The fix commit `21ceaa9772` repairs it in the same change, and no other edit was made there |
 <!-- /ANCHOR:log -->

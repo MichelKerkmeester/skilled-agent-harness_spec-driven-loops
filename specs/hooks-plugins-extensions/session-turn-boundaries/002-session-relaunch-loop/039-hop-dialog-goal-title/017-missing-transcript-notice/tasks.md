@@ -63,7 +63,7 @@ contextType: "general"
 - [x] T010 Run the changed test (`RL/tests/claude-adapters.test.cjs`). Verify: the command of T005 exits 0 with `pass 1` and `fail 0`, saved to `PHASE/scratch/green.txt`. Observed: `scratch/green.txt:2` prints `✔ stop-arm logs missing-transcript-path and marks the pending record deferred`, `ℹ tests 1` at `:3`, `ℹ pass 1` at `:5`, `ℹ fail 0` at `:6` and `exit=0` at `:11`.
 - [x] T011 Run the Claude adapter and conformance suites (`RL/tests`). Verify: `env -u AI_SESSION_CHILD -u OPENCODE_DB node --test .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs .skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs` exits 0 with `fail 0`. Observed: `ℹ tests 115` at `scratch/claude-conformance.txt:117`, `ℹ pass 115` at `:119`, `ℹ fail 0` at `:120` and `exit=0` at `:125`, with no `✖` line in the file; the changed test prints `✔` at `:81`, and the background-task notice test passes in the same run.
 - [x] T012 Run the relaunch and OpenCode plugin suites (`RL/tests` and `.opencode/plugins/tests`). Verify: the command of T001 exits 0 with `fail 0` and the `tests` count in `PHASE/scratch/baseline.txt`, saved to `PHASE/scratch/final-suite.txt`. Observed: `ℹ tests 1553` at `scratch/final-suite.txt:1566`, `ℹ pass 1553` at `:1568`, `ℹ fail 0` at `:1569` and `exit=0` at `:1574`, equal to the 1553 baseline at `scratch/baseline.txt:1565`, `:1567` and `:1568`; the file holds no `✖` line.
-- [ ] T013 Check that the fix adds no file, no record key and no log event (`FIX`). Verify: `git show --stat FIX` lists four files, `git show FIX | rg -c '^new file'` prints nothing with exit 1, and `git show FIX -- .skilled/hooks/session-relaunch/claude/stop-arm.mjs | rg -c "^\+.*logEvent\('"` prints 1, the `stop-arm-error` call of the guarded write. Deferred: the orchestrator runs this against the fix commit after committing, per the dispatch. Working-tree evidence: `git diff --stat` lists `.skilled/hooks/session-relaunch/README.md`, `.skilled/hooks/session-relaunch/claude/README.md`, `.skilled/hooks/session-relaunch/claude/stop-arm.mjs` and `.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs`, all modifications, `git status --porcelain` shows no new tracked file, and the only added `logEvent('` line in the adapter diff is the `stage: 'notice'` call at `.skilled/hooks/session-relaunch/claude/stop-arm.mjs:151`.
+- [x] T013 Check that the fix adds no file, no record key and no log event (`FIX`). Verify: `git show --stat 78f9d39501` lists the four code and document files plus the records of this child, `git show --diff-filter=A --name-only 78f9d39501 | rg -v '017-missing-transcript-notice/'` prints nothing with exit 1, and `git show 78f9d39501 -- .skilled/hooks/session-relaunch/claude/stop-arm.mjs | rg -c "^\+.*logEvent\('"` prints 1, the `stop-arm-error` call of the guarded write. Observed 2026-11-14 against commit `78f9d39501` (Commit-Id 0014033): the stat lists 16 files, the two READMEs, `stop-arm.mjs` and the test file among them, the new-file filter outside the child printed nothing with exit 1, and the log-event count printed 1, the reused `stop-arm-error` path, so the commit adds no log event.
 - [x] T014 Validate the phase folder (`PHASE`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice --strict` prints `RESULT: PASSED`. Observed 2026-11-14: after `repair-derived.cjs --apply` reported `inspected=1 repaired=1 failed=0`, validate printed Errors 0, Warnings 0, `RESULT: PASSED` and exit 0.
 <!-- /ANCHOR:phase-3 -->
 
@@ -72,7 +72,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] Every task is resolved: T001 to T012 and T014 are complete, and T013 is deferred to the orchestrator, which runs it against the fix commit after committing.
+- [x] Every task is resolved: T001 to T014 are complete, and T013 ran against the fix commit `78f9d39501` (Commit-Id 0014033).
 - [x] No `[B]` blocked tasks remaining: no task is blocked.
 - [x] Manual verification passed: `scratch/red.txt` shows the changed test failing (tests 1, pass 0, fail 1, exit 1) and `scratch/green.txt` shows it passing (tests 1, pass 1, fail 0, exit 0).
 <!-- /ANCHOR:completion -->
@@ -145,7 +145,7 @@ A blocked task is marked `[B]` with its reason in `goal.md`. A `[B]` on T001 blo
 - [x] CHK-FIX-004 [P0] The line holds fixed text and no payload field. Observed: the `systemMessage` at `.skilled/hooks/session-relaunch/claude/stop-arm.mjs:146` to `:148` is three fixed string literals, and no `${...}` appears in them.
 - [x] CHK-FIX-005 [P1] Matrix axes listed in plan.md: Stop path crossed with stdout. Observed in `plan.md` §FIX ADDENDUM: missing transcript, background tasks, no target pid, arm error and armed, crossed with a notice or empty.
 - [x] CHK-FIX-006 [P1] The tests run with `AI_SESSION_CHILD` and `OPENCODE_DB` unset. Observed: every command line saved under `scratch/` begins `env -u AI_SESSION_CHILD -u OPENCODE_DB`.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the fix commit, named in `goal.md` section 4. Deferred: the fix commit does not exist until the orchestrator commits; the build evidence is in `goal.md` section 4 and T013 names the commit-scoped check.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the fix commit `78f9d39501` (Commit-Id 0014033), named in `goal.md` section 4. Observed 2026-11-14: T013 checks that commit, and `goal.md` section 4 names it with its file list and the hook registration and runtime mirror checks.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -185,10 +185,10 @@ A blocked task is marked `[B]` with its reason in `goal.md`. A `[B]` on T001 blo
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 12 | 12/12 |
-| P1 Items | 11 | 10/11 |
+| P1 Items | 11 | 11/11 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-11-14. The one P1 item open is CHK-FIX-007, whose fix commit the orchestrator lands; T013 carries the same deferral.
+**Verification Date**: 2026-11-14. Every row above was checked from a recorded run, a searched source or the fix commit `78f9d39501` (Commit-Id 0014033). No row is deferred.
 <!-- /ANCHOR:summary -->
 
 ---

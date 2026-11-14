@@ -63,7 +63,7 @@ contextType: "general"
 - [x] T010 Run the version check (`SKG`). Verify: `node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify --skill sk-git` exits 0. Observed: `[verify] 78 files | ok=78`, exit 0.
 - [x] T011 Run the skill package and document checks (`SKG`). Verify: `python3 .skilled/skills/sk-doc/sk-create-skill/scripts/validate_skill_package.py .skilled/skills/sk-git` and `python3 .skilled/skills/sk-doc/shared/scripts/validate_document.py .skilled/skills/sk-git/SKILL.md` both exit 0. Observed: the package check printed `PASS` with exit 0 and the document check printed `VALID` with 0 issues and exit 0.
 - [x] T012 Confirm the hook and its test did not change (`.skilled/scripts/git-hooks`). Verify: `git diff --quiet HEAD -- .skilled/scripts/git-hooks` exits 0. Observed: exit 0.
-- [ ] T013 Check the commit (`FIX`). Verify: `git show --stat FIX` lists `SKILL.md`, the new changelog file and the phase 9 criteria file, and `git show FIX | rg -c '^new file'` prints 1. Deferred to the orchestrator: the fix commit does not exist in this build.
+- [x] T013 Check the commit (`FIX`). Verify: `git show --stat 21ceaa9772` lists `SKILL.md`, the new changelog file, the phase 9 criteria file and its graph metadata plus the records of this child, and `git show --diff-filter=A --name-only 21ceaa9772 | rg -v '018-sk-git-rebase-sentence/'` prints only `.skilled/skills/sk-git/changelog/v1.11.12.0.md`. Observed 2026-11-14 against commit `21ceaa9772` (Commit-Id 0014041): the stat lists 18 files, and the new-file filter outside the child printed exactly that one path with exit 0, so the changelog is the one new file outside the child.
 - [x] T014 Validate the phase folder (`PHASE`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence --strict` prints `RESULT: PASSED`. Observed: `RESULT: PASSED`, Errors 0, Warnings 0, exit 0. `scratch/validate.txt` holds the run.
 <!-- /ANCHOR:phase-3 -->
 
@@ -72,7 +72,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`: T001 to T012 and T014 are done, and T013 is the orchestrator's after the fix commit.
+- [x] All tasks marked `[x]`: T001 to T014 are done, and T013 ran against the fix commit `21ceaa9772` (Commit-Id 0014041).
 - [x] No `[B]` blocked tasks remaining: no task carries `[B]`.
 - [x] Manual verification passed: the new sentence was read against `scratch/rebase-probe.txt`, and each claim matches one of its four cases.
 <!-- /ANCHOR:completion -->
@@ -119,7 +119,7 @@ A blocked task is marked `[B]` with its reason in `goal.md`. A `[B]` on T005 blo
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] No code file changes: `git show --stat FIX` lists Markdown files only. Deferred with T013; the working tree diff lists Markdown files only.
+- [x] CHK-010 [P0] No code file changes: `git show --stat 21ceaa9772` lists Markdown and generated JSON files only. Observed 2026-11-14 at commit `21ceaa9772` (Commit-Id 0014041): `SKILL.md`, the changelog, two phase 9 documents and this child's documents, and no code file.
 - [x] CHK-011 [P0] The probe script parses and runs outside this repository's git state (T004, T005). Observed: `bash -n` exited 0, the probe exited 0, and every git write ran under `scratch/probe.*`.
 - [x] CHK-012 [P1] The new sentence makes no claim the probe did not show. Observed: `goal.md` maps the pick, reword, unreplayed and `--apply` claims to the four probe cases.
 <!-- /ANCHOR:code-quality -->
@@ -145,7 +145,7 @@ A blocked task is marked `[B]` with its reason in `goal.md`. A `[B]` on T005 blo
 - [x] CHK-FIX-004 [P0] N/A: no security, path, parser or redaction fix. Observed: the change is one Markdown sentence, one version line, one changelog file and one note.
 - [x] CHK-FIX-005 [P1] Matrix axes listed in plan.md: rebase kind crossed with id outcome, one probe case each. Observed: the four cases cover a moved-base pick, an unreplayed leading commit, a reword and `--apply`.
 - [x] CHK-FIX-006 [P1] The probe records the git version it ran on. Observed: every block prints `git version: 2.50.1`.
-- [ ] CHK-FIX-007 [P1] Evidence is pinned to the fix commit, named in `goal.md` section 4. Deferred with T013; the scoped diff is named in `goal.md` section 4 and the fix commit is the orchestrator's.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the fix commit `21ceaa9772` (Commit-Id 0014041), named in `goal.md` section 4. Observed 2026-11-14: T013 checks that commit, and `goal.md` section 4 names it with its file list.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -184,11 +184,11 @@ A blocked task is marked `[B]` with its reason in `goal.md`. A `[B]` on T005 blo
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | 11/12 |
-| P1 Items | 11 | 10/11 |
+| P0 Items | 12 | 12/12 |
+| P1 Items | 11 | 11/11 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-11-14. The two open items are `CHK-010` and `CHK-FIX-007`, both deferred to the orchestrator's fix commit (T013).
+**Verification Date**: 2026-11-14. Every row above was checked from a recorded run, a searched source or the fix commit `21ceaa9772` (Commit-Id 0014041). No row is deferred.
 <!-- /ANCHOR:summary -->
 
 ---

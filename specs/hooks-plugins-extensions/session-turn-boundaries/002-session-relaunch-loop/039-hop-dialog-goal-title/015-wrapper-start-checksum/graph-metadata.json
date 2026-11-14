@@ -36,7 +36,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The wrapper takes a checksum of its own file before the first launch (`.skilled/bin/skilled-loop:1208`) and compares it before each hop (`:1472`)",
     "created_at": "2026-11-14T11:42:51Z",
-    "last_save_at": "2026-11-14T12:38:42.760Z",
+    "last_save_at": "2026-11-14T13:34:07.428Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:9e76a2b509e0eec2f4a1231a7df8b17b4bc2774ab7b1517db0f0a94042b4d179",
+    "source_fingerprint": "sha256:85a090f53fca14b74f4ee906daf7f9948de037db2541408b1c4d5c405bebb73f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c99b5d2011bdfcf6efa1850cb69877f73cd65e554a0cdf37fd2f2c68dc5ff510",
+      "spec.md": "9492000add8e7412eb1b533aa415bcbd3a17a9b9f583f272703b914d2ab4f26a",
       "plan.md": "784aba105e7bf467c59a8126adf07e00999336346109551557b348b8f5867ad1",
-      "tasks.md": "c7b1005d93536213b7df27257df98ae37faa797e7309b28e6ccfbf50b530758b",
-      "implementation-summary.md": "2bf7e48cdb4ceb5c92dd99c4da5c18d78e2c3861906412269c789cd498a2e216"
+      "tasks.md": "134fcc8a1e93fed5227effe81ea2717305e016db095b28cd16e467d104f2e2a2",
+      "implementation-summary.md": "10b16b5d8852febb7f7564d502e45791699ff045da2d9ac5e13afdf9349c220d"
     },
     "last_active_at": null
   }

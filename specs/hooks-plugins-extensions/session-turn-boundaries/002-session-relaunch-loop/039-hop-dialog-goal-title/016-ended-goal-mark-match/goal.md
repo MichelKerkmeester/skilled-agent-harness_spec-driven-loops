@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match"
     last_updated_at: "2026-11-14T16:20:00Z"
     last_updated_by: "code-agent"
-    recent_action: "Built the claimed-last mark and the unreadable-log guard test first, every criterion Met"
-    next_safe_action: "The orchestrator commits and runs T014 on the fix commit"
+    recent_action: "Recorded fix commit c37531f72b (Commit-Id 0014029) and its scoped file list"
+    next_safe_action: "The operator decides the merge"
     blockers: []
     key_files: [".skilled/hooks/session-relaunch/lib/relaunch-core.cjs", ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs", ".skilled/hooks/session-relaunch/README.md"]
     session_dedup:
@@ -82,7 +82,8 @@ and findings belong here.
 | Review findings | Done | 2026-11-14. Alignment run A-1, lowered from P1 to P2 by its critic, with both independent reviews: the mark is read from any note the session claimed. Review FH, P2 and inferred: an unreadable log returns before the mark is read |
 | Code read | Done | 2026-11-14 at `99d197475d`: the match at `relaunch-core.cjs:639` has no status test, the returns at `:658` and `:664` come before the check at `:673`, and `prepare` resolves the goal at `bin/session-relaunch.cjs:485` before it supersedes at `:603`. The output is quoted in `spec.md` Measured Behavior |
 | Plan documents | Done | 2026-11-14: spec, plan, tasks, criteria and this goal written. `implementation-summary.md` is written after the build |
-| Build | Done | 2026-11-14: T001 to T013 and T015 complete. Red `scratch/red.txt` tests 2, pass 0, fail 2, exit 1; green `scratch/green.txt` tests 4, pass 4, fail 0, exit 0; full suite `scratch/final-suite.txt` tests 1553, pass 1553, fail 0, exit 0, two above the 1551 baseline. T014 is deferred to the orchestrator against the fix commit |
+| Build | Done | 2026-11-14: T001 to T013 and T015 complete. Red `scratch/red.txt` tests 2, pass 0, fail 2, exit 1; green `scratch/green.txt` tests 4, pass 4, fail 0, exit 0; full suite `scratch/final-suite.txt` tests 1553, pass 1553, fail 0, exit 0, two above the 1551 baseline |
+| Fix commit | Done | 2026-11-14: `c37531f72b`, Commit-Id 0014029. It changes `relaunch-core.cjs`, `relaunch-core.test.cjs` and the relaunch README plus this child's records, adds no file outside the child folder, and adds no note field or record key. The old core failed both new tests, 2 of 2. One suite run failed an advisor queue-timing test under load average 30 and that test passed three times alone. The clean rerun gave tests 1553, pass 1553, fail 0, exit 0 |
 | Merge and push | Pending | Parent decision D4: nothing is merged or pushed without the operator |
 
 ### Deviations and findings

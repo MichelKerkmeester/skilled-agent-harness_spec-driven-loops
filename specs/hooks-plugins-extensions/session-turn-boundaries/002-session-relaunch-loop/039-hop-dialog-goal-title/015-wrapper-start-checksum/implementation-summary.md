@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum"
     last_updated_at: "2026-11-14T14:05:00Z"
     last_updated_by: "code-agent"
-    recent_action: "Recorded the start-checksum guard, the stub test and the four runs that proved them"
-    next_safe_action: "The orchestrator commits the two files and runs T012 against the fix commit"
+    recent_action: "Recorded the start-checksum guard, the stub test and fix commit f99d3c442d (Commit-Id 0014025)"
+    next_safe_action: "The operator decides the merge"
     blockers: []
     key_files: [".skilled/bin/skilled-loop", ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs"]
     session_dedup:
@@ -67,7 +67,7 @@ The wrapper takes a checksum of its own file before the first launch and compare
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Test first. The new test landed before the wrapper edit and the selected run was saved to `scratch/red.txt` with the command and `exit=1`: tests 5, pass 4, fail 1, with the new test `✖` and the false note quoted in its assertion message, which proves the stub reached the loop-start read. The wrapper edit then made the same command print tests 5, pass 5, fail 0 and exit 0, saved to `scratch/green.txt`. The whole relaunch and OpenCode plugin suite ran last with `AI_SESSION_CHILD` and `OPENCODE_DB` unset: tests 1551, pass 1551, fail 0, exit 0, saved to `scratch/final-suite.txt`, one above the 1550 baseline in `scratch/baseline.txt`. `bash -n` and `node --check` both exited 0. The build changed two files and added none. The fix commit, and the commit-scoped check of T012, are the orchestrator's after this build.
+Test first. The new test landed before the wrapper edit and the selected run was saved to `scratch/red.txt` with the command and `exit=1`: tests 5, pass 4, fail 1, with the new test `✖` and the false note quoted in its assertion message, which proves the stub reached the loop-start read. The wrapper edit then made the same command print tests 5, pass 5, fail 0 and exit 0, saved to `scratch/green.txt`. The whole relaunch and OpenCode plugin suite ran last with `AI_SESSION_CHILD` and `OPENCODE_DB` unset: tests 1551, pass 1551, fail 0, exit 0, saved to `scratch/final-suite.txt`, one above the 1550 baseline in `scratch/baseline.txt`. `bash -n` and `node --check` both exited 0. The build changed two files and added none. The fix commit is `f99d3c442d` (Commit-Id 0014025), which changes the wrapper and the test file plus this child's records and adds no file outside this child, as T012 records.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -98,7 +98,7 @@ Test first. The new test landed before the wrapper edit and the selected run was
 | `rg -n -o 'if \[\[ -n "\$started_wrapper_checksum" && -n "\$hop_wrapper_checksum"' .skilled/bin/skilled-loop` | PASS: one line at `.skilled/bin/skilled-loop:1473` |
 | `rg -n 'wrapper_checksum' .skilled/bin/skilled-loop` | PASS: definition at 34, loop-start read at 1208, hop read at 1472, and only the comparison at 1473 uses both |
 | `rg -n -o 'A checksum that comes back empty[^.]*' .skilled/hooks/session-relaunch/README.md` | PASS: prints line 112, and the sentence is true for both reads, so no edit was made |
-| `git diff --stat` of the working tree | PASS: two files, both modifications, no new file. The commit-scoped form waits on the fix commit and is T012 |
+| `git show --stat f99d3c442d` and the new-file filter of the fix commit | PASS: 11 files, the wrapper and the test file among them, all the rest inside this child. `git show --diff-filter=A --name-only f99d3c442d \| rg -v '015-wrapper-start-checksum/'` printed nothing with exit 1, so the commit adds no file outside the child. Commit-Id 0014025 |
 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum --strict` | PASS: Errors 0, Warnings 0, `RESULT: PASSED`, exit 0 |
 <!-- /ANCHOR:verification -->
 
@@ -109,7 +109,7 @@ Test first. The new test landed before the wrapper edit and the selected run was
 
 1. **No live hop was run.** The test drives a copied wrapper with a stub runtime, so the fix is proven against a stub `cksum`, not a real checkout that replaces the file mid-loop. Whether a real checkout can make the loop-start read fail is unknown; the guard costs one condition either way.
 2. **A loop whose loop-start read failed reports no change for its whole life.** The loop-start checksum is never read again, so a later real change to the wrapper stays unreported in that loop. Adopting the first readable hop checksum as the baseline was declined because no failing case asks for it.
-3. **The commit-scoped proof is deferred.** The working tree changes two files and adds none, but `git show --stat` and the `new file` count need the fix commit, which the orchestrator lands and checks with T012.
+3. **The commit-scoped proof is narrower than a live check.** The fix commit `f99d3c442d` (Commit-Id 0014025) changes the two files and adds none outside this child, but no live hop ran and no real checkout made the loop-start read fail.
 <!-- /ANCHOR:limitations -->
 
 ---

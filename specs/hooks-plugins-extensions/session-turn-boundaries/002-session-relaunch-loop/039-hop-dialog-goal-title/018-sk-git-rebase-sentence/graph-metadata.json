@@ -37,7 +37,7 @@
       "criteria"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "`.skilled/skills/sk-git/SKILL.md:322` says a rebase keeps an id only when the replayed message still carries one",
     "created_at": "2026-11-14T11:42:58Z",
-    "last_save_at": "2026-11-14T13:21:29.539Z",
+    "last_save_at": "2026-11-14T13:34:15.479Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0020254e2adfe390c430204bff8620727a12b3e274a96b405d1d5143112bbdba",
+    "source_fingerprint": "sha256:de67763e7576acb29f7041f401fbf047ec9cc8aaa109acfcb8c3d28ffa3d9afe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "468e0ef5d2d71acc275a503c35f3346f0a6593d1f3b7c82ea9055b1c42327abc",
+      "spec.md": "0bc069be394559d062ecdf2c9ba38d3d063a44d0aa223bca08aa35d72e43e6ec",
       "plan.md": "985ecb1ea7b8dfaf3d305d1e135b64374783bed767b74988be4bf72027c393bb",
-      "tasks.md": "918974f01961f56e7a67df9771e0bd839289530b6caa650d259fe6a5d247bc4c",
-      "implementation-summary.md": "5889fc0c3571c5add65f4e11571848036e50dea8c2174ac0e6f18a5f40c77fc3"
+      "tasks.md": "84580e7b873ef5c8df54421955c8711ece9fefca0315ecca464adb2abb6347df",
+      "implementation-summary.md": "b5f6599b7e69af609657fce2d1209dfa4bc71a333e1bbe6ef4a78ed27c3d1f70"
     },
     "last_active_at": null
   }

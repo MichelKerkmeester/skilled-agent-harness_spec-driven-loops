@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/015-wrapper-start-checksum"
     last_updated_at: "2026-11-14T14:05:00Z"
     last_updated_by: "code-agent"
-    recent_action: "Built the start-checksum guard test first and recorded the red, green and full suite runs"
-    next_safe_action: "The orchestrator commits the two files, runs T012 against the fix commit, and decides the merge"
+    recent_action: "Recorded fix commit f99d3c442d (Commit-Id 0014025) and its scoped file list"
+    next_safe_action: "The operator decides the merge"
     blockers: []
     key_files: [".skilled/bin/skilled-loop", ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs"]
     session_dedup:
@@ -81,7 +81,8 @@ and findings belong here.
 | Review findings | Done | 2026-11-14. Alignment run finding X-4, deep review R1-P2-001 with its iteration 8 refinement, and both independent reviews: an empty start checksum is not guarded and README line 112 overstates the guard. All four are named in the parent goal log |
 | Code read | Done | 2026-11-14 at `99d197475d`, before the fix: line 1472 tested only the hop checksum, and one line of the wrapper calls `cksum`. The output is quoted in `spec.md` Measured Behavior |
 | Plan documents | Done | 2026-11-14: spec, plan, tasks, criteria and this goal written during planning, and `implementation-summary.md` written after the build |
-| Build | Done | 2026-11-14: T001 to T011 and T013 complete. Red `scratch/red.txt` tests 5, pass 4, fail 1, exit 1; green `scratch/green.txt` tests 5, pass 5, fail 0, exit 0; full suite `scratch/final-suite.txt` tests 1551, pass 1551, fail 0, exit 0. T012 is deferred to the orchestrator against the fix commit |
+| Build | Done | 2026-11-14: T001 to T011 and T013 complete. Red `scratch/red.txt` tests 5, pass 4, fail 1, exit 1; green `scratch/green.txt` tests 5, pass 5, fail 0, exit 0; full suite `scratch/final-suite.txt` tests 1551, pass 1551, fail 0, exit 0 |
+| Fix commit | Done | 2026-11-14: `f99d3c442d`, Commit-Id 0014025. It changes `.skilled/bin/skilled-loop` and the wrapper launch-arguments test plus this child's records, adds no file outside the child folder, and T012 read it. The old wrapper made the new test fail 1 of 1, and the clean suite printed tests 1551, pass 1551, fail 0, exit 0 |
 | Merge and push | Pending | Parent decision D4: nothing is merged or pushed without the operator |
 
 ### Deviations and findings

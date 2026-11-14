@@ -36,7 +36,7 @@
       "cannot"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "`claimedNoteEndedGoal` (`lib/relaunch-core.cjs:632`) returns true for any note in the handoffs folder whose `claimedby` is this session and whose `goalended` is `true` (`:639`)",
     "created_at": "2026-11-14T11:42:54Z",
-    "last_save_at": "2026-11-14T12:52:37.133Z",
+    "last_save_at": "2026-11-14T13:32:31.555Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:402ea780e731356c4bc287fa909605b37f90f37a2fb4efb1c77c2d98df72a3c6",
+    "source_fingerprint": "sha256:9000dafe0c10c38fe609c33b08a6640d28af23694f300a0e0ff660d1a2207df0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "767d92a90266b217f7ca85201ea5710e38defa835cf068f157e56b753995e96f",
+      "spec.md": "66e2dba45cbe605bf3e95daf4fcddd12d256b522de25e0e6259a6427863ba33f",
       "plan.md": "c99450598171054623ba61205f6663bef8c175031bff9582d1625bfc8a298c26",
-      "tasks.md": "ed0d0fb6c2aaa1f035c6e0a10e4cb4cc53032b7e6a4476ad4b082f27ec4cac6b",
-      "implementation-summary.md": "da3e6e74286c51282d2081442f057019e4444399f90855257689a115289163a1"
+      "tasks.md": "d99e6c48f0288f865f4b242310433541e6c9ff3244633d945f6489301a0d854a",
+      "implementation-summary.md": "5d316522589a7501d365a85b1198996459fdb983ade296123c8f3cdc92e7fe82"
     },
     "last_active_at": null
   }

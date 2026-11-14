@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/017-missing-transcript-notice"
     last_updated_at: "2026-11-14T18:10:00Z"
     last_updated_by: "code-agent"
-    recent_action: "Built the missing-transcript notice, red then green, with the full suite at the baseline count"
-    next_safe_action: "The orchestrator commits the four files and runs T013 against the fix commit"
+    recent_action: "Recorded fix commit 78f9d39501 (Commit-Id 0014033) and its scoped file list"
+    next_safe_action: "The operator decides the merge"
     blockers: []
     key_files: [".skilled/hooks/session-relaunch/claude/stop-arm.mjs", ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs", ".skilled/hooks/session-relaunch/README.md", ".skilled/hooks/session-relaunch/claude/README.md"]
     session_dedup:
@@ -82,7 +82,8 @@ and findings belong here.
 | Operator answer | Done | 2026-11-14, word for word: "Keep, add a notice (Recommended)" |
 | Code read | Done | 2026-11-14 at `99d197475d`: the branch logs at `stop-arm.mjs:137` and stamps at `:138`, the only `systemMessage` is at `:162`, and the test asserts an empty stdout at `claude-adapters.test.cjs:958`. The output is quoted in `spec.md` Measured Behavior |
 | Plan documents | Done | 2026-11-14: spec, plan, tasks, criteria and this goal written. `implementation-summary.md` is written after the build |
-| Build | Done | 2026-11-14: T001 to T012 completed, T013 deferred to the orchestrator's commit. Red `scratch/red.txt`: tests 1, pass 0, fail 1, exit 1, the failure naming the empty stdout. Green `scratch/green.txt`: tests 1, pass 1, fail 0, exit 0. Claude adapter and conformance suites: tests 115, pass 115, fail 0, exit 0. Relaunch and OpenCode plugin suites: tests 1553, pass 1553, fail 0, exit 0, the baseline count |
+| Build | Done | 2026-11-14: T001 to T012 completed. Red `scratch/red.txt`: tests 1, pass 0, fail 1, exit 1, the failure naming the empty stdout. Green `scratch/green.txt`: tests 1, pass 1, fail 0, exit 0. Claude adapter and conformance suites: tests 115, pass 115, fail 0, exit 0. Relaunch and OpenCode plugin suites: tests 1553, pass 1553, fail 0, exit 0, the baseline count |
+| Fix commit | Done | 2026-11-14: `78f9d39501`, Commit-Id 0014033. It changes `stop-arm.mjs`, `claude-adapters.test.cjs`, the relaunch README and the Claude adapter README plus this child's records, adds no file outside the child, and adds no log event, because the failure path reuses `stop-arm-error`. The old adapter failed the changed test 1 of 1, the suites printed tests 1553, pass 1553, fail 0, exit 0, and hook registration and runtime mirror checks both printed `PASS` |
 | Merge and push | Pending | Parent decision D4: nothing is merged or pushed without the operator |
 
 ### Deviations and findings

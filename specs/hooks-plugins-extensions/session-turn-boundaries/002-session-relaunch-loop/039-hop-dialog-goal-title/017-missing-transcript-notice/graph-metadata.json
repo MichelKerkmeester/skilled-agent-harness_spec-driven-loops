@@ -36,7 +36,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "When a Claude Stop payload carries no `transcriptpath`, `stop-arm.mjs` logs `missing-transcript-path` (`claude/stop-arm.mjs:137`), stamps `deferredAt` on the pending record (`:138`) and returns",
     "created_at": "2026-11-14T11:42:56Z",
-    "last_save_at": "2026-11-14T13:05:06.627Z",
+    "last_save_at": "2026-11-14T13:32:35.433Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:16cceec6a18418d2020364742950f88baf6546289cad4de361c456d88f625eff",
+    "source_fingerprint": "sha256:c1aabb87ff47b153f203a1a80f69021d7de6e6d46d7a4a331e5f2a0ce232f462",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "85f768db02ffb09c13e534c340810f825fdb1e835b884317947f558966edefeb",
+      "spec.md": "e5a560bc5dd3553d8ae3abcc2c3f30f6df32592c71105a5c43dccba219508ad9",
       "plan.md": "dc78dfcf774f5ca76d08d34c8e88fe642ec920d4489fd9ff7927065630bc2b70",
-      "tasks.md": "2958ff83f95c405b71ee764606628ddaf436f434cc2e4f97dcf32c4828c2cea0",
-      "implementation-summary.md": "bdf115d06bbbdc48241d1ad57e03f7ca710dfd9f78ce6fe23b519d9810c1de8a"
+      "tasks.md": "00b2bf480424636ff61132f230882bbc138a0907882007ca0f9edcd5754f92e0",
+      "implementation-summary.md": "d0a414b0a54ecccfaaf3c63f7cce49cf9ceaa3f44d542a8bf2af3bf03a104762"
     },
     "last_active_at": null
   }

@@ -64,7 +64,7 @@ contextType: "general"
 - [x] T011 Run the two new tests and the two existing ended-goal tests (`RL/tests/relaunch-core.test.cjs`). Verify: `env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='ended-goal mark counts only|session log cannot be read|stays ended for a receiver that sets none|answers empty when no Claude log' .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs` exits 0 with `tests 4`, `pass 4` and `fail 0`, saved to `PHASE/scratch/green.txt`. Observed: `scratch/green.txt:3` to `:6` print `✔` for all four, `ℹ tests 4` at `:7`, `ℹ pass 4` at `:9`, `ℹ fail 0` at `:10` and `exit=0` at `:15`.
 - [x] T012 Run the relaunch and OpenCode plugin suites (`RL/tests` and `.opencode/plugins/tests`). Verify: the command of T001 exits 0 with `fail 0` and a `tests` count two above the one in `PHASE/scratch/baseline.txt`, saved to `PHASE/scratch/final-suite.txt`. Observed: `scratch/final-suite.txt:1567` prints `ℹ tests 1553`, `:1569` `ℹ pass 1553`, `:1570` `ℹ fail 0` and `:1575` `exit=0`, two above the 1551 baseline.
 - [x] T013 Check the core parses (`RL/lib/relaunch-core.cjs`). Verify: `node --check .skilled/hooks/session-relaunch/lib/relaunch-core.cjs` exits 0. Observed: exited 0.
-- [ ] T014 Check that the fix adds no file, no note field and no record key (`FIX`). Verify: `git show --stat FIX` lists the core, the test file and the README, `git show FIX | rg -c '^new file'` prints nothing with exit 1, and `git show FIX -- .skilled/hooks/session-relaunch/lib | rg -c '^\+.*goal_[a-z_]+:'` prints nothing with exit 1. Deferred: the orchestrator runs this against the fix commit after committing, per the dispatch. Working-tree evidence: `git diff --stat` lists the core, the test file and the README only, all modifications, and adds no file.
+- [x] T014 Check that the fix adds no file, no note field and no record key (`FIX`). Verify: `git show --stat c37531f72b` lists the core, the test file and the README plus the documents and scratch files of this child, `git show --diff-filter=A --name-only c37531f72b | rg -v '016-ended-goal-mark-match/'` prints nothing with exit 1, and `git show c37531f72b -- .skilled/hooks/session-relaunch/lib | rg -c '^\+.*goal_[a-z_]+:'` prints nothing with exit 1. Observed 2026-11-14 against commit `c37531f72b` (Commit-Id 0014029): the stat lists 12 files, the core, the test file and the README among them, and both filters printed nothing with exit 1.
 - [x] T015 Validate the phase folder (`PHASE`). Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/016-ended-goal-mark-match --strict` prints `RESULT: PASSED`. Observed 2026-11-14: after `repair-derived.cjs --apply`, Errors 0, Warnings 0, `RESULT: PASSED`, exit 0.
 <!-- /ANCHOR:phase-3 -->
 
@@ -73,7 +73,7 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [x] Every task is resolved: T001 to T013 and T015 are complete, and T014 is deferred to the orchestrator, which runs it against the fix commit after committing.
+- [x] Every task is resolved: T001 to T015 are complete, and T014 ran against the fix commit `c37531f72b` (Commit-Id 0014029).
 - [x] No `[B]` blocked tasks remaining: no task is blocked.
 - [x] Manual verification passed: `scratch/red.txt` shows both new tests failing (tests 2, pass 0, fail 2, exit 1) and `scratch/green.txt` shows 4 of 4 (tests 4, pass 4, fail 0, exit 0).
 <!-- /ANCHOR:completion -->
@@ -147,7 +147,7 @@ A blocked task is marked `[B]` with its reason in `goal.md`. A `[B]` on T001 blo
 - [x] CHK-FIX-004 [P0] The invariant holds: the mark comes from at most one note, and an unreadable log never turns a mark into no mark. The helper keeps one candidate and both early returns ask it before they answer none.
 - [x] CHK-FIX-005 [P1] Matrix axes listed in plan.md: log state crossed with claimed notes, with the row each test covers. The first test pins the older marked and newer unmarked pair with a whole log, and the second pins the missing and unreadable log rows with a marked and an unmarked note.
 - [x] CHK-FIX-006 [P1] The tests run with `AI_SESSION_CHILD` and `OPENCODE_DB` unset. Every recorded run in `scratch/red.txt`, `scratch/green.txt` and `scratch/final-suite.txt` starts with `env -u AI_SESSION_CHILD -u OPENCODE_DB`.
-- [x] CHK-FIX-007 [P1] Evidence is pinned to the fix commit, named in `goal.md` section 4. The goal log names the tree state this work started from; the fix commit is the orchestrator's to land, and T014 pins the commit-scoped evidence to it.
+- [x] CHK-FIX-007 [P1] Evidence is pinned to the fix commit `c37531f72b` (Commit-Id 0014029), named in `goal.md` section 4. Observed 2026-11-14: T014 checks that commit, and `goal.md` section 4 names it with its file list and the one flaky test run.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -190,7 +190,7 @@ A blocked task is marked `[B]` with its reason in `goal.md`. A `[B]` on T001 blo
 | P1 Items | 11 | 11/11 |
 | P2 Items | 1 | 1/1 |
 
-**Verification Date**: 2026-11-14. Every row above was checked from a recorded run or a searched source. T014 is the one deferral: it needs the fix commit, which the orchestrator lands after the build.
+**Verification Date**: 2026-11-14. Every row above was checked from a recorded run, a searched source or the fix commit `c37531f72b` (Commit-Id 0014029). No row is deferred.
 <!-- /ANCHOR:summary -->
 
 ---
