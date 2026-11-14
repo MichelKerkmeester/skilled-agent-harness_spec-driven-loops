@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ea0ee64f0cb466e46ce9286b3d5358a956e2fe5970ff36d549758305370fec07",
+  "corpusHash": "e5723ae026c991b45b1a1e2c9075471a4f1e3b54badd255f38ed573e0f2b534a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26947,
+  "includedPathCount": 26951,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -15600,6 +15600,10 @@
     "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/plan.md",
     "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/spec.md",
     "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/tasks.md",
+    "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/implementation-summary.md",
+    "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/plan.md",
+    "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/spec.md",
+    "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/tasks.md",
     "specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/acceptance-criteria.md",
     "specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md",
     "specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/implementation-summary.md",
@@ -26979,7 +26983,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "dd9a61ac82867cff9c9137244119b9bb7f9150e5c7bd8b4a1f169ee4d5c61246",
+  "manifestHash": "decf4b66b8d53779cd9dadb091f02b54f36388c1178137416dd6fd219bfdecf3",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33239,6 +33243,10 @@
     },
     {
       "path": "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/scratch",
       "reason": "excluded directory"
     },
     {
