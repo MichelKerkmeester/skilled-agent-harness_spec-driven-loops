@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6d414d41db70a97ca5f9894698d69e12cfec11e0e0db77bdfe9c9e10ed2cac18",
+  "corpusHash": "1fa0f690749772662af0e660f78c285ce8feadc9874c8c06f8546fd462f0e409",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27262,
+  "includedPathCount": 27264,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10647,11 +10647,13 @@
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop/acceptance-criteria.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop/decision-record.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop/implementation-summary.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop/plan.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/acceptance-criteria.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/decision-record.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/goal.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/implementation-summary.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/plan.md",
@@ -27294,7 +27296,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "324336b601b1893abfcf2d08d561829f3b1253e7744dc047655598544c91eaf4",
+  "manifestHash": "bbb6ae6687a662e5c5efb72917f818085afbb796e0a8ee98878d1a4ee4a05a89",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

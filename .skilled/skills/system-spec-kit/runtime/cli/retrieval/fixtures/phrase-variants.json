@@ -1,5 +1,5 @@
 {
-  "manifestHash": "324336b601b1893abfcf2d08d561829f3b1253e7744dc047655598544c91eaf4",
+  "manifestHash": "bbb6ae6687a662e5c5efb72917f818085afbb796e0a8ee98878d1a4ee4a05a89",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -4051,6 +4051,9 @@
     "018 directive lifecycle review": [
       "018 directive-lifecycle review"
     ],
+    "018 dsh single executor loop operator decisions": [
+      "018-dsh-single-executor-loop operator decisions"
+    ],
     "018 feature catalog degraded": [
       "018 feature catalog degraded"
     ],
@@ -4269,6 +4272,9 @@
     ],
     "019 decision record": [
       "019 decision record"
+    ],
+    "019 dsh single executor hardening operator decisions": [
+      "019-dsh-single-executor-hardening operator decisions"
     ],
     "019 feature catalog shape realignment": [
       "019-feature-catalog-shape-realignment"
