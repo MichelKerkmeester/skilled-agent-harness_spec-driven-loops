@@ -152,7 +152,6 @@ WORKFLOW CLOSEOUT
 Implementation summary: [exists|missing]
 Validation: [pass|fail]
 Continuity: [refreshed|pending]
-End workflow or refresh continuity first? [done|memory-save]
 ```
 
 ## 3. Results Display

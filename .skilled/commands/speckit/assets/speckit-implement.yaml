@@ -6,7 +6,7 @@ execution_mode:
   values: [auto, confirm, autopilot]
   default: confirm
   rule: "Under confirm, execute every checkpoint block in order at the step that carries it, and apply the mode_overrides.confirm wording. Under auto or autopilot, skip every block whose applies_to is confirm and every checkpoint_confirm flag and keep the autonomous wording of this file. Under autopilot, the unattended_autopilot block of this file is the contract for the workspace, the terminal result, the reason codes and the task metadata."
-checkpoints: [step_1_review_plan_and_spec, step_2_task_breakdown, step_3_analysis, step_4_acceptance_criteria, step_5_implementation_check, step_5_5_preflight, step_6_development, step_7_completion, step_7_5_postflight, step_8_save_context, step_9_session_handover_check, step_6_5_checkpoint_development, step_6_7_acceptance_verify]
+checkpoints: [step_1_review_plan_and_spec, step_2_task_breakdown, step_3_analysis, step_4_acceptance_criteria, step_5_implementation_check, step_5_5_preflight, step_6_development, step_7_completion, step_7_5_postflight, step_8_save_context, step_6_7_acceptance_verify]
 mode_overrides:
   confirm:
     role: "Expert Developer using Smart SpecKit for interactive implementation"
@@ -691,18 +691,6 @@ workflow:
       child_dispatch: "When child_dispatch applies, record the question with Approve Code, the first option of checkpoint_options.code_review, as the default in the lineage directory and continue. Approve Code reaches Step 6.7, which verifies the acceptance-criteria rows before Step 7 completion."
       options: checkpoint_options.code_review
 
-  step_6_5_checkpoint_development:
-    purpose: Save context checkpoint after development phase
-    checkpoint: true
-    memory_action: save
-    activities: [Save checkpoint via system-spec-kit skill, Record development milestone, Preserve decisions/changes/insights]
-    tool_invocation:
-      command: Read(".skilled/skills/system-spec-kit/SKILL.md")
-      note: "Intermediate checkpoint - development phase complete"
-    outputs: ["[SPEC_FOLDER]/scratch/checkpoint__development_complete.md"]
-    validation: checkpoint_saved
-    checkpoint_confirm: true
-
   step_6_7_acceptance_verify:
     purpose: Verify every acceptance-criteria row and every P0/P1 checklist item after development and before completion
     blocking: true
@@ -819,11 +807,6 @@ workflow:
     activities: [Invoke system-spec-kit skill, Preserve decisions/insights/changes, Refresh the routed canonical spec document with the continuity writer]
     outputs: ["Canonical continuity refreshed in spec docs (decision-record.md / implementation-summary.md / handover.md) by the continuity writer"]
     validation: context_saved_successfully
-    write_continuity:
-      writer: "node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js"
-      invocation: 'node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder-path]'
-      critical_note: "The writer is the whole write. It keeps atomic same-directory update and lock semantics, needs no background service, and has no indexing step after it."
-      when: "Immediately after the canonical spec document is refreshed on disk"
     importance_tier:
       assign: important
       rationale: "Implementation sessions contain significant code decisions"
@@ -835,34 +818,14 @@ workflow:
         - { label: "Done", description: "Complete the workflow" }
         - { label: "View Final Summary", description: "Show complete implementation summary" }
     shared_tail: "assets/speckit-save-context-tail.yaml#save_context_core"
-    shared_tail_note: "The writer, post-save rule and anchor requirements live once in the shared tail; {spec_path} is this workflow's packet."
-
-  step_9_session_handover_check:
-    purpose: Final workflow closeout after implementation
-    enforcement: MANDATORY_CHECK
-    modes: { confirm: "ask through the checkpoint below", auto: "take Skip and end the workflow, because Step 8 already wrote continuity", autopilot: "take Skip and end the workflow" }
-    activities: [Display closeout prompt, Wait for response, "If accepted: run /speckit:save", "If declined: proceed to termination"]
-    handover_prompt:
-      display: "Implementation complete. Run /speckit:save first if you want another continuity refresh before ending the workflow."
-      options:
-        - { label: "Refresh Context", action: "Run /speckit:save" }
-        - { label: "Skip", action: "Proceed to termination" }
-    behavior: { user_accepts: "Execute /speckit:save", user_declines: "Proceed to termination" }
-    validation: workflow_finish_confirmed
-    checkpoint:
-      applies_to: confirm
-      question: "Would you like to refresh continuity before ending the implementation workflow?"
-      child_dispatch: "When child_dispatch applies, default to Skip. Step 8 already wrote continuity, so another refresh is not needed. Record the question with Skip as the default in the lineage directory and continue."
-      options:
-        - { label: "Run /speckit:save", description: "Refresh canonical continuity before ending" }
-        - { label: "Skip", description: "Complete workflow without another continuity refresh" }
+    shared_tail_note: "The writer call and the post-save check live once in the shared tail; {spec_path} is this workflow's packet."
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW TERMINATION
 # ─────────────────────────────────────────────────────────────────
 termination:
-  after_step: 9
-  message: "Implementation phase completed. Workflow terminated after step 9."
+  after_step: 8
+  message: "Implementation complete. The workflow ends after step 8, which wrote continuity once."
   next_steps: [Review implementation-summary.md, Verify changes in staging, Prepare for code review and PR]
 
 # ─────────────────────────────────────────────────────────────────

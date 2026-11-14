@@ -1,6 +1,6 @@
 ---
 description: "Continuity retrieval front door: trigger-index lookup plus the ripgrep recipes over spec docs and skill docs."
-argument-hint: "<query> [--packet <specFolder>] [--triggers] [--paths] [--count] [--include-archive]"
+argument-hint: "<query> [--packet <specFolder>] [--triggers] [--paths] [--count] [--limit <n>] [--include-archive]"
 allowed-tools: Bash, Read, Grep, Glob
 ---
 
@@ -81,6 +81,8 @@ The keyed lookup over the generated index. Reads a file and exits.
 node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<QUERY>"
 ```
 
+The lookup returns 20 candidates by default. When the user asks for more, pass `--limit <n>` before the `--` separator, as in `lookup-trigger-index.mjs --json --limit <n> -- "<QUERY>"`, and `--limit 0` for every candidate.
+
 With no `--index`, a host repository's own index is read automatically: `.speckit-index/trigger-index.json` at its root, or the folder named by `indexDir` in its `.skilled-host.json`. A project linked into a host reads that host's index, unless the project keeps an index of its own, which wins. Everywhere else the packaged `runtime/data/trigger-index.json` is the default, and an explicit `--index` always wins.
 
 1. Run the command with the resolved `QUERY`.
@@ -95,9 +97,11 @@ The ripgrep recipes from `retrieval-conventions.md` Section 2. Pick exactly one 
 | Request shape | Recipe | Output mode |
 | --- | --- | --- |
 | Line-addressable evidence (default) | Section 2.1, run by `rg-wrapper.mjs structured` | `--json` |
-| Which files mention it (`--paths`) | Section 2.2 | `--files-with-matches` |
-| How many times (`--count`) | Section 2.3 | `--count` |
+| Which files mention it (`--paths`) | Section 2.2, run by `rg-wrapper.mjs path` | `--files-with-matches` |
+| How many times (`--count`) | Section 2.3, run by `rg-wrapper.mjs count` | `--count` |
 | Evidence with surrounding lines, or anchor labelling | Section 2.4 | `--json -C 2` |
+
+A `QUERY` that starts with `--` is routed before any wrapper run. Run the raw Section 2.1 recipe from `retrieval-conventions.md` for it, with the phrase after the recipe's own `--` separator, and do not call `rg-wrapper.mjs`: the wrapper reads every such argument as one of its own options or rejects it as `unknown argument`, and it has no end-of-options marker.
 
 Structured evidence, the default, runs through the wrapper. It composes the Section 2.1 recipe itself, keeps the first-ranked row per file and cuts at 20 files, so a common phrase cannot flood the answer:
 
@@ -105,7 +109,7 @@ Structured evidence, the default, runs through the wrapper. It composes the Sect
 node .skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs structured '<QUERY>' --json
 ```
 
-Narrow with one `--search-root <path>` per root in place of the default `specs .skilled`. Pass `--limit <n>` when the user asks for more files, and `--limit 0` for all of them. The record's `command` field is the exact `rg` line that ran. The wrapper reads a phrase that starts with `--` as a flag and exits `2`; run the raw Section 2.1 recipe for that phrase instead. The other three modes run their recipe directly.
+Narrow with one `--search-root <path>` per root in place of the default `specs .skilled`. Pass `--limit <n>` when the user asks for more files, and `--limit 0` for all of them. The record's `command` field is the exact `rg` line that ran. The path-only and count modes run through the same wrapper, as `rg-wrapper.mjs path '<QUERY>' --json` and `rg-wrapper.mjs count '<QUERY>' --json`, and their records carry `paths` and `counts`. The path-only and count modes keep the wrapper's cap of 20 files, and `--limit 0` lifts it. The Section 2.4 context recipe has no wrapper mode and runs directly.
 
 Archived packets are left out by default. Add `--include-archive` to any wrapper recipe to search them as well:
 
@@ -116,8 +120,8 @@ node .skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs path '
 A phrase that only an archived packet holds exits `1` without the flag and `0` with it, and each archived path ends `[archived]`. The flag drops the `!**/z_archive/**` glob from the recipe and marks every printed hit under a `z_archive` segment with `[archived]`. The JSON rows of the structured and count recipes carry `archived: true|false`. A second invocation then lists the `description.json` and `graph-metadata.json` files of archived packets that hold the phrase, under a `json    :` section, and the exit is `0` when either lane matches. The mode is opt-in only. `/speckit:resume` excludes archives and has no such flag, and the trigger-index lane never reads them.
 
 1. Resolve the search roots. Narrow by path, never by pattern: `specs .skilled` for everything, `specs/<track>` for one track, `specs/<track>/<sub-track>` for one declared sub-track, `specs/<track>/<NNN-name>` for one packet, `specs/<track>/<sub-track>/<NNN-name>` for a packet inside a sub-track, `specs/<track>/<NNN-name>/<NNN-child-name>` for one phase child. `--packet <specFolder>` replaces the roots with that path.
-2. Run exactly one recipe. Never combine `--json` with the path-only or count mode: ripgrep does not reject the combination, the last output-mode flag wins silently, and a JSONL parser handed count output sees an empty result rather than an error.
-3. Branch on the exit status: `0` = matches, `1` = no match returned as an empty result, `2` or higher = an execution or configuration error.
+2. Run exactly one recipe. The wrapper's `--json` flag selects its own record format and is safe on all three wrapper recipes. In a raw recipe, never combine ripgrep's `--json` with the path-only or count flag: ripgrep does not reject the combination, the last output-mode flag wins silently, and a JSONL parser handed count output sees an empty result rather than an error.
+3. Branch on the exit status: `0` = matches, `1` = no match returned as an empty result, `2` or higher = an execution or configuration error. Render every exit of `2` or higher, from the wrapper or from a raw recipe, with the Section 7 error display and stderr attached. It never selects another recipe.
 4. Keep the wrapper's `results` in the order it returned them: it already applied the ranking tuple in `retrieval-conventions.md` Section 5 — evidence field, then normalized match class, then relative path and one-based line. Order raw-recipe output with the same tuple. Ripgrep supplies matches, paths and lines; it never ranks relevance, and no rendered output may imply that it does.
 5. To label anchor evidence, search for the marker itself (`<!-- ANCHOR:id -->`) and treat a line inside a matched pair as anchor evidence. Report an unmatched or orphan marker as a diagnostic rather than dropping it.
 6. Render with the Section 3 contract in the presentation asset.

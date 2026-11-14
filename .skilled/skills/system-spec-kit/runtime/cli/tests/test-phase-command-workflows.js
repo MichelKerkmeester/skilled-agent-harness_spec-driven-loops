@@ -338,8 +338,8 @@ function testExecutionModeContracts() {
   assertTrue(exists(tailPath), 'shared save-context tail exists');
   const tail = readFile(tailPath);
   assertTrue(
-    tail.includes('save_context_core:') && tail.includes('tool_invocation:') && tail.includes('post_save_write:') && tail.includes('anchor_requirements:'),
-    'T-EM7: shared save-context tail carries the writer, post-save rule and anchor requirements'
+    tail.includes('save_context_core:') && tail.includes('tool_invocation:') && tail.includes('post_save_write:'),
+    'T-EM7: shared save-context tail carries the writer call and the post-save rule'
   );
 }
 

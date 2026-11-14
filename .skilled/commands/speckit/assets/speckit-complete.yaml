@@ -18,7 +18,7 @@ execution_mode:
   values: [auto, confirm, autopilot]
   default: confirm
   rule: "Under confirm, execute every checkpoint block in order at the step that carries it, and apply the mode_overrides.confirm wording. Under auto or autopilot, skip every block whose applies_to is confirm and every checkpoint_confirm flag and keep the autonomous wording of this file. Under autopilot, the unattended_autopilot block of this file is the contract for the workspace, the terminal result, the reason codes and the task metadata."
-checkpoints: [step_1_request_analysis, step_2_pre_work_review, step_3_specification, step_4_clarification, step_5_acceptance_criteria, step_6_planning, step_7_task_breakdown, step_8_analysis, step_9_implementation_check, step_10_development, step_11_acceptance_verify, step_12_completion, step_13_save_context, step_14_handover_check, step_6_5_checkpoint_planning, step_9_5_preflight, step_10_5_checkpoint_development, step_11_5_postflight]
+checkpoints: [step_1_request_analysis, step_2_pre_work_review, step_3_specification, step_4_clarification, step_5_acceptance_criteria, step_6_planning, step_7_task_breakdown, step_8_analysis, step_9_implementation_check, step_10_development, step_11_acceptance_verify, step_12_completion, step_13_save_context, step_9_5_preflight, step_11_5_postflight]
 mode_overrides:
   confirm:
     role: "Expert Developer using Smart SpecKit with user confirmation"
@@ -971,22 +971,6 @@ workflow:
       use: present_options_to_user
       options: checkpoint_options.standard
 
-  step_6_5_checkpoint_planning:
-    purpose: Save context checkpoint after planning phase complete
-    checkpoint: true
-    memory_action: save
-    activities:
-    - Save context checkpoint using system-spec-kit skill
-    - Record progress up to planning milestone for session recovery
-    - Preserve planning decisions, exploration findings, and technical approach
-    tool_invocation:
-      command: Read(".skilled/skills/system-spec-kit/SKILL.md")
-      note: "Intermediate checkpoint - planning phase complete"
-    outputs:
-    - checkpoint_file: "[SPEC_FOLDER]/scratch/checkpoint__planning_complete.md"
-    validation: checkpoint_saved
-    checkpoint_confirm: true
-
   step_7_task_breakdown:
     purpose: Break plan into executable implementation tasks (Level 1+ requirement)
     level_requirement: "Level 1+ (Baseline - required at all levels)"
@@ -1167,22 +1151,6 @@ workflow:
       - { label: "Run Tests", description: "Execute test suite" }
       - { label: "Continue", description: "Proceed to completion" }
 
-  step_10_5_checkpoint_development:
-    purpose: Save context checkpoint after development phase complete
-    checkpoint: true
-    memory_action: save
-    activities:
-    - Save context checkpoint using system-spec-kit skill
-    - Record progress up to development milestone for session recovery
-    - Preserve implementation decisions, code changes, and debugging insights
-    tool_invocation:
-      command: Read(".skilled/skills/system-spec-kit/SKILL.md")
-      note: "Intermediate checkpoint - development phase complete"
-    outputs:
-    - checkpoint_file: "[SPEC_FOLDER]/scratch/checkpoint__development_complete.md"
-    validation: checkpoint_saved
-    checkpoint_confirm: true
-
   step_11_acceptance_verify:
     purpose: Verify every acceptance-criteria row and every P0/P1 checklist item before claiming completion
     blocking: true
@@ -1297,27 +1265,19 @@ workflow:
     outputs:
     - context_file: "Canonical continuity refreshed in spec docs (decision-record.md / implementation-summary.md / handover.md) by the continuity writer"
     validation: context_saved_successfully
-
-    write_continuity:
-      writer: "node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js"
-      invocation: 'node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js /tmp/save-context-data-<session-id>.json [spec-folder-path]'
-      critical_note: "The writer is the whole write. It keeps atomic same-directory update and lock semantics, needs no background service, and has no indexing step after it."
-      # Narrative timing moved from `when:` to `after:` (separates predicate-`when:` from prose-`after:`).
-      after: "Immediately after the canonical spec document is refreshed on disk"
-
     importance_tier:
       assign: important
       rationale: "Complete workflow represents significant implementation work"
       tier_reference: "critical > important > normal > temporary > deprecated"
     checkpoint:
       applies_to: confirm
-      question: "Step 13 Complete: Context saved. Proceed to workflow finish?"
+      question: "Step 13 Complete: Context saved. SpecKit workflow finished!"
       use: present_options_to_user
       options:
-      - { label: "Continue", description: "Proceed to workflow finish" }
-      - { label: "Finish Now", description: "Complete without another continuity refresh" }
+      - { label: "Done", description: "Complete the workflow" }
+      - { label: "View Summary", description: "Show implementation-summary.md" }
     shared_tail: "assets/speckit-save-context-tail.yaml#save_context_core"
-    shared_tail_note: "The writer, post-save rule and anchor requirements live once in the shared tail; {spec_path} is this workflow's packet."
+    shared_tail_note: "The writer call and the post-save check live once in the shared tail; {spec_path} is this workflow's packet."
 
   step_13_5_autopilot_archive_verify:
     purpose: Close unattended runs by archiving in place, verifying and reporting the branch. This step never merges.
@@ -1347,32 +1307,12 @@ workflow:
       success_schema: '{"mode":"autopilot","ok":true,"reason":null,"branch":"<branch>","merged":false,"verification":"passed"}'
     validation: autopilot_verify_gate_complete
 
-  step_14_handover_check:
-    purpose: Final workflow closeout before completion
-    modes: { confirm: "ask through the checkpoint below", auto: "take Skip and end the workflow, because Step 13 already saved context", autopilot: "take Skip and end the workflow" }
-    activities:
-    - Confirm the workflow is ready to terminate cleanly
-    - Remind the operator to run /speckit:save before pausing if another continuity refresh is needed
-    options:
-    - { label: "Refresh Context", action: "Run /speckit:save" }
-    - { label: "Skip", action: "Proceed to termination" }
-    note: "Use /speckit:save when you want one more continuity refresh before ending the workflow."
-    validation: workflow_finish_confirmed
-    checkpoint:
-      applies_to: confirm
-      question: "Step 14: Would you like to refresh continuity before ending the workflow?"
-      child_dispatch: "When child_dispatch applies, default to Skip. Step 13 already saved context, so another refresh is not needed. Record the question with Skip as the default in the lineage directory and continue."
-      use: present_options_to_user
-      options:
-      - { label: "Run /speckit:save", description: "Refresh canonical continuity before ending" }
-      - { label: "Skip", description: "Complete without another continuity refresh" }
-
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW TERMINATION
 # ─────────────────────────────────────────────────────────────────
 termination:
-  after_step: 14
-  message: "SpecKit workflow completed successfully."
+  after_step: 13.5
+  message: "SpecKit workflow completed. Step 13 wrote continuity once. The workflow ends after step 13 under confirm and auto, and after step 13.5 under autopilot."
   remaining_children: "When the run decomposed into phases, name each remaining child folder with its command: /speckit:complete <child-folder>"
 
 # ─────────────────────────────────────────────────────────────────
