@@ -35,15 +35,15 @@ The change moves steps and gate locations in `speckit-implement.yaml`, `speckit-
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
-- [ ] The baseline ordering check `awk '/^  step_6_development:/{d=NR} /to Met/{print (d?"after":"before"), NR}' .skilled/commands/speckit/assets/speckit-implement.yaml` prints `before 543` before work starts
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
+- [x] The baseline ordering check `awk '/^  step_6_development:/{d=NR} /to Met/{print (d?"after":"before"), NR}' .skilled/commands/speckit/assets/speckit-implement.yaml` prints `before 543` before work starts
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Every Verify command in `tasks.md` prints its expected output, and the YAML parse command in `tasks.md` prints `0` errors for each of the three files
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Every Verify command in `tasks.md` prints its expected output, and the YAML parse command in `tasks.md` prints `0` errors for each of the three files
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

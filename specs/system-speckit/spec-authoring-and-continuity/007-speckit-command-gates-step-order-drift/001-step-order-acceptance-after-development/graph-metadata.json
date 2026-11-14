@@ -33,7 +33,7 @@
       "runs"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "An agent that runs `/speckit:implement` marks every acceptance-criteria row Met in `step4acceptancecriteria`, two steps before `step6development` writes any code, and no later step sets a row again",
     "created_at": "2026-11-14T11:33:17Z",
-    "last_save_at": "2026-11-14T12:29:42.796Z",
+    "last_save_at": "2026-11-14T12:55:38.680Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a4f9d4c5ce6cc1cf3976f02d81d82a21b0c7205c329fcbf84b1784d7dc03093b",
+    "source_fingerprint": "sha256:d573ee3c2212b9c5b8b84f36e077f34e259c1637688a8de870ffe6636235b65d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "619a65ef7ef87ca95ac163a892ac464b57af4fae9f608828d36d66e668f34ff3",
-      "plan.md": "56a54f90b1292d14e471a74adeef755dd231acb2d053ee9319eb62cfed9e56f3",
-      "tasks.md": "d082ad63b85f627dc72ade76db05693a4cb443f4888a98433618b8630b453b5f",
-      "implementation-summary.md": "a009ca2d1a74b3ccca4fc1dd744cfe75a5c7e17d185c72690dbebae4594c8fe4"
+      "spec.md": "7a96491b4d0b859383ed5f41b53f277c7c039a1fd3b6594c40dec57442aeebc8",
+      "plan.md": "85933c4a134cf8b0fcdfc40cc484a505419f1c6822fb341ffaf5f6fe81e824be",
+      "tasks.md": "fa650175f7af81f1be63edc0c2c70cb25a7db4ff72316fdd3381598726c5bd5b",
+      "implementation-summary.md": "d4d6565078eccd95fdd126ad11d0217cdc9445d703ea342952054017bc04d58c"
     },
     "last_active_at": null
   }

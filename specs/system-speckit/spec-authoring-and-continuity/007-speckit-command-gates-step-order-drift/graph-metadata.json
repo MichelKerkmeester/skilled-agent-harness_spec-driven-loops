@@ -40,7 +40,7 @@
       "remediation"
     ],
     "importance_tier": "important",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -90,18 +90,18 @@
     ],
     "causal_summary": "The `/speckit:plan`, `/speckit:implement`, `/speckit:complete`, `/speckit:resume`, `/speckit:save`, `/speckit:search` and `/speckit:handoff` commands are executed by AI agents on every runtime, and an agent follows the workflow text literally",
     "created_at": "2026-11-14T11:33:17Z",
-    "last_save_at": "2026-11-14T12:29:42.982Z",
+    "last_save_at": "2026-11-14T12:55:47.406Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:ff5f99bf8b739420d4732482f62be2806b8fc6201cf62e16f6c3bb20408c3f50",
+    "source_fingerprint": "sha256:5c44154ddfeac061bea41e7ae49d6f4e346c82400d413cf91b3ad7450f5fb627",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "71962b49ef42e24556bc427ca92841f28384bbfb583668ccefc1c7f070f53c5c"
+      "spec.md": "d76854d28623f9c56676320ce247624590d91d9f011f8a685feee55859507116"
     },
-    "last_active_at": "2026-11-14T12:29:42.982Z",
-    "last_active_child_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/001-step-order-acceptance-after-development"
+    "last_active_child_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/001-step-order-acceptance-after-development",
+    "last_active_at": "2026-11-14T12:29:42.982Z"
   }
 }

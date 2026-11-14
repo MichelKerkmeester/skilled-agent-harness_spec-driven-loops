@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Implement, complete and plan now run every verification step and gate after the step that produces what it checks."
 trigger_phrases:
   - "step order acceptance after development implementation summary"
 importance_tier: "normal"
@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/001-step-order-acceptance-after-development"
     last_updated_at: "2026-11-14T12:29:42Z"
     last_updated_by: "generate-context"
-    recent_action: "Authored eight phase specs and created worktree 381"
-    next_safe_action: "Commit packet baseline, then implement phase 1 task T001"
+    recent_action: "Phase 1 implemented and verified at f125d45652"
+    next_safe_action: "Implement phase 2, 002-required-artifact-gates"
     packet_purpose: "Purpose: Every step that verifies, checks or gates something runs after the step that produces what it checks, and every gate location names a real step boundary before termination."
     blockers: []
     key_files:
@@ -28,7 +28,7 @@ _memory:
       savedAt: "2026-11-14T12:29:42Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -55,60 +55,85 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+An agent that runs `/speckit:implement` no longer marks acceptance rows Met before any code exists. It authors the rows before development and verifies them in a new step after it. `/speckit:complete` and `/speckit:plan` got the same treatment: each gate now sits after the step that produces what it checks.
 
 ### Phase 1: step-order-acceptance-after-development
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+You can follow any of the three lifecycle workflows top to bottom and every check comes after its producer. Implement stops in step 1 when `plan.md` leaves a design choice open, before it touches `tasks.md`. Complete's exit gate runs after the save it scores, and the autopilot close step runs after that gate. Plan writes `tasks.md` in a task breakdown step of its own.
+
+The spec folder has one creator per path. The intake Emit phase creates it on the single-packet path, and P3 of phase decomposition creates it under `:with-phases`. Phase decomposition runs after request analysis, takes its level from `recommend-level.sh` and names the children it did not plan at termination.
+
+Step keys that changed:
+
+- Added `step_6_7_acceptance_verify` in `speckit-implement.yaml`.
+- Added `step_5_5_task_breakdown` in `speckit-plan.yaml`.
+- Renamed `step_12_5_autopilot_archive_verify_merge` to `step_13_5_autopilot_archive_verify_merge` in `speckit-complete.yaml`. Phase 3 renames it again when it removes the merge.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `.skilled/commands/speckit/assets/speckit-implement.yaml` | Modified | Step 4 authors rows and sets none Met. New `step_6_7_acceptance_verify`. Design-choice check in step 1. `checklist_verified` out of the pre-implementation gate. Coding-start rule names Step 6 |
+| `.skilled/commands/speckit/assets/speckit-complete.yaml` | Modified | Author-only step 5. Step 9 confirms rows exist. Exit gate between Step 13 and Step 13.5. Close step renamed and moved after the save. One folder creator. Phase decomposition after step 1 |
+| `.skilled/commands/speckit/assets/speckit-plan.yaml` | Modified | Exit gate after Step 6. New `step_5_5_task_breakdown` with a `tasks_md` scaffold. One folder creator. Phase decomposition after step 1. Remaining children named at termination |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+Each edit was dispatched as one short brief to DeepSeek V4.1 Flash on the Mistral provider through OpenCode, one dispatch at a time in worktree 381. After every dispatch the orchestrating session ran the task's Verify command, a YAML parse of all three files and a scope check on `git status`, then read the diff. Fourteen dispatches ran and none needed a retry.
+
+The ordering checks on the final tree, at commit `f125d45652`:
+
+- T027, implement: `awk '/^  step_6_development:/{d=NR} /to Met/{print (d?"after":"before"), NR}'` prints `after 680` and nothing else. The design-choice `awk` prints `before 390`, `before 480` and `before 481` and no `after` line.
+- T028, complete: the `to Met|set Met|Met or Waived` `awk` prints `after 1206` and nothing else.
+
+Routers, presentation files and the README still list the old step order. Phase 8 aligns them.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| The dispatched worker ran under a focused `@markdown` persona, not `@code` | The implement workflow routes command workflow files to `@markdown`, and the `@code` persona refuses to author them |
+| Single literal line edits to one file were grouped, up to seven per dispatch | One dispatch per line would have tripled the run time. Every edit in a group still has its own check |
+| The new step's question avoids the text `Step 6.7` | The T008 check expects that text on two lines only, the code review option and the step 6 child dispatch |
+| Implement step 5 keeps an `on_fail` with generic wording | Removing the design-choice text left the step with no failure branch at all |
+| `--phases {phase_count}` stays in the P3 command | The count now comes from the phases P2 defined. Only the fixed default of 3 was the defect |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| T027 implement ordering `awk` | PASS: `after 680`, no `before` line |
+| T028 complete ordering `awk` | PASS: `after 1206`, no `before` line |
+| T029 checkpoints check on each workflow | PASS: prints nothing for all three files |
+| T030 step-key `diff` against the Setup list | PASS: `step_12_5_autopilot_archive_verify_merge` removed. `step_13_5_autopilot_archive_verify_merge`, `step_6_7_acceptance_verify` and `step_5_5_task_breakdown` added. No other line |
+| T031 YAML parse | PASS: `0` errors for each of the three files |
+| T032 consumers of moved keys outside `specs/` | PASS: only the three workflow files |
+| T039 `test-phase-command-workflows.js` | PASS: `Result: passed=154 failed=0`. Baseline was `passed=150 failed=0`. The four new passes are the two new checkpoint steps |
+| `speckit-goal-offer-contract.test.cjs` | PASS: `pass 5`, `fail 0` |
+| Em dash, credential and comment-label scans of the diff | PASS: each prints nothing |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **Routers and presentation files show the old step order.** `implement.md` still says 9 steps and no presentation file names Step 6.7 or Step 5.5. The workflow file is what the agent executes, and phase 8 aligns the rest.
+2. **Under `:with-phases` the entry gate checks a folder that does not exist yet.** `spec_path_valid` runs before Step 1 and P3 now creates the folder after it. Phase 2 exempts `:with-phases` runs from that check.
+3. **The autopilot close step still merges.** This phase only moved it after the exit gate. Phase 3 removes the merge.
 <!-- /ANCHOR:limitations -->
 
 ---
