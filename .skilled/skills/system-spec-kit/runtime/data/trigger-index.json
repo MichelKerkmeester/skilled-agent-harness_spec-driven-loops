@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1cd7a6a0bec7e2858f26ca81c19890d6b96dbf84372fcf311fba50833b017a76",
+  "manifestHash": "404c82afa8b39833823826709a38465e9a7fa753b89eec9de6eae392007bda01",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -18506,6 +18506,19 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests/plan.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests/spec.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/011-relocate-and-restore-fixes/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/011-relocate-and-restore-fixes/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/011-relocate-and-restore-fixes/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/011-relocate-and-restore-fixes/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/011-relocate-and-restore-fixes/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/012-catalog-and-playbook-alignment/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/012-catalog-and-playbook-alignment/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/012-catalog-and-playbook-alignment/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/012-catalog-and-playbook-alignment/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping/tasks.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/decision-record.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/goal.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
@@ -20078,7 +20091,7 @@
       13871
     ],
     "005 subtrack proposal and archive reach operator decisions": [
-      18496
+      18509
     ],
     "005 tasks promote qwen": [
       13053
@@ -35975,6 +35988,18 @@
     "catalog and playbook acceptance criteria": [
       3699
     ],
+    "catalog and playbook alignment": [
+      18503
+    ],
+    "catalog and playbook alignment goal": [
+      18501
+    ],
+    "catalog and playbook alignment plan": [
+      18502
+    ],
+    "catalog and playbook alignment tasks": [
+      18504
+    ],
     "catalog and playbook implementation summary": [
       3701
     ],
@@ -49057,7 +49082,7 @@
       18304,
       18310,
       18315,
-      18497
+      18510
     ],
     "completion criteria copied": [
       16634,
@@ -61035,7 +61060,7 @@
       2877
     ],
     "deterministic packet relocation": [
-      18498
+      18511
     ],
     "deterministic provenance merge": [
       9665
@@ -66647,7 +66672,7 @@
       18304,
       18310,
       18315,
-      18497
+      18510
     ],
     "durable fan in failure plan": [
       9660
@@ -71574,6 +71599,9 @@
     ],
     "feature catalog registered validated": [
       13408
+    ],
+    "feature catalog relocation exit 3": [
+      18503
     ],
     "feature catalog review plan": [
       12117
@@ -77263,7 +77291,7 @@
       18304,
       18310,
       18315,
-      18497
+      18510
     ],
     "goal binding gaps": [
       8135
@@ -97741,6 +97769,9 @@
     "next safe action verbs evidence": [
       17387
     ],
+    "next spec number counts archived": [
+      18507
+    ],
     "next step options after findings": [
       1425
     ],
@@ -101116,7 +101147,7 @@
       3315
     ],
     "opt in archive search": [
-      18498
+      18511
     ],
     "opt in collector posture": [
       13457
@@ -103340,7 +103371,7 @@
       18304,
       18310,
       18315,
-      18497
+      18510
     ],
     "packet goal authoring boundary": [
       8138
@@ -105572,6 +105603,9 @@
     "phase 11 pre existing gate failures": [
       10926
     ],
+    "phase 11 relocate and restore fixes": [
+      18499
+    ],
     "phase 11 remaining limits": [
       9368
     ],
@@ -105619,6 +105653,9 @@
     ],
     "phase 12 authoring speed fixes and alignment": [
       17787
+    ],
+    "phase 12 catalog and playbook alignment": [
+      18503
     ],
     "phase 12 deep loop modes and commands": [
       4745
@@ -105736,6 +105773,9 @@
     ],
     "phase 13 sk vision v2 tools and loose": [
       4334
+    ],
+    "phase 13 skill docs and housekeeping": [
+      18507
     ],
     "phase 13 system spec kit": [
       8659
@@ -114179,6 +114219,9 @@
     "re parent packets into a sub track": [
       3222
     ],
+    "re parent resume phase rows": [
+      18499
+    ],
     "re pin after frontmatter move": [
       8795
     ],
@@ -118007,6 +118050,21 @@
     ],
     "relevance dominant confidence rebalance": [
       15248
+    ],
+    "relocate and restore fixes": [
+      18499
+    ],
+    "relocate and restore fixes goal": [
+      18496
+    ],
+    "relocate and restore fixes implementation summary": [
+      18497
+    ],
+    "relocate and restore fixes plan": [
+      18498
+    ],
+    "relocate and restore fixes tasks": [
+      18500
     ],
     "relocate and suggest subtracks vitest suites": [
       18469
@@ -138485,6 +138543,18 @@
     "skill docs alignment tasks": [
       14590
     ],
+    "skill docs and housekeeping": [
+      18507
+    ],
+    "skill docs and housekeeping goal": [
+      18505
+    ],
+    "skill docs and housekeeping plan": [
+      18506
+    ],
+    "skill docs and housekeeping tasks": [
+      18508
+    ],
     "skill docs audit": [
       12595,
       14130
@@ -145279,7 +145349,7 @@
       18446
     ],
     "subtrack proposal and archive reach phase parent spec": [
-      18498
+      18511
     ],
     "subtrack proposal goal": [
       18447
@@ -157716,7 +157786,7 @@
       14095
     ],
     "z archive on every subtrack": [
-      18498
+      18511
     ],
     "z archive parent id resolution": [
       15971

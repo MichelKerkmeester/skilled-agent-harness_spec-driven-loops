@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1cd7a6a0bec7e2858f26ca81c19890d6b96dbf84372fcf311fba50833b017a76",
+  "manifestHash": "404c82afa8b39833823826709a38465e9a7fa753b89eec9de6eae392007bda01",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -16703,6 +16703,18 @@
     ],
     "catalog and playbook acceptance criteria": [
       "catalog and playbook acceptance criteria"
+    ],
+    "catalog and playbook alignment": [
+      "catalog and playbook alignment"
+    ],
+    "catalog and playbook alignment goal": [
+      "catalog and playbook alignment goal"
+    ],
+    "catalog and playbook alignment plan": [
+      "catalog and playbook alignment plan"
+    ],
+    "catalog and playbook alignment tasks": [
+      "catalog and playbook alignment tasks"
     ],
     "catalog and playbook implementation summary": [
       "catalog and playbook implementation summary"
@@ -49725,6 +49737,9 @@
     "feature catalog registered validated": [
       "feature catalog registered validated"
     ],
+    "feature catalog relocation exit 3": [
+      "feature catalog relocation exit 3"
+    ],
     "feature catalog review plan": [
       "feature catalog review plan"
     ],
@@ -73905,6 +73920,9 @@
     "next safe action verbs evidence": [
       "next safe action verbs evidence"
     ],
+    "next spec number counts archived": [
+      "next spec number counts archived"
+    ],
     "next step options after findings": [
       "next step options after findings"
     ],
@@ -80858,6 +80876,9 @@
     "phase 11 pre existing gate failures": [
       "phase 11 pre existing gate failures"
     ],
+    "phase 11 relocate and restore fixes": [
+      "phase 11 relocate and restore fixes"
+    ],
     "phase 11 remaining limits": [
       "phase 11 remaining limits"
     ],
@@ -80905,6 +80926,9 @@
     ],
     "phase 12 authoring speed fixes and alignment": [
       "phase 12 authoring speed fixes and alignment"
+    ],
+    "phase 12 catalog and playbook alignment": [
+      "phase 12 catalog and playbook alignment"
     ],
     "phase 12 deep loop modes and commands": [
       "phase 12 deep loop modes and commands"
@@ -81022,6 +81046,9 @@
     ],
     "phase 13 sk vision v2 tools and loose": [
       "phase 13 sk vision v2 tools and loose"
+    ],
+    "phase 13 skill docs and housekeeping": [
+      "phase 13 skill docs and housekeeping"
     ],
     "phase 13 system spec kit": [
       "phase 13 system spec kit"
@@ -89082,6 +89109,9 @@
     "re parent packets into a sub track": [
       "re-parent packets into a sub-track"
     ],
+    "re parent resume phase rows": [
+      "re-parent resume phase rows"
+    ],
     "re pin after frontmatter move": [
       "re-pin after frontmatter move"
     ],
@@ -92720,6 +92750,21 @@
     ],
     "relevance dominant confidence rebalance": [
       "relevance-dominant confidence rebalance"
+    ],
+    "relocate and restore fixes": [
+      "relocate and restore fixes"
+    ],
+    "relocate and restore fixes goal": [
+      "relocate and restore fixes goal"
+    ],
+    "relocate and restore fixes implementation summary": [
+      "relocate and restore fixes implementation summary"
+    ],
+    "relocate and restore fixes plan": [
+      "relocate and restore fixes plan"
+    ],
+    "relocate and restore fixes tasks": [
+      "relocate and restore fixes tasks"
     ],
     "relocate and suggest subtracks vitest suites": [
       "relocate and suggest-subtracks vitest suites"
@@ -112367,6 +112412,18 @@
     ],
     "skill docs alignment tasks": [
       "skill docs alignment tasks"
+    ],
+    "skill docs and housekeeping": [
+      "skill docs and housekeeping"
+    ],
+    "skill docs and housekeeping goal": [
+      "skill docs and housekeeping goal"
+    ],
+    "skill docs and housekeeping plan": [
+      "skill docs and housekeeping plan"
+    ],
+    "skill docs and housekeeping tasks": [
+      "skill docs and housekeeping tasks"
     ],
     "skill docs audit": [
       "skill docs audit"
