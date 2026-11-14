@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6fcdc6554e1b2924602b9efb027746ea94e228c7273584baf8c97111e1fc0e94",
+  "manifestHash": "0fe7fa25b820c3f3f6865995881cf7cc5e90d62d80757870529ea00fb14618ab",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -20455,6 +20455,9 @@
     "claude compact inject": [
       "claude compact inject"
     ],
+    "claude compaction purpose section": [
+      "Claude compaction purpose section"
+    ],
     "claude completion evidence": [
       "claude completion evidence"
     ],
@@ -28506,6 +28509,9 @@
     ],
     "compaction history recall conversation": [
       "compaction history recall conversation"
+    ],
+    "compaction packet purpose": [
+      "compaction packet purpose"
     ],
     "compaction pointer staleness": [
       "compaction pointer staleness"
@@ -41836,6 +41842,12 @@
     "dispatched child asks the spec folder question": [
       "dispatched child asks the spec folder question"
     ],
+    "dispatchenv completioncheck plan": [
+      "dispatchEnv completionCheck plan"
+    ],
+    "dispatchenv completioncheck runauditedexecutorcommand": [
+      "dispatchEnv completionCheck runAuditedExecutorCommand"
+    ],
     "display configuration": [
       "display configuration"
     ],
@@ -44752,6 +44764,9 @@
     "dsh dispatch tests": [
       "dsh dispatch tests"
     ],
+    "dsh dispatchenv allowlist": [
+      "dsh dispatchEnv allowlist"
+    ],
     "dsh dump config evidence": [
       "dsh dump-config evidence"
     ],
@@ -45145,6 +45160,42 @@
     ],
     "dsh shared tests": [
       "dsh shared tests"
+    ],
+    "dsh single executor deep review": [
+      "dsh single executor deep review"
+    ],
+    "dsh single executor hardening": [
+      "dsh single executor hardening"
+    ],
+    "dsh single executor hardening acceptance criteria": [
+      "dsh single executor hardening acceptance criteria"
+    ],
+    "dsh single executor hardening goal": [
+      "dsh single executor hardening goal"
+    ],
+    "dsh single executor hardening implementation summary": [
+      "dsh single executor hardening implementation summary"
+    ],
+    "dsh single executor hardening plan": [
+      "dsh single executor hardening plan"
+    ],
+    "dsh single executor hardening tasks": [
+      "dsh single executor hardening tasks"
+    ],
+    "dsh single executor loop": [
+      "dsh single executor loop"
+    ],
+    "dsh single executor loop acceptance criteria": [
+      "dsh single executor loop acceptance criteria"
+    ],
+    "dsh single executor loop implementation summary": [
+      "dsh single executor loop implementation summary"
+    ],
+    "dsh single executor loop plan": [
+      "dsh single executor loop plan"
+    ],
+    "dsh single executor loop tasks": [
+      "dsh single executor loop tasks"
     ],
     "dsh skill advisor hook": [
       "dsh skill advisor hook"
@@ -57456,6 +57507,9 @@
     "handoff gate exemptions tasks": [
       "handoff gate exemptions tasks"
     ],
+    "handoff note purpose line": [
+      "handoff note purpose line"
+    ],
     "handoff record command": [
       "handoff record command"
     ],
@@ -60187,6 +60241,9 @@
     ],
     "idle worktree daemon sweep": [
       "idle worktree daemon sweep"
+    ],
+    "if cli deepseek harness single lineage edits": [
+      "if_cli_deepseek_harness single lineage edits"
     ],
     "ignore and commit guard": [
       "ignore and commit guard"
@@ -76325,6 +76382,9 @@
     "one goal limit and one command": [
       "one goal limit and one command"
     ],
+    "one harness lineage in review and research": [
+      "one harness lineage in review and research"
+    ],
     "one line pitch": [
       "one-line pitch"
     ],
@@ -79462,14 +79522,35 @@
     "packet pointer two segment requirement": [
       "packet_pointer two segment requirement"
     ],
+    "packet purpose across handovers": [
+      "packet purpose across handovers"
+    ],
+    "packet purpose after a claude compaction": [
+      "packet purpose after a Claude compaction"
+    ],
+    "packet purpose after a pi compaction": [
+      "packet purpose after a Pi compaction"
+    ],
     "packet purpose after compaction": [
       "packet purpose after compaction"
+    ],
+    "packet purpose carry": [
+      "packet purpose carry"
     ],
     "packet purpose continuity field": [
       "packet_purpose continuity field"
     ],
     "packet purpose first sentence abbreviation": [
       "packet purpose first sentence abbreviation"
+    ],
+    "packet purpose on relaunch": [
+      "packet purpose on relaunch"
+    ],
+    "packet purpose on resume": [
+      "packet purpose on resume"
+    ],
+    "packet purpose on save": [
+      "packet purpose on save"
     ],
     "packet registration": [
       "packet registration"
@@ -79752,6 +79833,9 @@
     ],
     "parent purpose label": [
       "parent purpose label"
+    ],
+    "parent purpose row": [
+      "parent purpose row"
     ],
     "parent purpose scaffold": [
       "parent purpose scaffold"
@@ -80443,6 +80527,9 @@
     ],
     "per job timeout sizing plan": [
       "per job timeout sizing plan"
+    ],
+    "per kind dispatchenv allowlist": [
+      "per-kind dispatchEnv allowlist"
     ],
     "per kind flag compatibility": [
       "per-kind flag compatibility"
@@ -81602,6 +81689,9 @@
     "phase 12 post merge deep review": [
       "phase 12 post merge deep review"
     ],
+    "phase 12 purpose reader precision": [
+      "phase 12 purpose reader precision"
+    ],
     "phase 12 residual reference sweep": [
       "phase 12 residual reference sweep"
     ],
@@ -81688,6 +81778,9 @@
     ],
     "phase 13 opencode child and title": [
       "phase 13 opencode child and title"
+    ],
+    "phase 13 purpose docs and backfill": [
+      "phase 13 purpose docs and backfill"
     ],
     "phase 13 python advisor native and parity": [
       "phase 13 python advisor native and parity"
@@ -81935,6 +82028,9 @@
     "phase 18 create sh unknown options": [
       "phase 18 create sh unknown options"
     ],
+    "phase 18 dsh single executor loop": [
+      "phase 18 dsh single executor loop"
+    ],
     "phase 18 host trigger index and repin generated": [
       "phase 18 host trigger index and repin generated"
     ],
@@ -81967,6 +82063,9 @@
     ],
     "phase 19 closure gate": [
       "phase 19 closure gate"
+    ],
+    "phase 19 dsh single executor hardening": [
+      "phase 19 dsh single executor hardening"
     ],
     "phase 19 follow up fixes": [
       "phase 19 follow up fixes"
@@ -84650,6 +84749,9 @@
     ],
     "pi compaction pointer": [
       "pi compaction pointer"
+    ],
+    "pi compaction purpose section": [
+      "Pi compaction purpose section"
     ],
     "pi completion claim check": [
       "pi completion claim check"
@@ -87805,6 +87907,9 @@
     "problem line after compaction": [
       "problem line after compaction"
     ],
+    "problem printed as purpose": [
+      "problem printed as purpose"
+    ],
     "problem sentence carry": [
       "problem sentence carry"
     ],
@@ -88902,6 +89007,24 @@
     "purpose carry follow ups tasks": [
       "purpose carry follow ups tasks"
     ],
+    "purpose docs and backfill": [
+      "purpose docs and backfill"
+    ],
+    "purpose docs and backfill acceptance criteria": [
+      "purpose docs and backfill acceptance criteria"
+    ],
+    "purpose docs and backfill goal": [
+      "purpose docs and backfill goal"
+    ],
+    "purpose docs and backfill implementation summary": [
+      "purpose docs and backfill implementation summary"
+    ],
+    "purpose docs and backfill plan": [
+      "purpose docs and backfill plan"
+    ],
+    "purpose docs and backfill tasks": [
+      "purpose docs and backfill tasks"
+    ],
     "purpose first readme": [
       "purpose-first readme"
     ],
@@ -88914,6 +89037,9 @@
     "purpose first readme rewrite on the refined skill readme template": [
       "purpose-first README rewrite on the refined skill README template"
     ],
+    "purpose line feature catalog": [
+      "purpose line feature catalog"
+    ],
     "purpose line in the handoff note goal": [
       "purpose line in the handoff note goal"
     ],
@@ -88922,6 +89048,12 @@
     ],
     "purpose line missing after compaction": [
       "purpose line missing after compaction"
+    ],
+    "purpose line on resume": [
+      "purpose line on resume"
+    ],
+    "purpose line playbook scenarios": [
+      "purpose line playbook scenarios"
     ],
     "purpose reader coverage": [
       "purpose reader coverage"
@@ -88934,6 +89066,24 @@
     ],
     "purpose reader coverage tasks": [
       "purpose reader coverage tasks"
+    ],
+    "purpose reader precision": [
+      "purpose reader precision"
+    ],
+    "purpose reader precision acceptance criteria": [
+      "purpose reader precision acceptance criteria"
+    ],
+    "purpose reader precision goal": [
+      "purpose reader precision goal"
+    ],
+    "purpose reader precision implementation summary": [
+      "purpose reader precision implementation summary"
+    ],
+    "purpose reader precision plan": [
+      "purpose reader precision plan"
+    ],
+    "purpose reader precision tasks": [
+      "purpose reader precision tasks"
     ],
     "purpose retention across handovers": [
       "purpose retention across handovers"
@@ -88949,6 +89099,9 @@
     ],
     "purpose row in the resume brief": [
       "purpose row in the resume brief"
+    ],
+    "purpose rule parity across hops": [
+      "purpose rule parity across hops"
     ],
     "push and create a pull request": [
       "push and create a pull request"
@@ -92641,6 +92794,9 @@
     ],
     "relaunch model and effort tasks": [
       "relaunch model and effort tasks"
+    ],
+    "relaunch note goal": [
+      "relaunch note Goal"
     ],
     "relaunch note scaffold sentence": [
       "relaunch note scaffold sentence"
@@ -101375,6 +101531,9 @@
     "save path replay tasks": [
       "save path replay tasks"
     ],
+    "save purpose field": [
+      "save purpose field"
+    ],
     "save quality gate persistence": [
       "save quality gate persistence"
     ],
@@ -103595,6 +103754,9 @@
     "session cleanup trap": [
       "session cleanup trap"
     ],
+    "session compact packet purpose": [
+      "session_compact packet purpose"
+    ],
     "session context types literal": [
       "session context types literal"
     ],
@@ -103949,6 +104111,9 @@
     ],
     "sessionstart checkout follower": [
       "sessionstart checkout follower"
+    ],
+    "sessionstart compact packet purpose": [
+      "SessionStart compact packet purpose"
     ],
     "sessionstart git reconcile": [
       "sessionstart git reconcile"
@@ -105607,6 +105772,9 @@
     ],
     "single line prompt header": [
       "single-line prompt header"
+    ],
+    "single lineage cli deepseek harness": [
+      "single lineage cli-deepseek-harness"
     ],
     "single lineage contested containment": [
       "single-lineage contested containment"
@@ -118383,6 +118551,9 @@
     "stale dot opencode references in release docs": [
       "stale dot-opencode references in release docs"
     ],
+    "stale dsh home sweep": [
+      "stale dsh home sweep"
+    ],
     "stale embedder references": [
       "stale embedder references"
     ],
@@ -121007,6 +121178,9 @@
     "system deep loop 1 6 25 0": [
       "system-deep-loop 1.6.25.0"
     ],
+    "system deep loop 1 6 26 0": [
+      "system-deep-loop 1.6.26.0"
+    ],
     "system deep loop 1 6 3 0": [
       "system-deep-loop 1.6.3.0"
     ],
@@ -121207,6 +121381,9 @@
     ],
     "system deep loop v1 6 25 0": [
       "system-deep-loop v1.6.25.0"
+    ],
+    "system deep loop v1 6 26 0": [
+      "system-deep-loop v1.6.26.0"
     ],
     "system deep loop v1 6 3 0": [
       "system-deep-loop v1.6.3.0"
