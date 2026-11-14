@@ -429,38 +429,14 @@ parallel_dispatch_config:
     auto: [ "auto-decide", "auto mode", "decide for me" ]
   eligible_phases: [step_3_specification, step_6_planning, step_8_analysis, step_10_development]
 
-# ─────────────────────────────────────────────────────────────────
-# MULTI-AGENT DISPATCH CONFIGURATION
-# ─────────────────────────────────────────────────────────────────
-multi_agent_config:
-  enabled: true
-  dispatch_modes:
-    single: { id: A, label: "Single Agent", agents: 1, model: opus }
-    multi_small:
-      id: B
-      label: "Multi-Agent (1+2)"
-      orchestrator: { model: opus, role: coordinator }
-      workers:
-        - { role: architecture_explorer, focus: "Project Structure Analysis", step: 6 }
-        - { role: feature_explorer, focus: "Feature Pattern Analysis", step: 6 }
-    multi_large:
-      id: C
-      label: "Multi-Agent (1+3)"
-      orchestrator: { model: opus, role: coordinator }
-      workers:
-        - { role: architecture_explorer, focus: "Project Structure Analysis", step: 6 }
-        - { role: feature_explorer, focus: "Feature Pattern Analysis", step: 6 }
-        - { role: dependency_explorer, focus: "Dependency and Test Analysis", step: 6 }
-  fallback: { timeout_s: 60, on_timeout: "continue with available", on_all_fail: "single-agent mode" }
-
 # ─── AGENT AVAILABILITY (conditional — not instructions) ──────────
 # These entries define WHICH agent to use IF a workflow step calls for it.
 # Do NOT dispatch agents based on reading this section.
 # Agents are activated ONLY when their designated step is executing.
 agent_availability:
   deep-research:
-    available_at_step: "Phase 3 (if :with-research OR confidence < 60%)"
-    condition: "ONLY dispatch when :with-research flag is set OR confidence < 60% during planning"
+    available_at_step: "Phase 3 (if :with-research OR confidence < 40%)"
+    condition: "ONLY dispatch when :with-research flag is set OR confidence < 40% during planning"
     agent_file: "[runtime_agent_path]/deep-research.md"
     fallback: "general"
     not_for: "proactive research or pre-step investigation"
@@ -480,9 +456,8 @@ agent_availability:
     blocking: true
     on_block: "A P0 or an open P1 finding blocks. Address before completion."
     verdict: "The review's pass or fail follows severity alone: any P0, or an open P1, fails the gate. The advisory score never blocks."
-    dual_phase:
-      phase_a: { mode: 2, name: "Pre-Commit code review (sk-code code-review mode: findings-first baseline + router-selected surface evidence)", blocking: false }
-      phase_b: { mode: 4, name: "Gate Validation", blocking: true }
+    review_mode: "Gate Validation with gate_type post_execution. One dispatch per run, and one more after a REQUESTED_CHANGES verdict."
+    fallback_rule: "The general fallback keeps the CODE-REVIEW marker and the blocking verdict."
     not_for: "reviewing this workflow prompt, reviewing the command, or any pre-step validation"
   cross_skill_authoring_load:
     purpose: "Load sk-code authoring resources at WRITE-TIME (Step 10), distinct from review-time review.standards_contract overlay."
@@ -551,7 +526,6 @@ circuit_breaker:
   enabled: true
   thresholds: { failures: 3, recovery_s: 60, success_to_close: 1 }
   states: { CLOSED: dispatch_to_agent, OPEN: use_fallback, HALF_OPEN: test_single }
-  agents: { research: { fallback: general }, review: { fallback: general, preserve: [blocking] } }
   logging: { on_state_change: true, on_fallback_used: true, include_failure_details: true }
 
 # ─────────────────────────────────────────────────────────────────
@@ -771,7 +745,7 @@ workflow:
       research_triggered = FALSE
       IF ":with-research" in command_flags:
         research_triggered = TRUE; trigger_reason = "explicit_flag"
-      ELSE IF confidence_score < 60:
+      ELSE IF confidence_score < 40:
         research_triggered = TRUE; trigger_reason = "uncertainty_auto_detected"
     actions:
       if_triggered:
@@ -899,47 +873,47 @@ workflow:
       Parallel dispatch is integral to this phase - no additional question asked.
 
     inline_parallel_exploration:
-      execution: { tool: Task, subagent_type: context, model: opus, parallel: true }
+      execution: { tool: Task, subagent_type: context, parallel: true }
       agents:
         architecture_explorer:
           focus: "Project structure, entry points, component connections"
           prompt: |
             Explore codebase architecture for: {task_description}
-            Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "project architecture entry points").
+            Build Grep and Glob patterns from likely names, domain terms, and error strings (e.g., "project architecture entry points").
             Verify hits with Read; the ripgrep recipes in retrieval-conventions.md are for spec docs and skill docs, not arbitrary code.
-            Return: 1) Architecture hypothesis 2) Full file paths 3) Patterns noticed
+            Return: 1) Architecture findings, each with its file path and line number 2) Full file paths 3) Patterns noticed
             Do NOT draw conclusions - just report findings.
         feature_explorer:
           focus: "Similar features, related patterns"
           prompt: |
             Explore codebase for similar features/patterns for: {task_description}
-            Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "similar feature implementation patterns").
+            Build Grep and Glob patterns from likely names, domain terms, and error strings (e.g., "similar feature implementation patterns").
             Verify hits with Read; the ripgrep recipes in retrieval-conventions.md are for spec docs and skill docs, not arbitrary code.
-            Return: 1) Similar features hypothesis 2) Full file paths 3) Patterns noticed
+            Return: 1) Similar feature findings, each with its file path and line number 2) Full file paths 3) Patterns noticed
             Do NOT draw conclusions - just report findings.
         dependency_explorer:
           focus: "Imports, modules, affected areas"
           prompt: |
             Explore dependencies and integration points for: {task_description}
-            Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "module imports dependencies").
+            Build Grep and Glob patterns from likely names, domain terms, and error strings (e.g., "module imports dependencies").
             Verify hits with Read; the ripgrep recipes in retrieval-conventions.md are for spec docs and skill docs, not arbitrary code.
-            Return: 1) Affected modules hypothesis 2) Full file paths 3) Patterns noticed
+            Return: 1) Affected module findings, each with its file path and line number 2) Full file paths 3) Patterns noticed
             Do NOT draw conclusions - just report findings.
         test_explorer:
           focus: "Test patterns, testing infrastructure"
           prompt: |
             Explore test patterns and testing infrastructure.
-            Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "test infrastructure patterns").
+            Build Grep and Glob patterns from likely names, domain terms, and error strings (e.g., "test infrastructure patterns").
             Verify hits with Read; the ripgrep recipes in retrieval-conventions.md are for spec docs and skill docs, not arbitrary code.
-            Return: 1) Testing hypothesis 2) Full test file paths 3) Patterns noticed
+            Return: 1) Testing findings, each with its file path and line number 2) Full test file paths 3) Patterns noticed
             Do NOT draw conclusions - just report findings.
       verification:
         approach:
         - "Read each file identified by @context agents"
-        - "Verify or refute each hypothesis"
+        - "Verify each finding"
         - "Cross-reference findings across agents"
         - "Build complete mental model"
-        - "Resolve conflicting hypotheses"
+        - "Resolve conflicting findings"
       outputs: [architecture_findings, feature_findings, dependency_findings, test_findings, verified_mental_model]
       fallback: { on_failure: "Use inline planning activities below" }
 
@@ -950,7 +924,7 @@ workflow:
     - Fill Technical Context (mark unknowns as NEEDS CLARIFICATION)
     - Fill Constitution Check section
     - Evaluate gates (ERROR if violations unjustified)
-    - Phase 0: Generate research/research.md to resolve all unknowns
+    - "Phase 0: Record each unknown in the plan.md Technical Context and name /deep:research for an unknown that needs investigation. Read an existing research/research.md as input and never write it"
     - Phase 1: Define component structure and interfaces
     - Generate Testing Strategy with test pyramid
     - Generate Success Metrics from spec criteria
@@ -962,7 +936,6 @@ workflow:
     - Generate Phase 2-4 outlines (implementation phases)
     outputs:
     - plan.md: technical_approach
-    - research/research.md: resolved_unknowns
     level_1_baseline: [spec.md, plan.md, tasks.md]
     level_2_verification: [acceptance-criteria.md]
     level_3_full: ["decision-record.md on request"]
@@ -1134,7 +1107,7 @@ workflow:
         warning: "Development tasks may have dependencies - verify task order"
       fallback: "Proceed with activities below"
     activities:
-    - Load sk-code authoring-time resources for OpenCode targets — when any task in tasks.md targets a path under .skilled/skills/, .skilled/agents/, .skilled/commands/, or .opencode/specs/, load the matching sk-code authoring checklist (sk-code/sk-code-skilled/assets/checklists/{skill,agent,command,mcp-server}-authoring.md), and for .opencode/specs/ targets read the system-spec-kit authoring card (references/workflows/spec-authoring-card.md) first, then the spec-folder docs (references/workflows/spec-folder-authoring-checklist.md + spec-folder-write-recipe.md), BEFORE the first write. Authoring-time load is distinct from review-time load (see agent_dispatch.review.standards_contract). Skip when no .skilled/ targets are present.
+    - Load sk-code authoring-time resources for OpenCode targets — when any task in tasks.md targets a path under .skilled/skills/, .skilled/agents/, .skilled/commands/, or .opencode/specs/, load the matching sk-code authoring checklist (sk-code/sk-code-skilled/assets/checklists/{skill,agent,command,mcp-server}-authoring.md), and for .opencode/specs/ targets read the system-spec-kit authoring card (references/workflows/spec-authoring-card.md) first, then the spec-folder docs (references/workflows/spec-folder-authoring-checklist.md + spec-folder-write-recipe.md), BEFORE the first write. Authoring-time load is distinct from review-time load (see agent_availability.review.standards_contract). Skip when no .skilled/ targets are present.
     - Load tasks.md and parse task structure
     - Execute implementation phase by phase
     - Setup first (project structure, dependencies, configuration)
@@ -1214,7 +1187,30 @@ workflow:
     purpose: Verify every acceptance-criteria row and every P0/P1 checklist item before claiming completion
     blocking: true
     level_requirement: "Level 2+"
+    review_dispatch:
+      order: "First activity of this step, at every level. At Level 1 this dispatch still runs when the rest of the step is skipped. One dispatch per run, and one more after a REQUESTED_CHANGES verdict."
+      agent: "@review, as the review entry of agent_availability names it. The general fallback gets the same prompt and its verdict blocks the same way."
+      tool_scope: "Read-only. The prompt grants no write tool and passes file paths, never file contents."
+      prompt: |
+        CODE-REVIEW
+
+        Mode: Gate Validation
+        gate_type: post_execution
+        task_id: [SPEC_FOLDER]
+        artifact: [the path of every file this run changed, one per line]
+        context: Spec folder [SPEC_FOLDER]. Review the changed files against spec.md and acceptance-criteria.md in that folder. When the run changed no file, review the spec folder.
+        Return review_status as APPROVED, COMMENTED or REQUESTED_CHANGES, with every P0 and open P1 finding at file:line.
+      verdict:
+        APPROVED: "Continue with the next activity."
+        COMMENTED: "Continue with the next activity and list the comments in the verification results."
+        REQUESTED_CHANGES: "Any P0 or an open P1. Do not continue to step_12_completion and return to step_10_development. Write no implementation-summary.md and claim no completion. Fix the listed findings there, then dispatch @review once more with the same prompt."
+        advisory_score: "Never blocks."
+      halt:
+        when: "The second dispatch returns REQUESTED_CHANGES."
+        action: "List the P0 and open P1 findings, write no implementation-summary.md and claim no completion."
+        modes: { confirm: "stop and show the findings", auto: "stop, report the findings and report no success", autopilot: "emit SPECKIT_AUTOPILOT_RESULT with reason verification_failed" }
     activities:
+    - "Dispatch @review first, as review_dispatch states, and act on its verdict before any other activity"
     - Load acceptance-criteria.md and the Verification Checklist section of tasks.md
     - Set every row to Met with observed evidence, or to Waived/Superseded naming an ADR that exists in decision-record.md
     - Reread the request and its amendments and map each outcome they ask for to a Met row or name it as not done
@@ -1385,14 +1381,6 @@ termination:
 checkpoint_protocol:
   display_format: "WORKFLOW CHECKPOINT - {checkpoint_title} | {checkpoint_content} | Progress: {progress_display}"
   autonomous_behavior: { pause_for_confirmation: false, default_action_on_timeout: "continue", timeout_seconds: 0 }
-
-# ─────────────────────────────────────────────────────────────────
-# QUALITY STANDARDS
-# ─────────────────────────────────────────────────────────────────
-quality_standards:
-  documentation: [production_ready_examples, defensive_programming, error_handling, comprehensive_tests]
-  code_examples: [working_snippets, error_handling, performance_optimized, accessible, browser_compatible]
-  analysis_depth: [edge_cases, failure_modes, recovery_strategies, monitoring]
 
 # ─────────────────────────────────────────────────────────────────
 # AUTONOMOUS EXECUTION GUIDANCE

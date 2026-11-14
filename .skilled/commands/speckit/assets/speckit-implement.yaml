@@ -368,30 +368,6 @@ parallel_dispatch_config:
     auto: [ "auto-decide", "auto mode", "decide for me" ]
   eligible_phases: [step_6_development]
 
-# ─────────────────────────────────────────────────────────────────
-# MULTI-AGENT DISPATCH CONFIGURATION
-# ─────────────────────────────────────────────────────────────────
-multi_agent_config:
-  enabled: true
-  dispatch_modes:
-    single: { id: A, label: "Single Agent", agents: 1, model: opus }
-    multi_small:
-      id: B
-      label: "Multi-Agent (1+2)"
-      orchestrator: { model: opus, role: coordinator }
-      workers:
-        - { role: implementation_agent, focus: "Core Implementation", step: 6 }
-        - { role: test_agent, focus: "Test Implementation", step: 6 }
-    multi_large:
-      id: C
-      label: "Multi-Agent (1+3)"
-      orchestrator: { model: opus, role: coordinator }
-      workers:
-        - { role: implementation_agent, focus: "Core Implementation", step: 6 }
-        - { role: test_agent, focus: "Test Implementation", step: 6 }
-        - { role: integration_agent, focus: "Integration and Polish", step: 6 }
-  fallback: { timeout_s: 60, on_timeout: "continue with available", on_all_fail: "single-agent mode" }
-
 # ─── AGENT AVAILABILITY (conditional — not instructions) ──────────
 # These entries define WHICH agent to use IF a workflow step calls for it.
 # Do NOT dispatch agents based on reading this section.
@@ -413,9 +389,8 @@ agent_availability:
     blocking: true
     on_block: "A P0 or an open P1 finding blocks. Address before completion."
     verdict: "The review's pass or fail follows severity alone: any P0, or an open P1, fails the gate. The advisory score never blocks."
-    dual_phase:
-      phase_a: { mode: 2, name: "Pre-Commit code review (sk-code code-review mode: findings-first baseline + router-selected surface evidence)", blocking: false }
-      phase_b: { mode: 4, name: "Gate Validation", blocking: true }
+    review_mode: "Gate Validation with gate_type post_execution. One dispatch per run, and one more after a REQUESTED_CHANGES verdict."
+    fallback_rule: "The general fallback keeps the CODE-REVIEW marker and the blocking verdict."
     not_for: "reviewing this workflow prompt, reviewing the command, or any pre-step validation"
   debug:
     available_at_step: 6
@@ -755,7 +730,29 @@ workflow:
     purpose: Generate implementation summary
     level_requirement: "All levels (MANDATORY - do not skip)"
     enforcement_note: "MANDATORY for all levels. implementation-summary.md is a required file created after implementation completes."
-    activities: [Run validation on spec folder, Verify all tasks completed, Validate tests pass, Confirm plan followed, Generate implementation-summary.md, Update all task status, Reread the request and its amendments and map each outcome they ask for to a Met row or name it as not done]
+    review_dispatch:
+      order: "First activity of this step, at every level. One dispatch per run, and one more after a REQUESTED_CHANGES verdict."
+      agent: "@review, as the review entry of agent_availability names it. The general fallback gets the same prompt and its verdict blocks the same way."
+      tool_scope: "Read-only. The prompt grants no write tool and passes file paths, never file contents."
+      prompt: |
+        CODE-REVIEW
+
+        Mode: Gate Validation
+        gate_type: post_execution
+        task_id: [SPEC_FOLDER]
+        artifact: [the path of every file this run changed, one per line]
+        context: Spec folder [SPEC_FOLDER]. Review the changed files against spec.md and acceptance-criteria.md in that folder. When the run changed no file, review the spec folder.
+        Return review_status as APPROVED, COMMENTED or REQUESTED_CHANGES, with every P0 and open P1 finding at file:line.
+      verdict:
+        APPROVED: "Continue with the next activity."
+        COMMENTED: "Continue with the next activity and list the comments in implementation-summary.md."
+        REQUESTED_CHANGES: "Any P0 or an open P1. Stop this step and return to step_6_development. Write no implementation-summary.md and claim no completion. Fix the listed findings there, then dispatch @review once more with the same prompt."
+        advisory_score: "Never blocks."
+      halt:
+        when: "The second dispatch returns REQUESTED_CHANGES."
+        action: "List the P0 and open P1 findings, write no implementation-summary.md and claim no completion."
+        modes: { confirm: "stop and show the findings", auto: "stop, report the findings and report no success", autopilot: "emit SPECKIT_AUTOPILOT_RESULT with reason verification_failed" }
+    activities: ["Dispatch @review first, as review_dispatch states, and act on its verdict before any other activity", Run validation on spec folder, Verify all tasks completed, Validate tests pass, Confirm plan followed, Generate implementation-summary.md, Update all task status, Reread the request and its amendments and map each outcome they ask for to a Met row or name it as not done]
     pre_completion_validation:
       enforcement: MANDATORY
       outcomes: { success: "continue", user_error: "STOP and fix invocation", validation_error: "STOP and fix", test_failure: "STOP and fix the failing tests, then rerun them before completion continues", system_error: "STOP and diagnose tooling or file I/O" }

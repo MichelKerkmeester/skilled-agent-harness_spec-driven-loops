@@ -408,44 +408,6 @@ template_compliance:
       - Matrix axes: list every independent input axis and the required rows before implementation.
       - Algorithm invariant: for path/redaction/parser/resolver/security fixes, state the invariant and adversarial cases.
 
-# ─────────────────────────────────────────────────────────────────
-# PARALLEL DISPATCH CONFIGURATION
-# ─────────────────────────────────────────────────────────────────
-parallel_dispatch_config:
-  enabled: true
-  scoring: { domain_count: 0.35, file_count: 0.25, loc_estimate: 0.15, parallel_opportunity: 0.20, task_type: 0.05 }
-  thresholds: { direct_max: 20, ask_min: 20, min_domains: 2 }
-  session_preference_s: 3600
-  override_phrases:
-    direct: [ "proceed directly", "handle directly", "skip parallel", "skip agents" ]
-    parallel: [ "use parallel", "dispatch agents", "parallelize", "use agents" ]
-    auto: [ "auto-decide", "auto mode", "decide for me" ]
-  eligible_phases: [step_3_specification, step_5_planning]
-
-# ─────────────────────────────────────────────────────────────────
-# MULTI-AGENT DISPATCH CONFIGURATION
-# ─────────────────────────────────────────────────────────────────
-multi_agent_config:
-  enabled: true
-  dispatch_modes:
-    single: { id: A, label: "Single Agent", agents: 1, model: opus }
-    multi_small:
-      id: B
-      label: "Multi-Agent (1+2)"
-      orchestrator: { model: opus, role: coordinator }
-      workers:
-        - { role: architecture_explorer, focus: "Project Structure Analysis", step: 5 }
-        - { role: feature_explorer, focus: "Feature Pattern Analysis", step: 5 }
-    multi_large:
-      id: C
-      label: "Multi-Agent (1+3)"
-      orchestrator: { model: opus, role: coordinator }
-      workers:
-        - { role: architecture_explorer, focus: "Project Structure Analysis", step: 5 }
-        - { role: feature_explorer, focus: "Feature Pattern Analysis", step: 5 }
-        - { role: dependency_explorer, focus: "Dependency and Test Analysis", step: 5 }
-  fallback: { timeout_s: 60, on_timeout: "continue with available", on_all_fail: "single-agent mode" }
-
 # ─── AGENT AVAILABILITY (conditional — not instructions) ──────────
 # These entries define WHICH agent to use IF a workflow step calls for it.
 # Do NOT dispatch agents based on reading this section.
@@ -453,7 +415,7 @@ multi_agent_config:
 agent_availability:
   deep-research:
     available_at_step: 5
-    condition: "ONLY dispatch when confidence < 60% during Step 5 planning OR user explicitly requests research"
+    condition: "ONLY dispatch when confidence < 40% during Step 5 planning OR user explicitly requests research"
     agent_file: "[runtime_agent_path]/deep-research.md"
     fallback: "general"
     conditional: true
@@ -670,15 +632,6 @@ workflow:
 
   step_3_specification:
     purpose: Create comprehensive feature specification
-    pre_phase_parallel_check:
-      enabled: true
-      phase_domains: [code, docs]
-      decision_logic: "Check override phrases -> session preference -> sequential dependencies -> calculate complexity -> <20% proceed directly, >=20% + 2 domains ALWAYS ask user. No auto-dispatch."
-      modes: { confirm: "ask at ask_min, as decision_logic states", auto: "direct: take the fallback and list it under Defaults taken", autopilot: "direct: take the fallback" }
-      on_parallel_dispatch:
-        agents: [{ name: spec_explorer, focus: "Existing specs and patterns" }, { name: requirement_analyzer, focus: "Similar features and requirements" }]
-        dispatch_note: "Spawn agents in SINGLE message for parallel execution"
-      fallback: "Proceed with activities if dispatch fails or user chooses direct"
     activities: [Verify the spec folder exists and never create it in this step, "Estimate complexity and select doc level (L1:<100 LOC, L2:100-499, L3:>=500)", Load and fill spec.md, Generate functional requirements, Define success criteria, "Run the restraint pass on Scope and Files to Change: for each new file, module, option, layer or dependency name what fails today without it (prevent-overengineering.md section 2)"]
     outputs: [spec.md]
     template: .skilled/skills/system-spec-kit/templates/core/spec.md.tmpl
@@ -736,7 +689,7 @@ workflow:
     # AGENT AVAILABILITY (conditional) — routing metadata, not dispatch instructions
     inline_parallel_exploration:
       purpose: "Spawn 4 @context agents to discover codebase patterns before planning"
-      execution: { tool: Task, subagent_type: context, model: opus, parallel: true }
+      execution: { tool: Task, subagent_type: context, parallel: true }
       agents:
         architecture_explorer:
           focus: "Project structure, entry points, component connections"
@@ -754,9 +707,9 @@ workflow:
             expected_result: native
 
             Explore codebase architecture for: {task_description}
-            Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "project architecture entry points").
+            Build Grep and Glob patterns from likely names, domain terms, and error strings (e.g., "project architecture entry points").
             Verify hits with Read; the ripgrep recipes in retrieval-conventions.md are for spec docs and skill docs, not arbitrary code.
-            Return: 1) Architecture hypothesis 2) Full file paths 3) Patterns noticed
+            Return: 1) Architecture findings, each with its file path and line number 2) Full file paths 3) Patterns noticed
             Do NOT draw conclusions - just report findings.
         feature_explorer:
           focus: "Similar features, related patterns"
@@ -774,9 +727,9 @@ workflow:
             expected_result: native
 
             Explore codebase for similar features/patterns for: {task_description}
-            Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "similar feature implementation patterns").
+            Build Grep and Glob patterns from likely names, domain terms, and error strings (e.g., "similar feature implementation patterns").
             Verify hits with Read; the ripgrep recipes in retrieval-conventions.md are for spec docs and skill docs, not arbitrary code.
-            Return: 1) Similar features hypothesis 2) Full file paths 3) Patterns noticed
+            Return: 1) Similar feature findings, each with its file path and line number 2) Full file paths 3) Patterns noticed
             Do NOT draw conclusions - just report findings.
         dependency_explorer:
           focus: "Imports, modules, affected areas"
@@ -794,9 +747,9 @@ workflow:
             expected_result: native
 
             Explore dependencies and integration points for: {task_description}
-            Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "module imports dependencies").
+            Build Grep and Glob patterns from likely names, domain terms, and error strings (e.g., "module imports dependencies").
             Verify hits with Read; the ripgrep recipes in retrieval-conventions.md are for spec docs and skill docs, not arbitrary code.
-            Return: 1) Affected modules hypothesis 2) Full file paths 3) Patterns noticed
+            Return: 1) Affected module findings, each with its file path and line number 2) Full file paths 3) Patterns noticed
             Do NOT draw conclusions - just report findings.
         test_explorer:
           focus: "Test patterns, testing infrastructure"
@@ -814,16 +767,16 @@ workflow:
             expected_result: native
 
             Explore test patterns and testing infrastructure.
-            Query Code Graph for callers, imports, symbols, and outlines; build Grep patterns from likely names, domain terms, and error strings (e.g., "test infrastructure patterns").
+            Build Grep and Glob patterns from likely names, domain terms, and error strings (e.g., "test infrastructure patterns").
             Verify hits with Read; the ripgrep recipes in retrieval-conventions.md are for spec docs and skill docs, not arbitrary code.
-            Return: 1) Testing hypothesis 2) Full test file paths 3) Patterns noticed
+            Return: 1) Testing findings, each with its file path and line number 2) Full test file paths 3) Patterns noticed
             Do NOT draw conclusions - just report findings.
       verification:
-        approach: ["Read files identified by @context agents", "Verify/refute each hypothesis", "Cross-reference for consistency", "Build complete mental model", "Resolve conflicts by reading additional files"]
+        approach: ["Read files identified by @context agents", "Verify each finding", "Cross-reference for consistency", "Build complete mental model", "Resolve conflicts by reading additional files"]
       outputs: [architecture_findings, feature_findings, dependency_findings, test_findings, verified_mental_model]
       fallback: { on_failure: "Use inline planning activities below" }
-    activities: [Run check-prerequisites.sh --json --paths-only, Load plan.md, Fill Technical Context, Fill Constitution Check, "Phase 0: Generate research/research.md", "Phase 1: Define component structure/interfaces", Generate Testing Strategy, Generate Success Metrics, Import Risk Matrix from spec, Generate Dependencies Tables, "Import Planning Packet fields into the Affected Surfaces table for fix_bug/remediation packets", Generate Phase 2-4 outlines, "Run the restraint pass on the planned components and files before the plan is final: name what fails today without each new file, module, option, layer or dependency"]
-    outputs: [plan.md, research/research.md]
+    activities: [Run check-prerequisites.sh --json --paths-only, Load plan.md, Fill Technical Context, Fill Constitution Check, "Phase 0: Record each unknown in the plan.md Technical Context and name /deep:research for an unknown that needs investigation. Read an existing research/research.md as input and never write it", "Phase 1: Define component structure/interfaces", Generate Testing Strategy, Generate Success Metrics, Import Risk Matrix from spec, Generate Dependencies Tables, "Import Planning Packet fields into the Affected Surfaces table for fix_bug/remediation packets", Generate Phase 2-4 outlines, "Run the restraint pass on the planned components and files before the plan is final: name what fails today without each new file, module, option, layer or dependency"]
+    outputs: [plan.md]
     template: .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
     template_prompt_contract:
       canonical_template: .skilled/skills/system-spec-kit/templates/core/plan.md.tmpl
