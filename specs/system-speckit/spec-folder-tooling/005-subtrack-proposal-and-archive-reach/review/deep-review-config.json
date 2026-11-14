@@ -1,0 +1,21 @@
+{
+  "reviewTarget": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "specFolder": "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "antiConvergence": { "convergenceMode": "default", "divergent": {} },
+  "stopPolicy": "convergence",
+  "executionMode": "auto",
+  "lineageMode": "auto",
+  "resource_map": { "emit": true },
+  "config": {
+    "fanout": {
+      "executors": [
+        { "kind": "cli-deepseek-harness", "model": "deepseek-v4.1-flash-1017", "reasoningEffort": "max", "label": "dsh", "count": 2, "iterations": 5 }
+      ],
+      "concurrency": 2
+    }
+  }
+}

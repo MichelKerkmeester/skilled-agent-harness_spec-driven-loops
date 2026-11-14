@@ -1,0 +1,30 @@
+# F1 reproduction
+
+Reproduced as two failing suite cases in relocate.vitest.ts, each building the stopped state by hand (git mv before the run), run before the fix by the DeepSeek worker (dsh 0.2.2-rc.1) on 2026-11-14:
+
+## Failing run before the fix
+
+```
+ ❯ |cli| tests/relocate.vitest.ts (35 tests | 2 failed)
+     × finishes the phase rows after a tracked move stopped before the rewrite
+     × finishes the new parent rows when the old parent no longer has them
+
+ FAIL ... finishes the phase rows after a tracked move stopped before the rewrite
+AssertionError: expected '# Phase parent fixture\n\n<!-- ANCHOR…' not to contain '003-gamma'
+ ❯ tests/relocate.vitest.ts:502:74
+
+ FAIL ... finishes the new parent rows when the old parent no longer has them
+AssertionError: expected false to be true
+ ❯ tests/relocate.vitest.ts:549:94
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 33 passed (35)
+```
+
+The first failure is the old parent retaining its map/handoff rows; the second is the new parent having no map row.
+
+## After the fix, rerun by the orchestrator
+
+Test Files  3 passed (3)
+Tests  107 passed (107)
+exit=0

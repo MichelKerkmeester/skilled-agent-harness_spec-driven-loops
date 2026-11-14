@@ -6,7 +6,7 @@ trigger_phrases:
   - "suggest-subtracks.mjs"
   - "propose sub-tracks for a track"
   - "which sub-track fits this packet"
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Sub-track proposal (suggest-subtracks.mjs)
@@ -27,7 +27,7 @@ A track that grows flat puts unrelated subjects in one list. This tool reads the
 
 The proposal is a JSON array on stdout with one `{ "from", "to" }` entry per packet, and the packets in each proposed sub-track are renumbered from 001. One summary line per group goes to stderr. Archived packets are not counted or mapped.
 
-The tool prints one explanatory line and no map when the track is already grouped into sub-tracks, when it holds fewer live packets than the threshold or when no grouping of at least two groups is found. The threshold is 8 live packets unless `--threshold <n>` sets another positive whole number.
+The tool prints no map in four cases. When a live packet's folder name is not NNN-slug, it prints one line per such packet saying it must be renamed first, then `no map`. It prints one explanatory line and no map when the track is already grouped into sub-tracks, when it holds fewer live packets than the threshold or when no grouping of at least two groups is found. The threshold is 8 live packets unless `--threshold <n>` sets another positive whole number.
 
 ### Fit for one packet
 

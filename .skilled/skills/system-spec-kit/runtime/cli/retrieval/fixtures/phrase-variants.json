@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1cd7a6a0bec7e2858f26ca81c19890d6b96dbf84372fcf311fba50833b017a76",
+  "manifestHash": "adfb1d11a4f3cd4f2cf24e75f348cccb127b263b42fa7ee22d76635076e1843e",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -103,6 +103,9 @@
     ],
     "001 eval benchmark fidelity implementation summary": [
       "001-eval-benchmark-fidelity implementation summary"
+    ],
+    "001 fix agent contract contradictions operator decisions": [
+      "001-fix-agent-contract-contradictions operator decisions"
     ],
     "001 fix mcp stress cycle doc observability": [
       "001-fix-mcp-stress-cycle-doc-observability"
@@ -976,6 +979,9 @@
     "004 1 1 alignment phase": [
       "004 1:1 alignment phase"
     ],
+    "004 agent template conformance and drift check operator decisions": [
+      "004-agent-template-conformance-and-drift-check operator decisions"
+    ],
     "004 alignment fixes operator decisions": [
       "004-alignment-fixes operator decisions"
     ],
@@ -1521,6 +1527,9 @@
     ],
     "005 tests and closeout operator decisions": [
       "005-tests-and-closeout operator decisions"
+    ],
+    "005 trim duplicated and dead agent text operator decisions": [
+      "005-trim-duplicated-and-dead-agent-text operator decisions"
     ],
     "005 vestigial embedding readiness gate removal": [
       "005-vestigial-embedding-readiness-gate-removal"
@@ -9962,6 +9971,9 @@
     "agent alignment audit": [
       "agent alignment audit"
     ],
+    "agent alignment follow ups phase parent spec": [
+      "agent alignment follow ups phase parent spec"
+    ],
     "agent alignment implementation summary": [
       "agent alignment implementation summary"
     ],
@@ -9979,6 +9991,18 @@
     ],
     "agent authoring reference index": [
       "agent authoring reference index"
+    ],
+    "agent authoring registry step": [
+      "agent authoring registry step"
+    ],
+    "agent authoring registry step implementation summary": [
+      "agent authoring registry step implementation summary"
+    ],
+    "agent authoring registry step plan": [
+      "agent authoring registry step plan"
+    ],
+    "agent authoring registry step tasks": [
+      "agent authoring registry step tasks"
     ],
     "agent avoidance anti patterns": [
       "agent avoidance anti-patterns"
@@ -10000,6 +10024,9 @@
     ],
     "agent config deep research iter": [
       "agent-config-deep-research-iter"
+    ],
+    "agent contract and registry alignment phase parent spec": [
+      "agent contract and registry alignment phase parent spec"
     ],
     "agent creation overflow": [
       "agent creation overflow"
@@ -10452,6 +10479,24 @@
     "agent readme conformance": [
       "agent readme conformance"
     ],
+    "agent registry and generated rosters": [
+      "agent registry and generated rosters"
+    ],
+    "agent registry and generated rosters acceptance criteria": [
+      "agent registry and generated rosters acceptance criteria"
+    ],
+    "agent registry and generated rosters implementation summary": [
+      "agent registry and generated rosters implementation summary"
+    ],
+    "agent registry and generated rosters plan": [
+      "agent registry and generated rosters plan"
+    ],
+    "agent registry and generated rosters tasks": [
+      "agent registry and generated rosters tasks"
+    ],
+    "agent registry step": [
+      "agent registry step"
+    ],
     "agent routing documentation": [
       "agent routing documentation"
     ],
@@ -10481,6 +10526,21 @@
     ],
     "agent template amendment": [
       "agent template amendment"
+    ],
+    "agent template conformance and drift check": [
+      "agent template conformance and drift check"
+    ],
+    "agent template conformance and drift check acceptance criteria": [
+      "agent template conformance and drift check acceptance criteria"
+    ],
+    "agent template conformance and drift check plan": [
+      "agent template conformance and drift check plan"
+    ],
+    "agent template conformance and drift check tasks": [
+      "agent template conformance and drift check tasks"
+    ],
+    "agent template conformance implementation summary": [
+      "agent template conformance implementation summary"
     ],
     "agent template critical important": [
       "agent template critical important"
@@ -16704,6 +16764,21 @@
     "catalog and playbook acceptance criteria": [
       "catalog and playbook acceptance criteria"
     ],
+    "catalog and playbook alignment": [
+      "catalog and playbook alignment"
+    ],
+    "catalog and playbook alignment goal": [
+      "catalog and playbook alignment goal"
+    ],
+    "catalog and playbook alignment implementation summary": [
+      "catalog and playbook alignment implementation summary"
+    ],
+    "catalog and playbook alignment plan": [
+      "catalog and playbook alignment plan"
+    ],
+    "catalog and playbook alignment tasks": [
+      "catalog and playbook alignment tasks"
+    ],
     "catalog and playbook implementation summary": [
       "catalog and playbook implementation summary"
     ],
@@ -19861,6 +19936,9 @@
     "cjs jsdoc documentation drift": [
       "cjs jsdoc documentation drift"
     ],
+    "cksum stub wrapper test": [
+      "cksum stub wrapper test"
+    ],
     "cl 001": [
       "cl-001"
     ],
@@ -21307,6 +21385,9 @@
     "cli codex 1 9 15 1": [
       "cli-codex 1.9.15.1"
     ],
+    "cli codex 1 9 16 0": [
+      "cli-codex 1.9.16.0"
+    ],
     "cli codex 1 9 2 0": [
       "cli-codex 1.9.2.0"
     ],
@@ -21531,6 +21612,9 @@
     ],
     "cli codex v1 9 15 1": [
       "cli-codex v1.9.15.1"
+    ],
+    "cli codex v1 9 16 0": [
+      "cli-codex v1.9.16.0"
     ],
     "cli codex v1 9 2 0": [
       "cli-codex v1.9.2.0"
@@ -27031,6 +27115,24 @@
     ],
     "codex payload probe plan": [
       "codex payload probe plan"
+    ],
+    "codex persona tool mapping": [
+      "codex persona tool mapping"
+    ],
+    "codex persona tool mapping acceptance criteria": [
+      "codex persona tool mapping acceptance criteria"
+    ],
+    "codex persona tool mapping implementation summary": [
+      "codex persona tool mapping implementation summary"
+    ],
+    "codex persona tool mapping line": [
+      "codex persona tool mapping line"
+    ],
+    "codex persona tool mapping plan": [
+      "codex persona tool mapping plan"
+    ],
+    "codex persona tool mapping tasks": [
+      "codex persona tool mapping tasks"
     ],
     "codex pi sync agents": [
       "codex pi sync agents"
@@ -38854,6 +38956,18 @@
     "deepseek harness persona": [
       "DeepSeek Harness persona"
     ],
+    "deepseek harness persona probe": [
+      "deepseek harness persona probe"
+    ],
+    "deepseek harness persona probe implementation summary": [
+      "deepseek harness persona probe implementation summary"
+    ],
+    "deepseek harness persona probe plan": [
+      "deepseek harness persona probe plan"
+    ],
+    "deepseek harness persona probe tasks": [
+      "deepseek harness persona probe tasks"
+    ],
     "deepseek harness providers": [
       "deepseek harness providers"
     ],
@@ -46284,6 +46398,9 @@
     "empty recommendation reported as outage": [
       "empty recommendation reported as outage"
     ],
+    "empty start checksum false wrapper change note": [
+      "empty start checksum false wrapper change note"
+    ],
     "empty trigger phrases": [
       "empty trigger phrases"
     ],
@@ -46364,6 +46481,24 @@
     ],
     "ended claude goal comes back after a hop": [
       "ended claude goal comes back after a hop"
+    ],
+    "ended goal mark match": [
+      "ended goal mark match"
+    ],
+    "ended goal mark match acceptance criteria": [
+      "ended goal mark match acceptance criteria"
+    ],
+    "ended goal mark match goal": [
+      "ended goal mark match goal"
+    ],
+    "ended goal mark match implementation summary": [
+      "ended goal mark match implementation summary"
+    ],
+    "ended goal mark match plan": [
+      "ended goal mark match plan"
+    ],
+    "ended goal mark match tasks": [
+      "ended goal mark match tasks"
     ],
     "endless sessions readme": [
       "endless sessions readme"
@@ -49380,6 +49515,18 @@
     "fanout parity packet complete": [
       "fanout parity packet complete"
     ],
+    "fanout persona tool mapping": [
+      "fanout persona tool mapping"
+    ],
+    "fanout persona tool mapping implementation summary": [
+      "fanout persona tool mapping implementation summary"
+    ],
+    "fanout persona tool mapping plan": [
+      "fanout persona tool mapping plan"
+    ],
+    "fanout persona tool mapping tasks": [
+      "fanout persona tool mapping tasks"
+    ],
     "fanout playbook paths": [
       "fanout playbook paths"
     ],
@@ -49724,6 +49871,9 @@
     ],
     "feature catalog registered validated": [
       "feature catalog registered validated"
+    ],
+    "feature catalog relocation exit 3": [
+      "feature catalog relocation exit 3"
     ],
     "feature catalog review plan": [
       "feature catalog review plan"
@@ -50924,6 +51074,21 @@
     ],
     "fix 1 db relocation": [
       "fix 1 db relocation"
+    ],
+    "fix agent contract contradictions": [
+      "fix agent contract contradictions"
+    ],
+    "fix agent contract contradictions acceptance criteria": [
+      "fix agent contract contradictions acceptance criteria"
+    ],
+    "fix agent contract contradictions implementation summary": [
+      "fix agent contract contradictions implementation summary"
+    ],
+    "fix agent contract contradictions plan": [
+      "fix agent contract contradictions plan"
+    ],
+    "fix agent contract contradictions tasks": [
+      "fix agent contract contradictions tasks"
     ],
     "fix audit findings": [
       "fix audit findings"
@@ -54937,6 +55102,12 @@
     "goal ended in the handoff command document": [
       "goal_ended in the handoff command document"
     ],
+    "goal ended kept when the session log cannot be read": [
+      "goal_ended kept when the session log cannot be read"
+    ],
+    "goal ended mark from the note claimed last": [
+      "goal_ended mark from the note claimed last"
+    ],
     "goal ended note field": [
       "goal_ended note field"
     ],
@@ -58669,6 +58840,9 @@
     ],
     "hop purpose rule parity tasks": [
       "hop purpose rule parity tasks"
+    ],
+    "hop withdrawn because the transcript was missing": [
+      "hop withdrawn because the transcript was missing"
     ],
     "host index folder setting": [
       "host index folder setting"
@@ -71745,6 +71919,24 @@
     "missing sub track metadata seed": [
       "missing sub-track metadata seed"
     ],
+    "missing transcript notice": [
+      "missing transcript notice"
+    ],
+    "missing transcript notice acceptance criteria": [
+      "missing transcript notice acceptance criteria"
+    ],
+    "missing transcript notice goal": [
+      "missing transcript notice goal"
+    ],
+    "missing transcript notice implementation summary": [
+      "missing transcript notice implementation summary"
+    ],
+    "missing transcript notice plan": [
+      "missing transcript notice plan"
+    ],
+    "missing transcript notice tasks": [
+      "missing transcript notice tasks"
+    ],
     "missing value file behavior": [
       "missing value file behavior"
     ],
@@ -73904,6 +74096,9 @@
     ],
     "next safe action verbs evidence": [
       "next safe action verbs evidence"
+    ],
+    "next spec number counts archived": [
+      "next spec number counts archived"
     ],
     "next step options after findings": [
       "next step options after findings"
@@ -77542,6 +77737,18 @@
     "orchestrate rule 7 tasks": [
       "orchestrate rule 7 tasks"
     ],
+    "orchestrate task package agent names": [
+      "orchestrate task package agent names"
+    ],
+    "orchestrate task package agent names implementation summary": [
+      "orchestrate task package agent names implementation summary"
+    ],
+    "orchestrate task package agent names plan": [
+      "orchestrate task package agent names plan"
+    ],
+    "orchestrate task package agent names tasks": [
+      "orchestrate task package agent names tasks"
+    ],
     "orchestrated sub session worktree sharing": [
       "orchestrated sub-session worktree sharing"
     ],
@@ -80603,6 +80810,12 @@
     "phase 1 doc version contract": [
       "phase 1 doc version contract"
     ],
+    "phase 1 fanout persona tool mapping": [
+      "phase 1 fanout persona tool mapping"
+    ],
+    "phase 1 fix agent contract contradictions": [
+      "phase 1 fix agent contract contradictions"
+    ],
     "phase 1 frontend surface mode": [
       "phase 1 frontend surface mode"
     ],
@@ -80858,6 +81071,9 @@
     "phase 11 pre existing gate failures": [
       "phase 11 pre existing gate failures"
     ],
+    "phase 11 relocate and restore fixes": [
+      "phase 11 relocate and restore fixes"
+    ],
     "phase 11 remaining limits": [
       "phase 11 remaining limits"
     ],
@@ -80905,6 +81121,9 @@
     ],
     "phase 12 authoring speed fixes and alignment": [
       "phase 12 authoring speed fixes and alignment"
+    ],
+    "phase 12 catalog and playbook alignment": [
+      "phase 12 catalog and playbook alignment"
     ],
     "phase 12 deep loop modes and commands": [
       "phase 12 deep loop modes and commands"
@@ -81022,6 +81241,9 @@
     ],
     "phase 13 sk vision v2 tools and loose": [
       "phase 13 sk vision v2 tools and loose"
+    ],
+    "phase 13 skill docs and housekeeping": [
+      "phase 13 skill docs and housekeeping"
     ],
     "phase 13 system spec kit": [
       "phase 13 system spec kit"
@@ -81143,6 +81365,9 @@
     "phase 15 v4 0 0 13 changelog": [
       "phase 15 v4 0 0 13 changelog"
     ],
+    "phase 15 wrapper start checksum": [
+      "phase 15 wrapper start checksum"
+    ],
     "phase 16 align sk design": [
       "phase 16 align sk design"
     ],
@@ -81157,6 +81382,9 @@
     ],
     "phase 16 closure gate": [
       "phase 16 closure gate"
+    ],
+    "phase 16 ended goal mark match": [
+      "phase 16 ended goal mark match"
     ],
     "phase 16 handover trigger review": [
       "phase 16 handover trigger review"
@@ -81209,6 +81437,9 @@
     "phase 17 measured behavior and draft metadata": [
       "phase 17 measured behavior and draft metadata"
     ],
+    "phase 17 missing transcript notice": [
+      "phase 17 missing transcript notice"
+    ],
     "phase 17 over engineering cuts": [
       "phase 17 over engineering cuts"
     ],
@@ -81257,6 +81488,9 @@
     "phase 18 runner gaps": [
       "phase 18 runner gaps"
     ],
+    "phase 18 sk git rebase sentence": [
+      "phase 18 sk git rebase sentence"
+    ],
     "phase 18 tasks": [
       "phase 18 tasks"
     ],
@@ -81290,6 +81524,9 @@
     "phase 19 plugins compat docs": [
       "phase 19 plugins compat docs"
     ],
+    "phase 19 relaunch doc coverage": [
+      "phase 19 relaunch doc coverage"
+    ],
     "phase 19 routing miss fixes": [
       "phase 19 routing miss fixes"
     ],
@@ -81307,6 +81544,9 @@
     ],
     "phase 2 agent improvement inventory": [
       "phase 2 agent improvement inventory"
+    ],
+    "phase 2 agent registry and generated rosters": [
+      "phase 2 agent registry and generated rosters"
     ],
     "phase 2 authoring hubs": [
       "phase 2 authoring hubs"
@@ -81346,6 +81586,9 @@
     ],
     "phase 2 deep ai council": [
       "phase 2 deep ai council"
+    ],
+    "phase 2 deepseek harness persona probe": [
+      "phase 2 deepseek harness persona probe"
     ],
     "phase 2 doctor git setup": [
       "phase 2 doctor git setup"
@@ -81818,6 +82061,9 @@
     "phase 3 nested skilled root": [
       "phase 3 nested skilled root"
     ],
+    "phase 3 orchestrate task package agent names": [
+      "phase 3 orchestrate task package agent names"
+    ],
     "phase 3 plain chat command reach": [
       "phase 3 plain chat command reach"
     ],
@@ -81859,6 +82105,9 @@
     ],
     "phase 3 sk git playbook changelog": [
       "phase 3 sk git playbook changelog"
+    ],
+    "phase 3 skill binding through routers": [
+      "phase 3 skill binding through routers"
     ],
     "phase 3 split upgrade legacy": [
       "phase 3 split upgrade legacy"
@@ -81946,6 +82195,12 @@
     ],
     "phase 4 advisor hooks relaunch": [
       "phase 4 advisor hooks relaunch"
+    ],
+    "phase 4 agent authoring registry step": [
+      "phase 4 agent authoring registry step"
+    ],
+    "phase 4 agent template conformance and drift check": [
+      "phase 4 agent template conformance and drift check"
     ],
     "phase 4 agents commands config": [
       "phase 4 agents commands config"
@@ -82349,6 +82604,9 @@
     "phase 5 tests and closeout": [
       "phase 5 tests and closeout"
     ],
+    "phase 5 trim duplicated and dead agent text": [
+      "phase 5 trim duplicated and dead agent text"
+    ],
     "phase 5 version aware guards": [
       "phase 5 version aware guards"
     ],
@@ -82408,6 +82666,9 @@
     ],
     "phase 6 closure gate": [
       "phase 6 closure gate"
+    ],
+    "phase 6 codex persona tool mapping": [
+      "phase 6 codex persona tool mapping"
     ],
     "phase 6 compiled route content check": [
       "phase 6 compiled route content check"
@@ -89082,6 +89343,9 @@
     "re parent packets into a sub track": [
       "re-parent packets into a sub-track"
     ],
+    "re parent resume phase rows": [
+      "re-parent resume phase rows"
+    ],
     "re pin after frontmatter move": [
       "re-pin after frontmatter move"
     ],
@@ -90104,6 +90368,15 @@
     ],
     "rebase abort rewound branch": [
       "rebase abort rewound branch"
+    ],
+    "rebase commit id": [
+      "rebase commit id"
+    ],
+    "rebase commit id probe": [
+      "rebase commit id probe"
+    ],
+    "rebase re mints commit id": [
+      "rebase re-mints commit id"
     ],
     "rebase spike": [
       "rebase spike"
@@ -91664,6 +91937,24 @@
     "relaunch coverage gaps tasks": [
       "relaunch coverage gaps tasks"
     ],
+    "relaunch doc coverage": [
+      "relaunch doc coverage"
+    ],
+    "relaunch doc coverage acceptance criteria": [
+      "relaunch doc coverage acceptance criteria"
+    ],
+    "relaunch doc coverage goal": [
+      "relaunch doc coverage goal"
+    ],
+    "relaunch doc coverage implementation summary": [
+      "relaunch doc coverage implementation summary"
+    ],
+    "relaunch doc coverage plan": [
+      "relaunch doc coverage plan"
+    ],
+    "relaunch doc coverage tasks": [
+      "relaunch doc coverage tasks"
+    ],
     "relaunch effort flag": [
       "relaunch effort flag"
     ],
@@ -91726,6 +92017,12 @@
     ],
     "relaunch note scaffold sentence": [
       "relaunch note scaffold sentence"
+    ],
+    "relaunch playbook catalog catch up": [
+      "relaunch playbook catalog catch-up"
+    ],
+    "relaunch playbook wrapper change notice scenario": [
+      "relaunch playbook wrapper change notice scenario"
     ],
     "relaunch prepare claim": [
       "relaunch prepare claim"
@@ -92721,14 +93018,35 @@
     "relevance dominant confidence rebalance": [
       "relevance-dominant confidence rebalance"
     ],
+    "relocate and restore fixes": [
+      "relocate and restore fixes"
+    ],
+    "relocate and restore fixes goal": [
+      "relocate and restore fixes goal"
+    ],
+    "relocate and restore fixes implementation summary": [
+      "relocate and restore fixes implementation summary"
+    ],
+    "relocate and restore fixes plan": [
+      "relocate and restore fixes plan"
+    ],
+    "relocate and restore fixes tasks": [
+      "relocate and restore fixes tasks"
+    ],
     "relocate and suggest subtracks vitest suites": [
       "relocate and suggest-subtracks vitest suites"
+    ],
+    "relocate exit status 3": [
+      "relocate exit status 3"
     ],
     "relocate mjs": [
       "relocate.mjs"
     ],
     "relocate mjs move renumber re parent": [
       "relocate.mjs move renumber re-parent"
+    ],
+    "relocate rerun finishes a stopped move": [
+      "relocate rerun finishes a stopped move"
     ],
     "relocate rerun finishes late steps": [
       "relocate rerun finishes late steps"
@@ -95608,6 +95926,9 @@
     ],
     "restore pi advisor brief tasks": [
       "restore pi advisor brief tasks"
+    ],
+    "restore refused beside sub tracks": [
+      "restore refused beside sub-tracks"
     ],
     "restore staged": [
       "restore staged"
@@ -102740,6 +103061,9 @@
     "session relaunch enable flag plan": [
       "session relaunch enable flag plan"
     ],
+    "session relaunch feature catalog goal ended wrapper notice": [
+      "session relaunch feature catalog goal_ended wrapper notice"
+    ],
     "session relaunch fixtures": [
       "session relaunch fixtures"
     ],
@@ -107108,6 +107432,9 @@
     "sk create agent 1 0 7 0": [
       "sk-create-agent 1.0.7.0"
     ],
+    "sk create agent 1 0 8 0": [
+      "sk-create-agent 1.0.8.0"
+    ],
     "sk create agent implementation summary": [
       "sk create agent implementation summary"
     ],
@@ -107155,6 +107482,9 @@
     ],
     "sk create agent v1 0 7 0": [
       "sk-create-agent v1.0.7.0"
+    ],
+    "sk create agent v1 0 8 0": [
+      "sk-create-agent v1.0.8.0"
     ],
     "sk create benchmark": [
       "sk create benchmark"
@@ -110367,6 +110697,9 @@
     "sk git 1 11 11 0": [
       "sk-git 1.11.11.0"
     ],
+    "sk git 1 11 12 0": [
+      "sk-git 1.11.12.0"
+    ],
     "sk git 1 11 2 0": [
       "sk-git 1.11.2.0"
     ],
@@ -110511,6 +110844,9 @@
     "sk git commit contract update": [
       "sk-git commit contract update"
     ],
+    "sk git commit id rebase probe": [
+      "sk-git commit id rebase probe"
+    ],
     "sk git customization": [
       "sk-git customization"
     ],
@@ -110558,6 +110894,24 @@
     ],
     "sk git playbook changelog tasks": [
       "sk git playbook changelog tasks"
+    ],
+    "sk git rebase sentence": [
+      "sk-git rebase sentence"
+    ],
+    "sk git rebase sentence acceptance criteria": [
+      "sk-git rebase sentence acceptance criteria"
+    ],
+    "sk git rebase sentence goal": [
+      "sk-git rebase sentence goal"
+    ],
+    "sk git rebase sentence implementation summary": [
+      "sk-git rebase sentence implementation summary"
+    ],
+    "sk git rebase sentence plan": [
+      "sk-git rebase sentence plan"
+    ],
+    "sk git rebase sentence tasks": [
+      "sk-git rebase sentence tasks"
     ],
     "sk git reference frontmatter": [
       "sk-git reference frontmatter"
@@ -110651,6 +111005,9 @@
     ],
     "sk git v1 11 11 0": [
       "sk-git v1.11.11.0"
+    ],
+    "sk git v1 11 12 0": [
+      "sk-git v1.11.12.0"
     ],
     "sk git v1 11 2 0": [
       "sk-git v1.11.2.0"
@@ -112254,6 +112611,21 @@
     "skill benchmark upcaster tasks": [
       "skill benchmark upcaster tasks"
     ],
+    "skill binding through routers": [
+      "skill binding through routers"
+    ],
+    "skill binding through routers acceptance criteria": [
+      "skill binding through routers acceptance criteria"
+    ],
+    "skill binding through routers implementation summary": [
+      "skill binding through routers implementation summary"
+    ],
+    "skill binding through routers plan": [
+      "skill binding through routers plan"
+    ],
+    "skill binding through routers tasks": [
+      "skill binding through routers tasks"
+    ],
     "skill brief is back": [
       "skill brief is back"
     ],
@@ -112367,6 +112739,21 @@
     ],
     "skill docs alignment tasks": [
       "skill docs alignment tasks"
+    ],
+    "skill docs and housekeeping": [
+      "skill docs and housekeeping"
+    ],
+    "skill docs and housekeeping goal": [
+      "skill docs and housekeeping goal"
+    ],
+    "skill docs and housekeeping implementation summary": [
+      "skill docs and housekeeping implementation summary"
+    ],
+    "skill docs and housekeeping plan": [
+      "skill docs and housekeeping plan"
+    ],
+    "skill docs and housekeeping tasks": [
+      "skill docs and housekeeping tasks"
     ],
     "skill docs audit": [
       "skill docs audit"
@@ -118011,6 +118398,9 @@
     "stop vote signals": [
       "stop vote signals"
     ],
+    "stop without transcript path prints a notice": [
+      "stop without transcript path prints a notice"
+    ],
     "stopping clocks implementation": [
       "stopping clocks implementation"
     ],
@@ -120980,6 +121370,9 @@
     "system spec kit 2 13 0 0": [
       "system-spec-kit 2.13.0.0"
     ],
+    "system spec kit 2 13 1 0": [
+      "system-spec-kit 2.13.1.0"
+    ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
     ],
@@ -121609,6 +122002,9 @@
     ],
     "system spec kit v2 13 0 0": [
       "system-spec-kit v2.13.0.0"
+    ],
+    "system spec kit v2 13 1 0": [
+      "system-spec-kit v2.13.1.0"
     ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"
@@ -124889,6 +125285,21 @@
     ],
     "trigger write merge": [
       "trigger write merge"
+    ],
+    "trim duplicated and dead agent text": [
+      "trim duplicated and dead agent text"
+    ],
+    "trim duplicated and dead agent text acceptance criteria": [
+      "trim duplicated and dead agent text acceptance criteria"
+    ],
+    "trim duplicated and dead agent text implementation summary": [
+      "trim duplicated and dead agent text implementation summary"
+    ],
+    "trim duplicated and dead agent text plan": [
+      "trim duplicated and dead agent text plan"
+    ],
+    "trim duplicated and dead agent text tasks": [
+      "trim duplicated and dead agent text tasks"
     ],
     "trim targeted verdict": [
       "trim-targeted verdict"
@@ -130062,6 +130473,24 @@
     ],
     "wrapper session reads main checkout": [
       "wrapper session reads main checkout"
+    ],
+    "wrapper start checksum": [
+      "wrapper start checksum"
+    ],
+    "wrapper start checksum acceptance criteria": [
+      "wrapper start checksum acceptance criteria"
+    ],
+    "wrapper start checksum goal": [
+      "wrapper start checksum goal"
+    ],
+    "wrapper start checksum implementation summary": [
+      "wrapper start checksum implementation summary"
+    ],
+    "wrapper start checksum plan": [
+      "wrapper start checksum plan"
+    ],
+    "wrapper start checksum tasks": [
+      "wrapper start checksum tasks"
     ],
     "wrapper writes iteration artifacts": [
       "wrapper writes iteration artifacts"

@@ -1,0 +1,43 @@
+# After, phase 004
+
+$ rg -c 'agent-registry' .skilled/skills/sk-doc/sk-create-agent/SKILL.md
+1
+exit=0
+
+$ rg -c 'agent file without a registry record' .skilled/skills/sk-doc/sk-create-agent/SKILL.md
+1
+exit=0
+
+$ rg -n '^version:' .skilled/skills/sk-doc/sk-create-agent/SKILL.md
+5:version: 1.0.8.0
+exit=0
+
+$ ls .skilled/skills/sk-doc/sk-create-agent/changelog | sort -V | tail -1
+v1.0.8.0.md
+exit=0
+
+$ node -e 'console.log(Object.keys(require("./.skilled/agents/agent-registry.json").agents[0]).join(" "))'
+name tier priority dispatchers taskType skills notes summary
+exit=0
+
+$ node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-hub-vocabulary-source.cjs --hub sk-doc
+note: stage-two-reverse=118 term(s) are ROUTER.md intent keywords hub-router.json does not route. Stage two also carries the leaf keywords that pick a file once the mode is chosen, so this leg reports and never fails.
+
+checked=1 hub(s), drift=6
+RESULT: FAILED
+exit=1
+
+$ node .skilled/skills/sk-doc/shared/scripts/frontmatter-version.mjs verify --skill sk-doc
+[verify] 364 files | ok=357  skip-no-frontmatter=7
+exit=0
+
+$ git status --short .skilled/agents
+ M .skilled/agents/orchestrate.md
+exit=0
+
+## The vocabulary check failure is not from this change
+$ git archive 63e6261895 .skilled | tar -x -C <scratch dir>, then the same command there, on the tree before any edit
+checked=1 hub(s), drift=6
+RESULT: FAILED
+exit=1
+# Before: drift=6, exit 1. After: drift=6, exit 1. Delta 0. The six drift lines name sk-create-agent (2), sk-create-command (2), sk-create-diff (1) and sk-create-goal (1), all hub-router.json terms no ROUTER.md intent carries. This phase changed neither file.

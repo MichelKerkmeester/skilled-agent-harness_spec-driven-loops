@@ -1,0 +1,527 @@
+{
+  "sessionId": "fanout-dsh-1-1794652127582-mfqldk",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "timestamp": "2026-11-14T10:40:07.010Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "R1-P1-001",
+      "severity": "P1",
+      "title": "Relocation feature page and changelog still state the pre-008 exit contract and omit status 3",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-packet-relocation.md",
+      "line": 66,
+      "description": "The feature page and changelog document a 0/1/2 exit contract that omits phase-008 status 3, so a landed move whose only failure is the moved packet validation is described as a failed close.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "The same omission appears in feature-catalog/feature-catalog.md:690 and changelog/v2.13.0.0.md:67; runtime/cli/spec/README.md:120 is current. rg over the three stale surfaces returns all three, so a single current reference exists and the three summaries are the class of gap.",
+      "affectedSurfaceHints": [
+        "feature catalog page",
+        "feature catalog root summary",
+        "changelog",
+        "relocation CLI operator guide"
+      ],
+      "contentHash": "r1-p1-001",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P1-002",
+      "severity": "P1",
+      "title": "Published next-number command ignores archived packets",
+      "file": ".skilled/skills/system-spec-kit/SKILL.md",
+      "line": 295,
+      "description": "The SKILL quick reference computes the next number from live root packets only, and the phase-definition guide describes the same live-only rule, contrary to D4 and create.sh.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "rg for \"Next spec number\" and \"next number after the highest numbered packet\" returns SKILL.md:295 and phase-definitions.md:82; create.sh:1644 is the only producer that implements both live and archived counting.",
+      "affectedSurfaceHints": [
+        "SKILL quick-reference table",
+        "phase-definitions track creation guide",
+        "create.sh numbering"
+      ],
+      "contentHash": "r1-p1-002",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-004",
+      "severity": "P1",
+      "title": "Renumbered restore docs say every relocation failure exits 1, but status 3 is a successful restore",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-lifecycle-automation.md",
+      "line": 45,
+      "description": "The lifecycle feature page documents a failed relocation during restore as exit 1, while archive.sh treats relocation status 3 as a successful restore and exits 0 with a warning.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "rg for the restore failure sentence and status-3 branch returns the lifecycle page and archive.sh; the command README omits the branch rather than contradicting it, so the lifecycle page is the only changed doc asserting the blanket exit-1 rule.",
+      "affectedSurfaceHints": [
+        "feature catalog lifecycle page",
+        "archive restore command reference",
+        "archive.sh --help",
+        "changelog restore section"
+      ],
+      "contentHash": "r2-p1-004",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P1-005",
+      "severity": "P1",
+      "title": "The archive command reference and lifecycle docs omit the mixed-track restore refusal",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/README.md",
+      "line": 114,
+      "description": "The archive command reference and lifecycle docs do not document the mixed-track restore refusal, although archive.sh asks the relocation preflight and exits 1 when the restore would leave flat packets beside sub-tracks.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "rg for mixed-track and \"would hold flat packets\" over the changed docs returns only relocation-preflight language and tests; none of the archive-facing docs names the restore refusal.",
+      "affectedSurfaceHints": [
+        "archive command reference",
+        "feature catalog lifecycle page",
+        "changelog restore section",
+        "skill README command table",
+        "archive.sh --help"
+      ],
+      "contentHash": "r2-p1-005",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-007",
+      "severity": "P1",
+      "title": "Archive-search docs omit archivedPaths and misstate the path record shape",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/retrieval/rg-archive-search.md",
+      "line": 28,
+      "description": "Archive-search documentation omits archivedPaths and says the path record is unchanged, while rg-wrapper.mjs always adds archivedPaths and the phase 009 completion criterion reads it.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "rg for archivedPaths over the changed docs returns zero hits; the implementation and tests are the only occurrences. The same omission appears in retrieval-conventions.md:84, search.md:116, README.txt:105, search-presentation.txt:120, README.md:1205, system-spec-kit/README.md:332, and feature-catalog.md:1078.",
+      "affectedSurfaceHints": [
+        "feature catalog archive page",
+        "retrieval conventions",
+        "search command",
+        "search presentation contract",
+        "root README",
+        "skill README",
+        "command README.txt"
+      ],
+      "contentHash": "r3-p1-007",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P1-008",
+      "severity": "P1",
+      "title": "suggest-subtracks docs say three no-map cases, but a non-NNN-slug packet adds a fourth",
+      "file": ".skilled/skills/system-spec-kit/references/structure/folder-structure.md",
+      "line": 141,
+      "description": "The structure reference and sub-track feature page say suggest-subtracks has exactly three no-map cases, while the implementation and phase 009 criterion add a fourth for non-NNN-slug packet folder names.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "rg for \"prints no map in three cases\" over the changed docs finds the structure reference and the feature page; both omit the naming case. The implementation branch returns before the threshold and grouping checks.",
+      "affectedSurfaceHints": [
+        "folder-structure reference",
+        "sub-track feature page",
+        "suggest-subtracks operator guidance"
+      ],
+      "contentHash": "r3-p1-008",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R1-P2-003",
+      "severity": "P2",
+      "title": "Root and skill READMEs summarize relocation without the status-3 contract",
+      "file": ".skilled/skills/system-spec-kit/README.md",
+      "line": 639,
+      "description": "The two top-level README summaries omit status 3, so a first-read operator has no cue that a landed run can exit 3 with a packet-validation warning.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "rg for \"relocate.mjs.*Dry run by default\" finds the two summaries and the feature page; runtime/cli/spec/README.md:120 is current.",
+      "affectedSurfaceHints": [
+        "skill README command table",
+        "root README spec-management list"
+      ],
+      "contentHash": "r1-p2-003",
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R2-P2-006",
+      "severity": "P2",
+      "title": "archive.sh --help omits both new restore outcomes",
+      "file": ".skilled/skills/system-spec-kit/runtime/cli/spec/archive.sh",
+      "line": 83,
+      "description": "The built-in help lists only the happy-path restore and next-number notes; it omits the mixed-track refusal and the status-3 success warning.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "The help heredoc at archive.sh:52-95 is the only command-level help block; no other archive help text exists.",
+      "affectedSurfaceHints": [
+        "archive.sh --help",
+        "archive command reference"
+      ],
+      "contentHash": "r2-p2-006",
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R3-P2-009",
+      "severity": "P2",
+      "title": "Relocation docs describe only whole-id rewrites and omit the phase-007 bare-name and pre-archive passes",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-packet-relocation.md",
+      "line": 44,
+      "description": "The relocation feature page describes only whole-id rewriting, omitting the phase-007 bare-name pass and pre-archive alias, and its test table names only relocate.vitest.ts.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "rg for \"bare name|pre-archive|preArchive|whole old id\" over the changed docs finds the feature page whole-id sentence and no bare-name/pre-archive description; the command README also says only \"rewrites every whole old id\".",
+      "affectedSurfaceHints": [
+        "feature catalog relocation page",
+        "relocation command README",
+        "relocation test inventory"
+      ],
+      "contentHash": "r3-p2-009",
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-010",
+      "severity": "P2",
+      "title": "The v2.13.0.0 changelog stopped at the phase-005 release and its test counts no longer match the packet",
+      "file": ".skilled/skills/system-spec-kit/changelog/v2.13.0.0.md",
+      "line": 216,
+      "description": "The v2.13.0.0 changelog reports 2567 tests and pre-008 behavior, while the packet log records 2603 tests after phase 010 and the changed code ships status 3, resume, mixed-track restore, archivedPaths, and non-NNN refusal.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "rg for 2567 tests, 2603, status 3 and archivedPaths over the changelog and goal log returns the old count and no later behavior; ls changelog shows no v2.13.1 or later entry.",
+      "affectedSurfaceHints": [
+        "changelog v2.13.0.0",
+        "package version",
+        "release notes",
+        "test-count baseline"
+      ],
+      "contentHash": "r4-p2-010",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-011",
+      "severity": "P2",
+      "title": "Manual scenario 492 still exercises only the pre-remediation relocation surface",
+      "file": ".skilled/skills/system-spec-kit/manual-testing-playbook/tooling-and-scripts/spec-packet-relocation.md",
+      "line": 27,
+      "description": "Scenario 492 covers a dry run, a refused archived number, and an applied renumber only; it never exercises status 3, late-step resume, case-folded duplicates, phase-map bare names, pre-archive ids, or mixed-track restore.",
+      "findingClass": "instance-only",
+      "deltaStatus": null,
+      "scopeProof": "The 492 file is the only relocation scenario registered in the manual playbook at manual-testing-playbook.md:245; no second scenario covers the phase 006-010 paths.",
+      "affectedSurfaceHints": [
+        "manual playbook scenario 492",
+        "relocation test anchors",
+        "operator validation coverage"
+      ],
+      "contentHash": "r4-p2-011",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "R4-P2-012",
+      "severity": "P2",
+      "title": "Feature and playbook source inventories still list only relocate.vitest.ts",
+      "file": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-packet-relocation.md",
+      "line": 91,
+      "description": "The catalog test table names only relocate.vitest.ts, omitting the phase-010 true-writer suite and the archive-numbering/archive-track/rg-include-archive suites.",
+      "findingClass": "cross-consumer",
+      "deltaStatus": null,
+      "scopeProof": "rg for relocate-real-pipeline over the changed documentation returns no hit; the only mention is the test file and the packet log.",
+      "affectedSurfaceHints": [
+        "feature catalog relocation page",
+        "manual playbook test anchors",
+        "release test inventory"
+      ],
+      "contentHash": "r4-p2-012",
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 6,
+    "P2": 6
+  },
+  "openFindingsCount": 12,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [],
+  "cleanSearchProof": [],
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": null
+  },
+  "traceability": {
+    "summary": {
+      "required": 5,
+      "executed": 5,
+      "pass": 0,
+      "partial": 3,
+      "fail": 2,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 2
+    },
+    "results": [
+      {
+        "evidence": "Six live P1 doc/code mismatches rechecked; implementation matches phase goals.",
+        "gateClass": "soft",
+        "level": "core",
+        "protocolId": "spec_code",
+        "status": "partial"
+      },
+      {
+        "evidence": "Packet log is current; changelog/catalog/playbook still lag.",
+        "gateClass": "soft",
+        "level": "core",
+        "protocolId": "checklist_evidence",
+        "status": "partial"
+      },
+      {
+        "evidence": "SKILL quick reference and skill README remain stale.",
+        "gateClass": "soft",
+        "level": "overlay",
+        "protocolId": "skill_agent",
+        "status": "partial"
+      },
+      {
+        "applicable": false,
+        "evidence": "No agent file in the manifest.",
+        "gateClass": "soft",
+        "level": "overlay",
+        "protocolId": "agent_cross_runtime",
+        "status": "notApplicable"
+      },
+      {
+        "evidence": "Feature catalog leaves still carry the gaps.",
+        "gateClass": "hard",
+        "level": "overlay",
+        "protocolId": "feature_catalog_code",
+        "status": "fail"
+      },
+      {
+        "evidence": "Scenario 492 cannot detect phase 006-010 regressions.",
+        "gateClass": "hard",
+        "level": "overlay",
+        "protocolId": "playbook_capability",
+        "status": "fail"
+      }
+    ]
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

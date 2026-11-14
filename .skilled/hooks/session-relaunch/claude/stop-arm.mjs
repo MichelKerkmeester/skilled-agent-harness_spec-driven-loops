@@ -131,11 +131,25 @@ async function armPendingRecord(payload, dependencies = {}) {
 
   // The killer watches the transcript for idleness, so a payload without its path cannot
   // arm: the record keeps its pending status and gains a deferral mark that lets a prompt
-  // withdraw it, and a Stop with no typed prompt tries again. Arming instead would strand
-  // an armed record with no killer watching it.
+  // withdraw it, and a Stop with no typed prompt tries again. The prompt that withdraws the
+  // record cannot tell this cause from the other stamping paths, so the notice prints here,
+  // where the cause is known. Arming instead would strand an armed record with no killer
+  // watching it.
   if (typeof payload.transcript_path !== 'string' || !payload.transcript_path) {
     logEvent('missing-transcript-path', { loopId, sessionId: record.sessionId }, env);
     markParked(loopId, env);
+    // As with the background-task notice, `systemMessage` without a `decision` key is
+    // shown to the operator while the turn still ends.
+    try {
+      const write = dependencies.write || ((text) => process.stdout.write(text));
+      write(`${JSON.stringify({
+        systemMessage: 'Session relaunch could not arm the hop because this Stop carried no transcript path. '
+          + 'Your next prompt withdraws the hand-over, and a later Stop that carries the '
+          + 'path arms it instead.',
+      })}\n`);
+    } catch (error) {
+      logEvent('stop-arm-error', { stage: 'notice', loopId, message: error.message }, env);
+    }
     return null;
   }
 

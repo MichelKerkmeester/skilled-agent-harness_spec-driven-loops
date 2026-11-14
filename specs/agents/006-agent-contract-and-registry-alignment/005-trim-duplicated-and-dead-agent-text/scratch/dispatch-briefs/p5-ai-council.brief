@@ -1,0 +1,125 @@
+Remove text from one agent file that repeats rules the same file already states elsewhere, and
+bring its advisor block to the shared wording where the changes below say so. Every change is a
+deletion, a section renumbering that follows a deletion, or a re-wrap of the advisor block. No
+rule is reworded.
+
+The two files are the canonical file and its twin. Each has its own list of changes below,
+because the twin's text can differ in path strings. Apply each list to its own file.
+
+Files:
+1. .skilled/agents/ai-council.md
+2. .claude/agents/ai-council.md
+
+Do not touch the frontmatter. A commit hook raises the `version` field.
+Each change below gives the exact text to find (OLD) and the exact text that replaces it (NEW).
+The first and last lines of OLD and NEW are unchanged context lines, shown so the place is unambiguous.
+Blank lines inside OLD and NEW are part of the text. Apply every change, top to bottom.
+
+######## FILE: .skilled/agents/ai-council.md ########
+
+Change 1, at about line 818 (OLD runs to the end of the file). Removes 39 line(s), adds 0.
+<<<<<<< OLD
+- `.skilled/commands/deep/ai-council.md` — the `/deep:ai-council` dispatch entry point.
+
+---
+
+## 20. SUMMARY
+
+```text
+┌─────────────────────────────────────────────────────────────────────────┐
+│          THE MULTI-AI COUNCIL: MULTI-STRATEGY PLANNING ARCHITECT        │
+├─────────────────────────────────────────────────────────────────────────┤
+│  AUTHORITY                                                              │
+│  ├─► Seek diverse AI vantage points (cli-opencode, cli-claude-code,     │
+│  │   cli-opencode, native @deep-research)                               │
+│  ├─► Dispatch 2-3 distinct council seats with unique strategy lenses    │
+│  ├─► Deliberate across independent, critique, and reconciliation rounds │
+│  ├─► Score results via 5-dimension rubric (100 points)                  │
+│  ├─► Synthesize consensus plan from best-supported elements             │
+│  └─► Output plan plus scoped ai-council artifacts                       │
+│                                                                         │
+│  WORKFLOW (8 Steps)                                                     │
+│  ├─► 1. RECEIVE     Parse task, classify type                           │
+│  ├─► 2. PREPARE     Load context (packet sources + memory as needed)    │
+│  ├─► 3. DIVERSIFY   Select strategy and AI-vantage mix                  │
+│  ├─► 4. DISPATCH    Launch seats (parallel or sequential)               │
+│  ├─► 5. DELIBERATE  Compare, critique, reconcile                        │
+│  ├─► 6. SYNTHESIZE  Score all, resolve conflicts                         │
+│  ├─► 7. COMPOSE     Merge best elements into unified plan                │
+│  └─► 8. DELIVER     Report + ai-council artifacts                       │
+│                                                                         │
+│  OUTPUT                                                                 │
+│  ├─► Multi-AI Council Report (composition + comparison table)           │
+│  ├─► Implementation steps for user review                               │
+│  └─► Plan confidence score with evidence basis                           │
+│                                                                         │
+│  LIMITS                                                                 │
+│  ├─► Max 3 council seats per task                                       │
+│  ├─► Writes/edits only within ai-council/**                             │
+│  └─► Depth 1: inline sequential only (NDP compliant)                    │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+======= NEW
+- `.skilled/commands/deep/ai-council.md` — the `/deep:ai-council` dispatch entry point.
+
+>>>>>>> END
+
+######## FILE: .claude/agents/ai-council.md ########
+
+Change 1, at about line 803 (OLD runs to the end of the file). Removes 39 line(s), adds 0.
+<<<<<<< OLD
+- `.skilled/commands/deep/ai-council.md` — the `/deep:ai-council` dispatch entry point.
+
+---
+
+## 20. SUMMARY
+
+```text
+┌─────────────────────────────────────────────────────────────────────────┐
+│          THE MULTI-AI COUNCIL: MULTI-STRATEGY PLANNING ARCHITECT        │
+├─────────────────────────────────────────────────────────────────────────┤
+│  AUTHORITY                                                              │
+│  ├─► Seek diverse AI vantage points (cli-opencode, cli-claude-code,        │
+│  │   cli-opencode, native @deep-research)                               │
+│  ├─► Dispatch 2-3 distinct council seats with unique strategy lenses    │
+│  ├─► Deliberate across independent, critique, and reconciliation rounds │
+│  ├─► Score results via 5-dimension rubric (100 points)                  │
+│  ├─► Synthesize consensus plan from best-supported elements             │
+│  └─► Output plan plus scoped ai-council artifacts                         │
+│                                                                         │
+│  WORKFLOW (8 Steps)                                                     │
+│  ├─► 1. RECEIVE     Parse task, classify type                           │
+│  ├─► 2. PREPARE     Load context (packet sources + memory as needed)    │
+│  ├─► 3. DIVERSIFY   Select strategy and AI-vantage mix                  │
+│  ├─► 4. DISPATCH    Launch seats (parallel or sequential)               │
+│  ├─► 5. DELIBERATE  Compare, critique, reconcile                        │
+│  ├─► 6. SYNTHESIZE  Score all, resolve conflicts                         │
+│  ├─► 7. COMPOSE     Merge best elements into unified plan                │
+│  └─► 8. DELIVER     Report + ai-council artifacts                         │
+│                                                                         │
+│  OUTPUT                                                                 │
+│  ├─► Multi-AI Council Report (composition + comparison table)           │
+│  ├─► Implementation steps for user review                               │
+│  └─► Plan confidence score with evidence basis                           │
+│                                                                         │
+│  LIMITS                                                                 │
+│  ├─► Max 3 council seats per task                                       │
+│  ├─► Writes/edits only within ai-council/**                              │
+│  └─► Depth 1: inline sequential only (NDP compliant)                    │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+======= NEW
+- `.skilled/commands/deep/ai-council.md` — the `/deep:ai-council` dispatch entry point.
+
+>>>>>>> END
+
+The markers `<<<<<<< OLD`, `======= NEW` and `>>>>>>> END` are not part of any file. Never write them.
+
+Verification (run all, paste the output in the handback):
+  wc -l < .skilled/agents/ai-council.md      # expect: 816
+  wc -w < .skilled/agents/ai-council.md      # expect: 6554
+  wc -l < .claude/agents/ai-council.md      # expect: 801
+  wc -w < .claude/agents/ai-council.md      # expect: 6531
+  rg -c '^│' .skilled/agents/ai-council.md .claude/agents/ai-council.md      # expect: no output

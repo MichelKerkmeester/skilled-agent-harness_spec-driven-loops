@@ -1,0 +1,26 @@
+
+=== RUN CONTEXT ===
+- One mechanical change. The literal text below is the whole task. Do not improve, reorder,
+  reflow or reformat anything else, and do not fix anything you notice outside it.
+- `.skilled/agents/<name>.md` is the canonical file and `.claude/agents/<name>.md` is its
+  hand-kept twin. Both get the same change. The twin differs only in its frontmatter and in
+  path strings that say `.claude/agents` where the canonical says `.skilled/agents`.
+- The orchestrator regenerates `.codex/agents` and `.pi/agents` and runs every gate after you
+  return. You never do.
+
+=== ALLOWED WRITE PATHS ===
+__ALLOWED__
+Nothing else. A write to any other path is a failed run.
+
+=== BANNED OPERATIONS ===
+- No `git add`, `git commit`, `git checkout`, `git restore`, `git reset`, `git stash`, `git clean`, `git push`.
+- No `rm`, `mv`, `cp` over an existing file, no `sed -i` or `perl -i` on a path outside ALLOWED WRITE PATHS.
+- No generator, sync, install, build or test command.
+- No write under `.codex/`, `.pi/`, `.cursor/`, `.devin/`, `.dsh/`, `.opencode/` or `specs/`.
+- No sub-agent or Task dispatch, and no nested `opencode run`.
+
+=== HANDBACK (print exactly this shape as your last message) ===
+RESULT: <APPLIED | PARTIAL | BLOCKED>
+FILES CHANGED: <repo-relative paths, one per line>
+VERIFY: <each verification command from the brief, then the output you saw>
+NOTES: <any literal text that did not match, quoted, or "none">

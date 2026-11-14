@@ -1,0 +1,15 @@
+Tell the debug agent when to load the system-spec-kit skill and which file is its entry point.
+It cites two files inside that skill today without naming the skill's entry file.
+
+Files (exactly two, same change in each):
+1. .skilled/agents/debug.md
+2. .claude/agents/debug.md
+
+Change A. Under `## 5. TOOL ROUTING` one line starts with
+`Keyed lookup runs `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs`.
+Leave that line as it is. Directly after it, add this one new line (no blank line between):
+Load the system-spec-kit skill only when the failure touches a spec packet or earlier packet work: its entry file is `SKILL.md`, wherever the runtime installed the skill (in this repository: `.skilled/skills/system-spec-kit/SKILL.md`), and it names both retrieval paths above.
+
+Verification (run all, paste the output in the handback):
+  rg -c 'system-spec-kit/SKILL.md' .skilled/agents/debug.md .claude/agents/debug.md     # expect: 1 for each file
+  rg -c 'Keyed lookup runs' .skilled/agents/debug.md .claude/agents/debug.md             # expect: 1 for each file

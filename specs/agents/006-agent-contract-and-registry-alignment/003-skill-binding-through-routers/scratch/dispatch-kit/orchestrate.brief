@@ -1,0 +1,62 @@
+Make the orchestrator dispatch each agent by its own name. It now tells the runtime to dispatch
+every agent through the general wrapper, which has every tool, so a read-only agent such as
+`context` loses its tool limits on that path. Also state the council's delegation rule and
+replace three stale phrases.
+
+Files (exactly two, same change in each):
+1. .skilled/agents/orchestrate.md
+2. .claude/agents/orchestrate.md
+
+Change A. In the `### Agent Selection (Priority Order)` table, the rows with Priority 1 to 8 end
+with the cell `"general"`. Replace that last cell with the agent's own name in quotes:
+  Priority 1 `"context"`, 2 `"deep-research"`, 3 `"ai-council"`, 4 `"markdown"`,
+  5 `"review"`, 6 `"deep-review"`, 7 `"code"`, 8 `"debug"`.
+The Priority 9 row and the header row stay as they are.
+
+Change B. In the Priority 1 row, the Skills cell starts `Memory tools, Glob, Grep, Read`.
+Replace `Memory tools, Glob, Grep, Read` with `Trigger index lookup, Glob, Grep, Read`.
+
+Change C. Old line:
+This Copilot profile enforces **single-hop delegation**. Nested sub-agent dispatch is illegal.
+New line:
+This orchestrator enforces **single-hop delegation**. Nested sub-agent dispatch is illegal.
+
+Change D. Directly after the `#### Agent Tier Classification` table (after its `| **LEAF** ...` row),
+add one blank line and then this line:
+The AI Council is a LEAF when another agent dispatches it, and may dispatch council seats only when the operator invokes it directly.
+
+Change E. Under `### 🔒 Agent Loading Protocol (MANDATORY)`. Old line:
+3. **SET** `subagent_type: "general-purpose"` (all custom agents use the general subagent type)
+New line:
+3. **SET** `subagent_type` to the agent's own name, for example `subagent_type: "context"`, so the runtime loads that agent's own tool limits. Use `subagent_type: "general-purpose"` only on a runtime whose delegation tool registers no named agents.
+
+Change F. Under `### Prompt/Agent Consistency Guard (MANDATORY)`. Old line:
+3. `subagent_type: "general-purpose"` is only the runtime wrapper; it does not make a mismatched prompt safe.
+New line:
+3. `subagent_type` MUST name the same agent as the `Agent:` line. The `"general-purpose"` wrapper, used only where a runtime registers no named agents, does not make a mismatched prompt safe.
+
+Change G. In the task-package template. Old line:
+├─ Subagent Type: "general" (ALL dispatches use "general" — exploration routes through @context)
+New line:
+├─ Subagent Type: [the agent's own name, the Agent line without the @ | "general-purpose" only on a runtime with no named agents]
+
+Change H. Old text inside one line:
+**Action:** ALWAYS dispatch `@context` (subagent_type: `"general-purpose"`).
+New text:
+**Action:** ALWAYS dispatch `@context` (subagent_type: `"context"`).
+The rest of that line stays.
+
+Change I. Old text inside one line:
+Sub-orchestrator fan-out is disabled in this Copilot profile because nested dispatch is illegal.
+New text:
+Sub-orchestrator fan-out is disabled here because nested dispatch is illegal.
+The rest of that line stays.
+
+Leave every `@general-purpose` mention alone. Those name the built-in agent, not a dispatch rule.
+
+Verification (run all, paste the output in the handback):
+  rg -c '"general"' .skilled/agents/orchestrate.md .claude/agents/orchestrate.md                      # expect: no output
+  rg -n 'all custom agents use the general subagent type' .skilled/agents/orchestrate.md              # expect: no output
+  rg -n -i -e 'copilot profile' -e 'memory tools' .skilled/agents/orchestrate.md .claude/agents/orchestrate.md  # expect: no output
+  rg -c 'only when the operator invokes it directly' .skilled/agents/orchestrate.md .claude/agents/orchestrate.md  # expect: 1 for each file
+  rg -c '@general-purpose' .skilled/agents/orchestrate.md                                             # expect: 6

@@ -3,7 +3,7 @@ name: sk-git
 description: "Git: numbered worktrees, conventional commits, PRs, merge/rebase, and finish; single-skill workflow guidance with no spec."
 allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
 argument-hint: "[worktree|commit|finish]"
-version: 1.11.11.0
+version: 1.11.12.0
 ---
 
 <!-- Keywords: git-workflow, git-worktree, create-worktree, numbered-worktree, restructure-worktrees, worktree-prefix, wt-branch, worktree-branch, branch-naming-allocator, skilled-branch, branch, commit, conventional-commits, pull-request, PR, merge, rebase, finish-work, integrate-changes, commit-hygiene, workspace-isolation, version-control, github, issues, pr-review, gitkraken, gitlens, gitlens-launchpad, gitlens-commit-composer, cross-platform-pr, multi-provider-issue -->
@@ -319,7 +319,7 @@ Refs: <issue, PR or URL>
 
 The trailer paragraph is the commit's final paragraph, contiguous and separated from the prose
 above it by a blank line. The `Commit-Id:` ordinal is stamped by the `prepare-commit-msg` hook
-and never typed by hand. An amend keeps its id, unless the message is replaced with `-m`, which mints a fresh one. A cherry-pick re-mints a fresh one. A rebase keeps an id only when the replayed message still carries one, and a replayed commit whose message lost its id gets a fresh one. The commit a rebase replaced is recognised as a copy by its author email and author date.
+and never typed by hand. An amend keeps its id, unless the message is replaced with `-m`, which mints a fresh one. A cherry-pick re-mints a fresh one. A rebase re-mints a fresh id on a pick only when the repository asks for ids and git marks the pick with `CHERRY_PICK_HEAD`. The hook then drops the copied id and stamps a new one. A reworded commit, a commit the rebase leaves in place and `git rebase --apply` keep the id the message carried. The commit a rebase replaced is recognised as a copy by its author email and author date.
 
 Use only sections that carry useful information, explain internal terms on first use, and state
 in verification what actually ran and its result.

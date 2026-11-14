@@ -636,7 +636,7 @@ bash .skilled/skills/system-spec-kit/runtime/cli/spec/upgrade-level.sh specs/<tr
 | `progressive-validate.sh` | progressive validation for in-progress work |
 | `quality-audit.sh` | run a quality audit on spec folder content |
 | `archive.sh` | archive completed spec folders into the `z_archive/` beside them, which for a packet in a declared sub-track is the sub-track's own `z_archive/`. `--restore` returns a folder to the place its archive belongs to, and when a live packet already holds its number it lands on the next free number, counting archived packets, through `relocate.mjs`. After an archive or a plain restore the description cache `specs/descriptions.json` is rebuilt when it exists |
-| `relocate.mjs` | move, renumber or re-parent spec packets and rewrite every store that records the path, from `--map <file.json>`, `--from` with `--to`, `--renumber <folder>` or `--declare-subtrack <track>/<name>`. Dry run by default, `--apply` writes |
+| `relocate.mjs` | move, renumber or re-parent spec packets and rewrite every store that records the path, from `--map <file.json>`, `--from` with `--to`, `--renumber <folder>` or `--declare-subtrack <track>/<name>`. Dry run by default, `--apply` writes. `relocate.mjs` exits 3 when every step landed and only a moved packet's own validation printed `RESULT: FAILED`, and a rerun then finds nothing to do |
 | `suggest-subtracks.mjs` | propose a whole-track sub-track map for a flat track, or with `--describe` name the declared sub-track a new packet fits best. Prints the proposal and writes nothing |
 | `test-validation.sh` | test the validation rules themselves |
 

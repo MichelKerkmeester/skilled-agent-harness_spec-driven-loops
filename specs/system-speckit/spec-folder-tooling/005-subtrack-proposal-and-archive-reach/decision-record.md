@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach"
     last_updated_at: "2026-11-14T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Added operator decisions Q010 to Q013 of 2026-11-14 by hand"
+    recent_action: "Added operator decisions Q019 to Q028 of 2026-11-14 by hand"
     next_safe_action: "Review the recorded operator decisions"
     blockers: []
     key_files: []
@@ -49,6 +49,19 @@ _memory:
 | Q013 | Reviewer B findings 1 to 5 are handed to the 008 command surfacing session and are not planned in this packet. | Not stated. | None | spec.md Handed to the 008 session, goal.md log |
 | Q014 | B8 is accepted as a known miss: sub-track requests that name a skill track keep routing to that skill, with system-spec-kit as a passing second candidate. No scorer change and no skill or track name in a signal. | Not stated. | None | 009-proposal-search-and-routing tasks.md T010, goal.md log |
 | Q015 | Branch worktrees/375-subtrack-review-remediation is merged to main and pushed after origin/main is merged into it and the suites rerun. | Not stated. | None | goal.md log |
+| Q016 | The P1 and P2 findings of the two reviews of the finished packet are fixed in three phases: 011 code, 012 feature catalog and playbook, 013 skill documents, changelog and packet records. | Not stated. | None | spec.md Operator Decisions, goal.md D6, children 011 to 013 |
+| Q017 | This session writes the planning documents for phases 011 to 013. | Not stated. The recommended option said the session already holds both reviews and the traced code paths. | Q012 for the planning of phases 011 to 013 | spec.md Operator Decisions |
+| Q018 | The phase 009 routing change gets a review task: phase 013 adds both routing files to the review manifest and reviews the change. | Not stated. | None | 013-skill-docs-and-housekeeping REQ-008 |
+| Q019 | Phase 011 is built now, in a new git worktree: 378, branch worktrees/378-relocate-restore-fixes. | Not stated. | None | 011-relocate-and-restore-fixes |
+| Q020 | DeepSeek V4.1 Flash through dsh implements the phase 011 code. | Not stated. | None | 011-relocate-and-restore-fixes scratch worker reports |
+| Q021 | Reinstall dsh 0.2.2-rc.1 for the phase 011 build, after the global dsh changed to 0.2.2-rc.3. The build called the pinned rc.1 by its absolute path. | Not stated. | None | 011-relocate-and-restore-fixes implementation-summary.md |
+| Q022 | dsh is re-pinned to 0.2.2-rc.3, in a packet of its own outside this one. | The chosen option read: re-pin offline first as hard-rules.json requires, in its own packet; phase 011 stays on rc.1 meanwhile. | None | Not carried in this packet; the re-pin packet is not started |
+| Q023 | The main checkout's uncommitted copies of the phase 011 to 013 planning files are removed before worktree 378 merges into main, not now. | Not stated. | None | The session handoff note of 2026-11-14 |
+| Q024 | This session builds phases 012 and 013. | Not stated. The recommended option said this session holds the phase 011 diff that 013 must describe. | Q012 for the implementation of phases 012 and 013 | 012-catalog-and-playbook-alignment, 013-skill-docs-and-housekeeping |
+| Q025 | The phase 009 routing review in phase 013 is done by Fable 5.2 at high effort through claude2. | Not stated. | None | 013-skill-docs-and-housekeeping REQ-008 |
+| Q026 | Worktree 375 and its local branch worktrees/375-subtrack-review-remediation are removed now. | Not stated. The branch was already merged into main. | None | Done 2026-11-14: `git worktree remove` and `git branch -d` |
+| Q027 | Worktree 378 takes origin/main by merge, not rebase, after origin moved while it waited. The generated trigger index and its fixtures are rebuilt from the merged tree, the suites rerun, and the push to origin/main is asked separately. The primary checkout is not touched while another session's copies are dirty there. | Not stated. | Supersedes the main-checkout merge path that Q023 assumed | Merge commits `54179394ea` and `ce8536f3e2` on worktrees/378-relocate-restore-fixes |
+| Q028 | The word "quote" in the system-spec-kit routing signals stays. The routing review's optional P2 is not applied. | Not stated. The recommended option said removing it changes no top-1 on the 285 labelled rows and would need the full routing gate. | None | 013-skill-docs-and-housekeeping scratch/routing-review.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -285,6 +298,123 @@ Asked through AskUserQuestion on 2026-11-14. Question: what should happen to bra
 Operator answer:
 ```text
 Merge to main and push (Recommended)
+```
+
+### Q016
+
+Asked through AskUserQuestion on 2026-11-14. Question: accept the split of the fixes into phase 011 for code and phase 012 for docs. Options: 011 code and 012 docs, one phase 011, or three phases with docs split into 012 catalog and playbook and 013 skill documents, references, changelog and READMEs.
+
+Operator answer:
+```text
+Three phases
+```
+
+### Q017
+
+Asked through AskUserQuestion on 2026-11-14. Question: who writes the planning documents for the new phases. Options: this session, or Fable 5.2 high through claude2 as Q012 says.
+
+Operator answer:
+```text
+This session (Recommended)
+```
+
+### Q018
+
+Asked through AskUserQuestion on 2026-11-14. Question: how the plan handles the phase 009 routing change that no reviewer judged. Options: add a review task, or accept it as reviewed.
+
+Operator answer:
+```text
+Add a review task (Recommended)
+```
+
+### Q019
+
+Asked through AskUserQuestion on 2026-11-14. Question: start building phase 011, and where. Options: yes in a new worktree, yes on the current branch, or not yet.
+
+Operator answer:
+```text
+Yes, new worktree (Recommended)
+```
+
+### Q020
+
+Asked through AskUserQuestion on 2026-11-14. Question: who implements the phase 011 code. Options: DeepSeek via dsh, or this session.
+
+Operator answer:
+```text
+DeepSeek via dsh (Recommended)
+```
+
+### Q021
+
+Asked through AskUserQuestion on 2026-11-14. Question: the global dsh became 0.2.2-rc.3 while the pin requires 0.2.2-rc.1, so how does the phase 011 build proceed. Options: reinstall rc.1, this session builds, or Pi with OpenCode Go.
+
+Operator answer:
+```text
+Reinstall rc.1 (Recommended)
+```
+
+### Q022
+
+Asked through AskUserQuestion on 2026-11-14. Question: what happens to the second dsh install at 0.2.2-rc.3 that shadows the pinned rc.1 in PATH. Options: leave it for now, remove the copy, or re-pin to rc.3.
+
+Operator answer:
+```text
+Re-pin to rc.3
+```
+
+### Q023
+
+Asked through AskUserQuestion on 2026-11-14. Question: what to do with the uncommitted copies of the phase 011 to 013 planning files in the main checkout, already committed in worktree 378. Options: remove before merge, or remove them now.
+
+Operator answer:
+```text
+Remove before merge (Recommended)
+```
+
+### Q024
+
+Asked through AskUserQuestion on 2026-11-14. Question: who builds the documentation phases 012 and 013. Options: this session, DeepSeek via dsh, or Fable 5.2 via claude2.
+
+Operator answer:
+```text
+This session (Recommended)
+```
+
+### Q025
+
+Asked through AskUserQuestion on 2026-11-14. Question: who does the phase 013 review of the phase 009 routing change. Options: a fresh Fable 5.2 high, or this session.
+
+Operator answer:
+```text
+use claude2 for fable 5.2 high
+```
+
+### Q026
+
+Asked through AskUserQuestion on 2026-11-14. Question: remove worktree 375 and branch worktrees/375-subtrack-review-remediation, already merged into main. Options: remove now, or leave it for now.
+
+Operator answer:
+```text
+Remove now (Recommended)
+```
+
+### Q027
+
+Asked through AskUserQuestion on 2026-11-14. Question: worktree 378 is behind origin/main, which moved 27 commits, and they overlap only in the generated trigger-index files; how should 378 reach main. Options: merge origin into 378, rebase 378 onto origin, or wait for the other session.
+
+Operator answer:
+```text
+Merge origin into 378 (Recommended)
+```
+
+### Q028
+
+Asked through AskUserQuestion on 2026-11-14. Question: remove the word "quote" from the system-spec-kit routing signals, the routing review's optional P2. Options: leave it, or remove it in a packet of its own.
+
+Operator answer:
+```text
+Leave it (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

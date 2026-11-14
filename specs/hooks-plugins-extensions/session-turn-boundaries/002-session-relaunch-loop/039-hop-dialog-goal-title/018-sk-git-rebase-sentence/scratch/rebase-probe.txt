@@ -1,0 +1,38 @@
+git version: 2.50.1
+
+CASE: pick onto a moved base
+  git version: 2.50.1
+  id before: 0000502
+  CHERRY_PICK_HEAD seen by the hook: yes (hook runs: 1)
+  id after: 0000503
+  outcome: fresh
+  hash changed: yes (62750e0 -> e00ec1e)
+  hook: CHERRY_PICK_HEAD=1 source=message
+
+CASE: unchanged leading commit in an interactive rebase
+  git version: 2.50.1
+  id before: 0000601
+  CHERRY_PICK_HEAD seen by the hook: no (hook runs: 0)
+  id after: 0000601
+  outcome: kept
+  hash changed: no (b487ce8)
+  hook: did not run
+
+CASE: reworded commit
+  git version: 2.50.1
+  id before: 0000701
+  CHERRY_PICK_HEAD seen by the hook: no (hook runs: 1)
+  id after: 0000701
+  outcome: kept
+  hash changed: yes (f255342 -> 0b85c9d)
+  hook: CHERRY_PICK_HEAD=0 source=commit
+
+CASE: rebase --apply
+  git version: 2.50.1
+  id before: 0000802
+  CHERRY_PICK_HEAD seen by the hook: no (hook runs: 0)
+  id after: 0000802
+  outcome: kept
+  hash changed: yes (3cffa9f -> a4bcdfb)
+  hook: did not run
+

@@ -1,0 +1,8 @@
+$ validate.sh 004-wrapper-change-notice --strict
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+exit=0
+$ validate.sh 013-conformance-stamp-pin --strict
+Summary: Errors: 0  Warnings: 0
+RESULT: PASSED
+exit=0

@@ -1,0 +1,15 @@
+FAIL the playbook copies the helper and does not link it
+FAIL the goal switch sentence names both fields
+FAIL the playbook states the copy
+FAIL the playbook names the wrapper-changed log line
+FAIL the playbook names the ended-goal mark
+FAIL the playbook names the missing-transcript notice
+FAIL the catalog names the wrapper-changed log line
+FAIL the catalog names the deferredAt stamp
+FAIL the catalog names the ended-goal mark
+FAIL the catalog names the missing-transcript notice
+FAIL the catalog names the record with no handoff
+FAIL the catalog names the goal fallback bound
+FAIL 1469 citations: lines=2 marked=
+FAIL 183 citations: lines=10 marked=
+checks: 14, failed: 14

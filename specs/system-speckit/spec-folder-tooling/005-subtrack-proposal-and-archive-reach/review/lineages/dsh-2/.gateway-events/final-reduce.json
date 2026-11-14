@@ -1,0 +1,15 @@
+{
+  "registryPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review/lineages/dsh-2/deep-review-findings-registry.json",
+  "dashboardPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review/lineages/dsh-2/deep-review-dashboard.md",
+  "strategyPath": "/Users/michelkerkmeester/MEGA/Development/Skilled/specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/review/lineages/dsh-2/deep-review-strategy.md",
+  "openFindingsCount": 15,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.9677,
+  "graphConvergenceScore": 0,
+  "searchDebtCount": 0,
+  "corruptionCount": 0,
+  "strategyWarning": null,
+  "resourceMapPath": null,
+  "resourceMapSkipped": null,
+  "resourceMapSkipReason": null
+}
