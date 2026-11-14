@@ -1,5 +1,5 @@
 {
-  "manifestHash": "ced48907e702000eea8df15754eb7ace4bcd4013143a396278a23715c47faccb",
+  "manifestHash": "e9efc10eaeaa41c819ba8b6ab710e628981223de2fc59addf195e4b5c9b11c82",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -107504,6 +107504,9 @@
     "sk code skilled 2 2 1 0": [
       "sk-code-skilled 2.2.1.0"
     ],
+    "sk code skilled 2 2 2 0": [
+      "sk-code-skilled 2.2.2.0"
+    ],
     "sk code skilled alignment": [
       "sk-code-skilled alignment"
     ],
@@ -107689,6 +107692,9 @@
     ],
     "sk code skilled v2 2 1 0": [
       "sk-code-skilled v2.2.1.0"
+    ],
+    "sk code skilled v2 2 2 0": [
+      "sk-code-skilled v2.2.2.0"
     ],
     "sk code smart routing": [
       "sk-code smart routing"
@@ -118217,6 +118223,9 @@
     ],
     "stale exclusion audit tool ownership": [
       "stale exclusion audit tool ownership"
+    ],
+    "stale expected test count": [
+      "stale expected test count"
     ],
     "stale file listing": [
       "stale file listing"

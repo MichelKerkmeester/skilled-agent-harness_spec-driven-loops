@@ -1,5 +1,5 @@
 {
-  "corpusHash": "a30f4b3cb766ecad6fabca28d1a82c0d19c6df25dc303184c9fea6f2decffe8a",
+  "corpusHash": "cad6dead2dd2d4f298787f869078bbe4fb0fb45107268bc2c8eaaf3543d7369a",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27150,
+  "includedPathCount": 27151,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -3442,6 +3442,7 @@
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.1.9.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.2.0.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.2.1.0.md",
+    ".skilled/skills/sk-code/sk-code-skilled/changelog/v2.2.2.0.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/code-quality-gate.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/implementation-authoring.md",
     ".skilled/skills/sk-code/sk-code-skilled/manual-testing-playbook/authoring-verification/verification-alignment.md",
@@ -27182,7 +27183,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "ced48907e702000eea8df15754eb7ace4bcd4013143a396278a23715c47faccb",
+  "manifestHash": "e9efc10eaeaa41c819ba8b6ab710e628981223de2fc59addf195e4b5c9b11c82",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
