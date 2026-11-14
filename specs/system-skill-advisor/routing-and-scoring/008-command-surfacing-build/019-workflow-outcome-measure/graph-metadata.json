@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "workflow outcome measure",
+      "phase 19 workflow outcome measure",
+      "workflow path share",
+      "followed a real workflow against improvising",
+      "workflow outcome measure plan",
+      "workflow outcome measure tasks",
+      "workflow outcome measure acceptance criteria"
+    ],
+    "key_topics": [
+      "workflow",
+      "outcome",
+      "measure",
+      "phase",
+      "path",
+      "share",
+      "followed",
+      "real",
+      "against",
+      "improvising",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+      ".skilled/hooks/shared/session-readers/index.mjs",
+      ".claude/commands/create/readme.md",
+      ".skilled/skills/sk-doc/SKILL.md",
+      ".skilled/skills/sk-doc/ROUTER.md",
+      ".skilled/skills/system-spec-kit/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-bridges.generated.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/command-bridges/command-bridges.generated.json",
+        "source": "derived"
+      },
+      {
+        "name": "score-command-transcripts.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-transcript-score.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/index.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Open Questions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "One Markdown",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The scorer reports how often a command was offered, seen and started, but nothing it prints says whether the model loaded the command's own workflow or the owning skill's own workflow before it acted",
+    "created_at": "2026-11-13T23:30:09Z",
+    "last_save_at": "2026-11-14T04:46:37.748Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md"
+    ],
+    "source_fingerprint": "sha256:7f806f9bec6342a97227988319034af70a40d106f280bc5b2cae1f121064c5e6",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "8ca9a2c497ce94e9ffb993f5c7b2e37d5b719af29da569a64ceca124751988cc",
+      "plan.md": "52cbc6c1c3559a906ed327126b4ff526adbc4fa4671aa7422da40c401c1bfe20",
+      "tasks.md": "ae024c831abac5036103f0028534c643f505cdeb836e4d2bafcaed42de218808"
+    },
+    "last_active_at": null
+  }
+}
