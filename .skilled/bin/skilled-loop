@@ -1466,9 +1466,17 @@ while true; do
       if [[ "$runtime" == 'codex' ]]; then
         launch_arguments=(--no-daemon "${launch_arguments[@]}")
       fi
-      if [[ "$(wrapper_checksum)" != "$started_wrapper_checksum" ]]; then
+      # A read that comes back empty is not a change: a checkout can replace this file for a
+      # moment, and only a checksum that was read and differs proves the code on disk moved.
+      hop_wrapper_checksum=$(wrapper_checksum)
+      if [[ -n "$hop_wrapper_checksum" && "$hop_wrapper_checksum" != "$started_wrapper_checksum" ]]; then
         printf '%s\n' \
           'note: skilled-loop changed on disk after this loop started, restart the wrapper to run the new code' >&2
+        node -e '
+          const [corePath, loopId] = process.argv.slice(1);
+          const { appendLog } = require(corePath);
+          appendLog("wrapper-changed", { loopId });
+        ' -- "$relaunch_core" "$SKILLED_LOOP_ID" >/dev/null 2>&1 || true
       fi
       ;;
     1)

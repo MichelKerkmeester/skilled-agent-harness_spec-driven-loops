@@ -214,6 +214,13 @@ const wrapperAppendInvocation = process.env.WRAPPER_APPEND_ON_INVOCATION;
 if (wrapperAppendInvocation === String(invocation)) {
   fs.appendFileSync(process.env.WRAPPER_APPEND_PATH, "# appended while the loop runs\\n");
 }
+// A checkout can replace the wrapper for a moment, so the hop-time checksum read can fail
+// on a file that did not change. Bash keeps the descriptor it opened, so only the fresh
+// read fails and the hop still goes ahead.
+const wrapperUnreadableInvocation = process.env.WRAPPER_MAKE_UNREADABLE_ON_INVOCATION;
+if (wrapperUnreadableInvocation === String(invocation)) {
+  fs.chmodSync(process.env.WRAPPER_UNREADABLE_PATH, 0o000);
+}
 const exitCodes = (process.env.STUB_EXIT_CODES || "0").split(",").map(Number);
 process.exitCode = exitCodes[Math.min(invocation - 1, exitCodes.length - 1)];
 `;
