@@ -19,15 +19,17 @@
     "proper",
     "workflow"
   ],
-  "lastUpdated": "2026-11-12T20:58:41.808Z",
+  "lastUpdated": "2026-11-14T10:40:51.468Z",
   "specId": "008",
   "folderSlug": "command-surfacing-build",
   "parentChain": [
     "system-skill-advisor",
     "routing-and-scoring"
   ],
-  "memorySequence": 1,
+  "memorySequence": 3,
   "memoryNameHistory": [
-    "12-11-26_21-58__rebased-the-branch-onto-main-closed-phase-003.md"
+    "12-11-26_21-58__rebased-the-branch-onto-main-closed-phase-003.md",
+    "13-11-26_20-07__the-closing-review-round-is-alive-both-lineages.md",
+    "14-11-26_11-40__everything-is-progressing-fable-review-bgsamju7q.md"
   ]
 }
