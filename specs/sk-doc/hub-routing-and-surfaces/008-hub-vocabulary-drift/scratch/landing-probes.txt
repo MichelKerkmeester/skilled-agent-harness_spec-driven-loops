@@ -1,0 +1,20 @@
+# Advisor top-1 per probe prompt, pinned regime (force-local, semantic lane off), 2026-11-14
+# columns: main 02d415cee9 | landing | landing top-3 | prompt
+sk-code	sk-code	sk-code:0.8384 sk-doc:0.8200 mcp-tooling:0.8200	add a --confirm flag to the deploy script
+null	null		the confirm flag is ignored by the release command
+null	null		confirm the tests pass before merging
+null	null		the agent definition files are out of sync across runtimes
+sk-doc	sk-doc	sk-doc:0.8200 mcp-tooling:0.8200 sk-design:0.8200	update the data models for the user table
+sk-doc	sk-doc	sk-doc:0.8200 mcp-tooling:0.8200 sk-git:0.8200	my stop hook fails after the update
+system-skill-advisor	system-skill-advisor	system-skill-advisor:0.8539 system-deep-loop:0.8200	everything in the skill graph is stale
+sk-doc	sk-doc	sk-doc:0.8690 system-spec-kit:0.8200	create a new slash command with a confirm flag
+sk-doc	sk-doc	sk-doc:0.8200 system-spec-kit:0.8200 sk-design:0.8200	write an agent definition for a reviewer persona
+sk-doc	sk-doc	sk-doc:0.9257 sk-prompt:0.8200 system-skill-advisor:0.8200	add a prompt shortcut command for releases
+null	null		show me before and after my rewrite of the readme
+sk-doc	sk-doc	sk-doc:0.9238 system-spec-kit:0.9152 mcp-tooling:0.8200	write an intent file for this session goal
+system-deep-loop	system-deep-loop	system-deep-loop:0.8490	find out everything about vector databases
+system-deep-loop	system-deep-loop	system-deep-loop:0.8482	keep reviewing until findings stop changing
+system-deep-loop	system-deep-loop	system-deep-loop:0.8200 sk-design:0.8200	ask several models to deliberate on this design
+sk-prompt	sk-prompt	sk-prompt:0.8200	turn off auto or confirm flag prompts in the installer
+sk-doc	sk-doc	sk-doc:0.8200 create:agent:0.8200	we need a new agent definition format for the api schema
+sk-doc	sk-doc	sk-doc:0.8611 sk-prompt:0.8200	reuse a prompt shortcut library from another repo

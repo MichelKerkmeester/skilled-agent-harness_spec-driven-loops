@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "shared blocks and retired mechanisms",
+      "phase 7 shared blocks and retired mechanisms",
+      "speckit lifecycle shared include",
+      "speckit retired vocabulary and dead paths",
+      "shared blocks and retired mechanisms plan",
+      "shared blocks and retired mechanisms tasks",
+      "shared blocks and retired mechanisms acceptance criteria",
+      "shared blocks and retired mechanisms implementation summary"
+    ],
+    "key_topics": [
+      "shared",
+      "blocks",
+      "retired",
+      "mechanisms",
+      "phase",
+      "speckit",
+      "lifecycle",
+      "include",
+      "vocabulary",
+      "dead",
+      "paths",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/commands/speckit/assets/speckit-lifecycle-shared.yaml",
+      ".skilled/commands/speckit/assets/speckit-plan.yaml",
+      ".skilled/commands/speckit/plan.md",
+      ".skilled/skills/system-spec-kit/command-metadata.json",
+      ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js",
+      ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/goal-hook/goal-hook.md",
+      ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-folder-literal-naming-ai-derived-slugs.md",
+      ".skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh",
+      ".skilled/commands/speckit/assets/speckit-implement.yaml",
+      ".skilled/commands/speckit/assets/speckit-complete.yaml",
+      ".skilled/hooks/goal/bin/goal.cjs",
+      ".skilled/skills/system-spec-kit/shared/tests/boolean-expr.test.ts",
+      ".skilled/commands/speckit/implement.md",
+      ".skilled/commands/speckit/complete.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-lifecycle-shared.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-lifecycle-shared.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-plan.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-plan.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-goal-offer-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "test-phase-command-workflows.js",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js",
+        "source": "derived"
+      },
+      {
+        "name": "goal-hook.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-claude-code/manual-testing-playbook/goal-hook/goal-hook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec-folder-literal-naming-ai-derived-slugs.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/tooling-and-scripts/spec-folder-literal-naming-ai-derived-slugs.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-prerequisites.sh",
+        "kind": "script",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/setup/check-prerequisites.sh",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-implement.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-implement.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-complete.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-complete.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "goal.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/bin/goal.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "boolean-expr.test.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/shared/tests/boolean-expr.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implement.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/implement.md",
+        "source": "derived"
+      },
+      {
+        "name": "complete.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/complete.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An agent that runs `/speckit:plan`, `/speckit:implement` or `/speckit:complete` reads the same goal block, checkpoint options and documentation levels three times, and the copies already disagree",
+    "created_at": "2026-11-14T11:33:24Z",
+    "last_save_at": "2026-11-14T16:15:33.268Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9471ef782c17c4c8810a91c720543ccd4478e0aa3a02bf0ab279eb3008f4ac11",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f4d63c7287d74f2f3d0873f4e36da24536ca96c310465c72201a72b88dbc1b91",
+      "plan.md": "a7868923a779a90fba536f985dc09f67b4050a29d6fe02d5fac54fce74c2b139",
+      "tasks.md": "475229fb573ffe46305229feeccc1ea314898cb3d29c8e677ed264deba53f66f",
+      "implementation-summary.md": "cddcdbfb81073839de335aad965a759af184bf89f7aa0138f1fe988304f157d4"
+    },
+    "last_active_at": null
+  }
+}

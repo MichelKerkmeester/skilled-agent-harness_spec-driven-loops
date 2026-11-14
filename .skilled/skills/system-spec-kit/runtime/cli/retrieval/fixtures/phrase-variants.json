@@ -1,5 +1,5 @@
 {
-  "manifestHash": "88299af07ac17d48c836d1546dbf73d59743aa1371d3d96e9a6aaef36fef1c08",
+  "manifestHash": "0250dffa1a88da8b91160e3acf796ac7b900e7221d64740961e0402302250e42",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8156,6 +8156,9 @@
     "add task to list": [
       "add task to list"
     ],
+    "add the nine hub router json phrases": [
+      "add the nine hub router json phrases"
+    ],
     "add union alpha": [
       "add union alpha"
     ],
@@ -9971,6 +9974,9 @@
     "agent alignment audit": [
       "agent alignment audit"
     ],
+    "agent alignment follow ups phase parent spec": [
+      "agent alignment follow ups phase parent spec"
+    ],
     "agent alignment implementation summary": [
       "agent alignment implementation summary"
     ],
@@ -9988,6 +9994,18 @@
     ],
     "agent authoring reference index": [
       "agent authoring reference index"
+    ],
+    "agent authoring registry step": [
+      "agent authoring registry step"
+    ],
+    "agent authoring registry step implementation summary": [
+      "agent authoring registry step implementation summary"
+    ],
+    "agent authoring registry step plan": [
+      "agent authoring registry step plan"
+    ],
+    "agent authoring registry step tasks": [
+      "agent authoring registry step tasks"
     ],
     "agent avoidance anti patterns": [
       "agent avoidance anti-patterns"
@@ -10478,6 +10496,9 @@
     ],
     "agent registry and generated rosters tasks": [
       "agent registry and generated rosters tasks"
+    ],
+    "agent registry step": [
+      "agent registry step"
     ],
     "agent routing documentation": [
       "agent routing documentation"
@@ -26557,6 +26578,21 @@
     "code review 015 code graph advisor refinement pt 01 changelog": [
       "code review 015 code graph advisor refinement pt 01 changelog"
     ],
+    "code review and dispatch policy": [
+      "code review and dispatch policy"
+    ],
+    "code review and dispatch policy acceptance criteria": [
+      "code review and dispatch policy acceptance criteria"
+    ],
+    "code review and dispatch policy implementation summary": [
+      "code review and dispatch policy implementation summary"
+    ],
+    "code review and dispatch policy plan": [
+      "code review and dispatch policy plan"
+    ],
+    "code review and dispatch policy tasks": [
+      "code review and dispatch policy tasks"
+    ],
     "code review benchmark index": [
       "code-review benchmark index"
     ],
@@ -38971,6 +39007,18 @@
     "deepseek harness persona": [
       "DeepSeek Harness persona"
     ],
+    "deepseek harness persona probe": [
+      "deepseek harness persona probe"
+    ],
+    "deepseek harness persona probe implementation summary": [
+      "deepseek harness persona probe implementation summary"
+    ],
+    "deepseek harness persona probe plan": [
+      "deepseek harness persona probe plan"
+    ],
+    "deepseek harness persona probe tasks": [
+      "deepseek harness persona probe tasks"
+    ],
     "deepseek harness providers": [
       "deepseek harness providers"
     ],
@@ -44870,6 +44918,18 @@
     "dsh quality context": [
       "dsh quality context"
     ],
+    "dsh rc3 repin": [
+      "dsh rc3 repin"
+    ],
+    "dsh rc3 repin implementation summary": [
+      "dsh rc3 repin implementation summary"
+    ],
+    "dsh rc3 repin plan": [
+      "dsh rc3 repin plan"
+    ],
+    "dsh rc3 repin tasks": [
+      "dsh rc3 repin tasks"
+    ],
     "dsh release probe": [
       "dsh release probe"
     ],
@@ -47723,6 +47783,21 @@
     "execution methods reference": [
       "execution methods reference"
     ],
+    "execution mode and autopilot contract": [
+      "execution mode and autopilot contract"
+    ],
+    "execution mode and autopilot contract acceptance criteria": [
+      "execution mode and autopilot contract acceptance criteria"
+    ],
+    "execution mode and autopilot contract implementation summary": [
+      "execution mode and autopilot contract implementation summary"
+    ],
+    "execution mode and autopilot contract plan": [
+      "execution mode and autopilot contract plan"
+    ],
+    "execution mode and autopilot contract tasks": [
+      "execution mode and autopilot contract tasks"
+    ],
     "execution mode branch closure gate": [
       "execution mode branch closure gate"
     ],
@@ -49541,6 +49616,18 @@
     ],
     "fanout parity packet complete": [
       "fanout parity packet complete"
+    ],
+    "fanout persona tool mapping": [
+      "fanout persona tool mapping"
+    ],
+    "fanout persona tool mapping implementation summary": [
+      "fanout persona tool mapping implementation summary"
+    ],
+    "fanout persona tool mapping plan": [
+      "fanout persona tool mapping plan"
+    ],
+    "fanout persona tool mapping tasks": [
+      "fanout persona tool mapping tasks"
     ],
     "fanout playbook paths": [
       "fanout playbook paths"
@@ -59381,8 +59468,20 @@
     "hub vocabulary check": [
       "hub vocabulary check"
     ],
+    "hub vocabulary drift": [
+      "hub vocabulary drift"
+    ],
     "hub vocabulary drift check": [
       "hub vocabulary drift check"
+    ],
+    "hub vocabulary drift implementation summary": [
+      "hub vocabulary drift implementation summary"
+    ],
+    "hub vocabulary drift plan": [
+      "hub vocabulary drift plan"
+    ],
+    "hub vocabulary drift tasks": [
+      "hub vocabulary drift tasks"
     ],
     "hub vocabulary source": [
       "hub vocabulary source"
@@ -77779,6 +77878,18 @@
     "orchestrate rule 7 tasks": [
       "orchestrate rule 7 tasks"
     ],
+    "orchestrate task package agent names": [
+      "orchestrate task package agent names"
+    ],
+    "orchestrate task package agent names implementation summary": [
+      "orchestrate task package agent names implementation summary"
+    ],
+    "orchestrate task package agent names plan": [
+      "orchestrate task package agent names plan"
+    ],
+    "orchestrate task package agent names tasks": [
+      "orchestrate task package agent names tasks"
+    ],
     "orchestrated sub session worktree sharing": [
       "orchestrated sub-session worktree sharing"
     ],
@@ -80849,6 +80960,9 @@
     "phase 1 doc version contract": [
       "phase 1 doc version contract"
     ],
+    "phase 1 fanout persona tool mapping": [
+      "phase 1 fanout persona tool mapping"
+    ],
     "phase 1 fix agent contract contradictions": [
       "phase 1 fix agent contract contradictions"
     ],
@@ -80950,6 +81064,9 @@
     ],
     "phase 1 spec template anchor nesting": [
       "phase 1 spec template anchor nesting"
+    ],
+    "phase 1 step order acceptance after development": [
+      "phase 1 step order acceptance after development"
     ],
     "phase 1 sweet search research": [
       "phase 1 sweet search research"
@@ -81461,6 +81578,9 @@
     "phase 17 closure gate": [
       "phase 17 closure gate"
     ],
+    "phase 17 dsh rc3 repin": [
+      "phase 17 dsh rc3 repin"
+    ],
     "phase 17 gold checker": [
       "phase 17 gold checker"
     ],
@@ -81623,6 +81743,9 @@
     "phase 2 deep ai council": [
       "phase 2 deep ai council"
     ],
+    "phase 2 deepseek harness persona probe": [
+      "phase 2 deepseek harness persona probe"
+    ],
     "phase 2 doctor git setup": [
       "phase 2 doctor git setup"
     ],
@@ -81715,6 +81838,9 @@
     ],
     "phase 2 removal plan": [
       "phase 2 removal plan"
+    ],
+    "phase 2 required artifact gates": [
+      "phase 2 required artifact gates"
     ],
     "phase 2 resume purpose row": [
       "phase 2 resume purpose row"
@@ -82058,6 +82184,9 @@
     "phase 3 example tolerant drift guards": [
       "phase 3 example tolerant drift guards"
     ],
+    "phase 3 execution mode and autopilot contract": [
+      "phase 3 execution mode and autopilot contract"
+    ],
     "phase 3 feature catalog findings": [
       "phase 3 feature catalog findings"
     ],
@@ -82105,6 +82234,9 @@
     ],
     "phase 3 nested skilled root": [
       "phase 3 nested skilled root"
+    ],
+    "phase 3 orchestrate task package agent names": [
+      "phase 3 orchestrate task package agent names"
     ],
     "phase 3 plain chat command reach": [
       "phase 3 plain chat command reach"
@@ -82238,6 +82370,9 @@
     "phase 4 advisor hooks relaunch": [
       "phase 4 advisor hooks relaunch"
     ],
+    "phase 4 agent authoring registry step": [
+      "phase 4 agent authoring registry step"
+    ],
     "phase 4 agent template conformance and drift check": [
       "phase 4 agent template conformance and drift check"
     ],
@@ -82270,6 +82405,9 @@
     ],
     "phase 4 closure gate": [
       "phase 4 closure gate"
+    ],
+    "phase 4 code review and dispatch policy": [
+      "phase 4 code review and dispatch policy"
     ],
     "phase 4 command contract and readme": [
       "phase 4 command contract and readme"
@@ -82586,6 +82724,9 @@
     "phase 5 recommendation contract and brief": [
       "phase 5 recommendation contract and brief"
     ],
+    "phase 5 resume detection and single workflow": [
+      "phase 5 resume detection and single workflow"
+    ],
     "phase 5 review output additions": [
       "phase 5 review output additions"
     ],
@@ -82829,6 +82970,9 @@
     "phase 6 runtime libraries and tests": [
       "phase 6 runtime libraries and tests"
     ],
+    "phase 6 save search handoff contracts": [
+      "phase 6 save search handoff contracts"
+    ],
     "phase 6 sk code": [
       "phase 6 sk code"
     ],
@@ -83000,6 +83144,9 @@
     "phase 7 series parent review and hardening research": [
       "phase 7 series parent review and hardening research"
     ],
+    "phase 7 shared blocks and retired mechanisms": [
+      "phase 7 shared blocks and retired mechanisms"
+    ],
     "phase 7 shared references and detection order": [
       "phase 7 shared references and detection order"
     ],
@@ -83131,6 +83278,9 @@
     ],
     "phase 8 review advisories": [
       "phase 8 review advisories"
+    ],
+    "phase 8 router readme presentation alignment": [
+      "phase 8 router readme presentation alignment"
     ],
     "phase 8 runner limit closeout": [
       "phase 8 runner limit closeout"
@@ -94078,6 +94228,9 @@
     "repin decision record": [
       "repin decision record"
     ],
+    "repin dsh to rc 3": [
+      "repin dsh to rc.3"
+    ],
     "repin goal": [
       "repin goal"
     ],
@@ -94627,6 +94780,21 @@
     ],
     "require critique before convergence": [
       "require critique before convergence"
+    ],
+    "required artifact gates": [
+      "required artifact gates"
+    ],
+    "required artifact gates acceptance criteria": [
+      "required artifact gates acceptance criteria"
+    ],
+    "required artifact gates implementation summary": [
+      "required artifact gates implementation summary"
+    ],
+    "required artifact gates plan": [
+      "required artifact gates plan"
+    ],
+    "required artifact gates tasks": [
+      "required artifact gates tasks"
     ],
     "required ci message check": [
       "required ci message check"
@@ -96133,6 +96301,21 @@
     ],
     "resume continue devin live run": [
       "resume-continue Devin live run"
+    ],
+    "resume detection and single workflow": [
+      "resume detection and single workflow"
+    ],
+    "resume detection and single workflow acceptance criteria": [
+      "resume detection and single workflow acceptance criteria"
+    ],
+    "resume detection and single workflow implementation summary": [
+      "resume detection and single workflow implementation summary"
+    ],
+    "resume detection and single workflow plan": [
+      "resume detection and single workflow plan"
+    ],
+    "resume detection and single workflow tasks": [
+      "resume detection and single workflow tasks"
     ],
     "resume directive lifecycle phase 018": [
       "resume directive lifecycle phase 018"
@@ -98737,6 +98920,21 @@
     "router read recount": [
       "router read recount"
     ],
+    "router readme presentation alignment": [
+      "router readme presentation alignment"
+    ],
+    "router readme presentation alignment acceptance criteria": [
+      "router readme presentation alignment acceptance criteria"
+    ],
+    "router readme presentation alignment implementation summary": [
+      "router readme presentation alignment implementation summary"
+    ],
+    "router readme presentation alignment plan": [
+      "router readme presentation alignment plan"
+    ],
+    "router readme presentation alignment tasks": [
+      "router readme presentation alignment tasks"
+    ],
     "router references": [
       "router references"
     ],
@@ -100789,6 +100987,21 @@
     ],
     "save review context": [
       "save review context"
+    ],
+    "save search handoff contracts": [
+      "save search handoff contracts"
+    ],
+    "save search handoff contracts acceptance criteria": [
+      "save search handoff contracts acceptance criteria"
+    ],
+    "save search handoff contracts implementation summary": [
+      "save search handoff contracts implementation summary"
+    ],
+    "save search handoff contracts plan": [
+      "save search handoff contracts plan"
+    ],
+    "save search handoff contracts tasks": [
+      "save search handoff contracts tasks"
     ],
     "save time trigger index staleness": [
       "save time trigger index staleness"
@@ -103760,6 +103973,21 @@
     ],
     "shared benchmark artifact writer": [
       "shared benchmark artifact writer"
+    ],
+    "shared blocks and retired mechanisms": [
+      "shared blocks and retired mechanisms"
+    ],
+    "shared blocks and retired mechanisms acceptance criteria": [
+      "shared blocks and retired mechanisms acceptance criteria"
+    ],
+    "shared blocks and retired mechanisms implementation summary": [
+      "shared blocks and retired mechanisms implementation summary"
+    ],
+    "shared blocks and retired mechanisms plan": [
+      "shared blocks and retired mechanisms plan"
+    ],
+    "shared blocks and retired mechanisms tasks": [
+      "shared blocks and retired mechanisms tasks"
     ],
     "shared checkout churn detection": [
       "shared checkout churn detection"
@@ -107522,6 +107750,9 @@
     "sk create agent 1 0 7 0": [
       "sk-create-agent 1.0.7.0"
     ],
+    "sk create agent 1 0 8 0": [
+      "sk-create-agent 1.0.8.0"
+    ],
     "sk create agent implementation summary": [
       "sk create agent implementation summary"
     ],
@@ -107569,6 +107800,9 @@
     ],
     "sk create agent v1 0 7 0": [
       "sk-create-agent v1.0.7.0"
+    ],
+    "sk create agent v1 0 8 0": [
+      "sk-create-agent v1.0.8.0"
     ],
     "sk create benchmark": [
       "sk create benchmark"
@@ -116613,6 +116847,12 @@
     "speckit command and agent alignment tasks": [
       "speckit command and agent alignment tasks"
     ],
+    "speckit command drift remediation": [
+      "speckit command drift remediation"
+    ],
+    "speckit command gates step order drift phase parent spec": [
+      "speckit command gates step order drift phase parent spec"
+    ],
     "speckit command integration implementation summary": [
       "speckit command integration implementation summary"
     ],
@@ -116624,6 +116864,9 @@
     ],
     "speckit command presentation markdown": [
       "speckit command presentation markdown"
+    ],
+    "speckit command workflow logic fixes": [
+      "speckit command workflow logic fixes"
     ],
     "speckit commands author presentation markdown": [
       "speckit commands author presentation markdown"
@@ -116786,6 +117029,9 @@
     ],
     "speckit level review path plan": [
       "SPECKIT_LEVEL review path plan"
+    ],
+    "speckit lifecycle shared include": [
+      "speckit lifecycle shared include"
     ],
     "speckit memory automatic drift self healing changelog": [
       "speckit memory automatic drift self healing changelog"
@@ -116988,6 +117234,9 @@
     "speckit resume": [
       "speckit:resume"
     ],
+    "speckit retired vocabulary and dead paths": [
+      "speckit retired vocabulary and dead paths"
+    ],
     "speckit retrieval class routing benchmark": [
       "SPECKIT_RETRIEVAL_CLASS_ROUTING benchmark"
     ],
@@ -117119,6 +117368,9 @@
     ],
     "speckit unattended": [
       "speckit unattended"
+    ],
+    "speckit workflow gates and step order": [
+      "speckit workflow gates and step order"
     ],
     "speckit workflow scenarios": [
       "speckit workflow scenarios"
@@ -118351,6 +118603,21 @@
     ],
     "step fanout spawn": [
       "step_fanout_spawn"
+    ],
+    "step order acceptance after development": [
+      "step order acceptance after development"
+    ],
+    "step order acceptance after development acceptance criteria": [
+      "step order acceptance after development acceptance criteria"
+    ],
+    "step order acceptance after development implementation summary": [
+      "step order acceptance after development implementation summary"
+    ],
+    "step order acceptance after development plan": [
+      "step order acceptance after development plan"
+    ],
+    "step order acceptance after development tasks": [
+      "step order acceptance after development tasks"
     ],
     "step refresh lineage context": [
       "step_refresh_lineage_context"

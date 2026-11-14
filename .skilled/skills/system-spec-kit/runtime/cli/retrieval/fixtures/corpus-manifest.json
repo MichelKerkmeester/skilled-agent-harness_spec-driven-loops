@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d2783b5c9c2719b220a1b6fbf5d6600af6e8e35a45a31c0b04ecc7da3f50c58e",
+  "corpusHash": "0cf5246d05ce3e569c55e0a23f803d9a9a84e4f5676fbd078e273711174bb5ae",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26984,
+  "includedPathCount": 27051,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -6668,6 +6668,7 @@
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.5.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.6.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.7.0.md",
+    ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md",
     ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/body-validation/leaf-denies-delegation.md",
     ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/body-validation/required-agent-sections.md",
     ".skilled/skills/sk-doc/sk-create-agent/manual-testing-playbook/component-choice/named-runtime-persona.md",
@@ -9444,6 +9445,23 @@
     "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/tasks.md",
     "specs/agents/006-agent-contract-and-registry-alignment/goal.md",
     "specs/agents/006-agent-contract-and-registry-alignment/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/implementation-summary.md",
@@ -10585,6 +10603,10 @@
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/016-ci-red-check-repairs/research/research.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/016-ci-red-check-repairs/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/016-ci-red-check-repairs/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/goal.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/handover.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/spec.md",
@@ -15631,6 +15653,10 @@
     "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/plan.md",
     "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/spec.md",
     "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/tasks.md",
+    "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/implementation-summary.md",
+    "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/plan.md",
+    "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/spec.md",
+    "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/tasks.md",
     "specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/acceptance-criteria.md",
     "specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/goal.md",
     "specs/sk-git/commit-standards/001-crawlable-commit-history/001-research/implementation-summary.md",
@@ -26552,6 +26578,47 @@
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research/research.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/001-step-order-acceptance-after-development/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/001-step-order-acceptance-after-development/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/001-step-order-acceptance-after-development/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/001-step-order-acceptance-after-development/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/001-step-order-acceptance-after-development/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/002-required-artifact-gates/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/002-required-artifact-gates/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/002-required-artifact-gates/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/002-required-artifact-gates/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/002-required-artifact-gates/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/003-execution-mode-and-autopilot-contract/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/003-execution-mode-and-autopilot-contract/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/003-execution-mode-and-autopilot-contract/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/003-execution-mode-and-autopilot-contract/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/003-execution-mode-and-autopilot-contract/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/004-code-review-and-dispatch-policy/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/004-code-review-and-dispatch-policy/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/004-code-review-and-dispatch-policy/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/004-code-review-and-dispatch-policy/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/004-code-review-and-dispatch-policy/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/005-resume-detection-and-single-workflow/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/005-resume-detection-and-single-workflow/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/005-resume-detection-and-single-workflow/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/005-resume-detection-and-single-workflow/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/005-resume-detection-and-single-workflow/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/spec.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/plan.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/spec.md",
     "specs/system-speckit/spec-folder-tooling/001-spec-folder-lifecycle/001-spec-root-resolution-hardening/001-resolver-registry-and-preflight/tasks.md",
@@ -27016,7 +27083,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "88299af07ac17d48c836d1546dbf73d59743aa1371d3d96e9a6aaef36fef1c08",
+  "manifestHash": "0250dffa1a88da8b91160e3acf796ac7b900e7221d64740961e0402302250e42",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28044,6 +28111,22 @@
     },
     {
       "path": "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/001-fanout-persona-tool-mapping/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/002-deepseek-harness-persona-probe/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step/scratch",
       "reason": "excluded directory"
     },
     {
@@ -29348,6 +29431,14 @@
     },
     {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/016-ci-red-check-repairs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/research/fanout-rc3",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/scratch",
       "reason": "excluded directory"
     },
     {
@@ -33296,6 +33387,10 @@
     },
     {
       "path": "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/scratch",
       "reason": "excluded directory"
     },
     {
@@ -38276,6 +38371,38 @@
     },
     {
       "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/001-step-order-acceptance-after-development/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/002-required-artifact-gates/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/003-execution-mode-and-autopilot-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/004-code-review-and-dispatch-policy/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/005-resume-detection-and-single-workflow/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment/scratch",
       "reason": "excluded directory"
     },
     {

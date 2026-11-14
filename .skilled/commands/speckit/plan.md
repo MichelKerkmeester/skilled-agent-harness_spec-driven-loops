@@ -1,5 +1,5 @@
 ---
-description: "Planning workflow, 8 steps: spec through plan only. Modes :auto, :confirm, :autopilot; :with-* modifiers."
+description: "Planning workflow, 7 steps: spec through plan only. Modes :auto, :confirm, :autopilot; :with-* modifiers."
 argument-hint: "<feature-description> [:auto|:confirm|:autopilot|:unattended|--unattended] [:with-context] [:with-phases] [--level=N]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, opencode_goal, opencode_goal_status
 ---
@@ -23,6 +23,7 @@ Load the presentation contract before showing startup questions, checkpoints, da
 | Presentation source of truth | `.skilled/commands/speckit/assets/speckit-plan-presentation.txt` |
 | Workflow (all execution modes) | `.skilled/commands/speckit/assets/speckit-plan.yaml` |
 | Shared save-context tail | `.skilled/commands/speckit/assets/speckit-save-context-tail.yaml` |
+| Shared lifecycle blocks | `.skilled/commands/speckit/assets/speckit-lifecycle-shared.yaml` |
 
 ---
 
@@ -65,12 +66,12 @@ values without an interactive prompt.
 | Mode | Target |
 |------|----------|
 | `:auto` | `.skilled/commands/speckit/assets/speckit-plan.yaml` with `execution_mode` auto: confirm-only checkpoint blocks skipped |
-| `:autopilot`, `:unattended`, or `--unattended` | `.skilled/commands/speckit/assets/speckit-plan.yaml` with `execution_mode` autopilot and unattended task metadata required |
+| `:autopilot`, `:unattended`, or `--unattended` | `.skilled/commands/speckit/assets/speckit-plan.yaml` with `execution_mode` autopilot under the workflow's `unattended_autopilot` block, with unattended task metadata required |
 | `:confirm` or interactive choice | `.skilled/commands/speckit/assets/speckit-plan.yaml` with `execution_mode` confirm: every `applies_to: confirm` checkpoint runs and `mode_overrides.confirm` wording applies |
 
 ### UNATTENDED TASK METADATA
 
-When planning for `:autopilot`, `:unattended`, or `--unattended`, every executable task row in `tasks.md` must carry unattended-ready metadata so later implementation can decide eligibility without asking the user.
+When planning for `:autopilot`, `:unattended`, or `--unattended`, the workflow's task breakdown step, `step_5_5_task_breakdown`, writes the task rows, and every executable task row in `tasks.md` must carry unattended-ready metadata so later implementation can decide eligibility without asking the user.
 
 Required fields:
 

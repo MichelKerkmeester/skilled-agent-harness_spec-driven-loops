@@ -119,7 +119,7 @@ Five `dsh` briefs to DeepSeek V4.1 Flash at max reasoning on the pinned dsh 0.2.
 ## Known Limitations
 
 1. **A validator exiting 0 with no verdict.** It closes the map. A validator that reports success by exit status alone is trusted.
-2. **Fixture copy race.** `copyToolTree` in `tests/fixtures/subtrack-tree.mjs` copies the runtime tree while another test file can create and remove `runtime/.workflow-lock`, the lock `core/workflow.ts` takes. One full run failed the real-pipeline restore case with `ENOENT ... .workflow-lock`; the next passed. The copy helpers in `upgrade-legacy-host-root.vitest.ts` and `helpers/upgrade-legacy-harness.ts` already skip that file; this filter does not. The fixture predates this phase and is not changed here.
+2. **Fixture copy race.** `copyToolTree` in `tests/fixtures/subtrack-tree.mjs` copies the runtime tree while another test file can create and remove `runtime/.workflow-lock`, the lock `core/workflow.ts` takes. One full run failed the real-pipeline restore case with `ENOENT ... .workflow-lock`; the next passed. The copy helpers in `upgrade-legacy-host-root.vitest.ts` and `helpers/upgrade-legacy-harness.ts` already skip that file; this filter does not. The fixture predates this phase and was not changed in it. A follow-up of 2026-11-14, after the race failed one more full run, adds `.workflow-lock` to the same filter, so this limit is closed.
 3. **Bare names behind a full path.** A name behind another track's folder of the same name as the phase parent is still rewritten. The pattern sees one segment, not the whole path.
 <!-- /ANCHOR:limitations -->
 

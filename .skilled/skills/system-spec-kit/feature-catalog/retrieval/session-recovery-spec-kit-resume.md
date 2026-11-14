@@ -7,7 +7,7 @@ trigger_phrases:
   - "interrupted session reconstruction"
   - "resume workflow"
   - "session continuity recovery"
-version: 2.0.2.0
+version: 2.0.3.0
 ---
 
 # Session recovery via /speckit:resume
@@ -63,8 +63,7 @@ One store-backed path sits outside the ladder. When a compaction hook minted a f
 | File | Role |
 |------|------|
 | `.skilled/commands/speckit/resume.md` | `/speckit:resume` command: standard continuation plus interrupted-session recovery |
-| `.skilled/commands/speckit/assets/speckit-resume-auto.yaml` | Autonomous resume and recovery workflow |
-| `.skilled/commands/speckit/assets/speckit-resume-confirm.yaml` | Interactive resume and recovery workflow |
+| `.skilled/commands/speckit/assets/speckit-resume.yaml` | Resume and recovery workflow for both execution modes |
 
 ### Related Implementation
 

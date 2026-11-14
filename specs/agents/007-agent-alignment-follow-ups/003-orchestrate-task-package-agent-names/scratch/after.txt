@@ -1,0 +1,62 @@
+# After, phase 003, on the working tree above c31f903a8c
+
+$ sed -n 211p .skilled/agents/orchestrate.md
+├─ Agent: [@<name>, exactly one agent from the Agent Selection routing table in §2]
+exit=0
+
+$ rg -c '^├─ Agent: @code . @context' .skilled/agents/orchestrate.md
+exit=1
+
+$ rg -c '^├─ Agent: \[.*routing table' .skilled/agents/orchestrate.md
+1
+exit=0
+
+$ rg -c '@design' .skilled/agents/orchestrate.md
+3
+exit=0
+
+$ rg -c '@prompt-improver' .skilled/agents/orchestrate.md
+3
+exit=0
+
+$ node .skilled/bin/sync-agent-roster.cjs --check
+agent-roster: OK
+exit=0
+
+$ node .skilled/bin/check-agent-mirror-sync.cjs
+SAME FILE  review [opencode] .opencode/agents/review.md resolves to the canonical file
+NOT COMPARED  review [dsh] .dsh/agents/review.patch.yml (format-not-comparable)
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+exit=0
+
+$ node .skilled/skills/system-spec-kit/runtime/cli/pi/sync-agents-pi.cjs --check
+[pi-agent-sync] PASS: 11 agents are in sync.
+exit=0
+
+$ node .skilled/skills/system-spec-kit/runtime/cli/codex/sync-agents.cjs --check
+[codex-agent-sync] PASS: 11 agents are in sync.
+exit=0
+
+$ node .skilled/skills/system-spec-kit/runtime/cli/dsh/sync-agents-dsh.cjs --check
+[dsh-agent-sync] PASS: 11 agent patches are in sync.
+exit=0
+
+$ node .skilled/commands/doctor/scripts/agent-roster-mirror-check.cjs
+
+STATUS=OK agent-roster-mirror: every runtime covers the canonical roster
+
+exit=0
+
+$ git diff --numstat main -- .skilled/agents/orchestrate.md .claude/agents/orchestrate.md .codex/agents/orchestrate.toml .pi/agents/orchestrate.md .dsh/agents/orchestrate.patch.yml
+1	1	.dsh/agents/orchestrate.patch.yml
+1	1	.pi/agents/orchestrate.md
+1	1	.skilled/agents/orchestrate.md
+exit=0
+
+## Line counts against the commit before the edit (the local `main` ref in this worktree is stale, so HEAD is the base)
+$ git diff --numstat HEAD -- .skilled/agents/orchestrate.md .claude/agents/orchestrate.md .codex/agents/orchestrate.toml .pi/agents/orchestrate.md .dsh/agents/orchestrate.patch.yml
+1	1	.claude/agents/orchestrate.md
+1	1	.codex/agents/orchestrate.toml
+1	1	.dsh/agents/orchestrate.patch.yml
+1	1	.pi/agents/orchestrate.md
+1	1	.skilled/agents/orchestrate.md

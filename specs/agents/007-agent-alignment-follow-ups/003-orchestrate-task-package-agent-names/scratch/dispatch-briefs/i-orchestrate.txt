@@ -1,0 +1,5 @@
+Change one line in the orchestrator agent file. The task template lists eight agent names by
+hand, and the registry schedules ten. The line becomes a pointer to the routing table that is
+generated in the same file, so it cannot go stale.
+
+This file has no `version` frontmatter, so the frontmatter note below does not apply.

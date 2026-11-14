@@ -2,7 +2,7 @@
 name: sk-create-agent
 description: Scaffold OpenCode agents with runtime placement, permission frontmatter, authority boundaries, workflow sections, and validation.
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
-version: 1.0.7.0
+version: 1.0.8.0
 ---
 
 # Create Agent - Runtime Persona Authoring
@@ -194,8 +194,9 @@ Follow this order for new agents and material rewrites:
 10. Add explicit output verification, anti-patterns, and related resources.
 11. Link supporting skills, commands, references, and companion agents rather than copying their full guidance.
 12. Remove template placeholders and check that the document stays focused on the runtime role.
-13. Validate markdown structure, frontmatter, runtime placement, permission consistency, and related links. Run `node .skilled/bin/sync-agent-roster.cjs --check` after adding or editing an agent file and after editing the required-sections list in `assets/agent-template.md`: it compares every agent's outline with that list.
-14. Deliver only after validation passes or after reporting the exact blocker.
+13. Add a record for a new agent to `.skilled/agents/agent-registry.json`, copying an existing record as the pattern. A record carries `name`, `tier`, `priority`, `dispatchers`, `taskType`, `skills`, `notes` and `summary`, and `templateExceptions` only when the file leaves out a required section. Then run `node .skilled/bin/sync-agent-roster.cjs` so the generated rosters pick the agent up.
+14. Validate markdown structure, frontmatter, runtime placement, permission consistency, and related links. Run `node .skilled/bin/sync-agent-roster.cjs --check` after adding or editing an agent file and after editing the required-sections list in `assets/agent-template.md`: it compares every agent's outline with that list. A new agent file with no registry record fails it with `agent file without a registry record: <name>`.
+15. Deliver only after validation passes or after reporting the exact blocker.
 
 When the user invokes `/create:agent`, treat the command as the preferred entry point, but keep this same creation contract as the source of truth for the generated file.
 

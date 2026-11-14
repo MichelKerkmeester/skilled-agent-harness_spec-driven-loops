@@ -1,0 +1,84 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/384-agent-alignment-follow-ups
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+RUN CONTEXT
+- This is one mechanical edit. No persona is attached, because the task is pure text replacement.
+- Skill routing and repo rules are already resolved by the orchestrator. Load no skill and no rule file.
+- Read the target file, apply the change exactly as written, run the verification, report, stop.
+
+ALLOWED WRITE PATHS
+- .skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md
+
+BANNED OPERATIONS
+- Writing, creating, deleting, moving or renaming any path not listed under ALLOWED WRITE PATHS.
+- Any git command that changes state: add, commit, checkout, restore, reset, stash, clean, rm, mv.
+- Running a formatter, a sync script, a generator or a test suite.
+- Rewording, reflowing or "improving" any text. The NEW text is final, character for character.
+
+HANDBACK
+Reply with the verification output only, then one line: DONE or BLOCKED: <reason>.
+
+TASK
+Create one new file: the changelog entry for sk-create-agent v1.0.8.0. Its full content is
+given below. Write it byte for byte, with no line added, removed or reworded.
+
+Files:
+1. .skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md   (new file, does not exist yet)
+
+The content sits between the two marker lines. The markers are not part of the file. Never
+write them. The file starts with the line `---` and ends with the line `No migration required.`
+followed by one newline.
+
+<<<<<<< CONTENT
+---
+title: "sk-create-agent v1.0.8.0, the creation workflow names the agent registry"
+description: "v1.0.8.0 adds a registry step to the ordered creation workflow: a new agent needs a record in agent-registry.json before the roster check runs, and the validation step now quotes the error an author sees without one."
+trigger_phrases:
+  - "sk-create-agent v1.0.8.0"
+  - "sk-create-agent 1.0.8.0"
+  - "agent registry step"
+importance_tier: "normal"
+contextType: "general"
+version: 1.0.8.0
+---
+
+# v1.0.8.0, the Creation Workflow Names the Agent Registry
+
+The ordered creation workflow in `SKILL.md` told an author to run the roster check and never told them to add the registry record the check requires. A new agent file with no record failed the check with an error the skill did not mention. The workflow now has the step.
+
+> Spec folder: `specs/agents/007-agent-alignment-follow-ups/004-agent-authoring-registry-step` (Level 1)
+
+&nbsp;
+
+## What's New at a Glance
+
+- **A registry step before validation.** Step 13 tells the author to add a record for the new agent to `.skilled/agents/agent-registry.json`, names the fields a record carries and says to run `node .skilled/bin/sync-agent-roster.cjs` so the generated rosters pick the agent up.
+- **The error is quoted.** The validation step, now step 14, quotes `agent file without a registry record: <name>`, the line the roster check prints for an agent file that has no record.
+- **Delivery is step 15.** The two later steps moved down by one, with their wording unchanged.
+
+&nbsp;
+
+## Upgrade
+
+No migration required.
+>>>>>>> END
+
+Verification (run all, paste the output in the handback):
+  wc -l < .skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md      # expect: 31
+  wc -w < .skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md      # expect: 235
