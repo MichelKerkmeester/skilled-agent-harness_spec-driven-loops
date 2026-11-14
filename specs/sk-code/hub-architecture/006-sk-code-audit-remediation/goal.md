@@ -123,6 +123,7 @@ and findings belong here.
 | Phase 006 skilled packet fixes | Done | Code ac50644619. No SK row has a dash as its fix evidence. Packet version 2.2.0.0. Three findings outside the ledger are in the phase 006 goal log for the operator |
 | Phase 007 review packet fixes | Done | Code 1dca9e88ad. No RV row has a dash as its fix evidence. Packet version 1.9.17.0. One finding outside the ledger is in the phase 007 goal log for the operator |
 | Phase 008 quality packet fixes | Done | Code 3c7926322b. No QL row has a dash as its fix evidence. Packet version 1.13.20.0. Two findings outside the ledger are in the phase 008 goal log for the operator |
+| Session of 2026-11-14 closed phases 007 and 008 | Done | Code 1dca9e88ad and 3c7926322b. Criteria 1, 2, 4 and 5 pass as written. Criterion 3 prints STATUS=OK legs=9 with exit 0, and its text waits on the operator |
 
 ### Deviations and findings
 
