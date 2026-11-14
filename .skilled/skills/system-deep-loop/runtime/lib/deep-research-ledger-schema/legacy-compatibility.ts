@@ -65,10 +65,6 @@ const LEGACY_EVENT_STEMS = Object.freeze({
   pivot_failed: 'deep_research.pivot_failed',
 } as const satisfies Readonly<Record<string, DeepResearchEventStem>>);
 
-const PINNED_LEGACY_TYPES = new Set([
-  'iteration_start',
-]);
-
 const PINNED_LEGACY_EVENTS = new Set([
   'detached_scope_bound',
   'started',
@@ -302,6 +298,7 @@ function hasIterationIdentity(record: Record<string, unknown>): boolean {
 function recordTarget(record: Record<string, unknown>): DeepResearchEventStem | null {
   if (record.type === 'config') return 'deep_research.run_initialized';
   if (record.type === 'iteration') return 'deep_research.iteration_completed';
+  if (record.type === 'iteration_start') return 'deep_research.iteration_started';
   // The workflows stamp the six mutation-family rows with a spec_mutation record
   // type, so for those rows the event name is the only key that names a stem.
   if ((record.type === 'event' || record.type === 'spec_mutation')
@@ -348,6 +345,7 @@ function stableTargetIdentity(
   targetStem: DeepResearchEventStem,
 ): boolean {
   if (targetStem === 'deep_research.iteration_completed'
+    || targetStem === 'deep_research.iteration_started'
     || targetStem === 'deep_research.convergence_blocked') {
     return hasIterationIdentity(record);
   }
@@ -475,10 +473,6 @@ export function decideDeepResearchCompatibility(
     return decision('compatible', 'legacy-liveness-record-is-non-authoritative', null, version);
   }
 
-  if (typeof input.type === 'string' && PINNED_LEGACY_TYPES.has(input.type)) {
-    return decision('pin-old-runtime', 'legacy-record-has-no-lossless-mode-event', null, version);
-  }
-
   if (input.type === 'event' && isNonEmptyString(input.event)
     && PINNED_LEGACY_EVENTS.has(input.event)) {
     return decision('pin-old-runtime', 'legacy-event-has-no-lossless-mode-event', null, version);
@@ -583,6 +577,18 @@ export function upcastLegacyDeepResearchRecord(
         generation: positiveInteger(input.generation, 1),
         compatibilityDecision: 'migrate',
         recoveryReceiptRef: `legacy-jsonl:${recordDigest}`,
+      };
+      break;
+    case 'deep_research.iteration_started':
+      if (iteration === null) return refusedUpcast(compatibility, 'iteration-scope-missing');
+      // The opening row names only its iteration and the executor that runs it,
+      // so the stem's references are derived from the row and the ledger tail.
+      data = {
+        focusRef: `legacy-jsonl:${recordDigest}:focus`,
+        stateTailDigest: context.prevEventHash,
+        strategyDigest: recordDigest,
+        status: 'started',
+        ...(isObject(input.executor) ? { executor: input.executor as JsonObject } : {}),
       };
       break;
     case 'deep_research.iteration_completed':

@@ -440,11 +440,12 @@ async function main() {
     && rawEvent
     && typeof rawEvent === 'object'
     && !Array.isArray(rawEvent)
-    && rawEvent.type === 'iteration'
+    && (rawEvent.type === 'iteration' || rawEvent.type === 'iteration_start')
   ) {
     // The review agent, its iteration prompt and its workflow all hand the gateway the canonical
-    // iteration record itself. Its optional fields vary with review depth and executor, so it
-    // travels whole under one stem, and the state projection writes it back as the same row.
+    // iteration record itself, and the pre-dispatch executor audit hands it the iteration's
+    // opening row. Their optional fields vary with review depth and executor, so each travels
+    // whole under one stem, and the state projection writes it back as the same row.
     const sessionId = typeof rawEvent.sessionId === 'string' && rawEvent.sessionId
       ? rawEvent.sessionId
       : 'run-cli';

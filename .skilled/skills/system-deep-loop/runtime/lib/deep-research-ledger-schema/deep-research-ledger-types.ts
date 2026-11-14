@@ -169,12 +169,18 @@ export interface BranchDecisionData extends JsonObject {
   readonly reservationRef: string;
 }
 
-export interface IterationStartedData extends JsonObject {
+interface IterationStartedCoreData extends JsonObject {
   readonly focusRef: string;
   readonly stateTailDigest: Digest;
   readonly strategyDigest: Digest;
   readonly status: 'started';
 }
+
+// The opening row names its executor only when a non-native executor runs the
+// iteration, so each persisted shape is modeled without an optional property.
+export type IterationStartedData =
+  | IterationStartedCoreData
+  | (IterationStartedCoreData & { readonly executor: JsonObject });
 
 interface IterationCompletedCoreData extends JsonObject {
   readonly status: 'complete' | 'error' | 'insight' | 'stuck' | 'thought' | 'timeout';
@@ -692,7 +698,7 @@ export const DEEP_RESEARCH_STEM_PRODUCERS = Object.freeze({
   'deep_research.question_registered': { status: 'reserved', reason: 'No writer emits it today: questions are flat rows in the state log. A question step would speak it once registration appends its dependency and source-class contract.' },
   'deep_research.branch_planned': { status: 'reserved', reason: 'No writer emits it today: branch plans live in strategy prose. A branch step would speak it once a planned branch and its budget are appended.' },
   'deep_research.branch_selected': { status: 'reserved', reason: 'No writer emits it today: selection is a strategy update. A branch step would speak it once the selected branch and its rationale are appended.' },
-  'deep_research.iteration_started': { status: 'reserved', reason: 'No writer emits it today: iteration opening is a flat row. An iteration step would speak it once a pass opens with its focus ref.' },
+  'deep_research.iteration_started': { status: 'reserved', reason: 'No workflow stages it: the pre-dispatch executor audit hands the gateway the legacy iteration_start row, which the gateway upcasts to this stem. An iteration step would speak it once it stages the stem itself.' },
   'deep_research.iteration_completed': { status: 'reserved', reason: 'No writer emits it today: completion is a flat row folded by the reducer. An iteration step would speak it once completion appends its ratio and ruled-out approaches.' },
   'deep_research.source_captured': { status: 'reserved', reason: 'No writer emits it today: captured sources live in the source log. A source step would speak it once capture appends its version and digests.' },
   'deep_research.evidence_admission_decided': { status: 'reserved', reason: 'No writer emits it today: admission is reducer-derived. An admission step would speak it once an admitted or rejected source is appended with its reasons.' },

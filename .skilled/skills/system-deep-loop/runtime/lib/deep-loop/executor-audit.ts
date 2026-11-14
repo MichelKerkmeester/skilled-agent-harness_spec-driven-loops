@@ -6,8 +6,10 @@
 
 import { randomBytes } from 'node:crypto';
 import { spawn, spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, renameSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { basename, dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import type { ExecutorConfig, ExecutorKind } from './executor-config.js';
 import { appendJsonlRecord as appendJsonlRecordSafe, repairJsonlTail } from './jsonl-repair.js';
@@ -1053,18 +1055,105 @@ export function buildExecutorAuditRecord(executor: ExecutorConfig, lineageId?: s
   };
 }
 
+// A stalled gateway would otherwise hold the iteration before its dispatch with no end.
+const APPEND_GATEWAY_TIMEOUT_MS = 120_000;
+const APPEND_GATEWAY_PATH = fileURLToPath(new URL('../../scripts/append-mode-event.cjs', import.meta.url));
+// The gateway binds each append to the checkout's identity, so it runs from the repository root.
+const REPOSITORY_ROOT = fileURLToPath(new URL('../../../../../../', import.meta.url));
+const LEDGER_MODES = Object.freeze([
+  { ledgerDirectory: 'deep-review-ledger', mode: 'review' },
+  { ledgerDirectory: 'deep-research-ledger', mode: 'research' },
+] as const);
+
+// A state log beside a ledger with frames is a projection the append gateway
+// rebuilds from that ledger, so a row written straight into it is dropped at
+// the next refresh.
+function ledgerModeFor(stateLogPath: string): 'review' | 'research' | null {
+  for (const { ledgerDirectory, mode } of LEDGER_MODES) {
+    try {
+      if (readdirSync(join(dirname(stateLogPath), ledgerDirectory, 'frames')).some((name) => name.endsWith('.frame'))) {
+        return mode;
+      }
+    } catch {
+      // No ledger of this mode sits beside the state log.
+    }
+  }
+  return null;
+}
+
+function iterationNamesExecutor(lines: string[], iteration: number): boolean {
+  return lines.some((line) => {
+    const record = line.trim() ? parseJsonlObjectLine(line) : null;
+    return record !== null
+      && record.iteration === iteration
+      && (record.type === 'iteration' || record.type === 'iteration_start')
+      && isObjectRecord(record.executor);
+  });
+}
+
+function appendThroughGateway(mode: 'review' | 'research', stateLogPath: string, record: Record<string, unknown>): void {
+  const eventDir = mkdtempSync(join(tmpdir(), 'executor-audit-event-'));
+  const eventPath = join(eventDir, 'event.json');
+  try {
+    writeFileSync(eventPath, JSON.stringify(record), 'utf8');
+    const result = spawnSync(process.execPath, [
+      APPEND_GATEWAY_PATH,
+      '--mode', mode,
+      '--run-directory', dirname(stateLogPath),
+      '--event-json', eventPath,
+    ], { cwd: REPOSITORY_ROOT, encoding: 'utf8', timeout: APPEND_GATEWAY_TIMEOUT_MS });
+    if (result.status !== 0) {
+      const outcome = String(result.stdout || '').trim().split('\n').at(-1)
+        || String(result.stderr || '').trim()
+        || result.error?.message
+        || `exit signal ${String(result.signal)}`;
+      throw new Error(`append gateway refused the executor row for iteration ${String(record.iteration)}: ${outcome}`);
+    }
+  } finally {
+    rmSync(eventDir, { recursive: true, force: true });
+  }
+}
+
 /**
  * Write the first executor provenance record for an iteration.
  *
- * Updates the iteration start record in the JSONL state log with executor
- * audit data, or creates a new iteration_start record if none exists.
+ * On a ledger-backed state log the iteration_start row goes through the append
+ * gateway, so the projection writes it back on every refresh. A state log with
+ * no ledger keeps the direct write: the iteration start record gets the
+ * executor audit data, or a new iteration_start record is created.
  *
  * @param stateLogPath - Path to the JSONL state log.
  * @param executor - Executor configuration.
  * @param iteration - Current iteration number.
+ * @param sessionId - The run's session id, which scopes the ledger event.
  */
-export function writeFirstRecordExecutor(stateLogPath: string, executor: ExecutorConfig, iteration: number): void {
+export function writeFirstRecordExecutor(
+  stateLogPath: string,
+  executor: ExecutorConfig,
+  iteration: number,
+  sessionId?: string,
+): void {
   if (getExecutorKind(executor) === 'native') {
+    return;
+  }
+
+  const ledgerMode = ledgerModeFor(stateLogPath);
+  if (ledgerMode !== null) {
+    if (iterationNamesExecutor(readJsonlFile(stateLogPath).lines, iteration)) {
+      return;
+    }
+    if (!sessionId) {
+      throw new Error('writeFirstRecordExecutor needs the run session id for a ledger-backed state log');
+    }
+    appendThroughGateway(ledgerMode, stateLogPath, {
+      type: 'iteration_start',
+      iteration,
+      runId: sessionId,
+      sessionId,
+      lineageId: sessionId,
+      executor: buildExecutorAuditRecord(executor),
+      timestamp: new Date().toISOString(),
+    });
     return;
   }
 

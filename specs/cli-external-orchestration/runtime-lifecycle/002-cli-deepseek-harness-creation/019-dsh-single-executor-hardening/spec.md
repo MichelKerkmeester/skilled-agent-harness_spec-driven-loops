@@ -40,17 +40,18 @@ contextType: "general"
 
 This is **Phase 19** of the Harden the single DeepSeek Harness lineage in deep review and research and close the review's open P2 items specification.
 
-**Scope Boundary**: The deep-loop runtime that dispatches a harness lineage (`executor-audit.ts`, `fanout-run.cjs`), the four review and research workflow assets and their two presentation files, two reducer scripts the live review exposed, the regenerated command contracts and one changelog entry with its version bump. No change to the harness itself or to `.dsh/`.
+**Scope Boundary**: The deep-loop runtime that dispatches a harness lineage (`executor-audit.ts`, `fanout-run.cjs`), the four review and research workflow assets and their two presentation files, two reducer scripts the live review exposed, the regenerated command contracts and one changelog entry with its version bump. For C6 it adds the append gateway's review branch and the research upcaster, schema, types and state projection. No change to the harness itself or to `.dsh/`.
 
 **Dependencies**:
 - Phase 018 is built and committed as `1bedb33577`. Its spec-gate key, repo-root prompt line and timeout margin are already in both auto workflows, so this phase does not redo them.
-- The operator decides item C6 before its edit runs. The other seven items need no decision.
+- The operator chose Option A for item C6 on 2026-11-14, after first deferring it. The other seven items needed no decision and shipped in `cf473969a1`.
 
 **Deliverables**:
 - A per-kind allowlist for `dispatchEnv`, an opt-out for the stdout echo and a sweep of stale harness homes
 - A `:confirm` refusal for every executor kind that workflow has no branch for
 - The finding registry and the graph coverage signal fixed for the two faults the live review showed
 - Changelog `v1.6.26.0` saying the harness runs as a single lineage in `:auto`
+- The pre-dispatch executor row recorded through the append gateway in review and research, so the state log keeps it
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -122,7 +123,26 @@ The first list holds six homes that match the default `dsh-home-XXXXXX` pattern,
 
 The graph holds eight DIMENSION nodes for four dimensions. The workflow seeds `dimension:<name>` and covers each one with `COVERS` edges. The leaf's own graph events added `dim:security`, `DIM-TRACEABILITY`, `dim:maintainability` and `dim:correctness` as four more, and none of their edges reached the graph. Four covered of eight reads `0.5`, under the `0.8` threshold, so the veto held while every dimension was covered.
 
-Test baselines at the same commit: `executor-branch-contract.vitest.ts` and `executor-audit-cli-branch-receipts.test.ts` together print `11 passed` (6 and 5). `check-contract-drift` and `compile-command-contracts` tests print `23 passed`. `npm run typecheck` in `DL` exits 0. The full `DL` suite prints `1 failed | 2893 passed | 8 skipped (2902)`, and the one failure is the timing test `does not orphan an exited-but-still-writing worker while artifact progress continues` in `tests/unit/fanout-pool.vitest.ts`.
+C6 was measured at `6fb0f2c502` on 2026-11-14, after the other seven items shipped:
+```text
+$ cd $DL && npx vitest run tests/unit/executor-audit.vitest.ts
+      Tests  75 passed (75)
+
+$ cd $DL && npx vitest run <the seven gateway, schema, projection and reducer files named in tasks.md T022>
+      Tests  153 passed (153)
+
+$ cd $DL && npx vitest run
+ Test Files  173 passed (173)
+      Tests  2904 passed | 8 skipped (2912)
+
+$ <prototype: open a ledger-backed run, call writeFirstRecordExecutor, hand the gateway the leaf's iteration record, read the state log>
+     × keeps the review executor row through a projection refresh 1109ms
+     × keeps the research executor row through a projection refresh 905ms
+AssertionError: expected [] to have a length of 1 but got +0
+```
+With today's `executor-audit.ts`, a ledger-backed state log holds zero `iteration_start` rows after one refresh, in both modes. That is the loss the live review showed.
+
+Test baselines at `1bedb33577`: `executor-branch-contract.vitest.ts` and `executor-audit-cli-branch-receipts.test.ts` together print `11 passed` (6 and 5). `check-contract-drift` and `compile-command-contracts` tests print `23 passed`. `npm run typecheck` in `DL` exits 0. The full `DL` suite prints `1 failed | 2893 passed | 8 skipped (2902)`, and the one failure is the timing test `does not orphan an exited-but-still-writing worker while artifact progress continues` in `tests/unit/fanout-pool.vitest.ts`.
 <!-- /ANCHOR:measured-behavior -->
 
 ---
@@ -142,7 +162,7 @@ Each item names its source. Fable is the independent Fable 5.2 review of phase 0
 | C3 | P2 | Fable B-P2-3 | Add `echoStdout: false` to the runner input and set it in the two harness branches, so the step prints a byte count instead of the event stream |
 | C4 | P2 | Fable B-P2-4, the changelog half | Write changelog `v1.6.26.0` and bump the hub version in four files. The scaffold-docs half was closed in phase 018 |
 | C5 | P2 | Fable, "What I could not check" | Refuse in both `:confirm` workflows for every executor kind that workflow has no branch for, and say so in both presentation files |
-| C6 | P2 | Deep review, `review-report.md:210` | Keep the executor identity of each iteration somewhere the state log keeps. Gated on the operator's choice in section 10 |
+| C6 | P2 | Deep review, `review-report.md:210` | Keep the executor identity of each iteration somewhere the state log keeps. Option A, chosen by the operator on 2026-11-14: the pre-dispatch audit hands its row to the append gateway |
 | C7 | P2 | Deep review, `review-report.md:78` | Fold a re-verified finding at a shifted line into its first row instead of a second one |
 | C8 | P2 | Deep review, `review-report.md:201` | Map each review DIMENSION node id to the canonical `dimension:<name>` at graph upsert, and its edge ends with it, so a leaf's own id never adds a phantom dimension |
 
@@ -156,12 +176,12 @@ Each item names its source. Fable is the independent Fable 5.2 review of phase 0
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` | Modify | C2 allowlist check, C3 echo opt-out |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts` | Modify | C2 allowlist check, C3 echo opt-out, C6 gateway write of the executor row |
 | `.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` | Modify | C1 exported sweep, called from `createDshHome` |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Modify | C1 sweep call, C3 `echoStdout: false` |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Modify | C1 sweep call, C3 `echoStdout: false` |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Modify | C5 refusal step |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Modify | C5 refusal step |
+| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Modify | C1 sweep call, C3 `echoStdout: false`, C6 `sessionId` argument |
+| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Modify | C1 sweep call, C3 `echoStdout: false`, C6 `sessionId` argument |
+| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Modify | C5 refusal step, C6 `sessionId` argument |
+| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Modify | C5 refusal step, C6 `sessionId` argument |
 | `.skilled/commands/deep/assets/deep-review-presentation.txt` | Modify | C5 one clause |
 | `.skilled/commands/deep/assets/deep-research-presentation.txt` | Modify | C5 one clause |
 | `.skilled/commands/deep/assets/compiled/deep-{review,research,ai-council}.contract.markdown` | Regenerate | The compiler's output after the YAML edits |
@@ -174,7 +194,13 @@ Each item names its source. Fable is the independent Fable 5.2 review of phase 0
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-branch-contract.vitest.ts` | Modify | C1, C3 and C5 contract tests |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-reducer.vitest.ts` | Modify | C7 test |
 | `.skilled/skills/system-deep-loop/runtime/tests/integration/upsert-script.vitest.ts` | Modify | C8 test |
-| C6 files | Pending | Named by the operator's choice in section 10 |
+| `.skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs` | Modify | C6 the review bare-record branch also takes `type: iteration_start` |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts` | Modify | C6 upcast an `iteration_start` row to `deep_research.iteration_started` |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts` | Modify | C6 optional `executor` on `deep_research.iteration_started` |
+| `.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts` | Modify | C6 data type and stem census reason |
+| `.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts` | Modify | C6 the projected `iteration_start` row keeps `executor` |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/executor-audit-ledger-projection.vitest.ts` | Create | C6 the executor row survives a projection refresh |
+| `.skilled/skills/system-deep-loop/changelog/v1.6.27.0.md`, and the version in the hub `SKILL.md`, `description.json`, `mode-registry.json` and `hub-router.json` | Create, Modify | C6 release. The operator chose a new `v1.6.27.0` on 2026-11-14 because `v1.6.26.0` had shipped |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -201,7 +227,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-006 | A finding re-reported at another line with the same id, file and title stays one registry row, and two findings with the same id but another title stay two (C7) |
 | REQ-007 | A review upsert of `dim:security`, `DIM-SECURITY` or `dimension:Security` stores one `dimension:security` node and rewrites the edge ends that name it, and a graph seeded with four dimensions plus the four leaf ids reads `dimensionCoverage` `1` (C8) |
 | REQ-008 | Changelog `v1.6.26.0` exists and the four version fields read `1.6.26.0` (C4) |
-| REQ-009 | C6 is built as the operator chose, or recorded as deferred with the reason (C6) |
+| REQ-009 | On a ledger-backed state log, a non-native pre-dispatch audit records one `iteration_start` row with `executor` through the append gateway in review and research. The row is still there after the leaf's own record refreshes the projection, a second audit of the same iteration adds none and a state log with no ledger keeps today's direct write (C6) |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -216,6 +242,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - **SC-001**: The two named suites go from `11 passed` to `16 passed` or more, with no failure.
 - **SC-002**: The full `DL` suite shows the one known timing failure and no other, against `1 failed | 2893 passed` today.
 - **SC-003**: A review graph built like the live one goes from `dimensionCoverage` `0.5` with `STOP_BLOCKED` to `1` with no `uncovered_dimensions` blocker.
+- **SC-004**: A ledger-backed review and research run each go from zero `iteration_start` rows after a projection refresh to one row with `executor`, and `executor-audit.vitest.ts` stays at `75 passed`.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -230,6 +257,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Risk | The sweep removes a home a long run still uses | A live lineage loses its profile mid-run | The cutoff is 24 hours, six times the 4-hour lineage ceiling (`LINEAGE_LIFETIME_HARD_MAX_HOURS`) and 24 times the longest step timeout of 3,600 seconds, and the pattern matches only the six-character default suffix |
 | Risk | C8 merges two dimensions a config means to keep apart | Coverage of one counts for the other | Only the `dimension:`, `dim:` and `dim-` prefixes and letter case are folded. The name after them must match exactly |
 | Risk | Something reads the echoed stdout | Turning the echo off would break it | T004 searches both auto workflows for a reader of the step's stdout before E5 |
+| Risk | A gateway refusal now stops the pre-dispatch step, where a direct write never failed | A run halts before its dispatch | The leaf's own record goes through the same gateway, so a refusal there fails the iteration anyway. The error carries the gateway's last output line |
+| Risk | An old research `iteration_start` row gets a new upcast decision | A replayed legacy row is read another way | Rows without run identity stay `pin-old-runtime`, now with `stable-identity-missing`. The captured-log replay test passes on the prototype |
+| Risk | A revert after a research run has written C6 events | The reverted schema refuses `executor` on replay | `plan.md` section 7 says to finish or archive those runs first, or revert E14 alone |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -250,6 +280,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ### Reliability
 - **NFR-R01**: A failed sweep never stops a dispatch. It writes one stderr line and the run continues.
 - **NFR-R02**: Every kind other than the harness keeps today's stdout echo.
+- **NFR-R03**: A native run skips `pre_dispatch_audit`, so C6 spawns no gateway process for it.
 
 ---
 
@@ -260,6 +291,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - Empty input: no `dsh-home-` folder in the temp folder sweeps nothing. An empty `dispatchEnv` passes the check. A harness run with empty stdout prints `0 bytes`.
 - Maximum input: the runner's buffer is 10 MiB, so the byte count line reports at most that, and `completionCheck` still reads the whole buffer.
 - Failure path: a rejected key throws `dispatchEnv key <KEY> is not allowed for <kind>`. A `:confirm` run with an unbranched kind halts with exit 2 before the state log gets an iteration row.
+- C6 repeat: a redispatch of the same iteration finds the row that names the executor and appends nothing, so the research reducer never sees two started events for one iteration.
+- C6 no ledger: a state log with no ledger frames beside it keeps today's direct write, and a ledger-backed call with no session id throws before anything is written.
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -270,10 +303,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 | Dimension | Score | Notes |
 |-----------|-------|-------|
-| Scope | 12/25 | About 18 files, most of them a few lines, plus regenerated contracts |
+| Scope | 14/25 | About 24 files, most of them a few lines, plus regenerated contracts |
 | Risk | 9/25 | Runtime dispatch and two reducers. Every change is guarded by a test |
-| Research | 5/20 | Each cause is located, C8 on the live graph. C6 needs one design choice |
-| **Total** | **26/70** | **Level 2** |
+| Research | 5/20 | Each cause is located, C8 on the live graph. C6 was built and tested on a copy of the runtime first |
+| **Total** | **28/70** | **Level 2** |
 <!-- /ANCHOR:complexity -->
 
 ---
@@ -282,7 +315,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 10. OPEN QUESTIONS
 <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- C6, where should executor identity live? Option A: the pre-dispatch audit appends a ledger event that carries the executor, so the projection keeps it. Option B: the dispatch receipts are the identity record, `writeFirstRecordExecutor` stops writing a row the projection drops, and the review report reads the receipts. Default taken: neither is built until the operator chooses, and REQ-009 records the deferral. Answered by the operator on 2026-11-14: C6 is deferred. Neither option is built in this phase, and the gap is recorded.
+- C6, where should executor identity live? Option A: the pre-dispatch audit appends a ledger event that carries the executor, so the projection keeps it. Option B: the dispatch receipts are the identity record, `writeFirstRecordExecutor` stops writing a row the projection drops, and the review report reads the receipts. Answered by the operator on 2026-11-14: first deferred, then Option A, which supersedes the deferral. `plan.md` section 4 holds its edits E14 to E22.
 - C1, is 24 hours the right sweep age? Default taken: yes. Answered by the operator on 2026-11-14: yes, 24 hours.
 - Deep-review findings: folded in. The three loop-health observations in `REV/review-report.md` lines 78, 201 and 210 are items C7, C8 and C6. Its seven numbered findings are about purpose carry and belong to phases 012 and 013 of the purpose packet.
 <!-- /ANCHOR:questions -->

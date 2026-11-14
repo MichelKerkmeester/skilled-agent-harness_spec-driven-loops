@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening"
     last_updated_at: "2026-11-14T14:50:00Z"
     last_updated_by: "orchestrator-worker"
-    recent_action: "Met every criterion with observed evidence"
-    next_safe_action: "None. The phase is closed"
+    recent_action: "Reopened AC-010 for C6 Option A"
+    next_safe_action: "Build C6 from plan.md E14 to E22, then mark AC-010 with T028 and T029 evidence"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "plan-019-dsh-single-executor-hardening"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** `019-dsh-single-executor-hardening`
 **Level:** 2
-**Status:** Complete
+**Status:** In Progress
 **Date:** 2026-11-14
 <!-- /ANCHOR:metadata -->
 
@@ -62,7 +62,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-007 | REQ-006 | Given one id at lines 27 and 24 with one file and title, When the reducer runs, Then the registry holds one row, and a reused id with another title holds two | E13 reducer test in T016. Observed: `folds a moved line into the first row and keeps a reused id with another title` passes after the edit and fails on the start code | Met | - |
 | AC-008 | REQ-007 | Given four seeded dimensions and the four leaf ids from the live run, When they are upserted, Then the graph holds four DIMENSION nodes and the convergence script prints `"dimensionCoverage":1` | E13 upsert test in T016. Observed: four DIMENSION nodes and `dimensionCoverage` 1 from the read-only convergence run. The test fails on the start code | Met | - |
 | AC-009 | REQ-008 | Given the changelog and version edits, When the operator commits, Then the four files read `1.6.26.0` and the route guard prints `system-deep-loop            fresh` | T012 and T018 output. Observed: `rg -l '1\.6\.26\.0'` lists the four files and the changelog, `1.6.25.0` counts nothing in them, and after the manifest refresh the guard prints `system-deep-loop            fresh` with exit 0 | Met | - |
-| AC-010 | REQ-009 | Given the operator's C6 answer, When the phase closes, Then the chosen option's test passes or `goal.md` records the deferral and its reason | T014 evidence. Observed: `goal.md` section 4 records that the operator deferred C6 and why the state log still lacks executor identity | Met | - |
+| AC-010 | REQ-009 | Given a ledger-backed review or research run and a non-native executor, When the pre-dispatch audit runs and the leaf's own record then refreshes the projection, Then the state log holds one `iteration_start` row for the iteration with `executor`, a second audit adds none and `executor-audit.vitest.ts` still prints `75 passed` | T028 and T029. The operator chose Option A on 2026-11-14, which supersedes the deferral this row first recorded. Observed: `3 passed (3)` and `3 failed (3)` on the start copy, `78 passed (78)`. A live one-iteration harness review on 2026-11-14 left one `iteration_start` row naming `cli-deepseek-harness deepseek-v4.1-flash-1017 max` in its state log after 7 ledger frames | Met | - |
 | AC-011 | REQ-003 | Given all edits, When the full suite and typecheck run, Then only the known `fanout-pool.vitest.ts` timing test fails and typecheck exits 0 | T017 output. Observed: `2899 passed` plus 4 socket-path failures caused by the long private TMPDIR. Those four files pass `13 passed (13)` with the default TMPDIR, so the suite is 2903 passed and 8 skipped of 2911, up from 2894 of 2902. The `fanout-pool.vitest.ts` timing test passed. Typecheck exits 0 | Met | - |
 
 ### Status values
@@ -89,7 +89,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** Yes
+**Closeable:** No
 
-Yes.
+Yes. Every row is Met.
 <!-- /ANCHOR:closure -->

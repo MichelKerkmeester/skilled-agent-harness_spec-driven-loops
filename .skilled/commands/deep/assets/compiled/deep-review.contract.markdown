@@ -22,22 +22,22 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
-      "sha256": "a7d960e299975bc958bdc3c757c67fb482ce5a9c10b22966604975505844ddfe",
+      "sha256": "92b3f93dc24eb5967e1797139e76f83ae0f949b4e48d3f50c49bc29a4927c334",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-confirm.yaml",
-      "sha256": "0d198b234291a0107b99ee0c137d33ffe93be8f29803a102be4b8b3a5e7424af",
+      "sha256": "052e3beb17387dffcb0ad303b8e14635182c7b5fec15285a2c8b66c642e6f68b",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "c84233295473f06f483bd38c90afc4a270e2b63b0083b1ae9936189577fcec42",
+      "sha256": "1fc4abfd85b6302cf2268fb4e8129ad19c7149dd08711e92cff232f4c9615693",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "7255fc18b9d1593d051c94597439b349f2ea014e4bfc54c5c894049f0c3782a3",
+      "sha256": "ec10f4597ce62215e91842d5513c7697a8bf5f75bb4d8e1be221545cd15135b1",
       "section": "full"
     },
     {

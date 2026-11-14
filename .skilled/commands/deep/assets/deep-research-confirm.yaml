@@ -1211,6 +1211,7 @@ workflow:
             stateLogPath: "{state_paths.state_log}"
             executor: "{config.executor}"
             iteration: "{current_iteration}"
+            sessionId: "{config.lineage.sessionId}"
         branch_on: "config.executor.kind"
         if_native:
           dispatch:
