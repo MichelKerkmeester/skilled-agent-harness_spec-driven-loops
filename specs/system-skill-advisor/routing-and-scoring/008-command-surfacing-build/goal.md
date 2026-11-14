@@ -58,8 +58,8 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:binding -->
 ## 2. BINDING
 
-**Read the child goal before working a phase.** Each is authoritative for its
-phase and binds as if written here.
+**Read a phase's own goal.md before working it, listed or not.** It binds as if
+written here.
 
 | Phase | Goal document |
 |---|---|
@@ -266,6 +266,16 @@ and findings belong here.
 | Paired arms 1 of 2 | Recorded | paired claude pre to post rows=16 gained=4 lost=1 bothFollowed=4 neitherFollowed=7, paired pi pre to post rows=16 gained=6 lost=1 bothFollowed=6 neitherFollowed=3, paired devin pre to post rows=16 gained=4 lost=0 bothFollowed=12 neitherFollowed=0, paired opencode pre to post rows=16 gained=4 lost=0 bothFollowed=10 neitherFollowed=2 |
 | Paired arms 2 of 2 | Recorded | paired dsh pre to post rows=15 gained=3 lost=2 bothFollowed=10 neitherFollowed=0 |
 | Outcome target | Waiting on the operator | Gain target: the brief-on arm follows on more paired rows than the brief-off arm on every runtime, with no command started on a decline row. Or an absolute followed rate the operator names. Or a written waiver closing on delivery. Recommended: gain target, sealed reach kept as a floor that may only rise |
+| Phase 023 untuned outcome evidence | Complete, 4a622e419f | Strict PASSED 0/0, AC 10 of 10 Met, suite 1998 passed 0 failed. Recapture ran with 024's uncommitted code set aside and restored after (byte check). 48 blind fit rows: skill-only carried 0 of 24, decline 8 of 24. Follow-ups T022 added, three declined with reasons on their task lines |
+| Operator answers 2026-11-14 | Decided by the operator | Sealed reach raise: follow-up packet. New behaviour arm on untuned rows: run on all six runtimes, Codex included, the operator approves the Codex hooks in a prepared arena. Branch: leave unpushed, the operator pushes and opens the pull request |
+| Remaining open decisions delegated to Fable 5.2 | In progress | The operator asked that a fresh Fable 5.2 medium on claude2 decide the outcome target, the new arm's design and the other open WAITING items, deletions excluded. Brief and report in review/fable-decisions-2026-11-14/ |
+| Outcome target, set before the new arm runs | Decided, P033 | Gain target: brief-on follows on more paired rows than brief-off, pooled row-level exact sign test below 0.05 one-sided, 0 commands started on a decline row in the on arm, sealed reach floor 1 of 44 fixture and 4 of 44 real. A runtime with gained not above lost is logged not shown with its paired line and one reason, no rerun, no tuning |
+| New behaviour arm design | Decided, P034, phase 026 | 36 fresh blind rows (20 fit, 8 skill-only, 8 decline) in behaviour-fresh-prompts.jsonl, two runs each, arms off and on at one commit, six runtimes, 864 sessions, cap 900. Brief off through the advisor disable switches. Codex needs the operator's hook approval in the prepared arena first |
+| Superseded: research ranks 7, 12, 13, the Gate 2 direct-call example and the Codex-only arm | Closed, P035 and P034 | Ranks and the example were answered 2026-11-13 and built in phase 016. The Codex-only arm folds into the six-runtime arm of phase 026 |
+| Head wording B-5 and Gate 2 prefix B-6 | Decided, P036 | B-6 made before the arm in phase 026. B-5 built only if the on arm starts a command on a decline row or takes a command on a skill-only row more often than off |
+| Step check, sv labels, release note, binding rows, order | Decided, P037 to P040 | Stored-run step check declined, a Fable reader scores 24 new on-arm sessions. sv labels kept. Root note v4.0.2.1 extended once in 025, republish stays with the operator. No binding rows, binding sentence reworded. Phase 025 runs after 026 |
+| Checks on the Fable decisions | Done | dsh pre rows appear in both pre logs (24 of 24), the scorer keeps the last line per runtime, arm and row and reads the rerun log second, so the 023 dsh numbers stand. Phase 016 rows confirm ranks 7, 12, 13 and the stdin example were built. Q061 supersedes the 2026-11-13 answer No more behaviour arms |
+| Phase 024 rescore of the stored arms, Codex restated | Recorded | tuned rows, one run each, no brief reached Codex. Before: codex pre start 0 of 12, codex post start 0 of 12. After: codex pre start 0 of 12, codex post start 0 of 12. The criterion 3 start rate did not move. Codex pre loadRate 0 of 16 before, 4 of 16 after, from reading its exec bodies (T009, T011) |
 
 ### Deviations and findings
 

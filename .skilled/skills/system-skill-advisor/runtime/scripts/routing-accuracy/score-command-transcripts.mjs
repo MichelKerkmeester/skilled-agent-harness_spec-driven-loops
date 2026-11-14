@@ -217,7 +217,7 @@ const COMMAND_NAME_TAG = /<command-name>\s*(\/[^<\s]+)\s*<\/command-name>/;
 const PATH_KEYS = Object.freeze(['file_path', 'filePath', 'notebook_path', 'path']);
 const PATCH_BODY_KEYS = Object.freeze(['patch', 'input', 'diff']);
 const SKILL_NAME_KEYS = Object.freeze(['skill', 'name', 'id']);
-const SHELL_COMMAND_KEYS = Object.freeze(['command']);
+const SHELL_COMMAND_KEYS = Object.freeze(['command', 'cmd']);
 const SHELL_BOUNDARY = /[\s;&|()<>]/;
 
 function tableFor(runtime) {
@@ -324,6 +324,25 @@ function addEvent(events, kind, fields) {
   });
 }
 
+// Codex runs its shell through a tool whose body is JavaScript, so the commands are
+// the `cmd` strings of that body. A body that passes its commands through a list has
+// no such string, so every string of it is read.
+const EXEC_STRING_LITERAL = /"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|`(?:[^`\\]|\\.)*`/g;
+const EXEC_COMMAND_LITERAL = /\bcmd\s*:\s*("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|`(?:[^`\\]|\\.)*`)/g;
+const decodeLiteral = (literal) => {
+  if (literal.startsWith('"')) {
+    try { return JSON.parse(literal); } catch { /* an escape JSON does not know */ }
+  }
+  return literal.slice(1, -1).replace(/\\(.)/g, '$1');
+};
+function execBodyCommand(body) {
+  if (typeof body !== 'string' || !/\bexec_command\s*\(/.test(body)) return null;
+  let found = [...body.matchAll(EXEC_COMMAND_LITERAL)].map((match) => decodeLiteral(match[1]));
+  if (found.length === 0) found = [...body.matchAll(EXEC_STRING_LITERAL)].map((match) => decodeLiteral(match[0]));
+  const lines = found.map((value) => value.trim()).filter(Boolean);
+  return lines.length > 0 ? lines.join('\n') : null;
+}
+
 /**
  * Flatten raw session records into the one event shape the checks read.
  *
@@ -368,7 +387,7 @@ export function normalize(records, runtime) {
       const args = block.arguments && typeof block.arguments === 'object' ? block.arguments : {};
 
       if (kind === 'shell') {
-        const command = firstString(args, SHELL_COMMAND_KEYS);
+        const command = firstString(args, SHELL_COMMAND_KEYS) ?? execBodyCommand(args.input);
         const redirected = command === null ? [] : redirectTargets(command);
         if (redirected.length > 0) {
           for (const path of redirected) addEvent(events, 'write', { path, command });
@@ -619,18 +638,35 @@ function firstWritePosition(events, checkoutDir) {
 // Some runtimes read a document through the shell rather than a read tool, and only a
 // command that reads a file names one, so a path that is merely printed or listed is
 // not a load. The readers below take the files they open as arguments, while a word
-// after a redirect operator names a file the command writes instead.
-const SHELL_READERS = Object.freeze(['cat', 'head', 'tail', 'sed', 'less', 'more', 'bat', 'nl', 'awk', 'rg', 'grep']);
+// after a redirect operator names a file the command writes instead. A search prints
+// the lines that match a word and not the workflow, so it opens nothing.
+const SHELL_READERS = Object.freeze(['cat', 'head', 'tail', 'sed', 'less', 'more', 'bat', 'nl', 'awk']);
+
+// The lines of a heredoc are data handed to a program and not commands, so the pattern
+// keeps the opening line and drops the body.
+const HEREDOC_BODY = /(<<-?\s*(['"]?)([A-Za-z_][A-Za-z0-9_]*)\2[^\n]*)\n[\s\S]*?\n[ \t]*\3[ \t]*(?=\n|$)/g;
 
 function shellReadTargets(command) {
-  const text = typeof command === 'string' ? command : '';
+  const text = (typeof command === 'string' ? command : '').replace(HEREDOC_BODY, '$1');
   const parts = text.split(/;|&&|\|\||\||\r?\n/);
   const targets = [];
+  // A bare document name is read in the folder an earlier `cd` of the same command
+  // entered.
+  let folder = null;
 
   for (const part of parts) {
     const words = part.trim().split(/\s+/).filter(Boolean);
     let start = 0;
     while (start < words.length && /^[A-Za-z_][A-Za-z0-9_]*=/.test(words[start])) start += 1;
+    if (start < words.length && words[start] === 'cd') {
+      const next = words[start + 1];
+      const first = next === undefined ? '' : next[0];
+      const unquoted = next !== undefined && next.length > 1 && (first === '"' || first === "'") && next[next.length - 1] === first
+        ? next.slice(1, -1)
+        : next;
+      folder = unquoted === undefined ? null : unquoted.replace(/\/+$/, '');
+      continue;
+    }
     if (start >= words.length || !SHELL_READERS.includes(words[start])) continue;
     // Sed with an in-place flag edits the file rather than reading it, so it writes.
     if (words[start] === 'sed' && words.slice(start + 1).some((word) => word === '--in-place' || word.startsWith('--in-place=') || /^-[A-Za-z]*i/.test(word))) continue;
@@ -647,7 +683,9 @@ function shellReadTargets(command) {
       const unquoted = word.length > 1 && (first === '"' || first === "'") && word[word.length - 1] === first
         ? word.slice(1, -1)
         : word;
-      if (/\.(?:md|ya?ml)$/.test(unquoted)) targets.push(unquoted);
+      if (/\.(?:md|ya?ml)$/.test(unquoted)) {
+        targets.push(folder !== null && !/^[/~]/.test(unquoted) ? `${folder}/${unquoted}` : unquoted);
+      }
     }
   }
 
@@ -1419,12 +1457,18 @@ function repeatedCommands(lines) {
 // The offer a turn received lives on its run line, because the hook's head is not
 // part of the session the reader loads. A line written before that field existed
 // has no answer, so a missing key is counted apart from an offer that named another
-// command instead of being read as a refusal.
+// command instead of being read as a refusal. An ambiguous head names two paths and
+// only the first leads, so a command on the partner side was shown and not offered,
+// and a line written before the field existed keeps its count because where its
+// command sat is unknown.
 function offerOf(line, label) {
   const hasOffer = Object.prototype.hasOwnProperty.call(line, 'offeredCommand');
   const wanted = commandParts(label.expected_command);
   return {
-    offered: hasOffer && wanted !== null && namesCommand(line.offeredCommand, wanted),
+    offered: hasOffer && wanted !== null && namesCommand(line.offeredCommand, wanted)
+      && line.offeredAs !== 'partner',
+    partner: hasOffer && wanted !== null && namesCommand(line.offeredCommand, wanted)
+      && line.offeredAs === 'partner',
     offerFieldAbsent: !hasOffer,
   };
 }
@@ -1446,7 +1490,8 @@ function offerOf(line, label) {
  *   command to skill table and the set of known skills.
  * @returns {Promise<{scored: false, reason: string}
  *   | {scored: true, capped: boolean, startRow: boolean, started: boolean,
- *      offered: boolean, offerFieldAbsent: boolean, offerSeen: boolean,
+ *      offered: boolean, offerFieldAbsent: boolean, offeredAsPartner: boolean,
+ *      offerSeen: boolean,
  *      commandState: string|null, briefDelivered: boolean|'unknown',
  *      wrote: boolean, policy: string|null, unsafe: boolean, commandLines: number,
  *      repeated: number, loop: boolean|null,
@@ -1493,6 +1538,7 @@ async function scoreRun(line, labels, owners) {
     started: start.started,
     offered: offer.offered,
     offerFieldAbsent: offer.offerFieldAbsent,
+    offeredAsPartner: offer.partner,
     // A `COMMAND:` line is the model's own report that the head named the command,
     // so it is a fact about the session even when the run line holds no offer.
     offerSeen: seen.offerSeen,
@@ -1569,6 +1615,7 @@ function newTally() {
     cappedOfferRows: 0,
     startedOfOffered: 0,
     offerFieldAbsent: 0,
+    offeredAsPartner: 0,
     offerReached: 0,
     deliveryUnknown: 0,
     offerSeen: 0,
@@ -1627,6 +1674,7 @@ function tallyBlock(tally) {
     cappedOfferRows: tally.cappedOfferRows,
     startedOfOffered: tally.startedOfOffered,
     offerFieldAbsent: tally.offerFieldAbsent,
+    offeredAsPartner: tally.offeredAsPartner,
     offerReached: tally.offerReached,
     deliveryUnknown: tally.deliveryUnknown,
     offerSeen: tally.offerSeen,
@@ -1716,6 +1764,7 @@ function addScored(tally, result) {
     if (result.briefDelivered !== false) tally.offerReached += 1;
   }
   if (result.offerFieldAbsent) tally.offerFieldAbsent += 1;
+  if (result.offeredAsPartner) tally.offeredAsPartner += 1;
   // A declined `COMMAND:` line is the turn reporting it saw the command and turned
   // it down, so the seen offer and the refusal are counted apart from the head.
   if (result.offerSeen) tally.offerSeen += 1;
@@ -1868,6 +1917,7 @@ function writeSummary(summary, json) {
           + ` offer reached ${block.offerReached}, delivery unknown ${block.deliveryUnknown},`
           + ` offer seen ${block.offerSeen}, declined ${block.offerDeclined},`
           + ` offer field absent ${block.offerFieldAbsent},`
+          + ` offered as partner ${block.offeredAsPartner},`
           + ` COMMAND: line ${block.commandLineRate}, capped ${block.capped}, unsafe ${block.unsafe} (${block.unsafeNoChangedPath} with no changed path),`
           + ` repeated ${block.repeatedCommandLines},`
           + ` loops without init ${block.loopsWithoutInit} of ${block.loops}`

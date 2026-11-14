@@ -209,6 +209,12 @@
         "source": "derived"
       },
       {
+        "name": "Answer Log",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
         "name": "Verbatim Operator Answers Each",
         "kind": "proper_noun",
         "path": "decision-record.md",
@@ -217,7 +223,7 @@
     ],
     "causal_summary": "A user who chats without typing a command gets an improvised approach from the model, even where a slash command already owns a complete workflow for the task",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-14T13:19:02.613Z",
+    "last_save_at": "2026-11-14T14:42:48.726Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -225,11 +231,11 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:b5f2fa50aa36cabde9d3e117ccc53e47193d70a8056f4a8129623ef487456c02",
+    "source_fingerprint": "sha256:60ef9cb3af307d7ae8ae02faccb0792d86e70c12101821bb89e2bf70c09a8e95",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ca1d2cce8aeb48f3bb5affe40c3dad4339e3d98db49634a16a2d1bd3ce3bfd91",
-      "decision-record.md": "8f7970dae10721424d983953a3bb0ba88c660b6ebf0da9f33b7b304ac2d0d06d"
+      "spec.md": "1659cca1ffbfbe3338644bc6e350328c6948c57f75aae11b87be9862a35eff74",
+      "decision-record.md": "65ceadc0770c134fb02ef4989dcada9359122753057e9c69c72450f4a279457a"
     },
     "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/018-holdout-row-retirement",
     "last_active_at": "2026-11-13T22:04:29.402Z"

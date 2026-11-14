@@ -1,0 +1,33 @@
+## VX tests/command-attach-guards.vitest.ts
+ Test Files  1 passed (1)
+      Tests  119 passed (119)
+## VX tests/command-transcript-score.vitest.ts
+ Test Files  1 passed (1)
+      Tests  165 passed (165)
+## VX tests/command-offer.vitest.ts
+ Test Files  1 passed (1)
+      Tests  29 passed (29)
+## RT
+ℹ tests 95
+ℹ pass 95
+ℹ fail 0
+## HT
+ Test Files  2 passed (2)
+      Tests  30 passed (30)
+## TC
+exit 0
+## VP
+ℹ tests 45
+ℹ pass 45
+ℹ fail 0
+## VALL
+exit 1
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+ FAIL  tests/legacy/advisor-freshness.vitest.ts > getAdvisorFreshness > bench records cold and warm probe p50/p95/p99 over 30 samples
+ FAIL  tests/parity/python-ts-parity.vitest.ts > 027/003 AC-1/AC-2 regression-protection parity and §11 gates > AC-4 ablation disabling lexical reduces corpus accuracy
+ Test Files  2 failed | 182 passed (184)
+      Tests  2 failed | 2025 passed | 6 skipped (2033)
+## VALL rerun, alone (the first run above failed two tests by timeout under load, each passed twice alone)
+exit 0
+ Test Files  184 passed (184)
+      Tests  2027 passed | 6 skipped (2033)

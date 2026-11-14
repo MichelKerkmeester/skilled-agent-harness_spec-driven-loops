@@ -1,0 +1,32 @@
+## G diff --quiet BASE -- AGENTS.md
+exit 0
+## G diff --quiet BASE -- CPJ CRB
+exit 1
+## G diff --quiet BASES -- CPJ CRB (phase 023 committed both between BASE and BASES)
+exit 0
+## G diff --stat BASE -- package files
+## comment id search
+rg exit 1
+## G diff --name-only BASE -- .skilled .opencode
+.opencode/plugins/tests/system-skill-advisor.test.cjs
+.skilled/hooks/shared/session-readers/README.md
+.skilled/hooks/shared/session-readers/codex.d.mts.map
+.skilled/hooks/shared/session-readers/codex.mjs
+.skilled/hooks/shared/tests/session-readers/codex.test.mjs
+.skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs
+.skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts
+## G diff --name-only BASE BASES -- .skilled .opencode
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/capture-command-routing-baseline.mjs
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-routing-baseline.json
+.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs
+.skilled/skills/system-skill-advisor/runtime/tests/command-routing-slice.vitest.ts
+.skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts

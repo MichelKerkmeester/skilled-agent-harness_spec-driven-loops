@@ -157,6 +157,7 @@ describe('a command the prompt only mentions', () => {
   // when a later occurrence of the same command is not led.
   it.each([
     ['the next step is /speckit:implement', '/speckit:implement'],
+    ['is this right? run /speckit:plan', '/speckit:plan'],
     ['the next step is /speckit:implement\nany questions?', '/speckit:implement'],
     ['what does /speckit:save do? ok now run /speckit:save', '/speckit:save'],
     ['the plan is /speckit:plan then tests', '/speckit:plan'],
@@ -171,6 +172,7 @@ describe('a command the prompt only mentions', () => {
     ['does /doctor:git change files or just report problems', '/doctor:git'],
     ['can /prompt:improve make a vague request easier to follow', '/prompt:improve'],
     ['ok. is /speckit:plan enough here', '/speckit:plan'],
+    ['quick question? is /speckit:resume safe to run twice', '/speckit:resume'],
   ])('reads %s as a question about %s', (prompt, command) => {
     expect(commandOnlyMentioned(prompt, command)).toBe(true);
   });
@@ -181,6 +183,44 @@ describe('a command the prompt only mentions', () => {
 
   it('reads a curly apostrophe as a straight one', () => {
     expect(commandOnlyMentioned('don\u2019t run /speckit:save', '/speckit:save')).toBe(true);
+  });
+
+  it('reads no need to run as a refusal of the command', () => {
+    expect(commandOnlyMentioned('no need to run /doctor:setup, the hooks are fine', '/doctor:setup')).toBe(true);
+  });
+
+  it('still reads a request after no need to ask', () => {
+    expect(commandOnlyMentioned('no need to ask, run /speckit:save', '/speckit:save')).toBe(false);
+  });
+
+  it('reads stop using as a refusal of the command', () => {
+    expect(commandOnlyMentioned('stop using /create:changelog for this, write the changelog entry by hand', '/create:changelog')).toBe(true);
+  });
+
+  it('still reads a request after stop and', () => {
+    expect(commandOnlyMentioned('stop and run /speckit:plan', '/speckit:plan')).toBe(false);
+  });
+
+  it('reads why not use as a request for the command', () => {
+    expect(commandOnlyMentioned('why not use /create:agent for this? go ahead and make a security reviewer agent', '/create:agent')).toBe(false);
+  });
+
+  it.each([
+    ['I have not run /speckit:plan yet, please start it for the login feature', '/speckit:plan'],
+    ['I already ran /create:readme but the output was wrong, run it again for the hooks folder', '/create:readme'],
+    ['not run /speckit:plan yet, write notes to /tmp/notes.md, then run it', '/speckit:plan'],
+    ['not run /speckit:plan yet, read https://example.com/spec first, then run it', '/speckit:plan'],
+  ])('reads %s as a request for %s made by a later clause', (prompt, command) => {
+    expect(commandOnlyMentioned(prompt, command)).toBe(false);
+  });
+
+  it.each([
+    ['do not run /speckit:complete, I will run it myself later', '/speckit:complete'],
+    ['do not use /create:agent, use that other one', '/create:agent'],
+    ['do not run /speckit:complete, run /speckit:plan for the rate limiter instead', '/speckit:complete'],
+    ['do not run /speckit:complete, run /speckit:plan, then run it for the auth module', '/speckit:complete'],
+  ])('still reads %s as a mention of %s', (prompt, command) => {
+    expect(commandOnlyMentioned(prompt, command)).toBe(true);
   });
 
   it('does not read a longer command name as the shorter one', () => {

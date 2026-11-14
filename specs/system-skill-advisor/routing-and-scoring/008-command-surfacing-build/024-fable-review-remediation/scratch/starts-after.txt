@@ -1,0 +1,12 @@
+claude pre start 3 of 12
+claude post start 4 of 12
+codex pre start 0 of 12
+codex post start 0 of 12
+pi pre start 0 of 11
+pi post start 2 of 10
+devin pre start 1 of 8
+devin post start 3 of 9
+opencode pre start 2 of 7
+opencode post start 1 of 5
+dsh pre start 4 of 12
+dsh post start 6 of 12

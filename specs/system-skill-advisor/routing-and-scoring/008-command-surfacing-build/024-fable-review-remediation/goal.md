@@ -58,13 +58,13 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `env -u AI_SESSION_CHILD npx vitest run` in `.skilled/skills/system-skill-advisor/runtime` reports 0 failed, and `node --test .skilled/hooks/shared/tests/session-readers/*.test.mjs` reports `fail 0`.
-- [ ] `env -u AI_SESSION_CHILD npx vitest run tests/history-lookup-cli.vitest.ts tests/history-lookup-adapters-e2e.vitest.ts` in `.skilled/skills/system-spec-kit/runtime` reports 0 failed.
-- [ ] The mention probe `scratch/planning/probe-mention-reader.mts`, run from the repository root through the spec kit's `tsx` loader, prints `SHIPPED: 46 of 46 agree`.
-- [ ] `cmp scratch/floor-before.txt scratch/floor-after.txt` exits 0, with typed recall at least 24 of 44 and false offers 0 of 35 in both files.
-- [ ] `scratch/rescore-delta.txt` holds 12 lines of the form `<runtime> <arm> start` and 11 of the form `<runtime> <arm> workflow`, and the parent goal log holds the Codex start rate of both arms before and after.
-- [ ] `git -c core.fsmonitor=false diff --quiet <start commit> -- AGENTS.md` and the same check on `command-prompts.jsonl` and `command-routing-baseline.json` exit 0.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation --strict` prints `RESULT: PASSED` with the phase status Complete.
+- [x] `env -u AI_SESSION_CHILD npx vitest run` in `.skilled/skills/system-skill-advisor/runtime` reports 0 failed, and `node --test .skilled/hooks/shared/tests/session-readers/*.test.mjs` reports `fail 0`.
+- [x] `env -u AI_SESSION_CHILD npx vitest run tests/history-lookup-cli.vitest.ts tests/history-lookup-adapters-e2e.vitest.ts` in `.skilled/skills/system-spec-kit/runtime` reports 0 failed.
+- [x] The mention probe `scratch/planning/probe-mention-reader.mts`, run from the repository root through the spec kit's `tsx` loader, prints `SHIPPED: 46 of 46 agree`.
+- [x] `cmp scratch/floor-before.txt scratch/floor-after.txt` exits 0, with typed recall at least 24 of 44 and false offers 0 of 35 in both files.
+- [x] `scratch/rescore-delta.txt` holds 12 lines of the form `<runtime> <arm> start` and 11 of the form `<runtime> <arm> workflow`, and the parent goal log holds the Codex start rate of both arms before and after.
+- [x] `git -c core.fsmonitor=false diff --quiet <start commit> -- AGENTS.md` and the same check on `command-prompts.jsonl` and `command-routing-baseline.json` exit 0.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation --strict` prints `RESULT: PASSED` with the phase status Complete.
 <!-- /ANCHOR:completion -->
 
 ---

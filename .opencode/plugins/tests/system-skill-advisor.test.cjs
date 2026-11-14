@@ -654,11 +654,26 @@ test('termination grace stays inside the configured timeout budget', async () =>
   const startedAt = Date.now();
   const keepAlive = setTimeout(() => undefined, 200);
 
-  const output = await runPrompt(hooks);
+  // The scheduled delays carry the budget check because timers fire late on a busy machine.
+  const delays = [];
+  const originalSetTimeout = global.setTimeout;
+  global.setTimeout = (callback, delay, ...args) => {
+    delays.push(delay);
+    return originalSetTimeout(callback, delay, ...args);
+  };
+  let output;
+  try {
+    output = await runPrompt(hooks);
+  } finally {
+    global.setTimeout = originalSetTimeout;
+  }
   clearTimeout(keepAlive);
   const elapsedMs = Date.now() - startedAt;
 
-  assert.ok(elapsedMs < 200, `expected bounded timeout, got ${elapsedMs}ms`);
+  assert.ok(delays.includes(40), `expected a timer at the 40ms deadline, got ${delays.join(', ')}ms`);
+  assert.ok(!delays.includes(290), `expected no timer that adds the grace, got ${delays.join(', ')}ms`);
+  assert.ok(delays.includes(0), `expected SIGTERM at the deadline minus the grace, got ${delays.join(', ')}ms`);
+  assert.ok(elapsedMs < 2000, `expected bounded timeout, got ${elapsedMs}ms`);
   assert.deepEqual(child.kills, ['SIGTERM', 'SIGKILL']);
   assert.equal(output.system[0], OUTAGE_FAIL_OPEN_FALLBACK_CONTEXT);
   assert.match(await status(hooks), /last_error_code=TIMEOUT/);

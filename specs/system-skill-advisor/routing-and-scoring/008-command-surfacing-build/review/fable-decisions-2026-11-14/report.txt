@@ -1,0 +1,89 @@
+**Decisions for PK (008-command-surfacing-build), 2026-11-14**
+
+Two of the nine items (3 and 4) were already decided by the operator and built in phase 016, so their WAITING rows are stale. I ran no tests and changed no file. RAD below is `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy`.
+
+**1. Outcome target: (a), the gain target, with a noise rule and a miss rule written down before the first session.**
+
+- **Decision.** On the new arm, brief-on must follow on more paired rows than brief-off on each runtime, with zero commands started on a decline row in the brief-on arm. Sealed reach is a floor at today's values, 1 of 44 fixture and 4 of 44 real.
+- **Reason.** Brief-off followed rates already run from 5 of 16 on Claude to 12 of 16 on Devin (PK/023-untuned-outcome-evidence/scratch/outcome-evidence.txt:15-24). An absolute number would grade the runtime and not the brief, so (b) is out. The five limits say the present numbers show no cause (same file:31-35), and you have already ordered the arm, so (c) would waive the one thing the arm exists to show.
+- **Noise rule.** The log may say "met" only when the row-level exact sign test, pooled over runtimes, is below 0.05 one-sided. For example, 15 rows gaining against 5 losing passes, and 12 against 6 does not. Per-runtime lines are read as direction only.
+- **Miss rule.** A runtime where gained is not above lost is logged as "not shown on that runtime" with its paired line and one reason from reading its lost rows. There is no rerun and no tuning. The packet still closes, because criterion 6 already allows "the outcome as not shown" (PK/goal.md:96). The miss goes to the sealed-reach follow-up packet, which reruns the same frozen rows as its acceptance test.
+- **Decline starts.** A start on a decline row needs a class-level fix or a reason, as criterion 3 requires for unsafe starts (PK/goal.md:93).
+- **Trade-off.** A miss is likely. The brief carries the right command on only 4 of 44 untuned rows (outcome-evidence.txt:10), so the packet may well close with "not shown".
+- **What changes.** One goal log row states the target, the test and the miss rule before the arm runs. No criterion text changes, so the durable slice is untouched.
+
+**2. Arm design: keep 144 sessions per runtime, but spend them on rows, not repeats.**
+
+- **Decision.** 36 fresh rows, two runs each, arms `off` and `on` at one commit, all six runtimes. That is 864 sessions, with a hard cap of 900 to allow one rerun pass for harness faults only.
+- **Row mix.** 20 rows that fit a command (10 start, 5 run, 5 ask, at least 15 distinct commands, every family at least twice), 8 skill-only and 8 decline (two per kind: refusal, question, small-edit, app-problem). The decline share is raised because the head carries a command on 8 of 24 sealed decline rows and 0 of 24 skill-only rows (outcome-evidence.txt:13-14).
+- **Is the proposal too big or too small.** The session count is right. The shape is wrong: three runs on 24 rows buys repeats when rows are the scarce thing. No affordable size gives a per-runtime verdict. At 16 rows a rate reads 0.28 to 0.72 (outcome-evidence.txt:16), and the tuned arms had about 30 percent of rows change, so a per-runtime sign test would need about 40 owned rows.
+- **Smallest valid design.** One run per row, 288 sessions, is enough for the pooled sign test, since run noise is symmetric between arms. The second run is what removes limit 3 ("each row ran once"). The pooled test can show a strong effect, about three gains per loss, and will not show a weak one.
+- **Where the rows come from.** A new file, `RAD/behaviour-fresh-prompts.jsonl`, with split `fresh`. The runner reads only `command-prompts.jsonl` and refuses split `holdout` (RAD/run-command-behaviour.mjs:66 and :633), so the sealed rows cannot be used. A separate file keeps the fresh rows out of the capture's published per-row results, which would otherwise show a later tuner which rows miss.
+- **Who writes them blind.** One DeepSeek worker session under the same protocol as the 48 fit rows: class definitions, row shape, the command listing and skill names only, no lib file, no existing row, no advisor run on a draft (PK/023-untuned-outcome-evidence/tasks.md:78). The file's hash is logged and the rows are frozen at the first session.
+- **Brief off.** `SKILL_ADVISOR_HOOK_DISABLED` and `SKILL_ADVISOR_PLUGIN_DISABLED` (.skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:169-173). The runner already passes the `SKILL_ADVISOR_` prefix to the child (run-command-behaviour.mjs:872). AGENTS.md is identical in both arms, so only the brief differs, which removes limit 4. A run whose brief delivery does not match its arm is unscored and rerun once.
+- **What must be built.**
+  - Arms `off` and `on` added to the closed list (run-command-behaviour.mjs:951).
+  - A `--set fresh` that reads the new file, with the holdout guard and a repeated-text refusal.
+  - Pairing over both runs of a row. Today the pair map keys on row id, so a second run overwrites the first (RAD/score-command-transcripts.mjs:1745). A row gains when its on count beats its off count.
+  - A decline-start line per runtime and arm, and a pooled row-level line.
+  - Skill-only rows carry an owner skill so they count as owned. I did not confirm how the scorer loads row labels, so that lookup needs checking for the new file.
+- **Which script prints each number.** `score-command-transcripts.mjs --summary <logs> --pair off,on` prints the followed rates with ranges, the paired lines, the decline starts and the pooled line. The run log's `offeredCommand` and `briefDelivered` fields give the offer counts.
+- **Codex.** The runner refuses Codex until the hooks are approved (run-command-behaviour.mjs:1275-1289). Your approval in the prepared arena is the first step, followed by one smoke row per runtime and arm.
+
+**3. Research ranks 7, 12 and 13: nothing to build, the row is stale.**
+
+- **Decision.** No new phase.
+- **Reason.** You answered all three on 2026-11-13 (PK/goal.md:171 and :174). Rank 7 was built by the rename to `/create:sk-skill`, rank 12 was declined because Q026 stands, and rank 13 was built as the narrow `/doctor:helper` cue. Phase 016 shipped all of it, with Claude listing 44 of 44 commands (PK/goal.md:179).
+- **What changes.** One log row marks PK/goal.md:160 as superseded. Rank 12 stays declined.
+
+**4. AGENTS.md Gate 2 direct-call example: already made, no further edit.**
+
+- **Decision.** Decline any further edit.
+- **Reason.** AGENTS.md:65 carries the stdin form, and the branch diff against origin/main for that file is exactly that one line. You said yes on 2026-11-13 (PK/goal.md:171) and phase 016 made the edit (PK/goal.md:179).
+- **What changes.** One log row closes PK/goal.md:165. Your home CLAUDE.md still shows the old form because it links to main's AGENTS.md (PK/goal.md:131), and that clears when the pull request merges.
+
+**5. B-5 conditional on the arm, B-6 yes now.**
+
+- **B-5, head wording.** Do not reword now and do not add a third arm for it. The risk B-5 names is a model reading `use sk-doc → /create:readme (start)` as an order (PK/review/fable-alignment-2026-11-14/report-purpose-alignment.txt:8-10). The decline and skill-only rows of the new arm measure exactly that. A third arm would cost 432 more sessions and undo the 17 of 17 head parity phase 021 just reached (PK/goal.md:243).
+- **B-5 trigger.** If the on arm starts a command on any decline row, or takes a command on a skill-only row more often than the off arm, B-5 is built in a new phase and retested on those rows only. If not, B-5 is declined with the printed counts.
+- **B-6, AGENTS.md prefix.** Yes, before the arm. At AGENTS.md:68, "To take the command, read its document in full and follow it." becomes "If you take the command, read its document in full and follow it:" so the three policy words sit under it. The text is the same in both arms, so it adds no confound.
+- **Trade-off.** B-6 amends phase 006 decision D1, which froze the bullet (PK/006-gate-2-binding-and-runtime-pointers/goal.md:48). The edit must keep that goal's two checks green (same file:59-60).
+
+**6. Step-level check: decline it on the stored runs, do a model reader on the new arm.**
+
+- **Decision.** Decline (a) and (b) for the stored final-arm sessions. Instead, a read-only Fable 5.2 reader scores 24 on-arm sessions from the new arm, four per runtime, each counted as followed on a fit row.
+- **Reason.** The stored runs are tuned rows, one run each, made before phases 020 to 024 changed the offers, so a step check on them inherits limits 2 and 3 (outcome-evidence.txt:32-33). Option (a) spends your hours on evidence that cannot answer the question.
+- **How it is reported.** Each session is checked against three steps from its command document: the setup question or mode, the lock or spec folder before the first write, and the named output. D6 requires every number to come from a committed script (PK/goal.md:52), so this is logged as a reader's judgment and limit 1 stays in the README.
+- **What changes.** The hold on the stored sessions under P018 (PK/decision-record.md:1272) is no longer needed by any decision here. Deleting them stays yours.
+
+**7. Keep the sv labels. Extend the root release note once, last.**
+
+- **sv-09, sv-11, sv-12.** Keep the labels, with the README note from 024 T017. A relabel moves the false-offer floor in criterion 2 from 0 of 35 to 0 of 38 and files a full command name under partial mentions (PK/decision-record.md:1280, PK/goal.md:92). Phase 023 already counts this class on sealed decline rows.
+- **Root release note.** Extend the already amended v4.0.2.1 note on the branch with the user-visible changes of phases 020, 021 and 024, the B-6 edit and one line on the measures. This overturns the coordinator ruling at PK/goal.md:256 and follows the 025 recommendation (PK/025-release-notes-and-doc-sync/spec.md:252).
+- **Reason.** The note is already amended on this unpushed branch by your choice, and its republish is still pending (PK/goal.md:219). A branch edit publishes nothing. D2 binds the tag move and the republish, which stay with you. Leaving the note at 014 to 018 would ship a note that omits two behaviour changes, the same shape as alignment finding X-01 (PK/goal.md:208).
+- **Trade-off.** The published text changes a second time when you republish. If you plan a new Skilled version at merge, write a new note there and skip this task.
+
+**8. Binding rows: add none, accept the checker finding, reword one sentence.**
+
+- **Decision.** No retrofit goals for phases 009 to 019 and no new table rows.
+- **Reason.** The checker wants a table row for every phase folder, with or without a goal (.skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs:250-268). Thirteen more rows need about 630 characters and 8 are free, so it cannot pass without cutting a frozen decision (PK/decision-record.md:1259 and :1285). A goal written after a phase closed binds nothing.
+- **What changes.** The binding sentence at PK/goal.md:61-62 becomes "Read a phase's own goal.md before working it, listed or not. It binds as if written here." That stays within budget and covers 024, 025 and the new arm phase. The log records the 4 of 5 check result as accepted. A range row in the checker is a matter for the sk-create-goal skill, outside this packet.
+
+**9. Other open items.**
+
+- **Codex-only arm** (PK/goal.md:121, :137, :189). Folded into the six-runtime arm. Phase 010 tasks T031 and T032 and research question 4 run as its Codex smoke step. The approval itself stays with you.
+- **Fit decline count of 8 of 24**, handed to you by phase 023 (PK/023-untuned-outcome-evidence/implementation-summary.md:143). Not tuned here, because tuning on a sealed row ends its use. It goes to the follow-up packet as a floor that may only fall, and the new arm's decline rows show whether it matters in behaviour.
+- **Advisory on eight sealed rows** that hit data files or hand-written rules (PK/goal.md:178). Assigned to the same follow-up packet.
+- **Session goal against packet criteria** (PK/goal.md:244). I ratify the amended criteria of P003 and P013 (PK/decision-record.md:1257 and :1267). Only you can reset the session goal string, so that one action stays with you.
+- **Live brief cost.** The log still shows it unmeasured (PK/goal.md:179). I did not check whether a later phase closed it. It gets a number or a decline as the first task of the arm phase.
+- **Stays with you by D2 or today's list.** The Codex hook approval, the tag and release republish, the push and pull request, and the deletions.
+
+**Build order for the decisions that change what gets built**
+
+1. Close phase 024 with the sv labels kept and the README note.
+2. Write the log rows: the pre-registered target and miss rule, the superseded rows for items 3, 4 and the Codex-only arm, and the binding sentence reword.
+3. Make the B-6 edit to AGENTS.md:68, so the arena commit carries it.
+4. Open phase 026, the untuned behaviour arm: harness changes, the blind fresh rows, your Codex approval, smoke rows, 864 sessions, the scored verdict in the log.
+5. Run the step reader on 24 sessions of that arm.
+6. Build B-5 only if its trigger fired.
+7. Run phase 025 last, moved to after 026, ending with the one extension of the root release note.

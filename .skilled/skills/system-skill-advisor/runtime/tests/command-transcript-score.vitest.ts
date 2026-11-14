@@ -187,6 +187,19 @@ describe('normalize', () => {
     expect(events[3].command).toBe('create:readme');
   });
 
+  // A Codex function call names its command under `cmd` rather than `command`, so a
+  // read through one only counts when that key is read.
+  it('reads the cmd key of a Codex exec_command call', () => {
+    const events = normalize(
+      oneTurn(toolCall('exec_command', { cmd: 'cat .skilled/skills/sk-doc/SKILL.md' })),
+      'codex',
+    );
+
+    expect(events).toHaveLength(1);
+    expect(events[0].kind).toBe('shell');
+    expect(events[0].command).toBe('cat .skilled/skills/sk-doc/SKILL.md');
+  });
+
   // A shell step that lands a file is a write, and the first-write boundary every
   // other check turns on would move if it were left as a shell step.
   it('counts a shell step that redirects into a file as a write', () => {
@@ -218,6 +231,46 @@ describe('normalize', () => {
 
   it('records no expanded command for a runtime that keeps no command tag', () => {
     expect(normalize(EXPANDED_RECORDS, 'pi')).toHaveLength(0);
+  });
+
+  // Codex runs its shell through a tool whose body is JavaScript, so the commands a
+  // shell step ran are the `cmd` strings of that body, one per line.
+  it('reads the commands of a Codex exec body as one shell step', () => {
+    const body = 'const r = await tools.exec_command({cmd:"cat .skilled/skills/sk-doc/SKILL.md"}); const s = await tools.exec_command({cmd:"git status --porcelain"}); text(r);';
+    const events = normalize(oneTurn(toolCall('exec', { input: body })), 'codex');
+
+    expect(events).toHaveLength(1);
+    expect(events[0].kind).toBe('shell');
+    expect(events[0].command).toBe('cat .skilled/skills/sk-doc/SKILL.md\ngit status --porcelain');
+  });
+
+  it('reads a redirect inside a Codex exec body as a write', () => {
+    const body = 'const r = await tools.exec_command({cmd:"printf x > out/readme.md"});';
+    const events = normalize(oneTurn(toolCall('exec', { input: body })), 'codex');
+
+    expect(events).toHaveLength(1);
+    expect(events[0]).toMatchObject({ kind: 'write', path: 'out/readme.md' });
+  });
+
+  // A body that runs no shell command is still a step the run took, so it stays an
+  // event rather than dropping out of the order.
+  it('keeps a Codex exec body that runs no shell command as a step with no command', () => {
+    const body = 'const r = await tools.web__run({search_query:[{q:"x"}]}); text(r);';
+    const events = normalize(oneTurn(toolCall('exec', { input: body })), 'codex');
+
+    expect(events).toHaveLength(1);
+    expect(events[0].kind).toBe('shell');
+    expect(events[0].command).toBeNull();
+  });
+
+  // A body that passes its commands through a list names none as a `cmd` string, so
+  // every string the body holds is read.
+  it('reads every string of a Codex exec body whose commands sit in a list', () => {
+    const body = 'const cmds = [["a", "cat .skilled/skills/sk-doc/SKILL.md"]]; const rs = await Promise.all(cmds.map(async ([k,cmd]) => [k, await tools.exec_command({cmd})]));';
+    const events = normalize(oneTurn(toolCall('exec', { input: body })), 'codex');
+
+    expect(events).toHaveLength(1);
+    expect(events[0].command).toBe('a\ncat .skilled/skills/sk-doc/SKILL.md');
   });
 });
 
@@ -769,6 +822,7 @@ interface RunLogLine {
   readonly exit: number | null;
   readonly locator: Readonly<Record<string, string>> | null;
   readonly offeredCommand?: string | null;
+  readonly offeredAs?: 'head' | 'partner' | null;
   readonly briefDelivered?: boolean | 'unknown';
   readonly changedPaths?: readonly string[];
 }
@@ -1104,9 +1158,40 @@ describe('run log summary', () => {
 
     expect(summary).toMatchObject({
       claude: {
-        tune: { runs: 2, scored: 2, offered: 1, startedOfOffered: 1, offerFieldAbsent: 0 },
+        tune: { runs: 2, scored: 2, offered: 1, startedOfOffered: 1, offerFieldAbsent: 0, offeredAsPartner: 0 },
       },
     });
+  });
+
+  // An ambiguous head names two paths and only the first one leads, so a command
+  // that sat on the partner side was shown to the turn and never offered.
+  it('does not count a command on the partner side as offered', () => {
+    const { summary, text } = summarizeForms((root) => {
+      const locator = loadableSession(root);
+      return [
+        {
+          rowId: SUMMARY_ROW,
+          arm: 'tune',
+          exit: 0,
+          locator,
+          offeredCommand: '/create:agent',
+          offeredAs: 'partner',
+        },
+        {
+          rowId: 'cmd-create-agent-plain-tune-02',
+          arm: 'tune',
+          exit: 0,
+          locator,
+          offeredCommand: '/create:agent',
+          offeredAs: 'head',
+        },
+      ];
+    });
+
+    expect(summary).toMatchObject({
+      claude: { tune: { runs: 2, scored: 2, offered: 1, offeredAsPartner: 1 } },
+    });
+    expect(text).toContain('offered as partner 1,');
   });
 
   // An offer is a fact about the head the turn saw, so it counts even when the cap
@@ -2132,6 +2217,11 @@ describe('workflowPath', () => {
   it.each([
     { command: 'echo .skilled/skills/sk-doc/SKILL.md', expected: 'none' },
     { command: 'ls .skilled/skills/sk-doc', expected: 'none' },
+    { command: 'rg -n "mode" .skilled/skills/sk-doc/SKILL.md', expected: 'none' },
+    { command: 'grep -n workflow .skilled/skills/sk-doc/SKILL.md', expected: 'none' },
+    { command: "python3 - <<'EOF'\nhead .skilled/skills/sk-doc/SKILL.md\nEOF", expected: 'none' },
+    { command: 'node - <<EOF\nmore .skilled/skills/sk-doc/SKILL.md\nEOF', expected: 'none' },
+    { command: 'cd docs && cat SKILL.md', expected: 'none' },
     { command: 'cat notes.md > .skilled/skills/sk-doc/SKILL.md', expected: null },
     { command: "sed -i '' 's/old/new/' .skilled/skills/sk-doc/SKILL.md", expected: null },
     { command: 'sed -i.bak s/old/new/ .skilled/skills/sk-doc/SKILL.md', expected: null },
@@ -2146,6 +2236,32 @@ describe('workflowPath', () => {
 
     expect(path).not.toBe('skill');
     if (expected !== null) expect(path).toBe(expected);
+  });
+
+  it('still counts a read after a heredoc ends', () => {
+    const events = normalize(
+      oneTurn(toolCall('Bash', { command: "python3 - <<'EOF'\nprint(1)\nEOF\ncat .skilled/skills/sk-doc/SKILL.md" })),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: '/create:agent',
+      owner: 'sk-doc',
+      wrote: false,
+    })).toBe('skill');
+  });
+
+  it.each([
+    { command: 'cd .skilled/skills/sk-doc && cat SKILL.md' },
+    { command: 'cd ".skilled/skills/sk-doc/" && sed -n 1,80p SKILL.md' },
+  ])('counts $command as a skill load', ({ command }) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+
+    expect(scorer.workflowPath(events, {
+      command: '/create:agent',
+      owner: 'sk-doc',
+      wrote: false,
+    })).toBe('skill');
   });
 
   // A mode can keep its workflow in the packet folder of another mode of its hub, so

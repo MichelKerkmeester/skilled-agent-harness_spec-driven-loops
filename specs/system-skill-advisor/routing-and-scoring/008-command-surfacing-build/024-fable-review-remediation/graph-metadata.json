@@ -3,6 +3,7 @@
   "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation",
   "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation",
   "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "status_review_required": true,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -18,7 +19,8 @@
       "fable review remediation plan",
       "fable review remediation tasks",
       "fable review remediation acceptance criteria",
-      "fable review remediation goal"
+      "fable review remediation goal",
+      "fable review remediation implementation summary"
     ],
     "key_topics": [
       "fable",
@@ -35,17 +37,28 @@
       "wording"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/shared/session-readers/codex.mjs",
+      ".skilled/hooks/shared/session-readers/codex.d.mts.map",
+      ".skilled/hooks/shared/tests/session-readers/codex.test.mjs",
+      ".skilled/hooks/shared/session-readers/README.md",
+      ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
       ".opencode/plugins/tests/system-skill-advisor.test.cjs",
       "scratch/repro-before.txt",
+      "scratch/rescore-delta.txt",
       ".opencode/plugins/session-history-lookup.js",
-      "scratch/planning/probe-mention-reader.mts"
+      "scratch/repro-after.txt"
     ],
     "entities": [
       {
@@ -79,6 +92,60 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "codex.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/codex.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "codex.d.mts.map",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/codex.d.mts.map",
+        "source": "derived"
+      },
+      {
+        "name": "codex.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/tests/session-readers/codex.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/shared/session-readers/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-attach-guards.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-attach-guards.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "score-command-transcripts.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-transcript-score.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "system-skill-advisor.test.cjs",
         "kind": "file",
         "path": ".opencode/plugins/tests/system-skill-advisor.test.cjs",
@@ -91,15 +158,21 @@
         "source": "derived"
       },
       {
+        "name": "rescore-delta.txt",
+        "kind": "file",
+        "path": "scratch/rescore-delta.txt",
+        "source": "derived"
+      },
+      {
         "name": "session-history-lookup.js",
         "kind": "code",
         "path": ".opencode/plugins/session-history-lookup.js",
         "source": "derived"
       },
       {
-        "name": "probe-mention-reader.mts",
+        "name": "repro-after.txt",
         "kind": "file",
-        "path": "scratch/planning/probe-mention-reader.mts",
+        "path": "scratch/repro-after.txt",
         "source": "derived"
       },
       {
@@ -131,71 +204,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Scope Boundary",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The Codex",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Producer",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Codex runs its shell through a custom tool whose body is JavaScript, the session reader drops that body and the scorer therefore sees 58 shell steps with no command text in the before arm, so a Codex run can never show a load",
     "created_at": "2026-11-14T10:51:50Z",
-    "last_save_at": "2026-11-14T13:19:02.465Z",
+    "last_save_at": "2026-11-14T14:42:21.511Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,14 +216,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ea5a949896227e25ab425cadccbe05fd497eaac7c0d842a782b0e57929ed274",
+    "source_fingerprint": "sha256:82fbb225b27d6dbe941be4cf4e402e2d7d3c382ad77c820655de340858ff117e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "79c7627f72927455e880ba15c386109548a23950628cd3ee93605ee5d9f37d48",
+      "spec.md": "b97119f3fd879898871595c8020a638f3656b73fd12138897740cde2aa650a0b",
       "plan.md": "6e2b6f2e53c10bf56215945aeddd01e47d05be70f0ffa7120e5059026a62d6ba",
-      "tasks.md": "c74595299541c56aa6323d5b62feb03b72e5f7d9ef7618baf89ac4709d911db6"
+      "tasks.md": "9ee54fd5b51b319ce55531c5e0246912734a7e3890550a5afd11323f34c3d989",
+      "implementation-summary.md": "74d4988ecd2f5d95abcd0c749c91c91b1416c93f44c2ee52000aacad55685cd2"
     },
     "last_active_at": null
   }

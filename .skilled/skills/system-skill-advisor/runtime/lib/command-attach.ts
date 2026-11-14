@@ -359,14 +359,18 @@ export function isNoEditRequest(text: string): boolean {
 export const COMMAND_USE_VERB = '(?:run|start|use|invoke|launch|execute|call|trigger|open|rerun|re-run|kick off)';
 export const COMMAND_GAP_WORDS = "(?:[a-z']+ ){0,2}";
 
+// `why not` proposes the command rather than refusing it, so the word refuses
+// only where no `why` stands before it.
+const COMMAND_NOT_WORD = '(?<!\\bwhy )not';
+
 // A command the reader refuses is named without being asked for, so this list
 // holds the leads that mark that naming. A lead must sit directly before the
 // command so a later clause cannot refuse an earlier request, and a gap holds
 // plain words only so a refusal before a comma cannot swallow the request after
-// it.
+// it. A reader who stops using a command names it only to refuse it.
 export const COMMAND_DECLINE_LEADS: readonly string[] = [
-  `(?:do not|don't|dont|never|not|won't|wont|no longer|cannot|can't) (?!(?:forget|hesitate|fail|mind)\\b)${COMMAND_GAP_WORDS}${COMMAND_USE_VERB} ${COMMAND_GAP_WORDS}`,
-  `(?:skip|skipping|without|instead of|rather than|avoid|not) (?:(?!${COMMAND_USE_VERB}\\b)[a-z']+ ){0,2}`,
+  `(?:do not|don't|dont|never|${COMMAND_NOT_WORD}|won't|wont|no longer|cannot|can't|no need to|need not|needn't) (?!(?:forget|hesitate|fail|mind)\\b)${COMMAND_GAP_WORDS}${COMMAND_USE_VERB} ${COMMAND_GAP_WORDS}`,
+  `(?:skip|skipping|without|instead of|rather than|avoid|stop|stopped|quit|${COMMAND_NOT_WORD}) (?:(?!${COMMAND_USE_VERB}\\b)[a-z']+ ){0,2}`,
 ];
 
 // A command the reader asks about is named without being asked for, so this list
@@ -381,8 +385,14 @@ export const COMMAND_ASK_LEADS: readonly string[] = [
 
 // A bare ask word opens a statement as often as a question, so it marks a naming
 // only when the command it precedes is followed by a question mark before the
-// sentence ends, or when the lead itself opens a sentence.
+// sentence ends, or when the lead itself opens a sentence, which a question mark ends as a full stop does.
 export const COMMAND_BARE_ASK_LEAD = '(?:is|does|can|will|would) ';
+
+// A clause that opens with a use verb and `it` asks for the command an earlier
+// clause only named, so a naming such as `not run /x yet, please start it`
+// becomes a request. The clause has to open that way so `I will run it` stays a
+// statement.
+const COMMAND_ASKED_BY_PRONOUN = new RegExp(`(?:^|[,.;!?\\n]) *(?:(?:and|then|so|please|now|just|go ahead and) )*${COMMAND_USE_VERB} it\\b`);
 
 // A prompt names a command to refuse it or to ask about it as often as it names
 // one to run it, so an offer must read the naming before it trusts the name. The
@@ -404,19 +414,20 @@ export function commandOnlyMentioned(prompt: string, command: string): boolean {
   return occurrences.every((occurrence) => {
     const nameEnd = (occurrence.index ?? 0) + occurrence[0].length;
     const before = text.slice(0, nameEnd);
+    const tail = text.slice(nameEnd);
+    if (COMMAND_ASKED_BY_PRONOUN.test(tail.split(/(?:^|[\s,;(])\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)?(?![a-z0-9_\/-]|\.[a-z0-9])/)[0])) return false;
     const led = [...COMMAND_DECLINE_LEADS, ...COMMAND_ASK_LEADS].some((lead) => (
       new RegExp(`(?:^|[^a-z0-9_/])${lead}${name}$`).test(before)
     ));
     if (led) return true;
     const bareLead = new RegExp(`(?:^|[^a-z0-9_/])${COMMAND_BARE_ASK_LEAD}${name}$`).test(before);
     if (!bareLead) return false;
-    const tail = text.slice(nameEnd);
     const sentenceEnd = tail.search(/[.!\n]/);
     const sentence = sentenceEnd === -1 ? tail : tail.slice(0, sentenceEnd);
     // A chat question often leaves the question mark off, so a bare ask word that
     // opens a sentence still asks about the command.
     return sentence.includes('?')
-      || new RegExp(`(?:^|[.!\\n] *)${COMMAND_BARE_ASK_LEAD}${name}$`).test(before);
+      || new RegExp(`(?:^|[.!?\\n] *)${COMMAND_BARE_ASK_LEAD}${name}$`).test(before);
   });
 }
 

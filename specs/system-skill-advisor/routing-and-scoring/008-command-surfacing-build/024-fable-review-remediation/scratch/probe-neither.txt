@@ -1,0 +1,5 @@
+## probe: loadCodexSession over a scratch store holding a custom tool call with no arguments and no input, a function call with neither, and a custom tool call with an empty input
+ok true
+"name":"exec","arguments":{}
+"name":"exec_command","arguments":{}
+"name":"exec","arguments":{}

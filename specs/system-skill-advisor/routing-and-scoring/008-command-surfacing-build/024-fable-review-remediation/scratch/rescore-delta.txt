@@ -1,0 +1,27 @@
+claude post start 4 of 12 -> 4 of 12
+claude pre start 3 of 12 -> 3 of 12
+codex post start 0 of 12 -> 0 of 12
+codex pre start 0 of 12 -> 0 of 12
+devin post start 3 of 9 -> 3 of 9
+devin pre start 1 of 8 -> 1 of 8
+dsh post start 6 of 12 -> 6 of 12
+dsh pre start 4 of 12 -> 4 of 12
+opencode post start 1 of 5 -> 1 of 5
+opencode pre start 2 of 7 -> 2 of 7
+pi post start 2 of 10 -> 2 of 10
+pi pre start 0 of 11 -> 0 of 11
+claude pre workflow command 4, skill 1, asked 0, otherMode 0, improvised 0, none 11, followedRate 5 of 16, loadRate 5 of 16 -> command 4, skill 1, asked 0, otherMode 0, improvised 0, none 11, followedRate 5 of 16, loadRate 5 of 16 | no count moved
+codex pre workflow command 0, skill 0, asked 0, otherMode 0, improvised 0, none 16, followedRate 0 of 16, loadRate 0 of 16 -> command 2, skill 2, asked 0, otherMode 0, improvised 0, none 12, followedRate 4 of 16, loadRate 4 of 16 | moved: command 0 -> 2, skill 0 -> 2, none 16 -> 12, followedRate 0 of 16 -> 4 of 16, loadRate 0 of 16 -> 4 of 16
+devin pre workflow command 3, skill 9, asked 0, otherMode 0, improvised 0, none 4, followedRate 12 of 16, loadRate 12 of 16 -> command 3, skill 9, asked 0, otherMode 0, improvised 0, none 4, followedRate 12 of 16, loadRate 12 of 16 | no count moved
+dsh pre workflow command 10, skill 2, asked 0, otherMode 0, improvised 0, none 4, followedRate 12 of 16, loadRate 12 of 16 -> command 10, skill 2, asked 0, otherMode 0, improvised 0, none 4, followedRate 12 of 16, loadRate 12 of 16 | no count moved
+opencode pre workflow command 7, skill 3, asked 0, otherMode 0, improvised 1, none 5, followedRate 10 of 16, loadRate 10 of 16 -> command 7, skill 3, asked 0, otherMode 0, improvised 1, none 5, followedRate 10 of 16, loadRate 10 of 16 | no count moved
+pi pre workflow command 3, skill 4, asked 0, otherMode 0, improvised 2, none 7, followedRate 7 of 16, loadRate 7 of 16 -> command 3, skill 4, asked 0, otherMode 0, improvised 1, none 8, followedRate 7 of 16, loadRate 7 of 16 | moved: improvised 2 -> 1, none 7 -> 8
+claude post workflow command 5, skill 1, asked 2, otherMode 0, improvised 0, none 8, followedRate 8 of 16, loadRate 6 of 16 -> command 5, skill 1, asked 2, otherMode 0, improvised 0, none 8, followedRate 8 of 16, loadRate 6 of 16 | no count moved
+devin post workflow command 14, skill 1, asked 1, otherMode 0, improvised 0, none 0, followedRate 16 of 16, loadRate 15 of 16 -> command 14, skill 1, asked 1, otherMode 0, improvised 0, none 0, followedRate 16 of 16, loadRate 15 of 16 | no count moved
+dsh post workflow command 12, skill 1, asked 0, otherMode 0, improvised 0, none 2, followedRate 13 of 15, loadRate 13 of 15 -> command 12, skill 1, asked 0, otherMode 0, improvised 0, none 2, followedRate 13 of 15, loadRate 13 of 15 | no count moved
+opencode post workflow command 9, skill 4, asked 1, otherMode 1, improvised 0, none 1, followedRate 14 of 16, loadRate 13 of 16 -> command 9, skill 4, asked 1, otherMode 0, improvised 0, none 2, followedRate 14 of 16, loadRate 13 of 16 | moved: otherMode 1 -> 0, none 1 -> 2
+pi post workflow command 9, skill 3, asked 0, otherMode 0, improvised 0, none 4, followedRate 12 of 16, loadRate 12 of 16 -> command 9, skill 3, asked 0, otherMode 0, improvised 0, none 4, followedRate 12 of 16, loadRate 12 of 16 | no count moved
+attribution: codex pre, rows cmd-deep-ai-council-plain-tune-01 and cmd-doctor-agents-md-plain-tune-01 none to command, cmd-deep-review-plain-tune-01 and cmd-doctor-deep-loop-plain-tune-01 none to skill, by T009 and T011, the Codex exec body read as shell commands (CODEX probe: path with the body read equals path now)
+attribution: pi pre, row cmd-create-feature-catalog-plain-tune-01 skill to none, by T012, a search is not a load (scorer with T012 undone returns skill)
+attribution: pi pre, row cmd-create-diff-plain-tune-01 improvised to skill, by T014, a cd inside one command (scorer with T014 undone returns improvised)
+attribution: opencode post (final arm), row cmd-doctor-deep-loop-plain-tune-01 otherMode to none, by T012 (scorer with T012 undone returns otherMode)

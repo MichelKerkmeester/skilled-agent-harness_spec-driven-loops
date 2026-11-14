@@ -92,6 +92,25 @@ _memory:
 | Q056 | The final hand-over of this branch reaches main through a pull request, not a direct push. | Not stated. | None | goal.md log |
 | Q057 | The write discipline misses on Devin and OpenCode are tracked for a separate packet and get no work in this one. | Not stated. | None | goal.md log |
 | Q058 | This branch recaptures the routing corpus pin, so the pull request carries a pin that matches the corpus it merges. | Not stated. | None | goal.md log, commit 0238274ed8 |
+| Q059 | The outcome target and every other open operator decision of this packet, deletions aside, are decided by a fresh Fable 5.2 medium session on the second account. | Not stated. | None | review/fable-decisions-2026-11-14/report.txt, P033 to P041 |
+| Q060 | Raising the sealed reach goes to a follow-up packet, not a phase here. | Not stated. | None | goal.md log |
+| Q061 | A new live behaviour arm runs on untuned rows on all six runtimes, Codex included, and the operator approves the Codex project hooks in a prepared arena. | Not stated. | Q052 for the Codex-only arm, folded in, and the 2026-11-13 second-round answer No more behaviour arms | phase 026, P034 |
+| Q062 | When the last gates pass, the branch stays unpushed and the operator pushes and opens the pull request. | Not stated. | None | goal.md log |
+| Q063 | The new behaviour arm runs at 864 sessions, 36 rows with two runs each, brief off and on, six runtimes, after the measured token cost of about 334M at the median and 621M at the mean. | Not stated. | None | phase 026, P034 |
+| Q064 | Before choosing the arm size, the operator asked for the token usage per CLI. It was measured from the 144 stored sessions of the last arm and put in the Q063 question. | Not stated. | None | goal.md log |
+
+### Answer Log, 2026-11-14
+
+Q059 to Q062 above, as asked.
+
+| ID | Date | Topic | Question | Options | Answer |
+|----|------|-------|----------|---------|--------|
+| Q059 | 2026-11-14 | Target | Which outcome target should close the command surfacing packet? Today, with the brief on, runs follow the right workflow on claude 8/16, pi 12/16, devin 16/16, opencode 14/16 and dsh 13/15. Row by row, every runtime gained more rows than it lost. These are tuned rows, run once each. | Gain target (Recommended); Absolute followed rate; Waiver | For all theses decisions, ask fresh fable 5.2 medium through claude2 |
+| Q060 | 2026-11-14 | Sealed reach | The sealed holdout rows show low reach: a command reaches the model on 1 of 44 (fixture) or 4 of 44 (real embedder), against 28 to 33 of 45 on tuned rows. Raising it is a matching change in the scorer. Where should that work live? | Follow-up packet (Recommended); New phase here | Follow-up packet (Recommended) |
+| Q061 | 2026-11-14 | Behaviour | Should I run a new live behaviour arm on the untuned rows? Codex has had no brief in every arm because its project hooks are unapproved for arena paths, so its rate is 0 of 16 for lack of delivery, not for a measured miss. | Skip for now (Recommended); Run, without Codex; Run, with Codex | Run, with Codex |
+| Q062 | 2026-11-14 | Push | When the packet's last gates pass, what should happen to the branch worktrees/352-command-surfacing-research? | Leave unpushed (Recommended); Push and open a PR | Leave unpushed (Recommended) |
+| Q063 | 2026-11-14 | Arm size | Token cost of the new behaviour arm, measured from the last arm's 144 stored sessions (24 per CLI). Typical (median) tokens per session: claude 167K (Sonnet 5.5), codex 113K (Luna), pi 235K, devin 362K (swe-2-max), opencode 715K and dsh 729K (both DeepSeek flash). 85 to 95 percent of it is cache reads. A few long sessions push the averages far higher. 864 sessions (2 runs per row) come to about 334M tokens at the median and 621M at the mean. 288 sessions (1 run per row) come to about a third of that. OpenCode and pi record money cost: about $8 and $2 for 144 sessions each. Which size should phase 026 plan for? | 864 sessions (Recommended); 288 sessions; 864, with a turn cap | 864 sessions (Recommended) |
+| Q064 | 2026-11-14 | Arm size | Fable's design for the new behaviour arm is 864 live sessions: 36 fresh blind rows, two runs each, brief off and on, six runtimes. The last arm took about 33 seconds a run, so this is roughly 1.5 to 3 hours with the runtimes side by side. My earlier option said about an hour. Fable's stated minimum for the pooled sign test is one run per row, 288 sessions. Which size should phase 026 plan for? | 864 sessions (Recommended); 288 sessions | token usage per ci? |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -1241,6 +1260,84 @@ Answer:
 Yes, recapture on 008 (Recommended)
 ```
 
+### Q059
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:AskUserQuestion:2026-11-14 -->
+
+Question:
+```text
+Which outcome target should close the command surfacing packet? Today, with the brief on, runs follow the right workflow on claude 8/16, pi 12/16, devin 16/16, opencode 14/16 and dsh 13/15. Row by row, every runtime gained more rows than it lost. These are tuned rows, run once each.
+```
+
+Options:
+```text
+Gain target (Recommended)
+Absolute followed rate
+Waiver
+```
+
+Answer:
+```text
+For all theses decisions, ask fresh fable 5.2 medium through claude2
+```
+
+### Q060
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:AskUserQuestion:2026-11-14 -->
+
+Question:
+```text
+The sealed holdout rows show low reach: a command reaches the model on 1 of 44 (fixture) or 4 of 44 (real embedder), against 28 to 33 of 45 on tuned rows. Raising it is a matching change in the scorer. Where should that work live?
+```
+
+Options:
+```text
+Follow-up packet (Recommended)
+New phase here
+```
+
+Answer:
+```text
+Follow-up packet (Recommended)
+```
+
+### Q061
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:AskUserQuestion:2026-11-14 -->
+
+Question:
+```text
+Should I run a new live behaviour arm on the untuned rows? Codex has had no brief in every arm because its project hooks are unapproved for arena paths, so its rate is 0 of 16 for lack of delivery, not for a measured miss.
+```
+
+Options:
+```text
+Skip for now (Recommended)
+Run, without Codex
+Run, with Codex
+```
+
+Answer:
+```text
+Run, with Codex
+```
+
+### Q062
+<!-- source: claude:77af2d6d-58e8-4180-b6da-697f12833f71:AskUserQuestion:2026-11-14 -->
+
+Question:
+```text
+When the packet's last gates pass, what should happen to the branch worktrees/352-command-surfacing-research?
+```
+
+Options:
+```text
+Leave unpushed (Recommended)
+Push and open a PR
+```
+
+Answer:
+```text
+Leave unpushed (Recommended)
+```
+
 <!-- /ANCHOR:operator-answers-verbatim -->
 
 ---
@@ -1284,4 +1381,13 @@ These were taken by the dispatched planner that wrote phases 020 to 023 after th
 | P030 | Phase 025 extends the open changelog entry v1.1.0.0 and writes no new version. The root Skilled release note is not touched and waits on the operator. | `origin/main` ships advisor version 1.0.0.0, so 1.1.0.0 has not shipped and the changelog mode extends an open entry. The operator's choice to amend the root note was made for phases 014 to 018, and an approval for one change does not carry to the next. | Waits on the operator for the root note | 025 spec, Open Questions |
 | P031 | No binding row is added to the parent goal for phases 024 and 025, and no completion criterion is changed. | The durable slice is 3,992 of 4,000 characters and two rows need about 98. Making room means shortening a decision the operator froze. Both phases carry their own `goal.md`, which a worker reads before the phase. | Waits on the operator, with P005 | Goal log row of 2026-11-14, `packet_budget=ok` at 3,992 |
 | P032 | The plugin timing test gets a fix after all, as phase 024 task T024, and P028 no longer covers it. The test checks the timers the plugin scheduled and keeps a loose wall-clock bound. | P028 asked for an output that shows the defect. Phase 024 T002 showed it: 2 of 20 runs failed with `expected bounded timeout, got 370ms` while worker lanes ran. The plugin schedules its kill at the configured deadline, and a busy machine fires timers late, so the wall-clock bound tested load and not the budget. | Yes, autonomous under D1 | 024 tasks T002 and T024 |
+| P033 | Outcome target is the gain target: on the new arm, brief-on follows on more paired rows than brief-off, judged by a pooled row-level exact sign test below 0.05 one-sided, with zero commands started on a decline row in the brief-on arm and sealed reach kept as a floor (1 of 44 fixture, 4 of 44 real). A runtime with gained not above lost is logged as not shown with its paired line and one reason, with no rerun and no tuning. | An absolute rate grades the runtime, not the brief, because brief-off rates already span 5 to 12 of 16. Per-runtime verdicts need about 40 owned rows, so only the pooled test can decide. Written before the first session so the arm cannot be tuned to it. | Yes, by Fable under Q059 | goal.md log, phase 026 |
+| P034 | The new arm is 36 fresh rows (20 fit a command, 8 skill-only, 8 decline), two runs each, arms off and on at one commit, all six runtimes, 864 sessions, capped at 900 for harness-fault reruns. Rows live in a new file behaviour-fresh-prompts.jsonl, split fresh, written blind by one worker and frozen by hash at the first session. Brief off uses the advisor hook and plugin disable switches, so only the brief differs. | Rows are the scarce thing, not repeats. A separate file keeps fresh rows out of the published capture. Same AGENTS.md in both arms removes the confound of limit 4, the second run removes limit 3. | Yes, by Fable under Q059 and Q061 | phase 026 |
+| P035 | Research ranks 7, 12 and 13 and the AGENTS.md Gate 2 direct-call example need no work: the operator answered them on 2026-11-13 and phase 016 built them. Their WAITING rows are superseded. | goal.md rows of 2026-11-13 record the answers and the phase 016 build. AGENTS.md line 65 already carries the stdin form. | Yes, by Fable under Q059 | goal.md log |
+| P036 | Head wording B-5 is not changed now and gets no third arm. It is built in a new phase only if the on arm starts a command on a decline row or takes a command on a skill-only row more often than the off arm. B-6 is made before the arm: the Gate 2 sentence becomes If you take the command, read its document in full and follow it. | The new arm's decline and skill-only rows measure exactly the risk B-5 names, at no extra sessions. B-6 sits in both arms identically, so it adds no confound. It amends phase 006 decision D1, and phase 006's two checks must stay green. | Yes, by Fable under Q059 | phase 026, AGENTS.md |
+| P037 | The step-level check is declined on the stored runs. A read-only Fable 5.2 reader instead scores 24 on-arm sessions of the new arm, four per runtime, against three steps from each command document, logged as a judgment. | The stored runs are tuned rows run once before phases 020 to 024, so a step check on them inherits limits 2 and 3. D6 means the reader's result is a judgment, not a printed number. | Yes, by Fable under Q059 | phase 026 |
+| P038 | The sv-09, sv-11 and sv-12 labels stay, with the README note. The root release note v4.0.2.1, already amended on this unpushed branch, is extended once with phases 020, 021 and 024, the B-6 edit and one line on the measures, as phase 025's last task. The tag move and republish stay with the operator under D2. This overturns the earlier coordinator ruling to leave the root note untouched. | A relabel moves the criterion 2 floor from 0 of 35 to 0 of 38. A branch edit publishes nothing, and leaving the note at 014 to 018 would ship a note that omits two behaviour changes. | Yes, by Fable under Q059 | phase 025 |
+| P039 | No binding rows are added for phases 009 to 025. The binding sentence becomes: Read a phase's own goal.md before working it, listed or not. It binds as if written here. The goal checker's 4 of 5 result is accepted. | Thirteen rows need about 630 characters with 8 free, so they cannot fit without cutting a frozen decision. A goal written after a phase closed binds nothing. | Yes, by Fable under Q059 | goal.md |
+| P040 | Phase 025 runs after phase 026, so the release notes describe the arm's result. | The notes should state the measured outcome, which only the arm provides. | Yes, by Fable under Q059 | phase order |
+| P041 | The fit decline count of 8 of 24 and the advisory on eight sealed rows go to the sealed-reach follow-up packet, untuned here. The live brief cost gets a number or a decline as the first task of phase 026. The amended packet criteria of P003 and P013 are ratified, and only the operator can reset the session goal string. | Tuning on a sealed row ends its use as a holdout. | Yes, by Fable under Q059 | follow-up packet, phase 026 |
 <!-- /ANCHOR:planner-decisions -->
