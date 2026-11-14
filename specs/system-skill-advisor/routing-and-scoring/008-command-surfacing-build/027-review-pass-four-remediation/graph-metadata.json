@@ -202,7 +202,7 @@
     ],
     "causal_summary": "A reader who writes `do not run /create:agent or /create:readme` still gets `/create:readme (start)` on the top row, and a reader who asks `Is the /doctor:update command safe?` gets `/doctor:update (ask)`",
     "created_at": "2026-11-14T16:35:21Z",
-    "last_save_at": "2026-11-14T18:15:40.205Z",
+    "last_save_at": "2026-11-14T18:59:38.966Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,12 +212,12 @@
       "acceptance-criteria.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:64099fe189d6e1933d759b14ed5cb1c8164c1389e95324261359ce45a50ed26d",
+    "source_fingerprint": "sha256:f9044cef6e8507157f2e767eca50bd20d7c29baf4826608326e6481b1e80f48b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b15ac7836c0d50f40542d94468e7f7257280270d86fdcc6a92abad57860deac4",
       "plan.md": "4aafeb45b03aae83c48a99f45a79ed82c44254664a38f3fc144272cbe9f8fd4a",
-      "tasks.md": "744a86fc8ec0eaed15fb08f9af124fb15fc5ebbfd6adadbac017c2e2f9f8847d"
+      "tasks.md": "f3fa04f91ea69d21e52f84c531e43e9781ddb14094f8202ecb1bb3109b07c8b4"
     },
     "last_active_at": null
   }

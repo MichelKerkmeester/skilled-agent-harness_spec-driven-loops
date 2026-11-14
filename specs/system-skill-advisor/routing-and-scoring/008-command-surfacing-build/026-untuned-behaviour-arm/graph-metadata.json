@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Every outcome number the packet quotes comes from rows its phrases were written against, each run once, in arms that differ in the scorer, the wording and the brief, so an operator cannot tell whether the brief caused a single followed workflow (`../023-untuned-outcome-evidence/scratch/outcome-evidence.txt:15-35`)",
     "created_at": "2026-11-14T15:37:12Z",
-    "last_save_at": "2026-11-14T17:06:29.320Z",
+    "last_save_at": "2026-11-14T18:59:38.964Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,12 +203,12 @@
       "acceptance-criteria.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:37ebb7ff757cf4da1a0600598e17234488941b072129511b2d96cff78afa8d3a",
+    "source_fingerprint": "sha256:120906131317018f62615c2485e86fe8793dace05021030db6fc39f12a3370c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "a80ea286ca890f16c361ec6e8b70c96c74c7676ed75ca23436ab034fe372d3e9",
       "plan.md": "2ddcb3397f32e752bc804980b29e40aedf4cffd71bc18836297cc8d0a7e4755b",
-      "tasks.md": "f5c41cb3d1b5b27dcb9788aa473a56caa923376a66b8a2cbbebc76c63a6be7c8"
+      "tasks.md": "5f141c2bae390833a258452dc19f0ec98cea2d26a90ff01119c2a022b8ab47ec"
     },
     "last_active_at": null
   }

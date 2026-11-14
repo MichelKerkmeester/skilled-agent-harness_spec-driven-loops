@@ -373,10 +373,11 @@ export const COMMAND_DECLINE_LEADS: readonly string[] = [
   `(?:skip|skipping|without|instead of|rather than|avoid|stop|stopped|quit|${COMMAND_NOT_WORD}) (?:(?!${COMMAND_USE_VERB}\\b)[a-z']+ ){0,2}`,
 ];
 
-// A refusal over an or-list refuses every command the list joins to the one its
-// lead names, while a second use verb opens a clause of its own, so the list
-// joins only `or` and `, or`.
-const COMMAND_OR_LIST = '(?:\\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)?,? or )*';
+// A refusal or a question over an or-list covers every command the list joins,
+// while a second use verb opens a clause of its own, so the list joins only `or`
+// and `, or`. A listed command may carry `the` before it and
+// `command` after it, and the command after the last `or` may carry `the`.
+const COMMAND_OR_LIST = '(?:(?:the )?\\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)?(?: command)?,? or (?:the )?)*';
 
 // A command the reader asks about is named without being asked for, so this list
 // holds the leads that mark that naming. A lead must sit directly before the
@@ -425,17 +426,17 @@ export function commandOnlyMentioned(prompt: string, command: string): boolean {
     const led = COMMAND_DECLINE_LEADS.some((lead) => (
       new RegExp(`(?:^|[^a-z0-9_/])${lead}${COMMAND_OR_LIST}${name}$`).test(before)
     )) || COMMAND_ASK_LEADS.some((lead) => (
-      new RegExp(`(?:^|[^a-z0-9_/])${lead}${name}$`).test(before)
+      new RegExp(`(?:^|[^a-z0-9_/])${lead}${COMMAND_OR_LIST}${name}$`).test(before)
     ));
     if (led) return true;
-    const bareLead = new RegExp(`(?:^|[^a-z0-9_/])${COMMAND_BARE_ASK_LEAD}${name}$`).test(before);
+    const bareLead = new RegExp(`(?:^|[^a-z0-9_/])${COMMAND_BARE_ASK_LEAD}${COMMAND_OR_LIST}${name}$`).test(before);
     if (!bareLead) return false;
     const sentenceEnd = tail.search(/[.!\n]/);
     const sentence = sentenceEnd === -1 ? tail : tail.slice(0, sentenceEnd);
     // A chat question often leaves the question mark off, so a bare ask word that
     // opens a sentence still asks about the command.
     return sentence.includes('?')
-      || new RegExp(`(?:^|[.!?\\n] *)${COMMAND_BARE_ASK_LEAD}${name}$`).test(before);
+      || new RegExp(`(?:^|[.!?\\n] *)${COMMAND_BARE_ASK_LEAD}${COMMAND_OR_LIST}${name}$`).test(before);
   });
 }
 

@@ -158,6 +158,10 @@ describe('a command the prompt only mentions', () => {
     ['do not run /deep:review, or /deep:research', '/deep:research'],
     ['skip /create:agent or /create:readme', '/create:readme'],
     ['do not run /speckit:plan or /speckit:implement or /speckit:complete', '/speckit:complete'],
+    ['do not run /create:agent or the /create:readme command', '/create:readme'],
+    ['do not run /create:agent, or the /create:readme command', '/create:readme'],
+    ['skip /create:agent or the /create:readme command', '/create:readme'],
+    ['never use the /create:readme command or the /create:feature-catalog command', '/create:feature-catalog'],
   ])('reads %s as a refusal of %s through an or-list', (prompt, command) => {
     expect(commandOnlyMentioned(prompt, command)).toBe(true);
   });
@@ -169,6 +173,8 @@ describe('a command the prompt only mentions', () => {
     ['do not run /speckit:complete, run /speckit:plan or /speckit:implement', '/speckit:plan'],
     ['do not run /speckit:complete, run /speckit:plan or /speckit:implement', '/speckit:implement'],
     ['do not run /speckit:complete or run /speckit:plan', '/speckit:plan'],
+    ['use /create:agent or the /create:readme command', '/create:readme'],
+    ['the next step is /create:agent or /create:readme', '/create:readme'],
   ])('still reads %s as a request for %s beside an or-list', (prompt, command) => {
     expect(commandOnlyMentioned(prompt, command)).toBe(false);
   });
@@ -197,6 +203,14 @@ describe('a command the prompt only mentions', () => {
     ['quick question? is /speckit:resume safe to run twice', '/speckit:resume'],
     ['Is the /doctor:update command safe?', '/doctor:update'],
   ])('reads %s as a question about %s', (prompt, command) => {
+    expect(commandOnlyMentioned(prompt, command)).toBe(true);
+  });
+
+  it.each([
+    ['should I run /create:agent or /create:readme?', '/create:readme'],
+    ['is /create:agent or /create:readme better?', '/create:readme'],
+    ['what does /create:agent or /create:readme do?', '/create:readme'],
+  ])('reads %s as a question about %s through an or-list', (prompt, command) => {
     expect(commandOnlyMentioned(prompt, command)).toBe(true);
   });
 

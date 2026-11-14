@@ -286,6 +286,7 @@ and findings belong here.
 | Stored start rates rescored with the shell-read start rule, pre set (pre plus dsh rerun) | Supersedes the earlier quotes | tuned rows, one run each, no brief reached Codex. claude pre 3 to 4 of 12, codex pre 0 to 1 of 12, pi pre 0 to 3 of 11, dsh pre 6 to 8 of 12. Load, followed, unsafe and loop counts unchanged. Source 027 scratch/rescore-delta.txt |
 | Stored start rates rescored with the shell-read start rule, final set | Supersedes the earlier quotes | tuned rows, one run each, no brief reached Codex. Start rates unchanged. startedOfOffered moved: dsh post 11 to 12, pi post 7 to 9, opencode post 3 to 4. 24 runs moved over the three sets, every one by the shell-read rule, none on a decline row |
 | Quoted start figures superseded by the shell-read rescore | Recorded, closed phases not edited | Codex 0 of 12: ../goal.md:278, 007 decision-record.md:551, 010 spec.md:61, 024 implementation-summary.md:109 and CHK-041. Phase 013 spec.md:97, :100 and :101 (codex post 0 of 12, opencode post 1 of 5, dsh post 6 of 12). 007 goal.md:81 and AC-003 quote the summary these rows restate |
+| Live brief cost | Declined | {"error":"degraded_brief","rows":44,"liveRows":0} exit 2, the script measures only a live head and no row was live in this checkout. No setting was changed to get a number |
 
 ### Deviations and findings
 

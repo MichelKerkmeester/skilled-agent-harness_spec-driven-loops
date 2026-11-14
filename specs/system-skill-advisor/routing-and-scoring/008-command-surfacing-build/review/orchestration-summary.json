@@ -1,15 +1,15 @@
 {
-  "run_id": "1794669272137-9v23rz",
+  "run_id": "1794680176420-xvj4ed",
   "loop_type": "review",
   "spec_folder": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
   "base_artifact_dir": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review",
-  "total_cli_lineages": 4,
+  "total_cli_lineages": 2,
   "orphaned_lineages": [],
-  "total": 4,
-  "succeeded": 4,
+  "total": 2,
+  "succeeded": 2,
   "failed": 0,
   "all_failed": false,
-  "completed_with_containment_advisory": 4,
+  "completed_with_containment_advisory": 2,
   "gauges": {
     "lag": 0,
     "pending": 0,
@@ -24,65 +24,5 @@
     "unattributed_state_log": 0,
     "needs_input": 0,
     "quota": 0
-  },
-  "timestamp_anomalies": [
-    {
-      "label": "scorer-attach-4",
-      "state_log": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/scorer-attach-4/deep-review-state.jsonl",
-      "window": {
-        "start_at_iso": "2026-11-14T15:14:32.150Z",
-        "end_at_iso": "2026-11-14T15:44:01.261Z",
-        "tolerance_ms": 120000
-      },
-      "counts": {
-        "anomalous": 3,
-        "untimestamped": 0,
-        "unparseable": 0,
-        "total": 6
-      },
-      "sample": [
-        {
-          "index": 2,
-          "reason": "after_window",
-          "timestamp": "2026-11-14T15:47:00Z",
-          "deltaMs": 58739
-        },
-        {
-          "index": 3,
-          "reason": "after_window",
-          "timestamp": "2026-11-14T15:58:00Z",
-          "deltaMs": 718739
-        },
-        {
-          "index": 4,
-          "reason": "after_window",
-          "timestamp": "2026-11-14T16:06:00Z",
-          "deltaMs": 1198739
-        }
-      ]
-    },
-    {
-      "label": "accuracy-runner-4",
-      "state_log": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages/accuracy-runner-4/deep-review-state.jsonl",
-      "window": {
-        "start_at_iso": "2026-11-14T15:14:32.326Z",
-        "end_at_iso": "2026-11-14T15:50:01.226Z",
-        "tolerance_ms": 120000
-      },
-      "counts": {
-        "anomalous": 1,
-        "untimestamped": 0,
-        "unparseable": 0,
-        "total": 6
-      },
-      "sample": [
-        {
-          "index": 4,
-          "reason": "after_window",
-          "timestamp": "2026-11-14T15:57:00Z",
-          "deltaMs": 298774
-        }
-      ]
-    }
-  ]
+  }
 }

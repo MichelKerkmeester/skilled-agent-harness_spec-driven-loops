@@ -1,0 +1,8 @@
+# round 4b, commit range 11af224a34..48f03b5013, three iterations per lineage
+scorer-attach-confirm-4b "newFindingsRatio":0
+accuracy-runner-confirm-4b "newFindingsRatio":1
+# adjudication of round 4b
+SAC4B-P1-001 P1 reproduced: bash review/verify-4/probes/cli-rows.sh 'do not run /create:agent or the /create:readme command' printed [["sk-doc","/create:readme","start"],...]. Fix task T028
+SAC4B-P2-001 P2 reproduced: 'should I run /create:agent or /create:readme?' and 'is /create:agent or /create:readme better?' each printed /create:readme start. Fix task T029
+AR4B-P2-001 P2 confirmed by reading: README line 76 says adds those three fields and the runner row lists three. Fix task T030
+AR4B-P2-002 P2 confirmed by reading: run-command-behaviour.mjs writes the head-moved line before replayOffer, so it carries no offer field. Fix task T030
