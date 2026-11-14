@@ -1,5 +1,5 @@
 ---
-title: "Acceptance Criteria: Phase 9: fix-alignment-report-findings-for-speckit-command-surfaces"
+title: "Acceptance Criteria: Phase 10: fix-alignment-report-findings-for-speckit-command-surfaces"
 description: "The criteria this packet must satisfy before it may be closed, each one met, waived by a decision record, or superseded by one."
 trigger_phrases:
   - "fix alignment report findings for speckit command surfaces acceptance criteria"
@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-fix-alignment-report-findings-for-speckit-command-surfaces"
+    packet_pointer: "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces"
     last_updated_at: "2026-11-14T19:44:25Z"
     last_updated_by: "scaffold"
     recent_action: "Authored the acceptance criteria for this packet"
@@ -23,7 +23,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.4 -->
-# Acceptance Criteria: Phase 9: fix-alignment-report-findings-for-speckit-command-surfaces
+# Acceptance Criteria: Phase 10: fix-alignment-report-findings-for-speckit-command-surfaces
 
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
 
@@ -51,7 +51,7 @@ _memory:
 
 One row per criterion. `AC-ID` is stable once written: supersede a criterion, never renumber it. A new row takes the highest AC-ID plus one.
 
-Every command runs from the repository root. `K` is `.skilled/skills` and `A` is `.skilled/commands/speckit/assets`. Each observation was made on the uncommitted tree over `ba7062dd17`.
+Every command runs from the repository root. `K` is `.skilled/skills` and `A` is `.skilled/commands/speckit/assets`. Each observation was made on commit `7d9202ad1b` and repeated on the merge commit `e13f670cb9`, which holds origin/main `c1dbb1bcc4`. The two put-the-defect-back runs of AC-005 were made before the merge.
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|

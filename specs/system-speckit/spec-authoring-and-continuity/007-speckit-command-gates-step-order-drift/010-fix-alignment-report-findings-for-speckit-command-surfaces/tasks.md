@@ -1,5 +1,5 @@
 ---
-title: "Tasks: Phase 9: fix-alignment-report-findings-for-speckit-command-surfaces"
+title: "Tasks: Phase 10: fix-alignment-report-findings-for-speckit-command-surfaces"
 description: "Task Format: T### [P?] Description (file path). Verify: <command> prints <expected output>"
 trigger_phrases:
   - "fix alignment report findings for speckit command surfaces tasks"
@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.4 -->
-# Tasks: Phase 9: fix-alignment-report-findings-for-speckit-command-surfaces
+# Tasks: Phase 10: fix-alignment-report-findings-for-speckit-command-surfaces
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -81,7 +81,7 @@ contextType: "general"
 <!-- FILL: Write one verification task per requirement. Each one runs a command. GOOD: T003 Run both invocations. Verify: `ls logs/archive | wc -l` prints 3 and 10. WEAK: T003 Test everything. -->
 
 - [x] T021 Rerun the requirement checks from the final state (`spec.md` section 4). Verify: each command of REQ-001 to REQ-004 and REQ-008 prints what its acceptance row states.
-- [x] T022 Rerun the advisor suites (`$K/system-skill-advisor/runtime`). Verify: vitest over `tests/parity` and the nine routing suites prints `Test Files 17 passed` and `Tests 145 passed`.
+- [x] T022 Rerun the advisor suites (`$K/system-skill-advisor/runtime`). Verify: before the merge, vitest over `tests/parity` and the nine routing suites prints `Test Files 17 passed` and `Tests 145 passed`. On the merge commit it prints `144 passed` and `1 failed`, the row `cmd-design-extract-plain-holdout-01` of `command-routing-slice.vitest.ts`, which fails the same way on origin/main `c1dbb1bcc4` without this phase.
 - [x] T023 Rerun the alignment recheck (`$RUN`). Verify: `recheck.cjs --from $RUN` prints `resolved=8 still_open=2 new=0`, where the two still open are `C-3`, which is out of scope, and the package check that cannot run without `node_modules`.
 - [x] T024 Rerun the whole battery from the final state (`$RUN/scope.json`). Verify: `run-battery.cjs --scope $RUN/scope.json` prints `fail=0`.
 - [x] T025 Validate the packet (`$F/..`). Verify: `validate.sh --recursive --strict` prints `RESULT: PASSED` for the parent and every child.
@@ -171,7 +171,7 @@ contextType: "general"
 - [x] CHK-FIX-004 [P0] N/A. No security, path, parser or redaction fix is in this phase.
 - [x] CHK-FIX-005 [P1] Matrix axes and row count are listed. Evidence: seventeen probe prompts by one expected skill each, plus the D-10 prompt.
 - [x] CHK-FIX-006 [P1] N/A. The changed tests read workflow files only, no process-wide state.
-- [x] CHK-FIX-007 [P1] Evidence is pinned. Evidence: the checks ran on the uncommitted tree over `ba7062dd17`, and the run folder is fixed at `20261114T170200Z`.
+- [x] CHK-FIX-007 [P1] Evidence is pinned. Evidence: the checks ran on commit `7d9202ad1b` and again on the merge commit `e13f670cb9`, and the run folder is fixed at `20261114T170200Z`.
 <!-- /ANCHOR:fix-completeness -->
 
 ---

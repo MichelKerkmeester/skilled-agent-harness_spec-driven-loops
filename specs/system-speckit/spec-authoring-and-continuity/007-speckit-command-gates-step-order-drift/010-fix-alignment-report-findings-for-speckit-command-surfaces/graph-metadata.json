@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-fix-alignment-report-findings-for-speckit-command-surfaces",
-  "spec_folder": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-fix-alignment-report-findings-for-speckit-command-surfaces",
+  "packet_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces",
   "parent_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift",
   "children_ids": [],
   "manual": {
@@ -12,7 +12,7 @@
   "derived": {
     "trigger_phrases": [
       "fix alignment report findings for speckit command surfaces",
-      "phase 9 fix alignment report findings for speckit",
+      "phase 10 fix alignment report findings for speckit",
       "fix alignment report findings for speckit command surfaces plan",
       "fix alignment report findings for speckit command surfaces tasks",
       "fix alignment report findings for speckit command surfaces acceptance criteria",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Phases 1 to 8 changed the speckit workflows and their routers, and several surfaces further out still state the old facts",
     "created_at": "2026-11-14T19:44:23Z",
-    "last_save_at": "2026-11-14T20:07:20.702Z",
+    "last_save_at": "2026-11-14T20:22:29.831Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b39660f7c40d426e1052568b866046dddf12153f701a7d4b0e727dd235210d82",
+    "source_fingerprint": "sha256:271ae70fa0c23e9a7f1b2cef2d628246657c6a63aa7bd2663c2a7b3b423442cb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8ad49a052c0b4a33fb9437015cc75255b7f835700655ec3ed801bbf91fc0ad98",
-      "plan.md": "cfb361859ea09e868c34d78b3b2946da08588ee108711419e5ad26425cc72dcd",
-      "tasks.md": "fcac11a5a4482e74c13e2f4e24cc272e2797c6d47bbfcc5e518a305db48a308f",
-      "decision-record.md": "ae1ca3c506af0df6ef455a9b9e3622b54d03dd19de1788d273a47a22fd70aa17",
-      "implementation-summary.md": "d72101a673ea09abd0c7ed769f0815e565061aad682a76417017194d3f6fbc71"
+      "spec.md": "763453e2666e192005b15b33e4495b4468a4b1b78c6a86a1697be1998eadae94",
+      "plan.md": "88c9a97418b2bf9d07699bcde050cba83bf5efee16d85e5eb181d8614c6fcc80",
+      "tasks.md": "99c5367509ed9c32633e838b147061f10948d6cbd82daef99f5ef975d4431150",
+      "decision-record.md": "9acdb66f1f2dc95eb0cc30bdcfa365e88fa8b4e42d96ce3928843c59be3932db",
+      "implementation-summary.md": "2bd1bb76187a3f1b9c0002361919bad8b3fda4a3af9769c80900862630a783ea"
     },
     "last_active_at": null
   }

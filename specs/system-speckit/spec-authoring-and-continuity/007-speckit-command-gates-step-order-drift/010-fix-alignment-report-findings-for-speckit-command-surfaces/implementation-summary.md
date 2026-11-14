@@ -7,11 +7,11 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-fix-alignment-report-findings-for-speckit-command-surfaces"
-    last_updated_at: "2026-11-14T20:07:20Z"
+    packet_pointer: "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces"
+    last_updated_at: "2026-11-14T20:22:29Z"
     last_updated_by: "generate-context"
-    recent_action: "Closed phase 9 with every acceptance row Met on the uncommitted tree"
-    next_safe_action: "Confirm with the operator: commit, merge origin/main, then push"
+    recent_action: "Closed phase 10 with every acceptance row Met on the merged branch"
+    next_safe_action: "Confirm the push of the merged branch and main with the operator"
     packet_purpose: "Purpose: Every finding of the alignment run that this packet owns is closed at its source, and a recheck of that run confirms it."
     blockers: []
     key_files:
@@ -24,7 +24,7 @@ _memory:
       runtime: "claude"
       sessionId: "edbfe885-af60-4e63-8557-2a9288c9a21c"
       workspace: "/Users/michelkerkmeester/worktrees/public/381-speckit-command-gates-step-order-drift"
-      savedAt: "2026-11-14T20:07:20Z"
+      savedAt: "2026-11-14T20:22:29Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -45,7 +45,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 009-fix-alignment-report-findings-for-speckit-command-surfaces |
+| **Spec Folder** | 010-fix-alignment-report-findings-for-speckit-command-surfaces |
 | **Completed** | 2026-11-14 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->
@@ -58,7 +58,7 @@ _memory:
 
 An agent that reads the skill README, the command contract, the resume catalog entry or its playbook now reads the same step counts, the same single resume workflow and the same detection order that the workflow files hold. Three requests an operator would phrase naturally now reach `system-spec-kit`, and the contract-drift step that was failing on main passes.
 
-### Phase 9: fix-alignment-report-findings-for-speckit-command-surfaces
+### Phase 10: fix-alignment-report-findings-for-speckit-command-surfaces
 
 The alignment check of this packet, run `20261114T170200Z`, reported 26 findings. This phase closes the 21 in scope that could be fixed at a source, answers two routing probes in `spec.md` section 10 and regenerates the stale compiled deep-loop contracts on the operator's instruction. You can rerun the same check with `/local-skilled-alignment --recheck` on that run folder and see each literal finding as resolved.
 
@@ -94,7 +94,7 @@ The operator made three choices through the question tool on 2026-11-14: fix eve
 ## How It Was Delivered
 <!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-The baselines were recorded first in `scratch/baseline.txt`. Text and metadata were edited at their sources, and each generated copy was written by its generator: `derive-command-bridges.cjs`, `skill_graph_compiler.py --export-json` and `compile-command-contracts.cjs --write`. Each new test assertion was watched failing with its defect put back into `speckit-implement.yaml`, then passing after the file was restored. The proof ran from the final state: the requirement commands, the advisor suites, the seventeen probes, the alignment recheck, the whole battery and `validate.sh --recursive --strict`. Nothing is committed yet. The work sits uncommitted on branch `worktrees/381-speckit-command-gates-step-order-drift` over `ba7062dd17`, and origin/main has moved past that commit, so a merge comes before any push.
+The baselines were recorded first in `scratch/baseline.txt`. Text and metadata were edited at their sources, and each generated copy was written by its generator: `derive-command-bridges.cjs`, `skill_graph_compiler.py --export-json` and `compile-command-contracts.cjs --write`. Each new test assertion was watched failing with its defect put back into `speckit-implement.yaml`, then passing after the file was restored. The proof ran from the final state: the requirement commands, the advisor suites, the seventeen probes, the alignment recheck, the whole battery and `validate.sh --recursive --strict`. The work was committed as `7d9202ad1b` on branch `worktrees/381-speckit-command-gates-step-order-drift`, origin/main `c1dbb1bcc4` was merged in as `e13f670cb9`, and the gates were run again on the merged tree. Main had landed its own phase 9 in this packet, so `relocate.mjs` renumbered this phase from 009 to 010.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -111,6 +111,8 @@ The baselines were recorded first in `scratch/baseline.txt`. Text and metadata w
 | Add the routing phrases to `graph-metadata.json`, not `command-metadata.json` | The probes are scored against the skill's `intent_signals`. `plan.md` first named the command metadata, and `spec.md` now lists the file that was edited |
 | Narrow the REQ-002 search pattern | The first pattern held the bare word `ranked`, which also matches the true sentence that ripgrep results are ranked by the caller |
 | Remove the trigger-index row from the resume recovery chain | The resume workflow never calls the trigger index. The entry now says the operator runs it to find a packet when the command asks for a path |
+| Renumber this phase from 009 to 010 | Main landed `009-resume-contract-owned-assets` while this phase was built. Two children cannot share a number, and the phase that reached main first keeps it |
+| Keep both command contract edits | Phase 9 on main and finding `B-2` here made the same change to `command-contract.json`, so the merge needed no choice between them |
 | Leave `C-3` and `B-8` open | The operator chose to skip findings outside the packet. `C-3` is root `README.md` line 546, and `B-8` is a playbook scenario that was broken before the range |
 <!-- /ANCHOR:decisions -->
 
@@ -128,7 +130,7 @@ The baselines were recorded first in `scratch/baseline.txt`. Text and metadata w
 | `check-contract-drift.cjs` | PASS: `[CONTRACT DRIFT] OK commands=3`, exit 0. Baseline exit 2 |
 | `test-phase-command-workflows.js` | PASS: `passed=143 failed=0`. Baseline 131, plus 12 new assertions |
 | vitest `speckit-autopilot-contract.vitest.ts` | PASS: 5 passed. Baseline 4, plus 1 new test |
-| Advisor ratchets and routing suites | PASS: 17 files, 145 tests. The four baseline files still hold 31 passed |
+| Advisor ratchets and routing suites | Before the merge PASS: 17 files, 145 tests. On the merge commit 144 passed and 1 failed: row `cmd-design-extract-plain-holdout-01` of `command-routing-slice.vitest.ts`, which fails the same way on origin/main `c1dbb1bcc4` without this phase |
 | `run-probes.cjs` on the seventeen probes | `pass=14 fail=3`. Baseline `pass=11 fail=6`. Left: P08 and P14 accepted, P13 held by the critic |
 | `frontmatter-version verify` for five skills | PASS: every file ok, same counts as the baseline |
 | `recheck.cjs` on the run folder | `resolved=8 still_open=2 new=0 needs_review=17`. Still open: `C-3` and the package check that cannot run |
@@ -146,7 +148,8 @@ The baselines were recorded first in `scratch/baseline.txt`. Text and metadata w
 2. **The routing signals overlap another packet.** `system-skill-advisor/routing-and-scoring/008-command-surfacing` is built in another worktree and edits advisor signals too. This phase only appended four list entries, so a merge conflict there is resolved by keeping both sides and rebuilding `skill-graph.json`.
 3. **The compiled deep-loop contracts were another session's debt.** Commit `31ced0f5ea` changed their sources without recompiling. They were regenerated with the compiler and never edited by hand. If that session recompiles too, take either copy and rerun `check-contract-drift.cjs`.
 4. **One package check cannot run in this worktree.** `npm --prefix .skilled/skills/system-spec-kit/runtime/cli run check` needs `node_modules`, which the worktree does not have. It could not run in the first alignment run either.
-5. **Two cells of the resume presentation still name the old model.** The auto resolution table says `spec_folder` asks "when multiple viable folders are detected", and Q1 reads "if auto-detected". No finding names them, so they are left for a later pass.
+5. **One advisor suite is red on main.** `tests/command-routing-slice.vitest.ts` reports that the holdout row for `/design:extract` moved from `sk-doc` to `sk-code`. Commit `c75c1d8236` on main narrowed two sk-doc phrases without recapturing that baseline, and no CI workflow runs the suite. This phase does not touch it. The owner recaptures it with `capture-command-routing-baseline.mjs --write`.
+6. **Two cells of the resume presentation still name the old model.** The auto resolution table says `spec_folder` asks "when multiple viable folders are detected", and Q1 reads "if auto-detected". No finding names them, so they are left for a later pass.
 <!-- /ANCHOR:limitations -->
 
 ---

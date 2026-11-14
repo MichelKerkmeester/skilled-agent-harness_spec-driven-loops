@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: Phase 9: fix-alignment-report-findings-for-speckit-command-surfaces"
+title: "Decision Record: Phase 10: fix-alignment-report-findings-for-speckit-command-surfaces"
 description: "Operator decisions and their verbatim answers for this packet."
 trigger_phrases:
   - "009-fix-alignment-report-findings-for-speckit-command-surfaces operator decisions"
@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-fix-alignment-report-findings-for-speckit-command-surfaces"
+    packet_pointer: "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces"
     last_updated_at: "2026-11-14T20:07:20.713Z"
     last_updated_by: "decision-record-writer"
     recent_action: "Recorded operator decisions"
@@ -22,7 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Decision Record: Phase 9: fix-alignment-report-findings-for-speckit-command-surfaces
+# Decision Record: Phase 10: fix-alignment-report-findings-for-speckit-command-surfaces
 
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->
 <!-- HVR_REFERENCE: .skilled/skills/sk-doc/sk-create-with-human-voice/references/hvr-rules.md -->
@@ -37,7 +37,7 @@ _memory:
 | Q001 | The alignment battery ran on the whole packet, not on phase 8 alone or a narrowed set of surfaces. | Not stated. | None | spec.md Phase Context, the run folder 20261114T170200Z |
 | Q002 | The four paid review lanes and the critic were approved to run after the battery. | Not stated. | None | spec.md Measured Behavior, the run folder 20261114T170200Z |
 | Q003 | The lanes that timed out were rerun on Pi with LLM Gateway DeepSeek, in place of a longer rerun on the first executor. | Not stated. | None | the run folder 20261114T170200Z, executors.critic-on-pi.json |
-| Q004 | Every finding inside the packet is fixed in a new phase 9, and the findings outside the packet are skipped. | Not stated. | None | spec.md section 3 In Scope and Out of Scope, REQ-001 to REQ-007, REQ-009 |
+| Q004 | Every finding inside the packet is fixed in a new phase, numbered 10 after the merge with main, and the findings outside the packet are skipped. | Not stated. | None | spec.md section 3 In Scope and Out of Scope, REQ-001 to REQ-007, REQ-009 |
 | Q005 | This phase regenerates the stale compiled deep-loop contracts, although another session's commit caused them. | Not stated. | None | REQ-008, T020, .skilled/commands/deep/assets/compiled/ |
 | Q006 | The operator answers are recorded by one save that runs after the fix work, not before it. | Not stated. | None | decision-record.md, implementation-summary.md |
 <!-- /ANCHOR:operator-decisions -->

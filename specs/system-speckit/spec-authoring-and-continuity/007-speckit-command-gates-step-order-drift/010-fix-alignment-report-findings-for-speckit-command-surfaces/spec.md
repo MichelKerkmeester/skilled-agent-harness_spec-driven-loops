@@ -1,14 +1,14 @@
 ---
-title: "Feature Specification: Phase 9: fix-alignment-report-findings-for-speckit-command-surfaces"
+title: "Feature Specification: Phase 10: fix-alignment-report-findings-for-speckit-command-surfaces"
 description: "The alignment check of this packet found 23 open findings on the speckit command surfaces: stale step counts, text that names removed files and modes, command metadata behind its routers, shared blocks no test pins and five advisor routing misses. This phase closes them."
 trigger_phrases:
   - "fix alignment report findings for speckit command surfaces"
-  - "phase 9 fix alignment report findings for speckit"
+  - "phase 10 fix alignment report findings for speckit"
 importance_tier: "important"
 contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.4 -->
-# Feature Specification: Phase 9: fix-alignment-report-findings-for-speckit-command-surfaces
+# Feature Specification: Phase 10: fix-alignment-report-findings-for-speckit-command-surfaces
 
 <!-- SPECKIT_LEVEL: 2 -->
 ---
@@ -25,8 +25,8 @@ contextType: "implementation"
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/381-speckit-command-gates-step-order-drift` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 9 of 9 |
-| **Predecessor** | 008-router-readme-presentation-alignment |
+| **Phase** | 10 of 10 |
+| **Predecessor** | 009-resume-contract-owned-assets |
 | **Successor** | None |
 | **Handoff Criteria** | Every row of `acceptance-criteria.md` is Met, the alignment recheck reports no finding still open that this phase owns, and `validate.sh --strict` prints `RESULT: PASSED` for this folder |
 <!-- /ANCHOR:metadata -->
@@ -36,12 +36,12 @@ contextType: "implementation"
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 9** of the Close the alignment report findings on the speckit command surfaces: stale step counts, references to removed files and modes, command metadata flags, missing contract tests and advisor routing gaps specification.
+This is **Phase 10** of the Close the alignment report findings on the speckit command surfaces: stale step counts, references to removed files and modes, command metadata flags, missing contract tests and advisor routing gaps specification.
 
 **Scope Boundary**: This phase closes the findings of one alignment run, `/local-skilled-alignment 99d197475d..0baf90cc77 --kind range`, that the packet owns, plus the stale compiled deep-loop contract, which the operator added on 2026-11-14 through the question tool. It changes text, metadata, two test files and advisor signal lists. It changes no step order, gate, mode contract or resume logic. Those belong to phases 1 to 8.
 
 **Dependencies**:
-- Phases 1 to 8 are Complete. Each fix reads its truth from the workflow and router files as phase 8 left them.
+- Phases 1 to 9 are Complete. Each fix reads its truth from the workflow and router files as phase 8 left them. Phase 9, `009-resume-contract-owned-assets`, landed on main while this phase was built and made the same command contract change as finding `B-2`, so the two edits merged without a conflict.
 - The run folder of the alignment check holds `findings.json` and `fix-plan.md`, which name each finding by id. This spec quotes the ids so a later recheck can be matched.
 - `derive-command-bridges.cjs` copies `command-metadata.json` and `scoring-compatibility.json` into the generated bridges, `projection.ts` and `skill_advisor.py`. REQ-001, REQ-003 and REQ-007 edit the sources and run the deriver.
 

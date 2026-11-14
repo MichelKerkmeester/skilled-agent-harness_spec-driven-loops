@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: Phase 9: fix-alignment-report-findings-for-speckit-command-surfaces"
+title: "Implementation Plan: Phase 10: fix-alignment-report-findings-for-speckit-command-surfaces"
 description: "Close the alignment findings at their sources: text and metadata by direct edit, generated copies by their generators, and routing by new entries in the owned-signal lists. Two existing test files gain the assertions the findings show are missing. The proof is a recheck of the alignment run plus five named commands."
 trigger_phrases:
   - "fix alignment report findings for speckit command surfaces plan"
@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.4 -->
-# Implementation Plan: Phase 9: fix-alignment-report-findings-for-speckit-command-surfaces
+# Implementation Plan: Phase 10: fix-alignment-report-findings-for-speckit-command-surfaces
 
 <!-- SPECKIT_LEVEL: 2 -->
 
@@ -149,7 +149,7 @@ Setup ──► Implementation ──► Verification
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Setup | Phases 1 to 8 Complete, the alignment run folder present | Implementation |
+| Setup | Phases 1 to 9 Complete, the alignment run folder present | Implementation |
 | Implementation | The baselines Setup records | Verification |
 | Verification | Every source edit and both generators run | Close of the phase and the parent |
 <!-- /ANCHOR:phase-deps -->

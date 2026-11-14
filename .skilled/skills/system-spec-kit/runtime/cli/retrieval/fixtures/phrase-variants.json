@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0fe7fa25b820c3f3f6865995881cf7cc5e90d62d80757870529ea00fb14618ab",
+  "manifestHash": "c4459a00c1ba16709500ed127b207de3c58d8ab71b362fa83a41264e9970ae0a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -2320,6 +2320,9 @@
     ],
     "009 feedback aggregator": [
       "009 feedback aggregator"
+    ],
+    "009 fix alignment report findings for speckit command surfaces operator decisions": [
+      "009-fix-alignment-report-findings-for-speckit-command-surfaces operator decisions"
     ],
     "009 fp16 plan": [
       "009 fp16 plan"
@@ -51393,6 +51396,21 @@
     "fix agent contract contradictions tasks": [
       "fix agent contract contradictions tasks"
     ],
+    "fix alignment report findings for speckit command surfaces": [
+      "fix alignment report findings for speckit command surfaces"
+    ],
+    "fix alignment report findings for speckit command surfaces acceptance criteria": [
+      "fix alignment report findings for speckit command surfaces acceptance criteria"
+    ],
+    "fix alignment report findings for speckit command surfaces implementation summary": [
+      "fix alignment report findings for speckit command surfaces implementation summary"
+    ],
+    "fix alignment report findings for speckit command surfaces plan": [
+      "fix alignment report findings for speckit command surfaces plan"
+    ],
+    "fix alignment report findings for speckit command surfaces tasks": [
+      "fix alignment report findings for speckit command surfaces tasks"
+    ],
     "fix audit findings": [
       "fix audit findings"
     ],
@@ -81496,6 +81514,9 @@
     ],
     "phase 10 final gate ledger": [
       "phase 10 final gate ledger"
+    ],
+    "phase 10 fix alignment report findings for speckit": [
+      "phase 10 fix alignment report findings for speckit"
     ],
     "phase 10 goal ending carry": [
       "phase 10 goal ending carry"

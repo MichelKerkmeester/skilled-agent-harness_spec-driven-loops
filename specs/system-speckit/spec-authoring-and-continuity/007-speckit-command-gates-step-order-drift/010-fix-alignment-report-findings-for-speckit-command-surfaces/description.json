@@ -1,0 +1,31 @@
+{
+  "level": "2",
+  "specFolder": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces",
+  "description": "Phases 1 to 8 changed the speckit workflows and their routers, and several surfaces further out still state the old facts",
+  "keywords": [
+    "phases",
+    "changed",
+    "speckit",
+    "workflows",
+    "routers",
+    "several",
+    "surfaces",
+    "still",
+    "state",
+    "old",
+    "facts"
+  ],
+  "lastUpdated": "2026-11-14T20:22:29.831Z",
+  "specId": "010",
+  "folderSlug": "fix-alignment-report-findings-for-speckit-command-surfaces",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "007-speckit-command-gates-step-order-drift"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "14-11-26_21-07__closed-the-findings-of-alignment-run.md",
+    "14-11-26_21-22__closed-the-findings-of-alignment-run.md"
+  ]
+}
