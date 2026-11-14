@@ -18,7 +18,8 @@
       "wrapper start checksum plan",
       "wrapper start checksum tasks",
       "wrapper start checksum acceptance criteria",
-      "wrapper start checksum goal"
+      "wrapper start checksum goal",
+      "wrapper start checksum implementation summary"
     ],
     "key_topics": [
       "wrapper",
@@ -42,8 +43,13 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "implementation-summary.md",
       ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
-      ".skilled/hooks/session-relaunch/README.md"
+      ".skilled/hooks/session-relaunch/README.md",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      "scratch/final-suite.txt",
+      "scratch/baseline.txt"
     ],
     "entities": [
       {
@@ -77,6 +83,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "skilled-loop-wrapper-launch-arguments.test.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
@@ -86,6 +98,30 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-suite.txt",
+        "kind": "file",
+        "path": "scratch/final-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
         "source": "derived"
       },
       {
@@ -159,41 +195,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The wrapper takes a checksum of its own file before the first launch (`.skilled/bin/skilled-loop:1208`) and compares it before each hop (`:1472`)",
     "created_at": "2026-11-14T11:42:51Z",
-    "last_save_at": "2026-11-14T11:49:13.796Z",
+    "last_save_at": "2026-11-14T12:38:42.760Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,14 +207,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c967d42700dfcd3c242e4103de642265681d45eff5f8b62373f9a8e7d83d2cde",
+    "source_fingerprint": "sha256:9e76a2b509e0eec2f4a1231a7df8b17b4bc2774ab7b1517db0f0a94042b4d179",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c99b5d2011bdfcf6efa1850cb69877f73cd65e554a0cdf37fd2f2c68dc5ff510",
       "plan.md": "784aba105e7bf467c59a8126adf07e00999336346109551557b348b8f5867ad1",
-      "tasks.md": "cd0f8b79446b3c22f740d9c8238b3bb6306bd2d188d2b4fae253ce3650220ddf"
+      "tasks.md": "c7b1005d93536213b7df27257df98ae37faa797e7309b28e6ccfbf50b530758b",
+      "implementation-summary.md": "2bf7e48cdb4ceb5c92dd99c4da5c18d78e2c3861906412269c789cd498a2e216"
     },
     "last_active_at": null
   }
