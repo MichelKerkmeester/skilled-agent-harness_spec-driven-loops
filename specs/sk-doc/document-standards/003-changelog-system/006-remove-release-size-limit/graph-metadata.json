@@ -195,7 +195,7 @@
     ],
     "causal_summary": "`checkchangelogshape.py` fails an expanded release note that runs past 280 lines below its frontmatter",
     "created_at": "2026-11-14T21:40:01Z",
-    "last_save_at": "2026-11-14T21:57:54.836Z",
+    "last_save_at": "2026-11-14T22:29:44.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +204,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:4ebf09cbbf5ce487192e317ef0d072da7bfc61adf9114b72571d5c306e1fc51b",
+    "source_fingerprint": "sha256:0d28903040bd5589400998ef405010de22cd92318a86412dceef058a9adde22e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "1cf1544ed775b6af7f24e94609ccb8f9f3e8bd3786430595d91c3b91c4671cdf",
+      "spec.md": "87afa1c2da82a2a3d5a61ad0ee32c07a66933d61f0a9553c4bd8026e41140579",
       "plan.md": "4b070a4baaca48221c6b8b593c6ed1291864cd93731c98451856e2ddb0c3ea5b",
-      "tasks.md": "6be22bba503adc5f0dfc60cba096357ccf816f63dc690749ffa32c2394b90f0c",
-      "implementation-summary.md": "6df74daa6c0d9cbb9650de18a6cbb3e30b857f228607f45298bbaeee0cbd1b5b"
+      "tasks.md": "ccd4eea1479c724e953027d3d0f9a7bf91040b5826f05aef64d8c0154ad16c78",
+      "implementation-summary.md": "1233a823ebd6e94c0040089d767e0db59ca45ff9966846aec429960f4864095e"
     },
     "last_active_at": null
   }

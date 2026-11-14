@@ -158,6 +158,20 @@ def test_the_template_ceilings_match_the_checker():
     assert ceiling("Sentence average") == shape.SENTENCE_MEAN_WORDS
 
 
+def test_the_workflow_ceilings_match_the_checker():
+    """A writer drafts from the workflow's ceiling line, so it must name the numbers the checker enforces."""
+    import re
+    import check_changelog_shape as shape
+
+    for mode in ("auto", "confirm"):
+        workflow = (REPO_ROOT / ".skilled" / "commands" / "create" / "assets" / f"create-changelog-{mode}.yaml").read_text(encoding="utf-8")
+        line = workflow.split("Expanded ceilings", 1)[1]
+        assert int(re.search(r"(\d+) H4 items", line).group(1)) == shape.EXPANDED_MAX_H4_ITEMS, mode
+        assert int(re.search(r"(\d+) glance bullets", line).group(1)) == shape.GLANCE_MAX_BULLETS, mode
+        assert int(re.search(r"(\d+) words a sentence,", line).group(1)) == shape.SENTENCE_MAX_WORDS, mode
+        assert int(re.search(r"(\d+) words a sentence on average", line).group(1)) == shape.SENTENCE_MEAN_WORDS, mode
+
+
 def test_an_expanded_entry_needs_the_checked_section():
     assert rules(expanded(checked=False)) == ["checked-section"]
     compact = FRONTMATTER + "Summary.\n\n&nbsp;\n\n## What's New at a Glance\n\n- **One gain.** It helps.\n"

@@ -554,7 +554,7 @@ workflow:
                     + How It Was Checked (a before-and-after table of real commands, the measured
                     cost and each suite's result) + Upgrade Notes
           Expanded ceilings (template section 4, enforced by shape_check in Step 5):
-            26 H4 items, 12 glance bullets, 22 words a sentence,
+            32 H4 items, 14 glance bullets, 22 words a sentence,
             10 words a sentence on average
         Detail and readability apply to every format (template sections 2 and 4), with no request needed:
           - Each new feature says how it works, step by step, and quotes one real line of output
