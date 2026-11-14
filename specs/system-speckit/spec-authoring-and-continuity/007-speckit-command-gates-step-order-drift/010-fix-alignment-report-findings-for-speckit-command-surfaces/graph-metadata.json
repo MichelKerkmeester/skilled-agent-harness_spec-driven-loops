@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Phases 1 to 8 changed the speckit workflows and their routers, and several surfaces further out still state the old facts",
     "created_at": "2026-11-14T19:44:23Z",
-    "last_save_at": "2026-11-14T20:22:29.831Z",
+    "last_save_at": "2026-11-14T21:41:42.693Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,14 +216,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:271ae70fa0c23e9a7f1b2cef2d628246657c6a63aa7bd2663c2a7b3b423442cb",
+    "source_fingerprint": "sha256:8e7ff68204a59c65e47bb8f7fd5e7106649850dd27ddd5b316f6d910ddf587ca",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "763453e2666e192005b15b33e4495b4468a4b1b78c6a86a1697be1998eadae94",
       "plan.md": "88c9a97418b2bf9d07699bcde050cba83bf5efee16d85e5eb181d8614c6fcc80",
-      "tasks.md": "99c5367509ed9c32633e838b147061f10948d6cbd82daef99f5ef975d4431150",
+      "tasks.md": "6fc1f25d8c0c49224730b728be19b925da4e8b517f30f18a05f7c1baa687f777",
       "decision-record.md": "9acdb66f1f2dc95eb0cc30bdcfa365e88fa8b4e42d96ce3928843c59be3932db",
-      "implementation-summary.md": "2bd1bb76187a3f1b9c0002361919bad8b3fda4a3af9769c80900862630a783ea"
+      "implementation-summary.md": "7b5800db4de33412ccbcfdee48f34c357d0ee07b8800ca9b51007c44c68603f7"
     },
     "last_active_at": null
   }

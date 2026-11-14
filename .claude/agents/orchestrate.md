@@ -801,7 +801,7 @@ Sub-agents have finite execution limits. When a single agent is given too many s
 | --------------- | ------------ | ----------------------------------------------- |
 | **1-8**         | ✅ SAFE       | Single agent, no restrictions                   |
 | **9-12**        | ⚠️ CAUTION    | Single agent OK, but add Self-Governance Footer |
-| **13+**         | 🚫 MUST SPLIT | Split into agents of ≤8 tool calls each         |
+| **13+**         | 🚫 MUST SPLIT | Split so each part fits the target agent's `Tool Calls` budget, or 8 calls when it states none |
 
 #### Batch Sizing Rule
 
@@ -818,7 +818,7 @@ When a task involves **N repetitive operations** on different files (e.g., "conv
 
 For tasks estimated at **9+ tool calls**, append this instruction to the delegation dispatch prompt:
 
-> **SELF-GOVERNANCE:** If you determine this task requires more than 12 tool calls to complete, STOP after your initial assessment. Return: (1) what you've completed so far, (2) what remains with specific file/task list, (3) estimated remaining tool calls. The orchestrator will split the remaining work across multiple agents.
+> **SELF-GOVERNANCE:** If this task needs more tool calls than your own `Tool Calls` budget or your iteration prompt's `Max N` line, or 12 when you have neither, STOP after your initial assessment. Return: (1) what you've completed so far, (2) what remains with specific file/task list, (3) estimated remaining tool calls. The orchestrator will split the remaining work across multiple agents.
 
 ### Resource Budgeting
 

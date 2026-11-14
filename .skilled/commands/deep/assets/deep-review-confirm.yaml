@@ -86,7 +86,6 @@ agent_config:
   leaf_only: true
   tools: [Read, Write, Edit, Bash, Grep, Glob]
   mcp_servers: []
-  tool_call_budget: { target: 9, soft_max: 12, hard_max: 13 }
 
 # ─────────────────────────────────────────────────────────────────
 # STATE FILE PATHS
@@ -1313,6 +1312,7 @@ workflow:
               state_summary: "{state_summary}"
               current_iteration: "{current_iteration}"
               max_iterations: "{max_iterations}"
+              max_tool_calls_per_iteration: "{config.maxToolCallsPerIteration}"
               next_dimension: "{next_dimension}"
               review_target: "{review_target}"
               review_scope_files: "{review_scope_files}"

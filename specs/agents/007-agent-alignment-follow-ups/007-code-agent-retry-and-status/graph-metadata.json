@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "code agent retry and status",
+      "phase 7 code agent retry and status",
+      "code agent fail versus blocked",
+      "code agent retry and status plan",
+      "code agent retry and status tasks",
+      "code agent retry and status implementation summary"
+    ],
+    "key_topics": [
+      "code",
+      "agent",
+      "retry",
+      "status",
+      "phase",
+      "fail",
+      "versus",
+      "blocked",
+      "plan",
+      "tasks",
+      "implementation",
+      "summary"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      ".skilled/agents/code.md",
+      ".claude/agents/code.md",
+      ".cursor/agents/code.md",
+      ".devin/agents/code/AGENT.md",
+      ".pi/agents/code.md",
+      ".codex/agents/code.toml",
+      ".dsh/agents/code.patch.yml",
+      ".skilled/agents/agent-registry.json",
+      ".skilled/agents/orchestrate.md",
+      ".claude/agents/orchestrate.md",
+      ".pi/agents/orchestrate.md",
+      ".codex/agents/orchestrate.toml",
+      ".dsh/agents/orchestrate.patch.yml",
+      ".skilled/commands/speckit/assets/speckit-implement.yaml",
+      ".opencode/plugins/tests/speckit-review-dispatch-contract.test.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".skilled/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENT.md",
+        "kind": "doc",
+        "path": ".devin/agents/code/AGENT.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.toml",
+        "kind": "file",
+        "path": ".codex/agents/code.toml",
+        "source": "derived"
+      },
+      {
+        "name": "code.patch.yml",
+        "kind": "config",
+        "path": ".dsh/agents/code.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "agent-registry.json",
+        "kind": "config",
+        "path": ".skilled/agents/agent-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.toml",
+        "kind": "file",
+        "path": ".codex/agents/orchestrate.toml",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.patch.yml",
+        "kind": "config",
+        "path": ".dsh/agents/orchestrate.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-implement.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-implement.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-review-dispatch-contract.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/speckit-review-dispatch-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Rubric Score",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Each Measured Behavior",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`code.md` step 6 says \"NO internal retry",
+    "created_at": "2026-11-14T20:19:17Z",
+    "last_save_at": "2026-11-14T20:47:45.953Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9cdbf8e720a1e107ecc35af37a10bf9c8a6718588bf530160542f28ae6d825dd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "d497985738a7dff5454b132c2870ea662de1daf5478e2f37b4da5d1f65fcb625",
+      "plan.md": "ea008373efdfd83d00e30486eaa87ba7955107dd0eb740b34b1d50b02c69d62c",
+      "tasks.md": "7df8a9ca2f6dc68493eb5ba6ba74f94226f83e5522700a74ffaad070f5d833b9",
+      "implementation-summary.md": "28cb2cea6bb6a2f5dbda948dc0ad5097e7b157b8ce830176bc6e4d7e8a33faa1"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,202 @@
+## base
+$ git rev-parse --short HEAD
+c1dbb1bcc4
+$ git diff --quiet 09f1d6499a HEAD -- .skilled/agents/deep-research.md .skilled/agents/deep-review.md; echo exit=$?
+exit=0
+$ wc -l .skilled/agents/deep-research.md .skilled/agents/deep-review.md
+     599 .skilled/agents/deep-research.md
+     600 .skilled/agents/deep-review.md
+    1199 total
+
+## deep-research-2
+$ sed -n '166,168p;196p;404p;495p' .skilled/agents/deep-research.md
+- Use `timeout` when tool/source failures or budget limits prevent adequate coverage but some evidence was gathered.
+- Use `stuck` when ambiguity or missing evidence leaves no productive in-scope path after alternatives are tried.
+- Use `error` only for unrecoverable state corruption, missing required control files, or write failures that prevent valid artifacts.
+- **Tier 3+ escalation**: if Tier 1-2 recovery fails, write the failure in the iteration file and set status to `error`; the orchestrator handles higher tiers.
+- **Tier 3+ escalation**: if Tier 1-2 recovery fails, report the error in the iteration file and set status to `error`; the orchestrator handles higher tiers.
+- If tool failures prevent any research, report timeout status
+$ sed -n '180p' .skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts
+  readonly status: 'complete' | 'error' | 'insight' | 'stuck' | 'thought' | 'timeout';
+$ sed -n '2635p' .skilled/commands/deep/assets/deep-research-auto.yaml
+  consecutive_failures: "After 3 consecutive errors, halt loop and enter synthesis with partial findings."
+
+## deep-research-3
+$ sed -n '249p' .skilled/agents/deep-research.md
+2. Append the structured JSONL record.
+$ grep -n -o 'never write .research/deep-research-state.jsonl. directly' .skilled/agents/deep-research.md
+254:never write `research/deep-research-state.jsonl` directly
+
+## deep-research-4
+$ grep -n -o '"timestamp":"ISO-8601","durationMs":NNNNN' .skilled/agents/deep-research.md
+257:"timestamp":"ISO-8601","durationMs":NNNNN
+$ grep -n -o '.timestamp., and .durationMs.' .skilled/agents/deep-research.md
+328:`timestamp`, and `durationMs`
+$ grep -c 'durationMs' .skilled/agents/deep-research.md
+2
+$ rg -n 'assert_jsonl_fields' .skilled/commands/deep/assets/deep-research-auto.yaml
+1960:          assert_jsonl_fields: [type, iteration, newInfoRatio, status, focus, mode]
+$ sed -n '293,306p' .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts
+      } else if (stem === 'deep_research.iteration_completed') {
+        const iter = typeof scope.iteration === 'number' ? scope.iteration : 1;
+        row = {
+          type: 'iteration',
+          iteration: iter,
+          run: iter,
+          status: typeof data.status === 'string' ? data.status : 'complete',
+          newInfoRatio: typeof data.rawNewInfoRatio === 'number' ? data.rawNewInfoRatio : 0,
+          ruledOut: Array.isArray(data.ruledOutApproachRefs) ? data.ruledOutApproachRefs : [],
+          focus: typeof data.focus === 'string' ? data.focus : '',
+          mode: 'research',
+          answeredQuestions: Array.isArray(data.answeredQuestions) ? data.answeredQuestions : [],
+          timestamp: occurredAt,
+        };
+$ rg -n 'occurredAt: meta.occurredAt|recordedAt: meta.recordedAt' .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs
+332:      occurredAt: meta.occurredAt || meta.occurred_at || nowIso,
+333:      recordedAt: meta.recordedAt || meta.recorded_at || nowIso,
+$ rg -c 'durationMs' .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs; echo exit=$?
+exit=1
+
+## deep-research-5
+$ sed -n '30p;43p' .skilled/agents/deep-research.md
+**Operating boundary**: This agent is research-focused, codebase-agnostic, and dispatched once per iteration with explicit context about what to investigate. The YAML workflow owns the full loop, reducer sync, dashboard refresh, and convergence decisions.
+## Convergence Threshold Semantics
+$ sed -n '193,196p;399,404p' .skilled/agents/deep-research.md
+For source failures, apply Tier 1-2 recovery:
+- **Tier 1 (Source failure)**: retry with an alternative source, max 2 retries; never repeat the exact same call.
+- **Tier 2 (Focus exhaustion)**: after 2 consecutive iterations on the same focus with newInfoRatio < 0.10, recommend the focus for "Exhausted Approaches" in the iteration file; do not edit strategy directly.
+- **Tier 3+ escalation**: if Tier 1-2 recovery fails, write the failure in the iteration file and set status to `error`; the orchestrator handles higher tiers.
+### Error-Aware Execution
+
+Apply Tier 1-2 error handling:
+- **Tier 1 (Source failure)**: retry with an alternative source, max 2 retries; never repeat the exact same call.
+- **Tier 2 (Focus exhaustion)**: after 2 consecutive iterations on the same focus with newInfoRatio < 0.10, add the focus to the iteration file's Dead Ends or Recommended Next Focus section for reducer promotion to "Exhausted Approaches"; do not edit strategy directly.
+- **Tier 3+ escalation**: if Tier 1-2 recovery fails, report the error in the iteration file and set status to `error`; the orchestrator handles higher tiers.
+$ rg -n '^Before any write|^### Step 2: Verify Boundary|^### File Paths|^### Write Safety|^### Step 11: Verify Outputs|^## 8. OUTPUT VERIFICATION|^## Convergence Threshold|^### Error-Aware' .skilled/agents/deep-research.md
+43:## Convergence Threshold Semantics
+65:Before any write, enforce the packet scope lock:
+118:### Step 2: Verify Boundary
+321:### Step 11: Verify Outputs
+399:### Error-Aware Execution
+423:### File Paths
+449:### Write Safety
+537:## 8. OUTPUT VERIFICATION
+$ for r in 43,53 65,73 118,132 321,333 399,404 423,438 449,455 537,570; do printf '%s ' $r; sed -n "${r}p" .skilled/agents/deep-research.md | wc -l | tr -d ' '; done
+43,53 11
+65,73 9
+118,132 15
+321,333 13
+399,404 6
+423,438 16
+449,455 7
+537,570 34
+$ rg -n '^\*\*Default:\*\* 0.05|^\*\*NOT INTERCHANGEABLE' .skilled/skills/system-deep-loop/deep-research/SKILL.md
+72:**Default:** 0.05 on newInfoRatio (fully-new=1.0, partially-new=0.5, +0.10 simplicity bonus, capped 1.0)
+76:**NOT INTERCHANGEABLE with siblings:**
+
+## deep-review-2
+$ sed -n '104p;110,113p;127p' .skilled/agents/deep-review.md
+Immediately after validating dispatch inputs, BEFORE any state read or workflow step, this agent MUST emit one canonical BINDING line per resolved setup value to stdout. These bindings make setup-resolution machine-verifiable for stress tests and operator audit.
+BINDING: maxIterations=<integer>
+BINDING: convergence=<float>
+BINDING: mode=review
+BINDING: dimensions=<comma-separated-list>
+2. READ STATE ───────► Read JSONL + registry + strategy + config
+$ rg -n 'Review Iteration:|Dimension:|convergenceThreshold' .skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl
+16:Review Iteration: {current_iteration} of {max_iterations}
+18:Dimension: {next_dimension}
+
+## deep-review-3
+$ sed -n '33p;444p' .skilled/agents/deep-review.md
+> **SPEC FOLDER PERMISSION:** @deep-review may write only the resolved local-owner review packet for the target spec. Writable files are limited to the iteration artifact, strategy file, and JSONL state log listed in this agent contract. Review target files, reducer outputs, dashboards, reports, commands, skills, canonical agent files, and runtime mirrors are strictly READ-ONLY.
+- Only write to `review/iterations/iteration-NNN.md`, `review/deep-review-strategy.md`, and the write-once `review/deltas/iter-NNN.jsonl`; the `review/deep-review-state.jsonl` projection is refreshed by the gateway, never written directly.
+$ grep -n -o 'never write .review/deep-review-state.jsonl. directly' .skilled/agents/deep-review.md
+234:never write `review/deep-review-state.jsonl` directly
+
+## deep-review-4
+$ sed -n '349p;357p;377p' .skilled/agents/deep-review.md
+| **Coverage** | Required dimensions and traceability protocols are covered before STOP |
+| **FAIL** | Active `P0` exists or any binary gate fails | `/speckit:plan` |
+Mapping runs over findings ACTIVE at this iteration rather than only the ones it raised: PASS when no active P0 or P1 remains; CONDITIONAL when an active P1 remains and no P0; FAIL when any active P0 remains.
+$ sed -n '103,105p' .skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml
+    - id: FAIL
+      label: Fail
+      condition: "activeP0 > 0 OR any required quality gate fails"
+$ sed -n '2402,2408p' .skilled/commands/deep/assets/deep-review-auto.yaml
+        algorithm: |
+          if p0_count > 0:
+            verdict = "FAIL"
+          elif p1_count > 0:
+            verdict = "CONDITIONAL"
+          else:
+            verdict = "PASS"
+
+## deep-review-5
+$ sed -n '236p;493p;508p' .skilled/agents/deep-review.md
+- Required review data includes `run`, `status`, `focus`, `dimensions`, `filesReviewed`, `findingsCount`, `findingsSummary`, `findingsNew`, `findingDetails`, `traceabilityChecks`, `newFindingsRatio`, `sessionId`, `generation`, `lineageMode`, `timestamp`, and `durationMs`.
+8. Report newFindingsRatio + noveltyJustification honestly.
+5. Skip convergence data: newFindingsRatio and noveltyJustification.
+$ rg -n 'noveltyJustification' .skilled/skills/system-deep-loop/deep-review/references/state/state-jsonl.md
+99:**Optional fields:** `parentSessionId`, `continuedFromRun`, `findingsRefined`, `findingRefs`, `traceabilityChecks`, `coverage`, `noveltyJustification`, `ruledOut`, `focusTrack`, `scoreEstimate`, `segment`, `convergenceSignals`, `graphEvents`
+$ sed -n '394,398p;448p' .skilled/agents/deep-review.md
+- `new`: first run against the spec folder; no prior state.
+- `resume`: continue the active review session; same `sessionId`, no archive.
+- `restart`: archive existing `review/`, mint a fresh `sessionId`, increment `generation`, and append a typed `restarted` event with non-null `archivedPath`.
+- Deferred: `fork`, `completed-continue`.
+- Canonical event contract: `deep-review/references/protocol/loop-protocol.md §Lifecycle Branches (current release)` in the system-deep-loop skill (in this repository: `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md`).
+- Under `stop_policy=max-iterations`, the terminal synthesis record must carry `stopReason: maxIterationsReached`; the fan-out runner rejects a lineage that reaches the cap without recording it.
+$ sed -n '599,601p' .skilled/commands/deep/assets/deep-review-auto.yaml
+      step_record_restarted_run:
+        skip_when: "lineage_mode != 'restart'"
+        action: "Record the restarted lineage after the run-open row so the restart marker never precedes deep_review.run_initialized"
+$ sed -n '1742,1744p' .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+      ? [
+          `The terminal synthesis record must carry stopReason "maxIterationsReached"; the runner`,
+          `rejects a lineage whose synthesis reaches the cap without recording that reason.`,
+
+## consumers and gates
+$ node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs --command deep/research; echo exit=$?
+[CONTRACT DRIFT] OK commands=1
+exit=0
+$ node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs --command deep/review; echo exit=$?
+[CONTRACT DRIFT] OK commands=1
+exit=0
+$ node .skilled/bin/sync-agent-roster.cjs --check; echo exit=$?
+agent-roster: OK
+exit=0
+$ node .skilled/bin/check-agent-mirror-sync.cjs >/dev/null; echo exit=$?
+exit=0
+$ rg -n 'BINDING' .skilled/skills/system-deep-loop/deep-review/SKILL.md
+239:8. Emit setup `BINDING:` lines before workflow output.
+
+## noticed, not owned
+$ grep -c 'sessionId\|runId\|lineageId' .skilled/agents/deep-research.md
+0
+$ grep -n -o 'A record without them is refused with .stable-identity-missing.' .skilled/skills/system-deep-loop/deep-research/assets/prompt-pack-iteration.md.tmpl
+63:A record without them is refused with `stable-identity-missing`
+
+## added for the spec block
+$ rg -n 'occurredAt: meta.occurredAt' .skilled/skills/system-deep-loop/runtime/scripts/append-mode-event.cjs
+332:      occurredAt: meta.occurredAt || meta.occurred_at || nowIso,
+$ sed -n '305p' .skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts
+          timestamp: occurredAt,
+$ grep -n -o 'Writable files are limited to the iteration artifact, strategy file, and JSONL state log' .skilled/agents/deep-review.md
+33:Writable files are limited to the iteration artifact, strategy file, and JSONL state log
+$ grep -c 'noveltyJustification' <(sed -n '236p' .skilled/agents/deep-review.md)
+0
+$ rg -n 'durationMs' .skilled/skills/system-deep-loop/deep-research .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml
+.skilled/commands/deep/assets/deep-research-confirm.yaml:915:                    ? { status, output: {pivot_seat_001_output_json}, startedAtIso: '{pivot_seat_001_started_at_iso}', completedAtIso: '{pivot_seat_001_completed_at_iso}', durationMs: Number('{pivot_seat_001_duration_ms}') }
+.skilled/commands/deep/assets/deep-research-confirm.yaml:916:                    : { status: 'rejected', error: {pivot_seat_001_error_json}, startedAtIso: '{pivot_seat_001_started_at_iso}', completedAtIso: '{pivot_seat_001_completed_at_iso}', durationMs: Number('{pivot_seat_001_duration_ms}') };
+.skilled/commands/deep/assets/deep-research-confirm.yaml:949:                    ? { status, output: {pivot_seat_002_output_json}, startedAtIso: '{pivot_seat_002_started_at_iso}', completedAtIso: '{pivot_seat_002_completed_at_iso}', durationMs: Number('{pivot_seat_002_duration_ms}') }
+.skilled/commands/deep/assets/deep-research-confirm.yaml:950:                    : { status: 'rejected', error: {pivot_seat_002_error_json}, startedAtIso: '{pivot_seat_002_started_at_iso}', completedAtIso: '{pivot_seat_002_completed_at_iso}', durationMs: Number('{pivot_seat_002_duration_ms}') };
+.skilled/commands/deep/assets/deep-research-confirm.yaml:983:                    ? { status, output: {pivot_seat_003_output_json}, startedAtIso: '{pivot_seat_003_started_at_iso}', completedAtIso: '{pivot_seat_003_completed_at_iso}', durationMs: Number('{pivot_seat_003_duration_ms}') }
+.skilled/commands/deep/assets/deep-research-confirm.yaml:984:                    : { status: 'rejected', error: {pivot_seat_003_error_json}, startedAtIso: '{pivot_seat_003_started_at_iso}', completedAtIso: '{pivot_seat_003_completed_at_iso}', durationMs: Number('{pivot_seat_003_duration_ms}') };
+.skilled/commands/deep/assets/deep-research-auto.yaml:950:                    ? { status, output: {pivot_seat_001_output_json}, startedAtIso: '{pivot_seat_001_started_at_iso}', completedAtIso: '{pivot_seat_001_completed_at_iso}', durationMs: Number('{pivot_seat_001_duration_ms}') }
+.skilled/commands/deep/assets/deep-research-auto.yaml:951:                    : { status: 'rejected', error: {pivot_seat_001_error_json}, startedAtIso: '{pivot_seat_001_started_at_iso}', completedAtIso: '{pivot_seat_001_completed_at_iso}', durationMs: Number('{pivot_seat_001_duration_ms}') };
+.skilled/commands/deep/assets/deep-research-auto.yaml:983:                    ? { status, output: {pivot_seat_002_output_json}, startedAtIso: '{pivot_seat_002_started_at_iso}', completedAtIso: '{pivot_seat_002_completed_at_iso}', durationMs: Number('{pivot_seat_002_duration_ms}') }
+.skilled/commands/deep/assets/deep-research-auto.yaml:984:                    : { status: 'rejected', error: {pivot_seat_002_error_json}, startedAtIso: '{pivot_seat_002_started_at_iso}', completedAtIso: '{pivot_seat_002_completed_at_iso}', durationMs: Number('{pivot_seat_002_duration_ms}') };
+.skilled/commands/deep/assets/deep-research-auto.yaml:1016:                    ? { status, output: {pivot_seat_003_output_json}, startedAtIso: '{pivot_seat_003_started_at_iso}', completedAtIso: '{pivot_seat_003_completed_at_iso}', durationMs: Number('{pivot_seat_003_duration_ms}') }
+.skilled/commands/deep/assets/deep-research-auto.yaml:1017:                    : { status: 'rejected', error: {pivot_seat_003_error_json}, startedAtIso: '{pivot_seat_003_started_at_iso}', completedAtIso: '{pivot_seat_003_completed_at_iso}', durationMs: Number('{pivot_seat_003_duration_ms}') };
+.skilled/commands/deep/assets/deep-research-auto.yaml:2215:            # Canonical iteration record: include mode, sessionId, generation, durationMs, keyQuestions, answeredQuestions
+.skilled/commands/deep/assets/deep-research-auto.yaml:2217:            append_jsonl: '{"type":"iteration","iteration":{current_iteration},"run":{current_iteration},"mode":"research","status":"error","focus":"{next_focus}","findingsCount":0,"newInfoRatio":0.0,"keyQuestions":[],"answeredQuestions":[],"durationMs":0,"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
+.skilled/skills/system-deep-loop/deep-research/references/state/state-jsonl.md:105:  "durationMs": 45000

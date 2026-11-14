@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status",
+  "description": "Phase 10: deep-loop-leaf-state-and-status",
+  "keywords": [
+    "phase",
+    "deep-loop-leaf-state-and-status"
+  ],
+  "lastUpdated": "2026-11-14T20:48:02.021Z",
+  "specId": "010",
+  "folderSlug": "deep-loop-leaf-state-and-status",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_21-48__phase-010-findings-reproduced-before-planning.md"
+  ]
+}

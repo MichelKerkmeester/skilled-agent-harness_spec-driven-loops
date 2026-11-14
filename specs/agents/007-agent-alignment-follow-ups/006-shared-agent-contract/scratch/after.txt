@@ -1,0 +1,78 @@
+$ echo "## REQ-001"; rg -c 'row is the agent.s one budget' .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md
+## REQ-001
+1
+$ echo "## REQ-002"; rg -c 'Max 5 tool calls' .skilled/agents/ .claude/agents/ .pi/agents/ .codex/agents/ .dsh/agents/; echo "exit=$?"
+## REQ-002
+exit=1
+$ echo "## REQ-003"; rg -n --glob '!**/changelog/**' 'hard max 12|approaching 12|8-11|\(max 12\)|default: 12|max 12 tool|tool_call_budget' .skilled/agents/deep-research.md .skilled/commands/deep/assets/deep-research-*.yaml .skilled/skills/system-deep-loop/deep-research/; echo "exit=$?"; rg -c "toContain\('Max 24 tool calls total.'\)" .skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts
+## REQ-003
+exit=1
+2
+$ echo "## REQ-004"; rg -n 'max 13|hard max 13|Soft max 12|\(max 12\)|Max 12 tool|tool_call_budget|[0-9]+-[0-9]+ (tool )?calls' .skilled/agents/deep-review.md .skilled/commands/deep/assets/deep-review-*.yaml .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md .skilled/skills/system-deep-loop/deep-review/assets/; echo "exit=$?"; rg -n "reviewRendered\).toContain\('Max 24 tool calls total.'\)" .skilled/skills/system-deep-loop/runtime/tests/unit/prompt-pack.vitest.ts
+## REQ-004
+exit=1
+168:    expect(reviewRendered).toContain('Max 24 tool calls total.');
+$ echo "## REQ-005"; rg -c 'more than 12 tool calls' .skilled/agents/orchestrate.md; echo "exit=$?"; rg -c 'Tool Calls. budget' .skilled/agents/orchestrate.md
+## REQ-005
+exit=1
+2
+$ echo "## REQ-006"; rg -c 'checklist in an agent file ships unticked' .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md
+## REQ-006
+1
+$ echo "## REQ-007"; rg -c '\[x\]' .skilled/agents/; echo "exit=$?"
+## REQ-007
+exit=1
+$ echo "## REQ-008"; rg -c 'Exit Code' .skilled/agents/debug.md; rg -c '\[x\]' .skilled/agents/debug.md; echo "exit=$?"
+## REQ-008
+3
+exit=1
+$ echo "## REQ-009"; rg -l -F 'REFUSE: nested Task tool dispatch is forbidden for LEAF agents.' .skilled/agents/ | wc -l; rg -c -F 'REFUSE: nested Task tool dispatch is forbidden for LEAF agents.' .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md
+## REQ-009
+      10
+2
+$ echo "## REQ-010"; rg -l -i 'untrusted' .skilled/agents/ | wc -l; rg -c -i 'untrusted' .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md
+## REQ-010
+      10
+4
+$ echo "## REQ-011"; rg -c 'Daemon-free' .skilled/agents/; echo "exit=$?"; rg -c -i 'never block an iteration on retrieval' .skilled/agents/deep-review.md
+## REQ-011
+exit=1
+1
+$ echo "## REQ-012"; rg -n 'Layer 1|Layer-1' .skilled/agents/code.md .skilled/agents/debug.md .skilled/agents/review.md; echo "exit=$?"
+## REQ-012
+exit=1
+$ echo "## REQ-013"; wc -l .skilled/agents/{ai-council,code,context,debug,deep-research,deep-review,design,markdown,orchestrate,prompt-improver,review}.md
+## REQ-013
+     816 .skilled/agents/ai-council.md
+     540 .skilled/agents/code.md
+     438 .skilled/agents/context.md
+     648 .skilled/agents/debug.md
+     589 .skilled/agents/deep-research.md
+     592 .skilled/agents/deep-review.md
+     246 .skilled/agents/design.md
+     308 .skilled/agents/markdown.md
+     910 .skilled/agents/orchestrate.md
+     400 .skilled/agents/prompt-improver.md
+     462 .skilled/agents/review.md
+    5949 total
+$ echo "## REQ-014"; node .skilled/bin/sync-agent-roster.cjs --check | tail -1; echo "exit=${PIPESTATUS[0]}"; node .skilled/bin/check-agent-mirror-sync.cjs 2>&1 | tail -1; echo "exit=${PIPESTATUS[0]}"
+## REQ-014
+agent-roster: OK
+exit=0
+agent-mirror-sync: 11 agent(s) checked — all comparable mirrors in sync — OK
+exit=0
+$ echo "## REQ-015"; node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs; echo "exit=$?"; (cd .skilled/skills/system-deep-loop/runtime && npx vitest run tests/unit/prompt-pack.vitest.ts tests/unit/compile-command-contracts.vitest.ts tests/unit/check-contract-drift.vitest.ts tests/fanout-review-focus.vitest.ts 2>&1 | grep -E 'Test Files|Tests '); python3 .skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py .skilled/skills/system-deep-loop/deep-research/changelog/v1.15.13.0.md .skilled/skills/system-deep-loop/deep-review/changelog/v1.11.15.0.md | tail -1; bash .skilled/skills/sk-doc/scripts/check-frontmatter-versions.sh >/dev/null 2>&1; echo "frontmatter-versions exit=$?"
+## REQ-015
+[CONTRACT DRIFT] OK commands=3
+exit=0
+ Test Files  4 passed (4)
+      Tests  43 passed (43)
+SUMMARY files=2 pass=2 fail=0
+frontmatter-versions exit=0
+
+# T022 recount against the budget each agent now reads
+# - deep-research: floor 12 (unchanged steps) against the rendered `Max 24 tool calls total.` from maxToolCallsPerIteration=24. 12 <= 24.
+# - deep-review: floor 16 against the rendered `Max 24 tool calls total.` (config now 24; prompt-pack suite asserts it). 16 <= 24.
+# - code, review, debug fast paths: floors 6, 8, 6. The 5-call caps are gone and none of the three states a Tool Calls row, so the orchestrator default of 12 applies. 6, 8, 6 <= 12.
+# - context 10-20 and markdown 8-25 keep their own rows; the orchestrator now splits and stops by those rows.
+# T023: check-frontmatter-versions.sh exit=0 (REQ-015 block above).

@@ -22,12 +22,12 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
-      "sha256": "92b3f93dc24eb5967e1797139e76f83ae0f949b4e48d3f50c49bc29a4927c334",
+      "sha256": "fa9cf7f5e04ae7a2c5b452b2efeafa09cf0272aede1e7a4b2b327ccba55eb092",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-confirm.yaml",
-      "sha256": "052e3beb17387dffcb0ad303b8e14635182c7b5fec15285a2c8b66c642e6f68b",
+      "sha256": "b2c45769eeeb6c3153337724bbc33bd23505e13d1d576f0359f968385a9ec9ad",
       "section": "full"
     },
     {
@@ -42,12 +42,12 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "0b70e8815059318b2c2eb23405e2121d878ad48d5f716456b4aaa8b5873d8787",
+      "sha256": "42d6ace163bea91542eb95e5b211970759d907e208495672d49aef97464f0a06",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "f2abb7d154cfd71a8473eec52aadce15e0be2ec2fddf5f213b90c3fdee66b872",
+      "sha256": "c54db77ffc023569972b250053c407791cec7d7704b887eafcb746cd067df2ad",
       "section": "full"
     },
     {
@@ -67,17 +67,17 @@
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json",
-      "sha256": "072d35003ddf6fa9915ed521f44b7045fd24c7ef9ce0a9ceade2877ad26d73e3",
+      "sha256": "d0d4715bf781985515e4ced469c9b12ff8f4c5b481f9ffe9b8f706987f42a438",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl",
-      "sha256": "42aae41d16f155b6fa599b119f071d5ec6b32a172be46700278b364509a8bdb7",
+      "sha256": "b697d88fc6457211c623debcb9b8c2c073358e355a3547d09d0cd9ea549559c1",
       "section": "full"
     },
     {
       "path": ".skilled/agents/deep-review.md",
-      "sha256": "9b423d761f2b4664ea96d7bc011e7017f66368b1a8537de1e9ad8e2ad7a01bbc",
+      "sha256": "d71a1fd8638a2e84a4ecaeea6d06b0212ecd3fd8f4ca89d9ebf3b63d6f92b6ed",
       "section": "full"
     },
     {

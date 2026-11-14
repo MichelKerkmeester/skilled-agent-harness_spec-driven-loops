@@ -1,0 +1,20 @@
+{
+  "level": "2",
+  "specFolder": "agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry",
+  "description": "Phase 8: orchestrate-routing-and-retry",
+  "keywords": [
+    "phase",
+    "orchestrate-routing-and-retry"
+  ],
+  "lastUpdated": "2026-11-14T20:47:51.032Z",
+  "specId": "008",
+  "folderSlug": "orchestrate-routing-and-retry",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_21-47__phase-008-findings-reproduced-before-planning.md"
+  ]
+}

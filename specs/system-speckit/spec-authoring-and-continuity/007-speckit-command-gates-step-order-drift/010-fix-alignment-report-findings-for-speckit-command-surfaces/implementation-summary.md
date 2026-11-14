@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/010-fix-alignment-report-findings-for-speckit-command-surfaces"
-    last_updated_at: "2026-11-14T20:22:29Z"
+    last_updated_at: "2026-11-14T21:33:19Z"
     last_updated_by: "generate-context"
-    recent_action: "Closed phase 10 with every acceptance row Met on the merged branch"
-    next_safe_action: "Confirm the push of the merged branch and main with the operator"
+    recent_action: "Traced the red routing row to the sk-code phrase the stylesheet"
+    next_safe_action: "Run the sk-code phrase fix, then the loose ends and worktree cleanup"
     packet_purpose: "Purpose: Every finding of the alignment run that this packet owns is closed at its source, and a recheck of that run confirms it."
     blockers: []
     key_files:
@@ -24,7 +24,7 @@ _memory:
       runtime: "claude"
       sessionId: "edbfe885-af60-4e63-8557-2a9288c9a21c"
       workspace: "/Users/michelkerkmeester/worktrees/public/381-speckit-command-gates-step-order-drift"
-      savedAt: "2026-11-14T20:22:29Z"
+      savedAt: "2026-11-14T21:33:19Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
@@ -148,8 +148,8 @@ The baselines were recorded first in `scratch/baseline.txt`. Text and metadata w
 2. **The routing signals overlap another packet.** `system-skill-advisor/routing-and-scoring/008-command-surfacing` is built in another worktree and edits advisor signals too. This phase only appended four list entries, so a merge conflict there is resolved by keeping both sides and rebuilding `skill-graph.json`.
 3. **The compiled deep-loop contracts were another session's debt.** Commit `31ced0f5ea` changed their sources without recompiling. They were regenerated with the compiler and never edited by hand. If that session recompiles too, take either copy and rerun `check-contract-drift.cjs`.
 4. **One package check cannot run in this worktree.** `npm --prefix .skilled/skills/system-spec-kit/runtime/cli run check` needs `node_modules`, which the worktree does not have. It could not run in the first alignment run either.
-5. **One advisor suite is red on main.** `tests/command-routing-slice.vitest.ts` reports that the holdout row for `/design:extract` moved from `sk-doc` to `sk-code`. Commit `c75c1d8236` on main narrowed two sk-doc phrases without recapturing that baseline, and no CI workflow runs the suite. This phase does not touch it. The owner recaptures it with `capture-command-routing-baseline.mjs --write`.
-6. **Two cells of the resume presentation still name the old model.** The auto resolution table says `spec_folder` asks "when multiple viable folders are detected", and Q1 reads "if auto-detected". No finding names them, so they are left for a later pass.
+5. **One advisor suite was red on main, and its baseline is now recaptured.** `tests/command-routing-slice.vitest.ts` reported that the holdout row `cmd-design-extract-plain-holdout-01` for `/design:extract` moved from `sk-doc` to `sk-code`. The row expects `sk-design` and misses on both sides: `top1`, `top3` and `offered` stay false, and only `top` moved. The cause is commit `40b8d7e6b7`, which added the frontend phrase `the stylesheet` to sk-code. The advisor's token-overlap scoring drops stop words from skill-side phrases, so that phrase scores as the bare word `stylesheet` and matches the prompt's "page's stylesheet". An earlier note blamed `c75c1d8236` on sk-doc. That was wrong: the bisect behind it ran in a worktree with no `dist`, so every step threw and counted as a pass. Rewording cannot help, because any phrase that keeps the word scores the same way, and dropping the phrase makes `compiled-route.cjs --hub sk-code --prompt "update the stylesheet" --surface-hint FRONTEND` return `defer`, which breaks that hub's REQ-005. The phrase stays and the baseline was recaptured with `capture-command-routing-baseline.mjs --write`. Only that row's `top` changed. CI runs the suite through `npm test` in `skill-advisor-stress.yml`, but only when a change touches the advisor runtime path, and `40b8d7e6b7` did not.
+6. **Two cells of the resume presentation named the old model, and now match session-owned detection.** The auto resolution table's `spec_folder` cell and Q1 now name the CLI argument, the calling session's handoff note or its session_ref as the source, and the not-matched list under `:confirm` when none names a packet.
 <!-- /ANCHOR:limitations -->
 
 ---

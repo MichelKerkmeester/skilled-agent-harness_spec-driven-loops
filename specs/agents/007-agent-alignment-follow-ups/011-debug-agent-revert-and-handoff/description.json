@@ -1,0 +1,20 @@
+{
+  "level": "1",
+  "specFolder": "agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff",
+  "description": "Phase 11: debug-agent-revert-and-handoff",
+  "keywords": [
+    "phase",
+    "debug-agent-revert-and-handoff"
+  ],
+  "lastUpdated": "2026-11-14T20:48:06.423Z",
+  "specId": "011",
+  "folderSlug": "debug-agent-revert-and-handoff",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_21-48__phase-011-findings-reproduced-before-planning.md"
+  ]
+}

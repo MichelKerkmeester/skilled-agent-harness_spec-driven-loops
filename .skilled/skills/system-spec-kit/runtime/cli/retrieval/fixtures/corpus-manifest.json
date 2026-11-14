@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1a089e355905c90396d458d8974af2b509fd596126f537ef73eeea4e9a5b5488",
+  "corpusHash": "7e3340b025d788862402e35be7ac60f1df00af2c2ef032b576a2aa6d1d677946",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27270,
+  "includedPathCount": 27318,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -3119,6 +3119,7 @@
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.14.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.15.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.16.0.md",
+    ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.17.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.2.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.3.0.md",
     ".skilled/skills/sk-code/sk-code-ci/changelog/v1.1.4.0.md",
@@ -6534,6 +6535,7 @@
     ".skilled/skills/sk-doc/changelog/v2.9.11.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.12.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.13.0.md",
+    ".skilled/skills/sk-doc/changelog/v2.9.14.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.2.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.3.0.md",
     ".skilled/skills/sk-doc/changelog/v2.9.4.0.md",
@@ -6767,6 +6769,7 @@
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.2.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.4.3.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.0.0.md",
+    ".skilled/skills/sk-doc/sk-create-changelog/changelog/v1.5.1.0.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/manual-testing-playbook.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component-conversation.md",
     ".skilled/skills/sk-doc/sk-create-changelog/manual-testing-playbook/release-and-boundaries/pause-on-ambiguous-component.md",
@@ -7666,6 +7669,7 @@
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.10.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.11.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.12.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.13.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.2.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.3.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.4.0.md",
@@ -7822,6 +7826,7 @@
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.12.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.13.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.14.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.15.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.2.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.3.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.4.0.md",
@@ -9500,6 +9505,45 @@
     "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
@@ -15554,6 +15598,10 @@
     "specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/research/research.md",
     "specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/tasks.md",
+    "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/implementation-summary.md",
+    "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/plan.md",
+    "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/spec.md",
+    "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/tasks.md",
     "specs/sk-doc/document-standards/003-changelog-system/spec.md",
     "specs/sk-doc/document-standards/003-changelog-system/timeline.md",
     "specs/sk-doc/document-standards/004-security-policy-alignment/goal.md",
@@ -27302,7 +27350,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "e0a6422a000b4e7cc39f8fbd39db52d8bb0cc7f31e014a49c5acf3e56fa1fb20",
+  "manifestHash": "123b3ac09a0aea1617ffa3b6fcf8fc57caefd6e0da99746f7b5891c6a44b75c7",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28350,6 +28398,46 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {
@@ -33458,6 +33546,10 @@
     },
     {
       "path": "specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/scratch",
       "reason": "excluded directory"
     },
     {
