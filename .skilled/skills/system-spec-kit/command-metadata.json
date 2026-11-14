@@ -40,6 +40,12 @@
         "skill": "system-spec-kit",
         "resource": ".skilled/commands/speckit/assets/speckit-save-context-tail.yaml",
         "action": "load the shared save-context tail that closes the workflow"
+      },
+      {
+        "order": 5,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/speckit-lifecycle-shared.yaml",
+        "action": "load the shared lifecycle blocks that the workflow points at with shared_tail"
       }
     ]
   },
@@ -84,6 +90,12 @@
         "skill": "system-spec-kit",
         "resource": ".skilled/commands/speckit/assets/speckit-save-context-tail.yaml",
         "action": "load the shared save-context tail that closes the workflow"
+      },
+      {
+        "order": 5,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/speckit-lifecycle-shared.yaml",
+        "action": "load the shared lifecycle blocks that the workflow points at with shared_tail"
       }
     ]
   },
@@ -127,6 +139,12 @@
         "skill": "system-spec-kit",
         "resource": ".skilled/commands/speckit/assets/speckit-save-context-tail.yaml",
         "action": "load the shared save-context tail that closes the workflow"
+      },
+      {
+        "order": 5,
+        "skill": "system-spec-kit",
+        "resource": ".skilled/commands/speckit/assets/speckit-lifecycle-shared.yaml",
+        "action": "load the shared lifecycle blocks that the workflow points at with shared_tail"
       }
     ]
   },

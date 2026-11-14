@@ -71,9 +71,14 @@ function testPhaseCommandContracts() {
     phaseText.includes(':with-phases') && documentsPhaseFolder(phaseText),
     '/speckit:plan and /speckit:complete document phase flags'
   );
+  // Plan and complete point at one shared phase decomposition block, so the
+  // create.sh call is pinned where it lives and each workflow must reach it.
+  const lifecycleShared = path.join(ASSETS_ROOT, 'speckit-lifecycle-shared.yaml');
+  const phasePointer = 'shared_tail: "assets/speckit-lifecycle-shared.yaml#phase_decomposition"';
   assertTrue(
-    readFile(planAutoYaml).includes('create.sh "{feature_description}" --phase') &&
-      readFile(completeAutoYaml).includes('create.sh "{feature_description}" --phase'),
+    readFile(lifecycleShared).includes('create.sh "{feature_description}" --phase') &&
+      readFile(planAutoYaml).includes(phasePointer) &&
+      readFile(completeAutoYaml).includes(phasePointer),
     'phase workflow assets route to create.sh --phase'
   );
 }

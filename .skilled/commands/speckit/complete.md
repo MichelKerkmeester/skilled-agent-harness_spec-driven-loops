@@ -23,6 +23,7 @@ Load the presentation contract before showing startup questions, checkpoints, da
 | Presentation source of truth | `.skilled/commands/speckit/assets/speckit-complete-presentation.txt` |
 | Workflow (all execution modes) | `.skilled/commands/speckit/assets/speckit-complete.yaml` |
 | Shared save-context tail | `.skilled/commands/speckit/assets/speckit-save-context-tail.yaml` |
+| Shared lifecycle blocks | `.skilled/commands/speckit/assets/speckit-lifecycle-shared.yaml` |
 
 ---
 
