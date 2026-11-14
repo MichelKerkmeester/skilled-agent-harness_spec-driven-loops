@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6756,
-    "ok": 18356,
+    "ok": 18360,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 26742,
+  "documentsScanned": 26746,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "98201cba1d712c32c35ce5d62a31d0b74a809292a1b811511a5a2e2b2e642ce4",
+  "manifestHash": "81a1897852c70ed24a9d6b4680bee017db18ab22d6f3a1fa21c9775de31773cc",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 43075,
+      "ok": 43080,
       "prose-sentence": 19,
       "single-token": 156,
       "stop-word-only": 1,
@@ -58163,6 +58163,10 @@
     },
     {
       "path": "specs/sk-doc/hub-routing-and-surfaces/007-host-spec-tree-readers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/sk-doc/hub-routing-and-surfaces/008-hub-vocabulary-drift/scratch",
       "reason": "excluded directory"
     },
     {

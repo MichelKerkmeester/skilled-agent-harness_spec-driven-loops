@@ -1,5 +1,5 @@
 {
-  "manifestHash": "98201cba1d712c32c35ce5d62a31d0b74a809292a1b811511a5a2e2b2e642ce4",
+  "manifestHash": "81a1897852c70ed24a9d6b4680bee017db18ab22d6f3a1fa21c9775de31773cc",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -8143,6 +8143,9 @@
     ],
     "add task to list": [
       "add task to list"
+    ],
+    "add the nine hub router json phrases": [
+      "add the nine hub router json phrases"
     ],
     "add union alpha": [
       "add union alpha"
@@ -59093,8 +59096,20 @@
     "hub vocabulary check": [
       "hub vocabulary check"
     ],
+    "hub vocabulary drift": [
+      "hub vocabulary drift"
+    ],
     "hub vocabulary drift check": [
       "hub vocabulary drift check"
+    ],
+    "hub vocabulary drift implementation summary": [
+      "hub vocabulary drift implementation summary"
+    ],
+    "hub vocabulary drift plan": [
+      "hub vocabulary drift plan"
+    ],
+    "hub vocabulary drift tasks": [
+      "hub vocabulary drift tasks"
     ],
     "hub vocabulary source": [
       "hub vocabulary source"
