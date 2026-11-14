@@ -1,0 +1,6 @@
+needs-mode hub, label sent as the hub: Advisor: live; use sk-doc (needs a mode) 0.91/0.12 pass.
+needs-mode hub, no label sent: Advisor: live; use sk-doc (needs a mode) 0.91/0.12 pass.
+same head with and without the label: true
+failing row 0, label taken from row 0: Advisor: live; use sk-git 0.82/0.20 pass.
+failing row 0, label taken from the first passing row: Advisor: live; use sk-code 0.82/0.20 pass.
+CLI rows over 5 prompts: 10, below the bars: 0, row 0 below the bars: 0

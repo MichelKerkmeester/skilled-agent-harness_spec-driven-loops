@@ -1,0 +1,10 @@
+[
+  "no need to run /doctor:setup, the hooks are fine",
+  "stop using /create:changelog for this, write the changelog entry by hand",
+  "I have not run /speckit:plan yet, please start it for the login feature",
+  "I already ran /create:readme but the output was wrong, run it again for the hooks folder",
+  "why not use /create:agent for this? go ahead and make a security reviewer agent",
+  "quick question? is /speckit:resume safe to run twice",
+  "do not run /speckit:complete, run /speckit:plan for the rate limiter instead",
+  "do not run it, just tell me what /doctor:update would change"
+]

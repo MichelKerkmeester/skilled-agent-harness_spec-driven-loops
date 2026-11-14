@@ -1,0 +1,15 @@
+rg over the owner entry document: skill
+grep over the owner entry document: skill
+rg whose pattern is the document name: none
+heredoc body line that starts with a reader: skill
+heredoc body line that starts with head: skill
+cd into the skill folder, then cat: none
+cd into the mode folder, then sed: none
+cd elsewhere, then cat a bare name: none
+cat with the full path, the control: skill
+claude: owned=32, loads resting on rg or grep alone=0, cd then a bare document name=0, heredoc body line with a reader verb=0
+codex: owned=16, loads resting on rg or grep alone=0, cd then a bare document name=0, heredoc body line with a reader verb=0
+devin: owned=32, loads resting on rg or grep alone=0, cd then a bare document name=0, heredoc body line with a reader verb=0
+dsh: owned=31, loads resting on rg or grep alone=0, cd then a bare document name=0, heredoc body line with a reader verb=0
+opencode: owned=32, loads resting on rg or grep alone=1, cd then a bare document name=0, heredoc body line with a reader verb=0
+pi: owned=32, loads resting on rg or grep alone=1, cd then a bare document name=1, heredoc body line with a reader verb=1

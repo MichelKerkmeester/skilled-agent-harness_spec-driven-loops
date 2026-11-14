@@ -1,0 +1,250 @@
+---
+title: "Tasks: Phase 24: fable-review-remediation"
+description: "Ordered worker-sized tasks that keep the body of a Codex custom tool call and read its shell commands, teach the mention reader two refusal wordings, three request wordings and the question mark, stop a search and a heredoc line from counting as a load, follow a cd inside one command, stop counting a partner-side command as offered, then rescore both stored arms and restate the Codex start rate."
+trigger_phrases:
+  - "fable review remediation tasks"
+importance_tier: "normal"
+contextType: "general"
+---
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.4 -->
+# Tasks: Phase 24: fable-review-remediation
+
+<!-- SPECKIT_LEVEL: 2 -->
+
+---
+
+<!-- ANCHOR:notation -->
+## Task Notation
+<!-- FILL: Keep the prefix table and add the two shell variables this task list uses. GOOD: `R` is `scripts/rotate-logs.sh`. `A` is `logs/archive/`. WEAK: Variables are defined below. -->
+
+| Prefix | Meaning |
+|--------|---------|
+| `[ ]` | Pending |
+| `[x]` | Completed |
+| `[P]` | Parallelizable |
+| `[B]` | Blocked |
+| `[C]` | Coordinator task: a gate, a full-suite run, a summary over the stored sessions, a probe run or the close-out. No worker runs it |
+
+**Task Format**: `T### [P?] Description (file path). Verify: <command> prints <expected output>`
+
+Every command runs from the repository root unless a task says `in ADV` or `in SKR`. Set the path names once with `export ADV=.skilled/skills/system-skill-advisor/runtime RAD=.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy SKR=.skilled/skills/system-spec-kit/runtime SR=.skilled/hooks/shared PK=specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build RL=specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/007-per-runtime-behaviour-proof/scratch PH=specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation SP=specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation/scratch PL=specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation/scratch/planning`.
+- `G` is `git -c core.fsmonitor=false`. `BASE` is the commit T001 records. `BASES` is the commit T003 records. `TSX` is `--import ./.skilled/skills/system-spec-kit/node_modules/tsx/dist/loader.mjs`.
+- `CR` is `$SR/session-readers/codex.mjs`, `CRT` is `$SR/tests/session-readers/codex.test.mjs` and `SRR` is `$SR/session-readers/README.md`. `CA` is `$ADV/lib/command-attach.ts` and `CAT` is `$ADV/tests/command-attach-guards.vitest.ts`. `S` is `$RAD/score-command-transcripts.mjs`, `CTS` is `$ADV/tests/command-transcript-score.vitest.ts` and `RA` is `$RAD/README.md`.
+- `VX <file>` is `env -u AI_SESSION_CHILD npx vitest run <file>` in `ADV`. `VALL` is `env -u AI_SESSION_CHILD npx vitest run` in `ADV`, which must report 0 failed. `TC` is `npm run typecheck` in `ADV`, which must exit 0. `RT` is `node --test $SR/tests/session-readers/*.test.mjs`, which must report `fail 0`. `HT` is `env -u AI_SESSION_CHILD npx vitest run tests/history-lookup-cli.vitest.ts tests/history-lookup-adapters-e2e.vitest.ts` in `SKR`, which must report 0 failed. `VP` is `env -u AI_SESSION_CHILD node --test .opencode/plugins/tests/system-skill-advisor.test.cjs`, which must report `fail 0`.
+- `FLOOR` is `node $RAD/capture-command-routing-baseline.mjs | jq -c '.metrics.typed_recall_at_1, .metrics.false_offer, .attachedMetrics.typed, .attachedMetrics.plain.tune, .attachedMetrics.plain.holdout'`, five lines whose last is the sealed plain count, a number with no row id and no prompt text.
+- `MENTION` is `node TSX $PL/probe-mention-reader.mts`. `OFFERS` is `node $PK/020-command-offer-fit-guards/scratch/planning/probe-offers.mjs --top-only --file $PL/review-prompts.json`. `CODEX <log>` is `node $PL/probe-codex-shell.mjs <log>`. `SHELL` is `node $PL/probe-shell-read-rule.mjs`. Each probe prints counts or review-authored prompts only and writes nothing.
+- `SSTART` is `node $S --summary $RL/runs-pre.jsonl $RL/runs-post.jsonl --json`, the two arms criterion 3 of the parent goal quotes. `SPRE` is `node $S --summary $RL/runs-pre.jsonl $RL/runs-pre-dsh-rerun.jsonl --json` and `SFIN` is `node $S --summary $RL/runs-final.jsonl --json`, as phase 022 names them, with the `OPENCODE_DB` value phase 019 recorded or with none when it recorded none.
+- `STARTS` is `jq -r 'to_entries[] | .key as $r | .value | del(.unscored) | to_entries[] | "\($r) \(.key) start \(.value.startRate)"'`, one line per runtime and arm. `WFROW`, `SUMOK` and `DEN` are the three `jq` filters phase 022 defines in the notation block of `$PK/022-workflow-measure-soundness/tasks.md`, copied from there word for word.
+- `ev(seq, kind, fields)`, `oneTurn(...)` and `toolCall(name, args)` are the builders the cases in `CTS` already use.
+
+Rules for every task:
+- Each task is one change to the files it names: one function, or one helper and its one call. A task that names a module and its test writes the test case first, runs it and sees it fail for the reason the task names, then makes the change and sees it pass. Its verify names both runs.
+- Re-read every file a task names before the first edit. Phases 022 and 023 edit `S` and `CTS` after this plan was written. When a line, string or name the task quotes is not in the file, change nothing and mark the task `[B]` with the line found in its place.
+- Every field an earlier summary prints keeps its name and its value rule. A task adds fields and never renames or redefines one.
+- No task reads or prints the prompt text of a row whose `split` is `holdout`, no task opens `command-prompts.jsonl` except through `jq 'del(.prompt)'`, and no output field carries prompt text.
+- No worker runs the full suite, a summary over the stored logs, a capture, a daemon or a model session, and no worker writes under the home folder or under another phase folder.
+- No code comment may name a spec path, a phase number, a task id, a finding id, an ADR or a REQ id. T022 checks it.
+- Do not edit `AGENTS.md`, another phase folder, any `package.json`, any routing corpus, any committed baseline, `run-command-behaviour.mjs`, `command-offer.mjs`, `fusion.ts`, the OpenCode plugin, a hook or a session reader other than `CR`. Add no dependency.
+- A `.md` edit routes through `sk-doc` and a code edit through `sk-code` before the first write. A doc sentence holds no em dash and no semicolon.
+- A row written with `goal.cjs packet-log` is cut by that command: the item at 200 characters, the state at 40 and the evidence at 400, with `...` in place of the rest. Keep each cell inside its limit and write a second row rather than a longer one.
+- When a verify prints something other than the expected output, do not change code to match it. Mark the task `[B]` with the printed line.
+
+Worker lanes. Lane A owns `CA` and `CAT` and runs T004 to T008 in order. Lane R owns `CR`, `CRT` and `SRR` and runs T009 and T010 in order. Lanes A and R share no file and run in parallel after T002. Lane S owns `S` and `CTS` and runs T011 to T016 in order, and it starts only after T003, which waits for phase 023 to close. Lane D owns `RA` and runs T017 after lane S ends. `[P]` marks only the first task of lanes A and R. Every other task waits for the task before it in its lane.
+<!-- /ANCHOR:notation -->
+
+---
+
+<!-- ANCHOR:phase-1 -->
+## Phase 1: Setup
+<!-- FILL: Replace the sample tasks with the real setup steps. Each task names a file and a verify command. GOOD: T001 Confirm `logs/archive/` holds 10 archives. Verify: `ls logs/archive | wc -l` prints 10. WEAK: T001 Set up the project. -->
+
+- [ ] T001 [C] Confirm lanes A and R can start and record the before numbers (`$SP/before.txt`). Run `rg -c '\*\*Status\*\* \| Complete' $PK/020-command-offer-fit-guards/spec.md $PK/021-brief-head-parity/spec.md`, `G status --porcelain -- $CA $CAT $CR $CRT $SRR`, `G rev-parse --short HEAD`, `VX tests/command-attach-guards.vitest.ts`, `RT`, `HT`, `TC` and `FLOOR > $SP/floor-before.txt`, and write each command with its last lines or exit code into `before.txt`. When either phase is not Complete or the status prints a line, stop and mark the phase `[B]` with that line. Verify: the `rg` prints 1 for each file, the `status` prints nothing, `VX` and `HT` report 0 failed, `RT` reports `fail 0`, `TC` exits 0, `sed -n 1p $SP/floor-before.txt` prints `{"correct":24,"total":44}` or a higher `correct` and `sed -n 2p $SP/floor-before.txt` prints `{"count":0,"total":35}`.
+- [ ] T002 [C] Record the reproductions (`$SP/repro-before.txt`). Run `MENTION`, `OFFERS`, `CODEX $RL/runs-pre.jsonl`, `CODEX $RL/runs-post.jsonl`, `SHELL`, `node TSX $PL/probe-skill-label.mts` and `node $PL/probe-plugin-flake.mjs 20`, and write each command with its output into `repro-before.txt`. Verify: `rg -c -F 'SHIPPED: 40 of 46 agree' $SP/repro-before.txt` prints 1, `rg -c -e 'row 0: .* command=/(doctor:setup|create:changelog|speckit:resume) ' $SP/repro-before.txt` prints 3, `rg -c -e '^shell events with no command text: (58|53)$' $SP/repro-before.txt` prints 2, `rg -c -F 'same head with and without the label: true' $SP/repro-before.txt` prints 1 and `rg -c -e '^termination grace test: 20 passed, 0 failed' $SP/repro-before.txt` prints 1. When the flake line reports a failed run, record the line in the parent goal log and plan no fix without a new task: the item was declined because it could not be shown.
+- [ ] T003 [C] Confirm lane S can start and record its before numbers (`$SP/before-scorer.txt`). Run `rg -c '\*\*Status\*\* \| Complete' $PK/022-workflow-measure-soundness/spec.md $PK/023-untuned-outcome-evidence/spec.md`, `G status --porcelain -- $S $CTS $RA`, `G rev-parse --short HEAD`, `VX tests/command-transcript-score.vitest.ts`, then `SSTART > $SP/start-before.json`, `SPRE > $SP/workflow-before-pre.json` and `SFIN > $SP/workflow-before-final.json`, then `STARTS $SP/start-before.json > $SP/starts-before.txt`, `DEN $SP/workflow-before-pre.json > $SP/den-before-pre.txt` and `DEN $SP/workflow-before-final.json > $SP/den-before-final.txt`. When either phase is not Complete or the status prints a line, leave lane S `[B]` and change nothing. Verify: the `rg` prints 1 for each file, the `status` prints nothing, `VX` reports 0 failed, the three summary runs exit 0, `rg -c -e '^codex (pre|post) start ' $SP/starts-before.txt` prints 2 and `SUMOK` over both workflow files prints `true`.
+<!-- /ANCHOR:phase-1 -->
+
+---
+
+<!-- ANCHOR:phase-2 -->
+## Phase 2: Implementation
+<!-- FILL: Write one implementation task per file change. Add a `Verify:` line with the command and its expected output. GOOD: T002 Add the `--keep <n>` branch. Verify: `--keep 3` leaves 3 archives. WEAK: T002 Implement the feature. -->
+
+### Lane A: the mention reader
+- [ ] T004 [P] Read `no need to`, `need not` and `needn't` before a use verb as a refusal (`CAT`, then `CA` constant `COMMAND_DECLINE_LEADS`). This task changes the first string of that array and nothing else in `CA`. Test first: in `CAT`, inside `describe('a command the prompt only mentions')`, add `it('reads no need to run as a refusal of the command')` expecting `commandOnlyMentioned('no need to run /doctor:setup, the hooks are fine', '/doctor:setup')` to be `true`, and `it('still reads a request after no need to ask')` expecting `commandOnlyMentioned('no need to ask, run /speckit:save', '/speckit:save')` to be `false`. Run `VX tests/command-attach-guards.vitest.ts` and see the first case return `false` while the second passes. Then in `CA`, in the first string of `COMMAND_DECLINE_LEADS`, replace `no longer|cannot|can't)` with `no longer|cannot|can't|no need to|need not|needn't)`. Verify: the first run fails as described, then `VX tests/command-attach-guards.vitest.ts` reports 0 failed and `rg -c -F "can't|no need to|need not|needn't)" $CA` prints 1.
+- [ ] T005 Read `stop`, `stopped` and `quit` before the command as a refusal (`CAT`, then `CA` constant `COMMAND_DECLINE_LEADS`). After T004. This task changes the second string of that array and nothing else in `CA`. Test first: in the same describe add `it('reads stop using as a refusal of the command')` expecting `commandOnlyMentioned('stop using /create:changelog for this, write the changelog entry by hand', '/create:changelog')` to be `true`, and `it('still reads a request after stop and')` expecting `commandOnlyMentioned('stop and run /speckit:plan', '/speckit:plan')` to be `false`. Run the file and see the first case return `false` while the second passes. Then in the second string of `COMMAND_DECLINE_LEADS` replace `rather than|avoid|not)` with `rather than|avoid|stop|stopped|quit|not)`, and extend the comment above the array with one sentence saying a reader who stops using a command names it to refuse it. Verify: the first run fails as described, then `VX tests/command-attach-guards.vitest.ts` reports 0 failed and `rg -c -F 'avoid|stop|stopped|quit|not)' $CA` prints 1.
+- [ ] T006 Stop reading `why not` as a refusal (`CAT`, then `CA` constant `COMMAND_NOT_WORD` and its two uses in `COMMAND_DECLINE_LEADS`). After T005. One constant and the two places that use it. Test first: in the same describe add `it('reads why not use as a request for the command')` expecting `commandOnlyMentioned('why not use /create:agent for this? go ahead and make a security reviewer agent', '/create:agent')` to be `false`. Run the file and see it return `true`. Then in `CA`, directly above `COMMAND_DECLINE_LEADS`, add `const COMMAND_NOT_WORD = '(?<!\\bwhy )not';` with a comment saying `why not` proposes the command, so the word refuses only where no `why` stands before it. In the first string replace `never|not|won't` with `` never|${COMMAND_NOT_WORD}|won't ``, and in the second string replace `quit|not)` with `` quit|${COMMAND_NOT_WORD}) ``. The second string is written in backticks already, and the first one is too. Verify: the first run fails as described, then `VX tests/command-attach-guards.vitest.ts` reports 0 failed, the existing case `reads each command of a two-command prompt on its own` still passes, `rg -c 'COMMAND_NOT_WORD' $CA` prints 3 and `TC` exits 0.
+- [ ] T007 Read a later `run it` as a request for the command an earlier clause named (`CAT`, then `CA` constant `COMMAND_ASKED_BY_PRONOUN` and function `commandOnlyMentioned`). After T006. One constant and its one use. Test first: in the same describe add `it.each([['I have not run /speckit:plan yet, please start it for the login feature', '/speckit:plan'], ['I already ran /create:readme but the output was wrong, run it again for the hooks folder', '/create:readme']])('reads %s as a request for %s made by a later clause', ...)` expecting `false`, and `it.each([['do not run /speckit:complete, I will run it myself later', '/speckit:complete'], ['do not use /create:agent, use that other one', '/create:agent'], ['do not run /speckit:complete, run /speckit:plan for the rate limiter instead', '/speckit:complete']])('still reads %s as a mention of %s', ...)` expecting `true`. Run the file and see the two request cases return `true` while the three mention cases pass. Then in `CA`, directly above `commandOnlyMentioned`, add ``const COMMAND_ASKED_BY_PRONOUN = new RegExp(`(?:^|[,.;!?\\n]) *(?:(?:and|then|so|please|now|just|go ahead and) )*${COMMAND_USE_VERB} it\\b`);`` with a comment saying a clause that opens with a use verb and `it` asks for the command the earlier clause only named, and that the clause has to open that way so `I will run it` stays a statement. In `commandOnlyMentioned`, move the line `const tail = text.slice(nameEnd);` up to directly below the line `const before = text.slice(0, nameEnd);` and add directly below it `if (COMMAND_ASKED_BY_PRONOUN.test(tail)) return false;`. Verify: the first run fails as described, then `VX tests/command-attach-guards.vitest.ts` reports 0 failed, every `REFUSE8` case still passes, `rg -c 'COMMAND_ASKED_BY_PRONOUN' $CA` prints 2 and `TC` exits 0.
+- [ ] T008 End a sentence at a question mark before a bare ask word (`CAT`, then `CA` function `commandOnlyMentioned`). After T007. This task changes one pattern and one comment in that function. Decision P024 in `$PK/decision-record.md` supersedes P022 for this edit. Test first: in `CAT`, in the `it.each` table of the case `reads %s as a question about %s`, add the row `['quick question? is /speckit:resume safe to run twice', '/speckit:resume']`, and in the table of the case that holds `the next step is /speckit:implement` add the row `['is this right? run /speckit:plan', '/speckit:plan']`. Run the file and see the first new row return `false` while the second passes. Then in `commandOnlyMentioned` replace ``(?:^|[.!\\n] *)${COMMAND_BARE_ASK_LEAD}`` with ``(?:^|[.!?\\n] *)${COMMAND_BARE_ASK_LEAD}``, and in the comment above `COMMAND_BARE_ASK_LEAD` replace `or when the lead itself opens a sentence` with `or when the lead itself opens a sentence, which a question mark ends as a full stop does`. Leave the line `const sentenceEnd = tail.search(/[.!\n]/);` as it is: there a question mark is what the sentence is searched for. Verify: the first run fails as described, then `VX tests/command-attach-guards.vitest.ts` reports 0 failed, `rg -c -F '(?:^|[.!?\\n] *)' $CA` prints 1 and `MENTION` prints `SHIPPED: 46 of 46 agree`.
+
+### Lane R: the Codex session reader
+- [ ] T009 [P] Keep the body of a custom tool call (`CRT`, then `CR` function `recordsFromLines`). This task changes one expression in that function and nothing else in `CR`. Consumers of this reader, each of which must keep working: `S` and `$RAD/command-offer.mjs` and `$RAD/run-command-behaviour.mjs` through `loadSession`, the history lookup in `$SKR/hooks/lib/history/` through `readSession`, whose schema calls tool arguments opaque, the four hooks that import the reader index (`$SKR/hooks/claude/session-prime.ts`, `$SKR/hooks/devin/user-prompt-submit.ts`, `$SKR/hooks/pi/session-compact-context.ts`, `$SKR/hooks/dsh/session-compact-context.mjs`) and `.opencode/plugins/session-history-lookup.js`. The record shape does not change: `arguments` stays an object. Test first: in `CRT`, add `loadSession` to the import from `../../session-readers/index.mjs` and add `test('a custom tool call keeps its body as the one argument')`. Inside `withTempAsync('codex-custom-call', async (root) => { ... })` write a rollout with `writeJsonl(join(root, 'codex', 'sessions', '2026', '11', '07', `rollout-2026-11-07T12-00-00-${SESSION}.jsonl`), [...])` holding a `session_meta` line with `payload: { id: SESSION }`, a user `message` line with one `input_text` item, a line `{ timestamp: NOW, type: 'response_item', payload: { type: 'custom_tool_call', call_id: 'codex-call-2', name: 'exec', input: 'const r = await tools.exec_command({cmd:"cat notes.md"}); text(r);' } }` and a line with `payload: { type: 'custom_tool_call_output', call_id: 'codex-call-2', output: 'notes' }`. Call `loadSession({ runtime: 'codex', sessionId: SESSION, codexRoot: join(root, 'codex', 'sessions'), transcriptPath: <that file> })` and assert `result.ok` is `true` and `result.records[1].content[0].arguments` deep-equals `{ input: 'const r = await tools.exec_command({cmd:"cat notes.md"}); text(r);' }`. Add `test('a function call keeps its parsed arguments')`, which loads `codexSession({ root })` the same way and asserts `result.records[1].content[0].arguments` deep-equals `{ command: 'cat file.txt' }`. Run `RT` and see the first case fail with `{}` while the second passes. Then in `CR`, in `recordsFromLines`, replace `arguments: parseJsonObject(payload.arguments) ?? {},` with `arguments: parseJsonObject(payload.arguments) ?? (typeof payload.input === 'string' && payload.input !== '' ? { input: payload.input } : {}),` and add a comment above the `toolCallBlock` call saying a function call carries JSON in `arguments` while a custom tool call carries a free-form body in `input`, so the body is kept under one key and a reader can still see what the call ran. Verify: the first run fails as described, then `RT` reports `fail 0` with two more passed tests than `$SP/before.txt`, `HT` reports 0 failed, `node --check $CR` exits 0 and `G diff --stat BASE -- $SR/session-readers` names `codex.mjs` alone.
+- [ ] T010 State the body rule in the reader README (`SRR`). After T009. In the paragraph or list that describes what a record holds, or directly below the table row for `codex.mjs` when no such paragraph exists, add this sentence word for word: ``A Codex custom tool call has no JSON arguments, so its record carries the call's body as `arguments.input`, a string.`` Verify: `rg -c -F 'carries the call' $SRR` prints 1 and `rg -c -e '—|;' $SRR` prints the count it printed before the edit.
+
+### Lane S: the transcript scorer
+- [ ] T011 Read the shell commands of a Codex `exec` body (`CTS`, then `S` helper `execBodyCommand` and its one call in `normalize`). After T003 and T009. Test first: in `CTS`, inside `describe('normalize')`, add these four cases, each built with `normalize(oneTurn(toolCall('exec', { input: <body> })), 'codex')`. `it('reads the commands of a Codex exec body as one shell step')` with the body `const r = await tools.exec_command({cmd:"cat .skilled/skills/sk-doc/SKILL.md"}); const s = await tools.exec_command({cmd:"git status --porcelain"}); text(r);` expects one event with `kind` `'shell'` and `command` `'cat .skilled/skills/sk-doc/SKILL.md\ngit status --porcelain'`. `it('reads a redirect inside a Codex exec body as a write')` with the body `const r = await tools.exec_command({cmd:"printf x > out/readme.md"});` expects one event matching `{ kind: 'write', path: 'out/readme.md' }`. `it('keeps a Codex exec body that runs no shell command as a step with no command')` with the body `const r = await tools.web__run({search_query:[{q:"x"}]}); text(r);` expects one event with `kind` `'shell'` and `command` `null`. `it('reads every string of a Codex exec body whose commands sit in a list')` with the body `const cmds = [["a", "cat .skilled/skills/sk-doc/SKILL.md"]]; const rs = await Promise.all(cmds.map(async ([k,cmd]) => [k, await tools.exec_command({cmd})]));` expects one event whose `command` is `'a\ncat .skilled/skills/sk-doc/SKILL.md'`. Run `VX tests/command-transcript-score.vitest.ts` and see the first, second and fourth cases fail on a null command or a `shell` kind. Then in `S`, directly above `normalize`, add the two patterns and the helper exactly as `$PL/probe-shell-targets-planned.mjs` holds them under the names `STRING_LITERAL`, `COMMAND_LITERAL`, `decode` and `execBodyCommand`, renamed to `EXEC_STRING_LITERAL`, `EXEC_COMMAND_LITERAL`, `decodeLiteral` and `execBodyCommand`, with one comment saying Codex runs its shell through a tool whose body is JavaScript, so the commands are the `cmd` strings of that body, and that a body which passes its commands through a list has no such string, so every string of it is read. In `normalize`, in the `kind === 'shell'` branch, replace `const command = firstString(args, SHELL_COMMAND_KEYS);` with `const command = firstString(args, SHELL_COMMAND_KEYS) ?? execBodyCommand(args.input);`. Verify: the first run fails as described, then `VX tests/command-transcript-score.vitest.ts` reports 0 failed, the case `maps the tool names $runtime registers` still passes for codex, `rg -c 'execBodyCommand' $S` prints at least 2 and `node --check $S` exits 0. A Codex `apply_patch` call is a custom tool call too, so after T009 its patch body reaches `writePaths` under `input`, a key that function already reads, and its write events gain their paths. That is expected and needs no edit here.
+- [ ] T012 Stop counting a search as a load (`CTS`, then `S` constant `SHELL_READERS`). After T011. This task changes that one array and its comment. Test first: in `CTS`, in the `it.each` table of the case `does not count $command as a load`, add the rows `{ command: 'rg -n "mode" .skilled/skills/sk-doc/SKILL.md', expected: 'none' }` and `{ command: 'grep -n workflow .skilled/skills/sk-doc/SKILL.md', expected: 'none' }`. Run the file and see both return `'skill'`. Then in `S` remove `'rg'` and `'grep'` from `SHELL_READERS`, and add to the comment above it one sentence saying a search prints the lines that match a word and not the workflow, so it opens nothing. Verify: the first run fails as described, then `VX tests/command-transcript-score.vitest.ts` reports 0 failed and `rg -c -F "'awk'])" $S` prints 1. When an existing case fails because it read a document through `rg` or `grep`, change nothing more and mark the task `[B]` with the case name.
+- [ ] T013 Skip the lines of a heredoc (`CTS`, then `S` function `shellReadTargets`). After T012. One pattern and its one use in that function. Test first: in the same table add the rows `{ command: "python3 - <<'EOF'\nhead .skilled/skills/sk-doc/SKILL.md\nEOF", expected: 'none' }` and `{ command: 'node - <<EOF\nmore .skilled/skills/sk-doc/SKILL.md\nEOF', expected: 'none' }`, and directly after that case add `it('still counts a read after a heredoc ends')`, which builds one `Bash` call with the command `"python3 - <<'EOF'\nprint(1)\nEOF\ncat .skilled/skills/sk-doc/SKILL.md"` the way the table case does and expects `workflowPath` with the same facts to be `'skill'`. Run the file and see the two new rows return `'skill'` while the new case passes. Then in `S`, directly above `shellReadTargets`, add `const HEREDOC_BODY = /(<<-?\s*(['"]?)([A-Za-z_][A-Za-z0-9_]*)\2[^\n]*)\n[\s\S]*?\n[ \t]*\3[ \t]*(?=\n|$)/g;` with a comment saying the lines of a heredoc are data handed to a program and not commands, and in `shellReadTargets` replace `const text = typeof command === 'string' ? command : '';` with `const text = (typeof command === 'string' ? command : '').replace(HEREDOC_BODY, '$1');`. Verify: the first run fails as described, then `VX tests/command-transcript-score.vitest.ts` reports 0 failed, `rg -c 'HEREDOC_BODY' $S` prints 2 and `node --check $S` exits 0.
+- [ ] T014 Follow a `cd` inside one shell command (`CTS`, then `S` function `shellReadTargets`). After T013. This task changes that function and nothing else. Test first: in `CTS`, inside `describe('workflowPath')`, add `it.each([{ command: 'cd .skilled/skills/sk-doc && cat SKILL.md' }, { command: 'cd ".skilled/skills/sk-doc/" && sed -n 1,80p SKILL.md' }])('counts $command as a skill load', ...)`, built the way the case `does not count $command as a load` builds its event and expecting `'skill'`, and add the row `{ command: 'cd docs && cat SKILL.md', expected: 'none' }` to the table of `does not count $command as a load`. Run the file and see the two new cases return `'none'` while the new row passes. Then in `shellReadTargets`, declare `let folder = null;` directly above the `for (const part of parts)` loop. Inside the loop, directly below the `while` line that skips `NAME=value` words, add a branch: when `start < words.length` and `words[start] === 'cd'`, set `folder` to `null` when `words[start + 1]` is undefined and otherwise to that word with one pair of surrounding quotes removed, the way the loop below removes them, and with trailing slashes removed, then `continue`. Change the line `if (/\.(?:md|ya?ml)$/.test(unquoted)) targets.push(unquoted);` so that it pushes `` `${folder}/${unquoted}` `` when `folder` is not `null` and `unquoted` does not start with `/` or `~`, and `unquoted` otherwise. Add a comment saying a bare name is read in the folder an earlier `cd` of the same command entered. `$PL/probe-shell-targets-planned.mjs` holds the finished function. Verify: the first run fails as described, then `VX tests/command-transcript-score.vitest.ts` reports 0 failed and `node --check $S` exits 0.
+- [ ] T015 Stop counting a command on the partner side as offered (`CTS`, then `S` function `offerOf`). After T014. This task changes that function and nothing else in `S`. Test first: in `CTS`, add `readonly offeredAs?: 'head' | 'partner' | null;` to the run log line type beside `offeredCommand`, and inside `describe('run log summary')`, directly after the case `counts the offer a start row answered and the start it took`, add `it('does not count a command on the partner side as offered')`, which summarizes two lines built as that case builds them: `{ rowId: SUMMARY_ROW, arm: 'tune', exit: 0, locator, offeredCommand: '/create:agent', offeredAs: 'partner' }` and `{ rowId: 'cmd-create-agent-plain-tune-02', arm: 'tune', exit: 0, locator, offeredCommand: '/create:agent', offeredAs: 'head' }`, and expects `claude.tune` to match `{ runs: 2, scored: 2, offered: 1 }`. Run the file and see `offered` read 2. Then in `offerOf`, add `partner: hasOffer && wanted !== null && namesCommand(line.offeredCommand, wanted) && line.offeredAs === 'partner',` to the returned object and change the `offered` line to `offered: hasOffer && wanted !== null && namesCommand(line.offeredCommand, wanted) && line.offeredAs !== 'partner',`. Extend the comment above the function: an ambiguous head names two paths and only the first leads, so a command on the partner side was shown and not offered, and a line written before the field existed keeps its count because where its command sat is unknown. Verify: the first run fails as described, then `VX tests/command-transcript-score.vitest.ts` reports 0 failed, the case `counts the offer a start row answered and the start it took` still passes and `rg -c "offeredAs" $S` prints at least 2.
+- [ ] T016 Count the runs whose command sat on the partner side (`CTS`, then `S` functions `scoreRun`, `newTally`, `addScored` and `tallyBlock`). After T015. One count through the tally, as `offerFieldAbsent` sits beside `offered`. Edit the functions in the order named, one at a time, and run the named test after each. Test first: in the case T015 added, expect `claude.tune` to also hold `offeredAsPartner: 1`, and in the case `counts the offer a start row answered and the start it took` expect `offeredAsPartner: 0`. Run the file and see the field undefined. Then in `scoreRun`, directly after the line `offerFieldAbsent: offer.offerFieldAbsent,`, add `offeredAsPartner: offer.partner,`. In `newTally` add `offeredAsPartner: 0` beside the `offerFieldAbsent` count. In `addScored`, directly after the line that counts `offerFieldAbsent`, add a line that adds 1 to `tally.offeredAsPartner` when `result.offeredAsPartner` is `true`, guarded by the same condition the `offerFieldAbsent` line uses. In `tallyBlock` add `offeredAsPartner: tally.offeredAsPartner,` beside `offerFieldAbsent`. When `offerFieldAbsent` is not a top-level field of the tally in the file as found, follow the place and the guard that field has and say so in the evidence. Verify: the first run fails as described, then `VX tests/command-transcript-score.vitest.ts` reports 0 failed, `rg -c 'offeredAsPartner' $S` prints at least 4 and `node --check $S` exits 0.
+
+### Lane D: the README
+- [ ] T017 Describe the new rules and the three designed withholds (`RA`). After lane S. In the `score-command-transcripts.mjs` row, after the sentence phase 022 added that starts `A load is a read tool`, add: ``A Codex shell step arrives as the JavaScript body of an `exec` call, and its command is the `cmd` strings of that body, one per line. A body that holds a gate lookup and a task command reads as a gate step. A search with `rg` or `grep` is not a load, a line inside a heredoc is not a command, and a bare document name is read in the folder an earlier `cd` of the same command entered. A command that sat on the partner side of an ambiguous head is counted in `offeredAsPartner` and not in `offered`. A stored run line holds no `offeredAs`, so its offer counts as before.`` In the `capture-command-routing-baseline.mjs` row, add: ``Three of the eight slash-variant rows that name a command ask a question about it, and a question about a command carries no command by design, so `slash_variant.reached_top3` can reach 5 of 8.`` Verify: `rg -c "offeredAsPartner" $RA` prints at least 1, `rg -c -F 'reads as a gate step' $RA` prints 1, `rg -c -F 'can reach 5 of 8' $RA` prints 1 and `jq -c '.metrics.slash_variant.named_total' $RAD/command-routing-baseline.json` prints 8. When it prints another number, mark the task `[B]` with it and do not write the sentence.
+<!-- /ANCHOR:phase-2 -->
+
+---
+
+<!-- ANCHOR:phase-3 -->
+## Phase 3: Verification
+<!-- FILL: Write one verification task per requirement. Each one runs a command. GOOD: T003 Run both invocations. Verify: `ls logs/archive | wc -l` prints 3 and 10. WEAK: T003 Test everything. -->
+
+- [ ] T018 [C] Run every suite (`$SP/after.txt`). Run `VX tests/command-attach-guards.vitest.ts`, `VX tests/command-transcript-score.vitest.ts`, `VX tests/command-offer.vitest.ts`, `RT`, `HT`, `TC`, `VP` and `VALL`, and write each command with its result lines into `after.txt`. Verify: every run reports 0 failed, `fail 0` or exit 0, and the two test files this phase edits and `RT` report more passed tests than `$SP/before.txt` and `$SP/before-scorer.txt`.
+- [ ] T019 [C] Prove the floors did not move (`$SP/floor-after.txt`). Run `FLOOR > $SP/floor-after.txt` and `VX tests/command-routing-slice.vitest.ts`. Verify: `cmp $SP/floor-before.txt $SP/floor-after.txt` prints nothing and exits 0, and the slice test reports 0 failed. When a line differs or the slice test fails, write the moved row ids, read from the test output or from `jq -c '.rows | keys'` and never with a prompt, into the parent goal log and mark the task `[B]`. A recapture of the committed baseline is the coordinator's decision and needs a decision-record entry, as P020 did.
+- [ ] T020 [C] Rerun the reproductions (`$SP/repro-after.txt`). Run the seven probes of T002 and write each command with its output. Verify: `rg -c -F 'SHIPPED: 46 of 46 agree' $SP/repro-after.txt` prints 1. In the `OFFERS` block the two refusal prompts and the question-mark prompt print no row with `command=/doctor:setup`, `command=/create:changelog` or `command=/speckit:resume`, each of the three request prompts prints `command=/speckit:plan`, `command=/create:readme` or `command=/create:agent` on some row, and the two control prompts print what `$SP/repro-before.txt` printed for them. In both `CODEX` blocks the count after `shell events with no command text:` is below the count after `shell events:`. In the `SHELL` block the first eight lines end in `none`, `none`, `none`, `none`, `none`, `skill`, `skill` and `none`. When a request prompt prints no command, mark the task `[B]` with its row lines: the mention reader no longer withholds it, so another gate does, and that needs its own probe before any edit.
+- [ ] T021 [C] Rescore both arms and restate the Codex numbers (`$SP/rescore-delta.txt`, the parent goal log through the log command only). Run `SSTART > $SP/start-after.json`, `SPRE > $SP/workflow-after-pre.json` and `SFIN > $SP/workflow-after-final.json`, then `STARTS $SP/start-after.json > $SP/starts-after.txt`, `DEN` over both after files into `$SP/den-after-pre.txt` and `$SP/den-after-final.txt`, and `WFROW` over the two before and the two after workflow files. Write into `rescore-delta.txt` one line per runtime and arm of `SSTART` in the form `<runtime> <arm> start <before> -> <after>`, and one line per runtime and arm of `SPRE` and `SFIN` in the form `<runtime> <arm> workflow <counts before> -> <counts after>` and, for each count that changed, the task whose rule moved it, found by rerunning `SHELL` and `CODEX`. Then append one row to the parent goal log with `node .skilled/hooks/goal/bin/goal.cjs packet-log $PK "<item> | <state> | <evidence>" --workspace "$PWD"`. Its evidence starts with the words `tuned rows, one run each, no brief reached Codex` and then quotes the two lines `codex pre start` and `codex post start` from `starts-before.txt` and from `starts-after.txt`, says whether the start rate criterion 3 quotes moved, and quotes the Codex `loadRate` before and after from the two pre files. Every number is copied from those files at build time. Verify: the three summary runs exit 0, `SUMOK` over both after workflow files prints `true`, `cmp $SP/den-before-pre.txt $SP/den-after-pre.txt` and `cmp $SP/den-before-final.txt $SP/den-after-final.txt` print nothing and exit 0, `rg -c -e '^(claude|codex|devin|dsh|opencode|pi) (pre|post) start ' $SP/rescore-delta.txt` prints 12, `rg -c -e '^(claude|codex|devin|dsh|opencode|pi) (pre|post) workflow ' $SP/rescore-delta.txt` prints 11 and `rg -c -F 'no brief reached Codex' $PK/goal.md` prints at least 1. No rate is called a gain or a loss in that file or in that row: both state counts and reasons only.
+- [ ] T022 [C] Check the boundaries (`$SP/boundaries.txt`). Write each command below with its output or exit code into `boundaries.txt`. Verify: `G diff --quiet BASE -- AGENTS.md` exits 0, `G diff --quiet BASE -- $RAD/command-prompts.jsonl $RAD/command-routing-baseline.json` exits 0, `G diff --stat BASE -- '*package.json' '*package-lock.json'` prints nothing, `G diff BASE -U0 -- .skilled .opencode | rg "^\+.*(//|#|\*).*(specs/|REQ-0|ADR-0|AC-0|T0[0-9]{2}|phase [0-9]|P0[0-9]{2}|finding [0-9])"` prints nothing, and `G diff --name-only BASE -- .skilled .opencode` names only `CR`, `CRT`, `SRR`, `CA`, `CAT`, `S`, `CTS` and `RA` beside the files phases 022 and 023 committed after `BASE`, which `G diff --name-only BASE BASES -- .skilled .opencode` lists.
+- [ ] T023 [C] Write the results and close the phase (`$PH/implementation-summary.md`). Copy `$SP/implementation-summary.scaffold.md` to `$PH/implementation-summary.md` and fill it: `BASE` and `BASES`, the eight files, the six review prompts with their row 0 before and after, the Codex lines of `rescore-delta.txt`, every count that moved with its task, the items declined with the probe line behind each (the two skill label fallbacks, the plugin timing test, the relabel that waits on the operator) and the limits the Codex numbers have (tuned rows, one run each, no brief delivered, a body with a gate lookup and a task command reads as a gate step). Mark each row of `acceptance-criteria.md` with the evidence observed, set the status in `spec.md` and the phase 24 row of `../spec.md` to `Complete`, then run `node .skilled/skills/system-spec-kit/runtime/cli/spec/repair-derived.cjs --folder $PH --apply`. Verify: `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh $PH --strict` prints `RESULT: PASSED`, `rg -c -e '^\| codex ' $PH/implementation-summary.md` prints at least 1 and `rg -c "\| Unmet \|" $PH/acceptance-criteria.md` prints nothing.
+<!-- /ANCHOR:phase-3 -->
+
+---
+
+<!-- ANCHOR:completion -->
+## Completion Criteria
+<!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
+
+- [ ] All tasks marked `[x]`
+- [ ] No `[B]` blocked tasks remaining
+- [ ] `scratch/repro-after.txt` holds `SHIPPED: 46 of 46 agree`
+- [ ] `scratch/rescore-delta.txt` holds 12 start lines and 11 workflow lines
+<!-- /ANCHOR:completion -->
+
+---
+
+<!-- ANCHOR:cross-refs -->
+## Cross-References
+<!-- FILL: Name the spec and plan files. Add the decision record when the packet has one. GOOD: Specification: `spec.md`. Plan: `plan.md`. WEAK: See the other docs. -->
+
+- **Specification**: See `spec.md`
+- **Plan**: See `plan.md`
+- **Acceptance criteria**: See `acceptance-criteria.md`
+- **Findings**: `../review/fable-review-2026-11-14-1140/report.txt` and `../scratch/carry-to-review.md`
+- **Decision that supersedes P022**: P024 in `../decision-record.md`
+- **The phases whose scorer this phase edits after**: `../022-workflow-measure-soundness/` and `../023-untuned-outcome-evidence/`
+<!-- /ANCHOR:cross-refs -->
+
+---
+
+## Verification Checklist
+<!-- FILL: Fill each checklist section below. GOOD: Each CHK line names the command that answers it. WEAK: The checklist is done. -->
+
+<!-- ANCHOR:protocol -->
+## Verification Protocol
+<!-- FILL: Keep the three rows and add the rule this packet uses for a blocked task. GOOD: P0 blocks close. P1 needs a recorded reason. WEAK: Follow the priorities. -->
+
+| Priority | Handling | Completion Impact |
+|----------|----------|-------------------|
+| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
+| **[P1]** | Required | Must complete OR get user approval |
+| **[P2]** | Optional | Can defer with documented reason |
+
+A `[B]` task stops its lane. The coordinator records the printed line in the parent goal log and decides, and no rule is bent to make a stored run score better or to make a probe prompt print the expected head.
+<!-- /ANCHOR:protocol -->
+
+---
+
+<!-- ANCHOR:pre-impl -->
+## Pre-Implementation
+<!-- FILL: Write one check per setup fact, each with a command. GOOD: CHK-001 [P0] The start commit is in `goal.md` section 4. WEAK: Setup is ready. -->
+
+- [ ] CHK-001 [P0] Phases 020 and 021 read `Complete` and the five files of lanes A and R are clean in `git status` (T001).
+- [ ] CHK-002 [P0] Phases 022 and 023 read `Complete` and `S`, `CTS` and `RA` are clean in `git status` before the first task of lane S (T003).
+- [ ] CHK-003 [P1] `$SP/repro-before.txt` holds `SHIPPED: 40 of 46 agree`, three command heads and two Codex lines with no command text (T002).
+<!-- /ANCHOR:pre-impl -->
+
+---
+
+<!-- ANCHOR:code-quality -->
+## Code Quality
+<!-- FILL: Write one check per file rule. A command must answer it. GOOD: CHK-010 [P0] `bash -n scripts/rotate-logs.sh` exits 0. WEAK: Code is clean. -->
+
+- [ ] CHK-010 [P0] `node --check $S` and `node --check $CR` exit 0 and `TC` exits 0.
+- [ ] CHK-011 [P0] `G diff BASE -U0 -- $CR | rg -c "^[-+] "` shows one changed expression and one comment, and `arguments` is an object in every branch.
+- [ ] CHK-012 [P1] No added comment names a spec path or an id (T022).
+- [ ] CHK-013 [P1] `COMMAND_NOT_WORD`, `COMMAND_ASKED_BY_PRONOUN`, `HEREDOC_BODY` and `execBodyCommand` each carry one reason comment.
+<!-- /ANCHOR:code-quality -->
+
+---
+
+<!-- ANCHOR:testing -->
+## Testing Checklist
+<!-- FILL: Write one check per acceptance criterion. GOOD: CHK-020 [P0] `--keep 3` leaves 3 archives. WEAK: Tests pass. -->
+
+- [ ] CHK-020 [P0] `VALL`, `RT`, `HT` and `VP` report 0 failed (T018).
+- [ ] CHK-021 [P0] The five `FLOOR` lines equal their before lines (T019).
+- [ ] CHK-022 [P0] Each of T004 to T009 and T011 to T016 recorded a failing first run for the reason its line names.
+- [ ] CHK-023 [P1] `MENTION` prints `SHIPPED: 46 of 46 agree` and the six review prompts print the heads T020 names.
+- [ ] CHK-024 [P1] `SUMOK` prints `true` over both after files and the load-rate denominators equal their before values (T021).
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## FIX ADDENDUM: FIX COMPLETENESS
+<!-- FILL: Write this section when the packet fixes a reported finding. Delete it otherwise. GOOD: CHK-FIX-001 [P0] Every finding names one class. WEAK: All findings handled. -->
+
+- [ ] CHK-FIX-001 [P0] Finding classes: finding 1 is `cross-consumer` (one producer, six readers), findings 4, 5 and the P022 reversal are `class-of-bug` in one reader of a prompt, finding 7 is `algorithmic`, finding 6 is `matrix/evidence`, finding 9 is declined and waits on the operator.
+- [ ] CHK-FIX-002 [P0] Same-class producers: `rg -n "parseJsonObject\(payload\.arguments\)|payload\.input" $SR/session-readers` is read, and no other reader drops a body the same way.
+- [ ] CHK-FIX-003 [P0] Consumers: `rg -ln "session-readers|readSession|loadSession" .skilled .opencode --glob '*.{ts,mjs,js,cjs}' --glob '!**/dist/**' --glob '!**/node_modules/**'` lists every reader of the Codex record, and `rg -n "commandOnlyMentioned|offerOf\(|shellReadTargets\(" .skilled --glob '*.mjs' --glob '*.ts' --glob '!**/dist/**'` lists every caller of the changed functions. Each still receives the fields it reads.
+- [ ] CHK-FIX-004 [P1] The mention reader has a guard case beside every new lead: `no need to ask, run`, `stop and run`, `I will run it`, `use that other one` and `is this right? run`.
+- [ ] CHK-FIX-005 [P1] Matrix: tool call type (function call, custom tool call) by argument source (`arguments`, `input`, neither), and shell shape (full path, search, heredoc line, `cd` then bare name, in-place `sed`, redirect target) by path value.
+- [ ] CHK-FIX-006 [P1] Evidence names `BASE`, `BASES` and the run logs each number came from (T023).
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
+<!-- ANCHOR:security -->
+## Security
+<!-- FILL: Write one check per security surface. Write `N/A` with a reason when none applies. GOOD: CHK-030 [P0] `scripts/rotate-logs.sh` reads no credential. WEAK: Security is fine. -->
+
+- [ ] CHK-030 [P0] `VX tests/command-transcript-score.vitest.ts` still passes the case that refuses a holdout row before a prompt is read.
+- [ ] CHK-031 [P0] The Codex reader still refuses a rollout outside its store before it opens the file (`RT`, the case `a rollout outside the store is refused without reading it`).
+- [ ] CHK-032 [P1] `rg -c "prompt" $SP/rescore-delta.txt $SP/repro-after.txt` is read once, and no line holds the text of a corpus prompt.
+<!-- /ANCHOR:security -->
+
+---
+
+<!-- ANCHOR:docs -->
+## Documentation
+<!-- FILL: Write one check per document that must agree. GOOD: CHK-040 [P1] `spec.md` and `tasks.md` both name `--keep <n>`. WEAK: Docs are updated. -->
+
+- [ ] CHK-040 [P1] `RA` names `offeredAsPartner`, the Codex body rule and the three shell-read rules (T017).
+- [ ] CHK-041 [P1] `implementation-summary.md` and the parent goal log row quote the same Codex start rates (T021, T023).
+- [ ] CHK-042 [P2] `SRR` states where a custom tool call's body sits (T010).
+<!-- /ANCHOR:docs -->
+
+---
+
+<!-- ANCHOR:file-org -->
+## File Organization
+<!-- FILL: Write one check per file location rule. GOOD: CHK-050 [P1] Test copies live under `scratch/test/`. WEAK: Files are organized. -->
+
+- [ ] CHK-050 [P1] Every before, after and delta file lives under `scratch/`, and nothing is written under another phase folder (T022).
+- [ ] CHK-051 [P1] `G status --short -- .skilled .opencode` names no file outside the eight this phase edits (T022).
+<!-- /ANCHOR:file-org -->
+
+---
+
+<!-- ANCHOR:summary -->
+## Verification Summary
+<!-- FILL: Count the boxes by priority and write the three totals. GOOD: P0 12, P1 13, P2 1. WEAK: Most items done. -->
+
+| Category | Total | Verified |
+|----------|-------|----------|
+| P0 Items | 12 | 0/12 |
+| P1 Items | 13 | 0/13 |
+| P2 Items | 1 | 0/1 |
+
+**Verification Date**: 2026-11-14
+<!-- /ANCHOR:summary -->
+
+---

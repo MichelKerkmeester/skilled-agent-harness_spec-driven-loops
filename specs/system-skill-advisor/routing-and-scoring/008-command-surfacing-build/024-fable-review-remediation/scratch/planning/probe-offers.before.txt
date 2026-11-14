@@ -1,0 +1,32 @@
+PROMPT: no need to run /doctor:setup, the hooks are fine
+  row 0: command-doctor-setup 0.826/0.16 command=/doctor:setup policy=run owner=system-skilled-doctor ambiguous=false
+  row 1: system-skilled-doctor 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: mcp-code-mode 0.82/0.26 command=- policy=- owner=- ambiguous=false
+PROMPT: stop using /create:changelog for this, write the changelog entry by hand
+  row 0: sk-doc 0.8923/0.12 command=/create:changelog policy=ask owner=sk-doc ambiguous=false
+  row 1: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: sk-design 0.82/0.26 command=- policy=- owner=- ambiguous=false
+PROMPT: I have not run /speckit:plan yet, please start it for the login feature
+  row 0: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 1: cli-external-orchestration 0.82/0.26 command=- policy=- owner=- ambiguous=false
+  row 2: sk-git 0.82/0.26 command=- policy=- owner=- ambiguous=false
+PROMPT: I already ran /create:readme but the output was wrong, run it again for the hooks folder
+  row 0: sk-doc 0.9175/0.12 command=- policy=- owner=- ambiguous=false
+  row 1: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: cli-external-orchestration 0.82/0.22 command=- policy=- owner=- ambiguous=false
+PROMPT: why not use /create:agent for this? go ahead and make a security reviewer agent
+  row 0: sk-doc 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 1: sk-code 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: sk-design 0.82/0.22 command=- policy=- owner=- ambiguous=false
+PROMPT: quick question? is /speckit:resume safe to run twice
+  row 0: system-spec-kit 0.8218/0.16 command=/speckit:resume policy=start owner=system-spec-kit ambiguous=false
+  row 1: command-speckit-resume 0.82/0.16 command=/speckit:resume policy=start owner=system-spec-kit ambiguous=false
+  row 2: cli-classifier 0.82/0.26 command=- policy=- owner=- ambiguous=false
+PROMPT: do not run /speckit:complete, run /speckit:plan for the rate limiter instead
+  row 0: command-speckit-plan 0.82/0.16 command=/speckit:plan policy=start owner=system-spec-kit ambiguous=false
+  row 1: system-spec-kit 0.82/0.22 command=- policy=- owner=- ambiguous=false
+  row 2: cli-external-orchestration 0.82/0.26 command=- policy=- owner=- ambiguous=false
+PROMPT: do not run it, just tell me what /doctor:update would change
+  row 0: system-skilled-doctor 0.82/0.26 command=- policy=- owner=- ambiguous=true
+  row 1: sk-doc 0.82/0.26 command=- policy=- owner=- ambiguous=true
+  row 2: mcp-code-mode 0.82/0.26 command=- policy=- owner=- ambiguous=true

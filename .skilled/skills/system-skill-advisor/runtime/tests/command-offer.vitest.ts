@@ -75,6 +75,7 @@ describe('parseOffer', () => {
     expect(parseOffer(OFFERED_HEAD)).toEqual({
       offeredCommand: '/doctor:git hooks',
       offeredPolicy: 'ask',
+      offeredAs: 'head',
     });
   });
 
@@ -82,6 +83,7 @@ describe('parseOffer', () => {
     expect(parseOffer(AMBIGUOUS_HEAD)).toEqual({
       offeredCommand: '/doctor:git hooks',
       offeredPolicy: null,
+      offeredAs: 'head',
     });
   });
 
@@ -89,6 +91,23 @@ describe('parseOffer', () => {
     expect(parseOffer(NO_COMMAND_HEAD)).toEqual({
       offeredCommand: null,
       offeredPolicy: null,
+      offeredAs: null,
+    });
+  });
+
+  it('marks a command that sits after vs as the partner', () => {
+    expect(parseOffer('Advisor: live; ambiguous: sk-code 0.95/0.12 vs sk-doc → /create:manual-testing-playbook (start) 0.82/0.12 pass.')).toEqual({
+      offeredCommand: '/create:manual-testing-playbook',
+      offeredPolicy: 'start',
+      offeredAs: 'partner',
+    });
+  });
+
+  it('marks a command before vs as the head', () => {
+    expect(parseOffer('Advisor: live; ambiguous: sk-doc → /create:agent (start) 0.82/0.12 vs sk-code 0.82/0.12 pass.')).toEqual({
+      offeredCommand: '/create:agent',
+      offeredPolicy: 'start',
+      offeredAs: 'head',
     });
   });
 });
@@ -134,6 +153,7 @@ describe('replayOffer', () => {
       expect(replayOffer({ checkoutDir, prompt: 'create a readme', sessionId: 'offer-test' })).toEqual({
         offeredCommand: null,
         offeredPolicy: null,
+        offeredAs: null,
         offerError: 'hook_missing',
       });
     } finally {
@@ -255,6 +275,30 @@ describe('briefDelivered', () => {
     } finally {
       rmSync(dir, { recursive: true, force: true });
     }
+  });
+
+  it('does not count a head quoted inside a tool result', async () => {
+    await expect(briefDelivered({
+      runtime: 'pi',
+      locator: {},
+      loadSession: async () => ({
+        ok: true,
+        records: [{ role: 'toolResult', content: [{ type: 'text', text: 'Advisor: live; use sk-doc 0.95/0.12 pass.' }] }],
+        injected: [],
+      }),
+    })).resolves.toBe(false);
+  });
+
+  it('counts a head in a user record', async () => {
+    await expect(briefDelivered({
+      runtime: 'pi',
+      locator: {},
+      loadSession: async () => ({
+        ok: true,
+        records: [{ role: 'user', content: [{ type: 'text', text: 'Advisor: live; use sk-doc 0.95/0.12 pass.' }] }],
+        injected: [],
+      }),
+    })).resolves.toBe(true);
   });
 });
 

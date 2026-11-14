@@ -9,6 +9,15 @@
 // the command and the policy, and a replay keeps the recorded value independent
 // of whatever the session reader happened to retain.
 //
+// The handler gives the head row its command under every request shape and
+// every caller asks for the route of the top pick alone, so for a run made
+// from that state on, the Claude hook's head is
+// the head every runtime's reader got.
+// A run stored before that state carries the Claude hook's replay, which
+// could differ from the head a non-Claude reader saw, at the head row or at
+// the partner of an ambiguous head. A runtime whose renderer differs would
+// need its own replay.
+//
 // A failed replay returns null fields plus an offerError, so a backfill over a
 // checkout without the hook, or a hook that crashes, still produces a readable
 // line instead of aborting the run.
@@ -41,28 +50,34 @@ const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../
 const CODEX_CHECK = join(REPO_ROOT, '.skilled/commands/doctor/scripts/codex-hook-approval-check.cjs');
 
 function failedOffer(offerError) {
-  return { offeredCommand: null, offeredPolicy: null, offerError };
+  return { offeredCommand: null, offeredPolicy: null, offeredAs: null, offerError };
 }
 
 /**
- * Read the command and the policy out of the first line of a head.
+ * Read the command, the policy and the side of `vs` out of the first line of a
+ * head.
  *
  * The policy only counts when it directly follows the command, so a `(ask)`
  * that belongs to a later clause cannot attach itself to an earlier match.
+ * An ambiguous head names two paths, and only one of them leads, so
+ * `offeredAs` records whether the match sat before `vs` as the head or after
+ * it as the partner.
  *
  * @param {string} head - One line of advisor output.
- * @returns {{ offeredCommand: string | null, offeredPolicy: string | null }}
+ * @returns {{ offeredCommand: string | null, offeredPolicy: string | null,
+ *   offeredAs: 'head' | 'partner' | null }}
  */
 export function parseOffer(head) {
   const text = typeof head === 'string' ? head : '';
   const match = text.match(OFFER_PATTERN);
   if (!match) {
-    return { offeredCommand: null, offeredPolicy: null };
+    return { offeredCommand: null, offeredPolicy: null, offeredAs: null };
   }
   const policy = text.slice(match.index + match[0].length).match(POLICY_PATTERN);
   return {
     offeredCommand: match[0],
     offeredPolicy: policy ? policy[1] : null,
+    offeredAs: text.slice(0, match.index).includes(' vs ') ? 'partner' : 'head',
   };
 }
 
@@ -78,7 +93,8 @@ export function parseOffer(head) {
  * @param {string} options.prompt - The prompt to replay.
  * @param {string} options.sessionId - Session id for the hook payload.
  * @param {number} [options.timeoutMs] - Hook timeout before the replay fails.
- * @returns {{ offeredCommand: string | null, offeredPolicy: string | null, offerError: string | null }}
+ * @returns {{ offeredCommand: string | null, offeredPolicy: string | null,
+ *   offeredAs: 'head' | 'partner' | null, offerError: string | null }}
  */
 export function replayOffer({ checkoutDir, prompt, sessionId, timeoutMs = DEFAULT_TIMEOUT_MS }) {
   const hookPath = join(checkoutDir, HOOK_RELATIVE);
@@ -139,12 +155,14 @@ function contentHasBrief(content) {
   });
 }
 
-// Neutral records keep their text in content blocks, and the block shape differs
-// by runtime, so the serialized record is the one place the brief is found
-// whichever block carries it.
+// A brief arrives as session input, so a tool that printed a document quoting a
+// head delivered nothing. Neutral records keep their text in content blocks, and
+// the block shape differs by runtime, so the serialized record is the one place
+// the brief is found whichever block carries it.
 function recordsHaveBrief(records) {
   return (Array.isArray(records) ? records : []).some((record) =>
-    BRIEF_PATTERN.test(JSON.stringify(record ?? null)));
+    record?.role !== 'toolResult'
+    && BRIEF_PATTERN.test(JSON.stringify(record ?? null)));
 }
 
 // Injected context sits beside the records rather than inside them, so a reader

@@ -1,0 +1,72 @@
+FILES
+
+P = specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build
+
+Created, P/024-fable-review-remediation/:
+- spec.md, plan.md, tasks.md, acceptance-criteria.md, goal.md, description.json, graph-metadata.json
+- scratch/.gitkeep, scratch/implementation-summary.scaffold.md
+- scratch/planning/: review-prompts.json, goal-packet.before.txt, probe-codex-shell.mjs (+ .before.txt, .post.txt), probe-mention-reader.mts (+ .before.txt), probe-offers.before.txt, probe-shell-read-rule.mjs (+ .before.txt), probe-shell-targets-planned.mjs (+ .txt), probe-skill-label.mts (+ .before.txt), probe-plugin-flake.mjs (+ .before.txt)
+
+Created, P/025-release-notes-and-doc-sync/:
+- spec.md, plan.md, tasks.md, acceptance-criteria.md, goal.md, description.json, graph-metadata.json
+- scratch/.gitkeep, scratch/implementation-summary.scaffold.md
+
+Edited:
+- P/spec.md: phase map rows 24 and 25, handoff rows 023 to 024 and 024 to 025, three open questions.
+- P/decision-record.md: new rows P024 to P031 in the planner table, no existing row changed.
+- P/goal.md: three log rows, nothing else.
+- P/graph-metadata.json: written by create.sh and the repair script only. P/description.json is unchanged.
+
+Not touched: 022, 023, phases 001 to 021, everything outside specs/. The 022 and 023 diffs in `git status` are the coordinator's.
+
+One item for the coordinator: 023/spec.md still reads "23 of 23" with no successor. I may not edit it, so it needs that one metadata line changed to name 024.
+
+PHASES
+
+024 fable-review-remediation. Purpose: make the evidence and the mention reader say what the 11:40 review found they do not. It fixes Finding 1 (Codex shell steps reach the scorer with no command text), Findings 4 and 5 and the P022 reversal (refusal wording, `why not use`, a later `run it`, a question mark as a sentence end), Finding 6 (the scorer never reads `offeredAs`) and the rest of Finding 7 (search, heredoc, `cd`). It has 23 tasks at Level 2; `recommend-level.sh` printed Level 1 and Level 2 was chosen because acceptance-criteria.md is the closure gate (P025). Lane order: setup T001 to T003; lane A (T004 to T008, `command-attach.ts`) and lane R (T009 to T010, the Codex session reader and its README) run in parallel once 020 and 021 are committed; lane S (T011 to T016, the transcript scorer) starts only after T003 confirms 022 and 023 are Complete and committed; lane D (T017, routing-accuracy README) follows; verification T018 to T023 rescores both stored arms and restates the Codex start rate. Workers are DeepSeek v4.1 flash max, each checked by an Opus verifier.
+
+025 release-notes-and-doc-sync. Purpose: the open advisor changelog entry v1.1.0.0 gains phases 019 to 024 in three sections (Command Fit, One Head on Every Runtime, Workflow Measure), and six reference pages each lose one stale statement. It fixes alignment finding C-01 and the pages 020 and 021 deferred. It has 18 tasks at Level 2, for the same reason. Lane order: setup T001 to T003 (gate on 019 to 024 Complete and `origin/main` at 1.0.0.0, then the facts file and the stale-statement record); lane C (T004 to T008, changelog, in order) beside lanes L, T, F1, F2, F3 and B (T009 to T014, one page each); verification T015 to T018. Every number is copied from the closed phases into `scratch/release-facts.txt` at build time, the plan holds no result number, and each doc task routes through its sk-doc mode.
+
+FINDINGS MAP
+
+- Finding 1, Codex shell text: planned, 024 T009 (reader keeps the body as `arguments.input`), T011 (scorer reads it), T021 (rescore). Probe: 58 of 58 Codex shell events in the before arm and 53 of 53 in the after arm carry no command text. Forecast with the body read: load 4 of 16 and 3 of 16, started 0 in both arms.
+- Finding 2, Finding 3, Finding 8, the `sed -i` part of Finding 7, the row-0 carry item: not planned, the coordinator has them.
+- Findings 4 and 5 and the P022 reversal: planned, 024 T004 to T008. Probe: the shipped reader agrees on 40 of 46 prompts, the planned edits on 46 of 46. P024 supersedes P022 for the question mark; the comma stays out because no prompt reproduced it.
+- Finding 6, `offeredAs`: planned, 024 T015 and T016, lane S, after 023 closes. Probe: the scorer holds 0 mentions of `offeredAs`. No backfill of stored runs.
+- Finding 7, the rest: planned, 024 T012 (search is no load), T013 (heredoc line is no command), T014 (`cd` then bare name is followed). Probe: of 175 owned runs, two stored loads rest on a search alone, one on a heredoc line, and one `cd` shape is missed. The planned edits agree on 18 of 18 probe cases.
+- Finding 9, sv-09, sv-11, sv-12 relabel: declined as a build task, waits on the operator (P026). T017 writes the README note only.
+- Carry, plugin always sends `skillLabel`: declined. The renderer printed the same head with and without the label.
+- Carry, Claude hook `skillLabelFor` fallback: declined. A wrong label needs a first row below the bars, and 0 of 10 CLI rows were below them.
+- Carry, timing-flaky plugin test: not reproduced. `probe-plugin-flake.mjs` passed 20 of 20 runs.
+
+GOAL CHANGES
+
+P/goal.md directive, decisions, binding table and completion criteria: no change, so there is no old or new text to quote. No binding rows were added for 024 and 025: the slice is 3,992 of 4,000 characters and two rows need about 98.
+
+Three log rows appended through `goal.cjs packet-log`:
+- `| Phases 024 and 025 planned, 2026-11-14 | Planned, not built | 024: 23 tasks, lanes A and R first, lane S after phases 022 and 023 close. 025: 18 tasks, after 019 to 024 close. Probes in 024 scratch/planning: Codex shell events with no command text 58 of 58, mention reader 40 of 46 shipped and 46 of 46 planned, shell-read edits 18 of 18. Both validate strict. Decisions P024 to P031 |`
+- `| No binding rows for phases 024 and 025 | Left as is, waits on operator | The durable slice is 3,992 of 4,000 characters and two rows need about 98, so the binding table and every criterion are unchanged. Each phase carries its own goal.md. check-goal.cjs names both in its missing-row finding, beside phases 009 to 019 (P031) |`
+- `| Two decisions from the 024 and 025 plan | WAITING ON OPERATOR | 1: relabel sv-09, sv-11, sv-12 to no command. It moves the false-offer floor in criterion 2 from 0 of 35 to 0 of 38. Recommended: keep the labels, README note (024 T017, P026). 2: whether the root release note gains phases 019 to 024. Recommended: extend it again (P030) |`
+
+After the rows: `packet_durable_chars=3992`, `packet_budget=ok`, slice hash `sha256:bcb1943d…` unchanged. `check-goal.cjs` printed `RESULT: FAILED (4/5 checks)` before these edits on missing binding rows for 009 to 019, 024 and 025; I did not rerun it afterwards.
+
+WAITING ON OPERATOR
+
+1. Relabel sv-09, sv-11 and sv-12 to no expected command. They name a command inside a question, so the baseline records three designed withholds as misses.
+   - a) Keep the labels and state the three designed withholds in the routing-accuracy README (024 T017). Recommended: no criterion moves.
+   - b) Relabel, recapture, and reword completion criterion 2 from 0 of 35 to 0 of 38.
+   - c) Give them their own row type.
+2. The root release note v4.0.2.1, amended once for phases 014 to 018.
+   - a) Extend it again with 019 to 024. Recommended.
+   - b) Leave it.
+   - c) Write a new note.
+3. Binding rows for 024 and 025 in the parent goal. They do not fit without shortening a frozen decision, the same question as P005 for phases 009 to 019. Recommended: leave it as is until the operator rules on P005.
+
+VALIDATION
+
+- P/024-fable-review-remediation: `Summary: Errors: 0  Warnings: 0` / `RESULT: PASSED`
+- P/025-release-notes-and-doc-sync: `Summary: Errors: 0  Warnings: 0` / `RESULT: PASSED`
+- P (parent folder itself): `Summary: Errors: 0  Warnings: 0` / `RESULT: PASSED`
+- P, recursive run over its children: not all green. Phases 001 to 021, 024 and 025 pass (009 and 010 with one warning each). Two folders fail, both the coordinator's in-flight work that I may not edit:
+  - 022-workflow-measure-soundness: `Summary: Errors: 4  Warnings: 0` / `RESULT: FAILED` (FILE_EXISTS, GENERATED_METADATA_INTEGRITY, GENERATED_METADATA_DRIFT, LEVEL_MATCH).
+  - 023-untuned-outcome-evidence: `Summary: Errors: 2  Warnings: 0` / `RESULT: FAILED` (GENERATED_METADATA_INTEGRITY, GENERATED_METADATA_DRIFT). A dry run of `repair-derived.cjs --folder P/023-untuned-outcome-evidence` reports `repairable=1 failed=0`, so the coordinator's `--apply` should clear it.

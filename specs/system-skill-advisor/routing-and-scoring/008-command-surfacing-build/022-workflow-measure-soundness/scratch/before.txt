@@ -1,0 +1,22 @@
+## rg -c Status Complete in 019 and 021 spec.md
+../021-brief-head-parity/spec.md:1
+../019-workflow-outcome-measure/spec.md:1
+## G status --porcelain -- S CTS CO COT RA (nothing below means clean)
+## G rev-parse --short HEAD
+47577daa6f
+## OPENCODE_DB unset, as phase 019 recorded
+## VX tests/command-transcript-score.vitest.ts
+ Test Files  1 passed (1)
+      Tests  82 passed (82)
+## VX tests/command-offer.vitest.ts
+ Test Files  1 passed (1)
+      Tests  25 passed (25)
+## SPRE > workflow-before-pre.json
+exit 0
+## SFIN > workflow-before-final.json
+exit 0
+## jq -r .claude.post.workflow.loadRate workflow-before-final.json
+6 of 16
+## DEN lines
+11
+## probes exit 0

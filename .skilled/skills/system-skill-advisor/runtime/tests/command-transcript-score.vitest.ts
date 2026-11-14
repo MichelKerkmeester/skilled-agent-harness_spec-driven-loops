@@ -15,7 +15,7 @@
 // arm's numbers can be read.
 
 import { spawnSync } from 'node:child_process';
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -25,6 +25,7 @@ import * as scorer from '../scripts/routing-accuracy/score-command-transcripts.m
 import {
   commandLines,
   followedBeforeWrite,
+  insideCheckout,
   loopInit,
   normalize,
   offerSeenIn,
@@ -33,6 +34,8 @@ import {
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const SCORER = resolve(HERE, '../scripts/routing-accuracy/score-command-transcripts.mjs');
+const BRIDGES = resolve(HERE, '../scripts/command-bridges/command-bridges.generated.json');
+const COMMANDS_ROOT = resolve(HERE, '../../../../commands');
 const TIMESTAMP = '2026-01-01T00:00:00.000Z';
 
 const README_DOCUMENT = '.claude/commands/create/readme.md';
@@ -354,6 +357,18 @@ describe('followedBeforeWrite', () => {
     expect(followedBeforeWrite(events, '/create:readme')).toBe(false);
   });
 
+  // The command was renamed and the confirm workflow it ships kept the asset name it
+  // had before, so a late read of that asset still fails the run.
+  it('fails a late confirm read for the renamed skill command', () => {
+    const events = [
+      { seq: 0, kind: 'read', path: '.skilled/commands/create/sk-skill.md', command: null, text: null },
+      { seq: 1, kind: 'write', path: 'x.md', command: null, text: null },
+      { seq: 2, kind: 'read', path: '.skilled/commands/create/assets/create-skill-confirm.yaml', command: null, text: null },
+    ];
+
+    expect(followedBeforeWrite(events, '/create:sk-skill')).toBe(false);
+  });
+
   it('passes a run that loaded the command through the skill tool before writing', () => {
     const events = normalize(
       oneTurn(
@@ -371,6 +386,105 @@ describe('followedBeforeWrite', () => {
     const events = normalize(oneTurn(toolCall('Read', { file_path: README_DOCUMENT })), 'claude');
 
     expect(followedBeforeWrite(events, '/create:readme')).toBe(true);
+  });
+
+  // Two runtimes mirror a command as a prompt file whose name joins the namespace
+  // and the name with a dash, so a read of that mirror is the command's load.
+  it.each(['.pi/prompts/create-agent.md', '.codex/prompts/create-agent.md'])('reads %s as the command document', (path) => {
+    const events = [{ seq: 0, kind: 'read', path, command: null, text: null }];
+
+    expect(followedBeforeWrite(events, '/create:agent')).toBe(true);
+  });
+
+  // The mirror carries one command's name, so it cannot stand for a different one.
+  it('does not read another command through a prompt mirror', () => {
+    const events = [{ seq: 0, kind: 'read', path: '.pi/prompts/create-agent.md', command: null, text: null }];
+
+    expect(followedBeforeWrite(events, '/create:readme')).toBe(false);
+  });
+
+  // A scratch note outside the checkout changes nothing the workflow owns, so the
+  // boundary is the first write the checkout itself would keep.
+  it('does not read a temp-file write as the boundary when the checkout is named', () => {
+    const events = [
+      { seq: 0, kind: 'write', path: '/tmp/notes.txt', command: null, text: null },
+      { seq: 1, kind: 'read', path: '.skilled/commands/create/readme.md', command: null, text: null },
+      { seq: 2, kind: 'write', path: 'README.md', command: null, text: null },
+    ];
+
+    expect(followedBeforeWrite(events, '/create:readme', '/repo')).toBe(true);
+  });
+
+  // A write the checkout keeps is the boundary, so a read after it still fails.
+  it('still fails a read after a write inside the checkout', () => {
+    const events = [
+      { seq: 0, kind: 'write', path: '/repo/README.md', command: null, text: null },
+      { seq: 1, kind: 'read', path: '.skilled/commands/create/readme.md', command: null, text: null },
+    ];
+
+    expect(followedBeforeWrite(events, '/create:readme', '/repo')).toBe(false);
+  });
+
+  // A home scratch write outside the named checkout sets no boundary either, so a
+  // command read after it still counts as the run's own load.
+  it('does not read a home scratch write outside the named checkout as the boundary', () => {
+    const events = [
+      { seq: 0, kind: 'write', path: '/Users/someone/notes.txt', command: null, text: null },
+      { seq: 1, kind: 'read', path: '.opencode/commands/create/readme.md', command: null, text: null },
+      { seq: 2, kind: 'write', path: 'README.md', command: null, text: null },
+    ];
+
+    expect(followedBeforeWrite(events, '/create:readme', '/repo')).toBe(true);
+  });
+
+  // A confirm workflow on disk belongs to a command the bridge table tracks, or a run
+  // that loads it cannot be read as that command's own.
+  it('every confirm asset on disk belongs to a tracked command', () => {
+    const table = JSON.parse(readFileSync(BRIDGES, 'utf8')) as { entries: readonly { command: string }[] };
+    const stems = new Set(table.entries.map((entry) => scorer.confirmStem(entry.command)));
+
+    for (const namespace of readdirSync(COMMANDS_ROOT, { withFileTypes: true })) {
+      if (!namespace.isDirectory()) continue;
+      const folder = join(COMMANDS_ROOT, namespace.name, 'assets');
+      if (!existsSync(folder)) continue;
+
+      for (const file of readdirSync(folder)) {
+        if (!file.endsWith('-confirm.yaml')) continue;
+        const stem = file.slice(0, -'-confirm.yaml'.length);
+        expect(stems.has(stem), `${namespace.name}/assets/${file}`).toBe(true);
+      }
+    }
+  });
+});
+
+describe('insideCheckout', () => {
+  // The run's checkout is the folder its writes have to land in, and macOS mounts its
+  // temp trees behind a `/private` prefix the same folder is also named by.
+  it.each([
+    { path: 'README.md', checkout: '/repo', inside: true },
+    { path: '/repo/README.md', checkout: '/repo', inside: true },
+    { path: '/private/repo/README.md', checkout: '/repo', inside: true },
+    { path: '/repo-other/README.md', checkout: '/repo', inside: false },
+    { path: '/tmp/notes.txt', checkout: '/repo', inside: false },
+    { path: '~/notes.txt', checkout: '/repo', inside: false },
+  ])('reads $path inside $checkout as $inside', ({ path, checkout, inside }) => {
+    expect(insideCheckout(path, checkout)).toBe(inside);
+  });
+
+  // A line that names no checkout falls back to the folders a scratch note lives in,
+  // so a temp path or a home shorthand changes nothing the workflow owns while a
+  // relative path or an absolute one outside those trees still counts.
+  it.each([
+    { path: '/tmp/notes.txt', inside: false },
+    { path: '/private/tmp/notes.txt', inside: false },
+    { path: '/var/folders/ab/T/draft.md', inside: false },
+    { path: '/private/var/folders/ab/T/draft.md', inside: false },
+    { path: '~/notes.txt', inside: false },
+    { path: '~other/notes.txt', inside: false },
+    { path: '/Users/someone/notes.txt', inside: true },
+    { path: 'src/a.ts', inside: true },
+  ])('reads $path as $inside when the line names no checkout', ({ path, inside }) => {
+    expect(insideCheckout(path)).toBe(inside);
   });
 });
 
@@ -789,6 +903,32 @@ describe('run log summary', () => {
     });
   });
 
+  // A holdout row is refused before its session is read, so its score cannot rest
+  // on prompt text the corpus keeps out of the measurement. The locator names no
+  // session, and the reason still reports the holdout rather than a reader failure.
+  it('leaves a holdout row unscored before its session is read', () => {
+    const summary = summarize(() => [
+      {
+        rowId: 'cmd-create-agent-plain-holdout-01',
+        arm: 'tune',
+        exit: 0,
+        locator: { sessionId: 'no-such-session' },
+      },
+    ]);
+
+    expect(summary).toMatchObject({
+      claude: {
+        unscored: 1,
+        tune: {
+          scored: 0,
+          unscoredRuns: [
+            { rowId: 'cmd-create-agent-plain-holdout-01', reason: 'holdout_row' },
+          ],
+        },
+      },
+    });
+  });
+
   // A capped start stopped before it could be judged, so it is reported apart from
   // the rate rather than counted as a start the run never made.
   it('keeps a capped start row out of the start rate and counts it apart', () => {
@@ -1077,7 +1217,7 @@ describe('run log summary', () => {
   // A run that loaded the owning skill before its first write is the skill path,
   // so the arm counts it apart from a command load and from a run that improvised.
   it('counts a run that loaded the owning skill before its first write', () => {
-    const summary = summarize((root) => [
+    const { summary, text } = summarizeForms((root) => [
       {
         rowId: SUMMARY_ROW,
         arm: 'tune',
@@ -1097,12 +1237,113 @@ describe('run log summary', () => {
             skill: 1,
             improvised: 0,
             none: 0,
+            asked: expect.any(Number),
+            askedActed: expect.any(Number),
+            otherMode: expect.any(Number),
             noOwner: 0,
             unscored: 0,
+            followedRate: '1 of 1',
             share: '1 of 1',
           },
         },
       },
+    });
+
+    // A followed run is a command or a skill load taken before the write, and an ask
+    // row that offered the command counts as followed without a document read, so the
+    // rate and the load rate hold the same denominator while their numerators differ.
+    const block = (summary as {
+      claude: {
+        tune: {
+          workflow: {
+            command: number;
+            skill: number;
+            asked: number;
+            askedActed: number;
+            otherMode: number;
+            improvised: number;
+            none: number;
+            loadRate: string;
+            followedRate: string;
+          };
+        };
+      };
+    }).claude.tune.workflow;
+    const owned = block.command + block.skill + block.asked + block.otherMode
+      + block.improvised + block.none;
+    expect(block.askedActed).toBeLessThanOrEqual(block.asked);
+    expect(block.followedRate).toBe(`${block.command + block.skill + block.asked} of ${owned}`);
+    expect(block.loadRate.split(' of ')[1]).toBe(block.followedRate.split(' of ')[1]);
+    expect(block.loadRate.split(' of ')[0]).toBe(String(block.command + block.skill));
+
+    const line = text.split('\n').find((entry) => entry.startsWith('    workflow: '));
+    expect(line).toBeDefined();
+    expect(line).toContain(`asked ${block.asked},`);
+    expect(line).toContain(`asked acted ${block.askedActed},`);
+    expect(line).toContain(`other mode ${block.otherMode},`);
+    expect(line).toContain(`followed rate ${block.followedRate}`);
+  });
+
+  // An ask row that read the task before it asked did more than the one step the
+  // ask policy names, so the count keeps it apart from a row that only asked.
+  it('counts an ask row that read the task before it asked as asked acted', () => {
+    const summary = summarize((root) => [
+      {
+        rowId: 'cmd-doctor-git-plain-tune-01',
+        arm: 'tune',
+        exit: 0,
+        locator: loadableSession(root, [
+          ...claudeToolTurn('claude-g1', 'Read', { file_path: 'README.md' }),
+          {
+            type: 'assistant',
+            uuid: 'claude-g2',
+            sessionId: SUMMARY_SESSION,
+            timestamp: TIMESTAMP,
+            message: {
+              role: 'assistant',
+              content: [{
+                type: 'text',
+                text: 'Do you want me to start /doctor:git on the pre-commit hooks?',
+              }],
+            },
+          },
+        ]),
+      },
+    ]);
+
+    expect(summary).toMatchObject({
+      claude: { tune: { workflow: { asked: 1, askedActed: 1, followedRate: '1 of 1' } } },
+    });
+  });
+
+  // The ask policy's own step is the question, so a row that only asked ran no step
+  // beyond it and the count keeps it out of the acted rows.
+  it('does not count an ask row that only asked as asked acted', () => {
+    const summary = summarize((root) => [
+      {
+        rowId: 'cmd-doctor-git-plain-tune-01',
+        arm: 'tune',
+        exit: 0,
+        locator: loadableSession(root, [
+          {
+            type: 'assistant',
+            uuid: 'claude-g2',
+            sessionId: SUMMARY_SESSION,
+            timestamp: TIMESTAMP,
+            message: {
+              role: 'assistant',
+              content: [{
+                type: 'text',
+                text: 'Do you want me to start /doctor:git on the pre-commit hooks?',
+              }],
+            },
+          },
+        ]),
+      },
+    ]);
+
+    expect(summary).toMatchObject({
+      claude: { tune: { workflow: { asked: 1, askedActed: 0 } } },
     });
   });
 
@@ -1325,6 +1566,132 @@ describe('workflowPath', () => {
     })).toBe('skill');
   });
 
+  // The hub holds one folder per mode, so a document under a mode the row did not
+  // name is a load of a different workflow rather than the row's own.
+  it('reads a document of another mode under the owning hub as another mode', () => {
+    const events = normalize(
+      oneTurn(
+        toolCall('Read', { file_path: '.skilled/skills/sk-doc/sk-create-readme/SKILL.md' }),
+        toolCall('Write', { file_path: OUTSIDE_SPECS, content: 'export const parse = () => {};' }),
+      ),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: '/create:agent',
+      owner: 'sk-doc',
+      wrote: true,
+      mode: 'sk-create-agent',
+    })).toBe('otherMode');
+  });
+
+  // The mode the row names is the folder below the hub whose document is its own.
+  it('reads the mode document the row names as the skill path', () => {
+    const events = normalize(
+      oneTurn(
+        toolCall('Read', { file_path: '.skilled/skills/sk-doc/sk-create-agent/SKILL.md' }),
+        toolCall('Write', { file_path: OUTSIDE_SPECS, content: 'export const parse = () => {};' }),
+      ),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: '/create:agent',
+      owner: 'sk-doc',
+      wrote: true,
+      mode: 'sk-create-agent',
+    })).toBe('skill');
+  });
+
+  // The hub entry document belongs to every mode, so it is a load whatever mode the
+  // row named.
+  it('reads the hub entry document as the skill path when the row names a mode', () => {
+    const events = normalize(
+      oneTurn(
+        toolCall('Read', { file_path: '.skilled/skills/sk-doc/SKILL.md' }),
+        toolCall('Write', { file_path: OUTSIDE_SPECS, content: 'export const parse = () => {};' }),
+      ),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: '/create:agent',
+      owner: 'sk-doc',
+      wrote: true,
+      mode: 'sk-create-agent',
+    })).toBe('skill');
+  });
+
+  // One load of the row's own mode decides the path, so a wrong-mode read elsewhere
+  // in the run does not take the skill path away.
+  it('reads the hub entry document over another mode as the skill path', () => {
+    const events = normalize(
+      oneTurn(
+        toolCall('Read', { file_path: '.skilled/skills/sk-doc/sk-create-readme/SKILL.md' }),
+        toolCall('Read', { file_path: '.skilled/skills/sk-doc/SKILL.md' }),
+        toolCall('Write', { file_path: OUTSIDE_SPECS, content: 'export const parse = () => {};' }),
+      ),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: '/create:agent',
+      owner: 'sk-doc',
+      wrote: true,
+      mode: 'sk-create-agent',
+    })).toBe('skill');
+  });
+
+  // A mode folder carries the hub name as a prefix, so the mode id alone is the part
+  // the row's own mode has to match.
+  it('matches a mode folder that ends with the mode id', () => {
+    const events = normalize(
+      oneTurn(toolCall('Read', { file_path: '.skilled/skills/system-deep-loop/deep-review/SKILL.md' })),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: '/deep:review',
+      owner: 'system-deep-loop',
+      wrote: false,
+      mode: 'review',
+    })).toBe('skill');
+  });
+
+  // A mode equal to the hub names no folder of its own, so the document one folder
+  // below the hub is another mode rather than the row's.
+  it('treats a mode equal to the owner as no mode', () => {
+    const events = normalize(
+      oneTurn(toolCall('Read', { file_path: '.skilled/skills/system-deep-loop/deep-research/SKILL.md' })),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: '/doctor:deep-loop',
+      owner: 'system-deep-loop',
+      wrote: false,
+      mode: 'system-deep-loop',
+    })).toBe('otherMode');
+  });
+
+  // A row that names no command has no mode to judge against, so any document of its
+  // owner is still that owner's load.
+  it('keeps any owner document as a load when the row names no mode', () => {
+    const events = normalize(
+      oneTurn(
+        toolCall('Read', { file_path: '.skilled/skills/sk-doc/sk-create-readme/SKILL.md' }),
+        toolCall('Write', { file_path: OUTSIDE_SPECS, content: 'export const parse = () => {};' }),
+      ),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: '/create:agent',
+      owner: 'sk-doc',
+      wrote: true,
+    })).toBe('skill');
+  });
+
   // The router is the skill's own entry document, so a run that read it loaded the
   // workflow even when it never opened `SKILL.md`.
   it('reads the owning skill router before the first write as the skill path', () => {
@@ -1460,5 +1827,374 @@ describe('workflowPath', () => {
       owner: 'sk-doc',
       wrote: true,
     })).toBe('improvised');
+  });
+
+  // Some runtimes read a document through the shell rather than a read tool, so the
+  // command that opens the owner's entry document is the owner's load.
+  it('counts a shell read of the owner entry document as a skill load', () => {
+    const events = normalize(
+      oneTurn(toolCall('Bash', { command: 'cat .skilled/skills/sk-doc/SKILL.md' })),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: '/create:agent',
+      owner: 'sk-doc',
+      wrote: false,
+    })).toBe('skill');
+  });
+
+  // A shell read of the command's own document is the command load under the same
+  // order rule as a read tool: it has to come before the first write.
+  it('counts a shell read of the command document as a command load', () => {
+    const events = normalize(
+      oneTurn(
+        toolCall('Bash', { command: 'sed -n 1,80p .opencode/commands/create/agent.md | head -40' }),
+        toolCall('Write', { file_path: '.opencode/agents/x.md' }),
+      ),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: '/create:agent',
+      owner: 'sk-doc',
+      wrote: true,
+    })).toBe('command');
+  });
+
+  // Only a command that reads a file names one, so a path that is merely printed,
+  // listed or written by a redirect is not a load.
+  it.each([
+    { command: 'echo .skilled/skills/sk-doc/SKILL.md', expected: 'none' },
+    { command: 'ls .skilled/skills/sk-doc', expected: 'none' },
+    { command: 'cat notes.md > .skilled/skills/sk-doc/SKILL.md', expected: null },
+    { command: "sed -i '' 's/old/new/' .skilled/skills/sk-doc/SKILL.md", expected: null },
+    { command: 'sed -i.bak s/old/new/ .skilled/skills/sk-doc/SKILL.md', expected: null },
+    { command: "sed --in-place=.bak 's/a/b/' .skilled/skills/sk-doc/SKILL.md", expected: null },
+  ])('does not count $command as a load', ({ command, expected }) => {
+    const events = normalize(oneTurn(toolCall('Bash', { command })), 'claude');
+    const path = scorer.workflowPath(events, {
+      command: '/create:agent',
+      owner: 'sk-doc',
+      wrote: false,
+    });
+
+    expect(path).not.toBe('skill');
+    if (expected !== null) expect(path).toBe(expected);
+  });
+
+  // A mode can keep its workflow in the packet folder of another mode of its hub, so
+  // that packet's document is the row's own load rather than another mode's.
+  it('reads the packet a mode shares with another mode as the skill path', () => {
+    const events = [
+      { seq: 0, kind: 'read', path: '.skilled/skills/sk-doc/sk-create-skill/SKILL.md', command: null, text: null },
+      { seq: 1, kind: 'write', path: 'x.md', command: null, text: null },
+    ];
+
+    expect(scorer.workflowPath(events, {
+      command: '/create:skill-parent',
+      owner: 'sk-doc',
+      wrote: true,
+      mode: 'sk-create-skill-parent',
+    })).toBe('skill');
+  });
+
+  // A registry names the packet folder each mode loads, so every named folder has to
+  // be one the scorer accepts for that mode.
+  it('matches every mode packet folder a mode registry names', () => {
+    const skillsRoot = resolve(HERE, '../../../../skills');
+
+    for (const hub of readdirSync(skillsRoot, { withFileTypes: true })) {
+      if (!hub.isDirectory()) continue;
+      const registry = join(skillsRoot, hub.name, 'mode-registry.json');
+      if (!existsSync(registry)) continue;
+
+      const parsed = JSON.parse(readFileSync(registry, 'utf8')) as {
+        modes?: readonly { workflowMode?: string; packetSkillName?: string }[];
+      };
+
+      for (const mode of parsed.modes ?? []) {
+        if (typeof mode.workflowMode !== 'string' || typeof mode.packetSkillName !== 'string') continue;
+        const events = [
+          {
+            seq: 0,
+            kind: 'read',
+            path: `.skilled/skills/${hub.name}/${mode.packetSkillName}/SKILL.md`,
+            command: null,
+            text: null,
+          },
+        ];
+
+        expect(scorer.workflowPath(events, {
+          command: null,
+          owner: hub.name,
+          wrote: false,
+          mode: mode.workflowMode,
+        }), `${hub.name}/${mode.workflowMode}`).toBe('skill');
+      }
+    }
+  });
+
+  // The ask policy's own step is to offer the command in one question and wait, so a
+  // run that reported the offer and wrote nothing took that step.
+  it('returns asked for an ask row that reported the offer and wrote nothing', () => {
+    const events = [
+      { seq: 0, kind: 'text', path: null, command: null, text: 'COMMAND: [/deep:review] → offered' },
+    ];
+
+    expect(scorer.workflowPath(events, {
+      command: '/deep:review',
+      owner: 'system-deep-loop',
+      wrote: false,
+      policy: 'ask',
+    })).toBe('asked');
+  });
+
+  // A question that names the command is the same offer, so an ask row may end on the
+  // question rather than on a `COMMAND:` line.
+  it('returns asked for an ask row that ended on a question naming the command', () => {
+    const events = [
+      {
+        seq: 0,
+        kind: 'text',
+        path: null,
+        command: null,
+        text: 'Do you want me to start /deep:review on the parser?',
+      },
+    ];
+
+    expect(scorer.workflowPath(events, {
+      command: '/deep:review',
+      owner: 'system-deep-loop',
+      wrote: false,
+      policy: 'ask',
+    })).toBe('asked');
+  });
+
+  // A sentence may end on the command before the question starts, so the offer token
+  // carries its full stop and still names the command.
+  it('returns asked when the command ends a sentence before the question', () => {
+    const events = [
+      {
+        seq: 0,
+        kind: 'text',
+        path: null,
+        command: null,
+        text: 'I can run /deep:review. Want me to?',
+      },
+    ];
+
+    expect(scorer.workflowPath(events, {
+      command: '/deep:review',
+      owner: 'system-deep-loop',
+      wrote: false,
+      policy: 'ask',
+    })).toBe('asked');
+  });
+
+  // A row whose policy asks for a start is not asking the run to stop and ask, so the
+  // same question is no workflow path.
+  it('reads a question on a start row as no workflow path', () => {
+    const events = [
+      {
+        seq: 0,
+        kind: 'text',
+        path: null,
+        command: null,
+        text: 'Do you want me to start /deep:review on the parser?',
+      },
+    ];
+
+    expect(scorer.workflowPath(events, {
+      command: '/deep:review',
+      owner: 'system-deep-loop',
+      wrote: false,
+      policy: 'start',
+    })).toBe('none');
+  });
+
+  // A reply that names no command makes no offer, so an ask row that only reported its
+  // reading has no path to judge.
+  it('reads an ask row that named no command as no workflow path', () => {
+    const events = [
+      { seq: 0, kind: 'text', path: null, command: null, text: 'I looked at the parser.' },
+    ];
+
+    expect(scorer.workflowPath(events, {
+      command: '/deep:review',
+      owner: 'system-deep-loop',
+      wrote: false,
+      policy: 'ask',
+    })).toBe('none');
+  });
+
+  // An ask row that said nothing made no offer either.
+  it('reads an empty ask row as no workflow path', () => {
+    expect(scorer.workflowPath([], {
+      command: '/deep:review',
+      owner: 'system-deep-loop',
+      wrote: false,
+      policy: 'ask',
+    })).toBe('none');
+  });
+
+  // A write is work the ask policy did not allow before the answer, so a run that
+  // asked and then wrote is improvised rather than asked.
+  it('reads a question followed by a write as improvised', () => {
+    const events = [
+      {
+        seq: 0,
+        kind: 'text',
+        path: null,
+        command: null,
+        text: 'Do you want me to start /deep:review on the parser?',
+      },
+      { seq: 1, kind: 'write', path: 'src/parse.mjs', command: null, text: null },
+    ];
+
+    expect(scorer.workflowPath(events, {
+      command: '/deep:review',
+      owner: 'system-deep-loop',
+      wrote: true,
+      policy: 'ask',
+    })).toBe('improvised');
+  });
+
+  // A scratch write outside the named checkout sets no boundary, so the question that
+  // names the command is still the ask policy's own step.
+  it('returns asked for an ask row whose only write is outside the checkout', () => {
+    const events = [
+      { seq: 0, kind: 'write', path: '/Users/someone/notes.txt', command: null, text: null },
+      {
+        seq: 1,
+        kind: 'text',
+        path: null,
+        command: null,
+        text: 'Do you want me to start /deep:review on the parser?',
+      },
+    ];
+
+    expect(scorer.workflowPath(events, {
+      command: '/deep:review',
+      owner: 'system-deep-loop',
+      wrote: false,
+      policy: 'ask',
+      checkoutDir: '/repo',
+    })).toBe('asked');
+  });
+
+  // The command document read before the question is the command load, so that path
+  // wins over the asked step the question records.
+  it('reads a command document read before the question as the command path', () => {
+    const events = [
+      { seq: 0, kind: 'read', path: '.skilled/commands/deep/review.md', command: null, text: null },
+      {
+        seq: 1,
+        kind: 'text',
+        path: null,
+        command: null,
+        text: 'Do you want me to start /deep:review on the parser?',
+      },
+    ];
+
+    expect(scorer.workflowPath(events, {
+      command: '/deep:review',
+      owner: 'system-deep-loop',
+      wrote: false,
+      policy: 'ask',
+    })).toBe('command');
+  });
+
+  // A scratch write outside the run's checkout changes nothing the workflow owns, so it
+  // sets no boundary and leaves a run that wrote nothing else with no path to judge.
+  it('does not call a run improvised for a write outside the checkout alone', () => {
+    const events = [
+      { seq: 0, kind: 'write', path: '/private/var/folders/ab/T/draft.md', command: null, text: null },
+    ];
+
+    expect(scorer.workflowPath(events, {
+      command: '/create:readme',
+      owner: 'sk-doc',
+      wrote: false,
+      checkoutDir: '/repo',
+    })).toBe('none');
+  });
+
+  // An absolute path inside the checkout is a write the run's own repository keeps.
+  it('reads an absolute path inside the checkout as a write', () => {
+    const events = [
+      { seq: 0, kind: 'write', path: '/repo/README.md', command: null, text: null },
+    ];
+
+    expect(scorer.workflowPath(events, {
+      command: '/create:readme',
+      owner: 'sk-doc',
+      wrote: false,
+      checkoutDir: '/repo',
+    })).toBe('improvised');
+  });
+
+  // A line that names no checkout takes the temp-folder rule, so a home path is still
+  // a write the run made.
+  it('keeps a home path as a write when the line names no checkout', () => {
+    const events = [
+      { seq: 0, kind: 'write', path: '/Users/someone/notes.txt', command: null, text: null },
+    ];
+
+    expect(scorer.workflowPath(events, {
+      command: '/create:readme',
+      owner: 'sk-doc',
+      wrote: false,
+    })).toBe('improvised');
+  });
+
+  // A temp write outside the named checkout sets no boundary, so the owner document
+  // read after it is still the first thing the run's own repository sees.
+  it('does not read a temp-file write as the first write', () => {
+    const events = [
+      { seq: 0, kind: 'write', path: '/tmp/notes.txt', command: 'echo x > /tmp/notes.txt', text: null },
+      { seq: 1, kind: 'read', path: '.skilled/skills/sk-doc/SKILL.md', command: null, text: null },
+      { seq: 2, kind: 'write', path: 'README.md', command: null, text: null },
+    ];
+
+    expect(scorer.workflowPath(events, {
+      command: '/create:readme',
+      owner: 'sk-doc',
+      wrote: true,
+      checkoutDir: '/repo',
+    })).toBe('skill');
+  });
+
+  // A home scratch write outside the named checkout sets no boundary either, so the
+  // owner document read after it is still the first thing the run's own repository sees.
+  it('does not read a home scratch write outside the named checkout as the first write', () => {
+    const events = [
+      { seq: 0, kind: 'write', path: '/Users/someone/notes.txt', command: null, text: null },
+      { seq: 1, kind: 'read', path: '.skilled/skills/sk-doc/SKILL.md', command: null, text: null },
+      { seq: 2, kind: 'write', path: 'README.md', command: null, text: null },
+    ];
+
+    expect(scorer.workflowPath(events, {
+      command: '/create:readme',
+      owner: 'sk-doc',
+      wrote: true,
+      checkoutDir: '/repo',
+    })).toBe('skill');
+  });
+
+  // A line that names no checkout keeps the temp-folder fallback, so the same scratch
+  // write still sets no boundary for the owner load.
+  it('falls back to the temp folders when the line names no checkout', () => {
+    const events = [
+      { seq: 0, kind: 'write', path: '/tmp/notes.txt', command: 'echo x > /tmp/notes.txt', text: null },
+      { seq: 1, kind: 'read', path: '.skilled/skills/sk-doc/SKILL.md', command: null, text: null },
+      { seq: 2, kind: 'write', path: 'README.md', command: null, text: null },
+    ];
+
+    expect(scorer.workflowPath(events, {
+      command: '/create:readme',
+      owner: 'sk-doc',
+      wrote: true,
+    })).toBe('skill');
   });
 });

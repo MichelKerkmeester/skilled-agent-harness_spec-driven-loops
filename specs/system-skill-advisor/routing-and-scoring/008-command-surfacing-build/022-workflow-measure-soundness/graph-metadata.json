@@ -18,7 +18,8 @@
       "workflow measure soundness plan",
       "workflow measure soundness tasks",
       "workflow measure soundness acceptance criteria",
-      "workflow measure soundness goal"
+      "workflow measure soundness goal",
+      "workflow measure soundness implementation summary"
     ],
     "key_topics": [
       "workflow",
@@ -35,19 +36,28 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      "scratch/workflow-delta.txt",
+      "scratch/workflow-after-pre.json",
+      "scratch/workflow-after-final.json",
+      "scratch/workflow-before-pre.json",
+      "scratch/workflow-before-final.json",
+      "scratch/repro-before.txt",
       ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
       ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
-      ".skilled/skills/sk-doc/SKILL.md",
-      ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
-      ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
-      ".skilled/commands/deep/review.md"
+      ".skilled/skills/sk-doc/SKILL.md"
     ],
     "entities": [
       {
@@ -81,15 +91,81 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "review.md",
+        "name": "score-command-transcripts.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-transcript-score.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-transcript-score.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "command-offer.mjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "command-offer.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-skill-advisor/runtime/tests/command-offer.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/commands/deep/review.md",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-delta.txt",
+        "kind": "file",
+        "path": "scratch/workflow-delta.txt",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-after-pre.json",
+        "kind": "config",
+        "path": "scratch/workflow-after-pre.json",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-after-final.json",
+        "kind": "config",
+        "path": "scratch/workflow-after-final.json",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-before-pre.json",
+        "kind": "config",
+        "path": "scratch/workflow-before-pre.json",
+        "source": "derived"
+      },
+      {
+        "name": "workflow-before-final.json",
+        "kind": "config",
+        "path": "scratch/workflow-before-final.json",
+        "source": "derived"
+      },
+      {
+        "name": "repro-before.txt",
+        "kind": "file",
+        "path": "scratch/repro-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-readme/SKILL.md",
         "source": "derived"
       },
       {
@@ -127,77 +203,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Additive",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The classifier matches a load only on a read tool or a skill tool, so a model that runs `cat` on the skill's entry document, or reads the command through `.pi/prompts/`, is counted as loading nothing",
     "created_at": "2026-11-14T06:10:06Z",
-    "last_save_at": "2026-11-14T08:28:57.615Z",
+    "last_save_at": "2026-11-14T12:07:06.838Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,14 +215,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5a66b3890423896ea986d79043076a4f914f8a55d0850be948c5f57744cf3794",
+    "source_fingerprint": "sha256:410bc693d9d8101897bfd29423d22ef877e871f28b12a338e0bc17985dd85a98",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2a07fee1b75574f0d3c5676455093ff8844cf5152c92064a4ac4ce4105ff25af",
+      "spec.md": "aea4f2f5c6790e276f678693f5f05027ca55247ae4725b5d76e33afa5034b5ea",
       "plan.md": "d9dbb4f1474408c8225a1184b2d611b06944d4483581b3b682ec9fabee7f2c28",
-      "tasks.md": "a0dd07dfdf7191c24ac6adc4ca629af476b15162e83fb6ffb84d862e030681ad"
+      "tasks.md": "dac4e63d43de7a207e3c6815ba62b2be690ab3901ef0f75118476629f78698ae",
+      "implementation-summary.md": "7c96e8bf2f84e5c36517723c6af2aa00dc2081866bec940cb65be0c529ea1d1d"
     },
     "last_active_at": null
   }

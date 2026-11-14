@@ -1,0 +1,26 @@
+codex lines: 24
+custom tool call name:exec: 58
+custom tool calls: 58
+custom tool calls with an input string: 58
+exec bodies the planned helper reads no command from: 8
+no-command body shape: const cmds = [ ["", ""], ["", ""], ["", ""] ]; const rs = await Promise.all(cmds.map(async ([k,cmd]) => [k,await tools.exec_command({cmd,workdir:"",yield_time_m: 1
+no-command body shape: const names = ALL_TOOLS.filter(x => /communication|handoff|skill advisor/i.test(x.name+""+x.description)); text(names); : 1
+no-command body shape: const r = await tools.mcp__codex_apps__github_fetch({url:""}); text(r); : 1
+no-command body shape: const r = await tools.web__run({open:[{ref_id:""}],response_length:""}); text(r); : 1
+no-command body shape: const r = await tools.web__run({search_query:[ {q:""}, {q:""}, {q:""} ],response_length:""}); text(r); : 1
+no-command body shape: const r = await tools.web__run({search_query:[ {q:""}, {q:""}, {q:""}, {q:""} ],response_length:""}); text(r); : 2
+no-command body shape: text(ALL_TOOLS.filter(x=>["",""].includes(x.name))); : 1
+of those, read before the first write: 4
+owned rows: 16
+path now:none: 16
+path with the body read:command: 2
+path with the body read:none: 12
+path with the body read:skill: 2
+sessions read: 24
+sessions whose wrote fact changes: 0
+sessions with a shell read of a skill or command document: 4
+shell events: 58
+shell events with no command text: 58
+started now: 0
+started with the body read: 0
+tools called inside exec bodies: exec_command=65, mcp__codex_apps__github_fetch=1, web__run=4

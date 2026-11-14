@@ -507,19 +507,55 @@ function tailMatches(value, tails) {
 }
 
 // The document a command routes to sits at `<commands>/<namespace>/<name>.md`, and
-// a mirror that flattens the folder joins its two parts with a dash.
+// a mirror that flattens the folder joins its two parts with a dash. Two runtimes
+// mirror a command as a prompt file whose name joins the namespace and the name
+// with a dash.
 function documentTails({ namespace, name }) {
-  if (namespace === null) return [`/commands/${name}.md`];
-  return [`/commands/${namespace}/${name}.md`, `/commands/${namespace}-${name}.md`];
+  if (namespace === null) return [`/commands/${name}.md`, `/prompts/${name}.md`];
+  return [
+    `/commands/${namespace}/${name}.md`,
+    `/commands/${namespace}-${name}.md`,
+    `/prompts/${namespace}-${name}.md`,
+  ];
 }
 
-// A confirm workflow sits beside the command's other assets and takes the command
-// name with a `-confirm` suffix, which is the file a confirming run loads before
-// its first write.
+// A command can be renamed while the confirm workflow it ships keeps the asset name
+// it had before. A name-only asset also has to be named here when its command sits in
+// a namespace folder but its workflow carries no namespace prefix, as the design
+// commands' workflows do.
+const CONFIRM_STEMS = Object.freeze({
+  'create:sk-skill': 'create-skill',
+  'design:chart': 'chart',
+  'design:diagram': 'diagram',
+  'design:extract': 'extract',
+});
+
+/**
+ * Name the stem a command's confirm workflow uses.
+ *
+ * The default joins the namespace and the name, and a renamed command maps to the
+ * stem its asset kept.
+ *
+ * @param {string} command - A command with or without its leading slash and mode
+ *   suffix.
+ * @returns {string|null} The asset stem, or null when the text names no command.
+ */
+export function confirmStem(command) {
+  const parts = commandParts(command);
+  if (parts === null) return null;
+  const key = parts.namespace === null ? parts.name : `${parts.namespace}:${parts.name}`;
+  const defaultStem = parts.namespace === null ? parts.name : `${parts.namespace}-${parts.name}`;
+  return CONFIRM_STEMS[key] ?? defaultStem;
+}
+
+// A confirm workflow sits beside the command's other assets and takes that stem with
+// a `-confirm` suffix, which is the file a confirming run loads before its first
+// write.
 function confirmTails({ namespace, name }) {
+  const stem = confirmStem(namespace === null ? name : `${namespace}:${name}`);
   const base = namespace === null
-    ? `/commands/assets/${name}-confirm`
-    : `/commands/${namespace}/assets/${namespace}-${name}-confirm`;
+    ? `/commands/assets/${stem}-confirm`
+    : `/commands/${namespace}/assets/${stem}-confirm`;
   return [`${base}.yaml`, `${base}.yml`];
 }
 
@@ -534,24 +570,89 @@ function positionOf(event, index) {
   return typeof event.seq === 'number' ? event.seq : index;
 }
 
-function firstWritePosition(events) {
+// A scratch note outside the repository changes nothing a workflow owns, so the
+// boundary write is the first write the run's own checkout would keep. A relative path
+// lands in the checkout by construction, and macOS names its temp trees
+// through a `/private` prefix as well as without it, so both spellings of one folder
+// compare equal. A line that names no checkout falls back to the folders a scratch
+// note lives in.
+export function insideCheckout(path, checkoutDir) {
+  const text = typeof path === 'string' ? path.replace(/\\/g, '/') : '';
+  if (!text.startsWith('/') && !text.startsWith('~')) return true;
+
+  const stripPrivate = (value) => value.replace(/^\/private(?=\/)/, '');
+  if (typeof checkoutDir === 'string' && checkoutDir !== '') {
+    if (text.startsWith('~')) return false;
+    const folder = stripPrivate(checkoutDir.replace(/\\/g, '/')).replace(/\/+$/, '');
+    return stripPrivate(text).startsWith(`${folder}/`);
+  }
+
+  return !(/^\/tmp\//.test(text)
+    || /^\/private\/tmp\//.test(text)
+    || /^\/var\/folders\//.test(text)
+    || /^\/private\/var\/folders\//.test(text)
+    || text.startsWith('~'));
+}
+
+function firstWritePosition(events, checkoutDir) {
   for (let index = 0; index < events.length; index += 1) {
     const event = events[index];
-    if (event && event.kind === 'write') return positionOf(event, index);
+    if (event && event.kind === 'write') {
+      if (typeof event.path === 'string' && !insideCheckout(event.path, checkoutDir)) continue;
+      return positionOf(event, index);
+    }
   }
   return null;
+}
+
+// Some runtimes read a document through the shell rather than a read tool, and only a
+// command that reads a file names one, so a path that is merely printed or listed is
+// not a load. The readers below take the files they open as arguments, while a word
+// after a redirect operator names a file the command writes instead.
+const SHELL_READERS = Object.freeze(['cat', 'head', 'tail', 'sed', 'less', 'more', 'bat', 'nl', 'awk', 'rg', 'grep']);
+
+function shellReadTargets(command) {
+  const text = typeof command === 'string' ? command : '';
+  const parts = text.split(/;|&&|\|\||\||\r?\n/);
+  const targets = [];
+
+  for (const part of parts) {
+    const words = part.trim().split(/\s+/).filter(Boolean);
+    let start = 0;
+    while (start < words.length && /^[A-Za-z_][A-Za-z0-9_]*=/.test(words[start])) start += 1;
+    if (start >= words.length || !SHELL_READERS.includes(words[start])) continue;
+    // Sed with an in-place flag edits the file rather than reading it, so it writes.
+    if (words[start] === 'sed' && words.slice(start + 1).some((word) => word === '--in-place' || word.startsWith('--in-place=') || /^-[A-Za-z]*i/.test(word))) continue;
+
+    let redirect = false;
+    for (const word of words.slice(start + 1)) {
+      if (word.startsWith('>')) {
+        redirect = true;
+        continue;
+      }
+      if (redirect) continue;
+
+      const first = word[0];
+      const unquoted = word.length > 1 && (first === '"' || first === "'") && word[word.length - 1] === first
+        ? word.slice(1, -1)
+        : word;
+      if (/\.(?:md|ya?ml)$/.test(unquoted)) targets.push(unquoted);
+    }
+  }
+
+  return targets;
 }
 
 /**
  * Decide whether a started run followed its command before it wrote.
  *
- * A run follows a command when it reads the command's document, or loads that
- * command through a skill tool, before its first write. A command that ships a
- * confirm workflow is followed only when a read of that workflow also lands
- * before the first write, because a setup the model skipped and then went looking
- * for after writing is the deviation the order exists to show. Whether the
- * command ships one is not read from disk: the answer describes the transcript,
- * so a workflow this checkout happens to hold cannot fail a clean run.
+ * A run follows a command when it reads the command's document, loads that command
+ * through a skill tool, or reads the document through the shell, before its first
+ * write. A command that ships a confirm workflow is followed only when a read of that
+ * workflow also lands before the first write, because a setup the model skipped and
+ * then went looking for after writing is the deviation the order exists to show.
+ * Whether the command ships one is not read from disk: the answer describes the
+ * transcript, so a workflow this checkout happens to hold cannot fail a clean run.
  *
  * A run that wrote nothing has no boundary to cross, so its document read alone
  * decides.
@@ -560,26 +661,30 @@ function firstWritePosition(events) {
  *   Events from `normalize`.
  * @param {string} command - The command a `COMMAND:` line named or the row's
  *   expected command, with or without its leading slash and its mode suffix.
+ * @param {string} [checkoutDir] - The folder the run's checkout names, so a scratch
+ *   note outside it sets no boundary.
  * @returns {boolean} True when the document read or skill load came before the
  *   first write and no confirm workflow read came at or after it.
  */
-export function followedBeforeWrite(events, command) {
+export function followedBeforeWrite(events, command, checkoutDir) {
   const wanted = commandParts(command);
   if (wanted === null) return false;
 
   const stream = Array.isArray(events) ? events : [];
   const documents = documentTails(wanted);
   const confirms = confirmTails(wanted);
-  const boundary = firstWritePosition(stream);
+  const boundary = firstWritePosition(stream, checkoutDir);
 
   let followDocument = false;
   let confirmLate = false;
 
   for (let index = 0; index < stream.length; index += 1) {
     const event = stream[index];
-    if (!event || (event.kind !== 'read' && event.kind !== 'skill')) continue;
+    if (!event || (event.kind !== 'read' && event.kind !== 'skill' && event.kind !== 'shell')) continue;
 
-    const named = [event.path, event.command].filter((value) => typeof value === 'string' && value.trim());
+    const named = event.kind === 'shell'
+      ? shellReadTargets(event.command)
+      : [event.path, event.command].filter((value) => typeof value === 'string' && value.trim());
     const before = boundary === null || positionOf(event, index) < boundary;
 
     if (before) {
@@ -603,19 +708,27 @@ function escapePattern(text) {
   return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+// A mode can keep its workflow in the packet folder of another mode of its hub.
+const MODE_FOLDERS = Object.freeze({ 'sk-create-skill-parent': 'sk-create-skill' });
+
 // A skill load has three shapes in a transcript: a read of the skill's own entry
-// document, a skill tool naming it, and a hub dispatch naming it. The entry
-// document may sit one mode folder below the skill, so the segment that names the
-// owner is the one directly under `skills`. A load after the first write is the
-// deviation the order exists to show, and a run that wrote nothing has no
-// boundary for its load to cross. A hub dispatch that saves its route to a file is
-// that first write itself, and the route is resolved before the file is written, so
-// such a call still counts when it is the first write.
-function ownerLoadedBeforeWrite(events, owner) {
+// document, whether through a read tool or the shell, a skill tool naming it, and a
+// hub dispatch naming it. The entry document may sit one mode folder below the skill,
+// so the segment that names the owner is the one directly under `skills`. A mode
+// folder is the mode id alone or the hub name and the mode id joined with a dash, so
+// the folder matches when it equals the mode or ends with a dash and the mode. A
+// document under another mode of the same hub is a different workflow, so it is named
+// apart from the owner's own load. A load after the first write is the deviation the
+// order exists to show, and a run that wrote nothing has no boundary for its load to
+// cross. A hub dispatch that saves its route to a file is that first write itself, and
+// the route is resolved before the file is written, so such a call still counts when
+// it is the first write.
+function ownerLoadedBeforeWrite(events, owner, mode, checkoutDir) {
   const wanted = escapePattern(owner);
-  const documents = new RegExp(`(?:^|/)skills/${wanted}/(?:.*/)?(?:SKILL|ROUTER)\\.md$`);
+  const documents = new RegExp(`(?:^|/)skills/${wanted}/(?:(.+)/)?(?:SKILL|ROUTER)\\.md$`);
   const hub = new RegExp(`(?:^|\\s)--hub\\s+${wanted}(?![\\w-])`);
-  const boundary = firstWritePosition(events);
+  const boundary = firstWritePosition(events, checkoutDir);
+  let otherMode = false;
 
   for (let index = 0; index < events.length; index += 1) {
     const event = events[index];
@@ -624,21 +737,49 @@ function ownerLoadedBeforeWrite(events, owner) {
     const atBoundaryWrite = event.kind === 'write' && position === boundary;
     if (boundary !== null && position >= boundary && !atBoundaryWrite) continue;
 
+    const command = typeof event.command === 'string' ? event.command : '';
     const path = typeof event.path === 'string' ? event.path.replace(/\\/g, '/') : '';
-    if (!atBoundaryWrite && (event.kind === 'read' || event.kind === 'skill') && path !== '' && documents.test(path)) {
-      return true;
+    const targets = [];
+    if (!atBoundaryWrite && (event.kind === 'read' || event.kind === 'skill') && path !== '') targets.push(path);
+    if (!atBoundaryWrite && event.kind === 'shell') targets.push(...shellReadTargets(command));
+
+    for (const target of targets) {
+      const match = documents.exec(target);
+      if (match === null) continue;
+      const folder = match[1] === undefined ? null : match[1].split('/')[0];
+      if (folder === null || typeof mode !== 'string' || folder === mode || folder.endsWith(`-${mode}`) || folder === MODE_FOLDERS[mode]) {
+        return 'skill';
+      }
+      otherMode = true;
     }
 
-    if (!atBoundaryWrite && event.kind === 'skill' && event.command === owner) return true;
+    if (!atBoundaryWrite && event.kind === 'skill' && event.command === owner) return 'skill';
 
-    const command = typeof event.command === 'string' ? event.command : '';
     if ((event.kind === 'shell' || event.kind === 'write')
       && COMPILED_ROUTE.test(command) && hub.test(command)) {
-      return true;
+      return 'skill';
     }
   }
 
-  return false;
+  return otherMode ? 'otherMode' : null;
+}
+
+// The ask policy tells the reader to offer the command in one question and wait, so
+// asking is that policy's own step. A run offered the command on a `COMMAND:` line,
+// or ended on a question that names it.
+function askedAndWaited(events, command) {
+  if (offerSeenIn(events, command).commandState === 'offered') return true;
+
+  const stream = Array.isArray(events) ? events : [];
+  const lastText = [...stream].reverse().find(
+    (event) => event && event.kind === 'text' && typeof event.text === 'string',
+  );
+  if (lastText === undefined || !lastText.text.includes('?')) return false;
+
+  const wanted = commandParts(command);
+  if (wanted === null) return false;
+  const tokens = lastText.text.match(/\/[A-Za-z0-9][\w.:-]*/g) ?? [];
+  return tokens.some((token) => namesCommand(token.replace(/[.:]+$/, ''), wanted));
 }
 
 /**
@@ -647,29 +788,43 @@ function ownerLoadedBeforeWrite(events, owner) {
  * The measure asks whether a run opened a workflow before it acted, not whether it
  * followed each step, so one load decides the path. The command the row expected
  * wins over the owning skill because a run that took the command loaded the
- * workflow that command names. A run that wrote without loading either is
- * improvised, and a run that only talked has no path to judge.
+ * workflow that command names. A load of another mode under that skill is a
+ * different workflow, so it is named apart rather than as the skill's own load. A
+ * run that wrote without loading either is improvised, and a run that only talked
+ * has no path to judge.
  *
  * @param {Array<{seq: number, kind: string, path: string|null, command: string|null}>} events
  *   Events from `normalize`.
- * @param {{command?: string|null, owner?: string|null, wrote?: boolean}} facts
- *   The row's expected command, its owning skill and whether the run wrote.
- * @returns {'command'|'skill'|'improvised'|'none'|'noOwner'} Which workflow the
- *   run loaded, `improvised` when it loaded none and wrote, `none` when it acted
- *   on nothing and `noOwner` when the row maps to no skill.
+ * @param {{command?: string|null, owner?: string|null, wrote?: boolean, mode?: string|null, policy?: string|null, checkoutDir?: string|null}} facts
+ *   The row's expected command, its owning skill, whether the run wrote, the mode
+ *   its command names, the policy its row carries and the folder its checkout names.
+ * @returns {'command'|'skill'|'otherMode'|'asked'|'improvised'|'none'|'noOwner'} Which
+ *   workflow the run loaded, `otherMode` when it loaded another mode of the owning
+ *   hub, `asked` when an ask row offered its command and waited, `improvised` when
+ *   it loaded none and wrote, `none` when it acted on nothing and `noOwner` when the
+ *   row maps to no skill.
  */
-export function workflowPath(events, { command, owner, wrote }) {
+export function workflowPath(events, { command, owner, wrote, mode, policy, checkoutDir }) {
   if (typeof owner !== 'string') return 'noOwner';
 
   const stream = Array.isArray(events) ? events : [];
   const wanted = commandParts(command);
   if (typeof command === 'string' && wanted !== null
-    && (followedBeforeWrite(stream, command) || hostExpanded(stream, wanted))) {
+    && (followedBeforeWrite(stream, command, checkoutDir) || hostExpanded(stream, wanted))) {
     return 'command';
   }
 
-  if (ownerLoadedBeforeWrite(stream, owner)) return 'skill';
-  return wrote === true || firstWritePosition(stream) !== null ? 'improvised' : 'none';
+  const ownerLoad = ownerLoadedBeforeWrite(stream, owner, mode, checkoutDir);
+  if (ownerLoad !== null) return ownerLoad;
+
+  // The ask policy tells the reader to offer the command in one question and wait, so
+  // asking is that policy's own step rather than a path the run improvised.
+  if (policy === ASK_POLICY && wrote !== true && firstWritePosition(stream, checkoutDir) === null
+    && askedAndWaited(stream, command)) {
+    return 'asked';
+  }
+
+  return wrote === true || firstWritePosition(stream, checkoutDir) !== null ? 'improvised' : 'none';
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -1035,10 +1190,12 @@ function loadRowLabels() {
 // target cannot change which owner the command resolves to. A command that parses
 // to nothing is left out rather than keyed under an empty string, and a read or
 // parse error is allowed to end the run because a summary without the owner table
-// would report every run as unowned.
+// would report every run as unowned. A command's mode is kept beside its owner, so
+// a load of another mode under the same hub can be told apart.
 function loadOwners() {
   const table = JSON.parse(readFileSync(BRIDGES_PATH, 'utf8'));
   const byCommand = new Map();
+  const modeByCommand = new Map();
   const skills = new Set();
 
   for (const entry of table.entries) {
@@ -1048,9 +1205,10 @@ function loadOwners() {
     if (parts === null) continue;
     const key = parts.namespace === null ? parts.name : `${parts.namespace}:${parts.name}`;
     byCommand.set(key, entry.skillId);
+    if (typeof entry.ownerMode === 'string' && entry.ownerMode !== '') modeByCommand.set(key, entry.ownerMode);
   }
 
-  return { byCommand, skills };
+  return { byCommand, modeByCommand, skills };
 }
 
 // A row names the command it expects, and some rows name the owning skill at the
@@ -1065,6 +1223,17 @@ function ownerOf(label, owners) {
   }
 
   return owners.skills.has(label.expected_top) ? label.expected_top : null;
+}
+
+// A row that names no command has no mode, so any document of its owner still
+// counts as a load.
+function modeOf(label, owners) {
+  const parts = commandParts(label.expected_command);
+  if (parts === null) return null;
+
+  const key = parts.namespace === null ? parts.name : `${parts.namespace}:${parts.name}`;
+  const mode = owners.modeByCommand.get(key);
+  return typeof mode === 'string' ? mode : null;
 }
 
 // The started-command set is fixed rather than drawn from the corpus, so the
@@ -1337,7 +1506,10 @@ async function scoreRun(line, labels, owners) {
     workflowPath: workflowPath(events, {
       command: label.expected_command,
       owner: ownerOf(label, owners),
-      wrote: changedPathWrite || firstWritePosition(events) !== null,
+      mode: modeOf(label, owners),
+      policy: policyOf(label),
+      wrote: changedPathWrite || firstWritePosition(events, line.locator?.projectDir) !== null,
+      checkoutDir: line.locator?.projectDir,
     }),
     // A run that wrote nothing can still have worked the task through reads, shell
     // steps or another skill, so that fact is kept apart from a run that only replied.
@@ -1395,7 +1567,7 @@ function newTally() {
     repeatedCommandLines: 0,
     loops: 0,
     loopsWithoutInit: 0,
-    workflow: { command: 0, skill: 0, improvised: 0, none: 0, noneActed: 0, noOwner: 0, unscoredOnly: 0 },
+    workflow: { command: 0, skill: 0, asked: 0, askedActed: 0, otherMode: 0, improvised: 0, none: 0, noneActed: 0, noOwner: 0, unscoredOnly: 0 },
     byPolicy: Object.fromEntries(POLICY_KEYS.map((key) => [key, newPolicyTally()])),
   };
 }
@@ -1432,6 +1604,9 @@ function tallyBlock(tally) {
     workflow: {
       command: tally.workflow.command,
       skill: tally.workflow.skill,
+      asked: tally.workflow.asked,
+      askedActed: tally.workflow.askedActed,
+      otherMode: tally.workflow.otherMode,
       improvised: tally.workflow.improvised,
       none: tally.workflow.none,
       noneActed: tally.workflow.noneActed,
@@ -1442,7 +1617,11 @@ function tallyBlock(tally) {
       // leave the count the way it leaves the share.
       loadRate: rate(
         tally.workflow.command + tally.workflow.skill,
-        tally.workflow.command + tally.workflow.skill + tally.workflow.improvised + tally.workflow.none,
+        tally.workflow.command + tally.workflow.skill + tally.workflow.asked + tally.workflow.otherMode + tally.workflow.improvised + tally.workflow.none,
+      ),
+      followedRate: rate(
+        tally.workflow.command + tally.workflow.skill + tally.workflow.asked,
+        tally.workflow.command + tally.workflow.skill + tally.workflow.asked + tally.workflow.otherMode + tally.workflow.improvised + tally.workflow.none,
       ),
       share: rate(
         tally.workflow.command + tally.workflow.skill,
@@ -1461,6 +1640,9 @@ function addScored(tally, result) {
   // policy still loaded a workflow or improvised one.
   tally.workflow[result.workflowPath] += 1;
   if (result.workflowPath === 'none' && result.acted) tally.workflow.noneActed += 1;
+  // An ask row that ran steps on the task and then asked did more than the one step
+  // the ask policy names, so it is counted apart from a row that only asked.
+  if (result.workflowPath === 'asked' && result.acted) tally.workflow.askedActed += 1;
   if (result.capped) tally.capped += 1;
   // An offer is a fact about the head the reader saw, so it counts whatever the
   // row's policy and whether the turn hit its cap. A capped turn still shows that
@@ -1599,8 +1781,10 @@ function writeSummary(summary, json) {
         `    workflow: command ${block.workflow.command}, skill ${block.workflow.skill},`
           + ` improvised ${block.workflow.improvised}, none ${block.workflow.none},`
           + ` none acted ${block.workflow.noneActed},`
+          + ` asked ${block.workflow.asked}, asked acted ${block.workflow.askedActed}, other mode ${block.workflow.otherMode},`
           + ` no owner ${block.workflow.noOwner}, unscored ${block.workflow.unscored},`
-          + ` load rate ${block.workflow.loadRate}, share ${block.workflow.share}\n`,
+          + ` followed rate ${block.workflow.followedRate}, load rate ${block.workflow.loadRate},`
+          + ` share ${block.workflow.share}\n`,
       );
       for (const miss of block.unscoredRuns) {
         process.stdout.write(`    unscored ${miss.rowId}: ${miss.reason}\n`);

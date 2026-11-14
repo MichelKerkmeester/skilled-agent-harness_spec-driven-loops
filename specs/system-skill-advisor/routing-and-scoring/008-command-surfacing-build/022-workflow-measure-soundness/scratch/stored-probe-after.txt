@@ -1,0 +1,13 @@
+### probe-stored-runs final
+claude: askRowNoneNoWrite=4, askRows=4, owned=16, path:command=5, path:none=10, path:skill=1, skillHubDocOnly=1
+devin: askRowNoneNoWrite=1, askRows=4, modes:sk-create-agent|row:/create:agent=1, owned=16, path:command=14, path:none=1, path:skill=1, skillWithModeDoc=1
+dsh: askRows=3, improvisedFirstWriteOutsideRepo=1, improvisedNoChangedPath=1, modes:deep-research|row:/doctor:deep-loop=1, owned=15, path:command=12, path:improvised=1, path:none=1, path:skill=1, skillWithModeDoc=1, unreadable=1
+opencode: askRowNoneNoWrite=1, askRows=4, modes:sk-create-agent|row:/create:agent=1, modes:sk-create-goal|row:/create:goal=1, owned=16, path:command=9, path:none=2, path:skill=5, skillHubDocOnly=3, skillWithModeDoc=2
+pi: askRows=4, owned=16, path:command=9, path:none=4, path:skill=3, skillHubDocOnly=3
+### probe-stored-runs before
+claude: askRowNoneNoWrite=4, askRows=4, owned=16, path:command=4, path:none=11, path:skill=1, skillHubDocOnly=1
+codex: askRowNoneNoWrite=4, askRows=4, owned=16, path:none=16
+devin: askRowNoneNoWrite=1, askRows=4, modes:deep-ai-council|row:/deep:ai-council=1, modes:deep-research|row:/doctor:deep-loop=1, modes:sk-create-agent|row:/create:agent=2, modes:sk-create-benchmark|row:/create:benchmark=1, modes:sk-create-changelog|row:/create:changelog=1, modes:sk-create-diff|row:/create:diff=1, modes:sk-create-feature-catalog|row:/create:feature-catalog=1, owned=16, path:command=3, path:none=4, path:skill=9, skillHubDocOnly=1, skillWithModeDoc=8
+dsh: askRowNoneNoWrite=2, askRows=8, improvisedFirstWriteOutsideRepo=1, improvisedNoChangedPath=2, missedShellLoad=2, modes:deep-research|row:/doctor:deep-loop=1, modes:sk-create-feature-catalog|row:/create:feature-catalog=1, owned=32, path:command=17, path:improvised=2, path:none=7, path:skill=6, skillHubDocOnly=4, skillWithModeDoc=2
+opencode: askRowNoneNoWrite=3, askRows=4, missedShellLoad=1, modes:sk-create-diff|row:/create:diff=1, modes:sk-create-feature-catalog|row:/create:feature-catalog=1, owned=16, path:command=7, path:improvised=1, path:none=5, path:skill=3, skillHubDocOnly=1, skillWithModeDoc=2
+pi: askRows=4, improvisedFirstWriteOutsideRepo=3, improvisedNoChangedPath=2, owned=16, path:command=3, path:improvised=4, path:none=5, path:skill=4, skillHubDocOnly=4

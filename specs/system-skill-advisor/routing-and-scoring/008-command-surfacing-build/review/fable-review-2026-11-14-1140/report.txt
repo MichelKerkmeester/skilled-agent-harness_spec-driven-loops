@@ -1,0 +1,99 @@
+VERDICT: Not ready to close, but on course. Phases 020 and 021 fix what they claim, while the outcome numbers are still unsound: the phase 019 load rates in the goal log are stale and Codex shell steps are invisible to the scorer.
+
+Paths: `SA` = `.skilled/skills/system-skill-advisor`, `RA` = `SA/runtime/scripts/routing-accuracy`, `S` = `RA/score-command-transcripts.mjs`. `S` line numbers are from the working tree at about 11:45 and may shift. Probes ran through `node .skilled/bin/skill-advisor.cjs advisor_recommend` with `compiledRouteTopOnly:true` unless stated.
+
+MORNING FINDINGS
+- A-1 (share drops `none` runs): CLOSED for the load rate. `loadRate` is in `S` at HEAD (2 matches in `git show HEAD:S`) and keeps `none` in its denominator (`S:1574-1577`). Widening it for `asked` and `otherMode` is TRACKED in 022 T009.
+- A-2 (OpenCode head loses its command): CLOSED. OBSERVED: the plugin sends `compiledRouteTopOnly` (`.opencode/plugins/system-skill-advisor.js:858`) and the handler keeps the head command in every shape (`SA/runtime/handlers/advisor-recommend.ts:478`). "make a manual testing playbook for the login flow" in the default shape now returns `sk-doc` with `/create:manual-testing-playbook` (start).
+- A-3 (offer is a Claude replay): CLOSED for future runs by A-2 plus the header note (`RA/command-offer.mjs:12-19`). Stored runs cannot be fixed; the limit is to be stated in 022 T019. Every number that exists comes from stored runs.
+- A-4 (meaning match passes, hooks drop it): CLOSED. `SA/runtime/lib/scorer/fusion.ts:935`. OBSERVED: "document the new skill and create a feature catalog for it" now returns `sk-doc` 0.95 with no command row.
+- A-5 (app problems draw a doctor command): OPEN on two of four, declined by P006. OBSERVED:
+  - The env-variable and dockerfile prompts now return no recommendation (`fusion.ts:1171`).
+  - The weather-server MCP prompt still leads with `/doctor:mcp debug` (ask) above `mcp-code-mode` 0.89.
+  - "turn off the dark mode toggle" still carries `/doctor:helper` (run).
+  - 023's six sealed `app-problem` fit rows will count this class.
+- A-6 (hand-off ignores no-edit): CLOSED for no-edit (`fusion.ts:1216-1231`, called at `:1615`). OBSERVED: both morning prompts now return the skill alone. The `run` policy on add-only commands is OPEN by P007.
+- B-1 (outcome measured on 16 tuned rows): partly TRACKED in 023 (sealed reach, 48 fit rows, ranges, paired rows). Behaviour on untuned rows has no task and waits on the operator.
+- B-2 (asymmetric share, ask-and-wait earns nothing): TRACKED in 022 T007, T009 and T028. The `asked` path is already in the tree (`S:739-754`, `:794-797`) but not ticked.
+- B-3 (start offer on a question or small edit): CLOSED for questions and correction wording (`SA/runtime/lib/command-attach.ts:395`, `:472-482`). OBSERVED: "what does /create:readme do?" and "update the README typo in line 3" return `sk-doc` with no command. "correct the heading in the readme of the hooks folder" still gets `/create:readme` (start), the class P017 names.
+- B-4 (no outcome criterion): CLOSED. Criterion 6 in `goal.md` section 3 names the followed rate, range, sealed reach and fit.
+- P2s:
+  - A-7 CLOSED: `SA/runtime/lib/render.ts:264`; this session's own brief read `Also: /doctor:setup (run)`.
+  - A-8 and B-9 CLOSED for the four morning prompts (all re-probed, no command); other refusal forms remain, see finding 4.
+  - A-9, A-10, A-12 and B-7 are built in the tree, uncommitted (`S:526-531`, `:587-615`, `:695-733`).
+  - B-8 TRACKED in 022 T024 to T027.
+  - A-11 is partly fixed, see finding 6.
+  - B-5, B-6 and B-11 wait on the operator. "plan a new feature: rate limiting for the api" and "my skilled hooks are not showing up" still return nothing.
+
+NEW FINDINGS
+1. P1, `.skilled/hooks/shared/session-readers/codex.mjs:103-111` with `S:360`. Every Codex shell step reaches the scorer with no command text, so a Codex run can never show a load or a redirect write.
+   - Scenario: Codex calls its shell as a custom tool named `exec` whose body is JavaScript (`tools.exec_command({cmd:"..."})`). The reader parses `payload.arguments`, which is absent, and the scorer reads only a `command` key.
+   - OBSERVED: `jq` over one stored before-arm Codex session shows `name: exec` with empty argument keys. Across the 16 before-arm plain-tune Codex sessions, 4 hold a shell read of a skill or command document, while the summary scores Codex `0 of 16`.
+   - DERIVED: `noneActed` is 15 of 16 for Codex because gate lookups with a null command cannot be filtered (`S:1490-1499`).
+   - No task in 022 or 023 covers this. I did not check whether those four reads came before a write.
+2. P1, goal log row "Phase 019 workflow outcome measure, 2026-11-14" and row "Phase 019 closed". The closing load rates are stale now that the scorer sees shell reads and prompt mirrors.
+   - OBSERVED, working-tree scorer over the same logs. Before arm from `022/scratch/workflow-before-*.json` versus my rerun:
+
+     | Runtime | Before arm, logged | Before arm, now | Final arm, logged | Final arm, now |
+     |---|---|---|---|---|
+     | claude | 4 of 16 | 5 of 16 | 6 of 16 | 6 of 14 |
+     | pi | 3 of 16 | 7 of 16 | 5 of 16 | 12 of 16 |
+     | opencode | 9 of 16 | 10 of 16 | 7 of 16 | 12 of 14 |
+     | dsh | 10 of 16 | 12 of 16 | 12 of 15 | 13 of 15 |
+     | devin | 12 of 16 | 12 of 16 | 15 of 16 | 15 of 15 |
+
+   - The logged OpenCode drop from 9 to 7 reverses to a rise from 10 to 12.
+   - TRACKED by 022 T016 and T019, but the brief I was given still calls loadRate "the outcome number". The figures are provisional until T009, see finding 3.
+3. P2, `S:1535` and `:1574-1577`. Mid-build, the tally has no `asked` or `otherMode` key, so those runs fall out of the load-rate denominator.
+   - OBSERVED: the final-arm denominators above read 14, 15 and 14 where they were 16. T009 fixes it and T016's `cmp` guard would catch it; do not quote working-tree numbers before then.
+4. P2, `command-attach.ts:367-370`. Common refusal forms are not read as refusals. OBSERVED:
+   - "no need to run /doctor:setup, the hooks are fine" returns `/doctor:setup` (run).
+   - "stop using /create:changelog for this, write the changelog entry by hand" returns `/create:changelog` (ask).
+5. P2, `command-attach.ts:368` and `:378`. The leads `not … run` and `ran` withhold the command from real requests. OBSERVED, all three return no command:
+   - "I have not run /speckit:plan yet, please start it for the login feature"
+   - "I already ran /create:readme but the output was wrong, run it again for the hooks folder"
+   - "why not use /create:agent for this? go ahead and make a security reviewer agent"
+6. P2, `RA/command-offer.mjs:80` against `S:1381-1388`. `offeredAs` is recorded but the scorer never reads it, so a command on the partner side still counts as offered (022 `plan.md:86` says the summary reads the two old fields only).
+   - DERIVED: 023's `followedOffered` split inherits this.
+7. P2, `S:585-615`. The shell-read rule counts some non-reads and misses one real read.
+   - DERIVED: `rg` or `grep` over a `SKILL.md` counts as a load.
+   - DERIVED: `sed -i` on it counts, though it is a write.
+   - DERIVED: a heredoc body line starting with `more`, `less`, `head` or `tail` and naming the file counts.
+   - DERIVED: `cd <skill folder> && cat SKILL.md` is missed, because the relative path fails the pattern at `:697`.
+   - INFERRED that stored runs hold these; a split of T016's moved counts by reader verb would confirm it.
+8. P2, goal log row "Phase 020 small-edit gate, retry bound" against `command-attach.ts:339`. The log says five commands are gated (readme, catalog, playbook, repo-rule, benchmark); the code gates three.
+9. P2, `RA/command-routing-baseline.json` (P020). Rows sv-09, sv-11 and sv-12 still carry `expected_command`, so the recaptured baseline records a designed withhold as three misses (`reached_top3` 5 to 2).
+   - OBSERVED from the diff and `jq 'del(.prompt)'`. I could not confirm the rows are questions without reading the prompts.
+
+JUDGMENT CALLS
+- P020: AGREE with the recapture, but the three row labels should change to "no command" (finding 9).
+- P021: AGREE. The bar closes A-4; the cost is one sealed row (5 to 4 of 44), on the reach number that is already weakest.
+- P022: DISAGREE, mildly. OBSERVED: "quick question? is /speckit:resume safe to run twice" returns `/speckit:resume` (start). A `?` ends a sentence in any grammar; adding it to the sentence-start set is not tuning.
+- P023: AGREE. The three design stems match disk and the guard test reads disk.
+- P006 and P017 (decline the A-5 and B-3 residue): AGREE, only because 023's fit rows will count those classes. If a fit count comes back above zero, this needs the operator.
+- P013 (criterion 6 reworded): AGREE. It still forces the words "not shown" into the log, though it lets the packet close with the core need unproven.
+- Session /goal versus packet criteria, "named, not resolved": AGREE with naming it, but resolve it before closing. The stop hook checks seven criteria with no outcome line, so it can pass while criterion 6 is unmet.
+- loadRate added under D1 (T025): AGREE.
+- Small-edit gate inverted at the three-fix bound: AGREE with the call; the log misstates the result (finding 8).
+- "Row-0 route lookup, not reachable": AGREE. DERIVED: every row 0 in my 32 probes passed both bars.
+- 023 T005 and T017 amendment: AGREE. The `continue` above the bridge-agreement block keeps fit rows out of `metrics.agreement`.
+
+ALIGNMENT VERDICT
+The work has turned back toward the core need: the guards remove offers where none fits, the head is the same on both paths, and the measure now keeps every owned run and separates asking, wrong mode and improvising. The numbers, though, cannot yet bear the word "more often": they are 16 tuned rows with one run each, the arms differ by more than the brief, and the scorer change moved one runtime from 5 to 12 of 16. Phases 022 and 023 as planned will show sound delivery on untuned rows (reach, fit) and an honest range on tuned behaviour. They will not show whether the brief makes a model take a real workflow more often; 023's own spec says so, and that answer sits with the operator's decision on an untuned arm. That is honest, not drift, as long as the closing log says "outcome not shown" and not a tuned-row gain. Codex needs a readable shell shape before any Codex number is quoted.
+
+RULED OUT
+- A refusal swallowing a second command: "do not run /speckit:complete, run /speckit:plan for the rate limiter instead" returns `/speckit:plan` (start).
+- "do not run it, just tell me what /doctor:update would change" no longer carries a command.
+- Tool results counting as a delivered brief: every session reader emits `role: 'toolResult'`, so `RA/command-offer.mjs:162-166` covers all runtimes.
+- Lane O tests: `tests/command-offer.vitest.ts` reported 29 passed, 0 failed.
+- A typed, asked-for command under no-edit wording is kept (`fusion.ts:1224-1228`).
+- Companion repeating the head command: guarded at `render.ts:565-584`.
+
+NOT CHECKED
+- Rendered hook text. I ran the CLI, not the Claude hook or the OpenCode plugin, so head parity rests on the request shape, the handler line and one probe in both shapes.
+- `tests/command-transcript-score.vitest.ts`; I ran one test file only, and that file is mid-edit.
+- Typed recall 24 of 44, false offers 0 of 35, the full suite counts and the strict validation results. These are the packet's own claims and I did not rerun them.
+- Whether the Codex start rate (criterion 3) is affected by the same blind spot. A start-rate rerun after a reader fix would show it.
+- Per-run causes of the pi and OpenCode jumps. I did not open those sessions.
+- 023's fit rows and corpus prompts, which are sealed.
+- No plan file was written, because the read-only rule of this dispatch outranks the plan-mode file.

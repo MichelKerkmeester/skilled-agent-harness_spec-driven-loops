@@ -1,0 +1,17 @@
+shell cat of the owner entry document, no write: none
+shell cat of the command document, then a write: improvised
+read of the Pi prompt mirror, no write: none
+read of the Codex prompt mirror, no write: none
+read of another mode under the right hub, then a write: skill
+temp-file write, then the owner entry document, then a repository write: improvised
+ask row, the model asked and wrote nothing: none
+parseOffer on a head whose command belongs to the partner: {"offeredCommand":"/create:manual-testing-playbook","offeredPolicy":"start"}
+brief pattern matches the no-match fallback head: true
+brief pattern matches a tool result that quotes a head: true
+create-sk-skill-confirm.yaml exists: false
+create-skill-confirm.yaml exists: true
+claude: askRowNoneNoWrite=4, askRows=4, owned=16, path:command=5, path:none=10, path:skill=1, skillHubDocOnly=1
+devin: askRowNoneNoWrite=1, askRows=4, modes:sk-create-agent|row:/create:agent=1, owned=16, path:command=14, path:none=1, path:skill=1, skillWithModeDoc=1
+dsh: askRows=3, improvisedFirstWriteOutsideRepo=2, improvisedNoChangedPath=2, missedShellLoad=1, modes:deep-research|row:/doctor:deep-loop=1, owned=15, path:command=11, path:improvised=2, path:none=1, path:skill=1, skillWithModeDoc=1, unreadable=1
+opencode: askRowNoneNoWrite=2, askRows=4, improvisedFirstWriteOutsideRepo=3, improvisedNoChangedPath=1, missedShellLoad=6, modes:sk-create-agent|row:/create:agent=1, modes:sk-create-goal|row:/create:goal=1, owned=16, path:command=5, path:improvised=3, path:none=6, path:skill=2, skillWithModeDoc=2
+pi: askRowNoneNoWrite=3, askRows=4, improvisedFirstWriteOutsideRepo=1, missedPromptMirror=2, missedShellLoad=7, owned=16, path:command=5, path:improvised=1, path:none=10

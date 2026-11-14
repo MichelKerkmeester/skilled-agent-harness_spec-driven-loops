@@ -26,7 +26,9 @@
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity",
     "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/022-workflow-measure-soundness",
-    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence"
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/024-fable-review-remediation",
+    "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/025-release-notes-and-doc-sync"
   ],
   "manual": {
     "depends_on": [],
@@ -76,7 +78,8 @@
       "020-command-offer-fit-guards/goal.md",
       "021-brief-head-parity/goal.md",
       "022-workflow-measure-soundness/goal.md",
-      "023-untuned-outcome-evidence/goal.md"
+      "023-untuned-outcome-evidence/goal.md",
+      ".skilled/commands/design/chart.md"
     ],
     "entities": [
       {
@@ -113,6 +116,12 @@
         "name": "review-report.md",
         "kind": "doc",
         "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
+        "name": "chart.md",
+        "kind": "doc",
+        "path": ".skilled/commands/design/chart.md",
         "source": "derived"
       },
       {
@@ -176,8 +185,8 @@
         "source": "derived"
       },
       {
-        "name": "skills",
-        "kind": "key_phrase",
+        "name": "An Opus",
+        "kind": "proper_noun",
         "path": "goal.md",
         "source": "derived"
       },
@@ -208,7 +217,7 @@
     ],
     "causal_summary": "A user who chats without typing a command gets an improvised approach from the model, even where a slash command already owns a complete workflow for the task",
     "created_at": "2026-11-12T12:27:33Z",
-    "last_save_at": "2026-11-14T09:54:38.397Z",
+    "last_save_at": "2026-11-14T12:07:54.480Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,11 +225,11 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:c015dd15bf3d514f1ed8fa85f5a1b5d6ea691db3c35a7a23296c26a733461929",
+    "source_fingerprint": "sha256:06a2efd306fa878b864214c121fe73786ff10d46a330172fbb8594cec1f1c0cb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "76fb8da5a75fca78f07bd975082d3b724ce24d78ccde48b84bc93f4f9dbd641e",
-      "decision-record.md": "1afb75ba063cbd5d1c1f5c672d430907dfab55f931ed254d01855c90d866ce09"
+      "spec.md": "6f1e3053c9f10143724d6a2859a11cc47d0861a91db752c74987394f801465cc",
+      "decision-record.md": "8f0fc10a7780879e4d9396e05f7616f9e1ef55b3ab24bb69d7b7505ef3d7d4ec"
     },
     "last_active_child_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/018-holdout-row-retirement",
     "last_active_at": "2026-11-13T22:04:29.402Z"
