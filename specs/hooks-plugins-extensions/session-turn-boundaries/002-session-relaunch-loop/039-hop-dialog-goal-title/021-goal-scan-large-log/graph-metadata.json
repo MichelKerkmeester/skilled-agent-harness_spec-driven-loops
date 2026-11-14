@@ -18,7 +18,8 @@
       "goal scan large log plan",
       "goal scan large log tasks",
       "goal scan large log acceptance criteria",
-      "goal scan large log goal"
+      "goal scan large log goal",
+      "goal scan large log implementation summary"
     ],
     "key_topics": [
       "goal",
@@ -35,16 +36,22 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "implementation-summary.md",
       ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
       ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
-      ".skilled/hooks/session-relaunch/README.md"
+      ".skilled/hooks/session-relaunch/README.md",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      "scratch/relaunch-core.txt",
+      "scratch/final-suite.txt",
+      "scratch/baseline.txt"
     ],
     "entities": [
       {
@@ -78,6 +85,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "relaunch-core.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
@@ -93,6 +106,36 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.txt",
+        "kind": "file",
+        "path": "scratch/relaunch-core.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-suite.txt",
+        "kind": "file",
+        "path": "scratch/final-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
         "source": "derived"
       },
       {
@@ -154,47 +197,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Measured Behavior",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`latestGoalLogEntry` widens the tail from 256 KiB up to `GOALLOGMAXTAILBYTES`, which is 16 MB (`lib/relaunch-core.cjs:61`), and then returns `whole: false` when the capped read holds no goal entry (`:590`)",
     "created_at": "2026-11-14T16:13:53Z",
-    "last_save_at": "2026-11-14T16:40:44.177Z",
+    "last_save_at": "2026-11-14T17:12:25.622Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +209,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:0f8af9c4850bd5e59a011acc1e6498df890da1ce07acd0e803ea343595869375",
+    "source_fingerprint": "sha256:430609bf570431faa66d5c5fcf4a8f0602cf2e4aa4885b5713e5a2d5eab2797d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "2dbc8da9fa6909baf7b6c69f70f6e95e9909606b6ee0bd059d52202c5f1d3c82",
+      "spec.md": "0e296625d59c28ecab99ee2f2222cf0c962a0299a1aef4ce4cc85eceda13201c",
       "plan.md": "32f9bbcfabf36ff1fa7bb6c5e832a8ca88644b027741dc0759e3183233caf19c",
-      "tasks.md": "884a45a06e0bc8a67db2ea502e794e46649bdd98a48c7e059c94557d2e63e21d"
+      "tasks.md": "a4ca70255d43aa38b24456a6c272d6f0a4ae1d4003c656adde88cb0f53656b0e",
+      "implementation-summary.md": "95d354b395f423d321c2dce7014c4302da59468c0256014dc93acb330de415af"
     },
     "last_active_at": null
   }
