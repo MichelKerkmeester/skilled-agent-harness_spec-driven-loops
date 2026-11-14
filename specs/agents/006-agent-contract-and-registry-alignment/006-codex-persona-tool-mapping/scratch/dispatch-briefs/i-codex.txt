@@ -1,0 +1,7 @@
+Add one requirement to the Codex dispatch rules: a tool-mapping line above an inlined agent
+persona. The personas name Claude Code tools and a Codex child has only its shell, so a
+read-only child once read nothing and still exited 0. Also record that failure among the
+dispatch gotchas, and raise the packet version by hand.
+
+This file has no twin; ignore the twin instructions in RUN CONTEXT. In this file the
+frontmatter `version` line IS one of the changes below, so apply it.

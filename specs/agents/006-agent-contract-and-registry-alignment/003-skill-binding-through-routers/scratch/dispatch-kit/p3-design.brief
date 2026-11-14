@@ -1,0 +1,36 @@
+Make the design agent reach the frontend visual references through the sk-code skill's entry
+file instead of citing four files inside the `sk-code-frontend` packet. A renamed reference
+file then no longer breaks this agent.
+
+Files (exactly two, same change in each):
+1. .skilled/agents/design.md
+2. .claude/agents/design.md
+
+Change A. Under `### Step 2a: The decide path`. The line that starts with
+`1. **Load the scales.**` is replaced, whole line, with:
+1. **Load the scales.** Read the sk-code `SKILL.md`, wherever the runtime installed the sk-code skill (in this repository: `.skilled/skills/sk-code/SKILL.md`), and follow its route to the frontend surface, `sk-code-frontend`. From that packet's own `SKILL.md`, load the visual values reference — the value scales, colour ramps, elevation, tokens and hard rules.
+
+Change B. Same list. The line that starts with `3. **Load only what the intent scores for.**`
+is replaced, whole line, with:
+3. **Load only what the intent scores for.** From the same packet, the visual hierarchy reference for the build procedure, the symptom-to-fix tables, the hierarchy method, UX laws and the review pass, and the motion and interaction reference for motion, inputs, touch, focus, performance and feedback.
+
+Change C. In the `## 2. CAPABILITY SCAN` table, four rows have a second cell that starts with
+`sk-code/sk-code-frontend/`. Replace each of those four rows, whole line, with these four lines
+in the same order:
+| Value scales, palettes, elevation, tokens, hard rules | The visual values reference in `sk-code-frontend`, reached through `.skilled/skills/sk-code/SKILL.md` | Every decide request |
+| Build order, symptom-to-fix, hierarchy, UX laws, review pass | The visual hierarchy reference in `sk-code-frontend`, same route | Something new, a vague complaint, or a review |
+| Motion, inputs, focus, touch, performance, feedback | The motion and interaction reference in `sk-code-frontend`, same route | Any animation or behavior decision |
+| Contrast-verified starter tokens | The starter token file in `sk-code-frontend`, same route | A project with no token layer |
+
+Change D. Under `## 8. RELATED RESOURCES`, the first two bullets (the one that starts with
+`- `.skilled/skills/sk-code/sk-code-frontend/references/web-visual-values.md`` and the one that
+starts with `- `.skilled/skills/sk-code/sk-code-frontend/assets/tokens.css``) are replaced by
+this single bullet:
+- `.skilled/skills/sk-code/SKILL.md` — the entry file for the decide path. Its route to `sk-code-frontend` names the three visual references and the starter token file.
+
+Every other mention of `sk-code-frontend` stays as it is.
+
+Verification (run all, paste the output in the handback):
+  rg -o 'sk-code/sk-code-frontend/[a-z/.-]+' .skilled/agents/design.md .claude/agents/design.md     # expect: no output
+  rg -c 'sk-code/SKILL.md' .skilled/agents/design.md .claude/agents/design.md                       # expect: 3 for each file
+  rg -c 'same route' .skilled/agents/design.md .claude/agents/design.md                             # expect: 3 for each file

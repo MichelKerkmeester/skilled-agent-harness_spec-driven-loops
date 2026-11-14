@@ -9,6 +9,7 @@ on:
       - '.codex/agents/**'
       - '.opencode/bin/check-agent-mirror-sync.cjs'
       - '.skilled/bin/check-agent-mirror-sync.cjs'
+      - '.skilled/bin/sync-agent-roster.cjs'
       - '.opencode/bin/lib/mirror-sync-verify.cjs'
       - '.skilled/bin/lib/mirror-sync-verify.cjs'
       - '.opencode/skills/system-spec-kit/**'
@@ -41,6 +42,12 @@ jobs:
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: '22'
+
+      # The rosters in orchestrate.md and README.txt are generated from agent-registry.json.
+      - name: Check the generated agent rosters against the registry
+        run: |
+          set -euo pipefail
+          node .skilled/bin/sync-agent-roster.cjs --check
 
       # The checker loads the frontmatter parser from the built shared package.
       - name: Build the shared package the checker loads

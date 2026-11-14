@@ -1,0 +1,34 @@
+# Baseline at 0d6afbafc4
+
+$ rg -n --no-heading -e "never runs shell commands" -e "No files were modified by" -e "Skip steps 3-5" -e "RETURN is \`DONE\`" -e "This Copilot profile" -e "^### Step [9]" .skilled/agents | cut -c1-100
+.skilled/agents/orchestrate.md:94:This Copilot profile enforces **single-hop delegation**. Nested su
+.skilled/agents/code.md:416:- Return "mostly done" or "should work" — RETURN is `DONE` (PASS) or `BL
+.skilled/agents/review.md:67:**If dispatched with `Complexity: low`:** Skip steps 3-5 of the 8-step 
+.skilled/agents/ai-council.md:24:The Multi-AI Council is a scoped-write planning architect that seek
+.skilled/agents/ai-council.md:503:- No files were modified by the Multi-AI Council.
+.skilled/agents/deep-research.md:303:### Step 9: Write Delta
+.skilled/agents/deep-research.md:318:### Step 9: Update Research (Progressive)
+
+$ rg -c -i "memory tools" .skilled/agents
+.skilled/agents/orchestrate.md:1
+.skilled/agents/ai-council.md:1
+.skilled/agents/deep-review.md:1
+.skilled/agents/context.md:4
+.skilled/agents/debug.md:1
+
+$ rg -c "general-purpose" .skilled/agents/orchestrate.md
+10
+
+$ rg -n -i "copilot profile" .skilled/agents
+.skilled/agents/orchestrate.md:94:This Copilot profile enforces **single-hop delegation**. Nested sub-agent dispatch is illegal.
+.skilled/agents/orchestrate.md:355:Sub-orchestrator fan-out is disabled in this Copilot profile because nested dispatch is illegal. When wor
+
+## Finding classes
+- ai-council persistence needs Bash it is denied: cross-consumer (ai-council.md and deep-ai-council-auto.yaml)
+- council report says no files were modified: instance-only (ai-council.md)
+- council delegation rule differs: cross-consumer (ai-council.md and orchestrate.md)
+- orchestrate dispatches every agent through the general wrapper: cross-consumer (orchestrate.md and every dispatched agent)
+- code return vocabulary names DONE: cross-consumer (code.md, orchestrate.md and commands that read RETURN)
+- review fast path skips the standards load: instance-only (review.md)
+- deep-research has two step headings numbered 9: instance-only (deep-research.md)
+- stale memory tools and Copilot profile wording: instance-only (five files)

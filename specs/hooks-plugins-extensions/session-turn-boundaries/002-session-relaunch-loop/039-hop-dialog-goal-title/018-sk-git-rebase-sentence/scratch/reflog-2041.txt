@@ -1,0 +1,66 @@
+Reflog extract for the rebase on 2026-11-13 at 20:41 +0100
+Read on 2026-11-14 from the shared git dir, read-only.
+
+$ git reflog --all --date=iso | grep "2026-11-13 20:41"
+ef94be0f36 refs/heads/worktrees/352-command-surfacing-research@{2026-11-13 20:41:14 +0100}: rebase (finish): refs/heads/worktrees/352-command-surfacing-research onto 989ab5b82e98c56c385edcc931aae5255026b511
+ef94be0f36 worktrees/352-command-surfacing-research/HEAD@{2026-11-13 20:41:14 +0100}: rebase (finish): returning to refs/heads/worktrees/352-command-surfacing-research
+ef94be0f36 worktrees/352-command-surfacing-research/HEAD@{2026-11-13 20:41:14 +0100}: rebase (pick): chore(specs): refresh the command surfacing packet metadata
+61708e7514 worktrees/352-command-surfacing-research/HEAD@{2026-11-13 20:41:14 +0100}: rebase (pick): docs(specs): record review passes two and three
+150e152fbf worktrees/352-command-surfacing-research/HEAD@{2026-11-13 20:41:13 +0100}: rebase (pick): fix(system-skill-advisor): widen the no-edit wording and hook launch prefixes
+f973541378 worktrees/352-command-surfacing-research/HEAD@{2026-11-13 20:41:13 +0100}: rebase (pick): fix(system-skill-advisor): read make no changes as ruling out a change
+0672cbe1d4 worktrees/352-command-surfacing-research/HEAD@{2026-11-13 20:41:13 +0100}: rebase (pick): fix(system-skill-advisor): close the two review pass three findings
+67da09b04b worktrees/352-command-surfacing-research/HEAD@{2026-11-13 20:41:13 +0100}: rebase (pick): docs(specs): close the per-runtime behaviour proof phase
+efba5621f7 worktrees/352-command-surfacing-research/HEAD@{2026-11-13 20:41:13 +0100}: rebase (pick): fix(system-skill-advisor): retire one leaked holdout row
+579d39a7db worktrees/352-command-surfacing-research/HEAD@{2026-11-13 20:41:13 +0100}: rebase (pick): fix(system-skill-advisor): close the review pass two findings
+74d3744e64 worktrees/352-command-surfacing-research/HEAD@{2026-11-13 20:41:12 +0100}: rebase (pick): feat(system-skill-advisor): rename the create skill command and offer the doctor helper
+c50d2da879 worktrees/352-command-surfacing-research/HEAD@{2026-11-13 20:41:12 +0100}: rebase (pick): docs(specs): log phases 014 and 015 and keep the pass one review report
+7d685bd7de worktrees/352-command-surfacing-research/HEAD@{2026-11-13 20:41:12 +0100}: rebase (pick): feat(system-skill-advisor): record hook health by default and tighten the brief
+4325dbb2e1 worktrees/352-command-surfacing-research/HEAD@{2026-11-13 20:41:03 +0100}: rebase (pick): docs(specs): record review pass one, research segment three and the phase 015 plan
+135a3e45ad worktrees/352-command-surfacing-research/HEAD@{2026-11-13 20:41:02 +0100}: rebase (pick): fix(system-skill-advisor): close review pass one across the command surfacing code
+989ab5b82e worktrees/352-command-surfacing-research/HEAD@{2026-11-13 20:41:01 +0100}: rebase (start): checkout origin/main
+
+Count of lines: 16
+  one rebase (start) + 13 rebase (pick) + two rebase (finish) lines = 16
+
+Id before and after: commits in 56d0c18ea7 not in 989ab5b82e, in replay order.
+The last column is the Commit-Id trailer of the commit message.
+
+original      Commit-Id     subject
+b3b5ae8314    0013831       fix(system-skill-advisor): close review pass one across the command surfacing code
+d54bed3085    0013832       docs(specs): record review pass one, research segment three and the phase 015 plan
+2549786f28    0013835       chore(system-spec-kit): rebuild the trigger index
+3b48f0e5f1    0013843       feat(system-skill-advisor): record hook health by default and tighten the brief
+087888ec4a    0013844       docs(specs): log phases 014 and 015 and keep the pass one review report
+ec1869dae8    0013878       feat(system-skill-advisor): rename the create skill command and offer the doctor helper
+11f3a30814    0013884       fix(system-skill-advisor): close the review pass two findings
+1ca14a4498    0013885       fix(system-skill-advisor): retire one leaked holdout row
+0a6638f2ab    0013890       docs(specs): close the per-runtime behaviour proof phase
+860610d783    0013891       fix(system-skill-advisor): close the two review pass three findings
+846eab66b8    0013899       fix(system-skill-advisor): read make no changes as ruling out a change
+0cdc9fa3ef    0013912       fix(system-skill-advisor): widen the no-edit wording and hook launch prefixes
+95b75c9eaa    0013914       docs(specs): record review passes two and three
+56d0c18ea7    0013915       chore(specs): refresh the command surfacing packet metadata
+
+rebased       Commit-Id     subject
+135a3e45ad    0013831       fix(system-skill-advisor): close review pass one across the command surfacing code
+4325dbb2e1    0013832       docs(specs): record review pass one, research segment three and the phase 015 plan
+7d685bd7de    0013843       feat(system-skill-advisor): record hook health by default and tighten the brief
+c50d2da879    0013844       docs(specs): log phases 014 and 015 and keep the pass one review report
+74d3744e64    0013878       feat(system-skill-advisor): rename the create skill command and offer the doctor helper
+579d39a7db    0013884       fix(system-skill-advisor): close the review pass two findings
+efba5621f7    0013885       fix(system-skill-advisor): retire one leaked holdout row
+67da09b04b    0013890       docs(specs): close the per-runtime behaviour proof phase
+0672cbe1d4    0013891       fix(system-skill-advisor): close the two review pass three findings
+f973541378    0013899       fix(system-skill-advisor): read make no changes as ruling out a change
+150e152fbf    0013912       fix(system-skill-advisor): widen the no-edit wording and hook launch prefixes
+61708e7514    0013914       docs(specs): record review passes two and three
+ef94be0f36    0013915       chore(specs): refresh the command surfacing packet metadata
+
+Observed: 14 original commits carried an id. 13 of them were replayed and all 13 kept
+the same id while their hashes changed. 2549786f28, chore(system-spec-kit): rebuild the
+trigger index, does not appear in the rebase and was not replayed.
+
+The four-case probe shows this outcome for the --apply backend and for a commit git does
+not replay. The saved extract does not record which backend this rebase used. That stays
+an open question, together with the review's count of 16: the minute holds 16 reflog
+lines, not 16 replayed commits.

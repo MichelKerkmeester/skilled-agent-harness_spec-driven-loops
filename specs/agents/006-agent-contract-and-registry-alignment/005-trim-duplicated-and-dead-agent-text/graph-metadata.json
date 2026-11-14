@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text",
+  "spec_folder": "agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text",
+  "parent_id": "agents/006-agent-contract-and-registry-alignment",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "trim duplicated and dead agent text",
+      "phase 5 trim duplicated and dead agent text",
+      "trim duplicated and dead agent text plan",
+      "trim duplicated and dead agent text tasks",
+      "trim duplicated and dead agent text acceptance criteria",
+      "packet goal",
+      "durable directive",
+      "completion criteria",
+      "goal binding",
+      "005-trim-duplicated-and-dead-agent-text operator decisions",
+      "trim duplicated and dead agent text implementation summary"
+    ],
+    "key_topics": [
+      "trim",
+      "duplicated",
+      "dead",
+      "agent",
+      "text",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "packet",
+      "goal"
+    ],
+    "importance_tier": "normal",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "scratch/removal-map.md",
+      ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+      ".skilled/bin/sync-agent-roster.cjs",
+      ".skilled/bin/sync-agent-roster.vitest.ts",
+      "scratch/trim-plan.py",
+      "scratch/code-dispatch-after.md",
+      "scratch/dispatch-after.md",
+      ".skilled/agents/code.md",
+      ".skilled/agents/context.md",
+      ".skilled/agents/agent-registry.json",
+      ".skilled/bin/check-agent-mirror-sync.cjs",
+      ".skilled/agents/design.md",
+      "scratch/baseline.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "removal-map.md",
+        "kind": "doc",
+        "path": "scratch/removal-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-template.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agent-roster.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/sync-agent-roster.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agent-roster.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/bin/sync-agent-roster.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "trim-plan.py",
+        "kind": "file",
+        "path": "scratch/trim-plan.py",
+        "source": "derived"
+      },
+      {
+        "name": "code-dispatch-after.md",
+        "kind": "doc",
+        "path": "scratch/code-dispatch-after.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-after.md",
+        "kind": "doc",
+        "path": "scratch/dispatch-after.md",
+        "source": "derived"
+      },
+      {
+        "name": "code.md",
+        "kind": "doc",
+        "path": ".skilled/agents/code.md",
+        "source": "derived"
+      },
+      {
+        "name": "context.md",
+        "kind": "doc",
+        "path": ".skilled/agents/context.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent-registry.json",
+        "kind": "config",
+        "path": ".skilled/agents/agent-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-agent-mirror-sync.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/check-agent-mirror-sync.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "design.md",
+        "kind": "doc",
+        "path": ".skilled/agents/design.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The three-sentence advisor-context rule is copied into every agent file with small wording differences, so one edit means eleven",
+    "created_at": "2026-11-14T11:36:24Z",
+    "last_save_at": "2026-11-14T14:06:22.194Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:3cc4cc259e8957abc4ae7aee7caa47a3a0b9865bf12d1761270e5fdb773b0e2f",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "6db2b93770e5730783c2ee7bebfdc5ea24c549da15ab9dc489a920741f0a92b6",
+      "plan.md": "03f34a6b12568944bc072475ca0250b8b20bbf105227f8692619047489c22378",
+      "tasks.md": "48356a3eaf62fef6d723ac7d55c81726791fd26d6b21c010291502a55e6a3b54",
+      "decision-record.md": "d80ce0939dd6ac48f36dd429d5a8df250ab170e14ded1959260b20def5f94a3f",
+      "implementation-summary.md": "2633b73054026d47c762c75eb10c4590bf798b34027fa601a34a0fe4ccf822ba"
+    },
+    "last_active_at": null
+  }
+}

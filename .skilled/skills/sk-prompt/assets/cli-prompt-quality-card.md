@@ -9,7 +9,7 @@ trigger_phrases:
   - "escalate to prompt improver"
 importance_tier: important
 contextType: general
-version: 0.8.6.0
+version: 0.8.7.0
 ---
 
 # CLI Prompt Quality Card
@@ -159,6 +159,8 @@ verification gates, and output contract.
 
 <task prompt>
 ```
+
+**Tool mapping above the block.** The personas name Claude Code tools: Read, Grep, Glob, Bash, Write and Edit. Where the child's tools carry other names, or it has only a shell, put a tool-mapping line directly above the persona block that says which of the child's tools stand in for each name the persona uses. Without it, a persona that denies Bash can leave the child with no tool it believes it may use, and it returns at exit 0 having read nothing. `cli-codex` requires the line on every inlined persona, and its Rule 17 holds the literal text. A native surface needs none, because the runtime's own copy of the persona names its own tools.
 
 ### 6.4 Consistency guard + exceptions
 

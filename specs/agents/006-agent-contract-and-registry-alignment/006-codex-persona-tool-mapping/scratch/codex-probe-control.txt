@@ -1,0 +1,29 @@
+## Context Package: Agents Listed in `.skilled/agents/README.txt`
+
+### Memory Context
+
+- The scoped trigger-index lookup returned no matching records.
+
+### Codebase Findings
+
+- `.skilled/agents/README.txt` lists: `ai-council`, `code`, `context`, `debug`, `deep-research`, `deep-review`, `design`, `markdown`, `orchestrate`, `prompt-improver`, and `review`.
+
+### Pattern Analysis
+
+- The README says the roster is generated from `agent-registry.json`; its instruction is to edit that registry and run the roster sync script.
+
+### Nested Dispatch Status
+
+- Status: `_No sub-agents dispatched (policy)_`
+- Boundary: No delegation or mutation requested.
+
+### Gaps & Unknowns
+
+- None for the requested roster. No other files were read.
+
+### Recommendation
+
+- **Verdict**: proceed
+- **Rationale**: The requested agent names are directly listed in the specified file.
+
+FILES READ: .skilled/agents/README.txt

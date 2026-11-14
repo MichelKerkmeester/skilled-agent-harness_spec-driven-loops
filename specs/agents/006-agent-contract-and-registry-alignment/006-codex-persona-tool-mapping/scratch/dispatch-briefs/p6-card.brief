@@ -1,0 +1,36 @@
+Add one paragraph to the canonical persona-injection contract: where a child's tools differ
+from the names an agent persona uses, a tool-mapping line goes directly above the inlined
+persona block.
+
+This file has no twin; ignore the twin instructions in RUN CONTEXT.
+
+Files:
+1. .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md
+
+Do not touch the frontmatter. A commit hook raises the `version` field.
+Each change below gives the exact text to find (OLD) and the exact text that replaces it (NEW).
+The first and last lines of OLD and NEW are unchanged context lines, shown so the place is unambiguous.
+Blank lines inside OLD and NEW are part of the text. Apply every change, top to bottom.
+
+######## FILE: .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md ########
+
+Change 1, at about line 163. Removes 0 line(s), adds 2.
+<<<<<<< OLD
+```
+
+### 6.4 Consistency guard + exceptions
+
+======= NEW
+```
+
+**Tool mapping above the block.** The personas name Claude Code tools: Read, Grep, Glob, Bash, Write and Edit. Where the child's tools carry other names, or it has only a shell, put a tool-mapping line directly above the persona block that says which of the child's tools stand in for each name the persona uses. Without it, a persona that denies Bash can leave the child with no tool it believes it may use, and it returns at exit 0 having read nothing. `cli-codex` requires the line on every inlined persona, and its Rule 17 holds the literal text. A native surface needs none, because the runtime's own copy of the persona names its own tools.
+
+### 6.4 Consistency guard + exceptions
+
+>>>>>>> END
+
+The markers `<<<<<<< OLD`, `======= NEW` and `>>>>>>> END` are not part of any file. Never write them.
+
+Verification (run all, paste the output in the handback):
+  wc -l < .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md      # expect: 214
+  wc -w < .skilled/skills/sk-prompt/assets/cli-prompt-quality-card.md      # expect: 2097

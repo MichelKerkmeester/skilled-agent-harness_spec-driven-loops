@@ -1,0 +1,39 @@
+$ env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='wrapper file' .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs
+✔ a hop says so when the wrapper file changed after the loop started (1357.05025ms)
+✔ a hop logs wrapper-changed when the wrapper file changed after the loop started (1051.955666ms)
+✔ a hop prints and logs nothing when the wrapper file cannot be read (1316.655791ms)
+✖ a hop prints and logs nothing when the wrapper file could not be read at loop start (1109.696833ms)
+✔ a hop prints no change notice when the wrapper file is unchanged (959.173833ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 4
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5884.264458
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:357:1
+✖ a hop prints and logs nothing when the wrapper file could not be read at loop start (1109.696833ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /changed on disk/. Input:
+  
+  'note: skilled-loop changed on disk after this loop started, restart the wrapper to run the new code\n' +
+    'warning: the relaunched session ended before claiming /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-UP8bM0/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md; its handoff note was not claimed\n'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/380-relaunch-review-fixes/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:381:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'note: skilled-loop changed on disk after this loop started, restart the wrapper to run the new code\nwarning: the relaunched session ended before claiming /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-UP8bM0/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md; its handoff note was not claimed\n',
+    expected: /changed on disk/,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }
+exit=1

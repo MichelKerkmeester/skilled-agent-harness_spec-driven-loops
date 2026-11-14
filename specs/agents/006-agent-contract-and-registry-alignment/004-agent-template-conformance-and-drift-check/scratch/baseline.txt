@@ -1,0 +1,13 @@
+# Baseline at 04eecf3d46
+
+$ rg -l '^## [0-9]+\. CAPABILITY SCAN' .skilled/agents | wc -l
+       1
+
+$ rg -l -i '^## [0-9]+\. ROUTING SCAN' .skilled/agents | wc -l
+      10
+
+$ rg -l '^## [0-9]+\. HOOK-INJECTED' .skilled/agents | wc -l
+       1
+
+$ rg -l '^## 0b' .skilled/agents | wc -l
+       2

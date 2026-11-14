@@ -1,0 +1,231 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-git rebase sentence",
+      "phase 18 sk git rebase sentence",
+      "rebase re-mints commit id",
+      "sk-git commit id rebase probe",
+      "sk-git rebase sentence plan",
+      "sk-git rebase sentence tasks",
+      "sk-git rebase sentence acceptance criteria",
+      "sk-git rebase sentence goal",
+      "sk-git rebase sentence implementation summary",
+      "rebase commit id probe"
+    ],
+    "key_topics": [
+      "sk-git",
+      "rebase",
+      "sentence",
+      "phase",
+      "git",
+      "re-mints",
+      "commit",
+      "probe",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-git/SKILL.md",
+      ".skilled/skills/sk-git/changelog/v1.11.12.0.md",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections/acceptance-criteria.md",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      "scratch/validate.txt",
+      "scratch/reflog-2041.txt",
+      ".skilled/scripts/git-hooks/tests/prepare-commit-msg.test.sh",
+      "scratch/rebase-probe.txt",
+      "scratch/rebase-probe.sh",
+      "scratch/rebase-lines.txt",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/goal.md",
+      "scratch/verification.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.11.12.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/changelog/v1.11.12.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate.txt",
+        "kind": "file",
+        "path": "scratch/validate.txt",
+        "source": "derived"
+      },
+      {
+        "name": "reflog-2041.txt",
+        "kind": "file",
+        "path": "scratch/reflog-2041.txt",
+        "source": "derived"
+      },
+      {
+        "name": "prepare-commit-msg.test.sh",
+        "kind": "script",
+        "path": ".skilled/scripts/git-hooks/tests/prepare-commit-msg.test.sh",
+        "source": "derived"
+      },
+      {
+        "name": "rebase-probe.txt",
+        "kind": "file",
+        "path": "scratch/rebase-probe.txt",
+        "source": "derived"
+      },
+      {
+        "name": "rebase-probe.sh",
+        "kind": "script",
+        "path": "scratch/rebase-probe.sh",
+        "source": "derived"
+      },
+      {
+        "name": "rebase-lines.txt",
+        "kind": "file",
+        "path": "scratch/rebase-lines.txt",
+        "source": "derived"
+      },
+      {
+        "name": "verification.txt",
+        "kind": "file",
+        "path": "scratch/verification.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`.skilled/skills/sk-git/SKILL.md:322` says a rebase keeps an id only when the replayed message still carries one",
+    "created_at": "2026-11-14T11:42:58Z",
+    "last_save_at": "2026-11-14T13:34:15.479Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:de67763e7576acb29f7041f401fbf047ec9cc8aaa109acfcb8c3d28ffa3d9afe",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0bc069be394559d062ecdf2c9ba38d3d063a44d0aa223bca08aa35d72e43e6ec",
+      "plan.md": "985ecb1ea7b8dfaf3d305d1e135b64374783bed767b74988be4bf72027c393bb",
+      "tasks.md": "84580e7b873ef5c8df54421955c8711ece9fefca0315ecca464adb2abb6347df",
+      "implementation-summary.md": "b5f6599b7e69af609657fce2d1209dfa4bc71a333e1bbe6ef4a78ed27c3d1f70"
+    },
+    "last_active_at": null
+  }
+}

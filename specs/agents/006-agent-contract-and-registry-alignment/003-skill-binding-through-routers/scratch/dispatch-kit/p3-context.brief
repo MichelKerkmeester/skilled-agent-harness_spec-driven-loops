@@ -1,0 +1,14 @@
+Tell the context agent when to load the system-spec-kit skill and which file is its entry point.
+
+Files (exactly two, same change in each):
+1. .skilled/agents/context.md
+2. .claude/agents/context.md
+
+Change A. Under `## 2. ROUTING SCAN` one line reads exactly:
+Read `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` directly.
+Leave that line as it is. Directly after it, add this one new line (no blank line between):
+Load the system-spec-kit skill when a continuity question goes beyond these two paths: its entry file is `SKILL.md`, wherever the runtime installed the skill (in this repository: `.skilled/skills/system-spec-kit/SKILL.md`).
+
+Verification (run all, paste the output in the handback):
+  rg -c 'system-spec-kit/SKILL.md' .skilled/agents/context.md .claude/agents/context.md     # expect: 2 for each file
+  rg -c 'goes beyond these two paths' .skilled/agents/context.md .claude/agents/context.md  # expect: 1 for each file
