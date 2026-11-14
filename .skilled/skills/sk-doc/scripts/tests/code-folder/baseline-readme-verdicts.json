@@ -1,5 +1,5 @@
 {
-  "count": 1144,
+  "count": 1137,
   "mode": "readme",
   "results": [
     {
@@ -431,8 +431,8 @@
       "warnings": [
         {
           "auto_fixable": false,
-          "line": 303,
-          "line_number": 303,
+          "line": 304,
+          "line_number": 304,
           "message": "\"RELATED\" must be the last H2; it is followed by \"COVERAGE MATRIX\".",
           "severity": "warning",
           "type": "render_section_order"
@@ -1554,6 +1554,16 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/hooks/overlay-guard/lib/README.md",
+      "return_code": 0,
+      "total_issues": 0,
+      "valid": true,
+      "warnings": []
+    },
+    {
+      "auto_fixable_count": 0,
+      "blocking_errors": [],
+      "document_type": "readme",
+      "file": ".skilled/hooks/overlay-guard/opencode/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -7529,46 +7539,6 @@
       "auto_fixable_count": 0,
       "blocking_errors": [],
       "document_type": "readme",
-      "file": ".skilled/skills/system-deep-loop/deep-ai-council/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-deep-loop/deep-ai-council/scripts/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-deep-loop/deep-ai-council/scripts/lib/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-deep-loop/deep-ai-council/scripts/tests/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
       "file": ".skilled/skills/system-deep-loop/deep-research/README.md",
       "return_code": 0,
       "total_issues": 0,
@@ -7760,36 +7730,6 @@
       "blocking_errors": [],
       "document_type": "readme",
       "file": ".skilled/skills/system-deep-loop/runtime/lib/cycle-detection/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-ledger-schema/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-reducers/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "readme",
-      "file": ".skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-sealed-artifacts/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,
@@ -8160,16 +8100,6 @@
       "blocking_errors": [],
       "document_type": "unknown",
       "file": ".skilled/skills/system-deep-loop/runtime/tests/fixtures/README.md",
-      "return_code": 0,
-      "total_issues": 0,
-      "valid": true,
-      "warnings": []
-    },
-    {
-      "auto_fixable_count": 0,
-      "blocking_errors": [],
-      "document_type": "unknown",
-      "file": ".skilled/skills/system-deep-loop/runtime/tests/fixtures/council-value/README.md",
       "return_code": 0,
       "total_issues": 0,
       "valid": true,

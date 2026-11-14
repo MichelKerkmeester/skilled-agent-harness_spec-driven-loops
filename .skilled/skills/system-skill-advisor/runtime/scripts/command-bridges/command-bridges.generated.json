@@ -820,7 +820,7 @@
       "skillId": "system-deep-loop",
       "ownerMode": "system-deep-loop",
       "source": ".skilled/commands/doctor/_routes.yaml",
-      "embeddingText": "Diagnose deep-loop coverage graphs and convergence for research, review and council runs. deep-loop coverage graph check. deep-loop graph empty or stale. deep-research convergence drift. deep-review iteration graph. deep loop convergence check",
+      "embeddingText": "Diagnose deep-loop coverage graphs and convergence for research and review runs. deep-loop coverage graph check. deep-loop graph empty or stale. deep-research convergence drift. deep-review iteration graph. deep loop convergence check",
       "runtime": {
         "typescript": {
           "enabled": true,

@@ -10,7 +10,7 @@ trigger_phrases:
   - "minimax dispatch scaffold"
 importance_tier: normal
 contextType: implementation
-version: 1.4.14.0
+version: 1.4.15.0
 ---
 
 # OpenCode CLI - Prompt Templates
@@ -229,7 +229,7 @@ On OpenCode 2.0.32, `--agent <slug>` runs the session as that agent, and an unkn
 - **Default / general**: omit `--agent` entirely, and never pass `--agent general` (OpenCode 2.0.32 accepts it, and OpenCode 1 rejects it at the top level, but the default agent covers that case on both).
 - **Primary, directly `--agent`-dispatchable**: `orchestrate` (shown above), `plan` (OpenCode built-in).
 - **Subagents, routed via `--agent orchestrate`'s Task-dispatch (never direct)**: `context`, `markdown`, `review`, `debug`.
-- **`ai-council`**: command-only (`/deep:ai-council`) or `--agent orchestrate` Task-dispatch, never direct `--agent ai-council` (`mode: subagent`).
+- **`ai-council`**: command-only (`/speckit:ai-council`) or `--agent orchestrate` Task-dispatch, never direct `--agent ai-council` (`mode: subagent`).
 - **Command-owned loop executors (never direct `--agent`)**: `deep-research` (via `/deep:research`), `deep-review` (via `/deep:review`), `prompt-improver` (via `/prompt`'s deep-path escalation).
 
 ---
@@ -460,7 +460,7 @@ opencode run \
 ## 11. TEMPLATE 10: MULTI-STRATEGY PLANNING VIA @MULTI-AI COUNCIL
 
 - **Framework:** CRAFT
-- **Agent:** `ai-council` (`mode: subagent`, dispatched via `orchestrate` or `/deep:ai-council`, never direct top-level `--agent ai-council`)
+- **Agent:** `ai-council` (`mode: subagent`, dispatched via `orchestrate` or `/speckit:ai-council`, never direct top-level `--agent ai-council`)
 - **Use case:** 1 or 3
 
 ```text

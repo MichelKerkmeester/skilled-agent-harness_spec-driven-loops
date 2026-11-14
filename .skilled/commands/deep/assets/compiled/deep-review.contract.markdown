@@ -12,7 +12,7 @@
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "324ac92010574f486ecfc00f1eb0f06b57544428f9d01392ac579837bfb466fe",
+      "sha256": "a318b48e674c987f1f6ecba5a6bbca9e75954061e6df935b3530311d177965e0",
       "section": "full"
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       "path": ".skilled/agents/deep-review.md",
-      "sha256": "b790400f922d785ded5bc41e7bab2c0b82d78e06e6b4201dd9ddd7c34a4807e0",
+      "sha256": "80b654fee971ee393a2a576f56bbcf3413689d8413512bd6da825a81d1200e5f",
       "section": "full"
     },
     {

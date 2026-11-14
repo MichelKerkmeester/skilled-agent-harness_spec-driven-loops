@@ -41,25 +41,6 @@
       }
     },
     {
-      "id": "single-ai-council",
-      "prompt": "planning council",
-      "expectedAction": "route",
-      "expectedSelectionKind": "single",
-      "expectedModes": [
-        "ai-council"
-      ],
-      "gold": {
-        "expectedIntents": [
-          "ai-council"
-        ],
-        "expectedResources": [
-          "deep-ai-council/references/integration/loop-protocol.md",
-          "deep-ai-council/references/scoring/scoring-rubric.md",
-          "deep-ai-council/references/structure/output-schema.md"
-        ]
-      }
-    },
-    {
       "id": "one-turn-clarify",
       "prompt": "deep review of this research loop",
       "expectedAction": "clarify",

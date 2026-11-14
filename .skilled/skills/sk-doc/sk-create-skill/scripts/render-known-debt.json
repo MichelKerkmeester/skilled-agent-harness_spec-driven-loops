@@ -10,10 +10,6 @@
       "consumer": "sk-design/sk-design-diagram/scripts/apply-design-md.cjs",
       "reason": "DESIGN.md format output: the script finds each section by its literal heading and records the file hash."
     },
-    "system-deep-loop/deep-ai-council/assets/prompt-pack-round.md": {
-      "consumer": "system-deep-loop/deep-ai-council/scripts/orchestrate-session.cjs",
-      "reason": "Sent whole, minus frontmatter, as every council seat's prompt, so its text is runtime input."
-    },
     "system-deep-loop/deep-research/assets/deep-research-dashboard.md": {
       "consumer": "system-deep-loop/deep-research/scripts/reduce-state.cjs",
       "reason": "reduce-state.cjs writes these lettered section headings verbatim and its tests assert them."

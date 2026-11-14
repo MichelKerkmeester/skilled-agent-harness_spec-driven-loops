@@ -23,7 +23,7 @@ const EXIT_ENV = 75; // provider quota/rate-limit rejection -- the cell never ra
 const DEFAULT_WATCHDOG_MS = 120000;
 const DEFAULT_BUDGET_MS = 900000;
 const WATCHDOG_TICK_MS = 5000;
-const LOCKED_MULTI_CAUSE_CELL_IDS = ['ACB-004', 'ACB-005', 'CXB-004'];
+const LOCKED_MULTI_CAUSE_CELL_IDS = ['CXB-004'];
 const LOCKED_MULTI_CAUSE_CELLS = new Set(LOCKED_MULTI_CAUSE_CELL_IDS);
 
 // Checkpoint / evidence regexes. Case-insensitive across observed streams.

@@ -1,11 +1,11 @@
 {
   "counts": {
-    "duplicate-phrase": 49,
-    "missing-frontmatter": 6750,
-    "ok": 18488,
+    "duplicate-phrase": 46,
+    "missing-frontmatter": 6701,
+    "ok": 18443,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 26868,
+  "documentsScanned": 26771,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "6214aff51518932bd2eca78e75a7bbd5ad682456d3efd68af91c11d605b0eb9d",
+  "manifestHash": "697ab1e7513a7e477d384f1232b5f86c7200852d9fc133af6ef4c0907d419f01",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -36,7 +36,7 @@
       "generic-workflow-word": 71,
       "numeric-only": 38,
       "prose-sentence": 10,
-      "single-token": 346,
+      "single-token": 340,
       "stop-word-only": 9,
       "template-default": 22
     },
@@ -45,9 +45,9 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 43253,
+      "ok": 42990,
       "prose-sentence": 19,
-      "single-token": 156,
+      "single-token": 150,
       "stop-word-only": 1,
       "template-default": 19
     }
@@ -30531,258 +30531,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/behavior-benchmark/scenarios/ACB-001-auto-run-specified.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/behavior-benchmark/scenarios/ACB-002-bare-command-halt.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/behavior-benchmark/scenarios/ACB-003-vague-natural-ask.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/behavior-benchmark/scenarios/ACB-004-concise-natural-ask.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 1,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/behavior-benchmark/scenarios/ACB-005-orchestrate-handoff.md",
-      "reason": "no opening frontmatter delimiter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/feature-catalog/feature-catalog.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/artifact-persistence-and-state-format/output-schema-strict-required-sections-fail-closed.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/artifact-persistence-and-state-format/persist-artifacts-helper-writes-packet-local-tree.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/convergence-and-rollback/cross-mode-anti-convergence-contract.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/convergence-and-rollback/max-rounds-without-convergence-emits-non-converged.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/convergence-and-rollback/two-of-three-agree-triggers-convergence.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-deliberation-and-seat-diversity/cross-seat-critique-blocks-premature-convergence.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-deliberation-and-seat-diversity/three-seat-diverse-deliberation.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-integration/council-graph-convergence-three-state-decision-matrix.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-integration/council-graph-derived-projection-rebuilds-from-artifacts.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-integration/council-graph-query-five-modes-prompt-safe-context.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-integration/council-graph-query-hostile-metadata-redaction.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-integration/council-graph-status-recovery-payload-and-readiness.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-integration/council-graph-tools-registered-separately-from-deep-loop.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-integration/council-graph-upsert-empty-input-no-op-success.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-integration/council-graph-upsert-idempotency-and-self-loop-rejection.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-value-comparison/convergence-safety-under-critical-disagreement-graph-vs-baseline.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-value-comparison/decision-provenance-audit-graph-vs-baseline.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-value-comparison/hot-topic-discovery-graph-vs-baseline.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-value-comparison/mid-run-interruption-recovery-graph-vs-baseline.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-value-comparison/stalled-council-blocker-ranking-graph-vs-baseline.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/council-graph-value-comparison/unresolved-disagreement-triage-graph-vs-baseline.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/depth-and-failure-handling/depth-detection-parallel-vs-sequential.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/depth-and-failure-handling/resume-after-interrupted-state.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/manual-testing-playbook.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/scope-boundaries/graph-support-derived-and-scoped.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/scope-boundaries/planning-only-boundary-rejects-implementation-writes.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/writer-library-contract/five-dimension-scoring-rubric-application.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/writer-library-contract/hunter-skeptic-referee-cross-critique.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/writer-library-contract/library-writer-call-sequence.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/manual-testing-playbook/writer-library-contract/out-of-scope-write-rejection.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/deep-ai-council/scripts/tests/README.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -31672,12 +31420,6 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/mode-routing/ai-council-routing.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/mode-routing/mode-hint-override.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
@@ -31702,19 +31444,7 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/runtime-and-backend/runtime-loop-council.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/runtime-and-backend/runtime-loop-research.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/manual-testing-playbook/state-and-convergence-discipline/artifact-root-writes.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -31976,27 +31706,6 @@
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-ledger-schema/README.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"deep ai council ledger schema\""
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-reducers/README.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"deep ai council reducers\""
-    },
-    {
-      "category": "duplicate-phrase",
-      "line": 6,
-      "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-sealed-artifacts/README.md",
-      "rawKey": "trigger_phrases",
-      "reason": "duplicate normalized phrase \"deep ai council sealed artifacts\""
-    },
-    {
       "category": "missing-frontmatter",
       "line": 2,
       "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/continuity-identity/README.md",
@@ -32167,31 +31876,7 @@
     {
       "category": "missing-frontmatter",
       "line": 2,
-      "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/adjudicator-verdict-scoring.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/cost-guards.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
       "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/multi-seat-dispatch.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/round-state-jsonl.md",
-      "reason": "no trigger_phrases key in frontmatter"
-    },
-    {
-      "category": "missing-frontmatter",
-      "line": 2,
-      "path": ".skilled/skills/system-deep-loop/runtime/manual-testing-playbook/council/session-state-hierarchy.md",
       "reason": "no trigger_phrases key in frontmatter"
     },
     {
@@ -58974,7 +58659,31 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/001-standalone-agent-and-council-command/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/002-hub-two-mode-wiring/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/003-runtime-council-removal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/004-advisor-council-removal/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/005-caller-sweep-and-verification/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/scratch",
       "reason": "excluded directory"
     },
     {

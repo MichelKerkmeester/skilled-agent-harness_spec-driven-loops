@@ -67,7 +67,7 @@ Each skill name links to its own README. One-line descriptions reflect current b
 
 | Skill | What it does |
 |---|---|
-| [`system-deep-loop`](system-deep-loop/README.md) | Routes research, review, and AI Council modes through registry-selected packets over nested `runtime/` infrastructure |
+| [`system-deep-loop`](system-deep-loop/README.md) | Routes research and review modes through registry-selected packets over nested `runtime/` infrastructure |
 | [`system-skilled-doctor`](system-skilled-doctor/README.md) | Owns the doctor commands that put Skilled into a project repo and keep it current there, including `/doctor:overlay` for a vendored copy's own changes |
 | [`system-skill-advisor`](system-skill-advisor/README.md) | Routes non-trivial requests to matching skills through standalone MCP metadata and stable advisor tool ids, with the daemon-backed `skill-advisor` CLI as fallback |
 | [`system-spec-kit`](system-spec-kit/README.md) | Unified spec-folder workflow plus context preservation: Levels 1-3+, strict validation, and packet continuity with lexical retrieval. Required for file modifications |

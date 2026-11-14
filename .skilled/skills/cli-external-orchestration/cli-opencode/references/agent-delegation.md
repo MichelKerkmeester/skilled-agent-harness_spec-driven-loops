@@ -9,7 +9,7 @@ trigger_phrases:
   - "opencode multi-agent workflow"
 importance_tier: normal
 contextType: implementation
-version: 1.4.15.0
+version: 1.4.16.0
 ---
 
 # OpenCode CLI - Agent Delegation
@@ -152,7 +152,7 @@ The repo ships these agents under `.skilled/agents/`. Three dispatch classes app
 | `markdown` | Subagent, routed via `--agent orchestrate`, never direct | Template-first documentation generation | Creating READMEs, skills, guides, spec docs |
 | `review` | Subagent, routed via `--agent orchestrate`, never direct | Code review and PR analysis | Pre-merge reviews, quality gates. READ-ONLY |
 | `debug` | Subagent, routed via `--agent orchestrate`, never direct | Fresh-perspective debugging | Root cause analysis after 3+ failed debug attempts. Exclusive write access for `debug-delegation.md` |
-| `ai-council` | Command-only (`/deep:ai-council`) or `--agent orchestrate` Task-dispatch, never direct `--agent ai-council` | Multi-strategy planning architect | Complex planning that benefits from comparing multiple solution strategies. Scoped-write: writes ONLY packet-local `ai-council/**` artifacts |
+| `ai-council` | Command-only (`/speckit:ai-council`) or `--agent orchestrate` Task-dispatch, never direct `--agent ai-council` | Multi-strategy planning architect | Complex planning that benefits from comparing multiple solution strategies. Scoped-write: writes ONLY packet-local `ai-council/**` artifacts |
 | `deep-research` | Command-owned by `/deep:research`, never direct `--agent deep-research` | Iterative research loop executor | Single research-cycle dispatches. State externalized to packet-local JSONL + strategy.md |
 | `deep-review` | Command-owned by `/deep:review`, never direct `--agent deep-review` | Iterative code review loop executor | Single review-cycle dispatches. P0/P1/P2 findings, severity-weighted convergence |
 | `prompt-improver` | Command-owned by `/prompt`, never direct `--agent prompt-improver` | Dispatch-ready prompt package generation | Deep-path prompt escalation per the cli-* prompt-quality-card Tier 3 trigger |
@@ -218,7 +218,7 @@ The repo ships these agents under `.skilled/agents/`. Three dispatch classes app
 
 **Best for:** Architecture decisions, complex planning that benefits from comparing 3+ solution strategies.
 
-**Command-only (as of `mode: subagent`).** On OpenCode 1, direct `opencode run --agent ai-council` is not reachable: `ai-council.md` is `mode: subagent`, not directly selectable as a top-level session agent. OpenCode 2.0.32 does select a subagent slug directly, so there the routing rule, not the binary, keeps `ai-council` behind its command. Dispatch via `/deep:ai-council` for a full session, or via `opencode run --agent orchestrate "..."` and let `orchestrate`'s own routing Task-dispatch to `@ai-council` for a single planning pass (never `--agent general`, which OpenCode 1 rejects at the top level).
+**Command-only (as of `mode: subagent`).** On OpenCode 1, direct `opencode run --agent ai-council` is not reachable: `ai-council.md` is `mode: subagent`, not directly selectable as a top-level session agent. OpenCode 2.0.32 does select a subagent slug directly, so there the routing rule, not the binary, keeps `ai-council` behind its command. Dispatch via `/speckit:ai-council` for a full session, or via `opencode run --agent orchestrate "..."` and let `orchestrate`'s own routing Task-dispatch to `@ai-council` for a single planning pass (never `--agent general`, which OpenCode 1 rejects at the top level).
 
 **Delegate when:** The calling AI needs a fundamentally different planning approach or wants to compare strategies before committing to one.
 
@@ -250,7 +250,7 @@ Pick the agent that matches the task type. Default to omitting `--agent` (the `g
 | Root cause debugging | `debug` | **Subagent, route via `orchestrate`.** On OpenCode 1: `opencode run --agent orchestrate --variant high --format json --dir /repo "Use the debug subagent: debug this error: <error>"`. On OpenCode 2: `cd /repo && opencode run --standalone --agent orchestrate -m llmgateway/deepseek-v4.1-flash-1017#high --format json "Use the debug subagent: debug this error: <error>"` |
 | Iterative research loop | `deep-research` | **Command-only.** Dispatch via `/deep:research` (or `/deep:research:auto`). Direct `opencode run --agent deep-research` is forbidden. The parent command owns iteration state, JSONL, and convergence. |
 | Iterative code review loop | `deep-review` | **Command-only.** Dispatch via `/deep:review` (or `/deep:review:auto`). Direct `opencode run --agent deep-review` is forbidden. The parent command owns iteration state and severity-weighted convergence. |
-| Multi-strategy planning | `ai-council` | **Command-only.** Dispatch via `/deep:ai-council` for a full session, or, on OpenCode 1, `opencode run --agent orchestrate --variant high --format json --dir /repo "Dispatch @ai-council: plan the authentication redesign — compare three strategies. Spec folder: <pre-bound packet>."` (on OpenCode 2: `cd /repo && opencode run --standalone --agent orchestrate -m llmgateway/deepseek-v4.1-flash-1017#high --format json "Dispatch @ai-council: plan the authentication redesign — compare three strategies. Spec folder: <pre-bound packet>."`) and let orchestrate's routing Task-dispatch `@ai-council`, scoped-write to that packet's `ai-council/**`. Direct `opencode run --agent ai-council` is forbidden as of `mode: subagent`. |
+| Multi-strategy planning | `ai-council` | **Command-only.** Dispatch via `/speckit:ai-council` for a full session, or, on OpenCode 1, `opencode run --agent orchestrate --variant high --format json --dir /repo "Dispatch @ai-council: plan the authentication redesign — compare three strategies. Spec folder: <pre-bound packet>."` (on OpenCode 2: `cd /repo && opencode run --standalone --agent orchestrate -m llmgateway/deepseek-v4.1-flash-1017#high --format json "Dispatch @ai-council: plan the authentication redesign — compare three strategies. Spec folder: <pre-bound packet>."`) and let orchestrate's routing Task-dispatch `@ai-council`, scoped-write to that packet's `ai-council/**`. Direct `opencode run --agent ai-council` is forbidden as of `mode: subagent`. |
 | Default / unspecified | (none, omit `--agent`) | On OpenCode 1: `opencode run --variant high --format json --dir /repo "<prompt>"`. On OpenCode 2: `cd /repo && opencode run --standalone -m llmgateway/deepseek-v4.1-flash-1017#high --format json "<prompt>"`. Never pass `--agent general`, because OpenCode 1 rejects it at the top level |
 
 ---

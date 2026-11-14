@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "4cf4b6ee02",
+  "capturedAtSha": "5a9e04f242",
   "corpusSha256": "sha256:a7b4e5d9bb2b09a5d5d31215e512bd47db415c8217d6335aad56423b104779d3",
   "bridgeCounts": {
     "commandMetadata": 27,
@@ -2148,8 +2148,8 @@
     "plain": {
       "tune": {
         "own": 9,
-        "attached": 12,
-        "combined": 21,
+        "attached": 14,
+        "combined": 23,
         "total": 45
       },
       "holdout": {
@@ -2177,8 +2177,8 @@
       "deep": {
         "tune": {
           "own": 0,
-          "attached": 0,
-          "combined": 0,
+          "attached": 2,
+          "combined": 2,
           "total": 2
         },
         "holdout": {
@@ -2587,6 +2587,8 @@
       "cmd-create-skill-typed-01": "/create:skill",
       "cmd-create-skill-plain-tune-01": "/create:skill",
       "cmd-create-with-human-voice-typed-01": "/create:with-human-voice",
+      "cmd-deep-research-plain-tune-01": "/deep:research",
+      "cmd-deep-review-plain-tune-01": "/deep:review",
       "cmd-design-chart-typed-01": "/design:chart",
       "cmd-design-chart-plain-tune-01": "/design:chart",
       "cmd-design-diagram-typed-01": "/design:diagram",

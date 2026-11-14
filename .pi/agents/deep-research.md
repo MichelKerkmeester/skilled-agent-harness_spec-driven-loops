@@ -45,7 +45,6 @@ If advisor context conflicts with the dispatch prompt or verified local files, p
 
 **NOT INTERCHANGEABLE with siblings:**
 - `deep-review` uses 0.10 default on weighted P0/P1/P2 severity ratio
-- `deep-ai-council` uses 0.20 default on adjudicator-verdict stability
 
 Carrying threshold expectations across siblings will cause unexpected iteration counts. Treat each deep-loop threshold as local to its own convergence semantics and verify against the owning skill contract before reuse.
 

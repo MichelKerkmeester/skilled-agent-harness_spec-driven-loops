@@ -33,7 +33,6 @@ function writeFixtureRegistry(dir) {
     path.join(registryDir, 'mode-registry.json'),
     JSON.stringify({
       modes: [
-        { workflowMode: 'ai-council', agent: 'ai-council' },
         { workflowMode: 'research', agent: 'deep-research' },
         { workflowMode: 'review', agent: 'deep-review' },
       ],
@@ -90,16 +89,25 @@ async function main() {
   delete process.env[REJECT_ENV];
 
   // Non-task tool: no-op, no throw.
-  await beforeHook({ tool: 'read' }, { args: { subagent_type: 'ai-council', prompt: 'mode=research' } });
+  await beforeHook({ tool: 'read' }, { args: { subagent_type: 'deep-review', prompt: 'mode=research' } });
 
   // Unknown subagent_type: no-op, no throw.
   await beforeHook({ tool: 'task' }, { args: { subagent_type: 'not-a-real-agent', prompt: 'mode=research' } });
 
+  // ai-council is a standalone agent with no registered mode, so the mode check skips it.
+  clearGuardLog(tmpDir);
+  await beforeHook({ tool: 'task' }, { args: { subagent_type: 'ai-council', prompt: 'mode=research do the thing' } });
+  assert.doesNotMatch(readGuardLog(tmpDir), /mode mismatch/i);
+  process.env[REJECT_ENV] = '1';
+  await beforeHook({ tool: 'task' }, { args: { subagent_type: 'ai-council', prompt: 'mode=research do the thing' } });
+  assert.doesNotMatch(readGuardLog(tmpDir), /mode mismatch/i);
+  delete process.env[REJECT_ENV];
+
   // Matching mode: no-op, no throw.
-  await beforeHook({ tool: 'task' }, { args: { subagent_type: 'ai-council', prompt: 'mode=ai-council do the thing' } });
+  await beforeHook({ tool: 'task' }, { args: { subagent_type: 'deep-review', prompt: 'mode=review do the thing' } });
 
   // No mode declared in the prompt at all: no-op, no throw (absence, not disagreement).
-  await beforeHook({ tool: 'task' }, { args: { subagent_type: 'ai-council', prompt: 'do the thing' } });
+  await beforeHook({ tool: 'task' }, { args: { subagent_type: 'deep-review', prompt: 'do the thing' } });
 
   // Mode and target identity comparisons are case-insensitive.
   clearGuardLog(tmpDir);
@@ -123,7 +131,7 @@ async function main() {
     {
       args: {
         subagent_type: 'general',
-        prompt: 'mode=ai-council in quoted prose\nDeep Route: mode=research; target_agent=@deep-research\nmore prose mode=review',
+        prompt: 'mode=nonsense in quoted prose\nDeep Route: mode=research; target_agent=@deep-research\nmore prose mode=review',
       },
     },
   );
@@ -131,13 +139,13 @@ async function main() {
 
   // Mismatch, warn mode (default): records to the warning log, does not throw.
   clearGuardLog(tmpDir);
-  await beforeHook({ tool: 'task' }, { args: { subagent_type: 'ai-council', prompt: 'mode=research do the thing' } });
+  await beforeHook({ tool: 'task' }, { args: { subagent_type: 'deep-review', prompt: 'mode=research do the thing' } });
   assert.match(readGuardLog(tmpDir), /system-deep-loop-guard.*mode mismatch/i);
 
   // Mismatch, reject mode: throws.
   process.env[REJECT_ENV] = '1';
   await assert.rejects(
-    () => beforeHook({ tool: 'task' }, { args: { subagent_type: 'ai-council', prompt: 'mode=research do the thing' } }),
+    () => beforeHook({ tool: 'task' }, { args: { subagent_type: 'deep-review', prompt: 'mode=research do the thing' } }),
     /system-deep-loop-guard: Deep Route mode mismatch/,
   );
   delete process.env[REJECT_ENV];
@@ -146,7 +154,7 @@ async function main() {
   fs.rmSync(path.join(tmpDir, '.skilled', 'skills', 'system-deep-loop', 'mode-registry.json'));
   process.env[REJECT_ENV] = '1';
   clearGuardLog(tmpDir);
-  await beforeHook({ tool: 'task' }, { args: { subagent_type: 'ai-council', prompt: 'mode=research do the thing' } });
+  await beforeHook({ tool: 'task' }, { args: { subagent_type: 'deep-review', prompt: 'mode=research do the thing' } });
   assert.match(readGuardLog(tmpDir), /reject-mode degraded.*mode registry unavailable/i);
   delete process.env[REJECT_ENV];
   writeFixtureRegistry(tmpDir);
@@ -157,7 +165,7 @@ async function main() {
   clearGuardLog(tmpDir);
   await beforeHook(
     { tool: 'task' },
-    { args: { subagent_type: 'general', prompt: 'Deep Route: mode=ai-council; target_agent=@deep-research\nmode=research do the thing' } },
+    { args: { subagent_type: 'general', prompt: 'Deep Route: mode=nonsense; target_agent=@deep-research\nmode=research do the thing' } },
   );
   assert.match(readGuardLog(tmpDir), /subagent_type="deep-research"/, 'target_agent= should resolve real identity from subagent_type="general"');
 
@@ -165,7 +173,7 @@ async function main() {
   clearGuardLog(tmpDir);
   await beforeHook(
     { tool: 'task' },
-    { args: { subagent_type: 'general', prompt: 'Agent: @deep-research\nmode=ai-council do the thing' } },
+    { args: { subagent_type: 'general', prompt: 'Agent: @deep-research\nmode=nonsense do the thing' } },
   );
   assert.match(readGuardLog(tmpDir), /subagent_type="deep-research"/, 'Agent: @X line should resolve real identity from subagent_type="general"');
 
@@ -429,7 +437,7 @@ async function main() {
   for (let i = 0; i < 6; i += 1) {
     await beforeHook(
       { tool: 'task' },
-      { args: { subagent_type: 'ai-council', prompt: `mode=research generate warning ${i}` } },
+      { args: { subagent_type: 'deep-review', prompt: `mode=research generate warning ${i}` } },
     );
   }
   assert.equal(fs.existsSync(`${guardLogPath(tmpDir)}.1`), true, 'size overflow should retain one rotated warning-log generation');

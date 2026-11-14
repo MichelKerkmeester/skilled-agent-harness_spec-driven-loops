@@ -162,7 +162,7 @@ Pin `--agent plan|orchestrate` only when the task needs that profile and `openco
 #### Subagents, dispatched as Task subagents from a primary
 
 These subagents live at `.opencode/agents/<slug>.md` with `mode: subagent`. They are NOT directly invokable via `opencode run --agent`.
-Route generic subagents (`context`, `review`, `write`, `debug`) through `--agent orchestrate`. Route `ai-council` through `/deep:ai-council` or `orchestrate`.
+Route generic subagents (`context`, `review`, `write`, `debug`) through `--agent orchestrate`. Route `ai-council` through `/speckit:ai-council` or `orchestrate`.
 The parent `/deep:*` commands own the loop executors `deep-research`, `deep-review` and `prompt-improver`. Never dispatch them by raw `--agent <slug>`.
 `orchestrate` may make one bounded hand-off but MUST NOT re-implement the loop.
 

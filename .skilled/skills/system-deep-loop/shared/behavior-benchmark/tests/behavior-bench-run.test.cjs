@@ -51,7 +51,7 @@ async function main() {
   assert.equal(typeof bench.directDispatchEvidence, 'function');
   assert.equal(typeof bench.evaluateBoundary, 'function');
   assert.deepEqual(Object.keys(bench.LEG_TABLE).sort(), ['claude-cli', 'deepseek', 'glm-max', 'gpt-fast-high', 'gpt-fast-med']);
-  assert.deepEqual(bench.LOCKED_MULTI_CAUSE_CELL_IDS, ['ACB-004', 'ACB-005', 'CXB-004']);
+  assert.deepEqual(bench.LOCKED_MULTI_CAUSE_CELL_IDS, ['CXB-004']);
   const deepseekArgs = bench.buildSpawnArgs('deepseek', loadSmokeContract());
   assert.deepEqual(deepseekArgs.slice(0, 4), ['opencode', 'run', '--model', 'deepseek/deepseek-v4-pro']);
   assert.ok(deepseekArgs.includes('--format'), 'deepseek leg uses opencode JSON format');
