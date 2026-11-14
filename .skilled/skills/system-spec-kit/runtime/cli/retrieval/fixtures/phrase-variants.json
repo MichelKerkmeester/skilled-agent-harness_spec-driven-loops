@@ -1,5 +1,5 @@
 {
-  "manifestHash": "25cb3652baf2162bdd83c80ce6bafbb841dac2bdbee498fa651456839dc46ff5",
+  "manifestHash": "6bed9487147844fd31df195ceae3e8266a5f75ed2ba4067cd256089fcce11555",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -9971,6 +9971,9 @@
     "agent alignment audit": [
       "agent alignment audit"
     ],
+    "agent alignment follow ups phase parent spec": [
+      "agent alignment follow ups phase parent spec"
+    ],
     "agent alignment implementation summary": [
       "agent alignment implementation summary"
     ],
@@ -9988,6 +9991,18 @@
     ],
     "agent authoring reference index": [
       "agent authoring reference index"
+    ],
+    "agent authoring registry step": [
+      "agent authoring registry step"
+    ],
+    "agent authoring registry step implementation summary": [
+      "agent authoring registry step implementation summary"
+    ],
+    "agent authoring registry step plan": [
+      "agent authoring registry step plan"
+    ],
+    "agent authoring registry step tasks": [
+      "agent authoring registry step tasks"
     ],
     "agent avoidance anti patterns": [
       "agent avoidance anti-patterns"
@@ -38923,6 +38938,18 @@
     "deepseek harness persona": [
       "DeepSeek Harness persona"
     ],
+    "deepseek harness persona probe": [
+      "deepseek harness persona probe"
+    ],
+    "deepseek harness persona probe implementation summary": [
+      "deepseek harness persona probe implementation summary"
+    ],
+    "deepseek harness persona probe plan": [
+      "deepseek harness persona probe plan"
+    ],
+    "deepseek harness persona probe tasks": [
+      "deepseek harness persona probe tasks"
+    ],
     "deepseek harness providers": [
       "deepseek harness providers"
     ],
@@ -49469,6 +49496,18 @@
     ],
     "fanout parity packet complete": [
       "fanout parity packet complete"
+    ],
+    "fanout persona tool mapping": [
+      "fanout persona tool mapping"
+    ],
+    "fanout persona tool mapping implementation summary": [
+      "fanout persona tool mapping implementation summary"
+    ],
+    "fanout persona tool mapping plan": [
+      "fanout persona tool mapping plan"
+    ],
+    "fanout persona tool mapping tasks": [
+      "fanout persona tool mapping tasks"
     ],
     "fanout playbook paths": [
       "fanout playbook paths"
@@ -77674,6 +77713,18 @@
     "orchestrate rule 7 tasks": [
       "orchestrate rule 7 tasks"
     ],
+    "orchestrate task package agent names": [
+      "orchestrate task package agent names"
+    ],
+    "orchestrate task package agent names implementation summary": [
+      "orchestrate task package agent names implementation summary"
+    ],
+    "orchestrate task package agent names plan": [
+      "orchestrate task package agent names plan"
+    ],
+    "orchestrate task package agent names tasks": [
+      "orchestrate task package agent names tasks"
+    ],
     "orchestrated sub session worktree sharing": [
       "orchestrated sub-session worktree sharing"
     ],
@@ -80735,6 +80786,9 @@
     "phase 1 doc version contract": [
       "phase 1 doc version contract"
     ],
+    "phase 1 fanout persona tool mapping": [
+      "phase 1 fanout persona tool mapping"
+    ],
     "phase 1 fix agent contract contradictions": [
       "phase 1 fix agent contract contradictions"
     ],
@@ -81500,6 +81554,9 @@
     "phase 2 deep ai council": [
       "phase 2 deep ai council"
     ],
+    "phase 2 deepseek harness persona probe": [
+      "phase 2 deepseek harness persona probe"
+    ],
     "phase 2 doctor git setup": [
       "phase 2 doctor git setup"
     ],
@@ -81971,6 +82028,9 @@
     "phase 3 nested skilled root": [
       "phase 3 nested skilled root"
     ],
+    "phase 3 orchestrate task package agent names": [
+      "phase 3 orchestrate task package agent names"
+    ],
     "phase 3 plain chat command reach": [
       "phase 3 plain chat command reach"
     ],
@@ -82102,6 +82162,9 @@
     ],
     "phase 4 advisor hooks relaunch": [
       "phase 4 advisor hooks relaunch"
+    ],
+    "phase 4 agent authoring registry step": [
+      "phase 4 agent authoring registry step"
     ],
     "phase 4 agent template conformance and drift check": [
       "phase 4 agent template conformance and drift check"

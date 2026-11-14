@@ -1,0 +1,18 @@
+{
+  "specFolder": "agents/007-agent-alignment-follow-ups/003-orchestrate-task-package-agent-names",
+  "description": "Phase 3: orchestrate-task-package-agent-names",
+  "keywords": [
+    "phase",
+    "orchestrate-task-package-agent-names"
+  ],
+  "lastUpdated": "2026-11-14T15:49:00.586Z",
+  "specId": "003",
+  "folderSlug": "orchestrate-task-package-agent-names",
+  "parentChain": [
+    "agents",
+    "007-agent-alignment-follow-ups"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
