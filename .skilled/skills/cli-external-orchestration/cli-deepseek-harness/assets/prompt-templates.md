@@ -8,7 +8,7 @@ trigger_phrases:
   - "dsh dispatch template"
 importance_tier: normal
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # DeepSeek Harness CLI Prompt Templates
@@ -45,7 +45,7 @@ export DSH_HOME="$RUN_DIR/.dsh-home"
 cd "$RUN_DIR"
 
 command -v dsh || { echo "dsh not on PATH, refusing the route"; exit 1; }
-[ "$(dsh --version </dev/null)" = "0.2.2-rc.1" ] || { echo "dsh is not the pinned version, re-pin first"; exit 1; }
+[ "$(dsh --version </dev/null)" = "0.2.2-rc.3" ] || { echo "dsh is not the pinned version, re-pin first"; exit 1; }
 
 ```
 

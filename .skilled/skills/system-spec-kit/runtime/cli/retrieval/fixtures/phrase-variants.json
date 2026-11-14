@@ -1,5 +1,5 @@
 {
-  "manifestHash": "20a31fc98647e1b60ab5f722dcf3fa6e8957e955034a9f5f7d7e29d9d017ce41",
+  "manifestHash": "577dd5117637e4610ef7652620fad5f9e222e8b6d2a27005a8a76e82cb89a936",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -44882,6 +44882,18 @@
     "dsh quality context": [
       "dsh quality context"
     ],
+    "dsh rc3 repin": [
+      "dsh rc3 repin"
+    ],
+    "dsh rc3 repin implementation summary": [
+      "dsh rc3 repin implementation summary"
+    ],
+    "dsh rc3 repin plan": [
+      "dsh rc3 repin plan"
+    ],
+    "dsh rc3 repin tasks": [
+      "dsh rc3 repin tasks"
+    ],
     "dsh release probe": [
       "dsh release probe"
     ],
@@ -81473,6 +81485,9 @@
     "phase 17 closure gate": [
       "phase 17 closure gate"
     ],
+    "phase 17 dsh rc3 repin": [
+      "phase 17 dsh rc3 repin"
+    ],
     "phase 17 gold checker": [
       "phase 17 gold checker"
     ],
@@ -94065,6 +94080,9 @@
     ],
     "repin decision record": [
       "repin decision record"
+    ],
+    "repin dsh to rc 3": [
+      "repin dsh to rc.3"
     ],
     "repin goal": [
       "repin goal"

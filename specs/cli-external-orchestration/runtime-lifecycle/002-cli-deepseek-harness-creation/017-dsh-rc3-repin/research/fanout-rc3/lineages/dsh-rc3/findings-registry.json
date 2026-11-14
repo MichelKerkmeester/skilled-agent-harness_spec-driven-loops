@@ -1,0 +1,252 @@
+{
+  "sessionId": "fanout-dsh-rc3-1794676280571-63ccxg",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 1,
+    "answeredCount": 4,
+    "totalQuestions": 4,
+    "timestamp": "2026-11-14T17:18:14.189Z"
+  },
+  "keyQuestions": [
+    {
+      "id": "question-1-which-provider-and-base-url-does-dsh-patches-route-llmgateway-deepseek-patch-yml",
+      "inboxId": null,
+      "text": "Which provider and base URL does .dsh/patches/route-llmgateway-deepseek.patch.yml configure?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-2-which-model-id-and-default-reasoning-effort-does-dsh-patches-route-llmgateway-de",
+      "inboxId": null,
+      "text": "Which model id and default reasoning effort does .dsh/patches/route-llmgateway-deepseek.patch.yml configure?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-3-which-provider-and-base-url-does-dsh-patches-route-opencode-go-deepseek-patch-ym",
+      "inboxId": null,
+      "text": "Which provider and base URL does .dsh/patches/route-opencode-go-deepseek.patch.yml configure?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    },
+    {
+      "id": "question-4-which-model-id-and-default-reasoning-effort-does-dsh-patches-route-opencode-go-d",
+      "inboxId": null,
+      "text": "Which model id and default reasoning effort does .dsh/patches/route-opencode-go-deepseek.patch.yml configure?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1,
+      "resolved": true
+    }
+  ],
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-which-provider-and-base-url-does-dsh-patches-route-llmgateway-deepseek-patch-yml",
+      "inboxId": null,
+      "text": "Which provider and base URL does .dsh/patches/route-llmgateway-deepseek.patch.yml configure?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-2-which-model-id-and-default-reasoning-effort-does-dsh-patches-route-llmgateway-de",
+      "inboxId": null,
+      "text": "Which model id and default reasoning effort does .dsh/patches/route-llmgateway-deepseek.patch.yml configure?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-3-which-provider-and-base-url-does-dsh-patches-route-opencode-go-deepseek-patch-ym",
+      "inboxId": null,
+      "text": "Which provider and base URL does .dsh/patches/route-opencode-go-deepseek.patch.yml configure?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    },
+    {
+      "id": "question-4-which-model-id-and-default-reasoning-effort-does-dsh-patches-route-opencode-go-d",
+      "inboxId": null,
+      "text": "Which model id and default reasoning effort does .dsh/patches/route-opencode-go-deepseek.patch.yml configure?",
+      "origin": "legacy-import",
+      "source": "key-questions",
+      "injectedAtIteration": 0,
+      "promotedQuestionId": null,
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 1
+    }
+  ],
+  "carriedForwardOpenQuestions": [],
+  "uncoveredQuestions": [],
+  "keyFindings": [
+    {
+      "id": "finding-1-6-independent-documentation-agrees-with-the-patch-text-dsh-sync-md-states-the-llm-",
+      "text": "Independent documentation agrees with the patch text: `.dsh/SYNC.md` states the LLM Gateway route composes `agent-default-model` naming `llmgateway` and `deepseek-v4.1-flash-1017`, and the OpenCode Go route names `opencode-go` and `deepseek-v4.1-flash`; `.dsh/README.md` names `LLMGATEWAY_API_KEY` and `OPENCODE_API_KEY` as the credentials for the two routes. [SOURCE: .dsh/SYNC.md:111] [SOURCE: .dsh/README.md:67]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.dsh/patches/route-llmgateway-deepseek.patch.yml:1-24`",
+        "`.dsh/patches/route-opencode-go-deepseek.patch.yml:1-25`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2973-3049`",
+        "`.dsh/SYNC.md:105-111`",
+        "`.dsh/README.md:59-67`",
+        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/research/fanout-rc3/lineages/dsh-rc3/invocation-metadata.json:1`",
+        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/tasks.md:45-46`"
+      ]
+    },
+    {
+      "id": "finding-1-5-route-selection-is-model-driven-deepseek-v4-1-flash-1017-selects-route-llmgatewa",
+      "text": "Route selection is model-driven: `deepseek-v4.1-flash-1017` selects `route-llmgateway-deepseek.patch.yml`, every other allowlisted model selects `route-opencode-go-deepseek.patch.yml`, and the selected route patch is passed to `dsh --patch` together with the lineage patch; the reasoning effort is pinned for the model at line 3048. This lineage's invocation metadata records model `deepseek-v4.1-flash-1017` at `reasoningEffort: max`, so the LLM Gateway route is the active one for this run. [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3006] [SOURCE: .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:3015] [SOURCE: specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/research/fanout-rc3/lineages/dsh-rc3/invocation-metadata.json:1]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.dsh/patches/route-llmgateway-deepseek.patch.yml:1-24`",
+        "`.dsh/patches/route-opencode-go-deepseek.patch.yml:1-25`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2973-3049`",
+        "`.dsh/SYNC.md:105-111`",
+        "`.dsh/README.md:59-67`",
+        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/research/fanout-rc3/lineages/dsh-rc3/invocation-metadata.json:1`",
+        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/tasks.md:45-46`"
+      ]
+    },
+    {
+      "id": "finding-1-1-the-llm-gateway-route-patch-configures-provider-llmgateway-display-name-llm-gate",
+      "text": "The LLM Gateway route patch configures provider `llmgateway` (display name \"LLM Gateway\") with `apiKeyEnv: LLMGATEWAY_API_KEY`, `api: openai-completions`, `baseURL: https://api.llmgateway.io/v1`, and `compat.thinkingFormat: deepseek` with `supportsDeveloperRole: false`. [SOURCE: .dsh/patches/route-llmgateway-deepseek.patch.yml:5] [SOURCE: .dsh/patches/route-llmgateway-deepseek.patch.yml:7] [SOURCE: .dsh/patches/route-llmgateway-deepseek.patch.yml:9] [SOURCE: .dsh/patches/route-llmgateway-deepseek.patch.yml:11]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.dsh/patches/route-llmgateway-deepseek.patch.yml:1-24`",
+        "`.dsh/patches/route-opencode-go-deepseek.patch.yml:1-25`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2973-3049`",
+        "`.dsh/SYNC.md:105-111`",
+        "`.dsh/README.md:59-67`",
+        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/research/fanout-rc3/lineages/dsh-rc3/invocation-metadata.json:1`",
+        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/tasks.md:45-46`"
+      ]
+    },
+    {
+      "id": "finding-1-2-the-llm-gateway-route-patch-declares-one-model-id-deepseek-v4-1-flash-1017-name-",
+      "text": "The LLM Gateway route patch declares one model, id `deepseek-v4.1-flash-1017` (name \"DeepSeek V4.1 Flash\"), with reasoning efforts `off` (empty), `high: high` and `max: max`, and it pins `agent-default-model` to provider `llmgateway`, model `deepseek-v4.1-flash-1017`, `reasoningEffort: max`. [SOURCE: .dsh/patches/route-llmgateway-deepseek.patch.yml:14] [SOURCE: .dsh/patches/route-llmgateway-deepseek.patch.yml:16] [SOURCE: .dsh/patches/route-llmgateway-deepseek.patch.yml:24]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.dsh/patches/route-llmgateway-deepseek.patch.yml:1-24`",
+        "`.dsh/patches/route-opencode-go-deepseek.patch.yml:1-25`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2973-3049`",
+        "`.dsh/SYNC.md:105-111`",
+        "`.dsh/README.md:59-67`",
+        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/research/fanout-rc3/lineages/dsh-rc3/invocation-metadata.json:1`",
+        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/tasks.md:45-46`"
+      ]
+    },
+    {
+      "id": "finding-1-3-the-opencode-go-route-patch-configures-provider-opencode-go-display-name-opencod",
+      "text": "The OpenCode Go route patch configures provider `opencode-go` (display name \"OpenCode Go\") with `apiKeyEnv: OPENCODE_API_KEY`, `api: openai-completions`, `baseURL: https://opencode.ai/zen/go/v1`, and the same `compat.thinkingFormat: deepseek` / `supportsDeveloperRole: false` block; its header records that this endpoint is unverified until a keyed run proves it. [SOURCE: .dsh/patches/route-opencode-go-deepseek.patch.yml:6] [SOURCE: .dsh/patches/route-opencode-go-deepseek.patch.yml:8] [SOURCE: .dsh/patches/route-opencode-go-deepseek.patch.yml:10] [SOURCE: .dsh/patches/route-opencode-go-deepseek.patch.yml:2]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.dsh/patches/route-llmgateway-deepseek.patch.yml:1-24`",
+        "`.dsh/patches/route-opencode-go-deepseek.patch.yml:1-25`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2973-3049`",
+        "`.dsh/SYNC.md:105-111`",
+        "`.dsh/README.md:59-67`",
+        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/research/fanout-rc3/lineages/dsh-rc3/invocation-metadata.json:1`",
+        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/tasks.md:45-46`"
+      ]
+    },
+    {
+      "id": "finding-1-4-the-opencode-go-route-patch-declares-one-model-id-deepseek-v4-1-flash-name-deeps",
+      "text": "The OpenCode Go route patch declares one model, id `deepseek-v4.1-flash` (name \"DeepSeek V4.1 Flash\"), with reasoning efforts `off` (empty), `high: high` and `max: max`, and it pins `agent-default-model` to provider `opencode-go`, model `deepseek-v4.1-flash`, `reasoningEffort: max`. [SOURCE: .dsh/patches/route-opencode-go-deepseek.patch.yml:15] [SOURCE: .dsh/patches/route-opencode-go-deepseek.patch.yml:17] [SOURCE: .dsh/patches/route-opencode-go-deepseek.patch.yml:25]",
+      "addedAtIteration": 1,
+      "sources": [
+        "`.dsh/patches/route-llmgateway-deepseek.patch.yml:1-24`",
+        "`.dsh/patches/route-opencode-go-deepseek.patch.yml:1-25`",
+        "`.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:2973-3049`",
+        "`.dsh/SYNC.md:105-111`",
+        "`.dsh/README.md:59-67`",
+        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/research/fanout-rc3/lineages/dsh-rc3/invocation-metadata.json:1`",
+        "`specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/004-dsh-runtime-folder-and-patches/tasks.md:45-46`"
+      ]
+    }
+  ],
+  "ruledOutDirections": [],
+  "rejectedPatterns": [],
+  "rejectedPatternIndex": {
+    "maxEntries": 100,
+    "fuzzyThreshold": 0.85,
+    "entries": []
+  },
+  "rejectedPatternWarnings": [],
+  "suppressedCandidates": [],
+  "minIdeaObservations": 2,
+  "observedIdeas": [],
+  "promotedIdeas": [],
+  "suppressedIdeas": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": "",
+    "activePivotId": null,
+    "activeSourceIteration": null
+  },
+  "metrics": {
+    "iterationsCompleted": 1,
+    "openQuestions": 0,
+    "resolvedQuestions": 4,
+    "carriedForwardOpenQuestions": 0,
+    "keyFindings": 6,
+    "rejectedPatterns": 0,
+    "suppressedCandidates": 0,
+    "observedIdeas": 0,
+    "promotedIdeas": 0,
+    "suppressedIdeas": 0,
+    "convergenceScore": 0.92,
+    "coverageBySources": {
+      "code": 14
+    },
+    "completedPivots": 0,
+    "failedPivots": 0,
+    "pivotOverrides": 0
+  },
+  "corruptionWarnings": [],
+  "inboxPath": "/Users/michelkerkmeester/worktrees/public/388-dsh-rc3-repin/specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/research/fanout-rc3/lineages/dsh-rc3/inbox.jsonl",
+  "inboxWarnings": [],
+  "status": "COMPLETE",
+  "advisoryEvents": [],
+  "strategyWarnings": []
+}

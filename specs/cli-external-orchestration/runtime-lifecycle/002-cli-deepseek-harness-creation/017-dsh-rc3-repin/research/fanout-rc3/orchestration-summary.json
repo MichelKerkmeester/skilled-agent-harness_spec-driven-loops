@@ -1,0 +1,28 @@
+{
+  "run_id": "1794676280571-63ccxg",
+  "loop_type": "research",
+  "spec_folder": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin",
+  "base_artifact_dir": "/Users/michelkerkmeester/worktrees/public/388-dsh-rc3-repin/specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/research/fanout-rc3",
+  "total_cli_lineages": 1,
+  "orphaned_lineages": [],
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 0
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 0,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0,
+    "quota": 0
+  }
+}

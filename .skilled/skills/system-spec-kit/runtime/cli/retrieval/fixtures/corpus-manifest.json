@@ -1,5 +1,5 @@
 {
-  "corpusHash": "ef6d15dfa7d1b734734763ff39733abbc3438d9fce20af489f370d29e5f4cc7d",
+  "corpusHash": "8f07c4092b71b472e5a9db6634aff6112d140cb787b7cd1e01b381130a1188de",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27010,
+  "includedPathCount": 27014,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -10603,6 +10603,10 @@
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/016-ci-red-check-repairs/research/research.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/016-ci-red-check-repairs/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/016-ci-red-check-repairs/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/goal.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/handover.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/spec.md",
@@ -27042,7 +27046,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "20a31fc98647e1b60ab5f722dcf3fa6e8957e955034a9f5f7d7e29d9d017ce41",
+  "manifestHash": "577dd5117637e4610ef7652620fad5f9e222e8b6d2a27005a8a76e82cb89a936",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29390,6 +29394,14 @@
     },
     {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/016-ci-red-check-repairs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/research/fanout-rc3",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/scratch",
       "reason": "excluded directory"
     },
     {

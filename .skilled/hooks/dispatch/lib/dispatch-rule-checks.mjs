@@ -29,7 +29,7 @@ import { resolveDispatchCommands, resolveDispatchPackets } from './dispatch-audi
 const HARD_RULES_FILENAME = 'hard-rules.json';
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const DSH_SKILL = 'cli-deepseek-harness';
-const DSH_PINNED_VERSION = '0.2.2-rc.1';
+const DSH_PINNED_VERSION = '0.2.2-rc.3';
 const DSH_HEADLESS_SHAPE = /\bdsh\s+(?:[^|;&]*\s)?(?:--profile(?:=|\s)|headless\b)/;
 const DSH_NPX_HEADLESS_SHAPE = /\bnpx\s+-y\s+@deepseek-ai\/dsh(?:@\S+)?[^\n;&|]*(?:--profile(?:=|\s)|\sheadless\b)/;
 const DSH_UNEXPANDED_PATCH_VALUE = /(?:\$(?:[A-Za-z_][A-Za-z0-9_]*|\{[^}]*\}|\()|`)/;
