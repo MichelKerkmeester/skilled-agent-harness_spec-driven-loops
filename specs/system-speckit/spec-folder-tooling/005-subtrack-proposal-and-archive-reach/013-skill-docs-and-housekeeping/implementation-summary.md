@@ -8,18 +8,26 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping"
-    last_updated_at: "2026-11-14T15:00:00Z"
-    last_updated_by: "orchestrator"
-    recent_action: "Aligned the skill docs, wrote v2.13.1.0 and recorded the routing review"
-    next_safe_action: "Prepare worktree 378 for merge into main"
+    last_updated_at: "2026-11-14T14:16:24Z"
+    last_updated_by: "generate-context"
+    recent_action: "Committed phase 013 as a1c0abcad1"
+    next_safe_action: "Run npm test, then prepare worktree 378 for merge"
+    packet_purpose: "Purpose: The skill's own documents match its shipped behavior, and the packet's records are accurate and fully reviewed."
     blockers: []
     key_files:
       - ".skilled/skills/system-spec-kit/SKILL.md"
       - ".skilled/skills/system-spec-kit/changelog/v2.13.1.0.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:bcf1e6880ac151392bd18c6d88a42f7625f3051308d14dc2b4c0b83391f4fe58"
       session_id: "scaffold-013-skill-docs-and-housekeeping"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "71bf64cd-38aa-49d3-90c7-925ac95b4fa9"
+      workspace: "/Users/michelkerkmeester/worktrees/public/378-relocate-restore-fixes"
+      savedAt: "2026-11-14T14:16:24Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []

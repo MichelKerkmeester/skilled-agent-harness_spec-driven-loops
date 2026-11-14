@@ -201,8 +201,8 @@
     ],
     "causal_summary": "`SKILL.md` publishes a next-number command that ignores archived packets, against decision D4, and its script list omits the three tools this packet added",
     "created_at": "2026-11-14T11:10:42Z",
-    "last_save_at": "2026-11-14T14:15:06.567Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-14T14:16:24.827Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -211,13 +211,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f3d3de7916fb15eb2e3f1f5644248ec4290c519fcfb1b7b2493f331e333b307b",
+    "source_fingerprint": "sha256:e8c4cc58eedccbd58132f08c83a0f9bd6283ae6eca9996be06ab1ed9cd472080",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ab0959b0a6259b6442a04c13bd0ef2cfa9b1b0ceedfc0258c7779022785e089e",
       "plan.md": "9b94713557145661ec57100fcf5f0acf0838bcaf9d9e5cdec3034fb5c303af38",
       "tasks.md": "7ce24b9971847f92510f5cb12df8c460645687496de7d8dfa9c545e0d463c443",
-      "implementation-summary.md": "b53f639f67c38c8139e9a3e6f5dcbaac919ed25bd610089ba67bd4d0e5d48028"
+      "implementation-summary.md": "af601be77ad88a61ffad40f646d5cfd37bc15f70e74dbf733e8a09ce80f156f1"
     },
     "last_active_at": null
   }
