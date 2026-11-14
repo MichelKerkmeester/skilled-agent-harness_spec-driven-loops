@@ -639,6 +639,9 @@ const OPTIONAL_DATA_FIELD_RULES: Readonly<
   'deep_research.run_initialized': Object.freeze({
     topic: 'prose',
   }),
+  'deep_research.iteration_started': Object.freeze({
+    executor: 'json',
+  }),
   'deep_research.iteration_completed': Object.freeze({
     focus: 'prose',
     answeredQuestions: 'prose-array',

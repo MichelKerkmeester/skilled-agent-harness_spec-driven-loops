@@ -54,11 +54,11 @@
       ".skilled/commands/deep/assets/deep-review-confirm.yaml",
       ".skilled/commands/deep/assets/deep-review-presentation.txt",
       ".skilled/skills/system-deep-loop/changelog/v1.6.26.0.md",
+      "review/review-report.md",
       ".skilled/commands/deep/assets/deep-research-auto.yaml",
       ".skilled/commands/deep/assets/deep-research-confirm.yaml",
       ".skilled/commands/deep/assets/deep-research-presentation.txt",
-      ".skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts"
+      ".skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts"
     ],
     "entities": [
       {
@@ -152,6 +152,12 @@
         "source": "derived"
       },
       {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
+      {
         "name": "deep-research-auto.yaml",
         "kind": "config",
         "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
@@ -173,12 +179,6 @@
         "name": "executor-audit-cli-branch-receipts.test.ts",
         "kind": "test",
         "path": ".skilled/skills/system-deep-loop/runtime/tests/executor-audit-cli-branch-receipts.test.ts",
-        "source": "derived"
-      },
-      {
-        "name": "fanout-run.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/fanout-run.vitest.ts",
         "source": "derived"
       },
       {
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "Phase 018 lets `/deep:review` and `/deep:research` run one DeepSeek Harness lineage, but four of the Fable review's P2 points on that plan are still open",
     "created_at": "2026-11-14T11:27:24Z",
-    "last_save_at": "2026-11-14T19:47:23.231Z",
+    "last_save_at": "2026-11-14T22:56:51.279Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,14 +220,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cf134ef97a79b214c318381a340c8d8e6b053b070bdc06215e516ed315856fc6",
+    "source_fingerprint": "sha256:3de3f7c45ca3a90f1dd9241e7101b4606c9ed95b5a91d7511ff0e7c0a06232f6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "43c14ef3bb006b8bf35ee06a908a95dffff465e9d48288492da2e938ddbf965c",
-      "plan.md": "8915a4cf8360fe3213419267b141ba1528e8228be90eda2bad645eabef7ab036",
-      "tasks.md": "0f3e13207787dda45f6a1771e500d0d8236dce493be0a482301f511a2447d33f",
-      "decision-record.md": "96bd26d03df75a72898b48c6c40fca8447d3f53df86faec77367e6764773255b",
-      "implementation-summary.md": "97f44d1cef3ec6142963f77bde22723e7973fbd3ccd9d0f38ddbe25484d94cf8"
+      "spec.md": "b3fad189cd7def88cb8e831ecec5225dfffeb19570651695c558217826712a7f",
+      "plan.md": "7a1c0b757a217aab03b8586bc3175335f7d69466bfbcc1f54518231957cd220c",
+      "tasks.md": "d1b2c573e52790cfdf657b719597436195f57b315609341bf7fcd4c95a5f9222",
+      "decision-record.md": "7f42f6ca9d19adfe6ac72cb8c691945efef3769243fd59187111c4a2a85283b2",
+      "implementation-summary.md": "416dbeb4fafce51b3ef12c31e0f2a640a6d5e025e29b91a48ade842c2224b71c"
     },
     "last_active_at": null
   }

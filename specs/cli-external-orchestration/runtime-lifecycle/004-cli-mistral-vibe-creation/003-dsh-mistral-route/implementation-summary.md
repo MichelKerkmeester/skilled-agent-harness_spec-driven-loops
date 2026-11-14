@@ -66,6 +66,7 @@ The patch follows the other two routes' shape with one difference: it carries no
 | `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/providers-and-models.md` | Modified | Mistral row and section; §5 names the preflight set |
 | `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md`, `README.md`, `references/runtime-folder-and-sync.md` | Modified | Three-route wording and patch tree |
 | `.skilled/skills/cli-external-orchestration/SKILL.md`, `README.md`, `feature-catalog/` | Modified | Three-route wording and keyed-run status |
+| `.skilled/agents/prompt-improver.md` and its four mirrors, `.skilled/skills/sk-prompt/SKILL.md` | Modified | Three-route roster row. A later pass on 2026-11-14 found these and the harness `SKILL.md` closed-roster line still naming two routes |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -100,6 +101,7 @@ The draft composed offline first, and a direct API check settled the reasoning f
 | Keyless dispatch | Expected failure: exit 1, `MISSING_CREDENTIAL` for `MISTRAL_API_KEY` |
 | `validate_document.py` on the edited docs | PASS: 0 issues, except the feature catalog's existing type-fallback warning |
 | Keyed dispatch | Not run: key not exported |
+| Two-route sweep, 2026-11-14 | PASS: `rg -F 'these two routes'` outside `specs/` prints no file, and the Pi, Codex and dsh agent syncs print in sync |
 <!-- /ANCHOR:verification -->
 
 ---

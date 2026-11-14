@@ -145,6 +145,7 @@ Summary for audit only. Each child's plan.md holds the detail.
 | 17 | 017-dsh-rc3-repin/ | Move the dsh pin and its integrity from 0.2.2-rc.1 to 0.2.2-rc.3 at every pin site and repeat the re-pin runbook's probes on it | Complete |
 | 18 | 018-dsh-single-executor-loop/ | Run one dsh lineage in `/deep:review` and `/deep:research` `:auto` through the shared builder with an isolated home and a completion check | Complete |
 | 19 | 019-dsh-single-executor-hardening/ | Close the open Fable P2 points on the single dsh lineage and the three loop faults its first live review exposed: stale home sweep, a per-kind `dispatchEnv` list, no stdout echo, a `:confirm` refusal, one registry row per finding and canonical dimension ids | Complete |
+| 20 | 020-dsh-direct-writer-gateway/ | Route the dispatch failure row, the receipt write failure row and the post-dispatch executor audit through the append gateway, so a ledger-backed state log keeps them after a refresh | Planned |
 
 ### Phase Transition Rules
 
@@ -175,6 +176,7 @@ Summary for audit only. Each child's plan.md holds the detail.
 | 016-ci-red-check-repairs | 017-dsh-rc3-repin | The dsh on PATH is 0.2.2-rc.3 and the operator chose a re-pin in a phase of its own | `rg -c "DSH_VERSION = '0.2.2-rc.3'" .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` prints 1 |
 | 017-dsh-rc3-repin | 018-dsh-single-executor-loop | Phase 016 is Complete and the single dsh refusal is traced to both `:auto` YAMLs. Phase 018 does not wait for 017, which ran on its own branch | `validate.sh` on `018-dsh-single-executor-loop` prints `RESULT: PASSED` |
 | 018-dsh-single-executor-loop | 019-dsh-single-executor-hardening | Phase 018 is committed, because phase 019's search texts are its two harness branches | `git log -1 --format=%h 1bedb33577` prints `1bedb33577` and `rg -c 'completionCheck: validateDshCompletion,' .skilled/commands/deep/assets/deep-review-auto.yaml` prints 1 |
+| 019-dsh-single-executor-hardening | 020-dsh-direct-writer-gateway | Phase 019 is committed, because phase 020 reuses its gateway helpers and its search texts match 019's text | `git show HEAD:.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-audit.ts \| rg -c 'function ledgerModeFor'` prints 1 |
 <!-- /ANCHOR:phase-map -->
 
 ---
