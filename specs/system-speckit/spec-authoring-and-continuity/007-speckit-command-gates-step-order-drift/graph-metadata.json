@@ -11,7 +11,8 @@
     "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/005-resume-detection-and-single-workflow",
     "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts",
     "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms",
-    "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment"
+    "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment",
+    "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets"
   ],
   "manual": {
     "depends_on": [],
@@ -90,18 +91,18 @@
     ],
     "causal_summary": "The `/speckit:plan`, `/speckit:implement`, `/speckit:complete`, `/speckit:resume`, `/speckit:save`, `/speckit:search` and `/speckit:handoff` commands are executed by AI agents on every runtime, and an agent follows the workflow text literally",
     "created_at": "2026-11-14T11:33:17Z",
-    "last_save_at": "2026-11-14T16:47:44.008Z",
+    "last_save_at": "2026-11-14T18:06:15.035Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:46250a6998dd55653deeee511c7a1c1f19874638d882300748fd4d2627191146",
+    "source_fingerprint": "sha256:6f43c5557aa63e8453f539e6c7fb740670a01b39d13b81f21842c3f7ab368350",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "14dedfbc22eed2f38c8bb85859d5c31e7a93df5704fa0ac66d23620988133372"
+      "spec.md": "59873f22c8e339309ba07199427a373dadf572af1bf15b6d0869bf46a2916c71"
     },
-    "last_active_child_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment",
-    "last_active_at": "2026-11-14T16:47:44.008Z"
+    "last_active_child_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets",
+    "last_active_at": "2026-11-14T18:05:06.773Z"
   }
 }
