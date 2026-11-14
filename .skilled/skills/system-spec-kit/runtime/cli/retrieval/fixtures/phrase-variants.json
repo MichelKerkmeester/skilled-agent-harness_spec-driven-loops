@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1cd7a6a0bec7e2858f26ca81c19890d6b96dbf84372fcf311fba50833b017a76",
+  "manifestHash": "17b25335b6de2aef664afb12d65395fdd4355f238eabda4938a52bec109f2931",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10001,6 +10001,9 @@
     "agent config deep research iter": [
       "agent-config-deep-research-iter"
     ],
+    "agent contract and registry alignment phase parent spec": [
+      "agent contract and registry alignment phase parent spec"
+    ],
     "agent creation overflow": [
       "agent creation overflow"
     ],
@@ -10452,6 +10455,18 @@
     "agent readme conformance": [
       "agent readme conformance"
     ],
+    "agent registry and generated rosters": [
+      "agent registry and generated rosters"
+    ],
+    "agent registry and generated rosters acceptance criteria": [
+      "agent registry and generated rosters acceptance criteria"
+    ],
+    "agent registry and generated rosters plan": [
+      "agent registry and generated rosters plan"
+    ],
+    "agent registry and generated rosters tasks": [
+      "agent registry and generated rosters tasks"
+    ],
     "agent routing documentation": [
       "agent routing documentation"
     ],
@@ -10481,6 +10496,18 @@
     ],
     "agent template amendment": [
       "agent template amendment"
+    ],
+    "agent template conformance and drift check": [
+      "agent template conformance and drift check"
+    ],
+    "agent template conformance and drift check acceptance criteria": [
+      "agent template conformance and drift check acceptance criteria"
+    ],
+    "agent template conformance and drift check plan": [
+      "agent template conformance and drift check plan"
+    ],
+    "agent template conformance and drift check tasks": [
+      "agent template conformance and drift check tasks"
     ],
     "agent template critical important": [
       "agent template critical important"
@@ -27031,6 +27058,18 @@
     ],
     "codex payload probe plan": [
       "codex payload probe plan"
+    ],
+    "codex persona tool mapping": [
+      "codex persona tool mapping"
+    ],
+    "codex persona tool mapping acceptance criteria": [
+      "codex persona tool mapping acceptance criteria"
+    ],
+    "codex persona tool mapping plan": [
+      "codex persona tool mapping plan"
+    ],
+    "codex persona tool mapping tasks": [
+      "codex persona tool mapping tasks"
     ],
     "codex pi sync agents": [
       "codex pi sync agents"
@@ -50924,6 +50963,18 @@
     ],
     "fix 1 db relocation": [
       "fix 1 db relocation"
+    ],
+    "fix agent contract contradictions": [
+      "fix agent contract contradictions"
+    ],
+    "fix agent contract contradictions acceptance criteria": [
+      "fix agent contract contradictions acceptance criteria"
+    ],
+    "fix agent contract contradictions plan": [
+      "fix agent contract contradictions plan"
+    ],
+    "fix agent contract contradictions tasks": [
+      "fix agent contract contradictions tasks"
     ],
     "fix audit findings": [
       "fix audit findings"
@@ -80603,6 +80654,9 @@
     "phase 1 doc version contract": [
       "phase 1 doc version contract"
     ],
+    "phase 1 fix agent contract contradictions": [
+      "phase 1 fix agent contract contradictions"
+    ],
     "phase 1 frontend surface mode": [
       "phase 1 frontend surface mode"
     ],
@@ -81308,6 +81362,9 @@
     "phase 2 agent improvement inventory": [
       "phase 2 agent improvement inventory"
     ],
+    "phase 2 agent registry and generated rosters": [
+      "phase 2 agent registry and generated rosters"
+    ],
     "phase 2 authoring hubs": [
       "phase 2 authoring hubs"
     ],
@@ -81860,6 +81917,9 @@
     "phase 3 sk git playbook changelog": [
       "phase 3 sk git playbook changelog"
     ],
+    "phase 3 skill binding through routers": [
+      "phase 3 skill binding through routers"
+    ],
     "phase 3 split upgrade legacy": [
       "phase 3 split upgrade legacy"
     ],
@@ -81946,6 +82006,9 @@
     ],
     "phase 4 advisor hooks relaunch": [
       "phase 4 advisor hooks relaunch"
+    ],
+    "phase 4 agent template conformance and drift check": [
+      "phase 4 agent template conformance and drift check"
     ],
     "phase 4 agents commands config": [
       "phase 4 agents commands config"
@@ -82349,6 +82412,9 @@
     "phase 5 tests and closeout": [
       "phase 5 tests and closeout"
     ],
+    "phase 5 trim duplicated and dead agent text": [
+      "phase 5 trim duplicated and dead agent text"
+    ],
     "phase 5 version aware guards": [
       "phase 5 version aware guards"
     ],
@@ -82408,6 +82474,9 @@
     ],
     "phase 6 closure gate": [
       "phase 6 closure gate"
+    ],
+    "phase 6 codex persona tool mapping": [
+      "phase 6 codex persona tool mapping"
     ],
     "phase 6 compiled route content check": [
       "phase 6 compiled route content check"
@@ -112254,6 +112323,18 @@
     "skill benchmark upcaster tasks": [
       "skill benchmark upcaster tasks"
     ],
+    "skill binding through routers": [
+      "skill binding through routers"
+    ],
+    "skill binding through routers acceptance criteria": [
+      "skill binding through routers acceptance criteria"
+    ],
+    "skill binding through routers plan": [
+      "skill binding through routers plan"
+    ],
+    "skill binding through routers tasks": [
+      "skill binding through routers tasks"
+    ],
     "skill brief is back": [
       "skill brief is back"
     ],
@@ -124889,6 +124970,18 @@
     ],
     "trigger write merge": [
       "trigger write merge"
+    ],
+    "trim duplicated and dead agent text": [
+      "trim duplicated and dead agent text"
+    ],
+    "trim duplicated and dead agent text acceptance criteria": [
+      "trim duplicated and dead agent text acceptance criteria"
+    ],
+    "trim duplicated and dead agent text plan": [
+      "trim duplicated and dead agent text plan"
+    ],
+    "trim duplicated and dead agent text tasks": [
+      "trim duplicated and dead agent text tasks"
     ],
     "trim targeted verdict": [
       "trim-targeted verdict"

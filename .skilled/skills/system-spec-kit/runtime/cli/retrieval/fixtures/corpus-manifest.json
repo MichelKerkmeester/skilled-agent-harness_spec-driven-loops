@@ -1,5 +1,5 @@
 {
-  "corpusHash": "08a04ec4a44daa66324ac57b32e2313883065b822dcf72b564d5b83cfb829be4",
+  "corpusHash": "77b3c86be3d1f2c9a8e707e21729f596fc298e2887bc1ff640978850addbb7e9",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26830,
+  "includedPathCount": 26862,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9400,6 +9400,38 @@
     "specs/agents/005-haiku-explore-and-context-agents/plan.md",
     "specs/agents/005-haiku-explore-and-context-agents/spec.md",
     "specs/agents/005-haiku-explore-and-context-agents/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/acceptance-criteria.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/plan.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/spec.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/acceptance-criteria.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/plan.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/spec.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/acceptance-criteria.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/plan.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/spec.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/acceptance-criteria.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/plan.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/spec.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/acceptance-criteria.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/plan.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/spec.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/acceptance-criteria.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/plan.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/spec.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/tasks.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/goal.md",
+    "specs/agents/006-agent-contract-and-registry-alignment/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/implementation-summary.md",
@@ -26862,7 +26894,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1cd7a6a0bec7e2858f26ca81c19890d6b96dbf84372fcf311fba50833b017a76",
+  "manifestHash": "17b25335b6de2aef664afb12d65395fdd4355f238eabda4938a52bec109f2931",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -27866,6 +27898,30 @@
     },
     {
       "path": "specs/agents/005-haiku-explore-and-context-agents/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/002-agent-registry-and-generated-rosters/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/003-skill-binding-through-routers/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/004-agent-template-conformance-and-drift-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/005-trim-duplicated-and-dead-agent-text/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/006-agent-contract-and-registry-alignment/006-codex-persona-tool-mapping/scratch",
       "reason": "excluded directory"
     },
     {
