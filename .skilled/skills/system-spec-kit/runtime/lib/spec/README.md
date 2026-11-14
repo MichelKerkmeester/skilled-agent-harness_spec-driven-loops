@@ -17,7 +17,7 @@ trigger_phrases:
 
 Current state:
 
-- `is-phase-parent.ts` is the only implementation file in this folder.
+- `is-phase-parent.ts` holds the phase-parent rule. `packet-purpose.ts` reads a packet's one-sentence purpose and uses that rule to find the enclosing phase parent.
 - With `SPECKIT_GENERATOR_HARDENING` on, phase-parent classification and the derived children list both read the same `listPhaseChildren()` enumeration, so the two can never disagree on what a child is. With the flag off, `isPhaseParent()` falls back to the legacy direct-`readdir` detection, byte-identical to the pre-hardening behavior.
 - `assessPhaseParentHealth()` gives a non-mutating manifest-size advisory (`ok` / `warning` / `error` / `not_phase_parent`) so validation and tooling can flag a phase parent whose child count is getting hard to review, without failing validation by itself.
 
@@ -28,6 +28,7 @@ Current state:
 | File | Responsibility |
 |---|---|
 | `is-phase-parent.ts` | `isPhaseParent()`, `listPhaseChildren()`, and `assessPhaseParentHealth()` against the warning (20) and error (40) child-count thresholds. |
+| `packet-purpose.ts` | `resolvePacketPurpose()` and `formatPacketPurpose()`: the first sentence of a packet's `### Purpose`, else the nearest enclosing phase parent's, else its `goal.md` Objective. |
 
 ---
 
@@ -48,6 +49,8 @@ Current state:
 | `listPhaseChildren(specFolderAbsPath)` | Function | Enumerate direct phase-child directories with their qualification flag; the single contract both the classification and the derived children list read from. |
 | `assessPhaseParentHealth(specFolderAbsPath)` | Function | Manifest-size advisory (`ok` / `warning` / `error` / `not_phase_parent`) with a recommendation string. |
 | `PHASE_PARENT_WARNING_THRESHOLD`, `PHASE_PARENT_ERROR_THRESHOLD` | Constants | Child-count thresholds (20 and 40) behind the health advisory. |
+| `resolvePacketPurpose(specFolderAbsPath)` | Function | The packet's purpose sentence with its source (`packet`, `ancestor` or `goal`) and the folder it came from, or null. Never throws. |
+| `formatPacketPurpose(purpose, projectRoot)` | Function | One line for a recovery brief that names the parent folder when the purpose is inherited. |
 
 ---
 

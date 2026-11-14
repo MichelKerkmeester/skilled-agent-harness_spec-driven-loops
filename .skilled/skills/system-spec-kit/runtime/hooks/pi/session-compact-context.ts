@@ -11,7 +11,7 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
-import { join } from "node:path";
+import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import * as hookFlags from "../../../../../hooks/shared/hook-flags.mjs";
 import {
@@ -57,6 +57,27 @@ function readLastSpecFolder(cwd: string, sessionId: string): string | null {
     const parsed = JSON.parse(readFileSync(statePath, "utf8")) as { lastSpecFolder?: unknown };
     const specFolder = typeof parsed.lastSpecFolder === "string" ? parsed.lastSpecFolder.trim() : "";
     return specFolder || null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * The packet's purpose as a recovery section, read through the built helper
+ * the Claude adapter uses. A missing build or an unreadable packet yields
+ * null, so the purpose can be lost but the compaction recovery cannot.
+ */
+async function readPacketPurposeSection(cwd: string, specFolder: string): Promise<string | null> {
+  try {
+    type PacketPurpose = { text: string; source: "packet" | "ancestor" | "goal"; folder: string };
+    const { formatPacketPurpose, resolvePacketPurpose } = await import(
+      "../../dist/lib/spec/packet-purpose.js"
+    ) as {
+      resolvePacketPurpose: (specFolderAbsPath: string) => PacketPurpose | null;
+      formatPacketPurpose: (purpose: PacketPurpose, projectRoot: string) => string;
+    };
+    const purpose = resolvePacketPurpose(resolve(cwd, specFolder));
+    return purpose ? `## Packet Purpose\n${formatPacketPurpose(purpose, cwd)}` : null;
   } catch {
     return null;
   }
@@ -151,7 +172,11 @@ export default function sessionCompactContext(pi: ExtensionAPI): void {
         : null;
       if (sessionId) {
         const specFolder = readLastSpecFolder(ctx.cwd, sessionId);
-        if (specFolder) sections.push(`## Active Spec Folder\n${specFolder}`);
+        if (specFolder) {
+          const purpose = await readPacketPurposeSection(ctx.cwd, specFolder);
+          if (purpose) sections.push(purpose);
+          sections.push(`## Active Spec Folder\n${specFolder}`);
+        }
       }
 
       // The locator mirrors the historyLocator field Claude persists beside its compact cache.
