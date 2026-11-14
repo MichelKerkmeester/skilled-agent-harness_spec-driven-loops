@@ -8,16 +8,24 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop"
-    last_updated_at: "2026-11-14T10:25:58Z"
-    last_updated_by: "orchestrator-worker"
+    last_updated_at: "2026-11-14T19:47:20Z"
+    last_updated_by: "generate-context"
     recent_action: "Recorded the live five-iteration review against AC-009 and closed the packet"
     next_safe_action: "Start phase 019"
+    packet_purpose: "Purpose: One dsh lineage runs a review or research iteration in `:auto` from the artifact folder, with its own throwaway home, and a clean exit that hides a failure is recorded as a crash."
     blockers: []
     key_files: []
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:25db84bc04cbaa3ffef685e95a50bc402b117d5c55a4ddcec7d3cd815a0ce0f2"
       session_id: "scaffold-018-dsh-single-executor-loop"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "09dbafe5-7a4f-45ac-ae2e-b8dc70b614b6"
+      workspace: "/Users/michelkerkmeester/worktrees/public/376-dsh-single-executor-loop"
+      savedAt: "2026-11-14T19:47:20Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []

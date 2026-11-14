@@ -112,6 +112,7 @@ and findings belong here.
 | Live continuity save | Done | Two continuity records under 002 and 006 hold a correct purpose line, per the 2026-11-14 review |
 | Live relaunch | Done | Relaunch note `20261114T072604Z-ef52f514-275d-4013-b7bd-ab365324057d.md`, claimed by Claude Code session `09dbafe5-7a4f-45ac-ae2e-b8dc70b614b6` on 2026-11-14, printed its Goal opening with `Purpose (specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md): Keep a packet's purpose, ...` |
 | Remediation plan 006-011 and goals | Done | committed 9c9dd544a9, recursive strict 12 of 12 PASSED |
+| Phases 012 and 013 plus merge | Done | Built, merged with origin/main and pushed as f7620ffda1; 13 operator answers recorded in decision-record.md |
 
 ### Deviations and findings
 
