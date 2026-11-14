@@ -218,7 +218,7 @@
     ],
     "causal_summary": "Subtracks exist in system-spec-kit only as a hand-written declaration, one level deep, and three gaps follow from that",
     "created_at": "2026-11-13T10:07:28Z",
-    "last_save_at": "2026-11-14T09:23:34.434Z",
+    "last_save_at": "2026-11-14T09:28:06.970Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -226,7 +226,7 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:b664a2757b795adeec0d18f8fdbc5f2022441cd7750f1b4bd78b4783a8451d87",
+    "source_fingerprint": "sha256:0ba254a1bae20272eb63f245e200a07c2893ad03c5c079cccb005a88c46ac785",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "600f74fdd68bd587f462bc16cd773ff43f008c6a1d9856f6d23dae989bbf262b",
