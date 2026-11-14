@@ -1,5 +1,5 @@
 {
-  "corpusHash": "6f4b414b8a2d9ef802afa185c7ba20084c196b3eae91d7a80886f348320cf409",
+  "corpusHash": "3a04875fb83fde0c15509d658166c8191837ba66d169dcd2c69307aa9438dcca",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27277,
+  "includedPathCount": 27318,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7669,6 +7669,7 @@
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.10.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.11.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.12.0.md",
+    ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.13.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.2.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.3.0.md",
     ".skilled/skills/system-deep-loop/deep-research/changelog/v1.15.4.0.md",
@@ -7825,6 +7826,7 @@
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.12.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.13.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.14.0.md",
+    ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.15.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.2.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.3.0.md",
     ".skilled/skills/system-deep-loop/deep-review/changelog/v1.11.4.0.md",
@@ -9503,6 +9505,45 @@
     "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/acceptance-criteria.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/implementation-summary.md",
+    "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/plan.md",
+    "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/spec.md",
+    "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/tasks.md",
     "specs/agents/007-agent-alignment-follow-ups/spec.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/acceptance-criteria.md",
     "specs/cli-classifier/001-cli-jev-creation/001-jev-contract-research-and-pin/goal.md",
@@ -27309,7 +27350,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "7d9c333a76d1093c1994a5208b0774181914df0ecc477a8687bd52b7c9097c76",
+  "manifestHash": "b042005130a3a09fdf868986fc713cf69508d898a9ad0ea15a58da39ff0fa0df",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -28357,6 +28398,46 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {

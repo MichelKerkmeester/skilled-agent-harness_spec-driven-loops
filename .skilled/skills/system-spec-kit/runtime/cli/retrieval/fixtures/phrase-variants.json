@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7d9c333a76d1093c1994a5208b0774181914df0ecc477a8687bd52b7c9097c76",
+  "manifestHash": "b042005130a3a09fdf868986fc713cf69508d898a9ad0ea15a58da39ff0fa0df",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10109,6 +10109,9 @@
     "agent emphasis register tasks": [
       "agent emphasis register tasks"
     ],
+    "agent file review findings": [
+      "agent file review findings"
+    ],
     "agent filename name mismatch": [
       "agent filename name mismatch"
     ],
@@ -10569,6 +10572,9 @@
     "agent template critical important": [
       "agent template critical important"
     ],
+    "agent tool call budget": [
+      "agent tool call budget"
+    ],
     "agent validation example placeholder": [
       "agent validation example placeholder"
     ],
@@ -10937,6 +10943,21 @@
     ],
     "ai council strategy 029": [
       "ai council strategy 029"
+    ],
+    "ai council writer and round model": [
+      "ai council writer and round model"
+    ],
+    "ai council writer and round model acceptance criteria": [
+      "ai council writer and round model acceptance criteria"
+    ],
+    "ai council writer and round model implementation summary": [
+      "ai council writer and round model implementation summary"
+    ],
+    "ai council writer and round model plan": [
+      "ai council writer and round model plan"
+    ],
+    "ai council writer and round model tasks": [
+      "ai council writer and round model tasks"
     ],
     "ai derived slug rule": [
       "ai-derived slug rule"
@@ -16485,6 +16506,9 @@
     ],
     "canonical reference moved to hub": [
       "canonical reference moved to hub"
+    ],
+    "canonical refuse line": [
+      "canonical refuse line"
     ],
     "canonical review artifacts frozen": [
       "canonical review artifacts frozen"
@@ -25437,8 +25461,23 @@
     "code": [
       "code"
     ],
+    "code agent fail versus blocked": [
+      "code agent fail versus blocked"
+    ],
     "code agent quality step": [
       "code agent quality step"
+    ],
+    "code agent retry and status": [
+      "code agent retry and status"
+    ],
+    "code agent retry and status implementation summary": [
+      "code agent retry and status implementation summary"
+    ],
+    "code agent retry and status plan": [
+      "code agent retry and status plan"
+    ],
+    "code agent retry and status tasks": [
+      "code agent retry and status tasks"
     ],
     "code aware chunker stage b": [
       "code-aware chunker stage b"
@@ -30232,6 +30271,18 @@
     "context loading": [
       "context loading"
     ],
+    "context markdown design fixes": [
+      "context markdown design fixes"
+    ],
+    "context markdown design fixes implementation summary": [
+      "context markdown design fixes implementation summary"
+    ],
+    "context markdown design fixes plan": [
+      "context markdown design fixes plan"
+    ],
+    "context markdown design fixes tasks": [
+      "context markdown design fixes tasks"
+    ],
     "context preservation": [
       "context preservation"
     ],
@@ -34321,6 +34372,18 @@
     "debug": [
       "--debug"
     ],
+    "debug agent revert and handoff": [
+      "debug agent revert and handoff"
+    ],
+    "debug agent revert and handoff implementation summary": [
+      "debug agent revert and handoff implementation summary"
+    ],
+    "debug agent revert and handoff plan": [
+      "debug agent revert and handoff plan"
+    ],
+    "debug agent revert and handoff tasks": [
+      "debug agent revert and handoff tasks"
+    ],
     "debug delegation scaffold generator": [
       "debug-delegation scaffold generator"
     ],
@@ -36527,6 +36590,18 @@
     "deep loop leaf routing": [
       "deep-loop leaf routing"
     ],
+    "deep loop leaf state and status": [
+      "deep loop leaf state and status"
+    ],
+    "deep loop leaf state and status implementation summary": [
+      "deep loop leaf state and status implementation summary"
+    ],
+    "deep loop leaf state and status plan": [
+      "deep loop leaf state and status plan"
+    ],
+    "deep loop leaf state and status tasks": [
+      "deep loop leaf state and status tasks"
+    ],
     "deep loop ledger writer reader plan": [
       "deep-loop ledger writer reader plan"
     ],
@@ -37341,6 +37416,9 @@
     "deep research 1 15 12 0": [
       "deep-research 1.15.12.0"
     ],
+    "deep research 1 15 13 0": [
+      "deep-research 1.15.13.0"
+    ],
     "deep research 1 15 2 0": [
       "deep-research 1.15.2.0"
     ],
@@ -38021,6 +38099,9 @@
     "deep research v1 15 12 0": [
       "deep-research v1.15.12.0"
     ],
+    "deep research v1 15 13 0": [
+      "deep-research v1.15.13.0"
+    ],
     "deep research v1 15 2 0": [
       "deep-research v1.15.2.0"
     ],
@@ -38141,6 +38222,9 @@
     ],
     "deep review 1 11 14 0": [
       "deep-review 1.11.14.0"
+    ],
+    "deep review 1 11 15 0": [
+      "deep-review 1.11.15.0"
     ],
     "deep review 1 11 3 0": [
       "deep-review 1.11.3.0"
@@ -38931,6 +39015,9 @@
     ],
     "deep review v1 11 14 0": [
       "deep-review v1.11.14.0"
+    ],
+    "deep review v1 11 15 0": [
+      "deep-review v1.11.15.0"
     ],
     "deep review v1 11 2 0": [
       "deep-review v1.11.2.0"
@@ -61766,6 +61853,9 @@
     "iteration audit trail staging": [
       "iteration audit trail staging"
     ],
+    "iteration budget from config": [
+      "iteration budget from config"
+    ],
     "iteration contract acceptance": [
       "iteration contract acceptance"
     ],
@@ -78250,6 +78340,21 @@
     "orchestrate mirror alignment tasks": [
       "orchestrate mirror alignment tasks"
     ],
+    "orchestrate routing and retry": [
+      "orchestrate routing and retry"
+    ],
+    "orchestrate routing and retry acceptance criteria": [
+      "orchestrate routing and retry acceptance criteria"
+    ],
+    "orchestrate routing and retry implementation summary": [
+      "orchestrate routing and retry implementation summary"
+    ],
+    "orchestrate routing and retry plan": [
+      "orchestrate routing and retry plan"
+    ],
+    "orchestrate routing and retry tasks": [
+      "orchestrate routing and retry tasks"
+    ],
     "orchestrate rule 7 plan": [
       "orchestrate rule 7 plan"
     ],
@@ -81527,6 +81632,9 @@
     "phase 10 decision routing vocabulary": [
       "phase 10 decision routing vocabulary"
     ],
+    "phase 10 deep loop leaf state and status": [
+      "phase 10 deep loop leaf state and status"
+    ],
     "phase 10 deep review finding fixes": [
       "phase 10 deep review finding fixes"
     ],
@@ -81631,6 +81739,9 @@
     ],
     "phase 11 ci health followups": [
       "phase 11 ci health followups"
+    ],
+    "phase 11 debug agent revert and handoff": [
+      "phase 11 debug agent revert and handoff"
     ],
     "phase 11 decisions rule delivery": [
       "phase 11 decisions rule delivery"
@@ -81743,6 +81854,9 @@
     "phase 12 residual reference sweep": [
       "phase 12 residual reference sweep"
     ],
+    "phase 12 review agent gates": [
+      "phase 12 review agent gates"
+    ],
     "phase 12 review findings": [
       "phase 12 review findings"
     ],
@@ -81809,6 +81923,9 @@
     "phase 13 conformance stamp pin": [
       "phase 13 conformance stamp pin"
     ],
+    "phase 13 context markdown design fixes": [
+      "phase 13 context markdown design fixes"
+    ],
     "phase 13 corpus wide validation repair": [
       "phase 13 corpus wide validation repair"
     ],
@@ -81874,6 +81991,9 @@
     ],
     "phase 14 playbook docs and closeout": [
       "phase 14 playbook docs and closeout"
+    ],
+    "phase 14 prompt improver model eligibility": [
+      "phase 14 prompt improver model eligibility"
     ],
     "phase 14 removed template reality sweep": [
       "phase 14 removed template reality sweep"
@@ -83453,6 +83573,9 @@
     "phase 6 save search handoff contracts": [
       "phase 6 save search handoff contracts"
     ],
+    "phase 6 shared agent contract": [
+      "phase 6 shared agent contract"
+    ],
     "phase 6 sk code": [
       "phase 6 sk code"
     ],
@@ -83545,6 +83668,9 @@
     ],
     "phase 7 cli opencode": [
       "phase 7 cli opencode"
+    ],
+    "phase 7 code agent retry and status": [
+      "phase 7 code agent retry and status"
     ],
     "phase 7 compaction pointer staleness": [
       "phase 7 compaction pointer staleness"
@@ -83744,6 +83870,9 @@
     "phase 8 mcp obsidian": [
       "phase 8 mcp obsidian"
     ],
+    "phase 8 orchestrate routing and retry": [
+      "phase 8 orchestrate routing and retry"
+    ],
     "phase 8 out of scope cleanup": [
       "phase 8 out of scope cleanup"
     ],
@@ -83812,6 +83941,9 @@
     ],
     "phase 9 advisor vocabulary freshness": [
       "phase 9 advisor vocabulary freshness"
+    ],
+    "phase 9 ai council writer and round model": [
+      "phase 9 ai council writer and round model"
     ],
     "phase 9 ai systems verification": [
       "phase 9 ai systems verification"
@@ -88498,6 +88630,9 @@
     ],
     "prompt improver model eligibility implementation summary": [
       "prompt improver model eligibility implementation summary"
+    ],
+    "prompt improver model eligibility plan": [
+      "prompt improver model eligibility plan"
     ],
     "prompt improver model eligibility tasks": [
       "prompt improver model eligibility tasks"
@@ -97742,6 +97877,18 @@
     "review agent and dispatch tasks": [
       "review agent and dispatch tasks"
     ],
+    "review agent gates": [
+      "review agent gates"
+    ],
+    "review agent gates implementation summary": [
+      "review agent gates implementation summary"
+    ],
+    "review agent gates plan": [
+      "review agent gates plan"
+    ],
+    "review agent gates tasks": [
+      "review agent gates tasks"
+    ],
     "review agent severity verdict": [
       "review agent severity verdict"
     ],
@@ -98071,6 +98218,9 @@
     ],
     "review identity cleanup tasks": [
       "review identity cleanup tasks"
+    ],
+    "review iteration budget 24": [
+      "review iteration budget 24"
     ],
     "review iteration file structure": [
       "review iteration file structure"
@@ -104615,6 +104765,21 @@
     ],
     "shared adr body": [
       "shared ADR body"
+    ],
+    "shared agent contract": [
+      "shared agent contract"
+    ],
+    "shared agent contract acceptance criteria": [
+      "shared agent contract acceptance criteria"
+    ],
+    "shared agent contract implementation summary": [
+      "shared agent contract implementation summary"
+    ],
+    "shared agent contract plan": [
+      "shared agent contract plan"
+    ],
+    "shared agent contract tasks": [
+      "shared agent contract tasks"
     ],
     "shared algorithms": [
       "shared algorithms"

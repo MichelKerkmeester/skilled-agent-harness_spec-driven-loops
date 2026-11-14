@@ -78,6 +78,7 @@ function renderReviewIteration(reviewFocusBlock: string): string {
     state_summary: 'Review summary block',
     current_iteration: 2,
     max_iterations: 5,
+    max_tool_calls_per_iteration: 24,
     next_dimension: 'correctness',
     review_target: SPEC_FOLDER,
     review_scope_files: 'file-a.ts',

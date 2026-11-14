@@ -1,26 +1,28 @@
 {
+  "level": "2",
   "specFolder": "agents/007-agent-alignment-follow-ups",
-  "description": "Agent alignment follow-ups: close the four findings the agent contract and registry alignment packet left open",
+  "description": "Agent alignment follow-ups: close the predecessor's four open findings and every finding of the agent file review",
   "keywords": [
     "agent",
     "alignment",
     "follow-ups",
     "close",
-    "four",
+    "review",
     "findings",
     "contract",
     "registry",
     "packet",
-    "left",
-    "open"
+    "phases",
+    "ai-council"
   ],
-  "lastUpdated": "2026-11-14T15:48:56.242Z",
+  "lastUpdated": "2026-11-14T20:49:12.206Z",
   "specId": "007",
   "folderSlug": "agent-alignment-follow-ups",
   "parentChain": [
     "agents"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_21-49__agent-review-findings-grouped-into-nine-coupled.md"
+  ]
 }

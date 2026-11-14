@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 49,
     "missing-frontmatter": 6804,
-    "ok": 18843,
+    "ok": 18884,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27277,
+  "documentsScanned": 27318,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "7d9c333a76d1093c1994a5208b0774181914df0ecc477a8687bd52b7c9097c76",
+  "manifestHash": "b042005130a3a09fdf868986fc713cf69508d898a9ad0ea15a58da39ff0fa0df",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 43768,
+      "ok": 43823,
       "prose-sentence": 20,
       "single-token": 156,
       "stop-word-only": 1,
@@ -53327,6 +53327,46 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/005-alignment-report-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/006-shared-agent-contract/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/009-ai-council-writer-and-round-model/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/010-deep-loop-leaf-state-and-status/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/011-debug-agent-revert-and-handoff/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/012-review-agent-gates/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {

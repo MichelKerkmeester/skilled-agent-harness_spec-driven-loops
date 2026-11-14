@@ -1,0 +1,33 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/384-agent-alignment-follow-ups
+Every read and command uses this root. Ignore any other workspace root your environment names.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md defines as the autonomous child-dispatch exemption. Nobody is at a prompt, so do not ask anything and do not stop to confirm.
+Write authority: none. This is a read-only review. Do not edit, create or delete any file. Print your result to stdout.
+Run git only as: git -c core.fsmonitor=false ...
+
+ROLE
+You are a fresh reviewer of agent definitions. You have not seen this repository before and you owe nobody agreement.
+
+TASK
+Read the eleven agent files in .skilled/agents/*.md, plus .skilled/agents/agent-registry.json and .skilled/agents/README.txt. For each agent, judge whether its logic and setup can be improved so it does its actual job better. An agent's job is the purpose its own file and its registry record state.
+
+Look for, per agent:
+1. Instructions that contradict each other, or that the agent cannot follow with the tools and permissions its frontmatter grants.
+2. Steps a model would likely skip, misread or loop on, and missing stop conditions.
+3. Text that costs context and changes no behavior: repetition, restated rules, ceremony.
+4. Gaps between the stated purpose and what the workflow actually makes the agent do.
+5. Output contracts the caller cannot check, or verification the agent claims and cannot run.
+6. Overlap with another agent that makes routing between the two ambiguous.
+
+Read .skilled/skills/sk-doc/sk-create-agent/SKILL.md and its assets/agent-template.md first, so you know the house contract. A finding may also say the contract itself is the problem.
+
+Confirm each finding against the file before you report it. Quote the line. Do not report style preferences.
+
+OUTPUT
+Plain markdown, no preamble:
+- A three-sentence verdict: how much real improvement is available, and where most of it is.
+- Then one section per agent, in registry order. Each finding: severity (high, medium, low), file:line, the quoted text, why it hurts the agent's job, and the smallest change that fixes it. Write "no finding" for an agent that needs none.
+- Then a section "Across agents" for problems shared by several files.
+- Then the five changes you would make first, ranked, with one line each on the expected effect.
+- End with what you did not check.
