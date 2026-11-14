@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Twenty-one live phase parents hold no purpose of their own",
     "created_at": "2026-11-14T07:20:48Z",
-    "last_save_at": "2026-11-14T08:20:12.262Z",
+    "last_save_at": "2026-11-14T08:51:19.994Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:384aef79dcea1e0c300f4089e15b1e487750e74b3fc677481dbe680ea66b6c26",
+    "source_fingerprint": "sha256:1eb8c140afeff10cdf7e847b90c4cb4b83faa5ee14eb1eb0020f22bb6bc03e86",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "510a4962691090266fe85727ec86173cac46624fdcfd20d2cb22bfce6da85b0c",

@@ -108,7 +108,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Phases 001 to 005 built | Done | `eaba5ab89e`, `3d237cd97a`, `f0d8c03036`, `0837fcd5a2`, `191ce39bad` on origin/main |
-| Remediation plan 006 to 011 | Planned | Reviewed and verified by Fable 5.2 high on 2026-11-14, fixes applied in worktree 374 |
+| Remediation plan 006 to 011 | Built | All six phases committed on `worktrees/374-purpose-carry-follow-ups` on 2026-11-14: `43bff36f9d`, `e102ba83be`, `f9f96bdc39`, `e129af3719`, `fce8b5d81c`, `e686356a6d`. Not yet on origin/main |
 | Live continuity save | Done | Two continuity records under 002 and 006 hold a correct purpose line, per the 2026-11-14 review |
 | Live relaunch | Done | Relaunch note `20261114T072604Z-ef52f514-275d-4013-b7bd-ab365324057d.md`, claimed by Claude Code session `09dbafe5-7a4f-45ac-ae2e-b8dc70b614b6` on 2026-11-14, printed its Goal opening with `Purpose (specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md): Keep a packet's purpose, ...` |
 | Remediation plan 006-011 and goals | Done | committed 9c9dd544a9, recursive strict 12 of 12 PASSED |
