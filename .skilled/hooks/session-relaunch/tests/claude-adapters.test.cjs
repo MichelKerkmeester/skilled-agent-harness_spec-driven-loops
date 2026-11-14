@@ -9,6 +9,7 @@ const { spawn } = require('node:child_process');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { pathToFileURL } = require('node:url');
 
 const CONTEXT_NUDGE_PATH = path.resolve(__dirname, '../claude/context-nudge.mjs');
 const STOP_ARM_PATH = path.resolve(__dirname, '../claude/stop-arm.mjs');
@@ -135,7 +136,10 @@ test('context-nudge logs the unknown window once per session', async (t) => {
   assert.equal(allSkippedLines.length, 2);
 });
 
-function createPendingRecord(sandbox, loopId, sessionId, handoffPath, status = 'pending') {
+function createPendingRecord(
+  sandbox, loopId, sessionId, handoffPath = path.join(sandbox.repoRoot, 'handoff.md'),
+  status = 'pending',
+) {
   const stateDir = path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch');
   fs.mkdirSync(stateDir, { recursive: true });
   const recordPath = path.join(stateDir, `relaunch-${loopId}.json`);
@@ -933,7 +937,7 @@ test('context-nudge leaves another session\'s armed handoff alone', async (t) =>
   assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
 });
 
-test('stop-arm logs missing-transcript-path and leaves the record pending', async (t) => {
+test('stop-arm logs missing-transcript-path and marks the pending record deferred', async (t) => {
   const sandbox = createSandbox(t);
   const loopId = String(process.pid);
   const handoffPath = path.join(sandbox.repoRoot, 'handoff.md');
@@ -952,9 +956,37 @@ test('stop-arm logs missing-transcript-path and leaves the record pending', asyn
   const result = await runAdapter(sandbox, STOP_ARM_PATH, payload);
   assert.equal(result.code, 0, result.stderr);
   assert.equal(result.stdout, '');
-  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
+  // The record is marked so a prompt withdraws it, and a Stop with no typed prompt tries again.
+  const { deferredAt, ...unchanged } = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.deepEqual(unchanged, record);
+  assert.ok(Number.isFinite(Date.parse(deferredAt)), deferredAt);
   const log = fs.readFileSync(path.join(stateDir, 'relaunch.log'), 'utf8');
   assert.match(log, /missing-transcript-path/);
+});
+
+test('stop-arm arms nothing for a pending record that names no note', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = String(process.pid);
+  const { stateDir, recordPath, record } = createPendingRecord(sandbox, loopId, SESSION_ID);
+  const { handoff: _handoff, ...withoutNote } = record;
+  fs.writeFileSync(recordPath, JSON.stringify(withoutNote));
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const spawns = installKillerRecorder(sandbox);
+
+  const result = await runAdapter(sandbox, STOP_ARM_PATH, {
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 10),
+    cwd: sandbox.repoRoot,
+    background_tasks: [],
+  });
+
+  assert.equal(result.code, 0, result.stderr);
+  assert.equal(result.stdout, '');
+  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), withoutNote);
+  assert.deepEqual(spawns(), []);
+  const log = fs.readFileSync(path.join(stateDir, 'relaunch.log'), 'utf8');
+  assert.match(log, /corrupt-relaunch-file/);
 });
 
 test('stop-arm logs an async killer spawn error and leaves the record armed', async (t) => {
@@ -1307,7 +1339,7 @@ test('stop-arm keeps a CLAUDE_PID inside the loop and drops one outside it', asy
   }
 });
 
-test('stop-arm leaves the record pending when no process below the loop can be found', async (t) => {
+test('stop-arm marks the pending record deferred when no process below the loop can be found', async (t) => {
   const sandbox = createSandbox(t);
   const loopId = '999999999';
   const { recordPath, record } = createPendingRecord(
@@ -1325,13 +1357,54 @@ test('stop-arm leaves the record pending when no process below the loop can be f
   });
 
   assert.equal(result.code, 0, result.stderr);
-  assert.deepEqual(JSON.parse(fs.readFileSync(recordPath, 'utf8')), record);
+  const { deferredAt, ...unchanged } = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.deepEqual(unchanged, record);
+  assert.ok(Number.isFinite(Date.parse(deferredAt)), deferredAt);
   assert.deepEqual(spawns(), []);
   const log = fs.readFileSync(
     path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log'),
     'utf8',
   );
   assert.match(log, /stop-arm-error stage=target-pid/);
+});
+
+test('stop-arm marks the pending record deferred when arming throws', async (t) => {
+  const sandbox = createSandbox(t);
+  const loopId = '100';
+  const { recordPath, record } = createPendingRecord(
+    sandbox, loopId, SESSION_ID, path.join(sandbox.repoRoot, 'handoff.md'),
+  );
+  sandbox.env.SKILLED_LOOP_ID = loopId;
+  const { armPendingRecord } = await import(pathToFileURL(STOP_ARM_PATH).href);
+  const spawns = [];
+
+  // A cwd that cannot be written as JSON makes the arm throw after the target resolved.
+  const armed = await armPendingRecord({
+    ...STOP_PAYLOAD,
+    session_id: SESSION_ID,
+    transcript_path: writeTranscript(sandbox, 10),
+    cwd: 1n,
+    background_tasks: [],
+  }, {
+    env: sandbox.env,
+    pid: 41,
+    processTable: '41 60\n60 100\n100 1\n',
+    spawn: (...call) => {
+      spawns.push(call);
+      return { unref() {} };
+    },
+  });
+
+  assert.equal(armed, null);
+  assert.deepEqual(spawns, []);
+  const { deferredAt, ...unchanged } = JSON.parse(fs.readFileSync(recordPath, 'utf8'));
+  assert.deepEqual(unchanged, record);
+  assert.ok(Number.isFinite(Date.parse(deferredAt)), deferredAt);
+  const log = fs.readFileSync(
+    path.join(sandbox.xdgRuntimeDir, 'skilled-relaunch', 'relaunch.log'),
+    'utf8',
+  );
+  assert.match(log, /stop-arm-error stage=arm/);
 });
 
 test('stop-arm defers an armed record with a dead killer while background tasks run', async (t) => {

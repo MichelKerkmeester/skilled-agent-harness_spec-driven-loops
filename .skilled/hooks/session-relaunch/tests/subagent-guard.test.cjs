@@ -295,6 +295,14 @@ test('subagent-guard lets a question dialog through when no hand-over is prepare
   assertSilent(result);
 });
 
+test('subagent-guard lets a question dialog through over a pending record that names no note', async (t) => {
+  const sandbox = createSandbox(t);
+  const { handoff: _handoff, ...withoutNote } = preparePendingRecord(sandbox);
+  fs.writeFileSync(core.relaunchFilePath(LOOP_ID, sandbox.env), JSON.stringify(withoutNote));
+  const result = await runGuard(sandbox, JSON.stringify(questionPayload(sandbox)));
+  assertSilent(result);
+});
+
 test('subagent-guard lets a question dialog through over another session\'s pending record', async (t) => {
   const sandbox = createSandbox(t);
   preparePendingRecord(sandbox, 'session-someone-else-0002');

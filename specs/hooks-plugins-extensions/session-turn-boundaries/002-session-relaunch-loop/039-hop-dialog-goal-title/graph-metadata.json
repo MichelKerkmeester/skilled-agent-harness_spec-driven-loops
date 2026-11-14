@@ -6,7 +6,18 @@
   "children_ids": [
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare",
     "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback",
-    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry"
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/003-generated-title-carry",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/004-wrapper-change-notice",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/005-parked-record-escape",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/006-record-without-handoff",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/007-killer-test-margin",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/008-history-test-database-env",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/010-goal-ending-carry",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/011-goal-fallback-bound",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/012-wrapper-notice-log",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/013-conformance-stamp-pin",
+    "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/014-review-wording-fixes"
   ],
   "manual": {
     "depends_on": [],
@@ -59,10 +70,10 @@
       ".skilled/hooks/session-relaunch/lib/context-usage.cjs",
       ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
       ".skilled/hooks/session-relaunch/tests/context-usage.test.cjs",
-      "001-sender-dialog-after-prepare/acceptance-criteria.md",
-      "002-packet-goal-fallback/acceptance-criteria.md",
-      "001-sender-dialog-after-prepare/goal.md",
-      "002-packet-goal-fallback/goal.md"
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-harness.cjs",
+      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
+      ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+      ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs"
     ],
     "entities": [
       {
@@ -150,6 +161,30 @@
         "source": "derived"
       },
       {
+        "name": "skilled-loop-wrapper-harness.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-harness.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "skilled-loop-wrapper-launch-arguments.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "stop-arm.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/claude/stop-arm.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "claude-adapters.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -184,35 +219,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Decisions Frozen",
-        "kind": "proper_noun",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "design",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
-      },
-      {
-        "name": "its",
-        "kind": "key_phrase",
-        "path": "goal.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Three gaps showed on 2026-11-13 in Claude Code sessions that hand over near the context limit",
     "created_at": "2026-11-13T18:47:10Z",
-    "last_save_at": "2026-11-13T22:58:55.851Z",
+    "last_save_at": "2026-11-14T07:30:16.463Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,10 +231,10 @@
       "goal.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:aa5a1e8acc171e2e541dd35c85f6f2d3500770b92ef2a70ddd69cb136f03e868",
+    "source_fingerprint": "sha256:a38435e6c04531e5b36aa3eebcda9eed1b400ffa422dfb78935d8cf97a5ee3b3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "72d40626a720a258187b429dac58e704a63a846a1c893a4d95225a3ebe1c17cb",
+      "spec.md": "3690ceaa456af89cd793520ab4401c6ae7ac0723688556affeeb3c1e29a3fe3c",
       "research/research.md": "f0daad5f191298d68bc32ec2f1767ebd28c3694400bd86b804bbb2b6014e0cf2"
     },
     "last_active_at": null

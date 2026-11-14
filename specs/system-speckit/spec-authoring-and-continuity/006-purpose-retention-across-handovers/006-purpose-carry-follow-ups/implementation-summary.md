@@ -8,17 +8,28 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups"
-    last_updated_at: "2026-11-14T05:10:10Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-11-14T05:35:18Z"
+    last_updated_by: "generate-context"
+    recent_action: "Planned the three follow-up fixes and pushed the plan to origin/main"
+    next_safe_action: "Review the five parent purposes in plan.md steps E1 to E10, then build with /speckit:implement"
+    packet_purpose: "Purpose: After this phase, every live phase parent states its own reason in its Purpose, the brief cached before a compaction names the active packet for folders under `specs/` and the resume workflow assets list the same brief rows as the presentation file."
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts"
+      - ".skilled/commands/speckit/assets/speckit-resume-auto.yaml"
+      - ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-006-purpose-carry-follow-ups"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "af01c830-4ea5-4abe-b6ed-dd0c4d9b1b45"
+      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
+      savedAt: "2026-11-14T05:35:18Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 20
     open_questions: []
     answered_questions: []
 ---

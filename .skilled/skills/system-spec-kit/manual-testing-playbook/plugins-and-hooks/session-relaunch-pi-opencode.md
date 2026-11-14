@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-relaunch-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.21.0
+version: 1.0.22.0
 id: session-relaunch-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -79,7 +79,7 @@ Evidence: stdout is `object` and the command exits 0. The module's default expor
 ./.skilled/node_modules/.bin/vitest run --config .skilled/hooks/vitest.config.ts .skilled/hooks/session-relaunch/pi/session-relaunch.test.ts
 ~~~
 
-Evidence: Vitest reports the Pi adapter suite passed. The cases cover threshold nudges, seed injection, `agent_end` arming and `agent_end respawns one killer for an armed record whose killer is gone`.
+Evidence: Vitest reports the Pi adapter suite passed. The cases cover threshold nudges, seed injection, `agent_settled` arming and `agent_settled respawns one killer for an armed record whose killer is gone`. The Plan or Build mode carry is `agent_settled arms with the plan-build mode from the session branch`.
 
 #### OpenCode adapter suite (Automatable)
 
@@ -87,7 +87,7 @@ Evidence: Vitest reports the Pi adapter suite passed. The cases cover threshold 
 node --test .opencode/plugins/tests/session-relaunch.test.cjs
 ~~~
 
-Evidence: Node reports the OpenCode adapter suite passed. The cases cover plugin import, events, transform injection, seed handling, idle arming and `session.idle respawns one killer for an armed record whose killer is gone`.
+Evidence: Node reports the OpenCode adapter suite passed. The cases cover plugin import, events, transform injection, seed handling, idle arming and `session.idle respawns one killer for an armed record whose killer is gone`. The hold while a sub-agent is busy is `a parent session.idle does not arm while its sub-agent is busy` and `a deferred parent arm runs when its last busy sub-agent goes idle`. The title carry is `the claim seed sets the session title to SKILLED_LOOP_NAME`.
 
 #### Wrapper runtime arms (Automatable)
 

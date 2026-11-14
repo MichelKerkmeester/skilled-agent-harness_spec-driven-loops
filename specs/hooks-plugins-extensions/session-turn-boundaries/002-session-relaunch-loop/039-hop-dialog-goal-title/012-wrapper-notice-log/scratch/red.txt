@@ -1,0 +1,65 @@
+$ node --check .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-harness.cjs
+exit=0
+harness_node_check_exit=0
+
+$ env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='wrapper file' .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs
+✔ a hop says so when the wrapper file changed after the loop started (803.176375ms)
+✖ a hop logs wrapper-changed when the wrapper file changed after the loop started (612.990292ms)
+✖ a hop prints and logs nothing when the wrapper file cannot be read (619.364542ms)
+✔ a hop prints no change notice when the wrapper file is unchanged (625.312208ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 2
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2700.175958
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:314:1
+✖ a hop logs wrapper-changed when the wrapper file changed after the loop started (612.990292ms)
+  AssertionError [ERR_ASSERTION]: 2026-11-14T06:42:03.393Z relaunch loopId=48852 reason=ready
+  2026-11-14T06:42:03.747Z decline loopId=48852 reason=no-file
+  
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:333:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:337:1
+✖ a hop prints and logs nothing when the wrapper file cannot be read (619.364542ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /changed on disk/. Input:
+  
+  'note: skilled-loop changed on disk after this loop started, restart the wrapper to run the new code\n' +
+    'warning: the relaunched session ended before claiming /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-JBOW6f/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md; its handoff note was not claimed\n'
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs:350:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'note: skilled-loop changed on disk after this loop started, restart the wrapper to run the new code\nwarning: the relaunched session ended before claiming /var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-wrapper-JBOW6f/repo/.skilled/skills/.state/session-relaunch/handoffs/handoff.md; its handoff note was not claimed\n',
+    expected: /changed on disk/,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }
+exit=1

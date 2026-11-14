@@ -130,9 +130,12 @@ test('a compacted session started in a subfolder gets an offer that redeems', as
   assert.match(system[0], /^## History Lookup\n/);
   assert.match(system[0], /SPECKIT_RUNTIME=opencode /);
 
+  // The reader takes its database name from OPENCODE_DB, so a name inherited from the
+  // shell would point it away from the store this case wrote.
+  const { OPENCODE_DB: _ambientDatabase, ...ambientEnv } = process.env;
   const reply = execFileSync('bash', ['-c', commandOf(system[0])], {
     cwd: sub,
-    env: { ...process.env, XDG_DATA_HOME: dataHome, SPECKIT_RUNTIME: '' },
+    env: { ...ambientEnv, XDG_DATA_HOME: dataHome, SPECKIT_RUNTIME: '' },
     encoding: 'utf8',
   });
   assert.match(reply, /references/);

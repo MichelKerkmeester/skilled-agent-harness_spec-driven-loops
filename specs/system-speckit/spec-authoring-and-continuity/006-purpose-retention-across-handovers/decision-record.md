@@ -43,6 +43,7 @@ _memory:
 | Q007 | Child 001 also changes the recent_action default, so a finished parent with a real purpose still passes the scaffold check. | Not stated. | None | 001-parent-purpose-scaffold/plan.md |
 | Q008 | The live checks that a session can run were run: agent-followed resume runs and the 001 sandbox cases. A real compaction and a real relaunch stay unproven. | Not stated. | None | 001-parent-purpose-scaffold/tasks.md, 002-resume-purpose-row/tasks.md |
 | Q009 | The three defects found during the build are planned as one further child, 006-purpose-carry-follow-ups, and not built yet. | Not stated. | None | spec.md phase map, 006-purpose-carry-follow-ups |
+| Q010 | The follow-up plan was committed, merged and pushed to origin/main, then worktree 371 was removed. | Not stated. | None | spec.md phase map, 006-purpose-carry-follow-ups |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -229,6 +230,26 @@ Plan only the path match
 Answer:
 ```text
 Plan them as a new phase (Recommended)
+```
+
+### Q010
+<!-- source: claude:af01c830-4ea5-4abe-b6ed-dd0c4d9b1b45:toolu_01CjDZbePxtLCq7fccfvzFCz:0 -->
+
+Question:
+```text
+The plan for child 006-purpose-carry-follow-ups (14 edit steps for three defects, nothing built) is uncommitted in worktree 371. You asked to remove that worktree, which would delete the plan unless it lands first. What should happen?
+```
+
+Options:
+```text
+Land it, then remove 371 (Recommended)
+Land it, then build in 371
+Keep it uncommitted
+```
+
+Answer:
+```text
+Land it, then remove 371 (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
