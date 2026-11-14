@@ -133,8 +133,8 @@ On Cursor and Devin the manual command that `prepare` prints starts a first laun
 Every section must be non-empty.
 Goal states what the work is for.
 When `spec_folder` names a packet, open Goal with the packet's purpose line, `Purpose: <sentence>`, where `<sentence>` is the first sentence of that packet's purpose in its `spec.md`, copied word for word and cut to 300 characters.
-The purpose is the paragraph under `### Purpose`. In a `spec.md` without that heading it is the paragraph that opens with `Purpose:` inside the `## PROBLEM & PURPOSE`, `## PURPOSE` or `## ROOT PURPOSE` section, or else that section's opening paragraph.
-When that text is empty, `UNKNOWN`, still a template placeholder or the scaffold sentence that begins `Keep parent documentation lean`, use the nearest enclosing phase parent that has a purpose and write the line as `Parent purpose (<parent folder>): <sentence>`, where `<parent folder>` is that parent's repo-relative folder.
+The purpose is the paragraph under `### Purpose`. In a `spec.md` without that heading it is the paragraph that opens with `Purpose:` inside the `## PROBLEM & PURPOSE`, `## PURPOSE` or `## ROOT PURPOSE` section, or else the opening paragraph of a `## PURPOSE` or `## ROOT PURPOSE` section. The opening paragraph of a `## PROBLEM & PURPOSE` section states the problem, so it is never the purpose.
+When that text is empty, `UNKNOWN`, still a template placeholder or a scaffold sentence that begins `Keep parent documentation lean` or `This phase groups the related child phases below`, use the nearest enclosing phase parent that has a purpose and write the line as `Parent purpose (<parent folder>): <sentence>`, where `<parent folder>` is that parent's repo-relative folder.
 When no such text exists and the packet holds a `goal.md`, quote its Objective the same way and write the line as `Goal objective: <sentence>`.
 Leave the line out when `spec_folder` is `none` or empty, or when none of these texts exists.
 After the line, say in your own words what this session works toward.

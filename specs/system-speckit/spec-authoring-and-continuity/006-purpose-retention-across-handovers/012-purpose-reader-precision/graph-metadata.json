@@ -36,7 +36,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -44,8 +44,6 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
-      "scratch/probe-purpose-origin.mjs",
-      "runtime/api/index.ts",
       ".skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts",
       ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
       ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts",
@@ -57,7 +55,9 @@
       ".skilled/hooks/session-relaunch/lib/nudge.cjs",
       ".skilled/hooks/session-relaunch/tests/nudge.test.cjs",
       ".skilled/commands/speckit/handoff.md",
-      ".skilled/commands/speckit/assets/speckit-resume-auto.yaml"
+      ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
+      ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
+      ".skilled/skills/system-spec-kit/runtime/lib/spec/README.md"
     ],
     "entities": [
       {
@@ -94,18 +94,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "probe-purpose-origin.mjs",
-        "kind": "file",
-        "path": "scratch/probe-purpose-origin.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "runtime/api/index.ts",
         "source": "derived"
       },
       {
@@ -181,6 +169,18 @@
         "source": "derived"
       },
       {
+        "name": "speckit-resume-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/spec/README.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "The next AI after a compaction or hop reads a problem statement or a layout note labelled `Purpose:` for 211 live packets, so it is told the wrong reason for the work",
     "created_at": "2026-11-14T11:26:55Z",
-    "last_save_at": "2026-11-14T11:40:51.742Z",
+    "last_save_at": "2026-11-14T13:44:29.551Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,13 +218,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:19e9c2ed34dbda526396b55845e01d30c4dbddfc67ddd03df0829de796ce1f8d",
+    "source_fingerprint": "sha256:dded3c2c3367d6c1af91a30757888155fe62211c7552c03f22fda11f0879684b",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6b46007782d883b993697c0176af8c6f492ae7dd520d436a1bf8fe687508eec3",
-      "plan.md": "8221ffd354440a2521590dc0198aaa6822c4eea1d2aa8e5556df048c03b5d1a9",
-      "tasks.md": "0a85ce570cabc82a388a2615b17b13531c2e252ab6dff7af111d13ade3c02630",
-      "implementation-summary.md": "c5bac77e6e17363f60cd042ed446b7f11bd0aad4df7ca89e1114bc63a953ccac"
+      "spec.md": "9f006db32d84785c5d9c44d050b3450a35df78a478a73c061a131b1cb3a94622",
+      "plan.md": "7ae83330dd9641de448b51f63c31ab7eca5a2947c0fdb2c5881c97fa7e254f81",
+      "tasks.md": "e694d3ed9fbf1d1867a81da089dfafdbe55b215319ab727ac9c144088b968ece",
+      "implementation-summary.md": "2c6a6a00e84e41e57d448eaaf6b845998bc4684d54245a04cc43feb8fbd575c2"
     },
     "last_active_at": null
   }

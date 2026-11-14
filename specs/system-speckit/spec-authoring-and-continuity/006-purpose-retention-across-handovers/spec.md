@@ -227,7 +227,7 @@ Build the phases in number order, 006 to 011, one at a time. The order is not on
 | 9 | 009-compaction-purpose-folder/ | The compaction recovery finds the packet when the session touched more than one, holds the folder path inside the project, and its tests use repo-relative folders | Complete |
 | 10 | 010-problem-sentence-carry/ | The context recovered after a compaction also carries the first sentence of the Problem Statement. The operator said yes on 2026-11-14 | Complete |
 | 11 | 011-empty-parent-purpose-backfill/ | One authored purpose sentence in each of the 21 live phase parents that state none, reviewed by the operator before commit | Complete |
-| 12 | 012-purpose-reader-precision/ | The helper stops returning a problem paragraph or the layout sentence as a purpose, every hop states the same rule, Pi walks up from a subfolder, and the tests leave the working tree clean | Pending |
+| 12 | 012-purpose-reader-precision/ | The helper stops returning a problem paragraph or the layout sentence as a purpose, every hop states the same rule, Pi walks up from a subfolder, and the tests leave the working tree clean | Complete |
 | 13 | 013-purpose-docs-and-backfill/ | The purpose line documented in the catalog, the playbook, the injection contract and the root README, and approved sentences for eight layout-sentence parents and three reserved ones | Pending |
 
 ### Phase Transition Rules

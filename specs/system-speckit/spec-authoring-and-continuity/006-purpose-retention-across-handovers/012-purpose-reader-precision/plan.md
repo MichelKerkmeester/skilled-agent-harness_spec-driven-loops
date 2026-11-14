@@ -37,14 +37,14 @@ Twenty-four edits, E1 to E24, each a literal search and replace. E1 to E7 fix th
 <!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] The operator has answered the four defaults in `spec.md` section 10, or let them stand
-- [ ] Each search text in section 4 matches the count this plan states (`rg -c -F`, or `rg -U -c -F` where it spans lines)
-- [ ] Every baseline in section 5 prints its value
+- [x] The operator has answered the four defaults in `spec.md` section 10, or let them stand
+- [x] Each search text in section 4 matches the count this plan states (`rg -c -F`, or `rg -U -c -F` where it spans lines)
+- [x] Every baseline in section 5 prints its value
 
 ### Definition of Done
-- [ ] Every row in `acceptance-criteria.md` is `Met`
-- [ ] The four purpose suites print `(14 tests)`, `(29 tests)`, `(19 tests)` and `(20 tests)`, all passing
-- [ ] Docs updated (spec/plan/tasks)
+- [x] Every row in `acceptance-criteria.md` is `Met`
+- [x] The four purpose suites print `(14 tests)`, `(29 tests)`, `(19 tests)` and `(20 tests)`, all passing
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

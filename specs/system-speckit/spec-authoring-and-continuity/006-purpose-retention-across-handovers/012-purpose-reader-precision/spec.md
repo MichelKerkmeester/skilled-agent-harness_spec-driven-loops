@@ -23,7 +23,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/376-dsh-single-executor-loop` |
 | **Parent Spec** | ../spec.md |
@@ -248,10 +248,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 10. OPEN QUESTIONS
 <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- Should the five packets listed in section 2 lose their line? Default taken: yes, because each line is a problem sentence labelled Purpose. Phase 013 can give them a `### Purpose` if the operator says so.
-- Whose problem goes beside an inherited purpose? Default taken: the packet's own when it states one, else the parent's. This amends phase 010's choice of the parent's problem, so it needs the operator's yes.
-- Should a purpose taken from `goal.md` carry the packet's own problem? Default taken: yes, because both come from the same folder. Phase 010 printed none there.
-- Should the tests leave the working tree? Default taken: yes, as Fable asks. Phase 009 chose the working tree on purpose so a crashed run stays visible. Each test still removes its folder in `finally`, and a crashed run now leaves it in the system temp folder.
+- Should the five packets listed in section 2 lose their line? Default taken: yes, because each line is a problem sentence labelled Purpose. Phase 013 can give them a `### Purpose` if the operator says so. Answered by the operator on 2026-11-14: the five packets get no new sentence.
+- Whose problem goes beside an inherited purpose? Default taken: the packet's own when it states one, else the parent's. This amends phase 010's choice of the parent's problem, so it needs the operator's yes. Answered by the operator on 2026-11-14: yes, a packet's own problem line takes precedence over its parent's.
+- Should a purpose taken from `goal.md` carry the packet's own problem? Default taken: yes, because both come from the same folder. Phase 010 printed none there. Answered by the operator on 2026-11-14: yes, the goal objective carries the packet's own problem line, and the plan stays as written.
+- Should the tests leave the working tree? Default taken: yes, as Fable asks. Phase 009 chose the working tree on purpose so a crashed run stays visible. Each test still removes its folder in `finally`, and a crashed run now leaves it in the system temp folder. Answered by the operator on 2026-11-14: yes, tests write their temporary folders to the system temp dir.
 - Deep-review findings: folded in. The five-iteration review at `../review/review-report.md` finished with verdict CONDITIONAL. R1-P1-001, R1-P1-002, R1-P2-001, R2-P2-001 and R3-P2-001 are items A3, A4, A10, A11 and A5 here. R2-P2-002 and R4-P2-001 go to phase 013.
 <!-- /ANCHOR:questions -->
 
