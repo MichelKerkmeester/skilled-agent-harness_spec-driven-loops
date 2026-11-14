@@ -1,0 +1,84 @@
+# Citations the new text names, resolved on 2026-11-14 at commit 2638731a9d
+# The first section is what each new sentence claims. The second is the line it resolved to
+# after the edits. mismatches: 0
+
+## F3: the spawn-failure sentence
+A spawn failure leaves the record armed: `.skilled/hooks/session-relaunch/claude/stop-arm.mjs:246`
+  (awaits `spawnKiller`, then returns `armed` at `:253`)
+`spawnKiller` logs `stop-arm-error stage=spawn` and returns nothing: `:62` to `:84`
+The next Stop re-arms the record: `.skilled/hooks/session-relaunch/claude/stop-arm.mjs:118`
+  (`armableRecord` accepts an armed record with no live killer)
+Test `stop-arm logs an async killer spawn error and leaves the record armed`:
+  `.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1001`
+  assertion `status` is `armed`: `:1035`
+The old sentence, which the fix removes: `.skilled/hooks/session-relaunch/claude/README.md:27`
+
+## F5a: the question dialog guard
+`pendingHandOver` answers only the question tool: `.skilled/hooks/session-relaunch/claude/subagent-guard.mjs:66`
+Denial reason names the note and `cancel`: `.skilled/hooks/session-relaunch/claude/subagent-guard.mjs:88`
+An armable record is a pending one: `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1247`
+An armed one with no live killer is armable too: `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1250`
+A live killer lock refuses: `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1251`
+Shipped by phase 020: `../020-question-guard-killer-gone/spec.md`
+Test names in `.skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs`:
+  `:284` denies while the hand-over is pending
+  `:313` denies over an armed record whose killer is gone
+  `:322` allows over an armed record with a live killer
+  `:334` allows when the record read throws
+
+## F5b: the generated title carry
+Fallback order is rename, launch name, generated title: `.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:595`
+The generated title is read from the Claude transcript: `.skilled/hooks/session-relaunch/lib/context-usage.cjs:255`
+The wrapper appends the next hop number: `.skilled/bin/skilled-loop:428`
+Tests in `.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs`:
+  `:2906` falls back to the generated title when nothing else names the session
+  `:2918` ranks a launch name and a custom title above the generated title
+Shipped by phase 003: `../003-generated-title-carry/spec.md`
+
+## F6: the JSDoc return shape
+`@returns` now names `generatedName`: `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:866`
+The function sets it on its empty branch: `:871`
+And copies it from the log: `:890`
+
+## F7: the packet goal fallback the playbook checks
+Fallback runs only on a whole log read: `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:753`
+Nearby packets are the note's folder and its parent: `:757`
+A finished goal is skipped: `:760` (`packetGoalIsSettable`)
+An over-cap log is now read whole: `../021-goal-scan-large-log/spec.md`
+
+## The missing-transcript notice the playbook walks past
+`.skilled/hooks/session-relaunch/claude/stop-arm.mjs:138` to `:154`
+Shipped by phase 022 on the same Stop: `../022-stop-park-notices/spec.md`
+
+---
+
+## Resolution after the edits
+
+# Each cited file:line below printed the text this list expects. mismatches: 0
+
+.skilled/hooks/session-relaunch/claude/stop-arm.mjs:246 ->   await spawnKiller(
+.skilled/hooks/session-relaunch/claude/stop-arm.mjs:253 ->   return armed;
+.skilled/hooks/session-relaunch/claude/stop-arm.mjs:118 ->   if (!armableRecord(record, { loopId, sessionId, runtime: 'claude', env }).armable) return null;
+.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1001 -> test('stop-arm logs an async killer spawn error and leaves the record armed', async (t) => {
+.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1035 ->   assert.equal(JSON.parse(fs.readFileSync(recordPath, 'utf8')).status, 'armed');
+.skilled/hooks/session-relaunch/claude/subagent-guard.mjs:66 -> function pendingHandOver(payload, env) {
+.skilled/hooks/session-relaunch/claude/subagent-guard.mjs:88 -> function questionDenialReason(record) {
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1247 ->   if (record.status === 'pending') return { armable: true, reason: 'pending' };
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1250 ->     ? { armable: true, reason: 'killer-gone' }
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:1251 ->     : refuse('killer-live');
+.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:595 ->     name: settings.name || process.env.SKILLED_LOOP_NAME || settings.generatedName || null,
+.skilled/hooks/session-relaunch/lib/context-usage.cjs:255 ->     if (generated !== null) generatedName = settingText(generated.aiTitle);
+.skilled/bin/skilled-loop:428 ->     launch_arguments+=(--name "$SKILLED_LOOP_NAME ($((10#${SKILLED_LOOP_HOPS:-0} + 1)))")
+.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2906 -> test('prepare falls back to the Claude generated title when nothing else names the session', (t) => {
+.skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs:2918 -> test('prepare ranks a launch name and a custom title above the generated title', (t) => {
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:866 ->  * @returns {{model: string, effort: string, name: string, generatedName: string}} The values
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:871 ->   const none = { model: '', effort: '', name: '', generatedName: '' };
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:890 ->       generatedName: typeof found.generatedName === 'string' ? found.generatedName : '',
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:753 ->     if (!whole) return none;
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:757 ->     const nearby = lineage.slice(0, 2);
+.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:760 ->       packet: firstUsablePacket(nearby, roots, (candidate) => packetGoalIsSettable(candidate, roots)),
+.skilled/hooks/session-relaunch/claude/stop-arm.mjs:138 ->   if (typeof payload.transcript_path !== 'string' || !payload.transcript_path) {
+.skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:334 -> test('subagent-guard lets a question dialog through when the record read throws', async (t) => {
+.skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:284 -> test('subagent-guard denies a question dialog while the session hand-over is pending', async (t) => {
+.skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:313 -> test('subagent-guard denies a question dialog over an armed record whose killer is gone', async (t) => {
+.skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:322 -> test('subagent-guard lets a question dialog through over an armed record with a live killer', async (t) => {

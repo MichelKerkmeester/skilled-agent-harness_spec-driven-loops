@@ -8,21 +8,22 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/023-epic-review-doc-fixes"
-    last_updated_at: "2026-11-14T16:20:00Z"
+    last_updated_at: "2026-11-14T18:40:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Planned the four document findings, the saved evidence and the ADR"
-    next_safe_action: "The builder runs the suites, edits the documents and marks every row Met"
+    recent_action: "Marked every row Met from the four searches, the three saved suites, the ADR and the validators"
+    next_safe_action: "The orchestrator commits, then runs the commit-scope check named in AC-007"
     blockers: []
     key_files: [".skilled/hooks/session-relaunch/claude/README.md", ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md", ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md", ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-023-epic-review-doc-fixes"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Does the app title follow --name for a generated title? The operator-run scenario records the command line and the app title separately."
     answered_questions:
       - "Is 002 AC-003 superseded or rewritten? Superseded through ADR-001, because phase 021 reverses its rule."
+      - "Was the live hop run? No. HS-9 is operator-run and the packet claims no result."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: acceptance-criteria | v2.4 -->
 # Acceptance Criteria: Phase 23: epic-review-doc-fixes
@@ -40,7 +41,7 @@ _memory:
 
 **Packet:** 023-epic-review-doc-fixes
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-14
 <!-- /ANCHOR:metadata -->
 
@@ -53,13 +54,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the Claude adapter README, When the `stop-arm.mjs` row is read, Then it says a spawn failure leaves the record armed and the next Stop re-arms it, and the old sentence returns no match | `rg -c 'A spawn failure leaves the record pending for the next Stop' .skilled/hooks/session-relaunch/claude/README.md` prints nothing with exit 1, and the row names `armed`. Cited: `.skilled/hooks/session-relaunch/claude/README.md:27`, `.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1001` | Pending | - |
-| AC-002 | REQ-002 | Given the feature catalog entry, When the Nudge Prepare And Arm and Killer And Wrapper sections are read, Then one sentence names the question dialog guard and one names the generated title carry | `rg -c 'AskUserQuestion' .skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md` and `rg -c 'generatedName'` on the same file each print 1 or more. Cited: `.skilled/hooks/session-relaunch/claude/subagent-guard.mjs:84`, `.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:595` | Pending | - |
-| AC-003 | REQ-003 | Given the Claude playbook, When HS-9 is read, Then it is marked operator-run, walks the question guard, the packet goal fallback and the generated title carry across one real hop, and names the evidence and the pass or fail signals | `rg -c 'operator-run'` and `rg -c 'AskUserQuestion'` on the playbook each print 1 or more, and a read finds the three behaviors and the evidence list. Cited: `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md:922` | Pending | - |
-| AC-004 | REQ-004 | Given the core and the child 001 summary, When they are read, Then the JSDoc return shape names `generatedName`, and lines 129 and 131 carry dated notes that name the phase that changed each | `rg -c '@returns \{\{model: string, effort: string, name: string\}\}' .skilled/hooks/session-relaunch/lib/relaunch-core.cjs` prints nothing with exit 1, and `rg -c '2026-11' specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/implementation-summary.md` prints 2 or more. Cited: `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:800`, `specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/implementation-summary.md:131` | Pending | - |
-| AC-005 | REQ-005 | Given the seven named rows, When each is read, Then it carries a dated note that names a saved suite run under `scratch/` and the count it holds, and 001 AC-005 also names the throwing-read test phase 020 adds | `scratch/final-suite.txt`, `scratch/goal-suite.txt` and `scratch/pi-suite.txt` exist with their counts, and `rg -c 'scratch/final-suite.txt'` prints 1 or more for each of the six rows that name it. Cited: `specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/acceptance-criteria.md:58`, `specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/acceptance-criteria.md:60` | Pending | - |
-| AC-006 | REQ-006 | Given child 002, When its criteria and decision record are read, Then AC-003 is `Superseded` with `ADR-001`, ADR-001 exists, and the closure statement accepts one superseded row | `rg -c 'Superseded'` and `rg -c 'ADR-001'` each print 1 or more for the two files, and `validate.sh` on child 002 prints `RESULT: PASSED`. Cited: `specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/acceptance-criteria.md:56`, `specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/002-packet-goal-fallback/decision-record.md:1` | Pending | - |
-| AC-007 | REQ-007 | Given the final tree, When the validators run, Then the four sk-doc checks, the mirror check and strict validation pass for every edited folder, and no adapter or test file changed | The four T018 commands and the T019 mirror check exit 0, T020 and T021 print `RESULT: PASSED`, and `git show --name-status FIX` lists no test and no adapter file. Cited: `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md:1` | Pending | - |
+| AC-001 | REQ-001 | Given the Claude adapter README, When the `stop-arm.mjs` row is read, Then it says a spawn failure leaves the record armed and the next Stop re-arms it, and the old sentence returns no match | The old sentence printed nothing and exited 1 on 2026-11-14, and `rg -n -o 'leaves the record armed'` printed `27:leaves the record armed`. The row now says the error is logged with stage `spawn` and the next Stop starts a killer again. Cited: `.skilled/hooks/session-relaunch/claude/README.md:27`, `.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1001`. See `scratch/checks.txt` | Met | - |
+| AC-002 | REQ-002 | Given the feature catalog entry, When the Nudge Prepare And Arm and Killer And Wrapper sections are read, Then one sentence names the question dialog guard and one names the generated title carry | `rg -c 'AskUserQuestion'` and `rg -c 'generatedName'` each printed 1 on 2026-11-14. The guard sentence names `claude/subagent-guard.mjs` and both armable states, and the title sentence names `bin/session-relaunch.cjs:595` and the `--name "<title> (<hop>)"` carry. Cited: `.skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md:51`, `:63`, `.skilled/hooks/session-relaunch/claude/subagent-guard.mjs:66`, `.skilled/hooks/session-relaunch/bin/session-relaunch.cjs:595`. See `scratch/checks.txt` | Met | - |
+| AC-003 | REQ-003 | Given the Claude playbook, When HS-9 is read, Then it is marked operator-run, walks the question guard, the packet goal fallback and the generated title carry across one real hop, and names the evidence and the pass or fail signals | `rg -c 'operator-run'` and `rg -c 'AskUserQuestion'` each printed 1 on 2026-11-14. The heading and the first line both say operator-run, the six steps walk the denial, the armed record, the `/goal` start and the `--name` carry, and the evidence and PASS and FAIL lines are present. Cited: `.skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md:944`, `:946`. No run is claimed, because the scenario is operator-run and the operator has not run it | Met | - |
+| AC-004 | REQ-004 | Given the core and the child 001 summary, When they are read, Then the JSDoc return shape names `generatedName`, and lines 129 and 131 carry dated notes that name the phase that changed each | The old `@returns` shape printed nothing and exited 1, the new shape names `generatedName` at `:866`, and `node --check` exited 0. `rg -c '2026-11'` over the child 001 summary printed 8, and the two notes name phase 020 and phase 005. Cited: `.skilled/hooks/session-relaunch/lib/relaunch-core.cjs:866`, `../001-sender-dialog-after-prepare/implementation-summary.md:129`, `:131`. See `scratch/checks.txt` | Met | - |
+| AC-005 | REQ-005 | Given the seven named rows, When each is read, Then it carries a dated note that names a saved suite run under `scratch/` and the count it holds, and 001 AC-005 also names the throwing-read test phase 020 adds | The three files exist with their counts: `scratch/final-suite.txt` holds tests 1555, pass 1555, fail 0 and exit 0, `scratch/goal-suite.txt` holds tests 200, pass 200, fail 0 and exit 0, and `scratch/pi-suite.txt` holds 62 passed of 62 and exit 0. Each of the six rows that name `scratch/final-suite.txt` prints 1, 001 AC-005 names `subagent-guard lets a question dialog through when the record read throws`, and 002 AC-003 is `Superseded`. Cited: `scratch/final-suite.txt`, `scratch/goal-suite.txt`, `scratch/pi-suite.txt`, `.skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:334` | Met | - |
+| AC-006 | REQ-006 | Given child 002, When its criteria and decision record are read, Then AC-003 is `Superseded` with `ADR-001`, ADR-001 exists, and the closure statement accepts one superseded row | `rg -c 'Superseded'` prints 1 in the 002 criteria and `rg -c 'ADR-001'` prints 2 there and 3 in the new record. `decision-record.md` exists with ADR-001, AC-003 keeps its id and its original evidence and gains a dated note, and the closure statement accepts one superseded row. `validate.sh` on child 002 prints `RESULT: PASSED`, saved to `scratch/validate-folders.txt`. Cited: `../002-packet-goal-fallback/acceptance-criteria.md:56`, `../002-packet-goal-fallback/decision-record.md:1` | Met | - |
+| AC-007 | REQ-007 | Given the final tree, When the validators run, Then the four sk-doc checks, the mirror check and strict validation pass for every edited folder, and no adapter or test file changed | The four T018 commands and the T019 mirror check each exited 0, with the same two playbook warnings and the same fixture `ALL PASS` line as the baseline, and the mirror printed `PASS: 256 mirrors across 10 trees are in sync.`. T020 and T021 print `RESULT: PASSED`. `git status --porcelain -uall` over the edited trees lists only the allowed documents, the one JSDoc change, the derived metadata and the `scratch/` files, with no test file and no adapter file. The named `git show --name-status FIX` check runs after the orchestrator commits the tree checked here. Cited: `scratch/verification.txt`, `scratch/baseline.txt`, `scratch/validate-folders.txt`, `scratch/validate-recursive.txt` | Met | - |
 
 ### Status values
 
@@ -85,9 +86,9 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Every row is `Pending`, because this phase is planned and not built. The builder runs T001 to T024, saves each run under `scratch/`, marks every row `Met` with the observed line and cites the fix commit.
+Every row is `Met`. No row is waived or superseded, and no row asks for a live hop. The operator-run scenario HS-9 records no result, and that gap is a Known Limitation in `implementation-summary.md`.
 <!-- /ANCHOR:closure -->
 
 ---

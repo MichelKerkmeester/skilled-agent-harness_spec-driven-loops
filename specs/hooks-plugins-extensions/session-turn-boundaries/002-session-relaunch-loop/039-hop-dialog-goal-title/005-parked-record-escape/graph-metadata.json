@@ -199,7 +199,7 @@
     ],
     "causal_summary": "On Claude Code a Stop that cannot arm a prepared hand-over left the relaunch record pending with no mark",
     "created_at": "2026-11-14T04:47:37Z",
-    "last_save_at": "2026-11-14T05:34:09.905Z",
+    "last_save_at": "2026-11-14T17:34:36.075Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,7 +210,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:7e602272c53d2af0b2b59423361406ba85f00477d70566ae70debd72a2ec0de7",
+    "source_fingerprint": "sha256:e75f00858bf11a8449ee5633981550332d00b852dacb6d9001d9f94f336271b5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6a4d88a32ec57438d6953bba07b4dcb63507742ec058ddc1d968d224997326d8",

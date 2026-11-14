@@ -1,0 +1,35 @@
+# AC-001 to AC-004 checks, 2026-11-14, commit 2638731a9d
+
+$ rg -c 'A spawn failure leaves the record pending for the next Stop' .skilled/hooks/session-relaunch/claude/README.md
+exit=1
+
+$ rg -n -o 'leaves the record armed' .skilled/hooks/session-relaunch/claude/README.md
+27:leaves the record armed
+exit=0
+
+$ rg -c 'AskUserQuestion' .skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md
+1
+exit=0
+
+$ rg -c 'generatedName' .skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md
+1
+exit=0
+
+$ rg -c 'operator-run' .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md
+1
+exit=0
+
+$ rg -c 'AskUserQuestion' .skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md
+1
+exit=0
+
+$ rg -c '@returns \{\{model: string, effort: string, name: string\}\}' .skilled/hooks/session-relaunch/lib/relaunch-core.cjs
+exit=1
+
+$ node --check .skilled/hooks/session-relaunch/lib/relaunch-core.cjs
+exit=0
+
+$ rg -c '2026-11' specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/001-sender-dialog-after-prepare/implementation-summary.md
+8
+exit=0
+

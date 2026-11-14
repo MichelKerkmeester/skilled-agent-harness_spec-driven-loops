@@ -19,6 +19,8 @@
       "packet goal fallback tasks",
       "packet goal fallback acceptance criteria",
       "packet goal fallback goal",
+      "packet goal fallback decision record",
+      "over-cap goal log superseded criterion",
       "packet goal fallback implementation summary"
     ],
     "key_topics": [
@@ -43,6 +45,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
       ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
@@ -82,6 +85,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -191,17 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview The Claude",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A hop carried a goal only when the Claude sender had set one itself",
     "created_at": "2026-11-13T16:59:12Z",
-    "last_save_at": "2026-11-14T05:43:09.430Z",
+    "last_save_at": "2026-11-14T17:34:28.454Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,14 +213,16 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:58d45336007f78ee6a01bf23bf111c4561ee496588c514ebf56492771845bb13",
+    "source_fingerprint": "sha256:471efcecd97fe12208206d5aedebcb17f653507b272cc116e48e54fa022b6ec4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "d6fa17d6e2e09b580a3501acb6a3c3305253f6b85ee48169674a125244b0f41c",
       "plan.md": "ffeac66efac92ec47c0d4371c9423cb38550fb7fbe0993af84d0b9c795137cc2",
       "tasks.md": "3b85fbb5422e4fa342df7bc3d403d3e31b20772fcb9536515bc8d37cd97c1a87",
+      "decision-record.md": "be49f8793667e390b859b843bdd874e0315d5f1ff1149a48d496218925abe3b7",
       "implementation-summary.md": "7700ad4ebd5b059f0416beb2383f42c31227495e6c7f201a63d425159f5e00e6"
     },
     "last_active_at": null

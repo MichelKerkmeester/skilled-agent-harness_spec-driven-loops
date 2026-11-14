@@ -6,7 +6,7 @@ trigger_phrases:
   - "session-relaunch-claude"
   - "skilled-loop handoff"
   - "Claude context nudge"
-version: 1.0.24.0
+version: 1.0.25.0
 id: session-relaunch-claude
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -940,6 +940,30 @@ bash "$harness/finish-run.sh" claude "$out"
 The note's `Running workers:` line says `none` and names no worker while the `&` worker runs. `prepare` accepts it because `runningWorkersReason` reads only the note text and takes `none` as the answer, so the worker is invisible to that check. `PREPARE.exit` is `0` for this note.
 
 Evidence: the `RECEIVER.marker` line with the worker's pid and parent pid, the `PREPARE.exit` line, the `worker.log lines` count and the `note status` line in `$out/summary.txt`, plus the `claimed` line in `$out/history.txt`. PASS when `PREPARE.exit` is `0`, the worker's parent pid is `1` and the receiver claimed the note. FAIL when `prepare` refuses the note. FAIL also when the worker's parent pid is another pid. FAIL also when the receiver never claims the note.
+
+#### HS-9 One real hop checks the question guard, the packet goal and the generated title (Operator-run)
+
+This scenario is operator-run. It needs a real Claude Code question dialog and a title that Claude Code generated on its own, so no committed suite can cover it, and this file records no run of it.
+
+Run from the repository root with `tmux`, `node` and `claude`. Work in a throwaway checkout that binds an unfinished packet whose `goal.md` has at least one unticked criterion and a slice within budget. Start the sender with no `--name`, set no goal of its own, and never run `/rename`, so the only title the session has is the generated one.
+
+~~~bash
+repo_root="$(git rev-parse --show-toplevel)"
+sandbox="$(mktemp -d)/checkout"
+git clone --shared "$repo_root" "$sandbox"
+tmux new-session -d -s hop-check -c "$sandbox" \
+  'SYSTEM_SESSION_RELAUNCH_ENABLED=1 SESSION_RELAUNCH_THRESHOLD=0.05 SESSION_RELAUNCH_WINDOW_TOKENS=100 SESSION_RELAUNCH_MAX_HOPS=2 bash .skilled/bin/skilled-loop claude "Start a short task and wait for the handoff nudge."'
+tmux attach -t hop-check
+~~~
+
+1. Answer Gate 3 with the packet path, then run a short task until the handoff nudge arrives. Set no goal in the sender.
+2. Run `prepare` with the command the nudge prints, then call `AskUserQuestion` in the same turn. The guard must deny the call. Read the denial and confirm it names the note and the `cancel` command.
+3. End the turn. `Stop` must arm the record, so `relaunch-<loopId>.json` in the relaunch state directory reads `status: armed` with an `armedAt` stamp, and `killer-<loopId>.lock` there names the killer's pid. The state directory is `${XDG_RUNTIME_DIR}/skilled-relaunch`, or `skilled-relaunch-<uid>` under the temporary directory when `XDG_RUNTIME_DIR` is unset.
+4. Take the receiver's pid from the killed sender's child, then run `ps -o command= -p <pid>`. The command line must start on `/goal <slice>` for the packet the note names, which is the packet goal fallback, because the sender had no goal of its own.
+5. Start a second sender the same way in a fresh loop, again with no `--name`, and let Claude Code generate its title before the nudge. After that hop, the receiver's `ps -o command= -p <pid>` line must carry `--name "<generated title> (2)"`, with the `generatedName` that `prepare` read from the sender's transcript.
+6. Keep `relaunch.log`, both `ps` lines, `node .skilled/hooks/session-relaunch/bin/session-relaunch.cjs history --last 3` and the note frontmatter as evidence.
+
+Evidence: the denial text, the armed record and its lock file, the two `ps -o command=` lines, the `history --last 3` output and the note's `spec_folder`. Record the app title apart from the command line, because whether the app title follows `--name` is unconfirmed. PASS when the denial, the `/goal` start and the `--name` carry all appear. FAIL when the dialog opens, when the receiver starts with no goal prompt, or when the receiver has a fresh generated title with no hop number.
 
 ### Expected
 

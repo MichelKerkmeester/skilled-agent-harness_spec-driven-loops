@@ -863,8 +863,9 @@ function safeDirectory(directory) {
  * @param {string} options.runtime - Runtime that owns the session.
  * @param {string} options.sessionId - The session's identifier.
  * @param {NodeJS.ProcessEnv} [options.env=process.env] - Environment carrying the log location.
- * @returns {{model: string, effort: string, name: string}} The values the log proves, `''`
- * for the rest, and the live session name when the log carries one.
+ * @returns {{model: string, effort: string, name: string, generatedName: string}} The values
+ * the log proves, `''` for the rest, the live session name when the log carries one, and the
+ * title the runtime generated when the session has no other name.
  */
 function resolveSessionSettings({ runtime, sessionId, env = process.env } = {}) {
   const none = { model: '', effort: '', name: '', generatedName: '' };
