@@ -11,7 +11,7 @@
 
 /**
  * @typedef {'running' | 'waiting' | 'paused' | 'idle' | 'stopped'} LoopActiveStatusValue
- * @typedef {'converged' | 'maxIterationsReached' | 'blockedStop' | 'manualStop' | 'error' | 'stuckRecovery' | 'userPaused'} LoopStopReasonValue
+ * @typedef {'converged' | 'maxIterationsReached' | 'blockedStop' | 'manualStop' | 'error' | 'stuckRecovery' | 'userPaused' | 'maxDurationReached'} LoopStopReasonValue
  * @typedef {{
  *   waitForResume: () => Promise<void>,
  *   resolveResume: () => boolean,
@@ -53,6 +53,7 @@ const STOP_REASONS = Object.freeze({
   // research, review) emit this terminal reason at pause-sentinel time. New
   // values append to preserve the contractual error-string order above.
   userPaused: 'userPaused',
+  maxDurationReached: 'maxDurationReached',
 });
 
 /**

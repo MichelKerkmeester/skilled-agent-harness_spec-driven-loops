@@ -865,7 +865,7 @@ workflow:
             eligibility_contract:
               required_decision: "STOP"
               eligible_reasons: [composite_converged, all_questions_answered]
-              excluded_reasons: [maxIterationsReached, blockedStop, stuckRecovery, minIterationsNotReached, error, manualStop, userPaused]
+              excluded_reasons: [maxIterationsReached, blockedStop, stuckRecovery, minIterationsNotReached, error, manualStop, userPaused, maxDurationReached]
               fail_closed: "Any missing or ambiguous reason uses if_existing_terminal_path without preparing a pivot."
             steps:
               step_prepare_divergent_pivot:
@@ -1132,7 +1132,7 @@ workflow:
 
       step_normalize_pause_events:
         action: "Normalize pause and recovery lifecycle events to the frozen STOP_REASONS enum at emission time"
-        stop_reasons_enum: [converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused]
+        stop_reasons_enum: [converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached]
         rule_pause_sentinel:
           raw_event_forbidden: '{"type":"event","event":"paused"}'
           canonical_event: '{"type":"event","event":"userPaused","mode":"research","run":{current_iteration},"stopReason":"userPaused","sentinelPath":"{state_paths.pause_sentinel}","timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
@@ -2221,7 +2221,7 @@ workflow:
           - total_questions: "Count total questions tracked in strategy.md"
           - last_3_summaries: "Summarize the latest 3 iteration records as 'run N: focus (ratio)'"
           - divergence_summary: "Read registry.divergence and summarize saturated directions, completed pivots, failures, overrides, Council artifact refs, and remaining frontier; else 'no divergent pivots recorded'"
-          - reason: "Use the latest synthesis/recovery stop reason if present, else the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused.)"
+          - reason: "Use the latest synthesis/recovery stop reason if present, else the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached.)"
 
       step_read_all_iterations:
         action: "Read all iteration files and strategy"

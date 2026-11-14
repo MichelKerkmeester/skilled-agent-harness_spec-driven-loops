@@ -917,7 +917,7 @@ workflow:
             eligibility_contract:
               required_decision: "STOP"
               eligible_reasons: [all_dimensions_clean]
-              excluded_reasons: [maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused]
+              excluded_reasons: [maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached]
               fail_closed: "Any missing or ambiguous reason uses if_existing_terminal_path without preparing a pivot. The nine legal-stop gates have already run and remain unchanged."
             steps:
               step_prepare_divergent_pivot:
@@ -1128,7 +1128,7 @@ workflow:
           log: "Iteration {current_iteration}: Continuing. Dimension: {next_dimension}"
 
       step_normalize_pause_events:
-        action: "Rewrite raw pause and recovery events to the frozen STOP_REASONS enum at emission time: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused"
+        action: "Rewrite raw pause and recovery events to the frozen STOP_REASONS enum at emission time: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached"
         if_pending_pause_event:
           append_jsonl: '{"stem":"deep_review.pause_recorded","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation},"iterationId":"iteration-{current_iteration}"},"data":{"normalizedStopReason":"userPaused","sentinelCause":"sentinel-file-detected","fromIterationId":"iteration-{current_iteration}","strategy":"await-operator-resume","targetDimensionId":"{next_dimension}","outcome":"paused","lineageRef":"{session_id}","priorTailDigest":"{prior_tail_digest}"}}'
           message: "Review paused. Delete review/.deep-review-pause to resume."
@@ -2257,7 +2257,7 @@ workflow:
           - dimension_coverage: "covered / total"
           - ac_coverage_signal: "For spec-folder targets only: if level is 2+ and acceptance-criteria.md exists and implementation-summary.md is in-progress or later, surface the AC_COVERAGE advisory status; otherwise mark exempt."
           - last_3_summaries: "Summarize the latest 3 iteration records"
-          - reason: "Use the latest stop reason if present, else the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused.)"
+          - reason: "Use the latest stop reason if present, else the frozen default 'converged'. (Must be a member of the STOP_REASONS enum: converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached.)"
 
       # H-1 verdict derivation: parse findings JSONL, map highest severity to verdict
       # - PASS: no P0 or P1 findings (P2-only or clean)
