@@ -1,0 +1,22 @@
+frontend	fix the responsive grid layout on the pricing page
+frontend	make the navbar sticky with css
+frontend	build a modal with a focus trap in React
+frontend	improve LCP on the landing page
+frontend	add a dark mode toggle to the site
+frontend	the button text has poor contrast
+frontend	style the form inputs and error messages
+frontend	write a css animation for the loading spinner
+frontend	implement the checkout page from the figma file
+frontend	center a div vertically
+frontend	add i18n support with rtl languages
+frontend	optimize images and lazy loading on the homepage
+frontend	make the table scroll horizontally on mobile
+review	review my react component for accessibility issues
+negative	add left padding to the binary buffer before hashing
+negative	hover over the symbol to debug the typescript type error
+negative	pad the string with zeros in the python formatter
+negative	easing the migration of the shell scripts to bash 5
+negative	the transition between workflow states fails in the reducer
+negative	add a hover provider to the language server
+negative	fix the contrast stretch in the image processing python script
+negative	the shadow copy of the config file is stale

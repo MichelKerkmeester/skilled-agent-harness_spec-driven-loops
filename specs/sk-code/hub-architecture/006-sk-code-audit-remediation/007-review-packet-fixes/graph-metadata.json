@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes",
+  "spec_folder": "sk-code/hub-architecture/006-sk-code-audit-remediation/007-review-packet-fixes",
+  "parent_id": "sk-code/hub-architecture/006-sk-code-audit-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review packet fixes",
+      "phase 7 review packet fixes",
+      "review packet fixes plan",
+      "review packet fixes tasks",
+      "review packet fixes acceptance criteria",
+      "review packet fixes goal",
+      "review packet fixes implementation summary"
+    ],
+    "key_topics": [
+      "review",
+      "packet",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "sk-code-review",
+      "decides"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-review/README.md",
+      ".skilled/skills/sk-code/sk-code-review/ROUTER.md",
+      "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md",
+      ".skilled/skills/sk-code/sk-code-review/scripts/README.md",
+      ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
+      ".skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "findings-ledger.md",
+        "kind": "doc",
+        "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-core.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/references/review-core.md",
+        "source": "derived"
+      },
+      {
+        "name": "fix-completeness-checklist.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-review/assets/fix-completeness-checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Read",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `sk-code-review` packet decides how a review is written and when one may be skipped, and a reader found 13 places where it disagrees with itself or repeats a rule in several files",
+    "created_at": "2026-11-14T12:01:55Z",
+    "last_save_at": "2026-11-14T12:18:24.543Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:c96d2d3d852492c20e96ff7c9dd260558be62b98cf248b22a28277062e2962ed",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "00792a8c62d41f8277db33d4b195cf700ab3c623c70a27f6535a66dfd202f4d2",
+      "plan.md": "c4cfaa4f73e0258f971fd07250672de5a0242e358c391fa5e5f298e4e3405dc2",
+      "tasks.md": "89c94b665c9b1de6faa475d24cb933479c33871a1f546222f222b36af3b887a1",
+      "implementation-summary.md": "2835ebdc269a6c85ae678ef244790225bd52ccd516d235d8162728d4cef3f9f1"
+    },
+    "last_active_at": null
+  }
+}

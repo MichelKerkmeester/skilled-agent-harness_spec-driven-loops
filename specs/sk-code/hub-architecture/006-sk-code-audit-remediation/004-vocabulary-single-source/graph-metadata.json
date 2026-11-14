@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source",
+  "spec_folder": "sk-code/hub-architecture/006-sk-code-audit-remediation/004-vocabulary-single-source",
+  "parent_id": "sk-code/hub-architecture/006-sk-code-audit-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vocabulary single source",
+      "phase 4 vocabulary single source",
+      "vocabulary single source plan",
+      "vocabulary single source tasks",
+      "vocabulary single source acceptance criteria",
+      "vocabulary single source goal",
+      "vocabulary single source implementation summary"
+    ],
+    "key_topics": [
+      "vocabulary",
+      "single",
+      "source",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "frontend"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-frontend/ROUTER.md",
+      ".skilled/skills/sk-code/mode-registry.json",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
+      ".skilled/skills/sk-code/hub-router.json",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+      "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "verify-router-sync.test.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "run-all-drift-guards.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+        "source": "derived"
+      },
+      {
+        "name": "findings-ledger.md",
+        "kind": "doc",
+        "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Remove",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Guarded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A frontend keyword lives in five hand-edited places: two classes in `hub-router.json`, the aliases in `mode-registry.json`, the hub `ROUTER.md` block, the packet `ROUTER.md` block and the packet's prose list",
+    "created_at": "2026-11-14T12:01:52Z",
+    "last_save_at": "2026-11-14T12:18:05.177Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:89d50f9130648f586ff52f5e2c1a4bf55ae50c77ef63ef7e8c066edc8bd5061e",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "abd20895d7f4f5c44425517b010f3a880478f7b0e19d31727da59c4378cd8261",
+      "plan.md": "55ee1b1117d051c0181c26cd02bc513d3b3266f219b0999378cfb0e2365e5854",
+      "tasks.md": "175843773767506547da795937d30ee1e756a56b3ce8e7af6c8780fcfa228f7a",
+      "implementation-summary.md": "505b923bd1c65fc71d0e18a5f5e5846e7b49b042a047e30cff227c3167b78a61"
+    },
+    "last_active_at": null
+  }
+}

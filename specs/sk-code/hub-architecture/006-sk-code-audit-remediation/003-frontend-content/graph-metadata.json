@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "packet_id": "sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content",
+  "spec_folder": "sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content",
+  "parent_id": "sk-code/hub-architecture/006-sk-code-audit-remediation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "frontend content",
+      "phase 3 frontend content",
+      "frontend content plan",
+      "frontend content tasks",
+      "frontend content acceptance criteria",
+      "frontend content goal",
+      "frontend content implementation summary"
+    ],
+    "key_topics": [
+      "frontend",
+      "content",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "request",
+      "reaches"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-code/sk-code-frontend/SKILL.md",
+      ".skilled/skills/sk-code/sk-code-frontend/ROUTER.md",
+      ".skilled/skills/sk-code/sk-code-frontend/README.md",
+      ".skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md",
+      ".skilled/skills/sk-code/sk-code-frontend/references/web-motion-and-interaction.md",
+      ".skilled/skills/sk-code/sk-code-frontend/assets/tokens.css",
+      ".skilled/skills/sk-code/mode-registry.json",
+      "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md",
+      ".skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md",
+      ".skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md",
+      ".skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md",
+      ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "frontend-practice.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md",
+        "source": "derived"
+      },
+      {
+        "name": "web-motion-and-interaction.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/references/web-motion-and-interaction.md",
+        "source": "derived"
+      },
+      {
+        "name": "tokens.css",
+        "kind": "file",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/assets/tokens.css",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-code/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "findings-ledger.md",
+        "kind": "doc",
+        "path": "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification/findings-ledger.md",
+        "source": "derived"
+      },
+      {
+        "name": "web-internationalization.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md",
+        "source": "derived"
+      },
+      {
+        "name": "web-performance-and-loading.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md",
+        "source": "derived"
+      },
+      {
+        "name": "web-markup-and-css.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-all-drift-guards.sh",
+        "kind": "script",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Once",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Once a request reaches `sk-code-frontend`, the packet tells the agent two different things about what to load: `SKILL.md` says to read the web layer first, and the router skips it for visual, motion and Figma intents",
+    "created_at": "2026-11-14T12:01:51Z",
+    "last_save_at": "2026-11-14T12:18:00.720Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:98b43b9e75cc32b5f59d81d0e7ae838f897a178e2f47fb331d21ab74d01cc4f7",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "edc7a7792f6eaafda3617ea4e72392a8fb40319089d3308295ffb0e9a868b71a",
+      "plan.md": "53b8f0c098ca204d69bd825bf294463e7ad49d9da52333b030e58a69f3a55a10",
+      "tasks.md": "99feae9e25be64b63340c24de9419042795c934f58cb3cc906c01f6b0cf7a238",
+      "implementation-summary.md": "93861d1e65552183ab56c5779d311ac28dfe93b4ea113e91b11457c1599282ef"
+    },
+    "last_active_at": null
+  }
+}
