@@ -33,7 +33,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The parent exists to keep a packet's problem, purpose and user need in front of the next session across relaunch hops and compactions, because the purpose is written once in `spec.md` and no hop reads it back",
     "created_at": "2026-11-13T21:41:51Z",
-    "last_save_at": "2026-11-13T21:51:27.322Z",
+    "last_save_at": "2026-11-13T23:44:22.151Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,13 +202,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ef8962245124259b3d96b13a68996dc2a9d12c00bead65f94968ee3880420900",
+    "source_fingerprint": "sha256:ad44f2a2fec817f326d2acb1bf5239251d34968192ec442099a2837f8881ca44",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "41c7c81577e6f0f4f4d68d5a1d8d762ae13ffb37a78e631ff9457915e2fe626e",
+      "spec.md": "a2c227f0c473d0e6c6231caacc474f86e460a90963c06250c579190d2fd11ef0",
       "plan.md": "fca5347305b30d266e9017b4ef37617c16b7ff7e650a604585ab64793f4052ec",
-      "tasks.md": "d6b509c8c56f6d8d1c3076d9c7a2e77376e56d1999c55c0b8174d2997ab9e420",
-      "implementation-summary.md": "23a3bc1a3f39eb67193f6057472d63dde40686dad50824b4b0a135d4e3e0355c"
+      "tasks.md": "6b794037407944544ec434db78060d3f78268dc842c8c1e6a35877805a8e0726",
+      "implementation-summary.md": "5a710f8a79eec47d38d706b28555c921204c5c970cf3c08ac97334b3b68eece4"
     },
     "last_active_at": null
   }
