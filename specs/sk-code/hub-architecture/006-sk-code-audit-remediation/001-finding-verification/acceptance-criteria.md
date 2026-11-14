@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification"
-    last_updated_at: "2026-11-14T12:01:49Z"
+    last_updated_at: "2026-11-14T13:21:52Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Marked every criterion with observed evidence"
+    next_safe_action: "None, the packet is closeable"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-001-finding-verification"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** `001-finding-verification`
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-14
 <!-- /ANCHOR:metadata -->
 
@@ -51,11 +51,11 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |---|---|---|---|---|---|
-| AC-001 | REQ-001 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | `grep -c '\| Unverified \|' findings-ledger.md` prints 0. | Unmet | - |
-| AC-002 | REQ-002 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | `grep -c '\| TBD \|' findings-ledger.md` prints 0, so every verdict names its command or its file and line. | Unmet | - |
-| AC-003 | REQ-003 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | `grep -c '"action"' scratch/router-baseline.txt` prints 22, one decision per probe. | Unmet | - |
-| AC-004 | REQ-004 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | `grep -c '^STATUS=' scratch/setup-baseline.txt` prints 1. | Unmet | - |
-| AC-005 | REQ-005 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | Row `F7` of `findings-ledger.md` lists each duplicated rule id with the file that should own it, or carries the verdict `Refuted`. | Unmet | - |
+| AC-001 | REQ-001 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | `grep -c '\| Unverified \|' findings-ledger.md` prints 0. Observed: 0 on 2026-11-14. | Met | - |
+| AC-002 | REQ-002 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | `grep -c '\| TBD \|' findings-ledger.md` prints 0, so every verdict names its command or its file and line. Observed: 0 on 2026-11-14. | Met | - |
+| AC-003 | REQ-003 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | `grep -c '"action"' scratch/router-baseline.txt` prints 22, one decision per probe. Observed: 22 on 2026-11-14. | Met | - |
+| AC-004 | REQ-004 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | `grep -c '^STATUS=' scratch/setup-baseline.txt` prints 1. Observed: 1 on 2026-11-14. | Met | - |
+| AC-005 | REQ-005 | Given this phase's tasks are complete, When the command in the next cell runs from the repository root, Then it prints what the cell states | Row `F7` of `findings-ledger.md` lists each duplicated rule id with the file that should own it, or carries the verdict `Refuted`. Observed: row `F7` is `Confirmed` and lists M2, M13, M14, M15, M17, M21, M29 and M51 with their owning files. | Met | - |
 
 ### Status values
 
@@ -80,7 +80,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-No criterion is met yet, because this phase is planned and not started.
+All five criteria are met with the counts observed on 2026-11-14.
 <!-- /ANCHOR:closure -->

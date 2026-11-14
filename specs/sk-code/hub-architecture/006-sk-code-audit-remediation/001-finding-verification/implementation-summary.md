@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Every one of the 61 audit findings now carries a verdict and the command that decided it, so each fix phase can check a claim before it edits a file. The router and setup baselines the later phases measure against are saved beside the ledger."
 trigger_phrases:
   - "finding verification implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,17 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/hub-architecture/006-sk-code-audit-remediation/001-finding-verification"
-    last_updated_at: "2026-11-14T12:01:49Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-14T13:21:52Z"
+    last_updated_by: "implement-workflow"
+    recent_action: "Gave all 37 unverified ledger rows a verdict and saved both baselines"
+    next_safe_action: "Start 002-frontend-reach"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-001-finding-verification"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,7 +32,6 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
@@ -45,62 +44,63 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+Every one of the 61 audit findings now carries a verdict and the command that decided it, so each fix phase can check a claim before it edits a file. The router and setup baselines the later phases measure against are saved beside the ledger.
 
 ### Phase 1: finding-verification
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+You can open `findings-ledger.md` and see, for any finding, whether it held up and how to rerun the check. Of the 37 rows this phase owned, 32 are `Confirmed`, 3 are `Changed` (`QL-03`, `QL-13`, `QL-14`) and 2 are `Judgment` (`SK-12`, `QL-08`). None was refuted. Row `F7` names the eight motion rules that restate a rule another topic file owns. Row `H5` moved from `Confirmed` to `Changed`, because the setup battery now exits 1 on `STATUS=FAIL`.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `findings-ledger.md` | Modified | Verdict and evidence for 37 rows, and the corrected `H5` row |
+| `scratch/router-baseline.txt` | Created | Raw compiled-router output for the 22 probes |
+| `scratch/setup-baseline.txt` | Created | Raw setup battery and drift guard output |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+Each cited line was read with `sed`, `rg`, `ls`, `diff` or `find` from the worktree root, and the verdict was written only after the output was read. The 22 probes ran through `compiled-route.cjs` in a loop, then the setup battery and `run-all-drift-guards.sh` ran once each. The two ledger counts, the two baseline counts and strict validation ran last.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| The orchestrating session ran the 37 checks itself instead of dispatching them to DeepSeek | The 36 reader rows came from DeepSeek, so a second DeepSeek pass would have been the same model checking its own claims |
+| `H5` was corrected inside its row | The phase goal keeps the ledger a closed list, and a changed verdict is not a new row |
+| `SK-02` is `Confirmed` with the symlink note | The path fails from the folder `SKILL.md` sits in and resolves from `references/`, and both facts decide the fix |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| `grep -c '\| Unverified \|' findings-ledger.md` | 0 |
+| `grep -c '\| TBD \|' findings-ledger.md` | 0 |
+| `grep -c '"action"' scratch/router-baseline.txt` | 22 |
+| `grep -c '^STATUS=' scratch/setup-baseline.txt` | 1 |
+| `validate.sh <phase folder> --strict --quiet` | `RESULT: PASSED (errors=0 warnings=0)` |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **Line numbers age.** Every evidence cell cites a line number from 2026-11-14. A fix phase reruns the command before it edits, because an earlier phase may have moved the line.
+2. **Two rows rest on a reading.** `SK-12` and `QL-08` are `Judgment`, so their fix phases decide whether to change anything and record the reason.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-

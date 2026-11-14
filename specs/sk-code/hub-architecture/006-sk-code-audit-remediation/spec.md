@@ -117,7 +117,7 @@ Every audit finding is either fixed with a command that proves it or closed with
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-finding-verification/ | Give each of the 37 unchecked findings a verdict backed by a command, and save the router and setup baselines | Pending |
+| 1 | 001-finding-verification/ | Give each of the 37 unchecked findings a verdict backed by a command, and save the router and setup baselines | Complete |
 | 2 | 002-frontend-reach/ | Add frontend file markers and everyday vocabulary, remove bare-word keywords and prove reach with 22 fixed probes | Pending |
 | 3 | 003-frontend-content/ | Make the frontend packet's load rule, references, playbook and checklist row agree with its router | Pending |
 | 4 | 004-vocabulary-single-source/ | Remove the prose copy of the vocabulary and make the router-sync guard fail when the remaining copies differ | Pending |

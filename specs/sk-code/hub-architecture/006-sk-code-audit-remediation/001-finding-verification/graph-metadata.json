@@ -34,7 +34,7 @@
       "produced"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,6 +42,8 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/router-baseline.txt",
+      "scratch/setup-baseline.txt",
       "scratch/probes.txt"
     ],
     "entities": [
@@ -79,6 +81,18 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "router-baseline.txt",
+        "kind": "file",
+        "path": "scratch/router-baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "setup-baseline.txt",
+        "kind": "file",
+        "path": "scratch/setup-baseline.txt",
         "source": "derived"
       },
       {
@@ -176,23 +190,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The audit produced 61 findings",
     "created_at": "2026-11-14T12:01:48Z",
-    "last_save_at": "2026-11-14T12:17:48.479Z",
+    "last_save_at": "2026-11-14T13:23:08.762Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,13 +205,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:3faf47480408a60270ff44487c1b4f162d175328e673ff12a2f2bdea8dd1fdea",
+    "source_fingerprint": "sha256:4ae2c9d9b0344be0a6d4c6944c1462dcd1863bd987e85ffcec170ec7744ac52c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "08392e248b6079e7b94d3531c2b39277d188acbbc8a12badced6558facd9f6a2",
+      "spec.md": "6adedd0ee7333f17058d4b5f017b6a4a112f4b8180db341bd407a87115dbd6cf",
       "plan.md": "d34a63b09408b89445209a17791051b26149ffdbf9d43e13a5aeb67a08f222ee",
-      "tasks.md": "2cc2e70a6d3a3e0a0666b020231ef1deaf1dcd607f39cc0b2171e0ea6b8be3d7",
-      "implementation-summary.md": "89edbcbb3d1c9d4fc64c2337042264277410f6ad3d673eb9e862381012d69a93"
+      "tasks.md": "0cfebf9596e4a472e9002abe9a3641b04ef6d9a7af70b36f1ffb3bda52baad11",
+      "implementation-summary.md": "4d8e86b22566a0bf990609bb0b073a5be5c950bcde96ac272ece678514e7fbe8"
     },
     "last_active_at": null
   }
