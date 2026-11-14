@@ -18,7 +18,8 @@
       "ended goal mark match plan",
       "ended goal mark match tasks",
       "ended goal mark match acceptance criteria",
-      "ended goal mark match goal"
+      "ended goal mark match goal",
+      "ended goal mark match implementation summary"
     ],
     "key_topics": [
       "ended",
@@ -42,9 +43,14 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "implementation-summary.md",
       ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
       ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
-      ".skilled/hooks/session-relaunch/README.md"
+      ".skilled/hooks/session-relaunch/README.md",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      "scratch/final-suite.txt",
+      "scratch/baseline.txt"
     ],
     "entities": [
       {
@@ -78,6 +84,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "relaunch-core.cjs",
         "kind": "file",
         "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
@@ -93,6 +105,30 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "final-suite.txt",
+        "kind": "file",
+        "path": "scratch/final-suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
         "source": "derived"
       },
       {
@@ -160,41 +196,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Planning Packet",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Measured Behavior",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`claimedNoteEndedGoal` (`lib/relaunch-core.cjs:632`) returns true for any note in the handoffs folder whose `claimedby` is this session and whose `goalended` is `true` (`:639`)",
     "created_at": "2026-11-14T11:42:54Z",
-    "last_save_at": "2026-11-14T12:18:54.622Z",
+    "last_save_at": "2026-11-14T12:52:37.133Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +208,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f4341ba76a7c3d5b77416849d6fa8dadf6a4e10a6f706eb0dda6c48ba61f25c6",
+    "source_fingerprint": "sha256:402ea780e731356c4bc287fa909605b37f90f37a2fb4efb1c77c2d98df72a3c6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "767d92a90266b217f7ca85201ea5710e38defa835cf068f157e56b753995e96f",
       "plan.md": "c99450598171054623ba61205f6663bef8c175031bff9582d1625bfc8a298c26",
-      "tasks.md": "281e9cab1ef2659ad42644a8d80ffcd37e4a84cb0aaeec810ffed465dfb55236"
+      "tasks.md": "ed0d0fb6c2aaa1f035c6e0a10e4cb4cc53032b7e6a4476ad4b082f27ec4cac6b",
+      "implementation-summary.md": "da3e6e74286c51282d2081442f057019e4444399f90855257689a115289163a1"
     },
     "last_active_at": null
   }
