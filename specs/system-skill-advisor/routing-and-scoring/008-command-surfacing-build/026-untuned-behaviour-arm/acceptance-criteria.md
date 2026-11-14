@@ -66,6 +66,7 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 | AC-011 | REQ-011 | Given the picked sessions, When the read-only reader judges three steps per session, Then the report holds one block per picked session and the goal log holds one `Step reader` row | The checks in T047 and T048 | Unmet | - |
 | AC-012 | REQ-012 | Given the `starts` lines, When the B-5 rule is applied, Then the goal log holds one `B-5 trigger` row that reads `Fired` or `Declined` as the rule gives | The `rg` and the rule check in T049 | Unmet | - |
 | AC-013 | REQ-013 | Given the harness diff, When added comment lines are searched for a spec path or an id, Then nothing is found and only the six harness files changed outside `specs/` | The comment search and the stat in T050 | Unmet | - |
+| AC-014 | REQ-014 | Given a run line whose arm is `paired`, the scorer and the routing-accuracy README, When the line is summarized and the scorer and README are searched, Then the line is filed under `unknown`, no `unscoredOnly` count remains and the README states when a `paired` block appears | The case of T053 failed before and passed after, `rg` in T052 prints nothing, and the `shared owned row` check of T030 | Unmet | - |
 
 ### Status values
 

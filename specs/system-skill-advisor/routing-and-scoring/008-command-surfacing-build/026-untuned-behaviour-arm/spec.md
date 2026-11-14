@@ -27,8 +27,8 @@ contextType: "general"
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/352-command-surfacing-research` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 26 of 26 |
-| **Predecessor** | 024-fable-review-remediation |
+| **Phase** | 26 of 27 |
+| **Predecessor** | 027-review-pass-four-remediation |
 | **Successor** | 025-release-notes-and-doc-sync |
 | **Handoff Criteria** | Every task in `tasks.md` is `[x]` or recorded with its reason, the advisor suite reports 0 failed, `scratch/arm-evidence.txt` holds the followed, paired, pooled, starts and delivery lines printed by the committed scorer, the parent goal log holds the arm verdict, the step reader row and the B-5 row, and strict validation prints `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
@@ -44,6 +44,7 @@ This is **Phase 26** of the build that makes the skill advisor surface every tra
 
 **Dependencies**:
 - Phase 024 is Complete and committed, because this phase edits the transcript scorer that phase last changed (T002 checks).
+- Phase 027 is Complete and committed, because it changes the scorer's start rule and both run-log writers before this phase builds on them, so the stored summaries T002 records come from the fixed scorer (T002 checks, P044).
 - The coordinator has committed the B-6 edit to the `AGENTS.md` Gate 2 bullet before the arena build (T038 checks).
 - The operator approves the Codex project hooks in the prepared Codex arena (T040, Q061).
 - Phase 025 starts after this phase closes, so the release notes can state the arm's result (P040).
@@ -106,7 +107,7 @@ Written before the first session, as P033 requires, so the arm cannot be tuned t
 - **Met.** All three hold: the exact one-sided sign test over gained and lost, pooled over the runtimes, prints a p below 0.05, the `on` arm started no command on any decline row on any runtime, and the sealed reach floor holds, the capture printing at least 1 of 44 holdout rows in the fixture regime and at least 4 of 44 with the real embedding. For example 15 gained against 5 lost prints 0.0207 and passes, and 12 against 6 prints 0.1189 and does not.
 - **Not shown.** Anything else is logged as not shown with the printed lines. No measured session is rerun for its result and nothing is tuned.
 - **Per runtime.** A runtime's paired line is read as direction only. A runtime where gained is not above lost is logged as not shown on that runtime, with its paired line and one reason read from its lost rows.
-- **Command start on a decline or skill-only row.** A run started a tracked command when a skill tool call names it, a `COMMAND:` line reports it `started`, the host expanded it, or the run read its document and also wrote inside its checkout. A read with no write is a lookup and not a start, because a question row is answered by reading.
+- **Command start on a decline or skill-only row.** A run started a tracked command when a skill tool call names it, a `COMMAND:` line reports it `started`, the host expanded it, or the run read its document and also wrote inside its checkout. A read with no write is a lookup and not a start, because a question row is answered by reading. A read is any read the scorer counts once phase 027 is in: a read tool, a skill load or a shell read of the document, where a search, an in-place `sed` and a heredoc line are not reads.
 - **B-5 trigger (P036).** It fires when the `on` arm started a command on any decline row, or when the `on` arm's skill-only start count, pooled over the runtimes, is above the `off` arm's.
 
 ### Arm Design
@@ -138,6 +139,8 @@ Each line the Fable report cites for a planned task was read on 2026-11-14 at 40
 | `../decision-record.md:1257`, `:1259`, `:1267`, `:1272`, `:1280`, `:1285` | `:1354`, `:1356`, `:1364`, `:1369`, `:1377`, `:1382` | Moved 97 lines: P003, P005, P013, P018, P026 and P031 sit below the Q059 to Q064 rows added since |
 | `../023-untuned-outcome-evidence/scratch/outcome-evidence.txt:15-24` | `:15-25` | The followed lines end on 25. `:10`, `:13-14`, `:16` and `:31-35` match |
 
+Phase 027 edits `RAD/score-command-transcripts.mjs` and `RAD/run-command-behaviour.mjs` before this phase starts, so the scorer and runner line numbers above and in `tasks.md` can move. Each task names its function and quotes the line it changes, and a worker re-reads the file before the first edit.
+
 ---
 
 <!-- ANCHOR:scope -->
@@ -167,9 +170,9 @@ Each line the Fable report cites for a planned task was read on 2026-11-14 at 40
 |-----------|-------------|-------------|
 | `RAD/run-command-behaviour.mjs` | Modify | Arms `off` and `on` and their switch, `--run`, the `fresh` set and its guards |
 | `RAD/prepare-behaviour-arena.mjs` | Modify | A `CLAUDE.md` pointer the arena's git status does not list |
-| `RAD/score-command-transcripts.mjs` | Modify | Fresh labels, the run key, the delivery check, count pairing, `pooled`, command starts |
+| `RAD/score-command-transcripts.mjs` | Modify | Fresh labels, the run key, the delivery check, count pairing, `pooled`, command starts, the reserved arm `paired` and no `unscoredOnly` count |
 | `RAD/behaviour-fresh-prompts.jsonl` | Create | 36 rows written blind, split `fresh` |
-| `RAD/README.md` | Modify | The new options, fields and refusals |
+| `RAD/README.md` | Modify | The new options, fields and refusals, and when a `paired` block appears |
 | `ADV/tests/command-behaviour-guards.vitest.ts` | Modify | The runner and arena builder cases |
 | `ADV/tests/command-transcript-score.vitest.ts` | Modify | The scorer cases |
 <!-- /ANCHOR:scope -->
@@ -198,11 +201,12 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-006 | `childEnv(dir, 'off')` holds `SYSTEM_SKILL_ADVISOR_HOOK_DISABLED` and `SYSTEM_SKILL_ADVISOR_PLUGIN_DISABLED` set to `1`, `childEnv(dir, 'on')` holds no name that ends in `_DISABLED` and holds `SKILL_ADVISOR` or `HOOKS`, and `childEnv(dir, 'pre')` equals `childEnv(dir)`. |
 | REQ-007 | `--set fresh` refuses with exit 2 a missing file (`fresh_missing`), a row on another split (`holdout_row` or `fresh_split`), a count other than 36 (`set_short`), a repeated prompt (`repeated_row`, naming two ids and no text) and a fresh row run without arm `off` or `on` (`fresh_arm`) or without `--run` (`fresh_run`). A run line records `run`. |
 | REQ-008 | A fresh arena holds a `CLAUDE.md` that reads `@AGENTS.md`, and `git status --porcelain` in it prints nothing. |
-| REQ-009 | The scorer labels a fresh row, keeps run 1 and run 2 of a row apart, leaves a delivery contradiction unscored as `arm_delivery_mismatch`, pairs by followed counts with an `unpaired` count, prints `pooled` with `--pair` and prints `declineStarts`, `skillOnlyStarts` and `commandStartRuns`. `signTestP(15, 5)` is 0.0207, `signTestP(12, 6)` is 0.1189 and `signTestP(0, 0)` is null. Over the stored one-run logs every earlier field keeps its value. |
+| REQ-009 | The scorer labels a fresh row, keeps run 1 and run 2 of a row apart, leaves a delivery contradiction unscored as `arm_delivery_mismatch`, pairs by followed counts with an `unpaired` count, prints `pooled` with `--pair` and prints `declineStarts`, `skillOnlyStarts` and `commandStartRuns`. `signTestP(15, 5)` is 0.0207, `signTestP(12, 6)` is 0.1189 and `signTestP(0, 0)` is null. Over the stored one-run logs every earlier field keeps the value T002 records after phase 027 closes. |
 | REQ-010 | `scratch/arm-evidence.txt` holds 12 `followed`, at most 6 `paired`, 1 `pooled`, 12 `starts` and 12 `delivery` lines from `jq` over the summary, the sealed floor lines and the `limit:` lines, and the parent goal log states met or not shown under the rules of this spec. |
 | REQ-011 | A read-only Fable 5.2 reader judges 24 `on`-arm sessions that followed on a fit row, four per runtime or every one a runtime has, on three steps each, and the parent goal log records it as a judgment. |
 | REQ-012 | The B-5 trigger is evaluated from the printed counts and logged as fired, with B-5 handed to a new phase, or as declined with the counts. |
 | REQ-013 | No code comment added by this phase names a spec path, a phase, a task, a finding or a requirement id. |
+| REQ-014 | The scorer files a run line whose arm is `paired` under the `unknown` arm, as it files `unscored`, the workflow block holds no `unscoredOnly` count, and the routing-accuracy README states that a runtime gets a `paired` block only when both arms scored at least one shared owned row (P046). |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -255,7 +259,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - **NFR-S02**: A refusal about a row names ids and never prompt text.
 
 ### Reliability
-- **NFR-R01**: A summary of the stored one-run logs prints every earlier field with its earlier value, with and without `--pair pre,post`.
+- **NFR-R01**: A summary of the stored one-run logs prints every earlier field with the value T002 records after phase 027 closes, with and without `--pair pre,post`.
 - **NFR-R02**: A rerun is appended to the same log and replaces the line of the same runtime, arm, row and run, so a retry never counts twice.
 
 ---
@@ -308,7 +312,8 @@ None blocks planning. Each point the dispatch left open is decided below and rec
 - A15. The skill-only half of the B-5 trigger compares the start counts pooled over the runtimes.
 - A16. The fresh file's prompt text is printed by no task, so the follow-up packet can rerun the same frozen rows as its acceptance test.
 - A17. If the Codex `on` smoke row reads delivery `unknown`, the coordinator records from that session whether the brief arrived, which answers research question 4, and Codex delivery stays a printed limit.
-- A18. The parent phase map gains row 26 and the handoffs read 024 to 026 to 025. Phase 025's own metadata still names 024 as its predecessor and its first task checks phases 019 to 024 only. Both sit outside this phase's write scope.
+- A18. The parent phase map gains row 26, and since phase 027 was planned the handoffs read 024 to 027 to 026 to 025. Phase 025's own metadata still names 024 as its predecessor and its first task checks phases 019 to 024 only. Both sit outside this phase's write scope.
+- A19. Three review pass four findings sit in code this phase rewrites, so phase 027 deferred them here (P046): the README sentence on when a `paired` block appears goes to T030, the dead `unscoredOnly` count to T052 and the reserved arm name `paired` to T053. Both code tasks change the summary's shape keys, not a rule that judges a run, and neither moves a stored number.
 <!-- /ANCHOR:questions -->
 
 ---

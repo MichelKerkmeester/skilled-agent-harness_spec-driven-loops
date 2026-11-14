@@ -93,5 +93,6 @@ and findings belong here.
 | Switch names | The report's `SKILL_ADVISOR_HOOK_DISABLED` and `SKILL_ADVISOR_PLUGIN_DISABLED` are read by nothing. The runner sets the `SYSTEM_` names itself (spec A2) |
 | Review order | The short review runs before the arena build, not after the step reader, so a runner fault is found before 864 sessions are spent (spec A12) |
 | Skill-only owners | Skill-only rows name one of the nine skills that own a command, because the scorer reads any other skill as no owner (spec A6) |
-| Phase order | The parent handoffs read 024 to 026 to 025. Phase 025's own metadata still names 024 as its predecessor, outside this phase's write scope (spec A18) |
+| Phase order | The parent handoffs read 024 to 027 to 026 to 025 since phase 027 was planned. Phase 025's own metadata still names 024 as its predecessor, outside this phase's write scope (spec A18) |
+| Deferred findings | Three review pass four findings in code this phase rewrites land here: T030, T052 and T053 (spec A19, P046) |
 <!-- /ANCHOR:log -->

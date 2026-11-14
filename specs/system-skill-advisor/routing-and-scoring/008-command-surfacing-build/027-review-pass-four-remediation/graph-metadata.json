@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/027-review-pass-four-remediation",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/027-review-pass-four-remediation",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "review pass four remediation",
+      "phase 27 review pass four remediation",
+      "or-list refusal mention reader",
+      "shell read command start",
+      "review pass four remediation plan",
+      "review pass four remediation tasks",
+      "review pass four remediation acceptance criteria",
+      "review pass four remediation goal"
+    ],
+    "key_topics": [
+      "review",
+      "pass",
+      "four",
+      "remediation",
+      "phase",
+      "or-list",
+      "refusal",
+      "mention",
+      "reader",
+      "shell",
+      "read",
+      "command"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      ".skilled/skills/system-skill-advisor/README.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+      ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md",
+      ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt",
+      ".skilled/commands/deep/review.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "advisor-recommend.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-meaning-matching.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor-agents-md-presentation.txt",
+        "kind": "file",
+        "path": ".skilled/commands/doctor/assets/doctor-agents-md-presentation.txt",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fix",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A reader who writes `do not run /create:agent or /create:readme` still gets `/create:readme (start)` on the top row, and a reader who asks `Is the /doctor:update command safe?` gets `/doctor:update (ask)`",
+    "created_at": "2026-11-14T16:35:21Z",
+    "last_save_at": "2026-11-14T17:14:08.041Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:d089770b45a1b9022ce4d318de4f3ea316d07aee272637d9aff00069e433b505",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b15ac7836c0d50f40542d94468e7f7257280270d86fdcc6a92abad57860deac4",
+      "plan.md": "4aafeb45b03aae83c48a99f45a79ed82c44254664a38f3fc144272cbe9f8fd4a",
+      "tasks.md": "04536fbfa8e7e8d6c5f7f8f335e23c763821f5b30f17752afae12813c1df9fa6"
+    },
+    "last_active_at": null
+  }
+}

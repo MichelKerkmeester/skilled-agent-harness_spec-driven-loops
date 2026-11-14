@@ -38,7 +38,7 @@ The runner gains arms `off` and `on` that set or strip the advisor switch on the
 
 ### Definition of Ready
 - [ ] The live brief cost is a number or a decline in the parent goal log (T001)
-- [ ] Phases 023 and 024 read `Complete` and the seven files are clean in `git status` (T002)
+- [ ] Phases 023, 024 and 027 read `Complete` and the seven files are clean in `git status` (T002)
 - [ ] `scratch/summary-before.json` and `scratch/summary-before-pair.json` exist (T002)
 - [ ] `scratch/repro-before.txt` holds the Measured Behavior lines (T003)
 
@@ -67,6 +67,7 @@ Paired arm measurement.
 - **The `CLAUDE.md` pointer in `buildArena`**: without it Claude reads the home `CLAUDE.md`, which links to main's `AGENTS.md`. It goes in `.git/info/exclude`, so the runner's clean-tree check still passes and the arena head stays the source commit.
 - **Count pairing, `unpaired`, `signTestP` and `pooled`**: the current pair map holds one boolean per row and prints no p, so the pre-registered target cannot be printed by a script (D6).
 - **`startedCommand` and the start counts**: a decline row has no expected command, so `startState` reports no start whatever the run did, and the target's zero decline starts cannot be read.
+- **The reserved arm `paired` and no `unscoredOnly` count**: deferred from review pass four (P046). An arm named `paired` overwrites the pair block, and the dead count adds 0 to `unscored`. Neither moves a stored number.
 - **`SKILL_ADVISOR_FRESH_PROMPTS_PATH`, read by the scorer only**: without it no summary test can label a decline or skill-only row before the blind file exists.
 
 No new dependency, module or file beyond the row file.
@@ -110,7 +111,7 @@ Required inventories:
 ## 4. IMPLEMENTATION PHASES
 <!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup reads `scripts/rotate-logs.sh` and counts the archives. Implementation adds `--keep` to `scripts/rotate-logs.sh`. Verification runs `scripts/rotate-logs.sh --keep 3` and counts 3. WEAK: See tasks. -->
 
-Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state. Setup measures the live brief cost first, confirms phases 023 and 024 are closed and captures the before numbers. Implementation changes the runner, the arena builder and the scorer test first, gets a review, writes and freezes the 36 blind rows, checks the B-6 commit, builds the arenas, waits for the operator's Codex approval and runs the smoke rows, then the 864 sessions. Verification scores the arm, writes `scratch/arm-evidence.txt`, records the verdict, the step reader's judgment and the B-5 decision in the parent goal log and checks the scope.
+Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Verification phase checkboxes and task state. Setup measures the live brief cost first, confirms phases 023, 024 and 027 are closed and captures the before numbers from the scorer phase 027 fixed. Implementation changes the runner, the arena builder and the scorer test first, gets a review, writes and freezes the 36 blind rows, checks the B-6 commit, builds the arenas, waits for the operator's Codex approval and runs the smoke rows, then the 864 sessions. Verification scores the arm, writes `scratch/arm-evidence.txt`, records the verdict, the step reader's judgment and the B-5 decision in the parent goal log and checks the scope.
 <!-- /ANCHOR:phases -->
 
 ---
@@ -135,6 +136,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | Phase 024 closed and committed | Internal | Complete, a1c31b6f38 | Lane S cannot start, because both phases edit the scorer |
+| Phase 027 closed and committed | Internal | Planned | T002 stops, because phase 027 changes the start rule, both run-log writers and the stored start counts this phase freezes |
 | The B-6 commit to `AGENTS.md` | Internal, the coordinator's | Not made at planning | The arena build waits (T038) |
 | The operator's Codex hook approval | Operator | Approved in principle (Q061), the act is pending | No Codex session starts. The arm runs on five runtimes and Codex waits in the goal log |
 | Free disk for six arenas | External | Unchecked | T039 stops below 45 GB free |
@@ -168,7 +170,7 @@ Setup ──► Implementation (lanes R and S in parallel, lane D after both, th
 
 | Phase | Depends On | Blocks |
 |-------|------------|--------|
-| Setup | Phase 024 closed | Implementation |
+| Setup | Phases 024 and 027 closed | Implementation |
 | Implementation | Setup. Each lane runs its tasks in order. The run waits on the B-6 commit and the Codex approval | Verification |
 | Verification | Every session scored or logged, the cap held | Close and phase 025 |
 <!-- /ANCHOR:phase-deps -->
