@@ -227,6 +227,8 @@ Build the phases in number order, 006 to 011, one at a time. The order is not on
 | 9 | 009-compaction-purpose-folder/ | The compaction recovery finds the packet when the session touched more than one, holds the folder path inside the project, and its tests use repo-relative folders | Complete |
 | 10 | 010-problem-sentence-carry/ | The context recovered after a compaction also carries the first sentence of the Problem Statement. The operator said yes on 2026-11-14 | Complete |
 | 11 | 011-empty-parent-purpose-backfill/ | One authored purpose sentence in each of the 21 live phase parents that state none, reviewed by the operator before commit | Complete |
+| 12 | 012-purpose-reader-precision/ | The helper stops returning a problem paragraph or the layout sentence as a purpose, every hop states the same rule, Pi walks up from a subfolder, and the tests leave the working tree clean | Pending |
+| 13 | 013-purpose-docs-and-backfill/ | The purpose line documented in the catalog, the playbook, the injection contract and the root README, and approved sentences for eight layout-sentence parents and three reserved ones | Pending |
 
 ### Phase Transition Rules
 
@@ -249,4 +251,6 @@ Build the phases in number order, 006 to 011, one at a time. The order is not on
 | 008-hop-purpose-rule-parity | 009-compaction-purpose-folder | None from phase 008. Phase 009 takes effect for folders under `specs/` only once phase 006 edit E11 is built | `rg -c -F '(?:\.opencode\/)?specs\/' .skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts` prints 1 once edit E11 is built. It prints nothing today |
 | 009-compaction-purpose-folder | 010-problem-sentence-carry | Phases 007 and 009 are built and the operator has said yes to carrying the problem sentence, which widens the Purpose-only design the operator approved | `rg -c -F 'function paragraphAfter' .skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts` and `rg -c -F 'folderNamedInBrief' .skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts` each print a count of 1 or more |
 | 010-problem-sentence-carry | 011-empty-parent-purpose-backfill | None from phase 010. Phase 011 writes the exact `### Purpose` heading the current helper reads, so it needs no earlier phase. It runs last so its sentences are reviewed against the final rule | `node 011-empty-parent-purpose-backfill/scratch/check-backfill.mjs \| tail -1` prints `own purpose: 0 of 21` before it starts |
+| 011-empty-parent-purpose-backfill | 012-purpose-reader-precision | None from phase 011. Phase 012 changes what the helper reads, and phase 011's sentences sit under the exact `### Purpose` heading it keeps | Each phase passes `validate.sh --strict` on its own |
+| 012-purpose-reader-precision | 013-purpose-docs-and-backfill | Phase 012 is built, because phase 013's docs describe the reader as phase 012 leaves it, and the operator has approved the sentences in `013-purpose-docs-and-backfill/scratch/sentences.md` | `rg -c '^export function enclosingPacketFolder\(' .skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts` prints 1 |
 <!-- /ANCHOR:phase-map -->

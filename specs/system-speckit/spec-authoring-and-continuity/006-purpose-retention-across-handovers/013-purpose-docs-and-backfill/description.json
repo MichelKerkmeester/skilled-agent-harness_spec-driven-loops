@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill",
+  "description": "Phase 13: purpose-docs-and-backfill",
+  "keywords": [
+    "phase",
+    "purpose-docs-and-backfill"
+  ],
+  "lastUpdated": "2026-11-14T11:27:16.973Z",
+  "specId": "013",
+  "folderSlug": "purpose-docs-and-backfill",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "006-purpose-retention-across-handovers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

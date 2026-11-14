@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/012-purpose-reader-precision",
+  "description": "Phase 12: purpose-reader-precision",
+  "keywords": [
+    "phase",
+    "purpose-reader-precision"
+  ],
+  "lastUpdated": "2026-11-14T11:26:57.728Z",
+  "specId": "012",
+  "folderSlug": "purpose-reader-precision",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "006-purpose-retention-across-handovers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
