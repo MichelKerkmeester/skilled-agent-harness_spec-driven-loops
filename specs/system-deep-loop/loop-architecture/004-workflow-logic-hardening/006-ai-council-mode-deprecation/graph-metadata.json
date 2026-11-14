@@ -170,14 +170,14 @@
     ],
     "causal_summary": "On 2026-11-14 the operator decided, in these words: \"let's deprecate deep-ai-council completely as a deep mode and instead make it a isolated .agents file maybe with a command workflow and presentation asset for all runtimes\"",
     "created_at": "2026-11-14T11:56:20Z",
-    "last_save_at": "2026-11-14T20:32:04.801Z",
+    "last_save_at": "2026-11-14T20:58:02.206Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:3437682ddca506b5742a2697f0d6b906c713fd657120e2fa602b283a649fa56b",
+    "source_fingerprint": "sha256:838e61bb9db1185e024b47473c1af3790af66e0414596fd864e3d2b29a7718bb",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "414e907d389494a1002b1236c33072d3233991a7a97feac6587dcbc28c5937a8"
