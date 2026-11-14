@@ -19,7 +19,9 @@
       "last findings object plan",
       "alignment lane result parser tasks",
       "alignment lane result parser acceptance criteria",
-      "alignment lane result parser goal"
+      "alignment lane result parser goal",
+      "alignment lane result parser summary",
+      "run-lanes findings repair"
     ],
     "key_topics": [
       "alignment",
@@ -36,15 +38,21 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "implementation-summary.md",
       ".skilled/commands/assets/local-skilled-alignment/run-lanes.cjs",
-      ".skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs"
+      ".skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      "scratch/baseline.txt",
+      "scratch/code.diff",
+      "scratch/validate.txt"
     ],
     "entities": [
       {
@@ -78,6 +86,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "run-lanes.cjs",
         "kind": "file",
         "path": ".skilled/commands/assets/local-skilled-alignment/run-lanes.cjs",
@@ -87,6 +101,36 @@
         "name": "run-lanes.test.cjs",
         "kind": "file",
         "path": ".skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "code.diff",
+        "kind": "file",
+        "path": "scratch/code.diff",
+        "source": "derived"
+      },
+      {
+        "name": "validate.txt",
+        "kind": "file",
+        "path": "scratch/validate.txt",
         "source": "derived"
       },
       {
@@ -154,47 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`findFindingsObject` in `.skilled/commands/assets/local-skilled-alignment/run-lanes.cjs:326-365` reads from the first `{` it sees and keeps one string state for the whole stream",
     "created_at": "2026-11-14T17:02:14Z",
-    "last_save_at": "2026-11-14T17:08:15.679Z",
+    "last_save_at": "2026-11-14T17:53:13.627Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +210,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:384696985039afff7cea10cc6e2e8c3479f6cb1a0d3d3b4b284c4b323f56c885",
+    "source_fingerprint": "sha256:9765dcb9b0e9c72f55a742bd3570e5cde106eec6f2635dccc00dc202fe541b6c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b1b3acc6f7a5791ef7cb41595428154709b1821ca2b88ae1a5a02054deeaefd6",
+      "spec.md": "1d0dffffc8a6a691d37f9d45791ee21bd771a043c9934a352e0a75d27c43f29d",
       "plan.md": "a56a6079b596e50f93ff6a03f704038ea7cafdfd4050cbd279e81bc24b2b873a",
-      "tasks.md": "0d9e6a4b20a626356298e0dd4f9c0dd6ecbc35b0c3628c05122c84bc27533a60"
+      "tasks.md": "385655445f0bec3b602a9b822328137138791c850b27dc1beb872bd70f8b176d",
+      "implementation-summary.md": "be69dd783be00f3978c1076a0c60fd8ac788b2fefb25cb9b283822def818b7a3"
     },
     "last_active_at": null
   }

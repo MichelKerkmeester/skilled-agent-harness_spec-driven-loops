@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "commands/006-alignment-lane-result-parser"
-    last_updated_at: "2026-11-14T17:25:00Z"
-    last_updated_by: "planner"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Build the planned parser change and tests"
+    last_updated_at: "2026-11-14T19:05:00Z"
+    last_updated_by: "builder"
+    recent_action: "Marked every criterion Met with observed evidence"
+    next_safe_action: "Review the tracked packet diff and commit"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "planner-006-alignment-lane-result-parser"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -38,7 +38,7 @@ _memory:
 
 **Packet:** 006-alignment-lane-result-parser
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-14
 <!-- /ANCHOR:metadata -->
 
@@ -51,13 +51,13 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a lane transcript with an unmatched brace and quote in prose before a valid lane object, When the lane exits 0, Then `lanes/A.json` holds that object and `A.error.txt` is absent | `node --test .skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs` case `recovers a lane object after prose with a brace and quote` passes | Unmet | - |
-| AC-002 | REQ-002 | Given a lane transcript with the lane object first and a later nested object that has a `findings` array, When the lane exits 0, Then `lanes/A.json` is the object that carries `lane` A | `node --test` case `prefers the lane object over a later nested findings object` passes | Unmet | - |
-| AC-003 | REQ-003 | Given a critic transcript with a pretty-printed multi-line findings object after an unmatched prose brace, When the critic exits 0, Then `critic.json` holds that object and `critic.error.txt` is absent | `node --test` case `recovers a pretty-printed critic object` passes | Unmet | - |
-| AC-004 | REQ-004 | Given a transcript with no top-level findings object, When the lane exits 0, Then `lanes/A.json` is absent and `A.error.txt` is `no JSON object with findings` | The no-match assertion in the same owning test file passes | Unmet | - |
-| AC-005 | REQ-005 | Given the existing valid lane transcript, When the owning suite runs, Then `writes a findings object for valid lane output` still passes and no dependency is added | `node --test` exits 0 and `package.json` is unchanged | Unmet | - |
-| AC-006 | REQ-006 | Given the parser call for lane A and the call for the critic, When each transcript is read, Then the lane call prefers an object with `lane` and the critic call returns the last top-level findings object | The three new cases assert the lane and critic paths | Unmet | - |
-| AC-007 | REQ-001 | Given the packet's final tree, When strict validation runs, Then the folder passes | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/commands/006-alignment-lane-result-parser --strict` prints `RESULT: PASSED` | Unmet | - |
+| AC-001 | REQ-001 | Given a lane transcript with an unmatched brace and quote in prose before a valid lane object, When the lane exits 0, Then `lanes/A.json` holds that object and `A.error.txt` is absent | `scratch/green.txt:20` passes `recovers a lane object after prose with a brace and quote`. `A.json` holds `{"lane":"A","findings":[{"id":"L1"}]}` and `A.error.txt` is absent. Exit 0. | Met | - |
+| AC-002 | REQ-002 | Given a lane transcript with the lane object first and a later nested object that has a `findings` array, When the lane exits 0, Then `lanes/A.json` is the object that carries `lane` A | `scratch/green.txt:21` passes `prefers the lane object over a later nested findings object`. `A.json` carries `lane` A and the L1 finding, not the later nested object. | Met | - |
+| AC-003 | REQ-003 | Given a critic transcript with a pretty-printed multi-line findings object after an unmatched prose brace, When the critic exits 0, Then `critic.json` holds that object and `critic.error.txt` is absent | `scratch/green.txt:22` passes `recovers a pretty-printed critic object`. `critic.json` holds the multi-line findings object and `critic.error.txt` is absent. | Met | - |
+| AC-004 | REQ-004 | Given a transcript with no top-level findings object, When the lane exits 0, Then `lanes/A.json` is absent and `A.error.txt` is `no JSON object with findings` | `scratch/green.txt:23` passes `records no JSON object with findings and removes a stale result`. The stale `A.json` is removed and the reason is exactly `no JSON object with findings`. | Met | - |
+| AC-005 | REQ-005 | Given the existing valid lane transcript, When the owning suite runs, Then `writes a findings object for valid lane output` still passes and no dependency is added | `scratch/green.txt:3` passes `writes a findings object for valid lane output`, and `scratch/green.txt:27` reports 19 of 19 passing with exit 0. The tool has no `package.json`, and the parser adds no dependency. | Met | - |
+| AC-006 | REQ-006 | Given the parser call for lane A and the call for the critic, When each transcript is read, Then the lane call prefers an object with `lane` and the critic call returns the last top-level findings object | `scratch/green.txt:21` and `scratch/green.txt:22` show the lane preference and critic cases passing under one stub, and `plan.md:60` records the `{ expectLane: state.id !== 'critic' }` caller option. | Met | - |
+| AC-007 | REQ-001 | Given the packet's final tree, When strict validation runs, Then the folder passes | `scratch/validate-result.txt:2` shows `RESULT: PASSED` from `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/commands/006-alignment-lane-result-parser --strict`, exit 0. | Met | - |
 
 ### Status values
 
@@ -82,7 +82,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-The packet is a plan. AC-001, AC-002, AC-003 and AC-004 stay unmet until the builder writes the parser and the three cases. The private runner is not tracked, and the rollback is the orchestrator backup copy.
+The parser change and its four cases are complete, and every criterion above is Met with observed evidence. The private runner and test are not tracked, so the rollback remains the orchestrator backup copy, and `scratch/code.diff` records the exact change.
 <!-- /ANCHOR:closure -->

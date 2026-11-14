@@ -8,17 +8,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "commands/006-alignment-lane-result-parser"
-    last_updated_at: "2026-11-14T17:25:00Z"
-    last_updated_by: "planner"
-    recent_action: "Authored the durable directive"
-    next_safe_action: "Build the planned parser change and tests"
+    last_updated_at: "2026-11-14T19:05:00Z"
+    last_updated_by: "builder"
+    recent_action: "Completed the parser change and its tests"
+    next_safe_action: "Review the tracked packet diff and commit"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "planner-006-alignment-lane-result-parser"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -54,10 +54,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node --test .skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs` exits 0 with no failing case.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/commands/006-alignment-lane-result-parser --strict` prints `RESULT: PASSED`.
-- [ ] `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/commands/006-alignment-lane-result-parser` exits 0.
-- [ ] `rg -n "matchObjectEnd|expectLane" .skilled/commands/assets/local-skilled-alignment/run-lanes.cjs` prints the helper and the caller option.
+- [x] `node --test .skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs` exits 0 with no failing case. Observed: 19 of 19 pass, exit 0, in `scratch/green.txt`.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/commands/006-alignment-lane-result-parser --strict` prints `RESULT: PASSED`. Observed on the final tree.
+- [x] `node .skilled/skills/sk-doc/sk-create-goal/scripts/check-goal.cjs specs/commands/006-alignment-lane-result-parser` exits 0.
+- [x] `rg -n "matchObjectEnd|expectLane" .skilled/commands/assets/local-skilled-alignment/run-lanes.cjs` prints the helper and the caller option. Observed: both names printed.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -74,8 +74,8 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Packet planned | Done | `spec.md`, `plan.md`, `tasks.md`, `acceptance-criteria.md` and this goal exist |
-| Parser change | Pending | Planned in `plan.md` and `tasks.md` |
-| Tests | Pending | Three cases are planned, not written |
+| Parser change | Done | `matchObjectEnd` and the per-brace candidate loop replace the one-start scan, with the lane preference in `finalizeLane` |
+| Tests | Done | Four cases pass in `scratch/green.txt`, 19 of 19 in the owning file and 58 of 58 in the tool tests folder |
 
 ### Deviations and findings
 
