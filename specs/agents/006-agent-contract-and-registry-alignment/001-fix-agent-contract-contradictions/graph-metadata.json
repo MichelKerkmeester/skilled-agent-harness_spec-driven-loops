@@ -19,7 +19,8 @@
       "packet goal",
       "durable directive",
       "completion criteria",
-      "goal binding"
+      "goal binding",
+      "001-fix-agent-contract-contradictions operator decisions"
     ],
     "key_topics": [
       "agent",
@@ -43,6 +44,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       ".skilled/agents/ai-council.md",
       ".skilled/agents/orchestrate.md",
       ".skilled/agents/code.md",
@@ -84,6 +86,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -193,32 +201,28 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Eight statements in `.skilled/agents/` cannot all be followed",
     "created_at": "2026-11-14T11:36:20Z",
-    "last_save_at": "2026-11-14T11:58:39.636Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-14T12:09:06.974Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md"
+      "goal.md",
+      "decision-record.md"
     ],
-    "source_fingerprint": "sha256:e527960cb48754a2899f0d151d5fa1739388e050209eab59200e2c4963092b12",
+    "source_fingerprint": "sha256:07e010882318cd35155befc45730dd89f1751d1e568284e665d1630b4ee845d7",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "77b383c7d036055bfcdc7f0e26404b5f2e3bbffc14dcbeb8c8879a425d856457",
       "plan.md": "8c348a7b66075f631097d436be9b904e2364e1f848507e5cca285743cb76dc43",
-      "tasks.md": "3ef047b0f399e797b307bdc2548eb266a218b9fd3ff05420efae23b53006322f"
+      "tasks.md": "3ef047b0f399e797b307bdc2548eb266a218b9fd3ff05420efae23b53006322f",
+      "decision-record.md": "274596c90db362aa1d0dfad074b6a7bad7742f50c0f07f1b466a5ac568f63969"
     },
     "last_active_at": null
   }

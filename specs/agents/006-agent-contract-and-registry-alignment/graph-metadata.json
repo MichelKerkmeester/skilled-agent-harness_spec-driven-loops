@@ -180,7 +180,7 @@
     ],
     "causal_summary": "The eleven files in `.skilled/agents/` define how every agent in this repository behaves, and an audit on 2026-11-14 found five kinds of defect in them",
     "created_at": "2026-11-14T11:36:20Z",
-    "last_save_at": "2026-11-14T11:59:29.410Z",
+    "last_save_at": "2026-11-14T12:09:07.009Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -192,6 +192,7 @@
     "source_doc_hashes": {
       "spec.md": "8d2eaf92bb1cbafaa89e346d493963a339c89685ce21895a633be74f1282b479"
     },
-    "last_active_at": null
+    "last_active_at": "2026-11-14T12:09:07.009Z",
+    "last_active_child_id": "agents/006-agent-contract-and-registry-alignment/001-fix-agent-contract-contradictions"
   }
 }
