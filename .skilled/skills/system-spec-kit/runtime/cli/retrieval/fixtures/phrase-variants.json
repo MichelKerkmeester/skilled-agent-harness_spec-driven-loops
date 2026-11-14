@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0fe7fa25b820c3f3f6865995881cf7cc5e90d62d80757870529ea00fb14618ab",
+  "manifestHash": "324336b601b1893abfcf2d08d561829f3b1253e7744dc047655598544c91eaf4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -20425,6 +20425,9 @@
     "claude code review prompt template": [
       "claude code review prompt template"
     ],
+    "claude code session handover on by default": [
+      "claude code session handover on by default"
+    ],
     "claude code session resume flags": [
       "claude code session resume flags"
     ],
@@ -20479,6 +20482,24 @@
     ],
     "claude deep loop guard": [
       "claude deep loop guard"
+    ],
+    "claude default on release notes": [
+      "claude default on release notes"
+    ],
+    "claude default on release notes acceptance criteria": [
+      "claude default on release notes acceptance criteria"
+    ],
+    "claude default on release notes goal": [
+      "claude default on release notes goal"
+    ],
+    "claude default on release notes implementation summary": [
+      "claude default on release notes implementation summary"
+    ],
+    "claude default on release notes plan": [
+      "claude default on release notes plan"
+    ],
+    "claude default on release notes tasks": [
+      "claude default on release notes tasks"
     ],
     "claude directive lifecycle boundary": [
       "claude directive lifecycle boundary"
@@ -103955,6 +103976,9 @@
     "session relaunch default off": [
       "session relaunch default off"
     ],
+    "session relaunch default on for claude": [
+      "session relaunch default on for claude"
+    ],
     "session relaunch enable flag plan": [
       "session relaunch enable flag plan"
     ],
@@ -128411,6 +128435,9 @@
     ],
     "v4 0 2 0 release notes": [
       "v4.0.2.0 release notes"
+    ],
+    "v4 0 2 1 handover release notes": [
+      "v4.0.2.1 handover release notes"
     ],
     "v4 0 2 1 release notes": [
       "v4.0.2.1 release notes"
