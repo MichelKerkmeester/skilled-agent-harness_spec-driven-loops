@@ -168,6 +168,72 @@ function track(name: string, packets: string[], subtracks: string[] = []): void 
   for (const id of packets) packet(id);
 }
 
+// A phase scaffold writes each child's bare folder name in the parent's map,
+// handoff table and goal bindings, and in each child's neighbour rows. These
+// helpers write those places in the shape the scaffold uses.
+function phaseParent(id: string, phases: string[]): void {
+  packet(id);
+  const parentDir = path.join(specs, id);
+  writeJson(path.join(parentDir, 'graph-metadata.json'), {
+    schema_version: 1,
+    packet_id: id,
+    spec_folder: id,
+    parent_id: id.split('/').slice(0, -1).join('/'),
+    children_ids: phases.map((phase) => `${id}/${phase}`),
+  });
+  const mapRows = phases
+    .map((phase) => `| ${Number(phase.slice(0, 3))} | ${phase}/ | Phase ${Number(phase.slice(0, 3))} scope | Pending |`)
+    .join('\n');
+  const handoffRows = phases
+    .slice(1)
+    .map((phase, index) => `| ${phases[index]} | ${phase} | criteria | verify |`)
+    .join('\n');
+  fs.writeFileSync(
+    path.join(parentDir, 'spec.md'),
+    `# Phase parent fixture\n\n<!-- ANCHOR:phase-map -->\n## PHASE DOCUMENTATION MAP\n\n| Phase | Folder | Focus | Status |\n|-------|--------|-------|--------|\n${mapRows}\n\n### Phase Handoff Criteria\n\n| From | To | Criteria | Verification |\n|------|-----|----------|--------------|\n${handoffRows}\n<!-- /ANCHOR:phase-map -->\n`,
+  );
+  const bindingRows = phases.map((phase) => `| ${phase} | \`${phase}/goal.md\` |`).join('\n');
+  fs.writeFileSync(
+    path.join(parentDir, 'goal.md'),
+    `# Goal: fixture phase parent\n\n<!-- ANCHOR:binding -->\n## 2. BINDING\n\n| Phase | Goal document |\n|-------|---------------|\n${bindingRows}\n<!-- /ANCHOR:binding -->\n`,
+  );
+  phases.forEach((phase, index) => {
+    const child = `${id}/${phase}`;
+    packet(child);
+    const predecessor = index === 0 ? 'None' : phases[index - 1];
+    const successor = index === phases.length - 1 ? 'None' : phases[index + 1];
+    fs.writeFileSync(
+      path.join(specs, child, 'spec.md'),
+      `# Phase fixture: ${phase}\n\n| Field | Value |\n|-------|-------|\n| **Parent Spec** | ../spec.md |\n| **Phase** | ${index + 1} of ${phases.length} |\n| **Predecessor** | ${predecessor} |\n| **Successor** | ${successor} |\n`,
+    );
+  });
+}
+
+// The summary records the packet's own folder in a row and uses the same name
+// in a session id, which is not a location and must stay as written.
+function implementationSummary(child: string, specFolder: string, sessionId: string): void {
+  fs.writeFileSync(
+    path.join(specs, child, 'implementation-summary.md'),
+    `---\ntitle: "Implementation Summary"\n_memory:\n  continuity:\n    session_dedup:\n      session_id: "${sessionId}"\n---\n# Implementation Summary\n\n| Field | Value |\n|-------|-------|\n| **Spec Folder** | ${specFolder} |\n`,
+  );
+}
+
+// The bare-name boundary the phase documents use: the name at a line start or
+// after a character that cannot continue it.
+function bareHits(files: string[]): string[] {
+  const hits: string[] = [];
+  for (const relative of files) {
+    const file = path.join(specs, relative);
+    if (!fs.existsSync(file)) continue;
+    fs.readFileSync(file, 'utf8')
+      .split('\n')
+      .forEach((line, index) => {
+        if (/^003-gamma|[^A-Za-z0-9_-]003-gamma/.test(line)) hits.push(`${relative}:${index + 1}: ${line}`);
+      });
+  }
+  return hits;
+}
+
 function declaredSubtrack(id: string, packets: string[] = []): void {
   const dir = path.join(specs, id);
   fs.mkdirSync(path.join(dir, 'z_archive'), { recursive: true });
@@ -258,6 +324,53 @@ describe('relocate move and renumber', () => {
   });
 });
 
+describe('relocate phase renumber names', () => {
+  it('rewrites a renumbered phase bare name in its parent documents and siblings', () => {
+    track('omega', [], ['omega/core']);
+    declaredSubtrack('omega/core');
+    phaseParent('omega/core/003-phased-thing', ['001-alpha', '003-gamma']);
+    implementationSummary('omega/core/003-phased-thing/003-gamma', '003-gamma', 'scaffold-003-gamma');
+    commitFixture();
+
+    const result = relocate(['--renumber', 'omega/core/003-phased-thing', '--apply']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(result.stdout).toMatch(/move\s+specs\/omega\/core\/003-phased-thing\/003-gamma -> specs\/omega\/core\/003-phased-thing\/002-gamma/);
+    const parentSpec = fs.readFileSync(path.join(specs, 'omega/core/003-phased-thing/spec.md'), 'utf8');
+    expect(parentSpec).not.toContain('003-gamma');
+    expect((parentSpec.match(/002-gamma/g) ?? []).length).toBeGreaterThanOrEqual(2);
+    expect(bareHits([
+      'omega/core/003-phased-thing/spec.md',
+      'omega/core/003-phased-thing/goal.md',
+      'omega/core/003-phased-thing/001-alpha/spec.md',
+      'omega/core/003-phased-thing/002-gamma/spec.md',
+      'omega/core/003-phased-thing/002-gamma/implementation-summary.md',
+    ])).toEqual([]);
+    const summary = fs.readFileSync(path.join(specs, 'omega/core/003-phased-thing/002-gamma/implementation-summary.md'), 'utf8');
+    expect(summary).toContain('| **Spec Folder** | 002-gamma |');
+    expect((summary.match(/scaffold-003-gamma/g) ?? []).length).toBe(1);
+  });
+
+  it('leaves a second phase parent that holds the same child name untouched', () => {
+    track('omega', [], ['omega/core']);
+    declaredSubtrack('omega/core');
+    phaseParent('omega/core/003-phased-thing', ['001-alpha', '003-gamma']);
+    implementationSummary('omega/core/003-phased-thing/003-gamma', '003-gamma', 'scaffold-003-gamma');
+    phaseParent('omega/core/004-other', ['001-delta', '003-gamma']);
+    implementationSummary('omega/core/004-other/003-gamma', '003-gamma', 'scaffold-003-gamma');
+    commitFixture();
+    const otherFiles = () => new Map([...snapshot()].filter(([file]) => file.startsWith('specs/omega/core/004-other/')));
+    const before = otherFiles();
+
+    const result = relocate(['--renumber', 'omega/core/003-phased-thing', '--apply']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(fs.existsSync(path.join(specs, 'omega/core/003-phased-thing/002-gamma/spec.md'))).toBe(true);
+    expect(otherFiles()).toEqual(before);
+    expect(fs.readFileSync(path.join(specs, 'omega/core/004-other/spec.md'), 'utf8')).toContain('003-gamma');
+  });
+});
+
 describe('relocate re-parent', () => {
   it('moves a flat track into a declared sub-track and lists the packets there', () => {
     track('gamma', ['gamma/001-a', 'gamma/002-b'], ['gamma/sub']);
@@ -275,6 +388,67 @@ describe('relocate re-parent', () => {
     expect(fs.existsSync(path.join(specs, 'gamma', 'sub', '001-a', 'spec.md'))).toBe(true);
     expect(children('gamma/sub')).toEqual(['gamma/sub/001-a', 'gamma/sub/002-b']);
     expect(children('gamma')).toEqual(['gamma/sub']);
+  });
+
+  it('removes a re-parented phase from its old parent and adds it to the new one', () => {
+    track('omega', [], ['omega/core']);
+    declaredSubtrack('omega/core');
+    phaseParent('omega/core/003-phased-thing', ['001-alpha', '003-gamma', '005-delta']);
+    phaseParent('omega/core/004-other', ['001-delta', '003-gamma']);
+    commitFixture();
+
+    const result = relocate([
+      '--from', 'omega/core/003-phased-thing/003-gamma',
+      '--to', 'omega/core/004-other/002-gamma',
+      '--apply',
+    ]);
+
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    const oldParent = path.join(specs, 'omega/core/003-phased-thing');
+    const oldSpec = fs.readFileSync(path.join(oldParent, 'spec.md'), 'utf8');
+    const oldGoal = fs.readFileSync(path.join(oldParent, 'goal.md'), 'utf8');
+    expect(oldSpec).not.toContain('gamma');
+    expect(oldGoal).not.toContain('gamma');
+    for (const child of fs.readdirSync(oldParent).filter((name) => /^\d{3}-/.test(name))) {
+      expect(fs.readFileSync(path.join(oldParent, child, 'spec.md'), 'utf8')).not.toContain('gamma');
+    }
+
+    const newSpec = fs.readFileSync(path.join(specs, 'omega/core/004-other/spec.md'), 'utf8');
+    const newGoal = fs.readFileSync(path.join(specs, 'omega/core/004-other/goal.md'), 'utf8');
+    expect((newSpec.match(/002-gamma\//g) ?? []).length).toBe(1);
+    expect(newGoal.split('\n').filter((line) => line.includes('002-gamma'))).toHaveLength(1);
+    expect(result.stdout).toMatch(/remove map row 003-gamma/);
+    expect(result.stdout).toMatch(/remove handoff row 003-gamma/);
+    expect(result.stdout).toMatch(/remove binding row 003-gamma/);
+    expect(result.stdout).toMatch(/set Successor 003-gamma -> 005-delta/);
+    expect(result.stdout).toMatch(/set Predecessor 003-gamma -> 001-alpha/);
+    expect(result.stdout).toMatch(/add map row 002-gamma/);
+    expect(result.stdout).toMatch(/add binding row 002-gamma/);
+    expect(result.stdout).toMatch(/no handoff row added/);
+  });
+
+  it('reports that a new parent with no phase map takes no map row', () => {
+    track('omega', [], ['omega/core']);
+    declaredSubtrack('omega/core');
+    phaseParent('omega/core/003-phased-thing', ['001-alpha', '003-gamma']);
+    phaseParent('omega/core/004-other', ['001-delta']);
+    fs.writeFileSync(path.join(specs, 'omega/core/004-other', 'spec.md'), '# Phase parent fixture\n');
+    commitFixture();
+
+    const result = relocate([
+      '--from', 'omega/core/003-phased-thing/003-gamma',
+      '--to', 'omega/core/004-other/002-gamma',
+      '--apply',
+    ]);
+
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    const newSpec = fs.readFileSync(path.join(specs, 'omega/core/004-other/spec.md'), 'utf8');
+    const newGoal = fs.readFileSync(path.join(specs, 'omega/core/004-other/goal.md'), 'utf8');
+    expect(newSpec).not.toContain('002-gamma');
+    expect(newGoal.split('\n').filter((line) => line.includes('002-gamma'))).toHaveLength(1);
+    expect(result.stdout).toMatch(/no map row added/);
+    expect(result.stdout).toMatch(/add binding row 002-gamma/);
+    expect(result.stdout).toMatch(/no handoff row added/);
   });
 });
 

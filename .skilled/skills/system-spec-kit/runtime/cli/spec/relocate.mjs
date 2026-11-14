@@ -95,6 +95,11 @@ const SKIP_DIRS = new Set(['.git', 'node_modules']);
 // different, longer id: demo/001-a inside demo/001-a-b must not match.
 const SEGMENT_CHAR = 'A-Za-z0-9_\\-';
 
+// The one row a packet summary records its own folder in. The repair writer
+// owns that row after a move; the reference pass writes it too, so a bare old
+// name is not left behind while the rest of the document is being rewritten.
+const SPEC_FOLDER_ROW = /(\|[ \t]*\*\*Spec Folder\*\*[ \t]*\|[ \t]*)([^|\r\n]+?)([ \t]*\|)/;
+
 // The documents whose frontmatter packet_pointer the repair writer owns.
 const POINTER_DOCS = ['spec.md', 'plan.md', 'tasks.md', 'implementation-summary.md', 'handover.md', 'goal.md', 'acceptance-criteria.md', 'resource-map.md', 'decision-record.md'];
 const POINTER_LINE = /^[ \t]*packet_pointer:[ \t]*["']?([^"'\r\n]*?)["']?[ \t]*\r?$/m;
@@ -640,6 +645,350 @@ function wholeIdPattern(ids) {
   return new RegExp(`(?:${parts.join('|')})(?![${SEGMENT_CHAR}]|\\.[${SEGMENT_CHAR}])`, 'g');
 }
 
+/**
+ * The id a packet had before it was archived, keyed to the destination it now
+ * names: the source id with its z_archive folder removed, for an entry that
+ * leaves the archive. The reference pass rewrites that spelling too, because a
+ * document written before the packet was archived still names it. A folder
+ * that already lives at the old id, or another entry of the same plan that
+ * claims it, keeps the alias out: a reference then names something else and
+ * must stay as written.
+ */
+function preArchiveAliases(entries) {
+  const claimed = new Set(entries.flatMap((entry) => [entry.from, entry.to]));
+  const aliases = new Map();
+  for (const entry of entries) {
+    const parent = parentId(entry.from);
+    if (baseName(parent) !== ARCHIVE) continue;
+    if (entry.to.split('/').slice(0, -1).includes(ARCHIVE)) continue;
+    const home = parentId(parent);
+    const id = home === '' ? baseName(entry.from) : `${home}/${baseName(entry.from)}`;
+    if (claimed.has(id) || lstat(abs(id)) !== null) continue;
+    aliases.set(id, entry.to);
+  }
+  return aliases;
+}
+
+/**
+ * The files where a renumber inside one phase parent may leave a child's bare
+ * folder name: the parent's own map, handoff and goal documents, each child's
+ * neighbour rows, and the moved child's own location row. A name anywhere else
+ * is too common to touch.
+ */
+function bareNameEdits(entries) {
+  const names = new Map();
+  const summaryRows = new Map();
+  const addName = (file, from, to) => {
+    if (!names.has(file)) names.set(file, new Map());
+    names.get(file).set(from, to);
+  };
+  for (const entry of entries) {
+    const fromParent = parentId(entry.from);
+    const toParent = parentId(entry.to);
+    // A re-parent or a move at the specs root renames no sibling in place.
+    if (fromParent === '' || fromParent !== toParent) continue;
+    if (!PACKET_NAME.test(baseName(fromParent)) || !fs.existsSync(path.join(abs(fromParent), 'spec.md'))) continue;
+    const from = baseName(entry.from);
+    const to = baseName(entry.to);
+    if (from === to) continue;
+    const parentDir = abs(fromParent);
+    addName(path.join(parentDir, 'spec.md'), from, to);
+    addName(path.join(parentDir, 'goal.md'), from, to);
+    for (const child of numberedDirs(parentDir)) addName(path.join(parentDir, child, 'spec.md'), from, to);
+    // Planning reads the folder where it still sits; a finished move is read
+    // where it landed.
+    const summary = entry.state === 'done' ? abs(entry.to) : abs(entry.from);
+    summaryRows.set(path.join(summary, 'implementation-summary.md'), { from, to });
+  }
+  return { names, summaryRows };
+}
+
+/** The cells of one markdown table row, or null for a line outside a table. */
+function tableCells(line) {
+  const trimmed = line.trim();
+  if (!trimmed.startsWith('|')) return null;
+  const body = trimmed.slice(1, trimmed.endsWith('|') ? -1 : undefined);
+  return body.split('|').map((cell) => cell.trim());
+}
+
+/** The table a header row opens, named by the document that owns it. */
+function tableKind(cells) {
+  if (!cells || cells.length < 2) return null;
+  if (cells[0] === 'Phase' && cells[1] === 'Folder') return 'map';
+  if (cells[0] === 'From' && cells[1] === 'To') return 'handoff';
+  if (cells[0] === 'Phase' && /goal/i.test(cells.slice(1).join(' '))) return 'binding';
+  return null;
+}
+
+/** Every markdown table a document holds, as a header line and an exclusive end. */
+function markdownTables(lines) {
+  const tables = [];
+  for (let index = 0; index < lines.length; index += 1) {
+    const kind = tableKind(tableCells(lines[index]));
+    if (!kind) continue;
+    let end = index + 1;
+    while (end < lines.length && tableCells(lines[end])) end += 1;
+    tables.push({ kind, start: index, end });
+    index = end - 1;
+  }
+  return tables;
+}
+
+/** A cell that names a folder, without decoration or a trailing slash. */
+function tableRowName(cell) {
+  return String(cell || '').replace(/`/g, '').trim().replace(/\/+$/, '');
+}
+
+/** A bare folder name replaced only where it stands as a whole name. */
+function replaceBareName(text, from, to) {
+  return text.replace(bareNamePattern(new Map([[from, to]])), to);
+}
+
+/**
+ * The rows a re-parent must move between the old and new parent. The old
+ * parent's map, handoff and binding rows name a folder it no longer holds, and
+ * the new parent needs its own rows. Each row this plan changes is reported,
+ * so an operator can see the document edit beside the folder move.
+ */
+function phaseRowEdits(entries) {
+  const files = new Map();
+  const ensure = (file, label) => {
+    if (!files.has(file)) files.set(file, { label, ops: [] });
+    return files.get(file);
+  };
+  const addNote = (item, text) => {
+    if (!item.ops.some((op) => op.kind === 'note' && op.text === text)) item.ops.push({ kind: 'note', text });
+  };
+  const isPhaseParent = (id) => id !== '' && PACKET_NAME.test(baseName(id))
+    && fs.existsSync(path.join(abs(id), 'spec.md'));
+  const row = (text, kind, match) => {
+    if (text === null) return null;
+    const lines = text.split('\n');
+    for (const table of markdownTables(lines)) {
+      if (table.kind !== kind) continue;
+      for (let index = table.start; index < table.end; index += 1) {
+        const cells = tableCells(lines[index]);
+        if (cells && match(cells)) return cells;
+      }
+    }
+    return null;
+  };
+
+  for (const entry of entries.filter((item) => item.state === 'pending')) {
+    const oldParent = parentId(entry.from);
+    const newParent = parentId(entry.to);
+    if (oldParent === newParent) continue;
+    const oldIsPhase = isPhaseParent(oldParent);
+    const newIsPhase = isPhaseParent(newParent);
+    if (!oldIsPhase && !newIsPhase) continue;
+    const oldName = baseName(entry.from);
+    const newName = baseName(entry.to);
+
+    if (oldIsPhase) {
+      const oldSpec = path.join(abs(oldParent), 'spec.md');
+      const oldItem = ensure(oldSpec, `specs/${oldParent}/spec.md`);
+      oldItem.ops.push({ kind: 'removeMap', name: oldName });
+      oldItem.ops.push({ kind: 'removeHandoff', name: oldName });
+
+      const oldGoal = path.join(abs(oldParent), 'goal.md');
+      if (fs.existsSync(oldGoal)) {
+        ensure(oldGoal, `specs/${oldParent}/goal.md`).ops.push({ kind: 'removeBinding', name: oldName });
+      }
+
+      // A sibling that named the moved phase takes the nearest phase left on
+      // that side, so the chain skips the gap instead of pointing at nothing.
+      const remaining = numberedDirs(abs(oldParent)).filter((name) => name !== oldName).sort();
+      const predecessor = [...remaining].reverse().find((name) => name < oldName) || 'None';
+      const successor = remaining.find((name) => name > oldName) || 'None';
+      for (const sibling of remaining) {
+        const siblingSpec = path.join(abs(oldParent), sibling, 'spec.md');
+        if (!fs.existsSync(siblingSpec)) continue;
+        const item = ensure(siblingSpec, `specs/${oldParent}/${sibling}/spec.md`);
+        item.ops.push({ kind: 'setNeighbour', row: 'Predecessor', expect: oldName, value: predecessor });
+        item.ops.push({ kind: 'setNeighbour', row: 'Successor', expect: oldName, value: successor });
+      }
+    }
+
+    if (newIsPhase) {
+      const newSpec = path.join(abs(newParent), 'spec.md');
+      const newItem = ensure(newSpec, `specs/${newParent}/spec.md`);
+      const oldSpecText = oldIsPhase ? readText(path.join(abs(oldParent), 'spec.md')) : null;
+      const oldRow = row(oldSpecText, 'map', (cells) => tableRowName(cells[1]) === oldName);
+      if (oldRow) {
+        const number = Number(newName.slice(0, 3));
+        const focus = oldRow[2] || '';
+        const status = oldRow[3] || '';
+        newItem.ops.push({
+          kind: 'addTableRow',
+          table: 'map',
+          name: newName,
+          row: `| ${number} | ${newName}/ | ${focus} | ${status} |`,
+          missing: 'no map row added (no Phase Documentation Map)',
+          note: `add map row ${newName}`,
+          before: (cells) => Number(cells[0]) > number,
+        });
+      } else {
+        addNote(newItem, `no map row added (old parent has no map row for ${oldName})`);
+      }
+      // Handoff criteria describe the work between two phases, which a move
+      // cannot recover, so the new parent gets the map and binding rows only.
+      addNote(newItem, 'no handoff row added (criteria cannot be derived)');
+
+      const newGoal = path.join(abs(newParent), 'goal.md');
+      if (fs.existsSync(newGoal)) {
+        const oldGoalText = oldIsPhase ? readText(path.join(abs(oldParent), 'goal.md')) : null;
+        const oldBinding = row(oldGoalText, 'binding', (cells) => tableRowName(cells[0]) === oldName);
+        const bindingRow = oldBinding
+          ? `| ${oldBinding.map((cell) => replaceBareName(cell, oldName, newName)).join(' | ')} |`
+          : `| ${newName} | \`${newName}/goal.md\` |`;
+        ensure(newGoal, `specs/${newParent}/goal.md`).ops.push({
+          kind: 'addTableRow',
+          table: 'binding',
+          name: newName,
+          row: bindingRow,
+          missing: 'no binding row added (no binding table)',
+          note: `add binding row ${newName}`,
+          before: (cells) => tableRowName(cells[0]) > newName,
+        });
+      }
+    }
+
+    // The moved child's own neighbours belong to the parent it now sits in. A
+    // destination that is not a phase parent leaves it with no phase neighbour.
+    const childSpec = path.join(abs(entry.from), 'spec.md');
+    if ((oldIsPhase || newIsPhase) && fs.existsSync(childSpec)) {
+      const children = newIsPhase
+        ? [...numberedDirs(abs(newParent)).filter((name) => name !== newName), newName].sort()
+        : [];
+      const at = children.indexOf(newName);
+      const predecessor = at > 0 ? children[at - 1] : 'None';
+      const successor = at >= 0 && at < children.length - 1 ? children[at + 1] : 'None';
+      const item = ensure(childSpec, `specs/${entry.to}/spec.md`);
+      item.ops.push({ kind: 'setNeighbour', row: 'Predecessor', value: predecessor });
+      item.ops.push({ kind: 'setNeighbour', row: 'Successor', value: successor });
+    }
+  }
+  return files;
+}
+
+/** A markdown alignment row, which is not a data row. */
+function tableSeparator(cells) {
+  return cells.length > 0 && cells.every((cell) => /^:?-{3,}:?$/.test(cell.replace(/\s/g, '')));
+}
+
+/** Removes the rows one predicate names, with the report line for each. */
+function removeTableRows(text, kind, describe) {
+  const lines = text.split('\n');
+  const drop = new Set();
+  const notes = [];
+  for (const table of markdownTables(lines)) {
+    if (table.kind !== kind) continue;
+    for (let index = table.start; index < table.end; index += 1) {
+      const cells = tableCells(lines[index]);
+      if (!cells) continue;
+      const note = describe(cells);
+      if (!note) continue;
+      drop.add(index);
+      notes.push(note);
+    }
+  }
+  return { text: drop.size ? lines.filter((_, index) => !drop.has(index)).join('\n') : text, notes, changes: drop.size };
+}
+
+/** Sets one neighbour row when its current value is the one expected. */
+function setNeighbourRow(text, op) {
+  const lines = text.split('\n');
+  const notes = [];
+  let changes = 0;
+  for (let index = 0; index < lines.length; index += 1) {
+    const cells = tableCells(lines[index]);
+    if (!cells || cells.length < 2) continue;
+    if (cells[0].replace(/\*\*/g, '').trim() !== op.row) continue;
+    const current = tableRowName(cells[1]);
+    if (op.expect !== undefined && current !== op.expect) continue;
+    if (current === op.value) continue;
+    const next = lines[index].replace(
+      /^(\s*\|[^|]*\|)([^|]*)(\|.*)$/,
+      (match, head, value, tail) => `${head} ${op.value} ${tail}`,
+    );
+    if (next === lines[index]) continue;
+    lines[index] = next;
+    notes.push(`set ${op.row} ${current} -> ${op.value}`);
+    changes += 1;
+  }
+  return { text: lines.join('\n'), notes, changes };
+}
+
+/** Adds one row to a table, in number or name order, or reports why it cannot. */
+function addTableRow(text, op) {
+  const lines = text.split('\n');
+  const table = markdownTables(lines).find((candidate) => candidate.kind === op.table);
+  if (!table) return { text, notes: [op.missing], changes: 0 };
+  for (let index = table.start; index < table.end; index += 1) {
+    const cells = tableCells(lines[index]);
+    if (!cells) continue;
+    const present = op.table === 'map' ? tableRowName(cells[1]) === op.name : tableRowName(cells[0]) === op.name;
+    if (present) return { text, notes: [], changes: 0 };
+  }
+  let at = table.end;
+  for (let index = table.start + 2; index < table.end; index += 1) {
+    const cells = tableCells(lines[index]);
+    if (!cells || tableSeparator(cells)) continue;
+    if (op.before(cells)) {
+      at = index;
+      break;
+    }
+  }
+  lines.splice(at, 0, op.row);
+  return { text: lines.join('\n'), notes: [op.note], changes: 1 };
+}
+
+/** Applies one file's row plan, returning the new text and the report lines. */
+function applyPhaseRows(text, edit) {
+  let result = text;
+  let changes = 0;
+  const notes = [];
+  for (const op of edit.ops) {
+    let applied = null;
+    if (op.kind === 'removeMap') {
+      applied = removeTableRows(result, 'map', (cells) => (tableRowName(cells[1]) === op.name ? `remove map row ${op.name}` : null));
+    } else if (op.kind === 'removeHandoff') {
+      applied = removeTableRows(result, 'handoff', (cells) => (
+        tableRowName(cells[0]) === op.name || tableRowName(cells[1]) === op.name ? `remove handoff row ${op.name}` : null
+      ));
+    } else if (op.kind === 'removeBinding') {
+      applied = removeTableRows(result, 'binding', (cells) => (tableRowName(cells[0]) === op.name ? `remove binding row ${op.name}` : null));
+    } else if (op.kind === 'setNeighbour') {
+      applied = setNeighbourRow(result, op);
+    } else if (op.kind === 'addTableRow') {
+      applied = addTableRow(result, op);
+    } else if (op.kind === 'note') {
+      notes.push(op.text);
+      continue;
+    }
+    if (!applied) continue;
+    result = applied.text;
+    changes += applied.changes;
+    notes.push(...applied.notes);
+  }
+  return { text: result, changes, notes: notes.map((note) => `${edit.label}: ${note}`) };
+}
+
+/** The regex that finds one of the bare names, bounded as a folder name is. */
+function bareNamePattern(names) {
+  const alternatives = [...names.keys()].sort((a, b) => b.length - a.length).map(escapeRegExp);
+  return new RegExp(`(?<![${SEGMENT_CHAR}])(${alternatives.join('|')})(?![${SEGMENT_CHAR}])`, 'g');
+}
+
+/** The summary text with a stale folder row set to the moved name, or null. */
+function rewrittenSummaryRow(text, edit) {
+  const hit = SPEC_FOLDER_ROW.exec(text);
+  if (!hit) return null;
+  const next = hit[2].replace(bareNamePattern(new Map([[edit.from, edit.to]])), edit.to);
+  if (next === hit[2]) return null;
+  return text.slice(0, hit.index) + hit[1] + next + hit[3] + text.slice(hit.index + hit[0].length);
+}
+
 /** The code-file pattern: an id written as one path or as quoted path segments. */
 function codePattern(id) {
   const joiner = '(?:/|[\'"`]\\s*,\\s*[\'"`])';
@@ -664,13 +1013,18 @@ const REFERENCE_LINK = /^([ \t]*\[[^\]\n]+\]:[ \t]*)(\S+)/gm;
 
 /**
  * Builds the transform applied to every text file. The whole-id pass rewrites
- * an old id wherever it is written in full. A relative markdown link cannot be
- * matched by id, so it is resolved: a link that works now and whose target or
- * whose own file moves is recomputed from the new places, and a link that is
- * broken now is repaired only when it pointed into a folder that already moved.
+ * an old id wherever it is written in full, then the bare-name pass rewrites a
+ * child's name in the few documents its phase parent owns. A relative markdown
+ * link cannot be matched by id, so it is resolved: a link that works now and
+ * whose target or whose own file moves is recomputed from the new places, and
+ * a link that is broken now is repaired only when it pointed into a folder that
+ * already moved.
  */
-function buildTransform(entries) {
+function buildTransform(entries, bare = { names: new Map(), summaryRows: new Map() }, phaseRows = new Map()) {
   const idMap = new Map(entries.map((entry) => [entry.from, entry.to]));
+  // The archive spelling and the id the packet had before it was archived name
+  // the same source, so both map to where the packet lands.
+  for (const [alias, to] of preArchiveAliases(entries)) idMap.set(alias, to);
   const pattern = wholeIdPattern(idMap.keys());
   const pending = entries.filter((entry) => entry.state === 'pending');
   const done = entries.filter((entry) => entry.state === 'done');
@@ -733,7 +1087,34 @@ function buildTransform(entries) {
         return idMap.get(match);
       });
     }
-    return { text: result, changes };
+    // Bare names run after whole ids so the tail of a full id is not rewritten
+    // on its own before the whole id can be matched.
+    const names = bare.names.get(file);
+    if (names) {
+      result = result.replace(bareNamePattern(names), (match) => {
+        changes += 1;
+        return names.get(match);
+      });
+    }
+    const summaryRow = bare.summaryRows.get(file);
+    if (summaryRow) {
+      const next = rewrittenSummaryRow(result, summaryRow);
+      if (next !== null) {
+        result = next;
+        changes += 1;
+      }
+    }
+    // A re-parent moves rows rather than renaming a sibling in place, so its
+    // documents are edited here after the reference passes finish.
+    let notes = [];
+    const rowEdit = phaseRows.get(file);
+    if (rowEdit) {
+      const applied = applyPhaseRows(result, rowEdit);
+      result = applied.text;
+      changes += applied.changes;
+      notes = applied.notes;
+    }
+    return { text: result, changes, notes };
   };
 }
 
@@ -977,7 +1358,7 @@ function scanCode(entries) {
 // The map file is the run's input and names every old id on purpose, so it is
 // never one of the references the run rewrites, wherever it is kept.
 function buildPlan(entries, newSubtracks, inputs = new Set()) {
-  const transform = buildTransform(entries);
+  const transform = buildTransform(entries, bareNameEdits(entries), phaseRowEdits(entries));
   const editsByFile = childrenEdits(entries);
   const forwardPending = makePathMapper(entries.filter((entry) => entry.state === 'pending').map((entry) => [abs(entry.from), abs(entry.to)]));
 
@@ -985,6 +1366,7 @@ function buildPlan(entries, newSubtracks, inputs = new Set()) {
   // is dropped rather than renamed in its old parent, then the reference rewrite.
   const rewrites = [];
   const childNotes = [];
+  const phaseNotes = [];
   // A rerun that finishes an interrupted apply cannot know which packets the
   // first run rewrote, so every packet that now names a moved packet is
   // re-derived again. The repair writer only writes what its validator flags,
@@ -1015,6 +1397,7 @@ function buildPlan(entries, newSubtracks, inputs = new Set()) {
     }
     const result = transform(file, text);
     changes += result.changes;
+    for (const note of result.notes) phaseNotes.push(`phase row ${note}`);
     if (changes === 0) continue;
     rewrites.push({
       file,
@@ -1078,7 +1461,7 @@ function buildPlan(entries, newSubtracks, inputs = new Set()) {
   const lateSteps = pendingLateSteps(ledger, entries);
 
   for (const packet of touched) followUp.delete(packet);
-  return { entries, pending, done, newSubtracks, rewrites, childNotes, identity, touched: [...touched].sort(), followUp: [...followUp].sort(), trackWork, unrecorded, lateSteps };
+  return { entries, pending, done, newSubtracks, rewrites, childNotes, phaseNotes, identity, touched: [...touched].sort(), followUp: [...followUp].sort(), trackWork, unrecorded, lateSteps };
 }
 
 function hasWork(plan) {
@@ -1095,6 +1478,7 @@ function printPlan(plan, apply) {
     else out(`  moved    specs/${entry.from} -> specs/${entry.to} (already at its destination)`);
   }
   for (const note of plan.childNotes) out(`  ${note}`);
+  for (const note of plan.phaseNotes) out(`  ${note}`);
   for (const rewrite of plan.rewrites) {
     const shown = rewrite.target === rewrite.file ? rel(rewrite.file) : `${rel(rewrite.target)} (moved)`;
     out(`  rewrite  ${shown}: ${rewrite.changes} reference(s)`);

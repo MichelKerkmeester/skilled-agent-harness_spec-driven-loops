@@ -72,6 +72,40 @@ function archive(args: string[]) {
   return spawnSync('bash', [archiveScript, ...args], { cwd: repo, encoding: 'utf8' });
 }
 
+// A restore onto a number a live packet holds goes through the relocation
+// engine, which resolves its helper writers from the repository it runs in.
+// The mover is copied in, and the follow-up writers whose own suites cover
+// them are stubbed.
+function installRestoreTools() {
+  const spec = path.dirname(archiveScript);
+  const cli = path.dirname(spec);
+  const skill = path.resolve(cli, '..', '..');
+  const stub = (file: string, body: string, mode?: number) => {
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(file, body);
+    if (mode !== undefined) fs.chmodSync(file, mode);
+  };
+  fs.copyFileSync(path.join(CLI_DIR, 'spec', 'relocate.mjs'), path.join(spec, 'relocate.mjs'));
+  stub(path.join(spec, 'repair-derived.cjs'), 'process.exit(0);\n');
+  stub(path.join(spec, 'sweep-track-roots.mjs'), 'process.exit(0);\n');
+  stub(path.join(spec, 'validate.sh'), '#!/usr/bin/env bash\nprintf "RESULT: PASSED\\n"\nexit 0\n', 0o755);
+  stub(path.join(cli, 'graph', 'migrate-generated-json.ts'), 'process.exit(0);\n');
+  stub(path.join(cli, 'retrieval', 'generate-trigger-index.mjs'), 'process.exit(0);\n');
+  stub(path.join(skill, 'node_modules', 'tsx', 'dist', 'loader.mjs'), 'export {};\n');
+  stub(path.join(repo, '.skilled', 'skills', 'sk-doc', 'shared', 'scripts', 'cite-drift-scan.mjs'), 'process.exit(0);\n');
+}
+
+// The relocation engine refuses a plan with uncommitted work under the paths
+// it moves or rewrites, so the throwaway repository starts clean.
+function commitFixture() {
+  execFileSync('git', ['add', '-A', '-f'], { cwd: repo });
+  execFileSync(
+    'git',
+    ['-c', 'commit.gpgsign=false', '-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.com', 'commit', '--quiet', '--no-verify', '-m', 'fixture'],
+    { cwd: repo },
+  );
+}
+
 // The repair resolves the validator and the metadata writer from the working
 // repository, so the round-trip cases link the real skill instead of copying
 // three scripts; the writer only accepts a workspace anchored on a .opencode
@@ -118,35 +152,13 @@ describe('archive.sh with tracks', () => {
     // through the relocation engine. It refuses to start without its helper
     // writers, so the real mover is copied in and the follow-up writers whose
     // own suites cover them are stubbed.
-    const spec = path.dirname(archiveScript);
-    const cli = path.dirname(spec);
-    const skill = path.resolve(cli, '..', '..');
-    const stub = (file: string, body: string, mode?: number) => {
-      fs.mkdirSync(path.dirname(file), { recursive: true });
-      fs.writeFileSync(file, body);
-      if (mode !== undefined) fs.chmodSync(file, mode);
-    };
-    fs.copyFileSync(path.join(CLI_DIR, 'spec', 'relocate.mjs'), path.join(spec, 'relocate.mjs'));
-    stub(path.join(spec, 'repair-derived.cjs'), 'process.exit(0);\n');
-    stub(path.join(spec, 'sweep-track-roots.mjs'), 'process.exit(0);\n');
-    stub(path.join(spec, 'validate.sh'), '#!/usr/bin/env bash\nprintf "RESULT: PASSED\\n"\nexit 0\n', 0o755);
-    stub(path.join(cli, 'graph', 'migrate-generated-json.ts'), 'process.exit(0);\n');
-    stub(path.join(cli, 'retrieval', 'generate-trigger-index.mjs'), 'process.exit(0);\n');
-    stub(path.join(skill, 'node_modules', 'tsx', 'dist', 'loader.mjs'), 'export {};\n');
-    stub(path.join(repo, '.skilled', 'skills', 'sk-doc', 'shared', 'scripts', 'cite-drift-scan.mjs'), 'process.exit(0);\n');
+    installRestoreTools();
 
     trackRoot('tools', ['tools/005-y']);
     packet('tools/z_archive/005-x');
     fs.writeFileSync(path.join(specs, 'tools', '005-y', 'spec.md'), '# Live packet\n');
     const liveBefore = fs.readFileSync(path.join(specs, 'tools', '005-y', 'spec.md'), 'utf8');
-    // The relocation engine refuses a plan with uncommitted work under the
-    // paths it moves or rewrites, so the throwaway repository starts clean.
-    execFileSync('git', ['add', '-A', '-f'], { cwd: repo });
-    execFileSync(
-      'git',
-      ['-c', 'commit.gpgsign=false', '-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.com', 'commit', '--quiet', '--no-verify', '-m', 'fixture'],
-      { cwd: repo },
-    );
+    commitFixture();
 
     const result = archive(['--restore', 'specs/tools/z_archive/005-x']);
     expect(result.status, result.stdout + result.stderr).toBe(0);
@@ -155,6 +167,40 @@ describe('archive.sh with tracks', () => {
     expect(fs.existsSync(path.join(specs, 'tools', '005-x'))).toBe(false);
     expect(fs.readFileSync(path.join(specs, 'tools', '005-y', 'spec.md'), 'utf8')).toBe(liveBefore);
     expect(children('tools')).toEqual(['tools/005-y', 'tools/006-x']);
+  });
+
+  it('rewrites the id a restored packet had before it was archived', { timeout: 120_000 }, () => {
+    installRestoreTools();
+    trackRoot('zeta', ['zeta/001-holder', 'zeta/004-live']);
+    packet('zeta/z_archive/001-old');
+    const referring = path.join(specs, 'zeta', '004-live', 'spec.md');
+    fs.writeFileSync(referring, 'See `specs/zeta/z_archive/001-old/spec.md` and the earlier id zeta/001-old.\n');
+    commitFixture();
+
+    const result = archive(['--restore', 'specs/zeta/z_archive/001-old']);
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(fs.existsSync(path.join(specs, 'zeta', '005-old', 'spec.md'))).toBe(true);
+    const text = fs.readFileSync(referring, 'utf8');
+    expect(text).not.toContain('zeta/001-old');
+    expect(text).toContain('`specs/zeta/005-old/spec.md`');
+    expect(text.trimEnd().endsWith('the earlier id zeta/005-old.')).toBe(true);
+  });
+
+  it('keeps the pre-archive id when a live folder holds it', { timeout: 120_000 }, () => {
+    installRestoreTools();
+    trackRoot('zeta', ['zeta/001-old', 'zeta/004-live']);
+    packet('zeta/z_archive/001-old');
+    const referring = path.join(specs, 'zeta', '004-live', 'spec.md');
+    fs.writeFileSync(referring, 'See `specs/zeta/z_archive/001-old/spec.md` and the earlier id zeta/001-old.\n');
+    commitFixture();
+
+    const relocateScript = path.join(repo, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'spec', 'relocate.mjs');
+    const result = spawnSync('node', [relocateScript, '--from', 'zeta/z_archive/001-old', '--to', 'zeta/005-old', '--apply'], { cwd: repo, encoding: 'utf8' });
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(fs.existsSync(path.join(specs, 'zeta', 'z_archive', '001-old'))).toBe(false);
+    expect(fs.existsSync(path.join(specs, 'zeta', '005-old', 'spec.md'))).toBe(true);
+    expect(fs.readFileSync(path.join(specs, 'zeta', '001-old', 'spec.md'), 'utf8')).toBe('# Packet\n');
+    expect(fs.readFileSync(referring, 'utf8')).toBe('See `specs/zeta/005-old/spec.md` and the earlier id zeta/001-old.\n');
   });
 
   it('keeps the root archive for a packet at the specs root', () => {
