@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "1.5.0",
+  "lastChangelogVersion": "1.5.2",
   "theme": "dark",
   "defaultProvider": "llmgateway",
   "defaultModel": "deepseek-v4.1-flash-1017",
@@ -14,10 +14,11 @@
   "enabledModels": [
     "llmgateway/deepseek-v4.1-flash-1017",
     "openai/gpt-6-luna",
-    "openai/gpt-6.1-terra",
     "opencode-go/deepseek-v4.1-flash",
     "llmgateway/glm-5.3-flash",
-    "opencode-go/glm-5.3-flash"
+    "opencode-go/glm-5.3-flash",
+    "mistral/deepseek-v4-1-flash-1017",
+    "mistral/zai-glm-5-3-flash"
   ],
   "packages": [
     "extensions/pi-cache-optimizer",
@@ -43,7 +44,7 @@
   },
   "deviceId": "601f79cc-08e3-4c46-a7b6-6d59ac689f90",
   "extensionChangelogVersions": {
-    "{\"source\":\"npm:pi-blackhole\",\"scope\":\"project\"}": "0.5.17",
+    "{\"source\":\"npm:pi-blackhole\",\"scope\":\"project\"}": "0.5.18",
     "{\"source\":\"npm:pi-web-access\",\"scope\":\"project\"}": "0.47.0",
     "{\"source\":\"git:github.com/dbachelder/pi-btw\",\"scope\":\"project\"}": "0.8.1",
     "{\"source\":\"npm:pi-claude-code-ui\",\"scope\":\"project\"}": "1.0.112"

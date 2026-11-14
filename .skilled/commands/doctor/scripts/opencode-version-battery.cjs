@@ -53,9 +53,9 @@ const VERSION_PATTERN = /^\s*(?:[A-Za-z][\w.-]*\s+)?[vV]?(\d+)\.(\d+)\.(\d+)(?:[
 const FAMILIES = ['v1', 'v2'];
 const PLUGIN_DIR_PARTS = ['.opencode', 'plugins'];
 
-// v2 always registers these two commands and neither lives in a command folder,
-// so a listing that carries them is never a stray.
-const V2_BUILTIN_COMMANDS = ['init', 'review'];
+// v2 registers these commands without a command folder entry, so a listing that
+// carries them is never a stray.
+const V2_BUILTIN_COMMANDS = ['init', 'review', 'goal'];
 
 const PROBE_TIMEOUT_MS = 5000;
 const CONFIG_TIMEOUT_MS = 60000;

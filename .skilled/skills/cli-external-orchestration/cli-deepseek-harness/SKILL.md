@@ -1,8 +1,8 @@
 ---
 name: cli-deepseek-harness
-description: "DeepSeek Harness (dsh) CLI executor for pinned headless one-task dispatch over a closed two-route DeepSeek V4.1 Flash roster."
+description: "DeepSeek Harness (dsh) CLI executor for pinned headless one-task dispatch over a closed three-route DeepSeek V4.1 Flash roster."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # DeepSeek Harness CLI Orchestrator - Cross-AI Task Delegation
@@ -32,9 +32,9 @@ Each live result applies only to the route and behavior the saved probe exercise
 ### When NOT to Use
 
 - `dsh` is not on PATH, or `dsh --version` is not the pinned version.
-- The task needs a model outside the two-route roster, a GLM or official DeepSeek route, or a provider the roster does not list.
+- The task needs a model outside the three-route roster, a GLM or official DeepSeek route, or a provider the roster does not list.
 - The task needs an interactive session, a human answer mid-run, plan mode or native goal rounds.
-- The task requires OpenCode Go and `OPENCODE_API_KEY` is not set.
+- The task requires OpenCode Go and `OPENCODE_API_KEY` is not set, or Mistral and `MISTRAL_API_KEY` is not set.
 - The only cwd available is the repository root.
 
 ---
@@ -67,7 +67,7 @@ cd "$RUN_DIR" && printf '%s' "$PROMPT" | DSH_HOME="$RUN_DIR/.dsh-home" \
     --json --permission-mode read-only --approval-policy never -
 ```
 
-`$RUN_DIR` is a fresh scratch directory and `$REPO` is the checkout root, so all three patches are named by absolute path. Swap the route file for `route-opencode-go-deepseek.patch.yml` to use the other roster route. Name each patch by its literal file name: the preflight checks the roster from that name, and a patch hidden behind a variable fails `route-patch-required`. A writer uses `workspace-write` and names any directory it must write outside the cwd with `--add-dir`. The annotated shape and every flag are in [cli-reference.md](./references/cli-reference.md) sections 3 to 5.
+`$RUN_DIR` is a fresh scratch directory and `$REPO` is the checkout root, so all three patches are named by absolute path. Swap the route file for `route-opencode-go-deepseek.patch.yml` or `route-mistral-deepseek.patch.yml` to use another roster route. Name each patch by its literal file name: the preflight checks the roster from that name, and a patch hidden behind a variable fails `route-patch-required`. A writer uses `workspace-write` and names any directory it must write outside the cwd with `--add-dir`. The annotated shape and every flag are in [cli-reference.md](./references/cli-reference.md) sections 3 to 5.
 
 ### Dispatch Lifecycle
 
@@ -112,7 +112,7 @@ The thirteen fail-closed rules live in [hard-rules.json](./hard-rules.json): `he
 
 ### ⛔ NEVER
 
-1. Never dispatch any route outside the two-route roster, and never write a route patch for one.
+1. Never dispatch any route outside the three-route roster, and never write a route patch for one.
 2. Never start dsh with the repository root as its cwd.
 3. Never run any dsh command with `DSH_HOME` unset.
 4. Never use `danger-full-access`, and never treat `--approval-policy never` as confinement.
@@ -138,7 +138,7 @@ The thirteen fail-closed rules live in [hard-rules.json](./hard-rules.json): `he
 ### Core References
 
 - [cli-reference.md](./references/cli-reference.md) - The version pin, the headless option set, the launcher flags, the dispatch shape and the exit contract
-- [providers-and-models.md](./references/providers-and-models.md) - The closed two-route roster, the route patch shape and what stays unconfirmed
+- [providers-and-models.md](./references/providers-and-models.md) - The closed three-route roster, the route patch shape and what stays unconfirmed
 - [runtime-folder-and-sync.md](./references/runtime-folder-and-sync.md) - The `.dsh/` folder, `DSH_HOME` isolation, skills, prompts and personas
 - [guards-and-hooks.md](./references/guards-and-hooks.md) - Harness seams, the repo-guards plugin bundle and the port table
 - [mcp.md](./references/mcp.md) - MCP off by default and the opt-in Code Mode patch

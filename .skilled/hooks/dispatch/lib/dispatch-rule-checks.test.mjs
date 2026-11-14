@@ -612,6 +612,14 @@ test('dsh prompt text does not hide another headless runtime missing stdin handl
   assert.equal(stdin('cat prompt.md | npx -y @deepseek-ai/dsh@0.2.2-rc.3 --profile headless --json -'), true);
 });
 
+test('dsh hard rules accept the Mistral route as a roster route', () => {
+  const rules = readHardRules(DSH).filter((r) => r.check !== 'command-v-dsh-required');
+  const mistral = DSH_FULL_DISPATCH.replace('route-llmgateway-deepseek', 'route-mistral-deepseek');
+  assert.deepEqual(evaluate(mistral, rules), []);
+  // A second route beside it is still refused: a dispatch names exactly one route.
+  assert.notDeepEqual(evaluate(mistral.replace(' --json -', ' --patch ../patches/route-llmgateway-deepseek.patch.yml --json -'), rules), []);
+});
+
 test('dsh hard rules accept a complete isolated, pipe-fed dispatch', () => {
   // The availability rule reads this machine's PATH, so it is exercised by the fixture table instead.
   const rules = readHardRules(DSH).filter((r) => r.check !== 'command-v-dsh-required');
