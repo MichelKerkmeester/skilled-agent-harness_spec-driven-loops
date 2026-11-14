@@ -2276,7 +2276,7 @@
           "inventoryId": "command-speckit-complete",
           "order": 1,
           "id": "command-speckit-complete",
-          "description": "Run the full SpecKit 14+ step lifecycle using /speckit:complete.",
+          "description": "Run the full SpecKit 13-step lifecycle using /speckit:complete.",
           "slashMarkers": [
             "/speckit:complete",
             "spec_kit:complete"
@@ -2450,7 +2450,7 @@
           "inventoryId": "command-speckit-plan",
           "order": 0,
           "id": "command-speckit-plan",
-          "description": "Run the SpecKit 8-step planning workflow using /speckit:plan.",
+          "description": "Run the SpecKit 7-step planning workflow using /speckit:plan.",
           "slashMarkers": [
             "/speckit:plan",
             "spec_kit:plan"

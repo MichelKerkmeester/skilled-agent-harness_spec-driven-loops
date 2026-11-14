@@ -43,14 +43,14 @@ runtime_agent_path_resolution:
 
 # OPERATING MODE
 operating_mode:
-  workflow: sequential_14_step
+  workflow: sequential_13_step
   workflow_compliance: MANDATORY
   workflow_execution: autonomous
   approvals: none
   tracking: progressive_task_checklists
   validation: continuous_self_validation
   description: |
-    Executes the 14-step workflow without step-by-step approval.
+    Executes the 13-step workflow without step-by-step approval.
     Supports optional chained workflows:
     - :with-research - Run research phase before planning
 

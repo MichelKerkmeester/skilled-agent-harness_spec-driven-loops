@@ -2301,7 +2301,7 @@ DEFAULT_UNCERTAINTY_THRESHOLD = NATIVE_DEFAULT_UNCERTAINTY_THRESHOLD
 # BEGIN GENERATED COMMAND BRIDGES
 GENERATED_COMMAND_BRIDGES = {
     "command-speckit-plan": {
-        "description": "Run the SpecKit 8-step planning workflow using /speckit:plan.",
+        "description": "Run the SpecKit 7-step planning workflow using /speckit:plan.",
         "slash_markers": ["/speckit:plan", "spec_kit:plan"],
         "owning_skill": "system-spec-kit",
         "inventory_id": "command-speckit-plan",
@@ -2311,7 +2311,7 @@ GENERATED_COMMAND_BRIDGES = {
         "routing_enabled": True,
     },
     "command-speckit-complete": {
-        "description": "Run the full SpecKit 14+ step lifecycle using /speckit:complete.",
+        "description": "Run the full SpecKit 13-step lifecycle using /speckit:complete.",
         "slash_markers": ["/speckit:complete", "spec_kit:complete"],
         "owning_skill": "system-spec-kit",
         "inventory_id": "command-speckit-complete",

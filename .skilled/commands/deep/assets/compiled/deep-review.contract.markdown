@@ -77,7 +77,7 @@
     },
     {
       "path": ".skilled/agents/deep-review.md",
-      "sha256": "4cca5268f81acd2e38c2a57e3945f78a182e0dc8b409b4e1ba0585989d1104cb",
+      "sha256": "9b423d761f2b4664ea96d7bc011e7017f66368b1a8537de1e9ad8e2ad7a01bbc",
       "section": "full"
     },
     {

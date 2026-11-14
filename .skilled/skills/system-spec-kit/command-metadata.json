@@ -152,7 +152,7 @@
     "command": "/speckit:resume",
     "ownerMode": "system-spec-kit",
     "description": "Resume or recover work on a spec folder: canonical continuity recovery with one next step.",
-    "argumentHint": "[spec-folder-path] [:auto|:confirm] [--phase-folder=<path>]",
+    "argumentHint": "[spec-folder-path] [:auto|:confirm] [--phase-folder=<path>] [--no-redirect]",
     "mutating": "mutates",
     "gate3_location": "spec documents inside the bound spec folder",
     "userIntent": {
@@ -227,7 +227,7 @@
     "command": "/speckit:search",
     "ownerMode": "system-spec-kit",
     "description": "Continuity retrieval front door: trigger-index lookup plus the ripgrep recipes over spec docs and skill docs.",
-    "argumentHint": "<query> [--packet <specFolder>] [--triggers] [--paths] [--count]",
+    "argumentHint": "<query> [--packet <specFolder>] [--triggers] [--paths] [--count] [--limit <n>] [--include-archive]",
     "mutating": "read-only",
     "gate3_location": "n/a (read-only retrieval; writes nothing)",
     "userIntent": {

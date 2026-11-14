@@ -20,6 +20,7 @@ import { runtimeRoot } from '../helpers/spawn-cjs';
 const OPENCODE_ROOT = resolve(runtimeRoot, '..', '..', '..');
 const SPECKIT_COMMAND_ROOT = resolve(OPENCODE_ROOT, 'commands', 'speckit');
 const COMPLETE_AUTO_YAML = resolve(SPECKIT_COMMAND_ROOT, 'assets', 'speckit-complete.yaml');
+const LIFECYCLE_WORKFLOW_ASSETS = ['speckit-plan.yaml', 'speckit-implement.yaml', 'speckit-complete.yaml'];
 const TERMINAL_REASON_CODES = [
   'no_eligible_tasks',
   'retry_exhausted',
@@ -50,6 +51,19 @@ function extractTerminalReasonCodes(yamlText: string): string[] {
   const match = yamlText.match(/terminal_reason_codes:\n((?:\s{6}- [a-z_]+\n)+)/u);
   if (!match) {
     throw new Error('terminal_reason_codes block was not found');
+  }
+
+  return match[1]
+    .split(/\r?\n/u)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => line.replace(/^- /u, ''));
+}
+
+function extractLifecycleSequence(yamlText: string): string[] {
+  const match = yamlText.match(/lifecycle_sequence:\n((?:\s{4}- [a-z_]+\n)+)/u);
+  if (!match) {
+    throw new Error('lifecycle_sequence block was not found');
   }
 
   return match[1]
@@ -91,6 +105,15 @@ describe('speckit autopilot command contract', () => {
     expect(positions).toEqual([...positions].sort((left, right) => left - right));
     expect(yamlText).toContain('workspace_choice');
     expect(yamlText).not.toContain('"merged":true');
+  });
+
+  it('keeps the merge step out of every lifecycle sequence', () => {
+    for (const asset of LIFECYCLE_WORKFLOW_ASSETS) {
+      const sequence = extractLifecycleSequence(readSpeckitCommand(`assets/${asset}`));
+
+      expect(sequence, asset).toContain('verify_clean');
+      expect(sequence, asset).not.toContain('merge_on_clean');
+    }
   });
 
   it('requires unattended task metadata and branch-preserved failure', () => {

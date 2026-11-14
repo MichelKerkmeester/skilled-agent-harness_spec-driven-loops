@@ -10,7 +10,7 @@ trigger_phrases:
   - "documentation levels"
   - "memory save"
   - "spec folder workflow"
-version: 2.7.38.0
+version: 2.7.39.0
 ---
 
 # System Spec Kit
@@ -344,8 +344,8 @@ Retrieval is two lexical lanes: the committed trigger index, which on a zero-hit
 | `/speckit:plan --intake-only` | none | standalone intake interview that publishes `spec.md`, `description.json` and `graph-metadata.json` |
 | `/speckit:plan` | 7 | planning only, spec through plan, no implementation |
 | `/speckit:implement` | 9 | execute pre-planned work, requires an existing `plan.md` |
-| `/speckit:complete` | 14 | full end-to-end workflow from spec through implementation, verification and closeout |
-| `/speckit:resume` | 4 | resume a previous session on an existing spec folder |
+| `/speckit:complete` | 13 | full end-to-end workflow from spec through implementation, verification and closeout |
+| `/speckit:resume` | 5 | resume a previous session on an existing spec folder |
 | `/speckit:save` | none | update packet continuity surfaces through `generate-context.js`; no indexing hand-off |
 | `/speckit:search` | none | retrieval over spec docs using the ripgrep recipes, scoped by track and packet |
 | `/deep:research` | none | autonomous research loop with convergence detection |
