@@ -81,7 +81,7 @@ The orchestrator reads its own definition at session start and reads the referen
 
 ### Section Moves
 
-Line numbers are at `c1dbb1bcc4`. Phase 1 rebuilds them after phases 6 and 7.
+Line numbers are at `c1dbb1bcc4`. Phase 1 rebuilt them at `168eb17b16`, after phases 6 and 7: every heading the table cites is still at the line it cites, because both phases edited this file in place.
 
 | Section | Lines | Count | Goes to |
 |---------|-------|-------|---------|
@@ -122,7 +122,7 @@ After each edit to `.skilled/agents/orchestrate.md`: hand-edit `.claude/agents/o
 | `.skilled/agents/context.md:336-345` | Return sizes per orchestrator collection mode | unchanged. The reference keeps the thresholds as they are. Its "1-4" against `:771` "1-3" predates this phase | `rg -n '1-3\|1-4' .skilled/agents/context.md` |
 | `.skilled/agents/review.md:223` and `:460` | Name pre, mid and post gate stages | unchanged. The mid-execution stage stays, only its score goes | `rg -n 'Mid-execution' .skilled/agents/orchestrate.md` prints a line |
 | `system-spec-kit/references/workflows/agent-io-contract.md` | Owns the dispatch header, handoff and pre-execution groups | unchanged, now the pointer target | `rg -c 'agent-io-contract.md' .skilled/agents/orchestrate.md` prints 1 or more |
-| `system-spec-kit/leaf-manifest.json`, `leaf-aliases.json`, `ROUTER.md` | Register the skill's references | update | `sk-skill-check.cjs` prints `Result: NO FINDINGS` |
+| `system-spec-kit/leaf-manifest.json`, `leaf-aliases.json`, `ROUTER.md` | Register the skill's references | update | `sk-skill-check.cjs` prints `Result: PASS` |
 | Trigger-index outputs under `system-spec-kit/runtime/` | Index skill docs | regenerate | `generate-trigger-index.mjs --check` exits 0 |
 | `.claude`, `.pi`, `.codex` and `.dsh` copies | Runtime mirrors | update by the mirror routine | `check-agent-mirror-sync.cjs` exits 0 |
 
@@ -149,7 +149,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 | Test Type | Scope | Tools |
 |-----------|-------|-------|
 | Unit | The pinned sections and the `Deep Route:` parse | `node --test .opencode/plugins/tests/speckit-review-dispatch-contract.test.cjs` prints `pass 5` and `fail 0`. `node --test .opencode/plugins/tests/system-deep-loop-guard.test.cjs` prints `pass 1` and `fail 0` |
-| Integration | Roster, mirrors and the new reference's registration | `node .skilled/bin/sync-agent-roster.cjs --check` prints `agent-roster: OK`. `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0. `node .skilled/commands/doctor/scripts/sk-skill-check.cjs .skilled/skills/system-spec-kit` prints `Result: NO FINDINGS`. `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check` exits 0 |
+| Integration | Roster, mirrors and the new reference's registration | `node .skilled/bin/sync-agent-roster.cjs --check` prints `agent-roster: OK`. `node .skilled/bin/check-agent-mirror-sync.cjs` exits 0. `node .skilled/commands/doctor/scripts/sk-skill-check.cjs .skilled/skills/system-spec-kit` prints `Result: PASS`. `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/generate-trigger-index.mjs --check` exits 0 |
 | Manual | Each REQ's grep and the line count | The acceptance column of `spec.md` section 4, then `wc -l < .skilled/agents/orchestrate.md` prints 600 or less |
 <!-- /ANCHOR:testing -->
 

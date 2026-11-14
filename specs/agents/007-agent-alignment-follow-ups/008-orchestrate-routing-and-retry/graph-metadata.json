@@ -33,7 +33,7 @@
       "routes"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,6 +42,9 @@
       "implementation-summary.md",
       ".skilled/agents/orchestrate.md",
       ".skilled/agents/agent-registry.json",
+      ".skilled/skills/system-spec-kit/references/workflows/orchestrator-dispatch.md",
+      ".skilled/skills/system-spec-kit/ROUTER.md",
+      "scratch/after.txt",
       "scratch/measured-behavior.txt",
       ".opencode/hooks/task-dispatch/lib/dispatch-guard.cjs",
       ".claude/agents/orchestrate.md",
@@ -50,9 +53,8 @@
       ".dsh/agents/orchestrate.patch.yml",
       ".skilled/agents/README.txt",
       ".skilled/skills/system-spec-kit/leaf-manifest.json",
-      ".skilled/bin/sync-agent-roster.cjs",
-      ".skilled/agents/code.md",
-      ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md"
+      "scratch/baseline.txt",
+      ".skilled/bin/sync-agent-roster.cjs"
     ],
     "entities": [
       {
@@ -98,6 +100,24 @@
         "source": "derived"
       },
       {
+        "name": "orchestrator-dispatch.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/orchestrator-dispatch.md",
+        "source": "derived"
+      },
+      {
+        "name": "ROUTER.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/ROUTER.md",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
         "name": "measured-behavior.txt",
         "kind": "file",
         "path": "scratch/measured-behavior.txt",
@@ -134,21 +154,15 @@
         "source": "derived"
       },
       {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
         "name": "sync-agent-roster.cjs",
         "kind": "file",
         "path": ".skilled/bin/sync-agent-roster.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "code.md",
-        "kind": "doc",
-        "path": ".skilled/agents/code.md",
-        "source": "derived"
-      },
-      {
-        "name": "skill-reference-template.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-doc/sk-create-skill/assets/skill/skill-reference-template.md",
         "source": "derived"
       },
       {
@@ -186,23 +200,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The orchestrator routes an \"Evidence / iterative investigation\" request to `@deep-research` and tells itself to dispatch that leaf at depth 1",
     "created_at": "2026-11-14T20:19:19Z",
-    "last_save_at": "2026-11-14T21:24:02.083Z",
+    "last_save_at": "2026-11-14T23:28:44.789Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:df6938c9228c2b04a65d6d7122aabdbf2fe9798732689936ccb4a111716e8595",
+    "source_fingerprint": "sha256:b277137c05fb3550204ed3e24de9dafd516d66c93b637a21e3e98377315e8581",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "dae4c869f7247e5ef341e88ca40439058032ed01203cc3519f06d4738e13ea9a",
-      "plan.md": "6fbeaec0277869f5f85fc265b0220611ed105e83e5442697903c1efaeebaa91b",
-      "tasks.md": "66bf9d149b5aff5a545a0ffb4a59e3e92d2f20b2c67e6ed72650ea4c1a7c938b",
-      "implementation-summary.md": "18a7e4daa3ec5ecc76a5480e2118a569506a3c716d63003c4c4d46b811093738"
+      "spec.md": "37f7b36b7508f1c6fa63f115186f6c6d4ec6e04aa5c0ae366fdbbf39afc4d49f",
+      "plan.md": "4297e565ef39abd616da16aa2f06c07c2734709dc302c13e220946bbe94d2153",
+      "tasks.md": "608b33c4382efa9d3a450f6c4b93b39de9e2ae4497888d6d46fa257491597413",
+      "implementation-summary.md": "1cacda4b27de64cbf4df1bc07877a1794d4371745dc1e8503fffc9f829fcba42"
     },
     "last_active_at": null
   }

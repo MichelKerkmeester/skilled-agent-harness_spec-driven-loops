@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/384-agent-alignment-follow-ups` |
 | **Parent Spec** | ../spec.md |
@@ -236,9 +236,9 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-006 | A dispatch includes the definition's content only when `subagent_type` is `general-purpose`. The `Agent Loading Protocol` heading stays, because five `cli-*` skills cite it by name. | `rg -n 'INCLUDE.*general-purpose' .skilled/agents/orchestrate.md` prints the step 2 line and `rg -c 'Agent Loading Protocol' .skilled/agents/orchestrate.md` prints 1 or more |
 | REQ-007 | File-based collection asks only write-capable leaves to write. A read-only leaf returns its summary and the orchestrator writes the file. | `rg -n 'Pattern C' .skilled/agents/orchestrate.md .skilled/skills/system-spec-kit/references/workflows/orchestrator-dispatch.md` prints a line that names `@context` as returning, not writing |
 | REQ-008 | Every remaining gate is one the orchestrator can measure. The ≥ 70 checklist item follows phase 6's self-score rule. | `rg -n -i '50,000 tokens\|~150K\|\(2 min\)\|approaching 80%\|Score ≥ 70' .skilled/agents/orchestrate.md` prints nothing |
-| REQ-009 | The action-agent list, the `@code` example and the save mandate match the agents they name. | `rg -n '@general-purpose, @review, @debug\|code-review mode \(findings-first\|Mandate sub-agents to run' .skilled/agents/orchestrate.md` prints nothing |
+| REQ-009 | The action-agent list, the `@code` example and the save mandate match the agents they name. | `rg -n '@general-purpose, @review, @debug\|Skills: sk-code code-review mode\|Mandate sub-agents to run' .skilled/agents/orchestrate.md` prints nothing. The pattern names the example's `Skills:` line, because the generated `@review` routing row correctly names code-review mode |
 | REQ-010 | `orchestrate.md` and its Claude fork are 600 lines or less, and each moved section leaves a one-line pointer to the reference. | `wc -l < .skilled/agents/orchestrate.md` and `wc -l < .claude/agents/orchestrate.md` each print 600 or less, and `rg -c 'orchestrator-dispatch.md' .skilled/agents/orchestrate.md` prints 1 or more |
-| REQ-011 | The new reference is reachable on the `system-spec-kit` DISPATCH route and the skill check stays clean. | `rg -c 'orchestrator-dispatch.md' .skilled/skills/system-spec-kit/leaf-manifest.json .skilled/skills/system-spec-kit/leaf-aliases.json .skilled/skills/system-spec-kit/ROUTER.md` prints 1 or more per file and `sk-skill-check.cjs` prints `Result: NO FINDINGS` |
+| REQ-011 | The new reference is reachable on the `system-spec-kit` DISPATCH route and the skill check stays clean. | `rg -c 'orchestrator-dispatch.md' .skilled/skills/system-spec-kit/leaf-manifest.json .skilled/skills/system-spec-kit/leaf-aliases.json .skilled/skills/system-spec-kit/ROUTER.md` prints 1 or more per file and `sk-skill-check.cjs` prints `Result: PASS` with no `FAIL` or `WARN` row, the wording the check now uses for a clean run |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "d4e822116c025145fe6dd84af32ac99a61ec4d9e7b57cc682a949eab628bf57f",
+  "corpusHash": "fce7162333708e9b78fe8804ff9b693fc03a28f71bd2e0481f972b4a0ea086fb",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27331,
+  "includedPathCount": 27332,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9030,6 +9030,7 @@
     ".skilled/skills/system-spec-kit/references/workflows/goal-set-string-playbook.md",
     ".skilled/skills/system-spec-kit/references/workflows/intake-contract.md",
     ".skilled/skills/system-spec-kit/references/workflows/nested-changelog.md",
+    ".skilled/skills/system-spec-kit/references/workflows/orchestrator-dispatch.md",
     ".skilled/skills/system-spec-kit/references/workflows/quick-reference.md",
     ".skilled/skills/system-spec-kit/references/workflows/rename-pattern.md",
     ".skilled/skills/system-spec-kit/references/workflows/spec-authoring-card.md",
@@ -27363,7 +27364,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6f620561f1b2748309636220f56de0d70f44bc1cb2a25aa27946f8d94d8ed869",
+  "manifestHash": "c28e60e545d2b50b850df9397204e50ed1a2e176f746b2cc7678a5ada0bb4f1f",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

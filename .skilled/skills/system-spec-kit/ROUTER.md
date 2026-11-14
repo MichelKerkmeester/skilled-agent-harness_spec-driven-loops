@@ -6,7 +6,7 @@ trigger_phrases:
   - "system-spec-kit routing"
 importance_tier: normal
 contextType: general
-version: 1.0.8.0
+version: 1.0.9.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -52,7 +52,7 @@ A request that matches no intent returns `UNKNOWN_FALLBACK` and its checklist ra
 - **SCORING_CALIBRATION** — "calibration", "scoring", "normalization", "decay" and "interference" requests load `references/config/environment-variables.md`.
 - **ROLLOUT_FLAGS** — "feature flag", "rollout", "toggle", "enable" and "disable" requests load `references/config/environment-variables.md`.
 - **GOVERNANCE** — "governance", "tenant", "retention" and "audit" requests load `references/config/environment-variables.md`.
-- **DISPATCH** — "dispatch", "parallel agents", "agent header", "result envelope", "sub-agent" and "fan-out" requests load `references/workflows/agent-io-contract.md` and `assets/parallel-dispatch-config.md`.
+- **DISPATCH** — "dispatch", "parallel agents", "agent header", "result envelope", "sub-agent" and "fan-out" requests load `references/workflows/agent-io-contract.md`, `references/workflows/orchestrator-dispatch.md` and `assets/parallel-dispatch-config.md`.
 - **AUTO_MODE** — ":auto", "auto mode", "autopilot", "unattended" and "setup resolution" requests load `references/workflows/auto-mode-contract.md`.
 - **CLI_TRANSPORT** — "daemon cli", "cli shim", "memory handback", "smart router", "cli-*" and "warm-only" requests load `references/cli/daemon-cli-reference.md`, `references/cli/memory-handback.md` and `references/cli/shared-smart-router.md`.
 - **TEMPLATE_AUTHORING** — "template style", "author a template", "template convention", "tmpl" and "template anchors" requests load `references/templates/template-style-guide.md` and `references/workflows/spec-authoring-card.md`.
@@ -274,6 +274,7 @@ RESOURCE_MAP = {
     ],
     "DISPATCH": [
         "references/workflows/agent-io-contract.md",
+        "references/workflows/orchestrator-dispatch.md",
         "assets/parallel-dispatch-config.md",
     ],
     "AUTO_MODE": [

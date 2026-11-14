@@ -56,6 +56,7 @@
       ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
       ".skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md",
       ".skilled/agents/agent-registry.json",
+      ".skilled/skills/system-spec-kit/references/workflows/orchestrator-dispatch.md",
       ".skilled/skills/sk-prompt/SKILL.md",
       ".skilled/agents/README.txt",
       ".skilled/bin/agent-mirror-crosswalk.md"
@@ -116,6 +117,12 @@
         "source": "derived"
       },
       {
+        "name": "orchestrator-dispatch.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/references/workflows/orchestrator-dispatch.md",
+        "source": "derived"
+      },
+      {
         "name": "README.txt",
         "kind": "file",
         "path": ".skilled/agents/README.txt",
@@ -166,18 +173,18 @@
     ],
     "causal_summary": "The packet `agents/006-agent-contract-and-registry-alignment` closed on 2026-11-14 and recorded four findings outside its scope",
     "created_at": "2026-11-14T15:48:56Z",
-    "last_save_at": "2026-11-14T22:58:54.367Z",
+    "last_save_at": "2026-11-14T23:25:49.547Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:f2fb7d71579ae96f396eb27d58d354a824c491e7ad8b027ebbe04fbb90b7ad00",
+    "source_fingerprint": "sha256:6dee84bce30e8e16ec33043d8f5defaf101f09625391632403ed9d6d6a99277c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "032270bebadf01890ad379355f68ec346256aec4eb2f5f1a7262d217941d0165"
+      "spec.md": "c5d6bd43a7b8b8a1070fb1d67fa1784b7218a398c4b4280d2e631262389aa3b9"
     },
-    "last_active_child_id": "agents/007-agent-alignment-follow-ups/007-code-agent-retry-and-status",
-    "last_active_at": "2026-11-14T22:56:51.690Z"
+    "last_active_child_id": "agents/007-agent-alignment-follow-ups/008-orchestrate-routing-and-retry",
+    "last_active_at": "2026-11-14T23:24:15.111Z"
   }
 }

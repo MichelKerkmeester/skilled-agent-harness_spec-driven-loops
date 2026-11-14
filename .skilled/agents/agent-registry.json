@@ -25,7 +25,7 @@
         "/deep:research",
         "orchestrate"
       ],
-      "taskType": "Evidence / iterative investigation",
+      "taskType": "Evidence / iterative investigation (`/deep:research` only — run the command, which creates the loop state and dispatches this leaf)",
       "skills": "`system-spec-kit`, `deep-research`",
       "notes": "LEAF agent; iterative autonomous research loop with externalized state",
       "summary": "autonomous deep-research iterations with externalized state"

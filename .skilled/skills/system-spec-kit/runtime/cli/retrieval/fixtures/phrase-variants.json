@@ -1,5 +1,5 @@
 {
-  "manifestHash": "6f620561f1b2748309636220f56de0d70f44bc1cb2a25aa27946f8d94d8ed869",
+  "manifestHash": "c28e60e545d2b50b850df9397204e50ed1a2e176f746b2cc7678a5ada0bb4f1f",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -27582,6 +27582,9 @@
     "collection matches writer rules": [
       "collection matches writer rules"
     ],
+    "collection patterns": [
+      "collection patterns"
+    ],
     "collections imports exports error mapping": [
       "collections imports exports error mapping"
     ],
@@ -30357,6 +30360,9 @@
     ],
     "context vectors shard naming audit": [
       "context-vectors shard naming audit"
+    ],
+    "context window budget": [
+      "context window budget"
     ],
     "contextador adr": [
       "contextador adr"
@@ -39594,6 +39600,9 @@
     ],
     "delegated readme refresh": [
       "delegated readme refresh"
+    ],
+    "delegation eligibility gate": [
+      "delegation eligibility gate"
     ],
     "delete a block": [
       "Delete a block"
@@ -78415,6 +78424,9 @@
     "orchestration status ledger": [
       "orchestration status ledger"
     ],
+    "orchestrator dispatch aids": [
+      "orchestrator dispatch aids"
+    ],
     "orchestrator env round trip": [
       "orchestrator env round trip"
     ],
@@ -87543,6 +87555,9 @@
     ],
     "pre confirmation margin analysis decision": [
       "pre-confirmation margin analysis decision"
+    ],
+    "pre delegation reasoning": [
+      "pre-delegation reasoning"
     ],
     "pre dispatch budget cap": [
       "pre-dispatch budget cap"
@@ -125597,6 +125612,9 @@
     ],
     "tool call block": [
       "tool_call block"
+    ],
+    "tool call budget": [
+      "tool call budget"
     ],
     "tool call deny": [
       "tool_call deny"
