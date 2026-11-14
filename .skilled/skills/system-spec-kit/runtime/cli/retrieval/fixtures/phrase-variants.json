@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e0a6422a000b4e7cc39f8fbd39db52d8bb0cc7f31e014a49c5acf3e56fa1fb20",
+  "manifestHash": "0b746670cc71b8a764547e30c18d520348887903be1d6e50ef2d6991fab798a1",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -106397,6 +106397,9 @@
     "sk code ci 1 1 16 0": [
       "sk-code-ci 1.1.16.0"
     ],
+    "sk code ci 1 1 17 0": [
+      "sk-code-ci 1.1.17.0"
+    ],
     "sk code ci 1 1 2 0": [
       "sk-code-ci 1.1.2.0"
     ],
@@ -106502,6 +106505,9 @@
     ],
     "sk code ci v1 1 16 0": [
       "sk-code-ci v1.1.16.0"
+    ],
+    "sk code ci v1 1 17 0": [
+      "sk-code-ci v1.1.17.0"
     ],
     "sk code ci v1 1 2 0": [
       "sk-code-ci v1.1.2.0"
