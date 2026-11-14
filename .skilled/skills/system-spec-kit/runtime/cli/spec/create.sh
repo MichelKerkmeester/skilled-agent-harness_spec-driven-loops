@@ -1872,8 +1872,6 @@ if [[ "$PHASE_MODE" = true ]]; then
         _feature_slug="$(basename "$FEATURE_DIR")"
         _phase_parent_packet_pointer="scaffold/$(slugify_token "$_feature_slug")"
         _today="$(date -u +"%Y-%m-%d")"
-        _phase_parent_problem="This phased decomposition tracks ${FEATURE_DESCRIPTION} across independently executable child phase folders."
-        _phase_parent_purpose="Keep parent documentation lean while child phases own detailed plans, tasks, verification, and continuity."
         _scope_rows="- Root purpose and child phase manifest for ${FEATURE_DESCRIPTION}"$'\n'"- Per-phase implementation details in child folders"
         _file_row="| [Per-child files] | Modify/Create | Child phases | Detailed file scope lives in each child phase |"
         _feature_description_escaped="$(escape_template_value "$FEATURE_DESCRIPTION")"
@@ -1899,8 +1897,6 @@ if [[ "$PHASE_MODE" = true ]]; then
                     _line="${_line//\[YOUR_VALUE_HERE: packet-id\]/$_phase_parent_packet_pointer}"
                     _line="${_line//\[YOUR_VALUE_HERE: predecessor-packet\]/None}"
                     _line="${_line//\[YOUR_VALUE_HERE: successor-packet, or \"None\"\]/None}"
-                    _line="${_line//\[YOUR_VALUE_HERE: one-paragraph problem statement — what needs solving and why\]/$_phase_parent_problem}"
-                    _line="${_line//\[YOUR_VALUE_HERE: one-paragraph purpose — what this phased decomposition achieves\]/$_phase_parent_purpose}"
                     if [[ "$_line" == *"[YOUR_VALUE_HERE: bullet list of what this phase decomposition covers]"* ]]; then
                         printf '%s\n' "$_scope_rows"
                     elif [[ "$_line" == *"[YOUR_VALUE_HERE: bullet list of what is explicitly excluded]"* ]]; then

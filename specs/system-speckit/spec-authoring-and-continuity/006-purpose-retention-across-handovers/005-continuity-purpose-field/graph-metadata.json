@@ -34,28 +34,28 @@
       "parent"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      ".skilled/skills/system-spec-kit/runtime/api/index.ts",
+      ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts",
+      ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+      ".skilled/skills/system-spec-kit/runtime/lib/continuity/README.md",
+      ".skilled/skills/system-spec-kit/runtime/tests/thin-continuity-record.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/cli/tests/save-continuity-write.vitest.ts",
+      ".skilled/skills/system-spec-kit/runtime/tests/authored-continuity-snapshot.vitest.ts",
+      "runtime/lib/spec/packet-purpose.ts",
       "runtime/lib/continuity/thin-continuity-record.ts",
       "runtime/api/index.ts",
       "runtime/cli/utils/input-normalizer.ts",
       "lib/continuity/thin-continuity-record.ts",
       "cli/core/workflow.ts",
-      "api/index.ts",
-      "lib/continuity/authored-continuity-snapshot.ts",
-      "cli/continuity/generate-context.ts",
-      "lib/continuity/README.md",
-      "tests/thin-continuity-record.vitest.ts",
-      "cli/tests/save-continuity-write.vitest.ts",
-      "runtime/vitest.config.ts",
-      "dist/api/index.js",
-      "cli/utils/input-normalizer.ts",
-      "lib/resume/resume-ladder.ts",
-      "templates/core/implementation-summary.md.tmpl"
+      "api/index.ts"
     ],
     "entities": [
       {
@@ -83,81 +83,69 @@
         "source": "derived"
       },
       {
-        "name": "thin-continuity-record.ts",
+        "name": "index.ts",
         "kind": "code",
-        "path": "runtime/lib/continuity/thin-continuity-record.ts",
+        "path": ".skilled/skills/system-spec-kit/runtime/api/index.ts",
         "source": "derived"
       },
       {
-        "name": "index.ts",
+        "name": "thin-continuity-record.ts",
         "kind": "code",
-        "path": "runtime/api/index.ts",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts",
+        "source": "derived"
+      },
+      {
+        "name": "authored-continuity-snapshot.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/continuity/authored-continuity-snapshot.ts",
+        "source": "derived"
+      },
+      {
+        "name": "workflow.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/core/workflow.ts",
+        "source": "derived"
+      },
+      {
+        "name": "generate-context.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/continuity/generate-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/continuity/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "thin-continuity-record.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/thin-continuity-record.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "save-continuity-write.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/save-continuity-write.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "authored-continuity-snapshot.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-spec-kit/runtime/tests/authored-continuity-snapshot.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "packet-purpose.ts",
+        "kind": "code",
+        "path": "runtime/lib/spec/packet-purpose.ts",
         "source": "derived"
       },
       {
         "name": "input-normalizer.ts",
         "kind": "code",
         "path": "runtime/cli/utils/input-normalizer.ts",
-        "source": "derived"
-      },
-      {
-        "name": "workflow.ts",
-        "kind": "code",
-        "path": "cli/core/workflow.ts",
-        "source": "derived"
-      },
-      {
-        "name": "authored-continuity-snapshot.ts",
-        "kind": "code",
-        "path": "lib/continuity/authored-continuity-snapshot.ts",
-        "source": "derived"
-      },
-      {
-        "name": "generate-context.ts",
-        "kind": "code",
-        "path": "cli/continuity/generate-context.ts",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": "lib/continuity/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "thin-continuity-record.vitest.ts",
-        "kind": "test",
-        "path": "tests/thin-continuity-record.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "save-continuity-write.vitest.ts",
-        "kind": "test",
-        "path": "cli/tests/save-continuity-write.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "vitest.config.ts",
-        "kind": "code",
-        "path": "runtime/vitest.config.ts",
-        "source": "derived"
-      },
-      {
-        "name": "index.js",
-        "kind": "code",
-        "path": "dist/api/index.js",
-        "source": "derived"
-      },
-      {
-        "name": "resume-ladder.ts",
-        "kind": "code",
-        "path": "lib/resume/resume-ladder.ts",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md.tmpl",
-        "kind": "file",
-        "path": "templates/core/implementation-summary.md.tmpl",
         "source": "derived"
       },
       {
@@ -201,11 +189,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The parent exists to keep a packet's problem, purpose and user need in front of the next session across relaunch hops and compactions, because the purpose is written once in `spec.md` and no hop reads it back",
     "created_at": "2026-11-13T21:41:53Z",
-    "last_save_at": "2026-11-13T22:16:42.868Z",
+    "last_save_at": "2026-11-13T23:44:41.908Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +214,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:edcdee1a6741e2ee0ef7fa450ed8d32ce19ba4da897d4ee4b7b38972901b2332",
+    "source_fingerprint": "sha256:3d69935c13d6218d9744a4cf2c591f45bfc1bd71af3704b540e7dfbdf437bf9c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "727c15c3bfeff6e160f74565fd6bdf4195cc3ea96b42205ffef4f035ddfcfddf",
+      "spec.md": "996d8b43a5efc380ba4c3de1e455129232ab1408d81d4d9ea04d71124045fab7",
       "plan.md": "b0007a5a95fab31f262f2386049f5e2611de2b3f223f0f5b41e657e7661ec628",
-      "tasks.md": "902b05e9660d72976dc3cd922431d11067d68ff0cb32eefc296dfefbdf846b48",
-      "implementation-summary.md": "11b161621eb81b870155c0ba5b683ac33bb5958bfcdbc14de32bfda597e6fea1"
+      "tasks.md": "a972fdc85bd7cf2c8e71287ca997154bc4c92d2339e2849f6dd1bbbf43ea07f4",
+      "implementation-summary.md": "0af3c3b6f9a2d876ff94330c81cd3a442fa0aa837f0adc5eb31c52dda47a0dc5"
     },
     "last_active_at": null
   }

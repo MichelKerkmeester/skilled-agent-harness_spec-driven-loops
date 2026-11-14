@@ -25,6 +25,7 @@ Current state:
 - `decision-record-writer.ts` upserts operator decisions into `decision-record.md`, and `decision-table-matcher.ts` parses and matches those tables.
 - The record keeps packet recovery compact with `packet_pointer`, timestamps, action fields, blockers, key files, optional `session_dedup`, optional `session_ref`, completion percentage and question IDs.
 - `session_ref` is the writer-owned, pointer-only save field. It records `runtime`, `sessionId`, `workspace`, `savedAt`, `locatorKind` and `version`, and it never holds transcript text or a locator path.
+- `packet_purpose` is an optional, writer-owned copy of the packet's purpose line, refreshed on every continuity write from `lib/spec/packet-purpose.ts`. `spec.md` stays its source. It leads the Goal facet, and an invalid value is dropped without failing the record.
 - The byte budget is `THIN_CONTINUITY_MAX_BYTES`, currently `2048` bytes for the serialized `_memory.continuity` envelope.
 - The canonical recovery ladder remains `handover.md` -> `_memory.continuity` -> spec docs. This folder owns the middle record format and the snapshot that keeps `handover.md` in sync with it.
 

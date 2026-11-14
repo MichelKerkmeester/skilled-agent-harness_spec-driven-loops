@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups",
+  "description": "Phase 6: purpose-carry-follow-ups",
+  "keywords": [
+    "phase",
+    "purpose-carry-follow-ups"
+  ],
+  "lastUpdated": "2026-11-14T05:10:10.509Z",
+  "specId": "006",
+  "folderSlug": "purpose-carry-follow-ups",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "006-purpose-retention-across-handovers"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

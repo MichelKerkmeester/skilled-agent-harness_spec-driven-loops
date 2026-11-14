@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9d49e02aae2576872ca97cd7d691e61507488698e9ada4626fdaf251ff37a9ad",
+  "corpusHash": "2002c28d5864cdbbc41ec47c7089abde715742d490b9fd9c61f07d37ac050886",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26746,
+  "includedPathCount": 26771,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -18101,9 +18101,30 @@
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/018-holdout-row-retirement/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/018-holdout-row-retirement/tasks.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/implementation-summary.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/plan.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/spec.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/019-workflow-outcome-measure/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/goal.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/goal.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/022-workflow-measure-soundness/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/022-workflow-measure-soundness/goal.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/022-workflow-measure-soundness/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/022-workflow-measure-soundness/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/022-workflow-measure-soundness/tasks.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/acceptance-criteria.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/goal.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/plan.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/spec.md",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/tasks.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/decision-record.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/goal.md",
     "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/fanout-attribution-pass-1.md",
@@ -26352,6 +26373,10 @@
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/005-continuity-purpose-field/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/005-continuity-purpose-field/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/005-continuity-purpose-field/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups/tasks.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/decision-record.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/implementation-summary.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/plan.md",
@@ -26778,7 +26803,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6f2c3184bd4eb1d8f1589abb8b0326cc427d7c9961e1385991d124fe44fb91df",
+  "manifestHash": "6e7567bfadfbdc9d0255a2cf65b92cd8bb1012346018eaf9efaf632285afd559",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -34173,6 +34198,22 @@
       "reason": "excluded directory"
     },
     {
+      "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/020-command-offer-fit-guards/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/021-brief-head-parity/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/022-workflow-measure-soundness/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence/scratch",
+      "reason": "excluded directory"
+    },
+    {
       "path": "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/lineages",
       "reason": "excluded directory"
     },
@@ -37914,6 +37955,10 @@
     },
     {
       "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/005-continuity-purpose-field/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups/scratch",
       "reason": "excluded directory"
     },
     {

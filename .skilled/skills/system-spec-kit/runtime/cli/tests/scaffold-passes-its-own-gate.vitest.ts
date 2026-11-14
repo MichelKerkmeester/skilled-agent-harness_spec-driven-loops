@@ -113,6 +113,14 @@ describe('a scaffold passes the gate it ships with', () => {
       expect(result.stdout, `${path.basename(folder)} did not report a clean gate`).toMatch(/Errors: 0/u);
       expect(result.status).toBe(0);
     }
+
+    // A generator that writes the parent's purpose for the author passes every
+    // other gate, so a new parent must still hold that question open.
+    const parentSpec = fs.readFileSync(path.join(parent, 'spec.md'), 'utf8');
+    expect(parentSpec, 'the new phase parent does not ask for its purpose').toMatch(/^### Purpose\n\[YOUR_VALUE_HERE: /mu);
+    // No save ever rewrites a phase parent's own continuity lines, so a default
+    // that reads as a scaffold placeholder would fail every finished parent.
+    expect(parentSpec, 'the parent default reads as a scaffold placeholder').not.toMatch(/^\s*recent_action:\s*"?Initiali[sz]ed?\s/mu);
   });
 
   it('creates every document its level contract calls for', { timeout: 120_000 }, () => {

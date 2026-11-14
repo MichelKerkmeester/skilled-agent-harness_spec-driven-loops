@@ -315,6 +315,25 @@ describe('save writer continuity write', () => {
     expect(continuityBlock(read(`${LEAF}/implementation-summary.md`))).toBe(before);
   });
 
+  it('copies the nearest authored purpose into the leaf a parent-targeted save reaches', async () => {
+    writeFile(`${PARENT}/spec.md`, `${specDoc('Parent')}\n### Purpose\nKeep the fixture purpose in view. This sentence is dropped.\n`);
+    await save(PARENT, { recent_action: 'Wired the continuity writer', key_files: [`${LEAF}/spec.md`] });
+
+    expect(continuityBlock(read(`${LEAF}/implementation-summary.md`))).toContain(
+      `packet_purpose: "Parent purpose (${PARENT}): Keep the fixture purpose in view."`,
+    );
+  });
+
+  it('removes a stored purpose copy once no purpose is authored', async () => {
+    writeFile(
+      `${LEAF}/implementation-summary.md`,
+      summaryDoc(LEAF).replace('    blockers:', '    packet_purpose: "Purpose: A purpose the spec no longer holds."\n    blockers:'),
+    );
+    await save(LEAF, { recent_action: 'Wired the continuity writer' });
+
+    expect(continuityBlock(read(`${LEAF}/implementation-summary.md`))).not.toContain('packet_purpose');
+  });
+
   it('stores the track root pointer only in the store, and resume lands on the leaf', async () => {
     const trackGraphBefore = fs.readFileSync(path.join(root, `${TRACK}/graph-metadata.json`));
     await save(LEAF, { recent_action: 'Wired the continuity writer' });

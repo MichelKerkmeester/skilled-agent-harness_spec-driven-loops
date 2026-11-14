@@ -115,6 +115,7 @@ A) Resume anyway  B) Fresh start  C) Review first  D) Cancel
 ```text
 RESUME BRIEF
 Spec: [path]
+Purpose: [one sentence quoted from spec.md ### Purpose, omitted when none]
 Confidence: [high|medium|low] | Source: [handover|continuity|spec_docs|mcp_enrichment|combined]
 Now: [phase/current task]
 Last confirmed: [action]
@@ -123,6 +124,8 @@ Blockers: [none|details]
 Progress: [X]% ([done]/[total] tasks)
 Why this is next: [short reason based on tasks/checklist/memory]
 ```
+
+The Purpose row quotes the packet's own spec.md Purpose. A phase child with no Purpose of its own shows its nearest phase parent's as `Purpose (parent <parent-folder-name>): [sentence]`. A packet with only a goal.md Objective shows `Purpose (goal.md): [sentence]`. When none exists the row is left out, never printed as None. The rule is `purpose_row` in both resume workflow YAML assets.
 
 ### No Session
 

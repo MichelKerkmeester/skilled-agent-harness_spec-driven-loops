@@ -57,6 +57,7 @@ const RELAUNCH_INSTRUCTION = ' If the remaining work fits in a few more steps, f
   + ' so a fresh session continues before auto-compaction has to:';
 const SPEC_FOLDER_GUIDANCE = '   spec_folder is a repo-relative '
   + 'packet path, "none" for Gate 3 D) Skip, or empty if unanswered.';
+const GOAL_GUIDANCE_START = '   When spec_folder names a packet, open ## Goal with one line';
 const CONTINUITY_WRITER = 'node .skilled/skills/system-spec-kit/runtime/cli/'
   + 'dist/continuity/generate-context.js';
 const SEED_REMAINING_WORK_STEP = [
@@ -103,6 +104,11 @@ test('handoff text includes the note, frontmatter, all four sections and prepare
   assert.notEqual(sectionLine, -1);
   assert.equal(handoffLines[sectionLine + 1], HANDOFF_GUIDANCE);
   assert.equal(handoffLines[sectionLine + 2], SPEC_FOLDER_GUIDANCE);
+  const goalGuidance = handoffLines[sectionLine + 3];
+  assert.ok(goalGuidance.startsWith(GOAL_GUIDANCE_START), text);
+  for (const part of ['### Purpose', 'from parent', 'goal.md']) {
+    assert.ok(goalGuidance.includes(part), `goal guidance misses ${part}`);
+  }
 
   const handoffSteps = handoffLines.filter((line) => /^\d+\./.test(line));
   assert.deepEqual(
@@ -137,6 +143,7 @@ test('handoff text includes the note, frontmatter, all four sections and prepare
   assert.equal(unboundSteps.some((line) => line.includes('/speckit:save')), false);
   assert.equal(unbound.includes('generate-context.js'), false);
   assert.match(unbound, /^   spec_folder: $/m);
+  assert.ok(unbound.includes(GOAL_GUIDANCE_START), unbound);
   assert.ok(unboundSteps[2].includes('prepare --handoff'));
   assert.ok(unboundSteps[2].includes("--runtime 'opencode'"));
 

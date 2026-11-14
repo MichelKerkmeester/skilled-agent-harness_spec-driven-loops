@@ -163,6 +163,65 @@ describe('session-prime hook', () => {
       expect(parsed.pendingCompactPrime).toBeNull();
     });
 
+    it('leads the compact recovery with the packet purpose', async () => {
+      const packetDir = mkdtempSync(join(tmpdir(), 'session-prime-purpose-'));
+      writeFileSync(join(packetDir, 'spec.md'), '### Purpose\nKeep the reason for the work in view. This sentence is dropped.\n');
+      try {
+        const now = new Date().toISOString();
+        saveState(testSessionId, {
+          claudeSessionId: testSessionId,
+          speckitSessionId: null,
+          lastSpecFolder: packetDir,
+          sessionSummary: null,
+          pendingCompactPrime: null,
+          producerMetadata: null,
+          metrics: { estimatedPromptTokens: 0, estimatedCompletionTokens: 0, lastTranscriptOffset: 0 },
+          createdAt: now,
+          updatedAt: now,
+        });
+
+        let output = '';
+        await runSessionStartHook(
+          { source: 'compact', session_id: testSessionId },
+          async (text) => { output = text; },
+        );
+
+        expect(output.startsWith('## Packet Purpose\nPurpose: Keep the reason for the work in view.\n')).toBe(true);
+        expect(output).not.toContain('This sentence is dropped');
+        expect(output).toContain('/speckit:resume');
+      } finally {
+        rmSync(packetDir, { recursive: true, force: true });
+      }
+    });
+
+    it('adds no purpose section when the last spec folder has no spec.md', async () => {
+      const emptyDir = mkdtempSync(join(tmpdir(), 'session-prime-no-spec-'));
+      try {
+        const now = new Date().toISOString();
+        saveState(testSessionId, {
+          claudeSessionId: testSessionId,
+          speckitSessionId: null,
+          lastSpecFolder: emptyDir,
+          sessionSummary: null,
+          pendingCompactPrime: null,
+          producerMetadata: null,
+          metrics: { estimatedPromptTokens: 0, estimatedCompletionTokens: 0, lastTranscriptOffset: 0 },
+          createdAt: now,
+          updatedAt: now,
+        });
+
+        let output = '';
+        await runSessionStartHook(
+          { source: 'compact', session_id: testSessionId },
+          async (text) => { output = text; },
+        );
+
+        expect(output).not.toContain('## Packet Purpose');
+        expect(output.startsWith('## Context Recovery\n')).toBe(true);
+      } finally {
+        rmSync(emptyDir, { recursive: true, force: true });
+      }
+    });
   });
 
   describe('history lookup offer', () => {

@@ -121,6 +121,10 @@ export {
 } from '../lib/continuity/thin-continuity-record.js';
 export type { ThinContinuityValidationError } from '../lib/continuity/thin-continuity-record.js';
 
+// The save writer copies a packet's purpose into the continuity block with the reader
+// the compaction recovery uses, so both name the same purpose.
+export { formatPacketPurpose, resolvePacketPurpose } from '../lib/spec/packet-purpose.js';
+
 // The save writes operator decisions with the same public surface it uses for continuity.
 export {
   writeDecisionRecord,

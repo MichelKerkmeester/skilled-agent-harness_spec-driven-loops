@@ -77,7 +77,7 @@ The workflow resolves the spec folder, and a phase parent redirects to its activ
 ## 4. IMPLEMENTATION PHASES
 <!-- FILL: Point to `tasks.md` and name the three phases in one line. GOOD: Setup reads `scripts/rotate-logs.sh` and counts the archives. Implementation adds `--keep` to `scripts/rotate-logs.sh`. Verification runs `scripts/rotate-logs.sh --keep 3` and counts 3. WEAK: See tasks. -->
 
-Setup runs the baseline commands in section 5 and confirms each current text below matches once. Implementation applies edits E1 to E10 below, one per task in `tasks.md`. Verification reruns the baseline commands, the `rg` asserts and two live resumes. `tasks.md` owns the order and the task state.
+Setup runs the baseline commands in section 5 and confirms each current text below matches once. Implementation applies edits E1 to E10 below, one per task in `tasks.md`. E11 is a later edit made after the first live check. Verification reruns the baseline commands, the `rg` asserts and two live resumes. `tasks.md` owns the order and the task state.
 
 Apply each edit as a literal search and replace with the Edit tool. Copy the text inside the fences exactly. Every current text below matches exactly once in its file. All paths are relative to the repository root.
 
@@ -212,7 +212,19 @@ Why this is next: [short reason based on tasks/checklist/memory]
 The Purpose row quotes the packet's own spec.md Purpose. A phase child with no Purpose of its own shows its nearest phase parent's as `Purpose (parent <parent-folder-name>): [sentence]`. A packet with only a goal.md Objective shows `Purpose (goal.md): [sentence]`. When none exists the row is left out, never printed as None. The rule is `purpose_row` in both resume workflow YAML assets.
 ````
 
-These ten edits were applied to scratch copies of the three files before this plan was written. Both YAML copies loaded with `yaml.safe_load`, the new step 2 line loaded as a string, `reply_format[0]` read `Purpose (omit when none)` and the goal-offer test's stale-path pattern matched none of the three copies.
+### E11. Both YAML assets, the `purpose_row` rule names the scaffold sentence for the packet itself
+Added 2026-11-14 after an agent-followed resume check. The rule named the scaffold sentence only when skipping an ancestor, so a phase child whose own Purpose is that sentence was not sent to its parent. The edit applies to `.skilled/commands/speckit/assets/speckit-resume-auto.yaml` (line 139) and `.skilled/commands/speckit/assets/speckit-resume-confirm.yaml`, in the `purpose_row` line, once in each file.
+
+Current text:
+```text
+When that Purpose is empty or still a bracketed template placeholder and the packet is a phase child,
+```
+Replacement:
+```text
+When that Purpose is empty, still a bracketed template placeholder or the scaffold sentence that begins Keep parent documentation lean, and the packet is a phase child,
+```
+
+These ten edits (E1 to E10) were applied to scratch copies of the three files before this plan was written. Both YAML copies loaded with `yaml.safe_load`, the new step 2 line loaded as a string, `reply_format[0]` read `Purpose (omit when none)` and the goal-offer test's stale-path pattern matched none of the three copies.
 <!-- /ANCHOR:phases -->
 
 ---

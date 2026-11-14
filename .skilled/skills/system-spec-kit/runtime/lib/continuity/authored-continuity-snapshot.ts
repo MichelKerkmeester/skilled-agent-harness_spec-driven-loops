@@ -142,6 +142,7 @@ function buildContinuityRecord(params: {
     blockers: currentRecord?.blockers ?? ladder.blockers.slice(0, 3),
     key_files: currentRecord?.key_files ?? ladder.keyFiles.slice(0, 5),
     ...(currentRecord?.session_dedup ? { session_dedup: currentRecord.session_dedup } : {}),
+    ...(currentRecord?.packet_purpose ? { packet_purpose: currentRecord.packet_purpose } : {}),
     completion_pct: currentRecord?.completion_pct ?? 0,
     open_questions: currentRecord?.open_questions ?? [],
     answered_questions: currentRecord?.answered_questions ?? [],
@@ -211,12 +212,19 @@ export function refreshAuthoredContinuitySnapshot(
   }
 
   const timestamp = formatIsoSeconds(options.now ?? new Date());
+  const implementationSummaryPath = path.join(folderPath, 'implementation-summary.md');
+  const currentSummary = fs.existsSync(implementationSummaryPath)
+    ? fs.readFileSync(implementationSummaryPath, 'utf8')
+    : null;
+  const currentContinuity = currentSummary === null ? null : readThinContinuityRecord(currentSummary);
+  const currentRecord = currentContinuity?.ok ? currentContinuity.record ?? null : null;
   const facets = buildContinuityFacets({
     summary: ladder.summary,
     recentAction: ladder.recentAction,
     nextSafeAction: ladder.nextSafeAction,
     blockers: ladder.blockers,
     keyFiles: ladder.keyFiles,
+    packetPurpose: currentRecord?.packet_purpose ?? null,
   });
   const recoveryContext = buildRecoveryContext({ ladder, facets, timestamp });
   const docsUpdated: string[] = [];
@@ -231,16 +239,13 @@ export function refreshAuthoredContinuitySnapshot(
     docsUpdated.push(path.relative(workspacePath, handoverPath).replace(/\\/gu, '/'));
   }
 
-  const implementationSummaryPath = path.join(folderPath, 'implementation-summary.md');
-  if (fs.existsSync(implementationSummaryPath)) {
-    const currentSummary = fs.readFileSync(implementationSummaryPath, 'utf8');
-    const currentContinuity = readThinContinuityRecord(currentSummary);
+  if (currentSummary !== null) {
     const writeResult = upsertThinContinuityInMarkdown(currentSummary, buildContinuityRecord({
       ladder,
       specFolder,
       timestamp,
       actor: options.actor ?? 'precompact-hook',
-      currentRecord: currentContinuity.ok ? currentContinuity.record : null,
+      currentRecord,
     }));
     if (writeResult.ok && writeResult.markdown && writeResult.markdown !== currentSummary) {
       fs.writeFileSync(implementationSummaryPath, writeResult.markdown, 'utf8');

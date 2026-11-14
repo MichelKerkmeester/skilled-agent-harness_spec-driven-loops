@@ -131,6 +131,13 @@ Leave it out of the note, because a value you write is replaced or removed.
 On Cursor and Devin the manual command that `prepare` prints starts a first launch, which exports no goal packet, so a receiver there does not get the goal.
 Every section must be non-empty.
 Goal states what the work is for.
+When `spec_folder` names a packet, open Goal with one line `Purpose (<file>): <text>` that copies word for word the `### Purpose` text of that packet's `spec.md`, where `<file>` is the repo-relative path you copied it from.
+When that text is empty or still a template placeholder, copy the `### Purpose` of the nearest parent folder whose `spec.md` has one, and write the line as `Purpose (from parent <file>): <text>`.
+When no such text exists and the packet holds a `goal.md`, copy its Objective and name that `goal.md` as `<file>`.
+Leave the line out when `spec_folder` is `none` or empty, or when none of these texts exists.
+After the line, say in your own words what this session works toward.
+The line is copied and never reworded, so it reads the same after every hop.
+A bound `goal.md` still binds the session goal, and the Purpose line says why that goal exists.
 Done records finished work.
 Remaining work lists the claimable tail.
 In-flight state preserves the active work the next session must not lose, including open files, half-applied edits, running processes and pending decisions.

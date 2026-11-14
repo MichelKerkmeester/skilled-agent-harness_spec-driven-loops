@@ -63,6 +63,8 @@ export interface ThinContinuityRecord {
   last_updated_by: string;
   recent_action: string;
   next_safe_action: string;
+  /** The packet's purpose line, a copy the save writer refreshes from the packet's spec docs. */
+  packet_purpose?: string;
   blockers: string[];
   key_files: string[];
   session_dedup?: ThinContinuitySessionDedup;
@@ -85,6 +87,7 @@ export interface ContinuityFacets {
 /** Raw resume-ladder fields {@link buildContinuityFacets} can derive facets from, as an alternative to a full record. */
 export interface ContinuityFacetInput {
   summary?: string | null;
+  packetPurpose?: string | null;
   recentAction?: string | null;
   nextSafeAction?: string | null;
   blockers?: string[] | null;
@@ -159,6 +162,9 @@ const SESSION_ID_RE = /^[A-Za-z0-9][A-Za-z0-9._:-]{2,63}$/;
 const FINGERPRINT_RE = /^sha256:[a-f0-9]{64}$/;
 const BARE_FINGERPRINT_RE = /^[a-f0-9]{64}$/;
 const SESSION_REF_KEYS = ['runtime', 'sessionId', 'workspace', 'savedAt', 'locatorKind', 'version'] as const;
+// One sentence of at most 300 characters plus, when it is inherited, the label that
+// names the parent folder it came from.
+const PACKET_PURPOSE_MAX_CHARS = 512;
 const SENTINEL_VALUES = new Set(['', 'none', 'n/a', 'na']);
 const COMPACT_FIELD_DISCOURSE_RE = /\b(?:because|so that|which means|the reason|details|summary)\b/i;
 const LIST_PREFIX_RE = /^\s*(?:[-*+]|\d+\.)\s+/;
@@ -294,9 +300,11 @@ export function buildContinuityFacets(input: ThinContinuityRecord | ContinuityFa
   const keyFiles = record.key_files ?? record.keyFiles ?? [];
   const openQuestions = record.open_questions ?? record.openQuestions ?? [];
   const answeredQuestions = record.answered_questions ?? record.answeredQuestions ?? [];
+  const packetPurpose = record.packet_purpose ?? record.packetPurpose ?? null;
 
   return {
-    goal: uniqueFacetItems([nextSafeAction], 2),
+    // Why the packet exists comes first, and the next step stays beside it.
+    goal: uniqueFacetItems([packetPurpose, nextSafeAction], 2),
     decision: uniqueFacetItems(answeredQuestions.map((questionId) => `Answered ${questionId}`), 3),
     progress: uniqueFacetItems([recentAction, record.summary ?? null, ...keyFiles.map((filePath) => `Touched ${filePath}`)], 4),
     gotcha: uniqueFacetItems([...blockers, ...openQuestions.map((questionId) => `Open ${questionId}`)], 4),
@@ -747,6 +755,19 @@ function normalizeCompactField(
   return candidate;
 }
 
+/**
+ * The packet's purpose line. It is a copy the next save rewrites from the packet's
+ * spec docs, so a value that is not one short line is dropped instead of failing the
+ * record: a bad copy must never cost a save or a resume the rest of the block.
+ */
+function normalizePacketPurpose(value: unknown): string | undefined {
+  if (typeof value !== 'string') {
+    return undefined;
+  }
+  const normalized = normalizeWhitespace(value);
+  return normalized.length > 0 && normalized.length <= PACKET_PURPOSE_MAX_CHARS ? normalized : undefined;
+}
+
 function normalizeCompactList(
   value: unknown,
   field: 'blockers' | 'key_files',
@@ -1055,6 +1076,9 @@ function buildOrderedRecord(record: ThinContinuityRecord, compactOptionalFields 
     next_safe_action: record.next_safe_action,
   };
 
+  if (record.packet_purpose) {
+    ordered.packet_purpose = record.packet_purpose;
+  }
   if (!compactOptionalFields || record.blockers.length > 0) {
     ordered.blockers = record.blockers;
   }
@@ -1108,14 +1132,16 @@ function serializeEnvelope(record: ThinContinuityRecord, compactOptionalFields =
 }
 
 function compactForBudget(record: ThinContinuityRecord): ThinContinuityRecord {
-  // The history pointer goes first: the next full-auto save can mint it again,
-  // while the packet brief still needs its status fields to stay readable.
+  // The history pointer and the purpose copy go first: the next full-auto save can
+  // mint or copy them again, while the packet brief still needs its status fields to
+  // stay readable.
   const compacted: ThinContinuityRecord = {
     ...record,
     blockers: record.blockers.slice(-3),
     key_files: record.key_files.slice(-3),
   };
   delete compacted.session_ref;
+  delete compacted.packet_purpose;
   return compacted;
 }
 
@@ -1199,6 +1225,7 @@ export function validateThinContinuityRecord(
   const lastUpdatedBy = normalizeActor(input.last_updated_by, options, errors);
   const recentAction = normalizeCompactField(input.recent_action, 'recent_action', options, errors);
   const nextSafeAction = normalizeCompactField(input.next_safe_action, 'next_safe_action', options, errors);
+  const packetPurpose = normalizePacketPurpose(input.packet_purpose);
   const blockers = normalizeCompactList(input.blockers, 'blockers', errors);
   const keyFiles = normalizeCompactList(input.key_files, 'key_files', errors);
   const openQuestions = normalizeQuestionSet(input.open_questions, 'open_questions', errors);
@@ -1222,6 +1249,7 @@ export function validateThinContinuityRecord(
     last_updated_by: lastUpdatedBy,
     recent_action: recentAction,
     next_safe_action: nextSafeAction,
+    ...(packetPurpose ? { packet_purpose: packetPurpose } : {}),
     blockers,
     key_files: keyFiles,
     ...(sessionDedup ? { session_dedup: sessionDedup } : {}),

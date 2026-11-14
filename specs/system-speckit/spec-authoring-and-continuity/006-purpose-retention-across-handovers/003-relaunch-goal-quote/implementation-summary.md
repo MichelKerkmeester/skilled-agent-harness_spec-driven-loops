@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Nothing is built yet. This phase is planned: the relaunch note's Goal will open with a Purpose line copied from the bound packet, asked for by the handoff command and the session-relaunch nudge."
+description: "Built and gated: the relaunch note's Goal is now asked to open with a Purpose line copied from the bound packet, through the handoff command and the session-relaunch nudge."
 trigger_phrases:
   - "relaunch goal quote implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,19 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/003-relaunch-goal-quote"
-    last_updated_at: "2026-11-13T21:41:52Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-11-13T23:44:14Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Built 2026-11-14 by a DeepSeek Harness worker and gated, all 15 tasks ticked"
+    next_safe_action: "None for the build. A live /speckit:handoff or relaunch would show the Goal line in a real note"
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/commands/speckit/handoff.md"
+      - ".skilled/hooks/session-relaunch/lib/nudge.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-003-relaunch-goal-quote"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 003-relaunch-goal-quote |
-| **Completed** | Not yet. Planned 2026-11-13 |
+| **Completed** | 2026-11-14 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -47,17 +49,19 @@ _memory:
 ## What Was Built
 <!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-Nothing is built yet. This phase holds a plan only, and no file outside this folder has changed.
+A session that writes a relaunch note for a bound packet is now told to open the note's Goal with one line copied from the packet's `### Purpose`, so the reason for the work reads the same after every hop. Nothing renders the line, so the guidance is the whole change.
 
 ### Phase 3: relaunch-goal-quote
 
-When built, a session that writes a relaunch note for a bound packet will open the note's Goal with one line copied from the packet's `### Purpose`, so the reason for the work reads the same after every hop. `plan.md` section 4 holds the six literal edits.
+`handoff.md` gains seven lines of rule: the line reads `Purpose (<file>): <text>`. When the packet has no Purpose it falls back to the nearest parent's, labelled `from parent <file>`, then to the `goal.md` Objective. It is left out when none exists. The nudge that automatic hops use carries the same guidance as one `GOAL_GUIDANCE` line. The first test in `nudge.test.cjs` checks it for a bound and an unbound packet.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| None yet | Not started | The planned files are listed in `spec.md` section 3 |
+| `.skilled/commands/speckit/handoff.md` | Modified (+7 -0) | Seven Purpose rule lines after the Goal rule |
+| `.skilled/hooks/session-relaunch/lib/nudge.cjs` | Modified (+10 -0) | `GOAL_GUIDANCE` constant and its place in the handoff text |
+| `.skilled/hooks/session-relaunch/tests/nudge.test.cjs` | Modified (+7 -0) | Two checks in the first nudge test |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -66,7 +70,7 @@ When built, a session that writes a relaunch note for a bound packet will open t
 ## How It Was Delivered
 <!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-Not delivered. The planning session ran the baselines in `plan.md` section 5 and recorded their numbers there. It changed no code or command file.
+On 2026-11-14 one DeepSeek Harness worker (`dsh --profile headless`, LLM Gateway `deepseek-v4.1-flash-1017` at max) applied the plan's literal edits in worktree 371. It exited 0 with a `completed` final event and ran no builds or tests. Its handback was a claim, so the orchestrating session checked the files itself. It found the replacement text present in 6 of 6 edits. It built the runtime and the cli (both exit 0) and reran the gates. Nothing is committed.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -87,9 +91,17 @@ Not delivered. The planning session ran the baselines in `plan.md` section 5 and
 ## Verification
 <!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
-| Check | Result |
-|-------|--------|
-| Post-change nudge tests, full suite and mirror checks | Not run. Nothing is built yet |
+Before is `gates-371-baseline.txt`, taken before any edit. After is `gates-371-final.txt`, taken after all five builds.
+
+| Check | Before | After |
+|-------|--------|-------|
+| Nudge tests | `ℹ tests 89`, `ℹ pass 89`, `ℹ fail 0` | `ℹ tests 89`, `ℹ pass 89`, `ℹ fail 0` |
+| Session-relaunch suite | `ℹ tests 1014`, `ℹ pass 1014`, `ℹ fail 0` | `ℹ tests 1014`, `ℹ pass 1014`, `ℹ fail 0` |
+| Command tree parity | PASS 256 | PASS 256 |
+| Codex, pi and dsh prompt syncs | PASS 45 each | PASS 45 each |
+| Nudge lines that say what Goal holds (Measured Behavior command) | 0 | 1 |
+| Files changed outside `specs/` | none | exactly the three above, 24 insertions |
+| Live `/speckit:handoff` or relaunch, to see the Goal line in a real note | not run | Not run |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -99,6 +111,7 @@ Not delivered. The planning session ran the baselines in `plan.md` section 5 and
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
 1. **The line is model-followed.** A session can skip or reword it. The named source file lets a reader check the copy, and a hook check stays open in `spec.md` section 7.
+2. **No live handoff or relaunch was run.** The Goal line has been checked in the guidance text and the nudge tests, not in a real relaunch note.
 <!-- /ANCHOR:limitations -->
 
 ---

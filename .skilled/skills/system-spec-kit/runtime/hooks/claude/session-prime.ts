@@ -6,6 +6,7 @@
 // based on the session source (compact, startup, resume, clear).
 
 import { createRequire } from 'node:module';
+import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   parseHookStdin, hookLog, formatHookOutput, truncateToTokenBudget,
@@ -34,6 +35,7 @@ import {
 } from '../lib/history/lookup-offer.js';
 import { notifyDirectiveLifecycleBoundary } from './directive-lifecycle-boundary.js';
 import { isMainModule } from '../../lib/esm-entry.js';
+import { formatPacketPurpose, resolvePacketPurpose } from '../../lib/spec/packet-purpose.js';
 import { SHORT_HOST_STDIN_TIMEOUT_MS } from '../shared-stdin.js';
 
 const require = createRequire(import.meta.url);
@@ -216,6 +218,22 @@ async function handleCompact(sessionId: string): Promise<OutputSection[]> {
   return sections;
 }
 
+/**
+ * The last active packet's purpose, as the section that leads a compaction
+ * recovery. It goes first because the budget cut drops trailing sections, and
+ * why the work exists outlasts the transcript detail after it. A missing or
+ * unreadable packet yields no section, never a failed recovery.
+ */
+export function buildPacketPurposeSection(
+  lastSpecFolder: string | null | undefined,
+  projectRoot: string = process.cwd(),
+): OutputSection | null {
+  if (!lastSpecFolder) return null;
+  const purpose = resolvePacketPurpose(resolve(projectRoot, lastSpecFolder));
+  if (!purpose) return null;
+  return { title: 'Packet Purpose', content: formatPacketPurpose(purpose, projectRoot) };
+}
+
 function readCompactPrimeIdentity(sessionId: string): { cachedAt: string; opaqueId?: string | null } | null {
   const pendingCompactPrime = readCompactPrime(sessionId);
   if (!pendingCompactPrime) {
@@ -365,11 +383,15 @@ export async function runSessionStartHook(
   let compactIdentity: { cachedAt: string; opaqueId?: string | null } | null = null;
 
   switch (source) {
-    case 'compact':
+    case 'compact': {
       compactIdentity = readCompactPrimeIdentity(sessionId);
+      const stateResult = loadState(sessionId);
+      const purposeSection = buildPacketPurposeSection(stateResult.ok ? stateResult.state.lastSpecFolder : null);
       sections = await handleCompact(sessionId);
+      if (purposeSection) sections.unshift(purposeSection);
       budget = COMPACTION_TOKEN_BUDGET;
       break;
+    }
     case 'startup':
       sections = handleStartup();
       budget = SESSION_PRIME_TOKEN_BUDGET;

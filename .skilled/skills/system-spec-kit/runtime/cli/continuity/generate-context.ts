@@ -184,6 +184,9 @@ JSON Data Format (with preflight/postflight, session/git, and tool/exchange enri
     mints it from those inputs, the repository root and the save time. A payload
     session_ref is ignored, and an un-mintable input set omits it without failing
     the save.
+  - packet_purpose is writer-owned too: every continuity write copies the leaf's purpose
+    sentence from its spec.md, else the nearest phase parent's, else its goal.md Objective,
+    and leaves the field out when none is authored. A payload packet_purpose is ignored.
   - A payload value the validator rejects fails the save before any file is written.
   - Aimed at a phase parent, the save writes into the leaf holding the work: payload
     paths inside one child choose it, and a level with no such path follows the
