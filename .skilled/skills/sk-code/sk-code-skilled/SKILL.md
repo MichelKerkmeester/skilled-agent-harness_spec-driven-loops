@@ -179,7 +179,7 @@ A `sk-code-ci` row applies by path alone because that surface declares no detect
 A FRONTEND row applies only to a file that resolves to FRONTEND.
 The spec-folder row applies only inside this hub's own repository.
 Applies to lists path globs and extensions. A row with several values matches on any of them.
-The MCP server checklist, `assets/checklists/mcp-server-authoring.md`, has no path to declare, so load it by judgment when your target is MCP server source.
+The MCP server checklist, `assets/checklists/mcp-server-authoring.md`, has no path to declare, so no row below names it. Load it when the target is MCP server source: a file that defines an MCP server, registers its tools or sets how it starts. The hub `ROUTER.md` §4 states this rule once.
 
 | Owner | Applies to | Checklist |
 | --- | --- | --- |

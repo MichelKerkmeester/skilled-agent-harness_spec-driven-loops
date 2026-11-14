@@ -47,7 +47,6 @@ skilled_loop_real_path() {
   directory=$(CDPATH= cd -P "$directory" 2>/dev/null && pwd -P) || return 1
   printf '%s/%s\n' "$directory" "${entry##*/}"
 }
-
 # An unresolved or misplaced shim cannot let the caller's directory establish trust.
 if [ -n "${BASH_VERSION:-}" ]; then
   skilled_loop_source_file=${BASH_SOURCE[0]}

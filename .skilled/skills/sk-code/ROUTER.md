@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.20.0
+version: 2.3.21.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -75,6 +75,8 @@ Multi-symptom prompts like `debug the broken jsonc descriptor` should load both 
 ### Surface-specific intent notes
 
 - **SKILLED** intent scoring favors language standards, hooks, config, scripts, advisor/tests, metadata, and alignment verification.
+- **`sk-code-ci`** is bundled from request vocabulary alone. Its one intent, `CI_WORKFLOW`, carries weight 4 and loads the four rule references in the CI Workflow Map of §4.
+- **`sk-code-frontend`** is bundled from request vocabulary or from the file markers of its `FRONTEND` block. Its eleven intents, `FRONTEND_WEB` through `FIGMA_TO_CODE`, carry weight 4 and load the rows in the Frontend Map of §4.
 - Unsupported surfaces stay UNKNOWN even if intent scoring is strong.
 
 ---
@@ -83,8 +85,10 @@ Multi-symptom prompts like `debug the broken jsonc descriptor` should load both 
 
 | Tier | When | Resources |
 | --- | --- | --- |
-| ALWAYS | Every invocation | The §8 `DEFAULT_RESOURCE` preamble only: `shared/references/stack-detection.md`, `shared/references/phase-detection.md` and `shared/references/universal/code-quality-standards.md`. The style guide `sk-code-quality/references/code-style-guide.md` loads with CODE_QUALITY, and the shared doctrine loads with its intent: `workflow-debug.md` with DEBUGGING and `workflow-verify.md` with VERIFICATION |
+| ALWAYS | Every invocation | The §8 `DEFAULT_RESOURCE` preamble only: `shared/references/stack-detection.md`, `shared/references/phase-detection.md` and `shared/references/universal/code-quality-standards.md`. The style guide `sk-code-quality/references/code-style-guide.md` loads with CODE_QUALITY, and the shared doctrine loads with its intent: `workflow-implement.md` with IMPLEMENTATION, `workflow-debug.md` with DEBUGGING and `workflow-verify.md` with VERIFICATION |
 | SURFACE | After SKILLED detection | Surface-specific resources (`sk-code-skilled/references/shared/*`) |
+| SURFACE | When the hub bundles `sk-code-ci` | The four rule references under `sk-code-ci/references/`, as the CI Workflow Map in §4 lists |
+| SURFACE | When the hub bundles `sk-code-frontend` | `sk-code-frontend/references/frontend-practice.md` plus the topic references the matched frontend intent maps, as the Frontend Map in §4 lists |
 | INTENT | After intent classification | Implementation, debugging, verification, testing, etc. matching the top-1 intent (and top-2 when ambiguous) |
 | LANGUAGE | SKILLED only | Split JavaScript, TypeScript, Python, Shell, Rust, and Config standards from the matching `sk-code-skilled/references/<lang>/` resources |
 | ON_DEMAND | Explicit deep-dive keywords | Extended checklists and niche references (e.g. `sk-code-skilled/references/rust/quick-reference/overview-and-boundary-template.md` for boundary templates) |
@@ -97,42 +101,51 @@ SKILLED loads from `sk-code-skilled/references/` and `sk-code-skilled/assets/`.
 
 ### Implementation shared tier
 
-IMPLEMENTATION loads the shared organization and naming baseline:
+IMPLEMENTATION loads the shared build doctrine and the organization and naming baseline:
 
+- `shared/references/workflow-implement.md`
 - `sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md`
+- `sk-code-skilled/references/shared/universal-patterns/organization-security-and-examples.md`
 - `sk-code-skilled/references/shared/code-organization/overview-and-module-organization.md`
+- `sk-code-skilled/references/shared/code-organization/imports-and-exports.md`
+- `sk-code-skilled/references/shared/code-organization/directory-and-test-conventions.md`
+
+It also maps the four authoring checklists, which open only as the authoring checklist gating below states.
 
 ### Intent overlay
 
 | Intent | Resources |
 | --- | --- |
 | CODE_QUALITY | SKILLED only: `sk-code-skilled/assets/checklists/universal-checklist.md` plus the language-matching checklist, both when SKILLED is a resolved surface. A foreign surface loads the floor in `code-quality-standards.md` and its own declared rows |
-| VERIFICATION | `sk-code-skilled/references/shared/alignment-verification-automation.md`, `sk-code-skilled/assets/scripts/verify_alignment_drift.py` |
+| DEBUGGING | `shared/references/workflow-debug.md` |
+| VERIFICATION | `sk-code-skilled/references/shared/alignment-verification-automation.md`, `shared/references/workflow-verify.md`, `sk-code-skilled/assets/scripts/README.md`, which indexes the guard scripts |
 | HOOKS | `sk-code-skilled/references/shared/hooks.md` |
 | CONFIG | `sk-code-skilled/references/config/*` |
-| LANGUAGE_STANDARDS | Detected language folder's `quick-reference.md`, `style-guide.md`, `quality-standards.md` |
+| LANGUAGE_STANDARDS | The detected language's `style-guide`, `quality-standards` and `quick-reference` entries, each one file or one folder of topic parts, as the language overlay lists |
 
 ### Language overlay
 
 | Language | Resources |
 | --- | --- |
-| JAVASCRIPT | `sk-code-skilled/references/javascript/{style_guide,quality_standards,quick_reference}.md`, `sk-code-skilled/assets/checklists/javascript-checklist.md` |
-| TYPESCRIPT | `sk-code-skilled/references/typescript/{style_guide,quality_standards,quick_reference}.md`, `sk-code-skilled/assets/checklists/typescript-checklist.md` |
-| PYTHON | `sk-code-skilled/references/python/{style_guide,quality_standards,quick_reference}.md`, `sk-code-skilled/assets/checklists/python-checklist.md` |
-| SHELL | `sk-code-skilled/references/shell/{style_guide,quality_standards,quick_reference}.md`, `sk-code-skilled/assets/checklists/shell-checklist.md` |
-| RUST | `sk-code-skilled/references/rust/{style_guide,quality_standards,quick_reference}/` (each split into topic parts), `sk-code-skilled/assets/checklists/rust-checklist/` |
-| CONFIG | `sk-code-skilled/references/config/{style_guide,quality_standards,quick_reference}.md`, `sk-code-skilled/assets/checklists/config-checklist.md` |
+| JAVASCRIPT | `sk-code-skilled/references/javascript/{style-guide,quick-reference}.md`, `sk-code-skilled/references/javascript/quality-standards/` (two topic parts) |
+| TYPESCRIPT | `sk-code-skilled/references/typescript/{style-guide,quality-standards,quick-reference}/` (each split into topic parts) |
+| PYTHON | `sk-code-skilled/references/python/{style-guide,quality-standards,quick-reference}.md` |
+| SHELL | `sk-code-skilled/references/shell/{style-guide,quality-standards,quick-reference}/` (each split into topic parts) |
+| RUST | `sk-code-skilled/references/rust/{style-guide,quality-standards,quick-reference}/` (each split into topic parts) |
+| CONFIG | `sk-code-skilled/references/config/{style-guide,quality-standards,quick-reference}.md`, `sk-code-skilled/assets/checklists/config-checklist.md` |
+
+The JavaScript, TypeScript, Python, Shell and Rust checklists under `sk-code-skilled/assets/checklists/` load with CODE_QUALITY, never with the language intent.
 
 ### Authoring checklist gating
 
-When SKILLED intent is `authoring-new-X`, additionally load the matching authoring checklist:
+`RESOURCE_MAP` maps the four authoring checklists under IMPLEMENTATION, and route-time loading defers every `assets/` entry (§8). Open one only when the target matches its selector. This is the one statement of the rule. `sk-code-skilled/SKILL.md` and `sk-code-quality/SKILL.md` repeat the MCP server selector in the same words.
 
-| Authoring target | Checklist |
+| Selector | Checklist |
 | --- | --- |
-| New skill | `sk-code-skilled/assets/checklists/skill-authoring.md` |
-| New agent | `sk-code-skilled/assets/checklists/agent-authoring.md` |
-| New command | `sk-code-skilled/assets/checklists/command-authoring.md` |
-| New MCP server | `sk-code-skilled/assets/checklists/mcp-server-authoring.md` |
+| Target under `.skilled/skills/` | `sk-code-skilled/assets/checklists/skill-authoring.md` |
+| Target under `.skilled/agents/` | `sk-code-skilled/assets/checklists/agent-authoring.md` |
+| Target under `.skilled/commands/` | `sk-code-skilled/assets/checklists/command-authoring.md` |
+| Target is MCP server source: a file that defines an MCP server, registers its tools or sets how it starts | `sk-code-skilled/assets/checklists/mcp-server-authoring.md` |
 | Spec folder write | Now in system-spec-kit: `system-spec-kit/references/workflows/spec-folder-authoring-checklist.md` + `system-spec-kit/references/workflows/spec-folder-write-recipe.md` |
 
 ### CI Workflow Map
@@ -176,6 +189,8 @@ The map is the packet's own `RESOURCE_MAP` for the web, visual and Figma-to-code
 | Surface | Required verification evidence |
 | --- | --- |
 | SKILLED | `python3 .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py --root <changed-scope>`; plus targeted language/project tests such as vitest, pytest, shellcheck, JSON validation, or spec validation for changed spec folders |
+| `sk-code-ci` | The changed workflow checked against each rule in `sk-code-ci/references/ci-workflow-standards.md`, which the quality runner names for `.github/workflows/**`, plus a run of the changed workflow or the reason it could not run |
+| `sk-code-frontend` | The changed file checked against `sk-code-frontend/references/frontend-practice.md`, which the quality runner names for stylesheet, markup and component files, plus the page rendered in a browser. A Figma comparison records the five passes in `sk-code-frontend/references/figma-to-code.md` |
 | UNKNOWN | User-selected verification command set before completion claim |
 
 ---
@@ -265,6 +280,7 @@ INTENT_SIGNALS = {
 
 RESOURCE_MAP = {
     "IMPLEMENTATION": [
+        "shared/references/workflow-implement.md",
         "sk-code-skilled/references/shared/universal-patterns/naming-and-commenting.md",
         "sk-code-skilled/references/shared/universal-patterns/organization-security-and-examples.md",
         "sk-code-skilled/references/shared/code-organization/overview-and-module-organization.md",
@@ -432,6 +448,7 @@ RESOURCE_MAP = {
 SHARED_CONTROL_RESOURCES = [
     "shared/references/universal/code-quality-standards.md",
     "shared/references/universal/rule-overrides.md",
+    "shared/references/workflow-implement.md",
     "shared/references/workflow-debug.md",
     "shared/references/workflow-verify.md",
 ]
@@ -442,7 +459,7 @@ SHARED_CONTROL_RESOURCES = [
 The router does NOT load the whole matched-intent union. After surface detection (§1, `stack-detection.md`), a route loads:
 
 - the always-loaded `DEFAULT_RESOURCE` preamble (stack/phase detection and the universal quality baseline), plus
-- the `shared/` entries the matched intents map (for example `code-quality-standards.md` under CODE_QUALITY, `workflow-debug.md` under DEBUGGING and `workflow-verify.md` under VERIFICATION), never the whole `shared/references/universal/` folder, plus
+- the `shared/` entries the matched intents map (for example `code-quality-standards.md` under CODE_QUALITY, `workflow-implement.md` under IMPLEMENTATION, `workflow-debug.md` under DEBUGGING and `workflow-verify.md` under VERIFICATION), never the whole `shared/references/universal/` folder, plus
 - only the **detected surface's** slice (`<surface>/references/*`) for the matched intents.
 
 - It does not load another surface's resources.
@@ -468,7 +485,6 @@ This is what stops a routine single-surface task from pulling the full cross-sur
 - [`stack-detection.md`](shared/references/stack-detection.md): surface detection (a declared specific surface, then the SKILLED fallback, then UNKNOWN) + SKILLED language sub-detection
 - [`phase-detection.md`](shared/references/phase-detection.md) — Phase 1/2/3 lifecycle and per-phase resource loading
 - `SKILL.md` §2 SMART ROUTING — names the routing authority split and the compiled front door
-- Barter equivalent: `barter/.skilled/skills/sk-code/shared/references/smart-routing.md` (different routing key — git-remote project — but same structural pattern)
 
 ---
 

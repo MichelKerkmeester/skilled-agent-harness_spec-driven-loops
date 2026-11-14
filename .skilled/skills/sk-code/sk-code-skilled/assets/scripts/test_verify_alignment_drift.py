@@ -130,6 +130,19 @@ class VerifyAlignmentDriftTests(unittest.TestCase):
             self.assertFalse(any(item.rule_id == "TS-MODULE-HEADER" for item in emitted_findings))
             self.assertTrue(any(item.rule_id == "TS-MODULE-HEADER" for item in authored_findings))
 
+    def test_single_line_reexport_skips_ts_module_header(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            entry = root / "entry.ts"
+            self.write_file(entry, "export { default } from '../hooks/guard.ts';\n")
+            module = root / "guard.ts"
+            self.write_file(module, "export { default } from './core.ts';\nexport const name = 'guard';\n")
+
+            entry_findings = self.module.check_file(str(entry))
+            module_findings = self.module.check_file(str(module))
+            self.assertFalse(any(item.rule_id == "TS-MODULE-HEADER" for item in entry_findings))
+            self.assertTrue(any(item.rule_id == "TS-MODULE-HEADER" for item in module_findings))
+
     def test_warning_only_exit_code_is_zero_by_default(self) -> None:
         # JS-USE-STRICT is intentionally kept as WARN (not promoted to ERROR).
         with tempfile.TemporaryDirectory() as temp_dir:

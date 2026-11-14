@@ -44,8 +44,8 @@ function callerIsHostRepository() {
 const skipNotes = [];
 
 // Each surface reaches the implement, debug and verify doctrine through a symlink, so the
-// symlinked copies stay unrouted. The hub ROUTER routes the canonical debug and verify paths
-// as shared controls. Exact paths, not a folder, keep any other unrouted doc under shared/
+// symlinked copies stay unrouted. The hub ROUTER routes the three canonical paths as shared
+// controls. Exact paths, not a folder, keep any other unrouted doc under shared/
 // reported.
 const NON_ROUTED_ALLOWLIST = new Set([
   'shared/references/workflow-implement.md',

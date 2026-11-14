@@ -224,7 +224,7 @@ This envelope is advisory and additive only: its `status` is fixed to `advisory`
 1. Read target files before editing them.
 2. Run the runner, `node scripts/quality-gate.cjs`, before any implementation-done or quality-pass claim, and load every checklist its `checklists[]` names. The universal floor is always one of them.
 3. Resolve surface identity through `../shared/references/stack-detection.md`; do not re-author surface detection in this packet.
-4. Load the SKILLED authoring checklist the verdict names before checking `.skilled/` work, and the MCP server checklist by judgment for MCP server source.
+4. Load the SKILLED authoring checklist the verdict names before checking `.skilled/` work. Load the MCP server checklist when the target is MCP server source: a file that defines an MCP server, registers its tools or sets how it starts.
 5. Let the runner call `scripts/check-comment-hygiene.sh` over every modified comment-capable file, or run the checker directly on one file outside a runner call.
 6. Fix P0 issues before handing to verification unless the only safe action is escalation.
 7. Keep fixes scoped to quality-gate failures in files already in scope.
