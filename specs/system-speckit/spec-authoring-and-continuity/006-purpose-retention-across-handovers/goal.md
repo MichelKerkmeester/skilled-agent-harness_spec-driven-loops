@@ -111,6 +111,7 @@ and findings belong here.
 | Remediation plan 006 to 011 | Planned | Reviewed and verified by Fable 5.2 high on 2026-11-14, fixes applied in worktree 374 |
 | Live continuity save | Done | Two continuity records under 002 and 006 hold a correct purpose line, per the 2026-11-14 review |
 | Live relaunch | Pending | The 2026-11-14 relaunch note opened its Goal with the Purpose line, not yet recorded with its session id |
+| Remediation plan 006-011 and goals | Done | committed 9c9dd544a9, recursive strict 12 of 12 PASSED |
 
 ### Deviations and findings
 

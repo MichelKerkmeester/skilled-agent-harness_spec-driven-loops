@@ -222,7 +222,7 @@
     ],
     "causal_summary": "The operator reported on 2026-11-13 that the core reason, problem, purpose or user need behind a piece of work gets lost after several in-session handovers (relaunch hops) or context compactions",
     "created_at": "2026-11-13T20:59:19Z",
-    "last_save_at": "2026-11-14T07:26:11.147Z",
+    "last_save_at": "2026-11-14T07:31:05.784Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -234,17 +234,17 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:f3349237720363badc1992f6e96f79b828e63247fa788527cfc98b18b4b0353a",
+    "source_fingerprint": "sha256:4f541a574f46e34e709fe8a764728db64d805f65425618a933b797e82633bba0",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "e36608ed9a6d2e63e6b74c4465b2d269677a6d0242d9e3a0997ac0ea1ed72f23",
       "plan.md": "4d2c2864ea17ecda1f7c0ba309d5417972de1bf3752db73d878ac865c10a5112",
       "tasks.md": "8a27e74d4d2e5fc872676c93a8aaf45e80ce01225d1b3ffd942cf96096e10ec6",
-      "decision-record.md": "399ddab622ede1f9ca5335f1467880916f70ca673984e2ed946169d043a417c6",
-      "implementation-summary.md": "1a6c6cbfdb2c8c64deedb6004d2a5b6a9cdfd28eaf1dee87931fec48fd694eb2",
+      "decision-record.md": "20ebcf715e1af893b083d8b34303e8035ec1d7d37292785d267fd7745878da80",
+      "implementation-summary.md": "ae5981998cae5097a771366597248fcf2e2688aa72d50405c5c5b982997b7488",
       "research/research.md": "8044ae31f45b4ceb56b793fd4a6f0fb33cdf34fe5ea890469767b156b0e5916d"
     },
     "last_active_child_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups",
-    "last_active_at": "2026-11-14T05:35:18.113Z"
+    "last_active_at": "2026-11-14T07:30:54.580Z"
   }
 }

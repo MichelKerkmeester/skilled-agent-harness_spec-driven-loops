@@ -8,28 +8,28 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups"
-    last_updated_at: "2026-11-14T05:35:18Z"
+    last_updated_at: "2026-11-14T07:30:54Z"
     last_updated_by: "generate-context"
-    recent_action: "Planned the three follow-up fixes and pushed the plan to origin/main"
-    next_safe_action: "Review the five parent purposes in plan.md steps E1 to E10, then build with /speckit:implement"
+    recent_action: "Committed remediation plan 006-011 and goals as 9c9dd544a9"
+    next_safe_action: "Build phase 006 in worktree 374 with a DeepSeek worker"
     packet_purpose: "Purpose: After this phase, no live phase parent carries the scaffold purpose sentence, the brief cached before a compaction names the active packet for folders under `specs/` and the resume workflow assets list the same brief rows as the presentation file."
     blockers: []
     key_files:
-      - ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts"
-      - ".skilled/commands/speckit/assets/speckit-resume-auto.yaml"
-      - ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml"
+      - "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/goal.md"
+      - "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md"
+      - "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/scratch/fable-review-2026-11-14/03-verifier-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-006-purpose-carry-follow-ups"
       parent_session_id: null
     session_ref:
       runtime: "claude"
-      sessionId: "af01c830-4ea5-4abe-b6ed-dd0c4d9b1b45"
-      workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
-      savedAt: "2026-11-14T05:35:18Z"
+      sessionId: "ef52f514-275d-4013-b7bd-ab365324057d"
+      workspace: "/Users/michelkerkmeester/worktrees/public/374-purpose-carry-follow-ups"
+      savedAt: "2026-11-14T07:30:54Z"
       locatorKind: "transcript_path"
       version: 1
-    completion_pct: 20
+    completion_pct: 45
     open_questions: []
     answered_questions: []
 ---

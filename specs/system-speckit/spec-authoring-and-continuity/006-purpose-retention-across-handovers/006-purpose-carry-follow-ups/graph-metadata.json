@@ -22,7 +22,7 @@
       "durable directive",
       "completion criteria",
       "goal binding",
-      "purpose carry follow ups implementation summary"
+      "006-purpose-carry-follow-ups operator decisions"
     ],
     "key_topics": [
       "purpose",
@@ -45,6 +45,7 @@
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       "scratch/phase-parents-without-purpose-text.txt",
       "scratch/check-brief-rows.py",
@@ -59,8 +60,7 @@
       "specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/spec.md",
       "specs/system-speckit/runtime-and-release/001-system-speckit-v4/004-decisions-and-notes-system/spec.md",
       "specs/system-speckit/runtime-and-release/001-system-speckit-v4/030-spec-kit-simplification-research/spec.md",
-      ".skilled/skills/system-spec-kit/runtime/tests/hook-precompact.vitest.ts",
-      ".skilled/commands/speckit/assets/speckit-resume-auto.yaml"
+      ".skilled/skills/system-spec-kit/runtime/tests/hook-precompact.vitest.ts"
     ],
     "entities": [
       {
@@ -85,6 +85,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -133,12 +139,6 @@
         "name": "session-prime.ts",
         "kind": "code",
         "path": "runtime/hooks/claude/session-prime.ts",
-        "source": "derived"
-      },
-      {
-        "name": "speckit-resume-auto.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The parent exists because the reason for a piece of work got lost across session handovers and compactions",
     "created_at": "2026-11-14T05:10:09Z",
-    "last_save_at": "2026-11-14T07:26:19.789Z",
+    "last_save_at": "2026-11-14T07:30:54.537Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,15 +218,17 @@
       "plan.md",
       "tasks.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:10eeacacda6e67a84b89084b15e9f201d2136e82ae44a71472b47ee06a1283c3",
+    "source_fingerprint": "sha256:feea8e4b748585fa35fc987728c6529255b17385ddbc0a76c850aff65a5203b9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "93599742d0779b0ab28cfa59ee88bc64accb286a309af0aae94bb9b6e4e7476d",
       "plan.md": "26a6f9f1ebd30cb9cb3715d102d0cc3783e523d019855078a559a5b0ed58ab0a",
       "tasks.md": "31b8bf6c50b4aabf96bc94423b1555284fa9dd45b03d0545b604061b23139024",
-      "implementation-summary.md": "4585c620358e7c0a01d48601400f257b56c3d1649a47097e9cec285e2475d041"
+      "decision-record.md": "0e66f4ba40a2c7920bbd924917caa3ad16a894cb260c5b68c78a065212fc76c4",
+      "implementation-summary.md": "921ea5bdc1f2a4c523c6b5854c0fad74878e116a68f254f8b0ba8726d3c9999d"
     },
     "last_active_at": null
   }
