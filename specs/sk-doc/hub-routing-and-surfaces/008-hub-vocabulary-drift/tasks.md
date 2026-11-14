@@ -50,7 +50,7 @@ contextType: "general"
 - [x] T005 Regenerate the sk-doc hub intent signals with `node S/generate-router-intent-signals.cjs --write` (`.skilled/skills/sk-doc/graph-metadata.json`). Verify: `node S/generate-router-intent-signals.cjs --check` prints `missing=0, orphans=0`.
 - [x] T006 Regenerate the system-deep-loop hub intent signals in the same `--write` run (`.skilled/skills/system-deep-loop/graph-metadata.json`). Verify: `node S/generate-router-intent-signals.cjs --check` prints `RESULT: PASSED`.
 - [x] T007 Refresh the manifest with `node .skilled/bin/compiled-route-manifest.cjs refresh --hub system-deep-loop --skill-root .skilled/skills/system-deep-loop` (`.skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json`). Verify: `node .skilled/bin/compiled-route-guard.cjs` reports system-deep-loop fresh and exits 0.
-- [x] T008 Confirm the same refresh wrote the archive copy (`specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-deep-loop/manifest.json`). Verify: `git status --short` lists the file as modified.
+- [x] T008 Copy the refreshed manifest over its archive copy, which the refresh itself does not write (`specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-deep-loop/manifest.json`). Verify: `git status --short` lists the file as modified.
 - [x] T009 Recompile the advisor graph with `skill_graph_compiler.py --export-json` (`A/scripts/skill-graph.json`). Verify: `node .skilled/commands/doctor/scripts/skill-graph-freshness.cjs --strict` reports no SIGNAL DRIFT and exits 0.
 - [x] T010 Recapture the divergence ledger with `capture-local-native-divergence-ledger.mjs --write` (`A/tests/parity/fixtures/local-native-approved-divergences.json`). Verify: `git diff` on the file shows one changed entry, `harder:4c8fe4462488`, with native top moved from sk-doc to system-deep-loop.
 <!-- /ANCHOR:phase-2 -->
@@ -69,7 +69,13 @@ contextType: "general"
 - [x] T016 Run the three freshness checks (`S/ci-skill-root-metadata.cjs`). Verify: `ci-skill-root-metadata.cjs`, `ci-leaf-manifest-freshness.cjs` and `ci-skill-derived-freshness.cjs` report 14 of 14 and exit 0.
 - [x] T017 Rerun the advisor suites of T002 (`A/tests/parity/scorer-eval-baseline-ratchet.vitest.ts`). Verify: 122 of 123 tests pass, and the one failure is the ratchet with `holdout_top1.correct: live=51 baseline=50. improvement detected`.
 - [x] T018 Confirm the packet is listed under its parent (`specs/sk-doc/hub-routing-and-surfaces/graph-metadata.json`). Verify: `rg -c '008-hub-vocabulary-drift' specs/sk-doc/hub-routing-and-surfaces/graph-metadata.json` prints 1 or more.
-- [ ] T019 Hand the committed branch to the 008-command-surfacing-build session, which merges it and recaptures the baseline once (`A/tests/parity/fixtures/scorer-eval-baseline.json`). Verify: on the merged branch `tests/parity/scorer-eval-baseline-ratchet.vitest.ts` passes and `node S/ci-hub-vocabulary-source.cjs` prints `drift=0`.
+- [x] T019 Superseded 2026-11-14: the operator chose to land from main directly. The baseline is recaptured by T023 (`A/scripts/routing-accuracy/scorer-eval-baseline.json`). Verify: on the merged branch `tests/parity/scorer-eval-baseline-ratchet.vitest.ts` passes and `node S/ci-hub-vocabulary-source.cjs` prints `drift=0`.
+- [x] T020 Merge the branch tip 6d96d8f1d2 into worktree branch `worktrees/387-hub-vocabulary-drift-landing` and rebuild the conflicted generated files with their writers. Verify: `node S/ci-hub-vocabulary-source.cjs` prints `drift=0`.
+- [x] T021 Swap "agent definition" for "new agent definition" and "confirm flag" for "reusable prompt shortcut" in both `.skilled/skills/sk-doc/ROUTER.md` and `.skilled/skills/sk-doc/hub-router.json`, then rerun `generate-router-intent-signals.cjs --write`, `skill_graph_compiler.py --export-json` and the sk-doc manifest refresh with its archive copy. Verify: drift=0, `missing=0, orphans=0`, every hub fresh.
+- [x] T022 Score the review's probe prompts and the command-routing corpus against main (`scratch/landing-probes.txt`). Verify: no probe top-1 differs from main, and `capture-command-routing-baseline.mjs` shows no metric different from main.
+- [x] T023 Recapture the scorer baseline (`A/scripts/routing-accuracy/scorer-eval-baseline.json`). Verify: `capture-scorer-eval-baseline.mjs` then reads holdout 51 against 51.
+- [x] T024 Correct the reason of ledger entry `harder:4c8fe4462488` (`A/tests/parity/fixtures/local-native-approved-divergences.json`). Verify: the reason names the single words stop and several.
+- [x] T025 Recapture the routing corpus pin against main's corpus (`specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json`): `skill_graph_compiler.py --validate-only`, `score-routing-corpus.py --out`, `capture-scorer-eval-baseline.mjs` and `capture-top3.mjs`, stdout only. Verify: every run step of `.github/workflows/routing-registry-drift.yml` exits 0 locally, 15 of 15.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -78,7 +84,7 @@ contextType: "general"
 ## Completion Criteria
 <!-- FILL: Keep the three completion lines and add the one artifact that proves the phase is done. GOOD: `--keep 3` leaves 3 archives and the suite passes. WEAK: Work is complete. -->
 
-- [ ] All tasks marked `[x]`
+- [x] All tasks marked `[x]`
 - [x] No `[B]` blocked tasks remaining
 - [x] Manual verification passed
 - [x] `node S/ci-hub-vocabulary-source.cjs` prints `checked=7 hub(s), drift=0` and `RESULT: PASSED`

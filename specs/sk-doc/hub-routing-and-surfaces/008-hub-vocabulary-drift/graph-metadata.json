@@ -32,7 +32,7 @@
       "commit"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -52,8 +52,8 @@
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json",
       ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
       "scratch/measured-before.txt",
-      ".skilled/bin/compiled-route-guard.cjs",
-      ".skilled/commands/doctor/scripts/parent-skill-check.cjs"
+      ".skilled/skills/sk-doc/hub-router.json",
+      ".skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json"
     ],
     "entities": [
       {
@@ -141,15 +141,9 @@
         "source": "derived"
       },
       {
-        "name": "compiled-route-guard.cjs",
-        "kind": "file",
-        "path": ".skilled/bin/compiled-route-guard.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "parent-skill-check.cjs",
-        "kind": "file",
-        "path": ".skilled/commands/doctor/scripts/parent-skill-check.cjs",
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/hub-router.json",
         "source": "derived"
       },
       {
@@ -171,12 +165,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement Commit",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -184,6 +172,12 @@
       },
       {
         "name": "Purpose The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -199,11 +193,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Commit 7af52ef940 (command surfacing, 2026-11-13) added nine phrases to the `vocabularyClasses` of two `hub-router.json` files and did not carry them to the hubs' root `ROUTER.md`",
     "created_at": "2026-11-13T21:40:26Z",
-    "last_save_at": "2026-11-13T23:32:01.947Z",
+    "last_save_at": "2026-11-14T16:46:43.264Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5ff139f48464d9a44883a4e6c9d693f31c36afb222c8631ffcf0062a9ffade3f",
+    "source_fingerprint": "sha256:8627aa348379c039ab86c648e187a87bc8132ff3ffa3e0ec334d522ba2a04123",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5517cfae56484be21414e2e82d0760c0a4206408bae6c74e4da49413e2264ee6",
+      "spec.md": "c8c2f97ef5b43cea73ad936d47f3c4a4313eab995e7823b26f8c6d9429664af3",
       "plan.md": "1f8ccd6139541fd89980b5d1c6aad37db5438376dad6a14dce25ee8e3904e90d",
-      "tasks.md": "36930684e14a841036ad7b2b5e1cb55b57b35703b904e3c15719af6890e5aced",
-      "implementation-summary.md": "53b452c16a3f8bbd65656d805d693f625c8eda95571c5756f34e2d7f62add538"
+      "tasks.md": "e9630433f44cd2c2f6e9fcab0461c2e22eb19be599505bf05644a35def4eb2da",
+      "implementation-summary.md": "b3cd418efa7fd32cc8bceabfe9916cac012cb7593e7f32877b4dc3098e258414"
     },
     "last_active_at": null
   }

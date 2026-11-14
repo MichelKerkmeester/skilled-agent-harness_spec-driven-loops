@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-13 |
 | **Branch** | `worktrees/372-hub-vocabulary-drift` |
 <!-- /ANCHOR:metadata -->
@@ -86,15 +86,20 @@ The Problem Statement quotes `drift=9` from the `checked=7 hub(s), drift=9` line
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/sk-doc/ROUTER.md` | Modify | Six keywords appended: `AGENT_CREATION` gets "agent definition" and "specialist persona file", `COMMAND_CREATION` gets "prompt shortcut" and "confirm flag", `DIFF` gets "before and after my rewrite", `GOAL_AUTHORING` gets "intent file". The pre-commit gate `doc-version-bump` raised the frontmatter version line from 2.4.6.0 to 2.4.7.0 during commit bc86b64c79 |
+| `.skilled/skills/sk-doc/ROUTER.md` | Modify | Six keywords appended: `AGENT_CREATION` gets "new agent definition" and "specialist persona file" ("agent definition" until the 2026-11-14 landing), `COMMAND_CREATION` gets "prompt shortcut" and "reusable prompt shortcut" ("confirm flag" until the 2026-11-14 landing), `DIFF` gets "before and after my rewrite", `GOAL_AUTHORING` gets "intent file". The pre-commit gate `doc-version-bump` raised the frontmatter version line from 2.4.6.0 to 2.4.7.0 during commit bc86b64c79 |
 | `.skilled/skills/system-deep-loop/ROUTER.md` | Modify | Three keywords appended: `RESEARCH` gets "find out everything", `REVIEW` gets "findings stop changing", `AI_COUNCIL` gets "several models". The pre-commit gate `doc-version-bump` raised the frontmatter version line from 1.6.8.0 to 1.6.9.0 during commit bc86b64c79 |
 | `.skilled/skills/sk-doc/graph-metadata.json` | Modify | Written by `generate-router-intent-signals.cjs --write` |
 | `.skilled/skills/system-deep-loop/graph-metadata.json` | Modify | Written by `generate-router-intent-signals.cjs --write` |
 | `.skilled/bin/lib/compiled-routing/013-live-activation/activation/system-deep-loop/manifest.json` | Modify | Refreshed by `compiled-route-manifest.cjs refresh --hub system-deep-loop` |
-| `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-deep-loop/manifest.json` | Modify | Copy of the manifest above, written by the same refresh |
+| `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/system-deep-loop/manifest.json` | Modify | Copy of the manifest above, copied by hand as `compiled-route-guard.cjs` instructs. The refresh writes only the runtime manifest |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json` | Modify | Recompiled by `skill_graph_compiler.py --export-json` |
 | `.skilled/skills/system-skill-advisor/runtime/tests/parity/fixtures/local-native-approved-divergences.json` | Modify | Recaptured by `capture-local-native-divergence-ledger.mjs --write` |
 | `specs/sk-doc/hub-routing-and-surfaces/graph-metadata.json` | Modify | `create.sh` added this packet to `children_ids` |
+| `.skilled/skills/sk-doc/hub-router.json` | Modify | Landing amendment: "agent definition" becomes "new agent definition" and "confirm flag" becomes "reusable prompt shortcut", the same swap as in `ROUTER.md` |
+| `.skilled/bin/lib/compiled-routing/013-live-activation/activation/sk-doc/manifest.json` | Modify | Landing amendment: refreshed by `compiled-route-manifest.cjs refresh --hub sk-doc` once `hub-router.json` changed |
+| `specs/sk-doc/z_archive/019-skill-routing-refactor/015-router-unification-program/013-live-activation/activation/sk-doc/manifest.json` | Modify | Landing amendment: copy of the sk-doc manifest above, copied by hand |
+| `.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/scorer-eval-baseline.json` | Modify | Landing amendment: recaptured with `capture-scorer-eval-baseline.mjs --write`, holdout 50 to 51 |
+| `specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs/baseline/routing-baseline.json` and its five evidence files | Modify | Landing amendment: the corpus pin recaptured against main's corpus, because the drift guard's corpus gate also failed on main with all three corpus hashes moved |
 | `.skilled/skills/system-spec-kit/runtime/data/trigger-index.json` | Modify | Rebuilt trigger index, written by `generate-trigger-index.mjs` |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/corpus-manifest.json` | Modify | Written by the same `generate-trigger-index.mjs` run |
 | `.skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/generation-diagnostics.json` | Modify | Written by the same `generate-trigger-index.mjs` run |
@@ -133,7 +138,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - **SC-001**: `ci-hub-vocabulary-source.cjs` prints `checked=7 hub(s), drift=0` and `RESULT: PASSED` where the Measured Behavior block shows `drift=9` and `RESULT: FAILED`.
 - **SC-002**: `generate-router-intent-signals.cjs --check`, `compiled-route-guard.cjs` and `skill-graph-freshness.cjs --strict` each exit 0 on this branch.
-- **SC-003**: The branch is merged by the 008-command-surfacing-build session, which recaptures `scorer-eval-baseline.json` once.
+- **SC-003**: The fix reaches main and `tests/parity/scorer-eval-baseline-ratchet.vitest.ts` passes there. Amended 2026-11-14: the operator chose to land it from main directly, not through the 008 session.
+- **SC-004**: No probe prompt and no command-routing metric differs from main except the recorded holdout gain. Added 2026-11-14 for the review's P1.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -155,7 +161,11 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 7. OPEN QUESTIONS
 <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-- None. The two questions this work raised were answered by the operator on 2026-11-13 and are recorded in `implementation-summary.md` under Key Decisions.
+- None. The questions this work raised were answered by the operator on 2026-11-13 and 2026-11-14 and are recorded in `implementation-summary.md` under Key Decisions.
+
+### Landing amendment, 2026-11-14
+
+The operator asked for the drift guard to be fixed on main without waiting for the 008 session, and chose "Land 372 + fix P1". The review of this branch found that "confirm flag" and "agent definition" became sk-doc advisor signals and pulled ordinary code prompts to sk-doc above 0.8. The landing therefore edits two Out of Scope files, `hub-router.json` of sk-doc and `scorer-eval-baseline.json`, and REQ-006 no longer holds for them. The swap and its measurements are in `implementation-summary.md`.
 <!-- /ANCHOR:questions -->
 
 ---
