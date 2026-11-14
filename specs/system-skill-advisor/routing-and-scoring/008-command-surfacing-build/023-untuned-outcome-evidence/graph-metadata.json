@@ -18,7 +18,8 @@
       "untuned outcome evidence plan",
       "untuned outcome evidence tasks",
       "untuned outcome evidence acceptance criteria",
-      "untuned outcome evidence goal"
+      "untuned outcome evidence goal",
+      "untuned outcome evidence implementation summary"
     ],
     "key_topics": [
       "untuned",
@@ -35,13 +36,22 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "implementation-summary.md",
+      "scratch/before.txt",
+      "scratch/outcome-evidence.txt",
+      "scratch/recapture.txt",
+      "scratch/after.txt",
+      "scratch/scope.txt",
+      "scratch/capture-before-fixture.json",
+      "scratch/summary-before.json",
+      "scratch/repro-before.txt",
       "scratch/planning/untuned-reach.before.txt"
     ],
     "entities": [
@@ -73,6 +83,60 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "outcome-evidence.txt",
+        "kind": "file",
+        "path": "scratch/outcome-evidence.txt",
+        "source": "derived"
+      },
+      {
+        "name": "recapture.txt",
+        "kind": "file",
+        "path": "scratch/recapture.txt",
+        "source": "derived"
+      },
+      {
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "scope.txt",
+        "kind": "file",
+        "path": "scratch/scope.txt",
+        "source": "derived"
+      },
+      {
+        "name": "capture-before-fixture.json",
+        "kind": "config",
+        "path": "scratch/capture-before-fixture.json",
+        "source": "derived"
+      },
+      {
+        "name": "summary-before.json",
+        "kind": "config",
+        "path": "scratch/summary-before.json",
+        "source": "derived"
+      },
+      {
+        "name": "repro-before.txt",
+        "kind": "file",
+        "path": "scratch/repro-before.txt",
         "source": "derived"
       },
       {
@@ -134,65 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Additive",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Every outcome number the packet quotes comes from rows its phrases were written against",
     "created_at": "2026-11-14T06:10:08Z",
-    "last_save_at": "2026-11-14T12:07:54.126Z",
+    "last_save_at": "2026-11-14T13:18:34.263Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,14 +210,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a9584e6ec8d75239ff079bb4bcb55f0c17ade84733800b38f17f3923b8f8315f",
+    "source_fingerprint": "sha256:bb14c12e8d5a8ccee87d491148903f7216eba76da7388302bf3d4322d0bda3dc",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "113332411b0a31ca56abf02010b4e98d6d0c856f6e60a7feb0c375290b1a6718",
+      "spec.md": "fabbe17707c41db70b3e982f8ac18142cbb81cd17034b16cb4fd3b5fbf8142f9",
       "plan.md": "181a8cc3703229a1315fcbfa299a082e37cf9b5ff39bde4500f61278943c39cb",
-      "tasks.md": "f85bd83cec3839ca376790af2a4157f59af7f1651270c9a78c1ab53c58dd3f0f"
+      "tasks.md": "0dee5de55864303e23797db8b7540d4d1887bb53d091614977f31101f2403170",
+      "implementation-summary.md": "74d447bf2aa0976ea52562a0875bc0f9bbbb12ad08ab461126dfe89eeaa8c7ec"
     },
     "last_active_at": null
   }

@@ -1,0 +1,10 @@
+## VX tests/command-routing-slice.vitest.ts
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+## VX tests/command-transcript-score.vitest.ts
+ Test Files  1 passed (1)
+      Tests  151 passed (151)
+## VALL
+exit 0
+ Test Files  184 passed (184)
+      Tests  1998 passed | 6 skipped (2004)

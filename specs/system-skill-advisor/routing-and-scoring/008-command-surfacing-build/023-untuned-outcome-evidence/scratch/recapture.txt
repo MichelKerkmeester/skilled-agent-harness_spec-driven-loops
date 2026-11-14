@@ -1,0 +1,16 @@
+## node $CAP --write
+exit 0
+## jq earlier fields, fixture before
+exit 0
+## jq earlier fields, CRB after
+exit 0
+## cmp earlier-before.json earlier-after.json
+exit 0
+## jq rows length, fixture before then CRB
+132
+132
+## VX tests/command-routing-slice.vitest.ts
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+## jq plain_stages.holdout.total, fit totals
+[44,24,24]

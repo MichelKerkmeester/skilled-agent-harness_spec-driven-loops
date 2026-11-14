@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "capturedAt": "2026-10-11",
-  "capturedAtSha": "3d558e78cf",
-  "corpusSha256": "sha256:8545e6d8afcd17b7b12d6ec2cea48cae668c0f8bc5e54d759d2ada12d236651c",
+  "capturedAtSha": "60968af043",
+  "corpusSha256": "sha256:7b0ba01943dac2a6a284764e3b31464b9a81f58acf726a2a32986df1b215b43a",
   "bridgeCounts": {
     "commandMetadata": 27,
     "doctorRoutes": 36,
@@ -1852,6 +1852,26 @@
         "total": 44
       }
     },
+    "plain_stages": {
+      "tune": {
+        "total": 45,
+        "own": 13,
+        "ownerLed": 23,
+        "routed": 21,
+        "withCommand": 15,
+        "attached": 15,
+        "neither": 9
+      },
+      "holdout": {
+        "total": 44,
+        "own": 1,
+        "ownerLed": 6,
+        "routed": 3,
+        "withCommand": 0,
+        "attached": 0,
+        "neither": 37
+      }
+    },
     "plain_by_family": {
       "create": {
         "tune": {
@@ -1935,6 +1955,34 @@
           "attached": 0,
           "combined": 0,
           "total": 7
+        }
+      }
+    },
+    "fit": {
+      "skillOnly": {
+        "carried": 0,
+        "total": 24
+      },
+      "decline": {
+        "carried": 8,
+        "total": 24,
+        "byKind": {
+          "refusal": {
+            "carried": 3,
+            "total": 6
+          },
+          "question": {
+            "carried": 3,
+            "total": 6
+          },
+          "small-edit": {
+            "carried": 2,
+            "total": 6
+          },
+          "app-problem": {
+            "carried": 0,
+            "total": 6
+          }
         }
       }
     },

@@ -1,0 +1,35 @@
+regime fixture
+reach tune 28 of 45
+reach holdout 1 of 44
+stage tune total=45 own=13 ownerLed=23 routed=21 withCommand=15 attached=15 neither=9
+stage holdout total=44 own=1 ownerLed=6 routed=3 withCommand=0 attached=0 neither=37
+fit skill-only 0 of 24
+fit decline 8 of 24
+regime real
+reach tune 33 of 45
+reach holdout 4 of 44
+stage tune total=45 own=18 ownerLed=22 routed=21 withCommand=15 attached=15 neither=5
+stage holdout total=44 own=4 ownerLed=5 routed=2 withCommand=0 attached=0 neither=35
+fit skill-only 0 of 24
+fit decline 8 of 24
+followed claude pre 5 of 16 range 0.14 to 0.56 offered 0 of 0 notOffered 0 of 0 unknown 16
+followed claude post 8 of 16 range 0.28 to 0.72 offered 7 of 14 notOffered 1 of 2 unknown 0
+followed codex pre 0 of 16 range 0 to 0.19 offered 0 of 0 notOffered 0 of 0 unknown 16
+followed pi pre 7 of 16 range 0.23 to 0.67 offered 0 of 0 notOffered 0 of 0 unknown 16
+followed pi post 12 of 16 range 0.51 to 0.9 offered 10 of 14 notOffered 2 of 2 unknown 0
+followed devin pre 12 of 16 range 0.51 to 0.9 offered 0 of 0 notOffered 0 of 0 unknown 16
+followed devin post 16 of 16 range 0.81 to 1 offered 14 of 14 notOffered 2 of 2 unknown 0
+followed opencode pre 10 of 16 range 0.39 to 0.82 offered 0 of 0 notOffered 0 of 0 unknown 16
+followed opencode post 14 of 16 range 0.64 to 0.97 offered 13 of 14 notOffered 1 of 2 unknown 0
+followed dsh pre 12 of 16 range 0.51 to 0.9 offered 0 of 0 notOffered 0 of 0 unknown 16
+followed dsh post 13 of 15 range 0.62 to 0.96 offered 12 of 13 notOffered 1 of 2 unknown 0
+paired claude pre to post rows=16 gained=4 lost=1 bothFollowed=4 neitherFollowed=7
+paired pi pre to post rows=16 gained=6 lost=1 bothFollowed=6 neitherFollowed=3
+paired devin pre to post rows=16 gained=4 lost=0 bothFollowed=12 neitherFollowed=0
+paired opencode pre to post rows=16 gained=4 lost=0 bothFollowed=10 neitherFollowed=2
+paired dsh pre to post rows=15 gained=3 lost=2 bothFollowed=10 neitherFollowed=0
+limit: a loaded document is not a followed step, so a followed rate says a workflow opened and not that its steps were taken
+limit: the behaviour rows are tuned rows, the corpus the brief was built against
+limit: each row ran once, so the range around each rate is wide
+limit: the two arms differ in more than the brief, so a paired gain or loss is not the brief's effect alone
+limit: the offer on a stored run of a runtime other than Claude is the Claude hook's replay, recorded when the run was made, so offered and notOffered on those lines say what the Claude head carried

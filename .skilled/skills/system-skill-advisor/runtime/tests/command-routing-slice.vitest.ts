@@ -13,7 +13,10 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { beforeAll, describe, expect, it } from 'vitest';
-import { scoreCommandCorpus as captureCommandCorpus } from '../scripts/routing-accuracy/capture-command-routing-baseline.mjs';
+import {
+  assertFitRowsUnique as captureAssertFitRowsUnique,
+  scoreCommandCorpus as captureCommandCorpus,
+} from '../scripts/routing-accuracy/capture-command-routing-baseline.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROUTING = resolve(HERE, '../scripts/routing-accuracy');
@@ -59,6 +62,21 @@ interface CommandTally {
   readonly plain: { readonly tune: SplitTally; readonly holdout: SplitTally };
 }
 
+interface StageTally {
+  readonly total: number;
+  readonly own: number;
+  readonly ownerLed: number;
+  readonly routed: number;
+  readonly withCommand: number;
+  readonly attached: number;
+  readonly neither: number;
+}
+
+interface FitTally {
+  readonly carried: number;
+  readonly total: number;
+}
+
 interface CommandRow {
   readonly expected_command: string | null;
   readonly top: string | null;
@@ -80,10 +98,20 @@ interface CommandRoutingBaseline {
   readonly attachedMetrics: Readonly<Record<string, unknown>>;
 }
 
+interface PromptRow {
+  readonly id: string;
+  readonly row_type: string;
+  readonly prompt: string;
+}
+
 // The capture script is plain JavaScript with no declaration file of its own, so
 // the shape it returns is declared here and the import is cast to that shape
 // rather than left implicitly `any` at every call site.
 const scoreCommandCorpus = captureCommandCorpus as unknown as () => Promise<CommandRoutingBaseline>;
+
+// The duplicate guard reads whole corpus rows, so its input is declared apart
+// from the captured result rather than typed as a row of that result.
+const assertFitRowsUnique = captureAssertFitRowsUnique as unknown as (rows: readonly PromptRow[]) => void;
 
 function readJsonl<T>(path: string): T[] {
   return readFileSync(path, 'utf8').trim().split('\n').filter(Boolean).map((line) => JSON.parse(line) as T);
@@ -166,6 +194,75 @@ describe('command routing slice', () => {
       ),
     ];
     expect(published, `the baseline publishes a per-row outcome for ${published.length} holdout ids`).toEqual([]);
+  });
+
+  it('refuses a fit row that repeats another row', () => {
+    // A fit row shares the corpus with every other row, so a prompt that already
+    // exists would count one request twice. Case and whitespace do not make two
+    // prompts different, so a reflowed copy still names the row it repeats.
+    expect(() =>
+      assertFitRowsUnique([
+        { id: 'fit-skill-only-91', row_type: 'skill-only', prompt: 'Rename  the Helper function' },
+        { id: 'made-up-92', row_type: 'plain', prompt: 'rename the helper function' },
+      ]),
+    ).toThrow('fit row fit-skill-only-91 repeats row made-up-92');
+    expect(() =>
+      assertFitRowsUnique([
+        { id: 'fit-skill-only-91', row_type: 'skill-only', prompt: 'Rename  the Helper function' },
+        { id: 'made-up-92', row_type: 'plain', prompt: 'rename the other function' },
+      ]),
+    ).not.toThrow();
+  });
+
+  it('splits each plain row into one reach stage', () => {
+    // A plain row leaves the path to its command at one stage, so the stage
+    // counts have to partition the split and narrow toward the rows a command
+    // actually carried. Reading the same split's plain tally proves both views
+    // count the same rows rather than two different row sets.
+    const attached = live.attachedMetrics as {
+      readonly plain: Readonly<Record<'tune' | 'holdout', { readonly own: number; readonly attached: number }>>;
+      readonly plain_stages: Readonly<Record<'tune' | 'holdout', StageTally>>;
+    };
+    for (const split of ['tune', 'holdout'] as const) {
+      const stage = attached.plain_stages[split];
+      expect(stage.own + stage.ownerLed + stage.neither).toBe(stage.total);
+      expect(stage.attached).toBeLessThanOrEqual(stage.withCommand);
+      expect(stage.withCommand).toBeLessThanOrEqual(stage.routed);
+      expect(stage.routed).toBeLessThanOrEqual(stage.ownerLed);
+      expect(stage.own).toBe(attached.plain[split].own);
+      expect(stage.attached).toBe(attached.plain[split].attached);
+    }
+  });
+
+  it('counts the sealed fit rows and publishes none', () => {
+    // A fit row asks whether the head carries a command where none fits, so its
+    // counts are kept apart from every recall tally and its outcome is never
+    // published row by row: one corpus then answers both questions.
+    const attached = live.attachedMetrics as {
+      readonly fit: {
+        readonly skillOnly: FitTally;
+        readonly decline: FitTally & { readonly byKind: Readonly<Record<string, FitTally>> };
+      };
+      readonly attachedRows: Readonly<Record<string, string>>;
+      readonly typedRows: Readonly<Record<string, unknown>>;
+    };
+    const { skillOnly, decline } = attached.fit;
+    expect(skillOnly.total).toBe(24);
+    expect(decline.total).toBe(24);
+    expect(Object.keys(decline.byKind).sort()).toEqual(['app-problem', 'question', 'refusal', 'small-edit']);
+    for (const [kind, tally] of Object.entries(decline.byKind)) {
+      expect(tally.total, `decline kind ${kind} counts ${tally.total} rows`).toBe(6);
+    }
+    for (const tally of [skillOnly, decline, ...Object.values(decline.byKind)]) {
+      expect(tally.carried).toBeLessThanOrEqual(tally.total);
+    }
+    // A published fit row would expose the outcome the sealed split withholds.
+    const published = [
+      ...Object.keys(live.rows),
+      ...Object.keys(attached.attachedRows),
+      ...Object.keys(attached.typedRows),
+    ].filter((id) => id.startsWith('fit-'));
+    expect(published, `the baseline publishes a per-row outcome for ${published.length} fit ids`).toEqual([]);
   });
 
   it('matches the captured totals', () => {

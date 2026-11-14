@@ -58,13 +58,13 @@ Frozen choices. Changing one is an amendment.
 ## 3. COMPLETION CRITERIA
 <!-- FILL: Write one command-checkable criterion per line. GOOD: `--keep 3` leaves 3 archives in `logs/archive` and exits 0. WEAK: The work is done. -->
 
-- [ ] `env -u AI_SESSION_CHILD npx vitest run` in `.skilled/skills/system-skill-advisor/runtime` reports 0 failed.
-- [ ] `jq -c '.attachedMetrics | [.plain_stages.holdout.total, .fit.skillOnly.total, .fit.decline.total]'` over `command-routing-baseline.json` prints `[44,24,24]`.
-- [ ] `cmp scratch/earlier-before.json scratch/earlier-after.json` prints nothing and exits 0.
-- [ ] `git diff --numstat` of `command-prompts.jsonl` against the phase base prints `48` added and `0` removed.
-- [ ] `scratch/outcome-evidence.txt` holds 11 lines that start with `followed`, 5 that start with `paired` and 5 that start with `limit:`.
-- [ ] The parent goal log holds the rows `Sealed reach`, `Sealed fit`, `Followed range`, `Paired arms` and `Outcome target`.
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence --strict` prints `RESULT: PASSED` with the phase status Complete.
+- [x] `env -u AI_SESSION_CHILD npx vitest run` in `.skilled/skills/system-skill-advisor/runtime` reports 0 failed.
+- [x] `jq -c '.attachedMetrics | [.plain_stages.holdout.total, .fit.skillOnly.total, .fit.decline.total]'` over `command-routing-baseline.json` prints `[44,24,24]`.
+- [x] `cmp scratch/earlier-before.json scratch/earlier-after.json` prints nothing and exits 0.
+- [x] `git diff --numstat` of `command-prompts.jsonl` against the phase base prints `48` added and `0` removed.
+- [x] `scratch/outcome-evidence.txt` holds 11 lines that start with `followed`, 5 that start with `paired` and 5 that start with `limit:`.
+- [x] The parent goal log holds the rows `Sealed reach`, `Sealed fit`, `Followed range`, `Paired arms` and `Outcome target`.
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/023-untuned-outcome-evidence --strict` prints `RESULT: PASSED` with the phase status Complete.
 <!-- /ANCHOR:completion -->
 
 ---

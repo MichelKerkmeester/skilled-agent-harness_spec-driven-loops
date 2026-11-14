@@ -176,7 +176,7 @@ The Codex probe hands the body to the scorer the way T011 plans to, so its `path
 | 9, rows sv-09, sv-11 and sv-12 keep `expected_command` | The three rows name a full command inside a question, and phase 020 withholds a command there by design | Declined as a build task, waits on the operator. A relabel to no command moves the three rows into the false-offer tally (`capture-command-routing-baseline.mjs`, the `wantsSilence` branch), so the floor `0 of 35` in completion criterion 2 would read `0 of 38`. That criterion is the operator's. T017 states the three designed withholds in the README instead |
 | Carry, OpenCode plugin always fills `skillLabel` | The renderer's owner fallback runs only with no label | Declined. The probe prints the same head with and without the label, because the handler marks `needsMode` on hub ids only and a hub owns itself |
 | Carry, Claude hook `skillLabelFor` falls back to row 0 | The label goes to the diagnostic record, and the brief builder also labels row 0 | Declined. A wrong label needs a row 0 below the bars, and the scorer drops such rows before the handler (goal log row "Row-0 route lookup"). The probe counts 0 of 10 CLI rows below the bars |
-| Carry, timing-flaky plugin test | `elapsedMs < 200` on a 40 ms timeout | Declined, not shown: 20 of 20 runs passed. A fix that cannot be seen failing is out of scope |
+| Carry, timing-flaky plugin test | `elapsedMs < 200` on a 40 ms timeout | Fixed in T024 after T002 showed it: 2 of 20 runs failed under load. The test checks the delays the plugin scheduled, decision P032 |
 | Carry, row-0 route lookup | Probed by the coordinator | Not reachable, no task |
 | 2, 3, 8 | Handled by the coordinator in phase 022 and the goal log | Not planned here |
 
@@ -196,7 +196,7 @@ The Codex probe hands the body to the scorer the way T011 plans to, so its `path
 ### Out of Scope
 - A relabel of rows sv-09, sv-11 and sv-12 - it changes the denominator of a floor a completion criterion quotes. It waits on the operator.
 - A backfill of `offeredAs` onto stored run lines - the head a stored run saw cannot be replayed from today's code.
-- A fix for the two skill label fallbacks and the plugin timing test - none produced a wrong output in a probe.
+- A fix for the two skill label fallbacks - neither produced a wrong output in a probe. The plugin timing test is in scope through T024, decision P032.
 - A new behaviour run, the Codex-only arm included - it waits on the operator.
 - The release notes and the reference pages - phase 025.
 
@@ -214,6 +214,7 @@ The Codex probe hands the body to the scorer the way T011 plans to, so its `path
 | `RAD/score-command-transcripts.mjs` | Modify | The Codex body reader, the three shell-read edits, `offerOf` and one count |
 | `ADV/tests/command-transcript-score.vitest.ts` | Modify | One case per rule |
 | `RAD/README.md` | Modify | The new rules and the three designed withholds |
+| `.opencode/plugins/tests/system-skill-advisor.test.cjs` | Modify | The timing test checks the scheduled termination delays, the plugin itself is not edited |
 
 No new file, module, option or dependency. The two helpers this phase adds sit in files that already hold their only caller.
 <!-- /ANCHOR:scope -->

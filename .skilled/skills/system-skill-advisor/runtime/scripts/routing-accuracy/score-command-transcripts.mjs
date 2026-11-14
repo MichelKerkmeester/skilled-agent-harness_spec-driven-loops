@@ -38,7 +38,7 @@ const SCRIPT_NAME = 'score-command-transcripts.mjs';
 const EXIT_UNREADABLE = 2;
 const USAGE = [
   `usage: ${SCRIPT_NAME} --runtime <name> --locator <json> [--json]`,
-  `       ${SCRIPT_NAME} --summary <run-log> [<run-log>...] [--row-id <id>] [--json]`,
+  `       ${SCRIPT_NAME} --summary <run-log> [<run-log>...] [--row-id <id>] [--pair <from>,<to>] [--json]`,
   '',
 ].join('\n');
 
@@ -76,6 +76,7 @@ function parseArgs(argv) {
     locator: null,
     rowId: null,
     summaryLogs: null,
+    pair: null,
     json: false,
   };
 
@@ -100,6 +101,9 @@ function parseArgs(argv) {
       }
       if (logs.length === 0) throw new UsageError('--summary: at least one run log is required');
       options.summaryLogs = logs;
+    } else if (token === '--pair') {
+      index += 1;
+      options.pair = valueAfter(argv, index, '--pair');
     } else {
       throw new UsageError(`unknown option: ${token}`);
     }
@@ -116,8 +120,15 @@ function selectMode(options) {
     if (options.runtime !== null || options.locator !== null) {
       throw new UsageError('--summary cannot be combined with --runtime or --locator');
     }
+    // A pair compares two arms of one summary, so a pair that names one arm or none
+    // would report a comparison the call never made.
+    const arms = typeof options.pair === 'string' ? options.pair.split(',') : null;
+    if (arms !== null && (arms.length !== 2 || arms[0] === '' || arms[1] === '')) {
+      throw new UsageError('--pair needs two arm names, as <from>,<to>');
+    }
     return 'summary';
   }
+  if (options.pair !== null) throw new UsageError('--pair needs --summary');
   if (options.runtime === null) throw new UsageError('--runtime is required with --locator');
   if (options.locator === null) throw new UsageError('--locator is required with --runtime');
   if (options.rowId !== null) throw new UsageError('--row-id narrows --summary only');
@@ -1476,6 +1487,7 @@ async function scoreRun(line, labels, owners) {
 
   return {
     scored: true,
+    rowId,
     capped,
     startRow: isStartRow(label),
     started: start.started,
@@ -1568,6 +1580,14 @@ function newTally() {
     loops: 0,
     loopsWithoutInit: 0,
     workflow: { command: 0, skill: 0, asked: 0, askedActed: 0, otherMode: 0, improvised: 0, none: 0, noneActed: 0, noOwner: 0, unscoredOnly: 0 },
+    pairRows: new Map(),
+    // A followed rate hides whether the head named the command at all, so each owned
+    // run is counted again under the offer its own run line records.
+    followedByOffer: {
+      offered: { followed: 0, total: 0 },
+      notOffered: { followed: 0, total: 0 },
+      unknown: 0,
+    },
     byPolicy: Object.fromEntries(POLICY_KEYS.map((key) => [key, newPolicyTally()])),
   };
 }
@@ -1576,6 +1596,22 @@ function newTally() {
 // arm scored nothing at all.
 function rate(numerator, denominator) {
   return `${numerator} of ${denominator}`;
+}
+
+// Two counts alone cannot say how much of the rate is the arm's size, so each rate
+// carries the interval a 95 percent Wilson score puts around it. A rate whose arm
+// scored nothing has no interval to carry.
+export function wilsonRange(successes, total) {
+  if (total === 0) return null;
+  const z = 1.96;
+  const observed = successes / total;
+  const zSquared = z * z;
+  const denominator = 1 + zSquared / total;
+  const centre = (observed + zSquared / (2 * total)) / denominator;
+  const spread = (z * Math.sqrt((observed * (1 - observed)) / total
+    + zSquared / (4 * total * total))) / denominator;
+  const bound = (value) => Math.min(1, Math.max(0, Math.round(value * 100) / 100));
+  return { low: bound(centre - spread), high: bound(centre + spread) };
 }
 
 function tallyBlock(tally) {
@@ -1623,9 +1659,30 @@ function tallyBlock(tally) {
         tally.workflow.command + tally.workflow.skill + tally.workflow.asked,
         tally.workflow.command + tally.workflow.skill + tally.workflow.asked + tally.workflow.otherMode + tally.workflow.improvised + tally.workflow.none,
       ),
+      // The same followed counts are read again within each group the offer puts a run
+      // in, because a run the head never offered the command to cannot follow that offer.
+      followedOffered: rate(
+        tally.followedByOffer.offered.followed,
+        tally.followedByOffer.offered.total,
+      ),
+      followedNotOffered: rate(
+        tally.followedByOffer.notOffered.followed,
+        tally.followedByOffer.notOffered.total,
+      ),
+      offerUnknown: tally.followedByOffer.unknown,
       share: rate(
         tally.workflow.command + tally.workflow.skill,
         tally.workflow.command + tally.workflow.skill + tally.workflow.improvised,
+      ),
+      // The rate keeps its text and the interval sits beside it, so a reader can tell
+      // a clean arm from a large one without parsing the counts back out.
+      followedRange: wilsonRange(
+        tally.workflow.command + tally.workflow.skill + tally.workflow.asked,
+        tally.workflow.command + tally.workflow.skill + tally.workflow.asked + tally.workflow.otherMode + tally.workflow.improvised + tally.workflow.none,
+      ),
+      loadRange: wilsonRange(
+        tally.workflow.command + tally.workflow.skill,
+        tally.workflow.command + tally.workflow.skill + tally.workflow.asked + tally.workflow.otherMode + tally.workflow.improvised + tally.workflow.none,
       ),
     },
     byPolicy: Object.fromEntries(
@@ -1639,6 +1696,9 @@ function addScored(tally, result) {
   // The path is counted before the policy lookup returns, because a row with no
   // policy still loaded a workflow or improvised one.
   tally.workflow[result.workflowPath] += 1;
+  // Two arms are compared row by row, so each owned row keeps whether its run
+  // took a path the followed rate counts.
+  if (result.workflowPath !== 'noOwner') tally.pairRows.set(result.rowId, ['command', 'skill', 'asked'].includes(result.workflowPath));
   if (result.workflowPath === 'none' && result.acted) tally.workflow.noneActed += 1;
   // An ask row that ran steps on the task and then asked did more than the one step
   // the ask policy names, so it is counted apart from a row that only asked.
@@ -1660,6 +1720,21 @@ function addScored(tally, result) {
   // it down, so the seen offer and the refusal are counted apart from the head.
   if (result.offerSeen) tally.offerSeen += 1;
   if (result.commandState === 'declined') tally.offerDeclined += 1;
+  // A followed rate hides whether the head offered the command, so each owned run is
+  // counted again under the offer its own line records. A line written before that
+  // field existed has no answer, so it is counted apart rather than as no offer.
+  if (result.workflowPath !== 'noOwner') {
+    const followed = ['command', 'skill', 'asked'].includes(result.workflowPath);
+    if (result.offered) {
+      tally.followedByOffer.offered.total += 1;
+      if (followed) tally.followedByOffer.offered.followed += 1;
+    } else if (result.offerFieldAbsent) {
+      tally.followedByOffer.unknown += 1;
+    } else {
+      tally.followedByOffer.notOffered.total += 1;
+      if (followed) tally.followedByOffer.notOffered.followed += 1;
+    }
+  }
   if (result.startRow) {
     // A capped turn stopped before its start could be judged, so it is reported
     // apart from the rate rather than counted as a start the run did not make.
@@ -1718,7 +1793,7 @@ async function summarize(options) {
     addScored(tally, result);
   }
 
-  return project(summary);
+  return project(summary, options.pair);
 }
 
 // A runtime entry carries its per-arm blocks and how many of its runs scored
@@ -1729,7 +1804,7 @@ async function summarize(options) {
 // turns, so each block also says whether it fell short of the largest count in its
 // arm. The count is the run count rather than the scored count, because a turn that
 // could not be scored still took its place in the arm.
-function project(summary) {
+function project(summary, pair) {
   const projected = {};
   const largestRuns = {};
 
@@ -1746,6 +1821,29 @@ function project(summary) {
       if (arm === 'unscored') continue;
       block[arm] = { ...tallyBlock(tally), armIncomplete: tally.runs < largestRuns[arm] };
     }
+    // Two arms are compared row by row, so the pair counts only the rows both arms
+    // scored and says which of them moved into or out of a followed path. A runtime
+    // missing one of the named arms has no comparison to report.
+    const arms = typeof pair === 'string' ? pair.split(',') : null;
+    if (arms !== null) {
+      const from = entry[arms[0]];
+      const to = entry[arms[1]];
+      if (from?.pairRows instanceof Map && to?.pairRows instanceof Map) {
+        const shared = [...from.pairRows.keys()].filter((rowId) => to.pairRows.has(rowId));
+        if (shared.length > 0) {
+          const counts = { gained: 0, lost: 0, bothFollowed: 0, neitherFollowed: 0 };
+          for (const rowId of shared) {
+            const before = from.pairRows.get(rowId);
+            const after = to.pairRows.get(rowId);
+            if (before && after) counts.bothFollowed += 1;
+            else if (!before && !after) counts.neitherFollowed += 1;
+            else if (after) counts.gained += 1;
+            else counts.lost += 1;
+          }
+          block.paired = { from: arms[0], to: arms[1], rows: shared.length, ...counts };
+        }
+      }
+    }
     projected[runtime] = block;
   }
 
@@ -1761,7 +1859,7 @@ function writeSummary(summary, json) {
   for (const [runtime, entry] of Object.entries(summary)) {
     process.stdout.write(`${runtime}: ${entry.unscored} unscored\n`);
     for (const [arm, block] of Object.entries(entry)) {
-      if (arm === 'unscored') continue;
+      if (arm === 'unscored' || arm === 'paired') continue;
       process.stdout.write(
         `  ${arm}: ${block.scored} of ${block.runs} scored, start ${block.startRate},`
           + ` capped start rows ${block.cappedStartRows},`
@@ -1796,6 +1894,16 @@ function writeSummary(summary, json) {
             + ` ${policy.started} started, ${policy.wrote} wrote\n`,
         );
       }
+    }
+    // A pair compares the runtime's two arms, so its line prints once beside the
+    // runtime rather than under either arm.
+    if (entry.paired !== undefined) {
+      process.stdout.write(
+        `  paired ${entry.paired.from} to ${entry.paired.to}: ${entry.paired.rows} rows,`
+          + ` gained ${entry.paired.gained}, lost ${entry.paired.lost},`
+          + ` both followed ${entry.paired.bothFollowed},`
+          + ` neither followed ${entry.paired.neitherFollowed}\n`,
+      );
     }
   }
 }

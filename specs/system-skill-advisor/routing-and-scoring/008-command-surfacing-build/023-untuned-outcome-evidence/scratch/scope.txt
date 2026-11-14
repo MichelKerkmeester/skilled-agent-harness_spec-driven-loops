@@ -1,0 +1,13 @@
+## G diff --stat BASE -- . :!specs
+ .../runtime/scripts/routing-accuracy/README.md     |  12 +-
+ .../capture-command-routing-baseline.mjs           |  97 ++++++++
+ .../scripts/routing-accuracy/command-prompts.jsonl |  48 ++++
+ .../routing-accuracy/command-routing-baseline.json |  52 +++-
+ .../routing-accuracy/score-command-transcripts.mjs | 116 ++++++++-
+ .../runtime/tests/command-routing-slice.vitest.ts  |  99 +++++++-
+ .../tests/command-transcript-score.vitest.ts       | 269 ++++++++++++++++++++-
+ 7 files changed, 682 insertions(+), 11 deletions(-)
+## G diff --numstat BASE -- CPJ
+48	0	.skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-prompts.jsonl
+## comment id search over CAP and S
+## fit row id search over CRB and outcome-evidence

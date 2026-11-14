@@ -851,14 +851,17 @@ function loadableCodexSession(root: string): Record<string, string> {
 
 // The summary reads the log a runner leaves behind, so a case supplies the lines
 // that log would hold and reads back the block the arm was counted into.
-function summarize(runOf: (root: string) => readonly RunLogLine[]): unknown {
+function summarize(
+  runOf: (root: string) => readonly RunLogLine[],
+  extraArgs: readonly string[] = [],
+): unknown {
   const root = mkdtempSync(join(tmpdir(), 'command-summary-'));
   try {
     const logPath = join(root, 'run-log.jsonl');
     const lines = runOf(root).map((line) => JSON.stringify({ runtime: 'claude', ...line }));
     writeFileSync(logPath, `${lines.join('\n')}\n`);
 
-    const run = runScorer(['--summary', logPath, '--json']);
+    const run = runScorer(['--summary', logPath, ...extraArgs, '--json']);
     expect(run.status).toBe(0);
     return JSON.parse(String(run.stdout));
   } finally {
@@ -1171,6 +1174,49 @@ describe('run log summary', () => {
     });
   });
 
+  // An offer is a fact about the head the run saw, so the followed rate is read again
+  // within each group the offer puts a run in. A line written before that field
+  // existed has no answer, so it is counted apart rather than as a run the head
+  // offered nothing to.
+  it('splits the followed rate by the offer', () => {
+    const summary = summarize((root) => {
+      const locator = loadableSession(root, [
+        ...claudeToolTurn('claude-o1', 'Read', { file_path: SKILL_DOCUMENT }),
+        ...claudeToolTurn('claude-o2', 'Write', { file_path: 'out/agent.md', content: '# agent' }),
+      ]);
+      return [
+        { rowId: SUMMARY_ROW, arm: 'tune', exit: 0, locator, offeredCommand: '/create:agent' },
+        { rowId: 'cmd-doctor-ci-plain-tune-01', arm: 'tune', exit: 0, locator, offeredCommand: '/doctor:ci' },
+        { rowId: 'cmd-create-agent-typed-01', arm: 'tune', exit: 0, locator, offeredCommand: null },
+        { rowId: 'cmd-doctor-git-plain-tune-01', arm: 'tune', exit: 0, locator },
+      ];
+    });
+
+    const block = (summary as {
+      claude: {
+        tune: {
+          workflow: {
+            followedRate: string;
+            followedOffered: string;
+            followedNotOffered: string;
+            offerUnknown: number;
+          };
+        };
+      };
+    }).claude.tune.workflow;
+
+    expect(block.followedOffered).toBe('1 of 2');
+    expect(block.followedNotOffered).toBe('1 of 1');
+    expect(block.offerUnknown).toBe(1);
+
+    // The three groups cover every owned run the followed rate counts, so their
+    // denominators add up to its denominator and no run is left out of the split.
+    const denominators = [block.followedOffered, block.followedNotOffered]
+      .map((text) => Number(text.split(' of ')[1]));
+    expect(denominators.reduce((total, count) => total + count, 0) + block.offerUnknown)
+      .toBe(Number(block.followedRate.split(' of ')[1]));
+  });
+
   // A run whose log captured no session id names no transcript to read, so the
   // reader's own code is the reason the summary reports, never the exit code the
   // turn happened to end with.
@@ -1432,6 +1478,225 @@ describe('run log summary', () => {
     expect(summary).toMatchObject({
       claude: { tune: { workflow: { none: 1, noneActed: 1 } } },
     });
+  });
+
+  // A rate hides the arm it was counted over, so each workflow rate carries the
+  // interval its two counts support. The case reads the range against those counts
+  // so the interval and the printed rate cannot drift apart.
+  it('prints a range beside each workflow rate', () => {
+    const summary = summarize((root) => [
+      {
+        rowId: SUMMARY_ROW,
+        arm: 'tune',
+        exit: 0,
+        locator: loadableSession(root, [
+          ...claudeToolTurn('claude-r1', 'Read', { file_path: SKILL_DOCUMENT }),
+          ...claudeToolTurn('claude-r2', 'Write', { file_path: 'out/agent.md', content: '# agent' }),
+        ]),
+      },
+    ]);
+
+    const block = (summary as {
+      claude: {
+        tune: {
+          workflow: {
+            command: number;
+            skill: number;
+            asked: number;
+            otherMode: number;
+            improvised: number;
+            none: number;
+            followedRange: { low: number; high: number } | null;
+            loadRange: { low: number; high: number } | null;
+          };
+        };
+      };
+    }).claude.tune.workflow;
+    const owned = block.command + block.skill + block.asked + block.otherMode
+      + block.improvised + block.none;
+    expect(block.followedRange).toEqual(
+      scorer.wilsonRange(block.command + block.skill + block.asked, owned),
+    );
+    expect(block.loadRange).toEqual(
+      scorer.wilsonRange(block.command + block.skill, owned),
+    );
+  });
+
+  // A pair names two arms of one log, so the option has to survive the parser even
+  // before any count reads it. It is passed here with a single scored line.
+  it('reads a pair option', () => {
+    expect(() => summarize(
+      (root) => [{ rowId: SUMMARY_ROW, arm: 'pre', exit: 0, locator: loadableSession(root) }],
+      ['--pair', 'pre,post'],
+    )).not.toThrow();
+  });
+
+  // A pair compares two arms of one summary, so a call that has no summary or names
+  // one arm is refused before a log is read rather than scored as if the pair held.
+  it('refuses a pair without a summary or with one arm name', () => {
+    const noSummary = runScorer([
+      '--runtime', 'claude', '--locator', '{}', '--pair', 'pre,post',
+    ]);
+
+    expect(noSummary.status).not.toBe(0);
+    expect(String(noSummary.stderr)).toContain('--pair needs --summary');
+
+    const oneArm = runScorer(['--summary', 'missing-log.jsonl', '--pair', 'pre']);
+
+    expect(oneArm.status).not.toBe(0);
+    expect(String(oneArm.stderr)).toContain('--pair needs two arm names');
+  });
+
+  // A pair compares the same row across two arms, so each row keeps whether its run
+  // followed and the counts say how many rows moved, held or never followed.
+  it('pairs two arms row by row', () => {
+    const summary = summarize((root) => {
+      const followed = (key: string): Record<string, string> => loadableSession(
+        join(root, key),
+        [...claudeToolTurn(`claude-${key}`, 'Read', { file_path: SKILL_DOCUMENT })],
+      );
+      const unfollowed = (key: string): Record<string, string> => loadableSession(join(root, key));
+
+      return [
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'pre', exit: 0, locator: unfollowed('r1-pre') },
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'post', exit: 0, locator: followed('r1-post') },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'pre', exit: 0, locator: followed('r2-pre') },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'post', exit: 0, locator: unfollowed('r2-post') },
+        { rowId: 'cmd-create-agent-typed-01', arm: 'pre', exit: 0, locator: followed('r3-pre') },
+        { rowId: 'cmd-create-agent-typed-01', arm: 'post', exit: 0, locator: followed('r3-post') },
+        { rowId: 'cmd-create-readme-plain-tune-01', arm: 'pre', exit: 0, locator: unfollowed('r4-pre') },
+        { rowId: 'cmd-create-readme-plain-tune-01', arm: 'post', exit: 0, locator: unfollowed('r4-post') },
+      ];
+    }, ['--pair', 'pre,post']);
+
+    expect(summary).toMatchObject({
+      claude: {
+        paired: {
+          from: 'pre',
+          to: 'post',
+          rows: 4,
+          gained: 1,
+          lost: 1,
+          bothFollowed: 1,
+          neitherFollowed: 1,
+        },
+      },
+    });
+  });
+
+  // The text form is the operator's view, so the pair has to reach it without the
+  // JSON flag and carry the same counts the block reported.
+  it('prints the paired line in the text summary', () => {
+    const root = mkdtempSync(join(tmpdir(), 'command-summary-'));
+    try {
+      const logPath = join(root, 'run-log.jsonl');
+      const followed = (key: string): Record<string, string> => loadableSession(
+        join(root, key),
+        [...claudeToolTurn(`claude-${key}`, 'Read', { file_path: SKILL_DOCUMENT })],
+      );
+      const unfollowed = (key: string): Record<string, string> => loadableSession(join(root, key));
+      const lines = [
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'pre', exit: 0, locator: unfollowed('r1-pre') },
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'post', exit: 0, locator: followed('r1-post') },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'pre', exit: 0, locator: followed('r2-pre') },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'post', exit: 0, locator: unfollowed('r2-post') },
+        { rowId: 'cmd-create-agent-typed-01', arm: 'pre', exit: 0, locator: followed('r3-pre') },
+        { rowId: 'cmd-create-agent-typed-01', arm: 'post', exit: 0, locator: followed('r3-post') },
+        { rowId: 'cmd-create-readme-plain-tune-01', arm: 'pre', exit: 0, locator: unfollowed('r4-pre') },
+        { rowId: 'cmd-create-readme-plain-tune-01', arm: 'post', exit: 0, locator: unfollowed('r4-post') },
+      ].map((line) => JSON.stringify({ runtime: 'claude', ...line }));
+      writeFileSync(logPath, `${lines.join('\n')}\n`);
+
+      const run = runScorer(['--summary', logPath, '--pair', 'pre,post']);
+
+      expect(run.status).toBe(0);
+      expect(String(run.stdout)).toContain(
+        'paired pre to post: 4 rows, gained 1, lost 1, both followed 1, neither followed 1',
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  // A row the other arm never scored has nothing to compare, so the pair counts the
+  // rows both arms scored rather than the two arms' totals.
+  it('pairs only the rows both arms scored', () => {
+    const summary = summarize((root) => {
+      const followed = (key: string): Record<string, string> => loadableSession(
+        join(root, key),
+        [...claudeToolTurn(`claude-${key}`, 'Read', { file_path: SKILL_DOCUMENT })],
+      );
+      const unfollowed = (key: string): Record<string, string> => loadableSession(join(root, key));
+
+      return [
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'pre', exit: 0, locator: unfollowed('r1-pre') },
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'post', exit: 0, locator: followed('r1-post') },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'pre', exit: 0, locator: followed('r2-pre') },
+        { rowId: 'cmd-create-agent-plain-tune-02', arm: 'post', exit: 0, locator: unfollowed('r2-post') },
+        { rowId: 'cmd-create-agent-typed-01', arm: 'pre', exit: 0, locator: followed('r3-pre') },
+        { rowId: 'cmd-create-agent-typed-01', arm: 'post', exit: 0, locator: followed('r3-post') },
+        { rowId: 'cmd-create-readme-plain-tune-01', arm: 'pre', exit: 0, locator: unfollowed('r4-pre') },
+        { rowId: 'cmd-create-readme-plain-tune-01', arm: 'post', exit: 0, locator: unfollowed('r4-post') },
+        { rowId: 'cmd-create-goal-plain-tune-01', arm: 'post', exit: 0, locator: followed('r5-post') },
+      ];
+    }, ['--pair', 'pre,post']);
+
+    expect(summary).toMatchObject({
+      claude: {
+        pre: { scored: 4 },
+        post: { scored: 5 },
+        paired: { rows: 4, gained: 1, lost: 1, bothFollowed: 1, neitherFollowed: 1 },
+      },
+    });
+  });
+
+  // A pair is a fact about one runtime's two arms, so a runtime that scored one arm
+  // has no comparison to print.
+  it('leaves a one-arm runtime unpaired', () => {
+    const summary = summarize((root) => {
+      const followed = (key: string): Record<string, string> => loadableSession(
+        join(root, key),
+        [...claudeToolTurn(`claude-${key}`, 'Read', { file_path: SKILL_DOCUMENT })],
+      );
+      const unfollowed = (key: string): Record<string, string> => loadableSession(join(root, key));
+
+      return [
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'pre', exit: 0, locator: unfollowed('r1-pre') },
+        { rowId: 'cmd-create-agent-plain-tune-01', arm: 'post', exit: 0, locator: followed('r1-post') },
+        {
+          runtime: 'codex',
+          rowId: 'cmd-create-agent-plain-tune-02',
+          arm: 'pre',
+          exit: 0,
+          locator: loadableCodexSession(root),
+        },
+      ];
+    }, ['--pair', 'pre,post']);
+
+    expect(summary).toMatchObject({
+      claude: { paired: { from: 'pre', to: 'post', rows: 1, gained: 1 } },
+    });
+    expect(summary).not.toHaveProperty('codex.paired');
+  });
+});
+
+// The interval is the part of a rate a small arm cannot show, so it is checked at
+// the middle, at both ends and at an arm that scored nothing.
+describe('wilsonRange', () => {
+  it('centres the interval on the observed rate', () => {
+    expect(scorer.wilsonRange(8, 16)).toEqual({ low: 0.28, high: 0.72 });
+  });
+
+  it('keeps the lower bound at zero when no run succeeded', () => {
+    expect(scorer.wilsonRange(0, 16)).toEqual({ low: 0, high: 0.19 });
+  });
+
+  it('keeps the upper bound at one when every run succeeded', () => {
+    expect(scorer.wilsonRange(16, 16)).toEqual({ low: 0.81, high: 1 });
+  });
+
+  it('returns null for an arm that scored nothing', () => {
+    expect(scorer.wilsonRange(0, 0)).toBeNull();
   });
 });
 
