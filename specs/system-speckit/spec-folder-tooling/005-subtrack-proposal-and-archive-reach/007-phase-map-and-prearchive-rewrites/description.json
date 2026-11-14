@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/007-phase-map-and-prearchive-rewrites",
+  "description": "Phase 7: phase-map-and-prearchive-rewrites",
+  "keywords": [
+    "phase",
+    "phase-map-and-prearchive-rewrites"
+  ],
+  "lastUpdated": "2026-11-14T06:11:00.699Z",
+  "specId": "007",
+  "folderSlug": "phase-map-and-prearchive-rewrites",
+  "parentChain": [
+    "system-speckit",
+    "spec-folder-tooling",
+    "005-subtrack-proposal-and-archive-reach"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

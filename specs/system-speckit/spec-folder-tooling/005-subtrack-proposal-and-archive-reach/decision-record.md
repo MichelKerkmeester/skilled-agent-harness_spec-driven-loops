@@ -8,9 +8,9 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach"
-    last_updated_at: "2026-11-13T10:29:45.859Z"
-    last_updated_by: "decision-record-writer"
-    recent_action: "Recorded operator decisions"
+    last_updated_at: "2026-11-14T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Added operator decisions Q010 to Q013 of 2026-11-14 by hand"
     next_safe_action: "Review the recorded operator decisions"
     blockers: []
     key_files: []
@@ -43,6 +43,10 @@ _memory:
 | Q007 | Packet 005 gets a goal: a phase-parent goal.md binding five child goals, offered to the operator to set. | Not stated. | None | goal.md |
 | Q008 | Code is implemented by DeepSeek V4.1 Flash at max reasoning through the dsh harness (or Pi with the OpenCode Go provider), never by Fable. Fable through claude2 stays allowed for documents. | Not stated. | None | scratch/dispatch-brief-002-docs.md, 002-subtrack-proposal/implementation-summary.md |
 | Q009 | Restoring an archived packet onto a live folder with the same name stays refused. The engine renumbers only when a differently named packet holds the number. | Not stated. | None | 001-relocation-engine REQ-014, archive.sh |
+| Q010 | The findings of the two code reviews of 2026-11-14 are remediated in new child phases 006 onward under this parent. Phases 001 to 005 are not reopened, and the parent goal is updated. | Not stated. | None | spec.md Operator Decisions, goal.md D5, children 006 to 010 |
+| Q011 | The remediation work happens in git worktree 375, created from origin/main. | Not stated. | None | spec.md Operator Decisions, the Branch row of each child spec.md from 006 to 010 |
+| Q012 | For the remediation phases, planning and plan verification are done by fresh Fable 5.2 instances at high effort through claude2, and implementation by DeepSeek V4.1 Flash at max reasoning through the dsh harness. | Not stated. | None | spec.md Operator Decisions, goal.md log |
+| Q013 | Reviewer B findings 1 to 5 are handed to the 008 command surfacing session and are not planned in this packet. | Not stated. | None | spec.md Handed to the 008 session, goal.md log |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -225,6 +229,42 @@ Renumber anyway
 Answer:
 ```text
 Keep the refusal (Recommended)
+```
+
+### Q010
+
+Recorded by hand on 2026-11-14 from the orchestrator's brief to the planning session. The question, the options and the operator's own words were not passed to that session, so none is quoted here.
+
+Decision as briefed:
+```text
+remediation of the two code reviews is planned as new children 006 onward under this parent, not by reopening 001 to 005, and the parent goal is updated
+```
+
+### Q011
+
+Recorded by hand on 2026-11-14 from the orchestrator's brief to the planning session. The question, the options and the operator's own words were not passed to that session, so none is quoted here.
+
+Decision as briefed:
+```text
+the work happens in git worktree 375 created from origin/main
+```
+
+### Q012
+
+Recorded by hand on 2026-11-14 from the orchestrator's brief to the planning session. The question, the options and the operator's own words were not passed to that session, so none is quoted here. Q006 and Q008 stay the record for phases 001 to 005.
+
+Decision as briefed:
+```text
+planning and plan verification are done by fresh Fable 5.2 high instances through claude2, implementation by DeepSeek V4.1 Flash at max reasoning through the dsh harness
+```
+
+### Q013
+
+Recorded by hand on 2026-11-14 from the orchestrator's brief to the planning session. The question, the options and the operator's own words were not passed to that session, so none is quoted here.
+
+Decision as briefed:
+```text
+reviewer B findings 1 to 5 are handed to the 008 command surfacing session
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

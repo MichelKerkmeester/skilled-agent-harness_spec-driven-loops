@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach"
-    last_updated_at: "2026-11-13T00:00:00Z"
+    last_updated_at: "2026-11-14T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Authored the phase-parent spec and the five phase plans"
-    next_safe_action: "Start phase 001-relocation-engine"
+    recent_action: "Applied the 2026-11-14 plan verification to phases 006 to 010"
+    next_safe_action: "Start phase 006-relocate-resume-and-preflight"
     blockers: []
     key_files: []
     session_dedup:
@@ -48,14 +48,14 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-11-13 |
 | **Branch** | `worktrees/364-subtrack-proposal-archive-reach` |
 | **Parent Spec** | None. This packet sits directly in the declared subtrack `system-speckit/spec-folder-tooling` |
 | **Parent Packet** | None |
 | **Predecessor** | `004-create-path-track-refresh` |
 | **Successor** | None |
-| **Handoff Criteria** | `validate.sh --strict --recursive` prints `RESULT: PASSED` for this folder and all five children |
+| **Handoff Criteria** | `validate.sh --strict --recursive` prints `RESULT: PASSED` for this folder and all ten children |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -84,6 +84,7 @@ An operator can accept a proposed whole-track subtrack map, apply it with one de
 - Seed `z_archive/.gitkeep` in every declared subtrack and count archived packets when allocating the next number.
 - Add an opt-in archive mode to search and to recursive validation, and repair archived JSON metadata.
 - Cover all of it with vitest suites and close the packet.
+- Close the in-scope findings of the two code reviews of 2026-11-14, in phases 006 to 010: reviewer A findings 1 to 12 and reviewer B findings 6, 7 and 8.
 
 ### Operator Decisions
 These were taken in the planning session and bind every phase.
@@ -93,6 +94,19 @@ These were taken in the planning session and bind every phase.
 - Mixed tracks stay forbidden. A subtrack proposal is a whole-track map.
 - Renumbering is a deterministic tool that updates every store. No hand edits and no AI fix-up work.
 - Next-number allocation counts archived packets.
+- The review findings of 2026-11-14 are closed in new child phases 006 onward under this parent. Phases 001 to 005 stay Complete and are not edited. `recommend-level.sh` returned Level 1 for four of the five new phases and Level 0 for one, which the authoring card maps to Level 1. This is decision Q010 in `decision-record.md`.
+- The remediation work happens in git worktree 375, created from `origin/main`. This is decision Q011.
+- For the remediation phases, planning and plan verification are done by fresh Fable 5.2 instances at high effort through claude2, and implementation by DeepSeek V4.1 Flash at max reasoning through the dsh harness. This is decision Q012.
+- Amendment of 2026-11-14 to phase 001: phase 008 adds exit status 3 to `relocate.mjs`, for a run whose steps and sweep all passed and whose only failure is a moved packet's own validation. It amends REQ-001, which says 2 on any failure, and REQ-012, which says a failure leaves the report and exits 2, both in `001-relocation-engine/spec.md`. Phase 001 stays Complete and is not edited, so this line is the record. Statuses 0, 1 and 2 keep their meaning otherwise.
+
+### Handed to the 008 session
+Reviewer B findings 1 to 5 concern the hub vocabulary packet, which lives on another session's branch. They are handed to the 008 command surfacing session by decision Q013 and are not planned here.
+
+- B1: `sk-doc/graph-metadata.json:329-334`, "confirm flag" and "agent definition" became advisor signals and pull non-doc prompts to sk-doc.
+- B2: `system-deep-loop/graph-metadata.json:78-80`, bare words such as stop, several and models now count for system-deep-loop.
+- B3: `local-native-approved-divergences.json:719`, the hand-written reason misstates why the prompt flipped.
+- B4: the packet docs say the archived manifest was written by the same refresh, and it was not.
+- B5: three smaller doc mismatches, a missing fixture path in T019, an untouched continuity block and a too-narrow statement about the check.
 
 ### Out of Scope
 - Unifying the seven copies of the subtrack predicate. It is a separate change.
@@ -121,6 +135,12 @@ Audit summary only. Per-phase detail lives in each child's `plan.md`. Paths with
 | `runtime/cli/spec/validate.sh` | Modify | 004 | `--recursive --include-archive` |
 | `.skilled/commands/speckit/search.md`, `references/retrieval/retrieval-conventions.md` | Modify | 004 | Document the archive mode |
 | `runtime/cli/tests/*.vitest.ts` | Create | 005 | Five new suites |
+| `runtime/cli/spec/relocate.mjs` | Modify | 006, 007, 008 | Resume and preflight state, bare-name and pre-archive rewrites, one added exit status |
+| `runtime/cli/spec/archive.sh`, `runtime/cli/spec/create.sh`, `runtime/cli/spec/README.md` | Modify | 008 | Restore verdict, mixed-track refusal, phase numbering that reads `z_archive/`, the exit codes stated in the `relocate.mjs` row |
+| `runtime/cli/retrieval/rg-wrapper.mjs`, `runtime/cli/spec/suggest-subtracks.mjs` | Modify | 009 | Archived marker in the path record, proposals the preflight accepts |
+| `graph-metadata.json`, and the advisor's generated `skill-graph.json` and `scorer-eval-baseline.json` | Modify | 009 | Reworded archive-search and sub-track signals, regenerated by the advisor's writers |
+| `runtime/cli/tests/relocate.vitest.ts`, `archive-track.vitest.ts`, `archive-numbering.vitest.ts`, `rg-include-archive.vitest.ts`, `suggest-subtracks.vitest.ts` | Modify | 006 to 009 | One happy-path case and one edge case per changed surface |
+| `runtime/cli/tests/relocate-real-pipeline.vitest.ts` | Create | 010 | A suite that runs the true writers |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -137,6 +157,11 @@ Audit summary only. Per-phase detail lives in each child's `plan.md`. Paths with
 | 3 | 003-subtrack-archive-and-numbering/ | `z_archive/` on every declared subtrack and numbering that counts archived packets | Complete. Code in `5f3e19712e` |
 | 4 | 004-archive-search-and-json/ | Opt-in archive search, recursive archive validation and archived JSON health | Complete. Code in `05a83a7d88`, metadata in `55e73d37b5`. All eight criteria `Met` |
 | 5 | 005-tests-and-closeout/ | Vitest suites for phases 1 to 4, real-tree checks and packet closeout | Complete. Suites in `5fefd819e1` and `36b3a68ab7`. Ten criteria `Met`, AC-008 `Superseded` by ADR-001 |
+| 6 | 006-relocate-resume-and-preflight/ | A rerun of the same map finishes any stopped step, and the preflight refuses a source that never existed and two spellings of one folder. Closes A1, A3, A4, A5 and B6 | Planned |
+| 7 | 007-phase-map-and-prearchive-rewrites/ | Bare sibling names in a phase parent's documents and the id a packet had before it was archived are rewritten. Closes A2 and A8 | Planned |
+| 8 | 008-restore-and-phase-numbering/ | The restore verdict, the mixed-track refusal on restore and phase numbering that counts archived phases. Closes A6, A7 and A9 | Planned |
+| 9 | 009-proposal-search-and-routing/ | The archived marker in the path record, proposals the preflight accepts and two advisor signals. Closes A11, A12, B7 and B8 | Planned |
+| 10 | 010-real-pipeline-tests/ | One suite that runs the true writers and the resume paths. Closes A10 | Planned |
 
 ### Phase Transition Rules
 
@@ -153,6 +178,11 @@ Audit summary only. Per-phase detail lives in each child's `plan.md`. Paths with
 | 002-subtrack-proposal | 003-subtrack-archive-and-numbering | `suggest-subtracks.mjs` emits a map in the `relocate.mjs` format and writes nothing | `git status --porcelain` prints nothing after a run |
 | 003-subtrack-archive-and-numbering | 004-archive-search-and-json | Every declared subtrack holds `z_archive/.gitkeep` | `sweep-track-roots.mjs` prints no missing-archive line |
 | 004-archive-search-and-json | 005-tests-and-closeout | `--include-archive` works in search and in recursive validation, and the default paths are unchanged | `generate-trigger-index.mjs --check` exits 0 |
+| 005-tests-and-closeout | 006-relocate-resume-and-preflight | The two reviews of 2026-11-14 are stored in `scratch/` and each in-scope finding is assigned to one phase | `ls scratch/review-20261114-*.md` lists two files |
+| 006-relocate-resume-and-preflight | 007-phase-map-and-prearchive-rewrites | After a late step fails once, a rerun of the same map finishes it | In a `mktemp` copy the second `relocate.mjs --apply` exits 0 and the third prints `relocate: nothing to do` |
+| 007-phase-map-and-prearchive-rewrites | 008-restore-and-phase-numbering | A renumbered phase is named correctly in its parent's documents | After `relocate.mjs --renumber <phase parent> --apply`, `rg` for the old folder name in the parent's `spec.md` prints nothing |
+| 008-restore-and-phase-numbering | 009-proposal-search-and-routing | A new phase is numbered above an archived one | With `001-alpha` live and `z_archive/002-gamma` archived, `create.sh --phase --parent` creates `003-*` |
+| 009-proposal-search-and-routing | 010-real-pipeline-tests | The path record marks archived paths and a printed proposal passes the preflight | `rg-wrapper.mjs path <phrase> --include-archive --json` marks its archived paths, and `relocate.mjs --map <printed map>` exits 1 |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -170,4 +200,5 @@ Audit summary only. Per-phase detail lives in each child's `plan.md`. Paths with
 
 - **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
 - **Approved design**: See `scratch/approved-plan.md`
+- **Review findings**: See `scratch/review-20261114-core-code.md` (reviewer A) and `scratch/review-20261114-merge-fixes-and-hub-vocabulary.md` (reviewer B)
 - **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer

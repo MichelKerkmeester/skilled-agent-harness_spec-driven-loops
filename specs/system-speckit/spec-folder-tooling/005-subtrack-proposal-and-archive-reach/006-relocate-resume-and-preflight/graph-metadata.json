@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/006-relocate-resume-and-preflight",
+  "spec_folder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/006-relocate-resume-and-preflight",
+  "parent_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "relocate resume and preflight",
+      "phase 6 relocate resume and preflight",
+      "relocate rerun finishes late steps",
+      "relocate resume and preflight plan",
+      "relocate resume and preflight tasks",
+      "relocate resume and preflight goal",
+      "relocate resume and preflight implementation summary"
+    ],
+    "key_topics": [
+      "relocate",
+      "resume",
+      "preflight",
+      "phase",
+      "rerun",
+      "finishes",
+      "late",
+      "steps",
+      "plan",
+      "tasks",
+      "goal",
+      "implementation"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md",
+      "runtime/cli/tests/relocate.vitest.ts",
+      ".skilled/skills/sk-doc/shared/scripts/relocation-ledger.json",
+      "runtime/cli/spec/relocate.mjs",
+      ".skilled/skills/system-spec-kit/runtime/cli/spec/relocate.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "relocate.vitest.ts",
+        "kind": "test",
+        "path": "runtime/cli/tests/relocate.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "relocation-ledger.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/shared/scripts/relocation-ledger.json",
+        "source": "derived"
+      },
+      {
+        "name": "relocate.mjs",
+        "kind": "file",
+        "path": "runtime/cli/spec/relocate.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Files",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "its",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`relocate.mjs` tells the operator to rerun the same map after a failed step, but the rerun cannot always finish the work",
+    "created_at": "2026-11-14T06:10:59Z",
+    "last_save_at": "2026-11-14T06:58:57.897Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:0051cd4ddc6b30fe89b99be6c14870f4292b9bf0433ee893d0d9fbfe1419c6f3",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f228b5cf51ce341866e3cd4b64f1d514ff6dcdb4b38e31dfadb261f0d5812c9f",
+      "plan.md": "4042322fba64667d84a2b20986eeeb8e5eebb3fad3dc1bb41ad0b767e56432a3",
+      "tasks.md": "9e342483e984ddbec5fb2959a967cddf5a43c3a14bfc4a6dc021aab37f3bac92",
+      "implementation-summary.md": "286a84016904484c9e4e836933cad1894b3f7121c52d1c66c075d958f2f8fdc2"
+    },
+    "last_active_at": null
+  }
+}

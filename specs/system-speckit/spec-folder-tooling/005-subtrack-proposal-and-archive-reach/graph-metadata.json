@@ -8,7 +8,12 @@
     "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/002-subtrack-proposal",
     "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/003-subtrack-archive-and-numbering",
     "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/004-archive-search-and-json",
-    "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout"
+    "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout",
+    "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/006-relocate-resume-and-preflight",
+    "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/007-phase-map-and-prearchive-rewrites",
+    "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/008-restore-and-phase-numbering",
+    "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/009-proposal-search-and-routing",
+    "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests"
   ],
   "manual": {
     "depends_on": [],
@@ -42,11 +47,12 @@
       "search"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "goal.md",
       "decision-record.md",
+      "001-relocation-engine/spec.md",
       "runtime/cli/spec/relocate.mjs",
       "runtime/cli/spec/repair-derived.cjs",
       "runtime/cli/rules/check-metadata-disk-consistency-helper.cjs",
@@ -62,8 +68,7 @@
       "runtime/cli/spec/refresh-track-roots.mjs",
       "runtime/cli/spec/sweep-track-roots.mjs",
       "runtime/cli/retrieval/rg-wrapper.mjs",
-      "runtime/cli/retrieval/lib/rg-lane.mjs",
-      "runtime/cli/spec/validate.sh"
+      "runtime/cli/retrieval/lib/rg-lane.mjs"
     ],
     "entities": [
       {
@@ -181,13 +186,13 @@
         "source": "derived"
       },
       {
-        "name": "validate.sh",
-        "kind": "script",
-        "path": "runtime/cli/spec/validate.sh",
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Feature Specification",
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -213,7 +218,7 @@
     ],
     "causal_summary": "Subtracks exist in system-spec-kit only as a hand-written declaration, one level deep, and three gaps follow from that",
     "created_at": "2026-11-13T10:07:28Z",
-    "last_save_at": "2026-11-13T16:06:33.827Z",
+    "last_save_at": "2026-11-14T06:59:42.456Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -221,11 +226,11 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:e329cea9a5e76cae8226f4ec510a3fb526b3b0a951366286c390d0c9a9da8fab",
+    "source_fingerprint": "sha256:d810df2d0deb7bec14dd867383b4a57b112d21dcc652d0f8fc77392d138a0890",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "49e313c2083da8ad99638e7d2ffae16f2b57e45e6305d29070a943c1446f9396",
-      "decision-record.md": "23aceabe4b5fe9ed85b46f6585800071618763eb9278a36a1b076368a593adf0"
+      "spec.md": "a56a0129ef110aaf0a46e4fed4764ae232662ac7ead84ffbd71d9331c179b2c6",
+      "decision-record.md": "7aa0e23091f01ee58b4e97dd2a448181b99938153fdc6ce9bbc15fa69eeb934e"
     },
     "last_active_child_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout",
     "last_active_at": "2026-11-13T15:00:54.317Z"
