@@ -33,26 +33,25 @@
       "speckit"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "implementation-summary.md",
-      ".skilled/commands/speckit/save.md",
-      ".skilled/commands/speckit/handoff.md",
-      ".skilled/skills/system-spec-kit/runtime/lib/resume/resume-ladder.ts",
-      ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
-      ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
+      ".skilled/commands/speckit/assets/speckit-resume.yaml",
       ".skilled/commands/speckit/resume.md",
       ".skilled/commands/speckit/assets/speckit-resume-presentation.txt",
       ".skilled/commands/speckit/README.txt",
       ".skilled/skills/system-spec-kit/command-metadata.json",
       ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
-      ".skilled/skills/system-spec-kit/feature-catalog/retrieval/session-recovery-spec-kit-resume.md",
       ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js",
       ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
+      ".skilled/commands/speckit/save.md",
+      ".skilled/commands/speckit/handoff.md",
+      ".skilled/skills/system-spec-kit/runtime/lib/resume/resume-ladder.ts",
+      ".skilled/skills/system-spec-kit/feature-catalog/retrieval/session-recovery-spec-kit-resume.md",
       ".skilled/skills/system-spec-kit/runtime/database/access-telemetry.json",
       "runtime/database/access-telemetry.json"
     ],
@@ -88,33 +87,9 @@
         "source": "derived"
       },
       {
-        "name": "save.md",
-        "kind": "doc",
-        "path": ".skilled/commands/speckit/save.md",
-        "source": "derived"
-      },
-      {
-        "name": "handoff.md",
-        "kind": "doc",
-        "path": ".skilled/commands/speckit/handoff.md",
-        "source": "derived"
-      },
-      {
-        "name": "resume-ladder.ts",
-        "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/runtime/lib/resume/resume-ladder.ts",
-        "source": "derived"
-      },
-      {
-        "name": "speckit-resume-auto.yaml",
+        "name": "speckit-resume.yaml",
         "kind": "config",
-        "path": ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "speckit-resume-confirm.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
+        "path": ".skilled/commands/speckit/assets/speckit-resume.yaml",
         "source": "derived"
       },
       {
@@ -148,12 +123,6 @@
         "source": "derived"
       },
       {
-        "name": "session-recovery-spec-kit-resume.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/feature-catalog/retrieval/session-recovery-spec-kit-resume.md",
-        "source": "derived"
-      },
-      {
         "name": "test-phase-command-workflows.js",
         "kind": "code",
         "path": ".skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js",
@@ -163,6 +132,30 @@
         "name": "speckit-goal-offer-contract.test.cjs",
         "kind": "file",
         "path": ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "save.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/save.md",
+        "source": "derived"
+      },
+      {
+        "name": "handoff.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/handoff.md",
+        "source": "derived"
+      },
+      {
+        "name": "resume-ladder.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/lib/resume/resume-ladder.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-recovery-spec-kit-resume.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/feature-catalog/retrieval/session-recovery-spec-kit-resume.md",
         "source": "derived"
       },
       {
@@ -200,11 +193,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "When `/speckit:resume` runs with no folder argument, its workflow ranks packets and then falls back to the most recently modified one, so an agent can resume a packet another session was working on",
     "created_at": "2026-11-14T11:33:22Z",
-    "last_save_at": "2026-11-14T12:16:27.660Z",
+    "last_save_at": "2026-11-14T14:41:25.401Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,13 +213,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b4a63332071c4da51d79cdcfb74c3eab14af7e7aa43f1381b642c6904128cb95",
+    "source_fingerprint": "sha256:7b91ddd80f350596fe281b8471378b83f1b43dd5fe69d0f8fe697a8e0ba2701f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "05bb9dea4cd57c44cb86954d21b8054298adc32037dc10d56ec00b4a477c33a5",
-      "plan.md": "de5411a1bbcd1802af4fe7dc6d914d510114f57f7e9accaa948f4419846c1548",
-      "tasks.md": "2417df4228f7254b04c51187d77125d433cc6293bc164e90960d51352f721b22",
-      "implementation-summary.md": "bf9dbddaf73d9bcb67bf6db04dc5b00ec8664f4eef74a66581d044183425d04b"
+      "spec.md": "9d52403267997248ed43bf37b8e154f497f899193fb5e7b3823f5f68080a4bf1",
+      "plan.md": "042dc727df17e4d2c3973fa2a39d6389e1adecbc8d361cc9e1f66f9b0992de83",
+      "tasks.md": "c3cec1e96db8221eff4bc46ca8b7dad303789fcf8f221152df89c63bd504368c",
+      "implementation-summary.md": "8cf3c91d820fa21feefd0cbff6cfc223cba8deaee23bf457039340687aee1d17"
     },
     "last_active_at": null
   }

@@ -37,14 +37,14 @@ Replace `speckit-resume-auto.yaml` and `speckit-resume-confirm.yaml` with one `s
 <!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Phase 4 is closed: `rg -c '\| Unmet \|' ../004-code-review-and-dispatch-policy/acceptance-criteria.md` prints nothing
-- [ ] Baseline tests pass: `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` prints `failed=0` and `node --test .opencode/plugins/tests/speckit-goal-offer-contract.test.cjs` prints `fail 0`
-- [ ] The consumer inventory is recorded: `rg -l 'speckit-resume-[a-z]+\.yaml' .skilled .opencode` lists the files this plan names
+- [x] Phase 4 is closed: `rg -c '\| Unmet \|' ../004-code-review-and-dispatch-policy/acceptance-criteria.md` prints nothing
+- [x] Baseline tests pass: `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` prints `failed=0` and `node --test .opencode/plugins/tests/speckit-goal-offer-contract.test.cjs` prints `fail 0`
+- [x] The consumer inventory is recorded: `rg -l 'speckit-resume-[a-z]+\.yaml' .skilled .opencode` lists the files this plan names
 
 ### Definition of Done
-- [ ] Every row in `acceptance-criteria.md` is `Met` with the observed output
-- [ ] Both tests print `failed=0` and `fail 0` from the final tree
-- [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this folder> --strict` prints `RESULT: PASSED`
+- [x] Every row in `acceptance-criteria.md` is `Met` with the observed output
+- [x] Both tests print `failed=0` and `fail 0` from the final tree
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh <this folder> --strict` prints `RESULT: PASSED`
 <!-- /ANCHOR:quality-gates -->
 
 ---
