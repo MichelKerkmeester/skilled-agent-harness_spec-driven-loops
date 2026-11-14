@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/022-stop-park-notices"
-    last_updated_at: "2026-11-14T16:20:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Planned the two parked-Stop notices and their six criteria"
-    next_safe_action: "The builder records each run and marks every row Met"
+    last_updated_at: "2026-11-14T17:30:00Z"
+    last_updated_by: "code-agent"
+    recent_action: "Marked every criterion Met from the red, green, write-throw and suite runs"
+    next_safe_action: "The orchestrator commits and reruns the two commit-scoped checks"
     blockers: []
     key_files: [".skilled/hooks/session-relaunch/claude/stop-arm.mjs", ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs", ".skilled/hooks/session-relaunch/claude/README.md", ".skilled/hooks/session-relaunch/README.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-022-stop-park-notices"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Does the arm-throw notice reach the operator from a spawned hook? The direct import proves the write seam, and the target-pid test proves the spawned stdout path."
     answered_questions:
@@ -40,7 +40,7 @@ _memory:
 
 **Packet:** 022-stop-park-notices
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-14
 <!-- /ANCHOR:metadata -->
 
@@ -53,12 +53,12 @@ One row per criterion. `AC-ID` is stable once written: supersede a criterion, ne
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given a pending record and a Stop whose target pid cannot be resolved, When the hook runs, Then stdout holds one JSON line whose `systemMessage` names the missing session process, the withdrawal on the next prompt and the later Stop, and has no `decision` key | Planned: `scratch/red.txt` prints `✖ stop-arm marks the pending record deferred when no process below the loop can be found` before the edit, and `scratch/green.txt` prints `✔` after. The branch sits at `claude/stop-arm.mjs:196` to `:200`. Cited: `.skilled/hooks/session-relaunch/claude/stop-arm.mjs:198`, `.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1351` | Pending | - |
-| AC-002 | REQ-002 | Given the same record and a Stop whose `arm` call throws, When the hook runs, Then the injected `write` receives one line that names the failed arm, the withdrawal and the later Stop, with no `decision` key | Planned: `scratch/red.txt` prints `✖ stop-arm marks the pending record deferred when arming throws` before the edit, and `scratch/green.txt` prints `✔` after. The branch sits at `claude/stop-arm.mjs:215` to `:219`. Cited: `.skilled/hooks/session-relaunch/claude/stop-arm.mjs:217`, `.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1380` | Pending | - |
-| AC-003 | REQ-003 | Given either Stop, When the record and the log are read, Then the record holds `deferredAt` with its other fields unchanged, and the log holds exactly one `stop-arm-error` line with that branch's stage | Planned: both changed tests keep the record and log assertions, and `scratch/green.txt` prints `ℹ fail 0`. The stamp helper is at `claude/stop-arm.mjs:53` to `:59`. Cited: `.skilled/hooks/session-relaunch/claude/stop-arm.mjs:53`, `.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1369` | Pending | - |
-| AC-004 | REQ-004 | Given either Stop and a notice write that throws, When the hook runs, Then the failure is logged as `stop-arm-error` with `stage: 'notice'`, the record stays stamped and the hook exits 0 | Planned: an injected `write` that throws through `armPendingRecord` leaves `armed` null, logs one `stop-arm-error stage=notice` line and keeps `deferredAt`, saved to `scratch/write-throw.txt`. Cited: `.skilled/hooks/session-relaunch/claude/stop-arm.mjs:150` | Pending | - |
-| AC-005 | REQ-005 | Given the edited adapter, When the Claude adapter and conformance suites and the whole relaunch and OpenCode plugin suites run, Then they pass with the baseline count | Planned: `scratch/claude-conformance.txt` and `scratch/final-suite.txt` each print `ℹ fail 0`, and `final-suite.txt` matches the count in `scratch/baseline.txt`. The two existing notices pass at `tests/claude-adapters.test.cjs:940` and `:683`. Cited: `.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:940`, `.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:683` | Pending | - |
-| AC-006 | REQ-006 | Given the fix commit, When it is inspected, Then both READMEs name the notices, and the commit adds no file, record key or log event | Planned: `rg -c 'no target pid'` and `rg -c 'arm that throws'` print 1 or more for each README, the T016 filters print what T016 states, and `git show --stat FIX` lists four code or document files plus this child's records. Cited: `.skilled/hooks/session-relaunch/claude/README.md:27`, `.skilled/hooks/session-relaunch/README.md:134` | Pending | - |
+| AC-001 | REQ-001 | Given a pending record and a Stop whose target pid cannot be resolved, When the hook runs, Then stdout holds one JSON line whose `systemMessage` names the missing session process, the withdrawal on the next prompt and the later Stop, and has no `decision` key | Met. `scratch/red.txt` prints `✖ stop-arm marks the pending record deferred when no process below the loop can be found` with tests 2, pass 0, fail 2, exit 1 before the source edit, and `scratch/green.txt` prints `✔` for it with tests 2, pass 2, fail 0, exit 0 after it. The branch now writes the guarded line at `.skilled/hooks/session-relaunch/claude/stop-arm.mjs:199` to `:211`, and the test parses one line at `.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1369` to `:1376` | Met | - |
+| AC-002 | REQ-002 | Given the same record and a Stop whose `arm` call throws, When the hook runs, Then the injected `write` receives one line that names the failed arm, the withdrawal and the later Stop, with no `decision` key | Met. `scratch/red.txt` prints `✖ stop-arm marks the pending record deferred when arming throws` with tests 2, pass 0, fail 2, exit 1 before the source edit, and `scratch/green.txt` prints `✔` for it with tests 2, pass 2, fail 0, exit 0 after it. The `write` seam collects the line at `.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1410`, the assertions sit at `:1418` to `:1425`, and the guarded write sits at `.skilled/hooks/session-relaunch/claude/stop-arm.mjs:230` to `:241` | Met | - |
+| AC-003 | REQ-003 | Given either Stop, When the record and the log are read, Then the record holds `deferredAt` with its other fields unchanged, and the log holds exactly one `stop-arm-error` line with that branch's stage | Met. Both changed tests keep the record assertions and the log assertion, and `scratch/green.txt` prints `ℹ fail 0`. The target-pid test compares the record minus `deferredAt` with the fixture at `.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1377` to `:1383` and matches `stop-arm-error stage=target-pid`, and the arm test compares the same shape at `:1426` to `:1432` and matches `stop-arm-error stage=arm` | Met | - |
+| AC-004 | REQ-004 | Given either Stop and a notice write that throws, When the hook runs, Then the failure is logged as `stop-arm-error` with `stage: 'notice'`, the record stays stamped and the hook exits 0 | Met. `scratch/write-throw.txt` records `armed=null`, `deferredAt=true`, `unchanged=true`, `noticeLogLines=1`, `targetLogLines=1`, `noticeLine=... stop-arm-error stage=notice loopId=999999999 message=stdout_closed` and `exit=0`, from `scratch/write-throw.mjs` run with `env -u AI_SESSION_CHILD -u OPENCODE_DB`. Cited: `.skilled/hooks/session-relaunch/claude/stop-arm.mjs:208`, `.skilled/hooks/session-relaunch/claude/stop-arm.mjs:238` | Met | - |
+| AC-005 | REQ-005 | Given the edited adapter, When the Claude adapter and conformance suites and the whole relaunch and OpenCode plugin suites run, Then they pass with the baseline count | Met. `scratch/claude-conformance.txt` prints `ℹ tests 115`, `ℹ pass 115`, `ℹ fail 0`, `exit=0`. `scratch/final-suite.txt` prints `ℹ tests 1555`, `ℹ pass 1555`, `ℹ fail 0`, `exit=0`, equal to `scratch/baseline.txt` at 1555. `scratch/existing-notices.txt` prints tests 2, pass 2, fail 0, exit 0 for the missing-transcript and background-task notices. Cited: `.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:940`, `.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:683` | Met | - |
+| AC-006 | REQ-006 | Given the fix commit, When it is inspected, Then both READMEs name the notices, and the commit adds no file, record key or log event | Met from the working tree, which the orchestrator commits. `rg -c 'no target pid'` and `rg -c 'arm that throws'` each printed 1 for `.skilled/hooks/session-relaunch/README.md` and 1 for `.skilled/hooks/session-relaunch/claude/README.md`, exit 0. `git diff --stat` names four modified files under `.skilled/hooks/session-relaunch` and adds none, `git status --porcelain` shows no new tracked file outside this child, and `git diff -U0 -- .skilled/hooks/session-relaunch` piped to `rg -c "^\+.*logEvent\('"` printed 2, both reused `stop-arm-error` catches. The two `git show FIX` checks remain for the orchestrator after the commit exists. Cited: `.skilled/hooks/session-relaunch/claude/README.md:27`, `.skilled/hooks/session-relaunch/README.md:134` | Met | - |
 
 ### Status values
 
@@ -84,9 +84,9 @@ waiver is treated as an unmet criterion rather than as a pass.
 <!-- ANCHOR:closure -->
 ## 3. CLOSURE STATEMENT
 
-**Closeable:** No
+**Closeable:** Yes
 
-Every row is `Pending`, because this phase is planned and not built. The builder runs T001 to T017, saves each run under `scratch/`, marks every row `Met` with the observed line and cites the fix commit.
+Every row is `Met`, each with an observed run under `scratch/`. The build changed four files and added none. The orchestrator creates the fix commit and reruns the two `git show FIX` checks of T016 against it.
 <!-- /ANCHOR:closure -->
 
 ---

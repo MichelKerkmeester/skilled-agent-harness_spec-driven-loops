@@ -96,7 +96,7 @@ async function spawnKiller(loopId, targetPid, transcriptPath, env, spawnProcess)
  * @param {number} [dependencies.pid=process.pid] - Pid the loop-child walk climbs from.
  * @param {string} [dependencies.processTable] - `pid ppid` pairs; the live table when omitted.
  * @param {Function} [dependencies.spawn] - Spawns the killer; child_process.spawn when omitted.
- * @param {Function} [dependencies.write] - Writes the deferral notice; process.stdout.write when omitted.
+ * @param {Function} [dependencies.write] - Writes an operator notice; process.stdout.write when omitted.
  * @returns {Promise<Object|null>} The armed record, or null when nothing was armed.
  */
 async function armPendingRecord(payload, dependencies = {}) {
@@ -196,6 +196,18 @@ async function armPendingRecord(payload, dependencies = {}) {
   if (targetPid === null) {
     logEvent('stop-arm-error', { stage: 'target-pid', loopId }, env);
     markParked(loopId, env);
+    // No later Stop and no prompt can recover the cause by then: the next prompt only
+    // withdraws the stamped record. The cause is known here, so the notice prints at the
+    // Stop and names what the operator can do.
+    try {
+      const write = dependencies.write || ((text) => process.stdout.write(text));
+      write(`${JSON.stringify({
+        systemMessage: 'Session relaunch could not arm the hop because this Stop found no session process '
+          + 'below the loop. Your next prompt withdraws the hand-over, and a later Stop tries again.',
+      })}\n`);
+    } catch (error) {
+      logEvent('stop-arm-error', { stage: 'notice', loopId, message: error.message }, env);
+    }
     return null;
   }
 
@@ -215,6 +227,17 @@ async function armPendingRecord(payload, dependencies = {}) {
   } catch (error) {
     logEvent('stop-arm-error', { stage: 'arm', loopId, message: error.message }, env);
     markParked(loopId, env);
+    // The arm error is gone before the next prompt can read it, and that prompt only
+    // withdraws the stamped record, so the notice prints here while the cause is known.
+    try {
+      const write = dependencies.write || ((text) => process.stdout.write(text));
+      write(`${JSON.stringify({
+        systemMessage: 'Session relaunch could not arm the hop because arming the record failed. '
+          + 'Your next prompt withdraws the hand-over, and a later Stop tries again.',
+      })}\n`);
+    } catch (noticeError) {
+      logEvent('stop-arm-error', { stage: 'notice', loopId, message: noticeError.message }, env);
+    }
     return null;
   }
   // An arm that returns no armed record found none it could arm, so nothing is left pending.

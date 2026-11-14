@@ -8,17 +8,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/022-stop-park-notices"
-    last_updated_at: "2026-11-14T16:20:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Planned the two parked-Stop notices"
-    next_safe_action: "The builder extends both tests and adds both notices"
+    last_updated_at: "2026-11-14T17:30:00Z"
+    last_updated_by: "code-agent"
+    recent_action: "Built both parked-Stop notices and verified the suites"
+    next_safe_action: "The orchestrator commits and reruns the two commit-scoped checks"
     blockers: []
     key_files: [".skilled/hooks/session-relaunch/claude/stop-arm.mjs", ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs", ".skilled/hooks/session-relaunch/claude/README.md", ".skilled/hooks/session-relaunch/README.md"]
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-022-stop-park-notices"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions:
       - "Does the arm-throw notice reach the operator from a spawned hook? The direct import proves the write seam."
     answered_questions:
@@ -58,11 +58,11 @@ Frozen choices. Changing one is an amendment. Parent decisions D1 to D4 bind her
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] The red run saved in `scratch/red.txt` shows both changed tests failing before the source edit, and `scratch/green.txt` shows both passing after.
-- [ ] `env -u AI_SESSION_CHILD -u OPENCODE_DB node --test .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs .skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs` exits 0 with `fail 0`, saved to `scratch/claude-conformance.txt`.
-- [ ] `env -u AI_SESSION_CHILD -u OPENCODE_DB node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs` exits 0 with `fail 0` and the `tests` count in `scratch/baseline.txt`.
-- [ ] `rg -c 'no target pid'` and `rg -c 'arm that throws'` print 1 or more for each of `.skilled/hooks/session-relaunch/README.md` and `.skilled/hooks/session-relaunch/claude/README.md`.
-- [ ] `validate.sh 022-stop-park-notices --strict` prints `RESULT: PASSED`.
+- [x] The red run saved in `scratch/red.txt` shows both changed tests failing before the source edit (tests 2, pass 0, fail 2, exit 1), and `scratch/green.txt` shows both passing after (tests 2, pass 2, fail 0, exit 0).
+- [x] `env -u AI_SESSION_CHILD -u OPENCODE_DB node --test .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs .skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs` exits 0 with `fail 0`, saved to `scratch/claude-conformance.txt` at tests 115, pass 115.
+- [x] `env -u AI_SESSION_CHILD -u OPENCODE_DB node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs` exits 0 with `fail 0` and the `tests` count in `scratch/baseline.txt`, saved to `scratch/final-suite.txt` at tests 1555, pass 1555, fail 0, exit 0.
+- [x] `rg -c 'no target pid'` and `rg -c 'arm that throws'` print 1 or more for each of `.skilled/hooks/session-relaunch/README.md` and `.skilled/hooks/session-relaunch/claude/README.md`. Observed: each printed 1, exit 0.
+- [x] `validate.sh 022-stop-park-notices --strict` prints `RESULT: PASSED`. Observed 2026-11-14: after `repair-derived.cjs --apply` reported `inspected=1 repaired=1 failed=0`, validate printed Errors 0, Warnings 0, `RESULT: PASSED` and exit 0.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -81,8 +81,8 @@ and findings belong here.
 | Review finding | Done | 2026-11-14, the whole-epic review finding F4, CONFIRMED against the tree at `fa6a56f0fc`: the two parking branches at `claude/stop-arm.mjs:196` and `:215` print nothing |
 | Code read | Done | 2026-11-14 at `fa6a56f0fc`: the three parking branches, the one printed notice at `claude/stop-arm.mjs:146`, and the two tests at `tests/claude-adapters.test.cjs:1351` and `:1380` |
 | Plan documents | Done | 2026-11-14: spec, plan, tasks, criteria and this goal written |
-| Build | Pending | The builder runs T001 to T017 and records the runs under `scratch/` |
-| Fix commit | Pending | Recorded after the build |
+| Build | Done | 2026-11-14: `scratch/red.txt` failed at tests 2, pass 0, fail 2, exit 1, `scratch/green.txt` passed at tests 2, pass 2, fail 0, exit 0, `scratch/claude-conformance.txt` passed at 115, and `scratch/final-suite.txt` passed at 1555 against the 1555 baseline in `scratch/baseline.txt` |
+| Fix commit | Pending | The orchestrator commits this tree. The working tree shows four modified files and no added file outside this child, and the added `logEvent('` count is 2, both reused `stop-arm-error` |
 | Merge and push | Pending | Parent decision D4: nothing is merged or pushed without the operator |
 
 ### Deviations and findings

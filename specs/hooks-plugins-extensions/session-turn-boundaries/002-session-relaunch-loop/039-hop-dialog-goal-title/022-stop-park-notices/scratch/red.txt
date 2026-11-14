@@ -1,0 +1,46 @@
+✖ stop-arm marks the pending record deferred when no process below the loop can be found (320.4465ms)
+✖ stop-arm marks the pending record deferred when arming throws (308.609417ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 791.040625
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1351:1
+✖ stop-arm marks the pending record deferred when no process below the loop can be found (320.4465ms)
+  AssertionError [ERR_ASSERTION]: stdout is empty: the parked Stop printed no notice
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/385-epic-review-fixes/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1369:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: '',
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }
+
+test at .skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1388:1
+✖ stop-arm marks the pending record deferred when arming throws (308.609417ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/385-epic-review-fixes/.skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs:1418:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+exit=1

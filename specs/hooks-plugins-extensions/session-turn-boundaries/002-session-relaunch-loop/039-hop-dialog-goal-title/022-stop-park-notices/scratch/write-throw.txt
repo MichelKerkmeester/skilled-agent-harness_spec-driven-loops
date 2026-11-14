@@ -1,0 +1,7 @@
+armed=null
+deferredAt=true
+unchanged=true
+noticeLogLines=1
+targetLogLines=1
+noticeLine=2026-11-14T17:15:13.734Z stop-arm-error stage=notice loopId=999999999 message=stdout_closed
+exit=0
