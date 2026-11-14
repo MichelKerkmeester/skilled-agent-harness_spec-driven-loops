@@ -50,7 +50,7 @@ A release note can now run as long as its release needs. The shape check failed 
 
 ### Remove the file-total line ceiling from release notes
 
-`check_changelog_shape.py` no longer counts an entry's lines. The template's length table drops both file totals, the 280-line expanded ceiling and the 40-line compact guidance, and says that no line ceiling applies. The `/create:changelog` workflow files drop their 240-line draft target. Every other gate stays: 32 H4 items, 14 glance bullets, glance order, the spec-folder line, How It Was Checked and the two sentence-length rules. sk-create-changelog is at 1.5.1.0 and the sk-doc hub at 2.9.14.0.
+`check_changelog_shape.py` no longer counts an entry's lines. The template's length table drops both file totals, the 280-line expanded ceiling and the 40-line compact guidance, and says that no line ceiling applies. The `/create:changelog` workflow files drop their 240-line draft target. A follow-up raised their stated ceilings from 26 H4 items and 12 glance bullets to the 32 and 14 the checker enforces, and a test now fails when the two disagree. Every other gate stays: 32 H4 items, 14 glance bullets, glance order, the spec-folder line, How It Was Checked and the two sentence-length rules. sk-create-changelog is at 1.5.1.0 and the sk-doc hub at 2.9.14.0.
 
 ### Files Changed
 
@@ -82,7 +82,7 @@ The shape tests and the sk-doc suite ran first for a baseline. The rule, its tes
 |----------|-----|
 | Remove the file total only | The operator chose it. The H4 item and glance bullet ceilings still bound the structure, and the sentence gates govern readability, not size |
 | Drop the 40-line compact guidance too | It was the compact entry's file total, and the operator's choice named it |
-| Leave the workflow files' 26 and 12 numbers | They differ from the template's 32 and 14, but they are not the size limit this packet removes |
+| Align the workflow files' 26 and 12 numbers in a follow-up | The operator asked for it after the first commit. The workflow line says the checker enforces it, so it must name the checker's numbers |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -100,6 +100,7 @@ The shape tests and the sk-doc suite ran first for a baseline. The rule, its tes
 | `parent-skill-check.cjs .skilled/skills/sk-doc` | `all hard invariants passed, 0 warnings` |
 | `check_changelog_shape.py` on both new release notes | `SUMMARY files=2 pass=2 fail=0` |
 | `yaml.safe_load` on both workflow files | Both parse |
+| `test_the_workflow_ceilings_match_the_checker` | `1 failed` on the old 26 and 12, then `21 passed` with 32 and 14 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -107,8 +108,7 @@ The shape tests and the sk-doc suite ran first for a baseline. The rule, its tes
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The workflow files state 26 H4 items and 12 glance bullets.** The template and the checker enforce 32 and 14. The checker decides, so nothing fails, but a writer reading the workflow aims lower than the gate.
-2. **`test_validation_switch.py` fails on origin/main.** It failed before this change and is unrelated to it.
+1. **`test_validation_switch.py` fails on origin/main.** It failed before this change and is unrelated to it.
 <!-- /ANCHOR:limitations -->
 
 ---

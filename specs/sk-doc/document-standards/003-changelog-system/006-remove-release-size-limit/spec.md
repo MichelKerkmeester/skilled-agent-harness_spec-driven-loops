@@ -62,13 +62,12 @@ exit 0
 - Remove the `file-total` rule and its constant from `check_changelog_shape.py`.
 - Replace the 280-line test with one proving a 1,000-line expanded entry passes.
 - Drop the compact and expanded file-total rows from the template's length table and every doc line that states them.
-- Drop the 240-line draft target from both `/create:changelog` workflow files.
+- Drop the 240-line draft target from both `/create:changelog` workflow files, and align their H4 item and glance bullet numbers with the checker's 32 and 14.
 - Raise sk-create-changelog to 1.5.1.0 and the sk-doc hub to 2.9.14.0, with a release note for each.
 
 ### Out of Scope
 - The 32 H4 item and 14 glance bullet ceilings - the operator chose to remove the file total only.
 - The two sentence-length gates - they govern readability, not size.
-- The workflow files' 26 H4 items and 12 glance bullets, which differ from the template's 32 and 14 - a separate drift, named in the summary.
 
 ### Files to Change
 

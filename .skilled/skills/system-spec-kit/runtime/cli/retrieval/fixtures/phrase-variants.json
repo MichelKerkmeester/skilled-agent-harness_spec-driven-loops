@@ -1,5 +1,5 @@
 {
-  "manifestHash": "0fcb362a372c8b7828b89988ecbfb23ead3f1438d7efd97868319483aa7cc509",
+  "manifestHash": "e30103047d3c1c89216ef5b45a824815dc484b8d6eb0da476d0b0dd99a9b1127",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -13943,6 +13943,9 @@
     ],
     "autonomous research": [
       "autonomous research"
+    ],
+    "autopilot never merges or pushes": [
+      "autopilot never merges or pushes"
     ],
     "autoresearch": [
       "autoresearch"
@@ -64782,6 +64785,9 @@
     "lifecycle rollback": [
       "lifecycle rollback"
     ],
+    "lifecycle save writes continuity": [
+      "lifecycle save writes continuity"
+    ],
     "lifecycle status vocabulary": [
       "lifecycle status vocabulary"
     ],
@@ -97112,6 +97118,9 @@
     "resume ladder trust ranking": [
       "resume ladder trust ranking"
     ],
+    "resume no packet matched": [
+      "resume no packet matched"
+    ],
     "resume parity non vacuity": [
       "resume parity non-vacuity"
     ],
@@ -122720,6 +122729,9 @@
     "system spec kit 2 13 1 0": [
       "system-spec-kit 2.13.1.0"
     ],
+    "system spec kit 2 13 2 0": [
+      "system-spec-kit 2.13.2.0"
+    ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
     ],
@@ -123352,6 +123364,9 @@
     ],
     "system spec kit v2 13 1 0": [
       "system-spec-kit v2.13.1.0"
+    ],
+    "system spec kit v2 13 2 0": [
+      "system-spec-kit v2.13.2.0"
     ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"

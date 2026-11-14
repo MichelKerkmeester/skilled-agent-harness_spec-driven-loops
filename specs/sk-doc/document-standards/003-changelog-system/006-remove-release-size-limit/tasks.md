@@ -56,6 +56,7 @@ contextType: "general"
 - [x] T008 Run the 281-line entry through the checker (`.skilled/skills/sk-doc/sk-create-changelog/scripts/check_changelog_shape.py`). Verify: it prints `PASS` and exits 0, where the previous checker printed `[file-total] 281 lines` and exited 1. [EVIDENCE: before `FAIL`, exit 1. After `PASS`, exit 0]
 - [x] T009 Rerun the sk-doc suite (`.skilled/skills/sk-doc/scripts/tests/run-script-tests.sh`). Verify: it prints `1 failing: test_validation_switch.py`, the baseline. [EVIDENCE: the same single failure]
 - [x] T010 Validate the changed documents and the hub (`.skilled/skills/sk-doc/SKILL.md`). Verify: `validate_document.py` prints `Total issues: 0` on the six changed docs, and `parent-skill-check.cjs .skilled/skills/sk-doc` prints `all hard invariants passed`. [EVIDENCE: six `VALID`, hub check passed with 0 warnings]
+- [x] T011 Align the workflow ceiling line with the checker and test it (`.skilled/commands/create/assets/create-changelog-auto.yaml`). Verify: `test_the_workflow_ceilings_match_the_checker` fails on the old 26 and 12 and passes on 32 and 14, and the shape tests print `21 passed`. [EVIDENCE: `1 failed` on the old files, `21 passed` after]
 <!-- /ANCHOR:phase-3 -->
 
 ---
