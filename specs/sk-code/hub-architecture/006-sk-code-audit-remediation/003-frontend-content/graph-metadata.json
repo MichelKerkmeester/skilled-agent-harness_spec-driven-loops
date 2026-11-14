@@ -17,6 +17,8 @@
       "frontend content tasks",
       "frontend content acceptance criteria",
       "frontend content goal",
+      "frontend content decision record",
+      "motion reference line target",
       "frontend content implementation summary"
     ],
     "key_topics": [
@@ -28,19 +30,20 @@
       "acceptance",
       "criteria",
       "goal",
-      "implementation",
-      "summary",
-      "request",
-      "reaches"
+      "decision",
+      "record",
+      "motion",
+      "reference"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/skills/sk-code/sk-code-frontend/SKILL.md",
       ".skilled/skills/sk-code/sk-code-frontend/ROUTER.md",
@@ -84,6 +87,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -193,17 +202,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement Once",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Once a request reaches `sk-code-frontend`, the packet tells the agent two different things about what to load: `SKILL.md` says to read the web layer first, and the router skips it for visual, motion and Figma intents",
     "created_at": "2026-11-14T12:01:51Z",
-    "last_save_at": "2026-11-14T12:18:00.720Z",
+    "last_save_at": "2026-11-14T14:31:53.116Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,15 +215,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:98b43b9e75cc32b5f59d81d0e7ae838f897a178e2f47fb331d21ab74d01cc4f7",
+    "source_fingerprint": "sha256:5caeb746c81c03ce80b00b9301406b6161eb047274290e9d0cd95889ad2aadb3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "edc7a7792f6eaafda3617ea4e72392a8fb40319089d3308295ffb0e9a868b71a",
-      "plan.md": "53b8f0c098ca204d69bd825bf294463e7ad49d9da52333b030e58a69f3a55a10",
-      "tasks.md": "99feae9e25be64b63340c24de9419042795c934f58cb3cc906c01f6b0cf7a238",
-      "implementation-summary.md": "93861d1e65552183ab56c5779d311ac28dfe93b4ea113e91b11457c1599282ef"
+      "spec.md": "0aec05af2393bf3a6f1982876925e86a641184b1cab6a4af0671e3159b3ec2c1",
+      "plan.md": "886ef180cd05d4773178a80623c66106eee72ca9228ba450250373653acc5ac6",
+      "tasks.md": "6e0271e762fc386097eadbff59627d13c868032499dd646d1d539f997b0cdfe0",
+      "decision-record.md": "8f1885ce85106256bf4e01e25dbc901b2dcdbd649d27cc9ee056633fb95744ab",
+      "implementation-summary.md": "29dc12f11a95577fc78be8357e944313435f051fba83d59cbd19c2bd5e875645"
     },
     "last_active_at": null
   }

@@ -54,7 +54,7 @@ Frozen choices. Changing one is an amendment.
 
 - [ ] `rg -l 'visual, motion and Figma intents' .skilled/skills/sk-code/sk-code-frontend/SKILL.md .skilled/skills/sk-code/sk-code-frontend/ROUTER.md .skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md | wc -l` prints 3, and `rg -c 'web layer before applying a topic reference' .skilled/skills/sk-code/sk-code-frontend/SKILL.md` prints nothing and exits 1.
 - [ ] `ls .skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/*.md | wc -l` prints 11, and the playbook package validator exits 0.
-- [ ] `cat .skilled/skills/sk-code/sk-code-frontend/references/*.md | rg -c '^### M[0-9]+\.'` prints 48, the count before the move, so no motion rule is lost or duplicated.
+- [ ] `cat .skilled/skills/sk-code/sk-code-frontend/references/*.md | rg -c '^### M[0-9]+\.'` prints 57, the count before the move, so no motion rule is lost or duplicated.
 - [ ] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content --strict --quiet` prints `RESULT: PASSED`.
 <!-- /ANCHOR:completion -->
 
@@ -73,6 +73,14 @@ and findings belong here.
 |------|-------|----------|
 | Spec, plan, tasks and acceptance criteria authored | Done | Written on 2026-11-14 from the audit evidence in `../001-finding-verification/` |
 | Implementation | Pending | Not started |
+| Phase 003 content edits | Done, phase not closed | Code 62507384e6. 26 DeepSeek V4.1 Flash dispatches through cli-pi. REQ-001, 002 and 005 to 010 print as written. Playbook validator PASS with 11 scenarios, router-sync 5/5, doc-claims 4/4, tests 53, 154 and 15 pass |
+| REQ-003 baseline is wrong | Open, operator decision | The motion rule id count before any move was 57, not 48: rg -c on web-motion-and-interaction.md at ff0673af0a prints 57. After the move the count across references is still 57, so no rule is lost or duplicated, but the criterion as written cannot print 48 |
+| REQ-004 is out of reach inside the frozen scope | Open, operator decision | Moving the eight rules row F7 lists takes the motion reference from 642 to 586 lines. 400 or fewer would need about 27 more rules moved, which F7 does not list and decision D2 and the scope do not cover |
+| Failure path behaves differently from spec.md | Recorded | A scenario with a wrong expected resource leaves validate-playbook-package.cjs at exit 0. verify-router-sync.cjs check 4 is what fails, with exit 1 and the scenario named. Triggered on web-layout.md and restored |
+| File outside the Files to Change table | Recorded | sk-code-skilled/SKILL.md gained one FRONTEND row in its checklist map, because quality-checklist-map.test.cjs compares that table with the registry and REQ-005 needs it to pass. The file is inside the sk-code hub |
+| Operator answer 2026-11-14: correct the motion rule id baseline from 48 to 57 | Done | AskUserQuestion answer, Q001 in decision-record.md. The figure changed in goal.md, spec.md, plan.md, tasks.md and acceptance-criteria.md |
+| Operator answer 2026-11-14: accept 586 lines for the motion reference | Done | AskUserQuestion answer, Q002 and ADR-001 in decision-record.md. AC-004 is Superseded |
+| Phase 003 closed | Done | Code 62507384e6. Nine criteria Met, AC-004 Superseded by ADR-001. Rows F5 to F13 carry fix evidence |
 
 ### Deviations and findings
 

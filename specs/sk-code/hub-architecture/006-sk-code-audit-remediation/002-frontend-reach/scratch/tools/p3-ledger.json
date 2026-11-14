@@ -1,0 +1,11 @@
+{
+ "F5": "Fixed in `62507384e6`. `rg -l 'visual, motion and Figma intents' .skilled/skills/sk-code/sk-code-frontend/SKILL.md .skilled/skills/sk-code/sk-code-frontend/ROUTER.md .skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md \\| wc -l` prints 3, and `rg -c 'web layer before applying a topic reference' .skilled/skills/sk-code/sk-code-frontend/SKILL.md` exits 1",
+ "F6": "Fixed in `62507384e6`. `rg -c 'tokens.css' .skilled/skills/sk-code/sk-code-frontend/ROUTER.md` prints 3 and `rg -c 'workflow-implement' .skilled/skills/sk-code/sk-code-frontend/ROUTER.md` prints 1",
+ "F7": "Fixed in `62507384e6`. The eight listed rules moved byte for byte to their owning files. `cat .skilled/skills/sk-code/sk-code-frontend/references/*.md \\| rg -c '^### M[0-9]+\\.'` prints 57, the count before the move, and the motion reference went from 642 to 586 lines",
+ "F8": "Fixed in `62507384e6`. `ls .skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/*.md \\| wc -l` prints 11, and `validate-playbook-package.cjs --package .skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook` prints `PASS` with `scenarios=11`",
+ "F9": "Fixed in `62507384e6`. `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/quality-checklist-map.test.cjs` passes 3 of 3, and `quality-gate.cjs --explain .skilled/skills/sk-code/sk-code-frontend/assets/tokens.css` lists `frontend-practice.md` for the FRONTEND surface",
+ "F10": "Fixed in `62507384e6` on the operator's answer of 2026-11-14. `rg -c -- '--text-[a-z0-9]+: *[0-9.]+px' .skilled/skills/sk-code/sk-code-frontend/assets/tokens.css` exits 1, and the eleven type tokens are in `rem`",
+ "F11": "Fixed in `62507384e6`. `sed -n '/^## 8. FRAMEWORK SECTIONS/,/^### React/p' .skilled/skills/sk-code/sk-code-frontend/references/web-markup-and-css.md \\| rg -c 'project mode'` prints 1",
+ "F12": "Fixed in `62507384e6`. `rg -o '^### (I\\|P)[0-9]+' .skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md .skilled/skills/sk-code/sk-code-frontend/references/web-performance-and-loading.md` prints I1 to I8 and P1 to P10 in ascending order",
+ "F13": "Fixed in `62507384e6`. `rg -c 'nine web topic files' .skilled/skills/sk-code/sk-code-frontend/ROUTER.md` exits 1"
+}

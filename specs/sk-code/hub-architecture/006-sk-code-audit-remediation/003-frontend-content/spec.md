@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/379-sk-code-audit-remediation` |
 | **Parent Spec** | ../spec.md |
@@ -131,7 +131,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 |---|---|
 | REQ-001 | `rg -l 'visual, motion and Figma intents' .skilled/skills/sk-code/sk-code-frontend/SKILL.md .skilled/skills/sk-code/sk-code-frontend/ROUTER.md .skilled/skills/sk-code/sk-code-frontend/references/frontend-practice.md | wc -l` prints 3, and `rg -c 'web layer before applying a topic reference' .skilled/skills/sk-code/sk-code-frontend/SKILL.md` prints nothing and exits 1. |
 | REQ-002 | `ls .skilled/skills/sk-code/sk-code-frontend/manual-testing-playbook/frontend-surface/*.md | wc -l` prints 11, and the playbook package validator exits 0. |
-| REQ-003 | `cat .skilled/skills/sk-code/sk-code-frontend/references/*.md | rg -c '^### M[0-9]+\.'` prints 48, the count before the move, so no motion rule is lost or duplicated. |
+| REQ-003 | `cat .skilled/skills/sk-code/sk-code-frontend/references/*.md | rg -c '^### M[0-9]+\.'` prints 57, the count before the move, so no motion rule is lost or duplicated. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -155,7 +155,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: Three documents state one load rule, and the playbook replays all 11 intents.
-- **SC-002**: The motion reference is 400 lines or fewer with all 48 `M` rule ids still present once across the references.
+- **SC-002**: The motion reference is 400 lines or fewer with all 57 `M` rule ids still present once across the references.
 <!-- /ANCHOR:success-criteria -->
 
 ---

@@ -206,17 +206,17 @@
     ],
     "causal_summary": "An audit of the sk-code hub on 2026-11-14 produced 61 findings",
     "created_at": "2026-11-14T12:01:48Z",
-    "last_save_at": "2026-11-14T13:44:10.907Z",
+    "last_save_at": "2026-11-14T14:30:40.165Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "goal.md"
     ],
-    "source_fingerprint": "sha256:d9062a10daf3dbd140b1b9718b0d440341875874a4c55e407e0aacf7262eaf25",
+    "source_fingerprint": "sha256:8850f44c3030809ca23e8cc30fa206bd889d04c87e925193bf50124384d6d5bf",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "faef42f43e79fe1cb2698b5cdec1c8d5a0a1a27785e95d47f3989d1ed486a0fc"
+      "spec.md": "e1a1df1aa3f01b91078b11b641f32e0e265ab4019fc700a9420a6767e5470ffb"
     },
     "last_active_at": null
   }

@@ -1,0 +1,54 @@
+TASK: overwrite one file with exactly the content given below.
+
+FILE TO OVERWRITE: .skilled/skills/sk-code/sk-code-frontend/changelog/v1.2.0.0.md
+
+The content is everything between the two marker lines below. Write it byte for byte, with a final newline after the last line. Do not add, drop, reword or reflow anything. Write the file in one write call. Read no other file.
+
+<<<FILE
+---
+title: "sk-code-frontend v1.2.0.0, one load rule and a scenario for every intent"
+description: "v1.2.0.0 makes the packet's documents state the load rule its router runs, moves eight duplicated rules to the topic files that own them and adds a playbook scenario for each of the eight intents that had none."
+trigger_phrases:
+  - "sk-code-frontend v1.2.0.0"
+  - "sk-code-frontend 1.2.0.0"
+  - "frontend load rule"
+importance_tier: "normal"
+contextType: "general"
+version: 1.2.0.0
+---
+
+# v1.2.0.0, One Load Rule and a Scenario for Every Intent
+
+The packet told an agent two things about what to load. The router followed only one of them. Every document now states what the router does. Each rule sits in the topic file that owns it, and every intent has a scenario.
+
+> Spec folder: `specs/sk-code/hub-architecture/006-sk-code-audit-remediation/003-frontend-content`
+
+&nbsp;
+
+## What's New at a Glance
+
+- **One load rule in three documents.** `SKILL.md`, `ROUTER.md` and `frontend-practice.md` now agree. Every intent loads the core. Web intents add the web layer and their topic file. The visual, motion and Figma intents add their own files without it. `SKILL.md` used to order the web layer first for every intent.
+- **The token file and the workflow links have a stated path.** No intent maps `assets/tokens.css` or the three `workflow-*.md` links. `ROUTER.md` now says so and names where each is opened from.
+- **Eight rules moved to their owning topic files.** `M2` sits beside `EA5`. `M13` and `M14` sit beside `V6`, and `M15` beside `V10`. `M17` sits beside `A8`, `M51` beside `A9` and `M21` beside `A14`. `M29` sits beside `P7`. Each keeps its id and its wording. The motion reference keeps one link line for each.
+- **Accessibility requests load the rules they need.** The focus, tooltip and reduced-motion rules were filed under motion. An accessibility request now loads them.
+- **A scenario for every intent.** The playbook grows from 3 scenarios to 11. The router-sync guard replays all 11 intents.
+- **A frontend checklist row.** The registry declares `frontend-practice.md` as the checklist for stylesheet, markup and component files. The quality runner loads it for a file that resolves to the frontend surface.
+- **Type tokens in `rem`.** The starter type scale in `assets/tokens.css` moves from `px` to `rem`. A comment beside each step gives its pixel size at the 16px default. Text now follows the reader's browser font size.
+- **Rule ids in order.** `I9` becomes `I8`, which closes the gap. The long-task rule becomes `P8`. The two image rules become `P9` and `P10`.
+- **Where other frameworks live.** The framework section carries React and Next.js only. It now says another framework's rules live in the project mode that owns that stack.
+- **A consistent file count.** `ROUTER.md` counts six web topic files and three visual topic files. `SKILL.md` and `README.md` already did.
+
+&nbsp;
+
+## Upgrade
+
+A project that copied `assets/tokens.css` keeps its own copy. To follow the new scale, replace each `--text-*` pixel value with the `rem` value from the new file.
+
+The ids `P8`, `P9`, `P10` and `I9` changed. A link to one of their anchors needs the new id. No link inside this repository pointed at them.
+FILE>>>
+
+One file changes. Change nothing else.
+
+VERIFY (run from the repository root):
+grep -c 'now agree' .skilled/skills/sk-code/sk-code-frontend/changelog/v1.2.0.0.md
+Expected output: `1`

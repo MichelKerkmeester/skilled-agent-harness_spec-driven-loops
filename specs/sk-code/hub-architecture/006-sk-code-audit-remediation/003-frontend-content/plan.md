@@ -119,7 +119,7 @@ Follow the ordered tasks in `tasks.md`. It owns the Setup, Implementation and Ve
 <!-- ANCHOR:rollback -->
 ## 7. ROLLBACK PLAN
 
-- **Trigger**: The `M` rule count differs from 48, or the playbook validator fails.
+- **Trigger**: The `M` rule count differs from 57, or the playbook validator fails.
 - **Procedure**: Revert the phase commit with `git revert <sha>`. The moved rules return to the motion reference with it.
 <!-- /ANCHOR:rollback -->
 
