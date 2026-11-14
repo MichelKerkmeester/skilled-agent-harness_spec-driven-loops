@@ -1,0 +1,309 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-accuracy-runner-close-4c-1794682797954-pcdanq",
+  "status": "complete",
+  "focus": "traceability and maintainability",
+  "dimensions": [
+    "traceability",
+    "maintainability"
+  ],
+  "filesReviewed": [
+    ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md:63-85,120-126,185-188",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:440-508",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:980-1085,1187-1206",
+    ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1458-1478,1620-1685,1880-1897",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/027-review-pass-four-remediation/spec.md:204-238",
+    "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/027-review-pass-four-remediation/tasks.md:100-110"
+  ],
+  "findingsCount": 2,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 2
+  },
+  "findingsNew": [
+    "ARC4C-P2-002",
+    "ARC4C-P2-003"
+  ],
+  "findingDetails": [
+    {
+      "id": "ARC4C-P2-002",
+      "severity": "P2",
+      "title": "The README says a stored run line holds no offeredAs, but both current writers store it",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md:123",
+      "line": 123,
+      "dimension": "traceability",
+      "findingClass": "traceability",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md:123",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:496",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1203",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1471-1476"
+      ],
+      "claim": "The blanket sentence 'A stored run line holds no offeredAs, so its offer counts as before' is false for a line written by either current writer, because both writers keep the field and the scorer uses it to split partner from head.",
+      "evidence": "command-offer.mjs:496 writes offeredAs on a backfilled line; run-command-behaviour.mjs:1203 spreads offerLineFields, which writes it at :824; score-command-transcripts.mjs:1471-1476 reads line.offeredAs.",
+      "counterevidenceSought": "Checked whether 'stored' is defined as the pre-field corpus only. The README's own --brief-only paragraph at :85 says a field may be present or absent, so the document already knows a stored line can hold it.",
+      "alternativeExplanation": "The sentence was written when only legacy lines existed and was not updated after T006/T007.",
+      "finalSeverity": "P2",
+      "confidence": "high",
+      "downgradeTrigger": "Withdraw if a later definition names 'stored' as the pre-offeredAs corpus only.",
+      "case": "A live line written at run-command-behaviour.mjs:1201-1205 carries offeredAs 'partner'; offerOf counts it in offeredAsPartner and not in offered, while README.md:123 says a stored line holds no offeredAs and counts as before.",
+      "scopeProof": "The README is the changed accuracy-runner path in review-scope-4c.txt; both writers and the scorer are the brief's verification surfaces.",
+      "affectedSurfaceHints": [
+        "offerOf",
+        "offeredAsPartner",
+        "offerFieldAbsent",
+        "stored run logs",
+        "backfill"
+      ]
+    },
+    {
+      "id": "ARC4C-P2-003",
+      "severity": "P2",
+      "title": "The runner row says --brief-only rewrites the four fields, but that mode copies the offer fields untouched",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md:125",
+      "line": 125,
+      "dimension": "maintainability",
+      "findingClass": "maintainability",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md:125",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md:85",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs:489-490",
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs:1067-1082"
+      ],
+      "claim": "The runner row's [--brief-only] clause promises a four-field rewrite, but the brief-only branch copies the input line and changes only briefDelivered and briefBackfilled, so a legacy line keeps no offer fields.",
+      "evidence": "command-offer.mjs:489-490 builds { ...line, briefDelivered, briefBackfilled } when briefOnly; the else branch at :492-500 writes the four offer fields. README.md:85 says brief-only keeps every offer field as the input holds it.",
+      "counterevidenceSought": "Checked whether --brief-only is rejected with --backfill or scoped differently in the run options; run-command-behaviour.mjs:1067-1082 accepts the pair, and the row names both in one sentence.",
+      "alternativeExplanation": "'Rewrites with' could mean the output may hold the fields when the input does; the paragraph at :85 is the precise statement, and the row is the imprecise one.",
+      "finalSeverity": "P2",
+      "confidence": "high",
+      "downgradeTrigger": "Withdraw if the row is read as describing the default backfill only and the bracket is treated as a separate mode heading.",
+      "case": "A legacy line with no offeredCommand, offeredPolicy or offeredAs, run through --backfill --brief-only; the output has briefDelivered and briefBackfilled but none of the three offer fields, contradicting the runner row.",
+      "scopeProof": "The README is the changed accuracy-runner path; the backfill branch is the writer the row describes.",
+      "affectedSurfaceHints": [
+        "--brief-only",
+        "backfill field list",
+        "briefBackfilled",
+        "legacy run logs"
+      ]
+    }
+  ],
+  "traceabilityChecks": {
+    "spec_code": {
+      "level": "core",
+      "status": "partial",
+      "notes": "T030 fixed the two 4b list counts and added the head-moved sentence; README:70 matches run-command-behaviour.mjs:1180-1184, :76 says four fields and :125 lists offeredAs. The stored-line sentence at :123 and the [--brief-only] clause at :125 remain doc-code drift."
+    },
+    "checklist_evidence": {
+      "level": "core",
+      "status": "partial",
+      "notes": "AC-010 asks the docs to name the behaviour the code has; the T030 sentences do, but :123 and the [--brief-only] clause at :125 do not. CHK-040's offeredAs field-list claim is met by both lists."
+    },
+    "skill_agent": {
+      "level": "overlay",
+      "status": "notApplicable",
+      "notes": "No agent definition changed in this area."
+    },
+    "agent_cross_runtime": {
+      "level": "overlay",
+      "status": "notApplicable",
+      "notes": "No runtime branch in the changed doc; the Codex reader is covered by the iteration-1 check."
+    },
+    "feature_catalog_code": {
+      "level": "overlay",
+      "status": "notApplicable",
+      "notes": "No feature-catalog page describes the changed accuracy-runner lines."
+    },
+    "playbook_capability": {
+      "level": "overlay",
+      "status": "notApplicable",
+      "notes": "No playbook surface changed."
+    }
+  },
+  "newFindingsRatio": 0.6667,
+  "sessionId": "fanout-accuracy-runner-close-4c-1794682797954-pcdanq",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-14T19:19:06Z",
+  "durationMs": 189000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "standard",
+    "enforcement": "strict",
+    "reason": "The closing docs pass checks the one changed accuracy-runner document against the writers and the scorer the brief names.",
+    "evidenceRefs": [
+      "review/review-scope-4c.txt:4",
+      "027-review-pass-four-remediation/tasks.md:100-110"
+    ]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/command-offer.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs"
+    ],
+    "selectionReason": "The changed accuracy-runner file is the README; the three code surfaces are the writers and consumer its offeredAs sentences describe.",
+    "discoveryMethods": [
+      "direct_read",
+      "exact_grep for three fields, carries none of the four and the backfill field list",
+      "line comparison against the T030 edits"
+    ],
+    "omittedHighRiskTargets": [
+      ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts (sibling lineage's surface)",
+      "command-prompts.jsonl and holdout-prompts.jsonl (holdout rule; not opened)"
+    ],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "unavailable",
+    "evidenceRefs": [
+      "review/review-scope-4c.txt:4",
+      "027-review-pass-four-remediation/spec.md:204-238"
+    ]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "doc_code_drift",
+      "doc_contradiction",
+      "checklist_evidence",
+      "deferred_scope"
+    ],
+    "covered": [
+      "doc_code_drift",
+      "doc_contradiction",
+      "checklist_evidence"
+    ],
+    "ruledOut": [],
+    "deferred": [
+      "deferred_scope"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "ARC4C-SL-006",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "hypothesis": "The stored-line sentence is stale after both writers began keeping offeredAs.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "README.md:120-126 and command-offer.mjs:484-501",
+          "result": "The README says a stored line holds no offeredAs; the backfill writes it and the live writer spreads it.",
+          "evidenceRefs": [
+            "README.md:123",
+            "command-offer.mjs:496",
+            "run-command-behaviour.mjs:1203"
+          ]
+        },
+        {
+          "method": "producer_consumer_trace",
+          "queryOrPath": "score-command-transcripts.mjs:1458-1478",
+          "result": "offerOf reads line.offeredAs to split partner from head, so a stored line with the field counts the partner side apart from the offer.",
+          "evidenceRefs": [
+            "score-command-transcripts.mjs:1471-1476"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "linkedFindingId": "ARC4C-P2-002",
+      "rationale": "The sentence contradicts both writers and the consumer it documents."
+    },
+    {
+      "id": "ARC4C-SL-007",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md"
+      ],
+      "bugClass": "doc_contradiction",
+      "hypothesis": "The runner row's [--brief-only] clause promises fields the mode does not add.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "README.md:74-85,120-126 and command-offer.mjs:484-501",
+          "result": "The row names the four fields with [--brief-only] inline; the branch at :489-490 copies the line and changes only the brief fields.",
+          "evidenceRefs": [
+            "README.md:125",
+            "README.md:85",
+            "command-offer.mjs:489-490"
+          ]
+        },
+        {
+          "method": "exact_grep",
+          "queryOrPath": "run-command-behaviour.mjs:1067-1082",
+          "result": "The option parser accepts --brief-only beside --backfill and rejects it only without --backfill.",
+          "evidenceRefs": [
+            "run-command-behaviour.mjs:1067-1082"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "linkedFindingId": "ARC4C-P2-003",
+      "rationale": "A legacy line run through the brief-only mode does not gain the four fields the row names."
+    },
+    {
+      "id": "ARC4C-SL-008",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/README.md"
+      ],
+      "bugClass": "checklist_evidence",
+      "invariant": "T030's three exact edits are present and match the writers.",
+      "searchActions": [
+        {
+          "method": "exact_grep",
+          "queryOrPath": "README.md for three fields, carries none of the four and the four-field backfill list",
+          "result": "three fields has no match; carries none of the four has one at :70; the four-field list has one at :125.",
+          "evidenceRefs": [
+            "README.md:70",
+            "README.md:76",
+            "README.md:125"
+          ]
+        },
+        {
+          "method": "direct_read",
+          "queryOrPath": "run-command-behaviour.mjs:1180-1205",
+          "result": "The head-moved branch appends before the replay and carries none of the four; the normal append carries all four.",
+          "evidenceRefs": [
+            "run-command-behaviour.mjs:1180-1184",
+            "run-command-behaviour.mjs:1201-1205"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "ruledOutReason": "AR4B-P2-001 and AR4B-P2-002 are fixed by the T030 edits; no third list or exception is missing.",
+      "rationale": "The two 4b accuracy-runner findings are confirmed fixed."
+    },
+    {
+      "id": "ARC4C-SL-009",
+      "dimension": "maintainability",
+      "targetRefs": [
+        "specs/system-skill-advisor/routing-and-scoring/008-command-surfacing-build/review/verify-4/report.md"
+      ],
+      "bugClass": "deferred_scope",
+      "hypothesis": "The pair-doc, paired-arm and unscoredOnly findings are still open.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "027-review-pass-four-remediation/spec.md:204-238",
+          "result": "The spec defers the pair README sentence, the reserved paired arm name and the dead unscoredOnly count to phase 026.",
+          "evidenceRefs": [
+            "027-review-pass-four-remediation/spec.md:214"
+          ]
+        }
+      ],
+      "disposition": "deferred",
+      "deferredReason": "The 027 remediation spec assigns these three items to phase 026; re-reporting them here would duplicate a deferred workstream.",
+      "rationale": "The closing round records them as deferred, not as new findings."
+    }
+  ],
+  "graphEvents": []
+}

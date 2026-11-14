@@ -376,8 +376,10 @@ export const COMMAND_DECLINE_LEADS: readonly string[] = [
 // A refusal or a question over an or-list covers every command the list joins,
 // while a second use verb opens a clause of its own, so the list joins only `or`
 // and `, or`. A listed command may carry `the` before it and
-// `command` after it, and the command after the last `or` may carry `the`.
-const COMMAND_OR_LIST = '(?:(?:the )?\\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)?(?: command)?,? or (?:the )?)*';
+// `command` after it, and the command after the last `or` may carry `the`. A
+// listed command may also carry one plain word after it, such as the subcommand a
+// doctor command takes, so `do not run /x now or /y` refuses both.
+const COMMAND_OR_LIST = '(?:(?:the )?\\/[a-z][a-z0-9_-]*(?::[a-z][a-z0-9_-]*)?(?: [a-z][a-z0-9_-]*)?(?: command)?,? or (?:the )?)*';
 
 // A command the reader asks about is named without being asked for, so this list
 // holds the leads that mark that naming. A lead must sit directly before the

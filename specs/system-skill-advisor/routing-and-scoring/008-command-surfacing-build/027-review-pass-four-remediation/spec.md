@@ -236,7 +236,7 @@ Phase 020 `spec.md:122`, `spec.md:184` and its AC-007 Given clause state a weak 
 - The README statement gap - it lives in the `sk-doc` route vocabulary, the class P017 names, and a word change to move one review prompt would be tuning on it.
 - SA4-P1-001 and SA4-P1-003 - accepted limits of phase 020 (P045).
 - The pair README sentence, the reserved arm name `paired` and the dead `unscoredOnly` count - phase 026 rewrites the same functions (P046).
-- An or-list joined by `and`, `nor` or a bare comma, and a question over an or-list - no probe reproduced them (P049).
+- An or-list joined by `and`, `nor` or a bare comma - no probe reproduced them (P049). A question over an or-list was reproduced by the confirming round and is in scope through T029.
 - Any new behaviour run, the release notes and the reference pages phase 025 owns.
 
 ### Files to Change
@@ -381,7 +381,7 @@ None blocks planning. The planner could ask the operator nothing, so each point 
 
 - A1. Level: `recommend-level.sh --loc 380 --files 17` printed Level 1. Decision: Level 2, because `acceptance-criteria.md` is the closure gate, as P001 and P025 decided for phases 020 to 026. The plan workflow says to go higher when its answer and judgment differ.
 - A2. The plan ran without `:auto` as a non-interactive worker. Each checkpoint took its first option as the default, and step 7 took Skip, as the workflow's child-dispatch rule says. Step 5's four exploration agents were not dispatched, because this planner may dispatch none, and the same reads were done inline. No `research/research.md` was written, as in phases 024 and 026. Step 6 did not run `generate-context.js`, because the spec authoring card forbids it for a packet author and its writes can reach files outside this phase's write scope.
-- A3. The or-list carry joins `or` and `, or` only and applies to the decline leads only (P049). `and`, `nor`, a bare comma and a question over an or-list had no reproduction, which P022 and P024 require before a new rule.
+- A3. The or-list carry joins `or` and `, or` only (P049). It began on the decline leads only. The confirming round reproduced a question over an or-list (SAC4B-P2-001) and the article form (SAC4B-P1-001), so T028 and T029 extend it to `the` and `command` and to the ask leads, and the closing round's subcommand word (SAC4C-P1-001) is T031. `and`, `nor` and a bare comma still have no reproduction, which P022 and P024 require before a new rule.
 - A4. `do not run A or run B` keeps B's command. A second use verb opens a new clause, the way `do not run /x, run /y instead` already reads, and no current rule carries a negation across a verb. A guard row pins the choice (P049).
 - A5. The ungraded README statement is a route vocabulary gap at P2 (P047). The mention fixes cannot reach it, and SA2-P2-002's grounds hold: `start` asks before it writes and Gate 2 lets an explicit instruction outrank the policy.
 - A6. SA4-P2-004 is a superseding note here, not an erratum in phase 020 (P048).

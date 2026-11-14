@@ -1,0 +1,47 @@
+## BUILD
+exit 0
+## VX command-attach-guards
+ Test Files  1 passed (1)
+      Tests  146 passed (146)
+exit 0
+## VX command-offer
+ Test Files  1 passed (1)
+      Tests  30 passed (30)
+exit 0
+## VX command-behaviour-guards
+ Test Files  1 passed (1)
+      Tests  15 passed (15)
+exit 0
+## VX command-transcript-score
+ Test Files  1 passed (1)
+      Tests  172 passed (172)
+exit 0
+## VX command-routing-slice
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+exit 0
+## RT
+ℹ tests 96
+ℹ pass 96
+ℹ fail 0
+exit 0
+## HT
+ Test Files  2 passed (2)
+      Tests  30 passed (30)
+exit 0
+## DT
+ℹ tests 1221
+ℹ pass 1221
+ℹ fail 0
+exit 0
+## VP
+ℹ tests 45
+ℹ pass 45
+ℹ fail 0
+exit 0
+## TC
+exit 0
+## VALL
+ Test Files  184 passed (184)
+      Tests  2065 passed | 6 skipped (2071)
+exit 0

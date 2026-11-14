@@ -162,6 +162,9 @@ describe('a command the prompt only mentions', () => {
     ['do not run /create:agent, or the /create:readme command', '/create:readme'],
     ['skip /create:agent or the /create:readme command', '/create:readme'],
     ['never use the /create:readme command or the /create:feature-catalog command', '/create:feature-catalog'],
+    ['do not run /doctor:ci report or /create:readme', '/create:readme'],
+    ['do not run /doctor:ci report or /doctor:ci scaffold', '/doctor:ci scaffold'],
+    ['never use /doctor:git hooks or /doctor:skill-advisor tune', '/doctor:skill-advisor tune'],
   ])('reads %s as a refusal of %s through an or-list', (prompt, command) => {
     expect(commandOnlyMentioned(prompt, command)).toBe(true);
   });
@@ -175,6 +178,7 @@ describe('a command the prompt only mentions', () => {
     ['do not run /speckit:complete or run /speckit:plan', '/speckit:plan'],
     ['use /create:agent or the /create:readme command', '/create:readme'],
     ['the next step is /create:agent or /create:readme', '/create:readme'],
+    ['use /doctor:ci report or /create:readme', '/create:readme'],
   ])('still reads %s as a request for %s beside an or-list', (prompt, command) => {
     expect(commandOnlyMentioned(prompt, command)).toBe(false);
   });
