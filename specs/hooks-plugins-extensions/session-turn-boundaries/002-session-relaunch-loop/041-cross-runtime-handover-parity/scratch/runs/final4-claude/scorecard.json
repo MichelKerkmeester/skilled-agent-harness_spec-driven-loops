@@ -1,0 +1,34 @@
+{
+  "runtime": "claude",
+  "label": "final4",
+  "trustDialogs": 0,
+  "steps": {
+    "notePrepared": true,
+    "signalled": true,
+    "relaunched": true,
+    "noteClosed": true,
+    "receiverAnswered": true
+  },
+  "answer": {
+    "lineCount": true,
+    "heading": true,
+    "codeWord": true
+  },
+  "noteStatus": "done",
+  "carry": {
+    "model": "changed:claude-sonnet-5-5",
+    "effort": "kept",
+    "name": "kept",
+    "provider": "not-set"
+  },
+  "seconds": {
+    "startToPrepare": 13.8,
+    "prepareToSignal": 6.9,
+    "signalToRelaunch": 1,
+    "startToClosed": 35
+  },
+  "problems": [],
+  "firstLaunch": "claude --model sonnet --effort medium --name hoptest-final4-claude Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-relaunch/README.md, name its first heading and repeat the code word ORCHID-30905. Start by reading the README. Gate 3: D) Skip, no spec folder.",
+  "relaunchArgs": "claude --model claude-sonnet-5-5 --effort medium [session-relaunch] claim and continue handoff /Users/michelkerkmeester/worktrees/public/392-cross-runtime-handover-parity/.skilled/skills/.state/session-relaunch/handoffs/20261114T222115Z-4445d52f-1cbe-407b-bde6-29abfcacdf6c.md | Spec folder: none (Gate 3 answered D, Skip, in the sending session) --name hoptest-final4-claude (2)",
+  "score": "5/5"
+}

@@ -1,0 +1,23 @@
+{
+  "runtime": "pi",
+  "label": "fix1",
+  "codeWord": "ORCHID-23951",
+  "name": "hoptest-fix1-pi",
+  "startMs": 1794692580926,
+  "logOffset": 3854,
+  "stateDir": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//skilled-relaunch-501",
+  "notesDir": "/Users/michelkerkmeester/worktrees/public/392-cross-runtime-handover-parity/.skilled/skills/.state/session-relaunch/handoffs",
+  "launch": [
+    "--provider",
+    "openai",
+    "--model",
+    "gpt-6-luna",
+    "--thinking",
+    "low",
+    "--name",
+    "hoptest-fix1-pi",
+    "Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-relaunch/README.md, name its first heading and repeat the code word ORCHID-23951. Start by reading the README. Gate 3: D) Skip, no spec folder."
+  ],
+  "endMs": 1794692912599,
+  "trustDialogs": 0
+}
