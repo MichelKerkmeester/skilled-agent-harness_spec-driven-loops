@@ -455,20 +455,37 @@ test('prepare still arms a pending record below the hop limit', (t) => {
 });
 
 // The loop can end a running session, so a checkout that never opted in must not
-// arm a record even inside the wrapper.
+// arm a record even inside the wrapper, on any runtime that ships off.
 test('prepare arms nothing under the loop when nothing enables the relaunch concern', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox);
   delete sandbox.env.SYSTEM_SESSION_RELAUNCH_ENABLED;
+  sandbox.env.SKILLED_LOOP_RUNTIME = 'codex';
   sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
-  sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
-  sandbox.env.CLAUDE_PID = String(process.pid);
+  sandbox.env.CODEX_THREAD_ID = SESSION_ID;
 
   const result = runCli(sandbox, ['prepare', '--handoff', handoffPath]);
 
   assert.notEqual(result.status, 0);
-  assert.match(result.stderr, /session relaunch is disabled by hook flags/);
+  assert.match(result.stderr, /session relaunch is disabled by hook flags for codex/);
   assert.equal(fs.existsSync(relaunchPath(sandbox)), false);
+});
+
+// Claude Code is the one runtime that hands over with no switch set.
+test('prepare arms a Claude record under the loop when no relaunch switch is set', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  const env = withoutRelaunchFlags(sandbox.env);
+  env.SKILLED_LOOP_ID = LOOP_ID;
+  env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
+  env.CLAUDE_PID = String(process.pid);
+
+  const result = runCli(sandbox, ['prepare', '--handoff', handoffPath], env);
+
+  assert.equal(result.status, 0, result.stderr);
+  const record = JSON.parse(fs.readFileSync(relaunchPath(sandbox), 'utf8'));
+  assert.equal(record.status, 'pending');
+  assert.equal(record.runtime, 'claude');
 });
 
 // A claim command printed while the concern is off would hand the operator a relaunch the
@@ -480,6 +497,7 @@ test('prepare refuses with one message inside and outside the loop when the conc
     const sandbox = createSandbox(t);
     const handoffPath = writeHandoff(sandbox);
     delete sandbox.env.SYSTEM_SESSION_RELAUNCH_ENABLED;
+    sandbox.env.SKILLED_LOOP_RUNTIME = 'codex';
     if (insideLoop) sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
     sandbox.env.CLAUDE_CODE_SESSION_ID = SESSION_ID;
     sandbox.env.CLAUDE_PID = String(process.pid);
@@ -532,10 +550,17 @@ test('prepare refusal names the flag that turned session relaunch off', (t) => {
         + ' set it to 1 to turn it on for claude',
     },
     {
-      label: 'nothing set',
-      flags: {},
+      label: 'global off over the Claude default',
+      flags: { SYSTEM_SESSION_RELAUNCH_ENABLED: '0' },
       message: 'session relaunch is disabled by hook flags for claude;'
         + ' set SYSTEM_SESSION_RELAUNCH_ENABLED=1 or SYSTEM_SESSION_RELAUNCH_CLAUDE_ENABLED=1'
+        + ' to turn it on',
+    },
+    {
+      label: 'nothing set on a runtime that ships off',
+      flags: { SKILLED_LOOP_RUNTIME: 'codex' },
+      message: 'session relaunch is disabled by hook flags for codex;'
+        + ' set SYSTEM_SESSION_RELAUNCH_ENABLED=1 or SYSTEM_SESSION_RELAUNCH_CODEX_ENABLED=1'
         + ' to turn it on',
     },
   ];
