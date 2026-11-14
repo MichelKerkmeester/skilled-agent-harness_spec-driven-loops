@@ -4,6 +4,17 @@
 // MODULE: Deep-Loop Convergence Entrypoint
 // ───────────────────────────────────────────────────────────────────
 
+// The stop decision is computed from loop state rather than from prose, so two
+// runs over the same state stop at the same point. Its object owns nine fields
+// in this order: decision, stopReason, reasonDetail, weightedStopScore, signals,
+// gates, blockedBy, graphDecision and inputs. stopReason keeps the frozen
+// eight-value set; the finer cause travels in reasonDetail as
+// maxIterationsReached, stuckThresholdReached, convergenceModeOff,
+// stopPolicyMaxIterations, noStopCandidate, minIterationsNotReached,
+// qualityGuardFailed, all_questions_answered, all_dimensions_clean,
+// composite_converged, graphStopBlocked, graph_convergence_continue,
+// graphDecisionMissing, or the name of a failed gate.
+
 'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -691,6 +702,464 @@ function buildImprovementEffect(snapshots, scoreDelta) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// 4B. STOP DECISION
+// ─────────────────────────────────────────────────────────────────────────────
+
+function round6(value) {
+  return Number(value.toFixed(6));
+}
+
+function median(values) {
+  if (!Array.isArray(values) || values.length === 0) return 0;
+  const sorted = [...values].sort((left, right) => left - right);
+  const middle = Math.floor(sorted.length / 2);
+  return sorted.length % 2 === 0
+    ? (sorted[middle - 1] + sorted[middle]) / 2
+    : sorted[middle];
+}
+
+function mean(values) {
+  if (!Array.isArray(values) || values.length === 0) return 0;
+  return values.reduce((sum, value) => sum + value, 0) / values.length;
+}
+
+// Scale the median absolute deviation as if the ratios were normally
+// distributed, so one high-novelty early iteration cannot widen the floor.
+function noiseFloor(values) {
+  if (!Array.isArray(values) || values.length === 0) return 0;
+  const center = median(values);
+  return median(values.map((value) => Math.abs(value - center))) * 1.4826;
+}
+
+function mapReviewThresholds(convergenceThreshold) {
+  const threshold = typeof convergenceThreshold === 'number'
+    && Number.isFinite(convergenceThreshold)
+    && convergenceThreshold > 0
+    ? convergenceThreshold
+    : 0.1;
+  return {
+    convergenceThreshold: round6(threshold),
+    rollingAverageCutoff: round6(0.8 * threshold),
+    noProgressCutoff: round6(0.5 * threshold),
+  };
+}
+
+function computeStopSignals(args = {}) {
+  const options = args && typeof args === 'object' ? args : {};
+  const { loopType, ratios, convergenceThreshold, coverage } = options;
+  const values = Array.isArray(ratios) ? ratios : [];
+  const facts = coverage && typeof coverage === 'object' ? coverage : {};
+  const total = typeof facts.total === 'number' ? facts.total : 0;
+  const latest = values.length > 0 ? values[values.length - 1] : null;
+  const thresholds = loopType === 'review' ? mapReviewThresholds(convergenceThreshold) : null;
+  const signals = {};
+
+  if (thresholds) {
+    const rollingAverage = mean(values.slice(-2));
+    const covered = typeof facts.covered === 'number' ? facts.covered : 0;
+    const dimensionCoverage = total > 0 ? covered / total : 0;
+    signals.rollingAverage = {
+      available: values.length >= 2,
+      weight: 0.30,
+      value: values.length >= 2 ? round6(rollingAverage) : null,
+      stop: values.length >= 2 && rollingAverage <= thresholds.rollingAverageCutoff,
+    };
+    signals.madNoiseFloor = {
+      available: values.length >= 3,
+      weight: 0.25,
+      value: values.length >= 3 ? round6(noiseFloor(values)) : null,
+      stop: values.length >= 3 && latest <= noiseFloor(values),
+    };
+    signals.dimensionCoverage = {
+      available: total > 0,
+      weight: 0.45,
+      value: total > 0 ? round6(dimensionCoverage) : null,
+      stop: total > 0
+        && dimensionCoverage >= 1
+        && facts.traceabilityCovered === true
+        && facts.coverageAge >= 1,
+    };
+  } else {
+    const threshold = typeof convergenceThreshold === 'number'
+      && Number.isFinite(convergenceThreshold)
+      && convergenceThreshold > 0
+      ? convergenceThreshold
+      : 0.05;
+    const rollingAverage = mean(values.slice(-3));
+    const answered = typeof facts.answered === 'number' ? facts.answered : 0;
+    const questionEntropy = total > 0 ? answered / total : 0;
+    signals.rollingAverage = {
+      available: values.length >= 3,
+      weight: 0.30,
+      value: values.length >= 3 ? round6(rollingAverage) : null,
+      stop: values.length >= 3 && rollingAverage < threshold,
+    };
+    signals.madNoiseFloor = {
+      available: values.length >= 4,
+      weight: 0.35,
+      value: values.length >= 4 ? round6(noiseFloor(values)) : null,
+      stop: values.length >= 4 && latest <= noiseFloor(values),
+    };
+    signals.questionEntropy = {
+      available: total > 0,
+      weight: 0.35,
+      value: total > 0 ? round6(questionEntropy) : null,
+      stop: total > 0 && questionEntropy >= 0.85,
+    };
+  }
+
+  // Unavailable signals leave the denominator, so the evidence that remains
+  // carries the whole vote instead of being diluted by a missing signal.
+  const availableSignals = Object.values(signals).filter((signal) => signal.available);
+  const availableWeight = availableSignals.reduce((sum, signal) => sum + signal.weight, 0);
+  const stopWeight = availableSignals
+    .filter((signal) => signal.stop)
+    .reduce((sum, signal) => sum + signal.weight, 0);
+  const weightedStopScore = availableWeight > 0 ? round6(stopWeight / availableWeight) : 0;
+  const stopCandidate = thresholds
+    ? weightedStopScore >= 0.60
+    : weightedStopScore > 0.60;
+
+  return {
+    signals,
+    weightedStopScore,
+    stopCandidate,
+    noProgress: thresholds
+      ? values.length > 0 && latest <= thresholds.noProgressCutoff
+      : false,
+  };
+}
+
+function guardOutcome(status, violations) {
+  return { status, passed: status !== 'failed', violations };
+}
+
+function evaluateResearchQualityGuards(args = {}) {
+  const options = args && typeof args === 'object' ? args : {};
+  const { answeredQuestionSourceCounts, iterationRecords } = options;
+  const sourceCounts = answeredQuestionSourceCounts
+    && typeof answeredQuestionSourceCounts === 'object'
+    && !Array.isArray(answeredQuestionSourceCounts)
+    ? answeredQuestionSourceCounts
+    : null;
+
+  let sourceDiversity;
+  if (sourceCounts === null) {
+    sourceDiversity = guardOutcome('notEvaluated', []);
+  } else {
+    const violations = Object.keys(sourceCounts).filter((question) => {
+      const count = sourceCounts[question];
+      return typeof count !== 'number' || !Number.isFinite(count) || count < 2;
+    });
+    sourceDiversity = guardOutcome(violations.length > 0 ? 'failed' : 'passed', violations);
+  }
+
+  // Only a record that names both lists can prove alignment; a record with
+  // one side missing is no evidence either way.
+  const records = Array.isArray(iterationRecords) ? iterationRecords : [];
+  const alignedRecords = records.filter(
+    (record) => record
+      && Array.isArray(record.answeredQuestions)
+      && Array.isArray(record.keyQuestions),
+  );
+  const focusViolations = [];
+  for (const record of alignedRecords) {
+    for (const question of record.answeredQuestions) {
+      if (!record.keyQuestions.includes(question)) focusViolations.push(question);
+    }
+  }
+  const focusAlignment = alignedRecords.length === 0
+    ? guardOutcome('notEvaluated', [])
+    : guardOutcome(focusViolations.length > 0 ? 'failed' : 'passed', focusViolations);
+  const singleWeakSource = guardOutcome('notEvaluated', []);
+
+  return {
+    passed: sourceDiversity.passed && focusAlignment.passed && singleWeakSource.passed,
+    guards: { sourceDiversity, focusAlignment, singleWeakSource },
+  };
+}
+
+function evaluateReviewLegalStopGates(review, options = {}) {
+  const settings = options && typeof options === 'object' ? options : {};
+  const facts = review && typeof review === 'object' ? review : {};
+  const missingDimensions = Array.isArray(facts.missingDimensions) ? facts.missingDimensions : [];
+  const searchDebt = Array.isArray(facts.searchDebt) ? facts.searchDebt : [];
+  const candidateCovered = Array.isArray(facts.candidateCovered) ? facts.candidateCovered : [];
+  const requiredBugClasses = Array.isArray(facts.requiredBugClasses) ? facts.requiredBugClasses : [];
+  const fallbackCovered = Array.isArray(facts.fallbackCoveredBugClasses)
+    ? facts.fallbackCoveredBugClasses
+    : [];
+  const activeP0 = typeof facts.activeP0 === 'number' ? facts.activeP0 : 0;
+  const activeP1 = typeof facts.activeP1 === 'number' ? facts.activeP1 : 0;
+  const score = typeof settings.weightedStopScore === 'number'
+    && Number.isFinite(settings.weightedStopScore)
+    ? settings.weightedStopScore
+    : 0;
+
+  const gates = {
+    convergenceGate: {
+      pass: settings.hardStop === true || score >= 0.60,
+      skipped: false,
+      score,
+      hardStop: settings.hardStop === true,
+    },
+    dimensionCoverageGate: {
+      pass: missingDimensions.length === 0
+        && facts.traceabilityCovered === true
+        && facts.coverageAge >= 1,
+      skipped: false,
+      missing: missingDimensions,
+    },
+    p0ResolutionGate: {
+      pass: activeP0 === 0,
+      skipped: false,
+      activeP0,
+    },
+    evidenceDensityGate: {
+      pass: typeof facts.evidenceBackedP0P1 === 'number'
+        && facts.evidenceBackedP0P1 >= activeP0 + activeP1,
+      skipped: false,
+    },
+    hotspotSaturationGate: {
+      pass: facts.hotspotSaturated === true,
+      skipped: false,
+    },
+    claimAdjudicationGate: {
+      pass: facts.lastClaimAdjudicationPassed !== false || activeP0 + activeP1 === 0,
+      skipped: false,
+    },
+    fixCompletenessReplayGate: {
+      pass: facts.securitySensitiveFixScope !== true
+        || facts.fixReplayPassingRows >= facts.fixReplayRequiredRows,
+      skipped: false,
+    },
+    candidateCoverageGate: { pass: true, skipped: true },
+    graphlessFallbackGate: { pass: true, skipped: true },
+  };
+
+  if (facts.reviewDepthSchemaVersion === 2) {
+    const applicability = facts.reviewDepthApplicability
+      && typeof facts.reviewDepthApplicability === 'object'
+      ? facts.reviewDepthApplicability
+      : null;
+    const trivialScope = applicability !== null
+      && applicability.scopeClass === 'trivial'
+      && applicability.enforcement === 'skip'
+      && Array.isArray(applicability.evidenceRefs)
+      && applicability.evidenceRefs.length > 0;
+    const everyRequiredClassCovered = searchDebt.length === 0
+      && requiredBugClasses.every((bugClass) => candidateCovered.includes(bugClass));
+    gates.candidateCoverageGate = {
+      pass: trivialScope || everyRequiredClassCovered,
+      skipped: false,
+    };
+
+    // Only a recorded coverage mode can demand fallback evidence; an absent
+    // mode leaves the gate unevaluated rather than failed.
+    if (facts.graphCoverageMode === 'graphless_fallback') {
+      gates.graphlessFallbackGate = {
+        pass: requiredBugClasses.every((bugClass) => fallbackCovered.includes(bugClass)),
+        skipped: false,
+      };
+    } else if (facts.graphCoverageMode != null && facts.graphCoverageMode !== 'graph') {
+      gates.graphlessFallbackGate = { pass: false, skipped: false };
+    }
+  }
+
+  const gateOrder = [
+    'convergenceGate',
+    'dimensionCoverageGate',
+    'p0ResolutionGate',
+    'evidenceDensityGate',
+    'hotspotSaturationGate',
+    'claimAdjudicationGate',
+    'fixCompletenessReplayGate',
+    'candidateCoverageGate',
+    'graphlessFallbackGate',
+  ];
+  const failed = gateOrder.filter((name) => gates[name].pass !== true);
+  return { passed: failed.length === 0, gates, failed };
+}
+
+function blockerName(blocker) {
+  if (typeof blocker === 'string') return blocker;
+  if (blocker && typeof blocker === 'object' && typeof blocker.type === 'string') {
+    return blocker.type;
+  }
+  return 'graph_blocker';
+}
+
+function combineGraphDecision(candidate, graphDecision, graphBlockers) {
+  const reasonDetail = candidate && typeof candidate.reasonDetail === 'string'
+    ? candidate.reasonDetail
+    : 'composite_converged';
+
+  if (graphDecision === 'STOP_ALLOWED') {
+    return { decision: 'STOP', stopReason: 'converged', reasonDetail, blockedBy: [] };
+  }
+  if (graphDecision === 'STOP_BLOCKED') {
+    const blockers = Array.isArray(graphBlockers) ? graphBlockers.map(blockerName) : [];
+    return {
+      decision: 'BLOCKED',
+      stopReason: 'blockedStop',
+      reasonDetail: 'graphStopBlocked',
+      blockedBy: blockers.length > 0 ? blockers : ['graph_blocker'],
+    };
+  }
+  if (graphDecision === 'CONTINUE') {
+    return {
+      decision: 'CONTINUE',
+      stopReason: null,
+      reasonDetail: 'graph_convergence_continue',
+      blockedBy: [],
+    };
+  }
+  return {
+    decision: 'CONTINUE',
+    stopReason: null,
+    reasonDetail: 'graphDecisionMissing',
+    blockedBy: [],
+  };
+}
+
+function buildStopDecision(input) {
+  const source = input && typeof input === 'object' ? input : {};
+  const loopType = source.loopType;
+  const config = source.config && typeof source.config === 'object' ? source.config : {};
+  const research = source.research && typeof source.research === 'object' ? source.research : {};
+  const review = source.review && typeof source.review === 'object' ? source.review : {};
+  const ratios = Array.isArray(source.ratios) ? source.ratios : [];
+  const iterationCount = typeof source.iterationCount === 'number' ? source.iterationCount : 0;
+  const stuckCount = typeof source.stuckCount === 'number' ? source.stuckCount : 0;
+  const maxIterations = Number.isFinite(config.maxIterations) ? config.maxIterations : Infinity;
+  const stuckThreshold = Number.isFinite(config.stuckThreshold) ? config.stuckThreshold : Infinity;
+  const minIterations = Number.isFinite(config.minIterations) ? config.minIterations : 0;
+  const missingDimensions = Array.isArray(review.missingDimensions) ? review.missingDimensions : [];
+  const totalDimensions = typeof review.totalDimensions === 'number' ? review.totalDimensions : 0;
+  const coverage = loopType === 'review'
+    ? {
+      covered: totalDimensions - missingDimensions.length,
+      total: totalDimensions,
+      traceabilityCovered: review.traceabilityCovered,
+      coverageAge: review.coverageAge,
+    }
+    : {
+      answered: typeof research.answeredCount === 'number' ? research.answeredCount : 0,
+      total: typeof research.totalQuestions === 'number' ? research.totalQuestions : 0,
+    };
+
+  const signalResult = computeStopSignals({
+    loopType,
+    ratios,
+    convergenceThreshold: config.convergenceThreshold,
+    coverage,
+  });
+
+  const qualityGuards = loopType === 'research'
+    ? evaluateResearchQualityGuards({
+      answeredQuestionSourceCounts: research.answeredQuestionSourceCounts,
+      iterationRecords: research.iterationRecords,
+    })
+    : null;
+  const failedGuards = qualityGuards
+    ? Object.keys(qualityGuards.guards).filter((name) => !qualityGuards.guards[name].passed)
+    : [];
+
+  const gatesAt = (hardStop) => {
+    if (loopType === 'review') {
+      const result = evaluateReviewLegalStopGates(review, {
+        weightedStopScore: signalResult.weightedStopScore,
+        hardStop,
+      });
+      return { gates: result.gates, failed: result.failed };
+    }
+    return { gates: { qualityGuards }, failed: failedGuards };
+  };
+
+  const emit = (decision, stopReason, reasonDetail, evaluated, blockedBy) => ({
+    decision,
+    stopReason,
+    reasonDetail,
+    weightedStopScore: signalResult.weightedStopScore,
+    signals: signalResult.signals,
+    gates: evaluated.gates,
+    blockedBy,
+    graphDecision: source.graphDecision ?? null,
+    inputs: input,
+  });
+
+  const cleanReviewStop = loopType === 'review'
+    && missingDimensions.length === 0
+    && review.traceabilityCovered === true
+    && review.activeP0 === 0
+    && review.activeP1 === 0
+    && review.coverageAge >= 1;
+
+  // The cap is terminal and outranks every veto; failed guards or gates are
+  // reported as evidence instead of changing the outcome.
+  if (iterationCount >= maxIterations) {
+    const capGates = gatesAt(true);
+    return emit(
+      'STOP',
+      'maxIterationsReached',
+      'maxIterationsReached',
+      capGates,
+      capGates.failed,
+    );
+  }
+
+  if (stuckCount >= stuckThreshold) {
+    return emit('STUCK_RECOVERY', 'stuckRecovery', 'stuckThresholdReached', gatesAt(false), []);
+  }
+
+  if (config.convergenceMode === 'off') {
+    return emit('CONTINUE', null, 'convergenceModeOff', gatesAt(false), []);
+  }
+
+  if (config.stopPolicy === 'max-iterations') {
+    return emit('CONTINUE', null, 'stopPolicyMaxIterations', gatesAt(false), []);
+  }
+
+  let candidate = null;
+  if (loopType === 'review') {
+    if (cleanReviewStop) {
+      candidate = { reasonDetail: 'all_dimensions_clean', hardStop: true };
+    } else if (signalResult.stopCandidate) {
+      candidate = { reasonDetail: 'composite_converged', hardStop: false };
+    }
+  } else if (coverage.total > 0 && coverage.answered >= coverage.total) {
+    candidate = { reasonDetail: 'all_questions_answered', hardStop: false };
+  } else if (signalResult.stopCandidate) {
+    candidate = { reasonDetail: 'composite_converged', hardStop: false };
+  }
+
+  if (!candidate) {
+    return emit('CONTINUE', null, 'noStopCandidate', gatesAt(false), []);
+  }
+
+  if (loopType === 'research' && minIterations > 1 && iterationCount < minIterations) {
+    return emit('CONTINUE', null, 'minIterationsNotReached', gatesAt(false), []);
+  }
+
+  const evaluated = gatesAt(candidate.hardStop);
+  if (loopType === 'review' && evaluated.failed.length > 0) {
+    return emit('BLOCKED', 'blockedStop', evaluated.failed[0], evaluated, evaluated.failed);
+  }
+  if (loopType !== 'review' && failedGuards.length > 0) {
+    return emit('CONTINUE', null, 'qualityGuardFailed', evaluated, failedGuards);
+  }
+
+  const combined = combineGraphDecision(candidate, source.graphDecision, source.graphBlockers);
+  return emit(
+    combined.decision,
+    combined.stopReason,
+    combined.reasonDetail,
+    evaluated,
+    combined.blockedBy,
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // 5. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -923,7 +1392,13 @@ module.exports = {
   applyNoveltyCorroborationGuard,
   applyObservationThresholdGuard,
   buildImprovementEffect,
+  buildStopDecision,
+  combineGraphDecision,
   computeScoreDelta,
+  computeStopSignals,
+  evaluateResearchQualityGuards,
+  evaluateReviewLegalStopGates,
+  mapReviewThresholds,
   parseConvergenceModeValue,
   parseMinObservationsValue,
   parseSlidingWindowSizeValue,
