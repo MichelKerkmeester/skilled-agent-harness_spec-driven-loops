@@ -176,6 +176,7 @@ In any repository, run `node ../sk-code-quality/scripts/quality-gate.cjs --expla
 
 A SKILLED row applies only to a file that resolves to SKILLED.
 A `sk-code-ci` row applies by path alone because that surface declares no detection block.
+A FRONTEND row applies only to a file that resolves to FRONTEND.
 The spec-folder row applies only inside this hub's own repository.
 Applies to lists path globs and extensions. A row with several values matches on any of them.
 The MCP server checklist, `assets/checklists/mcp-server-authoring.md`, has no path to declare, so load it by judgment when your target is MCP server source.
@@ -201,3 +202,4 @@ The MCP server checklist, `assets/checklists/mcp-server-authoring.md`, has no pa
 | SKILLED | `.rs` | `assets/checklists/rust-checklist/p2-evidence-validation-and-resources.md` |
 | SKILLED | `.json`, `.jsonc`, `.yaml`, `.yml` | `assets/checklists/config-checklist.md` |
 | sk-code-ci | `.github/workflows/**` | `../sk-code-ci/references/ci-workflow-standards.md` |
+| FRONTEND | `.css`, `.scss`, `.html`, `.tsx`, `.jsx`, `.vue`, `.svelte` | `../sk-code-frontend/references/frontend-practice.md` |

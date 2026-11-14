@@ -149,6 +149,11 @@
         "pathMarkers": [],
         "fileMarkers": [".css", ".scss", ".html", ".tsx", ".jsx", ".vue", ".svelte"],
         "contentMarkers": []
+      },
+      "quality": {
+        "checklists": [
+          {"extensions": [".css", ".scss", ".html", ".tsx", ".jsx", ".vue", ".svelte"], "file": "sk-code-frontend/references/frontend-practice.md"}
+        ]
       }
     }
   ]

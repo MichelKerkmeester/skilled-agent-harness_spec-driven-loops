@@ -6,20 +6,24 @@ trigger_phrases:
   - "figma to code routing"
 importance_tier: normal
 contextType: general
-version: 1.1.1.0
+version: 1.1.2.0
 router_state: active
 skill_pointer: SKILL.md
 ---
 
 # Frontend Surface Router
 
-The machine router for [`SKILL.md`](./SKILL.md). The core reference is the default resource; each intent adds the web layer or Figma check it needs.
+The machine router for [`SKILL.md`](./SKILL.md). The core reference is the default resource; each intent adds the web layer, the visual files or the Figma check it needs.
 
 ## 1. OVERVIEW
 
-This surface holds the core in `references/frontend-practice.md`, the web layer in `references/web-markup-and-css.md`, nine web topic files, the starter token file `assets/tokens.css`, and the five-pass Figma check in `references/figma-to-code.md`. Every intent loads the core and the matching web or Figma-to-code layer. Topic files load when the request touches their listed concern.
+This surface holds the core in `references/frontend-practice.md`, the web layer in `references/web-markup-and-css.md`, six web topic files, three visual topic files, the starter token file `assets/tokens.css`, and the five-pass Figma check in `references/figma-to-code.md`. Every intent loads the core. Web intents add the web layer and their topic file. The visual, motion and Figma intents add the files `RESOURCE_MAP` lists for them, without the web layer. Topic files load when the request touches their listed concern.
 
-### Web Topic Files
+No intent maps `assets/tokens.css`, so `RESOURCE_MAP` never emits it. Open it from a rule in `references/web-visual-values.md` that links to it, when a project has no token layer of its own.
+
+`references/workflow-implement.md`, `references/workflow-debug.md` and `references/workflow-verify.md` are links to the hub's shared doctrine, and no intent here maps them. Read them by phase: `../shared/references/phase-detection.md`, which the hub always loads, names the doctrine file that owns each phase.
+
+### Topic Files
 
 | Topic | File | Load when |
 |---|---|---|
