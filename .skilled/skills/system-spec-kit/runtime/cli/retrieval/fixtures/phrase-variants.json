@@ -1,5 +1,5 @@
 {
-  "manifestHash": "3929aa7bca3a03bc250060674d262c4fa9acc9964d2a745eaf363fcef54035af",
+  "manifestHash": "ced48907e702000eea8df15754eb7ace4bcd4013143a396278a23715c47faccb",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -6841,6 +6841,9 @@
     ],
     "039 held findings": [
       "039 held findings"
+    ],
+    "039 hop dialog goal title operator decisions": [
+      "039-hop-dialog-goal-title operator decisions"
     ],
     "039 token aware chunking": [
       "039 token-aware chunking"
