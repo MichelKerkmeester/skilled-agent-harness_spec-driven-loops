@@ -10,10 +10,9 @@ _memory:
     packet_pointer: "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/009-proposal-search-and-routing"
     last_updated_at: "2026-11-14T09:30:00Z"
     last_updated_by: "orchestrator"
-    recent_action: "Built A11, A12 and B7 (242c719451, 0701a31ae5); B8 blocked"
-    next_safe_action: "Operator decides how to route sub-track requests that name a skill track"
-    blockers:
-      - "B8: no wording without a skill or track name ranks system-spec-kit first for the sk-code track prompt"
+    recent_action: "Built A11, A12 and B7 (242c719451, 0701a31ae5); B8 accepted as a miss"
+    next_safe_action: "None for this phase"
+    blockers: []
     key_files:
       - ".skilled/skills/system-spec-kit/runtime/cli/retrieval/rg-wrapper.mjs"
       - ".skilled/skills/system-spec-kit/runtime/cli/spec/suggest-subtracks.mjs"
@@ -22,10 +21,10 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-009-proposal-search-and-routing"
       parent_session_id: null
-    completion_pct: 85
-    open_questions:
-      - "How should sub-track requests that name a skill track route, given the no-name signal rule?"
-    answered_questions: []
+    completion_pct: 100
+    open_questions: []
+    answered_questions:
+      - "B8 routing: accept the miss (decision Q014)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
 # Implementation Summary
@@ -41,7 +40,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 009-proposal-search-and-routing |
-| **Completed** | Not completed. Three of four findings closed on 2026-11-14 (`242c719451`, `0701a31ae5`). B8 is blocked |
+| **Completed** | 2026-11-14 (`242c719451`, `0701a31ae5`). A11, A12 and B7 closed. B8 accepted as a known miss by the operator (decision Q014) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -50,14 +49,14 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-The path recipe's JSON now says which listed paths are archived, a proposed map no longer trips the relocate preflight, and the archive search signal stopped winning a review prompt by accident. Routing sub-track requests that name a skill track is blocked.
+The path recipe's JSON now says which listed paths are archived, a proposed map no longer trips the relocate preflight, and the archive search signal stopped winning a review prompt by accident. Sub-track requests that name a skill track still route to that skill, a miss the operator accepted.
 
 ### Phase 9: proposal-search-and-routing
 
 - **A11.** The `path` recipe's JSON record carries `archivedPaths` beside the unchanged `paths` array. The text output is identical to before.
 - **A12.** `suggest-subtracks.mjs` never proposes a group name an existing track folder already holds. A packet not named `NNN-slug` is named and no map is printed.
 - **B7.** The signal "find a phrase in archived spec packets" became "quote a phrase in archived spec packets". The system-spec-kit score for the review prompt `rr-iter3-135` is now the same as with the signal removed (0.613602), and "look up a phrase in the archived spec packets" still ranks system-spec-kit first.
-- **B8, blocked.** "suggest sub-tracks for the <skill> track" still ranks the named skill first. The best wording without a skill or track name, "suggest sub-tracks", put system-spec-kit first for the sk-git and sk-doc prompts but left the sk-code prompt 0.017779 short, so it was reverted. The signals stay as they were.
+- **B8, accepted miss.** "suggest sub-tracks for the <skill> track" still ranks the named skill first. The best wording without a skill or track name, "suggest sub-tracks", put system-spec-kit first for the sk-git and sk-doc prompts but left the sk-code prompt 0.017779 short, so it was reverted. The signals stay as they were.
 
 ### Files Changed
 
@@ -112,7 +111,7 @@ Two `dsh` briefs to DeepSeek V4.1 Flash at max reasoning ran in parallel on sepa
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **B8 is open.** Sub-track requests that name a skill track route to that skill. The operator decides between a scorer change, an accepted miss, or a signal rule exception.
+1. **B8 accepted as a miss.** Sub-track requests that name a skill track route to that skill, with system-spec-kit second. The operator chose this over a scorer change or a name exception (decision Q014).
 2. **Advisor state in a worktree.** After a graph change, the Python compatibility check `T243-SA-022` fails until one advisor call rewrites the worktree's gitignored generation file. Seen here and resolved by a plain `advisor_recommend` call.
 <!-- /ANCHOR:limitations -->
 

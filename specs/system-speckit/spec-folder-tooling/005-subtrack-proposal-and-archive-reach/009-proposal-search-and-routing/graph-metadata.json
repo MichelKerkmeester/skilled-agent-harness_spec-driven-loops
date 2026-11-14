@@ -34,7 +34,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -171,12 +171,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -199,11 +193,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The path recipe of `rg-wrapper.mjs` labels archived hits in text output, but its JSON record lists them as plain strings, as the block below shows",
     "created_at": "2026-11-14T06:11:01Z",
-    "last_save_at": "2026-11-14T09:23:39.749Z",
+    "last_save_at": "2026-11-14T09:42:32.389Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:f164c5f5b245b7852e40d2f9d0917a59d636b1da019c7cd5f71b7a96a95d521a",
+    "source_fingerprint": "sha256:843ee708e5a8cfa2122ddfe431ac71a28a2fb37f7a9f3d7b092e9851e576e6b3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "c8278cfd4870ff63c4041ea202acafa238147fac75aa9af50ddf9d27335a0808",
+      "spec.md": "21e3ddc21120d2a3ec9ad0d52f94c3ce87dc948598e0e757f3d934e35d5518c3",
       "plan.md": "d97587411079c4ca0399f26b7c65313d947a16f3d065745193c06bb4c66de1f6",
-      "tasks.md": "95d3cf94ff8e2282cf5261614e0e246f48d32654aff91791c9071a9013f248fd",
-      "implementation-summary.md": "13930314612665867e3c29782a0710ae528ee54411a4bf9570e6f3104663ade1"
+      "tasks.md": "d059c928b17ed986f415b46a7c971946ada37fd58b675f22cf659d24d5ff66b4",
+      "implementation-summary.md": "153391f27b9e8ca786e0df839eeef268b61a6bfbdd924941cdfb55854e22b5f4"
     },
     "last_active_at": null
   }

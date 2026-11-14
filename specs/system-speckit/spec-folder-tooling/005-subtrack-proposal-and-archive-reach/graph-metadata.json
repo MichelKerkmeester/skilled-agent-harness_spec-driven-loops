@@ -192,12 +192,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -214,11 +208,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement Subtracks",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Subtracks exist in system-spec-kit only as a hand-written declaration, one level deep, and three gaps follow from that",
     "created_at": "2026-11-13T10:07:28Z",
-    "last_save_at": "2026-11-14T09:28:06.970Z",
+    "last_save_at": "2026-11-14T09:42:30.855Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -226,11 +226,11 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:0ba254a1bae20272eb63f245e200a07c2893ad03c5c079cccb005a88c46ac785",
+    "source_fingerprint": "sha256:928246296cecc6c5d98190744b1442aea65cc8b0c90ef52b5b098bdd9b1a87ce",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "600f74fdd68bd587f462bc16cd773ff43f008c6a1d9856f6d23dae989bbf262b",
-      "decision-record.md": "7aa0e23091f01ee58b4e97dd2a448181b99938153fdc6ce9bbc15fa69eeb934e"
+      "spec.md": "b9c528633d6050a8d5624de521c874122aa447e00848a21a01bdea7a64798ffb",
+      "decision-record.md": "ebdebdebb539cc7dcfccd32acc8b3b33cde9e6c226b9adce30fef8cbfb74e5a0"
     },
     "last_active_child_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout",
     "last_active_at": "2026-11-13T15:00:54.317Z"

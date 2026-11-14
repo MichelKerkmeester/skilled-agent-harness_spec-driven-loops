@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-11-13 |
 | **Branch** | `worktrees/364-subtrack-proposal-archive-reach` |
 | **Parent Spec** | None. This packet sits directly in the declared subtrack `system-speckit/spec-folder-tooling` |
@@ -160,7 +160,7 @@ Audit summary only. Per-phase detail lives in each child's `plan.md`. Paths with
 | 6 | 006-relocate-resume-and-preflight/ | A rerun of the same map finishes any stopped step, and the preflight refuses a source that never existed and two spellings of one folder. Closes A1, A3, A4, A5 and B6 | Complete |
 | 7 | 007-phase-map-and-prearchive-rewrites/ | Bare sibling names in a phase parent's documents and the id a packet had before it was archived are rewritten. Closes A2 and A8 | Complete |
 | 8 | 008-restore-and-phase-numbering/ | The restore verdict, the mixed-track refusal on restore and phase numbering that counts archived phases. Closes A6, A7 and A9 | Complete |
-| 9 | 009-proposal-search-and-routing/ | The archived marker in the path record, proposals the preflight accepts and two advisor signals. Closes A11, A12, B7 and B8 | In Progress |
+| 9 | 009-proposal-search-and-routing/ | The archived marker in the path record, proposals the preflight accepts and two advisor signals. Closes A11, A12, B7 and B8 | Complete |
 | 10 | 010-real-pipeline-tests/ | One suite that runs the true writers and the resume paths. Closes A10 | Complete |
 
 ### Phase Transition Rules
