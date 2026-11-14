@@ -11,7 +11,7 @@ trigger_phrases:
   - "cross-runtime goal isolation"
   - "DeepSeek Harness Dispatch Mode"
 last_updated: "2026-11-06"
-version: 1.7.5.0
+version: 1.7.6.0
 ---
 
 # cli-external-orchestration: Feature Catalog
@@ -140,7 +140,7 @@ See [`opencode-dual-version-dispatch/opencode-dual-version-dispatch.md`](opencod
 
 #### Description
 
-`cli-deepseek-harness` is the seventh workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed two-route DeepSeek V4.1 Flash roster, and it remains experimental. Both routes answered a keyed run, LLM Gateway on 2026-11-06 and OpenCode Go on 2026-11-07.
+`cli-deepseek-harness` is the seventh workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed three-route DeepSeek V4.1 Flash roster, and it remains experimental. LLM Gateway (2026-11-06) and OpenCode Go (2026-11-07) answered a keyed run, and the Mistral route composes but has no keyed run yet.
 
 #### Current Reality
 

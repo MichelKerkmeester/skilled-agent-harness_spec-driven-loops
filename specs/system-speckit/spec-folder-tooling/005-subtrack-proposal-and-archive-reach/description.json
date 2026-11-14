@@ -1,29 +1,34 @@
 {
   "level": "2",
   "specFolder": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach",
-  "description": "Subtrack proposal, deterministic packet relocation, z_archive on every subtrack and opt-in archive search",
+  "description": "Subtracks exist in system-spec-kit only as a hand-written declaration, one level deep, and three gaps follow from that",
   "keywords": [
-    "subtrack",
-    "proposal",
-    "deterministic",
-    "packet",
-    "relocation",
-    "every",
-    "opt-in",
-    "archive",
-    "search"
+    "subtracks",
+    "exist",
+    "system-spec-kit",
+    "only",
+    "hand-written",
+    "declaration",
+    "one",
+    "level",
+    "deep",
+    "three",
+    "gaps",
+    "follow"
   ],
-  "lastUpdated": "2026-11-13T15:00:54.264Z",
+  "lastUpdated": "2026-11-14T09:57:05.751Z",
   "specId": "005",
   "folderSlug": "subtrack-proposal-and-archive-reach",
   "parentChain": [
     "system-speckit",
     "spec-folder-tooling"
   ],
-  "memorySequence": 3,
+  "memorySequence": 5,
   "memoryNameHistory": [
     "13-11-26_11-29__analyze-system-speckit-and-its-subtrack-support.md",
     "13-11-26_13-20__subtrack-proposal-and-archive-reach.md",
-    "13-11-26_16-00__subtrack-proposal-and-archive-reach.md"
+    "13-11-26_16-00__subtrack-proposal-and-archive-reach.md",
+    "14-11-26_09-45__the-phase-010-worker-is-alive-it-began-a-few.md",
+    "14-11-26_10-28__all-seven-parent-goal-criteria-now-have-evidence.md"
   ]
 }

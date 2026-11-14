@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/007-dispatch-recognition-and-hard-rules",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/007-dispatch-recognition-and-hard-rules",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "dispatch recognition and hard rules",
+      "phase 7 dispatch recognition and hard rules",
+      "vibe dispatch preflight",
+      "dispatch recognition and hard rules plan",
+      "dispatch recognition and hard rules tasks",
+      "dispatch recognition and hard rules goal"
+    ],
+    "key_topics": [
+      "dispatch",
+      "recognition",
+      "hard",
+      "rules",
+      "phase",
+      "vibe",
+      "preflight",
+      "plan",
+      "tasks",
+      "goal",
+      "shared",
+      "hook"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+      ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
+      ".skilled/hooks/dispatch/README.md",
+      ".skilled/hooks/vitest.config.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-rule-checks.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-rule-checks.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-audit.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/dispatch/lib/dispatch-audit.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/dispatch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "vitest.config.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/vitest.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Map Vibe",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The shared dispatch hook library maps each headless CLI shape to the packet whose `hard-rules.json` it enforces, and Vibe is not in that map",
+    "created_at": "2026-11-14T12:56:20Z",
+    "last_save_at": "2026-11-14T13:33:19.610Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:03ba1f64061cf583ba5a0b1d1e256d3304fd6279ef97c44c5c3150d5949aea6d",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a97deb8da1977d0ca3e13858446ff2fb43e9c51b10d2b1cdbbbb915d6fe4728b",
+      "plan.md": "35ec3fea7123a1873647f13a3f032948f5796879bee50379d1490a48986ea08e",
+      "tasks.md": "15a979fc1695910a3a31ebfb7fedb3a3cfc9035d9ebc4363e75e5e8171d5c1be"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/011-vibe-context-and-goal-hooks",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/011-vibe-context-and-goal-hooks",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "vibe context and goal hooks",
+      "phase 11 vibe context and goal hooks",
+      "vibe session_start goal slice",
+      "vibe goal bridge",
+      "vibe context and goal hooks plan",
+      "vibe context and goal hooks tasks",
+      "vibe context and goal hooks goal"
+    ],
+    "key_topics": [
+      "vibe",
+      "context",
+      "goal",
+      "hooks",
+      "phase",
+      "slice",
+      "bridge",
+      "plan",
+      "tasks",
+      "every",
+      "governed",
+      "runtime"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      ".skilled/hooks/goal/README.md",
+      ".skilled/hooks/session-lifecycle/README.md",
+      ".skilled/hooks/goal/lib/goal-core.cjs",
+      ".skilled/hooks/goal/dsh/goal-context.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/goal/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/lib/goal-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "goal-context.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/goal/dsh/goal-context.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Two",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Session",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Every other governed runtime receives the bound packet goal and session context at start, but no `.vibe/` folder and no Vibe adapter exist, so a Vibe dispatch runs without either",
+    "created_at": "2026-11-14T12:56:36Z",
+    "last_save_at": "2026-11-14T13:09:26.244Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md"
+    ],
+    "source_fingerprint": "sha256:ceb3b4c499ee011d50ec9c27e7a8d0dc15f72dd9b14cde2c2746d2909071b444",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "2e0953f50a58e66b51bc201ed69a158584b73b5057221e42633740a14b9cff13",
+      "plan.md": "80df24e6aa7320799f3ce6a46276b39de316d99256763c3aa6d7473d812c9330",
+      "tasks.md": "a7e907f8388bee93d6a2f318d6053facb94bbeedd51f29d2f9952aed12e0beab"
+    },
+    "last_active_at": null
+  }
+}
