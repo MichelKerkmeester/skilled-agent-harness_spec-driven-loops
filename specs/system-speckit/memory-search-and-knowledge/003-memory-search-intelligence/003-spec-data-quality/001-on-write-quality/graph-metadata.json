@@ -34,11 +34,11 @@
       "on-write",
       "phase",
       "parent",
-      "gates",
+      "catch",
+      "faults",
       "authored",
       "specs",
-      "navigable",
-      "one"
+      "metadata"
     ],
     "importance_tier": "normal",
     "status": "in_progress",
@@ -84,24 +84,24 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Make",
+        "name": "Purpose Catch",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Make the on-write quality gates for authored specs navigable as one track, from trigger propagation and schema enforcement through provenance, integrity, and per-surface validation",
+    "causal_summary": "Catch quality faults in authored specs and their metadata at write time, from trigger propagation and schema enforcement through provenance, integrity and per-surface validation",
     "created_at": "2026-06-27T17:25:23.276Z",
-    "last_save_at": "2026-11-14T08:04:53.572Z",
+    "last_save_at": "2026-11-14T14:05:03.497Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:237d8e8d76421817c90878b424eb31fb2f2d692efdeb4db7fbb7f792e3e42341",
+    "source_fingerprint": "sha256:927b052eb2ba477c08cab575e294a876c96463ce71d84638bea6469998e8c3b6",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "44b510b44e0491817c99e760e0d1d7db1e73edf1bb162a9e63eb46fdd601c0c5"
+      "spec.md": "13fb509fe38e483a083e59f585537c86fbf6a92de22d338ca95eafc2d7e8dc37"
     },
     "last_active_child_id": "system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/001-on-write-quality/007-ears-constraints-req-coverage",
     "last_active_at": null

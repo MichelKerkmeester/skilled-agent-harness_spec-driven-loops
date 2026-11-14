@@ -43,7 +43,7 @@ Exactly three routes. Anything else is refused before launch.
 
 | Route | Provider id | Model id | Protocol | Base URL | Key variable | Route patch | Status |
 |---|---|---|---|---|---|---|---|
-| LLM Gateway | `llmgateway` | `deepseek-v4.1-flash-1017` | `openai-completions` | `https://api.llmgateway.io/v1` | `LLMGATEWAY_API_KEY` | `.dsh/patches/route-llmgateway-deepseek.patch.yml` | Verified 2026-11-14 on dsh 0.2.2-rc.3: exit 0 and `completed` |
+| LLM Gateway | `llmgateway` | `deepseek-v4.1-flash-1017` | `openai-completions` | `https://api.llmgateway.io/v1` | `LLMGATEWAY_API_KEY` | `.dsh/patches/route-llmgateway-deepseek.patch.yml` | Verified 2026-11-06 on dsh 0.2.2-rc.1 and again 2026-11-14 on 0.2.2-rc.3: exit 0 and `completed` |
 | OpenCode Go | `opencode-go` | `deepseek-v4.1-flash` | `openai-completions` | `https://opencode.ai/zen/go/v1` | `OPENCODE_API_KEY` | `.dsh/patches/route-opencode-go-deepseek.patch.yml` | Proven 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1` |
 | Mistral | `mistral` | `deepseek-v4-1-flash-1017` | `openai-completions` | `https://api.mistral.ai/v1` | `MISTRAL_API_KEY` | `.dsh/patches/route-mistral-deepseek.patch.yml` | Composes on dsh 0.2.2-rc.3 (2026-11-14); no keyed dsh run yet |
 

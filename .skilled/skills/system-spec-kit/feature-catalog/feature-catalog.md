@@ -8,7 +8,7 @@ trigger_phrases:
   - "what does spec kit do"
   - "spec kit capability inventory"
 last_updated: "2026-11-13"
-version: 2.1.31.0
+version: 2.1.32.0
 ---
 
 # Spec Kit: Feature Catalog
@@ -1114,6 +1114,22 @@ The compaction hooks mint an opaque locator for the exact session and may inject
 #### Source Files
 
 See [context-preservation/compaction-history-lookup.md](context-preservation/compaction-history-lookup.md) for implementation and test file listings.
+
+---
+
+### Packet purpose carry
+
+#### Description
+
+Carries one sentence of why a packet exists across every hop: the resume brief, the relaunch note, the context recovered after a compaction and the continuity save.
+
+#### Current Reality
+
+One reader takes the packet's `### Purpose`, a labelled `Purpose:` paragraph or the opening paragraph of a `## PURPOSE` or `## ROOT PURPOSE` section. Without one it takes the nearest phase parent's purpose, then the packet's `goal.md` Objective. The compaction hooks print it with the problem sentence beside it, the resume brief and the relaunch note follow the same rule in words, and each save stores it as `packet_purpose`.
+
+#### Source Files
+
+See [context-preservation/packet-purpose-carry.md](context-preservation/packet-purpose-carry.md) for implementation and test file listings.
 
 ---
 

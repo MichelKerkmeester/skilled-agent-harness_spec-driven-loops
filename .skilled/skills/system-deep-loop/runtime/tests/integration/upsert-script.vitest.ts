@@ -159,4 +159,68 @@ describe('upsert.cjs direct invocation', () => {
     expect(result.json).toMatchObject({ status: 'error', code: 'SCRIPT_ERROR' });
     expect(JSON.parse(result.stderr)).toMatchObject({ error: expect.stringContaining('Injected script fault') });
   });
+
+  it('folds a leaf dimension id into the canonical dimension in a review graph', async () => {
+    const namespace = uniqueNamespace('upsert');
+    namespaces.push(namespace);
+    const canonicalIds = ['correctness', 'security', 'traceability', 'maintainability']
+      .map((name) => `dimension:${name}`);
+    const seedNodes = [
+      { id: 'slice-1', kind: 'SLICE', name: 'Review target' },
+      { id: 'file-1', kind: 'FILE', name: 'src/guard.cjs' },
+      ...canonicalIds.map((id) => ({ id, kind: 'DIMENSION', name: id.slice('dimension:'.length) })),
+    ];
+    const seedEdges = canonicalIds.map((sourceId, index) => ({
+      id: `covers-${index}`,
+      sourceId,
+      targetId: 'slice-1',
+      relation: 'COVERS',
+    }));
+    const seeded = runScript('upsert', [
+      ...namespaceArgs(namespace),
+      '--nodes', JSON.stringify(seedNodes),
+      '--edges', JSON.stringify(seedEdges),
+    ]);
+    expect(seeded.exitCode).toBe(0);
+
+    // Each leaf uses its own id shape for the same four dimensions. An edge ends at
+    // each, so the graph upsert has to rewrite both the node ids and the edge ends.
+    const leafDimensions = [
+      { id: 'dim:security', kind: 'DIMENSION', name: 'Security' },
+      { id: 'DIM-TRACEABILITY', kind: 'DIMENSION', name: 'Traceability' },
+      { id: 'dim:maintainability', kind: 'DIMENSION', name: 'Maintainability' },
+      { id: 'dim:correctness', kind: 'DIMENSION', name: 'Correctness' },
+    ];
+    const leafEdges = leafDimensions.map((node, index) => ({
+      id: `confirms-${index}`,
+      sourceId: 'file-1',
+      targetId: node.id,
+      relation: 'CONFIRMS',
+    }));
+    const folded = runScript('upsert', [
+      ...namespaceArgs(namespace),
+      '--nodes', JSON.stringify(leafDimensions),
+      '--edges', JSON.stringify(leafEdges),
+    ]);
+    expect(folded.exitCode).toBe(0);
+    expect((folded.json.graph_nodes_json as { id: string }[]).map((node) => node.id).sort())
+      .toEqual([...canonicalIds].sort());
+    expect((folded.json.graph_edges_json as { targetId: string }[]).map((edge) => edge.targetId).sort())
+      .toEqual([...canonicalIds].sort());
+
+    const db = await import('../../lib/coverage-graph/coverage-graph-db.js');
+    const ns = { specFolder: namespace.specFolder, loopType: 'review' as const, sessionId: namespace.sessionId };
+    try {
+      const dimensionNodes = db.getNodes(ns).filter((node) => node.kind === 'DIMENSION');
+      expect(dimensionNodes.map((node) => node.id).sort()).toEqual([...canonicalIds].sort());
+      const leafEdgesOnDisk = db.getEdges(ns).filter((edge) => edge.id.startsWith('confirms-'));
+      expect(leafEdgesOnDisk.map((edge) => edge.targetId).sort()).toEqual([...canonicalIds].sort());
+    } finally {
+      db.closeDb();
+    }
+
+    const convergence = runScript('convergence', [...namespaceArgs(namespace), '--read-only']);
+    expect(convergence.exitCode).toBe(0);
+    expect((convergence.json.data as { signals: { dimensionCoverage: number } }).signals.dimensionCoverage).toBe(1);
+  });
 });

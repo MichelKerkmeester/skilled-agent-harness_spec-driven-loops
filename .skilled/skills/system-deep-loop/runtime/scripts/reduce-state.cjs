@@ -904,6 +904,20 @@ function findingDedupKey(finding) {
   return `fl:${file}:${line}|${title}`;
 }
 
+/**
+ * Detect a re-verified finding whose line moved between iterations.
+ *
+ * A content hash settles identity when a producer writes one. Legacy records have none,
+ * and a line-shifted fix then reads as a new finding. The same file and the same title
+ * are the identity those records can prove, so the shift folds instead of doubting.
+ */
+function sameFindingAtAnotherLine(existing, finding) {
+  if (!existing || existing.contentHash || finding.contentHash) return false;
+  if (!existing.file || !finding.file || existing.file !== finding.file) return false;
+  const title = (candidate) => normalizeText(candidate.title || '').toLowerCase().slice(0, 80);
+  return title(existing) === title(finding);
+}
+
 function dedupeDimensions(dimensions) {
   const seen = new Set();
   const out = [];
@@ -987,7 +1001,9 @@ function buildFindingRegistry(iterationFiles, iterationRecords, deltaRecords = [
     // Merging on id alone would silently discard the second finding's own
     // content, so only fold into `existing` when the content itself matches;
     // otherwise keep it under a disambiguated key so both survive.
-    const isSameFinding = !existing || findingDedupKey(existing) === findingDedupKey(finding);
+    const isSameFinding = !existing
+      || findingDedupKey(existing) === findingDedupKey(finding)
+      || sameFindingAtAnotherLine(existing, finding);
     if (!isSameFinding || !existing) {
       const storageKey = isSameFinding ? finding.findingId : `${finding.findingId}#${findingById.size}`;
       findingById.set(storageKey, {
