@@ -10,15 +10,15 @@ _memory:
     packet_pointer: "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment"
     last_updated_at: "2026-11-14T11:33:26Z"
     last_updated_by: "scaffold"
-    recent_action: "Authored the acceptance criteria for this packet"
-    next_safe_action: "Meet, waive or supersede the open criteria"
+    recent_action: "Every criterion verified at 32fe50e944"
+    next_safe_action: "None. The packet is closeable"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-008-router-readme-presentation-alignment"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 
 **Packet:** 008-router-readme-presentation-alignment
 **Level:** 2
-**Status:** Draft
+**Status:** Complete
 **Date:** 2026-11-14
 <!-- /ANCHOR:metadata -->
 
@@ -55,19 +55,19 @@ Each CHECK named below is the fenced block of that name in `plan.md` section 5, 
 
 | AC-ID | REQ | Given / When / Then | Verification | Status | Waiver |
 |-------|-----|---------------------|--------------|--------|--------|
-| AC-001 | REQ-001 | Given the plan workflow as phase 2 leaves it, When the plan success text and dashboard name their artifacts, Then each named `.md` file appears in a step `outputs:` list of `speckit-plan.yaml` | CHECK-A10 prints nothing | Unmet | - |
-| AC-002 | REQ-002 | Given the speckit command folder, When an operator or agent copies any example or next step, Then each command uses the router form with the mode as a separate argument | CHECK-A5 prints no match line and then `rg exit=1` | Unmet | - |
-| AC-003 | REQ-003 | Given the plan or complete setup prompt, When the operator reads Q1 option D, Then D states its outcome and the workflow carries the same outcome under `spec_folder_skip` | CHECK-A8 prints a count of 1 for each of `speckit-plan-presentation.txt`, `speckit-complete-presentation.txt`, `speckit-plan.yaml` and `speckit-complete.yaml` | Unmet | - |
-| AC-004 | REQ-004 | Given the workflows as phases 1 to 7 leave them, When the router, README or presentation file states a step count or the `termination` block states a last step, Then the count equals the number of counted step keys from step 1, half-steps included, and the last step equals the highest counted key number, with no value fixed in advance | CHECK-A1 prints nothing | Unmet | - |
-| AC-005 | REQ-005 | Given the routers as phase 3 leaves them, When the README command table shows an invocation, Then its mode and flag tokens equal the router `argument-hint` tokens | CHECK-A2 prints nothing | Unmet | - |
-| AC-006 | REQ-006 | Given the files in `.skilled/commands/speckit/` and `assets/`, When the README tree lists them, Then every file is listed, no listed file is missing on disk and no stale command count remains | CHECK-A3 prints nothing | Unmet | - |
-| AC-007 | REQ-007 | Given the Workflow Flag Surface table in `complete.md`, When README section 7 describes the complete flags, Then every flag is listed and the lead sentence states no number of flags | CHECK-A4 prints nothing | Unmet | - |
-| AC-008 | REQ-008 | Given the two unprefixed presentation assets that keep their names, When a caller under `.skilled` names either one and the README lists the assets, Then every caller resolves to a file that exists and the README states the naming rule in one sentence | CHECK-A6 lists both files, prints no `UNRESOLVED` line, prints a count of 1 for the README sentence and prints `STATUS=OK` | Unmet | - |
-| AC-009 | REQ-009 | Given the lifecycle presentation files, When their failure, fail-fast, preamble and closing blocks are compared with the command name removed, Then each block has one wording and each presentation file is loaded by exactly one router | Every line CHECK-A7 prints is 1 | Unmet | - |
-| AC-010 | REQ-010 | Given the canonical Gate 3 option C text, When the parity test reads every listed menu file, Then no file has drifted | CHECK-A8 prints `ℹ fail 0` | Unmet | - |
-| AC-011 | REQ-011 | Given the routers in `.skilled/commands/speckit/`, When the README command table is read, Then each router has exactly one row and the handoff row is still present | CHECK-A9 prints no `README ROWS` line and prints `STATUS=OK` | Unmet | - |
-| AC-012 | REQ-012 | Given the plan, implement and complete setup prompts, When the operator reads the questions, Then no Dispatch Mode question or `dispatch_mode` field remains and the questions run from Q0 with no gap to the end of the reply format range (closes X2) | CHECK-X2 prints only `rg exit=1` | Unmet | - |
-| AC-013 | REQ-013 | Given the four lifecycle presentation files, When an agent reads the pre-bound marker block or the resolution table, Then the prior continuity field is named `prior_continuity_choice` and no `memory_choice` remains (closes X3) | CHECK-X3 prints `rg exit=1` and then a count of 2 for each of the four files | Unmet | - |
+| AC-001 | REQ-001 | Given the plan workflow as phase 2 leaves it, When the plan success text and dashboard name their artifacts, Then each named `.md` file appears in a step `outputs:` list of `speckit-plan.yaml` | CHECK-A10 prints nothing. Observed at `32fe50e944`: it prints nothing. Evidence: .skilled/commands/speckit/assets/speckit-plan-presentation.txt:145 | Met | - |
+| AC-002 | REQ-002 | Given the speckit command folder, When an operator or agent copies any example or next step, Then each command uses the router form with the mode as a separate argument | CHECK-A5 prints no match line and then `rg exit=1`. Observed at `32fe50e944`: it prints no match line and then `rg exit=1`. Evidence: .skilled/commands/speckit/assets/speckit-plan.yaml:698 | Met | - |
+| AC-003 | REQ-003 | Given the plan or complete setup prompt, When the operator reads Q1 option D, Then D states its outcome and the workflow carries the same outcome under `spec_folder_skip` | CHECK-A8 prints a count of 1 for each of `speckit-plan-presentation.txt`, `speckit-complete-presentation.txt`, `speckit-plan.yaml` and `speckit-complete.yaml`. Observed at `32fe50e944`: it prints a count of 1 for each of the four files. Evidence: .skilled/commands/speckit/assets/speckit-complete.yaml:148 | Met | - |
+| AC-004 | REQ-004 | Given the workflows as phases 1 to 7 leave them, When the router, README or presentation file states a step count or the `termination` block states a last step, Then the count equals the number of counted step keys from step 1, half-steps included, and the last step equals the highest counted key number, with no value fixed in advance | CHECK-A1 prints nothing. Observed at `32fe50e944`: it prints nothing. Evidence: .skilled/commands/speckit/assets/speckit-complete.yaml:1121 | Met | - |
+| AC-005 | REQ-005 | Given the routers as phase 3 leaves them, When the README command table shows an invocation, Then its mode and flag tokens equal the router `argument-hint` tokens | CHECK-A2 prints nothing. Observed at `32fe50e944`: it prints nothing. Evidence: .skilled/commands/speckit/README.txt:83 | Met | - |
+| AC-006 | REQ-006 | Given the files in `.skilled/commands/speckit/` and `assets/`, When the README tree lists them, Then every file is listed, no listed file is missing on disk and no stale command count remains | CHECK-A3 prints nothing. Observed at `32fe50e944`: it prints nothing. Evidence: .skilled/commands/speckit/README.txt:147 | Met | - |
+| AC-007 | REQ-007 | Given the Workflow Flag Surface table in `complete.md`, When README section 7 describes the complete flags, Then every flag is listed and the lead sentence states no number of flags | CHECK-A4 prints nothing. Observed at `32fe50e944`: it prints nothing. Evidence: .skilled/commands/speckit/README.txt:246 | Met | - |
+| AC-008 | REQ-008 | Given the two unprefixed presentation assets that keep their names, When a caller under `.skilled` names either one and the README lists the assets, Then every caller resolves to a file that exists and the README states the naming rule in one sentence | CHECK-A6 lists both files, prints no `UNRESOLVED` line, prints a count of 1 for the README sentence and prints `STATUS=OK`. Observed at `32fe50e944`: it lists both files, prints no `UNRESOLVED` line, prints 1 for the README sentence and prints `STATUS=OK`. Evidence: .skilled/commands/speckit/README.txt:170 | Met | - |
+| AC-009 | REQ-009 | Given the lifecycle presentation files, When their failure, fail-fast, preamble and closing blocks are compared with the command name removed, Then each block has one wording and each presentation file is loaded by exactly one router | Every line CHECK-A7 prints is 1. Observed at `32fe50e944`: it prints 1 five times. Evidence: .skilled/commands/speckit/assets/speckit-complete-presentation.txt:169 | Met | - |
+| AC-010 | REQ-010 | Given the canonical Gate 3 option C text, When the parity test reads every listed menu file, Then no file has drifted | CHECK-A8 prints `ℹ fail 0`. Observed at `32fe50e944`: it prints `pass 17` and `fail 0`. Evidence: .skilled/commands/speckit/assets/speckit-plan-presentation.txt:74 | Met | - |
+| AC-011 | REQ-011 | Given the routers in `.skilled/commands/speckit/`, When the README command table is read, Then each router has exactly one row and the handoff row is still present | CHECK-A9 prints no `README ROWS` line and prints `STATUS=OK`. Observed at `32fe50e944`: it prints no `README ROWS` line and prints `STATUS=OK`. Evidence: .skilled/commands/speckit/README.txt:91 | Met | - |
+| AC-012 | REQ-012 | Given the plan, implement and complete setup prompts, When the operator reads the questions, Then no Dispatch Mode question or `dispatch_mode` field remains and the questions run from Q0 with no gap to the end of the reply format range (closes X2) | CHECK-X2 prints only `rg exit=1`. Observed at `32fe50e944`: it prints only `rg exit=1`. Evidence: .skilled/commands/speckit/assets/speckit-implement-presentation.txt:53 | Met | - |
+| AC-013 | REQ-013 | Given the four lifecycle presentation files, When an agent reads the pre-bound marker block or the resolution table, Then the prior continuity field is named `prior_continuity_choice` and no `memory_choice` remains (closes X3) | CHECK-X3 prints `rg exit=1` and then a count of 2 for each of the four files. Observed at `32fe50e944`: it prints `rg exit=1` and then 2 for each of the four files. Evidence: .skilled/commands/speckit/assets/speckit-resume-presentation.txt:20 | Met | - |
 
 ### Status values
 
@@ -93,7 +93,7 @@ waiver is treated as an unmet criterion rather than as a pass.
 ## 3. CLOSURE STATEMENT
 <!-- FILL: Write Yes or No and one sentence. Name a criterion by its id only when it blocks closure. Never write a count of criteria or an id range, because every added row makes it wrong. GOOD: No. AC-002 is unmet. WEAK: All eight criteria AC-001 to AC-008 are met. -->
 
-**Closeable:** No
+**Closeable:** Yes
 
-No criterion is met yet, because this phase starts only after phase 7 closes.
+Yes. Every criterion is Met with output observed at commit `32fe50e944`.
 <!-- /ANCHOR:closure -->

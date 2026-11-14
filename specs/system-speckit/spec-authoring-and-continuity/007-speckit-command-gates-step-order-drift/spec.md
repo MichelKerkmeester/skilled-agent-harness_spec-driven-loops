@@ -48,7 +48,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `main` |
 | **Parent Spec** | None. Top-level packet in the `system-speckit/spec-authoring-and-continuity` track |
@@ -209,7 +209,7 @@ All paths are under `.skilled/commands/speckit/`. Per-phase detail lives in each
 | 5 | 005-resume-detection-and-single-workflow/ | Resume opens the calling session's packet and runs from one workflow file | Complete |
 | 6 | 006-save-search-handoff-contracts/ | Save, search and handoff each state one contract | Complete |
 | 7 | 007-shared-blocks-and-retired-mechanisms/ | Repeated blocks live once, and retired mechanisms and unenforceable ceremony are gone | Complete |
-| 8 | 008-router-readme-presentation-alignment/ | Routers, README, presentation files and asset names match the workflows | Pending |
+| 8 | 008-router-readme-presentation-alignment/ | Routers, README, presentation files and asset names match the workflows | Complete |
 
 ### Phase Transition Rules
 

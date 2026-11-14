@@ -33,7 +33,7 @@
       "workflow"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -44,10 +44,14 @@
       ".skilled/commands/speckit/plan.md",
       ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
       ".skilled/commands/speckit/assets/speckit-implement-presentation.txt",
-      ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
       ".skilled/commands/speckit/assets/speckit-resume-presentation.txt",
       ".skilled/commands/speckit/assets/speckit-plan.yaml",
-      "scratch/baseline.txt",
+      ".skilled/commands/speckit/assets/speckit-complete.yaml",
+      ".skilled/skills/system-spec-kit/command-metadata.json",
+      ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+      ".skilled/commands/README.txt",
+      "shared/tests/README.md",
+      ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
       ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs"
     ],
     "entities": [
@@ -100,12 +104,6 @@
         "source": "derived"
       },
       {
-        "name": "speckit-complete-presentation.txt",
-        "kind": "file",
-        "path": ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
-        "source": "derived"
-      },
-      {
         "name": "speckit-resume-presentation.txt",
         "kind": "file",
         "path": ".skilled/commands/speckit/assets/speckit-resume-presentation.txt",
@@ -118,9 +116,33 @@
         "source": "derived"
       },
       {
-        "name": "baseline.txt",
+        "name": "speckit-complete.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-complete.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "command-metadata.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-spec-kit/command-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "projection.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-skill-advisor/runtime/lib/scorer/projection.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/tests/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-complete-presentation.txt",
         "kind": "file",
-        "path": "scratch/baseline.txt",
+        "path": ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
         "source": "derived"
       },
       {
@@ -176,29 +198,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview This",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Copies",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The router, the workflow, the presentation file and `README.txt` of one command state different facts, so an agent or operator who trusts any one of them is misled",
     "created_at": "2026-11-14T11:33:25Z",
-    "last_save_at": "2026-11-14T16:17:29.999Z",
+    "last_save_at": "2026-11-14T16:47:43.979Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,13 +212,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:bbb9e5e67b36d23c4bebd4d2155bd07ca3bcd7041ea0ca2c9c6c3c35e7b70d98",
+    "source_fingerprint": "sha256:7d83b89e68578f01ad8f84f32fdcd059d669cd60590b70f06c78551a40dff255",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "6838260fb16982cf5f198d82dc5f1fe197956f2f6025b4f5aa0f6a25f3a413c4",
-      "plan.md": "9a68f5fbe595f40d6857ec5934477d5b9fa40b9cb8d850f11850e24bc44e18f4",
-      "tasks.md": "07581692b544011b5431bd4d05a3886996f1ee22cb476a9c3ae10bcb9901c9bc",
-      "implementation-summary.md": "a151025ec8aa81bc74d1d14af15d9a15c78891ec948c64c613b676e6472216eb"
+      "spec.md": "6c4aeb3c2aae0b8603b5dabb193c5367fdbe366e6d7f7b63b1b217a60dbff5ba",
+      "plan.md": "c2c2e1e53755a3a1f38b29352be41f90a50c0ea9ee350850121af5e4c2b35785",
+      "tasks.md": "0ac3d76aec088c409ba0c43552050ef7c0c1025cd8e881762c897e9729f79655",
+      "implementation-summary.md": "549e4dfc087e4838e9473ccadcb9051e67d81269f9e41debe99158c3fb6241f4"
     },
     "last_active_at": null
   }

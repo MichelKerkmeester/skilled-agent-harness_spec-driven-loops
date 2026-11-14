@@ -37,14 +37,14 @@ This phase changes text in the speckit routers, `README.txt`, the presentation f
 <!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Phase 7 is closed: `rg -c 'Unmet' specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/acceptance-criteria.md` prints no count and exits 1
-- [ ] Each CHECK block in section 5 has been run once and its output saved to `scratch/baseline.txt`
-- [ ] `node --test gate-3-menu-parity.test.mjs` prints `ℹ fail 0` and `command-catalog-mirror-check.cjs` prints `STATUS=OK` before any edit
+- [x] Phase 7 is closed: `rg -c '\| Unmet \|' specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms/acceptance-criteria.md` prints no count and exits 1. The bare word `Unmet` prints 2, the two status legend lines
+- [x] Each CHECK block in section 5 has been run once and its output saved to `scratch/baseline.txt`
+- [x] `node --test gate-3-menu-parity.test.mjs` prints `ℹ fail 0` and `command-catalog-mirror-check.cjs` prints `STATUS=OK` before any edit
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] Each CHECK block in section 5 prints the expected output named in `acceptance-criteria.md`
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] Each CHECK block in section 5 prints the expected output named in `acceptance-criteria.md`
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -243,6 +243,8 @@ N/A. This phase edits command documents. It runs no service and adds no code pat
 - Decided 2026-11-14: Q1 option D keeps the outcome REQ-003 states. The run stops before step 1 and writes nothing, because both commands exist to write a packet.
 - Decided 2026-11-14: a phase may edit the tests and docs outside `.skilled/commands/speckit/` that assert the current text, and it updates the ones it invalidates. A search on 2026-11-14 found none that this phase invalidates. The goal offer contract test matches the Session Goal line by its text and the Gate 3 parity test reads only the Q1 line, so removing Q3 and renumbering the later questions breaks neither.
 - Decided 2026-11-14: `/speckit:plan` writes `tasks.md` in a new task breakdown step, and the closing step that only offers a second save leaves plan, implement and complete. REQ-001 and REQ-004 read the workflows as they stand after both changes and fix no step number.
+- Decided 2026-11-14 by the operator during implementation: the copies of the two changed router descriptions are updated too. They are `command-metadata.json`, the generated command bridges with `projection.ts`, and the complete row of `.skilled/commands/README.txt`. This overrides the `unchanged` action for `command-metadata.json` in `plan.md` and the Files to Change table above.
+- Decided 2026-11-14 by the operator during implementation: seven stale lines outside the named keys are fixed. Four lines of `speckit-plan.yaml` and one of `speckit-plan-presentation.txt` said step 7 or Steps 1-7 and now say 6. `README.txt` no longer says the save tail holds anchor requirements, and its overview names autopilot.
 - Phase 8 owns findings X2 and X3. REQ-012 removes Q3 and `dispatch_mode` (closes X2). REQ-013 renames `memory_choice` to `prior_continuity_choice` (closes X3).
 - The parent's Files to Change table gives phase 8 no row for `speckit-plan.yaml`, `speckit-implement.yaml` or `speckit-complete.yaml`. REQ-001, REQ-002, REQ-003 and REQ-004 need small edits there. The parent table should add phase 8 to those rows.
 - Ledger row A9 is wrong. `README.txt:91` already holds the `/speckit:handoff` row. REQ-011 keeps it as an invariant instead of adding it.
