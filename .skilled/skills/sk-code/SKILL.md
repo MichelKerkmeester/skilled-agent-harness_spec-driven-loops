@@ -47,7 +47,7 @@ Use this skill for code-family workflows. Invoke it as `sk-code` with an optiona
 **Surface list.** The hub has exactly three surfaces:
 - SKILLED (`sk-code-skilled`): the native surface for this framework's own code.
 - CI (`sk-code-ci`): the GitHub Actions workflow standards surface.
-- Frontend (`sk-code-frontend`): the stack-agnostic web practice and Figma-to-code surface, with visual values, visual hierarchy and review, and motion and interaction guidance, bundled from request vocabulary alone.
+- Frontend (`sk-code-frontend`): the stack-agnostic web practice and Figma-to-code surface, with visual values, visual hierarchy and review, and motion and interaction guidance, selected by its `FRONTEND` file markers or bundled from request vocabulary.
 
 The hub also has two workflow modes: quality (`sk-code-quality`) and review (`sk-code-review`).
 Any other sk-code doc that counts surfaces points to this sentence.

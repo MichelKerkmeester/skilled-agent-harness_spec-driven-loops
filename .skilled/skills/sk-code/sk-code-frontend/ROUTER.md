@@ -6,7 +6,7 @@ trigger_phrases:
   - "figma to code routing"
 importance_tier: normal
 contextType: general
-version: 1.1.0.0
+version: 1.1.1.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -57,17 +57,17 @@ This surface holds the core in `references/frontend-practice.md`, the web layer 
 DEFAULT_RESOURCE = ["references/frontend-practice.md"]
 
 INTENT_SIGNALS = {
-    "FRONTEND_WEB": {"weight": 4, "keywords": ["semantic html markup"]},
-    "WEB_ELEMENTS": {"weight": 4, "keywords": ["html form autocomplete", "dialog element", "popover attribute"]},
+    "FRONTEND_WEB": {"weight": 4, "keywords": ["semantic html markup", "with css", "the stylesheet", "css file", "ui component", "frontend component", "form inputs", "form styling", "style the form"]},
+    "WEB_ELEMENTS": {"weight": 4, "keywords": ["html form autocomplete", "dialog element", "popover attribute", "modal dialog"]},
     "WEB_CASCADE": {"weight": 4, "keywords": ["css cascade layers", "css specificity conflict"]},
-    "WEB_LAYOUT": {"weight": 4, "keywords": ["container query layout", "css stacking context"]},
-    "WEB_A11Y": {"weight": 4, "keywords": ["web accessibility pattern", "focus visible styling", "keyboard focus", "broken tab order", "accessible name", "aria live region", "focus ring accessibility", "focus outline removed", "screen reader support", "aria label missing", "alt text missing", "wcag audit"]},
-    "WEB_PERF": {"weight": 4, "keywords": ["web font loading", "largest contentful paint"]},
-    "WEB_I18N": {"weight": 4, "keywords": ["right to left layout", "bidirectional text"]},
-    "WEB_VISUAL_VALUES": {"weight": 4, "keywords": ["what padding should this have", "how much padding", "what font size should this be", "spacing between elements", "spacing scale", "type scale", "build a color palette", "shade ramp", "box shadow elevation", "border radius consistency", "contrast ratio failure", "grey text on colored background", "dark mode palette", "concentric border radius", "layered shadows", "shadow color on dark surface", "tabular numbers", "what should this button look like", "colour decision", "color decision", "padding", "type scale for", "font size", "colour palette", "color palette", "contrast ratio", "corner radius", "box shadow", "spacing between", "contrast of", "check the contrast", "colour contrast", "color contrast", "muted text"]},
+    "WEB_LAYOUT": {"weight": 4, "keywords": ["container query layout", "css stacking context", "responsive layout", "responsive grid", "css grid", "flexbox layout", "sticky header", "sticky navbar", "navbar sticky", "center a div", "vertically center", "center vertically", "scroll horizontally", "horizontal scroll", "mobile viewport", "media query"]},
+    "WEB_A11Y": {"weight": 4, "keywords": ["web accessibility pattern", "focus visible styling", "keyboard focus", "broken tab order", "accessible name", "aria live region", "focus ring accessibility", "focus outline removed", "screen reader support", "aria label missing", "alt text missing", "wcag audit", "focus trap", "accessibility issues", "accessibility review"]},
+    "WEB_PERF": {"weight": 4, "keywords": ["web font loading", "largest contentful paint", "improve lcp", "lcp regression", "core web vitals", "cumulative layout shift", "interaction to next paint", "lazy load images", "optimize images", "image optimization"]},
+    "WEB_I18N": {"weight": 4, "keywords": ["right to left layout", "bidirectional text", "rtl languages", "rtl layout", "rtl support", "i18n support"]},
+    "WEB_VISUAL_VALUES": {"weight": 4, "keywords": ["what padding should this have", "how much padding", "what font size should this be", "spacing between elements", "spacing scale", "type scale", "build a color palette", "shade ramp", "box shadow elevation", "border radius consistency", "contrast ratio failure", "grey text on colored background", "dark mode palette", "concentric border radius", "layered shadows", "shadow color on dark surface", "tabular numbers", "what should this button look like", "colour decision", "color decision", "type scale for", "font size", "colour palette", "color palette", "contrast ratio", "corner radius", "box shadow", "spacing between", "contrast of", "check the contrast", "colour contrast", "color contrast", "muted text", "dark mode toggle", "dark mode", "poor contrast", "low contrast", "text contrast"]},
     "WEB_VISUAL_HIERARCHY": {"weight": 4, "keywords": ["ui looks off", "looks amateur", "feels cluttered", "make this look better", "make this ui look designed", "visual hierarchy", "no visual hierarchy", "nothing draws the eye", "everything competes for attention", "everything looks the same", "emphasize by de-emphasizing", "how to style a destructive button", "this page feels overwhelming", "where do i start designing", "design a new screen from scratch", "how much white space", "why does this look wrong", "does this look right", "critique this design", "design critique", "visual audit", "design review findings", "design review", "review this design", "review this screen", "ux laws", "cognitive load", "progressive disclosure", "empty state design", "look wrong", "looks wrong", "looks off", "visual review", "type hierarchy"]},
-    "WEB_MOTION": {"weight": 4, "keywords": ["animation duration", "transition duration", "easing curve", "spring versus easing", "twelve principles of animation", "when not to animate", "response time budget", "touch target size", "hover state", "active pressed state", "disabled state styling", "button states", "animation", "transition timing", "easing", "hover", "focus-visible", "interaction states"]},
-    "FIGMA_TO_CODE": {"weight": 4, "keywords": ["figma to code", "check built screen against figma", "compare build with figma frame", "figma frame", "figma frame check", "implement a figma design"]},
+    "WEB_MOTION": {"weight": 4, "keywords": ["animation duration", "transition duration", "easing curve", "spring versus easing", "twelve principles of animation", "when not to animate", "response time budget", "touch target size", "hover state", "active pressed state", "disabled state styling", "button states", "transition timing", "focus-visible", "interaction states", "css animation", "css transition", "loading spinner", "hover animation", "hover effect"]},
+    "FIGMA_TO_CODE": {"weight": 4, "keywords": ["figma to code", "check built screen against figma", "compare build with figma frame", "figma frame", "figma frame check", "implement a figma design", "figma file", "from figma"]},
 }
 
 RESOURCE_MAP = {

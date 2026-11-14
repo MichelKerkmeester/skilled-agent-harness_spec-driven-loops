@@ -149,7 +149,7 @@ test('F21a hub repository: a .js and a .css file under .skilled/ list the JavaSc
 }, (repo) => {
   const { verdict } = assertSnapshotUnchanged(repo, () => repo.run(['--files', '.skilled/tools/run.js', '.skilled/tools/look.css']));
   assert.deepEqual(surfaceOf(verdict, '.skilled/tools/run.js'), ['SKILLED']);
-  assert.deepEqual(surfaceOf(verdict, '.skilled/tools/look.css'), ['SKILLED']);
+  assert.deepEqual(surfaceOf(verdict, '.skilled/tools/look.css'), ['FRONTEND', 'SKILLED']);
   const files = checklistFiles(verdict);
   for (const file of STYLE_CHECKLISTS) assert.ok(files.includes(file), `${file} left a SKILLED file`);
 }));

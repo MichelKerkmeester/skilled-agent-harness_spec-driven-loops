@@ -139,9 +139,16 @@
       "packet": "sk-code-frontend",
       "packetSkillName": "sk-code-frontend",
       "grandfatheredFolderMismatch": false,
-      "aliases": ["semantic html markup", "html form autocomplete", "dialog element", "popover attribute", "css cascade layers", "css specificity conflict", "container query layout", "css stacking context", "web accessibility pattern", "focus visible styling", "aria live region", "web font loading", "largest contentful paint", "right to left layout", "bidirectional text", "keyboard focus", "broken tab order", "accessible name", "figma to code", "check built screen against figma", "compare build with figma frame", "figma frame", "figma frame check", "implement a figma design"],
+      "aliases": ["semantic html markup", "html form autocomplete", "dialog element", "popover attribute", "css cascade layers", "css specificity conflict", "container query layout", "css stacking context", "web accessibility pattern", "focus visible styling", "aria live region", "web font loading", "largest contentful paint", "right to left layout", "bidirectional text", "keyboard focus", "broken tab order", "accessible name", "figma to code", "check built screen against figma", "compare build with figma frame", "figma frame", "figma frame check", "implement a figma design", "focus ring accessibility", "focus outline removed", "screen reader support", "aria label missing", "alt text missing", "wcag audit", "responsive layout", "responsive grid", "css grid", "flexbox layout", "sticky header", "sticky navbar", "navbar sticky", "with css", "the stylesheet", "css file", "focus trap", "modal dialog", "improve lcp", "lcp regression", "core web vitals", "cumulative layout shift", "interaction to next paint", "lazy load images", "optimize images", "image optimization", "rtl languages", "rtl layout", "rtl support", "i18n support", "center a div", "vertically center", "center vertically", "scroll horizontally", "horizontal scroll", "mobile viewport", "media query", "form inputs", "form styling", "style the form", "figma file", "from figma"],
       "advisorRouting": {
         "routingClass": "metadata"
+      },
+      "surfaceDetection": {
+        "label": "FRONTEND",
+        "role": "specific",
+        "pathMarkers": [],
+        "fileMarkers": [".css", ".scss", ".html", ".tsx", ".jsx", ".vue", ".svelte"],
+        "contentMarkers": []
       }
     }
   ]

@@ -9,7 +9,7 @@ trigger_phrases:
   - "unknown surface fallback"
 importance_tier: important
 contextType: general
-version: 2.3.19.0
+version: 2.3.20.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -150,7 +150,7 @@ The map is the packet's own `RESOURCE_MAP` re-prefixed with `sk-code-ci/`, so th
 
 ### Frontend Map
 
-When a request asks about web frontend practice, or a Figma-to-code check, the hub bundles `sk-code-frontend` from request vocabulary alone:
+When a request asks about web frontend practice or a Figma-to-code check, or the work touches a stylesheet, markup or component file, the hub bundles `sk-code-frontend`:
 
 | Resource | Carries |
 | --- | --- |
@@ -250,17 +250,17 @@ INTENT_SIGNALS = {
     "SHELL":              {"weight": 1, "keywords": ["shell script", "bash", ".sh"]},
     "RUST":               {"weight": 1, "keywords": ["rust", ".rs", "cargo.toml", "cargo.lock", "napi-rs", "napi_rs", "#[napi]", "wasm-bindgen", "wasm_bindgen", "#[wasm_bindgen]", "wasi", "cdylib"]},
     "CI_WORKFLOW":        {"weight": 4, "keywords": ["github actions workflow", "ci workflow", "github actions yaml", "workflow path filters", "github workflow timeout", "github workflow concurrency", "github workflow permissions", "required status check workflow", "ci job", "action to a sha", "sha-pinned action", "github actions permissions", "ci workflows", "ci switch", "turn off ci", ".github/workflows", "workflow concurrency", "github actions release workflow", "github actions deploy workflow", "release workflow yaml", "deploy workflow yaml", "github actions minutes", "actions minutes", "actions runner minutes", "runner minutes", "ci workflow cost", "ci cost", "reduce ci costs", "lower ci costs", "cut ci costs", "reduce our ci costs", "lower our ci costs", "ci spend", "ci bill", "ci minutes cost", "cut the ci minutes", "cut ci minutes", "reduce ci minutes", "ci pipeline cost", "ci pipeline cheaper", "ci pipelines cheaper", "cheaper ci pipeline", "ci runs cheaper", "failing ci", "failing ci pipeline", "ci failure", "ci failures", "ci is failing", "broken ci", "debug the ci", "debug ci", "cost of our ci", "make ci cheaper", "github actions bill", "github actions cost", "turn off the ci", "turn on the ci", "ci review workflow"]},
-    "FRONTEND_WEB":        {"weight": 4, "keywords": ["semantic html markup"]},
-    "WEB_ELEMENTS":        {"weight": 4, "keywords": ["html form autocomplete", "dialog element", "popover attribute"]},
+    "FRONTEND_WEB":        {"weight": 4, "keywords": ["semantic html markup", "with css", "the stylesheet", "css file", "ui component", "frontend component", "form inputs", "form styling", "style the form"]},
+    "WEB_ELEMENTS":        {"weight": 4, "keywords": ["html form autocomplete", "dialog element", "popover attribute", "modal dialog"]},
     "WEB_CASCADE":         {"weight": 4, "keywords": ["css cascade layers", "css specificity conflict"]},
-    "WEB_LAYOUT":          {"weight": 4, "keywords": ["container query layout", "css stacking context"]},
-    "WEB_A11Y":            {"weight": 4, "keywords": ["web accessibility pattern", "focus visible styling", "keyboard focus", "broken tab order", "accessible name", "aria live region", "focus ring accessibility", "focus outline removed", "screen reader support", "aria label missing", "alt text missing", "wcag audit"]},
-    "WEB_PERF":            {"weight": 4, "keywords": ["web font loading", "largest contentful paint"]},
-    "WEB_I18N":            {"weight": 4, "keywords": ["right to left layout", "bidirectional text"]},
-    "WEB_VISUAL_VALUES": {"weight": 4, "keywords": ["what padding should this have", "how much padding", "what font size should this be", "spacing between elements", "spacing scale", "type scale", "build a color palette", "shade ramp", "box shadow elevation", "border radius consistency", "contrast ratio failure", "grey text on colored background", "dark mode palette", "concentric border radius", "layered shadows", "shadow color on dark surface", "tabular numbers", "what should this button look like", "colour decision", "color decision", "padding", "type scale for", "font size", "colour palette", "color palette", "contrast ratio", "corner radius", "box shadow", "spacing between", "contrast of", "check the contrast", "colour contrast", "color contrast", "muted text"]},
+    "WEB_LAYOUT":          {"weight": 4, "keywords": ["container query layout", "css stacking context", "responsive layout", "responsive grid", "css grid", "flexbox layout", "sticky header", "sticky navbar", "navbar sticky", "center a div", "vertically center", "center vertically", "scroll horizontally", "horizontal scroll", "mobile viewport", "media query"]},
+    "WEB_A11Y":            {"weight": 4, "keywords": ["web accessibility pattern", "focus visible styling", "keyboard focus", "broken tab order", "accessible name", "aria live region", "focus ring accessibility", "focus outline removed", "screen reader support", "aria label missing", "alt text missing", "wcag audit", "focus trap", "accessibility issues", "accessibility review"]},
+    "WEB_PERF":            {"weight": 4, "keywords": ["web font loading", "largest contentful paint", "improve lcp", "lcp regression", "core web vitals", "cumulative layout shift", "interaction to next paint", "lazy load images", "optimize images", "image optimization"]},
+    "WEB_I18N":            {"weight": 4, "keywords": ["right to left layout", "bidirectional text", "rtl languages", "rtl layout", "rtl support", "i18n support"]},
+    "WEB_VISUAL_VALUES": {"weight": 4, "keywords": ["what padding should this have", "how much padding", "what font size should this be", "spacing between elements", "spacing scale", "type scale", "build a color palette", "shade ramp", "box shadow elevation", "border radius consistency", "contrast ratio failure", "grey text on colored background", "dark mode palette", "concentric border radius", "layered shadows", "shadow color on dark surface", "tabular numbers", "what should this button look like", "colour decision", "color decision", "type scale for", "font size", "colour palette", "color palette", "contrast ratio", "corner radius", "box shadow", "spacing between", "contrast of", "check the contrast", "colour contrast", "color contrast", "muted text", "dark mode toggle", "dark mode", "poor contrast", "low contrast", "text contrast"]},
     "WEB_VISUAL_HIERARCHY": {"weight": 4, "keywords": ["ui looks off", "looks amateur", "feels cluttered", "make this look better", "make this ui look designed", "visual hierarchy", "no visual hierarchy", "nothing draws the eye", "everything competes for attention", "everything looks the same", "emphasize by de-emphasizing", "how to style a destructive button", "this page feels overwhelming", "where do i start designing", "design a new screen from scratch", "how much white space", "why does this look wrong", "does this look right", "critique this design", "design critique", "visual audit", "design review findings", "design review", "review this design", "review this screen", "ux laws", "cognitive load", "progressive disclosure", "empty state design", "look wrong", "looks wrong", "looks off", "visual review", "type hierarchy"]},
-    "WEB_MOTION":        {"weight": 4, "keywords": ["animation duration", "transition duration", "easing curve", "spring versus easing", "twelve principles of animation", "when not to animate", "response time budget", "touch target size", "hover state", "active pressed state", "disabled state styling", "button states", "animation", "transition timing", "easing", "hover", "focus-visible", "interaction states"]},
-    "FIGMA_TO_CODE":      {"weight": 4, "keywords": ["figma to code", "check built screen against figma", "compare build with figma frame", "figma frame", "figma frame check", "implement a figma design"]},
+    "WEB_MOTION":        {"weight": 4, "keywords": ["animation duration", "transition duration", "easing curve", "spring versus easing", "twelve principles of animation", "when not to animate", "response time budget", "touch target size", "hover state", "active pressed state", "disabled state styling", "button states", "transition timing", "focus-visible", "interaction states", "css animation", "css transition", "loading spinner", "hover animation", "hover effect"]},
+    "FIGMA_TO_CODE":      {"weight": 4, "keywords": ["figma to code", "check built screen against figma", "compare build with figma frame", "figma frame", "figma frame check", "implement a figma design", "figma file", "from figma"]},
 }
 
 RESOURCE_MAP = {
@@ -513,7 +513,7 @@ It tries every declared specific surface first, then the `SKILLED` fallback, the
 When a specific surface and `SKILLED` both match, the specific one leads and `SKILLED` comes along as second evidence.
 Each surface declares its markers in a `surfaceDetection` block in `mode-registry.json`, or in its own `graph-metadata.json` when it lives outside the hub.
 Modes own workflow contracts, not surface identity.
-`sk-code-ci` and `sk-code-frontend` are the surfaces that stack detection does not select. The hub bundles both from request vocabulary alone: CI through `code-ci-aliases` and `code-ci-runtime`, and Frontend through `code-frontend-aliases` in `hub-router.json`.
+`sk-code-ci` is the one surface that stack detection does not select. The hub bundles it from request vocabulary alone, through `code-ci-aliases` and `code-ci-runtime` in `hub-router.json`. `sk-code-frontend` is reached both ways: stack detection selects it through the file markers of its `FRONTEND` block, and the hub bundles it from request vocabulary through `code-frontend-aliases`, `code-frontend-visual` and `code-frontend-review`.
 
 ### Fallback route
 

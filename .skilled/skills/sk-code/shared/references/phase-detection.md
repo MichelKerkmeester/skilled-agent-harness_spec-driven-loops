@@ -8,7 +8,7 @@ trigger_phrases:
   - "per surface phase map"
 importance_tier: normal
 contextType: general
-version: 1.6.4.0
+version: 1.6.5.0
 ---
 
 # Phase Detection and Lifecycle
@@ -36,7 +36,7 @@ A phase ends on evidence, not on effort. The next phase starts only when the cur
 
 ### Key Sources
 
-- [stack-detection.md](./stack-detection.md) selects the surface. It returns SKILLED or UNKNOWN and never `sk-code-ci` or `sk-code-frontend`, which the hub bundles from request vocabulary alone (`code-ci-aliases` and `code-ci-runtime`, and `code-frontend-aliases`, in `hub-router.json`).
+- [stack-detection.md](./stack-detection.md) selects the surface. It returns FRONTEND, SKILLED or UNKNOWN and never `sk-code-ci`, which the hub bundles from request vocabulary alone (`code-ci-aliases` and `code-ci-runtime` in `hub-router.json`). The hub also bundles `sk-code-frontend` from request vocabulary (`code-frontend-aliases`, `code-frontend-visual` and `code-frontend-review`).
 - `mode-registry.json` declares the workflow modes (`sk-code-quality`, `sk-code-review`) and the surfaces (`sk-code-ci`, `sk-code-frontend`, `sk-code-skilled`).
 
 ---
