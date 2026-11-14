@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Planned, not built. This phase holds the plan for nine edits that give the compaction recovery a fallback folder and keep both adapters from reading a spec outside the project. No file outside this packet has changed yet."
+description: "Built 2026-11-14. A compaction with no pinned folder now takes the purpose from the folder the cached brief names, and neither compaction adapter opens a spec.md outside the project."
 trigger_phrases:
   - "compaction purpose folder implementation summary"
 importance_tier: "normal"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-009-compaction-purpose-folder"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 009-compaction-purpose-folder |
-| **Completed** | Not built. Planned 2026-11-14 |
+| **Completed** | 2026-11-14 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -49,17 +49,20 @@ _memory:
 ## What Was Built
 <!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-Nothing is built yet. This packet holds the plan that answers findings 4 and 9 of the independent review of the purpose-carry work, and the compaction-test part of finding 10.
+After a compaction in a session that touched several packets, the next AI now still gets a purpose line, taken from the folder the brief cached before the compaction names. Neither the Claude nor the Pi compaction adapter will read a `spec.md` outside the project any more.
 
 ### Phase 9: compaction-purpose-folder
 
-The purpose line after a compaction needs a pinned `lastSpecFolder`, and the Stop hook pins none when the transcript names several packets. Both compaction adapters also open `spec.md` wherever the stored folder points. `plan.md` section 4 holds nine edits that add a fallback to the folder the cached brief names, refuse a folder outside the project and move the tests to repo-relative folders.
+E1 to E3 in `session-prime.ts` added a containment check, `folderNamedInBrief` and the fallback in the compact branch. E4 and E5 gave the Pi adapter the same containment. E6 to E9 moved the tests to repo-relative folders as real state holds them and added five tests.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md`, `plan.md`, `tasks.md` | Created | The plan for the nine edits |
+| `.skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts` | Modified | Containment, `folderNamedInBrief` and the brief fallback |
+| `.skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts` | Modified | Containment |
+| `.skilled/skills/system-spec-kit/runtime/tests/hook-session-start.vitest.ts` | Modified | Repo-relative folders and four new tests |
+| `.skilled/skills/system-spec-kit/runtime/tests/history-locator-adapters.vitest.ts` | Modified | Repo-relative folders and one new test |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -68,7 +71,7 @@ The purpose line after a compaction needs a pinned `lastSpecFolder`, and the Sto
 ## How It Was Delivered
 <!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-Not delivered. Planning ran the three Measured Behavior commands in `spec.md` and counted every search text in `plan.md` section 4 once with `rg -c -F`. It could not start `node`, so the replacement code and the four new tests were not run.
+The orchestrator captured the baselines in `plan.md` section 5 and counted every search text once. One DeepSeek V4.1 Flash max worker, dispatched through cli-deepseek-harness with `--add-dir` for the three target folders, applied E1 to E9 and exited 0 with a `completed` final event. Its own test run hit the sandbox, so the orchestrator ran every check below outside it.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -95,7 +98,10 @@ Not delivered. Planning ran the three Measured Behavior commands in `spec.md` an
 |-------|--------|
 | The three Measured Behavior commands in `spec.md` | Run 2026-11-14: two unchecked resolves, a null result for several packets and three tests that store an absolute folder |
 | Search texts in `plan.md` section 4 | Each of the seventeen counted `1` |
-| The nine edits | Not run. Tasks T001 to T018 are open |
+| REQ-001 to REQ-004 tests | `(27 tests)`, `(19 tests)`, `Tests  46 passed (46)`, including the four named tests |
+| Measured Behavior commands one and three | no line each |
+| Lint, typecheck and build | each exit 0, `folderNamedInBrief` appears twice in the built hook |
+| Temp folders | none left under the runtime folder |
 <!-- /ANCHOR:verification -->
 
 ---

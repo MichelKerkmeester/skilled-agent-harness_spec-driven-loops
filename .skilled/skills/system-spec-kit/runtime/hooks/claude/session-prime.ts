@@ -6,7 +6,8 @@
 // based on the session source (compact, startup, resume, clear).
 
 import { createRequire } from 'node:module';
-import { resolve } from 'node:path';
+import { existsSync } from 'node:fs';
+import { dirname, join, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   parseHookStdin, hookLog, formatHookOutput, truncateToTokenBudget,
@@ -229,9 +230,33 @@ export function buildPacketPurposeSection(
   projectRoot: string = process.cwd(),
 ): OutputSection | null {
   if (!lastSpecFolder) return null;
-  const purpose = resolvePacketPurpose(resolve(projectRoot, lastSpecFolder));
+  const root = resolve(projectRoot);
+  let folder = resolve(root, lastSpecFolder);
+  // The folder is read from a temp state file or a transcript line, so a value
+  // that leaves the project is refused before any file is opened.
+  if (!folder.startsWith(root + sep)) return null;
+  // A detected folder can be a track folder or a packet's scratch or research
+  // subfolder, so the nearest enclosing folder that holds a spec.md is the packet.
+  while (!existsSync(join(folder, 'spec.md'))) {
+    const parent = dirname(folder);
+    if (!parent.startsWith(root + sep)) return null;
+    folder = parent;
+  }
+  const purpose = resolvePacketPurpose(folder);
   if (!purpose) return null;
-  return { title: 'Packet Purpose', content: formatPacketPurpose(purpose, projectRoot) };
+  return { title: 'Packet Purpose', content: formatPacketPurpose(purpose, root) };
+}
+
+/**
+ * The folder the brief cached before the compaction named as active. A session
+ * whose Stop hook saw several packets has no last folder, and this is the one
+ * packet the recovery can still name. Only the header above the recent context
+ * is read, because that part quotes transcript lines that could carry a
+ * look-alike folder line.
+ */
+export function folderNamedInBrief(payload: string | null | undefined): string | null {
+  const header = payload?.split(/^Recent context:/m)[0];
+  return header?.match(/^\s*Active spec folder: (\S+)\s*$/m)?.[1] ?? null;
 }
 
 function readCompactPrimeIdentity(sessionId: string): { cachedAt: string; opaqueId?: string | null } | null {
@@ -386,7 +411,10 @@ export async function runSessionStartHook(
     case 'compact': {
       compactIdentity = readCompactPrimeIdentity(sessionId);
       const stateResult = loadState(sessionId);
-      const purposeSection = buildPacketPurposeSection(stateResult.ok ? stateResult.state.lastSpecFolder : null);
+      const priorState = stateResult.ok ? stateResult.state : null;
+      const purposeSection = buildPacketPurposeSection(
+        priorState?.lastSpecFolder || folderNamedInBrief(priorState?.pendingCompactPrime?.payload),
+      );
       sections = await handleCompact(sessionId);
       if (purposeSection) sections.unshift(purposeSection);
       budget = COMPACTION_TOKEN_BUDGET;

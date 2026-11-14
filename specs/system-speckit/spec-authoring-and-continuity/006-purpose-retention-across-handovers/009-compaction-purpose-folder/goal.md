@@ -53,11 +53,11 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] REQ-001: Neither adapter hands the helper a folder outside the project. The first Measured Behavior command prints no line, and the tests `adds no purpose section for a last spec folder outside the project` and `adds no packet purpose for a last spec folder outside the workspace` pass
-- [ ] REQ-002: A compaction with no pinned folder takes the purpose from the folder the cached brief names. The test `takes the purpose from the folder the cached brief names when no last folder is pinned` passes
-- [ ] REQ-003: The compaction tests store the repo-relative value real state holds. The third Measured Behavior command prints no line, and `../node_modules/.bin/vitest run --config vitest.config.ts runtime/tests/hook-session-start.vitest.ts runtime/tests/history-locator-adapters.vitest.ts`, run from `.skilled/skills/system-spec-kit/runtime`, prints `(27 tests)`, `(19 tests)` and `Tests  46 passed (46)`
-- [ ] REQ-004: The fallback reads the line the PreCompact brief really writes. The test `reads the folder line the PreCompact brief writes` passes inside the REQ-003 run
-- [ ] REQ-005: The runtime still typechecks and builds. `npm run typecheck` and `npm run build` in `.skilled/skills/system-spec-kit/runtime` exit 0
+- [x] REQ-001: Neither adapter hands the helper a folder outside the project. The first Measured Behavior command prints no line, and the tests `adds no purpose section for a last spec folder outside the project` and `adds no packet purpose for a last spec folder outside the workspace` pass
+- [x] REQ-002: A compaction with no pinned folder takes the purpose from the folder the cached brief names. The test `takes the purpose from the folder the cached brief names when no last folder is pinned` passes
+- [x] REQ-003: The compaction tests store the repo-relative value real state holds. The third Measured Behavior command prints no line, and `../node_modules/.bin/vitest run --config vitest.config.ts runtime/tests/hook-session-start.vitest.ts runtime/tests/history-locator-adapters.vitest.ts`, run from `.skilled/skills/system-spec-kit/runtime`, prints `(27 tests)`, `(19 tests)` and `Tests  46 passed (46)`
+- [x] REQ-004: The fallback reads the line the PreCompact brief really writes. The test `reads the folder line the PreCompact brief writes` passes inside the REQ-003 run
+- [x] REQ-005: The runtime still typechecks and builds. `npm run typecheck` and `npm run build` in `.skilled/skills/system-spec-kit/runtime` exit 0
 <!-- /ANCHOR:completion -->
 
 ---
@@ -73,11 +73,12 @@ and findings belong here.
 
 | Item | State | Evidence |
 |------|-------|----------|
-| Phase opened | Pending | Planned 2026-11-14, verified by an independent plan review |
+| Phase opened | Done | Planned 2026-11-14, verified by an independent plan review |
+| Phase built | Done | E1 to E9 applied by a DeepSeek V4.1 Flash max worker through cli-deepseek-harness on 2026-11-14, then every criterion rerun by the orchestrator |
 
 ### Deviations and findings
 
 | Item | Note |
 |------|------|
-| None recorded | The criteria above are this phase's own requirement rows, copied from its `spec.md` |
+| Worker test run | Inside the dsh sandbox four new tests failed with EPERM on `mkdtemp` under the runtime folder, so the worker reported blocked without changing any code. The orchestrator ran the same suites outside the sandbox: `(27 tests)`, `(19 tests)`, `Tests  46 passed (46)` |
 <!-- /ANCHOR:log -->

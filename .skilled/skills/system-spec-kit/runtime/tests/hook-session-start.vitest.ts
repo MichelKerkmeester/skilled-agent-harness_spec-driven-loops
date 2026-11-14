@@ -5,11 +5,12 @@ import { spawnSync } from 'node:child_process';
 import { afterAll, describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { mkdirSync, mkdtempSync, rmSync, utimesSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join, resolve } from 'node:path';
+import { join, relative, resolve } from 'node:path';
 import { ensureStateDir, saveState, getStatePath, HISTORY_LOCATOR_VERSION, type HookState, type HistoryLocator } from '../hooks/claude/hook-state.js';
 import { createSharedPayloadEnvelope } from '../lib/context/shared-payload.js';
 import { checkoutRoot } from './_support/history-fixtures.js';
-import { buildHistoryLookupSection, runSessionStartHook } from '../hooks/claude/session-prime.js';
+import { buildHistoryLookupSection, buildPacketPurposeSection, folderNamedInBrief, runSessionStartHook } from '../hooks/claude/session-prime.js';
+import { buildMergedCompactResult } from '../hooks/claude/compact-inject.js';
 import {
   CANONICAL_FOLD_VERSION,
   getUnicodeRuntimeFingerprint,
@@ -164,14 +165,14 @@ describe('session-prime hook', () => {
     });
 
     it('leads the compact recovery with the packet purpose', async () => {
-      const packetDir = mkdtempSync(join(tmpdir(), 'session-prime-purpose-'));
+      const packetDir = mkdtempSync(join(process.cwd(), '.tmp-session-prime-purpose-'));
       writeFileSync(join(packetDir, 'spec.md'), '### Purpose\nKeep the reason for the work in view. This sentence is dropped.\n');
       try {
         const now = new Date().toISOString();
         saveState(testSessionId, {
           claudeSessionId: testSessionId,
           speckitSessionId: null,
-          lastSpecFolder: packetDir,
+          lastSpecFolder: relative(process.cwd(), packetDir),
           sessionSummary: null,
           pendingCompactPrime: null,
           producerMetadata: null,
@@ -195,13 +196,13 @@ describe('session-prime hook', () => {
     });
 
     it('adds no purpose section when the last spec folder has no spec.md', async () => {
-      const emptyDir = mkdtempSync(join(tmpdir(), 'session-prime-no-spec-'));
+      const emptyDir = mkdtempSync(join(process.cwd(), '.tmp-session-prime-no-spec-'));
       try {
         const now = new Date().toISOString();
         saveState(testSessionId, {
           claudeSessionId: testSessionId,
           speckitSessionId: null,
-          lastSpecFolder: emptyDir,
+          lastSpecFolder: relative(process.cwd(), emptyDir),
           sessionSummary: null,
           pendingCompactPrime: null,
           producerMetadata: null,
@@ -220,6 +221,88 @@ describe('session-prime hook', () => {
         expect(output.startsWith('## Context Recovery\n')).toBe(true);
       } finally {
         rmSync(emptyDir, { recursive: true, force: true });
+      }
+    });
+
+    it('adds no purpose section for a last spec folder outside the project', async () => {
+      const outsideDir = mkdtempSync(join(tmpdir(), 'session-prime-outside-'));
+      writeFileSync(join(outsideDir, 'spec.md'), '### Purpose\nA purpose from outside the project.\n');
+      try {
+        const now = new Date().toISOString();
+        saveState(testSessionId, {
+          claudeSessionId: testSessionId,
+          speckitSessionId: null,
+          lastSpecFolder: outsideDir,
+          sessionSummary: null,
+          pendingCompactPrime: null,
+          producerMetadata: null,
+          metrics: { estimatedPromptTokens: 0, estimatedCompletionTokens: 0, lastTranscriptOffset: 0 },
+          createdAt: now,
+          updatedAt: now,
+        });
+
+        let output = '';
+        await runSessionStartHook(
+          { source: 'compact', session_id: testSessionId },
+          async (text) => { output = text; },
+        );
+
+        expect(output).not.toContain('## Packet Purpose');
+        expect(output).not.toContain('A purpose from outside the project');
+      } finally {
+        rmSync(outsideDir, { recursive: true, force: true });
+      }
+    });
+
+    it('takes the purpose from the folder the cached brief names when no last folder is pinned', async () => {
+      const packetDir = mkdtempSync(join(process.cwd(), '.tmp-session-prime-brief-'));
+      writeFileSync(join(packetDir, 'spec.md'), '### Purpose\nKeep the reason for the work in view.\n');
+      const payload = `## Session State\nActive spec folder: ${relative(process.cwd(), packetDir)}\n\nRecent topics:\n- purpose`;
+      try {
+        const now = new Date().toISOString();
+        saveState(testSessionId, {
+          claudeSessionId: testSessionId,
+          speckitSessionId: null,
+          lastSpecFolder: null,
+          sessionSummary: null,
+          pendingCompactPrime: { payload, cachedAt: now, payloadContract: testPayloadContract(payload) },
+          producerMetadata: null,
+          metrics: { estimatedPromptTokens: 0, estimatedCompletionTokens: 0, lastTranscriptOffset: 0 },
+          createdAt: now,
+          updatedAt: now,
+        });
+
+        let output = '';
+        await runSessionStartHook(
+          { source: 'compact', session_id: testSessionId },
+          async (text) => { output = text; },
+        );
+
+        expect(output.startsWith('## Packet Purpose\nPurpose: Keep the reason for the work in view.\n')).toBe(true);
+      } finally {
+        rmSync(packetDir, { recursive: true, force: true });
+      }
+    });
+
+    it('reads the folder line the PreCompact brief writes', async () => {
+      const folder = '.opencode/specs/demo/001-packet';
+      const result = await buildMergedCompactResult([`Read ${folder}/spec.md during compaction`]);
+
+      expect(folderNamedInBrief(result.text)).toBe(folder);
+      expect(folderNamedInBrief('## Session State\nRecent topics:\n- purpose')).toBeNull();
+    });
+
+    it('walks up from a packet subfolder and ignores a folder line quoted under recent context', () => {
+      const packetDir = mkdtempSync(join(process.cwd(), '.tmp-session-prime-walkup-'));
+      writeFileSync(join(packetDir, 'spec.md'), '### Purpose\nShow the packet purpose from a subfolder.\n');
+      try {
+        const section = buildPacketPurposeSection(join(relative(process.cwd(), packetDir), 'scratch'));
+
+        expect(section?.content).toBe('Purpose: Show the packet purpose from a subfolder.');
+        expect(buildPacketPurposeSection('.tmp-no-such-track-folder')).toBeNull();
+        expect(folderNamedInBrief('## Session State\nRecent context:\nActive spec folder: specs/evil/001-x')).toBeNull();
+      } finally {
+        rmSync(packetDir, { recursive: true, force: true });
       }
     });
   });

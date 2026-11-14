@@ -39,19 +39,19 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      "runtime/hooks/claude/session-prime.ts",
-      "runtime/hooks/pi/session-compact-context.ts",
       ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
       ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts",
       ".skilled/skills/system-spec-kit/runtime/tests/hook-session-start.vitest.ts",
       ".skilled/skills/system-spec-kit/runtime/tests/history-locator-adapters.vitest.ts",
+      "runtime/hooks/claude/session-prime.ts",
+      "runtime/hooks/pi/session-compact-context.ts",
       "dist/hooks/claude/session-prime.js",
       "dist/lib/spec/packet-purpose.js"
     ],
@@ -89,13 +89,13 @@
       {
         "name": "session-prime.ts",
         "kind": "code",
-        "path": "runtime/hooks/claude/session-prime.ts",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/session-prime.ts",
         "source": "derived"
       },
       {
         "name": "session-compact-context.ts",
         "kind": "code",
-        "path": "runtime/hooks/pi/session-compact-context.ts",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/pi/session-compact-context.ts",
         "source": "derived"
       },
       {
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "The context recovered after a compaction opens with the packet's purpose only when hook state holds a `lastSpecFolder`",
     "created_at": "2026-11-14T06:14:05Z",
-    "last_save_at": "2026-11-14T07:26:25.320Z",
+    "last_save_at": "2026-11-14T07:53:55.272Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,13 +213,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:15c489834e77e245a88551e50c883a3383d18921f1f3b6ff6c3314b0ea2db83e",
+    "source_fingerprint": "sha256:dbdb6e9dda67d260b4f3bb8e79fa7de25f1e950a43aed58b403ea0f03d088165",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ebde28f2f19be463462c1baee3b06d8142d76e572da38af44eff7a961794fccb",
+      "spec.md": "a3ea484603c3e5b97aefff701f1727a48c63e2acd736e0cc7334a588ab598749",
       "plan.md": "1a9a0bafbc969bb53487434f92c80ec1b9f064fede2d43266fd2dc5d6be5203f",
-      "tasks.md": "5780c65484946ed52e85349664421d797333d51131833b09c89872f35e3c77d9",
-      "implementation-summary.md": "a85ca12cf4cdf03023f669e32c41e5483c5858f2a2cdc2455dee16cca56f19d0"
+      "tasks.md": "90eb5c0f0a2323d9b5d0fc9f8f56bdfe00f56e7ec9dd8428dafee95e5ddf5ce8",
+      "implementation-summary.md": "9f93ab7d214ef4d9ced6c84405adee897da08205f2f43a3273e6ee50f896a9e5"
     },
     "last_active_at": null
   }

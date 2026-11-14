@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto';
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, relative } from 'node:path';
 
 import { afterAll, afterEach, describe, expect, it, vi } from 'vitest';
 
@@ -132,7 +132,7 @@ describe('Pi post-compaction locator', () => {
 
   it('names the packet purpose of the last active spec folder', async () => {
     const sessionId = uniqueSession('pi-purpose');
-    const packetDir = mkdtempSync(join(tmpdir(), 'pi-purpose-'));
+    const packetDir = mkdtempSync(join(WORKSPACE, 'pi-purpose-'));
     writeFileSync(join(packetDir, 'spec.md'), '### Purpose\nKeep the reason for the work in view.\n');
     // Pi reads the state file keyed by the cwd it is handed, not by process.cwd().
     const stateDir = join(
@@ -142,7 +142,7 @@ describe('Pi post-compaction locator', () => {
     );
     const statePath = join(stateDir, `${createHash('sha256').update(sessionId).digest('hex').slice(0, 16)}.json`);
     mkdirSync(stateDir, { recursive: true });
-    writeFileSync(statePath, JSON.stringify({ lastSpecFolder: packetDir }));
+    writeFileSync(statePath, JSON.stringify({ lastSpecFolder: relative(WORKSPACE, packetDir) }));
     try {
       const { pi, handlers, messages } = createPi();
       sessionCompactContext(pi as never);
@@ -153,10 +153,39 @@ describe('Pi post-compaction locator', () => {
 
       expect(messages).toHaveLength(1);
       expect(messages[0].content).toContain('## Packet Purpose\nPurpose: Keep the reason for the work in view.');
-      expect(messages[0].content).toContain(`## Active Spec Folder\n${packetDir}`);
+      expect(messages[0].content).toContain(`## Active Spec Folder\n${relative(WORKSPACE, packetDir)}`);
     } finally {
       rmSync(statePath, { force: true });
       rmSync(packetDir, { recursive: true, force: true });
+    }
+  });
+
+  it('adds no packet purpose for a last spec folder outside the workspace', async () => {
+    const sessionId = uniqueSession('pi-purpose-outside');
+    const outsideDir = mkdtempSync(join(tmpdir(), 'pi-purpose-outside-'));
+    writeFileSync(join(outsideDir, 'spec.md'), '### Purpose\nA purpose from outside the workspace.\n');
+    const stateDir = join(
+      tmpdir(),
+      'speckit-claude-hooks',
+      createHash('sha256').update(WORKSPACE).digest('hex').slice(0, 12),
+    );
+    const statePath = join(stateDir, `${createHash('sha256').update(sessionId).digest('hex').slice(0, 16)}.json`);
+    mkdirSync(stateDir, { recursive: true });
+    writeFileSync(statePath, JSON.stringify({ lastSpecFolder: outsideDir }));
+    try {
+      const { pi, handlers, messages } = createPi();
+      sessionCompactContext(pi as never);
+      await handlers.get('session_compact')!(
+        { compactionEntry: { summary: 'Pi summary' } },
+        { cwd: WORKSPACE, sessionManager: { getSessionId: () => sessionId } },
+      );
+
+      expect(messages).toHaveLength(1);
+      expect(messages[0].content).not.toContain('## Packet Purpose');
+      expect(messages[0].content).toContain(`## Active Spec Folder\n${outsideDir}`);
+    } finally {
+      rmSync(statePath, { force: true });
+      rmSync(outsideDir, { recursive: true, force: true });
     }
   });
 
