@@ -2770,6 +2770,57 @@ test('prepare gives a Claude sender with no goal the unfinished goal of the note
   assert.equal(noteGoalPacket(handoffPath), undefined);
 });
 
+test('prepare marks an ended Claude goal in the note and keeps it ended one hop later', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  const manifest = path.join(
+    sandbox.repoRoot, '.skilled/skills/system-spec-kit/templates/spec-kit-docs.json',
+  );
+  fs.mkdirSync(path.dirname(manifest), { recursive: true });
+  fs.writeFileSync(manifest, JSON.stringify({ goalDurableBudget: { errorChars: 4000 } }));
+  fs.writeFileSync(path.join(sandbox.repoRoot, GOAL_PACKET, 'goal.md'), [
+    GOAL_HEADLINE, '', '<!-- ANCHOR:completion -->', '- [ ] the suite exits 0',
+    '<!-- /ANCHOR:completion -->', '', '<!-- ANCHOR:log -->', '<!-- /ANCHOR:log -->', '',
+  ].join('\n'));
+  sandbox.env.SKILLED_LOOP_ID = LOOP_ID;
+  sandbox.env.SKILLED_LOOP_RUNTIME = 'claude';
+  sandbox.env.CLAUDE_PID = String(process.pid);
+  const prepare = (notePath) => runCli(
+    sandbox, ['prepare', '--handoff', notePath, '--session', SESSION_ID],
+  );
+  const noteFields = (notePath) => {
+    const { frontmatter } = core.parseHandoff(fs.readFileSync(notePath, 'utf8'));
+    return { packet: frontmatter.goal_packet, ended: frontmatter.goal_ended };
+  };
+
+  // The sender set a goal and cleared it, so its note carries the ending and no packet.
+  writeClaudeGoalLog(sandbox, [{
+    type: 'attachment',
+    attachment: { type: 'goal_status', met: false, sentinel: true, condition: `${GOAL_HEADLINE}\n` },
+  }, {
+    type: 'system',
+    subtype: 'local_command',
+    content: '<command-name>/goal</command-name><command-args>clear</command-args>',
+  }]);
+  const cleared = prepare(handoffPath);
+  assert.equal(cleared.status, 0, cleared.stderr);
+  assert.deepEqual(noteFields(handoffPath), { packet: undefined, ended: 'true' });
+
+  // The receiver claimed that note and set no goal. Its own hand-over must not bring the
+  // packet goal back, and it hands the ending on.
+  fs.writeFileSync(
+    handoffPath,
+    fs.readFileSync(handoffPath, 'utf8')
+      .replace(/^status: open$/m, `status: claimed\nclaimed_by: ${SESSION_ID}`),
+  );
+  fs.rmSync(relaunchPath(sandbox), { force: true });
+  writeClaudeGoalLog(sandbox, [{ type: 'user', message: { content: 'hello' } }]);
+  const nextPath = writeHandoff(sandbox, { fileName: 'next-handoff.md' });
+  const next = prepare(nextPath);
+  assert.equal(next.status, 0, next.stderr);
+  assert.deepEqual(noteFields(nextPath), { packet: undefined, ended: 'true' });
+});
+
 // The wrapper starts the receiver on the model and effort the sender was using, so the CLI
 // reads them from the sender's own session state when it prepares the hand-over and keeps
 // them on the relaunch record, never in the note a reader could edit.
