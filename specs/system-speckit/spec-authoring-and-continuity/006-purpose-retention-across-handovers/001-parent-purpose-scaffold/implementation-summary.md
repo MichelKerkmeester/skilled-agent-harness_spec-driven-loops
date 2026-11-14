@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Built, with the sandbox cases still to rerun: a new phase parent now carries its Problem Statement and Purpose as value tokens under a v2.3 stamp, so the validator warns in a Draft and fails the parent once it leaves Draft with the purpose unfilled."
+description: "Built, with every sandbox case rerun on 2026-11-14: a new phase parent now carries its Problem Statement and Purpose as value tokens under a v2.3 stamp, so the validator warns in a Draft and fails the parent once it leaves Draft with the purpose unfilled."
 trigger_phrases:
   - "parent purpose scaffold implementation summary"
 importance_tier: "normal"
@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/001-parent-purpose-scaffold"
     last_updated_at: "2026-11-13T23:44:14Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Built 2026-11-14 by a DeepSeek Harness worker and gated. Sandbox cases not rerun"
-    next_safe_action: "Rerun the six open sandbox tasks"
+    recent_action: "Built 2026-11-14 and gated. Sandbox reruns closed all six open tasks"
+    next_safe_action: "None for this phase. The five older parents with the generic sentence are a follow-up"
     blockers: []
     key_files:
       - ".skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl"
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-parent-purpose-scaffold |
-| **Completed** | 2026-11-14 (built and gated, six sandbox checks still open) |
+| **Completed** | 2026-11-14 (built and gated, sandbox reruns 2026-11-14) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -106,7 +106,13 @@ Before is `gates-371-baseline.txt`, taken before any edit. After is `gates-371-f
 | Snapshot lines | old stamp, hints and default | `grep -c` prints 3 for stamp and tokens, 1 for the new default and 0 for the old one |
 | Two test assertions | absent | `grep -c` prints 1 for each |
 | Files changed outside `specs/` | none | exactly the five above |
-| Sandbox cases: untouched parent in Draft, purpose filled at In Progress, purpose filled at Complete | run by the planning agent before the build | Not rerun after the build |
+| Scaffolded parent (`create.sh --phase --phases 2 --phase-names first,second "purpose probe"`, sandbox copy of the built tree) | run by the planning agent before the build | Problem Statement and Purpose hold `[YOUR_VALUE_HERE: ...]` tokens, `recent_action` reads `Phase parent created, child phases own continuity`, stamp `phase-parent-spec \| v2.3` |
+| `validate.sh <parent> --strict --no-recursive`, untouched, Draft | run by the planning agent before the build | `! PLACEHOLDER_FILLED: 2 unfilled value token(s) in a Draft packet`, `Errors: 0  Warnings: 2`, `RESULT: PASSED` (the second warning is the older `DESCRIPTION_SHAPE`) |
+| Same command, untouched, Complete | run by the planning agent before the build | `x PLACEHOLDER_FILLED: 2 placeholder(s) found`, `x SCAFFOLD_NEVER_TOUCHED`, `Errors: 4  Warnings: 1`, `RESULT: FAILED` |
+| Same command, real purpose, In Progress | run by the planning agent before the build | Failed on stale derived metadata until the printed `repair-derived.cjs --folder <parent> --apply` ran, then `Errors: 0  Warnings: 0`, `RESULT: PASSED` |
+| Same command, real purpose, Complete | run by the planning agent before the build | After the same repair: `+ SCAFFOLD_NEVER_TOUCHED: No scaffold-signature markers found in required docs for Complete spec`, `Errors: 0  Warnings: 0`, `RESULT: PASSED` |
+| Untouched parent at In Progress (T015), second sandbox on the rebased tree | run by the planning agent before the build | `x PLACEHOLDER_FILLED: 2 placeholder(s) found`, `Errors: 3  Warnings: 1`, `RESULT: FAILED`, exit 2. After `repair-derived.cjs --apply`: the same placeholder line alone, `Errors: 1  Warnings: 0`, `RESULT: FAILED`, exit 2 |
+| Untouched parent at Complete (T021), same second sandbox | run by the planning agent before the build | `x SCAFFOLD_NEVER_TOUCHED: Found 1 scaffold-signature marker(s) in Complete spec folder` with `spec.md:10: packet_pointer starts with "scaffold/"`, `x PLACEHOLDER_FILLED: 2 placeholder(s) found`, `Errors: 4  Warnings: 1`, `RESULT: FAILED`, exit 2 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -115,8 +121,9 @@ Before is `gates-371-baseline.txt`, taken before any edit. After is `gates-371-f
 ## Known Limitations
 <!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **The sandbox cases were not rerun after the build.** The three cases (untouched parent, purpose filled at In Progress, purpose filled at Complete) ran in the planning agent's sandbox before the build only. Tasks T013, T014, T015, T021, T022 and T023 stay open. Rerun the `plan.md` section 5 sandbox to close them.
-2. **Existing parents are not covered.** The 103 live parents keep their in-file `v2.2` stamp, and the 5 with the generic sentence keep it. `spec.md` Open Questions lists those 5 as a follow-up.
+1. **An author must run one repair command.** A parent whose purpose is filled fails on stale derived metadata until the printed `repair-derived.cjs --folder <parent> --apply` runs once. After that it validates. The sandbox also needed its build freshness record copied to the new path, with no rebuild.
+2. **A hand edit of the Status cell adds two unrelated errors.** An untouched parent whose Status is changed by hand also fails `GENERATED_METADATA_INTEGRITY` and `GENERATED_METADATA_DRIFT` until the repair command runs. The placeholder error stays after the repair, so the unfilled purpose is still what blocks the parent.
+3. **Existing parents are not covered.** The 103 live parents keep their in-file `v2.2` stamp, and the 5 with the generic sentence keep it. `spec.md` Open Questions lists those 5 as a follow-up.
 <!-- /ANCHOR:limitations -->
 
 ---

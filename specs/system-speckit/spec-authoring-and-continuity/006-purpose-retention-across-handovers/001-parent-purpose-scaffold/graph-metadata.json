@@ -130,12 +130,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -143,6 +137,12 @@
       },
       {
         "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The parent packet exists so that a session crossing relaunch hops or compactions still knows why its work exists and whom it serves",
     "created_at": "2026-11-13T21:41:50Z",
-    "last_save_at": "2026-11-13T23:44:41.857Z",
+    "last_save_at": "2026-11-14T04:55:38.522Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d5ac6b7cf89e3fed4aa06bc49bd24c977d4bbb1db94b183b016603257e8a3370",
+    "source_fingerprint": "sha256:bc514e0a199d5efcddc096cac8d63351bde49f45cc68f06556c013d372561ff9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "8847a20a8467e1b794f6f1077fd207c0a6134720e93a1611fbdd5cccd1b0b3e8",
+      "spec.md": "e8bc8c993c3bb35097e335f38c3f243c544cbe6f03d21a737172a9cf1bf00c91",
       "plan.md": "e26b4a02ebaa8c9aee0c13c32765c6ea29ed2db35b44fb78042ef8ea8fd62926",
-      "tasks.md": "c8026075a81e065d5186b35ac9e90976bb84ace3c8ba96a8ca0c73f12d3ead18",
-      "implementation-summary.md": "89969f5d6554d403d79f1f0c95da7f0ae40d6853f457acfe43c548ab7f49a9a0"
+      "tasks.md": "34d1fc2f222ec86395c496f0c1f4383600f1e13018487da1614b2f2e843ba7d4",
+      "implementation-summary.md": "03b294eb2fbcd2183dea6bedc7deb30651617c885af458ce48317c4a646884e6"
     },
     "last_active_at": null
   }
