@@ -8,16 +8,27 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings"
-    last_updated_at: "2026-11-14T17:05:50Z"
-    last_updated_by: "implement-workflow"
-    recent_action: "Fixed eight documents in three packets and closed the phase 002 checklist line"
-    next_safe_action: "Check the five completion criteria of the parent goal"
+    last_updated_at: "2026-11-14T17:11:19Z"
+    last_updated_by: "generate-context"
+    recent_action: "Closed phase 009 and the parent packet with all five criteria passing"
+    next_safe_action: "Await the operator's decision on ledger row H7 and on pushing the branch"
+    packet_purpose: "Purpose: Each logged finding is fixed in the file it cites with a command that proves it, so the three packets' documents agree with the files they describe."
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/009-out-of-ledger-findings/implementation-summary.md"
+      - "specs/sk-code/hub-architecture/006-sk-code-audit-remediation/goal.md"
+      - ".skilled/skills/sk-code/sk-code-skilled/scripts/README.md"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:1634934cc30c87fe3686ebbee939910dae60d22e35076483e7ad3a0fdc4d6686"
       session_id: "scaffold-009-out-of-ledger-findings"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "4f13b979-22c2-4cb8-9c32-6053ecd082ab"
+      workspace: "/Users/michelkerkmeester/worktrees/public/379-sk-code-audit-remediation"
+      savedAt: "2026-11-14T17:11:19Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 100
     open_questions: []
     answered_questions: []

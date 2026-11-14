@@ -205,8 +205,8 @@
     ],
     "causal_summary": "Phases 006 to 008 could edit one packet each and fix only rows the ledger names",
     "created_at": "2026-11-14T16:51:37Z",
-    "last_save_at": "2026-11-14T17:06:25.531Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-14T17:11:35.998Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -216,13 +216,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:ee9a03dd93cc63b72e493a3a93fbffb265b84795862357e2cdf56181b3181cf9",
+    "source_fingerprint": "sha256:207e04cf854b4f69a51ea2743a7caf059760c20b017b09f435acc367a34a02c8",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "7c6702aa393e156161eda40d4b8e40b5853d480bf815f8bd03b6498e6c66a4ed",
       "plan.md": "1b24b74af137eed1dedceb671b1204e108e6b980be128189a215935a88d5078b",
       "tasks.md": "4e98f044f70072bbf7711ae0591be0e6e4927f9b9f8c1ece9c4d3f815621598e",
-      "implementation-summary.md": "2e3fba8b627c0c61d642e4e6307fc623e13cb4d782eb440c535907778b940097"
+      "implementation-summary.md": "6bb5be8276525658f431ad380361bc80fad8f8873dd67466601277f957c0d508"
     },
     "last_active_at": null
   }

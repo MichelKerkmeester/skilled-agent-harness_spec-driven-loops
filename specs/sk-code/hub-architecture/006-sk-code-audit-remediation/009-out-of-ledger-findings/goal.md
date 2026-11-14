@@ -78,6 +78,7 @@ and findings belong here.
 | Finding outside the phase: the verification scenario expects tests 37 | Open | verification-alignment.md says step 8 prints tests 37. The same seven files print tests 46. The pass rule reads fail 0 only |
 | Finding outside the phase: two more lines say OpenCode for the tree | Open | sk-code-skilled/SKILL.md lines 90 and 94. The logged finding named line 13 only |
 | Assumption: fix open items is the acknowledgement CHK-012 of phase 002 waited on | Recorded | The operator's instruction of 2026-11-14 named the open items. The line is ticked with that instruction as evidence |
+| Continuity saved | Done | Full-auto save on 2026-11-14 after the docs commit 3422a19f52. The trigger index was not regenerated |
 
 ### Deviations and findings
 
