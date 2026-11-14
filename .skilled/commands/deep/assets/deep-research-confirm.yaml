@@ -716,10 +716,10 @@ workflow:
           log: "Unsupported convergenceMode; using default convergence behavior."
 
       step_graph_convergence:
-        action: "Evaluate coverage-graph convergence before the inline 3-signal vote and persist the graph decision snapshot"
+        action: "Run convergence.cjs once: it evaluates the coverage graph, persists the graph snapshot and computes the whole stop decision"
         dry_run_event_policy: "Run the convergence read, emit the graph_convergence event as terminal JSONL preview only, and do not append it to the state log."
-        bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}" --convergence-mode "{convergence_mode}" --persist-snapshot --iteration "{current_iteration}"'
-        note: "Run before the inline vote. STOP from the inline 3-signal vote is allowed only when the graph decision is STOP_ALLOWED or absent."
+        bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{config.lineage.sessionId}" --convergence-mode "{convergence_mode}" --persist-snapshot --iteration "{current_iteration}" --stop-decision --config-path "{state_paths.config}" --state-log "{state_paths.state_log}" --registry-path "{state_paths.registry}" --iteration-count "{iteration_count}" --stuck-count "{stuck_count}"'
+        note: "The script is the only place the stop decision is computed. step_check_convergence branches on its stop_decision output."
         outputs:
           - graph_decision: "Tool decision value (CONTINUE | STOP_ALLOWED | STOP_BLOCKED), else null when unavailable"
           - graph_decision_json: "JSON-encoded graph decision string, else null"
@@ -727,69 +727,48 @@ workflow:
           - graph_blockers_json: "Tool blockers array, else []"
           - graph_trace_json: "Tool trace payload, else []"
           - graph_convergence_score: "signals.blendedScore when present, else the best available graph score, else 0"
+          - stop_decision: "Tool stop_decision object: decision, stopReason, reasonDetail, weightedStopScore, signals, gates, blockedBy, graphDecision, inputs"
         bookkeeping_log: '{"type":"event","event":"graph_convergence","mode":"research","run":{current_iteration},"decision":{graph_decision_json},"signals":{graph_signals_json},"blockers":{graph_blockers_json},"timestamp":"{ISO_8601_NOW}","sessionId":"{config.lineage.sessionId}","generation":{config.lineage.generation}}'
 
       step_check_convergence:
-        action: "Evaluate stop conditions and combine the inline 3-signal vote with graph convergence"
+        action: "Branch on the stop decision that convergence.cjs computed in step_graph_convergence"
         algorithm: |
-          1. if iteration_count >= max_iterations: STOP (maxIterationsReached). This terminal cap bypasses quality-guard overrides; record failed guards/blockers as synthesis evidence instead of continuing.
+          The whole stop decision is computed by convergence.cjs from the loop config, the state log, the findings registry and the coverage graph. This step performs no arithmetic and never recomputes or overrides the result.
+          The script applies this fixed order, first match wins:
+          1. if iteration_count >= max_iterations: STOP (maxIterationsReached). This terminal cap bypasses every guard and veto; failed guards are recorded in stop_decision.blockedBy as synthesis evidence.
           2. if stuck_count >= config.stuckThreshold: STUCK_RECOVERY
-          3. if convergence_mode == "off": skip convergence stop candidates and continue unless a terminal cap, pause sentinel, or recovery halt has already fired.
-          3a. if stop_policy == "max-iterations" AND iteration_count < max_iterations: steps 4 and 5 are telemetry only and cannot set STOP or BLOCKED. Record weighted_stop_score for diagnostics, keep decision = "CONTINUE" and choose a broader next focus.
-          4. if remaining_questions == 0: STOP (all_questions_answered)
-          5. GRAPH-ASSISTED COMPOSITE CONVERGENCE:
-               step_graph_convergence already recorded graph_decision, graph_signals_json, graph_blockers_json, and graph_convergence_score for this run.
-               The existing inline 3-signal vote still computes the inline STOP candidate and is not replaced.
-               signals = []
-               Filter: exclude iterations where status == thought from signal inputs (use only evidence iterations)
-               a) Rolling average (w=0.30, needs 3+ iterations):
-                  avg = mean(last 3 newInfoRatios)
-                  stop if avg < convergence_threshold
-               b) MAD noise floor (w=0.35, needs 4+ iterations):
-                  noiseFloor = MAD(all ratios) * 1.4826
-                  stop if latest ratio <= noiseFloor
-               c) Question entropy (w=0.35):
-                  coverage = answered / total questions
-                  stop if coverage >= 0.85
-               Redistribute weights for unavailable signals.
-               if weighted_stop_score > 0.60: inline_stop_candidate = true
-               Combined stop rule: STOP only if the inline 3-signal vote says STOP AND graph_decision is STOP_ALLOWED or absent.
-               if inline_stop_candidate and graph_decision == "STOP_BLOCKED":
-                 decision = "BLOCKED"
-                 reason = "blockedStop"
-                 stop_blocked = true
-                 blocked_by_json = JSON array derived from graph_blockers_json
-                 blocked_by_csv = comma-separated blocker names derived from graph_blockers_json
-                 gate_convergence_pass = false
-                 gate_convergence_score = graph_convergence_score
-                 gate_key_question_coverage_pass = no blocker named questionCoverage
-                 gate_evidence_density_pass = no blocker named sourceDiversity or evidenceDepth
-                 gate_evidence_density_sources = graph_signals_json.sourceDiversity or 0
-                 gate_hotspot_saturation_pass = true
-                 recovery_strategy = first blocker reason/message, else "Collect deeper graph evidence before stopping."
-               else if inline_stop_candidate and (graph_decision == "STOP_ALLOWED" or graph_decision is absent):
-                 decision = "STOP"
-                 reason = "composite_converged"
-                 stop_blocked = false
-          6. else: CONTINUE
-          7. if decision == "STOP" and reason != "maxIterationsReached" and effective_min_iterations > 1 and iteration_count < effective_min_iterations:
-               decision = "CONTINUE"
-               reason = "minIterationsNotReached"
-               min_iterations_guard_blocked = true
-               min_iterations_guard_pass = false
-          8. if effective_min_iterations > 1 and iteration_count >= effective_min_iterations and min_iterations_guard_already_passed == false:
-               min_iterations_guard_pass = true
-          9. if decision == "STOP" and reason != "maxIterationsReached":
-               guardResult = checkQualityGuards(state, strategy)
-               if not guardResult.passed:
-                 log: "Quality guard failed: {guardResult.violations}. Overriding STOP to CONTINUE."
-                 decision = "CONTINUE"
-          See convergence.md for full pseudocode and signal definitions.
+          3. if convergence_mode == "off": skip convergence stop candidates and continue.
+          3a. if stop_policy == "max-iterations" AND iteration_count < max_iterations: the vote is telemetry only and the decision is CONTINUE.
+          4. a STOP candidate exists when every question is answered (all_questions_answered) or the weighted vote passes (composite_converged).
+          5. if iteration_count < effective_min_iterations: CONTINUE (minIterationsNotReached)
+          6. a failed quality guard turns the candidate into CONTINUE (qualityGuardFailed)
+          7. the graph decision settles the candidate: STOP_ALLOWED keeps STOP, STOP_BLOCKED gives BLOCKED, CONTINUE or a missing graph decision gives CONTINUE.
+          Bind the outputs from stop_decision:
+            decision = stop_decision.decision
+            reason = stop_decision.stopReason when it is not null, else stop_decision.reasonDetail
+            reason_detail = stop_decision.reasonDetail
+            weighted_stop_score = stop_decision.weightedStopScore
+            stop_blocked = (stop_decision.decision == "BLOCKED")
+            blocked_by_json = stop_decision.blockedBy
+            blocked_by_csv = the members of stop_decision.blockedBy joined with commas
+            gate_convergence_pass = (stop_decision.graphDecision == "STOP_ALLOWED")
+            gate_convergence_score = graph_convergence_score
+            gate_key_question_coverage_pass = no blocker named questionCoverage
+            gate_evidence_density_pass = no blocker named sourceDiversity or evidenceDepth
+            gate_evidence_density_sources = graph_signals_json.sourceDiversity or 0
+            gate_hotspot_saturation_pass = true
+            recovery_strategy = first blocker reason/message, else "Collect deeper graph evidence before stopping."
+            min_iterations_guard_blocked = (stop_decision.reasonDetail == "minIterationsNotReached")
+            min_iterations_guard_pass = true when effective_min_iterations > 1 and iteration_count >= effective_min_iterations and min_iterations_guard_already_passed == false
+          If stop_decision is missing from the step_graph_convergence output, do not decide by hand: halt and report the script output.
+          When stop_decision.reasonDetail == "qualityGuardFailed", log: "Quality guard failed: {blocked_by_csv}. Continuing."
           Segment-aware convergence is experimental/reference-only; live workflow uses the current session as a single segment.
         outputs:
           - decision: "STOP | BLOCKED | STUCK_RECOVERY | CONTINUE"
-          - reason: "Human-readable stop reason"
-          - stop_blocked: "Boolean marker set when graph convergence vetoes an inline STOP candidate"
+          - reason: "stop_decision.stopReason when set, else stop_decision.reasonDetail"
+          - reason_detail: "stop_decision.reasonDetail, the fine cause behind the decision"
+          - weighted_stop_score: "stop_decision.weightedStopScore, for diagnostics only"
+          - stop_blocked: "Boolean true when stop_decision.decision == BLOCKED"
           - blocked_by_json: "JSON array of graph blocker names when decision == BLOCKED"
           - blocked_by_csv: "Comma-separated graph blocker names when decision == BLOCKED"
           - gate_convergence_pass: "Boolean pass/fail for the graph-assisted convergence gate"
@@ -822,7 +801,7 @@ workflow:
       step_handle_convergence:
         action: "Act on convergence decision"
         if_stop:
-          branch_on: "convergence_mode == 'divergent' AND reason is in ['composite_converged', 'all_questions_answered']"
+          branch_on: "convergence_mode == 'divergent' AND stop_decision.reasonDetail is in ['composite_converged', 'all_questions_answered']"
           if_divergent_eligible:
             eligibility_contract:
               required_decision: "STOP"
@@ -852,7 +831,7 @@ workflow:
                     registryPath: '{state_paths.registry}',
                     currentIteration: Number('{current_iteration}'),
                     maxIterations: Number('{max_iterations}'),
-                    triggerReason: '{reason}',
+                    triggerReason: '{reason_detail}',
                   });
                   const prepared = await preparePivotTransaction(input);
                   const seatPrompts = prepared.status === 'pending'

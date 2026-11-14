@@ -268,7 +268,7 @@ Blocking: valid config/strategy/state before loop; iteration markdown + JSONL + 
 ### Convergence Report
 
 Every completed loop produces a convergence report:
-- Stop reason (converged, max_iterations, all_questions_answered, stuck_unrecoverable)
+- Stop reason (converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop, userPaused, maxDurationReached)
 - Total iterations completed
 - Questions answered ratio
 - Average newInfoRatio trend

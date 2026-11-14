@@ -791,6 +791,7 @@ describe('convergence.cjs stop-decision', () => {
 
   function reviewFixture(
     extraRows: Array<Record<string, unknown>> = [],
+    registryExtra: Record<string, unknown> = {},
   ): StopDecisionFixture {
     const ratios = [0.3, 0.2];
     return writeFixtureFiles(
@@ -816,6 +817,7 @@ describe('convergence.cjs stop-decision', () => {
         dimensionCoverage: { correctness: true },
         findingsBySeverity: { P0: 0, P1: 0, P2: 0 },
         openFindings: [],
+        ...registryExtra,
       },
     );
   }
@@ -1038,6 +1040,54 @@ describe('convergence.cjs stop-decision', () => {
 
     expect(result.exitCode).toBe(0);
     expect(stopDecision.inputs.review.lastClaimAdjudicationPassed).toBe(false);
+  });
+
+  it('fails the graphless fallback gate when a required bug class has no cited ledger row', () => {
+    const namespace = uniqueNamespace('convergence', 'review');
+    namespaces.push(namespace);
+    expect(seedReviewNode(namespace).exitCode).toBe(0);
+    const fixture = reviewFixture(
+      [
+        {
+          type: 'iteration',
+          iteration: 3,
+          status: 'complete',
+          newFindingsRatio: 0.1,
+          dimensions: ['correctness'],
+          reviewDepthSchemaVersion: 2,
+          searchLedger: [
+            {
+              bugClass: 'injection',
+              searchActions: [{ method: 'direct_read' }],
+              evidenceRefs: ['src/a.ts:1'],
+            },
+            { bugClass: 'xss', searchActions: [{ method: 'direct_read' }], evidenceRefs: [] },
+            {
+              bugClass: 'race',
+              searchActions: [{ method: 'guess' }],
+              evidenceRefs: ['src/b.ts:2'],
+            },
+          ],
+        },
+      ],
+      {
+        searchCoverage: {
+          requiredBugClasses: ['injection', 'xss', 'race'],
+          graphCoverageMode: 'graphless_fallback',
+        },
+      },
+    );
+
+    const result = runScript('convergence', stopDecisionArgs(namespace, fixture));
+    const stopDecision = result.json.stop_decision as {
+      inputs: { review: { fallbackCoveredBugClasses: string[]; graphCoverageMode: string } };
+      gates: { graphlessFallbackGate: { pass: boolean; skipped: boolean } };
+    };
+
+    expect(result.exitCode).toBe(0);
+    expect(stopDecision.inputs.review.graphCoverageMode).toBe('graphless_fallback');
+    expect(stopDecision.inputs.review.fallbackCoveredBugClasses).toEqual(['injection']);
+    expect(stopDecision.gates.graphlessFallbackGate).toEqual({ pass: false, skipped: false });
   });
 
   it('exits 3 when the config file or the state log is missing', () => {

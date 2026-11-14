@@ -750,21 +750,22 @@ workflow:
           log: "Unsupported convergenceMode; using default convergence behavior."
 
       step_graph_convergence:
-        action: "Evaluate coverage-graph convergence before the inline review convergence vote"
+        action: "Run convergence.cjs once: it evaluates the coverage graph and computes the whole review stop decision"
         inspect:
           - "{state_paths.state_log}"
           - "{state_paths.findings_registry}"
         transform: |
-          1. Call graph convergence on the current review lineage before the inline 3-signal vote.
+          1. Call convergence.cjs once on the current review lineage. It returns the graph decision and the stop_decision object.
           2. Record the decision as one of CONTINUE, STOP_ALLOWED, STOP_BLOCKED.
           3. Preserve raw graph signals and blockers for reducer rollup and blocked-stop evidence.
           4. Normalize blockers to both JSON array and CSV forms for downstream stop handling.
           5. Set graph_stop_blocked = true only when graph_decision == "STOP_BLOCKED".
-        bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --convergence-mode "{convergence_mode}"'
-        note: "Invoke the runtime script directly. Review-side graph convergence must run before the inline review stop vote."
+        bash: 'node .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --convergence-mode "{convergence_mode}" --stop-decision --config-path "{state_paths.config}" --state-log "{state_paths.state_log}" --registry-path "{state_paths.findings_registry}" --iteration-count "{iteration_count}" --stuck-count "{stuck_count}" --security-sensitive-fix-scope "{security_sensitive_fix_scope}" --fix-replay-required-rows "{fix_completeness_replay_required_rows}" --fix-replay-passing-rows "{fix_completeness_replay_passing_rows}"'
+        note: "The script is the only place the stop decision is computed. step_check_convergence branches on its stop_decision output."
         append_jsonl: '{"stem":"deep_review.graph_convergence_evaluated","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation},"iterationId":"iteration-{current_iteration}"},"data":{"rawSignals":{graph_raw_signals_json},"weightedSignals":{graph_raw_signals_json},"dimensionCoverageDigest":"{dimension_coverage_digest}","protocolCoverageDigest":"{protocol_coverage_digest}","findingStability":"{finding_stability}","p0p1ResolutionState":"{p0p1_resolution_state}","evidenceDensity":{evidence_density},"hotspotSaturation":{hotspot_saturation},"decision":"{graph_decision_code}","policyFingerprint":"{policy_fingerprint}","blockerIds":{graph_blocker_ids_json},"stopCandidate":{stop_candidate},"graphDecision":"{graph_decision_code}","graphDigest":"{graph_digest}","signals":{graph_signals_json},"blockers":{graph_blockers_json}},"eventId":"graph-{session_id}-g{generation}-i{current_iteration}"}'
         outputs:
           - graph_decision: "CONTINUE | STOP_ALLOWED | STOP_BLOCKED"
+          - stop_decision: "Tool stop_decision object: decision, stopReason, reasonDetail, weightedStopScore, signals, gates, blockedBy, graphDecision, inputs"
           - graph_decision_code: "CONTINUE maps to continue, STOP_ALLOWED to converged, STOP_BLOCKED to blocked"
           - graph_signals_json: "JSON object returned by convergence.cjs"
           - graph_raw_signals_json: "Exact-field convergence-signals JSON built from the convergence.cjs signals; observationDigest is the sha256 of graph_signals_json"
@@ -783,105 +784,57 @@ workflow:
           - graph_digest: "sha256 (64 lowercase hex) of graph_signals_json"
 
       step_check_convergence:
-        action: "Evaluate graph-assisted review stop conditions and the legal-stop decision tree"
+        action: "Branch on the stop decision that convergence.cjs computed in step_graph_convergence"
         algorithm: |
-          0. CLAIM-ADJUDICATION PRE-CHECK (universal STOP veto; runs before hard stops and composite convergence):
-             claim_adjudication_gate_pass = (last_claim_adjudication_passed != false) OR (p0_count + p1_count == 0)
-             If claim_adjudication_gate_pass == false:
-               candidate_decision = "BLOCKED"
-               stop_blocked = true
-               stopReason = "blockedStop"
-               blocked_gates = ["claimAdjudicationGate"]
-               recovery_strategy = "Reviewer must add typed claim-adjudication packets (claim, evidenceRefs, counterevidenceSought, alternativeExplanation, finalSeverity, confidence, downgradeTrigger) for every active P0/P1 finding before STOP is allowed."
-               Skip hard stops (1) and composite convergence (4); proceed directly to step 5 legal-stop decision-tree assembly so blocked_by_json, gate outputs, and the blocked_stop event still populate consistently.
-          1. HARD STOPS:
-             a) if iteration_count >= max_iterations: set decision = "STOP", stopReason = "maxIterationsReached", hard_stop_reason = "max_iterations_reached", preserve any failed legal-stop gates as terminal evidence, and proceed to synthesis without legal-stop veto
-             b) if stop_policy == "max-iterations" AND iteration_count < max_iterations: do not allow all-dimensions-clean or composite convergence to stop; treat convergence signals as telemetry, set decision = "CONTINUE", and broaden the next review angle.
-             c) if all dimensions clean AND required traceability protocols are covered AND p0_count == 0 AND p1_count == 0 AND coverage_age >= 1 AND all quality gates pass (evidence: every P0/P1 has file:line; scope: all findings within target; coverage: all dimensions reviewed): mark hard_stop_reason = "all_dimensions_clean" and promote to STOP candidate
-             Operator stop reasons (`maxIterationsReached`, `manualStop`, `userPaused`, unrecoverable `error`) are terminal ceilings. They do not hide failed gates; they record them in synthesis and stop dispatch.
-          2. STUCK DETECTION (threshold 2):
-             if stuck_count >= 2: STUCK_RECOVERY
-          3. GRAPH CONVERGENCE PREREQUISITE:
-               graph_decision, graph_signals_json, and graph_blockers_json are already populated by step_graph_convergence.
-               Final STOP is never legal unless the inline review vote says STOP AND graph_decision == "STOP_ALLOWED".
-               If graph_decision == "STOP_BLOCKED", set stop_blocked = true and route through blocked_stop emission instead of stopping.
-          4. COMPOSITE CONVERGENCE (3-signal weighted vote with split thresholds):
-               signals = []
-               a) Rolling average (w=0.30, window=2, needs 2+ iterations):
-                  avg = mean(last 2 newFindingsRatios)
-                  stop if avg <= 0.08
-               b) MAD noise floor (w=0.25, needs 3+ iterations):
-                  noiseFloor = MAD(all ratios) * 1.4826
-                  stop if latest ratio <= noiseFloor
-               c) Dimension coverage (w=0.45):
-                  coverage = dimensions_covered / total_dimensions
-                  stop if coverage >= 1.0 AND required traceability protocols are covered AND coverage_age >= 1
-               Redistribute weights for unavailable signals.
-               if latest ratio <= 0.05: mark no_progress_threshold_reached
-               if stop_policy == "max-iterations" AND iteration_count < max_iterations: convergence votes are telemetry only; set weighted_stop_score for diagnostics, keep decision = "CONTINUE", and choose a broader next focus.
-               else if weighted_stop_score >= 0.60: inline STOP becomes a candidate and binary gates must run
-          5. LEGAL-STOP DECISION TREE (review-specific gates; runs whenever step 0, all-dimensions-clean, or the composite vote promotes STOP to a candidate; terminal max-iteration/manual/error stops bypass veto and record failed gates as evidence):
-               a) convergenceGate: pass when a hard-stop condition is met OR weighted_stop_score >= 0.60; record score
-               b) dimensionCoverageGate: pass when configured dimensions and required traceability coverage are complete and coverage_age >= 1; record covered and missing dimensions
-               c) p0ResolutionGate: pass when activeP0 == 0; record activeP0
-               d) evidenceDensityGate: pass when every active P0/P1 has concrete file:line evidence and no active P0/P1 relies only on inference; record avgEvidencePerFinding
-               e) hotspotSaturationGate: pass when review hotspots have been revisited enough times to satisfy the saturation heuristic
-               f) claimAdjudicationGate: pass when claim_adjudication_gate_pass == true (i.e. last_claim_adjudication_passed != false OR there are no active P0/P1 findings to adjudicate); record last_claim_adjudication_passed and claim_adjudication_active_count
-               g) fixCompletenessReplayGate: pass when security_sensitive_fix_scope == false OR every required closed-gate replay row passes with file:line or command evidence and producer/consumer/matrix coverage; record security_sensitive_fix_scope, fix_completeness_replay_required_rows, and fix_completeness_replay_passing_rows
-               h) candidateCoverageGate: skip entirely when `reviewDepthSchemaVersion` is not 2 on the latest iteration. Otherwise pass when the current iteration's `reviewDepthApplicability.scopeClass` is `trivial` with `enforcement: "skip"` AND `reviewDepthApplicability.evidenceRefs` is non-empty, OR when the reducer registry's `searchDebt` is empty AND `candidateCoverage.covered` is a superset of `searchCoverage.requiredBugClasses` for the lineage. Otherwise pass = false; record `searchDebt` items as blocked-stop evidence; blocker name = "candidateCoverageGate"; recovery_strategy = "Resolve deferred/blocked obligations in next iteration or downgrade scope explicitly to trivial with cited evidence."
-               i) graphlessFallbackGate: skip when `reviewDepthSchemaVersion` is not 2 OR the reducer registry's last-iteration `searchCoverage.graphCoverageMode` is `graph`. Applies when graphCoverageMode is `graphless_fallback` or `unavailable_blocked`. Pass when graphCoverageMode is `graphless_fallback` AND at least one `searchLedger` row exists for each entry in `searchCoverage.requiredBugClasses` with `searchActions[].method` in {"direct_read","exact_grep","semantic_search","producer_consumer_trace","negative_test_inspection"} AND non-empty `evidenceRefs`. Fail automatically when graphCoverageMode is `unavailable_blocked`; record the explicit unavailability reason. Otherwise pass = false; blocker name = "graphlessFallbackGate"; recovery_strategy = "Add cited fallback ledger rows (direct read, exact search, producer/consumer trace, negative-test inspection) or set graphCoverageMode to 'graph' once graph data is available."
-             if STOP is a candidate and any gate fails:
-               decision = "BLOCKED"
-               stop_blocked = true
-               stopReason = "blockedStop"
-               blocked_by_json = JSON array of failing gate names (always include "claimAdjudicationGate" when claim_adjudication_gate_pass == false, "fixCompletenessReplayGate" when fix_completeness_replay_gate_pass == false, "candidateCoverageGate" when candidate_coverage_gate_pass == false, and "graphlessFallbackGate" when graphless_fallback_gate_pass == false)
-               blocked_by_csv = comma-separated list of failing gate names
-               convergence_gate_pass = boolean
-               convergence_gate_score = numeric convergence score
-               dimension_coverage_gate_pass = boolean
-               dimension_coverage_gate_covered_json = JSON array of covered review dimensions
-               dimension_coverage_gate_missing_json = JSON array of missing review dimensions
-               p0_resolution_gate_pass = boolean
-               active_p0_count = number of active P0 findings
-               evidence_density_gate_pass = boolean
-               avg_evidence_per_finding = numeric evidence density
-               hotspot_saturation_gate_pass = boolean
-               claim_adjudication_gate_pass = boolean
-               claim_adjudication_active_count = numeric count of active P0/P1 at the gate
-               fix_completeness_replay_gate_pass = boolean
-               security_sensitive_fix_scope = boolean
-               fix_completeness_replay_required_rows = numeric count of closed-gate replay rows required for security-sensitive fix reruns
-               fix_completeness_replay_passing_rows = numeric count of required closed-gate replay rows marked PASS with evidence
-               candidate_coverage_gate_pass = boolean
-               candidate_coverage_search_debt_json = JSON array of reducer-owned searchDebt obligations blocking STOP, else []
-               candidate_coverage_missing_json = JSON array of required bug classes not present in candidateCoverage.covered, else []
-               graphless_fallback_gate_pass = boolean
-               graphless_fallback_mode = latest reducer-owned searchCoverage.graphCoverageMode value
-               graphless_fallback_missing_json = JSON array of required bug classes without cited fallback ledger rows, else []
-               graphless_fallback_unavailability_reason = explicit reason when graphCoverageMode == "unavailable_blocked", else empty string
-               recovery_strategy = one-line hint describing the next review action needed to satisfy the failed gates; combine candidateCoverageGate and graphlessFallbackGate recovery guidance when both fail (when claimAdjudicationGate is the failing gate, prefer the step-0 recovery_strategy already set)
-          6. COMBINED STOP RULE:
-               a) if STOP is legal AND graph_decision == "STOP_ALLOWED": decision = "STOP"
-               b) if STOP is legal AND graph_decision == "STOP_BLOCKED":
-                    decision = "BLOCKED"
-                    stop_blocked = true
-                    stopReason = "blockedStop"
-                    # Blocked-stop closure: blockedBy must be string[] per the
-                    # published review blocked-stop contract. Extract the `.type`
-                    # field from each structured graph blocker; preserve the full
-                    # objects in graph_blocker_detail_json for operator inspection.
-                    blocked_by_json = JSON.stringify(graph_blockers_json.map(b => typeof b === "string" ? b : (b && b.type) || "graph_blocker"))
-                    blocked_by_csv = graph_blockers_csv
-                    graph_blocker_detail_json = graph_blockers_json
-                    recovery_strategy = "Resolve review coverage-graph blockers before stopping."
-               c) if STOP is legal AND graph_decision == "CONTINUE":
-                    decision = "CONTINUE"
-                    stop_blocked = false
-                    reason = "graph_convergence_continue"
-               d) else keep the existing STUCK_RECOVERY or CONTINUE outcome
+          The whole stop decision is computed by convergence.cjs from the review config, the state log, the findings registry and the coverage graph. This step performs no arithmetic and never recomputes or overrides the result.
+          The script applies this fixed order, first match wins:
+          1. if iteration_count >= max_iterations: STOP (maxIterationsReached). This terminal cap is evaluated before every veto, the claim-adjudication veto included; failed legal-stop gates are recorded in stop_decision.blockedBy as synthesis evidence.
+          2. if stuck_count >= config.stuckThreshold: STUCK_RECOVERY
+          3. if convergence_mode == "off": skip convergence stop candidates and continue.
+          3a. if stop_policy == "max-iterations" AND iteration_count < max_iterations: the vote is telemetry only and the decision is CONTINUE.
+          4. a STOP candidate exists when every dimension is clean (all_dimensions_clean) or the weighted vote passes (composite_converged). The vote cutoffs follow the configured convergenceThreshold.
+          5. the nine legal-stop gates run on a candidate: convergenceGate, dimensionCoverageGate, p0ResolutionGate, evidenceDensityGate, hotspotSaturationGate, claimAdjudicationGate, fixCompletenessReplayGate, candidateCoverageGate, graphlessFallbackGate. Any failed gate gives BLOCKED (blockedStop).
+          6. the graph decision settles the candidate: STOP_ALLOWED keeps STOP, STOP_BLOCKED gives BLOCKED, CONTINUE or a missing graph decision gives CONTINUE.
+          Bind the outputs from stop_decision, where G is stop_decision.gates and I is stop_decision.inputs.review:
+            decision = stop_decision.decision
+            stopReason = stop_decision.stopReason
+            reason = stop_decision.stopReason when it is not null, else stop_decision.reasonDetail
+            reason_detail = stop_decision.reasonDetail
+            weighted_stop_score = stop_decision.weightedStopScore
+            stop_blocked = (stop_decision.decision == "BLOCKED")
+            blocked_by_json = stop_decision.blockedBy
+            blocked_by_csv = the members of stop_decision.blockedBy joined with commas
+            convergence_gate_pass = G.convergenceGate.pass
+            convergence_gate_score = G.convergenceGate.score
+            dimension_coverage_gate_pass = G.dimensionCoverageGate.pass
+            dimension_coverage_gate_missing_json = G.dimensionCoverageGate.missing
+            dimension_coverage_gate_covered_json = the configured review dimensions that are not in G.dimensionCoverageGate.missing
+            p0_resolution_gate_pass = G.p0ResolutionGate.pass
+            active_p0_count = G.p0ResolutionGate.activeP0
+            evidence_density_gate_pass = G.evidenceDensityGate.pass
+            avg_evidence_per_finding = I.evidenceBackedP0P1, the count of active P0 and P1 findings that carry file:line evidence
+            hotspot_saturation_gate_pass = G.hotspotSaturationGate.pass
+            claim_adjudication_gate_pass = G.claimAdjudicationGate.pass
+            claim_adjudication_active_count = I.activeP0 plus I.activeP1
+            fix_completeness_replay_gate_pass = G.fixCompletenessReplayGate.pass
+            security_sensitive_fix_scope = I.securitySensitiveFixScope
+            fix_completeness_replay_required_rows = I.fixReplayRequiredRows
+            fix_completeness_replay_passing_rows = I.fixReplayPassingRows
+            candidate_coverage_gate_pass = G.candidateCoverageGate.pass
+            candidate_coverage_search_debt_json = I.searchDebt
+            candidate_coverage_missing_json = the I.requiredBugClasses entries that are not in I.candidateCovered
+            graphless_fallback_gate_pass = G.graphlessFallbackGate.pass
+            graphless_fallback_mode = I.graphCoverageMode
+            graphless_fallback_missing_json = the I.requiredBugClasses entries that are not in I.fallbackCoveredBugClasses
+            graphless_fallback_unavailability_reason = the explicit reason when I.graphCoverageMode == "unavailable_blocked", else empty string
+            graph_blocker_detail_json = graph_blockers_json
+            recovery_strategy = one line naming the next review action for the gates in stop_decision.blockedBy. When claimAdjudicationGate is listed: "Reviewer must add typed claim-adjudication packets (claim, evidenceRefs, counterevidenceSought, alternativeExplanation, finalSeverity, confidence, downgradeTrigger) for every active P0/P1 finding before STOP is allowed." When stop_decision.reasonDetail == "graphStopBlocked": "Resolve review coverage-graph blockers before stopping." When candidateCoverageGate and graphlessFallbackGate both fail, combine their guidance.
+          If stop_decision is missing from the step_graph_convergence output, do not decide by hand: halt and report the script output.
         outputs:
           - decision: "STOP | BLOCKED | STUCK_RECOVERY | CONTINUE"
-          - reason: "Human-readable stop reason"
+          - reason: "stop_decision.stopReason when set, else stop_decision.reasonDetail"
+          - reason_detail: "stop_decision.reasonDetail, the fine cause behind the decision"
+          - weighted_stop_score: "stop_decision.weightedStopScore, for diagnostics only"
           - stop_blocked: "Boolean true when STOP is vetoed by inline legal-stop gates or graph_decision == STOP_BLOCKED"
           - blocked_by_json: "JSON array of failed legal-stop gates when decision == BLOCKED"
           - blocked_by_csv: "Comma-separated list of failed legal-stop gates when decision == BLOCKED"
@@ -928,7 +881,7 @@ workflow:
       step_handle_convergence:
         action: "Act on convergence decision"
         if_stop:
-          branch_on: "convergence_mode == 'divergent' AND reason == 'all_dimensions_clean'"
+          branch_on: "convergence_mode == 'divergent' AND stop_decision.reasonDetail == 'all_dimensions_clean'"
           if_divergent_eligible:
             eligibility_contract:
               required_decision: "STOP"
@@ -958,7 +911,7 @@ workflow:
                     registryPath: '{state_paths.findings_registry}',
                     currentIteration: Number('{current_iteration}'),
                     maxIterations: Number('{max_iterations}'),
-                    triggerReason: '{reason}',
+                    triggerReason: '{reason_detail}',
                   });
                   const prepared = await preparePivotTransaction(input);
                   const seatPrompts = prepared.status === 'pending'
@@ -1740,7 +1693,7 @@ workflow:
           stuck_count: |
             if status == 'thought': unchanged (skip)
             if status == 'insight': 0 (reset)
-            if newFindingsRatio <= 0.05: stuck_count + 1
+            if newFindingsRatio <= 0.5 x convergenceThreshold: stuck_count + 1
             else: 0
 
       step_loop_decision:

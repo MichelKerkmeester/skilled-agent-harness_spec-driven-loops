@@ -26,8 +26,6 @@ describe('review-depth convergence v2 fixtures', () => {
     for (const workflow of [readWorkflow('auto'), readWorkflow('confirm')]) {
       expect(workflow).toContain('candidateCoverageGate');
       expect(workflow).toContain('graphlessFallbackGate');
-      expect(workflow).toContain('at least one `searchLedger` row exists for each entry');
-      expect(workflow).toContain('Fail automatically when graphCoverageMode is `unavailable_blocked`');
       expect(workflow).toContain('"gateResults":{gate_results_array_json}');
       expect(workflow).toMatch(/gate_results_array_json: "One \{gateId,status,reasonCode,evidenceDigest\} row per legal-stop gate \([^)]*graphlessFallbackGate[^)]*\)/);
     }
