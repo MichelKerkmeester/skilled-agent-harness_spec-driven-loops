@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening",
+  "spec_folder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening",
+  "parent_id": "system-deep-loop/loop-architecture",
+  "children_ids": [
+    "system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision",
+    "system-deep-loop/loop-architecture/004-workflow-logic-hardening/002-persisted-loop-state-and-failure-policy",
+    "system-deep-loop/loop-architecture/004-workflow-logic-hardening/003-lifecycle-lock-and-limits",
+    "system-deep-loop/loop-architecture/004-workflow-logic-hardening/004-workflow-single-source-and-drift-guard",
+    "system-deep-loop/loop-architecture/004-workflow-logic-hardening/005-command-and-skill-doc-alignment",
+    "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "workflow logic hardening phase parent spec",
+      "deep loop workflow logic hardening",
+      "deep research review drift fix",
+      "deterministic stop decision program",
+      "004-workflow-logic-hardening operator decisions"
+    ],
+    "key_topics": [
+      "workflow",
+      "logic",
+      "hardening",
+      "phase",
+      "parent",
+      "spec",
+      "deep",
+      "loop",
+      "research",
+      "review",
+      "drift",
+      "deterministic"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "decision-record.md",
+      ".skilled/commands/deep/research.md",
+      ".skilled/commands/deep/review.md",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      ".skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs",
+      "001-deterministic-stop-decision/acceptance-criteria.md",
+      "002-persisted-loop-state-and-failure-policy/acceptance-criteria.md",
+      "003-lifecycle-lock-and-limits/acceptance-criteria.md",
+      "004-workflow-single-source-and-drift-guard/acceptance-criteria.md",
+      "005-command-and-skill-doc-alignment/acceptance-criteria.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "review.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/review.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "loop-lock.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement An",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "text",
+        "kind": "technology",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "An operator who runs `/deep:research` or `/deep:review` cannot trust why a run stopped or whether two runs of the same state would stop at the same point",
+    "created_at": "2026-11-14T11:33:16Z",
+    "last_save_at": "2026-11-14T12:22:26.006Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:2777bf46b7c4c6ffe84895f408e934a48a4592de902935c18128f6c66d36b222",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b0e94e13e48fa44c359a8101c9ef8c076530580616fb8e66c7722d87e19e4a81",
+      "decision-record.md": "ca05326fa0e46ae6bcbe724b2e22e49b567fc8e852fbf12432aee3b81141313d"
+    },
+    "last_active_at": null
+  }
+}

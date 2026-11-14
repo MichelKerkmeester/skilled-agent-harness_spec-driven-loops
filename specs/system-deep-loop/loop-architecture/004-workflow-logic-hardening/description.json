@@ -1,0 +1,28 @@
+{
+  "level": "2",
+  "specFolder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening",
+  "description": "Fix every deep-research and deep-review workflow logic, drift and doc finding from the 2026-11-14 analysis",
+  "keywords": [
+    "every",
+    "deep-research",
+    "deep-review",
+    "workflow",
+    "logic",
+    "drift",
+    "doc",
+    "finding",
+    "analysis"
+  ],
+  "lastUpdated": "2026-11-14T12:20:16.771Z",
+  "specId": "004",
+  "folderSlug": "workflow-logic-hardening",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "14-11-26_13-18__analysed-the-deep-research-and-deep-review.md",
+    "14-11-26_13-20__analysed-the-deep-research-and-deep-review.md"
+  ]
+}

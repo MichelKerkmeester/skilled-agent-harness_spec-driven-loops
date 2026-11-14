@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation",
+  "spec_folder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation",
+  "parent_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "ai council mode deprecation",
+      "phase 6 ai council mode deprecation",
+      "retire deep-ai-council mode",
+      "standalone ai-council agent",
+      "ai council mode deprecation plan",
+      "council removal inventory",
+      "ai council mode deprecation tasks",
+      "ai council mode deprecation acceptance criteria",
+      "ai council mode deprecation goal",
+      "ai council mode deprecation implementation summary"
+    ],
+    "key_topics": [
+      "council",
+      "mode",
+      "deprecation",
+      "phase",
+      "retire",
+      "deep-ai-council",
+      "standalone",
+      "ai-council",
+      "agent",
+      "plan",
+      "removal",
+      "inventory"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/mode-registry.json",
+      ".skilled/skills/system-deep-loop/leaf-manifest.json",
+      ".skilled/skills/system-deep-loop/SKILL.md",
+      ".skilled/commands/deep/ai-council.md",
+      ".skilled/agents/ai-council.md",
+      ".claude/agents/ai-council.md",
+      ".codex/agents/ai-council.toml",
+      ".pi/agents/ai-council.md",
+      ".dsh/agents/ai-council.patch.yml",
+      ".skilled/bin/agent-mirror-crosswalk.md",
+      ".cursor/agents/ai-council.md",
+      ".devin/agents/ai-council/AGENT.md",
+      "codex/sync-agents.cjs",
+      "pi/sync-agents-pi.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "mode-registry.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/mode-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "leaf-manifest.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-deep-loop/leaf-manifest.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.md",
+        "kind": "doc",
+        "path": ".skilled/commands/deep/ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.toml",
+        "kind": "file",
+        "path": ".codex/agents/ai-council.toml",
+        "source": "derived"
+      },
+      {
+        "name": "ai-council.patch.yml",
+        "kind": "config",
+        "path": ".dsh/agents/ai-council.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "agent-mirror-crosswalk.md",
+        "kind": "doc",
+        "path": ".skilled/bin/agent-mirror-crosswalk.md",
+        "source": "derived"
+      },
+      {
+        "name": "AGENT.md",
+        "kind": "doc",
+        "path": ".devin/agents/ai-council/AGENT.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents.cjs",
+        "kind": "file",
+        "path": "codex/sync-agents.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents-pi.cjs",
+        "kind": "file",
+        "path": "pi/sync-agents-pi.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement On",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "On 2026-11-14 the operator decided, in these words: \"let's deprecate deep-ai-council completely as a deep mode and instead make it a isolated .agents file maybe with a command workflow and presentation asset for all runtimes\"",
+    "created_at": "2026-11-14T11:56:20Z",
+    "last_save_at": "2026-11-14T12:23:00.491Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:90fc446528264ef87554a58b5cdddb1a0f1add7d577b1502e1b00e0fda626abc",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "fb53ba70b32dd2531e118d835287b23997743271aa21f9a1ceb7faeb68dce999",
+      "plan.md": "e9af0140e3b65e3e20aad993442d382f391b7efe99074257fe0cc6025545fa0a",
+      "tasks.md": "47be8b2464fb0322785a84a0a818c3a1e248c5bee03d1223606573e78a356cab",
+      "implementation-summary.md": "907a499484403ad83c76444c2e79e5a268e43a1e7b78da70452876b309b08878"
+    },
+    "last_active_at": null
+  }
+}

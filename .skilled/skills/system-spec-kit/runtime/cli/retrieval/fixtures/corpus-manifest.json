@@ -1,5 +1,5 @@
 {
-  "corpusHash": "08a04ec4a44daa66324ac57b32e2313883065b822dcf72b564d5b83cfb829be4",
+  "corpusHash": "f8bc722d1804ba73aba4cbceda93bd4092b7d42f5325fdcbda7996b3cd836b72",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26830,
+  "includedPathCount": 26868,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -17446,6 +17446,44 @@
     "specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs/spec.md",
     "specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs/tasks.md",
     "specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/spec.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision/acceptance-criteria.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision/goal.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision/implementation-summary.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision/plan.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision/spec.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision/tasks.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/002-persisted-loop-state-and-failure-policy/acceptance-criteria.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/002-persisted-loop-state-and-failure-policy/goal.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/002-persisted-loop-state-and-failure-policy/implementation-summary.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/002-persisted-loop-state-and-failure-policy/plan.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/002-persisted-loop-state-and-failure-policy/spec.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/002-persisted-loop-state-and-failure-policy/tasks.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/003-lifecycle-lock-and-limits/acceptance-criteria.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/003-lifecycle-lock-and-limits/goal.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/003-lifecycle-lock-and-limits/implementation-summary.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/003-lifecycle-lock-and-limits/plan.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/003-lifecycle-lock-and-limits/spec.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/003-lifecycle-lock-and-limits/tasks.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/004-workflow-single-source-and-drift-guard/acceptance-criteria.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/004-workflow-single-source-and-drift-guard/goal.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/004-workflow-single-source-and-drift-guard/implementation-summary.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/004-workflow-single-source-and-drift-guard/plan.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/004-workflow-single-source-and-drift-guard/spec.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/004-workflow-single-source-and-drift-guard/tasks.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/005-command-and-skill-doc-alignment/acceptance-criteria.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/005-command-and-skill-doc-alignment/goal.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/005-command-and-skill-doc-alignment/implementation-summary.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/005-command-and-skill-doc-alignment/plan.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/005-command-and-skill-doc-alignment/spec.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/005-command-and-skill-doc-alignment/tasks.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/acceptance-criteria.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/goal.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/implementation-summary.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/plan.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/spec.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/tasks.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/decision-record.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/spec.md",
     "specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/001-review-gateway-iteration-record/acceptance-criteria.md",
     "specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/001-review-gateway-iteration-record/implementation-summary.md",
     "specs/system-deep-loop/review-lineage/001-review-and-cli-lineage/001-review-gateway-iteration-record/plan.md",
@@ -26862,7 +26900,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "1cd7a6a0bec7e2858f26ca81c19890d6b96dbf84372fcf311fba50833b017a76",
+  "manifestHash": "6214aff51518932bd2eca78e75a7bbd5ad682456d3efd68af91c11d605b0eb9d",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -33858,6 +33896,30 @@
     },
     {
       "path": "specs/system-deep-loop/loop-architecture/003-deprecate-improvement-modes/013-drift-guard-repairs/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/002-persisted-loop-state-and-failure-policy/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/003-lifecycle-lock-and-limits/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/004-workflow-single-source-and-drift-guard/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/005-command-and-skill-doc-alignment/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/scratch",
       "reason": "excluded directory"
     },
     {

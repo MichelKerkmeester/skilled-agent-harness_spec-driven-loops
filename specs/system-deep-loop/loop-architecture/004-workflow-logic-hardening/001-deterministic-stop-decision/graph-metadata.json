@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision",
+  "spec_folder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision",
+  "parent_id": "system-deep-loop/loop-architecture/004-workflow-logic-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deterministic stop decision",
+      "phase 1 deterministic stop decision",
+      "deterministic stop decision plan",
+      "deterministic stop decision tasks",
+      "deterministic stop decision acceptance criteria",
+      "deterministic stop decision goal",
+      "deterministic stop decision implementation summary"
+    ],
+    "key_topics": [
+      "deterministic",
+      "stop",
+      "decision",
+      "phase",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "goal",
+      "implementation",
+      "summary",
+      "orchestrating"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+      ".skilled/commands/deep/assets/deep-research-auto.yaml",
+      ".skilled/commands/deep/assets/deep-research-confirm.yaml",
+      ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      ".skilled/commands/deep/assets/deep-review-confirm.yaml",
+      ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/lifecycle-taxonomy.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-policy-yaml-parity.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-research-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/deep/assets/deep-review-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-deep-loop/deep-research/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "lifecycle-taxonomy.cjs",
+        "kind": "file",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/lifecycle-taxonomy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "lifecycle-taxonomy.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/lifecycle-taxonomy.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "convergence-script.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/integration/convergence-script.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "stop-policy-yaml-parity.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/stop-policy-yaml-parity.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "See Phase Context",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The orchestrating model computes the stop vote by hand from prose in `stepcheckconvergence`, so two runs over the same state can stop at different iterations",
+    "created_at": "2026-11-14T11:33:17Z",
+    "last_save_at": "2026-11-14T12:22:32.830Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:dca0d1cb51f0caebdaf009bf3ee23b461945ec4bdf7e7649aab514a96740d472",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a876267df217e4ca79b9c87aa3825da50610bf79083b9645a7f6e514a8a4d748",
+      "plan.md": "ffe9ca9f720c7db7f9e00c4dc0afbc35b56db6e36d374e9a3c45af6f7dbedb6b",
+      "tasks.md": "96253e6552c717b4d61893b69592d75a41d129ef840f11f3031b08672b3f6985",
+      "implementation-summary.md": "b065fd879830ad05eccaf3797347a76fc492aa151ea3dee08fd03b5cc21cf403"
+    },
+    "last_active_at": null
+  }
+}

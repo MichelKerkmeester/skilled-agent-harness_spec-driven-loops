@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1cd7a6a0bec7e2858f26ca81c19890d6b96dbf84372fcf311fba50833b017a76",
+  "manifestHash": "6214aff51518932bd2eca78e75a7bbd5ad682456d3efd68af91c11d605b0eb9d",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1203,6 +1203,9 @@
     ],
     "004 vec store rebuild": [
       "004 vec-store-rebuild"
+    ],
+    "004 workflow logic hardening operator decisions": [
+      "004-workflow-logic-hardening operator decisions"
     ],
     "005": [
       "005"
@@ -10837,6 +10840,24 @@
     ],
     "ai council loop protocol": [
       "ai council loop protocol"
+    ],
+    "ai council mode deprecation": [
+      "ai council mode deprecation"
+    ],
+    "ai council mode deprecation acceptance criteria": [
+      "ai council mode deprecation acceptance criteria"
+    ],
+    "ai council mode deprecation goal": [
+      "ai council mode deprecation goal"
+    ],
+    "ai council mode deprecation implementation summary": [
+      "ai council mode deprecation implementation summary"
+    ],
+    "ai council mode deprecation plan": [
+      "ai council mode deprecation plan"
+    ],
+    "ai council mode deprecation tasks": [
+      "ai council mode deprecation tasks"
     ],
     "ai council operator guide": [
       "ai council operator guide"
@@ -27378,6 +27399,24 @@
     "command and presentation templates": [
       "command and presentation templates"
     ],
+    "command and skill doc alignment": [
+      "command and skill doc alignment"
+    ],
+    "command and skill doc alignment acceptance criteria": [
+      "command and skill doc alignment acceptance criteria"
+    ],
+    "command and skill doc alignment goal": [
+      "command and skill doc alignment goal"
+    ],
+    "command and skill doc alignment implementation summary": [
+      "command and skill doc alignment implementation summary"
+    ],
+    "command and skill doc alignment plan": [
+      "command and skill doc alignment plan"
+    ],
+    "command and skill doc alignment tasks": [
+      "command and skill doc alignment tasks"
+    ],
     "command arg resolution": [
       "command arg resolution"
     ],
@@ -31181,6 +31220,9 @@
     ],
     "council reducer replay tasks": [
       "council reducer replay tasks"
+    ],
+    "council removal inventory": [
+      "council removal inventory"
     ],
     "council report path": [
       "council report path"
@@ -36815,6 +36857,9 @@
     "deep loop stopping clocks": [
       "deep-loop stopping clocks"
     ],
+    "deep loop stuck counter persistence": [
+      "deep loop stuck counter persistence"
+    ],
     "deep loop surface agreement": [
       "deep-loop surface agreement"
     ],
@@ -36856,6 +36901,9 @@
     ],
     "deep loop workflow integrity audit": [
       "deep loop workflow integrity audit"
+    ],
+    "deep loop workflow logic hardening": [
+      "deep loop workflow logic hardening"
     ],
     "deep loop workflow state machine remediation": [
       "deep-loop workflow state machine remediation"
@@ -37151,6 +37199,9 @@
     ],
     "deep research authority switch plan": [
       "deep-research authority switch plan"
+    ],
+    "deep research auto confirm drift": [
+      "deep research auto confirm drift"
     ],
     "deep research automation plan": [
       "deep research automation plan"
@@ -37540,6 +37591,12 @@
     ],
     "deep research review council": [
       "deep research review council"
+    ],
+    "deep research review doc drift guard": [
+      "deep research review doc drift guard"
+    ],
+    "deep research review drift fix": [
+      "deep research review drift fix"
     ],
     "deep research review state hygiene": [
       "deep research review state hygiene",
@@ -38706,6 +38763,9 @@
     ],
     "deep review verified sealed reads": [
       "deep review verified sealed reads"
+    ],
+    "deep review workflow twin merge": [
+      "deep review workflow twin merge"
     ],
     "deep route guard plugin": [
       "deep route guard plugin"
@@ -40257,6 +40317,27 @@
     ],
     "deterministic scenario matrix": [
       "deterministic scenario matrix"
+    ],
+    "deterministic stop decision": [
+      "deterministic stop decision"
+    ],
+    "deterministic stop decision acceptance criteria": [
+      "deterministic stop decision acceptance criteria"
+    ],
+    "deterministic stop decision goal": [
+      "deterministic stop decision goal"
+    ],
+    "deterministic stop decision implementation summary": [
+      "deterministic stop decision implementation summary"
+    ],
+    "deterministic stop decision plan": [
+      "deterministic stop decision plan"
+    ],
+    "deterministic stop decision program": [
+      "deterministic stop decision program"
+    ],
+    "deterministic stop decision tasks": [
+      "deterministic stop decision tasks"
     ],
     "device and inode comparison": [
       "device and inode comparison"
@@ -48857,6 +48938,9 @@
     ],
     "failed embedding cleanup tasks": [
       "failed embedding cleanup tasks"
+    ],
+    "failed iteration convergence exclusion": [
+      "failed iteration convergence exclusion"
     ],
     "failed push rejected remote": [
       "failed push rejected remote"
@@ -64043,6 +64127,24 @@
     ],
     "lifecycle lifecycle taxonomy guards": [
       "lifecycle lifecycle taxonomy guards"
+    ],
+    "lifecycle lock and limits": [
+      "lifecycle lock and limits"
+    ],
+    "lifecycle lock and limits acceptance criteria": [
+      "lifecycle lock and limits acceptance criteria"
+    ],
+    "lifecycle lock and limits goal": [
+      "lifecycle lock and limits goal"
+    ],
+    "lifecycle lock and limits implementation summary": [
+      "lifecycle lock and limits implementation summary"
+    ],
+    "lifecycle lock and limits plan": [
+      "lifecycle lock and limits plan"
+    ],
+    "lifecycle lock and limits tasks": [
+      "lifecycle lock and limits tasks"
     ],
     "lifecycle policy capsule": [
       "lifecycle policy capsule"
@@ -80063,6 +80165,24 @@
     "persisted hops validation tasks": [
       "persisted hops validation tasks"
     ],
+    "persisted loop state and failure policy": [
+      "persisted loop state and failure policy"
+    ],
+    "persisted loop state and failure policy acceptance criteria": [
+      "persisted loop state and failure policy acceptance criteria"
+    ],
+    "persisted loop state and failure policy goal": [
+      "persisted loop state and failure policy goal"
+    ],
+    "persisted loop state and failure policy implementation summary": [
+      "persisted loop state and failure policy implementation summary"
+    ],
+    "persisted loop state and failure policy plan": [
+      "persisted loop state and failure policy plan"
+    ],
+    "persisted loop state and failure policy tasks": [
+      "persisted loop state and failure policy tasks"
+    ],
     "persisted wait crash resume": [
       "persisted-wait crash resume"
     ],
@@ -80596,6 +80716,9 @@
     ],
     "phase 1 deep research router files": [
       "phase 1 deep research router files"
+    ],
+    "phase 1 deterministic stop decision": [
+      "phase 1 deterministic stop decision"
     ],
     "phase 1 diagram references": [
       "phase 1 diagram references"
@@ -81404,6 +81527,9 @@
     "phase 2 path extraction regex fix": [
       "phase 2 path extraction regex fix"
     ],
+    "phase 2 persisted loop state and failure policy": [
+      "phase 2 persisted loop state and failure policy"
+    ],
     "phase 2 pi bind once": [
       "phase 2 pi bind once"
     ],
@@ -81803,6 +81929,9 @@
     "phase 3 launch flag replay": [
       "phase 3 launch flag replay"
     ],
+    "phase 3 lifecycle lock and limits": [
+      "phase 3 lifecycle lock and limits"
+    ],
     "phase 3 manual claim live settings": [
       "phase 3 manual claim live settings"
     ],
@@ -82139,6 +82268,9 @@
     "phase 4 webflow checker fix": [
       "phase 4 webflow checker fix"
     ],
+    "phase 4 workflow single source and drift guard": [
+      "phase 4 workflow single source and drift guard"
+    ],
     "phase 4 wrapper change notice": [
       "phase 4 wrapper change notice"
     ],
@@ -82201,6 +82333,9 @@
     ],
     "phase 5 cli devin": [
       "phase 5 cli devin"
+    ],
+    "phase 5 command and skill doc alignment": [
+      "phase 5 command and skill doc alignment"
     ],
     "phase 5 completed diagnostics governance": [
       "phase 5 completed diagnostics governance"
@@ -82387,6 +82522,9 @@
     ],
     "phase 6 adr": [
       "phase 6 ADR"
+    ],
+    "phase 6 ai council mode deprecation": [
+      "phase 6 ai council mode deprecation"
     ],
     "phase 6 append lock stale reclaim": [
       "phase 6 append lock stale reclaim"
@@ -95842,6 +95980,9 @@
     ],
     "retire check 13c": [
       "retire check 13c"
+    ],
+    "retire deep ai council mode": [
+      "retire deep-ai-council mode"
     ],
     "retire detect changes plan": [
       "retire detect_changes plan"
@@ -117389,6 +117530,9 @@
     "standalone advisor shape": [
       "standalone advisor shape"
     ],
+    "standalone ai council agent": [
+      "standalone ai-council agent"
+    ],
     "standalone code graph mcp": [
       "standalone code graph MCP"
     ],
@@ -129597,6 +129741,9 @@
     "workflow lock starvation": [
       "workflow lock starvation"
     ],
+    "workflow logic hardening phase parent spec": [
+      "workflow logic hardening phase parent spec"
+    ],
     "workflow owner guard": [
       "workflow owner guard",
       "workflow-owner guard"
@@ -129639,6 +129786,24 @@
     ],
     "workflow save completion seam": [
       "workflow save completion seam"
+    ],
+    "workflow single source and drift guard": [
+      "workflow single source and drift guard"
+    ],
+    "workflow single source and drift guard acceptance criteria": [
+      "workflow single source and drift guard acceptance criteria"
+    ],
+    "workflow single source and drift guard goal": [
+      "workflow single source and drift guard goal"
+    ],
+    "workflow single source and drift guard implementation summary": [
+      "workflow single source and drift guard implementation summary"
+    ],
+    "workflow single source and drift guard plan": [
+      "workflow single source and drift guard plan"
+    ],
+    "workflow single source and drift guard tasks": [
+      "workflow single source and drift guard tasks"
     ],
     "workflow strict shell mode": [
       "workflow strict shell mode"
