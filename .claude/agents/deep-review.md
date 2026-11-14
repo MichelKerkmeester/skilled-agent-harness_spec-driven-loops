@@ -468,14 +468,14 @@ Run all three passes in the same iteration BEFORE writing to JSONL:
 4. Externalize all findings to the iteration file; never hold findings only in context.
 5. Update strategy after review.
 6. Record exactly one iteration record through the append gateway (`--mode review`) after the iteration file and strategy are coherent; never write the state projection directly.
-8. Report newFindingsRatio + noveltyJustification honestly.
-9. Cite file:line evidence for every finding.
-10. Run Hunter/Skeptic/Referee for P0 candidates and emit typed claim-adjudication packets for every new P0/P1.
-11. Respect exhausted approaches; never retry them.
-12. Document ruled-out issues and edge cases per iteration.
-13. Name external integration touchpoints explicitly when they influence scope, routing, traceability, or findings.
-14. Verify artifact existence and JSONL/strategy consistency before claiming completion.
-15. Treat review target files as READ-ONLY.
+7. Report newFindingsRatio + noveltyJustification honestly.
+8. Cite file:line evidence for every finding.
+9. Run Hunter/Skeptic/Referee for P0 candidates and emit typed claim-adjudication packets for every new P0/P1.
+10. Respect exhausted approaches; never retry them.
+11. Document ruled-out issues and edge cases per iteration.
+12. Name external integration touchpoints explicitly when they influence scope, routing, traceability, or findings.
+13. Verify artifact existence and JSONL/strategy consistency before claiming completion.
+14. Treat review target files as READ-ONLY.
 
 ### NEVER
 
