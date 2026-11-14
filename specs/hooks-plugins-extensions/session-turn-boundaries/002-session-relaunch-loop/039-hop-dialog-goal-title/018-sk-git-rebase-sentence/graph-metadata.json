@@ -18,7 +18,9 @@
       "sk-git rebase sentence plan",
       "sk-git rebase sentence tasks",
       "sk-git rebase sentence acceptance criteria",
-      "sk-git rebase sentence goal"
+      "sk-git rebase sentence goal",
+      "sk-git rebase sentence implementation summary",
+      "rebase commit id probe"
     ],
     "key_topics": [
       "sk-git",
@@ -42,9 +44,20 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
-      ".skilled/scripts/git-hooks/tests/prepare-commit-msg.test.sh",
+      "implementation-summary.md",
       ".skilled/skills/sk-git/SKILL.md",
-      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections/acceptance-criteria.md"
+      ".skilled/skills/sk-git/changelog/v1.11.12.0.md",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections/acceptance-criteria.md",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      "scratch/validate.txt",
+      "scratch/reflog-2041.txt",
+      ".skilled/scripts/git-hooks/tests/prepare-commit-msg.test.sh",
+      "scratch/rebase-probe.txt",
+      "scratch/rebase-probe.sh",
+      "scratch/rebase-lines.txt",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/goal.md",
+      "scratch/verification.txt"
     ],
     "entities": [
       {
@@ -74,7 +87,49 @@
       {
         "name": "goal.md",
         "kind": "doc",
-        "path": "goal.md",
+        "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.11.12.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/changelog/v1.11.12.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate.txt",
+        "kind": "file",
+        "path": "scratch/validate.txt",
+        "source": "derived"
+      },
+      {
+        "name": "reflog-2041.txt",
+        "kind": "file",
+        "path": "scratch/reflog-2041.txt",
         "source": "derived"
       },
       {
@@ -84,9 +139,27 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".skilled/skills/sk-git/SKILL.md",
+        "name": "rebase-probe.txt",
+        "kind": "file",
+        "path": "scratch/rebase-probe.txt",
+        "source": "derived"
+      },
+      {
+        "name": "rebase-probe.sh",
+        "kind": "script",
+        "path": "scratch/rebase-probe.sh",
+        "source": "derived"
+      },
+      {
+        "name": "rebase-lines.txt",
+        "kind": "file",
+        "path": "scratch/rebase-lines.txt",
+        "source": "derived"
+      },
+      {
+        "name": "verification.txt",
+        "kind": "file",
+        "path": "scratch/verification.txt",
         "source": "derived"
       },
       {
@@ -130,71 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Probe",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Data Flow The",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Planning Packet",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Measured Behavior",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`.skilled/skills/sk-git/SKILL.md:322` says a rebase keeps an id only when the replayed message still carries one",
     "created_at": "2026-11-14T11:42:58Z",
-    "last_save_at": "2026-11-14T12:03:34.001Z",
+    "last_save_at": "2026-11-14T13:21:29.539Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,14 +215,16 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "goal.md"
+      "goal.md",
+      "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:45972feae4e6025d68067f29c1f13cc73e52ddadfd9aa16ff5854785d4aa3bec",
+    "source_fingerprint": "sha256:0020254e2adfe390c430204bff8620727a12b3e274a96b405d1d5143112bbdba",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "468e0ef5d2d71acc275a503c35f3346f0a6593d1f3b7c82ea9055b1c42327abc",
       "plan.md": "985ecb1ea7b8dfaf3d305d1e135b64374783bed767b74988be4bf72027c393bb",
-      "tasks.md": "752aa84951ee049e32ba893582de4414c5eeb43c0e718860494eacce11fe0341"
+      "tasks.md": "918974f01961f56e7a67df9771e0bd839289530b6caa650d259fe6a5d247bc4c",
+      "implementation-summary.md": "5889fc0c3571c5add65f4e11571848036e50dea8c2174ac0e6f18a5f40c77fc3"
     },
     "last_active_at": null
   }

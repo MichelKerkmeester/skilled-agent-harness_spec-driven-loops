@@ -1,0 +1,14 @@
+$ env -u AI_SESSION_CHILD -u OPENCODE_DB bash specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/018-sk-git-rebase-sentence/scratch/rebase-sentence-check.sh
+FAIL  the old rebase sentence is gone: found: A rebase keeps an id only when the replayed message still carries one
+FAIL  the new sentence names both conditions: missing: only when the repository asks for ids and git marks the pick with `CHERRY_PICK_HEAD`
+FAIL  the skill version is 1.11.12.0: missing: version: 1.11.12.0
+FAIL  the changelog file exists: /Users/michelkerkmeester/worktrees/public/380-relaunch-review-fixes/.skilled/skills/sk-git/changelog/v1.11.12.0.md is missing
+FAIL  the changelog names 1.11.12.0: /Users/michelkerkmeester/worktrees/public/380-relaunch-review-fixes/.skilled/skills/sk-git/changelog/v1.11.12.0.md is missing
+PASS  the probe output holds four cases
+PASS  frontmatter-version verify passes
+PASS  the skill package validates
+PASS  the skill document validates
+PASS  the commit hook folder is unchanged
+
+checks: 10, failed: 5
+exit=1
