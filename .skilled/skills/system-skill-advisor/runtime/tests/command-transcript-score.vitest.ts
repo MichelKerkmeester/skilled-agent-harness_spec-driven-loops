@@ -21,6 +21,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { describe, expect, it } from 'vitest';
+import * as scorer from '../scripts/routing-accuracy/score-command-transcripts.mjs';
 import {
   commandLines,
   followedBeforeWrite,
@@ -36,6 +37,7 @@ const TIMESTAMP = '2026-01-01T00:00:00.000Z';
 
 const README_DOCUMENT = '.claude/commands/create/readme.md';
 const README_CONFIRM = '.claude/commands/create/assets/create-readme-confirm.yaml';
+const SKILL_DOCUMENT = '.skilled/skills/sk-doc/SKILL.md';
 const ACQUIRE = 'node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs acquire --loop research';
 const FANOUT = 'node .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs --spec specs/x/research/spec.md';
 const SCAFFOLD = 'node .skilled/commands/create/speckit/scripts/create.sh --spec specs/x';
@@ -683,6 +685,34 @@ function loadableSession(
   return { sessionId: SUMMARY_SESSION, transcriptPath, claudeRoot };
 }
 
+// The reader joins a tool call to the result turn that follows it, so a fixture
+// that puts a read before a write has to add both halves of each call.
+function claudeToolTurn(
+  id: string,
+  name: string,
+  input: Readonly<Record<string, unknown>>,
+): Record<string, unknown>[] {
+  return [
+    {
+      type: 'assistant',
+      uuid: `${id}-call`,
+      sessionId: SUMMARY_SESSION,
+      timestamp: TIMESTAMP,
+      message: { role: 'assistant', content: [{ type: 'tool_use', id, name, input }] },
+    },
+    {
+      type: 'user',
+      uuid: `${id}-result`,
+      sessionId: SUMMARY_SESSION,
+      timestamp: TIMESTAMP,
+      message: {
+        role: 'user',
+        content: [{ type: 'tool_result', tool_use_id: id, content: 'ok' }],
+      },
+    },
+  ];
+}
+
 // Codex names its rollout by the path the runner captured rather than by a session
 // folder, so a case that needs a second runtime builds the store under its own root.
 function loadableCodexSession(root: string): Record<string, string> {
@@ -717,6 +747,29 @@ function summarize(runOf: (root: string) => readonly RunLogLine[]): unknown {
     const run = runScorer(['--summary', logPath, '--json']);
     expect(run.status).toBe(0);
     return JSON.parse(String(run.stdout));
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+}
+
+// The printed form is the operator's view of the same counts, so a case that reads
+// one line writes the log once and runs both forms over it.
+function summarizeForms(runOf: (root: string) => readonly RunLogLine[]): {
+  readonly summary: unknown;
+  readonly text: string;
+} {
+  const root = mkdtempSync(join(tmpdir(), 'command-summary-'));
+  try {
+    const logPath = join(root, 'run-log.jsonl');
+    const lines = runOf(root).map((line) => JSON.stringify({ runtime: 'claude', ...line }));
+    writeFileSync(logPath, `${lines.join('\n')}\n`);
+
+    const jsonRun = runScorer(['--summary', logPath, '--json']);
+    expect(jsonRun.status).toBe(0);
+    const textRun = runScorer(['--summary', logPath]);
+    expect(textRun.status).toBe(0);
+
+    return { summary: JSON.parse(String(jsonRun.stdout)), text: String(textRun.stdout) };
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
@@ -1019,5 +1072,393 @@ describe('run log summary', () => {
       claude: { tune: { runs: 2, armIncomplete: false } },
       codex: { tune: { runs: 1, armIncomplete: true } },
     });
+  });
+
+  // A run that loaded the owning skill before its first write is the skill path,
+  // so the arm counts it apart from a command load and from a run that improvised.
+  it('counts a run that loaded the owning skill before its first write', () => {
+    const summary = summarize((root) => [
+      {
+        rowId: SUMMARY_ROW,
+        arm: 'tune',
+        exit: 0,
+        locator: loadableSession(root, [
+          ...claudeToolTurn('claude-c1', 'Read', { file_path: SKILL_DOCUMENT }),
+          ...claudeToolTurn('claude-c2', 'Write', { file_path: 'out/agent.md', content: '# agent' }),
+        ]),
+      },
+    ]);
+
+    expect(summary).toMatchObject({
+      claude: {
+        tune: {
+          workflow: {
+            command: 0,
+            skill: 1,
+            improvised: 0,
+            none: 0,
+            noOwner: 0,
+            unscored: 0,
+            share: '1 of 1',
+          },
+        },
+      },
+    });
+  });
+
+  // A row with no expected command maps to no owner, so its run is counted apart
+  // from a workflow it was never offered. The printed form carries the same block.
+  it('counts a row with no owner apart and prints the block as one line', () => {
+    const { summary, text } = summarizeForms((root) => [
+      { rowId: 'mns-chat-01', arm: 'tune', exit: 0, locator: loadableSession(root) },
+    ]);
+
+    expect(summary).toMatchObject({
+      claude: { tune: { workflow: { noOwner: 1, share: '0 of 0' } } },
+    });
+
+    const line = text.split('\n').find((entry) => entry.startsWith('    workflow: '));
+    expect(line).toBeDefined();
+    expect(line?.endsWith('share 0 of 0')).toBe(true);
+  });
+
+  // A run that read and ran commands without loading a workflow, and wrote nothing,
+  // still acted on the task, so it stays in the load rate even though the share,
+  // which counts only runs that wrote, leaves it out.
+  it('keeps a run that acted without a load or a write in the load rate', () => {
+    const { summary, text } = summarizeForms((root) => [
+      {
+        rowId: SUMMARY_ROW,
+        arm: 'tune',
+        exit: 0,
+        locator: loadableSession(root, [
+          ...claudeToolTurn('claude-d1', 'Read', { file_path: 'README.md' }),
+          ...claudeToolTurn('claude-d2', 'Bash', { command: 'ls .skilled/agents' }),
+        ]),
+      },
+    ]);
+
+    expect(summary).toMatchObject({
+      claude: {
+        tune: {
+          workflow: { none: 1, noneActed: 1, share: '0 of 0', loadRate: '0 of 1' },
+        },
+      },
+    });
+
+    const line = text.split('\n').find((entry) => entry.startsWith('    workflow: '));
+    expect(line).toContain('none 1, none acted 1,');
+    expect(line).toContain('load rate 0 of 1, share 0 of 0');
+  });
+
+  // The framework makes every session run its gate lookup and read its rules before
+  // it answers, so those steps alone are not work on the task.
+  it('does not count the required gate steps as acting', () => {
+    const summary = summarize((root) => [
+      {
+        rowId: SUMMARY_ROW,
+        arm: 'tune',
+        exit: 0,
+        locator: loadableSession(root, [
+          ...claudeToolTurn('claude-e1', 'Bash', {
+            command: 'node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json --scoring-only -- "make an agent"',
+          }),
+          ...claudeToolTurn('claude-e2', 'Read', { file_path: '.skilled/repo-rules/communication.md' }),
+          ...claudeToolTurn('claude-e3', 'Read', { file_path: 'AGENTS.md' }),
+        ]),
+      },
+    ]);
+
+    expect(summary).toMatchObject({
+      claude: { tune: { workflow: { none: 1, noneActed: 0, loadRate: '0 of 1' } } },
+    });
+  });
+
+  // Loading a skill that does not own the row is still work on the task, done
+  // through another workflow, so it counts as acting.
+  it('counts a load of another skill as acting', () => {
+    const summary = summarize((root) => [
+      {
+        rowId: SUMMARY_ROW,
+        arm: 'tune',
+        exit: 0,
+        locator: loadableSession(root, [
+          ...claudeToolTurn('claude-f1', 'Skill', { skill: 'system-spec-kit' }),
+        ]),
+      },
+    ]);
+
+    expect(summary).toMatchObject({
+      claude: { tune: { workflow: { none: 1, noneActed: 1 } } },
+    });
+  });
+});
+
+// ───────────────────────────────────────────────────────────────
+// 8. WORKFLOW PATH
+// ───────────────────────────────────────────────────────────────
+
+// A run's workflow path is what it loaded before its first write, so the same
+// transcript is read once against a command, once against an owner skill and once
+// against neither. The namespace import keeps a missing export to these cases,
+// because a named import of a function that does not exist yet would fail the
+// whole file rather than the cases that read it.
+describe('workflowPath', () => {
+  it('reads a command document loaded before the first write as the command', () => {
+    const events = normalize(
+      oneTurn(
+        toolCall('Read', { file_path: README_DOCUMENT }),
+        toolCall('Write', { file_path: OUTSIDE_SPECS, content: 'export const parse = () => {};' }),
+      ),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: '/create:readme',
+      owner: 'sk-doc',
+      wrote: true,
+    })).toBe('command');
+  });
+
+  // Claude Code expands a typed command before the model sees it, so the stored tag
+  // is the command's load even when no document was read and no line reported it.
+  it('reads the command Claude Code expanded as the command path', () => {
+    const events = normalize(EXPANDED_RECORDS, 'claude');
+
+    expect(scorer.workflowPath(events, {
+      command: '/deep:research',
+      owner: 'system-deep-loop',
+      wrote: false,
+    })).toBe('command');
+  });
+
+  // A run that took no command can still have loaded the workflow its row's owner
+  // owns, which is the skill path the measure counts apart from the command's.
+  it('reads the owning skill loaded before the first write as the skill path', () => {
+    const events = normalize(
+      oneTurn(
+        toolCall('Read', { file_path: SKILL_DOCUMENT }),
+        toolCall('Write', { file_path: OUTSIDE_SPECS, content: 'export const parse = () => {};' }),
+      ),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: null,
+      owner: 'sk-doc',
+      wrote: true,
+    })).toBe('skill');
+  });
+
+  // A write with no workflow loaded before it is the run acting on its own reading
+  // of the request, which is what the improvised count exists to expose.
+  it('reads a write with no workflow loaded before it as improvised', () => {
+    const events = normalize(
+      oneTurn(toolCall('Write', { file_path: OUTSIDE_SPECS, content: 'export const parse = () => {};' })),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: '/create:readme',
+      owner: 'sk-doc',
+      wrote: true,
+    })).toBe('improvised');
+  });
+
+  // A run that only answered wrote nothing, so it has no path to judge and belongs
+  // in neither the worked count nor the improvised one.
+  it('reads a session that only talked as no workflow path', () => {
+    const events = normalize(oneTurn(text('The gate is already green.')), 'claude');
+
+    expect(scorer.workflowPath(events, {
+      command: null,
+      owner: 'sk-doc',
+      wrote: false,
+    })).toBe('none');
+  });
+
+  // A row with no expected command maps to no owner, so its run must not be charged
+  // to a workflow it was never offered.
+  it('reads a row with no owner and no expected command as no owner', () => {
+    const events = normalize(oneTurn(text('The gate is already green.')), 'claude');
+
+    expect(scorer.workflowPath(events, {
+      command: null,
+      owner: null,
+      wrote: false,
+    })).toBe('noOwner');
+  });
+
+  // The order is the whole point of the measure, so the owner's document read after
+  // the first write is the deviation rather than the load.
+  it('reads the owning skill document loaded after the first write as improvised', () => {
+    const events = normalize(
+      oneTurn(
+        toolCall('Write', { file_path: OUTSIDE_SPECS, content: 'export const parse = () => {};' }),
+        toolCall('Read', { file_path: SKILL_DOCUMENT }),
+      ),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: null,
+      owner: 'sk-doc',
+      wrote: true,
+    })).toBe('improvised');
+  });
+
+  // A mode document sits one folder below its skill, so the folder that names the
+  // owner is the one between `skills` and the document rather than the whole path.
+  it('reads a nested mode document of the owning skill as the skill path', () => {
+    const events = normalize(
+      oneTurn(
+        toolCall('Read', { file_path: '.skilled/skills/sk-doc/sk-create-agent/SKILL.md' }),
+        toolCall('Write', { file_path: OUTSIDE_SPECS, content: 'export const parse = () => {};' }),
+      ),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: null,
+      owner: 'sk-doc',
+      wrote: true,
+    })).toBe('skill');
+  });
+
+  // The router is the skill's own entry document, so a run that read it loaded the
+  // workflow even when it never opened `SKILL.md`.
+  it('reads the owning skill router before the first write as the skill path', () => {
+    const events = normalize(
+      oneTurn(
+        toolCall('Read', { file_path: '.skilled/skills/sk-doc/ROUTER.md' }),
+        toolCall('Write', { file_path: OUTSIDE_SPECS, content: 'export const parse = () => {};' }),
+      ),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: null,
+      owner: 'sk-doc',
+      wrote: true,
+    })).toBe('skill');
+  });
+
+  // The skill tool loads a workflow without a file read, so the call is the load and
+  // the skill it names is the owner.
+  it('reads a skill call naming the owner before the first write as the skill path', () => {
+    const events = normalize(
+      oneTurn(
+        toolCall('Skill', { skill: 'sk-doc' }),
+        toolCall('Write', { file_path: OUTSIDE_SPECS, content: 'export const parse = () => {};' }),
+      ),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: null,
+      owner: 'sk-doc',
+      wrote: true,
+    })).toBe('skill');
+  });
+
+  // A hub dispatch names its owner only in an argument, so the call is the load when
+  // the hub it names is the row's owner.
+  it('reads a hub dispatch naming the owner before the first write as the skill path', () => {
+    const events = normalize(
+      oneTurn(
+        toolCall('Bash', { command: 'node .skilled/bin/compiled-route.cjs --hub sk-doc --prompt-stdin' }),
+        toolCall('Write', { file_path: OUTSIDE_SPECS, content: 'export const parse = () => {};' }),
+      ),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: null,
+      owner: 'sk-doc',
+      wrote: true,
+    })).toBe('skill');
+  });
+
+  // A dispatch to another hub is another skill's workflow, so it cannot stand in for
+  // the owner's own load.
+  it('reads a hub dispatch naming another skill as improvised', () => {
+    const events = normalize(
+      oneTurn(
+        toolCall('Bash', { command: 'node .skilled/bin/compiled-route.cjs --hub sk-code --prompt-stdin' }),
+        toolCall('Write', { file_path: OUTSIDE_SPECS, content: 'export const parse = () => {};' }),
+      ),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: null,
+      owner: 'sk-doc',
+      wrote: true,
+    })).toBe('improvised');
+  });
+
+  // A hub dispatch that saves its route to a file is a write as well as the load, and
+  // the route is resolved before the file is written, so the call still counts.
+  it('reads a hub dispatch that redirects its route into a file as the skill path', () => {
+    const events = normalize(
+      oneTurn(
+        toolCall('Bash', { command: 'node .skilled/bin/compiled-route.cjs --hub sk-doc --prompt-stdin > out/route.json' }),
+        toolCall('Write', { file_path: OUTSIDE_SPECS, content: 'export const parse = () => {};' }),
+      ),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: null,
+      owner: 'sk-doc',
+      wrote: true,
+    })).toBe('skill');
+  });
+
+  // A flag only starts at a word boundary, so text that runs into `--hub` names no hub.
+  it('reads a hub flag fused onto other text as improvised', () => {
+    const events = normalize(
+      oneTurn(
+        toolCall('Bash', { command: 'node .skilled/bin/compiled-route.cjs x--hub sk-doc --prompt-stdin' }),
+        toolCall('Write', { file_path: OUTSIDE_SPECS, content: 'export const parse = () => {};' }),
+      ),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: null,
+      owner: 'sk-doc',
+      wrote: true,
+    })).toBe('improvised');
+  });
+
+  // The runner's changed paths are a write fact the transcript may not carry, so a
+  // run that wrote has no boundary and its owner load is the path.
+  it('reads the owning skill loaded by a run whose write the transcript does not show as the skill path', () => {
+    const events = normalize(oneTurn(toolCall('Read', { file_path: SKILL_DOCUMENT })), 'claude');
+
+    expect(scorer.workflowPath(events, {
+      command: null,
+      owner: 'sk-doc',
+      wrote: true,
+    })).toBe('skill');
+  });
+
+  // A skill that does not own the row is a different workflow, so loading it before
+  // the write leaves the run improvised.
+  it('reads another skill loaded before the first write as improvised', () => {
+    const events = normalize(
+      oneTurn(
+        toolCall('Read', { file_path: '.skilled/skills/system-spec-kit/SKILL.md' }),
+        toolCall('Write', { file_path: OUTSIDE_SPECS, content: 'export const parse = () => {};' }),
+      ),
+      'claude',
+    );
+
+    expect(scorer.workflowPath(events, {
+      command: null,
+      owner: 'sk-doc',
+      wrote: true,
+    })).toBe('improvised');
   });
 });

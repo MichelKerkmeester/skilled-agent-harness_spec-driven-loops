@@ -23,13 +23,13 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-13 |
 | **Branch** | `worktrees/352-command-surfacing-research` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 19 of 19 |
+| **Phase** | 19 of 23 |
 | **Predecessor** | 018-holdout-row-retirement |
-| **Successor** | None |
+| **Successor** | 020-command-offer-fit-guards |
 | **Handoff Criteria** | Every task in `tasks.md` is `[x]`, the scorer test file and the full advisor suite report 0 failed, `scratch/workflow-pre.json` and `scratch/workflow-final.json` hold a `workflow` block for every runtime and arm, the shares are recorded in `implementation-summary.md`, the parent Open Questions and the parent goal log, and strict validation prints `RESULT: PASSED` |
 <!-- /ANCHOR:metadata -->
 
@@ -273,6 +273,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-010 | The per-runtime before and final shares appear in `implementation-summary.md`, replace the third parent Open Questions line in `../spec.md` and fill one row in the `../goal.md` log, each with the share as `N of M`. |
 | REQ-011 | The routing-accuracy README row for `score-command-transcripts.mjs` lists `workflow` among the per-arm fields and says the share counts a load before the first write, not each step followed. |
 | REQ-012 | `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh` on this folder with `--strict` prints `RESULT: PASSED`. |
+| REQ-013 | Every per-arm `workflow` block also carries `noneActed`, the `none` runs that read a file or ran a shell step, and `loadRate`, `rate(command + skill, command + skill + improvised + none)`, so a run that skipped the workflow and wrote nothing stays in the outcome reading. The text line prints `none acted N` after `none` and `load rate X of Y` before `share`. Added after two independent reviews found the share alone hides those runs. |
 
 > Acceptance criteria for these requirements live in `acceptance-criteria.md`,
 > which is the document that decides whether this packet may close.
@@ -372,6 +373,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - Q6. A `compiled-route.cjs` call with a redirect becomes a write event, not a shell event. Decision: match the command text of shell and write events alike under the same position rule.
 - Q7. The design names `/skills/<owner>/`, which misses a relative path that starts at `skills/`. Decision: match the segment at the start of the path or after a slash.
 - Q8. What does `changedPaths` without a write event mean for ordering? Decision: it marks the run as acting, and with no write event in the transcript there is no boundary, so any load counts.
+- Q10. The share counts only runs that wrote, so a run that read files and ran commands without loading a workflow, and wrote nothing, leaves it. Two independent reviews (Fable 5.2 medium, 2026-11-14) found this hides most non-engagement: in the final arm 5 of Claude's 10 `none` runs read files, ran shell steps or loaded another skill beyond the gate steps every session runs (T026 leaves those out). Decision (D1, without the operator): add `loadRate` over every owned scored run as the outcome reading and `noneActed` beside `none`, and keep `share` as the secondary reading. An `ask` row that waited without loading lowers the load rate although waiting is allowed, so the records say how many unloaded runs were `ask` rows.
 - Q9. Which arms? Decision: the before arm (`pre`, from `runs-pre.jsonl` then `runs-pre-dsh-rerun.jsonl`) and the final arm (`post`, from `runs-final.jsonl`). The after arm in `runs-post.jsonl` and the Codex-only arm stay out.
 
 ### Open

@@ -594,6 +594,84 @@ export function followedBeforeWrite(events, command) {
   return followDocument && !confirmLate;
 }
 
+// A hub dispatch runs one compiled route and names the workflow it loads only in
+// an argument, so a shell event that runs that script is a load when it names the
+// owner's hub.
+const COMPILED_ROUTE = /\bcompiled-route\.cjs\b/;
+
+function escapePattern(text) {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// A skill load has three shapes in a transcript: a read of the skill's own entry
+// document, a skill tool naming it, and a hub dispatch naming it. The entry
+// document may sit one mode folder below the skill, so the segment that names the
+// owner is the one directly under `skills`. A load after the first write is the
+// deviation the order exists to show, and a run that wrote nothing has no
+// boundary for its load to cross. A hub dispatch that saves its route to a file is
+// that first write itself, and the route is resolved before the file is written, so
+// such a call still counts when it is the first write.
+function ownerLoadedBeforeWrite(events, owner) {
+  const wanted = escapePattern(owner);
+  const documents = new RegExp(`(?:^|/)skills/${wanted}/(?:.*/)?(?:SKILL|ROUTER)\\.md$`);
+  const hub = new RegExp(`(?:^|\\s)--hub\\s+${wanted}(?![\\w-])`);
+  const boundary = firstWritePosition(events);
+
+  for (let index = 0; index < events.length; index += 1) {
+    const event = events[index];
+    if (!event) continue;
+    const position = positionOf(event, index);
+    const atBoundaryWrite = event.kind === 'write' && position === boundary;
+    if (boundary !== null && position >= boundary && !atBoundaryWrite) continue;
+
+    const path = typeof event.path === 'string' ? event.path.replace(/\\/g, '/') : '';
+    if (!atBoundaryWrite && (event.kind === 'read' || event.kind === 'skill') && path !== '' && documents.test(path)) {
+      return true;
+    }
+
+    if (!atBoundaryWrite && event.kind === 'skill' && event.command === owner) return true;
+
+    const command = typeof event.command === 'string' ? event.command : '';
+    if ((event.kind === 'shell' || event.kind === 'write')
+      && COMPILED_ROUTE.test(command) && hub.test(command)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+/**
+ * Sort a run into the workflow it loaded before it wrote.
+ *
+ * The measure asks whether a run opened a workflow before it acted, not whether it
+ * followed each step, so one load decides the path. The command the row expected
+ * wins over the owning skill because a run that took the command loaded the
+ * workflow that command names. A run that wrote without loading either is
+ * improvised, and a run that only talked has no path to judge.
+ *
+ * @param {Array<{seq: number, kind: string, path: string|null, command: string|null}>} events
+ *   Events from `normalize`.
+ * @param {{command?: string|null, owner?: string|null, wrote?: boolean}} facts
+ *   The row's expected command, its owning skill and whether the run wrote.
+ * @returns {'command'|'skill'|'improvised'|'none'|'noOwner'} Which workflow the
+ *   run loaded, `improvised` when it loaded none and wrote, `none` when it acted
+ *   on nothing and `noOwner` when the row maps to no skill.
+ */
+export function workflowPath(events, { command, owner, wrote }) {
+  if (typeof owner !== 'string') return 'noOwner';
+
+  const stream = Array.isArray(events) ? events : [];
+  const wanted = commandParts(command);
+  if (typeof command === 'string' && wanted !== null
+    && (followedBeforeWrite(stream, command) || hostExpanded(stream, wanted))) {
+    return 'command';
+  }
+
+  if (ownerLoadedBeforeWrite(stream, owner)) return 'skill';
+  return wrote === true || firstWritePosition(stream) !== null ? 'improvised' : 'none';
+}
+
 // ───────────────────────────────────────────────────────────────────
 // 8. START STATE
 // ───────────────────────────────────────────────────────────────────
@@ -917,6 +995,10 @@ async function scoreSession(options) {
 // reason.
 const PROMPTS_PATH = resolve(dirname(fileURLToPath(import.meta.url)), 'command-prompts.jsonl');
 
+// The bridge table is the only place a command's owning skill is written down, so
+// the summary reads it once instead of importing a second copy that can drift.
+const BRIDGES_PATH = resolve(dirname(fileURLToPath(import.meta.url)), '../command-bridges/command-bridges.generated.json');
+
 // The start rate is counted over the rows whose policy made a start the outcome to
 // look for, because a row that asked for a write measures something else.
 const START_POLICIES = Object.freeze(['run', 'start']);
@@ -930,6 +1012,7 @@ function rowLabel(row) {
     holdout: false,
     expected_command: typeof row.expected_command === 'string' ? row.expected_command : null,
     expected_policy: typeof row.expected_policy === 'string' ? row.expected_policy : null,
+    expected_top: typeof row.expected_top === 'string' ? row.expected_top : null,
     row_type: typeof row.row_type === 'string' ? row.row_type : null,
     prompt: typeof row.prompt === 'string' ? row.prompt : '',
   };
@@ -948,6 +1031,42 @@ function loadRowLabels() {
   return labels;
 }
 
+// A command is keyed by the parts its row spells, so a mode suffix or a routed
+// target cannot change which owner the command resolves to. A command that parses
+// to nothing is left out rather than keyed under an empty string, and a read or
+// parse error is allowed to end the run because a summary without the owner table
+// would report every run as unowned.
+function loadOwners() {
+  const table = JSON.parse(readFileSync(BRIDGES_PATH, 'utf8'));
+  const byCommand = new Map();
+  const skills = new Set();
+
+  for (const entry of table.entries) {
+    if (typeof entry.skillId !== 'string' || entry.skillId === '') continue;
+    skills.add(entry.skillId);
+    const parts = commandParts(entry.command);
+    if (parts === null) continue;
+    const key = parts.namespace === null ? parts.name : `${parts.namespace}:${parts.name}`;
+    byCommand.set(key, entry.skillId);
+  }
+
+  return { byCommand, skills };
+}
+
+// A row names the command it expects, and some rows name the owning skill at the
+// top instead, so the command is looked up first and the top only when it is a
+// known skill. A row that names neither has no owner to compare a load against.
+function ownerOf(label, owners) {
+  const parts = commandParts(label.expected_command);
+  if (parts !== null) {
+    const key = parts.namespace === null ? parts.name : `${parts.namespace}:${parts.name}`;
+    const owner = owners.byCommand.get(key);
+    if (typeof owner === 'string') return owner;
+  }
+
+  return owners.skills.has(label.expected_top) ? label.expected_top : null;
+}
+
 // The started-command set is fixed rather than drawn from the corpus, so the
 // runner's table is the only place a row's command and mode variant are written
 // down. A label read from that table cannot drift from the prompt the run sent,
@@ -963,6 +1082,7 @@ export function startedLabel(rowId, rows = G2_ROWS) {
     // Its two variants differ only in whether the prompt spelled the command out,
     // and only that fact reaches the judgment.
     expected_policy: 'start',
+    expected_top: null,
     row_type: null,
     prompt: row.variant === 'typed' ? ':auto' : '',
   };
@@ -1142,14 +1262,17 @@ function offerOf(line, label) {
  *
  * @param {object} line - One line of a run log.
  * @param {Map<string, object>} labels - The corpus labels, keyed by row id.
+ * @param {{byCommand: Map<string, string>, skills: Set<string>}} owners - The
+ *   command to skill table and the set of known skills.
  * @returns {Promise<{scored: false, reason: string}
  *   | {scored: true, capped: boolean, startRow: boolean, started: boolean,
  *      offered: boolean, offerFieldAbsent: boolean, offerSeen: boolean,
  *      commandState: string|null, briefDelivered: boolean|'unknown',
  *      wrote: boolean, policy: string|null, unsafe: boolean, commandLines: number,
- *      repeated: number, loop: boolean|null}>}
+ *      repeated: number, loop: boolean|null,
+ *      workflowPath: 'command'|'skill'|'improvised'|'none'|'noOwner'}>}
  */
-async function scoreRun(line, labels) {
+async function scoreRun(line, labels, owners) {
   const rowId = rowIdOf(line);
   if (rowId === null) return { scored: false, reason: 'no_row_id' };
 
@@ -1180,6 +1303,7 @@ async function scoreRun(line, labels) {
   const loop = loopCommand === null ? null : loopInit(events, loopCommand);
   const offer = offerOf(line, label);
   const seen = offerSeenIn(events, label.expected_command);
+  const changedPathWrite = Array.isArray(line.changedPaths) && line.changedPaths.length > 0;
 
   return {
     scored: true,
@@ -1199,7 +1323,7 @@ async function scoreRun(line, labels) {
       : 'unknown',
     // A run's write is a fact the runner records after it restores the worktree,
     // so the line's own path list is the evidence a transcript cannot lose.
-    wrote: Array.isArray(line.changedPaths) && line.changedPaths.length > 0,
+    wrote: changedPathWrite,
     policy: policyOf(label),
     // A loop started without its init writes state no workflow owns, which is the
     // same harm as an unasked write.
@@ -1207,7 +1331,36 @@ async function scoreRun(line, labels) {
     commandLines: lines.length,
     repeated: repeatedCommands(lines),
     loop,
+    // A write the transcript shows counts even when the changed paths omit it,
+    // because the workflow judgement reads what the run acted on rather than what
+    // the runner could restore.
+    workflowPath: workflowPath(events, {
+      command: label.expected_command,
+      owner: ownerOf(label, owners),
+      wrote: changedPathWrite || firstWritePosition(events) !== null,
+    }),
+    // A run that wrote nothing can still have worked the task through reads, shell
+    // steps or another skill, so that fact is kept apart from a run that only replied.
+    acted: workedTheTask(events),
   };
+}
+
+// The framework makes every session run its gate lookups and read its own rules
+// before it answers, so those steps show a session starting, not work on the task.
+const GATE_SHELL = /\b(?:lookup-trigger-index\.mjs|skill-advisor\.cjs)\b/;
+const GATE_DOCUMENT = /(?:^|\/)(?:AGENTS\.md|CLAUDE\.md|REPO RULES\.md|\.skilled\/repo-rules\/[^/]+\.md)$/;
+
+function workedTheTask(events) {
+  return (events ?? []).some((event) => {
+    if (!event) return false;
+    if (event.kind === 'skill') return true;
+    if (event.kind === 'shell') return !GATE_SHELL.test(event.command ?? '');
+    if (event.kind === 'read') {
+      const path = typeof event.path === 'string' ? event.path.replace(/\\/g, '/') : '';
+      return !GATE_DOCUMENT.test(path);
+    }
+    return false;
+  });
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -1242,6 +1395,7 @@ function newTally() {
     repeatedCommandLines: 0,
     loops: 0,
     loopsWithoutInit: 0,
+    workflow: { command: 0, skill: 0, improvised: 0, none: 0, noneActed: 0, noOwner: 0, unscoredOnly: 0 },
     byPolicy: Object.fromEntries(POLICY_KEYS.map((key) => [key, newPolicyTally()])),
   };
 }
@@ -1275,6 +1429,26 @@ function tallyBlock(tally) {
     repeatedCommandLines: tally.repeatedCommandLines,
     loopsWithoutInit: tally.loopsWithoutInit,
     loops: tally.loops,
+    workflow: {
+      command: tally.workflow.command,
+      skill: tally.workflow.skill,
+      improvised: tally.workflow.improvised,
+      none: tally.workflow.none,
+      noneActed: tally.workflow.noneActed,
+      noOwner: tally.workflow.noOwner,
+      unscored: tally.unscored + tally.workflow.unscoredOnly,
+      // The load rate is the outcome reading: every owned run the arm scored is in
+      // its denominator, so a run that skipped the workflow and wrote nothing cannot
+      // leave the count the way it leaves the share.
+      loadRate: rate(
+        tally.workflow.command + tally.workflow.skill,
+        tally.workflow.command + tally.workflow.skill + tally.workflow.improvised + tally.workflow.none,
+      ),
+      share: rate(
+        tally.workflow.command + tally.workflow.skill,
+        tally.workflow.command + tally.workflow.skill + tally.workflow.improvised,
+      ),
+    },
     byPolicy: Object.fromEntries(
       POLICY_KEYS.map((key) => [key, { ...tally.byPolicy[key] }]),
     ),
@@ -1283,6 +1457,10 @@ function tallyBlock(tally) {
 
 function addScored(tally, result) {
   tally.scored += 1;
+  // The path is counted before the policy lookup returns, because a row with no
+  // policy still loaded a workflow or improvised one.
+  tally.workflow[result.workflowPath] += 1;
+  if (result.workflowPath === 'none' && result.acted) tally.workflow.noneActed += 1;
   if (result.capped) tally.capped += 1;
   // An offer is a fact about the head the reader saw, so it counts whatever the
   // row's policy and whether the turn hit its cap. A capped turn still shows that
@@ -1334,6 +1512,7 @@ function addScored(tally, result) {
 // summary states that, where a zero rate would claim a run that never happened.
 async function summarize(options) {
   const labels = loadRowLabels();
+  const owners = loadOwners();
   const summary = {};
 
   for (const line of selectedLines(options)) {
@@ -1347,7 +1526,7 @@ async function summarize(options) {
     // A run that left no readable session still ran, and whether its brief arrived
     // is as unknown as on a scored run, so the count covers every line the log holds.
     if (line.briefDelivered !== true && line.briefDelivered !== false) tally.deliveryUnknown += 1;
-    const result = await scoreRun(line, labels);
+    const result = await scoreRun(line, labels, owners);
     if (!result.scored) {
       tally.unscored += 1;
       entry.unscored += 1;
@@ -1413,6 +1592,15 @@ function writeSummary(summary, json) {
           + ` repeated ${block.repeatedCommandLines},`
           + ` loops without init ${block.loopsWithoutInit} of ${block.loops}`
           + `${block.armIncomplete ? ', arm incomplete' : ''}\n`,
+      );
+      // The block prints beside the arm's rates, because a clean start rate cannot
+      // show that its runs improvised a workflow or that no run could be read for one.
+      process.stdout.write(
+        `    workflow: command ${block.workflow.command}, skill ${block.workflow.skill},`
+          + ` improvised ${block.workflow.improvised}, none ${block.workflow.none},`
+          + ` none acted ${block.workflow.noneActed},`
+          + ` no owner ${block.workflow.noOwner}, unscored ${block.workflow.unscored},`
+          + ` load rate ${block.workflow.loadRate}, share ${block.workflow.share}\n`,
       );
       for (const miss of block.unscoredRuns) {
         process.stdout.write(`    unscored ${miss.rowId}: ${miss.reason}\n`);
