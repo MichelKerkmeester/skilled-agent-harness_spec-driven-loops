@@ -127,6 +127,7 @@ Frontmatter is flat `key: value` lines only: no nesting, no lists.
 `goal_packet` is an optional field that the template leaves out.
 `prepare` and `keep` set it, never you: each call writes the repo-relative directory of the packet whose `goal.md` holds the goal the session works under, and removes the field when that goal cannot be proven, so Codex notes never carry it.
 Leave it out of the note, because a value you write is replaced or removed.
+`prepare` and `keep` also own the optional `goal_ended` field, which they write when a Claude goal was met, failed or cleared and remove any value you write by hand.
 `SESSION_RELAUNCH_GOAL=0` turns the field off.
 On Cursor and Devin the manual command that `prepare` prints starts a first launch, which exports no goal packet, so a receiver there does not get the goal.
 Every section must be non-empty.
