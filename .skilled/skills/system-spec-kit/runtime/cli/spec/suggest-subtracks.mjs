@@ -38,6 +38,9 @@ import {
 const SCRIPT = 'suggest-subtracks';
 const DEFAULT_THRESHOLD = 8;
 const NUMBERED_PACKET = /^\d{3}(?:[-_].+)?$/;
+// A map destination has to be NNN-slug. The relocation preflight refuses any
+// other separator, so a proposed map must never carry one.
+const MAP_PACKET_NAME = /^\d{3}-[A-Za-z0-9._-]+$/;
 
 // The words below say what every packet is rather than what a group is about,
 // so they are ignored on both sides of a comparison.
@@ -147,6 +150,21 @@ function readNumberedPackets(directory) {
     .sort(compareNames);
 }
 
+// Every folder already in the track, declared or not. A proposed group may not
+// reuse one: the relocation preflight refuses a destination that exists without
+// a sub-track declaration.
+function readExistingFolders(directory) {
+  let entries;
+  try {
+    entries = fs.readdirSync(directory, { withFileTypes: true });
+  } catch {
+    return [];
+  }
+  return entries
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name);
+}
+
 function trackChildren(specsRoot, track, tracks) {
   const entry = tracks.find((item) => item.name === track);
   return entry ? entry.children : readNumberedPackets(path.join(specsRoot, track));
@@ -233,8 +251,11 @@ function cluster(folders, termsByFolder) {
   return [...members.values()];
 }
 
-function nameGroups(groups, termsByFolder) {
-  const used = new Set(groups.filter((group) => group.name !== null).map((group) => group.name));
+function nameGroups(groups, termsByFolder, existingFolders) {
+  const used = new Set(existingFolders);
+  for (const group of groups) {
+    if (group.name !== null) used.add(group.name);
+  }
   let nextGroup = 1;
 
   for (const group of groups) {
@@ -268,12 +289,21 @@ function nameGroups(groups, termsByFolder) {
 }
 
 function proposeRetroactive(specsRoot, track, layout, threshold) {
+  const folders = [...layout.packets].sort(compareNames);
+  const misnamed = folders.filter((folder) => !MAP_PACKET_NAME.test(folder));
+  if (misnamed.length > 0) {
+    for (const folder of misnamed) {
+      process.stdout.write(`track ${track}: packet ${folder} is not NNN-slug and must be renamed first\n`);
+    }
+    process.stdout.write(`track ${track}: no map\n`);
+    return;
+  }
+
   if (layout.subTracks.length > 0) {
     process.stdout.write(`track ${track} is already grouped into sub-tracks; no map\n`);
     return;
   }
 
-  const folders = [...layout.packets].sort(compareNames);
   if (folders.length < threshold) {
     process.stdout.write(`track ${track} has ${folders.length} live packets, below the threshold of ${threshold}; no map\n`);
     return;
@@ -316,7 +346,7 @@ function proposeRetroactive(specsRoot, track, layout, threshold) {
     return;
   }
 
-  nameGroups(groups, termsByFolder);
+  nameGroups(groups, termsByFolder, readExistingFolders(path.join(specsRoot, track)));
 
   const mapping = [];
   for (const group of groups) {

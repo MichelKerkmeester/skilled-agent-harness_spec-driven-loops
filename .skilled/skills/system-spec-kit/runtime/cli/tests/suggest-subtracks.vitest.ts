@@ -14,11 +14,12 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { spawnSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 const SPEC_DIR = path.resolve(__dirname, '../spec');
 const SUGGEST = path.join(SPEC_DIR, 'suggest-subtracks.mjs');
+const RELOCATE = path.join(SPEC_DIR, 'relocate.mjs');
 
 let root: string;
 let specs: string;
@@ -108,6 +109,18 @@ function run(...args: string[]) {
   return spawnSync(process.execPath, [SUGGEST, '--specs', specs, ...args], { cwd: root, encoding: 'utf8' });
 }
 
+// The relocate preflight refuses to plan from a tree whose git state it cannot
+// read, so the fixture is committed before the dry run is asked for its status.
+function commitFixture() {
+  execFileSync('git', ['init', '--quiet'], { cwd: root });
+  execFileSync('git', ['add', '-A', '-f'], { cwd: root });
+  execFileSync(
+    'git',
+    ['-c', 'commit.gpgsign=false', '-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.com', 'commit', '--quiet', '--no-verify', '-m', 'fixture'],
+    { cwd: root },
+  );
+}
+
 type Mapping = { from: string, to: string };
 
 function readMapping(stdout: string): Mapping[] {
@@ -164,6 +177,54 @@ describe('suggest-subtracks', () => {
     }
     const destinations = new Set(mapping.map((entry) => entry.to.split('/').slice(0, 2).join('/')));
     expect(destinations.size).toBe(2);
+  });
+
+  it('prints a map the relocate preflight accepts when the track already holds the proposed name', () => {
+    const trackDir = buildFlatDemo();
+    const first = run('--track', 'demo');
+    expect(first.status, first.stderr).toBe(0);
+    const proposed = readMapping(first.stdout)[0].to.split('/')[1];
+
+    // The folder is not declared as a sub-track, so the proposal tool must not
+    // treat its name as free: the preflight refuses an existing undeclared
+    // destination, and the proposal would then be unusable.
+    fs.mkdirSync(path.join(trackDir, proposed), { recursive: true });
+    commitFixture();
+
+    const proposal = run('--track', 'demo');
+    expect(proposal.status, proposal.stderr).toBe(0);
+    expect(readMapping(proposal.stdout)).toHaveLength(10);
+
+    const mapFile = path.join(root, 'proposal.json');
+    fs.writeFileSync(mapFile, proposal.stdout);
+    const preflight = spawnSync(process.execPath, [RELOCATE, '--map', mapFile], {
+      cwd: root,
+      encoding: 'utf8',
+    });
+    expect(preflight.status, preflight.stderr).toBe(1);
+  });
+
+  it('names a packet that cannot be renamed to NNN-slug and prints no map', () => {
+    const folders = [
+      '001-alpha-one',
+      '002-alpha-two',
+      '003_under',
+      '004-alpha-four',
+      '005-beta-one',
+      '006-beta-two',
+      '007-beta-three',
+      '008-beta-four',
+    ];
+    const trackDir = writeTrack('demo', folders);
+    folders.forEach((folder, index) => {
+      writePacket(trackDir, folder, index < 4 ? ['render', 'window'] : ['cache', 'store']);
+    });
+
+    const result = run('--track', 'demo');
+    expect(result.status, result.stderr).toBe(0);
+    expect(result.stdout).toMatch(/003_under[^\n]*must be renamed first/);
+    expect(result.stdout).toContain('no map');
+    expect(result.stdout).not.toContain('"from"');
   });
 
   it('withholds a map below the threshold and prints one when the threshold drops', () => {

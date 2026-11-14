@@ -135,6 +135,36 @@ describe('archive search behavior', () => {
     for (const line of printed) expect(line).toContain('[archived]');
   });
 
+  it.skipIf(!ripgrepAvailable)('lists archived path hits in archivedPaths and keeps paths as strings', () => {
+    const cwd = makeTree();
+    const archivedSpec = 'specs/demo/z_archive/001-old/spec.md';
+    write(cwd, archivedSpec, ['archived path phrase', '']);
+
+    const withArchive = search('path', 'archived path phrase', {
+      cwd,
+      includeArchive: true,
+      roots: ['specs'],
+    });
+    expect(withArchive.exitCode).toBe(EXIT_MATCH);
+    expect(withArchive.paths).toEqual([archivedSpec]);
+    expect(withArchive.archivedPaths).toEqual([archivedSpec]);
+  });
+
+  it.skipIf(!ripgrepAvailable)('reports archivedPaths as empty when every listed path is live', () => {
+    const cwd = makeTree();
+    const liveSpec = 'specs/demo/live-packet/spec.md';
+    write(cwd, liveSpec, ['live path phrase', '']);
+
+    const withArchive = search('path', 'live path phrase', {
+      cwd,
+      includeArchive: true,
+      roots: ['specs'],
+    });
+    expect(withArchive.exitCode).toBe(EXIT_MATCH);
+    expect(withArchive.paths).toEqual([liveSpec]);
+    expect(withArchive.archivedPaths ?? []).toHaveLength(0);
+  });
+
   it.skipIf(!ripgrepAvailable)('labels only the archived hit when a live file carries the same phrase', () => {
     const cwd = makeTree();
     const liveSpec = 'specs/demo/live-packet/spec.md';
