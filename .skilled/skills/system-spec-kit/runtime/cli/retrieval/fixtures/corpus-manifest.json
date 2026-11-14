@@ -1,5 +1,5 @@
 {
-  "corpusHash": "dc917789d446c0baa50b2bea820997a95ab0d349f6d5c946b690ca1962eb080e",
+  "corpusHash": "74ceb81d08b06fb13d5cd0770a6fa2fb8b5896dc92640b5837c30c2365dbc2da",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27212,
+  "includedPathCount": 27256,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7513,6 +7513,7 @@
     ".skilled/skills/system-deep-loop/changelog/v1.6.23.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.24.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.25.0.md",
+    ".skilled/skills/system-deep-loop/changelog/v1.6.26.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.3.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.4.0.md",
     ".skilled/skills/system-deep-loop/changelog/v1.6.5.0.md",
@@ -8787,6 +8788,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.9.3.0.md",
     ".skilled/skills/system-spec-kit/config/README.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/compaction-history-lookup.md",
+    ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/packet-purpose-carry.md",
     ".skilled/skills/system-spec-kit/feature-catalog/context-preservation/session-relaunch-loop.md",
     ".skilled/skills/system-spec-kit/feature-catalog/doctor-commands/category-overview.md",
     ".skilled/skills/system-spec-kit/feature-catalog/feature-catalog.md",
@@ -8887,6 +8889,11 @@
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-sibling-reproof-conversation.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/decision-capture-transcript-sweeps.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/dist-freshness-guard.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/packet-purpose-claude-compaction.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/packet-purpose-pi-compaction.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/packet-purpose-relaunch.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/packet-purpose-resume.md",
+    ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/packet-purpose-save.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-cleanup-plugin.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
     ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-command-runtimes.md",
@@ -10639,6 +10646,17 @@
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/plan.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop/acceptance-criteria.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/acceptance-criteria.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/goal.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/implementation-summary.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/plan.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/spec.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/tasks.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/goal.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/handover.md",
     "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/spec.md",
@@ -26728,11 +26746,37 @@
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/012-purpose-reader-precision/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/012-purpose-reader-precision/goal.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/012-purpose-reader-precision/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/012-purpose-reader-precision/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/012-purpose-reader-precision/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/012-purpose-reader-precision/tasks.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill/acceptance-criteria.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill/goal.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill/implementation-summary.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill/plan.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill/spec.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill/tasks.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/decision-record.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/goal.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/implementation-summary.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/plan.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/research/research.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/deep-review-dashboard.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/deep-review-strategy.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/iterations/iteration-001.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/iterations/iteration-002.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/iterations/iteration-003.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/iterations/iteration-004.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/iterations/iteration-005.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/prompts/iteration-1.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/prompts/iteration-2.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/prompts/iteration-3.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/prompts/iteration-4.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/prompts/iteration-5.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/resource-map.md",
+    "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/review/review-report.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md",
     "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/tasks.md",
     "specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/001-step-order-acceptance-after-development/acceptance-criteria.md",
@@ -27244,7 +27288,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "6fcdc6554e1b2924602b9efb027746ea94e228c7273584baf8c97111e1fc0e94",
+  "manifestHash": "0fe7fa25b820c3f3f6865995881cf7cc5e90d62d80757870529ea00fb14618ab",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
@@ -29604,6 +29648,14 @@
     },
     {
       "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/017-dsh-rc3-repin/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/018-dsh-single-executor-loop/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/cli-external-orchestration/runtime-lifecycle/002-cli-deepseek-harness-creation/019-dsh-single-executor-hardening/scratch",
       "reason": "excluded directory"
     },
     {
@@ -38628,6 +38680,14 @@
     },
     {
       "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/011-empty-parent-purpose-backfill/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/012-purpose-reader-precision/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/013-purpose-docs-and-backfill/scratch",
       "reason": "excluded directory"
     },
     {
