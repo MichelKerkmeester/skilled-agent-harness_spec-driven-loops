@@ -137,7 +137,7 @@
       "destructive_policy": {
         "has_destructive_ops": true,
         "gated": true,
-        "operations": ["implement and complete mutate repository code", "run validation gates", "autopilot merges git branches after clean verification"]
+        "operations": ["implement and complete mutate repository code", "run validation gates", "autopilot works in the workspace the operator chose and never merges or pushes"]
       },
       "timeout_bounds": null,
       "invocation_aliases": ["/speckit:plan", "/speckit:implement", "/speckit:complete", "/speckit:resume", ":auto suffix", ":confirm suffix", ":autopilot suffix", ":unattended suffix", "--unattended flag"],

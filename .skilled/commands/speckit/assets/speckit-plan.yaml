@@ -17,7 +17,7 @@ execution_mode:
   source: "$ARGUMENTS"
   values: [auto, confirm, autopilot]
   default: confirm
-  rule: "Under confirm, execute every checkpoint block in order at the step that carries it, and apply the mode_overrides.confirm wording. Under auto or autopilot, skip every block whose applies_to is confirm and every checkpoint_confirm flag and keep the autonomous wording of this file. Under autopilot, unattended task metadata is required as the command router states."
+  rule: "Under confirm, execute every checkpoint block in order at the step that carries it, and apply the mode_overrides.confirm wording. Under auto or autopilot, skip every block whose applies_to is confirm and every checkpoint_confirm flag and keep the autonomous wording of this file. Under autopilot, the unattended_autopilot block of this file is the contract for the workspace, the terminal result, the reason codes and the task metadata."
 checkpoints: [step_1_request_analysis, step_2_pre_work_review, step_3_specification, step_4_clarification, step_5_planning, step_5_5_task_breakdown, step_6_save_context, step_7_handover_check]
 mode_overrides:
   confirm:
@@ -34,7 +34,7 @@ mode_overrides:
     step_completion_rule: "Execute ALL activities -> Verify ALL outputs -> Present checkpoint for approval -> Mark step complete after approval -> ONLY THEN proceed. NEVER skip steps. NEVER proceed without user approval outside child dispatch. NEVER implement without /speckit:implement."
     user_response_handling: "{ accept: \"Run /speckit:save\", decline: \"Proceed to termination\", default: \"Wait for user response\" }"
     principle: "Execute planning workflow with user approval at each checkpoint outside child dispatch"
-    checkpoint_behavior: "[Complete step activities, Present results summary, Present options for approval, Wait for user response, Process feedback, Proceed or modify as directed]"
+    checkpoint_behavior: "Complete the step, present the results and the options, then wait for the response. Approve marks the step complete and continues. An option that shows information (a label that starts with Review, View, Show or Check) shows it, then presents the same checkpoint again. An option that asks for a change (a label that starts with Modify, plus Address Blockers and Adjust Baseline) applies the change, reruns that step's post_write_validation when the step has one, then presents the same checkpoint again. Any other option does what its description says."
     child_dispatch_checkpoints: "When child_dispatch applies, record each checkpoint question with its first option as the default in the lineage directory and continue."
 
 # ─────────────────────────────────────────────────────────────────
@@ -69,6 +69,55 @@ operating_mode:
   approvals: none
   tracking: progressive_task_checklists
   validation: continuous_self_validation
+
+unattended_autopilot:
+  enabled: true
+  default_enabled: false
+  activation_flags: [":autopilot", ":unattended", "--unattended"]
+  execution_mode_value: autopilot
+  compatibility:
+    auto_unchanged: true
+    autopilot_is_not_auto_alias: true
+  workspace_choice:
+    values: [worktree, current_branch]
+    bound_by: "A pre-bound setup answer or the one startup question. After startup autopilot waits for no answer."
+    worktree: "Create the branch only with `git worktree add -b <branch> <path>`, as sk-git SKILL.md section 3 states, and run every later step inside that worktree."
+    current_branch: "Stay on the branch that is checked out. Create no branch."
+    inherited: "A run with AI_SESSION_CHILD=1, or one already inside a linked worktree, takes current_branch."
+    unbound: "With no bound workspace_choice, emit the terminal result with reason uncertainty_blocked before any write."
+    forbidden: "Never run git branch, git checkout -b, git switch -c, git merge or git push."
+  terminal_result:
+    output_prefix: SPECKIT_AUTOPILOT_RESULT
+    schema:
+      required_fields: [mode, ok, reason, branch, merged, verification]
+      success_reason: null
+      failure_reason_field: reason
+      success: '{"mode":"autopilot","ok":true,"reason":null,"branch":"<branch>","merged":false,"verification":"passed"}'
+      failure: '{"mode":"autopilot","ok":false,"reason":"<terminal_reason_code>","branch":"<branch>","merged":false,"verification":"<summary>"}'
+    terminal_reason_codes:
+      - no_eligible_tasks
+      - retry_exhausted
+      - verification_failed
+      - uncertainty_blocked
+  lifecycle_sequence:
+    - bind_workspace
+    - propose_unattended
+    - apply_unattended
+    - archive_in_place
+    - verify_clean
+  sequence_note: "A workflow runs the entries its own steps implement, in this order."
+  stop_rule: "After startup no branch waits for an answer. A branch whose modes map names a default takes it. A branch that cannot continue without an answer emits the terminal result with reason uncertainty_blocked."
+  p1_rule: "An unfinished P1 item stays Unmet, the terminal result names it with reason verification_failed and the run does not report success."
+  merge_rule: "Autopilot never merges and never pushes. A run that passed verification reports its branch with merged false, and the merge is left to the operator."
+  branch_preserved_failure:
+    preserve_branch: true
+    merge: false
+    branch_preserved: true
+    emit_terminal_result: true
+  task_metadata_contract:
+    required_fields: [agent, deps, touched-files]
+    written_by: "The workflow step whose key ends in _task_breakdown."
+    missing_or_uncertain_field_reason: uncertainty_blocked
 
 # ─────────────────────────────────────────────────────────────────
 # OPTIONAL WORKFLOWS
@@ -108,6 +157,7 @@ optional_workflows:
       validation: "bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh --recursive {parent_folder}"
     checkpoint:
       enabled: true
+      modes: { confirm: "ask the prompt below and wait", auto: "take Y, continue with the first child and list it under Defaults taken", autopilot: "take Y and continue with the first child" }
       prompt: |
         WORKFLOW CHECKPOINT - Phase Decomposition Complete
         Parent: {parent_folder} | Phases: {phase_count} children created
@@ -450,7 +500,7 @@ confidence_framework:
   thresholds:
     high: { range: "80-100%", action: "Proceed with citable source" }
     medium: { range: "40-79%", action: "Proceed with caution, document assumptions" }
-    low: { range: "0-39%", action: "STOP - Ask clarification with A/B/C options" }
+    low: { range: "0-39%", action: "STOP - Ask clarification with A/B/C options", modes: { confirm: "ask the question and wait", auto: "ask the question and wait, because confidence below 40 is a required stop", autopilot: "emit SPECKIT_AUTOPILOT_RESULT with reason uncertainty_blocked" } }
   scoring_weights: { requirements_clarity: 0.30, technical_approach: 0.25, pattern_alignment: 0.25, risk_awareness: 0.20 }
   reply_format: ["Confidence: NN%", "Top factors: 2-3 bullets", "Next action"]
   escalation: { timebox_minutes: 10, failed_threshold: 2 }
@@ -523,6 +573,7 @@ workflow:
       inline_start_intake:
         execution_mode: "{execution_mode}"
         prompt_mode: "single_consolidated_prompt"
+        modes: { confirm: "ask the intake questions in the one consolidated setup prompt", auto: "resolve each field as the auto resolution table of the presentation file states and list each default under Defaults taken. The spec folder question is Gate 3 and is still put to the operator when no folder is bound", autopilot: "resolve each field from the pre-bound setup answers and the defaults. A required field with neither ends with reason uncertainty_blocked before any write" }
         questions:
           - "Questions from `.skilled/skills/system-spec-kit/references/workflows/intake-contract.md` §5 (Q0-Q4+) are absorbed inline into the parent setup prompt"
         bind_fields:
@@ -568,6 +619,7 @@ workflow:
         - intake_emit_complete: true
       message: "Intake-only mode complete. Published trio at {spec_path}: spec.md, description.json, graph-metadata.json. Planning Steps 1-7 bypassed. Run /speckit:plan (without --intake-only) to resume planning."
       exit_status: OK
+      presentation: "Render the Intake-Only Result block of speckit-plan-presentation.txt in place of the all-steps success text."
     continue_condition:
       # Typed predicate (BooleanExpr); legacy string literal preserved for backwards compatibility.
       when:
@@ -596,6 +648,7 @@ workflow:
           action: "STOP - Ask clarification"
           format: '"I need clarity (confidence: [NN%]). Please clarify: A) [interpretation] B) [interpretation] C) [interpretation]"'
           wait_for: "User response"
+          modes: { confirm: "ask the question and wait", auto: "ask the question and wait, because confidence below 40 is a required stop", autopilot: "emit SPECKIT_AUTOPILOT_RESULT with reason uncertainty_blocked" }
     validation: understanding_confirmed
     checkpoint:
       applies_to: confirm
@@ -621,6 +674,7 @@ workflow:
       enabled: true
       phase_domains: [code, docs]
       decision_logic: "Check override phrases -> session preference -> sequential dependencies -> calculate complexity -> <20% proceed directly, >=20% + 2 domains ALWAYS ask user. No auto-dispatch."
+      modes: { confirm: "ask at ask_min, as decision_logic states", auto: "direct: take the fallback and list it under Defaults taken", autopilot: "direct: take the fallback" }
       on_parallel_dispatch:
         agents: [{ name: spec_explorer, focus: "Existing specs and patterns" }, { name: requirement_analyzer, focus: "Similar features and requirements" }]
         dispatch_note: "Spawn agents in SINGLE message for parallel execution"
@@ -645,6 +699,7 @@ workflow:
           action: "STOP - Ask clarification before finalizing spec"
           format: '"Spec confidence low ([NN%]). Need clarity: A) [ambiguity 1] B) [ambiguity 2] C) [research spike suggestion]"'
           wait_for: "User response before finalizing spec.md"
+          modes: { confirm: "ask the question and wait", auto: "ask the question and wait, because confidence below 40 is a required stop", autopilot: "emit SPECKIT_AUTOPILOT_RESULT with reason uncertainty_blocked" }
       citation_requirement: "[SOURCE: file.md:lines] for code | [CITATION: URL] for external | [CITATION: NONE] for general knowledge"
       citation_check: "validate.sh --strict resolves each [SOURCE: path:line] in research and review artifacts through its SOURCE_TAGS rule and warns on a gone file, a moved file or a line past the end, for packets created after its cutoff. A pass proves the path and line exist, not that they support the claim"
     post_write_validation:
@@ -789,7 +844,8 @@ workflow:
           action: "STOP - Request research spike or clarification"
           format: '"Planning confidence low ([NN%]). A) Research spike: [question] B) Simplify scope C) Clarify requirements: [question]"'
           wait_for: "User decision"
-      escalation: { trigger: "2 failed attempts OR 10 minutes elapsed", action: "Present options with current findings" }
+          modes: { confirm: "ask the question and wait", auto: "ask the question and wait, because confidence below 40 is a required stop", autopilot: "emit SPECKIT_AUTOPILOT_RESULT with reason uncertainty_blocked" }
+      escalation: { trigger: "2 failed attempts OR 10 minutes elapsed", action: "Present options with current findings", modes: { confirm: "ask: present the options and wait", auto: "take the most conservative option, record it in plan.md as an assumption with a RISK marker and list it under Defaults taken", autopilot: "emit SPECKIT_AUTOPILOT_RESULT with reason retry_exhausted" } }
     post_write_validation:
       # cadence: this gate re-validates the documents this step wrote; a later step's writes get their own gate
       command: ".skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh [SPEC_FOLDER] --strict"
@@ -808,6 +864,9 @@ workflow:
 
   step_5_5_task_breakdown:
     purpose: Write tasks.md from the finished plan, so the plan leaves a task list for /speckit:implement
+    unattended_task_metadata:
+      applies_to: autopilot
+      rule: "Every task row carries agent, deps and touched-files. When a field cannot be set, end with reason uncertainty_blocked, as unattended_autopilot.task_metadata_contract states."
     activities:
     - Load plan.md for tech stack and architecture
     - Load spec.md for user stories and priorities
@@ -901,7 +960,7 @@ autonomous_execution:
 # ERROR RECOVERY
 # ─────────────────────────────────────────────────────────────────
 error_recovery:
-  step_validation_fails: "Review requirements, ask clarifying questions, retry"
+  step_validation_fails: { action: "Review requirements, ask clarifying questions, retry", modes: { confirm: "ask the clarifying questions and wait", auto: "review the requirements and retry with no question. After the third failed retry stop and report the failed validation", autopilot: "review the requirements and retry. After the third failed retry emit SPECKIT_AUTOPILOT_RESULT with reason retry_exhausted" } }
   spec_ambiguity_persists: "Document as assumption, add to risk matrix"
   environment_unavailable: "Skip browser testing, document limitation"
   unexpected_error: "Log error, document state, attempt graceful recovery"
@@ -915,11 +974,14 @@ rules:
   - document_all_decisions
   - validate_before_completion
   - self_validate_and_proceed
-  - do_not_prompt_for_user_approval
   - use_checklist_for_verification_level_2_plus
   - mark_checklist_items_with_evidence
   - complete_all_p0_items_before_done
+  CONFIRM_ONLY:
   - get_user_approval_for_p1_deferrals
+  AUTO_AND_AUTOPILOT:
+  - do_not_prompt_for_user_approval
+  - leave_unfinished_p1_items_unmet_and_do_not_report_success
   NEVER:
   - skip_workflow_steps
   - proceed_beyond_planning

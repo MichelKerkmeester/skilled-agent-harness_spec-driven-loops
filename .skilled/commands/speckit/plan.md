@@ -65,12 +65,12 @@ values without an interactive prompt.
 | Mode | Target |
 |------|----------|
 | `:auto` | `.skilled/commands/speckit/assets/speckit-plan.yaml` with `execution_mode` auto: confirm-only checkpoint blocks skipped |
-| `:autopilot`, `:unattended`, or `--unattended` | `.skilled/commands/speckit/assets/speckit-plan.yaml` with `execution_mode` autopilot and unattended task metadata required |
+| `:autopilot`, `:unattended`, or `--unattended` | `.skilled/commands/speckit/assets/speckit-plan.yaml` with `execution_mode` autopilot under the workflow's `unattended_autopilot` block, with unattended task metadata required |
 | `:confirm` or interactive choice | `.skilled/commands/speckit/assets/speckit-plan.yaml` with `execution_mode` confirm: every `applies_to: confirm` checkpoint runs and `mode_overrides.confirm` wording applies |
 
 ### UNATTENDED TASK METADATA
 
-When planning for `:autopilot`, `:unattended`, or `--unattended`, every executable task row in `tasks.md` must carry unattended-ready metadata so later implementation can decide eligibility without asking the user.
+When planning for `:autopilot`, `:unattended`, or `--unattended`, the workflow's task breakdown step, `step_5_5_task_breakdown`, writes the task rows, and every executable task row in `tasks.md` must carry unattended-ready metadata so later implementation can decide eligibility without asking the user.
 
 Required fields:
 
