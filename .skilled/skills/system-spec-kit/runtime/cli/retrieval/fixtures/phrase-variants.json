@@ -1,5 +1,5 @@
 {
-  "manifestHash": "dff8b8b68f85772badff3d86b2bf61839da37913a90f20700481b7fc2cc0606a",
+  "manifestHash": "54bffa16d8a33c1705da49fb334f1851c12641b646cf6b29f67f644244387151",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -82232,6 +82232,9 @@
     "phase 6 plan": [
       "phase 6 plan"
     ],
+    "phase 6 purpose carry follow ups": [
+      "phase 6 purpose carry follow ups"
+    ],
     "phase 6 regeneration acceptance criteria": [
       "phase 6 regeneration acceptance criteria"
     ],
@@ -86296,6 +86299,9 @@
     "prebuild clean wipes dist": [
       "prebuild clean wipes dist"
     ],
+    "precompact active spec folder line": [
+      "precompact active spec folder line"
+    ],
     "precompact authored continuity snapshot": [
       "precompact authored continuity snapshot"
     ],
@@ -87719,6 +87725,18 @@
     ],
     "purge qwen3 embeddings": [
       "purge qwen3 embeddings"
+    ],
+    "purpose carry follow ups": [
+      "purpose carry follow ups"
+    ],
+    "purpose carry follow ups implementation summary": [
+      "purpose carry follow ups implementation summary"
+    ],
+    "purpose carry follow ups plan": [
+      "purpose carry follow ups plan"
+    ],
+    "purpose carry follow ups tasks": [
+      "purpose carry follow ups tasks"
     ],
     "purpose first readme": [
       "purpose-first readme"
@@ -95258,6 +95276,9 @@
     "resume and restart session events": [
       "resume and restart session events"
     ],
+    "resume brief reply format rows": [
+      "resume brief reply format rows"
+    ],
     "resume classifier restart evidence": [
       "resume classifier restart evidence"
     ],
@@ -100030,6 +100051,9 @@
     ],
     "scaffold prunes remote tracking refs": [
       "scaffold prunes remote-tracking refs"
+    ],
+    "scaffold purpose sentence live parents": [
+      "scaffold purpose sentence live parents"
     ],
     "scaffold real default status": [
       "scaffold real default status"
