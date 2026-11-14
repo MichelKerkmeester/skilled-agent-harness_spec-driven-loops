@@ -1,5 +1,5 @@
 {
-  "manifestHash": "31bb72a29e1c74e3d9ee7ce1d0c2ca5ac06c52ba8e0871a391503ac41af0f07b",
+  "manifestHash": "fd813741009c66728510ac808852032e27a627960e1840248a5ec3f8dd50cc80",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -12552,6 +12552,9 @@
     "archive sh track": [
       "archive.sh track"
     ],
+    "archived label in path search json": [
+      "archived label in path search json"
+    ],
     "archived label in ripgrep results": [
       "archived label in ripgrep results"
     ],
@@ -14015,6 +14018,9 @@
     ],
     "bare integer reference hit rate": [
       "bare integer reference hit rate"
+    ],
+    "bare sibling folder name in a phase map": [
+      "bare sibling folder name in a phase map"
     ],
     "bare string statement hygiene": [
       "bare string statement hygiene"
@@ -80714,6 +80720,9 @@
     "phase 10 reachability and attribution": [
       "phase 10 reachability and attribution"
     ],
+    "phase 10 real pipeline tests": [
+      "phase 10 real pipeline tests"
+    ],
     "phase 10 reference readability research": [
       "phase 10 reference readability research"
     ],
@@ -82436,6 +82445,9 @@
     "phase 6 release conformance review": [
       "phase 6 release conformance review"
     ],
+    "phase 6 relocate resume and preflight": [
+      "phase 6 relocate resume and preflight"
+    ],
     "phase 6 remediation deep review": [
       "phase 6 remediation deep review"
     ],
@@ -82598,6 +82610,9 @@
     "phase 7 per runtime behaviour proof": [
       "phase 7 per runtime behaviour proof"
     ],
+    "phase 7 phase map and prearchive rewrites": [
+      "phase 7 phase map and prearchive rewrites"
+    ],
     "phase 7 playbook catalog readme alignment": [
       "phase 7 playbook catalog readme alignment"
     ],
@@ -82742,6 +82757,9 @@
     "phase 8 remediation deep review": [
       "phase 8 remediation deep review"
     ],
+    "phase 8 restore and phase numbering": [
+      "phase 8 restore and phase numbering"
+    ],
     "phase 8 review 3 remediation": [
       "phase 8 review 3 remediation"
     ],
@@ -82849,6 +82867,9 @@
     ],
     "phase 9 pi guard classification": [
       "phase 9 pi guard classification"
+    ],
+    "phase 9 proposal search and routing": [
+      "phase 9 proposal search and routing"
     ],
     "phase 9 reducer config message": [
       "phase 9 reducer config message"
@@ -83085,6 +83106,21 @@
     "phase main loop cli branches buildlineagecommand": [
       "phase_main_loop cli branches buildLineageCommand"
     ],
+    "phase map and prearchive rewrites": [
+      "phase map and prearchive rewrites"
+    ],
+    "phase map and prearchive rewrites goal": [
+      "phase map and prearchive rewrites goal"
+    ],
+    "phase map and prearchive rewrites implementation summary": [
+      "phase map and prearchive rewrites implementation summary"
+    ],
+    "phase map and prearchive rewrites plan": [
+      "phase map and prearchive rewrites plan"
+    ],
+    "phase map and prearchive rewrites tasks": [
+      "phase map and prearchive rewrites tasks"
+    ],
     "phase map repair evidence": [
       "phase map repair evidence"
     ],
@@ -83117,6 +83153,9 @@
     ],
     "phase names tasks": [
       "phase names tasks"
+    ],
+    "phase numbering counts archived phases": [
+      "phase numbering counts archived phases"
     ],
     "phase one analysis plan": [
       "phase one analysis plan"
@@ -87584,6 +87623,21 @@
     "propagate enhances": [
       "propagate enhances"
     ],
+    "proposal search and routing": [
+      "proposal search and routing"
+    ],
+    "proposal search and routing goal": [
+      "proposal search and routing goal"
+    ],
+    "proposal search and routing implementation summary": [
+      "proposal search and routing implementation summary"
+    ],
+    "proposal search and routing plan": [
+      "proposal search and routing plan"
+    ],
+    "proposal search and routing tasks": [
+      "proposal search and routing tasks"
+    ],
     "propose sub tracks": [
       "propose sub-tracks"
     ],
@@ -89789,6 +89843,21 @@
     ],
     "real packet goal evidence": [
       "real packet goal evidence"
+    ],
+    "real pipeline tests": [
+      "real pipeline tests"
+    ],
+    "real pipeline tests goal": [
+      "real pipeline tests goal"
+    ],
+    "real pipeline tests implementation summary": [
+      "real pipeline tests implementation summary"
+    ],
+    "real pipeline tests plan": [
+      "real pipeline tests plan"
+    ],
+    "real pipeline tests tasks": [
+      "real pipeline tests tasks"
     ],
     "real tree census": [
       "real tree census"
@@ -92550,6 +92619,24 @@
     "relocate mjs move renumber re parent": [
       "relocate.mjs move renumber re-parent"
     ],
+    "relocate rerun finishes late steps": [
+      "relocate rerun finishes late steps"
+    ],
+    "relocate resume and preflight": [
+      "relocate resume and preflight"
+    ],
+    "relocate resume and preflight goal": [
+      "relocate resume and preflight goal"
+    ],
+    "relocate resume and preflight implementation summary": [
+      "relocate resume and preflight implementation summary"
+    ],
+    "relocate resume and preflight plan": [
+      "relocate resume and preflight plan"
+    ],
+    "relocate resume and preflight tasks": [
+      "relocate resume and preflight tasks"
+    ],
     "relocate specs folder": [
       "relocate specs folder"
     ],
@@ -92570,6 +92657,9 @@
     ],
     "relocate specs folder relocation implications research changelog": [
       "relocate specs folder relocation implications research changelog"
+    ],
+    "relocate suite with the true writers": [
+      "relocate suite with the true writers"
     ],
     "relocation engine": [
       "relocation engine"
@@ -95338,6 +95428,21 @@
     ],
     "restart loop fix shipped": [
       "restart loop fix shipped"
+    ],
+    "restore and phase numbering": [
+      "restore and phase numbering"
+    ],
+    "restore and phase numbering goal": [
+      "restore and phase numbering goal"
+    ],
+    "restore and phase numbering implementation summary": [
+      "restore and phase numbering implementation summary"
+    ],
+    "restore and phase numbering plan": [
+      "restore and phase numbering plan"
+    ],
+    "restore and phase numbering tasks": [
+      "restore and phase numbering tasks"
     ],
     "restore by count verification": [
       "restore by count verification"

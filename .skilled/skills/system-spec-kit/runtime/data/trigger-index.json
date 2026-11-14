@@ -1,5 +1,5 @@
 {
-  "manifestHash": "31bb72a29e1c74e3d9ee7ce1d0c2ca5ac06c52ba8e0871a391503ac41af0f07b",
+  "manifestHash": "fd813741009c66728510ac808852032e27a627960e1840248a5ec3f8dd50cc80",
   "normalization": {
     "case": "lower",
     "maxPhraseLength": 120,
@@ -18448,6 +18448,31 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/plan.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/spec.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/005-tests-and-closeout/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/006-relocate-resume-and-preflight/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/006-relocate-resume-and-preflight/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/006-relocate-resume-and-preflight/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/006-relocate-resume-and-preflight/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/006-relocate-resume-and-preflight/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/007-phase-map-and-prearchive-rewrites/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/007-phase-map-and-prearchive-rewrites/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/007-phase-map-and-prearchive-rewrites/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/007-phase-map-and-prearchive-rewrites/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/007-phase-map-and-prearchive-rewrites/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/008-restore-and-phase-numbering/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/008-restore-and-phase-numbering/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/008-restore-and-phase-numbering/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/008-restore-and-phase-numbering/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/008-restore-and-phase-numbering/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/009-proposal-search-and-routing/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/009-proposal-search-and-routing/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/009-proposal-search-and-routing/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/009-proposal-search-and-routing/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/009-proposal-search-and-routing/tasks.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests/implementation-summary.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests/plan.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests/spec.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/010-real-pipeline-tests/tasks.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/decision-record.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/goal.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
@@ -20020,7 +20045,7 @@
       13871
     ],
     "005 subtrack proposal and archive reach operator decisions": [
-      18438
+      18463
     ],
     "005 tasks promote qwen": [
       13053
@@ -31583,6 +31608,9 @@
       18131,
       18132
     ],
+    "archived label in path search json": [
+      18456
+    ],
     "archived label in ripgrep results": [
       3177
     ],
@@ -33122,6 +33150,9 @@
     "bare integer reference hit rate": [
       16027,
       16029
+    ],
+    "bare sibling folder name in a phase map": [
+      18446
     ],
     "bare string statement hygiene": [
       7409
@@ -48966,7 +48997,7 @@
       18271,
       18277,
       18282,
-      18439
+      18464
     ],
     "completion criteria copied": [
       16634,
@@ -60944,7 +60975,7 @@
       2877
     ],
     "deterministic packet relocation": [
-      18440
+      18465
     ],
     "deterministic provenance merge": [
       9665
@@ -66544,7 +66575,7 @@
       18271,
       18277,
       18282,
-      18439
+      18464
     ],
     "durable fan in failure plan": [
       9660
@@ -77133,7 +77164,7 @@
       18271,
       18277,
       18282,
-      18439
+      18464
     ],
     "goal binding gaps": [
       8135
@@ -100968,7 +100999,7 @@
       3315
     ],
     "opt in archive search": [
-      18440
+      18465
     ],
     "opt in collector posture": [
       13457
@@ -103180,7 +103211,7 @@
       18271,
       18277,
       18282,
-      18439
+      18464
     ],
     "packet goal authoring boundary": [
       8138
@@ -105322,6 +105353,9 @@
     "phase 10 reachability and attribution": [
       11361
     ],
+    "phase 10 real pipeline tests": [
+      18461
+    ],
     "phase 10 reference readability research": [
       6421
     ],
@@ -107048,6 +107082,9 @@
     "phase 6 release conformance review": [
       9348
     ],
+    "phase 6 relocate resume and preflight": [
+      18441
+    ],
     "phase 6 remediation deep review": [
       6816
     ],
@@ -107210,6 +107247,9 @@
     "phase 7 per runtime behaviour proof": [
       11345
     ],
+    "phase 7 phase map and prearchive rewrites": [
+      18446
+    ],
     "phase 7 playbook catalog readme alignment": [
       17758
     ],
@@ -107354,6 +107394,9 @@
     "phase 8 remediation deep review": [
       8278
     ],
+    "phase 8 restore and phase numbering": [
+      18451
+    ],
     "phase 8 review 3 remediation": [
       5754
     ],
@@ -107461,6 +107504,9 @@
     ],
     "phase 9 pi guard classification": [
       6873
+    ],
+    "phase 9 proposal search and routing": [
+      18456
     ],
     "phase 9 reducer config message": [
       7054
@@ -107708,6 +107754,21 @@
     "phase main loop cli branches buildlineagecommand": [
       10609
     ],
+    "phase map and prearchive rewrites": [
+      18446
+    ],
+    "phase map and prearchive rewrites goal": [
+      18443
+    ],
+    "phase map and prearchive rewrites implementation summary": [
+      18444
+    ],
+    "phase map and prearchive rewrites plan": [
+      18445
+    ],
+    "phase map and prearchive rewrites tasks": [
+      18447
+    ],
     "phase map repair evidence": [
       17407
     ],
@@ -107744,6 +107805,9 @@
     ],
     "phase names tasks": [
       12290
+    ],
+    "phase numbering counts archived phases": [
+      18451
     ],
     "phase one analysis plan": [
       16514
@@ -112515,6 +112579,21 @@
       2921,
       2944
     ],
+    "proposal search and routing": [
+      18456
+    ],
+    "proposal search and routing goal": [
+      18453
+    ],
+    "proposal search and routing implementation summary": [
+      18454
+    ],
+    "proposal search and routing plan": [
+      18455
+    ],
+    "proposal search and routing tasks": [
+      18457
+    ],
     "propose sub tracks": [
       3130
     ],
@@ -114866,6 +114945,21 @@
     ],
     "real packet goal evidence": [
       8185
+    ],
+    "real pipeline tests": [
+      18461
+    ],
+    "real pipeline tests goal": [
+      18458
+    ],
+    "real pipeline tests implementation summary": [
+      18459
+    ],
+    "real pipeline tests plan": [
+      18460
+    ],
+    "real pipeline tests tasks": [
+      18462
     ],
     "real tree census": [
       16896
@@ -117731,6 +117825,24 @@
     "relocate mjs move renumber re parent": [
       18411
     ],
+    "relocate rerun finishes late steps": [
+      18441
+    ],
+    "relocate resume and preflight": [
+      18441
+    ],
+    "relocate resume and preflight goal": [
+      18438
+    ],
+    "relocate resume and preflight implementation summary": [
+      18439
+    ],
+    "relocate resume and preflight plan": [
+      18440
+    ],
+    "relocate resume and preflight tasks": [
+      18442
+    ],
     "relocate specs folder": [
       18115
     ],
@@ -117751,6 +117863,9 @@
     ],
     "relocate specs folder relocation implications research changelog": [
       18109
+    ],
+    "relocate suite with the true writers": [
+      18461
     ],
     "relocation engine": [
       18411
@@ -120727,6 +120842,21 @@
     ],
     "restart loop fix shipped": [
       13539
+    ],
+    "restore and phase numbering": [
+      18451
+    ],
+    "restore and phase numbering goal": [
+      18448
+    ],
+    "restore and phase numbering implementation summary": [
+      18449
+    ],
+    "restore and phase numbering plan": [
+      18450
+    ],
+    "restore and phase numbering tasks": [
+      18452
     ],
     "restore by count verification": [
       15662
@@ -144957,7 +145087,7 @@
       18413
     ],
     "subtrack proposal and archive reach phase parent spec": [
-      18440
+      18465
     ],
     "subtrack proposal goal": [
       18414
@@ -157394,7 +157524,7 @@
       14095
     ],
     "z archive on every subtrack": [
-      18440
+      18465
     ],
     "z archive parent id resolution": [
       15971
