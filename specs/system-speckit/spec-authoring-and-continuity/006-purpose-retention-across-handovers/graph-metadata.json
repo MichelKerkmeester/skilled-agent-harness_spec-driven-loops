@@ -56,13 +56,13 @@
       "templates/addons/acceptance-criteria.md.tmpl",
       "templates/addons/goal.md.tmpl",
       "runtime/hooks/claude/compact-inject.ts",
+      "runtime/lib/spec/packet-purpose.ts",
       "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md",
       "research/lineages/deepseek-1/research.md",
       "research/lineages/deepseek-2/research.md",
       "runtime/lib/continuity/thin-continuity-record.ts",
       ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts",
-      ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
-      ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts"
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts"
     ],
     "entities": [
       {
@@ -138,15 +138,15 @@
         "source": "derived"
       },
       {
-        "name": "thin-continuity-record.ts",
+        "name": "packet-purpose.ts",
         "kind": "code",
-        "path": "runtime/lib/continuity/thin-continuity-record.ts",
+        "path": "runtime/lib/spec/packet-purpose.ts",
         "source": "derived"
       },
       {
-        "name": "hook-state.ts",
+        "name": "thin-continuity-record.ts",
         "kind": "code",
-        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/hook-state.ts",
+        "path": "runtime/lib/continuity/thin-continuity-record.ts",
         "source": "derived"
       },
       {
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "The operator reported on 2026-11-13 that the core reason, problem, purpose or user need behind a piece of work gets lost after several in-session handovers (relaunch hops) or context compactions",
     "created_at": "2026-11-13T20:59:19Z",
-    "last_save_at": "2026-11-13T22:18:50.698Z",
+    "last_save_at": "2026-11-13T23:43:46.559Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,10 +223,10 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:69f1128807376f262705658e8eae6232eaede276400d1d81ca6a90c681af7b76",
+    "source_fingerprint": "sha256:5f4b1db52498bc1207eb137dacf14caefd47590d3dfc886550b246f60c3a1d0f",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "17f3e8467cc1fccabed8ffb6749f77e40bc3b40dfb30b941cc8006ab3b1f536e",
+      "spec.md": "c9f106457d5429166aa8b4dc28290e818921abb3125bb7502b0b6de51d3395d1",
       "plan.md": "4d2c2864ea17ecda1f7c0ba309d5417972de1bf3752db73d878ac865c10a5112",
       "tasks.md": "8a27e74d4d2e5fc872676c93a8aaf45e80ce01225d1b3ffd942cf96096e10ec6",
       "decision-record.md": "0ad97d813c9d820a810c24dfc63552165e8f9963ef5ed8c4455aebaf0268a9a1",

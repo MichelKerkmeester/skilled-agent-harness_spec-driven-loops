@@ -171,11 +171,11 @@ Findings of the 2026-11-13 deep-research run, two lineages of five iterations on
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-parent-purpose-scaffold/ | An unfilled purpose in a new phase parent fails a check | Pending |
-| 2 | 002-resume-purpose-row/ | The `/speckit:resume` brief shows the packet purpose | Pending |
-| 3 | 003-relaunch-goal-quote/ | The relaunch note Goal opens with the packet purpose | Pending |
-| 4 | 004-compaction-purpose-line/ | The context injected after a compaction carries the packet purpose, and the shared purpose helper | Pending |
-| 5 | 005-continuity-purpose-field/ | The continuity block carries the purpose and the recovery Goal shows it | Pending |
+| 1 | 001-parent-purpose-scaffold/ | An unfilled purpose in a new phase parent fails a check | In Progress |
+| 2 | 002-resume-purpose-row/ | The `/speckit:resume` brief shows the packet purpose | In Progress |
+| 3 | 003-relaunch-goal-quote/ | The relaunch note Goal opens with the packet purpose | Complete |
+| 4 | 004-compaction-purpose-line/ | The context injected after a compaction carries the packet purpose, and the shared purpose helper | Complete |
+| 5 | 005-continuity-purpose-field/ | The continuity block carries the purpose and the recovery Goal shows it | Complete |
 
 ### Phase Transition Rules
 
