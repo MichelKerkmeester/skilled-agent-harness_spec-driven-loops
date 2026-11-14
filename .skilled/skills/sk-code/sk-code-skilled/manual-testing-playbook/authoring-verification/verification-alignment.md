@@ -8,7 +8,7 @@ expected_intent: VERIFICATION
 expected_resources:
   - references/shared/alignment-verification-automation.md
   - assets/scripts/README.md
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # OC-008: Verification alignment routing
@@ -89,7 +89,7 @@ Step 5 prints `[alignment-drift] PASS`, a `Scanned files` / `Findings` / `Errors
 --fail-on-warn to make warnings fail.`, and `rc=0`. Step 6 prints the same findings under an
 `[alignment-drift] FAIL` header and `rc=1`, because `--fail-on-warn` turns every advisory finding into a gate
 failure that step 5 let through. Step 7 prints `PASS check 1a`, `PASS check 1b`, `PASS check 2`, `router-sync:
-3/3 checks passed` and `rc=0`. Step 8 prints a `ℹ tests 37` / `ℹ fail 0` summary and `rc=0`, and takes about
+3/3 checks passed` and `rc=0`. Step 8 prints a `ℹ tests 46` / `ℹ fail 0` summary and `rc=0`, and takes about
 twenty seconds because the git-timeout test waits out a wedged `git check-ignore` on purpose. Step 9 prints a
 JSON document whose `status` is `advisory` and whose `exit_code` is `2`, then `rc=2`.
 

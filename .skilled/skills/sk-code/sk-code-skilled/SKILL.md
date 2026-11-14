@@ -2,7 +2,7 @@
 name: sk-code-skilled
 description: "sk-code SKILLED surface: system-code evidence (TypeScript/Python/shell/Rust/config standards, language-agnostic patterns, hooks, alignment verification, and skill/agent/command/MCP authoring checklists) plus shared implement/debug/verify workflow doctrine."
 allowed-tools: [Read, Bash, Grep, Glob]
-version: 2.2.1.0
+version: 2.2.2.0
 metadata:
   family: sk-code
   packetKind: surface
@@ -87,11 +87,11 @@ Language standards — after `.skilled/` selects this surface, load the exact sp
 - Config (JSON/JSONC/YAML descriptors and route assets) — `references/config/style-guide.md`, `references/config/quality-standards.md`, `references/config/quick-reference.md`, `assets/checklists/config-checklist.md`
 - JavaScript (CommonJS/ESM plugins) — `references/javascript/style-guide.md`, `references/javascript/quality-standards/overview-modules-and-docs.md`, `references/javascript/quality-standards/security-testing-and-exemptions.md`, `references/javascript/quick-reference.md`
 
-Language-agnostic shared tier (`references/shared/`, always kept within OpenCode regardless of language):
+Language-agnostic shared tier (`references/shared/`, always kept within SKILLED regardless of language):
 - `references/shared/universal-patterns/naming-and-commenting.md`, `references/shared/universal-patterns/organization-security-and-examples.md`, `references/shared/code-organization/overview-and-module-organization.md`, `references/shared/code-organization/imports-and-exports.md`, `references/shared/code-organization/directory-and-test-conventions.md`
 - `hooks.md` — runtime hook entrypoints, checked-in Claude wiring, OpenCode plugin-bridge delivery, and wrapper reachability; defer to that file for current hook infrastructure instead of duplicating it here
 - `alignment-verification-automation.md` — the alignment-drift verifier
-- `workflow-guardrails.md`: OpenCode-only implementation guardrails, the verification command chain and runtime build traps, applied on top of the shared implement and verify workflow
+- `workflow-guardrails.md`: SKILLED-only implementation guardrails, the verification command chain and runtime build traps, applied on top of the shared implement and verify workflow
 
 Authoring and validation assets:
 
