@@ -1,11 +1,12 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/003-execution-mode-and-autopilot-contract",
   "description": "Phase 3: execution-mode-and-autopilot-contract",
   "keywords": [
     "phase",
     "execution-mode-and-autopilot-contract"
   ],
-  "lastUpdated": "2026-11-14T11:33:20.837Z",
+  "lastUpdated": "2026-11-14T13:07:27.502Z",
   "specId": "003",
   "folderSlug": "execution-mode-and-autopilot-contract",
   "parentChain": [
@@ -13,7 +14,8 @@
     "spec-authoring-and-continuity",
     "007-speckit-command-gates-step-order-drift"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_14-07__phases-1-and-2-of-the-speckit-command-gates.md"
+  ]
 }

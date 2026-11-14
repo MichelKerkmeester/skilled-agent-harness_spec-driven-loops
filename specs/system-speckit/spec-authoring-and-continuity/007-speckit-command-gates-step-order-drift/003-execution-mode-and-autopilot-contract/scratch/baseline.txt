@@ -1,0 +1,80 @@
+# Baseline at 34d22ecbce, 2026-11-14T13:10:56Z
+
+## Measured Behavior
+.skilled/commands/speckit/assets/speckit-plan.yaml:0
+.skilled/commands/speckit/assets/speckit-implement.yaml:0
+.skilled/commands/speckit/assets/speckit-complete.yaml:3
+.skilled/commands/speckit/assets/speckit-plan-presentation.txt:0
+.skilled/commands/speckit/assets/speckit-implement-presentation.txt:0
+.skilled/commands/speckit/assets/speckit-complete-presentation.txt:0
+
+## Checker
+UNTAGGED speckit-plan.yaml confidence_framework > thresholds > low > action
+UNTAGGED speckit-plan.yaml error_recovery > step_validation_fails
+UNTAGGED speckit-plan.yaml optional_workflows > phase_decomposition > checkpoint
+UNTAGGED speckit-plan.yaml optional_workflows > phase_decomposition > checkpoint > prompt
+UNTAGGED speckit-plan.yaml workflow > step_0.5_intake_branch > on_trigger > inline_start_intake > prompt_mode
+UNTAGGED speckit-plan.yaml workflow > step_1_request_analysis > confidence_checkpoint > thresholds > low_below_40
+UNTAGGED speckit-plan.yaml workflow > step_1_request_analysis > confidence_checkpoint > thresholds > low_below_40 > action
+UNTAGGED speckit-plan.yaml workflow > step_3_specification > confidence_checkpoint > thresholds > low_below_40
+UNTAGGED speckit-plan.yaml workflow > step_3_specification > confidence_checkpoint > thresholds > low_below_40 > action
+UNTAGGED speckit-plan.yaml workflow > step_3_specification > pre_phase_parallel_check > decision_logic
+UNTAGGED speckit-plan.yaml workflow > step_5_planning > confidence_checkpoint > escalation > action
+UNTAGGED speckit-plan.yaml workflow > step_5_planning > confidence_checkpoint > thresholds > low_below_40
+UNTAGGED speckit-plan.yaml workflow > step_5_planning > confidence_checkpoint > thresholds > low_below_40 > action
+UNTAGGED speckit-implement.yaml agent_availability > debug > on_threshold
+UNTAGGED speckit-implement.yaml confidence_framework > thresholds > low > action
+UNTAGGED speckit-implement.yaml error_recovery > prerequisites_insufficient
+UNTAGGED speckit-implement.yaml error_recovery > step_validation_fails
+UNTAGGED speckit-implement.yaml gate_3_compliance > failure_pattern_19 > action
+UNTAGGED speckit-implement.yaml gate_3_compliance > first_message_protocol
+UNTAGGED speckit-implement.yaml gate_3_compliance > self_verification
+UNTAGGED speckit-implement.yaml workflow > step_6_development > confidence_checkpoint > per_task_assessment > thresholds > low_below_40
+UNTAGGED speckit-implement.yaml workflow > step_6_development > debug_delegation > action
+UNTAGGED speckit-implement.yaml workflow > step_6_development > pre_phase_parallel_check > decision_logic
+UNTAGGED speckit-implement.yaml workflow > step_9_session_handover_check > activities
+UNTAGGED speckit-implement.yaml workflow > step_9_session_handover_check > handover_prompt
+UNTAGGED speckit-complete.yaml agent_availability > debug > on_threshold
+UNTAGGED speckit-complete.yaml confidence_framework > thresholds > low > action
+UNTAGGED speckit-complete.yaml error_recovery > prerequisites_insufficient
+UNTAGGED speckit-complete.yaml error_recovery > step_validation_fails
+UNTAGGED speckit-complete.yaml operating_mode > description
+UNTAGGED speckit-complete.yaml optional_workflows > phase_decomposition > checkpoint
+UNTAGGED speckit-complete.yaml optional_workflows > phase_decomposition > checkpoint > prompt
+UNTAGGED speckit-complete.yaml optional_workflows > research_integration > checkpoint
+UNTAGGED speckit-complete.yaml optional_workflows > research_integration > checkpoint > prompt
+UNTAGGED speckit-complete.yaml request_analysis_framework > pre_change_validation
+UNTAGGED speckit-complete.yaml workflow > phase_3_research > actions > if_triggered > on_complete
+UNTAGGED speckit-complete.yaml workflow > step_0.5_intake_branch > on_trigger > inline_start_intake > prompt_mode
+UNTAGGED speckit-complete.yaml workflow > step_10_development > confidence_checkpoint > per_task_assessment > thresholds > low_below_40
+UNTAGGED speckit-complete.yaml workflow > step_10_development > debug_escalation > on_threshold_reached > action
+UNTAGGED speckit-complete.yaml workflow > step_10_development > debug_escalation > on_threshold_reached > on_y
+UNTAGGED speckit-complete.yaml workflow > step_10_development > debug_escalation > on_threshold_reached > prompt
+UNTAGGED speckit-complete.yaml workflow > step_14_handover_check
+UNTAGGED speckit-complete.yaml workflow > step_1_request_analysis > confidence_checkpoint > thresholds > low_below_40
+UNTAGGED speckit-complete.yaml workflow > step_1_request_analysis > confidence_checkpoint > thresholds > low_below_40 > action
+UNTAGGED speckit-complete.yaml workflow > step_3_specification > confidence_checkpoint > thresholds > low_below_40
+UNTAGGED speckit-complete.yaml workflow > step_3_specification > confidence_checkpoint > thresholds > low_below_40 > action
+UNTAGGED speckit-complete.yaml workflow > step_6_planning > confidence_checkpoint > escalation > action
+UNTAGGED speckit-complete.yaml workflow > step_6_planning > confidence_checkpoint > thresholds > low_below_40
+UNTAGGED speckit-complete.yaml workflow > step_6_planning > confidence_checkpoint > thresholds > low_below_40 > action
+UNTAGGED speckit-complete.yaml workflow > step_8_analysis > activities
+untagged: 50
+autopilot_ask: 0
+auto_ask: 0
+checker exit=1
+
+## Autopilot contract test
+
+ RUN  v4.1.12 /Users/michelkerkmeester/worktrees/public/381-speckit-command-gates-step-order-drift/.skilled/skills/system-deep-loop/runtime
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  14:10:57
+   Duration  98ms (transform 18ms, setup 17ms, import 9ms, tests 4ms, environment 0ms)
+
+vitest exit=
+
+## Workflow contract tests
+Result: passed=154 failed=0

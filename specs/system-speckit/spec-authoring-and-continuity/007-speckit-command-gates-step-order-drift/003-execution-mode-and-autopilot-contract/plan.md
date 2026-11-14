@@ -39,16 +39,16 @@ The change edits the mode text in three workflow YAML files, three routers and t
 <!-- FILL: Turn each gate into a check a command can answer. Keep the boxes unticked until they pass. GOOD: `ls scripts/rotate-logs.sh` prints the path and `ls logs/archive | wc -l` prints 10 before the task starts. WEAK: The team agrees the plan is ready. -->
 
 ### Definition of Ready
-- [ ] Problem statement clear and scope documented
-- [ ] Success criteria measurable
-- [ ] Dependencies identified
-- [ ] Phase 2 `acceptance-criteria.md` has no `Unmet` row: `rg -c '\| Unmet \|' $C/../002-required-artifact-gates/acceptance-criteria.md` prints nothing
-- [ ] Plan's task breakdown step exists after phase 1: `rg -n '^  step_5_5_task_breakdown:' $A/speckit-plan.yaml` prints one line
+- [x] Problem statement clear and scope documented
+- [x] Success criteria measurable
+- [x] Dependencies identified
+- [x] Phase 2 `acceptance-criteria.md` has no `Unmet` row: `rg -c '\| Unmet \|' $C/../002-required-artifact-gates/acceptance-criteria.md` prints nothing
+- [x] Plan's task breakdown step exists after phase 1: `rg -n '^  step_5_5_task_breakdown:' $A/speckit-plan.yaml` prints one line
 
 ### Definition of Done
-- [ ] All acceptance criteria met
-- [ ] `python3 $C/scratch/check-mode-tags.py $A/speckit-{plan,implement,complete}.yaml` prints `untagged: 0` and `autopilot_ask: 0`, and `npx vitest run tests/unit/speckit-autopilot-contract.vitest.ts` run from `$R` exits 0
-- [ ] Docs updated (spec/plan/tasks)
+- [x] All acceptance criteria met
+- [x] `python3 $C/scratch/check-mode-tags.py $A/speckit-{plan,implement,complete}.yaml` prints `untagged: 0` and `autopilot_ask: 0`, and `npx vitest run tests/unit/speckit-autopilot-contract.vitest.ts` run from `$R` exits 0
+- [x] Docs updated (spec/plan/tasks)
 <!-- /ANCHOR:quality-gates -->
 
 ---

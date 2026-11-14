@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P0 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
@@ -154,6 +154,7 @@ Each key below asks the operator or waits for one and carries no `applies_to: co
 | `speckit-complete.yaml` | `agent_availability.debug.on_threshold` | Prompts `(y / continue manually / skip)` | C |
 | `speckit-complete.yaml` | `confidence_framework.thresholds.low` | `STOP - Ask A/B/C clarification` | C |
 | `speckit-complete.yaml` | `request_analysis_framework.pre_change_validation` | Lists `user_approval` as a check | C |
+| `speckit-complete.yaml` | `workflow.step_0.5_intake_branch.on_trigger.inline_start_intake` | Asks the intake questions in one prompt and names no autopilot behavior. Found when the inventory was rebuilt at Setup | C |
 | `speckit-complete.yaml` | `workflow.step_1_request_analysis.confidence_checkpoint.thresholds.low_below_40` | `wait_for: "User response"` | C |
 | `speckit-complete.yaml` | `workflow.step_3_specification.confidence_checkpoint.thresholds.low_below_40` | `wait_for: "User response"` | C |
 | `speckit-complete.yaml` | `workflow.step_6_planning.confidence_checkpoint.thresholds.low_below_40` | `wait_for: "User decision"` | C |

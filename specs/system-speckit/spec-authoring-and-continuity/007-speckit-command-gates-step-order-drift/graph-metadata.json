@@ -90,18 +90,18 @@
     ],
     "causal_summary": "The `/speckit:plan`, `/speckit:implement`, `/speckit:complete`, `/speckit:resume`, `/speckit:save`, `/speckit:search` and `/speckit:handoff` commands are executed by AI agents on every runtime, and an agent follows the workflow text literally",
     "created_at": "2026-11-14T11:33:17Z",
-    "last_save_at": "2026-11-14T13:06:25.233Z",
+    "last_save_at": "2026-11-14T13:56:02.110Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:1c5a56a5d8cf283e23ff9ac87df1a8407ebcf1bbc89e43c48747143a3037c36b",
+    "source_fingerprint": "sha256:9156c1e2b543ed462dd04487605b5ee756bdbe61c1dd84a4908d5d25202f2d69",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "b47aef5851dd31bfa2dbbced78758b69810dbbb9fde91014011bdfe220a306aa"
+      "spec.md": "db5d1e9bbdb5c3f85128b748d2d4d754263755c437ac36443bd2504fcec9d2e1"
     },
-    "last_active_child_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/001-step-order-acceptance-after-development",
-    "last_active_at": "2026-11-14T12:29:42.982Z"
+    "last_active_child_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/003-execution-mode-and-autopilot-contract",
+    "last_active_at": "2026-11-14T13:07:27.550Z"
   }
 }

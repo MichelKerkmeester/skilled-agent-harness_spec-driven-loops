@@ -33,7 +33,7 @@
       "agent"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -43,18 +43,18 @@
       ".skilled/commands/speckit/assets/speckit-complete.yaml",
       ".skilled/commands/speckit/assets/speckit-plan.yaml",
       ".skilled/commands/speckit/assets/speckit-implement.yaml",
+      ".skilled/skills/system-deep-loop/runtime/tests/unit/speckit-autopilot-contract.vitest.ts",
+      ".skilled/skills/system-spec-kit/README.md",
+      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+      "scratch/check-mode-tags.py",
       ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
       ".skilled/commands/speckit/assets/speckit-implement-presentation.txt",
       ".skilled/commands/speckit/assets/speckit-complete-presentation.txt",
       ".skilled/commands/speckit/plan.md",
       ".skilled/commands/speckit/implement.md",
       ".skilled/commands/speckit/complete.md",
-      ".skilled/skills/system-deep-loop/runtime/tests/unit/speckit-autopilot-contract.vitest.ts",
       ".skilled/skills/system-spec-kit/feature-catalog/lifecycle/speckit-autopilot-lifecycle.md",
-      ".skilled/skills/system-spec-kit/manual-testing-playbook/lifecycle/speckit-autopilot-lifecycle.md",
-      ".skilled/skills/system-spec-kit/README.md",
-      ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
-      ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json"
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/lifecycle/speckit-autopilot-lifecycle.md"
     ],
     "entities": [
       {
@@ -106,6 +106,30 @@
         "source": "derived"
       },
       {
+        "name": "speckit-autopilot-contract.vitest.ts",
+        "kind": "test",
+        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/speckit-autopilot-contract.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "command-contract.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
+        "source": "derived"
+      },
+      {
+        "name": "check-mode-tags.py",
+        "kind": "file",
+        "path": "scratch/check-mode-tags.py",
+        "source": "derived"
+      },
+      {
         "name": "speckit-plan-presentation.txt",
         "kind": "file",
         "path": ".skilled/commands/speckit/assets/speckit-plan-presentation.txt",
@@ -136,33 +160,9 @@
         "source": "derived"
       },
       {
-        "name": "speckit-autopilot-contract.vitest.ts",
-        "kind": "test",
-        "path": ".skilled/skills/system-deep-loop/runtime/tests/unit/speckit-autopilot-contract.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "speckit-autopilot-lifecycle.md",
         "kind": "doc",
         "path": ".skilled/skills/system-spec-kit/feature-catalog/lifecycle/speckit-autopilot-lifecycle.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/skills/system-spec-kit/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "command-contract.json",
-        "kind": "config",
-        "path": ".skilled/skills/sk-doc/sk-create-command/assets/command-contract.json",
-        "source": "derived"
-      },
-      {
-        "name": "phrase-variants.json",
-        "kind": "config",
-        "path": ".skilled/skills/system-spec-kit/runtime/cli/retrieval/fixtures/phrase-variants.json",
         "source": "derived"
       },
       {
@@ -204,8 +204,8 @@
     ],
     "causal_summary": "An agent that runs `/speckit:plan:autopilot` or `/speckit:implement:autopilot` finds no autopilot block in the workflow, so it has no result line, no reason codes and no rule for what to do when it would ask",
     "created_at": "2026-11-14T11:33:20Z",
-    "last_save_at": "2026-11-14T12:26:07.733Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-14T13:55:59.178Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -214,13 +214,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:5b8f3dad61753d393e7efc8e5931a7cc960bec4b9b60d66e3251c20a9a9cf9d2",
+    "source_fingerprint": "sha256:cd1e82625908fa12ada6a5dfb2150efd88b0cedd57bd85b47c3b1d36f1d4be4d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "10ad155dc199f498ccf0d812de14a96ae0efdb3ad586a45666477defeeb899de",
-      "plan.md": "d4a47d9099e88aa2f1b11bc86aa47d8d0d17fd0fbab6bd23f01518db140a59bc",
-      "tasks.md": "54f0a23af69a96329757948ea5966fe84f43d0459d17bfcfb67718fce3f1bd23",
-      "implementation-summary.md": "7a5ce00926b31705a4cf9fab194d398abac1cf9ae7d37f40ed6ae8d6a5c7a89d"
+      "spec.md": "4baef64a9fffcfd469955747419cd5bd8e384fa07fac3619a24a91075530bb10",
+      "plan.md": "e4ac773ac275a265326179c0620fe3a85b14065495387ae4e94e0231d71a53ba",
+      "tasks.md": "9ac139486426ed355f02a13a569fd9ea83b92e15414fb2c330698927220c36ed",
+      "implementation-summary.md": "264b5fcbfda06c77380ac2749e12c47a98b665b6062bb1062a6b2a08d841cc20"
     },
     "last_active_at": null
   }
