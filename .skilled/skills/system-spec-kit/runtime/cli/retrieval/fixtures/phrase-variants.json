@@ -1,5 +1,5 @@
 {
-  "manifestHash": "123b3ac09a0aea1617ffa3b6fcf8fc57caefd6e0da99746f7b5891c6a44b75c7",
+  "manifestHash": "e4c29f51214dc969913c5a11727d8c0657d00322b9cd285b30fc386501d6e412",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -41722,8 +41722,14 @@
     "dispatch failure emission": [
       "dispatch-failure emission"
     ],
+    "dispatch failure gateway plan": [
+      "dispatch failure gateway plan"
+    ],
     "dispatch failure recursion guard": [
       "dispatch failure recursion guard"
+    ],
+    "dispatch failure row lost on refresh": [
+      "dispatch failure row lost on refresh"
     ],
     "dispatch guard": [
       "dispatch guard"
@@ -44865,6 +44871,21 @@
     ],
     "dsh deep review executor": [
       "dsh deep review executor"
+    ],
+    "dsh direct writer gateway": [
+      "dsh direct writer gateway"
+    ],
+    "dsh direct writer gateway goal": [
+      "dsh direct writer gateway goal"
+    ],
+    "dsh direct writer gateway implementation summary": [
+      "dsh direct writer gateway implementation summary"
+    ],
+    "dsh direct writer gateway plan": [
+      "dsh direct writer gateway plan"
+    ],
+    "dsh direct writer gateway tasks": [
+      "dsh direct writer gateway tasks"
     ],
     "dsh dispatch audit": [
       "dsh dispatch audit"
@@ -48238,6 +48259,9 @@
     ],
     "executor gap register plan": [
       "executor gap register plan"
+    ],
+    "executor identity in the state log": [
+      "executor identity in the state log"
     ],
     "executor identity provenance": [
       "executor identity provenance"
@@ -61927,6 +61951,9 @@
     ],
     "iteration recorded stem plan": [
       "iteration_recorded stem plan"
+    ],
+    "iteration start through the append gateway": [
+      "iteration_start through the append gateway"
     ],
     "iteration state record contract": [
       "iteration state record contract"
@@ -82499,6 +82526,9 @@
     "phase 20 deep review remediation": [
       "phase 20 deep review remediation"
     ],
+    "phase 20 dsh direct writer gateway": [
+      "phase 20 dsh direct writer gateway"
+    ],
     "phase 20 fork session guards": [
       "phase 20 fork session guards"
     ],
@@ -91634,6 +91664,9 @@
     ],
     "record": [
       "record"
+    ],
+    "record executor audit gateway": [
+      "record executor audit gateway"
     ],
     "record my chat reply as a decision routing": [
       "record my chat reply as a decision routing"
@@ -121433,6 +121466,9 @@
     "system deep loop 1 6 26 0": [
       "system-deep-loop 1.6.26.0"
     ],
+    "system deep loop 1 6 27 0": [
+      "system-deep-loop 1.6.27.0"
+    ],
     "system deep loop 1 6 3 0": [
       "system-deep-loop 1.6.3.0"
     ],
@@ -121636,6 +121672,9 @@
     ],
     "system deep loop v1 6 26 0": [
       "system-deep-loop v1.6.26.0"
+    ],
+    "system deep loop v1 6 27 0": [
+      "system-deep-loop v1.6.27.0"
     ],
     "system deep loop v1 6 3 0": [
       "system-deep-loop v1.6.3.0"
