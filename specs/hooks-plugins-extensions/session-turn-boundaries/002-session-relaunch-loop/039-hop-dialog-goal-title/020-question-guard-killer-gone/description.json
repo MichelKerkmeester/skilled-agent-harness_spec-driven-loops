@@ -1,0 +1,20 @@
+{
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/020-question-guard-killer-gone",
+  "description": "Phase 20: question-guard-killer-gone",
+  "keywords": [
+    "phase",
+    "question-guard-killer-gone"
+  ],
+  "lastUpdated": "2026-11-14T16:13:53.410Z",
+  "specId": "020",
+  "folderSlug": "question-guard-killer-gone",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
+    "039-hop-dialog-goal-title"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

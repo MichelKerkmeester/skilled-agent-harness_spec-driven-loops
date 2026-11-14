@@ -11,17 +11,17 @@ contextType: "planning"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title"
-    last_updated_at: "2026-11-14T14:00:44Z"
+    last_updated_at: "2026-11-14T16:30:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "All nineteen children are built and the six completion criteria pass"
-    next_safe_action: "The operator decides the merge"
+    recent_action: "Reopened for the seven findings of the 2026-11-14 epic review"
+    next_safe_action: "The builder works children 020 to 023"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "8d16c027-15a3-4944-a1d2-eef7cc2cb0b8"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 82
     open_questions: []
     answered_questions: []
 ---
@@ -36,7 +36,7 @@ _memory:
 <!-- ANCHOR:directive -->
 ## 1. DURABLE DIRECTIVE
 
-**Objective:** A Claude Code hop cannot park behind a question dialog, starts the receiver on its packet's unfinished goal when the sender set none and keeps the generated title. The research and review gaps the operator chose are closed.
+**Objective:** A Claude Code hop cannot park behind a question dialog, starts the receiver on its packet's unfinished goal when the sender set none and keeps the generated title. The review findings are closed.
 
 ### Decisions
 
@@ -56,22 +56,21 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:binding -->
 ## 2. BINDING
 
-**Read the child goal before working a phase.** Each is authoritative for its
-phase and binds as if written here.
+**Read the child goal before working its phase.** It binds as if written here.
 
 | Phase | Goal document |
 |-------|---------------|
-| 001-sender-dialog-after-prepare | `001-sender-dialog-after-prepare/goal.md` |
-| 002-packet-goal-fallback | `002-packet-goal-fallback/goal.md` |
-| 003-generated-title-carry | `003-generated-title-carry/goal.md` |
-| 004-wrapper-change-notice | `004-wrapper-change-notice/goal.md` |
-| 005-parked-record-escape | `005-parked-record-escape/goal.md` |
-| 006-record-without-handoff | `006-record-without-handoff/goal.md` |
-| 007-killer-test-margin | `007-killer-test-margin/goal.md` |
-| 008-history-test-database-env | `008-history-test-database-env/goal.md` |
-| 009-document-corrections | `009-document-corrections/goal.md` |
-| 010-goal-ending-carry | `010-goal-ending-carry/goal.md` |
-| 011-goal-fallback-bound | `011-goal-fallback-bound/goal.md` |
+| 001 | `001-sender-dialog-after-prepare/goal.md` |
+| 002 | `002-packet-goal-fallback/goal.md` |
+| 003 | `003-generated-title-carry/goal.md` |
+| 004 | `004-wrapper-change-notice/goal.md` |
+| 005 | `005-parked-record-escape/goal.md` |
+| 006 | `006-record-without-handoff/goal.md` |
+| 007 | `007-killer-test-margin/goal.md` |
+| 008 | `008-history-test-database-env/goal.md` |
+| 009 | `009-document-corrections/goal.md` |
+| 010 | `010-goal-ending-carry/goal.md` |
+| 011 | `011-goal-fallback-bound/goal.md` |
 | 012 | `012-wrapper-notice-log/goal.md` |
 | 013 | `013-conformance-stamp-pin/goal.md` |
 | 014 | `014-review-wording-fixes/goal.md` |
@@ -80,12 +79,14 @@ phase and binds as if written here.
 | 017 | `017-missing-transcript-notice/goal.md` |
 | 018 | `018-sk-git-rebase-sentence/goal.md` |
 | 019 | `019-relaunch-doc-coverage/goal.md` |
+| 020 | `020-question-guard-killer-gone/goal.md` |
+| 021 | `021-goal-scan-large-log/goal.md` |
+| 022 | `022-stop-park-notices/goal.md` |
+| 023 | `023-epic-review-doc-fixes/goal.md` |
 
-**Precedence.** Decisions above outrank child detail. Child detail outranks any
-summary of it. Name a conflict rather than resolving it silently.
+**Precedence.** Decisions outrank child detail. Child detail outranks summaries. Name a conflict rather than settling it.
 
-**Stop.** Only the criteria below decide done. An evaluator sees the objective
-string, not these files.
+**Stop.** Only the criteria below decide done.
 <!-- /ANCHOR:binding -->
 
 ---
@@ -93,7 +94,7 @@ string, not these files.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title --recursive --strict` prints `RESULT: PASSED` twenty times and never `RESULT: FAILED`
+- [x] `bash .skilled/skills/system-spec-kit/runtime/cli/spec/validate.sh specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title --recursive --strict` prints `RESULT: PASSED` twenty-four times and never `RESULT: FAILED`
 - [x] `rg -c '\| Unmet \|' specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/*/acceptance-criteria.md` prints no line
 - [x] `env -u AI_SESSION_CHILD node --test .skilled/hooks/session-relaunch/tests/*.test.cjs .opencode/plugins/tests/*.test.cjs` exits 0
 - [x] `env -u AI_SESSION_CHILD node --test .skilled/hooks/goal/**/*.test.cjs .skilled/hooks/goal/**/*.test.mjs` exits 0
@@ -142,6 +143,7 @@ and findings belong here.
 | Plan verifier and D1 readings | Done | 2026-11-14: a Fable 5.2 high verifier read the plan: 015, 017, 018 READY, 016 and 019 FIX-FIRST. Fixed: 016 T008 count, 019 citations now ten in 013 and two in 004. Operator: "Accept both (Recommended)" for 016 holding two code fixes and 018, 019 as extra document children |
 | Completion criteria, all nineteen children | Done | 2026-11-14, one after another from the final state. Criterion 1: RESULT: PASSED twenty times, no FAILED, exit 0. Criterion 2: no line, exit 1. Criterion 3: tests 1553, pass 1553, fail 0, exit 0, from 1550. Criterion 4: tests 200, pass 200, fail 0, exit 0. Criterion 5: Tests 62 passed (62), exit 0. Criterion 6: both checks PASS, exit 0 |
 | Commits, children 015 to 019 | Done | 2026-11-14 on branch worktrees/380-relaunch-review-fixes: plan 2830ac92bc (0014021), 015 f99d3c442d (0014025), 016 c37531f72b (0014029), 017 78f9d39501 (0014033), 018 21ceaa9772 (0014041), records 7759159a3f (0014050), 019 72bc2bf988 (0014057) |
+| Epic review round | Done | 2026-11-14: a fresh whole-epic review read all nineteen children and returned CONDITIONAL with seven P2 findings (reply `fable-epic-reply.txt` in the orchestrator's scratchpad). The orchestrator checked each against the machine. Operator choice: fix all seven as new children from 020, one child per code fix with a test that fails first, and the document fixes in one shared child. New children: `020-question-guard-killer-gone`, `021-goal-scan-large-log`, `022-stop-park-notices` and `023-epic-review-doc-fixes` |
 
 ### Deviations and findings
 

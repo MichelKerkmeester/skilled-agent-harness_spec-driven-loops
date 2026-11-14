@@ -8,17 +8,17 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title"
-    last_updated_at: "2026-11-14T14:00:44Z"
+    last_updated_at: "2026-11-14T16:30:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Closed all nineteen children, six criteria pass"
-    next_safe_action: "The operator decides the merge"
+    recent_action: "Reopened for the seven P2 findings of the 2026-11-14 epic review"
+    next_safe_action: "The builder works children 020 to 023"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "8d16c027-15a3-4944-a1d2-eef7cc2cb0b8"
       parent_session_id: null
-    completion_pct: 100
+    completion_pct: 82
     open_questions: []
     answered_questions: []
 ---
@@ -45,14 +45,14 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Complete |
+| **Status** | In Progress |
 | **Created** | 2026-11-13 |
-| **Branch** | `worktrees/366-hop-after-question-dialog` for children 001 to 003, merged on 2026-11-13. `worktrees/373-relaunch-gap-fixes` for children 004 to 014. `worktrees/380-relaunch-review-fixes` for children 015 to 019 |
+| **Branch** | `worktrees/366-hop-after-question-dialog` for children 001 to 003, merged on 2026-11-13. `worktrees/373-relaunch-gap-fixes` for children 004 to 014. `worktrees/380-relaunch-review-fixes` for children 015 to 019. `worktrees/385-epic-review-fixes` for children 020 to 023 |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop |
 | **Predecessor** | 038-goal-and-workflow-resume |
 | **Successor** | None |
-| **Handoff Criteria** | All nineteen children are Complete, the relaunch, OpenCode plugin, goal hook and Pi suites pass, both sync checks print `PASS` and recursive strict validation prints `RESULT: PASSED` for every folder |
+| **Handoff Criteria** | All twenty-three children are Complete, the relaunch, OpenCode plugin, goal hook and Pi suites pass, both sync checks print `PASS` and recursive strict validation prints `RESULT: PASSED` for every folder. Children 020 to 023 also record a test that failed first or a saved run for every criterion they touch |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -75,8 +75,10 @@ Children 004 to 011 closed those. Two independent reviewers then read all eleven
 
 Children 012 to 014 closed those, and the packet merged to `main`. A third round of review followed on 2026-11-14: a ten-iteration deep review, an alignment run and two independent reviews of the merge, which the orchestrator checked against the code. The wrapper still prints a false change note when its start checksum came back empty. The ended-goal mark is read from any note a session ever claimed, and it is lost when the session log cannot be read. A Stop with no transcript path parks the hop and the next prompt withdraws it without a word to the operator. The sk-git sentence on a rebase and its `Commit-Id` is false, and the skill changed with no version or changelog. The playbook and the feature catalog do not describe what the packet shipped, and two closed children cite lines that later children moved.
 
+A fourth review on 2026-11-14 read the whole epic, all nineteen children on `main`, and returned CONDITIONAL with seven P2 findings and no P0 or P1. A guard let a question dialog through when the armed record's killer was gone. A Claude log over 16 MB carried no packet goal. Two Stop branches parked the hop without a word. One README sentence described the wrong record state, the catalog and the playbook described neither the guard nor the title carry, one JSDoc and two summary lines were stale, and seven acceptance rows rested on evidence nobody saved. The operator chose to fix all seven as children from 020, one child per code fix with a test that fails first, and the document fixes in one shared child.
+
 ### Purpose
-A Claude Code hand-over cannot be parked behind a question dialog. Its receiver starts on the unfinished goal of the packet the note names when the sender set no goal. A session that only has a generated title keeps that title, with the hop count added, in the next session. The open ends the operator chose to close on 2026-11-14 are closed as well: a changed wrapper says so before a hop, a hand-over Stop cannot arm stops blocking questions, a goal the operator ended stays ended and the documents say what the code does. What the two reviews of 2026-11-14 confirmed is closed too: the wrapper's change note reaches `relaunch.log`, the shared conformance case states which runtime stamps a record Stop could not arm, and the comments and documents the reviews found wrong are corrected. What the third review round confirmed is closed too: the wrapper reports a change only when it read both checksums, the ended-goal mark follows the note a session claimed last, a Stop with no transcript path tells the operator, the sk-git rebase sentence says what the hook does and the playbook and catalog describe the shipped behavior.
+A Claude Code hand-over cannot be parked behind a question dialog. Its receiver starts on the unfinished goal of the packet the note names when the sender set no goal. A session that only has a generated title keeps that title, with the hop count added, in the next session. The open ends the operator chose to close on 2026-11-14 are closed as well: a changed wrapper says so before a hop, a hand-over Stop cannot arm stops blocking questions, a goal the operator ended stays ended and the documents say what the code does. What the two reviews of 2026-11-14 confirmed is closed too: the wrapper's change note reaches `relaunch.log`, the shared conformance case states which runtime stamps a record Stop could not arm, and the comments and documents the reviews found wrong are corrected. What the third review round confirmed is closed too: the wrapper reports a change only when it read both checksums, the ended-goal mark follows the note a session claimed last, a Stop with no transcript path tells the operator, the sk-git rebase sentence says what the hook does and the playbook and catalog describe the shipped behavior. The seven P2 findings of the 2026-11-14 whole-epic review are closed as well, with a test that fails first for each code fix and saved evidence for every row the review named.
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
@@ -106,6 +108,10 @@ A Claude Code hand-over cannot be parked behind a question dialog. Its receiver 
 - A Claude Stop with no transcript path prints one line saying the next prompt withdraws the hop because the transcript was missing.
 - The sk-git rebase sentence is rewritten from a throwaway-repository probe, with sk-git at `1.11.12.0` and its changelog entry.
 - The Claude playbook, the feature catalog and the handoff command document describe the shipped behavior, twelve moved citations in children 004 and 013 name their commit, and the trigger phrase question for an ended goal has a recorded answer.
+- The Claude guard refuses a question dialog for any record the core calls armable, which adds an armed record with no live killer, and allows it once a live killer owns the lock.
+- A Claude log over the 16 MB tail cap is read whole in fixed chunks when the capped tail holds no goal entry, so the newest goal anywhere in the log counts.
+- The two Claude Stop branches that park a hand-over without a word print one notice each, with their stamps and log lines unchanged.
+- One shared document child corrects the adapter README, adds the catalog and playbook coverage of the guard and the title carry, corrects one JSDoc and two summary lines, saves the suite evidence for seven rows, and adds the operator's live-hop check.
 
 ### Out of Scope
 - The Pi, OpenCode, Codex, Cursor and Devin adapters. Children 001 to 003 change Claude Code only. Children from 004 may also change the shared wrapper, the shared relaunch core, tests and documents, and none edits another runtime's adapter.
@@ -190,6 +196,10 @@ Files touched across all phases, for the audit trail. Each child's `plan.md` hol
 | 17 | 017-missing-transcript-notice/ | A Claude Stop with no transcript path prints one line saying the next prompt withdraws the hop because the transcript was missing | Complete |
 | 18 | 018-sk-git-rebase-sentence/ | The sk-git rebase sentence is rewritten from a throwaway-repository probe, and sk-git moves to `1.11.12.0` with a changelog entry | Complete |
 | 19 | 019-relaunch-doc-coverage/ | The Claude playbook, the feature catalog and the handoff command document describe the shipped behavior, twelve moved citations name their commit, and the trigger phrase question is answered | Complete |
+| 20 | 020-question-guard-killer-gone/ | The Claude PreToolUse guard refuses a question dialog for any record the core calls armable, which covers a pending record and an armed record with no live killer, and allows it once a live killer owns the lock | Pending |
+| 21 | 021-goal-scan-large-log/ | A Claude log over the 16 MB tail cap is read whole in fixed chunks when the capped tail holds no goal entry, so the newest goal anywhere in the log counts | Pending |
+| 22 | 022-stop-park-notices/ | The two Claude Stop branches that park a hand-over without a word print one notice each, with their stamps and log lines unchanged | Pending |
+| 23 | 023-epic-review-doc-fixes/ | The adapter README, the feature catalog and the Claude playbook say what the code does, seven acceptance rows carry saved evidence, and one operator-run scenario checks a real hop | Pending |
 
 ### Phase Transition Rules
 
@@ -220,6 +230,10 @@ Files touched across all phases, for the audit trail. Each child's `plan.md` hol
 | 016-ended-goal-mark-match | 017-missing-transcript-notice | Phase 016 is Complete and the relaunch and OpenCode plugin suites pass, because both change the session-relaunch README | `validate.sh 016-ended-goal-mark-match --strict` RESULT: PASSED and no row of `016-ended-goal-mark-match/acceptance-criteria.md` is Unmet |
 | 017-missing-transcript-notice | 018-sk-git-rebase-sentence | Phase 017 is Complete and the relaunch and OpenCode plugin suites pass. Phase 018 depends on no file of phase 017 | `validate.sh 017-missing-transcript-notice --strict` RESULT: PASSED and no row of `017-missing-transcript-notice/acceptance-criteria.md` is Unmet |
 | 018-sk-git-rebase-sentence | 019-relaunch-doc-coverage | Phases 015 to 018 are Complete, because phase 019 documents what 015 to 017 ship | `validate.sh --strict` RESULT: PASSED for each of children 015 to 018 and no row of their `acceptance-criteria.md` is Unmet |
+| 019-relaunch-doc-coverage | 020-question-guard-killer-gone | Phase 019 is Complete and the whole-epic review of 2026-11-14 names the seven P2 findings | `validate.sh 019-relaunch-doc-coverage --strict` RESULT: PASSED and the review reply lists the seven findings |
+| 020-question-guard-killer-gone | 021-goal-scan-large-log | Phase 020 is Complete and the guard suite passes | `validate.sh 020-question-guard-killer-gone --strict` RESULT: PASSED and no row of `020-question-guard-killer-gone/acceptance-criteria.md` is Unmet |
+| 021-goal-scan-large-log | 022-stop-park-notices | Phase 021 is Complete and the relaunch suite passes | `validate.sh 021-goal-scan-large-log --strict` RESULT: PASSED and no row of `021-goal-scan-large-log/acceptance-criteria.md` is Unmet |
+| 022-stop-park-notices | 023-epic-review-doc-fixes | Phases 020 to 022 are Complete, because phase 023 documents their behavior and reruns the suites | `validate.sh --strict` RESULT: PASSED for each of children 020 to 022 and no row of their `acceptance-criteria.md` is Unmet |
 <!-- /ANCHOR:phase-map -->
 
 ---
