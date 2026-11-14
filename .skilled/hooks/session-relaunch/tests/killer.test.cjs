@@ -785,7 +785,9 @@ test('killer keeps the record armed when the target exits during its grace perio
     targetPid: target.pid,
     transcriptPath,
     idleMs: 400,
-    timeoutMs: 450,
+    // The killer polls every 100 ms, so a deadline 50 ms past the idle window is missed
+    // by one late poll on a busy machine.
+    timeoutMs: 1000,
   });
   try {
     const result = await waitForExit(killer, 6500);

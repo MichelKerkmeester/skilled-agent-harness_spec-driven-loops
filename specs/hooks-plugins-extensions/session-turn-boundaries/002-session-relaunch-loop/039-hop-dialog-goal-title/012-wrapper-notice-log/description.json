@@ -1,0 +1,20 @@
+{
+  "specFolder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/012-wrapper-notice-log",
+  "description": "Phase 12: wrapper-notice-log",
+  "keywords": [
+    "phase",
+    "wrapper-notice-log"
+  ],
+  "lastUpdated": "2026-11-14T06:07:01.192Z",
+  "specId": "012",
+  "folderSlug": "wrapper-notice-log",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-turn-boundaries",
+    "002-session-relaunch-loop",
+    "039-hop-dialog-goal-title"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

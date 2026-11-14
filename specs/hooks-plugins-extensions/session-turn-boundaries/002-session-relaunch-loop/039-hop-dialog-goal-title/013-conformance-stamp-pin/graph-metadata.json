@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/013-conformance-stamp-pin",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/013-conformance-stamp-pin",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "conformance stamp pin",
+      "phase 13 conformance stamp pin",
+      "assertStillPending deferredAt per runtime",
+      "parked record stamp conformance case",
+      "conformance stamp pin plan",
+      "conformance stamp pin tasks",
+      "conformance stamp pin acceptance criteria",
+      "conformance stamp pin goal",
+      "conformance stamp pin implementation summary"
+    ],
+    "key_topics": [
+      "conformance",
+      "stamp",
+      "pin",
+      "phase",
+      "assertstillpending",
+      "deferredat",
+      "per",
+      "runtime",
+      "parked",
+      "record",
+      "case",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs",
+      "scratch/hole.txt",
+      "scratch/red-claude.txt",
+      "scratch/red-codex.txt",
+      "scratch/red-unmarked.txt",
+      "scratch/green.txt",
+      "scratch/red.txt",
+      "scratch/suite.txt",
+      "scratch/baseline.txt",
+      "scratch/cases.txt",
+      "scratch/t016-restored.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "adapter-conformance.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "hole.txt",
+        "kind": "file",
+        "path": "scratch/hole.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red-claude.txt",
+        "kind": "file",
+        "path": "scratch/red-claude.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red-codex.txt",
+        "kind": "file",
+        "path": "scratch/red-codex.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red-unmarked.txt",
+        "kind": "file",
+        "path": "scratch/red-unmarked.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "suite.txt",
+        "kind": "file",
+        "path": "scratch/suite.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "cases.txt",
+        "kind": "file",
+        "path": "scratch/cases.txt",
+        "source": "derived"
+      },
+      {
+        "name": "t016-restored.txt",
+        "kind": "file",
+        "path": "scratch/t016-restored.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Stop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The shared conformance case `an arm leaves the record pending when no process below the loop is found` checks its result with `assertStillPending`",
+    "created_at": "2026-11-14T06:07:01Z",
+    "last_save_at": "2026-11-14T07:14:49.765Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:1144f7c3e5295161623be0f006d40f9214352401aeecbee13c39de25c3b0d721",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "86efde778e2153612d8229491b9ee15886b999b1c7bf25215d980ccce57d0d0f",
+      "plan.md": "6a0b0bac5fa2e2da3ab33fa89c38825fccba1720c52c096317fab5db60dedac6",
+      "tasks.md": "cd0c32cdc10502353071b1f99bc57adfc03cd7add1b8dc5f7054b7aca01ce837",
+      "implementation-summary.md": "0521476c76683bac872f2314a4fa104a4c26b8d4a64ab9e15819ec1ad0602773"
+    },
+    "last_active_at": null
+  }
+}

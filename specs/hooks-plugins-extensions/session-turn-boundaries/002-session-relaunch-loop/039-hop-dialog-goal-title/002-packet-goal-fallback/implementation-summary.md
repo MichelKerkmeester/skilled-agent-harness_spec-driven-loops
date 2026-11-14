@@ -97,6 +97,7 @@ The operator's answers on 2026-11-13, given through the question tool: spec fold
 | Require `budgetState` `ok` | A slice the wrapper cannot send would start nothing. A leaf phase goal has no budget, so its parent is used |
 | Read open criteria in the durable slice only | An unticked box in the log section is a note, not a criterion |
 | Not carrying the ending through the chain | It would close the cleared-goal gap but needs a new note field. The operator chose to skip finished goal docs |
+| Amended on 2026-11-14 by children 010 and 011 | The operator chose "Goal continuity" after the research of 2026-11-13 confirmed that a cleared goal comes back one hop later. Child `010-goal-ending-carry` carries the ending in a `goal_ended` note field (`aee4ae8080`). Child `011-goal-fallback-bound` stops the fallback at the parent of the note's folder (`eba587cae7`). The row above records the choice as it stood on 2026-11-13 |
 | No new module and no record change | Parent decision D3 |
 <!-- /ANCHOR:decisions -->
 
@@ -124,7 +125,7 @@ The operator's answers on 2026-11-13, given through the question tool: spec fold
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **A goal cleared by hand can come back.** When the operator clears a goal while its criteria are still unticked, the next session has no goal entry, so the hop after it starts on that goal again. `SESSION_RELAUNCH_GOAL=0` or ticking the criteria stops it. Carrying the ending through the chain would close this and needs a new note field.
+1. **A goal cleared by hand can come back.** When the operator clears a goal while its criteria are still unticked, the next session has no goal entry, so the hop after it starts on that goal again. `SESSION_RELAUNCH_GOAL=0` or ticking the criteria stops it. Carrying the ending through the chain would close this and needs a new note field. Closed on 2026-11-14 by child `010-goal-ending-carry`, which adds that note field.
 2. **No headline proof in the fallback.** A stale parent `goal.md` with an open criterion can still be picked. Only finished goal docs are skipped.
 3. **Not run live.** No hop was run for this child. The receiver starting on `/goal` from a fallback packet is proven by unit and CLI tests only. The wrapper path from `goal_packet` to `/goal` is unchanged code, live-proven in earlier phases 028 and 038/016.
 4. **Claude only.** Pi, OpenCode, Devin and Cursor read goal records and are unchanged. Codex carries no packet.

@@ -1,0 +1,35 @@
+mutation: stampsDeferred mark set on the Codex entry of ADAPTERS (working tree)
+$ env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='no process below the loop' .skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs
+✔ claude: an arm leaves the record pending when no process below the loop is found (50.992125ms)
+✖ codex: an arm leaves the record pending when no process below the loop is found (10.311833ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 105.602125
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs:498:5
+✖ codex: an arm leaves the record pending when no process below the loop is found (10.311833ms)
+  AssertionError [ERR_ASSERTION]: a stamping runtime writes a string stamp
+  + actual - expected
+  
+  + 'undefined'
+  - 'string'
+  
+      at Object.assertStillPending [as check] (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs:420:12)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.skilled/hooks/session-relaunch/tests/adapter-conformance.test.cjs:506:15)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'undefined',
+    expected: 'string',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+exit=1

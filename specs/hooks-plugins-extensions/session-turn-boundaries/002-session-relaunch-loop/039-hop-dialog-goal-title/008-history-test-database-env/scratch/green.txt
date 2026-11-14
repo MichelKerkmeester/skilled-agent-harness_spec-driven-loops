@@ -1,0 +1,12 @@
+# Command: env -u AI_SESSION_CHILD OPENCODE_DB=other-session.db node --test .opencode/plugins/tests/session-history-lookup.test.cjs
+✔ a compacted session started in a subfolder gets an offer that redeems (203.508084ms)
+✔ a second request keeps the offer and another session gets none (91.251167ms)
+✔ a folder outside any checkout gets no offer and saves no locator (121.344958ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 451.061875

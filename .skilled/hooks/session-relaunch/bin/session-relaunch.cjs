@@ -385,6 +385,8 @@ function noteGoalPacket(frontmatter, recordedGoalSwitch) {
 // The field belongs to this command and not to whoever wrote the note. Every prepare and keep
 // resolves the sending session's goal again and writes the result, removing the field when no
 // goal can be proven, so a note prepared after its goal ended does not hand the dead goal on. A
+// Claude goal that ended is marked in the note too, because the receiver's own log will not
+// show it and its next hand-over would otherwise start a session on the packet goal again. A
 // failed write leaves the note as it was, since a hand-over never fails for want of a goal.
 // A known goal that cannot be carried is named on stderr, where it cannot disturb the prepared
 // text the calling runtime reads from stdout.
@@ -395,13 +397,14 @@ function recordGoalPacket({ handoffPath, noteCwd, specFolder, runtime, sessionId
     sessionId,
     specFolder: specFolder === 'none' ? '' : specFolder,
     roots: goalRoots(noteCwd),
+    handoffPath,
     env: process.env,
   };
-  // The resolver checks the goal once and returns both the packet and the reason it carried
-  // none, so a miss does not walk the specs tree a second time.
-  const { packet, reason } = core.resolveGoalPacketResult(options);
+  // The resolver checks the goal once and returns the packet, the reason it carried none and
+  // whether the goal ended, so a miss does not walk the specs tree a second time.
+  const { packet, reason, ended } = core.resolveGoalPacketResult(options);
   try {
-    core.recordGoalPacket(handoffPath, packet);
+    core.recordGoalPacket(handoffPath, packet, { ended });
   } catch {
     // The note stays as written, and the receiver is simply told nothing.
   }

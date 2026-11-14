@@ -627,8 +627,25 @@ function claudeSessionLogPath(sessionId, env) {
   return null;
 }
 
-function claudeGoalPacketResult({ sessionId, specFolder, roots, env }) {
-  const none = { packet: '', reason: '' };
+// Whether the note this session was started from says the goal it carried had ended. Notes
+// sit side by side, so the one the session claimed is found beside the note it now hands over.
+function claimedNoteEndedGoal(handoffPath, sessionId) {
+  if (!nonEmptyString(handoffPath)) return false;
+  const directory = path.dirname(handoffPath);
+  for (const fileName of safeDirectory(directory)) {
+    if (!fileName.endsWith('.md')) continue;
+    try {
+      const { frontmatter } = parseHandoff(readHandoffText(path.join(directory, fileName)));
+      if (frontmatter.claimed_by === sessionId && frontmatter.goal_ended === 'true') return true;
+    } catch {
+      // A note that cannot be read or parsed says nothing about a goal.
+    }
+  }
+  return false;
+}
+
+function claudeGoalPacketResult({ sessionId, specFolder, roots, handoffPath, env }) {
+  const none = { packet: '', reason: '', ended: false };
   const lineage = packetLineage(specFolder);
   let logPath = null;
   try {
@@ -651,18 +668,25 @@ function claudeGoalPacketResult({ sessionId, specFolder, roots, env }) {
   // unfinished goal the receiver can be started on is carried instead. A log read only in part cannot rule out a goal that
   // ended earlier, and a finished goal.md would only make the receiver prove it again.
   if (latest === null) {
+    // A goal the sender before this one ended stays ended. This session set none of its
+    // own, so its log is silent and the note it claimed is what still says so.
+    if (claimedNoteEndedGoal(handoffPath, sessionId)) return { ...none, ended: true };
     if (!whole) return none;
+    // Nothing ties a packet goal to this session beyond where the note sits, so only the
+    // note's folder and its parent count. A leaf phase binds through its parent, which is
+    // why the parent is kept, and a goal further up may belong to work the session never did.
+    const nearby = lineage.slice(0, 2);
     return {
-      packet: firstUsablePacket(lineage, roots, (candidate) => packetGoalIsSettable(candidate, roots)),
-      reason: '',
+      ...none,
+      packet: firstUsablePacket(nearby, roots, (candidate) => packetGoalIsSettable(candidate, roots)),
     };
   }
-  if (!latest.active) return none;
+  if (!latest.active) return { ...none, ended: true };
   const headline = latest.condition.split(/\r?\n/).find((line) => line.trim() !== '') ?? '';
   // An active goal with no text cannot name a packet, and calling the packet missing would
   // send the receiver looking for one the goal never chose.
   if (headline === '') {
-    return { packet: '', reason: 'the active goal has no text to match a packet by' };
+    return { ...none, reason: 'the active goal has no text to match a packet by' };
   }
   const named = [...new Set(latest.condition.match(GOAL_LOG_PACKET_PATTERN) ?? [])];
   const candidates = [...lineage, ...named].slice(0, GOAL_LOG_MAX_CANDIDATES);
@@ -679,15 +703,15 @@ function claudeGoalPacketResult({ sessionId, specFolder, roots, env }) {
     }
     return false;
   });
-  if (carried !== '') return { packet: carried, reason: '' };
+  if (carried !== '') return { ...none, packet: carried };
   // The lineage and the packets the goal names can both miss when the sender works outside
   // its packet. One packet carrying the same headline is still proof of the goal.
   const matches = goalHeadlinePackets({ roots, headline });
-  if (matches.length === 1) return { packet: matches[0], reason: '' };
+  if (matches.length === 1) return { ...none, packet: matches[0] };
   const reason = matches.length > 1
     ? `the active goal headline appears in ${matches.length} packets`
     : 'the active goal names no packet this hand-over can find';
-  return { packet: '', reason };
+  return { ...none, reason };
 }
 
 // Codex names a rollout for its thread, under a folder per day, so the thread's own file is
@@ -878,34 +902,36 @@ function handoverGoalPacket({ runtime, roots, env }) {
  * @param {string} [options.specFolder] - The note's spec folder, where a Claude goal's
  *   candidate packets start.
  * @param {string[]} options.roots - Absolute checkouts the packet may live in.
+ * @param {string} [options.handoffPath] - The note being handed over, beside which a Claude
+ *   session's claimed note is looked up.
  * @param {NodeJS.ProcessEnv} [options.env=process.env] - Environment carrying the log location.
- * @returns {{packet: string, reason: string}} The packet and why a known goal was not carried.
+ * @returns {{packet: string, reason: string, ended: boolean}} The packet, why a known goal
+ *   was not carried and whether a Claude goal is known to have ended.
  */
 function resolveGoalPacketResult({
-  runtime, sessionId, specFolder = '', roots = [], env = process.env,
+  runtime, sessionId, specFolder = '', roots = [], handoffPath, env = process.env,
 } = {}) {
+  const none = { packet: '', reason: '', ended: false };
   try {
-    if (!nonEmptyString(sessionId) || roots.length === 0) {
-      return { packet: '', reason: '' };
-    }
+    if (!nonEmptyString(sessionId) || roots.length === 0) return none;
     if (GOAL_RECORD_RUNTIMES.includes(runtime)) {
       const recorded = recordedGoalPacket({ runtime, sessionId, roots });
-      if (recorded !== '') return { packet: recorded, reason: '' };
-      return { packet: handoverGoalPacket({ runtime, roots, env }), reason: '' };
+      if (recorded !== '') return { ...none, packet: recorded };
+      return { ...none, packet: handoverGoalPacket({ runtime, roots, env }) };
     }
     if (runtime === 'claude') {
-      return claudeGoalPacketResult({ sessionId, specFolder, roots, env });
+      return claudeGoalPacketResult({ sessionId, specFolder, roots, handoffPath, env });
     }
     if (runtime === 'codex') {
       return {
-        packet: '',
+        ...none,
         reason: 'Codex keeps its goal where this hand-over cannot read a packet',
       };
     }
   } catch {
     // Resolution is a convenience for the receiver, never a reason to refuse a hand-over.
   }
-  return { packet: '', reason: '' };
+  return none;
 }
 
 /**
@@ -930,27 +956,35 @@ function resolveGoalPacketReason(options) {
 }
 
 /**
- * Make an open note's goal_packet field say what the sender's goal is now: write the packet,
- * replace a different one, or remove the field when the sender has none. A note that already
- * says so is left untouched.
+ * Make an open note's goal fields say what the sender's goal is now. `goal_packet` is
+ * written, replaced by a different packet or removed when the sender has none. `goal_ended`
+ * is written when the goal is known to have ended and removed otherwise, so the next
+ * hand-over does not bring an ended goal back. A note that already says so is left untouched.
  *
  * @param {string} filePath - Handoff note path.
  * @param {string} goalPacket - A packet resolveGoalPacket returned, or '' to remove the field.
+ * @param {Object} [options] - What else the resolver found.
+ * @param {boolean} [options.ended=false] - Whether the goal ended; never set beside a packet.
  * @returns {boolean} True when the note changed, false when it already said so.
  */
-function recordGoalPacket(filePath, goalPacket) {
+function recordGoalPacket(filePath, goalPacket, { ended = false } = {}) {
   return withAppendLock(filePath, () => {
     const text = readHandoffText(filePath);
     const { frontmatter } = parseHandoff(text);
     // A note that is no longer open belongs to another session's claim or to finished work,
-    // so its goal field is not this hand-over's to rewrite.
+    // so its goal fields are not this hand-over's to rewrite.
     if (frontmatter.status !== 'open') return false;
+    const updates = {};
     const held = Object.hasOwn(frontmatter, 'goal_packet');
-    if (goalPacket === '' ? !held : frontmatter.goal_packet === goalPacket) return false;
-    writeHandoffUpdate(
-      filePath,
-      updateFrontmatter(text, { goal_packet: goalPacket === '' ? null : goalPacket }),
-    );
+    if (goalPacket === '' ? held : frontmatter.goal_packet !== goalPacket) {
+      updates.goal_packet = goalPacket === '' ? null : goalPacket;
+    }
+    const markEnded = ended && goalPacket === '';
+    if (markEnded ? frontmatter.goal_ended !== 'true' : Object.hasOwn(frontmatter, 'goal_ended')) {
+      updates.goal_ended = markEnded ? 'true' : null;
+    }
+    if (Object.keys(updates).length === 0) return false;
+    writeHandoffUpdate(filePath, updateFrontmatter(text, updates));
     return true;
   });
 }
@@ -1232,8 +1266,9 @@ function withdrawRecord({ loopId, reason, accept, env = process.env, now }) {
  *
  * @param {string} loopId - Wrapper process identifier.
  * @param {NodeJS.ProcessEnv} [env=process.env] - Runtime environment.
- * @returns {Object|null} Parsed record, or null when absent or invalid JSON.
- * A corrupt record is logged and treated as absent; logging may create the directory.
+ * @returns {Object|null} Parsed record, or null when absent, invalid JSON or without a
+ * `handoff` string. A corrupt record is logged and treated as absent; logging may create
+ * the directory.
  */
 function readRelaunchFile(loopId, env = process.env) {
   const directory = stateDir(env);
@@ -1255,17 +1290,24 @@ function readRelaunchFile(loopId, env = process.env) {
     throw error;
   }
 
+  let record = null;
   try {
-    return JSON.parse(contents);
+    record = JSON.parse(contents);
   } catch (error) {
     if (!(error instanceof SyntaxError)) throw error;
-    // The log is best-effort: a state-dir failure must not turn a corrupt
-    // record into a thrown read.
-    try {
-      appendLog('corrupt-relaunch-file', { loop: loopId }, env);
-    } catch {}
-    return null;
   }
+  // `preparePending` is the one writer that sets `handoff`, so a record with no such field
+  // was not written here, and reading it as pending would let a Stop arm a hop that has no
+  // note to claim.
+  if (record !== null && typeof record === 'object' && typeof record.handoff === 'string') {
+    return record;
+  }
+  // The log is best-effort: a state-dir failure must not turn a corrupt
+  // record into a thrown read.
+  try {
+    appendLog('corrupt-relaunch-file', { loop: loopId }, env);
+  } catch {}
+  return null;
 }
 
 /**

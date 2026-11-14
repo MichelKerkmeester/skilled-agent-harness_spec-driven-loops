@@ -200,6 +200,7 @@ const ADAPTERS = {
       root,
     )),
     killerTarget: '60',
+    stampsDeferred: true,
     arm: async ({ env, root }, { cwd, processTable }) => {
       const spawns = [];
       const { armPendingRecord } = await importAdapter('claude', 'stop-arm.mjs');
@@ -409,6 +410,24 @@ function assertUntouched({ record, before, spawns }) {
   assert.deepEqual(spawns, []);
 }
 
+// A Stop that cannot arm leaves the record pending. Claude stamps the record it parked so a
+// prompt can withdraw it, and Codex does not stamp yet, so the table says which to expect.
+// Every other field must still match the record before.
+function assertStillPending({ record, before, spawns }, adapter) {
+  const { deferredAt, ...unmarked } = record;
+  if (adapter.stampsDeferred) {
+    assert.equal(typeof deferredAt, 'string', 'a stamping runtime writes a string stamp');
+    assert.ok(!Number.isNaN(Date.parse(deferredAt)), 'the stamp parses as a time');
+  } else {
+    assert.ok(
+      !Object.hasOwn(record, 'deferredAt'),
+      'a runtime that does not stamp adds no deferredAt key',
+    );
+  }
+  assert.deepEqual(unmarked, before);
+  assert.deepEqual(spawns, []);
+}
+
 const ARM_CASES = [
   {
     name: "an arm turns this session's pending record armed from the live cwd and starts one killer",
@@ -454,7 +473,7 @@ const ARM_CASES = [
     looksUpTarget: true,
     processTable: '41 50\n50 1\n',
     setup: (sandbox, runtime) => prepareArmRecord(sandbox, { runtime }),
-    check: assertUntouched,
+    check: assertStillPending,
   },
 ];
 

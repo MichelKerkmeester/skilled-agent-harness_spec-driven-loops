@@ -902,7 +902,9 @@ test('arm returns null when the record cannot be read', (t) => {
 
 test('unarm records disarmed status and the supplied reason', (t) => {
   const sandbox = createSandbox(t);
-  writeRelaunchRecord(sandbox, { loopId: LOOP_ID, status: 'armed', armedAt: NOW.toISOString() });
+  writeRelaunchRecord(sandbox, {
+    loopId: LOOP_ID, status: 'armed', handoff: '/handoffs/note.md', armedAt: NOW.toISOString(),
+  });
   const record = unarm({ loopId: LOOP_ID, env: sandbox.env, reason: 'killer-timeout', now: NOW });
   assert.equal(record.status, 'disarmed');
   assert.equal(record.disarmReason, 'killer-timeout');
@@ -913,6 +915,7 @@ test('unarm leaves the record armed when expectedArmId is stale', (t) => {
   writeRelaunchRecord(sandbox, {
     loopId: LOOP_ID,
     status: 'armed',
+    handoff: '/handoffs/note.md',
     armedAt: NOW.toISOString(),
     armId: 'arm-current-0001',
   });
@@ -932,6 +935,7 @@ test('unarm disarms the record when expectedArmId matches', (t) => {
   writeRelaunchRecord(sandbox, {
     loopId: LOOP_ID,
     status: 'armed',
+    handoff: '/handoffs/note.md',
     armedAt: NOW.toISOString(),
     armId: 'arm-current-0001',
   });
@@ -950,7 +954,7 @@ test('unarm disarms the record when expectedArmId matches', (t) => {
 
 test('readRelaunchFile returns the parsed record or null when absent', (t) => {
   const sandbox = createSandbox(t);
-  const record = { version: 1, status: 'pending', loopId: LOOP_ID };
+  const record = { version: 1, status: 'pending', loopId: LOOP_ID, handoff: '/handoffs/note.md' };
   writeRelaunchRecord(sandbox, record);
   assert.deepEqual(readRelaunchFile(LOOP_ID, sandbox.env), record);
   assert.equal(readRelaunchFile('loop-missing', sandbox.env), null);
@@ -1019,6 +1023,29 @@ test('readRelaunchFile treats invalid JSON as absent and logs the loop id', (t) 
   const lines = fs.readFileSync(logPath, 'utf8').trimEnd().split('\n');
   assert.equal(lines.length, 1);
   assert.match(lines[0], new RegExp(' corrupt-relaunch-file loop=' + LOOP_ID + '$'));
+});
+
+test('readRelaunchFile treats a record with no handoff as absent and logs the loop id', (t) => {
+  const sandbox = createSandbox(t);
+  const filePath = relaunchFilePath(LOOP_ID, sandbox.env);
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, JSON.stringify({ version: 1, status: 'pending', loopId: LOOP_ID }));
+
+  assert.equal(readRelaunchFile(LOOP_ID, sandbox.env), null);
+  const logPath = path.join(stateDir(sandbox.env), 'relaunch.log');
+  const lines = fs.readFileSync(logPath, 'utf8').trimEnd().split('\n');
+  assert.equal(lines.length, 1);
+  assert.match(lines[0], new RegExp(' corrupt-relaunch-file loop=' + LOOP_ID + '$'));
+});
+
+test('readRelaunchFile keeps a record whose handoff is an empty string', (t) => {
+  const sandbox = createSandbox(t);
+  const filePath = relaunchFilePath(LOOP_ID, sandbox.env);
+  const record = { version: 1, status: 'disarmed', loopId: LOOP_ID, handoff: '' };
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, JSON.stringify(record));
+
+  assert.deepEqual(readRelaunchFile(LOOP_ID, sandbox.env), record);
 });
 
 test('readRelaunchFile still returns null when the corruption log write fails', (t) => {
@@ -2796,6 +2823,30 @@ test('resolveGoalPacket gives a Claude sender with no goal entry the nearest unf
   assert.equal(claude(), '', 'a slice over the budget cannot be sent');
 });
 
+// A goal far above the note's folder may belong to work the session never touched, so the
+// search stops at the folder's parent.
+test('resolveGoalPacket looks no further up than the parent of the note folder', (t) => {
+  const sandbox = createSandbox(t);
+  const roots = [sandbox.repoRoot];
+  writeGoalBudget(sandbox.repoRoot);
+  const leaf = `${GOAL_PACKET}/001-leaf-phase`;
+  fs.mkdirSync(path.join(sandbox.repoRoot, leaf), { recursive: true });
+  const claude = (specFolder) => resolveGoalPacket({
+    runtime: 'claude',
+    sessionId: GOAL_SESSION_ID,
+    specFolder,
+    roots,
+    env: writeClaudeLog(sandbox, [{ type: 'user', message: { content: 'hello' } }]),
+  });
+
+  writeGoalPacket(sandbox.repoRoot, GOAL_PARENT, packetGoalText());
+  assert.equal(claude(leaf), '', 'the only open goal is two levels up');
+  assert.equal(claude(GOAL_PACKET), GOAL_PARENT, 'the same goal is the parent of this folder');
+
+  writeGoalPacket(sandbox.repoRoot, GOAL_PACKET, packetGoalText());
+  assert.equal(claude(leaf), GOAL_PACKET, 'the parent of the note folder holds an open goal');
+});
+
 test('resolveGoalPacket leaves an ended or unreadable Claude goal uncarried', (t) => {
   const sandbox = createSandbox(t);
   const roots = [sandbox.repoRoot];
@@ -2831,6 +2882,74 @@ test('resolveGoalPacket leaves an ended or unreadable Claude goal uncarried', (t
     roots,
     env: { ...sandbox.env, CLAUDE_CONFIG_DIR: path.join(sandbox.root, 'no-such-config') },
   }), '', 'no log at all');
+});
+
+test('resolveGoalPacketResult says when the Claude goal has ended', (t) => {
+  const sandbox = createSandbox(t);
+  const roots = [sandbox.repoRoot];
+  writeGoalBudget(sandbox.repoRoot);
+  writeGoalPacket(sandbox.repoRoot, GOAL_PARENT, packetGoalText());
+  const ended = (entries) => resolveGoalPacketResult({
+    runtime: 'claude',
+    sessionId: GOAL_SESSION_ID,
+    specFolder: GOAL_PACKET,
+    roots,
+    env: writeClaudeLog(sandbox, entries),
+  }).ended;
+  const condition = `${GOAL_HEADLINE}\n\nbody`;
+
+  assert.equal(ended([goalStatus({ met: true, condition })]), true, 'a met goal');
+  assert.equal(ended([goalStatus({ met: false, failed: true, condition })]), true, 'a failed goal');
+  assert.equal(ended([goalStatus({ met: false, condition }), {
+    type: 'system',
+    subtype: 'local_command',
+    content: '<command-name>/goal</command-name><command-args>clear</command-args>',
+  }]), true, 'a cleared goal');
+  assert.equal(ended([goalStatus({ met: false, condition })]), false, 'an active goal');
+  assert.equal(ended([{ type: 'user', message: { content: 'hello' } }]), false, 'no goal at all');
+});
+
+// A receiver that sets no goal of its own has a log with no goal entry, which reads like a
+// session that never had one. The note it was started from is what still says the goal ended.
+test('a goal the sender ended stays ended for a receiver that sets none', (t) => {
+  const sandbox = createSandbox(t);
+  const roots = [sandbox.repoRoot];
+  writeGoalBudget(sandbox.repoRoot);
+  writeGoalPacket(sandbox.repoRoot, GOAL_PARENT, packetGoalText());
+  const claimedPath = writeHandoff(sandbox, { status: 'claimed', claimedBy: GOAL_SESSION_ID });
+  const handoffPath = path.join(path.dirname(claimedPath), 'outgoing.md');
+  const noGoal = [{ type: 'user', message: { content: 'hello' } }];
+  const resolve = (entries = noGoal) => resolveGoalPacketResult({
+    runtime: 'claude',
+    sessionId: GOAL_SESSION_ID,
+    specFolder: GOAL_PACKET,
+    roots,
+    handoffPath,
+    env: writeClaudeLog(sandbox, entries),
+  });
+  const setEnded = (line) => fs.writeFileSync(
+    claimedPath,
+    readNote(claimedPath).replace(/^(status: .*)$/m, `$1${line}`),
+  );
+
+  assert.deepEqual(resolve(), { packet: GOAL_PARENT, reason: '', ended: false },
+    'the claimed note says nothing about an ending');
+
+  setEnded('\ngoal_ended: true');
+  assert.deepEqual(resolve(), { packet: '', reason: '', ended: true });
+
+  // Past the tail cap the log cannot rule a goal in or out, and the note still speaks.
+  const filler = { type: 'user', message: { content: 'x'.repeat(1024 * 1024) } };
+  assert.deepEqual(resolve(Array.from({ length: 17 }, () => filler)),
+    { packet: '', reason: '', ended: true }, 'a log read only in part');
+
+  const condition = `${GOAL_HEADLINE}\n`;
+  writeGoalPacket(sandbox.repoRoot, GOAL_PACKET, `${GOAL_HEADLINE}\n`);
+  assert.deepEqual(resolve([goalStatus({ met: false, condition })]),
+    { packet: GOAL_PACKET, reason: '', ended: false }, 'a goal the receiver set is carried');
+
+  fs.writeFileSync(claimedPath, readNote(claimedPath).replace(GOAL_SESSION_ID, 'ses_someoneelse01'));
+  assert.equal(resolve().packet, GOAL_PARENT, 'a note another session claimed says nothing here');
 });
 
 test('resolveGoalPacket answers empty when no Claude log can be read', (t) => {
@@ -2902,6 +3021,7 @@ test('the resolver result carries the packet and the reason together', (t) => {
   }), {
     packet: '',
     reason: 'the active goal names no packet this hand-over can find',
+    ended: false,
   });
 });
 
@@ -3003,6 +3123,26 @@ test('recordGoalPacket writes, replaces and removes the field and skips an uncha
   assert.equal(fs.existsSync(`${handoffPath}.lock`), false);
 });
 
+test('recordGoalPacket writes and removes the mark of an ended goal', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  const fields = () => {
+    const { goal_packet: packet, goal_ended: ended } = parseHandoff(readNote(handoffPath)).frontmatter;
+    return { packet, ended };
+  };
+
+  assert.equal(recordGoalPacket(handoffPath, '', { ended: true }), true);
+  assert.deepEqual(fields(), { packet: undefined, ended: 'true' });
+  assert.equal(recordGoalPacket(handoffPath, '', { ended: true }), false, 'the same mark');
+  assert.equal(recordGoalPacket(handoffPath, GOAL_PACKET), true);
+  assert.deepEqual(fields(), { packet: GOAL_PACKET, ended: undefined },
+    'a goal that is carried again takes the mark away');
+  assert.equal(recordGoalPacket(handoffPath, '', { ended: true }), true);
+  assert.deepEqual(fields(), { packet: undefined, ended: 'true' });
+  assert.equal(recordGoalPacket(handoffPath, ''), true);
+  assert.deepEqual(fields(), { packet: undefined, ended: undefined });
+});
+
 test('recordGoalPacket removes an empty field the note holds', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox);
@@ -3034,6 +3174,7 @@ test('an active goal with no text names the empty goal, not a missing packet', (
   }), {
     packet: '',
     reason: 'the active goal has no text to match a packet by',
+    ended: false,
   });
 });
 

@@ -1,0 +1,13 @@
+# Command: env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='goal has ended|stays ended for a receiver|mark of an ended goal|marks an ended Claude goal' .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs .skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs
+✔ resolveGoalPacketResult says when the Claude goal has ended (6.051958ms)
+✔ a goal the sender ended stays ended for a receiver that sets none (19.352875ms)
+✔ recordGoalPacket writes and removes the mark of an ended goal (23.214542ms)
+✔ prepare marks an ended Claude goal in the note and keeps it ended one hop later (131.928667ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 168.832792
