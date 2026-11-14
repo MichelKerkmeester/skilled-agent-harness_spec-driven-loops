@@ -7,7 +7,7 @@
     "tasks.md.tmpl": "v2.4",
     "implementation-summary.md.tmpl": "v2.4",
     "decision-record.md.tmpl": "v2.2",
-    "phase-parent.spec.md.tmpl": "v2.2",
+    "phase-parent.spec.md.tmpl": "v2.3",
     "review.spec.md.tmpl": "v2.2",
     "handover.md.tmpl": "v1.0",
     "debug-delegation.md.tmpl": "v1.0",

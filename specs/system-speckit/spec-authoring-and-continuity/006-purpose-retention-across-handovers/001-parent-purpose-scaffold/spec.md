@@ -21,7 +21,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | In Progress |
 | **Created** | 2026-11-13 |
 | **Branch** | `scaffold/001-parent-purpose-scaffold` |
 | **Parent Spec** | ../spec.md |
@@ -38,7 +38,7 @@ contextType: "general"
 
 This is **Phase 1** of the Carry a packet's purpose across handovers and compactions specification.
 
-**Scope Boundary**: the phase-parent template, its manifest version, the dead generic-text lines in `create.sh`, the golden snapshot and one test assertion. The resume brief, the relaunch note, the compaction brief and the continuity block belong to phases 2 to 5.
+**Scope Boundary**: the phase-parent template, its manifest version, the dead generic-text lines in `create.sh`, the golden snapshot and two test assertions. The resume brief, the relaunch note, the compaction brief and the continuity block belong to phases 2 to 5.
 
 **Dependencies**:
 - None. The four later phases read a parent's purpose, and this phase only makes sure a new parent has one to read.
@@ -46,7 +46,8 @@ This is **Phase 1** of the Carry a packet's purpose across handovers and compact
 **Deliverables**:
 - A phase-parent template whose Problem Statement and Purpose hints are value tokens, stamped `v2.3`
 - A `create.sh` with no generic parent problem or purpose text in it
-- One test assertion that a new parent reaches its author with the Purpose still open
+- A phase-parent `recent_action` default that a finished parent can keep, so a parent with a real purpose passes strict validation at Complete
+- Two test assertions: a new parent reaches its author with the Purpose still open, and its `recent_action` default does not read as a scaffold placeholder
 <!-- /ANCHOR:phase-context -->
 
 ---
@@ -97,25 +98,28 @@ RESULT: PASSED
 ### In Scope
 - Replace the Problem Statement and Purpose hints in the phase-parent template with `[YOUR_VALUE_HERE: ...]` tokens.
 - Raise the phase-parent template stamp and its manifest entry from `v2.2` to `v2.3`. Without it the validator reads a token in this template as an error even in a Draft, so every untouched parent fails its own gate.
+- Replace the template's `recent_action` default. At `v2.3`, `SCAFFOLD_NEVER_TOUCHED` reads the parent's own frontmatter once it is Complete, and no save or repair ever rewrites that line on a parent, so without the change every finished parent fails.
 - Delete the four `create.sh` lines that define and substitute the generic parent problem and purpose.
-- Update the three golden-snapshot lines that pin the old stamp and hints.
-- Add one assertion that a new parent's Purpose is still a token. Nothing catches a generator that fills it today, because the snapshot renders the template and not `create.sh` output.
+- Update the four golden-snapshot lines that pin the old stamp, hints and `recent_action` default.
+- Add one assertion that a new parent's Purpose is still a token. Nothing catches a generator that fills it today, because the snapshot renders the template and not `create.sh` output. Add a second that its `recent_action` does not match the rule's scaffold signature, because a snapshot change is one `-u` away from passing.
 
 ### Out of Scope
 - Rewriting the 5 live parents that carry the generic sentence - they are a follow-up packet, listed in Open Questions.
 - Turning the other plain hints in the template into tokens (`[One-line description]`, `[YYYY-MM-DD]`, `[Predecessor-packet]`) - they do not hold the purpose.
 - Changing `ANCHORS_VALID`, which still exempts a phase parent - the token gate flags the purpose without it.
+- Changing `SCAFFOLD_NEVER_TOUCHED` - a phase-parent exemption in the rule would also drop the `scaffold/` pointer marker that still fails an untouched parent marked Complete (`plan.md` section 3).
+- Changing the parent's `packet_pointer` default - `repair-derived.cjs --apply` already rewrites it on every edited parent.
 - Any change to the resume brief, relaunch note, compaction brief or continuity block - phases 2 to 5 own them.
 
 ### Files to Change
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl` | Modify | Stamp `v2.2` to `v2.3`, and the two hints become value tokens |
+| `.skilled/skills/system-spec-kit/templates/packet-types/phase-parent.spec.md.tmpl` | Modify | Stamp `v2.2` to `v2.3`, the two hints become value tokens and the `recent_action` default changes |
 | `.skilled/skills/system-spec-kit/templates/spec-kit-docs.json` | Modify | `phase-parent.spec.md.tmpl` version `v2.2` to `v2.3` |
 | `.skilled/skills/system-spec-kit/runtime/cli/spec/create.sh` | Modify | Delete lines 1875-1876 and 1902-1903 |
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap` | Modify | Lines 3235, 3273 and 3276 follow the template |
-| `.skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts` | Modify | Assert the new parent's Purpose is a token |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/snapshots/scaffold-golden-snapshots.vitest.ts.snap` | Modify | Lines 3222, 3235, 3273 and 3276 follow the template |
+| `.skilled/skills/system-spec-kit/runtime/cli/tests/scaffold-passes-its-own-gate.vitest.ts` | Modify | Assert the new parent's Purpose is a token and its `recent_action` default is not a scaffold placeholder |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -132,6 +136,8 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | REQ-001 | A new phase parent carries value tokens under Problem Statement and Purpose | In a sandbox, after `create.sh --phase --phases 2 --phase-names first,second "purpose probe"`, `grep -c '^\[YOUR_VALUE_HERE: ' specs/001-purpose-probe/spec.md` prints 2 |
 | REQ-002 | An untouched new parent still passes its own gate, with the purpose flagged | `validate.sh specs/001-purpose-probe --strict --no-recursive` prints `! PLACEHOLDER_FILLED: 2 unfilled value token(s) in a Draft packet` and `Errors: 0` |
 | REQ-003 | A new parent with an unfilled purpose fails once its status leaves Draft | With Status set to `In Progress`, the same command prints `x PLACEHOLDER_FILLED: 2 placeholder(s) found` and exits 2 |
+| REQ-006 | A new parent with a real purpose passes strict validation at `In Progress` and at `Complete` | After the purpose is filled, Status is set and `repair-derived.cjs --folder specs/001-purpose-probe --apply` runs, the REQ-002 command prints `Summary: Errors: 0` and `RESULT: PASSED` and exits 0 for both statuses |
+| REQ-007 | An untouched new parent marked Complete still fails | With only Status set to `Complete`, the REQ-002 command prints `x SCAFFOLD_NEVER_TOUCHED` naming `packet_pointer starts with "scaffold/"`, prints `x PLACEHOLDER_FILLED: 2 placeholder(s) found` and exits 2 |
 
 ### P1 - Required (complete OR user-approved deferral)
 
@@ -150,6 +156,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 - **SC-001**: The Measured Behavior run, repeated after the change, prints `[YOUR_VALUE_HERE: ...]` on lines 64 and 67 in place of the plain hints, and `PLACEHOLDER_FILLED` turns from `+` to `!`.
 - **SC-002**: The vitest run in `plan.md` section 5 prints `Test Files  4 passed (4)` and `Tests  99 passed (99)` after the change, as it did at baseline.
 - **SC-003**: `git diff --stat` lists only the five files in section 3.
+- **SC-004**: The three sandbox cases in `plan.md` section 5, repeated after the change, print the same final validator lines: the untouched parent fails at `Complete`, and the parent with a real purpose prints `RESULT: PASSED` at `In Progress` and at `Complete`.
 <!-- /ANCHOR:success-criteria -->
 
 ---
@@ -161,8 +168,10 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
 | Dependency | `template-version-parity.vitest.ts` compares the manifest version with the template stamp | The suite fails if only one of the two moves | Edit both in the same pass, then run the suite |
-| Risk | A `v2.3` stamp makes `SCAFFOLD_NEVER_TOUCHED` read the parent's own frontmatter once it is Complete. A sandbox parent with a filled purpose at `v2.3` and Status Complete failed on `packet_pointer` starting with `scaffold/` and `recent_action: "Initialize phase-parent continuity block"`. At `v2.2` the same file passed that rule | Med | Only parents scaffolded after the change carry `v2.3`, since the 103 live parents keep their in-file `v2.2` stamp. `repair-derived.cjs --apply` rewrites the pointer. The `recent_action` line is a one-line edit at close. Open question 1 asks whether to accept that |
-| Risk | The token wording could match a future `create.sh` substitution and be filled with generic text again | Low | The new test assertion fails if the Purpose line is no longer a token |
+| Risk | A `v2.3` stamp makes `SCAFFOLD_NEVER_TOUCHED` read the parent's own frontmatter once it is Complete. A sandbox parent with a filled purpose at `v2.3` and Status Complete failed on `packet_pointer` starting with `scaffold/` and `recent_action: "Initialize phase-parent continuity block"`. At `v2.2` the same file passed that rule | Med | Step 9 in `plan.md` changes the `recent_action` default, and `repair-derived.cjs --apply` rewrites the pointer on every edited parent. The `plan.md` section 5 sandbox shows the filled parent passing at `Complete`. Only parents scaffolded after the change carry `v2.3`, since the 103 live parents keep their in-file `v2.2` stamp |
+| Risk | The new `recent_action` default stays on every new parent for good, since no save or repair rewrites it | Low | It states a fact that stays true, that child phases hold the continuity, as the existing `next_safe_action` default already does |
+| Risk | A later edit puts a scaffold-signature value back into the default, and every finished parent fails again | Low | The second test assertion fails on any `recent_action` default starting with `Initialize`, `Initialise` or `Initialized`. With step 9 reverted it failed in the sandbox |
+| Risk | The token wording could match a future `create.sh` substitution and be filled with generic text again | Low | The first test assertion fails if the Purpose line is no longer a token |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -171,14 +180,17 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 ## 7. OPEN QUESTIONS
 <!-- FILL: Write each open question as one line. Write `None` when nothing blocks. GOOD: Does a missing `--keep` value delete every archive? Decision: no, a missing value exits 2. WEAK: Edge cases are unclear. -->
 
-1. Is the `SCAFFOLD_NEVER_TOUCHED` side effect in section 6 acceptable for new parents? The plan accepts it, because a parent marked Complete with untouched continuity is the kind of gap this packet targets. If not, a second template edit to `recent_action` is needed.
-2. Follow-up, not this phase: rewrite the purpose of the 5 live parents that carry the generic sentence:
+1. Follow-up, not this phase: rewrite the purpose of the 5 live parents that carry the generic sentence:
    - `specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/spec.md` (In Progress)
    - `specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/spec.md` (Draft)
    - `specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/spec.md` (Draft)
    - `specs/system-speckit/runtime-and-release/001-system-speckit-v4/004-decisions-and-notes-system/spec.md` (Draft)
    - `specs/system-speckit/runtime-and-release/001-system-speckit-v4/030-spec-kit-simplification-research/spec.md` (Complete)
-3. Follow-up, not this phase: `repo-era.mjs` has no alias for `phase-parent-spec`, so every phase parent classifies as legacy whatever the manifest says. The stamp change neither causes nor fixes that.
+2. Follow-up, not this phase: `repo-era.mjs` has no alias for `phase-parent-spec`, so every phase parent classifies as legacy whatever the manifest says. The stamp change neither causes nor fixes that.
+3. Follow-up, not this phase: every new phase parent warns `DESCRIPTION_SHAPE: description.json level phase disagrees with the level the packet declares (2)`, already at `HEAD`, and `repair-derived.cjs --apply` then rewrites `description.json` level from `phase` to `2`. The parent template declares `SPECKIT_LEVEL: 2`. This phase neither causes nor fixes that.
+
+Decisions:
+- Operator decision, 2026-11-14: fix the default too. The question was whether to accept that a new parent marked Complete fails `SCAFFOLD_NEVER_TOUCHED` on its own frontmatter defaults even with its purpose filled. The reason: a check that fails every correctly finished parent gets ignored. `plan.md` steps 9 to 11 carry it out. Only the `recent_action` default changes, because `repair-derived.cjs --apply` already rewrites the `scaffold/` pointer on every edited parent and nothing rewrites `recent_action`. The rule itself stays as it is, which keeps the pointer marker failing an untouched parent marked Complete. `plan.md` section 3 compares this with a rule exemption for phase parents and gives the evidence.
 
 Settled during planning:
 - The append path (`create.sh --phase --parent <existing>`) leaves the parent's purpose alone. The whole render block sits under `if [[ "$APPEND_TO_EXISTING_PARENT" != true ]]` at `create.sh:1866`. Append mode only adds Phase Documentation Map rows (`create.sh:1930-1937`).

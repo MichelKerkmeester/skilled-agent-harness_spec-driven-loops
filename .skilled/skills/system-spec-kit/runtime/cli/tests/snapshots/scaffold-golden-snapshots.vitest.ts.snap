@@ -3219,7 +3219,7 @@ _memory:
     packet_pointer: "[YOUR_VALUE_HERE: packet-id]"
     last_updated_at: "2026-04-11T00:00:00Z"
     last_updated_by: "template-author"
-    recent_action: "Initialize phase-parent continuity block"
+    recent_action: "Phase parent created, child phases own continuity"
     next_safe_action: "Plan or resume a child phase folder"
     blockers: []
     key_files: []
@@ -3232,7 +3232,7 @@ _memory:
     answered_questions: []
 ---
 
-<!-- SPECKIT_TEMPLATE_SOURCE: phase-parent-spec | v2.2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: phase-parent-spec | v2.3 -->
 <!-- SPECKIT_LEVEL: 2 -->
 <!-- CONTENT DISCIPLINE: PHASE PARENT
   FORBIDDEN content (do NOT author at phase-parent level):
@@ -3270,10 +3270,10 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-[One-paragraph problem statement — what needs solving and why]
+[YOUR_VALUE_HERE: what breaks today and for whom, in one paragraph]
 
 ### Purpose
-[One-paragraph purpose — what this phased decomposition achieves]
+[YOUR_VALUE_HERE: one sentence on the outcome every child phase serves]
 
 > **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 <!-- /ANCHOR:problem -->
