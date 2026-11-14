@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups",
+  "spec_folder": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups",
+  "parent_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "purpose carry follow ups",
+      "phase 6 purpose carry follow ups",
+      "scaffold purpose sentence live parents",
+      "precompact active spec folder line",
+      "resume brief reply format rows",
+      "purpose carry follow ups plan",
+      "purpose carry follow ups tasks",
+      "purpose carry follow ups implementation summary"
+    ],
+    "key_topics": [
+      "purpose",
+      "carry",
+      "follow",
+      "ups",
+      "phase",
+      "scaffold",
+      "sentence",
+      "live",
+      "parents",
+      "precompact",
+      "active",
+      "spec"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "scratch/check-brief-rows.py",
+      ".skilled/commands/speckit/resume.md",
+      ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
+      "runtime/tests/hook-precompact.vitest.ts",
+      "runtime/hooks/claude/session-prime.ts",
+      "specs/mcp-tooling/z_archive/003-mcp-figma-transfer/spec.md",
+      "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/spec.md",
+      "specs/system-speckit/memory-search-and-knowledge/001-graph-and-context-optimization/006-operator-tooling/003-install-scripts-doctor-realignment/spec.md",
+      "specs/system-speckit/runtime-and-release/001-system-speckit-v4/003-spec-doc-template-reduction/spec.md",
+      "specs/system-speckit/runtime-and-release/001-system-speckit-v4/004-decisions-and-notes-system/spec.md",
+      "specs/system-speckit/runtime-and-release/001-system-speckit-v4/030-spec-kit-simplification-research/spec.md",
+      ".skilled/skills/system-spec-kit/runtime/tests/hook-precompact.vitest.ts",
+      ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
+      ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
+      "dist/hooks/claude/compact-inject.js",
+      ".claude/settings.json"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "check-brief-rows.py",
+        "kind": "file",
+        "path": "scratch/check-brief-rows.py",
+        "source": "derived"
+      },
+      {
+        "name": "resume.md",
+        "kind": "doc",
+        "path": ".skilled/commands/speckit/resume.md",
+        "source": "derived"
+      },
+      {
+        "name": "compact-inject.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hook-precompact.vitest.ts",
+        "kind": "test",
+        "path": "runtime/tests/hook-precompact.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "session-prime.ts",
+        "kind": "code",
+        "path": "runtime/hooks/claude/session-prime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-resume-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-resume-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit-resume-confirm.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/speckit/assets/speckit-resume-confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "compact-inject.js",
+        "kind": "code",
+        "path": "dist/hooks/claude/compact-inject.js",
+        "source": "derived"
+      },
+      {
+        "name": "settings.json",
+        "kind": "config",
+        "path": ".claude/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Fourteen",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The parent exists because the reason for a piece of work got lost across session handovers and compactions",
+    "created_at": "2026-11-14T05:10:09Z",
+    "last_save_at": "2026-11-14T05:16:59.071Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:faf88716e8379041828f0cd15b0325ad2edf83fd2d23251507a705ceca88b5ac",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "f967e7ca78872359838a2bc21637b4a157550f0e207d695c2a84f21ecf3f98e6",
+      "plan.md": "2936563486d62ae6ba9eb989da81c2c8df12168f182f75e23c12746fd5b57238",
+      "tasks.md": "300600f605cd45b28209959058f04e49e2e20804058f302e399fe0a9ef640690",
+      "implementation-summary.md": "73e82d6c5e5f69e0e6f1667bbb4b96bd21a38dff2fea7eb2150577817d67b964"
+    },
+    "last_active_at": null
+  }
+}

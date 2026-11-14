@@ -176,6 +176,7 @@ Findings of the 2026-11-13 deep-research run, two lineages of five iterations on
 | 3 | 003-relaunch-goal-quote/ | The relaunch note Goal opens with the packet purpose | Complete |
 | 4 | 004-compaction-purpose-line/ | The context injected after a compaction carries the packet purpose, and the shared purpose helper | Complete |
 | 5 | 005-continuity-purpose-field/ | The continuity block carries the purpose and the recovery Goal shows it | Complete |
+| 6 | 006-purpose-carry-follow-ups/ | Real purposes for five live phase parents, the PreCompact folder line for `specs/` paths and resume asset brief rows that match the presentation file | Draft |
 
 ### Phase Transition Rules
 
@@ -192,4 +193,5 @@ Findings of the 2026-11-13 deep-research run, two lineages of five iterations on
 | 002-resume-purpose-row | 003-relaunch-goal-quote | None. The relaunch note text does not depend on the resume brief | Each phase passes `validate.sh --strict` on its own |
 | 003-relaunch-goal-quote | 004-compaction-purpose-line | None. The compaction hook does not depend on the relaunch note | Each phase passes `validate.sh --strict` on its own |
 | 004-compaction-purpose-line | 005-continuity-purpose-field | Phase 004 is built and merged, because phase 005 imports the purpose helper that 004 creates | `runtime/lib/spec/packet-purpose.ts` exists and its tests pass |
+| 005-continuity-purpose-field | 006-purpose-carry-follow-ups | None from phase 005. Edits E13 and E14 replace the `reply_format` line phase 002 wrote, so they apply while that line reads as phase 002 left it | `rg -c -F` on the E13 and E14 search texts in `006-purpose-carry-follow-ups/plan.md` prints 1 for each asset |
 <!-- /ANCHOR:phase-map -->

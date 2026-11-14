@@ -42,6 +42,7 @@ _memory:
 | Q006 | All five children were built, including 005 whose own spec rates its value as narrow. | Not stated. | None | spec.md phase map, 005-continuity-purpose-field |
 | Q007 | Child 001 also changes the recent_action default, so a finished parent with a real purpose still passes the scaffold check. | Not stated. | None | 001-parent-purpose-scaffold/plan.md |
 | Q008 | The live checks that a session can run were run: agent-followed resume runs and the 001 sandbox cases. A real compaction and a real relaunch stay unproven. | Not stated. | None | 001-parent-purpose-scaffold/tasks.md, 002-resume-purpose-row/tasks.md |
+| Q009 | The three defects found during the build are planned as one further child, 006-purpose-carry-follow-ups, and not built yet. | Not stated. | None | spec.md phase map, 006-purpose-carry-follow-ups |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -208,6 +209,26 @@ Skip the live checks
 Answer:
 ```text
 Run resume and the 001 sandbox (Recommended)
+```
+
+### Q009
+<!-- source: claude:af01c830-4ea5-4abe-b6ed-dd0c4d9b1b45:toolu_01YFvcr8jXhKitQqkvSwYSX2:1 -->
+
+Question:
+```text
+Three defects turned up during the build and were left alone because they are outside packet 006: five older phase parents still carry the generic purpose sentence, detectSpecFolder only matches .opencode/specs/ paths, and the resume workflow file and its presentation file list different brief rows. What should happen with them?
+```
+
+Options:
+```text
+Plan them as a new phase (Recommended)
+Leave them recorded
+Plan only the path match
+```
+
+Answer:
+```text
+Plan them as a new phase (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

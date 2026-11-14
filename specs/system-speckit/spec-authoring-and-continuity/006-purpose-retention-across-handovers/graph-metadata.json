@@ -8,7 +8,8 @@
     "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/002-resume-purpose-row",
     "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/003-relaunch-goal-quote",
     "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/004-compaction-purpose-line",
-    "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/005-continuity-purpose-field"
+    "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/005-continuity-purpose-field",
+    "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/006-purpose-carry-follow-ups"
   ],
   "manual": {
     "depends_on": [],
@@ -57,12 +58,12 @@
       "templates/addons/goal.md.tmpl",
       "runtime/hooks/claude/compact-inject.ts",
       "runtime/lib/spec/packet-purpose.ts",
+      "006-purpose-carry-follow-ups/plan.md",
       "specs/system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/spec.md",
       "research/lineages/deepseek-1/research.md",
       "research/lineages/deepseek-2/research.md",
       "runtime/lib/continuity/thin-continuity-record.ts",
-      ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts",
-      ".skilled/skills/system-spec-kit/runtime/hooks/claude/compact-inject.ts"
+      ".skilled/skills/system-spec-kit/runtime/lib/continuity/thin-continuity-record.ts"
     ],
     "entities": [
       {
@@ -212,7 +213,7 @@
     ],
     "causal_summary": "The operator reported on 2026-11-13 that the core reason, problem, purpose or user need behind a piece of work gets lost after several in-session handovers (relaunch hops) or context compactions",
     "created_at": "2026-11-13T20:59:19Z",
-    "last_save_at": "2026-11-14T04:58:54.061Z",
+    "last_save_at": "2026-11-14T05:19:53.198Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,17 +224,17 @@
       "implementation-summary.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:fe8cfbc0dd08749edeee2a853d362b5253b7a8a9caa86bb957644b4ef6632509",
+    "source_fingerprint": "sha256:024efec2cee4fd05697cba0200aea448c5d48cbe42c2913a394c33a780947ba5",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "746223681dcc383ff05ad7209db3d2ea600ef07efbbbf783021cba42e260ac43",
+      "spec.md": "e72da5165d99973530cfe7b270ed69a3ea9efbe5557116b46732731b23f9c1ed",
       "plan.md": "4d2c2864ea17ecda1f7c0ba309d5417972de1bf3752db73d878ac865c10a5112",
       "tasks.md": "8a27e74d4d2e5fc872676c93a8aaf45e80ce01225d1b3ffd942cf96096e10ec6",
-      "decision-record.md": "e4a32f25d2aa6f05a4d8f037943d94e68a7736d8dafec19621a9cd7895573c6c",
+      "decision-record.md": "e21de5b4bff6d6c311fdad0d650bd2ff4da7e01d30586f469618b311034f2046",
       "implementation-summary.md": "ce21426170918a93e637eabe0dcc14f3b2458ad492629576507dc7294b693ee7",
       "research/research.md": "8044ae31f45b4ceb56b793fd4a6f0fb33cdf34fe5ea890469767b156b0e5916d"
     },
-    "last_active_at": "2026-11-14T04:58:54.061Z",
-    "last_active_child_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/002-resume-purpose-row"
+    "last_active_child_id": "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/002-resume-purpose-row",
+    "last_active_at": "2026-11-14T05:19:53.198Z"
   }
 }
