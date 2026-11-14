@@ -1,5 +1,5 @@
 {
-  "manifestHash": "404c82afa8b39833823826709a38465e9a7fa753b89eec9de6eae392007bda01",
+  "manifestHash": "03adf73e64c37eac6e087dbc72b328d59085d68400d6fa408a2e01fa0ea8d202",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -16709,6 +16709,9 @@
     ],
     "catalog and playbook alignment goal": [
       "catalog and playbook alignment goal"
+    ],
+    "catalog and playbook alignment implementation summary": [
+      "catalog and playbook alignment implementation summary"
     ],
     "catalog and playbook alignment plan": [
       "catalog and playbook alignment plan"
@@ -92769,11 +92772,17 @@
     "relocate and suggest subtracks vitest suites": [
       "relocate and suggest-subtracks vitest suites"
     ],
+    "relocate exit status 3": [
+      "relocate exit status 3"
+    ],
     "relocate mjs": [
       "relocate.mjs"
     ],
     "relocate mjs move renumber re parent": [
       "relocate.mjs move renumber re-parent"
+    ],
+    "relocate rerun finishes a stopped move": [
+      "relocate rerun finishes a stopped move"
     ],
     "relocate rerun finishes late steps": [
       "relocate rerun finishes late steps"
@@ -95653,6 +95662,9 @@
     ],
     "restore pi advisor brief tasks": [
       "restore pi advisor brief tasks"
+    ],
+    "restore refused beside sub tracks": [
+      "restore refused beside sub-tracks"
     ],
     "restore staged": [
       "restore staged"
@@ -112419,6 +112431,9 @@
     "skill docs and housekeeping goal": [
       "skill docs and housekeeping goal"
     ],
+    "skill docs and housekeeping implementation summary": [
+      "skill docs and housekeeping implementation summary"
+    ],
     "skill docs and housekeeping plan": [
       "skill docs and housekeeping plan"
     ],
@@ -121037,6 +121052,9 @@
     "system spec kit 2 13 0 0": [
       "system-spec-kit 2.13.0.0"
     ],
+    "system spec kit 2 13 1 0": [
+      "system-spec-kit 2.13.1.0"
+    ],
     "system spec kit 2 6 1 0": [
       "system-spec-kit 2.6.1.0"
     ],
@@ -121666,6 +121684,9 @@
     ],
     "system spec kit v2 13 0 0": [
       "system-spec-kit v2.13.0.0"
+    ],
+    "system spec kit v2 13 1 0": [
+      "system-spec-kit v2.13.1.0"
     ],
     "system spec kit v2 2 0 0": [
       "system-spec-kit v2.2.0.0"

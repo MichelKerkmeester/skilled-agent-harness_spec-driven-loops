@@ -1,5 +1,5 @@
 {
-  "corpusHash": "1da3ab130d818b7a86a4251592daa3f67552b0d336e80e96f28f4f19fad5c01e",
+  "corpusHash": "71e5e86b852014e5d3b0b4012865b7dcc08fb08e6237015e6f0050a511022081",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 26847,
+  "includedPathCount": 26850,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -8721,6 +8721,7 @@
     ".skilled/skills/system-spec-kit/changelog/v2.12.8.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.12.9.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.13.0.0.md",
+    ".skilled/skills/system-spec-kit/changelog/v2.13.1.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.2.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.3.0.0.md",
     ".skilled/skills/system-spec-kit/changelog/v2.4.0.0.md",
@@ -26863,10 +26864,12 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/011-relocate-and-restore-fixes/spec.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/011-relocate-and-restore-fixes/tasks.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/012-catalog-and-playbook-alignment/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/012-catalog-and-playbook-alignment/implementation-summary.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/012-catalog-and-playbook-alignment/plan.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/012-catalog-and-playbook-alignment/spec.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/012-catalog-and-playbook-alignment/tasks.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping/goal.md",
+    "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping/implementation-summary.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping/plan.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping/spec.md",
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping/tasks.md",
@@ -26879,7 +26882,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "404c82afa8b39833823826709a38465e9a7fa753b89eec9de6eae392007bda01",
+  "manifestHash": "03adf73e64c37eac6e087dbc72b328d59085d68400d6fa408a2e01fa0ea8d202",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [
