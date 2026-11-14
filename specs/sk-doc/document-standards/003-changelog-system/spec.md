@@ -97,6 +97,7 @@ Each row identifies one child phase and its purpose.
 | specs/sk-doc/document-standards/003-changelog-system/003-skilled-release-changelog/ | Phase | 003-skilled-release-changelog | Establishes a Skilled release line and searchable changelog metadata. |
 | specs/sk-doc/document-standards/003-changelog-system/004-changelog-section-spacing/ | Phase | 004-changelog-section-spacing | Sets section spacing for entries and release notes. |
 | specs/sk-doc/document-standards/003-changelog-system/005-concise-release-format/ | Phase | 005-concise-release-format | Bounds the expanded format and adds the changelog shape gate. |
+| specs/sk-doc/document-standards/003-changelog-system/006-remove-release-size-limit/ | Phase | 006-remove-release-size-limit | Removes the file-total line ceiling from release notes. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -113,6 +114,7 @@ Each row identifies one child phase and its purpose.
 | 3 | `003-skilled-release-changelog/` | Separate Skilled releases and improve changelog discovery | Complete |
 | 4 | `004-changelog-section-spacing/` | Apply consistent spacing to entries and release notes | Complete |
 | 5 | `005-concise-release-format/` | Bound the expanded format, model it on the v4.0.1.0 entry and block drafts that break its ceilings | Complete |
+| 6 | `006-remove-release-size-limit/` | Remove the file-total line ceiling so an entry runs as long as its release needs | Complete |
 
 ### Phase Transition Rules
 
@@ -129,6 +131,7 @@ Each row identifies one child phase and its purpose.
 | 002-skill-changelog-retrofit | 003-skilled-release-changelog | 002-skill-changelog-retrofit validates on its own | validate.sh --strict on 002-skill-changelog-retrofit |
 | 003-skilled-release-changelog | 004-changelog-section-spacing | 003-skilled-release-changelog validates on its own | validate.sh --strict on 003-skilled-release-changelog |
 | 004-changelog-section-spacing | 005-concise-release-format | 004-changelog-section-spacing validates on its own | validate.sh --strict on 004-changelog-section-spacing |
+| 005-concise-release-format | 006-remove-release-size-limit | 005-concise-release-format validates on its own | validate.sh --strict on 005-concise-release-format |
 <!-- /ANCHOR:phase-map -->
 
 ---
