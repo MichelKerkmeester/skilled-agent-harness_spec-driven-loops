@@ -237,6 +237,9 @@ workflow_enforcement:
     step_4_generation:
       enforcement: "MUST use agent-template.md structure"
       verification: "Frontmatter valid YAML, all required sections present"
+    step_4b_registry_record:
+      enforcement: "MUST add the registry record for an agent under .skilled/agents"
+      verification: "`node .skilled/bin/sync-agent-roster.cjs --check` prints agent-roster: OK"
     step_5_validation:
       enforcement: "MUST run YAML validation"
       verification: "Frontmatter parses without errors"
@@ -270,6 +273,8 @@ workflow_overview:
       purpose: "Define permissions, tools, and behavioral rules"
     - id: step_4_generation
       purpose: "Generate the agent from the canonical template"
+    - id: step_4b_registry_record
+      purpose: "Add the registry record and rewrite the rosters for an agent under .skilled/agents"
     - id: step_5_validation
       purpose: "Validate YAML/frontmatter and content structure"
     - id: step_6_save_context
@@ -541,6 +546,19 @@ workflow:
       - label: "C) Proceed"
         description: "Continue to validation"
 
+  step_4b_registry_record:
+    purpose: Give a new agent under .skilled/agents its registry record so the roster check passes
+    condition: "ONLY when agent_path resolves to .skilled/agents. An agent written to .claude/agents or to a global path gets no record: the roster check reads .skilled/agents alone and fails a record that has no file there."
+    source_of_truth: ".skilled/skills/sk-doc/sk-create-agent/SKILL.md, step 13 of the ordered creation workflow, for the fields a record carries"
+    activities:
+    - "Add a record for [agent_name] to .skilled/agents/agent-registry.json, copying an existing record as the pattern"
+    - "Run `node .skilled/bin/sync-agent-roster.cjs` to rewrite the generated rosters and the runtime copies"
+    - "On an update of an existing agent, leave its record as it is unless the role, tier or dispatchers changed"
+    outputs:
+    - registry_record_added: yes_or_not_applicable
+    - rosters_rewritten: yes_or_not_applicable
+    validation: registry_record_present_or_not_applicable
+
   step_5_validation:
     purpose: YAML frontmatter syntax validation and quality checks
     enforcement: HARD_BLOCK
@@ -551,6 +569,7 @@ workflow:
     - Verify permission object has valid values (allow/deny/ask)
     - Verify no deprecated 'tools' or 'allowed-tools' object present
     - Run validate_document.py if available
+    - "For an agent under .skilled/agents: run `node .skilled/bin/sync-agent-roster.cjs --check`. It must print `agent-roster: OK`. `agent file without a registry record: [agent_name]` means step_4b did not run"
     - IF validation fails: Fix issues and re-run
     - Repeat until passing
     validation_command: |
@@ -814,6 +833,7 @@ completion_report:
     - YAML frontmatter: PASSED ✅
     - Required fields: PASSED ✅
     - Permission format: v1.1.1+ ✅
+    - Registry record and rosters: [PASSED ✅ | not applicable, outside .skilled/agents]
 
     Invocation:
     [IF mode == primary]
@@ -860,6 +880,7 @@ rules:
     - "Reference core-standards.md for formatting rules"
     - "Validate frontmatter syntax with yaml.safe_load"
     - "Use unified permission object (v1.1.1+), never deprecated tools object"
+    - "Add the registry record and rewrite the rosters for a new agent under .skilled/agents"
     - "Save context after successful completion"
   NEVER:
     - "Skip validation steps"

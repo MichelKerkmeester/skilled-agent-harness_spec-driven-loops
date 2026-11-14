@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Smart rule injection via hooks"
-description: "Decide from repository evidence which repo rules, if any, are better served by a prompt-time injection hook than by the Gate 5 load, and design the selectivity that keeps injection off most turns."
+description: "Decide from repository evidence which repo rules, if any, a prompt-time or event hook should carry instead of the Gate 5 load, and sharpen the rule text such a hook would carry, from the evidence a claim needs to a shorter AGENTS.md."
 trigger_phrases:
   - "smart rule injection"
   - "inject a rule at prompt time"
@@ -36,7 +36,7 @@ _memory:
 # Feature Specification: Smart rule injection via hooks
 
 ### Purpose
-Decide from repository evidence which repo rules, if any, a prompt-time hook should carry instead of the Gate 5 load, and design the selectivity that keeps injection off most turns.
+Decide from repository evidence which repo rules, if any, a prompt-time or event hook should carry instead of the Gate 5 load, and sharpen the rule text such a hook would carry, from the evidence a claim needs to a shorter AGENTS.md.
 
 ## 1. PROBLEM
 

@@ -1,0 +1,48 @@
+TASK: append one helper and two tests to the end of one test file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs (read lines 150 to 192 and the last 25 lines only)
+
+EDIT. Append the text between the two marker lines below to the very end of the file, after the last existing test, with one blank line between the last existing `});` and the new comment. The file must end with a single newline.
+
+<<<TEXT
+// The vocabulary check reads three copies of a mirrored surface's keywords and the registry
+// aliases, so this hub declares all four beside the leg-two fixture.
+function buildVocabularyHub(t, classKeywords) {
+  const guard = buildLegTwoHub(t, ['shared/references/control.md'], ['shared/references/undeclared.md']);
+  const hub = path.resolve(path.dirname(guard), '..', '..', '..');
+  const row = 'INTENT_SIGNALS = {\n    "DEMO": {"weight": 4, "keywords": ["demo phrase", "second phrase"]},\n}\n';
+  fs.appendFileSync(path.join(hub, 'ROUTER.md'), row);
+  fs.appendFileSync(path.join(hub, 'sk-code-skilled', 'SKILL.md'), row);
+  write(path.join(hub, 'mode-registry.json'), JSON.stringify({
+    modes: [{ workflowMode: 'sk-code-skilled', packetKind: 'surface', packet: 'sk-code-skilled', aliases: ['demo phrase'] }],
+  }));
+  write(path.join(hub, 'hub-router.json'), JSON.stringify({
+    routerPolicy: { tieBreak: ['sk-code-skilled'] },
+    vocabularyMirrors: ['sk-code-skilled'],
+    routerSignals: { 'sk-code-skilled': { weight: 4, classes: ['demo-class'] } },
+    vocabularyClasses: { 'demo-class': { keywords: classKeywords } },
+  }));
+  return guard;
+}
+
+test('leg 2 passes when a mirrored surface holds one keyword set in all three routers', (t) => {
+  const guard = buildVocabularyHub(t, ['demo phrase', 'second phrase']);
+  const { status, out } = runGuard(guard, ['--checks', '2']);
+  assert.equal(status, 0, out);
+  assert.match(out, /PASS check 2/);
+});
+
+test('leg 2 reports a keyword and an alias that hub-router.json no longer holds', (t) => {
+  const guard = buildVocabularyHub(t, ['second phrase']);
+  const { status, out } = runGuard(guard, ['--checks', '2']);
+  assert.equal(status, 1, out);
+  assert.match(out, /sk-code-skilled keyword "demo phrase" is in ROUTER\.md INTENT_SIGNALS and missing from hub-router\.json/);
+  assert.match(out, /mode-registry\.json alias "demo phrase" of sk-code-skilled is in no hub-router\.json class/);
+});
+TEXT>>>
+
+Change nothing else. One file changes. Do not edit the guard script. If a new test fails, do not change its assertions: report the failing output in NOTES.
+
+VERIFY (run from the repository root):
+node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs 2>&1 | grep -E '^ℹ (pass|fail)'
+Expected output: `ℹ pass 18` and `ℹ fail 0`

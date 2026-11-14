@@ -8,7 +8,7 @@ trigger_phrases:
   - "quality gate resources"
 importance_tier: normal
 contextType: implementation
-version: 1.6.1.0
+version: 1.6.2.0
 ---
 
 # Verification Summary, Quick Reference & Related
@@ -84,7 +84,7 @@ After completing validation, document the results using the appropriate template
 
 ### JavaScript Pass Criteria
 
-These checks add no JavaScript P0. The P0 items that gate a `.js` file come from the SKILLED JavaScript checklist. CHK-CMT-07 is a universal rule in the code style guide and is reported with it.
+These checks add no JavaScript P0. The P0 items that gate a `.js` file come from the SKILLED JavaScript checklist. The history-comment rule is a universal rule in the code style guide and is reported with it.
 
 | Check Category | Minimum for PASS |
 |----------------|------------------|

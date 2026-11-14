@@ -42,7 +42,7 @@ Every packet is plain markdown in your repo, so the history is yours to read, di
 
 Your architecture, decisions and session history are written into the spec folder they belong to. Instant keyword search finds them again.
 
-`/speckit:resume` reads the packet's own continuity files and picks up where the last session stopped. A committed trigger index plus ripgrep recipes find prior work fast, with no database and no daemon on this path. A phrase nobody wrote is a clean no-hit, never a nearest guess.
+`/speckit:resume` reads the packet's own continuity files and picks up where the last session stopped. A committed trigger index plus ripgrep recipes find prior work fast, with no database and no daemon on this path. A phrase nobody wrote is a clean no-hit, never a nearest guess. The brief opens with the packet's purpose, quoted from its `spec.md`, so the next session knows why the work exists.
 
 After a compaction, a session can search and load its own earlier turns through one read-only command. A detail the summary dropped is not lost. Your answers to the AI's questions are captured as you give them. They are saved into the packet's decision record, with the exact exchange beside each one.
 
@@ -519,7 +519,7 @@ Spec memory and retrieval are packet-local and file-based, integrated into the s
 
 **Where memory lives**
 
-Canonical continuity lives in the spec packet itself. `generate-context.js` updates it and may emit supporting generated context artifacts inside the spec folder. `/speckit:resume` is the recovery surface. It rebuilds in this order: `handover.md` -> `_memory.continuity` -> canonical spec docs.
+Canonical continuity lives in the spec packet itself. `generate-context.js` updates it and may emit supporting generated context artifacts inside the spec folder. `/speckit:resume` is the recovery surface. It rebuilds in this order: `handover.md` -> `_memory.continuity` -> canonical spec docs. Each save also stores the packet's purpose sentence as `packet_purpose` in that continuity block.
 
 **How search works**
 
@@ -545,7 +545,7 @@ The command runs the compiled helper, so run `npm run build` in `.skilled/skills
 
 `/speckit:save` returns a save plan by default. Its apply and full-auto modes refresh packet metadata through the continuity writer `node .skilled/skills/system-spec-kit/runtime/cli/dist/continuity/generate-context.js`. A save that is not `--full-auto` ends its summary with `Continuity fields not written: plan-only save; pass --full-auto to write them`. A plan-only save no longer looks like a full one. When the save passes `--session-id` and `--runtime`, `/speckit:save` records the runtime and session that wrote a packet's continuity.
 
-`/speckit:resume` stays the primary recovery path. The history lookup only adds to it. When its handle is missing or stale, the section is left out and recovery runs as before.
+`/speckit:resume` stays the primary recovery path. The history lookup only adds to it. When its handle is missing or stale, the section is left out and recovery runs as before. On Claude, Codex, Pi and DSH the recovered context opens with a `## Packet Purpose` section that quotes the last active packet's purpose, with a `Problem:` line when the packet states one.
 
 `/speckit:search` runs the two lexical lanes, and `/doctor:speckit` checks that the index and the recipes are still healthy. The skill advisor owns the shared model server and embedding provider.
 
@@ -1049,7 +1049,7 @@ Autonomous continuation is default-off and gated by caps, a cooldown and a kill-
 
 In-session handover ships off, and nothing about your sessions changes until you turn it on.
 
-When it is on, a session that reaches 80% of its context window writes a handoff note, saves its spec packet if one is bound and ends. The `skilled-loop` wrapper then starts the same runtime in the same terminal, and the new session claims the note and carries on. Claude Code, Codex, Pi and OpenCode hand over on their own, while Cursor and Devin hand over only when you run `/speckit:handoff`.
+When it is on, a session that reaches 80% of its context window writes a handoff note, saves its spec packet if one is bound and ends. The `skilled-loop` wrapper then starts the same runtime in the same terminal, and the new session claims the note and carries on. Claude Code, Codex, Pi and OpenCode hand over on their own, while Cursor and Devin hand over only when you run `/speckit:handoff`. The note's Goal opens with the packet's purpose line, copied from its `spec.md`, so the purpose survives every hop.
 
 To turn it on for every runtime, set the flag in `.skilled/hooks/hook-flags.env`, which git ignores, or export it from your shell profile:
 
@@ -1172,7 +1172,7 @@ Requires `plan.md` to already exist. A 9-step workflow covers task breakdown, im
 
 **`/speckit:resume`** - pick up where you left off
 
-Continues a previous session by auto-loading continuity from the spec folder. It presents a session summary and shows progress against `tasks.md`. It works after crashes, compactions or new sessions.
+Continues a previous session by auto-loading continuity from the spec folder. It presents a session summary and shows progress against `tasks.md`. It works after crashes, compactions or new sessions. The summary opens with a Purpose row quoted from the packet's `spec.md`, or from its phase parent or `goal.md` when the packet states none.
 
 **Spec-first command chains**
 
@@ -1196,7 +1196,7 @@ Updates packet continuity and supporting generated context artifacts via `genera
 
 **`/speckit:handoff`** - hand the work to a fresh session now
 
-Writes the handoff note and prepares the relaunch record. Under the wrapper the runtime then restarts in the same terminal and the new session claims the note. Outside the wrapper it prints the command that continues the work in a new session.
+Writes the handoff note and prepares the relaunch record. Under the wrapper the runtime then restarts in the same terminal and the new session claims the note. Outside the wrapper it prints the command that continues the work in a new session. Its Goal section opens with the packet's purpose, copied word for word.
 
 It is the only trigger on Cursor and Devin. Claude Code, Codex, Pi and OpenCode reach the same steps on their own near the context limit. It refuses while in-session handover is off, see [In-Session Handover](#in-session-handover).
 
@@ -1218,7 +1218,7 @@ Scaffolds a parent skill with nested mode packets: one hub identity plus a `mode
 
 **`/create:agent`** - new agent definitions
 
-Scaffolds a new agent definition with proper frontmatter, behavioral rules and tool permissions. It creates the source-of-truth file in `.skilled/agents/` and the Claude Code mirror. Modes: `:auto`, `:confirm`.
+Scaffolds a new agent definition with proper frontmatter, behavioral rules and tool permissions. It creates the source-of-truth file in `.skilled/agents/` and the Claude Code mirror. It also adds the agent's registry record and runs the roster check. Modes: `:auto`, `:confirm`.
 
 **`/create:readme`** - folder READMEs
 

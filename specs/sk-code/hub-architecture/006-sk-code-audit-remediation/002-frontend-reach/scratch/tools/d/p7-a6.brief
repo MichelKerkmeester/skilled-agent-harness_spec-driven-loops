@@ -1,0 +1,13 @@
+TASK: one literal replacement in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-review/SKILL.md (read lines 372 to 384 only)
+
+EDIT. In the bullet line that starts with ``- `lite`:``, replace the literal text
+maps to the existing M-2 conservative skip (§8.2). It NEVER lowers
+with the literal text
+applies the existing M-2 conservative skip (§8.2) only when `SK_CODE_REVIEW_MIN_CHANGED_LINES` is set above 0. With no threshold set, `lite` skips nothing and every diff receives a full review. It NEVER lowers
+Keep the rest of that line byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'lite.*only when' .skilled/skills/sk-code/sk-code-review/SKILL.md; echo "exit $?"
+Expected output: `1` then `exit 0`

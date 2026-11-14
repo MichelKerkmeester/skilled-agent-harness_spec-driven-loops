@@ -1,14 +1,14 @@
 ---
-title: opencode
+title: "sk-code-skilled"
 description: "System-code work under .skilled/ holds to the right standards: read-only evidence for the sk-code hub, from six language rule sets to shared patterns, hooks and authoring checklists, bundled beside a workflow mode and never routed as a primary."
 trigger_phrases:
-  - "opencode system code"
-  - "opencode authoring"
+  - "skilled system code"
+  - "skilled surface authoring"
   - "system code standards"
-version: 1.0.8.0
+version: 1.0.9.0
 ---
 
-# opencode
+# sk-code-skilled
 
 > System-code work under `.skilled/` lands with the right language standard and authoring checklist already attached, handed to the paired workflow mode without you having to know which reference tree to open.
 
@@ -25,13 +25,15 @@ version: 1.0.8.0
 | **Works on** | The read-only evidence tree: six language standard sets, the shared pattern tier, hook contracts, alignment verification, authoring checklists and this framework's house style |
 | **Produces** | The language-sliced evidence a workflow mode applies, plus drift-guard verification results. The surface itself edits nothing |
 
+**Version authority.** `SKILL.md` carries the packet's release version, which matches the newest entry under `changelog/`. The `version` in this file and in `ROUTER.md` counts that document's own revisions, the same split the hub `SKILL.md` states for the hub's files.
+
 ### What It Does
 
 This surface carries the system-code evidence for the sk-code hub:
 
 - Language standards for TypeScript, Python, shell, Rust, config and JavaScript, plus a language-agnostic shared tier for naming, organization, hooks and alignment verification.
 - Authoring checklists for skills, agents, commands and MCP servers.
-- Detection that tries every declared specific surface first, including any operator-private surface skill, and checks this surface last as the hub's fallback. When a specific surface also matches, this surface loads as second evidence.
+- Detection that tries every declared specific surface first and checks this surface last as the hub's fallback. A specific surface is a hub packet with a `surfaceDetection` block in `../mode-registry.json`, or a skill outside the hub that declares `surface_detection` in its own `graph-metadata.json`, as `../shared/references/stack-detection.md` describes. When a specific surface also matches, this surface loads as second evidence.
 - The hub slices to the set of languages the task actually touches. Only an interop task spanning both languages legitimately loads both.
 - Read-only, advisor-invisible evidence. The paired workflow mode owns all edits, tests and commits.
 

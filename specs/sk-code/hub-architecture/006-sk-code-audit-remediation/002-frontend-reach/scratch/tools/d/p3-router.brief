@@ -1,0 +1,32 @@
+TASK: four literal edits in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-frontend/ROUTER.md (read lines 1 to 36 only)
+
+EDIT 1, line 9. Replace:
+version: 1.1.1.0
+with:
+version: 1.1.2.0
+
+EDIT 2, line 16. Replace this sentence:
+The core reference is the default resource; each intent adds the web layer or Figma check it needs.
+with:
+The core reference is the default resource; each intent adds the web layer, the visual files or the Figma check it needs.
+
+EDIT 3, line 20. Replace the whole paragraph that starts with `This surface holds the core in` with these three paragraphs, separated by one blank line each:
+
+This surface holds the core in `references/frontend-practice.md`, the web layer in `references/web-markup-and-css.md`, six web topic files, three visual topic files, the starter token file `assets/tokens.css`, and the five-pass Figma check in `references/figma-to-code.md`. Every intent loads the core. Web intents add the web layer and their topic file. The visual, motion and Figma intents add the files `RESOURCE_MAP` lists for them, without the web layer. Topic files load when the request touches their listed concern.
+
+No intent maps `assets/tokens.css`, so `RESOURCE_MAP` never emits it. Open it from a rule in `references/web-visual-values.md` that links to it, when a project has no token layer of its own.
+
+`references/workflow-implement.md`, `references/workflow-debug.md` and `references/workflow-verify.md` are links to the hub's shared doctrine, and no intent here maps them. Read them by phase: `../shared/references/phase-detection.md`, which the hub always loads, names the doctrine file that owns each phase.
+
+EDIT 4, line 22. Replace:
+### Web Topic Files
+with:
+### Topic Files
+
+Change nothing else. One file changes. Do not touch the python block.
+
+VERIFY (run from the repository root):
+rg -c 'nine web topic files' .skilled/skills/sk-code/sk-code-frontend/ROUTER.md; echo "exit $?"; rg -c 'tokens.css' .skilled/skills/sk-code/sk-code-frontend/ROUTER.md; rg -c 'workflow-implement' .skilled/skills/sk-code/sk-code-frontend/ROUTER.md; rg -c 'visual, motion and Figma intents' .skilled/skills/sk-code/sk-code-frontend/ROUTER.md
+Expected output: `exit 1`, then `3`, `1`, `1`

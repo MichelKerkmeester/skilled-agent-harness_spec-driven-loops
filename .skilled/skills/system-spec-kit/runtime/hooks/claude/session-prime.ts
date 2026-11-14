@@ -6,8 +6,7 @@
 // based on the session source (compact, startup, resume, clear).
 
 import { createRequire } from 'node:module';
-import { existsSync } from 'node:fs';
-import { dirname, join, resolve, sep } from 'node:path';
+import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   parseHookStdin, hookLog, formatHookOutput, truncateToTokenBudget,
@@ -36,7 +35,7 @@ import {
 } from '../lib/history/lookup-offer.js';
 import { notifyDirectiveLifecycleBoundary } from './directive-lifecycle-boundary.js';
 import { isMainModule } from '../../lib/esm-entry.js';
-import { formatPacketProblem, formatPacketPurpose, resolvePacketPurpose } from '../../lib/spec/packet-purpose.js';
+import { enclosingPacketFolder, formatPacketProblem, formatPacketPurpose, resolvePacketPurpose } from '../../lib/spec/packet-purpose.js';
 import { SHORT_HOST_STDIN_TIMEOUT_MS } from '../shared-stdin.js';
 
 const require = createRequire(import.meta.url);
@@ -57,6 +56,8 @@ function sessionLifecycleHookEnabled(): boolean {
 // ───────────────────────────────────────────────────────────────────
 
 const CACHE_TTL_MS = 30 * 60 * 1000;
+// The title of the section that carries a cached brief the hook accepted.
+const RECOVERED_CONTEXT_TITLE = 'Recovered Context (Post-Compaction)';
 const IS_CLI_ENTRY = isMainModule(import.meta.url);
 
 // ───────────────────────────────────────────────────────────────────
@@ -184,7 +185,7 @@ async function handleCompact(sessionId: string): Promise<OutputSection[]> {
   hookLog('info', 'session-prime', `Injecting cached compact brief (${sanitizedPayload.length} chars after sanitization, cached at ${cachedAt})`);
 
   const sections: OutputSection[] = [
-    { title: 'Recovered Context (Post-Compaction)', content: wrappedPayload },
+    { title: RECOVERED_CONTEXT_TITLE, content: wrappedPayload },
     {
       title: 'Recovery Instructions',
       content: 'Context was compacted and auto-recovered from the cached compact brief. For full session state, run `/speckit:resume`.',
@@ -231,17 +232,10 @@ export function buildPacketPurposeSection(
 ): OutputSection | null {
   if (!lastSpecFolder) return null;
   const root = resolve(projectRoot);
-  let folder = resolve(root, lastSpecFolder);
-  // The folder is read from a temp state file or a transcript line, so a value
-  // that leaves the project is refused before any file is opened.
-  if (!folder.startsWith(root + sep)) return null;
-  // A detected folder can be a track folder or a packet's scratch or research
-  // subfolder, so the nearest enclosing folder that holds a spec.md is the packet.
-  while (!existsSync(join(folder, 'spec.md'))) {
-    const parent = dirname(folder);
-    if (!parent.startsWith(root + sep)) return null;
-    folder = parent;
-  }
+  // The folder is read from a temp state file or a transcript line, and can be
+  // a track folder or a packet subfolder. The resolver keeps it in the project.
+  const folder = enclosingPacketFolder(lastSpecFolder, root);
+  if (!folder) return null;
   const purpose = resolvePacketPurpose(folder);
   if (!purpose) return null;
   const line = formatPacketPurpose(purpose, root);
@@ -384,6 +378,7 @@ function formatBudgetedHookOutput(sections: OutputSection[], maxTokens: number):
 export async function runSessionStartHook(
   input: HookInput,
   writeOutput: (output: string) => Promise<void> = writeHookOutput,
+  projectRoot: string = process.cwd(),
 ): Promise<void> {
   const source = input.source ?? 'startup';
   const rawSessionId = typeof input.session_id === 'string' ? input.session_id.trim() : '';
@@ -414,10 +409,15 @@ export async function runSessionStartHook(
       compactIdentity = readCompactPrimeIdentity(sessionId);
       const stateResult = loadState(sessionId);
       const priorState = stateResult.ok ? stateResult.state : null;
-      const purposeSection = buildPacketPurposeSection(
-        priorState?.lastSpecFolder || folderNamedInBrief(priorState?.pendingCompactPrime?.payload),
-      );
       sections = await handleCompact(sessionId);
+      // A stale or quarantined brief must not choose which spec.md is read, so
+      // the folder it names counts only when handleCompact injected that brief.
+      const briefAccepted = sections[0]?.title === RECOVERED_CONTEXT_TITLE;
+      const purposeSection = buildPacketPurposeSection(
+        priorState?.lastSpecFolder
+          || (briefAccepted ? folderNamedInBrief(priorState?.pendingCompactPrime?.payload) : null),
+        projectRoot,
+      );
       if (purposeSection) sections.unshift(purposeSection);
       budget = COMPACTION_TOKEN_BUDGET;
       break;

@@ -1,0 +1,15 @@
+TASK: replace one numbered list item in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-quality/SKILL.md (read lines 222 to 230 only)
+
+EDIT. Replace the whole line that starts with `4. Load the SKILLED authoring checklist the verdict names` with the one line between the marker lines below.
+
+<<<TEXT
+4. Load the SKILLED authoring checklist the verdict names before checking `.skilled/` work. Load the MCP server checklist when the target is MCP server source: a file that defines an MCP server, registers its tools or sets how it starts.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'by judgment' .skilled/skills/sk-code/sk-code-quality/SKILL.md; echo "exit $?"; rg -c 'a file that defines an MCP server, registers its tools or sets how it starts' .skilled/skills/sk-code/sk-code-quality/SKILL.md
+Expected output: `exit 1` then `1`

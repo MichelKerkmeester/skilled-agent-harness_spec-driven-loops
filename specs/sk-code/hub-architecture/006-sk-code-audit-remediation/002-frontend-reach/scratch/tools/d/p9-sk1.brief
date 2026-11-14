@@ -1,0 +1,13 @@
+TASK: one literal replacement in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/assets/checklists/js-css-style/verification-quick-reference-and-related.md (read lines 85 to 89 only)
+
+EDIT. In the paragraph that starts with `These checks add no JavaScript P0.`, replace the literal text
+CHK-CMT-07 is a universal rule in the code style guide
+with the literal text
+The history-comment rule is a universal rule in the code style guide
+Keep the rest of that line byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'CHK-CMT' .skilled/skills/sk-code/sk-code-skilled/assets/checklists/js-css-style/verification-quick-reference-and-related.md; echo "exit $?"
+Expected output: `exit 1`

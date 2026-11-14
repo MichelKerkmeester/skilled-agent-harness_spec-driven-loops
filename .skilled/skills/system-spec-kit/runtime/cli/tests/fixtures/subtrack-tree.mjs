@@ -372,14 +372,16 @@ contextType: "general"
 /**
  * Copy a source tree, leaving every nested package directory to be linked and
  * dropping build caches: a cache names absolute paths, so the copied checkout
- * would never find its own record.
+ * would never find its own record. The runtime's .workflow-lock is left out
+ * too: other test files create and remove it while this copy runs, so copying
+ * it can fail with ENOENT, and it is transient state the copy does not need.
  */
 function copyToolTree(from, to) {
   fs.cpSync(from, to, {
     recursive: true,
     filter: (source) => {
       const name = path.basename(source);
-      return name !== 'node_modules' && !name.startsWith('.dist-freshness-');
+      return name !== 'node_modules' && name !== '.workflow-lock' && !name.startsWith('.dist-freshness-');
     },
   });
 }

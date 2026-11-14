@@ -1,0 +1,13 @@
+TASK: replace one line in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-quality/SKILL.md (read lines 144 to 150 only)
+
+EDIT. Replace the whole line that reads exactly
+A finding on a changed line blocks.
+with the one line
+A finding blocks when it is P0, exact and on a changed line.
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'A finding on a changed line blocks\.' .skilled/skills/sk-code/sk-code-quality/SKILL.md; echo "exit $?"
+Expected output: `exit 1`

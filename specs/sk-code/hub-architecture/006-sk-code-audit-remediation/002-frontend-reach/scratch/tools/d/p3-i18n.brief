@@ -1,0 +1,14 @@
+TASK: one literal heading edit in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md (read lines 114 to 120 only)
+
+EDIT, line 118. Replace:
+### I9. Expansion and pseudo-localization
+with:
+### I8. Expansion and pseudo-localization
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c '^### I8\.' .skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md; rg -c '^### I9\.' .skilled/skills/sk-code/sk-code-frontend/references/web-internationalization.md; echo "exit $?"
+Expected output: `1` then `exit 1`

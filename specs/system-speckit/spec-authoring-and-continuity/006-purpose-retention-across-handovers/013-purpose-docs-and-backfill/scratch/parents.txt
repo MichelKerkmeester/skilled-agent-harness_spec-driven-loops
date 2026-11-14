@@ -1,0 +1,11 @@
+specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture
+specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/002-substrate-and-orchestration
+specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/003-mode-contracts-migration-and-cutover
+specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift
+specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/005-blocker-closeout
+specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening
+specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening
+specs/system-deep-loop/loop-architecture/001-deep-loop-innovation/008-review-and-rollback-followup
+specs/hooks-plugins-extensions/hook-injection-pipeline/005-smart-rule-injection
+specs/system-speckit/memory-search-and-knowledge/003-memory-search-intelligence/003-spec-data-quality/001-on-write-quality
+specs/sk-design/020-chart-and-diagram-review

@@ -44,6 +44,6 @@
   },
   "deepseekHarness": {
     "value": "cli-deepseek-harness",
-    "contract": "LLM Gateway deepseek-v4.1-flash-1017 is verified on dsh 0.2.2-rc.1 and is the default route. OpenCode Go deepseek-v4.1-flash is configured, not verified, and stays out of defaults. Workspace-write blocks file writes under $HOME but allows OS temp paths."
+    "contract": "LLM Gateway deepseek-v4.1-flash-1017 is verified on dsh 0.2.2-rc.3 and is the default route. OpenCode Go deepseek-v4.1-flash is configured, not verified, and stays out of defaults. Workspace-write blocks file writes under $HOME but allows OS temp paths."
   }
 }

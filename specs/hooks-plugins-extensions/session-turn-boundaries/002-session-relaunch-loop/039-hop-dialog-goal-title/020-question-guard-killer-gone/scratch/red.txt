@@ -1,0 +1,30 @@
+$ env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='killer is gone|record read throws' .skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs
+✖ subagent-guard denies a question dialog over an armed record whose killer is gone (56.384125ms)
+✔ subagent-guard lets a question dialog through when the record read throws (46.255042ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 151.517
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:313:1
+✖ subagent-guard denies a question dialog over an armed record whose killer is gone (56.384125ms)
+  AssertionError [ERR_ASSERTION]: expected a PreToolUse denial envelope
+      at assertQuestionDenied (/Users/michelkerkmeester/worktrees/public/385-epic-review-fixes/.skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:271:10)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/385-epic-review-fixes/.skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs:319:3)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: '',
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }
+exit=1

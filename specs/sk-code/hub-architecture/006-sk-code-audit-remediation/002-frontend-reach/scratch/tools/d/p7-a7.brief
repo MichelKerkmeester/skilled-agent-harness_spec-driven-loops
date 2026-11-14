@@ -1,0 +1,20 @@
+TASK: replace four lines with six lines in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-review/SKILL.md (read lines 388 to 404 only)
+
+EDIT. Find the four consecutive lines that start with `Validate the root index with the sk-doc document validator in playbook mode:` and end with `Playbook mode applies the playbook rule set.` Replace those four lines with the six lines between the marker lines below.
+
+<<<TEXT
+Validate the package with the sk-doc playbook package validator, the first check of the playbook's release checklist:
+`validate-playbook-package.cjs --package manual-testing-playbook`.
+Then validate the root index with the sk-doc document validator in playbook mode:
+`validate_document.py --type playbook manual-testing-playbook/manual-testing-playbook.md`.
+The playbook path is relative to this packet, and both validator paths are wherever sk-doc is installed.
+Playbook mode applies the playbook rule set.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'validate-playbook-package.cjs' .skilled/skills/sk-code/sk-code-review/SKILL.md; echo "exit $?"
+Expected output: `1` then `exit 0`

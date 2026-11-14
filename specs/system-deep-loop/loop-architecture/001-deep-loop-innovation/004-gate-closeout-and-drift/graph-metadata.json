@@ -47,7 +47,7 @@
         "source": "derived"
       },
       {
-        "name": "Root Purpose This",
+        "name": "Root Purpose Prove",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -79,16 +79,16 @@
     ],
     "causal_summary": "Whole-system gate, integrate-latest closeout, and drift census and plan revalidation.",
     "created_at": "2026-08-13T09:22:50.245Z",
-    "last_save_at": "2026-11-10T05:40:42.138Z",
+    "last_save_at": "2026-11-14T14:03:27.571Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:978f6f858f8cf03757f5d3af06799e0111d5350125fe99e8a161e9b062c75fbd",
+    "source_fingerprint": "sha256:912510a6abdfbe3e2e8cc90d123ccea07506757cf145017abcdfd7bb4786d56c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4bcb450cd2467bd1086ff55c07691a9df5044fa7465c55dec2d6bf7408d5f716"
+      "spec.md": "5db5da064fc40d3dbea6863ed3cc1e80684a885b211ce00f6a8326cad294b2de"
     },
     "last_active_child_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/004-gate-closeout-and-drift/001-whole-system-gate",
     "last_active_at": null

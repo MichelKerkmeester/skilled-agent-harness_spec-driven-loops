@@ -1,0 +1,1 @@
+{"type":"event","event":"synthesis_complete","stem":"deep_research.synthesis_complete","lineageId":"research","runId":"research","answeredCount":8,"stopReason":"maxIterationsReached","totalIterations":16,"totalQuestions":8,"timestamp":"2026-11-14T12:48:56.464Z"}

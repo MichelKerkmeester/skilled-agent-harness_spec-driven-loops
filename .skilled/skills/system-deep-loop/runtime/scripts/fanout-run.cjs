@@ -2945,7 +2945,7 @@ const DSH_ALLOWED_MODELS = new Set([
   'deepseek-v4.1-flash',
 ]);
 const DSH_DEFAULT_MODEL = 'deepseek-v4.1-flash-1017';
-const DSH_VERSION = '0.2.2-rc.1';
+const DSH_VERSION = '0.2.2-rc.3';
 const DSH_PERSONA_NAME = /^[a-z0-9][a-z0-9-]{0,63}$/;
 
 // A lineage can throw between creating its harness home and spawning, which skips the
@@ -2953,7 +2953,59 @@ const DSH_PERSONA_NAME = /^[a-z0-9][a-z0-9-]{0,63}$/;
 const pendingDshHomes = new Set();
 let dshHomeSweepRegistered = false;
 
+const STALE_DSH_HOME_MS = 24 * 60 * 60 * 1000;
+// Only the exact name shape mkdtempSync mints is a harness home this runner owns. A link
+// is never one, because its target may sit outside the temp folder and a sweep would then
+// remove a folder this runner did not create.
+const DSH_HOME_NAME = /^dsh-home-[A-Za-z0-9]{6}$/;
+
+/**
+ * Remove harness homes a killed lineage left in the temp folder.
+ *
+ * A harness home is removed in a finally block, but an outer kill skips that block and
+ * leaves the home behind for good. A sweep at the next start bounds that leak to one day.
+ *
+ * @param {number} now - Current time in milliseconds, injectable for tests.
+ * @param {string} tmpRoot - Folder to sweep, defaults to the system temp folder.
+ * @returns {string[]} The names of the folders removed.
+ */
+function sweepStaleDshHomes(now = Date.now(), tmpRoot = os.tmpdir()) {
+  const removed = [];
+  let entries;
+  try {
+    entries = fs.readdirSync(tmpRoot, { withFileTypes: true });
+  } catch {
+    return removed;
+  }
+
+  for (const entry of entries) {
+    if (!entry.isDirectory() || entry.isSymbolicLink() || !DSH_HOME_NAME.test(entry.name)) continue;
+    const home = path.join(tmpRoot, entry.name);
+    if (pendingDshHomes.has(home)) continue;
+
+    let stat;
+    try {
+      stat = fs.lstatSync(home);
+    } catch {
+      continue;
+    }
+    if (!stat.isDirectory() || stat.isSymbolicLink()) continue;
+    if (now - stat.mtimeMs <= STALE_DSH_HOME_MS) continue;
+
+    try {
+      fs.rmSync(home, { recursive: true, force: true });
+      removed.push(entry.name);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      process.stderr.write(`[fanout-run] could not sweep ${entry.name}: ${message}\n`);
+    }
+  }
+
+  return removed;
+}
+
 function createDshHome() {
+  sweepStaleDshHomes();
   const home = fs.mkdtempSync(path.join(os.tmpdir(), 'dsh-home-'));
   pendingDshHomes.add(home);
   if (!dshHomeSweepRegistered) {
@@ -4359,6 +4411,7 @@ module.exports = {
   DSH_VERSION,
   buildLineageCommand,
   validateDshCompletion,
+  sweepStaleDshHomes,
   buildInvocationFingerprintPayload,
   isCodexBinaryAvailable,
   isOpencodeBinaryAvailable,

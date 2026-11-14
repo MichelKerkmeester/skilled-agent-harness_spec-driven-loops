@@ -1,0 +1,15 @@
+TASK: replace one line in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-review/README.md (read lines 53 to 61 only)
+
+EDIT. Replace the whole line that starts with `A P0 or P1 finding must name its reach:` with the one line between the marker lines below.
+
+<<<TEXT
+A P0 or P1 finding also names its reach, the input or caller that produces the failure, and a finding that cannot name one is P2. The rule and its exceptions are in [`references/review-core.md`](./references/review-core.md) section 2.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'must name its reach' .skilled/skills/sk-code/sk-code-review/README.md; echo "exit $?"
+Expected output: `exit 1`

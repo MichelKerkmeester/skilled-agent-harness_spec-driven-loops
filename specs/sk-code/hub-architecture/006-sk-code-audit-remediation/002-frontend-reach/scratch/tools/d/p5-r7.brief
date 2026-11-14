@@ -1,0 +1,17 @@
+TASK: insert two lines into one python block of one file.
+
+FILE: .skilled/skills/sk-code/ROUTER.md (read the lines from `RESOURCE_MAP = {` to the first `],` after it, and the lines from `SHARED_CONTROL_RESOURCES = [` to the closing `]` after it, only)
+
+EDIT 1. Inside `RESOURCE_MAP`, find the line that is exactly four spaces followed by `"IMPLEMENTATION": [`. Insert this line directly after it, with eight leading spaces:
+
+        "shared/references/workflow-implement.md",
+
+EDIT 2. Inside the list `SHARED_CONTROL_RESOURCES`, find the line that is exactly four spaces followed by `"shared/references/workflow-debug.md",`. Insert this line directly before it, with four leading spaces:
+
+    "shared/references/workflow-implement.md",
+
+Do not touch the `INTENT_SIGNALS` block. Do not touch the `"DEBUGGING": [` entry of `RESOURCE_MAP`. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -n '"shared/references/workflow-implement.md",' .skilled/skills/sk-code/ROUTER.md | wc -l
+Expected output: `2`

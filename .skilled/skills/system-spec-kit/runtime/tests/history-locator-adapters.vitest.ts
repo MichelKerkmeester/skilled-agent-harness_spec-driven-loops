@@ -160,6 +160,33 @@ describe('Pi post-compaction locator', () => {
     }
   });
 
+  it('walks up from a packet subfolder to the packet purpose', async () => {
+    const sessionId = uniqueSession('pi-purpose-walkup');
+    const packetDir = mkdtempSync(join(WORKSPACE, 'pi-purpose-walkup-'));
+    writeFileSync(join(packetDir, 'spec.md'), '### Purpose\nShow the packet purpose from a subfolder.\n');
+    const stateDir = join(
+      tmpdir(),
+      'speckit-claude-hooks',
+      createHash('sha256').update(WORKSPACE).digest('hex').slice(0, 12),
+    );
+    const statePath = join(stateDir, `${createHash('sha256').update(sessionId).digest('hex').slice(0, 16)}.json`);
+    mkdirSync(stateDir, { recursive: true });
+    writeFileSync(statePath, JSON.stringify({ lastSpecFolder: join(relative(WORKSPACE, packetDir), 'scratch') }));
+    try {
+      const { pi, handlers, messages } = createPi();
+      sessionCompactContext(pi as never);
+      await handlers.get('session_compact')!(
+        { compactionEntry: { summary: 'Pi summary' } },
+        { cwd: WORKSPACE, sessionManager: { getSessionId: () => sessionId } },
+      );
+
+      expect(messages[0].content).toContain('## Packet Purpose\nPurpose: Show the packet purpose from a subfolder.');
+    } finally {
+      rmSync(statePath, { force: true });
+      rmSync(packetDir, { recursive: true, force: true });
+    }
+  });
+
   it('adds no packet purpose for a last spec folder outside the workspace', async () => {
     const sessionId = uniqueSession('pi-purpose-outside');
     const outsideDir = mkdtempSync(join(tmpdir(), 'pi-purpose-outside-'));

@@ -31,7 +31,7 @@ Dedicated LEAF executor for template-first documentation work. This agent handle
 
 ## 0. ILLEGAL NESTING AND WRITE BOUNDARY (HARD BLOCK)
 
-This agent is LEAF-only and write-capable. Nested sub-agent dispatch is illegal. File mutation is limited to the command-resolved output path, package root, runtime mirror set, explicitly named spec folder, or explicitly scoped markdown/documentation output path.
+This agent is LEAF-only and write-capable. Nested sub-agent dispatch is illegal. File mutation is limited to the command-resolved output path, package root, runtime mirror set, explicitly named spec folder, or explicitly scoped markdown/documentation output path. `/create:agent` also resolves the agent registry and the rosters `sync-agent-roster.cjs` generates as outputs, for an agent under `.skilled/agents/`.
 
 - NEVER call the Task tool, create sub-tasks, ask another agent to investigate, or hand off work from inside this agent.
 - NEVER write outside the resolved command output, command-owned package root, active spec folder, or explicitly scoped mirror set.
@@ -206,7 +206,7 @@ Read `sk-doc` first, then the mode packet entry file in the matching row, then t
 
 | Command                    | Output                                                  | Template                                                                                                                                         |
 | -------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `/create:agent` | New OpenCode agent `.md` plus requested runtime mirrors | `.skilled/skills/sk-doc/sk-create-agent/SKILL.md` and the agent template it names |
+| `/create:agent` | New OpenCode agent `.md` plus requested runtime mirrors, and for an agent under `.skilled/agents/` its record in `agent-registry.json` and the regenerated rosters | `.skilled/skills/sk-doc/sk-create-agent/SKILL.md` and the agent template it names |
 | `/create:skill` | New skill `SKILL.md` or doc-only skill resource | `.skilled/skills/sk-doc/sk-create-skill/SKILL.md` and the skill template it names and, when needed, its skill reference template |
 | `/create:skill-parent` | Parent skill with nested mode packets (hub + registry + N `deep-<mode>` packets + `shared/`, one hub `graph-metadata.json`, root `ROUTER.md` stage-two control document) | `.skilled/skills/sk-doc/sk-create-skill/SKILL.md` and that packet's `ROUTER.md`, which names the parent-skill hub, registry and root-router templates (root `ROUTER.md` two-state authoring) |
 | `/create:feature-catalog` | `feature-catalog/` package | `.skilled/skills/sk-doc/sk-create-feature-catalog/SKILL.md` and the catalog template it names |

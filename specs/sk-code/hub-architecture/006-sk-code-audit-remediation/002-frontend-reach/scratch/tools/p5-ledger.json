@@ -1,0 +1,9 @@
+{
+ "H2": "Fixed in `19214454c5`. The path check in `005-hub-router-alignment/plan.md` section 5 prints `missing 0`, and `rg -c 'style_guide' .skilled/skills/sk-code/ROUTER.md` prints nothing and exits 1",
+ "H3": "Fixed in `19214454c5`. Sections 3 and 5 of `ROUTER.md` hold 4 lines that name `sk-code-ci` or `sk-code-frontend`, counted by the REQ-005 command in `005-hub-router-alignment/spec.md`, and section 2 holds one note for each surface",
+ "H4": "Fixed in `19214454c5`. `rg -c 'workflow-implement.md' .skilled/skills/sk-code/ROUTER.md` prints 5, and `run-all-drift-guards.sh` passes router-sync 5/5 with the file listed in `SHARED_CONTROL_RESOURCES`",
+ "H5": "Fixed in `19214454c5`. `node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs` ends `STATUS=OK legs=9` and exits 0, and the drift guard prints 0 `[ERROR]` lines. The guard skips the header rule for a one-line re-export file and the 22 Pi entry files are unchanged, on the operator's answer of 2026-11-14. One blank line left `.skilled/bin/skilled-loop-shell.sh`. With `SPECKIT_COMPILED_ROUTING=0` the battery ends `STATUS=FAIL failed=2` and exits 1, saved in `005-hub-router-alignment/scratch/forced-failure.txt`",
+ "H6": "Fixed in `19214454c5`. `rg -c 'barter/' .skilled/skills/sk-code/ROUTER.md` prints nothing and exits 1",
+ "SK-07": "Fixed in `19214454c5`. `rg -c 'by judgment' .skilled/skills/sk-code/sk-code-skilled/SKILL.md` prints nothing and exits 1. The sentence names the selector the hub `ROUTER.md` section 4 states once: the target is MCP server source. The packet router still maps the checklist under `IMPLEMENTATION`, and the hub router says a mapped `assets/` entry opens only on its selector",
+ "QL-09": "Fixed in `19214454c5`. `rg -c 'by judgment' .skilled/skills/sk-code/sk-code-quality/SKILL.md` prints nothing and exits 1, and rule 4 names the same selector as the `MCP server source` row of the load table"
+}

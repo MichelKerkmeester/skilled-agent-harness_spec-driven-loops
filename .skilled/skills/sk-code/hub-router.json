@@ -1,6 +1,6 @@
 {
   "skill": "sk-code",
-  "version": "3.11.6.0",
+  "version": "3.12.1.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
@@ -17,6 +17,7 @@
     "discoveryClasses": ["hub-identity"],
     "discoveryClassesContract": "Classes listed here are hub discovery/defer evidence only. They are intentionally referenced by NO mode's scoring classes: hub-identity vocabulary describes the router itself, so a prompt carrying only it scores zero modes and defers instead of bundling every workflow mode and surface at once."
   },
+  "vocabularyMirrors": ["sk-code-frontend", "sk-code-ci"],
   "routerSignals": {
     "sk-code-quality": {
       "weight": 4,
@@ -40,7 +41,7 @@
     },
     "sk-code-frontend": {
       "weight": 4,
-      "classes": ["code-frontend-aliases", "code-frontend-visual"],
+      "classes": ["code-frontend-aliases", "code-frontend-visual", "code-frontend-review"],
       "resources": ["sk-code-frontend/SKILL.md"]
     }
   },
@@ -85,10 +86,13 @@
       "keywords": ["runner-minutes", "timeout-minutes", "paths-ignore", "pull_request_target", "permissions: contents: read", "actions/cache", "setup-bun", "fail-fast: false", "strategy matrix", "ruleset context", "trigger-index rebuild", "workflow_dispatch", "actions concurrency group", "actions cache key", "ci job", "action to a sha", "sha-pinned action"]
     },
     "code-frontend-aliases": {
-      "keywords": ["semantic html markup", "html form autocomplete", "dialog element", "popover attribute", "css cascade layers", "css specificity conflict", "container query layout", "css stacking context", "web accessibility pattern", "focus visible styling", "aria live region", "web font loading", "largest contentful paint", "right to left layout", "bidirectional text", "keyboard focus", "broken tab order", "accessible name", "figma to code", "check built screen against figma", "compare build with figma frame", "figma frame", "figma frame check", "implement a figma design", "focus ring accessibility", "focus outline removed", "screen reader support", "aria label missing", "alt text missing", "wcag audit"]
+      "keywords": ["semantic html markup", "html form autocomplete", "dialog element", "popover attribute", "css cascade layers", "css specificity conflict", "container query layout", "css stacking context", "web accessibility pattern", "focus visible styling", "aria live region", "web font loading", "largest contentful paint", "right to left layout", "bidirectional text", "keyboard focus", "broken tab order", "accessible name", "figma to code", "check built screen against figma", "compare build with figma frame", "figma frame", "figma frame check", "implement a figma design", "focus ring accessibility", "focus outline removed", "screen reader support", "aria label missing", "alt text missing", "wcag audit", "responsive layout", "responsive grid", "css grid", "flexbox layout", "sticky header", "sticky navbar", "navbar sticky", "with css", "the stylesheet", "css file", "focus trap", "modal dialog", "improve lcp", "lcp regression", "core web vitals", "cumulative layout shift", "interaction to next paint", "lazy load images", "optimize images", "image optimization", "rtl languages", "rtl layout", "rtl support", "i18n support", "center a div", "vertically center", "center vertically", "scroll horizontally", "horizontal scroll", "mobile viewport", "media query", "form inputs", "form styling", "style the form", "figma file", "from figma"]
     },
     "code-frontend-visual": {
-      "keywords": ["what padding should this have", "how much padding", "what font size should this be", "spacing between elements", "spacing scale", "type scale", "build a color palette", "shade ramp", "box shadow elevation", "border radius consistency", "contrast ratio failure", "grey text on colored background", "dark mode palette", "concentric border radius", "layered shadows", "shadow color on dark surface", "tabular numbers", "what should this button look like", "colour decision", "color decision", "ui looks off", "looks amateur", "feels cluttered", "make this look better", "make this ui look designed", "visual hierarchy", "no visual hierarchy", "nothing draws the eye", "everything competes for attention", "everything looks the same", "emphasize by de-emphasizing", "how to style a destructive button", "this page feels overwhelming", "where do i start designing", "design a new screen from scratch", "how much white space", "why does this look wrong", "does this look right", "critique this design", "design critique", "visual audit", "design review findings", "design review", "review this design", "review this screen", "contrast of", "check the contrast", "colour contrast", "color contrast", "muted text", "type hierarchy", "hover", "focus-visible", "interaction states", "ux laws", "cognitive load", "progressive disclosure", "empty state design", "animation duration", "transition duration", "easing curve", "spring versus easing", "twelve principles of animation", "when not to animate", "response time budget", "touch target size", "hover state", "active pressed state", "disabled state styling", "button states", "padding", "type scale for", "font size", "colour palette", "color palette", "contrast ratio", "corner radius", "box shadow", "spacing between", "look wrong", "looks wrong", "looks off", "visual review", "animation", "transition timing", "easing"]
+      "keywords": ["what padding should this have", "how much padding", "what font size should this be", "spacing between elements", "spacing scale", "type scale", "build a color palette", "shade ramp", "box shadow elevation", "border radius consistency", "contrast ratio failure", "grey text on colored background", "dark mode palette", "concentric border radius", "layered shadows", "shadow color on dark surface", "tabular numbers", "what should this button look like", "colour decision", "color decision", "ui looks off", "looks amateur", "feels cluttered", "make this look better", "make this ui look designed", "visual hierarchy", "no visual hierarchy", "nothing draws the eye", "everything competes for attention", "everything looks the same", "emphasize by de-emphasizing", "how to style a destructive button", "this page feels overwhelming", "where do i start designing", "design a new screen from scratch", "how much white space", "why does this look wrong", "does this look right", "critique this design", "design critique", "visual audit", "design review findings", "design review", "review this design", "review this screen", "contrast of", "check the contrast", "colour contrast", "color contrast", "muted text", "type hierarchy", "focus-visible", "interaction states", "ux laws", "cognitive load", "progressive disclosure", "empty state design", "animation duration", "transition duration", "easing curve", "spring versus easing", "twelve principles of animation", "when not to animate", "response time budget", "touch target size", "hover state", "active pressed state", "disabled state styling", "button states", "type scale for", "font size", "colour palette", "color palette", "contrast ratio", "corner radius", "box shadow", "spacing between", "look wrong", "looks wrong", "looks off", "visual review", "transition timing", "css animation", "css transition", "loading spinner", "dark mode toggle", "dark mode", "poor contrast", "low contrast", "text contrast", "hover animation", "hover effect"]
+    },
+    "code-frontend-review": {
+      "keywords": ["accessibility issues", "accessibility review", "ui component", "frontend component"]
     }
   }
 }

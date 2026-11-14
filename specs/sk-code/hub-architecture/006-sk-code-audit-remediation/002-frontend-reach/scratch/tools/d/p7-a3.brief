@@ -1,0 +1,16 @@
+TASK: replace eight lines with two lines in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-review/SKILL.md (read lines 112 to 132 only)
+
+EDIT. Under the heading `#### Instance-Only Opt-Out` there is a block that starts with the line `A finding may use the narrow fix path only when all are true:` and ends with the line `Otherwise, run the full fix completeness checklist.` It is eight lines: the opening line, a blank line, four bullets, a blank line and the closing line. Replace that whole block with the two lines between the marker lines below. Keep the heading and the blank line after it.
+
+<<<TEXT
+A finding may use the narrow fix path only when it meets every condition of the instance-only opt-out in [`fix-completeness-checklist.md`](./assets/fix-completeness-checklist.md) section 2.
+Otherwise, run the full fix completeness checklist.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'It is not P0/P1 security, path' .skilled/skills/sk-code/sk-code-review/SKILL.md; echo "exit $?"
+Expected output: `exit 1`

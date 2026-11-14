@@ -34,7 +34,7 @@ Live-tools unblock, authorized-ledger substrate, evidence and control services, 
 
 ## Root Purpose
 
-This phase groups the related child phases below so parent-level context stays a short thematic map. Each child owns its own scope, plan, and verification; the chronological lineage of every child is recorded in the root `timeline.md`.
+Build the dark substrate of the new deep-loop runtime, from the authorized event ledger and shared services through durable fan-out and fan-in to convergence and health. Each child owns its own scope, plan, and verification; the chronological lineage of every child is recorded in the root `timeline.md`.
 
 ## PHASE DOCUMENTATION MAP
 

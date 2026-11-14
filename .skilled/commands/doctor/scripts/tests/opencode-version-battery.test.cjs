@@ -559,7 +559,7 @@ test('C1: v2 lists a nested project and allows the ancestor folder and the built
   assert.equal(result.leg, 'command-listed');
   assert.equal(result.family, 'v2');
   assert.equal(result.reason, 'all 2 command files listed');
-  assert.deepEqual(result.details, ['listed: 5', 'required: 2']);
+  assert.deepEqual(result.details, [`listed: ${V2_BUILTIN_COMMANDS.length + 3}`, 'required: 2']);
 });
 
 test('C2: v2 without the ancestor folder fails naming the ancestor command, then passes', (t) => {
@@ -854,7 +854,7 @@ test('C16: a built-in or a configured MCP prompt keeps passing beside a non-comm
     'v2', ['a', ...V2_BUILTIN_COMMANDS], allowedCommandSources(root, 'v2', env),
   );
   assert.equal(builtin.status, 'PASS');
-  assert.deepEqual(builtin.details, ['listed: 3', 'required: 1']);
+  assert.deepEqual(builtin.details, [`listed: ${V2_BUILTIN_COMMANDS.length + 1}`, 'required: 1']);
 
   fs.writeFileSync(path.join(base, 'srv:prompt.txt'), '');
   const mcpSources = { ...allowedCommandSources(root, 'v2', env), mcpServers: ['srv'] };
@@ -1261,6 +1261,7 @@ test('nested: allowedCommandSources allows ancestor commands only when the read 
   assert.ok(allowedCommandSources(root, 'v2', env).allowed.has('outer-only'));
   assert.ok(!allowedCommandSources(root, 'v2', env, true).allowed.has('outer-only'));
   assert.ok(allowedCommandSources(root, 'v2', env, true).allowed.has('init'));
+  assert.ok(allowedCommandSources(root, 'v2', env, true).allowed.has('goal'));
 });
 
 // The caller's config folder is not what an isolated read loaded, so a command

@@ -52,7 +52,7 @@
         "source": "derived"
       },
       {
-        "name": "Root Purpose This",
+        "name": "Root Purpose Make",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -60,6 +60,12 @@
       {
         "name": "What Needs Done Each",
         "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "stress",
+        "kind": "key_phrase",
         "path": "spec.md",
         "source": "derived"
       },
@@ -80,26 +86,20 @@
         "kind": "heading",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Executor and CLI Hardening",
-        "kind": "quoted",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "CLI adapter stress and playbooks, executor wiring and parity, cli-pi DevPass route alignment for GLM-5.3-Flash and DeepSeek V4 Flash, fan-out write-containment hardening for shared checkouts, deep-alignment integrity, trustworthy state records, residual finding closeouts, and cli-devin executor repair.",
     "created_at": "2026-09-20T08:33:46.953Z",
-    "last_save_at": "2026-11-10T05:40:48.264Z",
+    "last_save_at": "2026-11-14T14:04:20.681Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:81809fa3dc3f82df8a769f0913e015dedf0234dd56f6edbf69787ba354cc866d",
+    "source_fingerprint": "sha256:305006be43ed2c0f0b532027bdb2ebffe7e7debf339e0678e42a147a709b1fde",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "5badfc08eab01960688bc9da668164e1836b66b6c37f1f3b7c3dc51438394693"
+      "spec.md": "3449b88c775770bcb8e13f706f72717281c7839f42d25bcdebad7e10157ecf44"
     },
     "last_active_child_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/007-executor-and-cli-hardening/010-fanout-write-containment-hardening",
     "last_active_at": null

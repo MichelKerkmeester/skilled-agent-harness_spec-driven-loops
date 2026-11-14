@@ -1,0 +1,19 @@
+{
+  "specFolder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/007-dispatch-recognition-and-hard-rules",
+  "description": "Phase 7: dispatch-recognition-and-hard-rules",
+  "keywords": [
+    "phase",
+    "dispatch-recognition-and-hard-rules"
+  ],
+  "lastUpdated": "2026-11-14T12:56:21.569Z",
+  "specId": "007",
+  "folderSlug": "dispatch-recognition-and-hard-rules",
+  "parentChain": [
+    "cli-external-orchestration",
+    "runtime-lifecycle",
+    "004-cli-mistral-vibe-creation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

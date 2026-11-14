@@ -55,10 +55,13 @@ const GOAL_RECORD_RUNTIMES = Object.freeze(['opencode', 'pi', 'devin', 'cursor']
 // A manual runtime starts its next session under a fresh native id, so the record the sender
 // wrote never matches. The sender leaves its packet in the hand-over variable instead.
 const HANDOVER_GOAL_RUNTIMES = Object.freeze(['devin', 'cursor']);
-// The packet a Claude goal names is read from a bounded tail of the session log, so a long
-// session costs the same as a short one.
+// The packet a Claude goal names is read from a bounded tail of the session log first. A log
+// over the cap whose tail holds no goal entry has the bytes before it read in fixed chunks,
+// so a goal anywhere in the log still counts and a long session costs one more pass only
+// when the tail cannot answer.
 const GOAL_LOG_TAIL_BYTES = 262144;
 const GOAL_LOG_MAX_TAIL_BYTES = 16 * 1024 * 1024;
+const GOAL_LOG_SCAN_CHUNK_BYTES = 64 * 1024;
 const OPEN_CRITERION_PATTERN = /^[ \t]*-[ \t]+\[ \][ \t]+\S/m;
 const GOAL_LOG_PACKET_PATTERN = /specs\/(?:[A-Za-z0-9._-]+\/)+\d{3}-[a-z0-9]+(?:-[a-z0-9]+)*/g;
 const GOAL_LOG_MAX_CANDIDATES = 8;
@@ -541,7 +544,8 @@ function readLogTail(filePath, byteCount) {
     const start = Math.max(0, size - byteCount);
     const buffer = Buffer.alloc(size - start);
     const bytesRead = fs.readSync(fileDescriptor, buffer, 0, buffer.length, start);
-    return { text: buffer.subarray(0, bytesRead).toString('utf8'), whole: start === 0 };
+    const bytes = buffer.subarray(0, bytesRead);
+    return { text: bytes.toString('utf8'), whole: start === 0, start, bytes };
   } finally {
     fs.closeSync(fileDescriptor);
   }
@@ -565,30 +569,92 @@ function goalLogEntry(entry) {
   return null;
 }
 
+// What one log line says about the session's goal, or null when the line holds no goal entry.
+// Only a line that names a goal is parsed, since every other line is filler.
+function goalEntryFromLogLine(line) {
+  if (!line.includes('goal')) return null;
+  let entry;
+  try {
+    entry = JSON.parse(line);
+  } catch {
+    return null;
+  }
+  return goalLogEntry(entry);
+}
+
+// The newest goal entry in the bytes before `endByte`, read in fixed chunks. The bytes after
+// the last line break come back unparsed, so the caller can join them with the first partial
+// line of the tail that follows.
+function latestGoalLogEntryBefore(filePath, endByte) {
+  const fileDescriptor = fs.openSync(filePath, 'r');
+  try {
+    const buffer = Buffer.alloc(GOAL_LOG_SCAN_CHUNK_BYTES);
+    let position = 0;
+    let remainder = Buffer.alloc(0);
+    let latest = null;
+    while (position < endByte) {
+      const bytesRead = fs.readSync(
+        fileDescriptor,
+        buffer,
+        0,
+        Math.min(buffer.length, endByte - position),
+        position,
+      );
+      if (bytesRead === 0) break;
+      position += bytesRead;
+      let lineStart = 0;
+      if (remainder.length > 0) {
+        const firstBreak = buffer.subarray(0, bytesRead).indexOf(0x0a);
+        if (firstBreak === -1) {
+          remainder = Buffer.concat([remainder, buffer.subarray(0, bytesRead)]);
+          continue;
+        }
+        latest = goalEntryFromLogLine(
+          Buffer.concat([remainder, buffer.subarray(0, firstBreak)]).toString('utf8'),
+        ) ?? latest;
+        remainder = Buffer.alloc(0);
+        lineStart = firstBreak + 1;
+      }
+      for (let index = lineStart; index < bytesRead; index += 1) {
+        if (buffer[index] !== 0x0a) continue;
+        latest = goalEntryFromLogLine(buffer.toString('utf8', lineStart, index)) ?? latest;
+        lineStart = index + 1;
+      }
+      remainder = Buffer.from(buffer.subarray(lineStart, bytesRead));
+    }
+    return { latest, remainder };
+  } finally {
+    fs.closeSync(fileDescriptor);
+  }
+}
+
 // The newest goal entry of one Claude session log, widening the tail while the read starts
-// mid-file and holds none. `latest` is null when the part that was read has none, and
-// `whole` says whether that part was the entire log, since only then is "none" a fact
-// about the session and not about the tail cap.
+// mid-file and holds none. A tail at the cap that still holds none is followed by a scan of
+// the bytes before it, so `latest` is null only when the whole log holds no entry, and
+// `whole` is false only when a partial tail held the entry that answered.
 function latestGoalLogEntry(logPath) {
   let byteCount = GOAL_LOG_TAIL_BYTES;
   for (;;) {
     const tail = readLogTail(logPath, byteCount);
     const lines = tail.text.split(/\r?\n/);
-    // A tail that starts mid-file begins inside a line, which cannot be parsed.
+    // A tail that starts mid-file begins inside a line, which is parsed once the head scan
+    // joins it with the bytes before the tail.
     if (!tail.whole) lines.shift();
     let latest = null;
     for (const line of lines) {
-      if (!line.includes('goal')) continue;
-      let entry;
-      try {
-        entry = JSON.parse(line);
-      } catch {
-        continue;
-      }
-      latest = goalLogEntry(entry) ?? latest;
+      latest = goalEntryFromLogLine(line) ?? latest;
     }
-    if (latest !== null || tail.whole || byteCount >= GOAL_LOG_MAX_TAIL_BYTES) {
+    if (latest !== null || tail.whole) {
       return { latest, whole: tail.whole };
+    }
+    if (byteCount >= GOAL_LOG_MAX_TAIL_BYTES) {
+      const head = latestGoalLogEntryBefore(logPath, tail.start);
+      // The tail begins inside a line when it starts mid-file, so the head's trailing bytes
+      // and the tail's first partial line are joined and decoded once before they are parsed.
+      const firstBreak = tail.bytes.indexOf(0x0a);
+      const firstPartial = firstBreak === -1 ? tail.bytes : tail.bytes.subarray(0, firstBreak);
+      const straddling = Buffer.concat([head.remainder, firstPartial]).toString('utf8');
+      return { latest: goalEntryFromLogLine(straddling) ?? head.latest, whole: true };
     }
     byteCount = Math.min(byteCount * 4, GOAL_LOG_MAX_TAIL_BYTES);
   }
@@ -797,8 +863,9 @@ function safeDirectory(directory) {
  * @param {string} options.runtime - Runtime that owns the session.
  * @param {string} options.sessionId - The session's identifier.
  * @param {NodeJS.ProcessEnv} [options.env=process.env] - Environment carrying the log location.
- * @returns {{model: string, effort: string, name: string}} The values the log proves, `''`
- * for the rest, and the live session name when the log carries one.
+ * @returns {{model: string, effort: string, name: string, generatedName: string}} The values
+ * the log proves, `''` for the rest, the live session name when the log carries one, and the
+ * title the runtime generated when the session has no other name.
  */
 function resolveSessionSettings({ runtime, sessionId, env = process.env } = {}) {
   const none = { model: '', effort: '', name: '', generatedName: '' };

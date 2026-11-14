@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach"
     last_updated_at: "2026-11-14T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Added operator decisions Q019 to Q028 of 2026-11-14 by hand"
+    recent_action: "Added operator decisions Q019 to Q031 of 2026-11-14 by hand"
     next_safe_action: "Review the recorded operator decisions"
     blockers: []
     key_files: []
@@ -62,6 +62,9 @@ _memory:
 | Q026 | Worktree 375 and its local branch worktrees/375-subtrack-review-remediation are removed now. | Not stated. The branch was already merged into main. | None | Done 2026-11-14: `git worktree remove` and `git branch -d` |
 | Q027 | Worktree 378 takes origin/main by merge, not rebase, after origin moved while it waited. The generated trigger index and its fixtures are rebuilt from the merged tree, the suites rerun, and the push to origin/main is asked separately. The primary checkout is not touched while another session's copies are dirty there. | Not stated. | Supersedes the main-checkout merge path that Q023 assumed | Merge commits `54179394ea` and `ce8536f3e2` on worktrees/378-relocate-restore-fixes |
 | Q028 | The word "quote" in the system-spec-kit routing signals stays. The routing review's optional P2 is not applied. | Not stated. The recommended option said removing it changes no top-1 on the 285 labelled rows and would need the full routing gate. | None | 013-skill-docs-and-housekeeping scratch/routing-review.md |
+| Q029 | Worktree 378 is pushed to origin/main as a fast-forward. | Not stated. | None | Done 2026-11-14: origin/main `57531ae8bc..ab7218b42d` |
+| Q030 | In the primary checkout, only this packet's stale copies and the four dirty generated index files are cleaned, with a backup first. Other sessions' files and this packet's `description.json` are left, and the checkout's fast-forward is left to its follower. | Not stated. | Carries out Q023 | Done 2026-11-14: copies moved to the session scratchpad, parent files restored by exact path; the live follower then fast-forwarded the checkout to `ab7218b42d` |
+| Q031 | Worktree 378 and its local branch worktrees/378-relocate-restore-fixes are removed now. | Not stated. The branch was merged and pushed. | None | Done 2026-11-14: `git worktree remove` and `git branch -d` |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -415,6 +418,33 @@ Asked through AskUserQuestion on 2026-11-14. Question: remove the word "quote" f
 Operator answer:
 ```text
 Leave it (Recommended)
+```
+
+### Q029
+
+Asked through AskUserQuestion on 2026-11-14. Question: push worktree 378, eleven commits, to origin/main as a fast-forward. Options: push now, or hold the push.
+
+Operator answer:
+```text
+Push now (Recommended)
+```
+
+### Q030
+
+Asked through AskUserQuestion on 2026-11-14. Question: after the push, clean this packet's stale uncommitted copies and the four dirty generated index files from the primary checkout. Options: clean this packet's part only, or leave the checkout alone.
+
+Operator answer:
+```text
+Clean my part only (Recommended)
+```
+
+### Q031
+
+Asked through AskUserQuestion on 2026-11-14. Question: remove worktree 378 and its local branch, clean, merged and pushed. Options: remove now, or leave it.
+
+Operator answer:
+```text
+Remove now (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->

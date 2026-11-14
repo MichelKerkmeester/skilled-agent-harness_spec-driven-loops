@@ -2859,6 +2859,13 @@ test('resolveGoalPacket leaves an ended or unreadable Claude goal uncarried', (t
     roots,
     env: writeClaudeLog(sandbox, entries),
   });
+  const claudeResult = (entries) => resolveGoalPacketResult({
+    runtime: 'claude',
+    sessionId: GOAL_SESSION_ID,
+    specFolder: GOAL_PACKET,
+    roots,
+    env: writeClaudeLog(sandbox, entries),
+  });
   const condition = `${GOAL_HEADLINE}\n\nbody`;
 
   assert.equal(claude([goalStatus({ met: true, condition })]), '', 'a met goal stays ended');
@@ -2871,9 +2878,22 @@ test('resolveGoalPacket leaves an ended or unreadable Claude goal uncarried', (t
   assert.equal(claude([goalStatus({ met: false, condition: '# Goal: A different goal\n' })]), '',
     'a goal the sender set outranks the packet goal, even when no packet carries it');
 
-  // Past the tail cap an older goal entry cannot be ruled out, so nothing is assumed.
+  // Past the tail cap the bytes before the tail are read too, so a log with no goal entry
+  // anywhere is read whole and a goal that ended before the cap still ends the goal. One
+  // comparison reports both, because a failed assertion ends the test at the first one.
   const filler = { type: 'user', message: { content: 'x'.repeat(1024 * 1024) } };
-  assert.equal(claude(Array.from({ length: 17 }, () => filler)), '', 'a log read only in part');
+  const bigLog = Array.from({ length: 17 }, () => filler);
+  assert.deepEqual(
+    {
+      noGoal: claude(bigLog),
+      endedBeforeTail: claudeResult([goalStatus({ met: true, condition }), ...bigLog]),
+    },
+    {
+      noGoal: GOAL_PARENT,
+      endedBeforeTail: { packet: '', reason: '', ended: true },
+    },
+    'a log read whole with no goal entry, and an ended goal before the tail cap still ends it',
+  );
 
   assert.equal(resolveGoalPacket({
     runtime: 'claude',
@@ -2938,10 +2958,11 @@ test('a goal the sender ended stays ended for a receiver that sets none', (t) =>
   setEnded('\ngoal_ended: true');
   assert.deepEqual(resolve(), { packet: '', reason: '', ended: true });
 
-  // Past the tail cap the log cannot rule a goal in or out, and the note still speaks.
+  // The whole log holds no goal entry, so the note the session claimed last still says the
+  // goal ended.
   const filler = { type: 'user', message: { content: 'x'.repeat(1024 * 1024) } };
   assert.deepEqual(resolve(Array.from({ length: 17 }, () => filler)),
-    { packet: '', reason: '', ended: true }, 'a log read only in part');
+    { packet: '', reason: '', ended: true }, 'a log read whole with no goal entry');
 
   const condition = `${GOAL_HEADLINE}\n`;
   writeGoalPacket(sandbox.repoRoot, GOAL_PACKET, `${GOAL_HEADLINE}\n`);

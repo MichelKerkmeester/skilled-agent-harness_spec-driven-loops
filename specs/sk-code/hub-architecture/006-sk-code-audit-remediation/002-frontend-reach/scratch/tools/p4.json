@@ -1,0 +1,154 @@
+{
+ "date": "2026-11-14",
+ "title": "Phase 4: vocabulary-single-source",
+ "hook": "A frontend keyword that changes in one copy and not the others now fails the router-sync guard, and so does a registry alias that no routing class holds. The packet router no longer repeats the keywords in prose.",
+ "recent": "Made a vocabulary mismatch between the hub's copies fail check 2 of the router-sync guard",
+ "next": "Start 005-hub-router-alignment",
+ "what": "You can change a frontend keyword in `hub-router.json` and the guard tells you which other copy still disagrees. Check 2 of `verify-router-sync.cjs` holds two rules. Every registry alias must be a keyword in a `hub-router.json` class its mode routes on, which runs for all five modes. A surface listed under `vocabularyMirrors` in `hub-router.json` must hold one keyword set in its classes, the hub `INTENT_SIGNALS` rows and its own `INTENT_SIGNALS` rows. The frontend surface is listed. Section 2 of the packet router points at the machine block and keeps only what each intent loads.",
+ "files": [
+  [
+   "`sk-code-skilled/assets/scripts/verify-router-sync.cjs`",
+   "Modified",
+   "`keywordsOf` and `vocabularyProblems`, called from check 2"
+  ],
+  [
+   "`sk-code-skilled/scripts/tests/verify-router-sync.test.cjs`",
+   "Modified",
+   "One passing hub and one mutated hub"
+  ],
+  [
+   "`hub-router.json`",
+   "Modified",
+   "The optional `vocabularyMirrors` list, holding `sk-code-frontend`"
+  ],
+  [
+   "`mode-registry.json`",
+   "Modified",
+   "The alias rule in the registry description"
+  ],
+  [
+   "`sk-code-frontend/ROUTER.md`",
+   "Modified",
+   "Section 2 points at section 3 and no longer lists keywords"
+  ],
+  [
+   "`sk-code-skilled/scripts/README.md`, `sk-code-skilled/assets/scripts/README.md`, `README.md`",
+   "Modified",
+   "Name the vocabulary comparison and the new key"
+  ],
+  [
+   "Two `activation/sk-code/manifest.json` files",
+   "Regenerated",
+   "Policy hash after the router and registry change"
+  ]
+ ],
+ "how": "The guard was read in full and the three copies were measured for every surface before any edit. Eight literal briefs went to DeepSeek V4.1 Flash at max thinking through cli-pi. The orchestrating session ran the guard on the clean tree, the two mutations in a scratch copy of the hub, the manifest refresh, the probe replay, the three test suites, the drift guards, the setup battery and the quality runner. The code landed as `9a9bbb76aa`.",
+ "decisions": [
+  [
+   "The three-way match runs only for a surface listed under `vocabularyMirrors`",
+   "ADR-001. `sk-code-ci` holds 72, 58 and 12 keywords in its three copies, so a strict match would fail on the clean tree, and aligning them is a keyword change. The operator chose this on 2026-11-14"
+  ],
+  [
+   "The comparison lives in check 2, not in a new leg",
+   "ADR-002. A sixth leg changes the `5/5` total and the leg list that about twenty documents quote, two of them outside the hub"
+  ],
+  [
+   "The alias rule names the classes the mode routes on",
+   "A stricter rule than any class in the file. It holds for all five modes today"
+  ],
+  [
+   "Section 2 of the packet router keeps the resource list of each intent",
+   "All 11 playbook scenarios say section 2 names the same paths in prose. Only the keyword copy was removed"
+  ],
+  [
+   "`hub-router.json` and the hub `README.md` changed",
+   "Both are outside the Files to Change table and inside the hub. The first carries the list the guard reads, the second documents it"
+  ]
+ ],
+ "verify": [
+  [
+   "`verify-router-sync.cjs` on the clean tree",
+   "`PASS check 2`, `router-sync: 5/5 checks passed`, exit 0"
+  ],
+  [
+   "Scratch copy with one keyword removed from `code-frontend-aliases`",
+   "`FAIL check 2` with 3 problems naming `hub-router.json`, exit 1, saved in `scratch/mutation.txt`"
+  ],
+  [
+   "Scratch copy with a registry alias no class holds",
+   "`FAIL check 2` with 1 problem naming `mode-registry.json`, exit 1"
+  ],
+  [
+   "`rg -c 'fires on' sk-code-frontend/ROUTER.md`",
+   "nothing printed, exit 1"
+  ],
+  [
+   "`node --test verify-router-sync.test.cjs`",
+   "18 pass, 0 fail"
+  ],
+  [
+   "Probe replay",
+   "`13 frontend 1`, `8 negative 0`, `1 review 1`"
+  ],
+  [
+   "`node --test` on the sk-code-skilled tests, the sk-code-quality tests and `compiled-route-surface-hint.test.cjs`",
+   "55, 154 and 15 pass, 0 fail"
+  ],
+  [
+   "`run-all-drift-guards.sh`",
+   "router-sync 5/5, doc-claims 4/4 and stack-folders PASS. alignment-drift fails on the same 23 files as the baseline"
+  ],
+  [
+   "`sk-code-setup-check.cjs`",
+   "Eight legs PASS and drift-guards FAIL, as in the baseline"
+  ],
+  [
+   "`compiled-route-guard.cjs --json` and `compiled-route-sync.cjs --check`",
+   "Both exit 0"
+  ],
+  [
+   "`quality-gate.cjs`",
+   "`NO_BLOCKER_FOUND`"
+  ],
+  [
+   "`validate.sh <phase folder> --strict --quiet`",
+   "`RESULT: PASSED`"
+  ]
+ ],
+ "limits": "1. **The CI surface's copies are not compared.** Ledger row `H7` records the 72, 58 and 12 keywords and the fix.\n2. **The vocabulary comparison has no leg id of its own.** `--checks 2` runs it with the surface map check.\n3. **`spec.md` names the guard at `sk-code-skilled/scripts/`.** The file is at `sk-code-skilled/assets/scripts/verify-router-sync.cjs`, and that is the file that changed.",
+ "open": [
+  "CHK-042"
+ ],
+ "chk": {
+  "CHK-001": "spec.md section 4 rows REQ-001 to REQ-006 each name a command or a mutation and its expected result",
+  "CHK-002": "plan.md section 3 names the guard and the packet router, and now lists the pairs the guard compared before this phase",
+  "CHK-003": "phase 003 closed in `5597b90e2e` with 11 scenarios and the playbook validator at exit 0",
+  "CHK-010": "`node -e require(...)` on hub-router.json and mode-registry.json exits 0",
+  "CHK-011": "router-sync, doc-claims and stack-folders PASS, and alignment-drift reports the same 23 ERROR files as the baseline",
+  "CHK-012": "two files outside the table changed, `hub-router.json` and the hub `README.md`, plus the assets scripts README and the two regenerated manifests, each recorded in the summary with its reason",
+  "CHK-013": "the three READMEs and the packet router keep their frontmatter and section order, and the doc-claims guard passes",
+  "CHK-020": "AC-001 to AC-005 are Met, and AC-006 is Superseded by ADR-001",
+  "CHK-021": "18 pass, 0 fail",
+  "CHK-022": "`sk-code-skilled` is left off `vocabularyMirrors`, so the three-way match skips it and its alias rule passes. The 162 frontend keywords compare as sets. Both logged in goal.md",
+  "CHK-023": "the mutation printed the keyword and both file names and exited 1, saved in `scratch/mutation.txt`",
+  "CHK-FIX-001": "H1 was Confirmed before T003 started",
+  "CHK-FIX-002": "`rg -c 'fires on' .skilled/skills/sk-code/sk-code-frontend/ROUTER.md` exits 1, and the `sk-code-ci` packet router keeps its own prose list, which ledger row `H7` covers",
+  "CHK-FIX-003": "the guard test file, the router-sync leg of the runner and the setup battery all ran",
+  "CHK-FIX-004": "row H1 names its proving command",
+  "CHK-FIX-005": "row H1 names `9a9bbb76aa`",
+  "CHK-030": "the diff holds guard code, a test, one list key, one description sentence and documents",
+  "CHK-031": "N/A as the line states",
+  "CHK-040": "the three documents name the same files and the same validate.sh command",
+  "CHK-041": "the comments added to the guard and the test state the rule and carry no id or path",
+  "CHK-050": "`scratch/mutation.txt` is the only working file",
+  "CHK-051": "the parent goal replay and a later CI packet read `scratch/mutation.txt` as the mutation evidence"
+ },
+ "ac": {
+  "AC-001": "exit 1 with `hub-router.json` named in 3 problem lines, on 2026-11-14 at `9a9bbb76aa`.",
+  "AC-002": "`PASS: router-sync` with `5/5 checks passed`.",
+  "AC-003": "nothing printed, exit 1.",
+  "AC-004": "the description states the rule, and a scratch alias no class holds made check 2 exit 1.",
+  "AC-005": "18 pass, 0 fail."
+ },
+ "closure": "Five criteria are met with the outputs observed on 2026-11-14 at commit `9a9bbb76aa`. AC-006 is superseded by ADR-001 in `decision-record.md`, on the operator's answer of the same day."
+}

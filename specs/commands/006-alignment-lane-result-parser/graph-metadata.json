@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "commands/006-alignment-lane-result-parser",
+  "spec_folder": "commands/006-alignment-lane-result-parser",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "alignment lane result parser",
+      "run-lanes findings object",
+      "critic json parser",
+      "last findings object",
+      "alignment lane result parser plan",
+      "last findings object plan",
+      "alignment lane result parser tasks",
+      "alignment lane result parser acceptance criteria",
+      "alignment lane result parser goal",
+      "alignment lane result parser summary",
+      "run-lanes findings repair"
+    ],
+    "key_topics": [
+      "alignment",
+      "lane",
+      "result",
+      "parser",
+      "run-lanes",
+      "findings",
+      "object",
+      "critic",
+      "json",
+      "last",
+      "plan",
+      "tasks"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/commands/assets/local-skilled-alignment/run-lanes.cjs",
+      ".skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      "scratch/baseline.txt",
+      "scratch/code.diff",
+      "scratch/validate.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-lanes.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/assets/local-skilled-alignment/run-lanes.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "run-lanes.test.cjs",
+        "kind": "file",
+        "path": ".skilled/commands/assets/local-skilled-alignment/tests/run-lanes.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "code.diff",
+        "kind": "file",
+        "path": "scratch/code.diff",
+        "source": "derived"
+      },
+      {
+        "name": "validate.txt",
+        "kind": "file",
+        "path": "scratch/validate.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Recover",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Replace",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`findFindingsObject` in `.skilled/commands/assets/local-skilled-alignment/run-lanes.cjs:326-365` reads from the first `{` it sees and keeps one string state for the whole stream",
+    "created_at": "2026-11-14T17:02:14Z",
+    "last_save_at": "2026-11-14T17:53:13.627Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:9765dcb9b0e9c72f55a742bd3570e5cde106eec6f2635dccc00dc202fe541b6c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "1d0dffffc8a6a691d37f9d45791ee21bd771a043c9934a352e0a75d27c43f29d",
+      "plan.md": "a56a6079b596e50f93ff6a03f704038ea7cafdfd4050cbd279e81bc24b2b873a",
+      "tasks.md": "385655445f0bec3b602a9b822328137138791c850b27dc1beb872bd70f8b176d",
+      "implementation-summary.md": "be69dd783be00f3978c1076a0c60fd8ac788b2fefb25cb9b283822def818b7a3"
+    },
+    "last_active_at": null
+  }
+}

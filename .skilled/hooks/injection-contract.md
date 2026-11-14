@@ -211,7 +211,7 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 
 ### Session Start Context
 
-**Injects:** a startup or resume brief: a session-context surface on cold start, or a cached compaction/resume payload.
+**Injects:** a startup or resume brief: a session-context surface on cold start, or a cached compaction/resume payload. On `source=compact` a `## Packet Purpose` section leads the output: one line with the last active packet's purpose and a `Problem:` line when the packet states one.
 
 - **Trigger:** `session_start` (Pi) / `SessionStart` (Claude/Cursor/Devin/Codex) / `agent/created` (DSH).
 - **Owning module:** `system-spec-kit/runtime/hooks/claude/session-prime.ts`. Emits **plain text**, not a JSON envelope. Every proxy that wraps it (`emitDevinContext`, Pi's `session-start-context.ts`) constructs the envelope on the way out. `session-prime.js` itself does not.
@@ -239,7 +239,7 @@ Fire on session start, stop, or compaction, not tied to a single turn or tool ca
 
 ### Post-Compaction Recovery (Devin/Pi/DSH)
 
-**Injects:** a composed recovery block: retained summary and active spec-folder pointer.
+**Injects:** a composed recovery block: retained summary and active spec-folder pointer. Pi and DSH lead it with the same `## Packet Purpose` section as Session Start Context. Devin's block carries none.
 
 - **Trigger:** `PostCompaction` (Devin) / `session_compact` (Pi) / `session/event` `compaction/end` (DSH). Devin's `PostCompaction` fires *after* compaction with only `session_id` and a possibly-null summary, a materially different contract from Claude's `PreCompact`-then-cached-`SessionStart` chain, per `post-compaction.cjs`'s own header comment.
 - **Owning module:** `system-spec-kit/runtime/hooks/devin/post-compaction.cjs`. Pi's `session-compact-context.ts` is a native port of the same recovery chain, not a proxy. DSH's `session-compact-context.mjs` injects the session-prime `compact` output.

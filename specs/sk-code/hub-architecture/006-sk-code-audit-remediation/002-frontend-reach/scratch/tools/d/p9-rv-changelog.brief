@@ -1,0 +1,41 @@
+TASK: create one new file with exactly the content given below.
+
+FILE TO CREATE: .skilled/skills/sk-code/sk-code-review/changelog/v1.9.18.0.md
+
+The content is everything between the two marker lines below. Write it byte for byte, with a final newline after the last line. Do not add, drop, reword or reflow anything. Write the file in one write call. Read no other file.
+
+<<<FILE
+---
+title: "sk-code-review v1.9.18.0, the playbook describes the M-1 gate without the depth alias"
+description: "v1.9.18.0 fixes one playbook line. The minimum-evidence scenario no longer says the depth alias maps onto the M-1 gate."
+trigger_phrases:
+  - "sk-code-review v1.9.18.0"
+  - "sk-code-review 1.9.18.0"
+  - "review packet out of ledger fix"
+importance_tier: "normal"
+contextType: "general"
+version: 1.9.18.0
+---
+
+# v1.9.18.0, The Playbook Describes the M-1 Gate Without the Depth Alias
+
+One playbook scenario said the depth alias maps `lite` onto the M-1 gate. `lite` applies the M-2 skip, as `SKILL.md` states. The line is fixed. No check, gate value or exit code changed.
+
+> Spec folder: `specs/sk-code/hub-architecture/006-sk-code-audit-remediation`
+
+&nbsp;
+
+## What's New at a Glance
+
+- **The minimum-evidence scenario names its sibling correctly.** `references/pr-state-dedup.md` is the sibling M-1 gate, and the row says only that.
+
+&nbsp;
+
+## Upgrade
+
+No migration required.
+FILE>>>
+
+VERIFY (run from the repository root):
+sed -n 10p .skilled/skills/sk-code/sk-code-review/changelog/v1.9.18.0.md
+Expected output: `version: 1.9.18.0`

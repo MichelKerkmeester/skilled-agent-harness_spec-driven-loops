@@ -9,7 +9,7 @@ trigger_phrases:
   - "design token roles"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Web Visual Values
@@ -117,6 +117,24 @@ Use `px` or `rem` only. Never `em`.
 - **Support:** Judgment, no version gate.
 - **See also:** [tokens.css](../assets/tokens.css) carries `--weight-normal` and `--weight-bold`.
 
+### M13. Stable weight across states
+
+- **Rule:** Never change font weight on hover or on a selected state. Change colour instead.
+- **Why:** A weight change alters glyph width and shifts the layout of everything after it.
+- **When not to:** Use weight for a state that does not sit in flow, such as a badge whose box is already sized for the heavier weight.
+- **Pitfall:** A hover weight change makes a navigation row jump by a pixel, so the whole row appears to twitch.
+- **Support:** Judgment, no version gate.
+- **See also:** [web-visual-values.md](web-visual-values.md#v6-font-weight).
+
+### M14. Weight floor and heading weight
+
+- **Rule:** Never use a weight below 400, and set medium-sized headings at 500 to 600.
+- **Why:** Thin stems lose contrast against the background at body size and read as broken rendering.
+- **When not to:** Use a lighter weight for a very large display line where the size already carries the emphasis.
+- **Pitfall:** A 300 weight at body size on a low-resolution screen reads as a rendering fault rather than a style choice.
+- **Support:** Judgment, no version gate.
+- **See also:** [web-visual-values.md](web-visual-values.md#v6-font-weight).
+
 ### V7. Line-height and line length
 
 - **Rule:** Line-height is inversely proportional to font size and proportional to line width. Use 1.5 to 2 for small text or wide columns, and 1 is fine for large headlines. Set line length to 45 to 75 characters, which is `max-width: 20em` to `35em`.
@@ -152,6 +170,15 @@ Use `px` or `rem` only. Never `em`.
 - **Pitfall:** A condensed face with a short x-height is hard to read in UI text. Optimize for legibility with a taller x-height and wider default tracking.
 - **Support:** Judgment, no version gate.
 - **See also:** [tokens.css](../assets/tokens.css) carries the weight and text-size tokens.
+
+### M15. Numerals and text size adjust
+
+- **Rule:** Apply `font-variant-numeric: tabular-nums` to numbers in tables, dashboards and anywhere a digit change would shift the layout, and set `-webkit-text-size-adjust: 100%` to stop unexpected text resizing in iOS landscape.
+- **Why:** Tabular figures give every digit the same advance width, so a counter does not jitter, and the text size adjustment keeps the declared scale instead of letting the platform rescale it.
+- **When not to:** Keep proportional numerals in running prose, where they sit better between letters.
+- **Pitfall:** Tabular numerals in a large headline leave visible gaps around narrow digits such as 1.
+- **Support:** Judgment, no version gate.
+- **See also:** [web-visual-values.md](web-visual-values.md#v10-numerals-and-typeface-selection).
 
 ### V11. Personality is four decisions
 

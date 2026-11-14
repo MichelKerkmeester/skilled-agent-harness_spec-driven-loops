@@ -8,7 +8,7 @@ trigger_phrases:
   - "skcode.qualityConfig"
 importance_tier: normal
 contextType: implementation
-version: 1.0.10.0
+version: 1.0.11.0
 ---
 
 # Repository Quality Config
@@ -101,7 +101,7 @@ A file that carries `"repository": "<owner>/<name>"` applies only when the curre
 | `commentHygiene.disableRules` | Core hygiene rules the checker stops applying, each written bare (`task`) or with its class (`hygiene.task`). The names are the checker's own, read from its pattern table. An id that names no core rule is a config error, and so is any id the shared rule-override contract fixes in `../../shared/references/universal/rule-overrides.json`, such as `secret.private-key` or `conflict.markers`. The secret and conflict-marker sensors are separate checks that no key switches off. The verdict lists what is off in `config.hygiene.disabled` |
 | `sensors` | `conflictMarkers` and `secrets` accept `exclude` only. `debugLeftovers` also accepts `enabled` |
 
-`assets/quality-config.template.json` holds every key with an empty value, and it passes the schema.
+`assets/quality-config.template.json` holds every key and passes the schema. Its lists and maps are empty, `schemaVersion` is `1` and `sensors.debugLeftovers.enabled` is `true`.
 
 ### A Repository Outside the Hub
 

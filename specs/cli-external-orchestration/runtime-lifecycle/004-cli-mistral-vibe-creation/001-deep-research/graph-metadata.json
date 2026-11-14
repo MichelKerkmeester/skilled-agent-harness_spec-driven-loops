@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "packet_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research",
+  "spec_folder": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/001-deep-research",
+  "parent_id": "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mistral vibe deep research",
+      "phase 1 deep research",
+      "vibe opencode feature parity research",
+      "mistral vibe deep research plan",
+      "mistral vibe deep research tasks",
+      "mistral vibe deep research goal",
+      "001-deep-research operator decisions",
+      "deep research implementation summary"
+    ],
+    "key_topics": [
+      "mistral",
+      "vibe",
+      "deep",
+      "research",
+      "phase",
+      "opencode",
+      "feature",
+      "parity",
+      "plan",
+      "tasks",
+      "goal",
+      "001-deep-research"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md",
+      "research/phase-plan.md",
+      "research/evidence/vibe-help.txt",
+      ".dsh/SYNC.md",
+      ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "phase-plan.md",
+        "kind": "doc",
+        "path": "research/phase-plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "vibe-help.txt",
+        "kind": "file",
+        "path": "research/evidence/vibe-help.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SYNC.md",
+        "kind": "doc",
+        "path": ".dsh/SYNC.md",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mistral Vibe",
+        "kind": "proper_noun",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Iterative",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Mistral Vibe is Mistral's own coding agent and the client its subscription is built around, but this repository has no mode for it",
+    "created_at": "2026-11-14T12:01:21Z",
+    "last_save_at": "2026-11-14T13:33:07.849Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "goal.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "source_fingerprint": "sha256:8d9b495d4b420da0d8491f2a86e2cf0cab1b4839b23fb83f0db733451f8ba712",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "20c84d253ecc6911b4cf7cfde9780e4b4b8164f96bc1c8c51cc3e97e763a2068",
+      "plan.md": "58be528c02943087c8aadbcca56820d33d880fcbc6d2a89ce211e85fedb0aa67",
+      "tasks.md": "9e851d4847ce17e4a9c52b170389c4231293e74ba12a978fbbbeadb99fa3abed",
+      "decision-record.md": "ef4c30115247f7eab8efb8e3dd7a9dba6c75fd0890d456218e55eea3c34f3b99",
+      "implementation-summary.md": "0fee4cbb4b1edb92a24e8711b13c77bbc141854c4347666e8372c21ccb54c89a",
+      "research/research.md": "1a5bfa167b1795c0bab53f95cadd04fdce610877a805a3a95212a19d4a564a12"
+    },
+    "last_active_at": null
+  }
+}

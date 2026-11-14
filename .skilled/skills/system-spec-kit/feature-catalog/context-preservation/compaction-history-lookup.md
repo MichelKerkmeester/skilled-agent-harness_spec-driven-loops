@@ -7,7 +7,7 @@ trigger_phrases:
   - "opaque history handle"
   - "history lookup CLI"
   - "post-compaction transcript lookup"
-version: 1.0.1.0
+version: 1.0.2.0
 ---
 
 # Compaction history lookup
@@ -18,7 +18,7 @@ This catalog entry maps the bounded post-compaction history lookup to its implem
 
 A compaction replaces the conversation the model was working from. The compaction hooks mint an opaque locator for the exact session that compacted, and they may inject one small `## History Lookup` section that names the handle and one runnable command. The command redeems the handle through the read-only history lookup core and prints one bounded JSON reply.
 
-The offer is optional in both directions. When the locator is missing, malformed, stale, foreign or unsupported, the hooks keep the existing recovery surface and inject no lookup section.
+The offer is optional in both directions. When the locator is missing, malformed, stale, foreign or unsupported, the hooks keep the existing recovery surface and inject no lookup section. A separate `## Packet Purpose` section leads the same recovery, as [Packet purpose carry](packet-purpose-carry.md) describes.
 
 ---
 

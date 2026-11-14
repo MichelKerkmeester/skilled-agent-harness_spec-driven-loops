@@ -1,0 +1,17 @@
+$ SPECKIT_COMPILED_ROUTING=0 node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs
+/doctor:sk-code setup (read-only; writes nothing)
+PASS  provisioning        require.resolve('@spec-kit/shared/frontmatter/parse-frontmatter.js')
+PASS  parent-skill        node .skilled/commands/doctor/scripts/parent-skill-check.cjs .skilled/skills/sk-code
+PASS  root-metadata       node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-root-metadata.cjs
+PASS  guard               node .skilled/bin/compiled-route-guard.cjs --json
+PASS  sync                node .skilled/bin/compiled-route-sync.cjs --check
+PASS  drift-guards        bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
+PASS  derived-freshness   node .skilled/skills/sk-doc/sk-create-skill/scripts/ci-skill-derived-freshness.cjs --format json
+FAIL  probe               node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "fix a typescript bug in the opencode plugin"
+      served the legacy stub because SPECKIT_COMPILED_ROUTING="0" switches compiled routing off
+      repair: unset SPECKIT_COMPILED_ROUTING, then rerun node .skilled/commands/doctor/scripts/sk-code-setup-check.cjs
+FAIL  quality             python3, executables, tables, node --test .skilled/skills/sk-code/sk-code-quality/scripts/tests, quality route probe
+      route: the quality prompt did not route to sk-code-quality
+      repair: rerun node .skilled/bin/compiled-route.cjs --hub sk-code --prompt "run the quality gate on my changed files before I claim done" and read its decision
+STATUS=FAIL failed=2 skipped=0
+exit=1

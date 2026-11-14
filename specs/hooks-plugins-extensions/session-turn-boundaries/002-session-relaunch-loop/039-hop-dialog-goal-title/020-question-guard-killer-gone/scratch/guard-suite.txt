@@ -1,0 +1,33 @@
+$ env -u AI_SESSION_CHILD -u OPENCODE_DB node --test .skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs
+✔ subagent-guard denies claim from a sub-agent (46.6515ms)
+✔ subagent-guard denies complete from a sub-agent (34.897458ms)
+✔ subagent-guard denies keep from a sub-agent (33.991792ms)
+✔ subagent-guard denies prepare from a sub-agent (34.870708ms)
+✔ subagent-guard denies cancel from a sub-agent (31.2265ms)
+✔ subagent-guard denies consume from a sub-agent (32.202ms)
+✔ subagent-guard denies hand-over from a sub-agent (35.663792ms)
+✔ subagent-guard stays silent for the main session that carries no agent_id (34.714167ms)
+✔ subagent-guard stays silent for a whitespace-only agent_id (33.29325ms)
+✔ subagent-guard stays silent for a sub-agent reading the hop history (32.166333ms)
+✔ subagent-guard stays silent for an unrelated Bash command from a sub-agent (35.776583ms)
+✔ subagent-guard stays silent for a non-Bash tool call from a sub-agent (32.718167ms)
+✔ subagent-guard stays silent on stdin that is not valid JSON (31.421458ms)
+✔ subagent-guard stays silent when the relaunch concern is disabled (32.29275ms)
+✔ subagent-guard denies a question dialog while the session hand-over is pending (38.401375ms)
+✔ subagent-guard lets a question dialog through when no hand-over is prepared (33.379667ms)
+✔ subagent-guard lets a question dialog through over a pending record that names no note (44.321708ms)
+✔ subagent-guard lets a question dialog through over another session's pending record (36.887708ms)
+✔ subagent-guard denies a question dialog over an armed record whose killer is gone (40.953459ms)
+✔ subagent-guard lets a question dialog through over an armed record with a live killer (42.069291ms)
+✔ subagent-guard lets a question dialog through when the record read throws (35.374958ms)
+✔ subagent-guard lets a question dialog through outside a relaunch loop (36.490042ms)
+✔ subagent-guard lets a question dialog through when the relaunch concern is disabled (37.777334ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 882.29525
+exit=0

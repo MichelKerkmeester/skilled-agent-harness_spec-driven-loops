@@ -65,7 +65,7 @@
         "source": "derived"
       },
       {
-        "name": "Root Purpose This",
+        "name": "Root Purpose Gather",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -127,17 +127,17 @@
     ],
     "causal_summary": "Market and effectiveness research, baseline taxonomy and state census, and the architecture coverage and transition contract.",
     "created_at": "2026-08-13T09:22:19.057Z",
-    "last_save_at": "2026-11-10T05:40:26.408Z",
+    "last_save_at": "2026-11-14T14:02:26.271Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
     ],
-    "source_fingerprint": "sha256:25a7a08fbb6f85364e28c0bb81662c17e04618f322b86d83d2e6077397a847cc",
+    "source_fingerprint": "sha256:f72bf22fd5ac270cdda54fd1312da37286a06d1a479e348a1ecc49cebe52d888",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cdc4825ae2396d3915157ba285b923f091af454bf257c2bb02abf51bab4b9a40",
+      "spec.md": "a1d18510bcf9685b17b9e09edcb1df69ec18ffbb7494e62c532d383f6cee26f6",
       "research/research.md": "a533df5d00080d4c74553cbd6d7f7f21bc2885475deeb71dd1ef53580b894a6c"
     },
     "last_active_child_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/001-research-inputs-and-architecture/001-deep-loop-market-research",

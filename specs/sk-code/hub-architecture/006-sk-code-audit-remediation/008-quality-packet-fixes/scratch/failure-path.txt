@@ -1,0 +1,26 @@
+Failure path, run on 2026-11-14 before the phase 008 code commit.
+
+$ printf "
+See `references/no-such-file.md`.
+" >> .skilled/skills/sk-code/sk-code-quality/SKILL.md
+$ bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
+PASS: alignment-drift  (verify_alignment_drift.py --check-router) (21 warnings)
+PASS: stack-folders    (verify_stack_folders.py)
+PASS check 1a: machine-router paths exist and the prose maps are routed
+PASS check 1b: every routable reference or asset doc is routed
+PASS check 2: surface RESOURCE_MAP equals the children union plus the parent tier, and the vocabulary copies agree
+PASS check 3: compiled destinations, leaf-manifest and code-skilled RESOURCE_MAP agree
+PASS check 4: playbook expected_resource is emitted by the router
+PASS: router-sync      (verify-router-sync.cjs --checks 1a,1b,2,3,4)
+FAIL check paths: path references in the hub docs resolve on disk (1 problem(s))
+PASS check names: no retired packet names remain
+PASS check surfaces: surface counts match mode-registry.json
+PASS check tiers: ROUTER.md load-tier claims match DEFAULT_RESOURCE
+FAIL: doc-claims       (verify-doc-claims.cjs)
+run-all-drift-guards: 1 guard(s) FAILED
+exit=1
+
+The file is restored from a copy taken before the edit.
+$ bash .skilled/skills/sk-code/sk-code-skilled/scripts/run-all-drift-guards.sh
+run-all-drift-guards: all 4 guards PASSED, 21 non-blocking warning(s)
+exit=0

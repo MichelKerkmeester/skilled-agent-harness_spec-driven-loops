@@ -165,14 +165,14 @@ describe('session-prime hook', () => {
     });
 
     it('leads the compact recovery with the packet purpose', async () => {
-      const packetDir = mkdtempSync(join(process.cwd(), '.tmp-session-prime-purpose-'));
+      const packetDir = mkdtempSync(join(WORKSPACE, 'session-prime-purpose-'));
       writeFileSync(join(packetDir, 'spec.md'), '### Purpose\nKeep the reason for the work in view. This sentence is dropped.\n');
       try {
         const now = new Date().toISOString();
         saveState(testSessionId, {
           claudeSessionId: testSessionId,
           speckitSessionId: null,
-          lastSpecFolder: relative(process.cwd(), packetDir),
+          lastSpecFolder: relative(WORKSPACE, packetDir),
           sessionSummary: null,
           pendingCompactPrime: null,
           producerMetadata: null,
@@ -185,6 +185,7 @@ describe('session-prime hook', () => {
         await runSessionStartHook(
           { source: 'compact', session_id: testSessionId },
           async (text) => { output = text; },
+          WORKSPACE,
         );
 
         expect(output.startsWith('## Packet Purpose\nPurpose: Keep the reason for the work in view.\n')).toBe(true);
@@ -196,13 +197,13 @@ describe('session-prime hook', () => {
     });
 
     it('adds no purpose section when the last spec folder has no spec.md', async () => {
-      const emptyDir = mkdtempSync(join(process.cwd(), '.tmp-session-prime-no-spec-'));
+      const emptyDir = mkdtempSync(join(WORKSPACE, 'session-prime-no-spec-'));
       try {
         const now = new Date().toISOString();
         saveState(testSessionId, {
           claudeSessionId: testSessionId,
           speckitSessionId: null,
-          lastSpecFolder: relative(process.cwd(), emptyDir),
+          lastSpecFolder: relative(WORKSPACE, emptyDir),
           sessionSummary: null,
           pendingCompactPrime: null,
           producerMetadata: null,
@@ -215,6 +216,7 @@ describe('session-prime hook', () => {
         await runSessionStartHook(
           { source: 'compact', session_id: testSessionId },
           async (text) => { output = text; },
+          WORKSPACE,
         );
 
         expect(output).not.toContain('## Packet Purpose');
@@ -245,6 +247,7 @@ describe('session-prime hook', () => {
         await runSessionStartHook(
           { source: 'compact', session_id: testSessionId },
           async (text) => { output = text; },
+          WORKSPACE,
         );
 
         expect(output).not.toContain('## Packet Purpose');
@@ -255,9 +258,9 @@ describe('session-prime hook', () => {
     });
 
     it('takes the purpose from the folder the cached brief names when no last folder is pinned', async () => {
-      const packetDir = mkdtempSync(join(process.cwd(), '.tmp-session-prime-brief-'));
+      const packetDir = mkdtempSync(join(WORKSPACE, 'session-prime-brief-'));
       writeFileSync(join(packetDir, 'spec.md'), '### Purpose\nKeep the reason for the work in view.\n');
-      const payload = `## Session State\nActive spec folder: ${relative(process.cwd(), packetDir)}\n\nRecent topics:\n- purpose`;
+      const payload = `## Session State\nActive spec folder: ${relative(WORKSPACE, packetDir)}\n\nRecent topics:\n- purpose`;
       try {
         const now = new Date().toISOString();
         saveState(testSessionId, {
@@ -276,9 +279,42 @@ describe('session-prime hook', () => {
         await runSessionStartHook(
           { source: 'compact', session_id: testSessionId },
           async (text) => { output = text; },
+          WORKSPACE,
         );
 
         expect(output.startsWith('## Packet Purpose\nPurpose: Keep the reason for the work in view.\n')).toBe(true);
+      } finally {
+        rmSync(packetDir, { recursive: true, force: true });
+      }
+    });
+
+    it('takes no purpose from the folder a stale brief names', async () => {
+      const packetDir = mkdtempSync(join(WORKSPACE, 'session-prime-stale-brief-'));
+      writeFileSync(join(packetDir, 'spec.md'), '### Purpose\nA purpose a stale brief points at.\n');
+      const payload = `## Session State\nActive spec folder: ${relative(WORKSPACE, packetDir)}\n\nRecent topics:\n- purpose`;
+      try {
+        const now = new Date().toISOString();
+        saveState(testSessionId, {
+          claudeSessionId: testSessionId,
+          speckitSessionId: null,
+          lastSpecFolder: null,
+          sessionSummary: null,
+          pendingCompactPrime: { payload, cachedAt: '2020-01-01T00:00:00.000Z', payloadContract: testPayloadContract(payload) },
+          producerMetadata: null,
+          metrics: { estimatedPromptTokens: 0, estimatedCompletionTokens: 0, lastTranscriptOffset: 0 },
+          createdAt: now,
+          updatedAt: now,
+        });
+
+        let output = '';
+        await runSessionStartHook(
+          { source: 'compact', session_id: testSessionId },
+          async (text) => { output = text; },
+          WORKSPACE,
+        );
+
+        expect(output).not.toContain('A purpose a stale brief points at');
+        expect(output.startsWith('## Context Recovery\n')).toBe(true);
       } finally {
         rmSync(packetDir, { recursive: true, force: true });
       }
@@ -293,7 +329,7 @@ describe('session-prime hook', () => {
     });
 
     it('adds the problem under the purpose line', async () => {
-      const packetDir = mkdtempSync(join(process.cwd(), '.tmp-session-prime-problem-'));
+      const packetDir = mkdtempSync(join(WORKSPACE, 'session-prime-problem-'));
       writeFileSync(
         join(packetDir, 'spec.md'),
         '### Problem Statement\nThe archive never shrinks, so the disk fills. More detail.\n\n### Purpose\nKeep three archives.\n',
@@ -303,7 +339,7 @@ describe('session-prime hook', () => {
         saveState(testSessionId, {
           claudeSessionId: testSessionId,
           speckitSessionId: null,
-          lastSpecFolder: relative(process.cwd(), packetDir),
+          lastSpecFolder: relative(WORKSPACE, packetDir),
           sessionSummary: null,
           pendingCompactPrime: null,
           producerMetadata: null,
@@ -316,6 +352,7 @@ describe('session-prime hook', () => {
         await runSessionStartHook(
           { source: 'compact', session_id: testSessionId },
           async (text) => { output = text; },
+          WORKSPACE,
         );
 
         expect(output.startsWith(
@@ -328,13 +365,13 @@ describe('session-prime hook', () => {
     });
 
     it('walks up from a packet subfolder and ignores a folder line quoted under recent context', () => {
-      const packetDir = mkdtempSync(join(process.cwd(), '.tmp-session-prime-walkup-'));
+      const packetDir = mkdtempSync(join(WORKSPACE, 'session-prime-walkup-'));
       writeFileSync(join(packetDir, 'spec.md'), '### Purpose\nShow the packet purpose from a subfolder.\n');
       try {
-        const section = buildPacketPurposeSection(join(relative(process.cwd(), packetDir), 'scratch'));
+        const section = buildPacketPurposeSection(join(relative(WORKSPACE, packetDir), 'scratch'), WORKSPACE);
 
         expect(section?.content).toBe('Purpose: Show the packet purpose from a subfolder.');
-        expect(buildPacketPurposeSection('.tmp-no-such-track-folder')).toBeNull();
+        expect(buildPacketPurposeSection('no-such-track-folder', WORKSPACE)).toBeNull();
         expect(folderNamedInBrief('## Session State\nRecent context:\nActive spec folder: specs/evil/001-x')).toBeNull();
       } finally {
         rmSync(packetDir, { recursive: true, force: true });
@@ -472,6 +509,7 @@ describe('session-prime hook', () => {
         await runSessionStartHook(
           { source: 'compact', session_id: testSessionId },
           async (text) => { output = text; },
+          WORKSPACE,
         );
 
         expect(output).toContain('## History Lookup');

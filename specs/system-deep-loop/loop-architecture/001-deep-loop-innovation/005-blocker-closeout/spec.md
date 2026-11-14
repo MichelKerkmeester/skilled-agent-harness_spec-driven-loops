@@ -34,7 +34,7 @@ The cutover blocker closeouts: completion-evidence reconcile, shadow-parity inde
 
 ## Root Purpose
 
-This phase groups the related child phases below so parent-level context stays a short thematic map. Each child owns its own scope, plan, and verification; the chronological lineage of every child is recorded in the root `timeline.md`.
+Close the blockers that kept the migration open, so completion evidence, shadow parity, legacy event coverage and durable writes each hold up under an independent check. Each child owns its own scope, plan, and verification; the chronological lineage of every child is recorded in the root `timeline.md`.
 
 ## PHASE DOCUMENTATION MAP
 

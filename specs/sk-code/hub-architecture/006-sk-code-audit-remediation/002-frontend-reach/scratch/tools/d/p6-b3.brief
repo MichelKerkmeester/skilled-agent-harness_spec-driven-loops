@@ -1,0 +1,15 @@
+TASK: insert one paragraph into one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/README.md (read lines 16 to 30 only)
+
+EDIT. Under the heading `### At a Glance` there is a table whose last row starts with `| **Produces** |`. After that row there is a blank line and then the heading `### What It Does`. Insert the paragraph between the marker lines below after that blank line and before the heading `### What It Does`, and put one blank line after the paragraph. The result reads: table, blank line, new paragraph, blank line, heading.
+
+<<<TEXT
+**Version authority.** `SKILL.md` carries the packet's release version, which matches the newest entry under `changelog/`. The `version` in this file and in `ROUTER.md` counts that document's own revisions, the same split the hub `SKILL.md` states for the hub's files.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c -i 'version authority' .skilled/skills/sk-code/sk-code-skilled/README.md
+Expected output: `1`

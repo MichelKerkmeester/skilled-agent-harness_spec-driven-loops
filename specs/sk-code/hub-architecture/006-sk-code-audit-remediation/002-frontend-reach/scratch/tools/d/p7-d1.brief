@@ -1,0 +1,21 @@
+TASK: two edits in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-review/ROUTER.md (read lines 31 to 55 only)
+
+EDIT 1. Under the heading `## 2. INTENT MODEL` there are eleven consecutive bullet lines. The first starts with ``- **`SECURITY`** fires on`` and the last starts with ``- **`SETUP`** fires on``. Replace those eleven lines with the one line between the marker lines below. Keep the heading, the blank line after it and the blank line and `---` divider that follow the block.
+
+<<<TEXT
+The intent model is authored once, in section 3. `INTENT_SIGNALS` holds the keywords and the weight of each intent, and `RESOURCE_MAP` holds the files each intent loads. Read them there, and change them there only.
+TEXT>>>
+
+EDIT 2. Under the heading `## 3. MACHINE ROUTER`, replace the literal text
+The one machine-readable projection of the intent model above, written as
+with the literal text
+The intent model in its one machine-readable form, written as
+Keep the rest of that line byte for byte.
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'fires on' .skilled/skills/sk-code/sk-code-review/ROUTER.md; echo "exit $?"
+Expected output: `exit 1`

@@ -73,7 +73,7 @@
         "source": "derived"
       },
       {
-        "name": "Root Purpose This",
+        "name": "Root Purpose Harden",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -93,16 +93,16 @@
     ],
     "causal_summary": "Runtime code READMEs and sk-code alignment, plus artifact-certificate, alignment-coverage, mode-gate, dispatch-integrity, promotion-authority, routing-parity, silent-failure, docs-drift, and identity and lock hardening, deep-loop test-debt clearance, and the deep-loop alignment review.",
     "created_at": "2026-09-20T08:33:46.791Z",
-    "last_save_at": "2026-11-10T05:40:42.952Z",
+    "last_save_at": "2026-11-14T14:03:50.256Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:692a56c3513b01c32baf162d0a1b81c5fd538e36209b0407735a5a9beee394c7",
+    "source_fingerprint": "sha256:da1651b10f58b8235d3cdd37039ae1cbc8447bfafe5b1b6d4c6ea230b2716727",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "829d79d9538b1410e3af893ffdb371d29f14710662c750c862ce2817ff4e2808"
+      "spec.md": "bc8820038e4cfb87ae73db1e229db440881ba7b543c01555ebaf17f01c1574e8"
     },
     "last_active_child_id": "system-deep-loop/loop-architecture/001-deep-loop-innovation/006-runtime-docs-and-integrity-hardening/013-deep-loop-alignment-review",
     "last_active_at": null

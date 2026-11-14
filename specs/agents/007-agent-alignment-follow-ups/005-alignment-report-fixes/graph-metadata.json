@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "packet_id": "agents/007-agent-alignment-follow-ups/005-alignment-report-fixes",
+  "spec_folder": "agents/007-agent-alignment-follow-ups/005-alignment-report-fixes",
+  "parent_id": "agents/007-agent-alignment-follow-ups",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "alignment report fixes",
+      "phase 5 alignment report fixes",
+      "alignment report fixes plan",
+      "alignment report fixes tasks",
+      "005-alignment-report-fixes operator decisions",
+      "alignment report fixes implementation summary"
+    ],
+    "key_topics": [
+      "alignment",
+      "report",
+      "phase",
+      "plan",
+      "tasks",
+      "005-alignment-report-fixes",
+      "operator",
+      "decisions",
+      "implementation",
+      "summary",
+      "local-skilled-alignment",
+      "ran"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+      ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md",
+      ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.9.0.md",
+      ".skilled/skills/sk-doc/sk-create-agent/README.md",
+      ".skilled/commands/create/assets/create-agent-auto.yaml",
+      ".skilled/agents/markdown.md",
+      ".claude/agents/markdown.md",
+      ".codex/agents/markdown.toml",
+      ".pi/agents/markdown.md",
+      ".dsh/agents/markdown.patch.yml",
+      ".skilled/skills/sk-doc/hub-router.json",
+      ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+      ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md",
+      ".skilled/changelog/skilled/v4.0.2.1.md",
+      "scratch/baseline.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-agent/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.8.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.8.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "v1.0.9.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-agent/changelog/v1.0.9.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-doc/sk-create-agent/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "create-agent-auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/create/assets/create-agent-auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.md",
+        "kind": "doc",
+        "path": ".skilled/agents/markdown.md",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.toml",
+        "kind": "file",
+        "path": ".codex/agents/markdown.toml",
+        "source": "derived"
+      },
+      {
+        "name": "markdown.patch.yml",
+        "kind": "config",
+        "path": ".dsh/agents/markdown.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "hub-router.json",
+        "kind": "config",
+        "path": ".skilled/skills/sk-doc/hub-router.json",
+        "source": "derived"
+      },
+      {
+        "name": "skill-graph.json",
+        "kind": "config",
+        "path": ".skilled/skills/system-skill-advisor/runtime/scripts/skill-graph.json",
+        "source": "derived"
+      },
+      {
+        "name": "guards-and-hooks.md",
+        "kind": "doc",
+        "path": ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/guards-and-hooks.md",
+        "source": "derived"
+      },
+      {
+        "name": "v4.0.2.1.md",
+        "kind": "doc",
+        "path": ".skilled/changelog/skilled/v4.0.2.1.md",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`/local-skilled-alignment` ran on the phase 1 to 4 change on 2026-11-14 and reported eleven findings, ten distinct",
+    "created_at": "2026-11-14T18:08:35Z",
+    "last_save_at": "2026-11-14T18:48:28.846Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:4b186458a1a1992f4080ba3e9cb8b158b4bceec20722db0a7f6e8b8c68f0560c",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "bd5eaa8d7c76affec582021e592b39321ccb72cf45ae3c7aa0c64c391bbac1f5",
+      "plan.md": "01a924200486d9ca755f325302b2d09ef6003fb2f242cbd1d6a84bec2c8b4d6e",
+      "tasks.md": "c02f9dadc776597c29404f0c653df303e1a87778977063796418122d323bc9de",
+      "decision-record.md": "6a172983e9af22728398a095b87117937f732d947c9f6ba7207bb75b7c07e5c3",
+      "implementation-summary.md": "1e1c019de3dc3296ef9e0529e6f8986f312a87019a99c70ea4616297c77b4e27"
+    },
+    "last_active_at": null
+  }
+}

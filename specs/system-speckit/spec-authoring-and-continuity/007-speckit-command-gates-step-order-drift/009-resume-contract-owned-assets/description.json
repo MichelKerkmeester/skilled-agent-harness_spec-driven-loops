@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/009-resume-contract-owned-assets",
+  "description": "Phase 9: resume-contract-owned-assets",
+  "keywords": [
+    "phase",
+    "resume-contract-owned-assets"
+  ],
+  "lastUpdated": "2026-11-14T18:05:06.759Z",
+  "specId": "009",
+  "folderSlug": "resume-contract-owned-assets",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "007-speckit-command-gates-step-order-drift"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_19-05__removed-the-two-stale-speckit-resume-owned-asset.md"
+  ]
+}

@@ -1,0 +1,11 @@
+$ env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='ended or unreadable Claude goal' .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
+✔ resolveGoalPacket leaves an ended or unreadable Claude goal uncarried (49.28875ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 101.102625
+exit=0

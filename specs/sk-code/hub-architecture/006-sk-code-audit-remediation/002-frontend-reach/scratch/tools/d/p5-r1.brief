@@ -1,0 +1,16 @@
+TASK: insert two bullet lines into one file.
+
+FILE: .skilled/skills/sk-code/ROUTER.md (read lines 70 to 82 only)
+
+EDIT. Under the heading `### Surface-specific intent notes` there are two bullet lines. The first starts with `- **SKILLED** intent scoring favors`. The second starts with `- Unsupported surfaces stay UNKNOWN`. Insert the two lines between the marker lines below after the first bullet and before the second bullet. Keep both existing bullets unchanged.
+
+<<<TEXT
+- **`sk-code-ci`** is bundled from request vocabulary alone. Its one intent, `CI_WORKFLOW`, carries weight 4 and loads the four rule references in the CI Workflow Map of §4.
+- **`sk-code-frontend`** is bundled from request vocabulary or from the file markers of its `FRONTEND` block. Its eleven intents, `FRONTEND_WEB` through `FIGMA_TO_CODE`, carry weight 4 and load the rows in the Frontend Map of §4.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+sed -n '/^### Surface-specific intent notes/,/^---/p' .skilled/skills/sk-code/ROUTER.md | rg -c 'sk-code-ci|sk-code-frontend'
+Expected output: `2`
