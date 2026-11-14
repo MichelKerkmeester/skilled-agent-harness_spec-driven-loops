@@ -1,5 +1,5 @@
 {
-  "manifestHash": "31bb72a29e1c74e3d9ee7ce1d0c2ca5ac06c52ba8e0871a391503ac41af0f07b",
+  "manifestHash": "77b29156b88e57a66b51e960f990902c04cd02073ff7b588d7b97f599ba0bc4c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -1662,6 +1662,9 @@
     ],
     "006 playbook run and remediation rollup": [
       "006-playbook-run-and-remediation rollup"
+    ],
+    "006 purpose carry follow ups operator decisions": [
+      "006-purpose-carry-follow-ups operator decisions"
     ],
     "006 purpose retention across handovers operator decisions": [
       "006-purpose-retention-across-handovers operator decisions"
@@ -28270,6 +28273,18 @@
     "compaction pointer staleness tasks": [
       "compaction pointer staleness tasks"
     ],
+    "compaction purpose folder": [
+      "compaction purpose folder"
+    ],
+    "compaction purpose folder implementation summary": [
+      "compaction purpose folder implementation summary"
+    ],
+    "compaction purpose folder plan": [
+      "compaction purpose folder plan"
+    ],
+    "compaction purpose folder tasks": [
+      "compaction purpose folder tasks"
+    ],
     "compaction purpose line": [
       "compaction purpose line"
     ],
@@ -46239,6 +46254,18 @@
     "empty packet closure gate": [
       "empty packet closure gate"
     ],
+    "empty parent purpose backfill": [
+      "empty parent purpose backfill"
+    ],
+    "empty parent purpose backfill implementation summary": [
+      "empty parent purpose backfill implementation summary"
+    ],
+    "empty parent purpose backfill plan": [
+      "empty parent purpose backfill plan"
+    ],
+    "empty parent purpose backfill tasks": [
+      "empty parent purpose backfill tasks"
+    ],
     "empty phase child skipped": [
       "empty phase child skipped"
     ],
@@ -51554,6 +51581,9 @@
     ],
     "folder name recorded in summary": [
       "folder name recorded in summary"
+    ],
+    "folder named in brief": [
+      "folder named in brief"
     ],
     "folder nesting visualization": [
       "folder nesting visualization"
@@ -58622,6 +58652,18 @@
     "hop notice": [
       "hop notice"
     ],
+    "hop purpose rule parity": [
+      "hop purpose rule parity"
+    ],
+    "hop purpose rule parity implementation summary": [
+      "hop purpose rule parity implementation summary"
+    ],
+    "hop purpose rule parity plan": [
+      "hop purpose rule parity plan"
+    ],
+    "hop purpose rule parity tasks": [
+      "hop purpose rule parity tasks"
+    ],
     "host index folder setting": [
       "host index folder setting"
     ],
@@ -60427,6 +60469,9 @@
     ],
     "inline gate renderer level gating": [
       "inline-gate-renderer level gating"
+    ],
+    "inline purpose label": [
+      "inline purpose label"
     ],
     "inline word level highlighting": [
       "inline word-level highlighting"
@@ -62539,6 +62584,9 @@
     ],
     "last dedup checked at dedup marker": [
       "last_dedup_checked_at dedup marker"
+    ],
+    "last spec folder containment": [
+      "last spec folder containment"
     ],
     "late hook payload test": [
       "late hook payload test"
@@ -78763,6 +78811,9 @@
     "packet purpose continuity field": [
       "packet_purpose continuity field"
     ],
+    "packet purpose first sentence abbreviation": [
+      "packet purpose first sentence abbreviation"
+    ],
     "packet registration": [
       "packet registration"
     ],
@@ -79041,6 +79092,9 @@
     ],
     "parent packet template leftovers": [
       "parent packet template leftovers"
+    ],
+    "parent purpose label": [
+      "parent purpose label"
     ],
     "parent purpose scaffold": [
       "parent purpose scaffold"
@@ -80711,6 +80765,9 @@
     "phase 10 post fix research": [
       "phase 10 post fix research"
     ],
+    "phase 10 problem sentence carry": [
+      "phase 10 problem sentence carry"
+    ],
     "phase 10 reachability and attribution": [
       "phase 10 reachability and attribution"
     ],
@@ -80767,6 +80824,9 @@
     ],
     "phase 11 decisions rule delivery": [
       "phase 11 decisions rule delivery"
+    ],
+    "phase 11 empty parent purpose backfill": [
+      "phase 11 empty parent purpose backfill"
     ],
     "phase 11 gateway enforcement": [
       "phase 11 gateway enforcement"
@@ -82601,6 +82661,9 @@
     "phase 7 playbook catalog readme alignment": [
       "phase 7 playbook catalog readme alignment"
     ],
+    "phase 7 purpose reader coverage": [
+      "phase 7 purpose reader coverage"
+    ],
     "phase 7 remediation deep review": [
       "phase 7 remediation deep review"
     ],
@@ -82712,6 +82775,9 @@
     "phase 8 history test database env": [
       "phase 8 history test database env"
     ],
+    "phase 8 hop purpose rule parity": [
+      "phase 8 hop purpose rule parity"
+    ],
     "phase 8 hub gap report": [
       "phase 8 hub gap report"
     ],
@@ -82792,6 +82858,9 @@
     ],
     "phase 9 command surfacing research": [
       "phase 9 command surfacing research"
+    ],
+    "phase 9 compaction purpose folder": [
+      "phase 9 compaction purpose folder"
     ],
     "phase 9 doctor ci review wiring": [
       "phase 9 doctor ci review wiring"
@@ -86866,14 +86935,35 @@
     "probemodelserver": [
       "probeModelServer"
     ],
+    "problem and purpose heading without subheading": [
+      "problem and purpose heading without subheading"
+    ],
     "problem first overview": [
       "problem-first overview"
     ],
     "problem first readme": [
       "problem-first readme"
     ],
+    "problem line after compaction": [
+      "problem line after compaction"
+    ],
+    "problem sentence carry": [
+      "problem sentence carry"
+    ],
+    "problem sentence carry implementation summary": [
+      "problem sentence carry implementation summary"
+    ],
+    "problem sentence carry plan": [
+      "problem sentence carry plan"
+    ],
+    "problem sentence carry tasks": [
+      "problem sentence carry tasks"
+    ],
     "problem statement": [
       "problem statement"
+    ],
+    "problem statement beside the purpose": [
+      "problem statement beside the purpose"
     ],
     "procedural benchmark gate task": [
       "procedural benchmark gate task"
@@ -87953,6 +88043,24 @@
     ],
     "purpose line in the handoff note goal": [
       "purpose line in the handoff note goal"
+    ],
+    "purpose line label shapes": [
+      "purpose line label shapes"
+    ],
+    "purpose line missing after compaction": [
+      "purpose line missing after compaction"
+    ],
+    "purpose reader coverage": [
+      "purpose reader coverage"
+    ],
+    "purpose reader coverage implementation summary": [
+      "purpose reader coverage implementation summary"
+    ],
+    "purpose reader coverage plan": [
+      "purpose reader coverage plan"
+    ],
+    "purpose reader coverage tasks": [
+      "purpose reader coverage tasks"
     ],
     "purpose retention across handovers": [
       "purpose retention across handovers"
@@ -91546,6 +91654,9 @@
     ],
     "relaunch model and effort tasks": [
       "relaunch model and effort tasks"
+    ],
+    "relaunch note scaffold sentence": [
+      "relaunch note scaffold sentence"
     ],
     "relaunch prepare claim": [
       "relaunch prepare claim"
