@@ -71,6 +71,11 @@ and findings belong here.
 |------|-------|----------|
 | Spec, plan, tasks and acceptance criteria authored | Done | Written on 2026-11-14 from the audit evidence in `../001-finding-verification/` |
 | Implementation | Pending | Not started |
+| Phase 008 closed | Done | Code 3c7926322b. Six criteria Met. Eleven QL rows fixed here, QL-09 fixed in phase 005, QL-08 and QL-13 closed with no change. 15 DeepSeek V4.1 Flash dispatches through cli-pi |
+| Edge cases | Recorded | No row was Refuted, so the empty case did not arise. Eleven rows were fixed in one commit, not one commit each, on the operator's commit policy. A dead path added to SKILL.md made the runner exit 1, and it exited 0 after the restore |
+| Deviation: T005's verify prints a changelog hit as written | Recorded | The glob !changelog/** does not match from the repository root. With !**/changelog/** the command prints nothing and exits 1 |
+| Finding outside the ledger: two sk-code-skilled files still cite CHK-CMT-07 | Open | js-css-style/verification-quick-reference-and-related.md line 87 and overview-header-and-comments.md line 42 name an id the style guide no longer carries. This phase may edit sk-code-quality only |
+| Finding outside the ledger: four lines still say OpenCode | Open | README.md lines 26, 47 and 48 and the OpenCode JavaScript row of the load table in SKILL.md. Row QL-10 names OpenCode authoring only |
 
 ### Deviations and findings
 

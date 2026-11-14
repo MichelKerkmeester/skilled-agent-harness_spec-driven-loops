@@ -34,7 +34,7 @@
       "decides"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,6 +42,7 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "scratch/failure-path.txt",
       ".skilled/skills/sk-code/sk-code-quality/SKILL.md",
       ".skilled/skills/sk-code/sk-code-quality/README.md",
       ".skilled/skills/sk-code/sk-code-quality/ROUTER.md",
@@ -85,6 +86,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "failure-path.txt",
+        "kind": "file",
+        "path": "scratch/failure-path.txt",
         "source": "derived"
       },
       {
@@ -188,17 +195,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `sk-code-quality` packet decides whether an author's change may be called done, and a reader found 14 places where its documents disagree or repeat one rule in two files",
     "created_at": "2026-11-14T12:01:56Z",
-    "last_save_at": "2026-11-14T12:18:32.588Z",
+    "last_save_at": "2026-11-14T16:41:48.031Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +210,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d2a5d86b00df3a2d4f8f048d7aef665aa3bd8c4fd0a15a462b1ce1970c521462",
+    "source_fingerprint": "sha256:557dcb60b8582ed2729efbaea1be1e06a1e9de112aab51922c886c19e83d45a4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f0c94cdda3512f6a82189ac6b5e96b44e876036d6785c9ffab8f191df7227088",
+      "spec.md": "92b1083c469bc8a12069662c43b2f547154a60320b4ec585f48a460ce38a080a",
       "plan.md": "509c1a0d2b491e7bbb0c52527e7c20a2a963605532168bae576a02db2571db48",
-      "tasks.md": "7aa8ae805f806b1cf836d28adc752a1e8c61951eb108556fa9a99bdcbd8b267a",
-      "implementation-summary.md": "582bc469b5b02ccf7221b2b7925125fc03fd42dc27bb5c2f42cbcf862dffe2f1"
+      "tasks.md": "2164f019e176544389ee7b91bd367162dbde46fab155289de7c29dd8d15b5d0f",
+      "implementation-summary.md": "c8acee4ab19102d27b8f2886328fc0fafbc5af934208311a77475600b517e4c1"
     },
     "last_active_at": null
   }

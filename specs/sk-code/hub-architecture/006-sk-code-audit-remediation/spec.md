@@ -124,7 +124,7 @@ Every audit finding is either fixed with a command that proves it or closed with
 | 5 | 005-hub-router-alignment/ | Align hub router prose with its map for all three surfaces, route the implement doctrine and turn the setup battery green | Complete |
 | 6 | 006-skilled-packet-fixes/ | Fix the confirmed `SK` rows in `sk-code-skilled` | Complete |
 | 7 | 007-review-packet-fixes/ | Fix the confirmed `RV` rows in `sk-code-review` | Complete |
-| 8 | 008-quality-packet-fixes/ | Fix the confirmed `QL` rows in `sk-code-quality` | Pending |
+| 8 | 008-quality-packet-fixes/ | Fix the confirmed `QL` rows in `sk-code-quality` | Complete |
 
 ### Phase Transition Rules
 

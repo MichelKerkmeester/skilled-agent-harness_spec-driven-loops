@@ -1,0 +1,13 @@
+TASK: one literal replacement in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-quality/SKILL.md (read lines 69 to 75 only)
+
+EDIT. In the bullet line that starts with ``- `../sk-code-skilled/assets/checklists/` contains``, replace the literal text
+contains OpenCode authoring checklists
+with the literal text
+contains SKILLED authoring checklists
+Keep the rest of that line byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'OpenCode authoring' .skilled/skills/sk-code/sk-code-quality/SKILL.md; echo "exit $?"
+Expected output: `exit 1`
