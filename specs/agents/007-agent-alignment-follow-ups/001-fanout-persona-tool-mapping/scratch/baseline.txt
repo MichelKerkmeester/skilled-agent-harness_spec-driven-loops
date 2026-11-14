@@ -1,0 +1,19 @@
+# Baseline at 63e6261895
+
+## Measured Behavior, rerun
+$ rg -c -i 'tool mapping' .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs || echo 0
+0
+$ rg -n 'const agentName = ' .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs
+1564:  const agentName = loopType === 'review' ? 'deep-review' : 'deep-research';
+$ rg -n '^  bash:' .skilled/agents/deep-research.md .skilled/agents/deep-review.md
+.skilled/agents/deep-research.md:10:  bash: allow
+.skilled/agents/deep-review.md:10:  bash: allow
+
+## Codex version and login
+$ codex --version
+codex-cli 0.169.0
+$ codex login status
+Logged in using ChatGPT
+
+## T003
+dispatch flags: codex exec --model gpt-6-luna -c model_reasoning_effort="medium" -c service_tier="fast" --sandbox read-only -o <report file> "<prompt>" </dev/null, started in the worktree root. Read from cli-codex/SKILL.md: line 86 (the OAuth-ready default), ALWAYS rule 3 (read-only for analysis) and ALWAYS rule 6 (stdin from /dev/null). No mapping line is added, because the missing line is what this phase tests.
