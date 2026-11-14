@@ -50,7 +50,7 @@
       "search"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "goal.md",
@@ -221,7 +221,7 @@
     ],
     "causal_summary": "Subtracks exist in system-spec-kit only as a hand-written declaration, one level deep, and three gaps follow from that",
     "created_at": "2026-11-13T10:07:28Z",
-    "last_save_at": "2026-11-14T14:16:24.850Z",
+    "last_save_at": "2026-11-14T15:35:50.203Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -229,11 +229,11 @@
       "goal.md",
       "decision-record.md"
     ],
-    "source_fingerprint": "sha256:94df347719d07f86191924f7450d85240db01acac81b83cf7d33da6c4286c050",
+    "source_fingerprint": "sha256:2a48e74fdee779058a3ab141309e2dce77349a5f70e773a02f4dd494304b6215",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "b806c40a5fbb1de6dc5e8e041bb82eeaf7f91b5fe8f2dab93cf4215c5a9aca91",
-      "decision-record.md": "d7935cec43beefd3fb1f51dd93cc99cfa1d8de33314360a0a126e768205511dc"
+      "decision-record.md": "cd31d2f362734ea66ee41a80a9e58e05661d996d7587ca54045afde2ff7ca8df"
     },
     "last_active_child_id": "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/013-skill-docs-and-housekeeping",
     "last_active_at": "2026-11-14T14:16:24.850Z"

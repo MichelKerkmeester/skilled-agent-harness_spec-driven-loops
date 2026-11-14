@@ -10,7 +10,7 @@ _memory:
     packet_pointer: "system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach"
     last_updated_at: "2026-11-14T00:00:00Z"
     last_updated_by: "markdown-agent"
-    recent_action: "Added operator decisions Q019 to Q026 of 2026-11-14 by hand"
+    recent_action: "Added operator decisions Q019 to Q028 of 2026-11-14 by hand"
     next_safe_action: "Review the recorded operator decisions"
     blockers: []
     key_files: []
@@ -60,6 +60,8 @@ _memory:
 | Q024 | This session builds phases 012 and 013. | Not stated. The recommended option said this session holds the phase 011 diff that 013 must describe. | Q012 for the implementation of phases 012 and 013 | 012-catalog-and-playbook-alignment, 013-skill-docs-and-housekeeping |
 | Q025 | The phase 009 routing review in phase 013 is done by Fable 5.2 at high effort through claude2. | Not stated. | None | 013-skill-docs-and-housekeeping REQ-008 |
 | Q026 | Worktree 375 and its local branch worktrees/375-subtrack-review-remediation are removed now. | Not stated. The branch was already merged into main. | None | Done 2026-11-14: `git worktree remove` and `git branch -d` |
+| Q027 | Worktree 378 takes origin/main by merge, not rebase, after origin moved while it waited. The generated trigger index and its fixtures are rebuilt from the merged tree, the suites rerun, and the push to origin/main is asked separately. The primary checkout is not touched while another session's copies are dirty there. | Not stated. | Supersedes the main-checkout merge path that Q023 assumed | Merge commits `54179394ea` and `ce8536f3e2` on worktrees/378-relocate-restore-fixes |
+| Q028 | The word "quote" in the system-spec-kit routing signals stays. The routing review's optional P2 is not applied. | Not stated. The recommended option said removing it changes no top-1 on the 285 labelled rows and would need the full routing gate. | None | 013-skill-docs-and-housekeeping scratch/routing-review.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -395,6 +397,24 @@ Asked through AskUserQuestion on 2026-11-14. Question: remove worktree 375 and b
 Operator answer:
 ```text
 Remove now (Recommended)
+```
+
+### Q027
+
+Asked through AskUserQuestion on 2026-11-14. Question: worktree 378 is behind origin/main, which moved 27 commits, and they overlap only in the generated trigger-index files; how should 378 reach main. Options: merge origin into 378, rebase 378 onto origin, or wait for the other session.
+
+Operator answer:
+```text
+Merge origin into 378 (Recommended)
+```
+
+### Q028
+
+Asked through AskUserQuestion on 2026-11-14. Question: remove the word "quote" from the system-spec-kit routing signals, the routing review's optional P2. Options: leave it, or remove it in a packet of its own.
+
+Operator answer:
+```text
+Leave it (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
