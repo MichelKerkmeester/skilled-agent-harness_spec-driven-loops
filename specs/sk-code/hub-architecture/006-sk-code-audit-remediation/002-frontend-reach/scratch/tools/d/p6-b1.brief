@@ -1,0 +1,14 @@
+TASK: four literal line replacements in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/README.md (read lines 1 to 12 only)
+
+EDIT 1. Replace line 2, which is `title: opencode`, with `title: "sk-code-skilled"`.
+EDIT 2. Replace the line `  - "opencode system code"` with `  - "skilled system code"`.
+EDIT 3. Replace the line `  - "opencode authoring"` with `  - "skilled surface authoring"`.
+EDIT 4. Replace line 11, which is `# opencode`, with `# sk-code-skilled`.
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c '^# opencode$|^title: opencode$|"opencode ' .skilled/skills/sk-code/sk-code-skilled/README.md; echo "exit $?"; sed -n 11p .skilled/skills/sk-code/sk-code-skilled/README.md
+Expected output: `exit 1` then `# sk-code-skilled`

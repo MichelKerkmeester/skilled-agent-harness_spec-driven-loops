@@ -1,0 +1,23 @@
+TASK: two literal replacements in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/ROUTER.md (read lines 1 to 30 only)
+
+EDIT 1. On line 3, the `description:` line, replace the literal text
+the intent signals, the resource map and the no-match checklist a reader parses first.
+with the literal text
+the intent signals and the resource map a reader parses first.
+Keep the rest of line 3 byte for byte.
+
+EDIT 2. Lines 26 to 28 are one paragraph of three lines that starts with `The router answers one question:` and ends with `loads before an intent selects it.` Replace those three lines with the three lines between the marker lines below.
+
+<<<TEXT
+The router answers one question: given a request, which skill-local resources load and in what order.
+Every path below stays inside this skill folder, and no resource other than `DEFAULT_RESOURCE`
+loads before an intent selects it. When no intent matches, the hub's `../ROUTER.md` section 6 owns the unknown fallback.
+TEXT>>>
+
+Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'nothing matches|no-match' .skilled/skills/sk-code/sk-code-skilled/ROUTER.md; echo "exit $?"; rg -c 'owns the unknown fallback' .skilled/skills/sk-code/sk-code-skilled/ROUTER.md
+Expected output: `exit 1` then `1`

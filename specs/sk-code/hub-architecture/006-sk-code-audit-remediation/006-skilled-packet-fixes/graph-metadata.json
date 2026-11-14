@@ -34,7 +34,7 @@
       "evidence"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -42,6 +42,10 @@
       "acceptance-criteria.md",
       "goal.md",
       "implementation-summary.md",
+      "manual-testing-playbook/manual-testing-playbook.md",
+      "changelog/v2.2.0.0.md",
+      "scratch/failure-path.txt",
+      "scripts/README.md",
       ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
       ".skilled/skills/sk-code/sk-code-skilled/README.md",
       ".skilled/skills/sk-code/sk-code-skilled/ROUTER.md",
@@ -90,15 +94,33 @@
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "manual-testing-playbook.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
+        "path": "manual-testing-playbook/manual-testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.2.0.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.2.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "failure-path.txt",
+        "kind": "file",
+        "path": "scratch/failure-path.txt",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
-        "path": ".skilled/skills/sk-code/sk-code-skilled/README.md",
+        "path": "scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-code/sk-code-skilled/SKILL.md",
         "source": "derived"
       },
       {
@@ -178,29 +200,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Read",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern One",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The `sk-code-skilled` packet is the evidence an agent loads for work on this framework's own code, and a reader found 15 places where it contradicts itself, cites a path that does not exist or repeats a rule in several files",
     "created_at": "2026-11-14T12:01:54Z",
-    "last_save_at": "2026-11-14T12:18:17.066Z",
+    "last_save_at": "2026-11-14T16:12:32.580Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,13 +215,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:b102ea1f206740f4ee2213341111b05b84273810d9d854511a7f1847488834ba",
+    "source_fingerprint": "sha256:da88ffad4eb89c43f7b4c2d0c665bae4c2d559206bd7b99062de7076f8e16561",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "0a7060f5f2e252e6b57db0c59788b0e1254fb06f0a94d7bd6add0410b538160a",
+      "spec.md": "6ba695ca86cebd5ea3e6e0c7d5e9aab4dc3162c882a1cd6ad1f06d8b09c1569d",
       "plan.md": "fa9a2570f5739e32ef7d0b9dea95400bde2e045be226182a42e0369e97dda37b",
-      "tasks.md": "61410b9f2a1d43d1d124a912c0cb81280e3bccbd0e07c9ed2fef843bfe777e3e",
-      "implementation-summary.md": "ccaa90de10ca884744bb0fa1e2aa6cb407f6095ee78c80fd54b84b8330c83021"
+      "tasks.md": "44067743c6fd106ed484d9ff661a7fc77c4a826e673c02547f81f5cdbdd2888e",
+      "implementation-summary.md": "f18b9d25022c639d59d60de85a31cc008b922846ff22dcea118250ca36b78bb7"
     },
     "last_active_at": null
   }

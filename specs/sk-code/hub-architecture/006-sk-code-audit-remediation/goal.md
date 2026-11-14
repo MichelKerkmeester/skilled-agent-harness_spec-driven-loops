@@ -120,6 +120,7 @@ and findings belong here.
 | Phase 005 hub router alignment | Done | Code 19214454c5. Rows H2 to H6, SK-07 and QL-09 carry fix evidence. Hub version 3.12.0.0 with a release note naming the rows of phases 002 to 005. The battery ends STATUS=OK legs=9 and exits 0 |
 | Operator answers 2026-11-14 for phase 005 | Done | Remove one blank line from skilled-loop-shell.sh in place of a top-level set. Revert the 22 Pi extension headers and exempt one-line re-export files in the drift guard, because the mirror-parity gate requires one line per file |
 | Criterion 3 quotes a line the battery never prints | Open | The battery's pass line is STATUS=OK legs=9 with exit 0. Phase 005 ADR-001 records it. The criterion text is frozen, so the operator decides whether to amend it |
+| Phase 006 skilled packet fixes | Done | Code ac50644619. No SK row has a dash as its fix evidence. Packet version 2.2.0.0. Three findings outside the ledger are in the phase 006 goal log for the operator |
 
 ### Deviations and findings
 

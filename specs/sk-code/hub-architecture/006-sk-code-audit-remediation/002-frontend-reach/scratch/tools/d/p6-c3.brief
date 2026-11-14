@@ -1,0 +1,9 @@
+TASK: one literal replacement inside a python comment in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/ROUTER.md (read lines 52 to 64 only)
+
+EDIT. One comment line starts with `# the equality authority. Leg 1b of the same guard fails on`. On that line, replace the literal text `Leg 1b of the same guard` with `The orphan-doc leg of the same guard`. Keep the rest of the line byte for byte. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'Leg 1b' .skilled/skills/sk-code/sk-code-skilled/ROUTER.md; echo "exit $?"; rg -c 'The orphan-doc leg of the same guard fails on' .skilled/skills/sk-code/sk-code-skilled/ROUTER.md
+Expected output: `exit 1` then `1`

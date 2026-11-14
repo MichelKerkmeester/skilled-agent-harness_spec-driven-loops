@@ -1,0 +1,9 @@
+TASK: replace one checklist line in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/references/python/quick-reference.md (read lines 400 to 408 only)
+
+EDIT. Replace the line `[ ] Line length < 120` with the line `[ ] Line length at most 120 characters`. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+rg -c 'Line length < 120' .skilled/skills/sk-code/sk-code-skilled/references/python/quick-reference.md; echo "exit $?"; rg -c 'Line length at most 120 characters' .skilled/skills/sk-code/sk-code-skilled/references/python/quick-reference.md
+Expected output: `exit 1` then `1`

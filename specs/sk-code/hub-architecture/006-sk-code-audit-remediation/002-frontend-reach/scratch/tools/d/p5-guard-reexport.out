@@ -1,7 +1,0 @@
-Both edits landed exactly as specified; syntax parses and the symbol appears twice.
-
-FILES CHANGED: .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py
-
-VERIFY: `python3 -c "import ast,sys; ast.parse(open('.skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py').read()); print('parsed')"; rg -c 'is_single_line_reexport' .skilled/skills/sk-code/sk-code-skilled/assets/scripts/verify_alignment_drift.py` -> `parsed` then `2`, exit status 0 — matches expected output exactly.
-
-NOTES: none

@@ -71,6 +71,11 @@ and findings belong here.
 |------|-------|----------|
 | Spec, plan, tasks and acceptance criteria authored | Done | Written on 2026-11-14 from the audit evidence in `../001-finding-verification/` |
 | Implementation | Pending | Not started |
+| Phase 006 closed | Done | Code ac50644619. Six criteria Met. Twelve SK rows fixed here, SK-07 fixed in phase 005, SK-11 and SK-12 closed with no change. 19 DeepSeek V4.1 Flash dispatches through cli-pi |
+| Edge cases | Recorded | No row was Refuted, so the empty case did not arise. Twelve rows were fixed in one commit, not one commit each, on the operator's commit policy. A dead path added to SKILL.md made the runner exit 1, and it exited 0 after the revert |
+| Finding outside the ledger: check_readme_references.py fails on scripts/README.md | Open | Two paths on line 13 are unresolved, assets/scripts/verify-router-sync.cjs and assets/scripts/verify-doc-claims.cjs. They were unresolved before this phase |
+| Finding outside the ledger: the playbook test table lists seven of nine test files | Open | router-file-resolver.test.cjs and router-replay-lib-resolver.test.cjs are missing from section 11 of the packet playbook |
+| Finding outside the ledger: SKILL.md line 13 says OpenCode system code | Open | Row SK-09 names the README only, so the line is unchanged |
 
 ### Deviations and findings
 

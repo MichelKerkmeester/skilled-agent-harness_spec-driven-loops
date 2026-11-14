@@ -1,0 +1,9 @@
+TASK: change one version string in one file.
+
+FILE: .skilled/skills/sk-code/sk-code-skilled/SKILL.md (read lines 1 to 8 only)
+
+EDIT. Line 5 is `version: 2.1.18.0`. Replace it with `version: 2.2.0.0`. Change nothing else. One file changes.
+
+VERIFY (run from the repository root):
+sed -n 5p .skilled/skills/sk-code/sk-code-skilled/SKILL.md
+Expected output: `version: 2.2.0.0`
