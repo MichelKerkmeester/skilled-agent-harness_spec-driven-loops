@@ -90,7 +90,7 @@
     ],
     "causal_summary": "The `/speckit:plan`, `/speckit:implement`, `/speckit:complete`, `/speckit:resume`, `/speckit:save`, `/speckit:search` and `/speckit:handoff` commands are executed by AI agents on every runtime, and an agent follows the workflow text literally",
     "created_at": "2026-11-14T11:33:17Z",
-    "last_save_at": "2026-11-14T16:15:33.311Z",
+    "last_save_at": "2026-11-14T16:17:30.029Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -101,7 +101,7 @@
     "source_doc_hashes": {
       "spec.md": "301e28e607731329ce3ffb8256c270dda863f988a749fa67fcd7a2fe98aa3392"
     },
-    "last_active_child_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms",
-    "last_active_at": "2026-11-14T16:15:33.311Z"
+    "last_active_child_id": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/008-router-readme-presentation-alignment",
+    "last_active_at": "2026-11-14T16:17:30.029Z"
   }
 }
