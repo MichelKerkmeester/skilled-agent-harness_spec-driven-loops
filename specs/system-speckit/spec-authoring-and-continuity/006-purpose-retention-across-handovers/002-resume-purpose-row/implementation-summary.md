@@ -8,10 +8,11 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/spec-authoring-and-continuity/006-purpose-retention-across-handovers/002-resume-purpose-row"
-    last_updated_at: "2026-11-13T23:44:14Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Built 2026-11-14 and gated. Agent-followed resume checks run, purpose_row wording fixed"
-    next_safe_action: "Operator runs /speckit:resume for T019 and T020 in a fresh session"
+    last_updated_at: "2026-11-14T04:58:54Z"
+    last_updated_by: "generate-context"
+    recent_action: "Built the Purpose row, pushed it and recorded two agent-followed runs"
+    next_safe_action: "Run /speckit:resume on this phase from an operator prompt to close T019 and T020"
+    packet_purpose: "Purpose: After `/speckit:resume`, the brief shows one sentence that says why the packet exists, quoted from its own spec.md or from the nearest phase parent's spec.md."
     blockers: []
     key_files:
       - ".skilled/commands/speckit/assets/speckit-resume-auto.yaml"
@@ -21,6 +22,13 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-002-resume-purpose-row"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "af01c830-4ea5-4abe-b6ed-dd0c4d9b1b45"
+      workspace: "/Users/michelkerkmeester/worktrees/public/371-purpose-retention-research"
+      savedAt: "2026-11-14T04:58:54Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 90
     open_questions: []
     answered_questions: []

@@ -19,16 +19,17 @@
     "several",
     "in-session"
   ],
-  "lastUpdated": "2026-11-13T22:18:50.698Z",
+  "lastUpdated": "2026-11-14T04:58:14.934Z",
   "specId": "006",
   "folderSlug": "purpose-retention-across-handovers",
   "parentChain": [
     "system-speckit",
     "spec-authoring-and-continuity"
   ],
-  "memorySequence": 2,
+  "memorySequence": 3,
   "memoryNameHistory": [
     "13-11-26_22-18__deep-research-finished-two-deepseek-lineages-of.md",
-    "13-11-26_23-18__packet-006-became-a-phase-parent-with-five.md"
+    "13-11-26_23-18__packet-006-became-a-phase-parent-with-five.md",
+    "14-11-26_05-58__all-five-purpose-carry-children-are-built-gated.md"
   ]
 }

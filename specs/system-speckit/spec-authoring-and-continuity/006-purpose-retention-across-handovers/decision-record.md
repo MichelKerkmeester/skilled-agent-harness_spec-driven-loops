@@ -38,6 +38,10 @@ _memory:
 | Q002 | The research loop ran autonomously with every iteration forced to run. | Not stated. | None | plan.md, research/deep-research-config.json |
 | Q003 | The build is planned as five parts, with the purpose field in the continuity block included. | Not stated. | None | spec.md phase map, 005-continuity-purpose-field |
 | Q004 | The research packet was committed, merged to main and pushed. | Not stated. | None | research/research.md |
+| Q005 | The five build plans and the two research corrections were committed, merged to main and pushed. | Not stated. | None | spec.md phase map, research/research.md section 9 |
+| Q006 | All five children were built, including 005 whose own spec rates its value as narrow. | Not stated. | None | spec.md phase map, 005-continuity-purpose-field |
+| Q007 | Child 001 also changes the recent_action default, so a finished parent with a real purpose still passes the scaffold check. | Not stated. | None | 001-parent-purpose-scaffold/plan.md |
+| Q008 | The live checks that a session can run were run: agent-followed resume runs and the 001 sandbox cases. A real compaction and a real relaunch stay unproven. | Not stated. | None | 001-parent-purpose-scaffold/tasks.md, 002-resume-purpose-row/tasks.md |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -124,6 +128,86 @@ Leave uncommitted
 Answer:
 ```text
 Commit, merge, push (Recommended)
+```
+
+### Q005
+<!-- source: claude:af01c830-4ea5-4abe-b6ed-dd0c4d9b1b45:toolu_01FTtHSFz49YNnA7LWM9Dt39:0 -->
+
+Question:
+```text
+The five build plans and two corrections to the research report are uncommitted in worktree 371. One correction fixes a wrong claim already on origin/main (that create.sh writes a generic parent purpose). What should happen to them?
+```
+
+Options:
+```text
+Commit, merge, push (Recommended)
+Commit only
+Leave uncommitted
+```
+
+Answer:
+```text
+Commit, merge, push (Recommended)
+```
+
+### Q006
+<!-- source: claude:af01c830-4ea5-4abe-b6ed-dd0c4d9b1b45:toolu_01FTtHSFz49YNnA7LWM9Dt39:1 -->
+
+Question:
+```text
+Which of the five planned children should be built now, with DeepSeek v4.1 flash max workers as before? Child 005 (the continuity field) states its own value is narrow: nothing loads that block into a model, and the only code that shows its Goal never runs in this repository.
+```
+
+Options:
+```text
+Build 001 to 004, hold 005 (Recommended)
+Build all five
+Build 002 and 004 only
+Build nothing now
+```
+
+Answer:
+```text
+Build all five
+```
+
+### Q007
+<!-- source: claude:af01c830-4ea5-4abe-b6ed-dd0c4d9b1b45:toolu_01FTtHSFz49YNnA7LWM9Dt39:2 -->
+
+Question:
+```text
+Child 001 makes an unfilled purpose in a new phase parent fail a check. Its side effect: a new parent marked Complete then also fails a scaffold check on its own frontmatter defaults, even with a real purpose. How should the plan handle that?
+```
+
+Options:
+```text
+Fix the default too (Recommended)
+Accept the side effect
+Hold child 001
+```
+
+Answer:
+```text
+Fix the default too (Recommended)
+```
+
+### Q008
+<!-- source: claude:af01c830-4ea5-4abe-b6ed-dd0c4d9b1b45:toolu_01H9876YSX3iBVyfY42ZgXDR:1 -->
+
+Question:
+```text
+Three behaviors are only proven by tests, not by a real run: the Purpose row in /speckit:resume, the Goal line in a relaunch note and the purpose section after a compaction. Should I run the live checks I can run from this session?
+```
+
+Options:
+```text
+Run resume and the 001 sandbox (Recommended)
+Skip the live checks
+```
+
+Answer:
+```text
+Run resume and the 001 sandbox (Recommended)
 ```
 
 <!-- /ANCHOR:operator-answers-verbatim -->
