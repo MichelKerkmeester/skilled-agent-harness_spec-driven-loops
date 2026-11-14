@@ -44,6 +44,16 @@ function stub(file: string, body: string, mode?: number): void {
   if (mode !== undefined) fs.chmodSync(file, mode);
 }
 
+// A writer that fails its first call and passes after it. The run stops on the
+// failure, and the rerun of the same map is what must invoke it and finish.
+function stubFailsOnce(file: string, pass: string): void {
+  const marker = `${file}.failed-once`;
+  stub(
+    file,
+    `import fs from 'node:fs';\nconst marker = ${JSON.stringify(marker)};\nif (!fs.existsSync(marker)) {\n  fs.writeFileSync(marker, 'called');\n  process.exit(1);\n}\n${pass}`,
+  );
+}
+
 // The script resolves its helpers from the repository it runs in, so every
 // path it spawns must exist below the temporary root.
 function installTools(): void {
@@ -176,6 +186,23 @@ function writeMap(entries: Array<{ from: string; to: string }>): string {
   const file = path.join(repo, 'relocate-map.json');
   fs.writeFileSync(file, `${JSON.stringify(entries, null, 2)}\n`);
   return file;
+}
+
+/** The working tree's porcelain status, as the operator would read it. */
+function gitStatus(): string {
+  return execFileSync('git', ['status', '--porcelain'], { cwd: repo, encoding: 'utf8' });
+}
+
+// Two spellings name one folder only where the volume folds case, so the pair
+// of duplicate cases probes the throwaway specs root and skips when it does not.
+function volumeFoldsCase(dir: string): boolean {
+  const probe = path.join(dir, 'case-probe');
+  fs.writeFileSync(probe, '');
+  try {
+    return fs.existsSync(path.join(dir, 'CASE-PROBE'));
+  } finally {
+    fs.rmSync(probe, { force: true });
+  }
 }
 
 describe('relocate move and renumber', () => {
@@ -341,6 +368,50 @@ describe('relocate refusals', () => {
     expect(fs.existsSync(path.join(specs, 'nu', 'sub', '002-a'))).toBe(false);
     expect(snapshot()).toEqual(before);
   });
+
+  // Both spellings reach one existing folder. If the plan compares the text of
+  // the names, the first move consumes the folder and the second one has no
+  // source left to move.
+  it('refuses two spellings of one source folder when the volume folds case', (ctx) => {
+    if (!volumeFoldsCase(specs)) ctx.skip('the temp filesystem is case-sensitive, so the source spellings name distinct folders');
+    track('nu', ['nu/001-a'], ['nu/sub']);
+    declaredSubtrack('nu/sub');
+    const map = writeMap([
+      { from: 'nu/001-a', to: 'nu/sub/001-a' },
+      { from: 'nu/001-A', to: 'nu/sub/002-b' },
+    ]);
+    commitFixture();
+
+    const result = relocate(['--map', map, '--apply']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(2);
+    const refused = result.stderr
+      .split('\n')
+      .find((line) => line.includes('relocate: refused:') && line.includes('specs/nu/001-a') && line.includes('specs/nu/001-A'));
+    expect(refused, result.stderr).toBeDefined();
+    expect(gitStatus()).toBe('');
+  });
+
+  // Neither sub-track exists yet, so the two spellings only collide after the
+  // first move creates the folder the second move would then land inside.
+  it('refuses two spellings of one target folder when the volume folds case', (ctx) => {
+    if (!volumeFoldsCase(specs)) ctx.skip('the temp filesystem is case-sensitive, so the target spellings name distinct folders');
+    track('nu', ['nu/001-a', 'nu/002-b']);
+    const map = writeMap([
+      { from: 'nu/001-a', to: 'nu/sub/001-a' },
+      { from: 'nu/002-b', to: 'nu/SUB/001-a' },
+    ]);
+    commitFixture();
+
+    const result = relocate(['--map', map, '--apply']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(2);
+    const refused = result.stderr
+      .split('\n')
+      .find((line) => line.includes('relocate: refused:') && line.includes('specs/nu/sub/001-a') && line.includes('specs/nu/SUB/001-a'));
+    expect(refused, result.stderr).toBeDefined();
+    expect(gitStatus()).toBe('');
+  });
 });
 
 describe('relocate safety', () => {
@@ -404,6 +475,218 @@ describe('relocate safety', () => {
     expect(notes).toBe('old: specs/lambda/001-alpha\nlong: specs/kappa/001-alpha-two\n');
     expect(fs.existsSync(path.join(specs, 'kappa', '001-alpha'))).toBe(false);
     expect(fs.existsSync(path.join(specs, 'lambda', '001-alpha', 'spec.md'))).toBe(true);
+  });
+});
+
+describe('relocate resume', () => {
+  // The reference stores are written outside the packet tree, so a failure in
+  // one of them leaves the moved folders already in place. The rerun has to
+  // know the step never landed and run it again.
+  it('reruns the redirect table and the trigger index after the redirect table failed once', () => {
+    track('alpha', ['alpha/001-a'], ['alpha/sub']);
+    declaredSubtrack('alpha/sub');
+    commitFixture();
+    stubFailsOnce(
+      path.join(repo, '.skilled', 'skills', 'sk-doc', 'shared', 'scripts', 'cite-drift-scan.mjs'),
+      'process.exit(0);\n',
+    );
+    const args = ['--from', 'alpha/001-a', '--to', 'alpha/sub/001-a'];
+
+    const first = relocate([...args, '--apply']);
+    expect(first.status, first.stdout + first.stderr).toBe(2);
+    expect(first.stdout).toContain('step redirect table (cite-drift-scan --rebuild-redirects): FAILED');
+
+    const dry = relocate(args);
+    expect(dry.status, dry.stdout + dry.stderr).toBe(1);
+
+    const second = relocate([...args, '--apply']);
+    expect(second.status, second.stdout + second.stderr).toBe(0);
+    expect(second.stdout).toContain('step redirect table (cite-drift-scan --rebuild-redirects): ok');
+    expect(second.stdout).toContain('step trigger index (generate-trigger-index): ok');
+
+    const third = relocate([...args, '--apply']);
+    expect(third.status, third.stdout + third.stderr).toBe(0);
+    expect(third.stdout).toContain('relocate: nothing to do');
+  });
+
+  // The move rewrites the stored folder path, but the migration writer owns the
+  // description's parent chain. After that writer fails once, only a check of
+  // the chain can tell that its work never landed.
+  it('reruns the identity step when a sub-track move left the description parent chain stale', () => {
+    track('alpha', ['alpha/001-a'], ['alpha/sub']);
+    declaredSubtrack('alpha/sub');
+    const descriptionFile = path.join(specs, 'alpha', '001-a', 'description.json');
+    const description = JSON.parse(fs.readFileSync(descriptionFile, 'utf8')) as Record<string, unknown>;
+    description.parentChain = ['alpha'];
+    fs.writeFileSync(descriptionFile, `${JSON.stringify(description, null, 2)}\n`);
+    commitFixture();
+    stubFailsOnce(
+      path.join(repo, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'graph', 'migrate-generated-json.ts'),
+      `const folder = process.argv[process.argv.indexOf('--only') + 1];\nconst file = folder + '/description.json';\nconst desc = JSON.parse(fs.readFileSync(file, 'utf8'));\ndesc.parentChain = ['alpha', 'sub'];\nfs.writeFileSync(file, JSON.stringify(desc, null, 2) + '\\n');\n`,
+    );
+    const args = ['--from', 'alpha/001-a', '--to', 'alpha/sub/001-a'];
+
+    const first = relocate([...args, '--apply']);
+    expect(first.status, first.stdout + first.stderr).toBe(2);
+    expect(first.stdout).toContain('step description identity (migrate-generated-json --only): FAILED');
+
+    const second = relocate([...args, '--apply']);
+    expect(second.status, second.stdout + second.stderr).toBe(0);
+    expect(second.stdout).toContain('step description identity (migrate-generated-json --only): ok');
+    const migrated = JSON.parse(fs.readFileSync(path.join(specs, 'alpha', 'sub', '001-a', 'description.json'), 'utf8')) as Record<string, unknown>;
+    expect(migrated.parentChain).toEqual(['alpha', 'sub']);
+
+    const third = relocate([...args, '--apply']);
+    expect(third.status, third.stdout + third.stderr).toBe(0);
+    expect(third.stdout).toContain('relocate: nothing to do');
+  });
+
+  it('reruns the close after its sweep failed once', () => {
+    track('alpha', ['alpha/001-a'], ['alpha/sub']);
+    declaredSubtrack('alpha/sub');
+    commitFixture();
+    stubFailsOnce(
+      path.join(repo, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'spec', 'sweep-track-roots.mjs'),
+      'process.exit(0);\n',
+    );
+    const args = ['--from', 'alpha/001-a', '--to', 'alpha/sub/001-a'];
+
+    const first = relocate([...args, '--apply']);
+    expect(first.status, first.stdout + first.stderr).toBe(2);
+    expect(first.stdout).toContain('close sweep-track-roots: FAILED');
+
+    const second = relocate([...args, '--apply']);
+    expect(second.status, second.stdout + second.stderr).toBe(0);
+    expect(second.stdout).toContain('close sweep-track-roots: ok');
+    expect(second.stdout).toContain('close validate specs/alpha/sub/001-a: RESULT: PASSED');
+
+    const third = relocate([...args, '--apply']);
+    expect(third.status, third.stdout + third.stderr).toBe(0);
+    expect(third.stdout).toContain('relocate: nothing to do');
+  });
+
+  // A moved packet can fail its own validation for reasons this tool does not
+  // own. Reporting that verdict must not make the finished map look unfinished.
+  it('does not keep the map open when the moved packet validation fails', () => {
+    track('alpha', ['alpha/001-a'], ['alpha/sub']);
+    declaredSubtrack('alpha/sub');
+    commitFixture();
+    stub(
+      path.join(repo, '.skilled', 'skills', 'system-spec-kit', 'runtime', 'cli', 'spec', 'validate.sh'),
+      '#!/usr/bin/env bash\nprintf "RESULT: FAILED\\n"\nexit 1\n',
+      0o755,
+    );
+    const args = ['--from', 'alpha/001-a', '--to', 'alpha/sub/001-a'];
+
+    const first = relocate([...args, '--apply']);
+    expect(first.status, first.stdout + first.stderr).toBe(2);
+    expect(first.stdout).toContain('close validate specs/alpha/sub/001-a: RESULT: FAILED');
+
+    const second = relocate([...args, '--apply']);
+    expect(second.status, second.stdout + second.stderr).toBe(0);
+    expect(second.stdout).toContain('relocate: nothing to do');
+  });
+
+  // A stopped move step leaves the folders it already moved staged. Every file
+  // under a moved destination then looks uncommitted, so the rerun must not
+  // hold itself on dirt that its own earlier move put there.
+  it('finishes a move step when one folder of the map already moved uncommitted', () => {
+    track('eps', ['eps/001-a', 'eps/002-b'], ['eps/sub']);
+    declaredSubtrack('eps/sub');
+    const map = writeMap([
+      { from: 'eps/001-a', to: 'eps/sub/001-a' },
+      { from: 'eps/002-b', to: 'eps/sub/002-b' },
+    ]);
+    commitFixture();
+    execFileSync('git', ['mv', 'specs/eps/001-a', 'specs/eps/sub/001-a'], { cwd: repo });
+
+    const result = relocate(['--map', map, '--apply']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(fs.existsSync(path.join(specs, 'eps', '001-a'))).toBe(false);
+    expect(fs.existsSync(path.join(specs, 'eps', '002-b'))).toBe(false);
+    expect(fs.existsSync(path.join(specs, 'eps', 'sub', '001-a', 'spec.md'))).toBe(true);
+    expect(fs.existsSync(path.join(specs, 'eps', 'sub', '002-b', 'spec.md'))).toBe(true);
+  });
+
+  // A folder missing at the source is only a finished move when something
+  // records that this map moved it. An unrelated live packet at the destination
+  // is not that record.
+  it('refuses a source that never existed even when the destination is a live packet', () => {
+    track('zeta', ['zeta/001-a']);
+    commitFixture();
+    const before = snapshot();
+
+    const result = relocate(['--from', 'zeta/999-typo', '--to', 'zeta/001-a', '--apply']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(2);
+    expect(result.stderr).toContain('relocate: refused:');
+    expect(result.stderr).toContain('specs/zeta/999-typo');
+    expect(result.stdout).not.toContain('already at its destination');
+    expect(result.stdout).not.toMatch(/^\s+ledger\s/m);
+    expect(snapshot()).toEqual(before);
+  });
+
+  // A staged git move is a record of the move even though the run that would
+  // have written the relocation batch stopped early.
+  it('accepts a tracked move git records before the relocation step', () => {
+    track('alpha', ['alpha/001-a'], ['alpha/sub']);
+    declaredSubtrack('alpha/sub');
+    commitFixture();
+    execFileSync('git', ['mv', 'specs/alpha/001-a', 'specs/alpha/sub/001-a'], { cwd: repo });
+
+    const result = relocate(['--from', 'alpha/001-a', '--to', 'alpha/sub/001-a', '--apply']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(0);
+    expect(result.stdout).toContain('moved    specs/alpha/001-a -> specs/alpha/sub/001-a (already at its destination)');
+  });
+
+  // An untracked folder moved by rename leaves no record anywhere. The refusal
+  // must name the move back, and that move back must let the same map finish.
+  it('refuses an untracked rename and finishes after moving the folder back', () => {
+    track('eta', [], ['eta/sub']);
+    declaredSubtrack('eta/sub');
+    commitFixture();
+    packet('eta/001-a');
+    fs.renameSync(path.join(specs, 'eta', '001-a'), path.join(specs, 'eta', 'sub', '001-a'));
+    const args = ['--from', 'eta/001-a', '--to', 'eta/sub/001-a'];
+    const before = snapshot();
+
+    const refused = relocate([...args, '--apply']);
+
+    expect(refused.status, refused.stdout + refused.stderr).toBe(2);
+    expect(refused.stderr).toContain('relocate: refused:');
+    expect(refused.stderr).toContain('specs/eta/001-a');
+    expect(refused.stderr).toContain('specs/eta/sub/001-a');
+    expect(refused.stderr).toContain('move specs/eta/sub/001-a back to specs/eta/001-a');
+    expect(snapshot()).toEqual(before);
+
+    fs.renameSync(path.join(specs, 'eta', 'sub', '001-a'), path.join(specs, 'eta', '001-a'));
+    const applied = relocate([...args, '--apply']);
+    expect(applied.status, applied.stdout + applied.stderr).toBe(0);
+    expect(fs.existsSync(path.join(specs, 'eta', 'sub', '001-a', 'spec.md'))).toBe(true);
+  });
+
+  // The exemption is only for the map's own moved folders. An operator edit on
+  // any other file the run would rewrite is still refused before the first write.
+  it('refuses an uncommitted edit outside the map when one folder already moved', () => {
+    track('eps', ['eps/001-a', 'eps/002-b'], ['eps/sub']);
+    declaredSubtrack('eps/sub');
+    track('zeta', ['zeta/001-c']);
+    fs.writeFileSync(path.join(specs, 'zeta', '001-c', 'notes.md'), 'old: specs/eps/001-a\n');
+    const map = writeMap([
+      { from: 'eps/001-a', to: 'eps/sub/001-a' },
+      { from: 'eps/002-b', to: 'eps/sub/002-b' },
+    ]);
+    commitFixture();
+    execFileSync('git', ['mv', 'specs/eps/001-a', 'specs/eps/sub/001-a'], { cwd: repo });
+    fs.appendFileSync(path.join(specs, 'zeta', '001-c', 'notes.md'), 'uncommitted\n');
+
+    const result = relocate(['--map', map, '--apply']);
+
+    expect(result.status, result.stdout + result.stderr).toBe(2);
+    expect(result.stderr).toContain('specs/zeta/001-c/notes.md: has uncommitted changes and would be rewritten');
+    expect(fs.readFileSync(path.join(specs, 'zeta', '001-c', 'notes.md'), 'utf8')).toBe('old: specs/eps/001-a\nuncommitted\n');
   });
 });
 

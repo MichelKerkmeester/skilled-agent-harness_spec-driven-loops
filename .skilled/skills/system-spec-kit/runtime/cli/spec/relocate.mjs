@@ -71,6 +71,11 @@ const TOOLS = {
 const LEDGER = path.join(REPO, '.skilled/skills/sk-doc/shared/scripts/relocation-ledger.json');
 const REDIRECTS = path.join(REPO, '.skilled/skills/sk-doc/shared/scripts/cite-drift-redirects.json');
 
+// The steps after the ledger write whose work lives outside the packet tree.
+// Each passing step marks its ledger batch, so a rerun can tell which one
+// stopped the earlier run and finish it instead of finding nothing to do.
+const LATE_STEPS = ['redirects', 'triggerIndex', 'sweep'];
+
 // Hard-coded packet paths live here. They are reported and never rewritten.
 const CODE_FILES = ['.skilled/bin/lib/compiled-route-layout.cjs'];
 const CODE_DIRS = ['.github/workflows'];
@@ -137,6 +142,14 @@ function baseName(id) {
 function lstat(file) {
   try {
     return fs.lstatSync(file);
+  } catch {
+    return null;
+  }
+}
+
+function statOrNull(file) {
+  try {
+    return fs.statSync(file);
   } catch {
     return null;
   }
@@ -449,12 +462,49 @@ function anyUnder(set, prefix) {
   return false;
 }
 
+// Whether the volume that holds specs/ folds case. The duplicate checks may
+// fold the unwritten part of a path only where it does; the specs root answers
+// that by naming the same folder under a flipped spelling, with no probe file.
+let caseFolds;
+function volumeFoldsCase() {
+  if (caseFolds !== undefined) return caseFolds;
+  const spelled = statOrNull(SPECS);
+  const flipped = statOrNull(path.join(path.dirname(SPECS), path.basename(SPECS).toUpperCase()));
+  caseFolds = Boolean(spelled && flipped && spelled.dev === flipped.dev && spelled.ino === flipped.ino);
+  return caseFolds;
+}
+
+/**
+ * One key per folder for the duplicate checks. An existing folder is its
+ * device and inode, so a spelling the tree does not use still names it. A
+ * folder that does not exist yet is its longest existing parent's device and
+ * inode plus the rest of the path, folded where the volume folds case, so two
+ * ways of writing the same future folder compare equal before either move
+ * creates it.
+ */
+function folderIdentity(id) {
+  let current = abs(id);
+  const rest = [];
+  let stat = statOrNull(current);
+  while (!stat && path.dirname(current) !== current) {
+    rest.unshift(path.basename(current));
+    current = path.dirname(current);
+    stat = statOrNull(current);
+  }
+  if (!stat) return null;
+  const prefix = `${stat.dev}:${stat.ino}`;
+  if (rest.length === 0) return prefix;
+  const tail = rest.join('/');
+  return `${prefix}\0${volumeFoldsCase() ? tail.toLowerCase() : tail}`;
+}
+
 /**
  * Builds and checks the plan. Returns { entries, newSubtracks } with each entry
  * marked pending or done, or pushes refusals.
  */
 function preflight(rawEntries, refusals) {
   const entries = [];
+  const ledger = readLedger();
   const seen = new Set();
   for (const raw of rawEntries) {
     const from = normalizeId(raw.rawFrom, 'from', refusals);
@@ -474,8 +524,10 @@ function preflight(rawEntries, refusals) {
     const fromThere = isDir(abs(entry.from));
     const toThere = lstat(abs(entry.to)) !== null;
     if (fromThere && !toThere) entry.state = 'pending';
-    else if (!fromThere && toThere) entry.state = 'done';
-    else if (fromThere && toThere) refusals.push(`to specs/${entry.to}: already exists (collision with the move from specs/${entry.from})`);
+    else if (!fromThere && toThere) {
+      if (recordedMove(entry, ledger)) entry.state = 'done';
+      else refusals.push(`from specs/${entry.from}: does not exist, and neither the relocation record nor git shows a move to specs/${entry.to}; if this map moved the folder earlier, move specs/${entry.to} back to specs/${entry.from} and rerun the map`);
+    } else if (fromThere && toThere) refusals.push(`to specs/${entry.to}: already exists (collision with the move from specs/${entry.from})`);
     else refusals.push(`from specs/${entry.from}: does not exist, and neither does specs/${entry.to}`);
   }
 
@@ -483,10 +535,22 @@ function preflight(rawEntries, refusals) {
   const sources = new Map();
   const tos = new Map();
   for (const entry of entries) {
-    if (tos.has(entry.to)) refusals.push(`to specs/${entry.to}: named by two entries (specs/${tos.get(entry.to).from} and specs/${entry.from})`);
-    tos.set(entry.to, entry);
-    if (sources.has(entry.from)) refusals.push(`from specs/${entry.from}: named by two entries (to specs/${sources.get(entry.from).to} and to specs/${entry.to})`);
-    sources.set(entry.from, entry);
+    const source = folderIdentity(entry.from);
+    const target = folderIdentity(entry.to);
+    if (target !== null) {
+      if (tos.has(target)) {
+        const prior = tos.get(target);
+        refusals.push(`to specs/${entry.to}: named by two entries (specs/${prior.from} -> specs/${prior.to} and specs/${entry.from} -> specs/${entry.to})`);
+      }
+      tos.set(target, entry);
+    }
+    if (source !== null) {
+      if (sources.has(source)) {
+        const prior = sources.get(source);
+        refusals.push(`from specs/${entry.from}: named by two entries (specs/${prior.from} -> specs/${prior.to} and specs/${entry.from} -> specs/${entry.to})`);
+      }
+      sources.set(source, entry);
+    }
     if (froms.has(entry.to)) refusals.push(`to specs/${entry.to}: is another entry's source; a chain or swap makes a rerun ambiguous, split it into two maps`);
     if (entry.to.startsWith(`${entry.from}/`)) refusals.push(`to specs/${entry.to}: inside its own source specs/${entry.from}`);
     for (const other of entries) {
@@ -773,6 +837,18 @@ function frontmatter(text) {
   return close ? body.slice(0, close.index) : '';
 }
 
+/** The ancestor names a folder id implies, outermost first. */
+function parentChainOf(id) {
+  return id.split('/').slice(0, -1);
+}
+
+/** Whether a recorded parent chain is exactly the chain a place implies. */
+function sameChain(recorded, implied) {
+  return Array.isArray(recorded)
+    && recorded.length === implied.length
+    && recorded.every((name, index) => name === implied[index]);
+}
+
 // Why a moved folder still records the place it left, or null. Only a record
 // naming the old place counts: a mismatch the folder carried before the move is
 // not this tool's to settle, and flagging it would make every rerun report work
@@ -784,6 +860,12 @@ function staleIdentity(folder, entry) {
   const description = readJson(path.join(folder, 'description.json'));
   if (description) {
     if (description.specFolder === oldId) reasons.push('description specFolder');
+    // The reference rewrite updates the stored folder path but leaves this
+    // derived chain alone, so only the chain that still names the old place
+    // marks the failed migration as work a rerun can finish.
+    if (sameChain(description.parentChain, parentChainOf(oldId)) && !sameChain(description.parentChain, parentChainOf(id))) {
+      reasons.push('description parentChain');
+    }
     if (id === entry.to && baseName(entry.from) !== baseName(entry.to)) {
       if (description.specId === baseName(entry.from).slice(0, 3) && baseName(entry.from).slice(0, 3) !== baseName(id).slice(0, 3)) reasons.push('description specId');
       if (description.folderSlug === baseName(entry.from).slice(4) && baseName(entry.from).slice(4) !== baseName(id).slice(4)) reasons.push('description folderSlug');
@@ -819,8 +901,48 @@ function readLedger() {
   return data;
 }
 
+function batchOf(ledger, entry) {
+  return ledger.batches.find((batch) => Array.isArray(batch.moves) && batch.moves.some((move) => move.from === entry.from && move.to === entry.to)) || null;
+}
+
 function ledgerHas(ledger, entry) {
-  return ledger.batches.some((batch) => Array.isArray(batch.moves) && batch.moves.some((move) => move.from === entry.from && move.to === entry.to));
+  return batchOf(ledger, entry) !== null;
+}
+
+/**
+ * Whether a record shows that the map already moved this entry: the relocation
+ * record holds the pair, or git holds the source at HEAD but not the
+ * destination, which is a tracked move left uncommitted. A plain rename of an
+ * untracked folder leaves neither record.
+ */
+function recordedMove(entry, ledger) {
+  if (ledgerHas(ledger, entry)) return true;
+  const atHead = (id) => runChild('git', ['rev-parse', '--verify', '--quiet', `HEAD:specs/${id}`]).ok;
+  return atHead(entry.from) && !atHead(entry.to);
+}
+
+/** The late steps not yet marked as passed on every entry's ledger batch. */
+function pendingLateSteps(ledger, entries) {
+  return LATE_STEPS.filter((step) => entries.some((entry) => {
+    const batch = batchOf(ledger, entry);
+    return !batch || !batch.steps || batch.steps[step] !== true;
+  }));
+}
+
+/** Records a late step that passed on the ledger batch holding each entry. */
+function markLateStep(entries, step) {
+  const ledger = readLedger();
+  let changed = false;
+  for (const entry of entries) {
+    const batch = batchOf(ledger, entry);
+    if (!batch) continue;
+    if (!batch.steps || typeof batch.steps !== 'object' || Array.isArray(batch.steps)) batch.steps = {};
+    if (batch.steps[step] !== true) {
+      batch.steps[step] = true;
+      changed = true;
+    }
+  }
+  if (changed) writeAtomic(LEDGER, `${JSON.stringify(ledger, null, 2)}\n`);
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -953,14 +1075,16 @@ function buildPlan(entries, newSubtracks, inputs = new Set()) {
 
   const ledger = readLedger();
   const unrecorded = entries.filter((entry) => !ledgerHas(ledger, entry));
+  const lateSteps = pendingLateSteps(ledger, entries);
 
   for (const packet of touched) followUp.delete(packet);
-  return { entries, pending, done, newSubtracks, rewrites, childNotes, identity, touched: [...touched].sort(), followUp: [...followUp].sort(), trackWork, unrecorded };
+  return { entries, pending, done, newSubtracks, rewrites, childNotes, identity, touched: [...touched].sort(), followUp: [...followUp].sort(), trackWork, unrecorded, lateSteps };
 }
 
 function hasWork(plan) {
   return plan.pending.length > 0 || plan.newSubtracks.size > 0 || plan.rewrites.length > 0
-    || plan.identity.length > 0 || plan.trackWork.length > 0 || plan.unrecorded.length > 0;
+    || plan.identity.length > 0 || plan.trackWork.length > 0 || plan.unrecorded.length > 0
+    || plan.lateSteps.length > 0;
 }
 
 function printPlan(plan, apply) {
@@ -1113,6 +1237,7 @@ function applyPlan(plan, tracked) {
     ledger.batches.push({
       applied_at: new Date().toISOString(),
       base_commit: head.ok ? head.stdout.trim() : null,
+      steps: {},
       moves: plan.unrecorded.map((entry) => ({ from: entry.from, to: entry.to })),
     });
     writeAtomic(LEDGER, `${JSON.stringify(ledger, null, 2)}\n`);
@@ -1120,7 +1245,9 @@ function applyPlan(plan, tracked) {
   })) return false;
 
   if (!childStep('redirect table (cite-drift-scan --rebuild-redirects)', 'node', [TOOLS.citeDrift, '--rebuild-redirects', REDIRECTS])) return false;
+  markLateStep(plan.entries, 'redirects');
   if (!childStep('trigger index (generate-trigger-index)', 'node', [TOOLS.triggerIndex, '--quiet'])) return false;
+  markLateStep(plan.entries, 'triggerIndex');
   return true;
 }
 
@@ -1130,7 +1257,11 @@ function closeRun(plan) {
   let ok = true;
   const sweep = runChild('node', [TOOLS.sweep]);
   out(`close sweep-track-roots: ${sweep.ok ? 'ok' : `FAILED ${sweep.why}`}`);
-  if (!sweep.ok) {
+  if (sweep.ok) {
+    // The sweep passing is the completion mark for the close. A packet's own
+    // failing verdict below is reported but never keeps the map open.
+    markLateStep(plan.entries, 'sweep');
+  } else {
     for (const line of tail(sweep.stdout, 6)) out(`    ${line}`);
     ok = false;
   }
@@ -1259,10 +1390,15 @@ function main() {
       if (anyUnder(state.tracked, fromRel) && anyUnder(state.dirty, fromRel)) dirtyRefusals.push(`from ${fromRel}: has uncommitted changes`);
     }
     const untrackedSources = plan.pending.map((entry) => `specs/${entry.from}`).filter((fromRel) => !anyUnder(state.tracked, fromRel));
+    // A staged move makes every file under a destination this map already
+    // reached look uncommitted. That dirt is the run's own earlier output, so
+    // rewriting it finishes the interrupted step instead of refusing on it.
+    const movedDestinations = plan.done.map((entry) => `specs/${entry.to}`);
     const affected = [...plan.rewrites.map((rewrite) => rel(rewrite.file))];
     for (const name of plan.trackWork) affected.push(`specs/${name}/graph-metadata.json`);
     for (const file of affected) {
       if (untrackedSources.some((source) => file.startsWith(`${source}/`))) continue;
+      if (movedDestinations.some((destination) => file === destination || file.startsWith(`${destination}/`))) continue;
       if (state.dirty.has(file)) dirtyRefusals.push(`${file}: has uncommitted changes and would be rewritten`);
     }
     if (dirtyRefusals.length) return refuse(dirtyRefusals);
