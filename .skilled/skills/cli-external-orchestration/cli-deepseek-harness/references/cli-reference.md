@@ -9,7 +9,7 @@ trigger_phrases:
   - "dsh launcher patch flag"
 importance_tier: important
 contextType: implementation
-version: 1.0.4.0
+version: 1.0.5.0
 ---
 
 # DeepSeek Harness CLI - Headless Command Reference
@@ -40,7 +40,7 @@ Keeps the observed dsh headless contract in one place: which options exist, whic
 | Composed config | What the route and lineage patches change | `.../002-dsh-offline-contract-pin/evidence/dump-config-llmgateway.txt`, `dump-config-opencode-go.txt` |
 | Keyless run | The failure stream and exit code | `.../002-dsh-offline-contract-pin/evidence/missing-credential.stdout.jsonl`, `missing-credential.stderr.txt`, `exit.txt` |
 | Plugin boot | A relative plugin loads before the provider call | `.../002-dsh-offline-contract-pin/evidence/plugin-boot.txt` |
-| Re-pin to rc.3 | The rc.3 version, integrity and dist-tags, and the runbook probes on it | `.../019-dsh-repin-rc3/evidence/` |
+| Re-pin to rc.3 | The rc.3 version, integrity and dist-tags, and the runbook probes on it | `.../017-dsh-rc3-repin/scratch/measured-before.txt`, `.../017-dsh-rc3-repin/scratch/probes/` |
 
 Keyed results are route-specific. The LLM Gateway result is verified below, and OpenCode Go was proven on 2026-11-07 with an API key against `https://opencode.ai/zen/go/v1`. Behaviors outside the saved probes remain UNKNOWN with their evidence gaps named.
 
@@ -51,9 +51,9 @@ Keyed results are route-specific. The LLM Gateway result is verified below, and 
 | Field | Value | Source |
 |---|---|---|
 | Package | `@deepseek-ai/dsh` | `dist-tags.json` |
-| Version | `0.2.2-rc.3` | `.../019-dsh-repin-rc3/evidence/version.txt` |
-| Integrity | `sha512-S+4oUYVKWuc1SCMMp1mpUa2llxVy0o9gIgp7TDg/Ea7PuvXVkAfnykqSH1/oDXVB+y5VzEm0QIJulo1LIB3qRg==` | `.../019-dsh-repin-rc3/evidence/integrity.txt` |
-| Dist-tags at capture | `latest` `0.2.2-rc.1`, `next` `0.2.2-rc.3`, `alpha` `0.2.2-alpha.3` | `.../019-dsh-repin-rc3/evidence/dist-tags.json` |
+| Version | `0.2.2-rc.3` | `.../017-dsh-rc3-repin/scratch/measured-before.txt` |
+| Integrity | `sha512-S+4oUYVKWuc1SCMMp1mpUa2llxVy0o9gIgp7TDg/Ea7PuvXVkAfnykqSH1/oDXVB+y5VzEm0QIJulo1LIB3qRg==` | `.../017-dsh-rc3-repin/scratch/measured-before.txt` |
+| Dist-tags at capture | `next` `0.2.2-rc.3`, `latest` `0.2.2-rc.1`, `alpha` `0.2.2-alpha.3` (2026-11-14) | `.../017-dsh-rc3-repin/scratch/measured-before.txt` |
 
 This table is the packet's one pin record, and the `pinned-version-required` hard rule enforces the same version. The research run saw `latest` at `0.2.1-rc.5` a day before this capture, so the tag moves and is never a pin. A new release is re-pinned offline before any dispatch uses it. The pin moved from `0.2.2-rc.1` to `0.2.2-rc.3` on 2026-11-14, after the repin runbook's probes passed on rc.3.
 

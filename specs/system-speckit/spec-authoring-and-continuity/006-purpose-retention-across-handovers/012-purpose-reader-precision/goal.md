@@ -82,7 +82,7 @@ and findings belong here.
 | Operator answers | Done | 2026-11-14: the five packets get no new sentence, a packet's own problem line takes precedence over its parent's, the goal objective carries the packet's own problem line and tests write their temporary folders to the system temp dir. All four are the planner's defaults |
 | Build start | Done | Start commit `26cfcdb603`. Every section 5 baseline reproduced. The probe read `own purpose read: 2931 of 2984`, `combinedOpening":203`, layout 8, short 7, three packets more than at planning. All 59 search texts counted as stated |
 | Phase built | Done | One DeepSeek V4.1 Flash max worker on dsh 0.2.2-rc.3 applied E1 to E24 in about three minutes, exit 0 with a `completed` final event |
-| Probe after | Done | `combinedOpening":0`, layout 0, short 0, `own purpose read: 2721 of 2985`. The extra packet is `019-dsh-repin-rc3`, which states its own purpose |
+| Probe after | Done | `combinedOpening":0`, layout 0, short 0, `own purpose read: 2721 of 2985`. The extra packet was the first rc.3 repin phase, since folded into `017-dsh-rc3-repin`, which states its own purpose |
 
 ### Deviations and findings
 

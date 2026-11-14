@@ -142,9 +142,8 @@ Summary for audit only. Each child's plan.md holds the detail.
 | 14 | 014-playbook-docs-and-closeout/ | Playbook, docs reconciliation, recursive strict validation | In Progress |
 | 15 | 015-dsh-hook-parity/ | Hook and plugin parity with OpenCode and Pi, interactive and leaf split, hook library layout | Complete |
 | 16 | 016-ci-red-check-repairs/ | Repair the five CI workflows left red: the committed private DSH prompt, the dsh-on-PATH dispatch test, playbook contract violations and two stale sk-doc baselines | Complete |
-| 17 | 017-dsh-single-executor-loop/ | Run one dsh lineage in `/deep:review` and `/deep:research` `:auto` through the shared builder with an isolated home and a completion check | Complete |
-| 18 | 018-dsh-single-executor-hardening/ | Close the open Fable P2 points on the single dsh lineage and the three loop faults its first live review exposed: stale home sweep, a per-kind `dispatchEnv` list, no stdout echo, a `:confirm` refusal, one registry row per finding and canonical dimension ids | Complete |
-| 19 | 019-dsh-repin-rc3/ | Repin dsh from 0.2.2-rc.1 to the installed 0.2.2-rc.3 and repeat the runbook's route, confinement, reasoning and fan-out probes on it | Complete |
+| 18 | 018-dsh-single-executor-loop/ | Run one dsh lineage in `/deep:review` and `/deep:research` `:auto` through the shared builder with an isolated home and a completion check | Complete |
+| 19 | 019-dsh-single-executor-hardening/ | Close the open Fable P2 points on the single dsh lineage and the three loop faults its first live review exposed: stale home sweep, a per-kind `dispatchEnv` list, no stdout echo, a `:confirm` refusal, one registry row per finding and canonical dimension ids | Complete |
 
 ### Phase Transition Rules
 
@@ -172,9 +171,8 @@ Summary for audit only. Each child's plan.md holds the detail.
 | 013-dsh-live-contract-pin | 014-playbook-docs-and-closeout | Keyed routes verified or marked | route status recorded in the packet |
 | 014-playbook-docs-and-closeout | 015-dsh-hook-parity | Playbook and docs reconciled for the dsh release | repo-guards, sweep, mirror and matrix suites pass, and both keyless compositions are recorded in `015/evidence/` |
 | 015-dsh-hook-parity | 016-ci-red-check-repairs | Phase 015 is Complete and the five workflows name their causes | `validate.sh` on `016-ci-red-check-repairs` prints `RESULT: PASSED` |
-| 016-ci-red-check-repairs | 017-dsh-single-executor-loop | Phase 016 is Complete and the single dsh refusal is traced to both `:auto` YAMLs | `validate.sh` on `017-dsh-single-executor-loop` prints `RESULT: PASSED` |
-| 017-dsh-single-executor-loop | 018-dsh-single-executor-hardening | Phase 017 is committed, because phase 018's search texts are its two harness branches | `git log -1 --format=%h 1bedb33577` prints `1bedb33577` and `rg -c 'completionCheck: validateDshCompletion,' .skilled/commands/deep/assets/deep-review-auto.yaml` prints 1 |
-| 018-dsh-single-executor-hardening | 019-dsh-repin-rc3 | The installed dsh is 0.2.2-rc.3 and no branch carries a repin. Phase 019 does not wait for 018, and 018's harness worker runs on the new pin | A version probe in a temp home prints `0.2.2-rc.3` and `rg -c "DSH_VERSION = '0.2.2-rc.3'" .skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs` prints 1 |
+| 016-ci-red-check-repairs | 018-dsh-single-executor-loop | Phase 016 is Complete and the single dsh refusal is traced to both `:auto` YAMLs | `validate.sh` on `018-dsh-single-executor-loop` prints `RESULT: PASSED` |
+| 018-dsh-single-executor-loop | 019-dsh-single-executor-hardening | Phase 018 is committed, because phase 019's search texts are its two harness branches | `git log -1 --format=%h 1bedb33577` prints `1bedb33577` and `rg -c 'completionCheck: validateDshCompletion,' .skilled/commands/deep/assets/deep-review-auto.yaml` prints 1 |
 <!-- /ANCHOR:phase-map -->
 
 ---
