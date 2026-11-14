@@ -203,8 +203,8 @@
     ],
     "causal_summary": "An agent that runs `/speckit:plan`, `/speckit:implement` or `/speckit:complete` reads the same goal block, checkpoint options and documentation levels three times, and the copies already disagree",
     "created_at": "2026-11-14T11:33:24Z",
-    "last_save_at": "2026-11-14T12:17:10.429Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-14T15:13:12.331Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -213,13 +213,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:aaf23a3a94c85f667d2da3d6b4ffa86d48f1cbdbb65d3e36f29659fab196723e",
+    "source_fingerprint": "sha256:c77d54c1ee1cb851c3479ce75b0b6aa07c0fce87c5e4a3264d8b2fffe2cb6f0e",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "449b6dd1b80f2ed553d0b2204ec03941d714b979b2c205c70e0a5edec9344e10",
       "plan.md": "86491a47839def60e7b3f392db5b577aad9eb6762680fb85c18d68a3af3b3b14",
       "tasks.md": "a618ef3c771967f3a516d7d767daf6193b2d646ff66a62855a10e8effd4be90e",
-      "implementation-summary.md": "f99626abca72741c3fbc0d579d5a5feef086b93e13718e244f40425f17a1bb8a"
+      "implementation-summary.md": "bd2dfe15100cbb07cefde588261b3b1381dcf606f056247b559dacd7ed94083c"
     },
     "last_active_at": null
   }

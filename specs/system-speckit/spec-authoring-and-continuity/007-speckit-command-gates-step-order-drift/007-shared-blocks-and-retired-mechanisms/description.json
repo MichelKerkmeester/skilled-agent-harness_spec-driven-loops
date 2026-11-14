@@ -1,11 +1,12 @@
 {
+  "level": "2",
   "specFolder": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms",
   "description": "Phase 7: shared-blocks-and-retired-mechanisms",
   "keywords": [
     "phase",
     "shared-blocks-and-retired-mechanisms"
   ],
-  "lastUpdated": "2026-11-14T11:33:25.045Z",
+  "lastUpdated": "2026-11-14T15:13:12.331Z",
   "specId": "007",
   "folderSlug": "shared-blocks-and-retired-mechanisms",
   "parentChain": [
@@ -13,7 +14,8 @@
     "spec-authoring-and-continuity",
     "007-speckit-command-gates-step-order-drift"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "14-11-26_16-13__closed-phase-6-change-set-2a9575030b-docs.md"
+  ]
 }

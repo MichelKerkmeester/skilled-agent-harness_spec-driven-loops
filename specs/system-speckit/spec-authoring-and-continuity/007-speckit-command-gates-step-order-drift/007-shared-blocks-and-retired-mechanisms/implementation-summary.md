@@ -8,16 +8,29 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/007-shared-blocks-and-retired-mechanisms"
-    last_updated_at: "2026-11-14T11:33:25Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialized Level 2 template"
-    next_safe_action: "Replace continuity placeholders"
+    last_updated_at: "2026-11-14T15:13:12Z"
+    last_updated_by: "generate-context"
+    recent_action: "Built the phase 7 target files in scratch and edited nothing in the repository"
+    next_safe_action: "Run /speckit:implement on phase 7, starting with its Setup tasks"
+    packet_purpose: "Purpose: Each block that the lifecycle workflows share lives in one file, and every path, key, step and timer left in those workflows resolves or is used by a step."
     blockers: []
-    key_files: []
+    key_files:
+      - ".skilled/commands/speckit/assets/speckit-plan.yaml"
+      - ".skilled/commands/speckit/assets/speckit-implement.yaml"
+      - ".skilled/commands/speckit/assets/speckit-complete.yaml"
+      - ".skilled/commands/speckit/assets/speckit-lifecycle-shared.yaml"
+      - ".opencode/plugins/tests/speckit-goal-offer-contract.test.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-007-shared-blocks-and-retired-mechanisms"
       parent_session_id: null
+    session_ref:
+      runtime: "claude"
+      sessionId: "b582b550-74d5-4829-aebf-0d6d798bebe0"
+      workspace: "/Users/michelkerkmeester/worktrees/public/381-speckit-command-gates-step-order-drift"
+      savedAt: "2026-11-14T15:13:12Z"
+      locatorKind: "transcript_path"
+      version: 1
     completion_pct: 0
     open_questions: []
     answered_questions: []
