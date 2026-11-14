@@ -1,7 +1,7 @@
 ---
 title: "Scripts: drift-guard gate runner"
 description: "Single entry point that runs all sk-code drift guards as one completion gate."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # Scripts
@@ -30,7 +30,7 @@ scripts/
 | File | Purpose |
 |------|---------|
 | `run-all-drift-guards.sh` | Runs `verify_alignment_drift.py --check-router`, `verify_stack_folders.py`, `verify-router-sync.cjs --checks 1a,1b,2,3,4` and `verify-doc-claims.cjs` in order, printing a PASS/FAIL line per guard; a comment after the router-sync guard records what it covers and what stays in CI. The script counts each guard's `[WARN]` lines and shows the total in the summary without failing the gate |
-| `tests/verify-router-sync.test.cjs` | Builds a throwaway hub and proves router check 1b stays quiet for a doc reached through a surface symlink, skips a Git-ignored doc, reports an untracked doc that is not ignored, runs without `--checks` and proves check 2 reads the `ROUTER.md` shared-controls block. Run it with `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs`. |
+| `tests/verify-router-sync.test.cjs` | Builds a throwaway hub and proves router check 1b stays quiet for a doc reached through a surface symlink, skips a Git-ignored doc, reports an untracked doc that is not ignored, runs without `--checks`, proves check 2 reads the `ROUTER.md` shared-controls block and proves check 2 fails when a mirrored surface's keyword copies or a registry alias disagree with `hub-router.json`. Run it with `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-router-sync.test.cjs`. |
 | `tests/verify-doc-claims.test.cjs` | Builds a throwaway hub and proves each check of `verify-doc-claims.cjs` passes on a clean tree and fails on its own known-bad input, and that an allowlisted line stays quiet. Run it with `node --test .skilled/skills/sk-code/sk-code-skilled/scripts/tests/verify-doc-claims.test.cjs`. |
 
 ---

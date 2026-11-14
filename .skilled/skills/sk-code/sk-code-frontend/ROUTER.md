@@ -6,7 +6,7 @@ trigger_phrases:
   - "figma to code routing"
 importance_tier: normal
 contextType: general
-version: 1.1.2.0
+version: 1.1.3.0
 router_state: active
 skill_pointer: SKILL.md
 ---
@@ -41,17 +41,21 @@ No intent maps `assets/tokens.css`, so `RESOURCE_MAP` never emits it. Open it fr
 
 ## 2. INTENT MODEL
 
-- **`FRONTEND_WEB`** fires on `semantic html markup`. It loads `references/frontend-practice.md` and `references/web-markup-and-css.md`.
-- **`WEB_ELEMENTS`** fires on `html form autocomplete`, `dialog element`, or `popover attribute`. It loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-elements-and-attributes.md`.
-- **`WEB_CASCADE`** fires on `css cascade layers` or `css specificity conflict`. It loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-cascade-and-selectors.md`.
-- **`WEB_LAYOUT`** fires on `container query layout` or `css stacking context`. It loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-layout-and-sizing.md`.
-- **`WEB_A11Y`** fires on `web accessibility pattern`, `focus visible styling`, `keyboard focus`, `broken tab order`, `accessible name`, `aria live region`, `focus ring accessibility`, `focus outline removed`, `screen reader support`, `aria label missing`, `alt text missing`, or `wcag audit`. It loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-accessibility-patterns.md`.
-- **`WEB_PERF`** fires on `web font loading` or `largest contentful paint`. It loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-performance-and-loading.md`.
-- **`WEB_I18N`** fires on `right to left layout` or `bidirectional text`. It loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-internationalization.md`.
-- **`WEB_VISUAL_VALUES`** fires on `what padding should this have`, `how much padding`, `what font size should this be`, `spacing between elements`, `spacing scale`, `type scale`, `build a color palette`, `shade ramp`, `box shadow elevation`, `border radius consistency`, `contrast ratio failure`, `grey text on colored background`, `dark mode palette`, `concentric border radius`, `layered shadows`, `shadow color on dark surface`, `tabular numbers`, `what should this button look like`, `colour decision`, `color decision`, `padding`, `type scale for`, `font size`, `colour palette`, `color palette`, `contrast ratio`, `corner radius`, `box shadow`, `contrast of`, `check the contrast`, `colour contrast`, `color contrast`, `muted text`, or `spacing between`. It loads `references/frontend-practice.md` and `references/web-visual-values.md`.
-- **`WEB_VISUAL_HIERARCHY`** fires on `ui looks off`, `looks amateur`, `feels cluttered`, `make this look better`, `make this ui look designed`, `visual hierarchy`, `no visual hierarchy`, `nothing draws the eye`, `everything competes for attention`, `everything looks the same`, `emphasize by de-emphasizing`, `how to style a destructive button`, `this page feels overwhelming`, `where do i start designing`, `design a new screen from scratch`, `how much white space`, `why does this look wrong`, `does this look right`, `critique this design`, `design critique`, `visual audit`, `design review findings`, `design review`, `review this design`, `review this screen`, `ux laws`, `cognitive load`, `progressive disclosure`, `empty state design`, `look wrong`, `looks wrong`, `looks off`, `type hierarchy`, or `visual review`. It loads `references/frontend-practice.md`, `references/web-visual-hierarchy.md`, `references/web-visual-values.md`, and `references/web-accessibility-patterns.md`.
-- **`WEB_MOTION`** fires on `animation duration`, `transition duration`, `easing curve`, `spring versus easing`, `twelve principles of animation`, `when not to animate`, `response time budget`, `touch target size`, `hover state`, `active pressed state`, `disabled state styling`, `button states`, `animation`, `transition timing`, `hover`, `focus-visible`, `interaction states`, or `easing`. It loads `references/frontend-practice.md` and `references/web-motion-and-interaction.md`.
-- **`FIGMA_TO_CODE`** fires on `figma to code`, `check built screen against figma`, `compare build with figma frame`, `figma frame`, `figma frame check`, or `implement a figma design`. It loads `references/figma-to-code.md` and `references/frontend-practice.md`.
+The keywords and weights of each intent are authored once, in the `INTENT_SIGNALS` block of section 3. Read them there. `hub-router.json` holds the same keywords in the three `code-frontend` classes and the hub `ROUTER.md` holds them in its own rows. Check 2 of `verify-router-sync.cjs` fails when the three differ.
+
+What each intent loads:
+
+- **`FRONTEND_WEB`** loads `references/frontend-practice.md` and `references/web-markup-and-css.md`.
+- **`WEB_ELEMENTS`** loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-elements-and-attributes.md`.
+- **`WEB_CASCADE`** loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-cascade-and-selectors.md`.
+- **`WEB_LAYOUT`** loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-layout-and-sizing.md`.
+- **`WEB_A11Y`** loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-accessibility-patterns.md`.
+- **`WEB_PERF`** loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-performance-and-loading.md`.
+- **`WEB_I18N`** loads `references/frontend-practice.md`, `references/web-markup-and-css.md`, and `references/web-internationalization.md`.
+- **`WEB_VISUAL_VALUES`** loads `references/frontend-practice.md` and `references/web-visual-values.md`.
+- **`WEB_VISUAL_HIERARCHY`** loads `references/frontend-practice.md`, `references/web-visual-hierarchy.md`, `references/web-visual-values.md`, and `references/web-accessibility-patterns.md`.
+- **`WEB_MOTION`** loads `references/frontend-practice.md` and `references/web-motion-and-interaction.md`.
+- **`FIGMA_TO_CODE`** loads `references/figma-to-code.md` and `references/frontend-practice.md`.
 
 ---
 

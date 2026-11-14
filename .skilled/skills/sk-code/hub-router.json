@@ -17,6 +17,7 @@
     "discoveryClasses": ["hub-identity"],
     "discoveryClassesContract": "Classes listed here are hub discovery/defer evidence only. They are intentionally referenced by NO mode's scoring classes: hub-identity vocabulary describes the router itself, so a prompt carrying only it scores zero modes and defers instead of bundling every workflow mode and surface at once."
   },
+  "vocabularyMirrors": ["sk-code-frontend"],
   "routerSignals": {
     "sk-code-quality": {
       "weight": 4,
