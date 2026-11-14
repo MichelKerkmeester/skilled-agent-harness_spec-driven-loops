@@ -1,0 +1,28 @@
+# timeoutMs: 450 (before the change). Command: bash scratch/killer-load.sh 160 <output dir>, run from the repository root on an 18-core machine.
+parallel runs: 160, failed runs: 14
+# Every failed run failed the same way. One of them:
+✖ killer keeps the record armed when the target exits during its grace period (1626.675959ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2035.877625
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/killer.test.cjs:775:1
+✖ killer keeps the record armed when the target exits during its grace period (1626.675959ms)
+  Error: ENOENT: no such file or directory, open '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-killer-Ks4TIp/target-signal'
+      at Object.readFileSync (node:fs:624:20)
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.skilled/hooks/session-relaunch/tests/killer.test.cjs:794:21)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/session-relaunch-killer-Ks4TIp/target-signal'
+  }

@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/007-killer-test-margin",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/007-killer-test-margin",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "killer test margin",
+      "phase 7 killer test margin",
+      "killer grace period test flaky",
+      "killer timeoutMs 450",
+      "killer test margin plan",
+      "killer test margin tasks",
+      "killer test margin acceptance criteria",
+      "killer test margin goal",
+      "killer test margin implementation summary"
+    ],
+    "key_topics": [
+      "killer",
+      "test",
+      "margin",
+      "phase",
+      "grace",
+      "period",
+      "flaky",
+      "timeoutms",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/tests/killer.test.cjs",
+      "scratch/killer-load.sh",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      ".skilled/hooks/session-relaunch/lib/killer.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "killer.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/killer.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "killer-load.sh",
+        "kind": "script",
+        "path": "scratch/killer-load.sh",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "killer.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/killer.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Test",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The test `killer keeps the record armed when the target exits during its grace period` ran the killer with `idleMs: 400` and `timeoutMs: 450`",
+    "created_at": "2026-11-14T04:47:40Z",
+    "last_save_at": "2026-11-14T05:33:15.255Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:98021fdc31e471fd7cc7077eafa5b1e7588328f8898535656f8a2c3d1e921abd",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "0a3006078688e342b273d2a3a3aa16af8c047f259ee800e9fffa4e7242171fb1",
+      "plan.md": "b88df09c73c5b64ab05b3f49f14f58cc20b276cb13f20ae6f45895d0d2c20a9c",
+      "tasks.md": "630f503ab37d2280871f4c3017695db4fd3bf4dfdb7a5e72814b9481e1ccdbf4",
+      "implementation-summary.md": "23b6524dc44a73c534d00049bf7896ab7401a63d744956777cb4cfdf59044ddd"
+    },
+    "last_active_at": null
+  }
+}

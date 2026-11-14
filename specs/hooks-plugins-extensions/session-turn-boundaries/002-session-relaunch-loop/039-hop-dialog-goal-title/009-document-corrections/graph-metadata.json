@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/009-document-corrections",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "document corrections",
+      "phase 9 document corrections",
+      "parent goal binding rows 038 and 039",
+      "phase 033 complete",
+      "playbook case names",
+      "document corrections plan",
+      "document corrections tasks",
+      "document corrections acceptance criteria",
+      "document corrections goal",
+      "document corrections implementation summary"
+    ],
+    "key_topics": [
+      "document",
+      "corrections",
+      "phase",
+      "parent",
+      "goal",
+      "binding",
+      "rows",
+      "complete",
+      "playbook",
+      "case",
+      "names",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/goal.md",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation/spec.md",
+      ".skilled/skills/sk-git/SKILL.md",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/graph-metadata.json",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation/goal.md",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/033-research-remediation/graph-metadata.json",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/011-permission-mode-carry/implementation-summary.md",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/011-permission-mode-carry/acceptance-criteria.md",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/011-permission-mode-carry/goal.md",
+      "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/038-goal-and-workflow-resume/011-permission-mode-carry/graph-metadata.json",
+      ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+      "scratch/goal-002-parent.txt",
+      "scratch/validate-033.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-claude.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-claude.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": "specs/hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-pi-opencode.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-spec-kit/manual-testing-playbook/plugins-and-hooks/session-relaunch-pi-opencode.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal-002-parent.txt",
+        "kind": "file",
+        "path": "scratch/goal-002-parent.txt",
+        "source": "derived"
+      },
+      {
+        "name": "validate-033.txt",
+        "kind": "file",
+        "path": "scratch/validate-033.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Five",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Evidence",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 2026-11-13 research found five places where a document said something the code or the recorded evidence no longer supported",
+    "created_at": "2026-11-14T04:47:42Z",
+    "last_save_at": "2026-11-14T07:11:06.743Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:cb2bec15539e9c534f560a1ca958f925b1dcd10b8ed63da58d300277150a04af",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "b72dff242a4d114abce6e0c37e275e44e2440ddba7ec309142c1ad05fe69c73c",
+      "plan.md": "fad4da95bf41f65962da309e7304020e26dcb16bf32cbf680692ad55b62a836e",
+      "tasks.md": "f18d92e11b0d8e183950f03ffe90001d15317fc8f318f8863a912cffdd3d9944",
+      "implementation-summary.md": "6d77c50771b605cb50f269e00636c883016e9ad554151699d8fb126aed9723fa"
+    },
+    "last_active_at": null
+  }
+}

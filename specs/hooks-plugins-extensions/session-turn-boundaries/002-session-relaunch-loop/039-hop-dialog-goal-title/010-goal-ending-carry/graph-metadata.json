@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/010-goal-ending-carry",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/010-goal-ending-carry",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "goal ending carry",
+      "phase 10 goal ending carry",
+      "ended claude goal comes back after a hop",
+      "goal_ended note field",
+      "goal ending carry plan",
+      "goal ending carry tasks",
+      "goal ending carry acceptance criteria",
+      "goal ending carry goal",
+      "goal ending carry implementation summary"
+    ],
+    "key_topics": [
+      "goal",
+      "ending",
+      "carry",
+      "phase",
+      "ended",
+      "claude",
+      "comes",
+      "back",
+      "hop",
+      "note",
+      "field",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+      ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+      ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs",
+      ".skilled/hooks/session-relaunch/README.md",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      ".skilled/skills/sk-git/SKILL.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-cli.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal-lifecycle.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Goal Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A Claude sender whose goal was met, failed or cleared hands over no goal",
+    "created_at": "2026-11-14T04:47:43Z",
+    "last_save_at": "2026-11-14T05:35:59.976Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:5d437bff0caa504ecd3214b24d9c0a027887b7906b0e8c0a7393ab1c66610006",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "eb3687f6be084689f47715084553ba3246d0e17956b983fd84601f613f160f62",
+      "plan.md": "04b32401f8831bcfefec428d4379a9d5a629a39fb625969fde2483b27d6127a4",
+      "tasks.md": "405babba1ebe2212a2da812c374eb3d72cbfcd7b9f09988d76207cc69e1889aa",
+      "implementation-summary.md": "80bd106d5f80a88a185c944682380cc6358c663d00dab27dbf4d1d731cd6e39a"
+    },
+    "last_active_at": null
+  }
+}

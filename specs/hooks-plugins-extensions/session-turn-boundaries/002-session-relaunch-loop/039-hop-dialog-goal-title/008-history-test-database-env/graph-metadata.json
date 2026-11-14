@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/008-history-test-database-env",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/008-history-test-database-env",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "history test database env",
+      "phase 8 history test database env",
+      "opencode_db history lookup test",
+      "store_unreadable inherited database name",
+      "history test database env plan",
+      "history test database env tasks",
+      "history test database env acceptance criteria",
+      "history test database env goal",
+      "history test database env implementation summary"
+    ],
+    "key_topics": [
+      "history",
+      "test",
+      "database",
+      "env",
+      "phase",
+      "lookup",
+      "inherited",
+      "name",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".opencode/plugins/tests/session-history-lookup.test.cjs",
+      "scratch/red.txt",
+      "scratch/green.txt",
+      ".skilled/hooks/shared/session-readers/opencode.mjs",
+      ".skilled/hooks/shared/tests/session-readers/opencode.test.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-history-lookup.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/session-history-lookup.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "opencode.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/opencode.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode.test.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/tests/session-readers/opencode.test.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview One",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Scoped",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The history lookup reader takes its database name from `OPENCODEDB` (`.skilled/hooks/shared/session-readers/opencode.mjs:58`)",
+    "created_at": "2026-11-14T04:47:41Z",
+    "last_save_at": "2026-11-14T07:11:16.280Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:6c729008b74db2d91b4f29d19f9daec8bbca01ed08bb54e699afa468b5aecfdb",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "cd81e2ef73ecc0e2de99137daa0965aaff93b78b99773f7fa38b9f8df426dca9",
+      "plan.md": "975a0f40eba13bff11cd54b1e4ca845bf52ff7faa649b2c1faf0b42c95e3a68c",
+      "tasks.md": "a4ab500703ccae3ef238a8ce7b18db75a5accac14cea0af2acc72a4138fd8eca",
+      "implementation-summary.md": "2a50cb5eda91e117a1b27d21857daa8ee0ce1eaa148dbf3d063d969db5e9bb51"
+    },
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,36 @@
+# Command: env -u AI_SESSION_CHILD -u OPENCODE_DB node --test --test-name-pattern='looks no further up|nearest unfinished packet goal' .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs
+✔ resolveGoalPacket gives a Claude sender with no goal entry the nearest unfinished packet goal (10.268208ms)
+✖ resolveGoalPacket looks no further up than the parent of the note folder (3.558167ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 53.387041
+
+✖ failing tests:
+
+test at .skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2828:1
+✖ resolveGoalPacket looks no further up than the parent of the note folder (3.558167ms)
+  AssertionError [ERR_ASSERTION]: the only open goal is two levels up
+  + actual - expected
+  
+  + 'specs/hooks/023-session-relaunch-loop'
+  - ''
+  
+      at TestContext.<anonymous> (/Users/michelkerkmeester/worktrees/public/373-relaunch-gap-fixes/.skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs:2843:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'specs/hooks/023-session-relaunch-loop',
+    expected: '',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

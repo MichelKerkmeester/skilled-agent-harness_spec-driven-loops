@@ -1,0 +1,226 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/006-record-without-handoff",
+  "spec_folder": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title/006-record-without-handoff",
+  "parent_id": "hooks-plugins-extensions/session-turn-boundaries/002-session-relaunch-loop/039-hop-dialog-goal-title",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "record without handoff",
+      "phase 6 record without handoff",
+      "relaunch record no handoff field",
+      "readRelaunchFile corrupt relaunch file",
+      "record without handoff plan",
+      "record without handoff tasks",
+      "record without handoff acceptance criteria",
+      "record without handoff goal",
+      "record without handoff implementation summary"
+    ],
+    "key_topics": [
+      "record",
+      "without",
+      "handoff",
+      "phase",
+      "relaunch",
+      "field",
+      "readrelaunchfile",
+      "corrupt",
+      "file",
+      "plan",
+      "tasks",
+      "acceptance"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+      ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+      ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs",
+      ".skilled/hooks/session-relaunch/README.md",
+      "scratch/red.txt",
+      "scratch/green.txt"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "goal.md",
+        "kind": "doc",
+        "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "subagent-guard.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/subagent-guard.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "claude-adapters.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/claude-adapters.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-relaunch-cli.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-relaunch/tests/session-relaunch-cli.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "opencode-goal-lifecycle.test.cjs",
+        "kind": "file",
+        "path": ".opencode/plugins/tests/opencode-goal-lifecycle.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-relaunch/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "red.txt",
+        "kind": "file",
+        "path": "scratch/red.txt",
+        "source": "derived"
+      },
+      {
+        "name": "green.txt",
+        "kind": "file",
+        "path": "scratch/green.txt",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Validate",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A relaunch record that parsed as JSON but held no `handoff` field was read as a real pending record",
+    "created_at": "2026-11-14T04:47:39Z",
+    "last_save_at": "2026-11-14T07:11:13.457Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "goal.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:71d98a2e3ea7369139e1c593624dc5d6aa0d250f720a5363aa109c835ded759a",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "ee6cc5e01e2c58d0532d4d26b6f7725014976e07473c4d84744a1efbf0e66ad3",
+      "plan.md": "23a60092f1abb805fecb0b50487e2f40cb1c5b504871b59e9efbdb355e0ac435",
+      "tasks.md": "16c6a758029bb7e3d4fdda32d8a12c31ddc676ac0bf7a9dd8106ce11ab5ed933",
+      "implementation-summary.md": "18be8df8f4fa1bdcbd885bd20715db55cc07fa1a9420d311526e099c310ae10f"
+    },
+    "last_active_at": null
+  }
+}
