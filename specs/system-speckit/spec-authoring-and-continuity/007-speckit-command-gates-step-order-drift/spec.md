@@ -208,7 +208,7 @@ All paths are under `.skilled/commands/speckit/`. Per-phase detail lives in each
 | 4 | 004-code-review-and-dispatch-policy/ | The code review step is dispatched, and plan has one dispatch policy | Complete |
 | 5 | 005-resume-detection-and-single-workflow/ | Resume opens the calling session's packet and runs from one workflow file | Complete |
 | 6 | 006-save-search-handoff-contracts/ | Save, search and handoff each state one contract | Complete |
-| 7 | 007-shared-blocks-and-retired-mechanisms/ | Repeated blocks live once, and retired mechanisms and unenforceable ceremony are gone | Pending |
+| 7 | 007-shared-blocks-and-retired-mechanisms/ | Repeated blocks live once, and retired mechanisms and unenforceable ceremony are gone | Complete |
 | 8 | 008-router-readme-presentation-alignment/ | Routers, README, presentation files and asset names match the workflows | Pending |
 
 ### Phase Transition Rules

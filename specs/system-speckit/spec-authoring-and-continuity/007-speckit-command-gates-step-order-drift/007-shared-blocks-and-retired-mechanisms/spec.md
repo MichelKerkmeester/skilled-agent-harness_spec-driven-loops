@@ -22,7 +22,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `scaffold/007-shared-blocks-and-retired-mechanisms` |
 | **Parent Spec** | ../spec.md |

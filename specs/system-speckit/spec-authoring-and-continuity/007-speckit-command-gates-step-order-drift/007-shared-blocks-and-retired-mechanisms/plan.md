@@ -35,14 +35,14 @@ Create `assets/speckit-lifecycle-shared.yaml` and replace five repeated blocks i
 ## 2. QUALITY GATES
 
 ### Definition of Ready
-- [ ] Phase 6 `acceptance-criteria.md` has no `Unmet` row: `rg -c '\| Unmet \|' specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts/acceptance-criteria.md` prints nothing, and `ls` of that path prints it.
-- [ ] Both contract tests pass before the first edit: `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` prints `failed=0` and `node --test .opencode/plugins/tests/speckit-goal-offer-contract.test.cjs` prints `ℹ fail 0`.
-- [ ] The block diffs in `spec.md` are rerun on the post-phase-6 tree and any new drift is named before the move.
+- [x] Phase 6 `acceptance-criteria.md` has no `Unmet` row: `rg -c '\| Unmet \|' specs/system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/006-save-search-handoff-contracts/acceptance-criteria.md` prints nothing, and `ls` of that path prints it.
+- [x] Both contract tests pass before the first edit: `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` prints `failed=0` and `node --test .opencode/plugins/tests/speckit-goal-offer-contract.test.cjs` prints `ℹ fail 0`.
+- [x] The block diffs in `spec.md` are rerun on the post-phase-6 tree and any new drift is named before the move.
 
 ### Definition of Done
-- [ ] Every row in `acceptance-criteria.md` is `Met` with the observed output in its Verification cell.
-- [ ] `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` exits 0 and prints `failed=0`, and `node --test .opencode/plugins/tests/speckit-goal-offer-contract.test.cjs` exits 0 and prints `ℹ fail 0`.
-- [ ] `validate.sh --strict` prints `RESULT: PASSED` for this folder.
+- [x] Every row in `acceptance-criteria.md` is `Met` with the observed output in its Verification cell.
+- [x] `node .skilled/skills/system-spec-kit/runtime/cli/tests/test-phase-command-workflows.js` exits 0 and prints `failed=0`, and `node --test .opencode/plugins/tests/speckit-goal-offer-contract.test.cjs` exits 0 and prints `ℹ fail 0`.
+- [x] `validate.sh --strict` prints `RESULT: PASSED` for this folder.
 <!-- /ANCHOR:quality-gates -->
 
 ---
