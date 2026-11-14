@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Planned, not built. This phase holds the plan for seven edits that let the purpose helper read a purpose written without a ### Purpose heading. No file outside this packet has changed yet."
+description: "Built 2026-11-14. The purpose helper now reads a purpose written under a level-two purpose heading or as a labelled paragraph, drops a list marker and keeps a sentence whole across an abbreviation."
 trigger_phrases:
   - "purpose reader coverage implementation summary"
 importance_tier: "normal"
@@ -20,7 +20,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-007-purpose-reader-coverage"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -39,7 +39,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 007-purpose-reader-coverage |
-| **Completed** | Not built. Planned 2026-11-14 |
+| **Completed** | 2026-11-14 |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -49,17 +49,19 @@ _memory:
 ## What Was Built
 <!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-Nothing is built yet. This packet holds the plan that answers findings 1 and 3 of the independent review of the purpose-carry work.
+A packet that states its purpose without an exact `### Purpose` heading now gets its own purpose after a resume, a relaunch or a compaction, instead of its parent purpose or nothing. Over the live `spec.md` files that lack the heading, the helper now reads an own purpose for 272 of 292, up from 0.
 
 ### Phase 7: purpose-reader-coverage
 
-The purpose helper reads a purpose only under an exact `### Purpose` heading. 292 live `spec.md` files lack that heading and 274 of them state a purpose under a level-two heading or in a labelled paragraph. `plan.md` section 4 holds seven edits that make the helper read those shapes, drop a list marker and keep a sentence whole across `e.g.` and `vs.`.
+The purpose helper reads a purpose only under an exact `### Purpose` heading. 292 live `spec.md` files lack that heading and 274 of them state a purpose under a level-two heading or in a labelled paragraph. Edits E1 to E5 in `packet-purpose.ts` added four constants, split the paragraph loop into `paragraphAfter` and taught `extractPurposeParagraph` the two older shapes, dropped a leading list marker and ended a sentence only outside an abbreviation. E6 added five tests and E7 the README row.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md`, `plan.md`, `tasks.md` | Created | The plan for the seven edits |
+| `.skilled/skills/system-spec-kit/runtime/lib/spec/packet-purpose.ts` | Modified | Reads the three purpose shapes, list marker and sentence end |
+| `.skilled/skills/system-spec-kit/runtime/tests/packet-purpose.vitest.ts` | Modified | Five new tests, nine in all |
+| `.skilled/skills/system-spec-kit/runtime/lib/spec/README.md` | Modified | Describes the widened reader |
 | `scratch/probe-reader.mjs` | Created | Prints what the built helper returns for named packets and counts own purposes over a file list |
 <!-- /ANCHOR:what-built -->
 
@@ -69,7 +71,7 @@ The purpose helper reads a purpose only under an exact `### Purpose` heading. 29
 ## How It Was Delivered
 <!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-Not delivered. Planning ran the five Measured Behavior commands in `spec.md` and counted every search text in `plan.md` section 4 once with `rg -c -F`. It could not start `node`, so the replacement code, the five new tests and the probe were not run.
+The orchestrator captured the baselines in `plan.md` section 5 and counted every search text once. One DeepSeek V4.1 Flash max worker, dispatched through cli-deepseek-harness with `--add-dir` for the two target folders, applied E1 to E7 and exited 0 with a `completed` final event. The orchestrator then reran every check below itself.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -95,7 +97,10 @@ Not delivered. Planning ran the five Measured Behavior commands in `spec.md` and
 |-------|--------|
 | The five Measured Behavior counts in `spec.md` | Run 2026-11-14: 2963 live files, 292 without the exact heading, 274 with a purpose heading, 33 with a label |
 | Search texts in `plan.md` section 4 | Each of the eight counted `1` |
-| The seven edits and the probe | Not run. Tasks T001 to T018 are open |
+| REQ-001, REQ-003, REQ-004 helper tests | `Tests  9 passed (9)`, including `ignores a purpose label outside a purpose section` and `drops a list marker and does not end the sentence at an abbreviation` |
+| REQ-002 probe | `001-goal-hooks-cross-runtime packet`, `001-deep-research packet`, `own purpose read: 272 of 292` |
+| REQ-005 callers | `(23 tests)` and `(18 tests)` pass, `npm run typecheck` exit 0 |
+| Lint and build | eslint exit 0, `npm run build` exit 0, `PURPOSE_SECTION_HEADING` appears twice in the built file |
 <!-- /ANCHOR:verification -->
 
 ---

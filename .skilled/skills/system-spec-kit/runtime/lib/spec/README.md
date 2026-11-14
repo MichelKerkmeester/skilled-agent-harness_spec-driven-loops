@@ -28,7 +28,7 @@ Current state:
 | File | Responsibility |
 |---|---|
 | `is-phase-parent.ts` | `isPhaseParent()`, `listPhaseChildren()`, and `assessPhaseParentHealth()` against the warning (20) and error (40) child-count thresholds. |
-| `packet-purpose.ts` | `resolvePacketPurpose()` and `formatPacketPurpose()`: the first sentence of a packet's `### Purpose`, else the nearest enclosing phase parent's, else its `goal.md` Objective. |
+| `packet-purpose.ts` | `resolvePacketPurpose()` and `formatPacketPurpose()`: the first sentence of a packet's purpose, read under `### Purpose`, in a paragraph labelled `Purpose:` or under a level-two purpose heading, else the nearest enclosing phase parent's, else its `goal.md` Objective. |
 
 ---
 
