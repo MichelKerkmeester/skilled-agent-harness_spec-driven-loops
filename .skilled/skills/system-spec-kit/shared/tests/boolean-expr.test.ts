@@ -135,17 +135,17 @@ function assert(cond: boolean, label: string): void {
 
 {
   const assetPath = fileURLToPath(
-    new URL('../../../../commands/speckit/assets/speckit-complete.yaml', import.meta.url),
+    new URL('../../../../commands/speckit/assets/speckit-save-context-tail.yaml', import.meta.url),
   );
   const asset = readFileSync(assetPath, 'utf8');
-  const block = asset.match(/write_continuity:[\s\S]*?(?=\n\s{4}[A-Za-z_][A-Za-z0-9_]*:)/)?.[0] ?? '';
+  const block = asset.match(/post_save_write:[\s\S]*?(?=\n {0,2}[A-Za-z_][A-Za-z0-9_]*:|$)/)?.[0] ?? '';
   assert(
     block.includes('after: "Immediately after the canonical spec document is refreshed on disk"'),
-    'write_continuity uses after for prose timing',
+    'post_save_write uses after for prose timing',
   );
   assert(
-    !block.includes('\n      when:'),
-    'write_continuity no longer stores prose timing under when',
+    !block.includes('\n    when:'),
+    'post_save_write stores no prose timing under when',
   );
 }
 

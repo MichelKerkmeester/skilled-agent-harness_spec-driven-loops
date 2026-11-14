@@ -360,12 +360,12 @@ The tool counts `/speckit:save` and `/speckit:search` used to carry were counts 
 | Suffix | Behavior |
 |---|---|
 | `:auto` | execute without approval gates |
-| `:autopilot`, `:unattended` or `--unattended` | run the branch-preserved unattended lifecycle and emit `SPECKIT_AUTOPILOT_RESULT` on terminal exits |
+| `:autopilot`, `:unattended` or `--unattended` | run the unattended lifecycle, in which the operator chooses the workspace and autopilot never merges, and emit `SPECKIT_AUTOPILOT_RESULT` on terminal exits |
 | `:confirm` | pause at each step for approval |
 | `:with-phases` | phase decomposition mode on planning or completion flows |
 | `:with-research` | dispatch deep research before verification, `/speckit:complete` only |
 
-Autopilot is distinct from `:auto`. It requires unattended task metadata during planning, preserves the branch on hard failure, skips merge unless verification is clean and limits terminal reasons to `no_eligible_tasks`, `retry_exhausted`, `verification_failed` and `uncertainty_blocked`.
+Autopilot is distinct from `:auto`. It requires unattended task metadata during planning, works in a worktree or on the current branch as bound at startup, preserves the branch on hard failure, never merges or pushes and limits terminal reasons to `no_eligible_tasks`, `retry_exhausted`, `verification_failed` and `uncertainty_blocked`.
 
 Command source files: `.skilled/commands/speckit/`.
 

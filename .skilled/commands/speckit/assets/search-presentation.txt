@@ -90,12 +90,22 @@ json    : <count> archived metadata file(s) (only with --include-archive)
 STATUS=OK RESULTS=<shown rows> HIDDEN=<files>/<matches> LANE=ripgrep
 ```
 
+The rows in the block above are the structured recipe's. The path-only and count recipes run through the same wrapper and keep the header, the `recipe` and `roots` lines and the status line, with one row per file:
+
+| Recipe | Row shape | Source |
+| --- | --- | --- |
+| 2.1 structured | `<path>:<line>  <field>  <matchClass>` | `record.results` |
+| 2.2 path-only | `<path>` | `record.paths` |
+| 2.3 count | `<count>  <path>` | `record.counts`, each entry's `count` and `path` |
+
+`HIDDEN` comes from `record.hidden` for all three. A path-only record carries no match count, so its `record.hidden.matches` is null: render `HIDDEN=<files>` for it.
+
 Filled example:
 
 ```text
 SPECKIT:SEARCH "trigger index generator"
 --------------------------------------------------
-recipe    2.2 path-only
+recipe    2.1 structured
 roots     specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission
 specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/spec.md:14  trigger_phrases  exact
 specs/system-speckit/runtime-and-release/001-system-speckit-v4/017-memory-database-decommission/001-trigger-index-replacement/tasks.md:34  body  phrase-containment
@@ -111,7 +121,7 @@ Field mapping:
 | The recipe actually run | `recipe` — its section number and name from `retrieval-conventions.md` Section 2 |
 | The positional search roots | `roots` |
 | Parsed match path and one-based line | `<path>:<line>` |
-| Rows returned by the structured recipe | `<shown rows>` in `RESULTS` |
+| Rows shown, from `record.results`, `record.paths` or `record.counts` | `<shown rows>` in `RESULTS` |
 | Evidence field per the ranking tuple | `<field>` — `trigger_phrases`, `title-or-description`, `anchor-marker`, or `body`, verbatim as `rg-wrapper.mjs` emits them |
 | Normalized match class per the ranking tuple | `<matchClass>` — one of `exact`, `phrase-containment`, `query-containment`, `token-overlap`, `partial`, the same five labels the lookup emits |
 | Matches collapsed into the same file row | Append `(+N more in this file)` when `result.moreInFile` is greater than 0; omit it when the value is 0 |
@@ -124,13 +134,13 @@ Rules:
 - Ripgrep produces matches, never a relevance ranking. Order rows with the Section 5 ranking tuple from `retrieval-conventions.md`: evidence field, then match class, then path and line. Never imply the tool ranked anything.
 - Do not invent a numeric score for this lane. There is none. A row carries a field, a class, a path and a line, and that is the whole record.
 - The `(+N more in this file)` suffix and the `HIDDEN` slot come from a `rg-wrapper.mjs` record with `schemaVersion: 3`, which keeps the first-ranked row per file and cuts at `--limit` files (default 20, `--limit 0` uncapped). Omit the suffix when `moreInFile` is 0.
-- `/speckit:search` runs the structured lane through the wrapper. When a phrase that starts with `--` forced the raw Section 2.1 recipe instead, there is no per-file shaping and no hidden count: omit the suffix and the `HIDDEN` slot, and report `RESULTS` as the matches rendered. Omit `HIDDEN` for path-only and count recipes too.
+- `/speckit:search` runs the structured lane through the wrapper. When a phrase that starts with `--` forced the raw Section 2.1 recipe instead, there is no per-file shaping and no hidden count: omit the suffix and the `HIDDEN` slot, and report `RESULTS` as the matches rendered. Path-only and count runs go through the wrapper as well, so their `HIDDEN` slot comes from `record.hidden`.
 - Render the `[archived]` label and the `json    :` section only for a run with `--include-archive`. Without the flag archived packets are not searched, the rows carry no `archived` field and the record has no `jsonLane`.
 - The `json    :` section comes from a second invocation that `--limit` does not bound. Print every path in `record.jsonLane.paths`, and count none of them in `RESULTS` or `HIDDEN`.
 - When only the `json    :` section matched, the record's outcome is `match` with exit `0` and no evidence rows. Render this display with `RESULTS=0` and the section, not the Section 4 no-hit.
 - Label a line inside an `<!-- ANCHOR:id -->` block as `anchor`, established by searching for the marker itself.
 - Report an unmatched or orphan anchor marker as a diagnostic line, never by silently dropping it.
-- One output mode per invocation. Never combine `--json` with the path-only or count modes; the last flag wins silently and a JSONL parser reads count output as empty.
+- One output mode per invocation. In a raw recipe never combine ripgrep's `--json` with the path-only or count flag; the last flag wins silently and a JSONL parser reads count output as empty. The wrapper's own `--json` is its record format and is safe on every wrapper recipe.
 
 ## 4. No-Hit Display
 

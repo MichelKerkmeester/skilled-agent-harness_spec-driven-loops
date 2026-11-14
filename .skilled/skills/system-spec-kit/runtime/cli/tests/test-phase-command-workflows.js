@@ -71,9 +71,14 @@ function testPhaseCommandContracts() {
     phaseText.includes(':with-phases') && documentsPhaseFolder(phaseText),
     '/speckit:plan and /speckit:complete document phase flags'
   );
+  // Plan and complete point at one shared phase decomposition block, so the
+  // create.sh call is pinned where it lives and each workflow must reach it.
+  const lifecycleShared = path.join(ASSETS_ROOT, 'speckit-lifecycle-shared.yaml');
+  const phasePointer = 'shared_tail: "assets/speckit-lifecycle-shared.yaml#phase_decomposition"';
   assertTrue(
-    readFile(planAutoYaml).includes('create.sh "{feature_description}" --phase') &&
-      readFile(completeAutoYaml).includes('create.sh "{feature_description}" --phase'),
+    readFile(lifecycleShared).includes('create.sh "{feature_description}" --phase') &&
+      readFile(planAutoYaml).includes(phasePointer) &&
+      readFile(completeAutoYaml).includes(phasePointer),
     'phase workflow assets route to create.sh --phase'
   );
 }
@@ -118,8 +123,7 @@ function testAssetPhaseFolderNotes() {
     'speckit-plan.yaml',
     'speckit-implement.yaml',
     'speckit-complete.yaml',
-    'speckit-resume-auto.yaml',
-    'speckit-resume-confirm.yaml',
+    'speckit-resume.yaml',
   ];
 
   for (const yaml of yamlAssets) {
@@ -138,7 +142,7 @@ function testAssetPhaseFolderNotes() {
       `${yaml} includes phase-folder/phase-child contract`
     );
 
-    if (yaml.startsWith('speckit-resume-')) {
+    if (yaml.startsWith('speckit-resume')) {
       assertTrue(
         text.includes('purpose_row:') && text.includes('Parent purpose (<repo-relative parent folder>)'),
         `${yaml} keeps the shared purpose label shape in purpose_row`
@@ -339,8 +343,8 @@ function testExecutionModeContracts() {
   assertTrue(exists(tailPath), 'shared save-context tail exists');
   const tail = readFile(tailPath);
   assertTrue(
-    tail.includes('save_context_core:') && tail.includes('tool_invocation:') && tail.includes('post_save_write:') && tail.includes('anchor_requirements:'),
-    'T-EM7: shared save-context tail carries the writer, post-save rule and anchor requirements'
+    tail.includes('save_context_core:') && tail.includes('tool_invocation:') && tail.includes('post_save_write:'),
+    'T-EM7: shared save-context tail carries the writer call and the post-save rule'
   );
 }
 

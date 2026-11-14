@@ -184,7 +184,7 @@ Structured workflows for the spec folder development lifecycle, plus packet cont
 
 | Command | Invocation | Purpose |
 |---------|------------|---------|
-| Complete | `/speckit:complete <description>` | Full end-to-end workflow (14+ steps) |
+| Complete | `/speckit:complete <description>` | Full end-to-end workflow (13 steps) |
 | Handoff | `/speckit:handoff (no arguments)` | Write the handoff note and prepare the session relaunch loop |
 | Implement | `/speckit:implement <spec-folder>` | Execute pre-planned work (requires plan.md) |
 | Plan | `/speckit:plan <description> [--intake-only] [:with-phases]` | Planning workflow (spec through plan only). `--intake-only` publishes just `spec.md`, `description.json` and `graph-metadata.json`. `:with-phases` adds phase decomposition |

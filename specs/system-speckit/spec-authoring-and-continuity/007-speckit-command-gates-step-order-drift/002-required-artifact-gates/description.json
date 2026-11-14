@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-speckit/spec-authoring-and-continuity/007-speckit-command-gates-step-order-drift/002-required-artifact-gates",
+  "description": "Phase 2: required-artifact-gates",
+  "keywords": [
+    "phase",
+    "required-artifact-gates"
+  ],
+  "lastUpdated": "2026-11-14T11:33:19.883Z",
+  "specId": "002",
+  "folderSlug": "required-artifact-gates",
+  "parentChain": [
+    "system-speckit",
+    "spec-authoring-and-continuity",
+    "007-speckit-command-gates-step-order-drift"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

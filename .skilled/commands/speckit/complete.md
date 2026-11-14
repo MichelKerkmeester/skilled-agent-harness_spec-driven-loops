@@ -1,5 +1,5 @@
 ---
-description: "End-to-end SpecKit workflow, 14+ steps. Modes :auto, :confirm, :autopilot; :with-* workflow modifiers."
+description: "End-to-end SpecKit workflow, 13 steps. Modes :auto, :confirm, :autopilot; :with-* workflow modifiers."
 argument-hint: "<feature-description> [:auto|:confirm|:autopilot|:unattended|--unattended] [:with-research] [:with-context] [:with-phases]"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, opencode_goal, opencode_goal_status
 ---
@@ -23,6 +23,7 @@ Load the presentation contract before showing startup questions, checkpoints, da
 | Presentation source of truth | `.skilled/commands/speckit/assets/speckit-complete-presentation.txt` |
 | Workflow (all execution modes) | `.skilled/commands/speckit/assets/speckit-complete.yaml` |
 | Shared save-context tail | `.skilled/commands/speckit/assets/speckit-save-context-tail.yaml` |
+| Shared lifecycle blocks | `.skilled/commands/speckit/assets/speckit-lifecycle-shared.yaml` |
 
 ---
 
@@ -66,10 +67,10 @@ values without an interactive prompt.
 
 `:autopilot`, `:unattended`, and `--unattended` are a branch-preserved execution envelope, not a quieter spelling of `:auto`.
 
-- Branch before any spec or implementation writes.
+- Take the workspace from the operator: `workspace_choice` is `worktree` or `current_branch`, bound at startup. A branch is created only with `git worktree add -b`.
 - Never prompt after startup parsing; halt with a terminal result instead.
-- Merge only after clean verification on the autopilot branch.
-- Preserve the branch and skip merge on every hard failure.
+- Never merge and never push. A run that passed verification reports its branch with `"merged":false`, and the merge is left to the operator.
+- Preserve the branch on every hard failure.
 - Emit one machine-readable result line with prefix `SPECKIT_AUTOPILOT_RESULT`.
 
 Terminal failure/no-op reason codes are exactly:

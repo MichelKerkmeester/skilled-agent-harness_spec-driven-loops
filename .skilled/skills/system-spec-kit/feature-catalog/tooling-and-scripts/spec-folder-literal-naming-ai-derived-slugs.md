@@ -7,7 +7,7 @@ trigger_phrases:
   - "ai-derived slug rule"
   - "generate literal phase names"
   - "SKILL.md rule 20"
-version: 1.6.0.8
+version: 1.6.1.0
 ---
 
 # Spec folder literal naming: AI-derived slugs
@@ -38,8 +38,7 @@ Together these surfaces close the loop with the create.sh fallback. The fallback
 
 | File | Layer | Role |
 |------|-------|------|
-| `.skilled/commands/speckit/assets/speckit-plan.yaml` | Workflow asset | Carries the Generate LITERAL phase names activity for plan in every execution mode |
-| `.skilled/commands/speckit/assets/speckit-complete.yaml` | Workflow asset | Carries the Generate LITERAL phase names activity for complete in every execution mode |
+| `.skilled/commands/speckit/assets/speckit-lifecycle-shared.yaml` | Workflow asset | Carries the Generate LITERAL phase names activity once, in `phase_decomposition`, which the plan and complete workflows point at |
 | `.skilled/skills/system-spec-kit/SKILL.md` | Skill | ALWAYS rule 20 (REMEDIATION PACKET NAMING) defining source/target slug structure for AI-derived remediation packets |
 
 ### Validation And Tests
