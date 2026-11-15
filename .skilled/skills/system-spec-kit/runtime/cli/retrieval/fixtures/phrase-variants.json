@@ -1,5 +1,5 @@
 {
-  "manifestHash": "318e0f30e84b67d0fefccd22490809624ae9db84d3ee187ebdad2d0d4101e3e3",
+  "manifestHash": "169b350b74231e2f5b7b0f77494ae922481161a88969c17868b8eda7081f44b3",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -6934,6 +6934,9 @@
     ],
     "042 fanout containment": [
       "042 fanout containment"
+    ],
+    "042 handover gap closure operator decisions": [
+      "042-handover-gap-closure operator decisions"
     ],
     "042 implementation summary": [
       "042 implementation summary"
@@ -27106,6 +27109,9 @@
     ],
     "codex compact inject": [
       "codex compact inject"
+    ],
+    "codex compaction pointer": [
+      "codex compaction pointer"
     ],
     "codex completion claim check": [
       "codex completion claim check"
@@ -57774,6 +57780,21 @@
     "handover freshness timestamp field": [
       "handover freshness timestamp field"
     ],
+    "handover gap closure": [
+      "handover gap closure"
+    ],
+    "handover gap closure acceptance criteria": [
+      "handover gap closure acceptance criteria"
+    ],
+    "handover gap closure implementation summary": [
+      "handover gap closure implementation summary"
+    ],
+    "handover gap closure plan": [
+      "handover gap closure plan"
+    ],
+    "handover gap closure tasks": [
+      "handover gap closure tasks"
+    ],
     "handover goal and model carry over": [
       "handover goal and model carry-over"
     ],
@@ -77241,6 +77262,9 @@
     "opencode mistral provider": [
       "opencode mistral provider"
     ],
+    "opencode model carry": [
+      "opencode model carry"
+    ],
     "opencode model context windows": [
       "opencode model context windows"
     ],
@@ -90090,6 +90114,9 @@
     ],
     "question guard killer gone tasks": [
       "question guard killer gone tasks"
+    ],
+    "question guard pi opencode": [
+      "question guard pi opencode"
     ],
     "question origin provenance": [
       "question origin provenance"
@@ -131475,6 +131502,9 @@
     ],
     "withdrawn acceptance criterion": [
       "withdrawn acceptance criterion"
+    ],
+    "withdrawn notice pi opencode": [
+      "withdrawn notice pi opencode"
     ],
     "withspecfolderlock": [
       "withSpecFolderLock"
