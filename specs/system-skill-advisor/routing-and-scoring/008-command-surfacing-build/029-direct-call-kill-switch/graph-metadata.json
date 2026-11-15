@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/029-direct-call-kill-switch",
+  "spec_folder": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build/029-direct-call-kill-switch",
+  "parent_id": "system-skill-advisor/routing-and-scoring/008-command-surfacing-build",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "direct call kill switch",
+      "phase 29 direct call kill switch",
+      "advisor direct call ignores kill switch",
+      "skill advisor disabled direct call still answers",
+      "direct call kill switch plan",
+      "direct call kill switch tasks",
+      "direct call kill switch acceptance criteria"
+    ],
+    "key_topics": [
+      "direct",
+      "call",
+      "kill",
+      "switch",
+      "phase",
+      "advisor",
+      "ignores",
+      "skill",
+      "disabled",
+      "still",
+      "answers",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      ".skilled/hooks/hook-flags.env.example",
+      ".skilled/hooks/shared/hook-flags.cjs",
+      "runtime/lib/README.md",
+      "runtime/tests/README.md",
+      ".skilled/commands/doctor/env.md",
+      ".skilled/hooks/shared/hook-flags.ts",
+      ".skilled/bin/system-skill-advisor-launcher.cjs",
+      ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md",
+      "scratch/planning/kill-switch-matrix.sh",
+      "scratch/planning/kill-switch.env"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.env.example",
+        "kind": "file",
+        "path": ".skilled/hooks/hook-flags.env.example",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/hook-flags.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "runtime/lib/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "env.md",
+        "kind": "doc",
+        "path": ".skilled/commands/doctor/env.md",
+        "source": "derived"
+      },
+      {
+        "name": "hook-flags.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/shared/hook-flags.ts",
+        "source": "derived"
+      },
+      {
+        "name": "system-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".skilled/bin/system-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "v1.1.0.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "kill-switch-matrix.sh",
+        "kind": "script",
+        "path": "scratch/planning/kill-switch-matrix.sh",
+        "source": "derived"
+      },
+      {
+        "name": "kill-switch.env",
+        "kind": "file",
+        "path": "scratch/planning/kill-switch.env",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Status Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Measured Behavior",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Reuse",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A user who disables the advisor the documented way, with `SYSTEMSKILLADVISORDISABLED=1` in the shell or in `.skilled/hooks/hook-flags.env`, gets no brief from the prompt hooks and still gets `sk-doc → /create:readme (start)` from the Gate 2 direct call that `AGENTS.md` tells every model to run",
+    "created_at": "2026-11-15T07:01:23Z",
+    "last_save_at": "2026-11-15T07:14:26.689Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md"
+    ],
+    "source_fingerprint": "sha256:665be018edd6c2a896cedb9b22b9e26a9d73fd35d8169c22f543fe81fff463e8",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "a142f0fa52718c4760b9c4e31b3cf1e0b9de08b6b1ba7548f05b20e38834060c",
+      "plan.md": "1fa74bef73052daa3c6ac1bb1dc5cda3fda881bb5e7997ac6aa891a83add744f",
+      "tasks.md": "7e5a7eb071927c351bc007279e10da85e854daceba4891dfee14a1391aa77eae"
+    },
+    "last_active_at": null
+  }
+}
