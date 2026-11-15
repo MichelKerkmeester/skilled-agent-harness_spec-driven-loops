@@ -1,5 +1,5 @@
 {
-  "manifestHash": "043b61fe7adb7cadab440fb1f2f540dd689bd649887ee39adbc2cff15cbb5bba",
+  "manifestHash": "b25e733ba7875ca8615bce03c394a1c8a2278695e2bbb4dafdca875e7d15a0c7",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -39916,6 +39916,24 @@
     "deprecate cocoindex phase 010": [
       "deprecate cocoindex phase 010"
     ],
+    "deprecate compaction history offer": [
+      "deprecate compaction history offer"
+    ],
+    "deprecate compaction offer": [
+      "deprecate compaction offer"
+    ],
+    "deprecate compaction offer goal": [
+      "deprecate compaction offer goal"
+    ],
+    "deprecate compaction offer implementation summary": [
+      "deprecate compaction offer implementation summary"
+    ],
+    "deprecate compaction offer plan": [
+      "deprecate compaction offer plan"
+    ],
+    "deprecate compaction offer tasks": [
+      "deprecate compaction offer tasks"
+    ],
     "deprecate constitutional memory": [
       "deprecate constitutional memory"
     ],
@@ -42549,6 +42567,21 @@
     ],
     "docs and final gate tasks": [
       "docs-and-final-gate tasks"
+    ],
+    "docs and live hop proof": [
+      "docs and live hop proof"
+    ],
+    "docs and live hop proof goal": [
+      "docs and live hop proof goal"
+    ],
+    "docs and live hop proof implementation summary": [
+      "docs and live hop proof implementation summary"
+    ],
+    "docs and live hop proof plan": [
+      "docs and live hop proof plan"
+    ],
+    "docs and live hop proof tasks": [
+      "docs and live hop proof tasks"
     ],
     "docs and readmes": [
       "docs and readmes"
@@ -50534,6 +50567,24 @@
     "feature specification 028 drift remediation": [
       "feature specification: 028 drift remediation"
     ],
+    "feature subtrack restructure": [
+      "feature subtrack restructure"
+    ],
+    "feature subtrack restructure acceptance criteria": [
+      "feature subtrack restructure acceptance criteria"
+    ],
+    "feature subtrack restructure goal": [
+      "feature subtrack restructure goal"
+    ],
+    "feature subtrack restructure implementation summary": [
+      "feature subtrack restructure implementation summary"
+    ],
+    "feature subtrack restructure plan": [
+      "feature subtrack restructure plan"
+    ],
+    "feature subtrack restructure tasks": [
+      "feature subtrack restructure tasks"
+    ],
     "feature x executor matrix": [
       "feature x executor matrix"
     ],
@@ -55135,6 +55186,9 @@
     "give each deep loop mode a required content": [
       "give each deep loop mode a required content"
     ],
+    "give every hook plugin and extension feature": [
+      "give every hook plugin and extension feature"
+    ],
     "glance section comment": [
       "glance section comment"
     ],
@@ -58798,8 +58852,29 @@
     "historical benchmark contract": [
       "historical benchmark contract"
     ],
+    "history core relocation": [
+      "history core relocation"
+    ],
+    "history core relocation goal": [
+      "history core relocation goal"
+    ],
+    "history core relocation implementation summary": [
+      "history core relocation implementation summary"
+    ],
+    "history core relocation plan": [
+      "history core relocation plan"
+    ],
+    "history core relocation tasks": [
+      "history core relocation tasks"
+    ],
     "history lookup after compaction": [
       "history lookup after compaction"
+    ],
+    "history lookup at claim": [
+      "history lookup at claim"
+    ],
+    "history lookup at claim docs": [
+      "history lookup at claim docs"
     ],
     "history lookup cli": [
       "history lookup CLI",
@@ -58807,6 +58882,12 @@
     ],
     "history lookup core": [
       "history lookup core"
+    ],
+    "history lookup docs plan": [
+      "history lookup docs plan"
+    ],
+    "history lookup handover integration": [
+      "history lookup handover integration"
     ],
     "history lookup recall baseline": [
       "history lookup recall baseline"
@@ -59036,6 +59117,9 @@
     "hook fallback survives shim kill": [
       "hook fallback survives shim kill"
     ],
+    "hook feature cards": [
+      "hook feature cards"
+    ],
     "hook feature flag decisions": [
       "hook feature flag decisions"
     ],
@@ -59050,6 +59134,9 @@
     ],
     "hook feature flags tasks": [
       "hook feature flags tasks"
+    ],
+    "hook feature overview": [
+      "hook feature overview"
     ],
     "hook flags either root name": [
       "hook flags either root name"
@@ -59440,6 +59527,21 @@
     ],
     "hop purpose rule parity tasks": [
       "hop purpose rule parity tasks"
+    ],
+    "hop recall baseline": [
+      "hop recall baseline"
+    ],
+    "hop recall baseline goal": [
+      "hop recall baseline goal"
+    ],
+    "hop recall baseline implementation summary": [
+      "hop recall baseline implementation summary"
+    ],
+    "hop recall baseline plan": [
+      "hop recall baseline plan"
+    ],
+    "hop recall baseline tasks": [
+      "hop recall baseline tasks"
     ],
     "hop withdrawn because the transcript was missing": [
       "hop withdrawn because the transcript was missing"
@@ -65414,6 +65516,9 @@
     "live hop harness": [
       "live hop harness"
     ],
+    "live hop lookup proof": [
+      "live hop lookup proof"
+    ],
     "live mcp probe contract": [
       "live MCP probe contract"
     ],
@@ -66028,6 +66133,9 @@
     ],
     "look up a notion user by id": [
       "look up a Notion user by ID"
+    ],
+    "look up the sender session after a hop": [
+      "look up the sender session after a hop"
     ],
     "look up user": [
       "look up user"
@@ -72432,6 +72540,21 @@
     "minstate inversion": [
       "minstate inversion"
     ],
+    "mint locator at prepare": [
+      "mint locator at prepare"
+    ],
+    "mint locator at prepare goal": [
+      "mint locator at prepare goal"
+    ],
+    "mint locator at prepare implementation summary": [
+      "mint locator at prepare implementation summary"
+    ],
+    "mint locator at prepare plan": [
+      "mint locator at prepare plan"
+    ],
+    "mint locator at prepare tasks": [
+      "mint locator at prepare tasks"
+    ],
     "mirror and template fixes": [
       "mirror and template fixes"
     ],
@@ -76252,6 +76375,21 @@
     ],
     "off vs on divergence harness": [
       "off vs on divergence harness"
+    ],
+    "offer lookup at claim": [
+      "offer lookup at claim"
+    ],
+    "offer lookup at claim goal": [
+      "offer lookup at claim goal"
+    ],
+    "offer lookup at claim implementation summary": [
+      "offer lookup at claim implementation summary"
+    ],
+    "offer lookup at claim plan": [
+      "offer lookup at claim plan"
+    ],
+    "offer lookup at claim tasks": [
+      "offer lookup at claim tasks"
     ],
     "official cli agent usage": [
       "official cli agent usage"
@@ -81623,6 +81761,9 @@
     "phase 1 hook stdin deadlines": [
       "phase 1 hook stdin deadlines"
     ],
+    "phase 1 hop recall baseline": [
+      "phase 1 hop recall baseline"
+    ],
     "phase 1 hub and shared": [
       "phase 1 hub and shared"
     ],
@@ -82466,6 +82607,9 @@
     "phase 2 goal criteria refresh": [
       "phase 2 goal criteria refresh"
     ],
+    "phase 2 history core relocation": [
+      "phase 2 history core relocation"
+    ],
     "phase 2 hooks readme voice": [
       "phase 2 hooks readme voice"
     ],
@@ -82940,6 +83084,9 @@
     "phase 3 metadata write safety": [
       "phase 3 metadata write safety"
     ],
+    "phase 3 mint locator at prepare": [
+      "phase 3 mint locator at prepare"
+    ],
     "phase 3 nested skilled root": [
       "phase 3 nested skilled root"
     ],
@@ -83210,6 +83357,9 @@
     "phase 4 name file in plan phase lines": [
       "phase 4 name file in plan phase lines"
     ],
+    "phase 4 offer lookup at claim": [
+      "phase 4 offer lookup at claim"
+    ],
     "phase 4 opencode devin live capture": [
       "phase 4 opencode devin live capture"
     ],
@@ -83368,6 +83518,9 @@
     ],
     "phase 5 deep review remediation": [
       "phase 5 deep review remediation"
+    ],
+    "phase 5 deprecate compaction offer": [
+      "phase 5 deprecate compaction offer"
     ],
     "phase 5 doc claims hardening": [
       "phase 5 doc claims hardening"
@@ -83599,6 +83752,9 @@
     ],
     "phase 6 deep review 2 remediation": [
       "phase 6 deep review 2 remediation"
+    ],
+    "phase 6 docs and live hop proof": [
+      "phase 6 docs and live hop proof"
     ],
     "phase 6 doctor helper handoff": [
       "phase 6 doctor helper handoff"
@@ -86715,6 +86871,9 @@
     ],
     "pluggable embedder types": [
       "pluggable embedder types"
+    ],
+    "plugin and extension feature inventory": [
+      "plugin and extension feature inventory"
     ],
     "plugin bridge": [
       "plugin bridge"
@@ -131409,6 +131568,9 @@
     ],
     "which orca skill owns this surface": [
       "which orca skill owns this surface"
+    ],
+    "which packet owns a hook feature": [
+      "which packet owns a hook feature"
     ],
     "which palette for a chart": [
       "which palette for a chart"
