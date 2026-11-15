@@ -60,7 +60,7 @@ The six findings phase 006 left open are all fixed. A runner can now hand the de
 | `.skilled/skills/system-spec-kit/package.json` | Modified | `build` runs the runtime prepare and finalize steps around the compile |
 | `.skilled/skills/system-spec-kit/runtime/cli/tests/test-dist-freshness.sh` | Modified | Backs up and restores the real freshness records it used to delete |
 | `.skilled/skills/sk-doc/sk-create-command/assets/command-contract.json` | Modified | The coverage sentence |
-| `.skilled/skills/cli-external-orchestration/cli-opencode/` docs and `changelog/v1.5.11.0.md` | Modified, Created | Verified on 2.3.0, `opencode auth` and `opencode debug agents`, version 1.5.11.0 |
+| `.skilled/skills/cli-external-orchestration/cli-opencode/` docs, `scripts/opencode-setup.sh` and two changelogs | Modified, Created | Verified on 2.3.0, `opencode auth` and `opencode debug agents`, then the install pin moved to 2.3.0, version 1.5.12.0 |
 | `.skilled/skills/system-skill-advisor/runtime/lib/scorer/lanes/explicit.ts` | Modified | Two phrase boosts |
 | `.skilled/skills/system-skill-advisor/runtime/scripts/fixtures/gate2-golden-prompts.jsonl` | Modified | The two prompts pinned as golden cases |
 <!-- /ANCHOR:what-built -->
@@ -82,7 +82,7 @@ Each fix started with a reproduction that failed. The stdin test failed 4 of 5 c
 |----------|-----|
 | Phrase boosts with a bounded rival penalty, not a lane rule | Both rivals saturate the explicit and lexical lanes, and the lane already uses this pattern for `findings stop changing` and `:review:auto`. Only prompts that contain the phrase move |
 | No Python mirror change | `skill_advisor.py` already ranks both prompts on target |
-| The install pin in `opencode-setup.sh` stays at 2.1.4 | Moving it changes what other people install, so the operator decides |
+| The install pin in `opencode-setup.sh` moved to 2.3.0 | The operator approved it after the skill was verified there. 2.3.0 is the `latest` tag and keeps the `bin/opencode.exe` path, so the link target is unchanged |
 | No advisor version bump | Earlier scorer fixes such as `acf206285e` did not bump it |
 <!-- /ANCHOR:decisions -->
 
@@ -109,6 +109,6 @@ Each fix started with a reproduction that failed. The stdin test failed 4 of 5 c
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **The install script still pins OpenCode 2.1.4.** The skill is verified on 2.3.0, but `scripts/opencode-setup.sh` installs `@opencode/cli@2.1.4` until an operator changes `V2_PKG`.
+1. **The setup helper was not run in an install mode.** Only its read-only `check` mode ran, which shows this machine already on 2.3.0 at the link the helper creates. A machine on 2.1.4 moves when its owner reruns the helper.
 2. **Five gates still fail as they did before phase 006.** They are `corpus-pin`, `hub-vocabulary-source`, `broken-tracked-symlinks`, `command-router-drift` and the one spec-kit CLI test that runs that drift check. Each needs its own packet.
 <!-- /ANCHOR:limitations -->

@@ -1,6 +1,6 @@
 ---
 title: "OpenCode CLI - Install and Version Layouts"
-description: "Install recipes for OpenCode 2.1.4 (recommended) and 1.19.4 (fallback): v2-only and side-by-side layouts, v1-only as the fallback, the setup helper, the launcher, version detection and the constraints that stay."
+description: "Install recipes for OpenCode 2.3.0 (recommended) and 1.19.4 (fallback): v2-only and side-by-side layouts, v1-only as the fallback, the setup helper, the launcher, version detection and the constraints that stay."
 trigger_phrases:
   - "opencode install"
   - "opencode side by side"
@@ -11,12 +11,12 @@ trigger_phrases:
   - "install opencode v2 and v1"
 importance_tier: important
 contextType: implementation
-version: 1.0.13.0
+version: 1.0.14.0
 ---
 
 # OpenCode CLI - Install and Version Layouts
 
-How to put OpenCode 2.1.4 on a machine, optionally alongside OpenCode 1.19.4 as a fallback, and how to tell which version a name runs.
+How to put OpenCode 2.3.0 on a machine, optionally alongside OpenCode 1.19.4 as a fallback, and how to tell which version a name runs.
 
 ---
 
@@ -28,7 +28,7 @@ This reference is the skill's install guidance. OpenCode 2 is the version this r
 
 ### When to Use
 
-- Installing OpenCode 2.1.4, alone or side by side with the `opencode1` launcher for v1
+- Installing OpenCode 2.3.0, alone or side by side with the `opencode1` launcher for v1
 - Installing OpenCode 1.19.4 alone or side by side, the fallback path for users who have not updated
 - Deciding whether Homebrew, mise or a second npm prefix is the right channel
 - Working out why a bare `opencode` runs the version you did not expect
@@ -67,7 +67,7 @@ Both majors ship a binary named `opencode` [confirmed: `npm view opencode-ai bin
 - `--agent` with an unknown slug exits 1 with `Agent not found`.
 - The default dispatch `opencode run --standalone -m llmgateway/deepseek-v4.1-flash-1017#max --format json --auto "<prompt>" </dev/null` ran to completion on 2.3.0.
 
-The install pin in `../scripts/opencode-setup.sh` stays at 2.1.4 until an operator decides to move it.
+The install pin in `../scripts/opencode-setup.sh` is 2.3.0, the `latest` tag of `@opencode/cli` on 2026-11-15. Its package keeps the `bin/opencode.exe` path 2.1.4 used, so the side-by-side link target is unchanged.
 
 ---
 
@@ -83,10 +83,10 @@ The install pin in `../scripts/opencode-setup.sh` stays at 2.1.4 until an operat
 
 | Version | Package | Pin | Channel `latest` |
 |---------|---------|-----|------------------|
-| v2 (recommended) | `@opencode/cli` | `2.1.4` | `2.1.4` |
+| v2 (recommended) | `@opencode/cli` | `2.3.0` | `2.3.0` |
 | v1 (fallback) | `opencode-ai` | `1.19.4` | `1.19.4` |
 
-Each pin is its package's current `latest` [confirmed: `npm view @opencode/cli dist-tags` and `npm view opencode-ai dist-tags`, read 2026-10-24]. The v1 package was not moved to 2.x, so a v1 package update cannot drift a v1 install into v2 [confirmed: `opencode-ai`'s `latest` dist-tag is 1.19.4].
+Each pin is its package's current `latest` [confirmed: `npm view @opencode/cli dist-tags` read 2026-11-15, and `npm view opencode-ai dist-tags` read 2026-10-24]. The v1 package was not moved to 2.x, so a v1 package update cannot drift a v1 install into v2 [confirmed: `opencode-ai`'s `latest` dist-tag is 1.19.4].
 
 ### Read First
 
@@ -102,7 +102,7 @@ Read the warning in a layout's own section before you run its command. The v2 la
 
 | Setup | Channel | Command | `opencode` resolves to | Data file |
 |-------|---------|---------|------------------------|-----------|
-| v2 only (recommended) | npm, standard prefix | `npm install -g @opencode/cli@2.1.4` | v2 | `opencode.db`, unless `OPENCODE_DB` says otherwise |
+| v2 only (recommended) | npm, standard prefix | `npm install -g @opencode/cli@2.3.0` | v2 | `opencode.db`, unless `OPENCODE_DB` says otherwise |
 | v2 only (recommended) | Homebrew | `brew install opencode` | v2 | `opencode.db` |
 | both (recommended) | npm, two prefixes | both npm commands below, plus the v2 links and the `opencode1` launcher | v2 | `opencode.db` for v2, `opencode-v1.db` for v1 |
 | v1 only (fallback) | npm | `npm install -g --prefix "$HOME/.local" opencode-ai@1.19.4` | v1 | `opencode.db` |
@@ -117,8 +117,8 @@ Two things to settle first.
 2. If `$HOME/.local/share/opencode/opencode.db` exists from an earlier v1 install, v2 adopts that database and migrates it in place [confirmed: on 2026-10-24 the first v2.1.4 run on this machine added a `session_v2` table to `opencode.db` holding all 1,339 v1 sessions]. Copy the file aside or set `OPENCODE_DB` before the first run if v1 must keep reading it. The helper warns about this and never moves a file.
 
 ```bash
-npm install -g @opencode/cli@2.1.4
-opencode --version    # opencode v2.1.4
+npm install -g @opencode/cli@2.3.0
+opencode --version    # opencode v2.3.0
 ```
 
 ### Layout 2: Side by Side (Recommended for One Machine)
@@ -132,7 +132,7 @@ v2 takes the name `opencode` and v1 moves to `opencode1`; no `opencode2` is on `
 
 ```bash
 npm install -g --prefix "$HOME/.local" opencode-ai@1.19.4
-npm install -g --prefix "$HOME/.local/opencode-v2" @opencode/cli@2.1.4
+npm install -g --prefix "$HOME/.local/opencode-v2" @opencode/cli@2.3.0
 ln -sfn ../opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe "$HOME/.local/bin/opencode"
 # then write ~/.local/bin/opencode1 (the text is in section 4)
 ```
@@ -280,7 +280,7 @@ Check the provider on the version you are about to dispatch. For a v2 run, list 
 ### Detect by Output Shape
 
 ```bash
-opencode --version    # opencode v2.1.4   -> v2 (recommended)
+opencode --version    # opencode v2.3.0   -> v2 (recommended)
 opencode1 --version   # 1.19.4            -> v1 (fallback)
 ```
 

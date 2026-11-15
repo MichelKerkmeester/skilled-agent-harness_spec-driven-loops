@@ -88,6 +88,7 @@ and findings belong here.
 | Finding 4 fixed: cli-opencode docs verified on OpenCode 2.3.0 (verified lines, auth list/login, debug agents), version 1.5.11.0 with changelog; install pin left at 2.1.4 for the operator; script te... | Done |  |
 | Findings 1 and 2 fixed: two PHRASE_BOOSTS entries (deep review penalizes sk-git -0.5, ai council boosts the council command and penalizes sk-code -0.6); golden 39/39 with the two pinned prompts fai... | Done |  |
 | Verification done: advisor 1710, runtime 2909, freshness 4/4, spec-kit CLI only typo-flags (two load timeouts pass alone); all six findings fixed | Done |  |
+| Operator approved the 2.3.0 install pin: V2_PKG is @opencode/cli@2.3.0, the docs name 2.3.0 as expected, cli-opencode 1.5.12.0; setup tests 27 pass, check mode shows 2.3.0 at the same link | Done |  |
 
 ### Deviations and findings
 
