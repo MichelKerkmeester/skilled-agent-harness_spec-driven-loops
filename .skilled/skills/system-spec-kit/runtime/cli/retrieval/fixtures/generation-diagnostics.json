@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "6211335183eacafa57942729b1679553ce40697fdf08171ec2b0b2dc350c1447",
+  "manifestHash": "fb80042c06e11c986c999ca67de374ac97e2843cd9c43a8aa48193079c6aa120",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -55343,18 +55343,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks-plugins-extensions/classifier-injection-screen/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/codex-watchdog/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/completion/z_archive",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/hooks-plugins-extensions/decision-capture/001-decision-capture/001-decision-capture-build/scratch",
       "reason": "excluded directory"
     },
@@ -55507,10 +55495,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks-plugins-extensions/git-hooks-check/z_archive",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/hooks-plugins-extensions/git-hooks/001-git-hook-gate-reduction/scratch",
       "reason": "excluded directory"
     },
@@ -55567,10 +55551,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks-plugins-extensions/git-worktree-guard/z_archive",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/hooks-plugins-extensions/goal/003-goal-isolation/001-goal-isolation-research/research/deltas",
       "reason": "excluded directory"
     },
@@ -55611,10 +55591,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks-plugins-extensions/hook-install/z_archive",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/hooks-plugins-extensions/hook-platform/001-feature-subtrack-restructure/scratch",
       "reason": "excluded directory"
     },
@@ -55644,18 +55620,6 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/hook-platform/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/mcp-route-guard/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/overlay-guard/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/permission-policy/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -55775,10 +55739,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks-plugins-extensions/pi-extensions/z_archive",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/hooks-plugins-extensions/pi-fast-mode/001-pi-fast-mode-w-subagent-support/001-fork-and-package/001-source-baseline/scratch",
       "reason": "excluded directory"
     },
@@ -55844,10 +55804,6 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/pi-fast-mode/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/post-edit-quality/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -55968,10 +55924,6 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/retrieval-integrations/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/session-cleanup/z_archive",
       "reason": "excluded directory"
     },
     {
@@ -56495,10 +56447,6 @@
       "reason": "excluded directory"
     },
     {
-      "path": "specs/hooks-plugins-extensions/session-lifecycle/z_archive",
-      "reason": "excluded directory"
-    },
-    {
       "path": "specs/hooks-plugins-extensions/skill-advisor/002-pi-advisor-bridge/001-restore-pi-advisor-brief/scratch",
       "reason": "excluded directory"
     },
@@ -56512,10 +56460,6 @@
     },
     {
       "path": "specs/hooks-plugins-extensions/spec-gate/z_archive",
-      "reason": "excluded directory"
-    },
-    {
-      "path": "specs/hooks-plugins-extensions/task-dispatch/z_archive",
       "reason": "excluded directory"
     },
     {
