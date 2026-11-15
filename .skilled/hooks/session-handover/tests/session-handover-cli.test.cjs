@@ -3523,6 +3523,182 @@ test('claim prints the history lookup section for a Codex sender whose rollout r
   assert.match(result.stdout, /## History Lookup/);
 });
 
+// Vibe keeps one folder per session under its home, and that folder's meta.json records the
+// folder the session ran in, so a note written by a Vibe session is checked the same way a
+// Claude log is: the recorded folder has to sit in the checkout the note names. `meta`
+// replaces the default record, so a case can vary one field and keep the rest as Vibe writes it.
+function writeVibeSession(sandbox, sessionId, { cwd, meta } = {}) {
+  sandbox.env.VIBE_HOME = path.join(sandbox.root, 'vibe-home');
+  const sessionFolder = path.join(
+    sandbox.env.VIBE_HOME, 'logs', 'session', 'unified', sessionId,
+  );
+  const fixtureJournal = path.resolve(
+    __dirname,
+    '..', '..', 'shared', 'tests', 'session-readers', 'fixtures', 'vibe', 'post-agent', 'journal',
+  );
+  fs.mkdirSync(sessionFolder, { recursive: true });
+  fs.cpSync(fixtureJournal, path.join(sessionFolder, 'journal'), { recursive: true });
+  fs.writeFileSync(
+    path.join(sessionFolder, 'meta.json'),
+    JSON.stringify(meta ?? { session_id: sessionId, environment: { working_directory: cwd } }),
+  );
+  return sessionFolder;
+}
+
+test('claim prints the history lookup section for a Vibe sender whose session folder ran here', (t) => {
+  const sandbox = createSandbox(t);
+  const { handoffPath, workspace } = claimableHandoff(sandbox);
+  setNoteLine(handoffPath, /^runtime: .*$/m, 'runtime: vibe');
+  writeVibeSession(sandbox, SESSION_ID, { cwd: workspace });
+
+  const result = runCli(sandbox, ['claim', handoffPath, '--session', RECEIVER_SESSION_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /## History Lookup/);
+  assert.ok(result.stdout.includes(`--session '${SESSION_ID}'`), result.stdout);
+});
+
+// The printed command runs the real entry and compiled core from the receiver's checkout, and
+// a Vibe sender's command carries the runtime label the lookup needs to match the locator, so
+// this redeems what the claim printed rather than checking its text.
+test('the command a claim prints answers with the sender turns from a Vibe store', (t) => {
+  const sandbox = createSandbox(t);
+  const { handoffPath, workspace } = claimableHandoff(sandbox);
+  setNoteLine(handoffPath, /^runtime: .*$/m, 'runtime: vibe');
+  writeVibeSession(sandbox, SESSION_ID, { cwd: workspace });
+
+  const claimed = runCli(sandbox, ['claim', handoffPath, '--session', RECEIVER_SESSION_ID]);
+  assert.equal(claimed.status, 0, claimed.stderr);
+  assert.ok(claimed.stdout.includes('SPECKIT_RUNTIME=vibe '), claimed.stdout);
+  const handle = /--handle '(hl1_[a-f0-9]{32})'/.exec(claimed.stdout)?.[1];
+  assert.ok(handle, claimed.stdout);
+
+  const redeemed = spawnSync(process.execPath, [
+    path.resolve(__dirname, '../bin/history-lookup.mjs'),
+    '--session', SESSION_ID,
+    '--handle', handle,
+    'search', JSON.stringify({ query: 'probe-ok' }),
+  ], {
+    cwd: workspace,
+    env: { ...sandbox.env, SPECKIT_RUNTIME: 'vibe' },
+    encoding: 'utf8',
+    timeout: 10000,
+  });
+
+  assert.equal(redeemed.status, 0, redeemed.stdout);
+  assert.ok(redeemed.stdout.includes('probe-ok'), redeemed.stdout);
+});
+
+test('a claim from a Vibe session folder in another checkout writes no locator for the sender', (t) => {
+  const sandbox = createSandbox(t);
+  const { handoffPath, workspace } = claimableHandoff(sandbox);
+  setNoteLine(handoffPath, /^runtime: .*$/m, 'runtime: vibe');
+  // The other checkout can run the lookup too, so only the recorded folder comparison refuses it.
+  const otherCheckout = path.join(sandbox.root, 'other-checkout');
+  fs.mkdirSync(path.join(otherCheckout, '.git'), { recursive: true });
+  for (const relativePath of [
+    '.skilled/hooks/session-handover/bin/history-lookup.mjs',
+    '.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js',
+  ]) {
+    fs.mkdirSync(path.dirname(path.join(otherCheckout, relativePath)), { recursive: true });
+    fs.writeFileSync(path.join(otherCheckout, relativePath), '');
+  }
+  writeVibeSession(sandbox, SESSION_ID, { cwd: fs.realpathSync(otherCheckout) });
+
+  const result = runCli(sandbox, ['claim', handoffPath, '--session', RECEIVER_SESSION_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.doesNotMatch(result.stdout, /## History Lookup/);
+  assert.equal(fs.existsSync(hookStatePath(sandbox, workspace, SESSION_ID)), false);
+});
+
+test('claim prints no history lookup section when the Vibe meta.json is unreadable', (t) => {
+  const sandbox = createSandbox(t);
+  const { handoffPath, workspace } = claimableHandoff(sandbox);
+  setNoteLine(handoffPath, /^runtime: .*$/m, 'runtime: vibe');
+  const sessionFolder = writeVibeSession(sandbox, SESSION_ID, { cwd: workspace });
+  fs.writeFileSync(path.join(sessionFolder, 'meta.json'), 'not json');
+
+  const result = runCli(sandbox, ['claim', handoffPath, '--session', RECEIVER_SESSION_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /Finish the relaunch loop/);
+  assert.doesNotMatch(result.stdout, /## History Lookup/);
+});
+
+// The reader refuses a session folder whose meta names another session, so a locator minted
+// for it would only be refused when the receiver redeems the printed command.
+test('claim prints no history lookup section when the Vibe meta.json names another session', (t) => {
+  const sandbox = createSandbox(t);
+  const { handoffPath, workspace } = claimableHandoff(sandbox);
+  setNoteLine(handoffPath, /^runtime: .*$/m, 'runtime: vibe');
+  writeVibeSession(sandbox, SESSION_ID, {
+    cwd: workspace,
+    meta: { session_id: 'other-session', environment: { working_directory: workspace } },
+  });
+
+  const result = runCli(sandbox, ['claim', handoffPath, '--session', RECEIVER_SESSION_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /Finish the relaunch loop/);
+  assert.doesNotMatch(result.stdout, /## History Lookup/);
+});
+
+// The lookup command reads the journal, so a session folder that holds none would only give
+// the receiver a command that fails wherever it runs.
+test('claim prints no history lookup section when the Vibe session folder holds no journal', (t) => {
+  const sandbox = createSandbox(t);
+  const { handoffPath, workspace } = claimableHandoff(sandbox);
+  setNoteLine(handoffPath, /^runtime: .*$/m, 'runtime: vibe');
+  const sessionFolder = writeVibeSession(sandbox, SESSION_ID, { cwd: workspace });
+  fs.rmSync(path.join(sessionFolder, 'journal'), { recursive: true, force: true });
+
+  const result = runCli(sandbox, ['claim', handoffPath, '--session', RECEIVER_SESSION_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /Finish the relaunch loop/);
+  assert.doesNotMatch(result.stdout, /## History Lookup/);
+});
+
+// The folder sits where the checkout resolves the relative value, so only the guard can refuse
+// it: a relative home makes the printed command depend on the folder it is run from.
+test('claim prints no history lookup section when VIBE_HOME is a relative path', (t) => {
+  const sandbox = createSandbox(t);
+  const { handoffPath, workspace } = claimableHandoff(sandbox);
+  setNoteLine(handoffPath, /^runtime: .*$/m, 'runtime: vibe');
+  writeVibeSession(sandbox, SESSION_ID, { cwd: workspace });
+  fs.cpSync(
+    path.join(sandbox.root, 'vibe-home'),
+    path.join(sandbox.repoRoot, 'vibe-home'),
+    { recursive: true },
+  );
+  sandbox.env.VIBE_HOME = 'vibe-home';
+
+  const result = runCli(sandbox, ['claim', handoffPath, '--session', RECEIVER_SESSION_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /Finish the relaunch loop/);
+  assert.doesNotMatch(result.stdout, /## History Lookup/);
+});
+
+// A meta.json that records only the folder the session started in still says where it ran, so
+// the section prints from that field when no environment block carries a working directory.
+test('claim prints the history lookup section for a Vibe meta.json with only an origin_directory', (t) => {
+  const sandbox = createSandbox(t);
+  const { handoffPath, workspace } = claimableHandoff(sandbox);
+  setNoteLine(handoffPath, /^runtime: .*$/m, 'runtime: vibe');
+  writeVibeSession(sandbox, SESSION_ID, {
+    cwd: workspace,
+    meta: { session_id: SESSION_ID, origin_directory: workspace },
+  });
+
+  const result = runCli(sandbox, ['claim', handoffPath, '--session', RECEIVER_SESSION_ID]);
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /## History Lookup/);
+  assert.ok(result.stdout.includes(`--session '${SESSION_ID}'`), result.stdout);
+});
+
 test('claim prints no history lookup section when the session log ran in another checkout', (t) => {
   const sandbox = createSandbox(t);
   const { handoffPath, workspace } = claimableHandoff(sandbox);

@@ -7,7 +7,7 @@ trigger_phrases:
   - "opaque history handle"
   - "history lookup CLI"
   - "handoff history lookup"
-version: 2.0.1.0
+version: 2.0.2.0
 ---
 
 # Handoff history lookup
@@ -22,7 +22,7 @@ The lookup is offered when a handoff note is claimed. Inside the loop, `claim` m
 
 A compaction no longer offers the lookup on any runtime. The Claude, Pi, DSH, Devin and Vibe compaction hooks mint no locator and print no lookup section, and the OpenCode plugin that did is gone. Compaction summaries and the `/speckit:resume` pointer are unchanged.
 
-The offer is conditional in both directions. Only a Claude Code or Codex sender gets a locator, and the section is withheld when the sender left no transcript, when the note names another runtime, when the sender ran in another checkout, when the transcript records a folder outside the receiver's checkout or when the runtime is not built. The claim then prints what it printed before. Before the claim-time offer, no receiver in six measured Claude Code hops attempted a lookup.
+The offer is conditional in both directions. Only a Claude Code, Codex or Vibe sender gets a locator, and the section is withheld when the sender left no transcript, when the note names another runtime, when the sender ran in another checkout, when the transcript records a folder outside the receiver's checkout or when the runtime is not built. The claim then prints what it printed before. Before the claim-time offer, no receiver in six measured Claude Code hops attempted a lookup.
 
 ---
 
@@ -32,7 +32,7 @@ The offer is conditional in both directions. Only a Claude Code or Codex sender 
 
 Inside the loop, `claim` mints a locator for the session that wrote the note and stores it with provenance source `handover`. It mints at claim rather than at `prepare`, because the lookup CLI refuses a locator older than 30 minutes and a note can be claimed hours after it was prepared. The claim first checks that the note's folder and the receiver share a checkout, then that the transcript's own recorded folder sits in that checkout, so a note that names another project's session gets no locator. The locator records the runtime, the exact session id, the workspace, the runtime's locator type, a digest handle and a mint time.
 
-Only Claude Code and Codex have a locator contract. Claude's transcript comes from the session log the runtime keeps, under `CLAUDE_CONFIG_DIR` when that is set, and Codex's from its rollout file, so a sender on another runtime has no transcript to read and gets no locator. The workspace is the checkout root above the session folder, found by `placeLookup` as the nearest folder with a `.git` entry. The locator is keyed by that root, so a session started in a subfolder still redeems, and the reader proves the session against the folder it ran in.
+Only Claude Code, Codex and Vibe have a locator contract. Claude's transcript comes from the session log the runtime keeps, under `CLAUDE_CONFIG_DIR` when that is set, and Codex's from its rollout file. Vibe's comes from its session folder, and the folder the session ran in from that folder's `meta.json`, its `environment.working_directory` or else its `origin_directory`. A sender on another runtime has no transcript to read and gets no locator. The workspace is the checkout root above the session folder, found by `placeLookup` as the nearest folder with a `.git` entry. The locator is keyed by that root, so a session started in a subfolder still redeems, and the reader proves the session against the folder it ran in.
 
 The handle is a digest, never a store path. A locator that contains no path cannot leak one and cannot be authored by a model.
 

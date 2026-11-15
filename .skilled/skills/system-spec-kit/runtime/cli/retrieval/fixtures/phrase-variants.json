@@ -1,5 +1,5 @@
 {
-  "manifestHash": "7a9227009aee8615657cb6fc1d6fcb7e8b7a3eb0e3643a77e4a71bbb522ef76e",
+  "manifestHash": "be54592993388134fe07ae78db316bf2429237cdfc793ac9b52fdafdda759316",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -7075,6 +7075,9 @@
     ],
     "046 handover anchor naming": [
       "046 handover anchor naming"
+    ],
+    "046 vibe history locator operator decisions": [
+      "046-vibe-history-locator operator decisions"
     ],
     "047 implementation summary": [
       "047 implementation summary"
@@ -130421,11 +130424,32 @@
     "vibe handover flag and live hop tasks": [
       "vibe handover flag and live hop tasks"
     ],
+    "vibe handover locator": [
+      "vibe handover locator"
+    ],
     "vibe handover withdraw": [
       "Vibe handover withdraw"
     ],
+    "vibe history locator": [
+      "vibe history locator"
+    ],
+    "vibe history locator acceptance criteria": [
+      "vibe history locator acceptance criteria"
+    ],
+    "vibe history locator implementation summary": [
+      "vibe history locator implementation summary"
+    ],
+    "vibe history locator plan": [
+      "vibe history locator plan"
+    ],
+    "vibe history locator tasks": [
+      "vibe history locator tasks"
+    ],
     "vibe history lookup after compaction": [
       "vibe history lookup after compaction"
+    ],
+    "vibe history lookup at claim": [
+      "vibe history lookup at claim"
     ],
     "vibe home isolation": [
       "vibe home isolation"

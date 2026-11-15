@@ -204,7 +204,7 @@
     ],
     "causal_summary": "A Vibe session near its context limit gets no warning and never hands over on its own",
     "created_at": "2026-11-15T11:21:53Z",
-    "last_save_at": "2026-11-15T14:28:43.157Z",
+    "last_save_at": "2026-11-15T16:26:00.617Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,14 +215,14 @@
       "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a894f6fdbd64823798bbbab613281d1c62449bc5ee0718ec949b6f03cfef2224",
+    "source_fingerprint": "sha256:a4fb1de697975187203954a71213954a404c1f73bb4aef32e46e99b610d17599",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "6d1b49ff8d4c76b38ece9b935698231db26405ef60140a43767ee705191c7d1a",
       "plan.md": "c3230a76754545433caac29ab5e13825fea80d9dcf188bfb7471a17b22978273",
       "tasks.md": "f66f89c12610ae0f481395e439fc297b679cd0c031a831bee7e9eb4c84becab1",
-      "decision-record.md": "aeb9498b4572230a33e7a6497eecf5d03620920038cc0295d415739261e28481",
-      "implementation-summary.md": "1348aad6d7ff66e10040ee9137fd95773fd178c50023b4afbbed33011f5bfccb"
+      "decision-record.md": "5a0c958296c8e1c5d6bda2167d3c7cc5357272d8f563881ec1a232f03b802b96",
+      "implementation-summary.md": "fba4acc115fa3ddf437b612df121b683623e3cbe0ab37bd53db73e91ca6bf9d1"
     },
     "last_active_at": null
   }
