@@ -1,5 +1,5 @@
 {
-  "corpusHash": "9e16f94691a75efc4b8da03c770882ad668a4ca2fcef5a6154a82fe5a74041c4",
+  "corpusHash": "c13a6ec2bd2caa1fb4de3fb584575dcd470225ea488092ccc1738c7ab93d1cd7",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27500,
+  "includedPathCount": 27501,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -18107,6 +18107,7 @@
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/005-caller-sweep-and-verification/tasks.md",
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/goal.md",
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation/spec.md",
+    "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/007-open-findings-follow-up/decision-record.md",
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/007-open-findings-follow-up/goal.md",
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/007-open-findings-follow-up/implementation-summary.md",
     "specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/007-open-findings-follow-up/plan.md",
@@ -27532,7 +27533,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8dccc6d8529808f7ffaeae615330a5f0216dbb371a5168a954c9c6aff82ebae2",
+  "manifestHash": "e477472a8d4ca41451622fb14dc897c0e9e48f26dbf8db324543ade04d4b0543",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

@@ -1,11 +1,12 @@
 {
+  "level": "1",
   "specFolder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/007-open-findings-follow-up",
   "description": "Phase 7: open-findings-follow-up",
   "keywords": [
     "phase",
     "open-findings-follow-up"
   ],
-  "lastUpdated": "2026-11-15T05:25:51.967Z",
+  "lastUpdated": "2026-11-15T09:45:33.085Z",
   "specId": "007",
   "folderSlug": "open-findings-follow-up",
   "parentChain": [
@@ -13,7 +14,8 @@
     "loop-architecture",
     "004-workflow-logic-hardening"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "15-11-26_10-45__fixed-the-six-open-findings-then-merged-origin.md"
+  ]
 }
