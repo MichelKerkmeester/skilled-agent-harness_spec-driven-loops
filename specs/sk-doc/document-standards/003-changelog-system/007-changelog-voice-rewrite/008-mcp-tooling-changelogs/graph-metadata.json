@@ -29,17 +29,18 @@
       "criteria",
       "implementation",
       "summary",
-      "yourvaluehere",
-      "broken"
+      "mcp-tooling",
+      "hold"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "scratch/evidence.txt"
     ],
     "entities": [
       {
@@ -70,6 +71,12 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence.txt",
+        "kind": "file",
+        "path": "scratch/evidence.txt",
         "source": "derived"
       },
       {
@@ -121,7 +128,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Other",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -133,13 +146,7 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
+        "name": "Data Flow The",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -179,18 +186,12 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Acceptance Criteria",
-        "kind": "proper_noun",
-        "path": "acceptance-criteria.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "[YOURVALUEHERE: What is broken, missing, or inefficient? 2-3 sentences describing the specific pain point.]",
+    "causal_summary": "The mcp-tooling changelogs hold long sentences",
     "created_at": "2026-11-15T06:37:44Z",
-    "last_save_at": "2026-11-15T06:47:44.681Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-15T17:31:07.613Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -199,13 +200,13 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:845aedca09bcafc52dfef46c0fd3364b836cb9dc82b8c9474d17faf12fde2eeb",
+    "source_fingerprint": "sha256:4c6b10b5edf752128a690671b1871989fc890ded8f8063eaacc547eaa0dc112a",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "ba636789220393694eca32bc3356b9f24976b84f6cd2728746440a0dd5a201ae",
-      "plan.md": "eab9afeb9b1ea18fea525a9275be5da5caa8aea12de6e1412fcb84a4ab816e30",
-      "tasks.md": "46e2f6168b378a604cd8749b233f7672e637402a2489280144f59c373df99e4e",
-      "implementation-summary.md": "8209c4c85768a56d33054e059f7ab1cbee00f681cc4fe9b8a8b22768643e9520"
+      "spec.md": "e35e4cbd7e388052c1b26aed7c0c979e9c3b3abace4ccda56fa3cf64bce2e1ae",
+      "plan.md": "cf48f5fa8bbd14fdc35eea61439dbe74594202b5b229813284015bf7cdf8aa8b",
+      "tasks.md": "5c95cf8b891b63e23e3169eb3824f8f9a4d1486a38025a590eeb37d02fe7c493",
+      "implementation-summary.md": "dfb39c6d632684c7515e4a063371bf60163c864796e559f83c5d0ec686efa281"
     },
     "last_active_at": null
   }
