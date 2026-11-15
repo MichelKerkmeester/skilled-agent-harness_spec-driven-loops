@@ -139,8 +139,14 @@ function parseOptions(argv) {
 // 5. GIT HELPERS
 // ───────────────────────────────────────────────────────────────
 
+// A whole-repository listing passes the 1 MiB buffer a spawnSync call starts with,
+// so every git call gets room for the largest tree a source may hold.
 function git(args, cwd) {
-  const result = spawnSync('git', [...GIT_PREFIX, ...args], { cwd, encoding: 'utf8' });
+  const result = spawnSync('git', [...GIT_PREFIX, ...args], {
+    cwd,
+    encoding: 'utf8',
+    maxBuffer: 512 * 1024 * 1024,
+  });
   if (result.error) throw new StepFailure('spawn_failed', result.error.message);
   return result;
 }

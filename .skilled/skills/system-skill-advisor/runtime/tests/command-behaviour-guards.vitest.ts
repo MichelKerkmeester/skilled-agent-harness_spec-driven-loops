@@ -750,6 +750,48 @@ describe('arena builder', () => {
     }
   });
 
+  // A whole-repository listing can run past the buffer a spawnSync call starts with,
+  // so a source that tracks thousands of files still has to build.
+  it('builds a source whose tracked listing passes the default buffer', () => {
+    const root = mkdtempSync(join(tmpdir(), 'skilled-behaviour-arena-'));
+    try {
+      const source = join(root, 'source');
+      mkdirSync(source);
+      const gitRun = (args: string[]) => spawnSync('git', args, { cwd: source, encoding: 'utf8' });
+      expect(gitRun(['init', '-q']).status).toBe(0);
+      writeFileSync(join(source, '.gitignore'), 'dist/\n');
+      writeFileSync(join(source, 'src.js'), 'v1\n');
+      mkdirSync(join(source, 'bulk'));
+      const name = `${'x'.repeat(171)}.txt`;
+      for (let index = 0; index < 6000; index += 1) {
+        writeFileSync(join(source, 'bulk', `${String(index).padStart(4, '0')}-${name}`), '');
+      }
+      expect(gitRun(['add', '-A']).status).toBe(0);
+      const committed = gitRun([
+        '-c',
+        'user.name=t',
+        '-c',
+        'user.email=t@example.invalid',
+        '-c',
+        'core.hooksPath=/dev/null',
+        'commit',
+        '-qm',
+        'init',
+      ]);
+      expect(committed.status).toBe(0);
+      mkdirSync(join(source, 'dist'));
+      writeFileSync(join(source, 'dist', 'out.js'), 'built from v1\n');
+      const arena = join(root, 'arena');
+
+      const built = build(source, arena);
+
+      expect(built.status).toBe(0);
+      expect(JSON.parse(built.stdout).ok).toBe(true);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
   // A build compiles sources that sit outside the folder holding its output, and the
   // tsconfig beside the build is what names them. A committed edit there leaves the
   // build stale while every tracked file in its own folder still predates it.
