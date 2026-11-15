@@ -1,0 +1,33 @@
+{
+  "runtime": "pi",
+  "label": "base1",
+  "steps": {
+    "notePrepared": true,
+    "signalled": false,
+    "relaunched": false,
+    "noteClosed": false,
+    "receiverAnswered": true
+  },
+  "answer": {
+    "lineCount": true,
+    "heading": true,
+    "codeWord": true
+  },
+  "noteStatus": "open",
+  "carry": {
+    "model": "unobservable",
+    "effort": "unobservable",
+    "name": "unobservable",
+    "provider": "unobservable"
+  },
+  "seconds": {
+    "startToPrepare": 94.7,
+    "prepareToSignal": null,
+    "signalToRelaunch": null,
+    "total": 652.1
+  },
+  "problems": [],
+  "firstLaunch": "pi",
+  "relaunchArgs": null,
+  "score": "2/5"
+}

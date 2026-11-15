@@ -1,0 +1,34 @@
+{
+  "runtime": "opencode",
+  "label": "final3",
+  "trustDialogs": 0,
+  "steps": {
+    "notePrepared": true,
+    "signalled": true,
+    "relaunched": true,
+    "noteClosed": true,
+    "receiverAnswered": true
+  },
+  "answer": {
+    "lineCount": true,
+    "heading": true,
+    "codeWord": true
+  },
+  "noteStatus": "done",
+  "carry": {
+    "model": "not-set",
+    "effort": "not-set",
+    "name": "not-set",
+    "provider": "not-set"
+  },
+  "seconds": {
+    "startToPrepare": 23.4,
+    "prepareToSignal": 8.9,
+    "signalToRelaunch": 0.2,
+    "startToClosed": 50.8
+  },
+  "problems": [],
+  "firstLaunch": "opencode --standalone --auto --prompt Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-relaunch/README.md, name its first heading and repeat the code word ORCHID-6002. Start by reading the README. Gate 3: D) Skip, no spec folder.",
+  "relaunchArgs": "opencode --standalone --prompt [session-relaunch] claim and continue handoff /Users/michelkerkmeester/worktrees/public/392-cross-runtime-handover-parity/.skilled/skills/.state/session-relaunch/handoffs/20261114T221953Z-ses_e23daca0effeq48kl43yuWO1d1.md | Spec folder: none (Gate 3 answered D, Skip, in the sending session) --auto",
+  "score": "5/5"
+}

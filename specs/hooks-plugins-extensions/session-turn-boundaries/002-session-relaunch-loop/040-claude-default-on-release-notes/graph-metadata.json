@@ -19,6 +19,7 @@
       "claude default on release notes tasks",
       "claude default on release notes acceptance criteria",
       "claude default on release notes goal",
+      "040-claude-default-on-release-notes operator decisions",
       "claude default on release notes implementation summary"
     ],
     "key_topics": [
@@ -43,6 +44,7 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md",
       ".skilled/hooks/shared/hook-flags.cjs",
       ".skilled/hooks/shared/hook-flags.sh",
@@ -56,8 +58,7 @@
       ".skilled/hooks/injection-contract.md",
       ".skilled/hooks/session-relaunch/README.md",
       ".skilled/commands/speckit/handoff.md",
-      ".skilled/commands/doctor/assets/doctor-env.yaml",
-      ".skilled/skills/system-spec-kit/README.md"
+      ".skilled/commands/doctor/assets/doctor-env.yaml"
     ],
     "entities": [
       {
@@ -88,6 +89,12 @@
         "name": "goal.md",
         "kind": "doc",
         "path": "goal.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
@@ -197,17 +204,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "`hookFlagDecision` in `.skilled/hooks/shared/hook-flags.cjs` returns off for the `session-relaunch` concern on every runtime when no enable switch holds a value, and `hookenabled` in `hook-flags.sh` copies that rule",
     "created_at": "2026-11-14T19:45:31Z",
-    "last_save_at": "2026-11-14T20:01:19.582Z",
+    "last_save_at": "2026-11-14T22:27:32.950Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,15 +217,17 @@
       "tasks.md",
       "acceptance-criteria.md",
       "goal.md",
+      "decision-record.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:77a665e2274fc66b103eae8cfe8fb1348955b758e655bd043f73befe03fe769a",
+    "source_fingerprint": "sha256:d99165f2da853e7397ccca1c414e9e51f7916fce8a3d90bf651353a213d146f3",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "8d629ceb1c0f26e77d58cf18a217a179777fa2cfd3980f93df96e8a559eb5a64",
       "plan.md": "2c50e2c644960234e86eb59dd21abdfdc6ee922add90f2d9252b80d424b12a12",
       "tasks.md": "61a312faa842e4e57452808ddb22dfd54e13bf2aef54de18cdad6f6532982707",
-      "implementation-summary.md": "b4e84a4f7cbf3a9b60972e11a0814d637f7a793c0aee515f84e71981d0893aa1"
+      "decision-record.md": "6477f3843fd23059276055416b12805a50efbb3fdf66e3149832043784c70131",
+      "implementation-summary.md": "86f8d9418dc119132affe86ee0512ba83bf0c591642c2fa40069d5303c105897"
     },
     "last_active_at": null
   }

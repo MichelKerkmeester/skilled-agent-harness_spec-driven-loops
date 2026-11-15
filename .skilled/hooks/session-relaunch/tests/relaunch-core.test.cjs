@@ -1511,6 +1511,48 @@ test('hostRuntimePid returns the direct parent when it is not a shell', () => {
   assert.equal(hostRuntimePid({ pid: 500, processTable: table }), 400);
 });
 
+// OpenCode 2 runs a tool shell under its pty daemon, which its serve process
+// starts below the `opencode` launcher the loop started.
+const OPENCODE_TWO_TABLE = [
+  '600 590 node',
+  '590 550 /bin/zsh',
+  '550 520 /Users/me/.cache/opencode/bin/opencode-pty/0.5.2-ed3adb8c/opencode-pty',
+  '520 510 /Users/me/.local/opencode-v2/lib/node_modules/@opencode/cli/bin/opencode.exe',
+  '510 100 opencode',
+  '100 1 bash',
+  '',
+].join('\n');
+
+test('hostRuntimePid climbs past the OpenCode 2 pty daemon and serve process', () => {
+  assert.equal(hostRuntimePid({ pid: 600, processTable: OPENCODE_TWO_TABLE }), 510);
+});
+
+test('dropNestedLoop keeps the loop variables for an OpenCode 2 tool shell', () => {
+  const env = { SKILLED_LOOP_ID: '100', SKILLED_LOOP_RUNTIME: 'opencode', OTHER: 'x' };
+  assert.equal(dropNestedLoop(env, { pid: 600, processTable: OPENCODE_TWO_TABLE }), false);
+  assert.deepEqual(env, { SKILLED_LOOP_ID: '100', SKILLED_LOOP_RUNTIME: 'opencode', OTHER: 'x' });
+});
+
+test('dropNestedLoop still drops the loop for OpenCode 2 started inside OpenCode 2', (t) => {
+  const { xdgRuntimeDir } = createSandbox(t);
+  const table = [
+    '900 890 node',
+    '890 850 /bin/zsh',
+    '850 820 /x/opencode-pty',
+    '820 810 /x/opencode.exe',
+    '810 590 opencode',
+    '590 550 /bin/zsh',
+    '550 520 /x/opencode-pty',
+    '520 510 /x/opencode.exe',
+    '510 100 opencode',
+    '100 1 bash',
+    '',
+  ].join('\n');
+  const env = { SKILLED_LOOP_ID: '100', SKILLED_LOOP_RUNTIME: 'opencode', XDG_RUNTIME_DIR: xdgRuntimeDir };
+  assert.equal(dropNestedLoop(env, { pid: 900, processTable: table }), true);
+  assert.deepEqual(env, { XDG_RUNTIME_DIR: xdgRuntimeDir });
+});
+
 test('hostRuntimePid returns null for a missing table or a broken chain', () => {
   assert.equal(hostRuntimePid({ pid: 500, processTable: '' }), null);
   assert.equal(hostRuntimePid({ pid: 500, processTable: 'not a process table' }), null);

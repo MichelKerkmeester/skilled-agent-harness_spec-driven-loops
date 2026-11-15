@@ -2101,6 +2101,23 @@ function isShellCommand(comm) {
 }
 
 /**
+ * Report whether a row is a process OpenCode starts below its own runtime. OpenCode 2
+ * runs every tool shell under a pty daemon that its serve process starts, so the
+ * runtime the loop launched sits two processes above the tool shell. Only a process
+ * whose parent is also an OpenCode process counts, which keeps a runtime started
+ * straight from a shell as the host.
+ *
+ * @param {{ ppid: number, comm: string }} row - Process-table row to test.
+ * @param {Map<number, { ppid: number, comm: string }>} rows - Rows keyed by pid.
+ * @returns {boolean} True when the row is an OpenCode helper below an OpenCode process.
+ */
+function isOpenCodeHelper(row, rows) {
+  const isOpenCode = (comm) => typeof comm === 'string' && path.basename(comm).startsWith('opencode');
+  const parentRow = rows.get(row.ppid);
+  return isOpenCode(row.comm) && Boolean(parentRow) && isOpenCode(parentRow.comm);
+}
+
+/**
  * Resolve the runtime that hosts this process by skipping the shells above it.
  * A runtime started from a tool shell sits below that shell, so process.ppid
  * names the shell rather than the runtime that owns the session; the nearest
@@ -2131,7 +2148,7 @@ function hostRuntimePid({ pid = process.pid, processTable } = {}) {
     if (!Number.isSafeInteger(parent) || parent < 1) return null;
     const parentRow = rows.get(parent);
     if (!parentRow) return null;
-    if (!isShellCommand(parentRow.comm)) return parent;
+    if (!isShellCommand(parentRow.comm) && !isOpenCodeHelper(parentRow, rows)) return parent;
     current = parent;
   }
   return null;

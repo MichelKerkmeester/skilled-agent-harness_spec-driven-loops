@@ -1602,6 +1602,16 @@ test('claim exits zero and prints the claimed note body', (t) => {
   assert.match(fs.readFileSync(handoffPath, 'utf8'), /^status: claimed$/m);
 });
 
+test('claim names the complete command for the note it claimed after the note body', (t) => {
+  const sandbox = createSandbox(t);
+  const handoffPath = writeHandoff(sandbox);
+  const result = runCli(sandbox, ['claim', handoffPath, '--session', SESSION_ID]);
+  assert.equal(result.status, 0, result.stderr);
+  const bodyAt = result.stdout.indexOf('Finish the relaunch loop');
+  const completeAt = result.stdout.indexOf(`complete '${handoffPath}'`);
+  assert.ok(bodyAt >= 0 && completeAt > bodyAt, result.stdout);
+});
+
 test('claim requires --session for Codex despite a Claude session env', (t) => {
   const sandbox = createSandbox(t);
   const handoffPath = writeHandoff(sandbox);

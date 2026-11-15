@@ -7,7 +7,7 @@ trigger_phrases:
   - "session-relaunch-pi-opencode"
   - "skilled-loop pi"
   - "skilled-loop opencode"
-version: 1.0.22.0
+version: 1.0.23.0
 id: session-relaunch-pi-opencode
 expected_workflow_mode: UNKNOWN
 expected_leaf_resources: []
@@ -107,7 +107,7 @@ Evidence: all 18 tests pass under bash and zsh. The suite holds nine cases and r
 
 ### Live Checks
 
-Each live launch overrides the threshold and window-token limit then sets the hop cap to one. These values are test overrides only. Defaults stay unchanged. Submit the exact prompt from the scenario contract and then wait for the nudge, which reaches the model without an operator turn. Pi holds it from `message_end` to `agent_end` and delivers it as a follow-up that starts its own turn. OpenCode carries it in the system prompt on the session's next request. Follow the adapter's generated handoff and `prepare` instructions. Observe the record arm, process handoff and claim seed in the receiving TUI.
+Each live launch overrides the threshold and window-token limit then sets the hop cap to one. These values are test overrides only. Defaults stay unchanged. Submit the exact prompt from the scenario contract and then wait for the nudge, which reaches the model without an operator turn. Pi holds it from `message_end` to the next `turn_end` whose tools ran and steers it into the running loop, or delivers it at `agent_end` as a follow-up that starts its own turn when the loop ended first. OpenCode carries it in the system prompt on the session's next request. Follow the adapter's generated handoff and `prepare` instructions. Observe the record arm, process handoff and claim seed in the receiving TUI.
 
 #### Recorded Results
 
@@ -157,7 +157,7 @@ tmux new-session -d -s "$session_name" "$tmux_command"
 tmux attach -t "$session_name"
 ~~~
 
-Observe Pi's `message_end` nudge, the seed injection at `before_agent_start` and matching-record arming at `agent_end`. Pi only decides the nudge at `message_end` and holds the text until `agent_end`, which re-checks the record and the hop limit before sending it as a follow-up that starts a turn. Confirm the killer ends the current Pi process and `skilled-loop` starts Pi with the prepared claim seed. Confirm the receiving TUI claims that note and continues the task. The 2026-10-19 benchmark report for this scenario records the seed claims those runs made in the receiving TUI.
+Observe Pi's `message_end` nudge, the seed injection at `before_agent_start` and matching-record arming at `agent_end`. Pi only decides the nudge at `message_end` and holds the text until the next `turn_end` whose tools ran, which re-checks the record and the hop limit before steering it into the running loop. When the loop ends first, `agent_end` makes the same checks and sends it as a follow-up that starts a turn. Confirm the killer ends the current Pi process and `skilled-loop` starts Pi with the prepared claim seed. Confirm the receiving TUI claims that note and continues the task. The 2026-10-19 benchmark report for this scenario records the seed claims those runs made in the receiving TUI.
 
 #### Live OpenCode hop in tmux (Live)
 

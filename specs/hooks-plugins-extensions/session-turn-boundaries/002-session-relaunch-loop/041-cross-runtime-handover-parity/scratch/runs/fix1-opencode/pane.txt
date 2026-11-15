@@ -1,0 +1,50 @@
+ • Session relaunch README detai • Session relaunch README detai ⠏ Session relaunch handoff clai +
+                                                                                                                                                           █
+  ┃                                                                                                                                                        █    Session relaunch handoff claim
+  ┃  [session-relaunch] claim and continue handoff /Users/michelkerkmeester/worktrees/public/392-cross-runtime-handover-parity/.skilled/skills/.state/     █
+  ┃  session-relaunch/handoffs/20261114T214314Z-ses_e23fc6a66ffe2q5uWQr3D1DRJ9.md | Spec folder: none (Gate 3 answered D, Skip, in the sending session)    █    Context
+  ┃                                                                                                                                                        █    19,010 tokens
+                                                                                                                                                           █    2% used
+     + 5 commands, 6 thoughts                                                                                                                              █    $0.00 spent
+                                                                                                                                                           █
+     Handoff claimed and completed (status: done, completed_at: 2026-11-14T21:44:34Z). I re-verified the facts rather than trusting the note's own         █    MCP
+     summary:                                                                                                                                              █    • code_mode                     Error
+                                                                                                                                                           █
+     Three facts about .skilled/hooks/session-relaunch/README.md                                                                                           █
+                                                                                                                                                           █
+     1. Line count: 377 — wc -l printed 377.                                                                                                               █
+     2. First heading: # Session Relaunch, at line 9. The YAML frontmatter (lines 1–8) has no heading; its title: field is metadata.                       █
+     3. Code word: ORCHID-17187                                                                                                                            █
+                                                                                                                                                           █
+     The handoff's report matches what the file itself shows; no discrepancies. Nothing modified apart from the handoff note's own state fields (          █
+     gitignored runtime state).                                                                                                                            █
+                                                                                                                                                           █
+     Nothing is outstanding for you — the task the note carried is finished and closed.                                                                    █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+
+  ┃
+  ┃
+  ┃
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+   ⬝⬝⬝⬝⬝⬝⬝⬝ esc interrupt                                                                                                19.0K (2%) · $0.00  ctrl+p commands    …/3…/392-cross-runtime-handover-parity
+

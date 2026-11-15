@@ -1,0 +1,50 @@
+ • Session relaunch README detai +
+                                                                                                                                                           █
+  ┃                                                                                                                                                        █    Session relaunch README details
+  ┃  Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-        █
+  ┃  relaunch/README.md, name its first heading and repeat the code word ORCHID-372. Start by reading the README. Gate 3: D) Skip, no spec folder.         █    Context
+  ┃                                                                                                                                                        █    128,382 tokens
+                                                                                                                                                           █    12% used
+     + 29 commands, 2 edits, 27 thoughts, 12 reads, 1 tool                                                                                                 █    $0.06 spent
+                                                                                                                                                           █
+     The OpenCode hop did not happen, so there is no new session. The facts you asked for: the README holds 377 lines, its first heading is # Session      █    MCP
+     Relaunch (line 9, after the frontmatter), and the code word is ORCHID-372. They are staged in the open note at .skilled/skills/.state/session-        █    • code_mode                     Error
+     relaunch/handoffs/20261114T213130Z-ses_e24073c41ffeysXnxu9l0feJen.md.                                                                                 █
+                                                                                                                                                           █
+     prepare exited 3 on the outside-loop path and armed no record. The relaunch log reads 2026-11-14T21:32:54.167Z loop-nested-run loopId=46664           █
+     hostPid=55923. The ancestry is the prepare shell, zsh, the opencode-pty daemon (55923), opencode.exe serve (47161), the runtime opencode --           █
+     standalone (46914), then loop 46664. hostRuntimePid stops at the pty daemon and nestedUnderLoop sees the loop two processes above it, so              █
+     dropNestedLoop treats this sender as a nested run, strips SKILLED_LOOP_*, and prepare prints the claim command instead of arming. No relaunch-46664.  █
+     json exists.                                                                                                                                          █
+                                                                                                                                                           █
+     I did not detach the process to defeat that check. This is a baseline run of the live-hop harness, and a synthetic arm would record a green hop the   █
+     stock code cannot produce.                                                                                                                            █
+                                                                                                                                                           █
+     Recommendation: make hostRuntimePid treat OpenCode 2's own serve and opencode-pty processes as part of the runtime, then re-run this leg. If you      █
+     only want this note delivered, run the skilled-loop opencode --prompt ... claim line that prepare printed after this session exits.                   █
+                                                                                                                                                           █
+     The note is the only file I wrote, and it is gitignored runtime state. No repository file changed. Residual risk: the one-hop path is unproven on     █
+     OpenCode until the guard is fixed and the leg is re-run.                                                                                              █
+                                                                                                                                                           █
+     REPO RULES: communication.md, communication-handoff.md, evidence-and-proof.md. SKILL ROUTING: none, gitignored runtime state only. COMMAND: /create:  █
+     readme declined, no README authoring in scope.                                                                                                        █
+                                                                                                                                                           █
+     Build · DeepSeek V4.1 Flash 1017 · 5m 47s · 553.7 tok/s · 8.7s ttft                                                                                   █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+                                                                                                                                                           █
+
+  ┃
+  ┃
+  ┃
+  ┃  Build auto · DeepSeek V4.1 Flash 1017 DevPass (LLM Gateway) · max
+  ╹▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+  ~/worktrees/public/392-cross-runtime-handover-parity:worktrees/392-cross-runtime-handover-parity                     128.4K (12%) · $0.06  ctrl+p commands    …/3…/392-cross-runtime-handover-parity
+
