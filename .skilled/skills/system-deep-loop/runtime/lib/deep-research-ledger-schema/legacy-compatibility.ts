@@ -65,6 +65,9 @@ const LEGACY_EVENT_STEMS = Object.freeze({
   pivot_failed: 'deep_research.pivot_failed',
   dispatch_failure: 'deep_research.dispatch_failure',
   dispatch_receipt_write_failed: 'deep_research.dispatch_receipt_write_failed',
+  verification_degraded: 'deep_research.verification_degraded',
+  containment_violation: 'deep_research.containment_violation',
+  containment_contested: 'deep_research.containment_contested',
 } as const satisfies Readonly<Record<string, DeepResearchEventStem>>);
 
 const PINNED_LEGACY_EVENTS = new Set([
@@ -240,6 +243,26 @@ const REDUCER_READ_ROW_SHAPES: Readonly<
     required: ['reason', 'phase', 'iteration'],
     anyOf: [],
     optional: ['executor', 'detail', 'sessionId'],
+  }),
+  // The post-dispatch validator's degraded verification row and the
+  // write-containment guard's two finding rows.
+  'deep_research.verification_degraded': Object.freeze({
+    event: 'verification_degraded',
+    required: ['status', 'confidence', 'threshold', 'language', 'reason', 'detail'],
+    anyOf: [],
+    optional: ['sessionId'],
+  }),
+  'deep_research.containment_violation': Object.freeze({
+    event: 'containment_violation',
+    required: ['severity', 'violations', 'reverted'],
+    anyOf: [],
+    optional: ['iteration', 'label', 'revertedPatchPath', 'revertedPatchError', 'dataLossPossible', 'sessionId'],
+  }),
+  'deep_research.containment_contested': Object.freeze({
+    event: 'containment_contested',
+    required: ['severity', 'paths', 'note'],
+    anyOf: [],
+    optional: ['iteration', 'label', 'sessionId'],
   }),
 });
 
@@ -782,7 +805,10 @@ export function upcastLegacyDeepResearchRecord(
     case 'deep_research.pivot_completed':
     case 'deep_research.pivot_failed':
     case 'deep_research.dispatch_failure':
-    case 'deep_research.dispatch_receipt_write_failed': {
+    case 'deep_research.dispatch_receipt_write_failed':
+    case 'deep_research.verification_degraded':
+    case 'deep_research.containment_violation':
+    case 'deep_research.containment_contested': {
       const targetStem = compatibility.targetStem;
       const shape = REDUCER_READ_ROW_SHAPES[targetStem] as ReducerReadRowShape;
       const fields = Object.keys(input).filter((field) => !LEGACY_ROW_ENVELOPE_FIELDS.has(field));

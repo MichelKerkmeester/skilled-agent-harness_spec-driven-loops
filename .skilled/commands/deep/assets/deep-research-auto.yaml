@@ -1320,6 +1320,7 @@ workflow:
               artifactDir,
               preDispatchDirtyPaths,
               stateLogPath: '{state_paths.state_log}',
+              sessionId: '{config.lineage.sessionId}',
               iteration: Number('{current_iteration}'),
               label: dispatchId,
             });
@@ -1495,6 +1496,7 @@ workflow:
               artifactDir,
               preDispatchDirtyPaths,
               stateLogPath: '{state_paths.state_log}',
+              sessionId: '{config.lineage.sessionId}',
               iteration: Number('{current_iteration}'),
               label: dispatchId,
             });
@@ -1597,6 +1599,7 @@ workflow:
               artifactDir,
               preDispatchDirtyPaths,
               stateLogPath: '{state_paths.state_log}',
+              sessionId: '{config.lineage.sessionId}',
               iteration: Number('{current_iteration}'),
               label: dispatchId,
             });
@@ -1700,6 +1703,7 @@ workflow:
               artifactDir,
               preDispatchDirtyPaths,
               stateLogPath: '{state_paths.state_log}',
+              sessionId: '{config.lineage.sessionId}',
               iteration: Number('{current_iteration}'),
               label: dispatchId,
             });
@@ -1923,6 +1927,7 @@ workflow:
               artifactDir,
               preDispatchDirtyPaths,
               stateLogPath: '{state_paths.state_log}',
+              sessionId: '{config.lineage.sessionId}',
               iteration: Number('{current_iteration}'),
               label: dispatchId,
             });
@@ -1971,6 +1976,7 @@ workflow:
           dispatchReceipt:
             receiptDir: "{state_paths.packet_dir}/dispatch-receipts"
             dispatchId: "research-i{current_iteration}-g{config.lineage.generation}"
+          sessionId: "{config.lineage.sessionId}"
           optional_jsonl_fields:
             logOffset: "Byte offset where the seekable log region starts"
             logSize: "Byte length of the seekable log region"

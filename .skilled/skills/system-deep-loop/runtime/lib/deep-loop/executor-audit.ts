@@ -1073,7 +1073,7 @@ const LEDGER_MODES = Object.freeze([
 // A state log beside a ledger with frames is a projection the append gateway
 // rebuilds from that ledger, so a row written straight into it is dropped at
 // the next refresh.
-function ledgerModeFor(stateLogPath: string): 'review' | 'research' | null {
+export function ledgerModeFor(stateLogPath: string): 'review' | 'research' | null {
   for (const { ledgerDirectory, mode } of LEDGER_MODES) {
     try {
       if (readdirSync(join(dirname(stateLogPath), ledgerDirectory, 'frames')).some((name) => name.endsWith('.frame'))) {
@@ -1139,7 +1139,7 @@ function canonicalJson(value: unknown): string | undefined {
 // names no session id or the gateway refuses, the row is written straight into
 // the state log, where the steps that read it right after the dispatch still
 // find it, and stderr says why it will not last.
-function appendFailureRow(stateLogPath: string, row: Record<string, unknown>, sessionId: string | undefined): void {
+export function appendFailureRow(stateLogPath: string, row: Record<string, unknown>, sessionId: string | undefined): void {
   const ledgerMode = ledgerModeFor(stateLogPath);
   if (ledgerMode !== null) {
     if (!sessionId) {
