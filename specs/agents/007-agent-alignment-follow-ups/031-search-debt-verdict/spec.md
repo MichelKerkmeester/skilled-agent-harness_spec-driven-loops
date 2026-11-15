@@ -18,7 +18,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/384-agent-alignment-follow-ups` |
 | **Parent Spec** | ../spec.md |
@@ -104,6 +104,9 @@ registries 60 with searchDebt 5 PASS->CONDITIONAL 0
 | `.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md` | Modify | Re-rendered |
 | `.skilled/commands/deep/assets/deep-review.yaml` | Modify | Bind and pass debt; report wording |
 | `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown` | Modify | Recompiled |
+| `.skilled/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs` | Modify | Version constant matches the published snapshot |
+| `.skilled/skills/system-deep-loop/deep-review/` and `runtime/feature-catalog/` docs | Modify | Verdict rule includes debt |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/review-dashboard-verdict.vitest.ts` | Create | Dashboard verdict with debt |
 <!-- /ANCHOR:scope -->
 
 ---

@@ -32,7 +32,7 @@ contextType: "general"
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Record the runtime suite baseline (`$RT`). Verify: the pass count is written down.
+- [x] T001 Record the runtime suite baseline (`$RT`). Verify: the pass count is written down.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -40,10 +40,10 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Add debt to the function and CLI (`$RT/scripts/review-verdict.cjs`). Verify: verdict tests pass.
-- [ ] T003 Union debt in the merge (`$RT/scripts/fanout-merge.cjs`). Verify: merge tests pass.
-- [ ] T004 Dashboard uses the function (`$RT/scripts/reduce-state.cjs`). Verify: reducer tests pass.
-- [ ] T005 Contract, snapshot and workflow wording (`review-mode-contract.yaml`, `deep-review.yaml`). Verify: drift, parity and snapshot pass.
+- [x] T002 Add debt to the function and CLI (`$RT/scripts/review-verdict.cjs`). Verify: verdict tests pass.
+- [x] T003 Union debt in the merge (`$RT/scripts/fanout-merge.cjs`). Verify: merge tests pass.
+- [x] T004 Dashboard uses the function (`$RT/scripts/reduce-state.cjs`). Verify: reducer tests pass.
+- [x] T005 Contract, snapshot and workflow wording (`review-mode-contract.yaml`, `deep-review.yaml`). Verify: drift, parity and snapshot pass.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -51,8 +51,8 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T006 Rerun the suite and typecheck (`$RT`). Verify: no test that passed at baseline fails.
-- [ ] T007 Run strict validation on the parent and its children (`spec.md`). Verify: `RESULT: PASSED` for every folder.
+- [x] T006 Rerun the suite and typecheck (`$RT`). Verify: no test that passed at baseline fails.
+- [x] T007 Run strict validation on the parent and its children (`spec.md`). Verify: `RESULT: PASSED` for every folder.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -60,9 +60,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Open search debt gives CONDITIONAL on every verdict path
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Open search debt gives CONDITIONAL on every verdict path
 <!-- /ANCHOR:completion -->
 
 ---

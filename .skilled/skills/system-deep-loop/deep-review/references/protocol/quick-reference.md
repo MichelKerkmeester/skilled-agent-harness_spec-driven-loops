@@ -9,7 +9,7 @@ trigger_phrases:
   - "review loop troubleshooting"
 importance_tier: normal
 contextType: general
-version: 1.11.2.0
+version: 1.11.3.0
 ---
 
 # Deep Review Quick Reference
@@ -124,8 +124,8 @@ Review mode stores its packet under the resolved local review path rooted at `{s
 | Verdict | Condition | Meaning | Next Command |
 |---------|-----------|---------|--------------|
 | FAIL | Active P0 findings remain OR any binary gate fails | Does not meet quality standards | `/speckit:plan` for remediation |
-| CONDITIONAL | No P0, but active P1 findings remain | Meets threshold but has required fixes | `/speckit:plan` for fixes |
-| PASS | No active P0/P1 findings | Shippable, set `hasAdvisories=true` when P2 findings remain | `/create:changelog` |
+| CONDITIONAL | No P0, but active P1 findings or open search debt remain | Meets threshold but has required fixes | `/speckit:plan` for fixes |
+| PASS | No active P0/P1 findings and no open search debt | Shippable, set `hasAdvisories=true` when P2 findings remain | `/create:changelog` |
 
 ### Release Readiness
 

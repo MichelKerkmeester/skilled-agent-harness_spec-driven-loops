@@ -1,5 +1,5 @@
 {
-  "manifestHash": "8034887fac4b6984b77ff580b1ef8bb3b3b54dd1ce454ecbfcb380057fe4a70a",
+  "manifestHash": "509bcd0ae08b5286ebd46fbe493dd95db19e5b318845b4b0fe33689b2ab3777a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -6649,6 +6649,9 @@
     ],
     "031 findings fixes": [
       "031 findings fixes"
+    ],
+    "031 search debt verdict operator decisions": [
+      "031-search-debt-verdict operator decisions"
     ],
     "032 035 deferred items": [
       "032 035 deferred items"

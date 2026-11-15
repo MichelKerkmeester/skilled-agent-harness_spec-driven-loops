@@ -8,7 +8,7 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.4.0
+version: 1.11.5.0
 ---
 
 # deep-review
@@ -103,8 +103,8 @@ The loop ends with one of three verdicts.
 
 | Verdict | Condition | Route |
 |---|---|---|
-| **PASS** | No active P0 or P1 findings | `/create:changelog` |
-| **CONDITIONAL** | No P0 remains, P1 findings still need attention | `/speckit:plan` for remediation |
+| **PASS** | No active P0 or P1 findings and no open search debt | `/create:changelog` |
+| **CONDITIONAL** | No P0 remains, P1 findings or open search debt still need attention | `/speckit:plan` for remediation |
 | **FAIL** | An active P0 remains or a legal-stop gate failed at terminal stop time | `/speckit:plan` for remediation |
 
 ### Externalized State

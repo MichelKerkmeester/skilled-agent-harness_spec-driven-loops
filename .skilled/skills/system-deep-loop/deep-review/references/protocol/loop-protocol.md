@@ -9,7 +9,7 @@ trigger_phrases:
   - "review synthesis phase"
 importance_tier: important
 contextType: implementation
-version: 1.11.11.0
+version: 1.11.12.0
 ---
 
 # Deep Review Loop Protocol
@@ -514,8 +514,8 @@ Apply the verdict contract from `review-mode-contract.yaml`:
 | Verdict | Condition | Next Command |
 |---------|-----------|--------------|
 | **FAIL** | Active P0 remains OR any required binary gate fails | `/speckit:plan` for remediation |
-| **CONDITIONAL** | No active P0, but active P1 remains | `/speckit:plan` for fixes |
-| **PASS** | No active P0/P1 | `/create:changelog` |
+| **CONDITIONAL** | No active P0, but active P1 remains or search debt is still open | `/speckit:plan` for fixes |
+| **PASS** | No active P0/P1 and no open search debt | `/create:changelog` |
 
 When `PASS` verdict is issued and active P2 findings remain, set `hasAdvisories = true` in the report metadata.
 

@@ -1,5 +1,5 @@
 {
-  "corpusHash": "2ca189bde00c7d86bc25c976b0b93239df8ebd195a08a1f2f1a77f7cd53a4c32",
+  "corpusHash": "e6567e06c7bbbfa7e2a41dfd2e1961ec5f293da7f0b234b425c017ec93e449b5",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27706,
+  "includedPathCount": 27707,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -9573,6 +9573,7 @@
     "specs/agents/007-agent-alignment-follow-ups/030-review-count-source/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/030-review-count-source/spec.md",
     "specs/agents/007-agent-alignment-follow-ups/030-review-count-source/tasks.md",
+    "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/decision-record.md",
     "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/implementation-summary.md",
     "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/plan.md",
     "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/spec.md",
@@ -27738,7 +27739,7 @@
     "specs/system-speckit/spec-folder-tooling/006-remove-nested-changelog/tasks.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "8034887fac4b6984b77ff580b1ef8bb3b3b54dd1ce454ecbfcb380057fe4a70a",
+  "manifestHash": "509bcd0ae08b5286ebd46fbe493dd95db19e5b318845b4b0fe33689b2ab3777a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

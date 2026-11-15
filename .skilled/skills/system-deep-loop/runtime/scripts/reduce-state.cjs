@@ -14,6 +14,7 @@ const { emitResourceMap } = require('../../shared/synthesis/resource-map.cjs');
 const { resolveArtifactRoot } = require('../../runtime/lib/deep-loop/artifact-root.cjs');
 const { filterCompletionBearingRecords } = require('../../shared/progress/progress-record.cjs');
 const { latestIterationRecords } = require('../lib/deep-loop/iteration-findings.cjs');
+const { deriveReviewVerdict, openSearchDebtCount } = require('./review-verdict.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CONSTANTS
@@ -2210,14 +2211,18 @@ function renderDashboard(config, registry, iterationRecords, iterationFiles) {
   const effectiveNextFocus = registry.divergence.currentFocus || nextFocus;
 
   const severity = registry.findingsBySeverity;
-  const hasSearchDebt = Array.isArray(registry.searchDebt) && registry.searchDebt.length > 0;
+  const openSearchDebt = openSearchDebtCount(registry);
+  const hasSearchDebt = openSearchDebt > 0;
   const failedRequiredGateIds = registry.terminalGates?.failedRequiredGateIds ?? [];
-  const verdict = severity.P0 > 0 || failedRequiredGateIds.length > 0
-    ? 'FAIL'
-    : severity.P1 > 0 || hasSearchDebt
-      ? 'CONDITIONAL'
-      : 'PASS';
-  const hasAdvisories = verdict === 'PASS' && severity.P2 > 0;
+  // The dashboard reports the one rule the stop path already derived, so a stop
+  // cannot read as a failure here and a pass in the report beside it.
+  const { verdict, hasAdvisories } = deriveReviewVerdict({
+    activeP0: severity.P0,
+    activeP1: severity.P1,
+    activeP2: severity.P2,
+    openSearchDebt,
+    failedRequiredGateIds,
+  });
 
   const progressRows = dashboardIterationRecords
     .filter((record) => record.type === 'iteration')

@@ -1829,6 +1829,7 @@ workflow:
           p1_count: "active_p1"
           p2_count: "active_p2"
           failed_required_gate_ids: "failed_required_gate_ids"
+          search_debt_count: "search_debt"
 
       step_hydrate_summary_metrics:
         action: "Hydrate summary metrics before synthesis"
@@ -1843,9 +1844,9 @@ workflow:
           - iteration_count: "When direct lineage state logs exist, count distinct run values (the integer iteration, else a numeric run) across those logs in stable lineage order; otherwise count distinct run values (the integer iteration, else a numeric run) across the root state log. Never add root compatibility records to lineage records."
           - highest_run: "When direct lineage state logs exist, take the highest run value (the integer iteration, else a numeric run) across lines where type === 'iteration' in those logs in stable lineage order, else 0; otherwise take the highest run value (the integer iteration, else a numeric run) across lines where type === 'iteration' in the root state log, else 0. Never add root compatibility records to lineage records."
           - current_iteration: "max(highest_run, iteration_count) + 1"
-          - p0_count: "Total P0 findings across all iterations (deduped)"
-          - p1_count: "Total P1 findings across all iterations (deduped)"
-          - p2_count: "Total P2 findings across all iterations (deduped)"
+          - p0_count: "When step_fanout_merge bound it, keep the merged value; the fan-out verdict reads it. Otherwise the count of open findings in {state_paths.findings_registry} with status active and severity P0, for the pre-synthesis display only."
+          - p1_count: "Same rule as p0_count, for severity P1."
+          - p2_count: "Same rule as p0_count, for severity P2."
           - failed_required_gate_ids: "When step_fanout_merge bound it, keep the merged value. Otherwise take failedRequiredGateIds from the last line of {state_paths.state_log} with type === 'event' and event === 'terminal_gates', else []. Read the state log, not the registry: the reducer last ran before the stop wrote that row."
           - dimensions_covered: "List of reviewed dimensions"
           - dimension_coverage: "covered / total"
@@ -1855,7 +1856,7 @@ workflow:
 
       # H-1 verdict derivation: parse findings JSONL, map highest severity to verdict
       # - PASS: no P0 or P1 findings (P2-only or clean)
-      # - CONDITIONAL: any P1 findings (no P0)
+      # - CONDITIONAL: any P1 finding or open search debt (no P0, no failed gate)
       # - FAIL: any P0 finding, or a required quality gate (evidence, scope, coverage) still failing at the terminal stop
       # Final line of iteration-NNN.md MUST be exactly: "Review verdict: PASS" / "Review verdict: CONDITIONAL" / "Review verdict: FAIL"
       step_derive_verdict:
@@ -1868,6 +1869,7 @@ workflow:
               --active-p0 {p0_count} \
               --active-p1 {p1_count} \
               --active-p2 {p2_count} \
+              --search-debt {search_debt_count} \
               --failed-gate-ids '{failed_required_gate_ids}'
           working_directory: "{repo_root}"
           wait_for_completion: true
@@ -1877,6 +1879,7 @@ workflow:
             active_p0: "active_p0"
             active_p1: "active_p1"
             active_p2: "active_p2"
+            search_debt_count: "search_debt"
           on_fail: "Halt with STATUS=FAIL through step_release_lock. The values the merge bound are the authority on a fan-out root, so an unreadable bound value must stop the run rather than let a verdict be guessed."
         if_absent:
           command: |
@@ -1891,6 +1894,7 @@ workflow:
             active_p0: "active_p0"
             active_p1: "active_p1"
             active_p2: "active_p2"
+            search_debt_count: "search_debt"
           on_fail: "Halt with STATUS=FAIL through step_release_lock. A non-zero exit means the registry or the state log could not be read, so this stop has no verdict yet and none may be assumed."
         outputs:
           - verdict: "PASS | CONDITIONAL | FAIL"
@@ -2040,7 +2044,7 @@ workflow:
              - Always include this section before the appendix.
              - Render reducer-owned `searchCoverage`, `candidateCoverage`, `searchDebt`, `ruledOutCandidates`, and `cleanSearchProof`.
              - If all arrays are empty or absent, include: `*No search-depth state captured (legacy v1 record)*`.
-             - When `searchDebt` is non-empty, state `hasSearchDebt: true` and carry the dashboard verdict as CONDITIONAL unless active P0 findings make it FAIL.
+             - When `searchDebt` is non-empty, state hasSearchDebt: true. The verdict already counts it: CONDITIONAL unless an active P0 or a failed gate makes it FAIL. When debt is the only reason for CONDITIONAL, the next step is another /deep:review over the deferred or blocked bug classes, not /speckit:plan.
 
           10. **Audit Appendix**
              - Convergence summary, coverage summary, ruled-out claims, sources reviewed

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary"
-description: "Open with a hook: what changed and why it matters. One paragraph, impact first."
+description: "Open search debt now makes the final deep-review verdict CONDITIONAL on the single-executor path, the fan-out merge and the dashboard, through one shared function."
 trigger_phrases:
   - "search debt verdict implementation summary"
 importance_tier: "normal"
@@ -8,17 +8,30 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "agents/007-agent-alignment-follow-ups/031-search-debt-verdict"
-    last_updated_at: "2026-11-15T20:25:12Z"
-    last_updated_by: "template-author"
-    recent_action: "Initialize continuity block"
-    next_safe_action: "Replace template defaults on first save"
+    last_updated_at: "2026-11-15T20:53:04Z"
+    last_updated_by: "generate-context"
+    recent_action: "Built phase 031 search debt verdict rule"
+    next_safe_action: "Commit phase 031, then build phase 032"
+    packet_purpose: "Purpose: Make open search debt one of the verdict function's inputs, so the final verdict, the merge and the dashboard agree."
     blockers: []
-    key_files: []
+    key_files:
+      - "specs/agents/007-agent-alignment-follow-ups/031-search-debt-verdict/implementation-summary.md"
+      - ".skilled/skills/system-deep-loop/runtime/scripts/review-verdict.cjs"
+      - ".skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs"
+      - ".skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs"
+      - ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml"
     session_dedup:
-      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      fingerprint: "sha256:b70ab37dccdb8da524a137f5adce4cd81d03d0a01af0840894d5f7b4666b0f88"
       session_id: "scaffold-031-search-debt-verdict"
       parent_session_id: null
-    completion_pct: 0
+    session_ref:
+      runtime: "claude"
+      sessionId: "a84f4eed-26f9-49ac-91eb-e2375c207e96"
+      workspace: "/Users/michelkerkmeester/worktrees/public/384-agent-alignment-follow-ups"
+      savedAt: "2026-11-15T20:53:04Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -32,7 +45,6 @@ _memory:
 
 <!-- ANCHOR:metadata -->
 ## Metadata
-<!-- FILL: Fill the folder name, the completion date and the level. Use the real date. GOOD: `004-rotate-logs-keep`. Completed 2026-10-24. Level 1. WEAK: Folder: TBD. -->
 
 | Field | Value |
 |-------|-------|
@@ -45,62 +57,75 @@ _memory:
 
 <!-- ANCHOR:what-built -->
 ## What Was Built
-<!-- FILL: Open with the user-visible change in two sentences, then list each changed file. GOOD: `--keep 3` leaves three archives in `logs/archive`. A plain run leaves all ten. WEAK: Implemented the feature. -->
 
-[YOUR_VALUE_HERE: Opening hook: 2-3 sentences on what changed and why it matters. Lead with impact.]
+A review that ends with deferred or blocked bug classes in its search debt now ends CONDITIONAL, as its dashboard already said. Before this phase the final verdict and the fan-out merge ignored debt, so the same registry could read CONDITIONAL on the dashboard and PASS in the report.
 
 ### Phase 31: search-debt-verdict
 
-[What this feature does and why it exists. 1-2 paragraphs. Use direct address.
-Explain what the user gains, not what files you touched.]
+`deriveReviewVerdict` in `review-verdict.cjs` takes `openSearchDebt`: with no active P0 and no failed gate, an active P1 or open debt gives CONDITIONAL. The CLI reads the registry's `searchDebt` in registry mode, requires `--search-debt N` in bound mode and prints `search_debt`. `fanout-merge.cjs` unions debt across lineages, one entry per bug class, feeds it to the merged and per-lineage verdicts, and now prints `active_p2` and `search_debt`. The reducer's dashboard verdict calls the shared function. The contract's CONDITIONAL and PASS conditions name open search debt, and the snapshot is re-rendered. `deep-review.yaml` binds and passes the debt on the fan-out path, keeps the merged counts through the hydrate step, and tells the report that a debt-only CONDITIONAL is cleared by another review over the deferred classes. Eleven skill docs that state the verdict rule now include debt.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| [YOUR_VALUE_HERE: path] | [YOUR_VALUE_HERE: Created/Modified/Deleted] | [YOUR_VALUE_HERE: What this change accomplishes] |
+| `.skilled/skills/system-deep-loop/runtime/scripts/review-verdict.cjs` | Modified | Debt input, flag and output |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/review-verdict.vitest.ts` | Modified | Debt cases |
+| `.skilled/skills/system-deep-loop/runtime/scripts/fanout-merge.cjs` | Modified | Debt union; prints active_p2 and search_debt |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/fanout-merge.vitest.ts` | Modified | Union, verdict and CLI output |
+| `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Modified | Dashboard uses the shared function |
+| `.skilled/skills/system-deep-loop/runtime/tests/unit/review-dashboard-verdict.vitest.ts` | Created | Debt alone and debt with P0 |
+| `.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml` | Modified | CONDITIONAL and PASS conditions |
+| `.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract-snapshot.md` | Regenerated | Conditions |
+| `.skilled/skills/system-deep-loop/deep-review/scripts/render-contract-snapshot.cjs` | Modified | Version constant matches the published snapshot |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Modified | Bind and pass debt; hydrate keeps merged counts; report wording |
+| `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown` | Regenerated | Source digests |
+| `.skilled/skills/system-deep-loop/deep-review/ and .skilled/skills/system-deep-loop/runtime/feature-catalog/ docs` | Modified | Verdict rule includes debt |
 <!-- /ANCHOR:what-built -->
 
 ---
 
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
-<!-- FILL: Name the commands that proved it and the order they ran. GOOD: Ran `--keep 3` and a plain run, then the suite. All three passed. WEAK: Tested and shipped. -->
 
-[YOUR_VALUE_HERE: How was this tested, verified and shipped? What was the rollout approach?]
+DeepSeek V4.1 Flash at `--thinking max` through cli-pi built each task in its own dispatch, and the conductor read every diff and reran the checks. The merge task found that the merge never printed `active_p2`, although the workflow binds `p2_count` from it and, since the verdict script took over the fan-out verdict, passes it as a required flag; a fan-out review would have halted at its verdict step. The merge now prints it, and a CLI test checks every bound key. Re-rendering the snapshot exposed a version line hand-raised to 1.11.1.0 in an earlier commit while the renderer still wrote 1.11.0.0; the renderer constant now matches.
 <!-- /ANCHOR:how-delivered -->
 
 ---
 
 <!-- ANCHOR:decisions -->
 ## Key Decisions
-<!-- FILL: Write one decision per row. Give the reason, not the label. GOOD: Option over environment variable: one run can pick a different count without editing config. WEAK: Used the best approach. -->
 
 | Decision | Why |
 |----------|-----|
-| [YOUR_VALUE_HERE: What was decided] | [YOUR_VALUE_HERE: Active-voice rationale with specific reasoning] |
+| Debt makes CONDITIONAL | Operator decision 2026-11-15; the dashboard and the report step already said so |
+| Union debt by bug class across lineages | Strongest restriction, like the merged findings: a class any lineage still owes is owed |
+| Hydrate keeps the merged counts | The fan-out verdict reads `p0_count` to `p2_count` after the hydrate step, so a hand recount there would replace the merge's values |
 <!-- /ANCHOR:decisions -->
 
 ---
 
 <!-- ANCHOR:verification -->
 ## Verification
-<!-- FILL: Write one check per row with the exact output. GOOD: `ls logs/archive | wc -l` after `--keep 3`: 3. After a plain run: 10. Suite: PASSED. WEAK: All tests pass. -->
 
 | Check | Result |
 |-------|--------|
-| [YOUR_VALUE_HERE: Validation, lint, tests, manual check] | [YOUR_VALUE_HERE: PASS/FAIL with specifics] |
+| `review-verdict.vitest.ts` | PASS: 16 of 16 |
+| Merge tests with the verdict tests | PASS: 100 of 100 |
+| `review-dashboard-verdict.vitest.ts` | PASS: 2 of 2 |
+| Runtime suite | PASS: 184 files, 3,087 passed, 9 skipped (baseline 183 files, 3,075 passed) |
+| `npm run typecheck` | PASS: no errors |
+| Contract drift and snapshot check | PASS: `OK commands=2`, snapshot up to date |
+| spec-kit `deep-review-contract-parity.vitest.ts` | PASS: 12 of 12 |
+| `check-documentation-drift.cjs` | PASS: no errors |
 <!-- /ANCHOR:verification -->
 
 ---
 
 <!-- ANCHOR:limitations -->
 ## Known Limitations
-<!-- FILL: Name one real limit and the workaround. GOOD: `--keep` deletes the older archives for good. Copy `logs/archive/` aside first when a run may cut too deep. WEAK: No limitations. -->
 
-1. **[YOUR_VALUE_HERE: Limitation]** [YOUR_VALUE_HERE: Specific detail with workaround if one exists.]
+1. **Fan-out debt is a union, not a reconciliation.** A class one lineage deferred and another covered still counts as debt.
+2. **Recorded reviews keep their verdicts.** None of 60 recent registries would change: 5 carry debt, all with a P1, P0 or failed gate already.
 <!-- /ANCHOR:limitations -->
 
 ---
-
-
