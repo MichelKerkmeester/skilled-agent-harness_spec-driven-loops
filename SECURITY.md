@@ -55,7 +55,7 @@ Only the latest release on `main` receives security fixes.
 
 ## 5. SCOPE
 
-This repository ships `.skilled/` skills, commands, agents, hooks and scripts plus runtime configuration under `.claude/`, `.codex/`, `.opencode/` and the other runtime folders. The external DeepSeek Harness run surface under `.dsh/` is also in scope.
+This repository ships `.skilled/` skills, commands, agents, hooks and scripts plus runtime configuration under `.claude/`, `.codex/`, `.opencode/` and the other runtime folders. The external DeepSeek Harness run surface under `.dsh/` and the Mistral Vibe run surface under `.vibe/` are also in scope.
 
 Out of scope are the AI assistants themselves and third-party MCP servers, which should be reported to their own maintainers.
 
@@ -115,10 +115,10 @@ The dotenv guard keeps an agent from reading `.env` through its tools, but it ju
 
 ### Read What Runs
 
-Read the hook registrations before your first AI session: the `hooks` block in `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json`, `.devin/hooks.v1.json`, `.opencode/plugins/`, `.pi/extensions/` and `.dsh/patches/guards.patch.yml`. The [hooks README](.skilled/hooks/README.md) indexes every hook the repository authors, by concern and runtime. Several entries under `.skilled/hooks/` are links to code inside a skill, so the command below also covers `.skilled/skills`. After a pull, it shows what changed in the code that runs on your machine:
+Read the hook registrations before your first AI session: the `hooks` block in `.claude/settings.json`, `.codex/hooks.json`, `.cursor/hooks.json`, `.devin/hooks.v1.json`, `.opencode/plugins/`, `.pi/extensions/`, `.dsh/patches/guards.patch.yml` and `.vibe/hooks.toml`. The [hooks README](.skilled/hooks/README.md) indexes every hook the repository authors, by concern and runtime. Several entries under `.skilled/hooks/` are links to code inside a skill, so the command below also covers `.skilled/skills`. After a pull, it shows what changed in the code that runs on your machine:
 
 ```bash
-git diff --stat ORIG_HEAD HEAD -- .claude/settings.json .claude/mcp.json .codex .cursor .devin .dsh .opencode/plugins opencode.json .pi .skilled/hooks .skilled/bin .skilled/scripts .skilled/skills .skilled/commands/doctor/scripts .utcp_config.json
+git diff --stat ORIG_HEAD HEAD -- .claude/settings.json .claude/mcp.json .codex .cursor .devin .dsh .opencode/plugins opencode.json .pi .vibe .skilled/hooks .skilled/bin .skilled/scripts .skilled/skills .skilled/commands/doctor/scripts .utcp_config.json
 ```
 
 ### Turn Approval Back On

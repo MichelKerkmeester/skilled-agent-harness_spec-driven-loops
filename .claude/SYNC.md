@@ -92,7 +92,7 @@ The body is identical to the OpenCode twin except for the self-referential `**Pa
 
 - The same agents, by name, in every runtime that carries agents.
 - Every shared command reachable from Claude's repository command tree. OpenCode-only commands are excluded. The drift check below is authoritative.
-- An agent added here must reach `.skilled/agents`, `.codex/agents`, `.cursor/agents`, `.devin/agents`, `.pi/agents` and `.dsh/agents`.
+- An agent added here must reach `.skilled/agents`, `.codex/agents`, `.cursor/agents`, `.devin/agents`, `.pi/agents`, `.dsh/agents` and `.vibe/agents`.
 - `agents/README.txt` lists every agent present in the directory.
 
 ---

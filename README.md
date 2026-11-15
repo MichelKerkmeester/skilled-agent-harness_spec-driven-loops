@@ -1144,6 +1144,19 @@ In fan-out lineages, the lineage patch adds a marker row that keeps the four int
 
 &nbsp;
 
+#### Mistral Vibe Hooks
+
+Mistral Vibe never loads JavaScript plugins, so `.vibe/` carries one hook bundle instead of a plugin per guard. `.vibe/hooks.toml` declares 18 `[[hooks]]` entries. Thirteen run the guard scripts in `.vibe/plugins/repo-guards/`, and the other five run Vibe adapters under `.skilled/hooks/`. Each script calls the same shared core as the other runtimes.
+
+- **Before a tool call, able to stop it:** the spec-folder gate, the dotenv guard, dispatch preflight, the overlay guard, the MCP route guard, the git message gate and the deep-loop guard
+- **After a tool call:** post-edit quality, which can refuse, plus advice on the result from the build-freshness checks, the injection screen, context again after a compaction and live decision capture
+- **At each turn:** the spec-gate classifier and the turn-start brief (skill advisor, completion advisory, save nudge, context after a compaction) before it, and the turn-end checks for a prose option menu and an unproven completion claim after it
+- **Around the session:** the session context and bound packet goal at start, and the cleanup script at close
+
+The hooks load only in a trusted checkout. A dispatch from a scratch folder gets them through its disposable `VIBE_HOME`, where `render-home-hooks.cjs` writes a copy with the checkout path filled in. See [`.vibe/SYNC.md`](.vibe/SYNC.md).
+
+&nbsp;
+
 #### Shared Hook Cores
 
 `.skilled/hooks/` carries the runtime-agnostic cores the plugin adapters call into.
@@ -1599,7 +1612,7 @@ The [sk-code README](.skilled/skills/sk-code/README.md#4-adapting-to-your-stack)
 | **`opencode.json`** | Permissions, the `code_mode` MCP binding and one experimental flag. Used by OpenCode |
 | **`.utcp_config.json`** | Code Mode external tool registrations. Used by the `mcp-code-mode` skill |
 | **`.claude/mcp.json`** | Claude Code MCP configuration. Claude Code only |
-| **Runtime folders** | `.claude/`, `.codex/`, `.opencode/`, `.cursor/`, `.pi/` and `.devin/`. Each holds a README that separates what is generated from `.skilled/` from what is authored there, and names the command that checks its mirrors: [Claude Code](.claude/README.md), [Codex](.codex/README.md), [OpenCode](.opencode/README.md), [Cursor](.cursor/README.md), [Pi](.pi/README.md), [Devin](.devin/README.md) |
+| **Runtime folders** | `.claude/`, `.codex/`, `.opencode/`, `.cursor/`, `.pi/` and `.devin/`. Each holds a README that separates what is generated from `.skilled/` from what is authored there, and names the command that checks its mirrors: [Claude Code](.claude/README.md), [Codex](.codex/README.md), [OpenCode](.opencode/README.md), [Cursor](.cursor/README.md), [Pi](.pi/README.md), [Devin](.devin/README.md). `.vibe/` is the Mistral Vibe run surface, and [`.vibe/SYNC.md`](.vibe/SYNC.md) says what is generated there |
 
 &nbsp;
 
