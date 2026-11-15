@@ -20,14 +20,14 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Complete |
 | **Created** | 2026-11-15 |
 | **Branch** | `worktrees/399-hook-feature-subtracks` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 2 of 6 |
 | **Predecessor** | 001-hop-recall-baseline |
 | **Successor** | 003-mint-locator-at-prepare |
-| **Handoff Criteria** | Every importer resolves and the history suites pass with the same count: `npx vitest run tests/history-*.vitest.ts` prints 13 files and 191 tests. |
+| **Handoff Criteria** | Every importer resolves and the history suites pass with the same count: `npx vitest run tests/history-*.vitest.ts tests/hook-session-start.vitest.ts` prints 13 files and 191 tests. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -44,7 +44,7 @@ This is **Phase 2** of the packet that moves the session history lookup out of t
 - The concern has no build step, so its entry is plain ESM over that compiled file.
 
 **Deliverables**:
-- A `.mjs` lookup entry in `.skilled/hooks/session-relaunch/bin/`.
+- A `.mjs` lookup entry in `.skilled/hooks/session-handover/bin/`.
 - A changed `HISTORY_LOOKUP_COMMAND` and a `lookupRunsFrom` proof that covers the entry and the compiled core.
 - Updated CLI-path assertions in four test and support files, plus three README updates.
 <!-- /ANCHOR:phase-context -->
@@ -79,7 +79,7 @@ Section 2's count of 13 files and 191 tests is quoted from this block. The same 
 ## 3. SCOPE
 
 ### In Scope
-- Add `.skilled/hooks/session-relaunch/bin/history-lookup.mjs` as the concern's runnable entry over the compiled `cli.js`.
+- Add `.skilled/hooks/session-handover/bin/history-lookup.mjs` as the concern's runnable entry over the compiled `cli.js`.
 - Change `HISTORY_LOOKUP_COMMAND` in `lookup-offer.ts` to the entry path.
 - Make `lookupRunsFrom` prove the entry and the compiled core both exist.
 - Update the CLI-path assertions in the four test and support files.
@@ -96,16 +96,16 @@ Section 2's count of 13 files and 191 tests is quoted from this block. The same 
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `.skilled/hooks/session-relaunch/bin/history-lookup.mjs` | Create | The concern's runnable entry: imports `runHistoryLookupCli` and sets `process.exitCode`. |
+| `.skilled/hooks/session-handover/bin/history-lookup.mjs` | Create | The concern's runnable entry: imports `runHistoryLookupCli` and sets `process.exitCode`. |
 | `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/lookup-offer.ts` | Modify | The constant names the entry; `lookupRunsFrom` checks the entry and the compiled core. |
 | `.skilled/skills/system-spec-kit/runtime/tests/_support/history-fixtures.ts` | Modify | `checkoutRoot()` creates placeholders at both paths. |
 | `.skilled/skills/system-spec-kit/runtime/tests/history-projection.vitest.ts` | Modify | Three CLI-path strings change to the entry path. |
 | `.skilled/skills/system-spec-kit/runtime/tests/history-locator-adapters.vitest.ts` | Modify | Two CLI-path strings change to the entry path. |
 | `.skilled/skills/system-spec-kit/runtime/tests/hook-session-start.vitest.ts` | Modify | One CLI-path string changes to the entry path. |
 | `.skilled/skills/system-spec-kit/runtime/hooks/lib/history/README.md` | Modify | The CLI section names the entry and keeps the compiled-core note. |
-| `.skilled/hooks/session-relaunch/README.md` | Modify | The concern README names the lookup entry and its core. |
-| `.skilled/hooks/session-relaunch/bin/README.md` | Modify | The bin README lists the second runnable entry. |
-| `.skilled/hooks/session-relaunch/tests/history-lookup-entry.test.cjs` | Create | The concern's entry test: same refusal, same exit code, core load. |
+| `.skilled/hooks/session-handover/README.md` | Modify | The concern README names the lookup entry and its core. |
+| `.skilled/hooks/session-handover/bin/README.md` | Modify | The bin README lists the second runnable entry. |
+| `.skilled/hooks/session-handover/tests/history-lookup-entry.test.cjs` | Create | The concern's entry test: same refusal, same exit code, core load. |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -117,16 +117,16 @@ Section 2's count of 13 files and 191 tests is quoted from this block. The same 
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | The concern's entry runs the same CLI as the compiled file. | `node .skilled/hooks/session-relaunch/bin/history-lookup.mjs` prints `{"ok":false,"code":"invalid_usage"}` and exits 2. |
-| REQ-002 | The printed command names the concern entry. | `rg -n "HISTORY_LOOKUP_COMMAND =" .skilled/skills/system-spec-kit/runtime/hooks/lib/history/lookup-offer.ts` prints `node .skilled/hooks/session-relaunch/bin/history-lookup.mjs`. |
+| REQ-001 | The concern's entry runs the same CLI as the compiled file. | `node .skilled/hooks/session-handover/bin/history-lookup.mjs` prints `{"ok":false,"code":"invalid_usage"}` and exits 2. |
+| REQ-002 | The printed command names the concern entry. | `rg -n "HISTORY_LOOKUP_COMMAND =" .skilled/skills/system-spec-kit/runtime/hooks/lib/history/lookup-offer.ts` prints `node .skilled/hooks/session-handover/bin/history-lookup.mjs`. |
 | REQ-003 | The offer is withheld when the compiled core is missing. | The concern's entry test builds a checkout with the entry and no compiled core and asserts `lookupRunsFrom` returns `false`. |
 
 ### P1 - Required (complete OR user-approved deferral)
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-004 | The history suites pass at the same count. | `cd .skilled/skills/system-spec-kit/runtime && npx vitest run tests/history-*.vitest.ts` prints `Test Files 13 passed (13)` and `Tests 191 passed (191)`. |
-| REQ-005 | The concern's entry test passes. | `node --test .skilled/hooks/session-relaunch/tests/history-lookup-entry.test.cjs` exits 0. |
+| REQ-004 | The history suites pass at the same count. | `cd .skilled/skills/system-spec-kit/runtime && npx vitest run tests/history-*.vitest.ts tests/hook-session-start.vitest.ts` prints `Test Files 14 passed (14)` and `Tests 221 passed (221)`. |
+| REQ-005 | The concern's entry test passes. | `node --test .skilled/hooks/session-handover/tests/history-lookup-entry.test.cjs` exits 0. |
 <!-- /ANCHOR:requirements -->
 
 ---

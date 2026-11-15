@@ -108,7 +108,7 @@ describe('Pi post-compaction locator', () => {
     expect(messages[0].content).toContain('(cd "$(git rev-parse --show-toplevel)" && ');
     expect(messages[0].content).toContain('SPECKIT_RUNTIME=pi');
     expect(messages[0].content).toContain(
-      'node .skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js',
+      'node .skilled/hooks/session-handover/bin/history-lookup.mjs',
     );
     expect(messages[0].content).toContain(`--session '${sessionId}'`);
     expect(messages[0].content).toContain("--handle 'hl1_");
@@ -335,7 +335,7 @@ describe('DSH post-compaction locator', () => {
     expect(notice.text).toContain(`load '{"historyIds":["<id>"]}'`);
     expect(notice.text).toContain('SPECKIT_RUNTIME=dsh');
     expect(notice.text).toContain(
-      'node .skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js',
+      'node .skilled/hooks/session-handover/bin/history-lookup.mjs',
     );
     expect(notice.text).toContain(`--session '${sessionId}'`);
     expect(notice.text).toContain(`browse '{"direction":"backward"}'`);

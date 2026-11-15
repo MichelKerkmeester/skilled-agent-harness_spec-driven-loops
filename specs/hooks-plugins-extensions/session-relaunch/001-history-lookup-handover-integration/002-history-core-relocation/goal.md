@@ -54,10 +54,10 @@ Frozen choices. Changing one is an amendment.
 <!-- ANCHOR:completion -->
 ## 3. COMPLETION CRITERIA
 
-- [ ] `node .skilled/hooks/session-relaunch/bin/history-lookup.mjs` prints `{"ok":false,"code":"invalid_usage"}` and exits 2.
-- [ ] `cd .skilled/skills/system-spec-kit/runtime && npx vitest run tests/history-*.vitest.ts` prints `Test Files 13 passed (13)` and `Tests 191 passed (191)`.
-- [ ] `node --test .skilled/hooks/session-relaunch/tests/*.test.cjs` exits 0.
-- [ ] `rg -n "HISTORY_LOOKUP_COMMAND =" .skilled/skills/system-spec-kit/runtime/hooks/lib/history/lookup-offer.ts` prints `node .skilled/hooks/session-relaunch/bin/history-lookup.mjs`.
+- [ ] `node .skilled/hooks/session-handover/bin/history-lookup.mjs` prints `{"ok":false,"code":"invalid_usage"}` and exits 2.
+- [ ] `cd .skilled/skills/system-spec-kit/runtime && npx vitest run tests/history-*.vitest.ts tests/hook-session-start.vitest.ts` prints `Test Files 14 passed (14)` and `Tests 221 passed (221)`.
+- [ ] `node --test .skilled/hooks/session-handover/tests/*.test.cjs` exits 0.
+- [ ] `rg -n "HISTORY_LOOKUP_COMMAND =" .skilled/skills/system-spec-kit/runtime/hooks/lib/history/lookup-offer.ts` prints `node .skilled/hooks/session-handover/bin/history-lookup.mjs`.
 <!-- /ANCHOR:completion -->
 
 ---
@@ -74,7 +74,7 @@ and findings belong here.
 | Item | State | Evidence |
 |------|-------|----------|
 | Placement compared | Done | `plan.md` §3 compares A and B and names A's four failures. |
-| Baseline recorded | Done | `npx vitest run tests/history-*.vitest.ts` printed 13 files and 191 tests on 2026-11-15. |
+| Baseline recorded | Done | `npx vitest run tests/history-*.vitest.ts tests/hook-session-start.vitest.ts` printed 13 files and 191 tests on 2026-11-15. |
 | Entry, constant and tests | Pending | Tasks T004 to T011. |
 | Verification | Pending | Tasks T012 to T015. |
 

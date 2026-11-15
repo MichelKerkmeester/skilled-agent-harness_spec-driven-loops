@@ -116,12 +116,14 @@ A deferred item carries `id`, `kind`, `deferred: true`, a bounded `parts` list, 
 ## 7. CLI
 
 ```bash
-node .skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js \
+node .skilled/hooks/session-handover/bin/history-lookup.mjs \
   --session <session-id> \
   --handle <hl1_handle> \
   <search|browse|load|page> \
   '<json-arguments>'
 ```
+
+The session handover concern owns this entry, while the source and the build stay in this runtime.
 
 The argument contract:
 

@@ -253,7 +253,7 @@ describe('public projection', () => {
       type: 'toolCall',
       id: 'call-argv',
       name: 'exec',
-      arguments: { argv: ['node', '.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js', 'browse'] },
+      arguments: { argv: ['node', '.skilled/hooks/session-handover/bin/history-lookup.mjs', 'browse'] },
     })).toBe(true);
   });
 
@@ -262,7 +262,7 @@ describe('public projection', () => {
       type: 'toolCall',
       id: 'call-read-cli',
       name: 'read_file',
-      arguments: { path: '.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js' },
+      arguments: { path: '.skilled/hooks/session-handover/bin/history-lookup.mjs' },
     })).toBe(false);
   });
 

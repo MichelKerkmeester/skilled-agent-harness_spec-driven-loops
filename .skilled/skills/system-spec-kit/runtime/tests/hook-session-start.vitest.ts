@@ -415,7 +415,7 @@ describe('session-prime hook', () => {
       expect(section!.content).toContain('hl1_0123456789abcdef0123456789abcdef');
       expect(section!.content).toContain(`load '{"historyIds":["<id>"]}'`);
       expect(section!.content).toContain(
-        'node .skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js',
+        'node .skilled/hooks/session-handover/bin/history-lookup.mjs',
       );
       expect(section!.content).toContain("--session 'test-session-prime'");
       expect(section!.content).toContain("--handle 'hl1_0123456789abcdef0123456789abcdef'");

@@ -17,7 +17,7 @@ import { dirname, join, resolve } from 'node:path';
 // ───────────────────────────────────────────────────────────────────
 
 export const HISTORY_LOOKUP_TITLE = 'History Lookup';
-export const HISTORY_LOOKUP_COMMAND = 'node .skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js';
+export const HISTORY_LOOKUP_COMMAND = 'node .skilled/hooks/session-handover/bin/history-lookup.mjs';
 export const HISTORY_LOOKUP_MAX_CHARS = 600;
 export const HISTORY_LOOKUP_MAX_RESULTS = 10;
 
@@ -79,20 +79,25 @@ export function buildHistoryLookupBody(locator: HistoryLookupTarget): string {
 // 4. PLACEMENT
 // ───────────────────────────────────────────────────────────────────
 
-/** The CLI file the printed command runs, relative to the checkout root. */
-const HISTORY_LOOKUP_CLI_PATH = HISTORY_LOOKUP_COMMAND.slice('node '.length);
+/** The runnable entry the printed command runs, relative to the checkout root. */
+const HISTORY_LOOKUP_ENTRY_PATH = HISTORY_LOOKUP_COMMAND.slice('node '.length);
+/** The compiled core the entry imports, relative to the checkout root. */
+const HISTORY_LOOKUP_CORE_PATH = '.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js';
 
 /**
  * Whether the printed command can redeem a locator minted in this workspace.
  *
- * The command moves to the checkout root and runs the CLI by a path relative
- * to it, and the CLI finds the saved locator by its working folder. A
- * workspace that is not a checkout root, or a nested repository without the
- * CLI, cannot run it, so the offer is withheld instead of printing a command
- * that cannot run. `placeLookup` keys a subfolder session by its root.
+ * The command moves to the checkout root and runs the entry by a path relative
+ * to it, and the entry imports the compiled core. The CLI finds the saved
+ * locator by its working folder. A workspace that is not a checkout root, or a
+ * nested repository without the entry or the compiled core, cannot run it, so
+ * the offer is withheld instead of printing a command that cannot run.
+ * `placeLookup` keys a subfolder session by its root.
  */
 export function lookupRunsFrom(workspace: string): boolean {
-  return existsSync(join(workspace, '.git')) && existsSync(join(workspace, HISTORY_LOOKUP_CLI_PATH));
+  return existsSync(join(workspace, '.git'))
+    && existsSync(join(workspace, HISTORY_LOOKUP_ENTRY_PATH))
+    && existsSync(join(workspace, HISTORY_LOOKUP_CORE_PATH));
 }
 
 /** Where a locator minted from one session folder is keyed and proven. */

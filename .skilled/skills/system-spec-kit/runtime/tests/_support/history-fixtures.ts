@@ -8,19 +8,23 @@ import { dirname, join } from 'node:path';
 
 import type { HistoryContentBlock, HistoryEntry } from '../../hooks/lib/history/history.js';
 
-const CLI_PATH = '.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js';
+const ENTRY_PATH = '.skilled/hooks/session-handover/bin/history-lookup.mjs';
+const CORE_PATH = '.skilled/skills/system-spec-kit/runtime/dist/hooks/lib/history/cli.js';
 
 /**
  * A temporary folder that looks like a checkout root. The lookup offer is
- * printed only for a workspace with a `.git` entry and the lookup CLI, so an
- * offer fixture needs both. The CLI is a placeholder file, because tests call
- * the CLI in process. The caller removes the folder when its suite ends.
+ * printed only for a workspace with a `.git` entry, the runnable entry and the
+ * compiled core, so an offer fixture needs all three. Both files are
+ * placeholders, because tests call the CLI in process. The caller removes the
+ * folder when its suite ends.
  */
 export function checkoutRoot(): string {
   const root = realpathSync(mkdtempSync(join(tmpdir(), 'history-checkout-')));
   mkdirSync(join(root, '.git'));
-  mkdirSync(dirname(join(root, CLI_PATH)), { recursive: true });
-  writeFileSync(join(root, CLI_PATH), '');
+  for (const relativePath of [ENTRY_PATH, CORE_PATH]) {
+    mkdirSync(dirname(join(root, relativePath)), { recursive: true });
+    writeFileSync(join(root, relativePath), '');
+  }
   return root;
 }
 
