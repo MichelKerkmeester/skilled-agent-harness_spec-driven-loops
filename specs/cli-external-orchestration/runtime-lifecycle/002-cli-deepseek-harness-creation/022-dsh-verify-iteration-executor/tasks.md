@@ -47,6 +47,7 @@ contextType: "general"
 - [x] T005 Add the eight executor provenance cases (`$DL/tests/unit/verify-iteration.vitest.ts`). Verify: `cd $DL && npx vitest run tests/unit/verify-iteration.vitest.ts` prints `Tests  39 passed (39)`. Evidence: `39 passed (39)`.
 - [x] T006 Name `executor_missing` in each `command_note` reason list (`$A/deep-review-auto.yaml` and the three other review and research workflows). Verify: `rg -c 'outside a fan-out lineage and neither' $A/*.yaml` prints 1 for each of the four. Evidence: 1, 1, 1 and 1.
 - [x] T007 Regenerate the compiled contracts (`$A/compiled/deep-review.contract.markdown`). Verify: `node $DL/scripts/check-contract-drift.cjs` prints `[CONTRACT DRIFT] OK commands=3`. Evidence: it printed four `STALE_SOURCE_DIGEST` lines and exit 2 before the regeneration, and `OK commands=3` after. The AI Council contract came out byte-identical.
+- [x] T007b Carry the change across origin/main's workflow consolidation (`$A/deep-review.yaml`). Verify: after the merge `rg -c 'outside a fan-out lineage and neither' $A/deep-review.yaml $A/deep-research.yaml` prints 1 for each, `check-contract-drift.cjs` prints `[CONTRACT DRIFT] OK commands=2` and the hub reads `2.0.1.0`. Evidence: 1 and 1, `OK commands=2` and four version fields at `2.0.1.0`. The release moved from v1.6.30.0 to v2.0.1.0 because origin released v2.0.0.0, which merged the auto and confirm workflows into one file per command and moved AI Council out.
 <!-- /ANCHOR:phase-2 -->
 
 ---

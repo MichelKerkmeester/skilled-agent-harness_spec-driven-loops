@@ -1,0 +1,134 @@
+=== STOP-DECISION CONTRACT (pure functions, exported from runtime/scripts/convergence.cjs) ===
+
+All six functions are pure: no file, clock, env or random access. Numbers that are
+computed (averages, scores, cutoffs) are rounded with `Number(x.toFixed(6))`.
+
+--- INPUT of buildStopDecision(input) ---
+{
+  loopType: 'research' | 'review',
+  iterationCount: number,
+  stuckCount: number,
+  config: { maxIterations, minIterations, convergenceThreshold, stopPolicy, stuckThreshold, convergenceMode },
+  ratios: number[],          // novelty ratio of each evidence iteration, oldest first
+  research: {                // used when loopType is 'research', else null
+    answeredCount, totalQuestions,
+    answeredQuestionSourceCounts,   // object { [question]: distinctSourceCount } or null
+    iterationRecords               // array of { answeredQuestions?: string[], keyQuestions?: string[] }
+  },
+  review: {                  // used when loopType is 'review', else null
+    totalDimensions, missingDimensions /* string[] */, coverageAge, traceabilityCovered /* bool */,
+    activeP0, activeP1, evidenceBackedP0P1, hotspotSaturated /* bool|null */,
+    lastClaimAdjudicationPassed /* bool|null */,
+    securitySensitiveFixScope /* bool */, fixReplayRequiredRows, fixReplayPassingRows,
+    reviewDepthSchemaVersion /* number|null */,
+    reviewDepthApplicability /* {scopeClass, enforcement, evidenceRefs}|null */,
+    searchDebt /* array */, candidateCovered /* string[] */, requiredBugClasses /* string[] */,
+    graphCoverageMode /* 'graph'|'graphless_fallback'|'unavailable_blocked'|null */,
+    fallbackCoveredBugClasses /* string[] */
+  },
+  graphDecision: 'STOP_ALLOWED' | 'STOP_BLOCKED' | 'CONTINUE' | null,   // null = missing
+  graphBlockers: array       // strings, or objects with a `type` field
+}
+
+--- OUTPUT of buildStopDecision: the `stop_decision` object, keys in exactly this order ---
+{ decision, stopReason, reasonDetail, weightedStopScore, signals, gates, blockedBy, graphDecision, inputs }
+  decision:   'STOP' | 'BLOCKED' | 'STUCK_RECOVERY' | 'CONTINUE'
+  stopReason: null when decision is 'CONTINUE'. Otherwise one of the eight frozen values:
+              converged, maxIterationsReached, blockedStop, stuckRecovery, error, manualStop,
+              userPaused, maxDurationReached. This function only ever emits:
+              STOP by the cap -> 'maxIterationsReached'; STOP by a candidate -> 'converged';
+              BLOCKED -> 'blockedStop'; STUCK_RECOVERY -> 'stuckRecovery'.
+  reasonDetail: the fine cause (string), see the order below.
+  weightedStopScore, signals: from computeStopSignals.
+  gates: research -> { qualityGuards: <evaluateResearchQualityGuards result> }
+         review   -> <evaluateReviewLegalStopGates result>.gates  (object keyed by gate name)
+  blockedBy: string[] (failed gate / guard / graph blocker names), [] when none.
+  graphDecision: the input value (null when missing).
+  inputs: the input object, unchanged.
+
+--- mapReviewThresholds(convergenceThreshold) ---
+t = convergenceThreshold if it is a finite number > 0, else 0.10.
+Returns { convergenceThreshold: t, rollingAverageCutoff: 0.8 * t, noProgressCutoff: 0.5 * t } (rounded).
+  undefined -> 0.10, 0.08, 0.05.   0.10 -> 0.10, 0.08, 0.05.   0.20 -> 0.20, 0.16, 0.10.
+
+--- computeStopSignals({ loopType, ratios, convergenceThreshold, coverage }) ---
+MAD(xs) = median(|x - median(xs)|).   noiseFloor = MAD(all ratios) * 1.4826.   latest = last ratio.
+research (convergenceThreshold defaults to 0.05 when not a finite number > 0):
+  rollingAverage    weight 0.30  available when ratios.length >= 3  value = mean(last 3)   stop = value <  convergenceThreshold
+  madNoiseFloor     weight 0.35  available when ratios.length >= 4  value = noiseFloor      stop = latest <= noiseFloor
+  questionEntropy   weight 0.35  available when coverage.total > 0  value = coverage.answered / coverage.total  stop = value >= 0.85
+  stopCandidate = weightedStopScore > 0.60.   noProgress = false.
+review (cutoffs from mapReviewThresholds(convergenceThreshold)):
+  rollingAverage    weight 0.30  available when ratios.length >= 2  value = mean(last 2)   stop = value <= rollingAverageCutoff
+  madNoiseFloor     weight 0.25  available when ratios.length >= 3  value = noiseFloor      stop = latest <= noiseFloor
+  dimensionCoverage weight 0.45  available when coverage.total > 0  value = coverage.covered / coverage.total
+                    stop = value >= 1 AND coverage.traceabilityCovered === true AND coverage.coverageAge >= 1
+  stopCandidate = weightedStopScore >= 0.60.   noProgress = ratios.length > 0 AND latest <= noProgressCutoff.
+weightedStopScore = (sum of weights of available signals with stop true) / (sum of weights of
+available signals); 0 when no signal is available. This redistributes weight of unavailable signals.
+Returns { signals: { <name>: { available, weight, value, stop } }, weightedStopScore, stopCandidate, noProgress }.
+An unavailable signal has value null and stop false.
+
+--- evaluateResearchQualityGuards({ answeredQuestionSourceCounts, iterationRecords }) ---
+Each guard result is { status: 'passed' | 'failed' | 'notEvaluated', passed: boolean, violations: string[] }.
+  sourceDiversity: answeredQuestionSourceCounts null -> notEvaluated, passed true. Otherwise failed
+                   when any question has a count < 2; violations = those question names.
+  focusAlignment:  look only at records where BOTH answeredQuestions and keyQuestions are arrays.
+                   None such -> notEvaluated, passed true. Otherwise failed when any answeredQuestions
+                   entry is not in that same record's keyQuestions; violations = those entries.
+  singleWeakSource: always notEvaluated, passed true, violations [].
+Returns { passed: <all three passed>, guards: { sourceDiversity, focusAlignment, singleWeakSource } }.
+
+--- evaluateReviewLegalStopGates(review, { weightedStopScore, hardStop }) ---
+Gate names, in this fixed order, each result { pass: boolean, skipped: boolean, ...evidence }:
+  convergenceGate          pass = hardStop === true OR weightedStopScore >= 0.60            (+ score)
+  dimensionCoverageGate    pass = missingDimensions.length === 0 AND traceabilityCovered === true AND coverageAge >= 1  (+ missing)
+  p0ResolutionGate         pass = activeP0 === 0                                             (+ activeP0)
+  evidenceDensityGate      pass = evidenceBackedP0P1 >= activeP0 + activeP1
+  hotspotSaturationGate    pass = hotspotSaturated === true
+  claimAdjudicationGate    pass = lastClaimAdjudicationPassed !== false OR activeP0 + activeP1 === 0
+  fixCompletenessReplayGate pass = securitySensitiveFixScope !== true OR fixReplayPassingRows >= fixReplayRequiredRows
+  candidateCoverageGate    skipped (pass true) when reviewDepthSchemaVersion !== 2. Otherwise pass when
+                           (applicability.scopeClass === 'trivial' AND applicability.enforcement === 'skip'
+                            AND applicability.evidenceRefs is a non-empty array)
+                           OR (searchDebt.length === 0 AND every requiredBugClasses entry is in candidateCovered)
+  graphlessFallbackGate    skipped (pass true) when reviewDepthSchemaVersion !== 2 OR graphCoverageMode === 'graph'.
+                           'unavailable_blocked' -> fail. 'graphless_fallback' -> pass when every
+                           requiredBugClasses entry is in fallbackCoveredBugClasses. Any other mode -> fail.
+Returns { passed: <no gate failed>, gates: { <name>: result }, failed: string[] /* failed names, fixed order */ }.
+
+--- combineGraphDecision(candidate, graphDecision, graphBlockers) ---
+candidate = { reasonDetail }. Returns { decision, stopReason, reasonDetail, blockedBy }:
+  'STOP_ALLOWED' -> STOP, 'converged', candidate.reasonDetail, []
+  'STOP_BLOCKED' -> BLOCKED, 'blockedStop', 'graphStopBlocked',
+                    blockedBy = graphBlockers mapped to (string itself, or .type, or 'graph_blocker');
+                    ['graph_blocker'] when that list is empty
+  'CONTINUE'     -> CONTINUE, null, 'graph_convergence_continue', []
+  anything else (null, undefined, unknown) -> CONTINUE, null, 'graphDecisionMissing', []
+
+--- buildStopDecision(input): FIXED EVALUATION ORDER, first match wins ---
+Always compute signals first (computeStopSignals) and report weightedStopScore and signals.
+coverage for research = { answered: answeredCount, total: totalQuestions }.
+coverage for review   = { covered: totalDimensions - missingDimensions.length, total: totalDimensions,
+                          traceabilityCovered, coverageAge }.
+1. CAP. iterationCount >= config.maxIterations -> STOP, 'maxIterationsReached', reasonDetail
+   'maxIterationsReached'. Guards (research) or gates (review, hardStop true) are still evaluated
+   and reported in `gates`, and blockedBy lists the failed guard/gate names as evidence. No veto.
+2. STUCK. stuckCount >= config.stuckThreshold -> STUCK_RECOVERY, 'stuckRecovery', 'stuckThresholdReached'.
+3. POLICY. config.convergenceMode === 'off' -> CONTINUE, null, 'convergenceModeOff'.
+   Else config.stopPolicy === 'max-iterations' -> CONTINUE, null, 'stopPolicyMaxIterations'.
+4. CANDIDATE.
+   research: totalQuestions > 0 AND answeredCount >= totalQuestions -> candidate 'all_questions_answered';
+             else signals.stopCandidate -> candidate 'composite_converged'.
+   review:   missingDimensions.length === 0 AND traceabilityCovered === true AND activeP0 === 0 AND
+             activeP1 === 0 AND coverageAge >= 1 -> candidate 'all_dimensions_clean' (hardStop true);
+             else signals.stopCandidate -> candidate 'composite_converged' (hardStop false).
+   No candidate -> CONTINUE, null, 'noStopCandidate'.
+5. FLOOR (research only). config.minIterations > 1 AND iterationCount < config.minIterations
+   -> CONTINUE, null, 'minIterationsNotReached'.
+6. GUARDS / GATES.
+   research: guards not passed -> CONTINUE, null, 'qualityGuardFailed', blockedBy = names of failed guards.
+   review:   gates not passed  -> BLOCKED, 'blockedStop', reasonDetail = first failed gate name,
+             blockedBy = failed gate names.
+7. GRAPH. Return combineGraphDecision(candidate, input.graphDecision, input.graphBlockers).
+In steps 2 to 5 `gates` is still filled: research -> { qualityGuards: <result> }, review -> gate results.

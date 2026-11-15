@@ -165,8 +165,7 @@ jobs:
           set -euo pipefail
           npx --yes vitest@4.0.18 run \
             tests/routing-registry-drift-guard.vitest.ts \
-            tests/routing-parity-deep-skills.vitest.ts \
-            tests/routing-parity-deep-council.vitest.ts
+            tests/routing-parity-deep-skills.vitest.ts
       - name: Compiled-routing freshness — serving matches inputs, runtime matches source
         # Editing a hub's routing inputs without re-minting silently drops that hub to
         # legacy routing: nothing errors and nothing logs, so it is only ever found by

@@ -1,7 +1,7 @@
 ---
 title: "DRV-017 -- P0 override blocks convergence"
 description: "Verify that a new P0 finding sets newFindingsRatio >= 0.50, blocking convergence regardless of other signals."
-version: 1.11.0.14
+version: 1.11.1.0
 ---
 
 # DRV-017 -- P0 override blocks convergence
@@ -27,7 +27,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 - Objective: Verify new P0 finding sets newFindingsRatio >= 0.50, blocking convergence.
 - Real user request: If the review finds a critical bug late in the loop, will it still stop early and miss it?
 - Prompt: `Validate that new P0 findings block deep-review convergence by forcing a high newFindingsRatio.`
-- Expected execution process: Inspect the convergence reference for the P0 override rule, then the review YAML algorithm for enforcement, then the quick reference and SKILL.md for user-facing documentation of the override.
+- Expected execution process: Inspect the convergence reference for the P0 override rule, then the `convergence.cjs` stop decision for enforcement, then the quick reference and SKILL.md for user-facing documentation of the override.
 - Desired user-facing outcome: The user is told that a critical finding will always force the review to continue for at least one more iteration, preventing premature stop.
 - Expected signals: P0 finding sets `newFindingsRatio >= 0.50`, this blocks the rolling average signal from contributing to convergence, the composite score cannot reach 0.60, and review continues.
 - Pass/fail posture: PASS if the P0 override is enforced and documented as blocking convergence. FAIL if convergence can trigger despite an active new P0 finding.
@@ -46,16 +46,16 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate that new P0 findings block deep-review convergence by forcing a high newFindingsRatio.
 ### Commands
 1. `bash: rg -n 'P0.*override|P0.*block|P0.*convergence|newFindingsRatio.*0\.50|severity.*override|P0.*ratio' .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
-2. `bash: rg -n 'P0|severity_override|newFindingsRatio|p0_override|p0_block' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+2. `bash: rg -n 'P0|severity_override|newFindingsRatio|p0_override|p0_block' .skilled/commands/deep/assets/deep-review.yaml`
 3. `bash: rg -n 'P0 override|P0.*block.*convergence|newFindingsRatio.*0\.50|severity.*override' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md`
 ### Expected
 P0 finding sets `newFindingsRatio >= 0.50`, this blocks the rolling average signal, the composite score cannot reach 0.60, and the review continues.
 ### Evidence
-Capture the P0 override rule from convergence.md, the YAML enforcement, and user-facing documentation of the override behavior.
+Capture the P0 override rule from convergence.md, the runtime stop decision, and user-facing documentation of the override behavior.
 ### Pass/Fail
 PASS if the P0 override is enforced and documented as blocking convergence. FAIL if convergence can trigger despite an active new P0 finding.
 ### Failure Triage
-Privilege the convergence reference for the exact P0 override rule and verify it is mirrored in both YAML workflows and user-facing docs.
+Privilege the convergence reference for the exact P0 override rule and verify it is mirrored in the workflow and user-facing docs.
 ---
 
 ## 4. SOURCE FILES
@@ -72,8 +72,7 @@ Privilege the convergence reference for the exact P0 override rule and verify it
 | File | Role |
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Canonical convergence math, P0 override rule in severity-weighted section |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Workflow algorithm, inspect P0 override in `step_check_convergence` |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Workflow algorithm, inspect P0 override in `step_check_convergence` |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Workflow branch on the `convergence.cjs` stop decision, inspect P0 override in `step_check_convergence` |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | P0 override note, use `ANCHOR:convergence` |
 | `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Severity classification and P0 blocking rules, use `ANCHOR:how-it-works` and `ANCHOR:rules` |
 | `.skilled/skills/system-deep-loop/deep-review/README.md` | Feature summary for P0 override behavior |

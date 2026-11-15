@@ -3,7 +3,6 @@
   "exempt": [
     "sk-design/sk-design-chart/assets/style-reference/evilcharts/DESIGN.md",
     "sk-design/sk-design-diagram/assets/style-reference/harness-diagram/DESIGN.md",
-    "system-deep-loop/deep-ai-council/assets/prompt-pack-round.md",
     "system-deep-loop/deep-research/assets/deep-research-dashboard.md",
     "system-deep-loop/deep-research/assets/deep-research-strategy.md",
     "system-deep-loop/deep-review/assets/deep-review-dashboard.md",

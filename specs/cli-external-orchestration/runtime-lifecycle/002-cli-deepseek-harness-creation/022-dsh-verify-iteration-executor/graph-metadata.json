@@ -45,9 +45,9 @@
       "implementation-summary.md",
       ".skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs",
       ".skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts",
-      ".skilled/commands/deep/assets/deep-review-auto.yaml",
+      ".skilled/commands/deep/assets/deep-review.yaml",
       ".skilled/commands/deep/assets/compiled/deep-review.contract.markdown",
-      ".skilled/skills/system-deep-loop/changelog/v1.6.30.0.md"
+      ".skilled/skills/system-deep-loop/changelog/v2.0.1.0.md"
     ],
     "entities": [
       {
@@ -93,9 +93,9 @@
         "source": "derived"
       },
       {
-        "name": "deep-review-auto.yaml",
+        "name": "deep-review.yaml",
         "kind": "config",
-        "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
+        "path": ".skilled/commands/deep/assets/deep-review.yaml",
         "source": "derived"
       },
       {
@@ -105,9 +105,9 @@
         "source": "derived"
       },
       {
-        "name": "v1.6.30.0.md",
+        "name": "v2.0.1.0.md",
         "kind": "doc",
-        "path": ".skilled/skills/system-deep-loop/changelog/v1.6.30.0.md",
+        "path": ".skilled/skills/system-deep-loop/changelog/v2.0.1.0.md",
         "source": "derived"
       },
       {
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Each review and research workflow runs `verify-iteration.cjs` in its `postdispatchvalidate` step, and that script checks the narrative, the state record, the delta and the route proof but never the executor",
     "created_at": "2026-11-15T08:03:49Z",
-    "last_save_at": "2026-11-15T08:30:16.833Z",
+    "last_save_at": "2026-11-15T08:39:34.335Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,13 +207,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:d44463f513cc6590043b07ff778dc48a7a537ff52db29081dbd2af7f844d96e3",
+    "source_fingerprint": "sha256:f4cdc92d8d776825d4d1c59f7a69b3a85b2ea7d23e36cb8792aa1b55fa8923c4",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4c95994172f577e91baff612096b46751f07530b8e30db1eb480ae80f74208cf",
+      "spec.md": "dd399f6d7e82a0a06ba2c9becbf5e64739cf18c7afdb150bab6c64629b1d8afe",
       "plan.md": "c78ea2cbf2663152e621fac041349bc596a979e57123fe3f3bea1e5febe41669",
-      "tasks.md": "0bc46e61251987d6668efc54aa81149f8ea1960d3f5cfce72bf73482500a57da",
-      "implementation-summary.md": "d14629468c7d340601ae24a321d559e17544c27b85e7f6145b50e20029d1c460"
+      "tasks.md": "1521ba45006e7efc42ffa3a334656ae02f59ef6d58933cc2d19c9e9b5c2699b3",
+      "implementation-summary.md": "d6043e4a91d4a463c1833095d24e12e6ebc671bf7063bcdb0d4c0b7e2b898d03"
     },
     "last_active_at": null
   }

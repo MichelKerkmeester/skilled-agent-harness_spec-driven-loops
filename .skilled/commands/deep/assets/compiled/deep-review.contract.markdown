@@ -7,12 +7,12 @@
   "sourceDigests": [
     {
       "path": ".skilled/commands/deep/review.md",
-      "sha256": "0c993a336080961ef3675e1a91fe4896aa61777f5a5f6b97b7857b93a3504ee4",
+      "sha256": "99f77d123118e3f5e42f04be0ed97cd764abc3070703423cfb64106a58181688",
       "section": "full"
     },
     {
       "path": ".skilled/commands/deep/assets/deep-review-presentation.txt",
-      "sha256": "b8aac17eecfcf1f7bceb14e4a3f3c86ab7c46dd74d722629d7de8a0118d1ae5f",
+      "sha256": "51dbd5da949e73564df55e76666c04118e3dc39f39c91983891560a5fd073920",
       "section": "full"
     },
     {
@@ -21,48 +21,43 @@
       "section": "full"
     },
     {
-      "path": ".skilled/commands/deep/assets/deep-review-auto.yaml",
-      "sha256": "b65229348c9c4109b412335d7c56374bcbfa6e7120882fa2877058e9f9ffa7b5",
-      "section": "full"
-    },
-    {
-      "path": ".skilled/commands/deep/assets/deep-review-confirm.yaml",
-      "sha256": "8aba8e05cee05636d35d47b5fa8b68a2ef84ca681b248eb8856793398e6ada5e",
+      "path": ".skilled/commands/deep/assets/deep-review.yaml",
+      "sha256": "02bbb22add56290170a786df5a56181253d3013ae5fbeaf809f2fbb18412a297",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/mode-registry.json",
-      "sha256": "2b21b1a680eba8d989db0ed04304b58526d75a1bce80e9951d26c906d57f3bb8",
+      "sha256": "0b76ffb1f6ac23436637e403a766afaa053e71353de88874161e8aefdf0e0a5e",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/SKILL.md",
-      "sha256": "108279164839a65a2a50381870724ec18ac3277bce36e002f8cafc899ad7136d",
+      "sha256": "39d8f1a14ba89192ac9cdaf82248b82ee11655aca72bb3d8c7fe661e20cb10e2",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/SKILL.md",
-      "sha256": "42d6ace163bea91542eb95e5b211970759d907e208495672d49aef97464f0a06",
+      "sha256": "37c6e69780e5c2d1f0089f2cf4d6726b689d2b9875bbe1b138312d4b47d727c8",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md",
-      "sha256": "e1030c5525bb3da67ce2b9479ce39914d9fe0f2bec67e7aba1cb76a225dee7c6",
+      "sha256": "7e41df3ca42d9475e06626cf00880a4c4aaa4c7753edd9ec9513e3fd5fc57bee",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/state/state-format.md",
-      "sha256": "453f38920e171541152b2c6ba2ef1a408148612aa937d89fbf8dc3492e53d5a7",
+      "sha256": "75be5e46f9a4df6c98a2d5f83aa7e5f037ed026e182cbbaaaf86e541f4889de8",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml",
-      "sha256": "de092fff8160aeae41f6fa9f892afb6bce6171d24b12306f28481cdc9204a00c",
+      "sha256": "5a0a6b1eb809c4ce95f4e8086acf0756a53508eab57b9b58e00afb1deaace772",
       "section": "full"
     },
     {
       "path": ".skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md",
-      "sha256": "6ba615f70237061a8026be23251c5b8cbdfa3986c8e74fcf8273c4a195bdcb78",
+      "sha256": "e67e33bc2b78e80e5b7f90ae35b89ac8179f38b1a0b478400fe70d8070788c2b",
       "section": "full"
     },
     {
@@ -77,7 +72,7 @@
     },
     {
       "path": ".skilled/agents/deep-review.md",
-      "sha256": "bf452b071a2224bc076893587b7932a1a166bc281c57a4cbc1288ba9d3d26b59",
+      "sha256": "b01965518d45ef15a09be3cbab6c25badc9d0bfc4e1c4d1ff446cee087e9068b",
       "section": "full"
     },
     {
@@ -86,7 +81,7 @@
       "section": "full"
     }
   ],
-  "compiledBodyDigest": "582df865f9d7384c22e127080fd6b561c36df99ff4086b47001180eecae31e2f"
+  "compiledBodyDigest": "3452494fcc44cd3da22330d7e3a17a2fc573d773f59fc47da839aa924f8f3d23"
 }
 GENERATED_COMMAND_CONTRACT_HEADER_END -->
 # Compiled Command Contract: /deep:review
@@ -112,19 +107,18 @@ Your job is to DISPATCH `deep-review` to run ONE iteration of the review loop ov
 1. `.skilled/commands/deep/review.md`
 2. `.skilled/commands/deep/assets/deep-review-presentation.txt`
 3. `.skilled/skills/system-spec-kit/references/workflows/auto-mode-contract.md`
-4. `.skilled/commands/deep/assets/deep-review-auto.yaml`
-5. `.skilled/commands/deep/assets/deep-review-confirm.yaml`
-6. `.skilled/skills/system-deep-loop/mode-registry.json`
-7. `.skilled/skills/system-deep-loop/SKILL.md`
-8. `.skilled/skills/system-deep-loop/deep-review/SKILL.md`
-9. `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md`
-10. `.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md`
-11. `.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml`
-12. `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
-13. `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json`
-14. `.skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl`
-15. `.skilled/agents/deep-review.md`
-16. `.skilled/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs`
+4. `.skilled/commands/deep/assets/deep-review.yaml`
+5. `.skilled/skills/system-deep-loop/mode-registry.json`
+6. `.skilled/skills/system-deep-loop/SKILL.md`
+7. `.skilled/skills/system-deep-loop/deep-review/SKILL.md`
+8. `.skilled/skills/system-deep-loop/deep-review/references/protocol/loop-protocol.md`
+9. `.skilled/skills/system-deep-loop/deep-review/references/state/state-format.md`
+10. `.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml`
+11. `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
+12. `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json`
+13. `.skilled/skills/system-deep-loop/deep-review/assets/prompt-pack-iteration.md.tmpl`
+14. `.skilled/agents/deep-review.md`
+15. `.skilled/skills/system-deep-loop/shared/rollout/resolve-injection-mode.cjs`
 
 ## gate3Precedence
 
@@ -159,7 +153,7 @@ Setup contract: see `.skilled/skills/system-spec-kit/references/workflows/auto-m
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, resolve `{artifact_dir}` and persist to `{artifact_dir}/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `reviewFocus`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `stopPolicy`, `executionMode: "auto"`, `lineageMode`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-review-auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, resolve `{artifact_dir}` and persist to `{artifact_dir}/deep-review-config.json` (shape: `reviewTarget`, `reviewTargetType`, `reviewDimensions`, `reviewFocus`, `specFolder`, `maxIterations`, `convergenceThreshold`, `antiConvergence.convergenceMode`, reserved `antiConvergence.divergent: {}`, `stopPolicy`, `executionMode: "auto"`, `lineageMode`, `resource_map.emit`, `config.executor.*`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.skilled/commands/deep/assets/deep-review.yaml` with `execution_mode` bound to `auto`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `review_target_type`, `spec_folder`. **Ordering rule**: if `review_target_type` is ambiguous, ask only for `review_target_type` first — the answer may make `spec_folder` self-evident on the next Tier 1 pass. Missing `review_target` is absence, not ambiguity — go to Tier 3.
 
@@ -424,8 +418,7 @@ optionalFields:
   - "config.fanout_lineage_artifact_dir"
   - "fanout_executors"
   - "fanout_concurrency"
-autoWorkflow: .skilled/commands/deep/assets/deep-review-auto.yaml
-confirmWorkflow: .skilled/commands/deep/assets/deep-review-confirm.yaml
+workflow: .skilled/commands/deep/assets/deep-review.yaml
 ```
 
 ## outputTemplate

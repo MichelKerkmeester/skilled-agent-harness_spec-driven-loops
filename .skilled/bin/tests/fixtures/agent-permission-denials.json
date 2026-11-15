@@ -2,8 +2,7 @@
   "ai-council.md": [
     "bash",
     "browser",
-    "chrome_devtools",
-    "patch"
+    "chrome_devtools"
   ],
   "code.md": [
     "browser",

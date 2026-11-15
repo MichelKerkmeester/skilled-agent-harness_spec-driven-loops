@@ -1,7 +1,7 @@
 ---
 title: "DR-011 -- Stop on max iterations"
 description: "Verify that max iterations is a hard stop checked before softer convergence signals."
-version: 1.14.0.15
+version: 1.14.1.0
 ---
 
 # DR-011 -- Stop on max iterations
@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate the max-iterations cap stops deep research before softer convergence logic.
 ### Commands
 1. `bash: rg -n 'max iterations|Hard stop|max_iterations_reached' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
-2. `bash: rg -n 'iteration_count >= max_iterations|max_iterations_reached' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml`
+2. `bash: rg -n 'iteration_count >= max_iterations|max_iterations_reached' .skilled/commands/deep/assets/deep-research.yaml`
 3. `bash: rg -n -- '--max-iterations|Maximum loop iterations' .skilled/skills/system-deep-loop/deep-research/README.md .skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md`
 ### Expected
 Max iterations is checked first, the stop reason is named explicitly, and the parameter is exposed consistently in the docs.
@@ -55,7 +55,7 @@ Capture the convergence pseudocode, the YAML decision branch, and the user-facin
 ### Pass/Fail
 PASS if max iterations is consistently treated as a first-priority hard stop; FAIL if it is demoted below softer signals or described inconsistently.
 ### Failure Triage
-Resolve any ambiguity by privileging the convergence pseudocode and YAML algorithm order.
+Resolve any ambiguity by privileging the convergence pseudocode and convergence.cjs step order.
 ---
 
 ## 4. SOURCE FILES
@@ -73,8 +73,7 @@ Resolve any ambiguity by privileging the convergence pseudocode and YAML algorit
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Hard-stop ordering; use `ANCHOR:shouldcontinue-algorithm` |
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Loop decision order; use `ANCHOR:phase-iteration-loop` |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Decision algorithm; inspect `step_check_convergence` |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Decision algorithm; inspect `step_check_convergence` |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Decision algorithm; inspect `step_check_convergence` |
 | `.skilled/skills/system-deep-loop/deep-research/README.md` | Parameter table and examples; use `ANCHOR:configuration` and `ANCHOR:usage-examples` |
 | `.skilled/skills/system-deep-loop/deep-research/references/guides/quick-reference.md` | Parameter defaults; use `ANCHOR:commands` |
 

@@ -1,7 +1,7 @@
 ---
 title: "DRV-007 -- Scope discovery and dimension ordering"
 description: "Verify that scope discovery resolves target type to a file list and dimensions are ordered by risk priority (Correctness > Security > Traceability > Maintainability)."
-version: 1.11.0.14
+version: 1.11.1.0
 ---
 
 # DRV-007 -- Scope discovery and dimension ordering
@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate deep-review scope discovery and dimension ordering for target resolution and Correctness > Security > Traceability > Maintainability.
 ### Commands
-1. `bash: rg -n 'step_scope_discovery|step_order_dimensions' .skilled/commands/deep/assets/deep-review-auto.yaml`
-2. `bash: sed -n '/step_scope_discovery/,/step_order_dimensions/p' .skilled/commands/deep/assets/deep-review-auto.yaml`
-3. `bash: rg -n 'correctness.*security.*traceability.*maintainability|priority.*1|priority.*2|priority.*3|priority.*4|D1|D2|D3|D4' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/commands/deep/assets/deep-review-auto.yaml`
+1. `bash: rg -n 'step_scope_discovery|step_order_dimensions' .skilled/commands/deep/assets/deep-review.yaml`
+2. `bash: sed -n '/step_scope_discovery/,/step_order_dimensions/p' .skilled/commands/deep/assets/deep-review.yaml`
+3. `bash: rg -n 'correctness.*security.*traceability.*maintainability|priority.*1|priority.*2|priority.*3|priority.*4|D1|D2|D3|D4' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/commands/deep/assets/deep-review.yaml`
 ### Expected
 The scope discovery step has resolution rules for each target type. The dimension ordering step enforces correctness > security > traceability > maintainability. The quick reference dimension table matches.
 ### Evidence
@@ -71,8 +71,7 @@ Check the YAML step_scope_discovery resolve block for each target type (spec-fol
 
 | File | Role |
 |---|---|
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Scope discovery and dimension ordering, inspect `step_scope_discovery` and `step_order_dimensions` |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Scope discovery and dimension ordering, inspect `step_scope_discovery` and `step_order_dimensions` |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Scope discovery and dimension ordering, inspect `step_scope_discovery` and `step_order_dimensions` |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Dimension table, use `ANCHOR:review-dimensions` |
 | `.skilled/skills/system-deep-loop/deep-review/assets/review-mode-contract.yaml` | Review mode contract with dimension definitions |
 

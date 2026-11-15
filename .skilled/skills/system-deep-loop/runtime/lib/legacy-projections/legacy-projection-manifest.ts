@@ -130,20 +130,6 @@ const manifestSeeds: LegacyProjectionManifestSeed[] = [
     refreshBoundary: 'lifecycle', nonProjectableReason: null, laterOwner: null,
   },
   {
-    surfaceId: 'council-config-state', format: 'mixed',
-    pathTemplate: '{spec_folder}/ai-council/{ai-council-config.json,ai-council-state.jsonl,session-state.jsonl}',
-    legacyWriter: 'deep-ai-council', readers: ['council orchestrator'],
-    fixture: EVENT_FIXTURE, disposition: 'project', serializerId: 'legacy-mixed-council-v1',
-    refreshBoundary: 'event', nonProjectableReason: null, laterOwner: null,
-  },
-  {
-    surfaceId: 'council-round-ledgers', format: 'jsonl',
-    pathTemplate: '{spec_folder}/ai-council/topics/{topic_id}/rounds/{round_id}/round-state.jsonl',
-    legacyWriter: 'council round state writer', readers: ['council orchestrator'],
-    fixture: EVENT_FIXTURE, disposition: 'project', serializerId: 'legacy-council-jsonl-v1',
-    refreshBoundary: 'event', nonProjectableReason: null, laterOwner: null,
-  },
-  {
     surfaceId: 'runtime-observability', format: 'jsonl',
     pathTemplate: '.skilled/skills/system-deep-loop/runtime/database/observability-events.jsonl',
     legacyWriter: 'runtime observability emitter', readers: ['observability projections and tests'],

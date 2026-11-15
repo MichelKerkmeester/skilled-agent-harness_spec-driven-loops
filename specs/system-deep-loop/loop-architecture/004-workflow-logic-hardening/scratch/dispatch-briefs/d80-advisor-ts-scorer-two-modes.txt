@@ -1,0 +1,42 @@
+
+ALLOWED WRITE PATHS (A = .skilled/skills/system-skill-advisor/runtime):
+A/lib/scorer/aliases.ts  A/lib/scorer/lanes/explicit.ts  A/lib/scorer/lanes/lexical.ts
+A/lib/scorer/fusion.ts
+A/tests/scorer/native-scorer.vitest.ts  A/tests/command-attach.vitest.ts
+A/tests/scorer/fixtures/harder-intent-prompt-corpus.ts  A/tests/scorer/fixtures/intent-prompt-corpus.ts
+A/tests/README.md
+and any other *.vitest.ts file under A/tests that fails ONLY because it expects a council
+prompt to route to `system-deep-loop`. NOT A/tests/routing-parity-deep-council.vitest.ts,
+NOT A/tests/routing-parity-deep-skills.vitest.ts, NOT A/tests/skill-advisor-cli-parity.vitest.ts,
+NOT anything under A/tests/parity, A/scripts or A/dist.
+
+TASK: the TypeScript scorer still sends council wording to the `system-deep-loop` hub. The hub
+has no council mode any more. Remove those lanes so council wording no longer scores for
+`system-deep-loop`.
+
+1. Find every anchor first:
+   rg -n -i 'council' A/lib/scorer/aliases.ts A/lib/scorer/lanes/explicit.ts A/lib/scorer/lanes/lexical.ts A/lib/scorer/fusion.ts
+2. A/lib/scorer/aliases.ts: delete the whole `'deep-ai-council'` alias group and the
+   `'deep-ai-council': 'ai-council'` canonical map entry. The comment near line 89 that lists the
+   folded legacy ids lists two ids, not three.
+3. A/lib/scorer/lanes/explicit.ts: delete the `council:` token entry and every phrase entry whose
+   key contains `council` and whose target is `system-deep-loop`.
+4. A/lib/scorer/lanes/lexical.ts: in the `'system-deep-loop'` phrase array delete each string that
+   contains `council` or `multi-seat`. Every other string in that array stays byte for byte.
+5. A/lib/scorer/fusion.ts: delete the whole `if (skillId === 'system-deep-loop' && /\b(ai council|...` block
+   (three lines). Nothing else in that function changes.
+6. Tests: a test case that asserts a council prompt routes to `system-deep-loop` or to mode
+   `ai-council` is deleted. A corpus row whose expected skill is `system-deep-loop` only because of
+   council wording is deleted. A row that expects `command-speckit-ai-council` or `system-spec-kit`
+   stays. Do not weaken an assertion about research or review. Do not add new expectations.
+7. After the edits run `npm run build` in A (it compiles lib to dist; that write is allowed).
+
+CHECKS (run from A):
+  rg -n -i 'council' lib/scorer/aliases.ts lib/scorer/lanes/explicit.ts lib/scorer/lanes/lexical.ts lib/scorer/fusion.ts      prints nothing
+  npm run typecheck      exits 0
+  npx vitest run tests/scorer tests/command-attach.vitest.ts      all pass
+  rg -n 'speckit:ai-council' lib/command-attach.ts lib/scorer/projection.ts | wc -l      prints a number above 0
+
+REPORT: per file the lines you deleted, each test or corpus row you deleted with one line why,
+any test you could not fix inside the allowed paths, then the output of each check. Do NOT run
+the full test suite, any generator or any baseline capture.

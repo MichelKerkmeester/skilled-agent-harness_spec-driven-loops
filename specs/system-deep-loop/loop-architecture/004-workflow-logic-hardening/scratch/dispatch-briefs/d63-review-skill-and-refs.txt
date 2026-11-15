@@ -1,0 +1,67 @@
+ALLOWED WRITE PATHS (S = .skilled/skills/system-deep-loop):
+- S/deep-review/SKILL.md
+- S/deep-review/README.md
+- every *.md file under S/deep-review/references/
+- S/runtime/references/integration-points.md   (workflow file names only, and NOT the council lines)
+
+Line numbers below are from an earlier read. Find each line with grep -n on its quoted text.
+
+EDITS IN S/deep-review/SKILL.md
+1. Every `scripts/reduce-state.cjs` that means the review reducer (the line "Treat
+   `scripts/reduce-state.cjs` as the reducer for DERIVED artifacts only", the line that ends
+   "not the reducer (`scripts/reduce-state.cjs`) directly", and the line "Scripts:
+   `scripts/reduce-state.cjs`, `scripts/runtime-capabilities.cjs`.") must name the real path
+   `runtime/scripts/reduce-state.cjs` (F4). For `scripts/runtime-capabilities.cjs` find where
+   that file really is and name that path.
+2. "the YAML workflow (`deep_review_{auto,confirm}.yaml`)" becomes "the workflow
+   (`deep-review.yaml`)" (F1). No `deep_review_` may remain in the file.
+3. NEVER rule "**Exceed TCB**, Target 8-11 tool calls per iteration (max 12)": state no number
+   and point at the prompt pack budget line (F8).
+4. The NEVER rule that says "Ask the user": scope it to the leaf agent and name `:confirm` as
+   the workflow's ask point (F9). The line that follows or holds "Ask the user" must contain the
+   words "leaf agent".
+5. In section 3 (HOW IT WORKS), under the subsection that describes convergence or the loop,
+   add a short paragraph or bullets that state F2, F3 and F5 for review, naming
+   `runtime/scripts/convergence.cjs`, `deep-review.yaml`, `maxDurationReached` and the
+   confirm-only Retry, Skip or Cancel question. At most 8 lines.
+6. The ESCALATE rule "3+ consecutive timeouts, Infrastructure issue. Pause loop and report to
+   user.": align it with F3.
+
+EDITS IN S/deep-review/references/
+7. convergence/convergence.md, state/state-jsonl.md and protocol/loop-state-and-gates.md hold
+   underscore workflow names (`deep_review_...`). Replace each with `deep-review.yaml` (F1).
+8. Every other file under references/ and S/deep-review/README.md: replace old workflow file
+   names (F1), and correct any sentence that contradicts F2, F3, F4 or F5. Do not rewrite
+   sentences that are still true.
+
+EDIT IN S/runtime/references/integration-points.md
+9. Replace the research and review twin names with `deep-research.yaml` and `deep-review.yaml`.
+   Where two rows named the auto and the confirm file of one command, merge them into one row.
+   Leave every line that names deep-ai-council or ai-council as it is, with one exception: the
+   line that names `deep_ai_council_auto.yaml` and `deep_ai_council_confirm.yaml` names files
+   that do not exist. The real files are `deep-ai-council-auto.yaml` and
+   `deep-ai-council-confirm.yaml`. Change only the underscores to hyphens in those two names.
+10. In the same file, the lines that name `runtime/scripts/tests/resource-map-extractor.vitest.ts`
+   and `.skilled/skills/system-spec-kit/runtime/handlers/coverage-graph/convergence.ts` name
+   files that do not exist. Find the real file with `find .skilled -name '<base name>*'` and
+   name its real path. If no such file exists anywhere, reword the cell so it names the nearest
+   existing owner and say so in the report.
+11. In S/deep-review/references/state/state-format.md, state-jsonl.md and
+   state-reducer-registry.md, fix every file name the facts checker reports as missing the same
+   way (real path, or the nearest existing owner). `scripts/reduce-state.cjs` for the review
+   reducer is `runtime/scripts/reduce-state.cjs` (F4).
+
+CHECKS (run from the repository root, V = S/deep-review):
+  rg -n 'max 12|deep_review_' V/SKILL.md                                              prints nothing
+  rg -n 'runtime/scripts/reduce-state.cjs' V/SKILL.md                                 at least 1 line
+  rg -c 'runtime/scripts/convergence.cjs|maxDurationReached|deep-review.yaml' V/SKILL.md   at least 3
+  rg -n 'Retry' V/SKILL.md                                                            a line naming confirm mode
+  rg -n -A1 'Ask the user' V/SKILL.md                                                 names the leaf agent
+  rg -n 'deep_review_' V/references                                                   prints nothing
+  rg -n 'deep[-_]review[-_](auto|confirm)' V/SKILL.md V/README.md V/references        prints nothing
+  rg -n 'deep-re(search|view)-(auto|confirm)' S/runtime/references/integration-points.md   prints nothing
+  node .skilled/skills/system-deep-loop/runtime/scripts/check-documentation-drift.cjs --facts | grep -E 'deep-review/(SKILL|README)\.md|deep-review/references/|integration-points'   prints nothing
+
+REPORT: one line per numbered edit ("done", "no change needed, <why>" or "failed, <reason>"),
+then the output of each check, then every sentence you changed under edits 8 and 9 as
+`<file>:<line>: <new sentence>`.

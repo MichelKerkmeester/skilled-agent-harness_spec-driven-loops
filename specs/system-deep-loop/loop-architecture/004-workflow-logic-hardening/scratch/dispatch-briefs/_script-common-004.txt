@@ -1,0 +1,11 @@
+SPEC TO FOLLOW: specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/scratch/phase-004-analysis/script-extraction-spec.md
+Read lines 20 to 32 (shared rules for every script) and the section named below, and follow both
+exactly. In that file `R:` means .skilled/commands/deep/assets/deep-research-auto.yaml and `V:`
+means .skilled/commands/deep/assets/deep-review-auto.yaml. Its line numbers can be off by up to
+70 lines: find each inline body with grep -n on the step name and read only that window.
+Do not edit any workflow YAML file. A later change swaps the inline bodies for calls.
+
+STYLE: read .skilled/skills/system-deep-loop/runtime/scripts/fanout-salvage.cjs lines 1 to 40 and
+match its file header and section comment style. Comments state the durable reason only, never a
+spec path or an id.
+

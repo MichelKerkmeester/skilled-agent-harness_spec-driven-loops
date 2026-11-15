@@ -1,13 +1,13 @@
 ---
 title: "Run-now control"
-description: "Consumes a one-shot sentinel to force the next auto-mode iteration out of cadence."
+description: "Consumes a one-shot sentinel to force the next iteration out of cadence."
 trigger_phrases:
   - "run-now control"
   - "deep-research-run-now"
   - "run_now_requested"
   - "forced run sentinel"
   - "run_now_accepted"
-version: 1.14.0.13
+version: 1.14.1.0
 ---
 
 # Run-now control
@@ -22,7 +22,7 @@ Run-now control gives operators a file-based way to request one immediate iterat
 
 ## 2. HOW IT WORKS
 
-The auto workflow declares `{artifact_dir}/.deep-research-run-now` as `state_paths.run_now_sentinel`. At the loop boundary, `step_run_now_check` detects the sentinel, emits `run_now_requested`, checks pause precedence, and consumes the sentinel atomically before dispatch when the run is accepted.
+The workflow declares `{artifact_dir}/.deep-research-run-now` as `state_paths.run_now_sentinel`. At the loop boundary, `step_run_now_check` detects the sentinel, emits `run_now_requested`, checks pause precedence, and consumes the sentinel atomically before dispatch when the run is accepted.
 
 If the loop is paused, the workflow emits `run_now_rejected` with reason `loop_paused` and leaves the sentinel in place. After dispatch, `step_run_now_restore_check` can detect that an operator recreated the sentinel mid-run and records `run_now_restored` for the next boundary.
 
@@ -34,7 +34,7 @@ If the loop is paused, the workflow emits `run_now_rejected` with reason `loop_p
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow | Defines the sentinel path, run-now check, pause precedence, consume-once behavior, and restore detection. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow | Defines the sentinel path, run-now check, pause precedence, consume-once behavior, and restore detection. |
 
 ### Validation And Tests
 

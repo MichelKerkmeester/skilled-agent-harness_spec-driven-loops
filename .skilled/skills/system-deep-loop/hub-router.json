@@ -1,10 +1,10 @@
 {
   "skill": "system-deep-loop",
-  "version": "1.6.30.0",
+  "version": "2.0.1.0",
   "routerPolicy": {
     "defaultMode": null,
     "ambiguityDelta": 1,
-    "tieBreak": ["research", "review", "ai-council"],
+    "tieBreak": ["research", "review"],
     "outcomes": {
       "single": "one dominant deep-loop intent routes to one mode",
       "orderedBundle": "clearly separate deep-loop intents route to an ordered mode list",
@@ -27,11 +27,6 @@
       "weight": 4,
       "classes": ["review-aliases"],
       "resources": ["deep-review/SKILL.md"]
-    },
-    "ai-council": {
-      "weight": 4,
-      "classes": ["ai-council-aliases"],
-      "resources": ["deep-ai-council/SKILL.md"]
     }
   },
   "vocabularyClasses": {
@@ -40,9 +35,6 @@
     },
     "review-aliases": {
       "keywords": ["deep-review", "deep review", "before running deep review", "review request", "review loop", "iterative review loop", "severity weighted findings", "convergence review", "release-readiness", "deep-review wave", "release readiness", "deep review of", "iterative review", "severity findings", "review convergence", "audit the diff", "findings stop changing"]
-    },
-    "ai-council-aliases": {
-      "keywords": ["deep-ai-council", "ai council", "ai council deliberation", "multi-seat planning council", "council convergence", "planning council", "council deliberation", "multi-seat", "seat diversity", "several models"]
     },
     "hub-identity": {
       "keywords": ["system-deep-loop", "deep-loop-workflows", "deep loop workflows", "deep loop workflow"]

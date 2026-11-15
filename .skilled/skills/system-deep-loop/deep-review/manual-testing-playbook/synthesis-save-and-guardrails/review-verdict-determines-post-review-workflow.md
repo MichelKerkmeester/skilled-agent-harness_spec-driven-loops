@@ -1,7 +1,7 @@
 ---
 title: "DRV-026 -- Review verdict determines post-review workflow"
 description: "Verify that FAIL routes to /speckit:plan, CONDITIONAL routes to /speckit:plan, and PASS routes to /create:changelog with hasAdvisories metadata."
-version: 1.11.0.14
+version: 1.11.1.0
 ---
 
 # DRV-026 -- Review verdict determines post-review workflow
@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep-review verdict routing for FAIL, CONDITIONAL, and PASS post-review workflows.
 ### Commands
 1. `bash: rg -n 'FAIL|CONDITIONAL|PASS|verdict|hasAdvisories|spec_kit:plan|create:changelog|Next Command|routing' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md`
-2. `bash: rg -n 'verdict|FAIL|CONDITIONAL|PASS|hasAdvisories|routing|next_command|post_review|planning_trigger' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+2. `bash: rg -n 'verdict|FAIL|CONDITIONAL|PASS|hasAdvisories|routing|next_command|post_review|planning_trigger' .skilled/commands/deep/assets/deep-review.yaml`
 3. `bash: rg -n 'verdict|FAIL|CONDITIONAL|PASS|hasAdvisories|routing|post.review|Planning Trigger|Executive Summary' .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md .skilled/commands/deep/review.md`
 ### Expected
 Three distinct verdicts with documented next commands, `hasAdvisories` flag on PASS with P2 findings, verdict in Executive Summary, routing rationale in Planning Trigger.
@@ -72,8 +72,7 @@ Privilege the quick reference verdict table as the canonical routing contract an
 | File | Role |
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Canonical verdict table, use `ANCHOR:verdicts` |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Synthesis step with verdict routing logic |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Synthesis step with verdict routing logic |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Synthesis step with verdict routing logic |
 | `.skilled/commands/deep/review.md` | Command entrypoint, verdict and output format documentation |
 | `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Verdict definitions and severity classification, use `ANCHOR:how-it-works` |
 | `.skilled/skills/system-deep-loop/deep-review/README.md` | Feature summary for verdicts and post-review workflow |

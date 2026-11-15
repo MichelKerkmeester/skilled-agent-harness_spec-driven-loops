@@ -8,7 +8,7 @@ trigger_phrases:
   - "resume ladder"
   - "spec-kit runtime subsystems"
 importance_tier: "important"
-version: 1.0.6.0
+version: 1.0.7.0
 ---
 
 # Architecture: system-spec-kit
@@ -159,7 +159,7 @@ disagrees with it is the thing to fix.
 | `runtime/database/` | The HF model server in `.skilled/bin` | Its sockets, leases and logs; no index, no database of ours |
 | `MEMORY_DB_PATH`, `SPEC_KIT_DB_DIR` | `shared/config.ts` and `shared/embeddings/` for the skill advisor | The advisor's own embedding store location; nothing in this skill opens a database |
 | `.skilled/skills/system-skill-advisor/runtime/database/` | The skill advisor | Its routing graph and doctor state, served by the advisor's resident daemon over its own socket protocol |
-| `.skilled/skills/system-deep-loop/runtime/database/` | The deep-loop runtime | Coverage and council graphs for research, review and council loops |
+| `.skilled/skills/system-deep-loop/runtime/database/` | The deep-loop runtime | The coverage graph for research and review loops, and a legacy council graph file nothing reads |
 | `runtime/cli/dist/continuity/generate-context.js`, `/speckit:save`, `/speckit:search` | The scripts workspace | The continuity writer and the retrieval commands; "memory" here is the command family's literal name, not a store |
 | `shared/ipc/`, `@modelcontextprotocol/sdk` in `shared/` | The skill advisor daemon through `shared/ipc` | The IPC seam the advisor's daemon is built on. The SDK stays here for the bridge's liveness probe, which parses JSON-RPC frames; the advisor itself no longer depends on it |
 

@@ -78,6 +78,7 @@ and findings belong here.
 | Build | Done | One script, one test file, four workflows and two regenerated contracts, as `implementation-summary.md` lists |
 | Verify | Done | Each new case failed on the old script and passed after. The full suite went from 2990 to 2998 passed with 9 skipped and no failure |
 | Release and verify | Done | 2026-11-15: v1.6.30.0 written, contracts regenerated after the version bump, the 019 review copy passes the gate and fails with executor_missing once its executor is removed, and the full suite printed 2998 passed and 9 skipped of 3007 with no failure |
+| Merge with the workflow consolidation | Done | 2026-11-15: origin/main merged the auto and confirm workflows into deep-review.yaml and deep-research.yaml and released v2.0.0.0. The executor_missing note carried into both files through rename detection, the release moved to v2.0.1.0 and the two contracts were regenerated |
 
 ### Deviations and findings
 

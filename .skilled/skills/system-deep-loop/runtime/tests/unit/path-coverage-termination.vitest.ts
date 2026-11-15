@@ -33,7 +33,7 @@ import type {
   CoveragePath,
   CoverageUniverse,
   EvidenceLocator,
-  LegacyCouncilBridge,
+  LegacyConvergenceBridge,
   LimitKind,
   ModeCoverageProfile,
   PathCoverageEvent,
@@ -376,7 +376,6 @@ describe('mode coverage profile registry', () => {
   it('freezes one complete denominator contract for every supported mode', () => {
     expect(modeCoverageProfiles.list().map((profile) => profile.mode)).toEqual([
       'context',
-      'council',
       'research',
       'review',
     ]);
@@ -669,7 +668,7 @@ describe('cross-profile path coverage invariants', () => {
   });
 
   it('blocks a self-consistent projection with a forged ledger evidence locator', () => {
-    const universe = compileFor('council');
+    const universe = compileFor('review');
     const projection = reducePathCoverage(universe, addressedEvents(universe));
     const target = universe.paths.find((path) => (
       path.requiredEvidenceClasses.includes('ledger-event')
@@ -732,7 +731,7 @@ describe('cross-profile path coverage invariants', () => {
   });
 
   it('blocks a forged coverage-graph locator impersonating a required evidence class', () => {
-    const universe = compileFor('council');
+    const universe = compileFor('review');
     const projection = reducePathCoverage(universe, addressedEvents(universe));
     const target = universe.paths.find((path) => (
       path.requiredEvidenceClasses.includes('ledger-event')
@@ -937,7 +936,7 @@ describe('cross-profile path coverage invariants', () => {
   });
 
   it('fails closed on an unsupported path projection schema even with a matching hash', () => {
-    const universe = compileFor('council');
+    const universe = compileFor('review');
     const projection = reducePathCoverage(universe, addressedEvents(universe));
     const { projectionHash: _projectionHash, ...core } = projection;
     const unsupportedCore = {
@@ -955,7 +954,7 @@ describe('cross-profile path coverage invariants', () => {
   });
 
   it('rejects aggregate-only closure attempts with no evidence locators', () => {
-    const universe = compileFor('council');
+    const universe = compileFor('review');
     const target = universe.paths[0];
     expect(() => reducePathCoverage(universe, [{
       kind: 'path-addressed',
@@ -1058,11 +1057,11 @@ describe('cross-profile path coverage invariants', () => {
     expect(result.partialCoverage?.uncoveredPaths.map((path) => path.rank)).toEqual([1, 2, 3]);
   });
 
-  it('preserves the full legacy council bridge as authoritative shadow output', () => {
-    const universe = compileFor('council');
+  it('preserves the full legacy convergence bridge as authoritative shadow output', () => {
+    const universe = compileFor('review');
     const projection = reducePathCoverage(universe, addressedEvents(universe).slice(0, -1));
     const pathCoverage = evaluate(universe, projection);
-    const legacyBridge: LegacyCouncilBridge = Object.freeze({
+    const legacyBridge: LegacyConvergenceBridge = Object.freeze({
       status: 'ok',
       data: { decision: 'STOP_ALLOWED', trace: [{ signal: 'agreementRatio', passed: true }] },
       graph_decision: 'STOP_ALLOWED',

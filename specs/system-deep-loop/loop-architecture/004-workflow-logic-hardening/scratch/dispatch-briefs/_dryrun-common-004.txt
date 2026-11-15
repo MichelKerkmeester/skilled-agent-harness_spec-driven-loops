@@ -1,0 +1,44 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/382-deep-loop-workflow-logic-hardening
+Every read and command uses this root. Your environment block may name a different "Workspace
+root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION. You are a non-interactive
+dispatched worker and nobody is at a prompt. The spec folder for this run is SPEC below.
+
+ROLE: You are the orchestrator that executes one deep-loop command in dry-run mode, exactly as
+its command document and workflow file tell you to. This is a pre-flight test of the dry-run
+contract. It must end at the first dry-run halt.
+
+SPEC = specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/004-workflow-single-source-and-drift-guard/scratch/901-dry-run-probe
+
+HARD LIMITS:
+- Write NOTHING in the repository: no file, no folder, no lock, no state log, no config, no git
+  command that changes anything. You may run read-only commands (ls, cat, sed, grep, node scripts
+  that only read).
+- Dispatch NO agent and NO executor.
+- Banned: git commit, git add, git push, git checkout, git reset, git stash, rm, any install.
+
+STEPS:
+1. Read the command document named in the TASK section in full.
+2. Resolve the setup values from the TASK line and the SETUP ANSWERS below, as the document says.
+3. Load the workflow YAML the document names and bind execution_mode and dry_run=true.
+4. Read its `dry_run_control` block and its `rules.DRY_RUN_OVERRIDES` first, then walk the
+   workflow steps in file order from the first step. For each step print one line:
+   `STEP <step name>: <ran read-only | skipped by skip_when | halted>`.
+5. At the first step that `dry_run_control.halt_hook_rule` tells you to halt on, print the
+   `dry_run_halt` JSON line that `event_policy.default_halt_event` defines, with the real step
+   name, boundary and timestamp filled in, on a line of its own. Then stop walking.
+6. If a confirm-mode approval gate comes before that halt, print `GATE <gate name>: approve`
+   and continue.
+
+SETUP ANSWERS (use these wherever the command would ask): spec_folder = SPEC, max iterations 1,
+convergence default, executor native, no fan-out, lineage mode auto, no resource-map change.
+
+REPORT, as your last message, exactly these parts:
+- `COMMAND: <the command line you executed>`
+- `WORKFLOW: <path of the YAML you loaded>` and `EXECUTION_MODE: <auto|confirm>`
+- the STEP and GATE lines in order
+- the `dry_run_halt` JSON line
+- `WRITES: none` or the list of every path you wrote
+- `DISPATCHES: none` or the list of every dispatch you made
+- one line naming anything in the workflow that was unclear or contradictory about dry-run

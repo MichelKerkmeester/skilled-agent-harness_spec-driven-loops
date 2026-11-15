@@ -7,7 +7,7 @@ trigger_phrases:
   - "premature stop prevention"
   - "dimensionCoverageGate"
   - "blocked-stop event"
-version: 1.11.0.9
+version: 1.11.1.0
 ---
 
 # Quality gates
@@ -24,7 +24,7 @@ The quality-gate system turns convergence from a simple score threshold into a l
 
 ### Quality Gates & Validation
 
-The gate model is split across two layers. The contract-level binary gates are Evidence, Scope, and Coverage. The review-specific legal-stop bundle expands that into nine concrete stop checks emitted by `step_emit_blocked_stop` in both `deep_review_{auto,confirm}.yaml`:
+The gate model is split across two layers. The contract-level binary gates are Evidence, Scope, and Coverage. The review-specific legal-stop bundle expands that into nine concrete stop checks emitted by `step_emit_blocked_stop` in `deep-review.yaml`:
 
 | Gate | Checks |
 |---|---|

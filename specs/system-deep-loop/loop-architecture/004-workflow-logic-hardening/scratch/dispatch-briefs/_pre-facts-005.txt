@@ -1,0 +1,81 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/382-deep-loop-workflow-logic-hardening
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/005-command-and-skill-doc-alignment
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+
+BANNED OPERATIONS: git commit, git push, git checkout, git reset, git stash, git add, rm -rf
+outside a temp folder your own test created, any write outside the ALLOWED WRITE PATHS, any
+package install. Do NOT read a workflow YAML file whole: each is about 150 KB. Find every anchor
+with grep -n and read only a small window around it (sed -n 'A,Bp').
+Never write a spec path, a task id, a requirement id or a finding id into a code comment.
+
+ROLE: You are a technical writer who corrects stale facts in skill docs. You describe behavior
+that already exists. You change NO code, NO workflow YAML, NO config value and NO prompt pack.
+Edit only the files your brief lists. Change only the lines your brief names plus what a listed
+check needs. Keep every other sentence byte for byte.
+
+WRITING RULES: plain short sentences, no em dash, no semicolon, no comma before the "and" or
+"or" that closes a list, no words such as robust, seamless, leverage. Keep each file's existing
+heading style, numbering, frontmatter and bullet style (a file that uses ` -- ` between a bold
+label and its text keeps it).
+
+FACTS THAT ARE TRUE TODAY (S = .skilled/skills/system-deep-loop, C = .skilled/commands/deep):
+F1. Workflow files. /deep:research runs from ONE file, C/assets/deep-research.yaml, and
+    /deep:review from ONE file, C/assets/deep-review.yaml. Each serves both execution modes
+    through `execution_mode` (auto or confirm). The files deep-research-auto.yaml,
+    deep-research-confirm.yaml, deep-review-auto.yaml and deep-review-confirm.yaml no longer
+    exist, and no file with underscores (deep_review_auto.yaml and so on) ever existed. Every
+    step, executor branch and flag runs in both modes. Confirm mode adds approval gates only.
+F2. Stop decision. S/runtime/scripts/convergence.cjs computes the whole stop decision once per
+    loop pass from files. The workflow no longer decides in prose. The frozen stop reasons are:
+    converged, maxIterationsReached, blockedStop, manualStop, error, stuckRecovery, userPaused,
+    maxDurationReached. A missing graph decision blocks every non-terminal STOP.
+F3. Counters and failures. The stuck count and the consecutive failure count are derived from
+    the state log on every pass (deriveLoopCounters in convergence.cjs), so a resumed run counts
+    the same as one that never paused. Failed iterations stay out of the ratio signals. Three
+    trailing failed iterations stop the loop with stop reason `error`. In confirm mode only, the
+    workflow first asks the operator Retry, Skip or Cancel after three consecutive failed
+    iterations. Auto mode has no such question.
+F4. Reducers. Research uses S/deep-research/scripts/reduce-state.cjs. Review uses
+    S/runtime/scripts/reduce-state.cjs. There is no S/deep-review/scripts/reduce-state.cjs. The
+    reducer is the only writer of the dashboard.
+F5. Lifecycle. Both commands accept `--restart` and `--lineage-mode`. A restart archives the old
+    packet and writes the next generation. The packet lock lasts as long as the dispatch timeout
+    and is refreshed before and after each dispatch. Each loop pass compares `maxDurationMinutes`
+    with the config `createdAt`. When the limit is reached the loop skips the dispatch and goes
+    to synthesis with stop reason `maxDurationReached`.
+F6. Dry run. `--dry-run` works in both modes of both commands and halts before any dispatch or
+    state write.
+F7. Executors. The executor kinds are the `EXECUTOR_KINDS` array in
+    S/runtime/lib/deep-loop/executor-config.ts. Docs name that constant and state NO count.
+F8. Tool-call budget. Docs state NO tool-call number. For research the value is
+    `maxToolCallsPerIteration` in S/deep-research/assets/deep-research-config.json, rendered
+    into the prompt pack. For review the value is the budget line of
+    S/deep-review/assets/prompt-pack-iteration.md.tmpl (the line that starts "- Target"), the
+    only value the review agent sees. Replace a stated number with a pointer to that owner.
+F9. Dispatch. Only the command workflow dispatches the leaf agent (@deep-research or
+    @deep-review). No other agent does. The leaf agent itself never asks the user. The
+    workflow's ask point is `:confirm` mode, which asks at its approval gates.
+
+When you replace an old workflow file name, use the single file name. Where a sentence said
+"the auto workflow" or "the confirm workflow" as two files, say "the workflow" and, only where
+the sentence is about a mode difference, "in auto mode" or "in confirm mode".
+
+A facts checker exists: `node .skilled/skills/system-deep-loop/runtime/scripts/check-documentation-drift.cjs --facts`.
+It prints a JSON object whose `errors` array holds lines `facts: <file>:<line>: ...`. Your files
+must have no line in that array when you finish. A named file that truly does not exist is fixed
+by naming the real path, never by creating the file.
+

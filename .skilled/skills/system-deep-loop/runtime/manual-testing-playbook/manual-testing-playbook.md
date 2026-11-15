@@ -1,7 +1,7 @@
 ---
 title: "runtime/: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, integrated review protocol, execution expectations, and per-feature validation files for the runtime/ skill."
-version: 1.4.0.15
+version: 1.4.1.0
 ---
 
 # runtime/: Manual Testing Playbook
@@ -36,7 +36,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides 55 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
+This playbook provides 51 deterministic scenarios across 12 categories validating the current `runtime/` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
 
 ### REALISTIC TEST MODEL
 
@@ -103,7 +103,7 @@ Scenario verdict — three outcomes only:
 - `FAIL`: expected behavior is missing, output contradicts the contract, a critical check failed, or the core behavior worked but the required evidence or metadata is incomplete. An outcome another operator cannot reproduce from the captured evidence is a `FAIL`, not a partial pass.
 - `SKIP`: a concrete sandbox blocker — an unavailable native module, a missing runtime dependency, or an unavailable external CLI credential — prevented execution, and the run record names it
 
-Release is cleared only when all 55 scenarios are `PASS` or documented `SKIP` with no critical-path script, state-safety, or schema blocker.
+Release is cleared only when all 51 scenarios are `PASS` or documented `SKIP` with no critical-path script, state-safety, or schema blocker.
 
 ---
 
@@ -579,7 +579,7 @@ Expected signals: stdout JSON with `"ok":true` and a receipt carrying `ledger_id
 
 ## 13. COUNCIL
 
-Per the Runtime Boundary Decision (ADR-001), `lib/council/` provides 5 durability primitives consumed by `deep-ai-council`. These scenarios validate the council surface.
+Per the Runtime Boundary Decision (ADR-001), `lib/council/` holds the seat-dispatch helper the divergent pivot calls. This scenario validates that surface.
 
 ### DLR-018 | Multi-seat dispatch
 
@@ -589,42 +589,6 @@ Runs seat executors in parallel for one council round; preserves seat result ord
 
 #### Test Execution
 > **Feature File:** [DLR-018](../manual-testing-playbook/council/multi-seat-dispatch.md)
-
-### DLR-019 | Round-state JSONL
-
-#### Description
-
-Appends per-round JSONL records with a lock-file single-writer guard; repairs corrupt trailing JSONL before append; fsyncs writes; exposes round-state readers for resume.
-
-#### Test Execution
-> **Feature File:** [DLR-019](../manual-testing-playbook/council/round-state-jsonl.md)
-
-### DLR-020 | Adjudicator verdict scoring
-
-#### Description
-
-Scores Round-N to Round-N+1 adjudicator verdict deltas using ADR-003 weights for option change, confidence delta, material-risk Jaccard delta, axis flip rate, and blocking-disagreement delta.
-
-#### Test Execution
-> **Feature File:** [DLR-020](../manual-testing-playbook/council/adjudicator-verdict-scoring.md)
-
-### DLR-021 | Cost guards
-
-#### Description
-
-Normalizes and enforces ADR-004 defaults for max_rounds_per_topic, max_topics_per_session, saturation_threshold, and seats_per_round; computes upper-bound seat-output budgets.
-
-#### Test Execution
-> **Feature File:** [DLR-021](../manual-testing-playbook/council/cost-guards.md)
-
-### DLR-022 | Session state hierarchy
-
-#### Description
-
-Creates and validates the ADR-002 session->topic->round state shape, including stable topic-NNN-slug and round-NNN ids.
-
-#### Test Execution
-> **Feature File:** [DLR-022](../manual-testing-playbook/council/session-state-hierarchy.md)
 
 ---
 
@@ -897,7 +861,7 @@ Expected signals: Cassette recording, deterministic replay, redacted path/timest
 | State safety | `tests/unit/atomic-state.vitest.ts`, `tests/unit/jsonl-repair.vitest.ts`, `tests/unit/loop-lock.vitest.ts`, `tests/unit/permissions-gate.vitest.ts` | Atomic writes, repair, locking, and permissions. |
 | Coverage graph scripts | `tests/integration/{convergence,query,status,upsert}-script.vitest.ts`, `tests/lifecycle/db-open-close.vitest.ts` | Direct script behavior and DB lifecycle. |
 | Review-depth integration | `tests/integration/review-depth-*.vitest.ts` | Review graph, convergence, and validator fixtures. |
-| Council | `tests/council/{multi-seat-dispatch,round-state-jsonl,adjudicator-verdict-scoring,cost-guards,session-state-hierarchy}.vitest.ts` | Council durability primitives: parallel dispatch, JSONL append + repair, verdict-delta scoring, cost guards, state-hierarchy validation. |
+| Council | `tests/council/multi-seat-dispatch.vitest.ts` | Seat dispatch: parallel execution, order-preserving results and per-seat outcome aggregation. |
 | Fan-Out | `tests/unit/executor-config.vitest.ts`, `tests/unit/fanout-pool.vitest.ts`, `tests/unit/fanout-run.vitest.ts`, `tests/unit/fanout-salvage.vitest.ts`, `tests/unit/fanout-merge.vitest.ts` | Fan-out config schema, pool concurrency, CLI lineage dispatch, write-failure salvage, research/review merge, stall watchdog, fixed-rate overrun, and persisted wait resume. |
 | Lifecycle | `tests/unit/sleep.vitest.ts`, `tests/unit/lifecycle-taxonomy-guards.vitest.ts` | Abortable waits and lifecycle taxonomy guards. |
 | Observability | `tests/unit/observability-events.vitest.ts`, `tests/unit/post-dispatch-validate.vitest.ts`, `tests/unit/deep-research-reduce-state.vitest.ts`, `tests/integration/status-script.vitest.ts` | Event envelopes, telemetry heartbeat wiring, and seekable log-region metadata. |
@@ -927,10 +891,6 @@ Expected signals: Cassette recording, deterministic replay, redacted path/timest
 | DLR-016 | [F016 query.cjs](../feature-catalog/script-entry-points/query-script.md) | [script-entry-points/query-script.md](../manual-testing-playbook/script-entry-points/query-script.md) |
 | DLR-017 | [F017 status.cjs](../feature-catalog/script-entry-points/status-script.md) | [script-entry-points/status-script.md](../manual-testing-playbook/script-entry-points/status-script.md) |
 | DLR-018 | [F018 Multi-seat dispatch](../feature-catalog/council/multi-seat-dispatch.md) | [council/multi-seat-dispatch.md](../manual-testing-playbook/council/multi-seat-dispatch.md) |
-| DLR-019 | [F019 Round-state JSONL](../feature-catalog/council/round-state-jsonl.md) | [council/round-state-jsonl.md](../manual-testing-playbook/council/round-state-jsonl.md) |
-| DLR-020 | [F020 Adjudicator verdict scoring](../feature-catalog/council/adjudicator-verdict-scoring.md) | [council/adjudicator-verdict-scoring.md](../manual-testing-playbook/council/adjudicator-verdict-scoring.md) |
-| DLR-021 | [F021 Cost guards](../feature-catalog/council/cost-guards.md) | [council/cost-guards.md](../manual-testing-playbook/council/cost-guards.md) |
-| DLR-022 | [F022 Session state hierarchy](../feature-catalog/council/session-state-hierarchy.md) | [council/session-state-hierarchy.md](../manual-testing-playbook/council/session-state-hierarchy.md) |
 | DLR-023 | [F023 Fan-out config schema](../feature-catalog/fanout/fanout-config-schema.md) | [fanout/fanout-config-schema.md](../manual-testing-playbook/fanout/fanout-config-schema.md) |
 | DLR-024 | [F024 Fan-out worker pool](../feature-catalog/fanout/fanout-pool.md) | [fanout/fanout-pool-concurrency-cap.md](../manual-testing-playbook/fanout/fanout-pool-concurrency-cap.md) |
 | DLR-025 | [F025 Fan-out CLI lineage driver](../feature-catalog/fanout/fanout-run.md) | [fanout/fanout-run-cli-lineage-spawn.md](../manual-testing-playbook/fanout/fanout-run-cli-lineage-spawn.md) |

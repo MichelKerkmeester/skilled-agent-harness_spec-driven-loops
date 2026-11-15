@@ -9,7 +9,7 @@ trigger_phrases:
   - "review graph events"
 importance_tier: important
 contextType: implementation
-version: 1.11.2.0
+version: 1.11.3.0
 ---
 
 # Deep Review State Log Records
@@ -124,7 +124,7 @@ The projected variant of this row is thin: only `type`, `topic`, `maxIterations`
 
 ### Graph Events
 
-The optional `graphEvents` array records coverage graph mutations emitted by a review iteration. The MCP coverage graph handlers (`mcp-server/handlers/coverage-graph/upsert.ts`) consume these events and persist them into `deep-loop-graph.sqlite`, where they become the source of truth for graph-assisted convergence, hotspot saturation, and blocked-stop evidence.
+The optional `graphEvents` array records coverage graph mutations emitted by a review iteration. The workflow projects them into graph nodes and edges, and the runtime upsert script (`runtime/scripts/upsert.cjs`) persists them into `deep-loop-graph.sqlite`, where they become the source of truth for graph-assisted convergence, hotspot saturation, and blocked-stop evidence.
 
 ```json
 {
@@ -175,7 +175,7 @@ Concrete obligations for producers:
 3. **Edge source/target locality**: `source` and `target` in an edge event must name nodes already present in the same namespace. Cross-session edges are not a supported shape.
 4. **Persistence gate**: the reducer refuses to roll graph events forward when a record is missing `sessionId` on the surrounding iteration record, because the DB cannot route the write.
 
-The collision regression in `.skilled/skills/system-spec-kit/runtime/cli/tests/session-isolation.vitest.ts` ("shared-ID collisions" block) exercises this contract directly: two sessions upsert identical node and edge ids, and both rows must survive independently.
+The composite key `(spec_folder, loop_type, session_id, id)` in `runtime/lib/coverage-graph/coverage-graph-db.ts` enforces this contract directly: two sessions upsert identical node and edge ids, and both rows survive independently.
 
 ### Synthesis Event
 
@@ -224,7 +224,7 @@ When the review legal-stop decision tree returns `blocked`, append a first-class
 }
 ```
 
-`gateResults` carries the full 9-gate set emitted by `step_emit_blocked_stop` in both `deep_review_{auto,confirm}.yaml`: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate`. The last two are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. See `../convergence/convergence.md` §1 for the authoritative shape.
+`gateResults` carries the full 9-gate set emitted by `step_emit_blocked_stop` in `deep-review.yaml`: `convergenceGate`, `dimensionCoverageGate`, `p0ResolutionGate`, `evidenceDensityGate`, `hotspotSaturationGate`, `claimAdjudicationGate`, `fixCompletenessReplayGate`, `candidateCoverageGate`, and `graphlessFallbackGate`. The last two are v2-rollout gates that pass trivially when the review-depth-v2 search path is inactive. See `../convergence/convergence.md` §1 for the authoritative shape.
 
 **Required:** `type`, `event`, `mode`, `run`, `blockedBy`, `gateResults`, `recoveryStrategy`, `timestamp`, `sessionId`, `generation`
 
@@ -263,7 +263,7 @@ Before the inline 3-signal review vote is allowed to finalize STOP, the workflow
 
 Pause and recovery events MUST use the frozen shared stop-reason enum at emission time:
 
-`converged`, `maxIterationsReached`, `blockedStop`, `stuckRecovery`, `error`, `manualStop`, `userPaused`
+`converged`, `maxIterationsReached`, `blockedStop`, `stuckRecovery`, `error`, `manualStop`, `userPaused`, `maxDurationReached`
 
 Raw `paused` and `stuck_recovery` labels are not legal persisted event names in the review JSONL contract. The workflow must rewrite them before appending JSONL rows.
 

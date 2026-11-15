@@ -1,7 +1,7 @@
 ---
 title: "Progress: shared progress-record type and pair validator"
-description: "Shared additive progress_record JSONL event type, completion reducer allowlist and started/completed pair validator for the research, review and ai-council reducers."
-version: 1.0.0.0
+description: "Shared additive progress_record JSONL event type, completion reducer allowlist and started/completed pair validator for the research and review reducers."
+version: 1.0.1.0
 ---
 
 # Progress
@@ -10,7 +10,7 @@ version: 1.0.0.0
 
 ## 1. OVERVIEW
 
-Shared `progress_record` type, completion reducer allowlist and started/completed pair validator, used by the research, review and ai-council completion reducers listed in Consumers below. `validateProgressRecordPair` rejects zero-delta no-op pairs so a heartbeat cannot mask a genuine stall.
+Shared `progress_record` type, completion reducer allowlist and started/completed pair validator, used by the research and review completion reducers listed in Consumers below. `validateProgressRecordPair` rejects zero-delta no-op pairs so a heartbeat cannot mask a genuine stall.
 
 ---
 
@@ -28,7 +28,6 @@ Shared `progress_record` type, completion reducer allowlist and started/complete
 - `deep-research/scripts/reduce-state.cjs`
 - `runtime/scripts/reduce-state.cjs`
 - `runtime/scripts/compile-command-contracts.cjs`
-- `deep-ai-council/scripts/lib/persist-artifacts.cjs`
 - `runtime/lib/write-set-conflict-graph/shipped-census.ts`
 
 ---

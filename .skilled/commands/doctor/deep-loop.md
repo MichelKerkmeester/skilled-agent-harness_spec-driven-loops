@@ -1,6 +1,6 @@
 ---
-description: "Diagnose deep-loop coverage graphs and convergence for research, review and council runs."
-argument-hint: "[--scope=research|review|council|both|all]"
+description: "Diagnose deep-loop coverage graphs and convergence for research and review runs."
+argument-hint: "[--scope=research|review|both|all]"
 allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 ---
 <!-- skill_agent: system-deep-loop -->

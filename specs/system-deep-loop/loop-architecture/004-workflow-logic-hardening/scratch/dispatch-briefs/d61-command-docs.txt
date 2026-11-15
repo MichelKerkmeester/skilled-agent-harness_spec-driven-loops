@@ -1,0 +1,78 @@
+ROLE: You are a technical writer who edits two command documents. Change only what the numbered
+edits below name. Keep every other sentence byte for byte.
+
+ALLOWED WRITE PATHS:
+- .skilled/commands/deep/research.md
+- .skilled/commands/deep/review.md
+- .skilled/commands/deep/assets/compiled/deep-research.contract.markdown   (only by running the compiler)
+- .skilled/commands/deep/assets/compiled/deep-review.contract.markdown     (only by running the compiler)
+
+WRITING RULES: plain short sentences, no em dash, no semicolon, no comma before the "and" or "or"
+that closes a list. Do not name any runtime binary (no `opencode run`, no `claude`, no `codex`).
+
+EDIT 1, both files, the section `### AUTONOMOUS EXECUTION DIRECTIVE (:auto)`. Today it states
+the directive twice (a bullet list, then a paragraph list starting "Your job is to DISPATCH")
+and it says the document itself dispatches an agent for "ONE iteration", which contradicts the
+MANDATORY INPUT GATE above it ("DO NOT dispatch any agent from this document"). Replace the
+whole body of that section, down to the `---` line before `## 2. OWNED ASSETS`, with ONE
+directive. Keep the heading and the first quoted line "Read this first...". The new body says,
+in this order, with the agent name `deep-research` in research.md and `deep-review` in review.md:
+  a. "You were invoked with the `:auto` suffix and a bound spec_folder and target in your
+     message. Setup is already resolved." (review.md says "review target", research.md says
+     "research topic" wherever the target is named.)
+  b. Keep the two existing DO NOT bullets (the consolidated setup question, the Gate-3 halt)
+     word for word, except that the review.md bullet must list "review target" where it lists
+     the setup fields and must not say "research topic".
+  c. One bullet: "PROCEED immediately: load the workflow YAML with `execution_mode` bound to
+     `auto` and execute it step by step."
+  d. One bullet: "THE WORKFLOW DISPATCHES: the workflow YAML owns setup, the dispatch of the
+     `<agent>` agent for each iteration, reducer sync, convergence checks, synthesis and all
+     loop-level artifact writes. You do not dispatch from this document, and you do not read,
+     edit, patch or run the loop over the target yourself. The `<agent>` leaf owns only its own
+     single-iteration artifacts."
+  e. Keep the ROUTE PROOF bullet word for word.
+  f. One closing sentence: "This contract is your instruction set. The <research|review> target
+     is the bound spec_folder or target named in your message, never this document."
+
+EDIT 2, both files, section `## 3. MODE ROUTING`. The numbered step that starts "Treat" lists
+flags itself and has drifted from the table. Replace that whole step with:
+  "Treat every flag in the Workflow Flag Surface table below as a workflow input, not an
+   execution mode. The table is the only list of flags."
+In review.md keep "target text" and "pre-bound setup answers" as inputs in that sentence:
+  "Treat the target text, pre-bound setup answers and every flag in the Workflow Flag Surface
+   table below as workflow inputs, not execution modes. The table is the only list of flags."
+After this edit the MODE ROUTING list of each file holds no `--flag` token except inside the
+`:auto` restart sentence if one is there. If a `--flag` token remains in the numbered list,
+reword that step so it names the flag table row instead.
+
+EDIT 3, research.md only, the table under `### Workflow Flag Surface`. If it has no row for
+`--restart` and no row for `--lineage-mode`, add both, in the style of the neighboring rows.
+Copy the wording from the same two rows of review.md's table, with "review" changed to
+"research". Each row starts with a backtick flag in the first cell.
+
+EDIT 4, review.md only. Both files must print the same list of `## ` headings, and they already
+do. Under `## 1. ROUTER CONTRACT`, research.md holds a quoted block that starts
+"> **EXECUTION PROTOCOL -- READ FIRST**". review.md lacks it. Add the same block to review.md at
+the same place, with `review_target`, `review_target_type`, `review_dimensions` in place of
+`research_topic`, the file `deep-review.yaml`, and "deep-review loop". Under
+`## 6. WORKFLOW SUMMARY`, research.md opens with a summary sentence before its list or table.
+If review.md has none, add one sentence of the same shape that names the review loop phases
+the section already lists.
+
+AFTER THE EDITS, run from the repository root:
+  node .skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs --command deep/research --write
+  node .skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs --command deep/review --write
+  node .skilled/skills/system-deep-loop/runtime/scripts/check-contract-drift.cjs        must print [CONTRACT DRIFT] OK commands=3
+CHECKS:
+  rg -c 'opencode run|ONE iteration' .skilled/commands/deep/research.md .skilled/commands/deep/review.md      prints nothing
+  rg -c 'research topic' .skilled/commands/deep/review.md                                                     prints nothing
+  rg -c 'AUTONOMOUS EXECUTION DIRECTIVE' .skilled/commands/deep/research.md .skilled/commands/deep/review.md  prints 1 per file
+  rg -n '^\| `--(restart|lineage-mode)' .skilled/commands/deep/research.md                                    prints 2 lines
+  diff <(rg -o '^## .*' .skilled/commands/deep/research.md | sed 's/Research/X/;s/research/x/') <(rg -o '^## .*' .skilled/commands/deep/review.md | sed 's/Review/X/;s/review/x/')   prints nothing
+  cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/compile-command-contracts.vitest.ts tests/unit/render-command-contract.vitest.ts tests/unit/check-contract-drift.vitest.ts     all pass
+  cd .skilled/skills/system-spec-kit/runtime/cli && npx vitest run --config ../../vitest.config.ts --project cli tests/deep-research-contract-parity.vitest.ts tests/deep-review-contract-parity.vitest.ts tests/deep-review-auto-restart-contract.vitest.ts   all pass
+If a test fails because it pins a sentence you were told to replace, do NOT edit the test and do
+NOT restore the sentence. Report the test name, the line and the pinned text.
+
+REPORT: one line per edit per file ("done" or "failed, <reason>"), the output of each check,
+and the list of pinned-text test failures if any.

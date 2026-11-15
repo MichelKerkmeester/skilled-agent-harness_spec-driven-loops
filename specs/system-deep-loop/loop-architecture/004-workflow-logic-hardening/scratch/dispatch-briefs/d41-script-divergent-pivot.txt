@@ -1,0 +1,27 @@
+ROLE: You are a Node.js engineer. Write one CommonJS script and one test file.
+
+CONTEXT: the deep-research and deep-review workflows hold inline Node bodies for the divergent
+pivot: prepare, record one seat result and finalize. They move into one script with three
+subcommands, so the workflows shrink and the three per-seat copies become one.
+
+SECTION of the spec named above: "## 6. `divergent-pivot.cjs` (fifth script)" (lines 501 to 605).
+`finalize` takes `--paths-json`, as the section's replacement call shows.
+
+ALLOWED WRITE PATHS:
+- .skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs   (new)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/divergent-pivot-cli.vitest.ts   (new)
+
+TEST FILE: three cases, spawning the script with node.
+  1. No argument: exit status 64 and stderr names prepare, record-seat and finalize.
+  2. `record-seat` with empty stdin: exit status 64 and stderr holds
+     "record-seat expects one JSON object on stdin".
+  3. `finalize --paths-json '{}' --pivot-id p --resumed maybe`: exit status 64.
+
+CHECKS, run from .skilled/skills/system-deep-loop/runtime:
+  node --check scripts/divergent-pivot.cjs
+  node scripts/divergent-pivot.cjs ; echo "status=$?"          must print the usage line and status=64
+  node_modules/.bin/vitest run --no-coverage tests/unit/divergent-pivot-cli.vitest.ts    must pass 3 tests
+  npm run typecheck                                              must exit 0
+  The script must read no environment variable.
+
+REPORT: the output of each check, and any place where the inline bodies disagreed with the spec.

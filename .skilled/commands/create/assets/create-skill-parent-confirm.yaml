@@ -292,7 +292,7 @@ quality_standards:
     - one advisorRouting block per mode
     - "advisorRouting fields: routingClass (lexical | alias-fold | metadata | command-bridge), legacyAdvisorId (lexical + alias-fold modes only), advisorDefaultMode (optional, alias-fold default), legacyAliases (lexical + alias-fold only), packetSkillName"
     - "registry keys (mode.packet) match packet folder names; canonical workflow folder == packetSkillName == [hub-prefix]-<mode>, surface folder == packetSkillName == bare noun; grandfathered mismatches recorded via grandfatheredFolderMismatch + packetSkillName"
-    - "runtimeLoopType allowed set when present and non-null: research | review | council | context (or the hub's declared runtime-loop types)"
+    - "runtimeLoopType allowed set when present and non-null: research | review | context (or the hub's declared runtime-loop types)"
   packet_requirements:
     - "RECOMMENDED DEFAULT for a net-new single-mode workflow packet: folder == packetSkillName == [hub-prefix]-<mode> (soft guidance, not a hard gate); surface packets use a bare-noun folder"
     - "ALLOWED: many modes mapping to one packet folder"

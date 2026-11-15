@@ -1,0 +1,73 @@
+ROLE: You are a workflow-file editor. Make exactly the edits below, nothing else. Do not refactor,
+reformat, reorder or fix anything adjacent. Keep the indentation of the surrounding lines exactly.
+Both files must still parse as YAML afterwards. Do not edit any test.
+
+CONTEXT: a deep-review restart must archive the old packet without ever moving a held lock file,
+must remember the old session id and generation, and must write them into the new config and the
+new findings registry. The exact text each edit must produce is in the WORKFLOW TEXT CONTRACT
+above, parts C1 to C5.
+
+ALLOWED WRITE PATHS (only these two files, both in .skilled/commands/deep/assets/):
+- deep-review-auto.yaml
+- deep-review-confirm.yaml
+
+EDITS FOR BOTH FILES
+
+EDIT 1. In step_create_config, directly before the `populate:` line, add the `lineage_values:`
+block of contract C5 (eight spaces before `lineage_values:`). Then replace these three populate
+lines:
+          parentSessionId: null
+          lineageMode: "new"
+          generation: 1
+with the three review populate lines of contract C5. Leave `sessionId` and `continuedFromRun` as
+they are.
+
+EDIT 2. In step_create_findings_registry, on the `content:` line, replace the text
+  "generation":1,"lineageMode":"new"
+with
+  "generation":{generation_init},"lineageMode":"{lineage_mode_init}"
+Change nothing else on that line.
+
+EDITS FOR deep-review-auto.yaml ONLY
+
+EDIT 3. In the top-level step `  step_apply_lifecycle_request:` (two spaces):
+  a. Directly after its `instructions: |` block (after the line that ends `the packet directory.`)
+     and before its `command:` line, add the `bind_prior_lineage:` block of contract C1 with
+     `<I>` = four spaces.
+  b. Replace its one-line `command: "if [ -d \"{state_paths.packet_dir}\" ]; then ..."` with the
+     `command: |` block of contract C2.
+  Leave `description`, `skip_when`, `instructions`, `outputs` and `on_fail` unchanged.
+
+EDIT 4. In step_classify_session:
+  a. In `lifecycle_routing:`, replace the first list entry (it starts with
+     `- "If lineage_mode == restart and session_state is resume or completed-session`) with:
+          - "If lineage_mode == restart, step_apply_lifecycle_request archived the packet before the lock was taken, so session_state is fresh and on_fresh runs."
+  b. Replace the whole `on_restart:` branch (its key line and every deeper-indented line under it:
+     `action`, `command`, `set` with its three entries, `skip_to`) with these two lines:
+        on_restart:
+          action: "Nothing is archived here. step_apply_lifecycle_request archived the packet before the lock was taken, so a restart run reaches this step as fresh and continues as on_fresh."
+  Leave `note_deferred_branches:` and everything after it unchanged.
+
+EDITS FOR deep-review-confirm.yaml ONLY
+
+EDIT 5. In step_classify_session, under `on_resume:`, replace the body of `on_restart_choice:`
+(its `command:` line, its `set:` block with three entries and its `skip_to:` line) with:
+            <bind_prior_lineage block from contract C1, with twelve spaces before `bind_prior_lineage:`>
+            <command block and on_fail line from contract C3>
+            set:
+              lineage_mode: "restart"
+            skip_to: step_create_config
+Leave `on_cancel_choice:` and everything after it unchanged.
+
+VERIFY (run from the repository root and print each output):
+  python3 -c "import sys, yaml; [yaml.safe_load(open(p)) for p in sys.argv[1:]]; print('yaml ok')" .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  rg -n 'mv \{state_paths.packet_dir\}|lineageMode: "new"$|generation: 1$|"generation":1,' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml | cut -c1-160
+  rg -c 'bind_prior_lineage:|lineage_values:|generation_init' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/workflow-restart-lifecycle.vitest.ts -t review 2>&1 | tail -40)
+  git status --short
+
+EXPECTED: `yaml ok`. The second command prints nothing. The third prints a count for each file.
+In the test run every test whose title names review auto or review confirm passes. If a review
+test fails for a workflow-text reason, fix the workflow file, never the test.
+
+RETURN: the outputs of the verify commands.

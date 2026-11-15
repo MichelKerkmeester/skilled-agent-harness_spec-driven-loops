@@ -60,7 +60,7 @@ The gate the review and research workflows actually run now checks which executo
 |------|--------|---------|
 | `.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs` | Modified | The `executor_missing` reason, the config read, the lineage exemption and the check after the route proof |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts` | Modified | Eight executor provenance cases |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml`, `deep-review-confirm.yaml`, `deep-research-auto.yaml`, `deep-research-confirm.yaml` | Modified | `executor_missing` and one sentence on it in each `command_note` |
+| `.skilled/commands/deep/assets/deep-review.yaml`, `deep-research.yaml` | Modified | `executor_missing` and one sentence on it in each `command_note` |
 | `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown`, `deep-research.contract.markdown` | Regenerated | They pin the workflow digests. The AI Council contract regenerated unchanged |
 <!-- /ANCHOR:what-built -->
 

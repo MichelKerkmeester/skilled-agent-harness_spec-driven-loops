@@ -42,7 +42,6 @@ const RESEARCH_PROJECTIONS_CONTRACT_REL = path.join('lib', 'legacy-projections',
 const REVIEW_CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-review-state-contract.ts');
 const REVIEW_DELTAS_CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-review-deltas-contract.ts');
 const REVIEW_PROJECTIONS_CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-review-projections-contract.ts');
-const COUNCIL_CONFIG_STATE_CONTRACT_REL = path.join('lib', 'legacy-projections', 'deep-ai-council-config-state-contract.ts');
 
 // Each projection contract factory that exists in the library today.
 // Declared here so the guard can prove the factory is actually exported by
@@ -74,10 +73,6 @@ const COVERED = Object.freeze({
     module: REVIEW_PROJECTIONS_CONTRACT_REL,
     factory: 'createDeepReviewProjectionsProjectionContract',
   },
-  'council-config-state': {
-    module: COUNCIL_CONFIG_STATE_CONTRACT_REL,
-    factory: 'createDeepAiCouncilConfigStateProjectionContract',
-  },
 });
 
 // Every projectable surface that has NO contract today, declared explicitly.
@@ -85,7 +80,6 @@ const COVERED = Object.freeze({
 // projectable, not covered, and absent from this list, so it surfaces as
 // UNDECLARED_UNCOVERED_SURFACE rather than passing quietly.
 const UNCOVERED_DECLARED = Object.freeze([
-  'council-round-ledgers',
   'runtime-observability',
   'fanout-ledger',
   'fanout-checkpoints',
@@ -101,7 +95,7 @@ const UNCOVERED_DECLARED = Object.freeze([
 // looks consistent. The count is stated independently and checked against the
 // derived uncovered total, so a dropped or added surface surfaces as a
 // mismatch rather than passing quietly.
-const UNCOVERED_DECLARED_COUNT = 9;
+const UNCOVERED_DECLARED_COUNT = 8;
 
 // Legacy-writer retirement is scoped to mode-owned surfaces — those whose
 // legacyWriter is owned by one of the deep-loop modes. Surfaces written by
@@ -121,7 +115,6 @@ const UNCOVERED_DECLARED_COUNT = 9;
 const MODE_OWNER_PREFIXES = Object.freeze([
   'deep-research',
   'deep-review',
-  'deep-ai-council',
 ]);
 
 // Independent cross-check for the mode-owned population, mirroring
@@ -130,7 +123,7 @@ const MODE_OWNER_PREFIXES = Object.freeze([
 // appearing would shift the derived mode-owned total off this declared
 // constant, surfacing as MODE_OWNED_COUNT_MISMATCH rather than being absorbed
 // into a single uncovered number that still happens to add up.
-const MODE_OWNED_EXPECTED_COUNT = 7;
+const MODE_OWNED_EXPECTED_COUNT = 6;
 
 // ───────────────────────────────────────────────────────────────────
 // 3. HELPERS

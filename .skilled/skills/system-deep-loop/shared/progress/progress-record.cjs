@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Shared progress-record type, reducer allowlist, and pair validator.
 //
-// Cross-cutting across all deep-loop modes (council, context, review, research,
+// Cross-cutting across all deep-loop modes (context, review, research,
 // improvement). Imported by every completion reducer so the allowlist contract
 // lives in one place.
 

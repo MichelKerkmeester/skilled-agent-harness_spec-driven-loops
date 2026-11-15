@@ -63,8 +63,7 @@ export type BudgetClockDimension = 'tokens' | 'cost' | 'iterations' | 'wall_time
 export type StoppingClockMode =
   | 'research'
   | 'review'
-  | 'context'
-  | 'council';
+  | 'context';
 
 // ───────────────────────────────────────────────────────────────────
 // 2. COMMON OBSERVATION CONTRACT

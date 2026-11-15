@@ -103,8 +103,8 @@ Both configs name `"kind": "cli-deepseek-harness"`. Neither the stripped copy no
 |-----------|-------------|-------------|
 | `.skilled/skills/system-deep-loop/runtime/scripts/verify-iteration.cjs` | Modify | The `executor_missing` reason, the config read, the lineage exemption and the check |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/verify-iteration.vitest.ts` | Modify | Eight executor provenance cases |
-| `.skilled/skills/system-deep-loop/changelog/v1.6.30.0.md`, and the version in the hub `SKILL.md`, `description.json`, `mode-registry.json` and `hub-router.json` | Create, Modify | The release |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml`, `deep-review-confirm.yaml`, `deep-research-auto.yaml`, `deep-research-confirm.yaml` | Modify | `executor_missing` in each `command_note` reason list |
+| `.skilled/skills/system-deep-loop/changelog/v2.0.1.0.md`, and the version in the hub `SKILL.md`, `description.json`, `mode-registry.json` and `hub-router.json` | Create, Modify | The release |
+| `.skilled/commands/deep/assets/deep-review.yaml`, `deep-research.yaml` | Modify | `executor_missing` in each `command_note` reason list |
 | `.skilled/commands/deep/assets/compiled/deep-review.contract.markdown`, `deep-research.contract.markdown` | Regenerate | The contracts pin the workflow digests |
 <!-- /ANCHOR:scope -->
 

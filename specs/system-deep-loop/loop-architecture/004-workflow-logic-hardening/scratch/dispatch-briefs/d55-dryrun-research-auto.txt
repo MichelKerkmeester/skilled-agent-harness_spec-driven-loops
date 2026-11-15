@@ -1,0 +1,2 @@
+TASK: execute `/deep:research:auto "How does the packet lock heartbeat decide that a lock is stale?" --spec-folder=SPEC --max-iterations=1 --dry-run`.
+Command document: .skilled/commands/deep/research.md

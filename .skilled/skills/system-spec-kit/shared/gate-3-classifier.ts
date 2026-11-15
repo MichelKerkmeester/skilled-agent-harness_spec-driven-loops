@@ -197,7 +197,7 @@ export const RESUME_TRIGGERS: readonly TriggerEntry[] = Object.freeze([
   { pattern: '/deep:review',   kind: 'phrase', category: 'resume' },
   { pattern: '/deep:start-review-loop', kind: 'phrase', category: 'resume' },
   { pattern: 'speckit:deep-review',     kind: 'phrase', category: 'resume' },
-  { pattern: '/deep:ai-council', kind: 'phrase', category: 'resume' },
+  { pattern: '/speckit:ai-council', kind: 'phrase', category: 'resume' },
   { pattern: 'resume the packet',        kind: 'phrase', category: 'resume' },
   { pattern: 'resume the phase folder',  kind: 'phrase', category: 'resume' },
   { pattern: 'reconstruct continuity',   kind: 'phrase', category: 'resume' },

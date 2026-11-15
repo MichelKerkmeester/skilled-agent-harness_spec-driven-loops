@@ -64,8 +64,8 @@ describe('observability event envelope', () => {
         eventPath,
         { type: 'round_started', round_id: 'round-001' },
         {
-          producer: 'round-state-jsonl',
-          stream: 'council-round-state',
+          producer: 'deep-research-reducer',
+          stream: 'research-state',
           subject: { round_id: 'round-001' },
         },
       );
@@ -79,8 +79,8 @@ describe('observability event envelope', () => {
       expect(rows[0]).toEqual(envelope);
       expect(rows[0]).toMatchObject({
         schema_version: '1.0',
-        producer: 'round-state-jsonl',
-        stream: 'council-round-state',
+        producer: 'deep-research-reducer',
+        stream: 'research-state',
         event: 'round_started',
         status: 'unknown',
       });

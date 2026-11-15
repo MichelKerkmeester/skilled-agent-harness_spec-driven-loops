@@ -268,14 +268,6 @@ function mutableResourceCases(): readonly {
         atomicityDomain,
       },
     },
-    {
-      label: 'council round',
-      resource: {
-        kind: ProtectedResourceKinds.COUNCIL_ROUND,
-        components: { topicId: 'topic-1', roundId: 'round-1' },
-        atomicityDomain,
-      },
-    },
   ];
 }
 
@@ -439,7 +431,6 @@ describe('protected resource registry', () => {
     expect(surfaceIds).toEqual(expect.arrayContaining([
       'authorized-ledger-append',
       'cli-graph-writer',
-      'council-round-state',
       'fanout-salvage-merge',
       'fanout-status-stream',
       'fanout-wait-checkpoint',

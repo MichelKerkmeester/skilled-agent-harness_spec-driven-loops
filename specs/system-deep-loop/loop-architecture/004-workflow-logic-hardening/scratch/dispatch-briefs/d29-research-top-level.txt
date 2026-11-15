@@ -1,0 +1,87 @@
+ROLE: You are a YAML editor. Apply the nine edits below to ONE file and nothing else.
+
+CONTEXT: deep-research.yaml is a fresh copy of deep-research-auto.yaml. It becomes the one
+workflow that serves both execution modes, auto and confirm. This change adds the top-level
+mode and dry-run keys. Later changes add the confirm gates and the per-step dry-run tags: do
+not add those now.
+
+ALLOWED WRITE PATHS (only this file):
+- .skilled/commands/deep/assets/deep-research.yaml
+READ ONLY, for copying text: .skilled/commands/deep/assets/deep-research-confirm.yaml
+
+Keep two-space YAML indentation. Change no line that an edit does not name.
+
+EDIT 1. Line 2 of the file. Replace
+  # DEEP RESEARCH: AUTONOMOUS DEEP RESEARCH LOOP (AUTO MODE)
+with
+  # DEEP RESEARCH: DEEP RESEARCH LOOP (AUTO AND CONFIRM MODES)
+
+EDIT 2. Insert this block directly after the `operating_principles:` block (after its `mandate:`
+line and one blank line), before the comment banner of USER INPUTS. Copy it exactly.
+
+# ─────────────────────────────────────────────────────────────────
+# EXECUTION MODE
+# ─────────────────────────────────────────────────────────────────
+execution_mode:
+  source: "$ARGUMENTS"
+  values: [auto, confirm]
+  default: confirm
+  rule: "Every step, executor branch and flag in this file runs in both modes. Under confirm, also execute every block marked applies_to: confirm at the place that carries it, and apply the mode_overrides.confirm wording. Under auto, skip every block marked applies_to: confirm and keep the autonomous wording of this file."
+mode_overrides:
+  confirm:
+    purpose: "Iterative deep research with convergence detection and user approval gates"
+    action: "Run deep-research loop with user confirmation at each phase transition"
+    workflow_execution: "interactive"
+    approvals: "multi_gate"
+    approach: "Dispatch focused agent, show results, get approval, repeat or stop"
+    mandate: "Never hold findings in memory; write everything to files. Pause for user at each gate."
+    phase_loop_purpose: "Dispatch agent iterations with approval at each step"
+    lock_not_acquired: "If acquired=false, stop and present recovery choices: another deep-research run already holds this packet."
+    agent_dispatch_timeout: "Retry once with reduced scope. If second timeout, mark as 'timeout' and show to user for decision."
+    continuity_save_failure: "Preserve the research/ packet as backup. Inform user."
+    rules_always: [pause_at_approval_gates, present_clear_options_at_each_gate]
+    rules_never: [proceed_past_approval_gate_without_user_response, auto_approve_on_behalf_of_user]
+
+EDIT 3. In `user_inputs:`, add these two lines directly after the `stop_policy:` line:
+  dry_run: "[DRY_RUN] - Boolean pre-flight flag. Default: false."
+  lineage_timeout_hours: "[LINEAGE_TIMEOUT_HOURS] - Optional per-lineage wall-clock ceiling in hours for fan-out runs, at most 4. Default: unset, which keeps the 4 hour ceiling."
+
+EDIT 4. Copy the DRY-RUN CONTROL section from deep-research-confirm.yaml: its three comment
+banner lines, the whole `dry_run_control:` block and the blank line after it (lines 38 to 66
+there). Insert it in deep-research.yaml directly before the comment banner of CONTEXT LOADING.
+In the copy, replace the line
+  applies_to: "confirm workflow"
+with
+  modes: [auto, confirm]
+
+EDIT 5. In `rules:`, insert these three lines directly after the `rules:` line, before `ALWAYS:`:
+  DRY_RUN_OVERRIDES:
+    - "When dry_run is true, dry_run_control overrides default dispatch, write, reducer, continuity-save, and child-spawn requirements."
+    - "Dry-run preview events are emitted to terminal output only and are not persisted."
+
+EDIT 6. Replace the line
+    events: [config_warning, graph_convergence, lock_released, schema_mismatch, maxDurationReached]
+with
+    events: [config_warning, graph_convergence, lock_released, manualStop, pivot_confirm_accepted, schema_mismatch, maxDurationReached]
+
+EDIT 7. Replace the one line `executionMode: "auto"` with `executionMode: "{execution_mode}"`.
+Replace each of the three lines `producer: 'deep-research-auto',` with
+`producer: 'deep-research-{execution_mode}',`. Keep the indentation of each line.
+
+EDIT 8. In `step_validate_convergence_config`, on the `bookkeeping_log:` line that holds
+`"event":"config_warning"` and `"field":"convergenceMode"`, replace `"field":"convergenceMode"`
+with `"field":"antiConvergence.convergenceMode"`. Change nothing else on that line.
+
+EDIT 9. In `step_fanout_spawn_cli`, add this line directly after its `wait_for_completion: true`
+line, at the same indentation:
+        optional_flags: "When lineage_timeout_hours is bound, append `--lineage-timeout-hours {lineage_timeout_hours}` to the command. When it is unset, append nothing, which keeps the 4 hour ceiling."
+
+CHECKS. Run each from the repository root and fix the file until all pass:
+  python3 -c "import yaml;d=yaml.safe_load(open('.skilled/commands/deep/assets/deep-research.yaml'));print(d['execution_mode']['values'], sorted(d['mode_overrides']['confirm'])[:3], d['dry_run_control']['modes'], d['user_inputs']['dry_run'][:9], list(d['rules'])[0])"
+    must print: ['auto', 'confirm'] ['action', 'agent_dispatch_timeout', 'approach'] ['auto', 'confirm'] [DRY_RUN] DRY_RUN_OVERRIDES
+  grep -c "deep-research-auto" .skilled/commands/deep/assets/deep-research.yaml      must print 0
+  grep -c "deep-research-{execution_mode}" .skilled/commands/deep/assets/deep-research.yaml   must print 3
+  grep -c 'applies_to: "confirm workflow"' .skilled/commands/deep/assets/deep-research.yaml   must print 0
+  git status --short .skilled/commands/deep/assets    must list deep-research.yaml and deep-review.yaml as untracked and no other file
+
+REPORT: one line per edit, "EDIT n: done" or "EDIT n: failed, <reason>", then the output of each check.

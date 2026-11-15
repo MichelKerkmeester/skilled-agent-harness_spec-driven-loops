@@ -166,8 +166,8 @@
   "extensions": {
     "_template": "OPTIONAL declaration-only block. Keep only extensions this hub actually uses; delete this block for a pure two-tier hub.",
     "runtime-loop": {
-      "_example": "Activates runtimeLoopType per workflow mode; the doctor validates each mode against its hard-coded legal set {research, review, council, null}. This list documents that set but is not read by the doctor.",
-      "runtimeLoopTypes": ["research", "review", "council", null]
+      "_example": "Activates runtimeLoopType per workflow mode; the doctor validates each mode against its hard-coded legal set {research, review, null}. This list documents that set but is not read by the doctor.",
+      "runtimeLoopTypes": ["research", "review", null]
     },
     "advisor-projection": {
       "_example": "Required when any mode uses routingClass lexical or alias-fold.",

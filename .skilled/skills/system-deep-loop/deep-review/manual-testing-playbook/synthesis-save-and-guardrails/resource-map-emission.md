@@ -1,7 +1,7 @@
 ---
 title: "DRV-029 -- Review resource-map emission"
 description: "Verify synthesis emits review/resource-map.md from converged deltas and honors the opt-out path."
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # DRV-029 -- Review resource-map emission
@@ -50,7 +50,7 @@ As a manual-testing orchestrator, validate the review resource-map emission cont
 ### Commands
 
 1. `bash: rg -n 'resource-map|no-resource-map|emit-resource-map' .skilled/commands/deep/review.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
-2. `bash: rg -n 'resource_map|resource-map|emit-resource-map' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`
+2. `bash: rg -n 'resource_map|resource-map|emit-resource-map' .skilled/commands/deep/assets/deep-review.yaml .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`
 3. `bash: node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs <spec-folder> --emit-resource-map`
 4. `bash: node .skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs <spec-folder> --emit-resource-map` with `deep-review-config.json` edited to `"resource_map": { "emit": false }`
 
@@ -86,8 +86,7 @@ Privilege the YAML synthesis step and reducer behavior over secondary docs if th
 | File | Role |
 |---|---|
 | `.skilled/commands/deep/review.md` | Command entrypoint, opt-out and emitted-artifact contract |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Autonomous synthesis emission step |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Confirm-mode synthesis emission step |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Synthesis emission step |
 | `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Reducer flag handling and write path |
 | `.skilled/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs` | Shared template renderer and review-shape adapter |
 | `.skilled/skills/system-spec-kit/runtime/tests/resource-map-extractor.vitest.ts` | Focused regression coverage for the emitted output shape |

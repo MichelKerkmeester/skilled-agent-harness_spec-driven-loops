@@ -1,1 +1,0 @@
-../../.skilled/commands/deep/ai-council.md

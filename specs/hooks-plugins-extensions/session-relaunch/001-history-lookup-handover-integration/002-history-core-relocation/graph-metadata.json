@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The lookup core is TypeScript compiled into `.skilled/skills/system-spec-kit/runtime/dist/`, and the command a model runs names that compiled file",
     "created_at": "2026-11-15T06:24:19Z",
-    "last_save_at": "2026-11-15T06:42:14.334Z",
+    "last_save_at": "2026-11-15T07:58:28.139Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,7 +208,7 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:51ce0a71faa2007e47692870a6b2115fdd74c6203b941144dba15b3337844890",
+    "source_fingerprint": "sha256:456c9b72e7183eac6ee432b9e40219868a8c0ea7b2d70f8df69782d15ed05f17",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "ac9d9f7bd56a583e8b53aeb85629c5353af621f0e0c756843ed9ec4cca36530e",

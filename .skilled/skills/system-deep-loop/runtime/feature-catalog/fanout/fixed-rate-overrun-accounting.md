@@ -6,7 +6,7 @@ trigger_phrases:
   - "fixed-rate-overrun-accounting"
   - "fixed-rate overrun accounting runtime"
   - "fan-out fixed-rate overrun accounting"
-version: 1.4.0.15
+version: 1.4.1.0
 ---
 
 # Fixed-rate overrun accounting
@@ -36,7 +36,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 | File | Layer | Role |
 |---|---|---|
 | `scripts/fanout-run.cjs` | Runtime | fixed-rate overrun accounting. |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Integration | fixed-rate overrun accounting. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Integration | fixed-rate overrun accounting. |
 
 ### Validation And Tests
 
@@ -51,6 +51,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 - Group: Fan-out
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `fanout/fixed-rate-overrun-accounting.md`
-- Primary sources: `scripts/fanout-run.cjs`, `.skilled/commands/deep/assets/deep-research-auto.yaml`, `tests/unit/fanout-run.vitest.ts`
+- Primary sources: `scripts/fanout-run.cjs`, `.skilled/commands/deep/assets/deep-research.yaml`, `tests/unit/fanout-run.vitest.ts`
 Related references:
 - [fanout](../fanout/) — Fan-out category

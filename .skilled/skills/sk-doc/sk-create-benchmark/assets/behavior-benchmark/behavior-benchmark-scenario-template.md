@@ -8,7 +8,7 @@ trigger_phrases:
   - "schema v2 scenario scaffold"
 importance_tier: "important"
 contextType: "general"
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # Behavior Benchmark Scenario Template
@@ -29,7 +29,7 @@ Usage:
   2. DELETE this template's own frontmatter and this comment. A shipped scenario
      file has NO frontmatter: it starts at the "# <PREFIX>-NNN" H1.
   3. Choose ONE schema version and keep only that JSON block:
-       - SCHEMA V1 (default) for the research/review/ai-council/context
+       - SCHEMA V1 (default) for the research/review/context
          behavior packages, with no version key and no direct-dispatch/postcondition/boundary
          evidence.
        - SCHEMA V2 for command, direct-tool/plugin, and conformance families that
@@ -91,12 +91,11 @@ never reads.
     "{{MARKER_TWO_LITERAL_OR_REGEX}}"
   ],
   "expected_delegation": {
-    "evidence_kind": "{{TASK_DISPATCH_OR_SEAT_ARTIFACTS}}",
+    "evidence_kind": "{{TASK_DISPATCH}}",
     "leaf_agent": {{LEAF_AGENT_STRING_OR_RAW_NULL}},
     "min_task_events": {{MIN_TASK_EVENTS}},
     "route_proof_required": {{TRUE_OR_FALSE}},
-    "role_absorption_forbidden": {{TRUE_OR_FALSE}},
-    "min_seats": {{MIN_SEATS}}
+    "role_absorption_forbidden": {{TRUE_OR_FALSE}}
   },
   "budget_ms": {{BUDGET_MS}},
   "watchdog_ms": {{WATCHDOG_MS_OR_OMIT}},
@@ -127,12 +126,11 @@ never reads.
     "{{MARKER_TWO_LITERAL_OR_REGEX}}"
   ],
   "expected_delegation": {
-    "evidence_kind": "{{TASK_DISPATCH_OR_DIRECT_DISPATCH_OR_SEAT_ARTIFACTS}}",
+    "evidence_kind": "{{TASK_DISPATCH_OR_DIRECT_DISPATCH}}",
     "leaf_agent": {{LEAF_AGENT_STRING_OR_RAW_NULL}},
     "min_task_events": {{MIN_TASK_EVENTS}},
     "route_proof_required": {{TRUE_OR_FALSE}},
     "role_absorption_forbidden": {{TRUE_OR_FALSE}},
-    "min_seats": {{MIN_SEATS}},
     "expected_targets": [
       "{{EXPECTED_TARGET_LITERAL_OR_REGEX}}"
     ],
@@ -162,7 +160,7 @@ Field guidance (see framework.md for the authoritative enums):
   command_topology    : V2 command families. "workflow router" | "subaction router" | "direct-tool/plugin router" | "monolithic".
                         Informational topology label carried by shipped command scenarios. It is not in the framework's normative
                         machine-contract field table and the runner does not parse it. Omit it for non-command v2 cells.
-  mode                : the package mode value (context|research|review|ai-council, or a declared extension).
+  mode                : the package mode value (context|research|review, or a declared extension).
   entry_surface       : E1 command+suffix | E2 bare command (must halt) | E3 natural ask | E4 orchestrate-routed.
   clarity             : C1 vague | C2 concise-but-scoped | C3 fully specified.
   invocation.kind     : "command" (with command "namespace/name") or "natural" (command null).
@@ -180,9 +178,8 @@ Field guidance (see framework.md for the authoritative enums):
   expected_delegation : evidence_kind (optional, default task_dispatch) selects how delegation is measured and is valid in
                         BOTH schema versions. Only expected_targets/forbidden_targets are v2-only (direct_dispatch):
                         task_dispatch  => Agent/task tool events, min_task_events + optional route_proof to leaf_agent (research, review).
-                        seat_artifacts => ai-council, with distinct seat ids >= min_seats named in the persisted ai-council artifacts.
                         direct_dispatch => v2 ONLY, with case-insensitive stdout-line matches of expected_targets, guarded by forbidden_targets.
-                        min_seats applies ONLY to seat_artifacts, and expected_targets/forbidden_targets apply ONLY to direct_dispatch.
+                        expected_targets/forbidden_targets apply ONLY to direct_dispatch.
                         Each target is a literal substring or /regex/[flags]. question_halt cells usually set leaf_agent:null,
                         min_task_events:0.
   negative control    : a marker, target or postcondition counts only after a run that skips the behavior has failed it. Name that run
@@ -196,7 +193,7 @@ Field guidance (see framework.md for the authoritative enums):
   boundary            : V2. { "allow_prefixes": [dir, ...] }. Any created, rewritten, or deleted fixture path outside every
                         allowed prefix is a boundary_violation.
   budget_ms           : provisional framework floor (180000 ms) until a baseline lands, capped by mode at 900000 ms
-                        (research/review) or 1500000 ms (ai-council). See framework.md BUDGET
+                        (research/review). See framework.md BUDGET
                         POLICY, and do not invent a per-scenario number. Recompute from tTerminal once a baseline lands.
   watchdog_ms         : OPTIONAL, placed BEFORE the mandatory final "notes" field so deleting this one line never strands
                         a trailing comma. Set (e.g. 480000) only on autonomous delegating cells that legitimately go

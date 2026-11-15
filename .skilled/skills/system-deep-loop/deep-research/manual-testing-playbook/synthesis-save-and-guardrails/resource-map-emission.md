@@ -1,7 +1,7 @@
 ---
 title: "DR-035 -- Research resource-map emission"
 description: "Verify synthesis emits research/resource-map.md from converged deltas and honors the opt-out path."
-version: 1.14.1.0
+version: 1.14.2.0
 ---
 
 # DR-035 -- Research resource-map emission
@@ -49,7 +49,7 @@ Validate resource-map emission from delta evidence and --no-resource-map suppres
 ### Commands
 
 1. `bash: rg -n 'resource-map|no-resource-map|emit-resource-map' .skilled/commands/deep/research.md .skilled/skills/system-deep-loop/deep-research/SKILL.md .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
-2. `bash: rg -n 'resource_map|resource-map|emit-resource-map' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`
+2. `bash: rg -n 'resource_map|resource-map|emit-resource-map' .skilled/commands/deep/assets/deep-research.yaml .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`
 3. `bash: node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder> --emit-resource-map`
 4. `bash: node .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs <spec-folder> --emit-resource-map` with `deep-research-config.json` edited to `"resource_map": { "emit": false }`
 
@@ -85,8 +85,7 @@ Privilege the YAML synthesis step and reducer behavior over secondary docs if th
 | File | Role |
 |---|---|
 | `.skilled/commands/deep/research.md` | Command entrypoint; opt-out and emitted-artifact contract |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Autonomous synthesis emission step |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Confirm-mode synthesis emission step |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Synthesis emission step in both execution modes |
 | `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Reducer flag handling and write path |
 | `.skilled/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs` | Shared template renderer and research-shape adapter |
 | `.skilled/skills/system-spec-kit/runtime/tests/resource-map-extractor.vitest.ts` | Focused regression coverage for the emitted output shape |

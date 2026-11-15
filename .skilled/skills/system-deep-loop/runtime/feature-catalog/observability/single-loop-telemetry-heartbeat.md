@@ -6,7 +6,7 @@ trigger_phrases:
   - "single-loop-telemetry-heartbeat"
   - "single-loop telemetry heartbeat runtime"
   - "observability single-loop telemetry heartbeat"
-version: 1.4.0.15
+version: 1.4.1.0
 ---
 
 # Single-loop telemetry heartbeat
@@ -23,7 +23,7 @@ This feature belongs to the observability group and is catalogued as F046 in the
 
 ## 2. HOW IT WORKS
 
-`deep-research-auto.yaml` emits heartbeat rows tagged `label:"single"` with fan-out-shaped gauges, while `atomic-state.ts` suppresses unchanged telemetry rows through serialized-diff gating.
+`deep-research.yaml` emits heartbeat rows tagged `label:"single"` with fan-out-shaped gauges, while `atomic-state.ts` suppresses unchanged telemetry rows through serialized-diff gating.
 
 The implementation is source-backed and covered by runtime-owned tests under `.skilled/skills/system-deep-loop/runtime/tests/`. Treat this as shipped behavior, not a roadmap claim.
 
@@ -35,7 +35,7 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 
 | File | Layer | Role |
 |---|---|---|
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Integration | single-loop telemetry heartbeat. |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Integration | single-loop telemetry heartbeat. |
 | `lib/deep-loop/atomic-state.ts` | Runtime | single-loop telemetry heartbeat. |
 
 ### Validation And Tests
@@ -51,6 +51,6 @@ The implementation is source-backed and covered by runtime-owned tests under `.s
 - Group: Observability
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `observability/single-loop-telemetry-heartbeat.md`
-- Primary sources: `.skilled/commands/deep/assets/deep-research-auto.yaml`, `lib/deep-loop/atomic-state.ts`, `tests/unit/atomic-state.vitest.ts`
+- Primary sources: `.skilled/commands/deep/assets/deep-research.yaml`, `lib/deep-loop/atomic-state.ts`, `tests/unit/atomic-state.vitest.ts`
 Related references:
 - [observability](../observability/) — Observability category
