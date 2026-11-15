@@ -20,7 +20,7 @@ trigger_phrases:
   - "delegate to vibe"
   - "cli dispatch"
   - "cross-ai delegation"
-version: 1.8.5.0
+version: 1.8.6.0
 ---
 
 # cli-external-orchestration
@@ -62,7 +62,7 @@ The hub holds no packet-local logic. Every request routes to exactly one of eigh
 | **`cli-cursor`** ([README](./cli-cursor/README.md), [SKILL.md](./cli-cursor/SKILL.md)) | Cursor CLI dispatch: Composer-model dispatch, read-only `--mode plan` and `--mode ask` exploration, native git worktree isolation, a cloud `worker` and a shared `.cursor/` hooks, MCP and rules config surface with the Cursor editor |
 | **`cli-devin`** ([README](./cli-devin/README.md), [SKILL.md](./cli-devin/SKILL.md)) | Devin CLI dispatch: Cognition-backed cloud coding via `devin -p`, subagent delegation via `run_subagent`, cloud handoff via `/handoff`, MCP host integration and multi-model dispatch. Availability-gated on `command -v devin` |
 | **`cli-pi`** ([README](./cli-pi/README.md), [SKILL.md](./cli-pi/SKILL.md)) | Pi CLI dispatch: guarded headless print, JSON-event and RPC dispatch, native skills and extensions plus community packages. Availability-gated on `command -v pi`, with failure exit codes that are unreliable so callers inspect output |
-| **`cli-deepseek-harness`** ([README](./cli-deepseek-harness/README.md), [SKILL.md](./cli-deepseek-harness/SKILL.md)) | DeepSeek Harness dispatch: pinned `dsh --profile headless` one-task runs with the prompt on stdin, a closed three-route DeepSeek V4.1 Flash roster chosen by route patch, a scratch cwd with a disposable `DSH_HOME` and a JSON event stream judged by exit code and final event. Experimental: LLM Gateway is verified and the default. OpenCode Go was proven by a keyed run on 2026-11-07 and runs only when named. Availability-gated on `command -v dsh` plus the pinned version |
+| **`cli-deepseek-harness`** ([README](./cli-deepseek-harness/README.md), [SKILL.md](./cli-deepseek-harness/SKILL.md)) | DeepSeek Harness dispatch: pinned `dsh --profile headless` one-task runs with the prompt on stdin, a closed two-route DeepSeek V4.1 Flash roster chosen by route patch, a scratch cwd with a disposable `DSH_HOME` and a JSON event stream judged by exit code and final event. Experimental: LLM Gateway is verified and the default. OpenCode Go was proven by a keyed run on 2026-11-07 and runs only when named. Availability-gated on `command -v dsh` plus the pinned version |
 | **`cli-mistral-vibe`** ([README](./cli-mistral-vibe/README.md), [SKILL.md](./cli-mistral-vibe/SKILL.md)) | Mistral Vibe dispatch: pinned `vibe -p` one-task print-mode runs from a scratch cwd with a disposable `VIBE_HOME`, a closed two-alias `deepseek-flash` / `glm-flash` roster, and an `export.json` outcome record in the `--output-dir` folder, judged by `exit_code` 0 plus `outcome` `finished`. Experimental: the pin is `vibe 3.1.2` and ACP (`vibe-acp`) is deferred. Availability-gated on `command -v vibe`, the pinned version and an exported `MISTRAL_API_KEY` |
 
 ---

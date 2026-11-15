@@ -1,5 +1,5 @@
 {
-  "corpusHash": "cb8c0c86072540df7456eba6aafcf90c7c54c2d9169cf01178ca1819e18b2e6d",
+  "corpusHash": "0a34428ded49f37730466d7eb5b0c64e6f4cc1f04d0e8937dd17a14c093e3034",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27491,
+  "includedPathCount": 27493,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -1097,6 +1097,7 @@
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/assets/prompt-templates.md",
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/changelog/v1.0.0.0.md",
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/changelog/v1.0.1.0.md",
+    ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/changelog/v1.0.2.0.md",
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/manual-testing-playbook/cli-invocation/keyless-boot-per-route.md",
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/manual-testing-playbook/cli-invocation/repo-root-dispatch-refusal.md",
     ".skilled/skills/cli-external-orchestration/cli-deepseek-harness/manual-testing-playbook/fanout/deep-research-lineage.md",
@@ -10716,6 +10717,7 @@
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/002-mistral-provider-roster/plan.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/002-mistral-provider-roster/spec.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/002-mistral-provider-roster/tasks.md",
+    "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route/decision-record.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route/goal.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route/implementation-summary.md",
     "specs/cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/003-dsh-mistral-route/plan.md",
@@ -27523,7 +27525,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "87b15cc835bbf96d61c571817d2ec28874ab49fc364f930d37ee6d687f528b2f",
+  "manifestHash": "6603e180217788066d2590e39c4427d7ab5166aafb62831ce9d42fec1a7e7b76",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

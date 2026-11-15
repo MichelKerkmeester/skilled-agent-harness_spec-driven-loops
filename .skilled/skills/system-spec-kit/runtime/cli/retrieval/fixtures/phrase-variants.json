@@ -1,5 +1,5 @@
 {
-  "manifestHash": "87b15cc835bbf96d61c571817d2ec28874ab49fc364f930d37ee6d687f528b2f",
+  "manifestHash": "6603e180217788066d2590e39c4427d7ab5166aafb62831ce9d42fec1a7e7b76",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -729,6 +729,9 @@
     ],
     "003 documentation truth validation resource map": [
       "003-documentation-truth-validation resource map"
+    ],
+    "003 dsh mistral route operator decisions": [
+      "003-dsh-mistral-route operator decisions"
     ],
     "003 embedder testing and architecture changelog index": [
       "003-embedder-testing-and-architecture changelog index"
@@ -22052,6 +22055,9 @@
     "cli deepseek harness 1 0 1 0": [
       "cli-deepseek-harness 1.0.1.0"
     ],
+    "cli deepseek harness 1 0 2 0": [
+      "cli-deepseek-harness 1.0.2.0"
+    ],
     "cli deepseek harness commit follow up": [
       "cli-deepseek-harness commit follow-up"
     ],
@@ -22096,6 +22102,9 @@
     ],
     "cli deepseek harness v1 0 1 0": [
       "cli-deepseek-harness v1.0.1.0"
+    ],
+    "cli deepseek harness v1 0 2 0": [
+      "cli-deepseek-harness v1.0.2.0"
     ],
     "cli deepseek research scope": [
       "cli-deepseek research scope"
@@ -44833,6 +44842,9 @@
     ],
     "dsh mistral route plan": [
       "dsh mistral route plan"
+    ],
+    "dsh mistral route retired": [
+      "dsh mistral route retired"
     ],
     "dsh mistral route tasks": [
       "dsh mistral route tasks"

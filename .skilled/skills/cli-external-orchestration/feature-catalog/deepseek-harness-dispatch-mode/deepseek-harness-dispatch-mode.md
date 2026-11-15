@@ -1,20 +1,20 @@
 ---
 title: "DeepSeek Harness Dispatch Mode"
-description: "`cli-deepseek-harness` is the seventh workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed three-route DeepSeek V4.1 Flash roster, and it remains experimental. LLM Gateway (2026-11-06) and OpenCode Go (2026-11-07) answered a keyed run, and the Mistral route composes but has no keyed run yet."
+description: "`cli-deepseek-harness` is the seventh workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed two-route DeepSeek V4.1 Flash roster, and it remains experimental. LLM Gateway (2026-11-06) and OpenCode Go (2026-11-07) answered a keyed run."
 trigger_phrases:
   - "DeepSeek Harness Dispatch Mode"
   - "deepseek harness"
   - "dsh headless"
   - "delegate to dsh"
   - "cli-deepseek-harness"
-version: 1.0.5.0
+version: 1.0.6.0
 ---
 
 # DeepSeek Harness Dispatch Mode (dsh)
 
 ## 1. OVERVIEW
 
-`cli-deepseek-harness` is the seventh workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed three-route DeepSeek V4.1 Flash roster, and it remains experimental. LLM Gateway (2026-11-06) and OpenCode Go (2026-11-07) answered a keyed run, and the Mistral route composes but has no keyed run yet.
+`cli-deepseek-harness` is the seventh workflow mode. It composes and checks a one-task `dsh --profile headless` dispatch over a closed two-route DeepSeek V4.1 Flash roster, and it remains experimental. LLM Gateway (2026-11-06) and OpenCode Go (2026-11-07) answered a keyed run.
 
 DeepSeek Harness picks its own model. Its headless mode has no model, provider, timeout or working-directory option, so the packet fixes the model through a checked-in route patch and fixes the rest through the argv shape. A caller reaches the mode through the hub like any sibling. The LLM Gateway route has answered a keyed run; the OpenCode Go route has not been run with a key.
 
@@ -49,7 +49,7 @@ The LLM Gateway route answered a keyed run on 2026-11-06 with exit 0 and a `comp
 | `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/SKILL.md` | Shared | The dispatch contract: activation, the dispatch shape, the lifecycle and the ALWAYS, NEVER and ESCALATE rules. |
 | `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/hard-rules.json` | Shared | The thirteen blocking dsh dispatch rules the rule engine evaluates. |
 | `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/cli-reference.md` | Shared | The version pin, the headless option set, the launcher flags and the exit contract. |
-| `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/providers-and-models.md` | Shared | The closed three-route roster, the route patch shape and what stays unconfirmed. |
+| `.skilled/skills/cli-external-orchestration/cli-deepseek-harness/references/providers-and-models.md` | Shared | The closed two-route roster, the route patch shape and what stays unconfirmed. |
 | `.skilled/hooks/dispatch/lib/dispatch-audit.mjs` | Shared | Classifies the dsh headless forms as `direct cli-deepseek-harness`. |
 | `.skilled/hooks/dispatch/lib/dispatch-rule-checks.mjs` | Shared | Implements one check per dsh hard rule. |
 

@@ -1,0 +1,8 @@
+REPOSITORY ROOT: the current working directory, a scratch folder outside any checkout.
+Every read, write and command uses this root.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. AI_SESSION_CHILD=1 and SYSTEM_SPEC_GATE_ENFORCE=0 are set in your environment, which this repository's AGENTS.md defines as the autonomous child-dispatch exemption. You have no write authority: this is a read-only check. Proceed directly. Do not print A/B/C/D options. Do not stop to confirm anything.
+
+Task: reply with the single word OK and nothing else. Run no tools. Your task is complete when you have printed OK.

@@ -54,8 +54,9 @@ contextType: "implementation"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Run a keyed harmless dispatch (`scratch/`). Verify: exit 0 and `final.reason.kind` is `completed`. A keyless run on 2026-11-14 passed the preflight and failed only with `MISSING_CREDENTIAL` naming `MISTRAL_API_KEY`.
-- [ ] T009 Run the same dispatch with the patch's default `max` (`scratch/`). Verify: exit 0 and no `UNSUPPORTED_REASONING_EFFORT` on stderr.
+- [x] T008 Run a keyed harmless dispatch (`scratch/`). Verify: exit 0 and `final.reason.kind` is `completed`. A keyless run on 2026-11-14 passed the preflight and failed only with `MISSING_CREDENTIAL` naming `MISTRAL_API_KEY`. Ran 2026-11-15, failed: exit 1, 422 `extra_forbidden` on the `store` field (`scratch/keyed-runs/01-shipped-patch-max/`).
+- [x] T009 Run the same dispatch with the patch's default `max` (`scratch/`). Verify: exit 0 and no `UNSUPPORTED_REASONING_EFFORT` on stderr. Ran 2026-11-15 with `supportsStore: false`, failed at `max` and `high` with `text-delta text must be a string`, and completed only with reasoning `off` (`scratch/keyed-runs/02` to `05`). A raw stream capture shows Mistral sends reasoning as a list of `thinking` chunks (`scratch/keyed-runs/raw-stream-reasoning-high.txt`).
+- [x] T011 Retire the route by operator decision, because Mistral work goes through Vibe. Delete the patch, drop it from `DSH_ROUTE_PATCHES`, both rule messages and the roster docs, and record why in `providers-and-models.md` section 4. Verify: the new test `dsh hard rules refuse the retired Mistral route` passes and the dispatch suites print `pass 69`, `fail 0`.
 - [x] T010 Run the dispatch hook tests (`.skilled/hooks/dispatch/`). Verify: `node --test lib/dispatch-rule-checks.test.mjs tests/dsh-dispatch.test.mjs` prints `pass 53`, `fail 0` (baseline 52).
 <!-- /ANCHOR:phase-3 -->
 
@@ -64,9 +65,9 @@ contextType: "implementation"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Manual verification passed: two keyed runs recorded
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Manual verification passed: five keyed runs recorded in `scratch/keyed-runs/`, and their failures led to the retirement in T011
 <!-- /ANCHOR:completion -->
 
 ---

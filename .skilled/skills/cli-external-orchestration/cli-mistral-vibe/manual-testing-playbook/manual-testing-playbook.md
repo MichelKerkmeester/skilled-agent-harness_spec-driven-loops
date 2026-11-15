@@ -1,7 +1,7 @@
 ---
 title: "cli-mistral-vibe: Manual Testing Playbook"
 description: "Operator-facing reference combining the manual testing directory, evidence rules, orchestration guidance and per-scenario validation files for the cli-mistral-vibe skill."
-version: 1.0.2.0
+version: 1.0.3.0
 ---
 
 # cli-mistral-vibe: Manual Testing Playbook
@@ -318,7 +318,7 @@ The print-mode contract is observed. The recorded first turn finished on `deepse
 
 The keyed lineage also finished on `deepseek-flash` with `exit_code` `0`, `outcome` `finished` and `steps` `50`. A lineage runs with `--auto-approve`, without confinement and without the repository's guard hooks, so its result applies to the lineage route and not to the hard-rule-checked dispatch shape. That run predates the rendered home hooks, so its journal holds no repository hook record. A later keyed scratch-cwd run with the rendered home file loaded the guards and the goal slice, and a child write went through.
 
-The three generated mirrors are in sync at 11 agent profiles, 56 skill links and 45 prompt stubs. The dispatch rule-check suite passes 65 tests, the spec-gate suite passes 3, the goal-hook suite passes 3, and the adapter stress file passes 22 with the live probe skipped. The goal hook is registered once, and the recorded journal carries the packet's slice in a block tagged `vibe.hookContext: true`.
+The three generated mirrors are in sync at 11 agent profiles, 56 skill links and 45 prompt stubs. The dispatch rule-check suite passes 64 tests, the spec-gate suite passes 3, the goal-hook suite passes 3, and the adapter stress file passes 22 with the live probe skipped. The goal hook is registered once, and the recorded journal carries the packet's slice in a block tagged `vibe.hookContext: true`.
 
 The routing front door serves the compiled decision for the `cli-external-orchestration` hub: `delegate to vibe` routes to `cli-mistral-vibe`, the activation manifest and the snapshot share policy hash `ee55d93a...` at generation `5`, and the legacy hub router carries both the mode row and the keyword as the fallback.
 

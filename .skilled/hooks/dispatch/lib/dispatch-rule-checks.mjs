@@ -195,7 +195,6 @@ const DSH_APP_VALUE_FLAGS = new Set(['--session-id', '--permission-mode', '--app
 const DSH_ROUTE_PATCHES = new Set([
   'route-llmgateway-deepseek.patch.yml',
   'route-opencode-go-deepseek.patch.yml',
-  'route-mistral-deepseek.patch.yml',
 ]);
 const DSH_LINEAGE_PATCH = 'lineage.patch.yml';
 const DSH_MCP_PATCH = 'mcp-code-mode.patch.yml';
