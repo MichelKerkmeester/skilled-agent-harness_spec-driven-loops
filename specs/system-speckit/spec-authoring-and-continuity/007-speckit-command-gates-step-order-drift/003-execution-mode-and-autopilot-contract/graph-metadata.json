@@ -204,7 +204,7 @@
     ],
     "causal_summary": "An agent that runs `/speckit:plan:autopilot` or `/speckit:implement:autopilot` finds no autopilot block in the workflow, so it has no result line, no reason codes and no rule for what to do when it would ask",
     "created_at": "2026-11-14T11:33:20Z",
-    "last_save_at": "2026-11-14T13:55:59.178Z",
+    "last_save_at": "2026-11-15T16:19:13.713Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,10 +214,10 @@
       "acceptance-criteria.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:cd1e82625908fa12ada6a5dfb2150efd88b0cedd57bd85b47c3b1d36f1d4be4d",
+    "source_fingerprint": "sha256:3f0e7092f7bbd982914bab5fc675abfdca3ccfc21de21562bf2a22151715c22c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "4baef64a9fffcfd469955747419cd5bd8e384fa07fac3619a24a91075530bb10",
+      "spec.md": "d6b083f926fb65e45ed2bff81e31ab73266fccc68cda5dab1607bc8c5461d42c",
       "plan.md": "e4ac773ac275a265326179c0620fe3a85b14065495387ae4e94e0231d71a53ba",
       "tasks.md": "9ac139486426ed355f02a13a569fd9ea83b92e15414fb2c330698927220c36ed",
       "implementation-summary.md": "264b5fcbfda06c77380ac2749e12c47a98b665b6062bb1062a6b2a08d841cc20"
