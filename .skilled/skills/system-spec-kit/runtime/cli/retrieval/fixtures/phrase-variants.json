@@ -1,5 +1,5 @@
 {
-  "manifestHash": "1658b59df7d046802fe20b987d1c3d153344833ff159f53e6cd648fc0529d959",
+  "manifestHash": "76eebe6e2a1d1b2dca79fad6954b8e2fd6b54799c9a4e8cdf8e5d92cee104998",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10812,6 +10812,9 @@
     "agents md manifest acceptance criteria": [
       "agents md manifest acceptance criteria"
     ],
+    "agents md manifest history body hash": [
+      "agents-md manifest history body hash"
+    ],
     "agents md manifest implementation summary": [
       "agents md manifest implementation summary"
     ],
@@ -19651,6 +19654,18 @@
     ],
     "ci red check repairs tasks": [
       "ci red check repairs tasks"
+    ],
+    "ci red checks after council retirement": [
+      "ci red checks after council retirement"
+    ],
+    "ci red checks after council retirement implementation summary": [
+      "ci red checks after council retirement implementation summary"
+    ],
+    "ci red checks after council retirement plan": [
+      "ci red checks after council retirement plan"
+    ],
+    "ci red checks after council retirement tasks": [
+      "ci red checks after council retirement tasks"
     ],
     "ci regression gate comparison rule sets": [
       "ci regression gate comparison rule sets"
@@ -33331,6 +33346,9 @@
     ],
     "cursor task dispatch guard": [
       "cursor task dispatch guard"
+    ],
+    "cursor task guard test deep review": [
+      "cursor task guard test deep-review"
     ],
     "cursor trust gate mode plan fanout": [
       "cursor trust gate mode plan fanout"
@@ -82720,6 +82738,9 @@
     ],
     "phase 27 alignment preexisting gaps": [
       "phase 27 alignment preexisting gaps"
+    ],
+    "phase 27 ci red checks": [
+      "phase 27 ci red checks"
     ],
     "phase 27 goal rebind claude and codex": [
       "phase 27 goal rebind claude and codex"
