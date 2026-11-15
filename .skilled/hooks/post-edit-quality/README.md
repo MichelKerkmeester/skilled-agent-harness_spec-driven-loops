@@ -91,7 +91,8 @@ post-edit-quality/
 +-- codex/    post-edit-quality.cjs
 +-- cursor/   post-tool-use.mjs    # multiplexed proxy (Write -> post-edit-quality, Shell -> dispatch)
 +-- pi/       post-edit-quality.ts (real file; `.pi/extensions/` holds a one-line entry file that re-exports it)
-`-- opencode/ sk-code-post-edit-quality.js (browsability symlink -> ../../../plugins/; real file loaded from .opencode/plugins/)
++-- opencode/ sk-code-post-edit-quality.js (browsability symlink -> ../../../plugins/; real file loaded from .opencode/plugins/)
+`-- vibe/     post-edit-quality.mjs (browsability symlink -> .vibe/plugins/repo-guards/)
 ```
 
 ---

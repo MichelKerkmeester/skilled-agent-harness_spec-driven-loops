@@ -1,0 +1,1 @@
+../../../../.vibe/plugins/repo-guards/git-message-gate.mjs
