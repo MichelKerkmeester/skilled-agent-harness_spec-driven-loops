@@ -36,6 +36,7 @@ const USAGE = [
 // the hook file inside it, the event that carries the prompt entry, and the path
 // fragment whose presence proves the entry is wired. A runtime folder that is
 // absent is skipped, because that runtime was never installed in this checkout.
+// A `toml` entry is read line by line, because the repository installs no TOML parser.
 const RUNTIMES = [
   {
     id: 'claude',
@@ -64,6 +65,14 @@ const RUNTIMES = [
     file: '.devin/hooks.v1.json',
     event: 'UserPromptSubmit',
     marker: 'hooks/devin/user-prompt-submit.js',
+  },
+  {
+    id: 'vibe',
+    dir: '.vibe',
+    file: '.vibe/hooks.toml',
+    event: 'pre_agent',
+    marker: 'hooks/session-lifecycle/vibe/turn-start.mjs',
+    format: 'toml',
   },
 ];
 
@@ -215,6 +224,30 @@ function collectCommands(node, commands) {
   return commands;
 }
 
+// A TOML hook file groups its entries under `[[hooks]]` headers rather than a
+// JSON key, and no TOML parser is installed here, so each block is read line by
+// line. A commented line names nothing that runs, so it is skipped. A basic
+// string value escapes the quote and backslash after it, so both are unescaped.
+function tomlCommands(text, event) {
+  const blocks = [];
+  let current = null;
+  for (const line of text.split('\n')) {
+    const trimmed = line.trim();
+    if (trimmed === '[[hooks]]') {
+      current = {};
+      blocks.push(current);
+      continue;
+    }
+    if (current === null || trimmed.startsWith('#')) continue;
+    const entry = /^(type|command)\s*=\s*"(.*)"$/.exec(trimmed);
+    if (!entry) continue;
+    current[entry[1]] = entry[2].replace(/\\(["\\])/g, '$1');
+  }
+  return blocks
+    .filter((block) => block.type === event && typeof block.command === 'string')
+    .map((block) => block.command);
+}
+
 const ASSIGNMENT = /^[A-Za-z_][A-Za-z0-9_]*=/;
 
 // Flags whose next word is their own argument, so that word is not the command.
@@ -309,6 +342,17 @@ function runsMarker(command, marker, depth = 0) {
 
 function inspect(runtime, root) {
   const file = path.join(root, runtime.file);
+  // A toml hook file is text rather than JSON, so the line reader reads it.
+  if (runtime.format === 'toml') {
+    let text;
+    try {
+      text = fs.readFileSync(file, 'utf8');
+    } catch {
+      return { runtime: runtime.id, file: runtime.file, status: 'hook-missing' };
+    }
+    const wired = tomlCommands(text, runtime.event).some((command) => runsMarker(command, runtime.marker));
+    return { runtime: runtime.id, file: runtime.file, status: wired ? 'ok' : 'hook-missing' };
+  }
   let document;
   try {
     document = JSON.parse(fs.readFileSync(file, 'utf8'));

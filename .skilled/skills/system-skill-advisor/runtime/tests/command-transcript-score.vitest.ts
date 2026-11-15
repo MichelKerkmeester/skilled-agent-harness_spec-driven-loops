@@ -21,6 +21,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { describe, expect, it } from 'vitest';
+import { loadVibeSession } from '../../../../hooks/shared/session-readers/vibe.mjs';
 import * as scorer from '../scripts/routing-accuracy/score-command-transcripts.mjs';
 import {
   commandLines,
@@ -38,6 +39,11 @@ const SCORER = resolve(HERE, '../scripts/routing-accuracy/score-command-transcri
 const BRIDGES = resolve(HERE, '../scripts/command-bridges/command-bridges.generated.json');
 const COMMANDS_ROOT = resolve(HERE, '../../../../commands');
 const TIMESTAMP = '2026-01-01T00:00:00.000Z';
+
+// A Vibe session is a journal rather than a record list, so the one committed fixture
+// is read through its own reader and named by the session its meta file records.
+const VIBE_FIXTURE = resolve(HERE, '../../../../hooks/shared/tests/session-readers/fixtures/vibe/scratch-cwd');
+const VIBE_SESSION = JSON.parse(readFileSync(join(VIBE_FIXTURE, 'meta.json'), 'utf8')).session_id;
 
 const README_DOCUMENT = '.claude/commands/create/readme.md';
 const README_CONFIRM = '.claude/commands/create/assets/create-readme-confirm.yaml';
@@ -188,6 +194,28 @@ describe('normalize', () => {
     expect(events[3].command).toBe('create:readme');
   });
 
+  // Vibe namespaces its tool names, so its four steps are built from the names its
+  // journals record rather than from the bare names the other runtimes register. Its
+  // skill tool is left out, because no recorded call shows the name or the arguments.
+  it('maps the tool names Vibe records', () => {
+    const events = normalize(
+      oneTurn(
+        toolCall('file_system.read_file', { path: 'notes.md' }),
+        toolCall('file_system.write_file', { path: 'out/readme.md', content: '# readme' }),
+        toolCall('file_system.edit', { file_path: 'out/plan.md' }),
+        toolCall('file_system.bash', { command: 'git status --porcelain', timeout_seconds: 30 }),
+        toolCall('Skill', { skill: 'create:readme' }),
+      ),
+      'vibe',
+    );
+
+    expect(events.map((event) => event.kind)).toEqual(['read', 'write', 'write', 'shell']);
+    expect(events[0].path).toBe('notes.md');
+    expect(events[1].path).toBe('out/readme.md');
+    expect(events[2].path).toBe('out/plan.md');
+    expect(events[3].command).toBe('git status --porcelain');
+  });
+
   // A Codex function call names its command under `cmd` rather than `command`, so a
   // read through one only counts when that key is read.
   it('reads the cmd key of a Codex exec_command call', () => {
@@ -272,6 +300,74 @@ describe('normalize', () => {
 
     expect(events).toHaveLength(1);
     expect(events[0].command).toBe('a\ncat .skilled/skills/sk-doc/SKILL.md');
+  });
+});
+
+// A Vibe projection keeps its tool calls beside its messages rather than inside them,
+// so the scorer reads both from the entries the session ran, in that order.
+describe('vibeRecords', () => {
+  it('carries the committed fixture\'s write to normalize', () => {
+    const events = normalize(
+      scorer.vibeRecords(loadVibeSession({ transcriptPath: VIBE_FIXTURE }).entries),
+      'vibe',
+    );
+
+    expect(events.map((event) => event.kind)).toEqual(['write', 'text']);
+    expect(events[0].path).toBe('/tmp/vibe-fixture-project/proof.txt');
+  });
+
+  // A user message is input rather than behaviour, and only a tool effect is a call,
+  // so the projection order survives while the entries around it drop out.
+  it('keeps projection order and turns only tool effects into calls', () => {
+    const createdAt = 1794682287428;
+    const entries = [
+      { id: 'notice-1', type: 'notice', createdAt, level: 'info', message: 'Running hooks' },
+      {
+        id: 'user-1',
+        type: 'message',
+        role: 'user',
+        createdAt,
+        content: [{ type: 'text', text: 'write a readme' }],
+      },
+      {
+        id: 'assistant-1',
+        type: 'message',
+        role: 'assistant',
+        createdAt,
+        content: [{ type: 'text', text: 'reading first' }],
+      },
+      { id: 'reasoning-1', type: 'reasoning', createdAt, text: 'reading first' },
+      {
+        id: 'effect-1',
+        type: 'effect',
+        createdAt,
+        detail: { kind: 'tool', toolName: 'file_system.read_file', input: { path: 'notes.md' } },
+      },
+      {
+        id: 'effect-2',
+        type: 'effect',
+        createdAt,
+        detail: {
+          kind: 'tool',
+          toolName: 'file_system.bash',
+          input: { command: 'git status --porcelain', timeout_seconds: 30 },
+        },
+      },
+      {
+        id: 'effect-3',
+        type: 'effect',
+        createdAt,
+        detail: { kind: 'tool', toolName: 'vibe.todo', input: { items: [] } },
+      },
+      { id: 'effect-4', type: 'effect', createdAt, detail: { kind: 'hook', scope: 'pre_agent' } },
+    ];
+
+    const events = normalize(scorer.vibeRecords(entries), 'vibe');
+
+    expect(events.map((event) => event.kind)).toEqual(['text', 'read', 'shell']);
+    expect(events[0].text).toBe('reading first');
+    expect(events[1].path).toBe('notes.md');
+    expect(events[2].command).toBe('git status --porcelain');
   });
 });
 
@@ -1069,6 +1165,22 @@ function summarizeForms(runOf: (root: string) => readonly RunLogLine[]): {
 }
 
 describe('run log summary', () => {
+  // The Vibe reader keeps tool calls out of its shared records, so a Vibe run is
+  // scored from the entries its journal projects beside them.
+  it('scores a Vibe run from the committed fixture', () => {
+    const summary = summarize(() => [
+      {
+        runtime: 'vibe',
+        rowId: SUMMARY_ROW,
+        arm: 'pre',
+        exit: 0,
+        locator: { sessionId: VIBE_SESSION, transcriptPath: VIBE_FIXTURE },
+      },
+    ]);
+
+    expect(summary).toMatchObject({ vibe: { pre: { scored: 1, unscoredRuns: [] } } });
+  });
+
   // The cap stops a turn that has already done minutes of work, and its
   // transcript is the only evidence of that work, so the exit code is not a
   // ground to throw the session away.

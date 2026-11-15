@@ -43,6 +43,10 @@ const CHILD_SESSION_ENV = 'AI_SESSION_CHILD';
 const STATE_DIR_ENV = 'SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR';
 const HEAD_RECEIPT_SUBDIR = 'vibe-turn-start';
 const MAX_HEAD_RECEIPTS = 64;
+// Vibe has no command loader and its prompt stubs name the dash form, so a head
+// that names a command is the one place a model learns which document to read.
+const COMMAND_DOCUMENT_LABEL = 'Command documents (read in full before taking one): ';
+const COMMAND_TOKEN_PATTERN = /(?:^|[\s(])\/([a-z][a-z0-9-]*)(?::([a-z][a-z0-9-]*))?/g;
 
 export const ERROR_POLICY = 'fail-open';
 // The advisor keys its metrics and outcome records by runtime and drops a label it does not list.
@@ -101,6 +105,45 @@ function writeHeadReceipt(sessionId, head) {
     writeFileSync(target, head, { mode: 0o600 });
   } catch {
     // A receipt that cannot be written only costs a repeated head next turn.
+  }
+}
+
+/**
+ * Name the canonical document of each command the routing head mentions.
+ *
+ * Vibe has no command loader and its prompt stubs name the dash form, so the
+ * head is where each offered command's document has to be named. The line is
+ * added before the head receipt, so two equal heads stay equal and a repeated
+ * brief is still dropped.
+ *
+ * @param {string} context - The advisor's additional context.
+ * @param {string} [root] - The checkout the document paths resolve under.
+ * @returns {string} The context with one document line, or unchanged.
+ */
+export function withCommandDocuments(context, root = REPO_ROOT) {
+  try {
+    const separator = context.indexOf(DIRECTIVE_SEPARATOR);
+    const head = separator > 0 ? context.slice(0, separator) : context;
+    const rest = separator > 0 ? context.slice(separator) : '';
+
+    const documents = [];
+    for (const [, namespace, name] of head.matchAll(COMMAND_TOKEN_PATTERN)) {
+      const command = name ? `/${namespace}:${name}` : `/${namespace}`;
+      const relative = name
+        ? `.skilled/commands/${namespace}/${name}.md`
+        : `.skilled/commands/${namespace}.md`;
+      if (documents.some((document) => document.relative === relative)) continue;
+      if (!existsSync(join(root, relative))) continue;
+      documents.push({ command, relative });
+    }
+    if (documents.length === 0) return context;
+
+    const pairs = documents
+      .map((document) => `${document.command} is ${document.relative}`)
+      .join(', ');
+    return `${head}\n${COMMAND_DOCUMENT_LABEL}${pairs}.${rest}`;
+  } catch {
+    return context;
   }
 }
 
@@ -186,7 +229,7 @@ export async function buildAdvisorPart(payload, {
 
     const context = output?.hookSpecificOutput?.additionalContext;
     if (typeof context !== 'string' || !context.trim()) return '';
-    return reduceRepeatedHead(context, sessionId, { read, write });
+    return reduceRepeatedHead(withCommandDocuments(context), sessionId, { read, write });
   } catch {
     return '';
   }

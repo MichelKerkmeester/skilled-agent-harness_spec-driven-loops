@@ -18,6 +18,7 @@ import {
 } from '../../../hooks/claude/user-prompt-submit.js';
 import { DIRECTIVE_LIFECYCLE_DEDUP_ENV, InMemoryDirectiveLifecycleStore } from '../../../hooks/lib/directive-lifecycle.js';
 import { normalizeRuntimeOutput } from '../../lib/normalize-adapter-output.js';
+import { clearPolicyObservationSink, getPolicyObservationRecords } from '../../lib/policy-plan.js';
 import { renderAdvisorBrief } from '../../lib/render.js';
 import { validateAdvisorHookDiagnosticRecord } from '../../lib/metrics.js';
 import type { AdvisorHookResult } from '../../lib/skill-advisor-brief.js';
@@ -206,6 +207,41 @@ describe('Claude UserPromptSubmit advisor hook', () => {
     expect(writeDiagnostic).toHaveBeenCalledOnce();
     expect(diagnostic.runtime).toBe(expectedRuntime);
     expect(diagnostic.emittedBytes).toBe(Buffer.byteLength(additionalContext, 'utf8'));
+  });
+
+  it.each([
+    { runtime: 'claude' as const, label: 'Claude Code' },
+    { runtime: 'pi' as const, label: 'pi' },
+    { runtime: 'dsh' as const, label: 'dsh' },
+    { runtime: 'vibe' as const, label: 'vibe' },
+    { environmentRuntime: 'codex', label: 'codex' },
+  ])('labels a recorded policy observation for $label', async ({ label, runtime, environmentRuntime }) => {
+    if (environmentRuntime === undefined) delete process.env.SPECKIT_RUNTIME;
+    else process.env.SPECKIT_RUNTIME = environmentRuntime;
+
+    clearPolicyObservationSink();
+    const diagnostics = diagnosticsSink();
+    const buildBrief = vi.fn(async () => fixture('livePassingSkill.json'));
+    const dependencies = {
+      buildBrief,
+      renderBrief: renderAdvisorBrief,
+      writeDiagnostic: diagnostics.writeDiagnostic,
+      directiveLifecycleStore: new InMemoryDirectiveLifecycleStore(),
+      ...(runtime === undefined ? {} : { runtime }),
+    };
+    // A startup event gives the shadow session its epoch, without which the
+    // sink holds no record to read a label from.
+    await handleClaudeUserPromptSubmit({
+      session_id: `policy-label-${label}`,
+      hook_event_name: 'UserPromptSubmit',
+      prompt: 'implement a TypeScript hook',
+      cwd: '/workspace/project',
+      lifecycle_event: 'startup',
+    }, dependencies);
+
+    const records = getPolicyObservationRecords();
+    expect(records.length).toBeGreaterThan(0);
+    expect(records.every((record) => record.binding.runtime === label)).toBe(true);
   });
 
   it('AS2 emits the skipped fallback head for an empty prompt skipped by the producer', async () => {

@@ -41,20 +41,22 @@
       "plan.md",
       "tasks.md",
       "acceptance-criteria.md",
+      "scratch/repro-after.txt",
       "scratch/handback.md",
       ".vibe/prompts/doctor-setup.md",
       ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
       ".vibe/hooks.toml",
       ".skilled/commands/doctor/assets/doctor-runtime-mirrors.yaml",
       ".skilled/commands/doctor/_routes.yaml",
+      "scratch/floor-before.txt",
+      "scratch/eval-before.txt",
+      "scratch/before.txt",
+      "scratch/repro-before.txt",
       ".skilled/hooks/shared/session-readers/vibe.mjs",
       ".skilled/commands/doctor/runtime-mirrors.md",
       ".skilled/skills/system-spec-kit/runtime/cli/vibe/sync-prompts-vibe.cjs",
       ".vibe/SYNC.md",
-      ".vibe/plugins/README.md",
-      ".skilled/hooks/README.md",
-      ".skilled/hooks/goal/vibe/README.md",
-      "scratch/planning/vibe-parity-matrix.sh"
+      ".vibe/plugins/README.md"
     ],
     "entities": [
       {
@@ -79,6 +81,12 @@
         "name": "acceptance-criteria.md",
         "kind": "doc",
         "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "repro-after.txt",
+        "kind": "file",
+        "path": "scratch/repro-after.txt",
         "source": "derived"
       },
       {
@@ -118,6 +126,30 @@
         "source": "derived"
       },
       {
+        "name": "floor-before.txt",
+        "kind": "file",
+        "path": "scratch/floor-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "eval-before.txt",
+        "kind": "file",
+        "path": "scratch/eval-before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "before.txt",
+        "kind": "file",
+        "path": "scratch/before.txt",
+        "source": "derived"
+      },
+      {
+        "name": "repro-before.txt",
+        "kind": "file",
+        "path": "scratch/repro-before.txt",
+        "source": "derived"
+      },
+      {
         "name": "vibe.mjs",
         "kind": "file",
         "path": ".skilled/hooks/shared/session-readers/vibe.mjs",
@@ -148,12 +180,6 @@
         "source": "derived"
       },
       {
-        "name": "vibe-parity-matrix.sh",
-        "kind": "script",
-        "path": "scratch/planning/vibe-parity-matrix.sh",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -176,35 +202,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Parent Spec",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A Vibe user already gets the advisor brief, but the measures and checks this packet built read Vibe as if it were not there",
     "created_at": "2026-11-15T10:20:11Z",
-    "last_save_at": "2026-11-15T10:44:23.240Z",
+    "last_save_at": "2026-11-15T11:38:23.220Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,12 +215,12 @@
       "tasks.md",
       "acceptance-criteria.md"
     ],
-    "source_fingerprint": "sha256:4322553ab59a8b6f39b56881b835bbdf69744252ae7820952b8f6f49d2dfb678",
+    "source_fingerprint": "sha256:e71fe97a873528de7978676b5016e6826d4a7a2eeead8a9d6c02ee823e1c4055",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "c01ded47db4bb6a361d965085410d4e218e67e19dd2e5a3ae961f0ef6995e0c7",
       "plan.md": "d8b666f0c8b3b4625929a4bc4002b4233a8f5f09a827afc2e5e4a1cf242a9d4a",
-      "tasks.md": "1f648575118349ea4ded25f8325f977a7bcfd662d952a2f4feda70a78e0c4660"
+      "tasks.md": "4540db8c606cab40cc8ec01a670d2a3c131a5188f7dcf82fd7b46deb0676daab"
     },
     "last_active_at": null
   }

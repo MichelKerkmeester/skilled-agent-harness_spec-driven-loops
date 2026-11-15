@@ -443,7 +443,9 @@ export async function handleClaudeUserPromptSubmit(
     }
     observeEmittedAdvisorPolicy(effectiveEmitted, {
       ...deliveryState,
-      runtime: 'Claude Code',
+      // Claude keeps its display label and every other caller is recorded under
+      // the runtime it named, so no other runtime's delivery is counted as Claude's.
+      runtime: runtime === 'claude' ? 'Claude Code' : runtime,
       candidate: OBSERVED_ADVISOR_POLICY_CANDIDATE,
     });
     return output;

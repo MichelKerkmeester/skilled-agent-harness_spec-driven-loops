@@ -1,0 +1,12 @@
+G1 scorer      {"scored":0,"unscoredRuns":[{"rowId":"cmd-create-agent-plain-tune-01","reason":"unscorable_runtime"}]}
+G2 runner      exit=2 run-command-behaviour.mjs: unknown runtime: vibe
+G3 wiring      ["claude:ok","codex:ok","cursor:ok","devin:ok"]
+G5 mirrors     workflow-lines=0 route-lines=0
+G6 brief 1     Advisor: live; use sk-doc → /create:readme (start) 0.94/0.12 pass.
+G6 brief 2     Advisor: live; use sk-git 0.82/0.16 pass.
+G6 brief 2     Also: /doctor:git setup (run)
+G6 brief 3     Advisor: no skill matched. For setup or health checks, run /doctor:setup.
+G11 label      lifecycle=startup runtime=claude records=2 labels=["Claude Code"]
+G11 label      lifecycle=startup runtime=pi records=2 labels=["Claude Code"]
+G11 label      lifecycle=startup runtime=dsh records=2 labels=["Claude Code"]
+G11 label      lifecycle=startup runtime=vibe records=2 labels=["Claude Code"]

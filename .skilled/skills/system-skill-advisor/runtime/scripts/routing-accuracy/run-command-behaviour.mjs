@@ -89,9 +89,11 @@ const DSH_MODEL = 'deepseek-v4.1-flash-1017';
 
 // Runtimes the phase reports as not measured, with the reason a run would be
 // wasted work rather than evidence. Cursor's reader never leaves gated, so its
-// transcript could not be scored even if the turn ran.
+// transcript could not be scored even if the turn ran. Vibe's reader is ready
+// but no live arm may run it, so it is reported rather than run.
 const NOT_MEASURED = Object.freeze({
   cursor: 'its session reader is gated, so no produced transcript can be scored',
+  vibe: 'no live turn is wired for it: live runs need an arena with credentials off and the behaviour arms are stopped',
 });
 
 function has(object, key) {

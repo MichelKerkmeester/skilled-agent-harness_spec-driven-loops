@@ -21,6 +21,8 @@ const test = require('node:test');
 const SCRIPT = path.resolve(__dirname, '..', 'hook-wiring-check.cjs');
 const CLAUDE_FILE = '.claude/settings.json';
 const CLAUDE_MARKER = '.skilled/skills/system-spec-kit/runtime/dist/hooks/claude/user-prompt-submit.js';
+const VIBE_FILE = '.vibe/hooks.toml';
+const VIBE_COMMAND = 'node \\"$(git rev-parse --show-toplevel)/.skilled/hooks/session-lifecycle/vibe/turn-start.mjs\\"';
 
 function fixture(t) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'hook-wiring-check-'));
@@ -35,6 +37,23 @@ function fixture(t) {
 function writeClaudeSettings(root, hooks) {
   fs.mkdirSync(path.join(root, '.claude'), { recursive: true });
   fs.writeFileSync(path.join(root, CLAUDE_FILE), JSON.stringify({ hooks }, null, 2));
+}
+
+function writeVibeHooks(root, text) {
+  fs.mkdirSync(path.join(root, '.vibe'), { recursive: true });
+  fs.writeFileSync(path.join(root, VIBE_FILE), text);
+}
+
+// The Vibe hook file is TOML, so one block is built as the lines the check reads.
+function vibeBlock(type, commandLine) {
+  return [
+    '[[hooks]]',
+    'name = "turn-start"',
+    `type = "${type}"`,
+    'match = "main"',
+    'timeout = 20.0',
+    commandLine,
+  ].join('\n');
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -212,6 +231,53 @@ test('names a runtime whose entry echoes a quoted command', (t) => {
   assert.match(result.out, /^hook-missing claude \.claude\/settings\.json$/m);
 });
 
+// Vibe keeps its hooks in TOML and only a `pre_agent` entry that starts node on
+// the turn-start script runs before the prompt, so each shape below must not count.
+test('passes the Vibe turn-start entry under pre_agent', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock('pre_agent', 'command = "' + VIBE_COMMAND + '"'));
+  const text = f.run();
+  assert.equal(text.code, 0);
+  assert.equal(text.out.trim(), 'ok vibe');
+});
+
+test('names Vibe when its turn-start entry runs under post_agent', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock('post_agent', 'command = "' + VIBE_COMMAND + '"'));
+  const result = f.run();
+  assert.equal(result.code, 1);
+  assert.match(result.out, /^hook-missing vibe \.vibe\/hooks\.toml$/m);
+});
+
+test('names Vibe when its turn-start command is commented out', (t) => {
+  const f = fixture(t);
+  writeVibeHooks(f.root, vibeBlock(
+    'pre_agent',
+    '# command = "' + VIBE_COMMAND + '"\ncommand = "node other-hook.mjs"',
+  ));
+  const result = f.run();
+  assert.equal(result.code, 1);
+  assert.match(result.out, /^hook-missing vibe /m);
+});
+
+test('names Vibe when only a name mentions the script', (t) => {
+  const f = fixture(t);
+  const block = vibeBlock('pre_agent', 'command = "node other-hook.mjs"')
+    .replace('name = "turn-start"', 'name = "hooks/session-lifecycle/vibe/turn-start.mjs"');
+  writeVibeHooks(f.root, block);
+  const result = f.run();
+  assert.equal(result.code, 1);
+  assert.match(result.out, /^hook-missing vibe /m);
+});
+
+test('names Vibe when its folder holds no hooks file', (t) => {
+  const f = fixture(t);
+  fs.mkdirSync(path.join(f.root, '.vibe'), { recursive: true });
+  const result = f.run();
+  assert.equal(result.code, 1);
+  assert.match(result.out, /^hook-missing vibe /m);
+});
+
 test('skips a runtime whose folder is absent', (t) => {
   const f = fixture(t);
   const text = f.run();
@@ -219,7 +285,7 @@ test('skips a runtime whose folder is absent', (t) => {
   assert.equal(text.out, '');
   const json = f.run('--json');
   assert.equal(json.code, 0);
-  assert.deepEqual(JSON.parse(json.out).checks.map((check) => check.status), ['skipped', 'skipped', 'skipped', 'skipped']);
+  assert.deepEqual(JSON.parse(json.out).checks.map((check) => check.status), ['skipped', 'skipped', 'skipped', 'skipped', 'skipped']);
 });
 
 // Launch shapes a shell runs, each with node standing where a command starts.

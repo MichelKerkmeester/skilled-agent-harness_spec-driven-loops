@@ -28,6 +28,7 @@ import { existsSync, readFileSync, realpathSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadSession } from '../../../../../hooks/shared/session-readers/index.mjs';
+import { loadVibeSession } from '../../../../../hooks/shared/session-readers/vibe.mjs';
 import { G2_ROWS } from './run-command-behaviour.mjs';
 
 // ───────────────────────────────────────────────────────────────────
@@ -199,6 +200,15 @@ const TOOL_TABLES = Object.freeze({
     write: Object.freeze(['write', 'edit', 'apply_patch']),
     shell: Object.freeze(['bash', 'shell', 'exec']),
     skill: Object.freeze(['Skill']),
+  }),
+  // Vibe namespaces its tool names, and these are the ones its journals record. A
+  // process tool and a skill tool are left out until a recorded call shows their
+  // names and arguments.
+  vibe: Object.freeze({
+    read: Object.freeze(['file_system.read_file']),
+    write: Object.freeze(['file_system.write_file', 'file_system.edit']),
+    shell: Object.freeze(['file_system.bash']),
+    skill: Object.freeze([]),
   }),
 });
 
@@ -422,6 +432,59 @@ export function normalize(records, runtime) {
   }
 
   return events;
+}
+
+/**
+ * Flatten a Vibe projection into the neutral records `normalize` reads.
+ *
+ * The Vibe reader keeps tool calls out of its shared records on purpose, so the
+ * scorer reads them from the reader's entries, whose order is the order the session
+ * ran. A message keeps its text blocks, a tool effect becomes one call, and every
+ * other entry carries no behaviour to score.
+ *
+ * @param {Array<object>} entries - The `entries` of a loaded Vibe session.
+ * @returns {Array<{id: string, role: 'user'|'assistant', timestamp: unknown,
+ *   content: Array<object>}>} One record per message and per tool effect.
+ */
+export function vibeRecords(entries) {
+  const records = [];
+
+  for (const entry of entries ?? []) {
+    if (!entry || typeof entry !== 'object') continue;
+
+    if (entry.type === 'message' && (entry.role === 'user' || entry.role === 'assistant')) {
+      const content = Array.isArray(entry.content)
+        ? entry.content
+          .filter((block) => block && typeof block === 'object'
+            && block.type === 'text' && typeof block.text === 'string')
+          .map((block) => ({ type: 'text', text: block.text }))
+        : [];
+      records.push({
+        id: entry.id,
+        role: entry.role,
+        timestamp: entry.createdAt,
+        content,
+      });
+      continue;
+    }
+
+    if (entry.type !== 'effect') continue;
+    const detail = entry.detail && typeof entry.detail === 'object' ? entry.detail : null;
+    if (detail === null || detail.kind !== 'tool' || typeof detail.toolName !== 'string') continue;
+    records.push({
+      id: entry.id,
+      role: 'assistant',
+      timestamp: entry.createdAt,
+      content: [{
+        type: 'toolCall',
+        id: entry.id,
+        name: detail.toolName,
+        arguments: detail.input ?? {},
+      }],
+    });
+  }
+
+  return records;
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -1577,9 +1640,14 @@ async function scoreRun(line, labels, owners) {
   const loaded = await loadSession({ ...locatorOf(line), runtime: line.runtime });
   if (!loaded.ok) return { scored: false, reason: loaded.code };
 
+  // A Vibe session's tool calls sit outside the shared records, so its entries are
+  // read again and the calls they project take the place of those records.
+  const vibe = line.runtime === 'vibe' ? loadVibeSession(locatorOf(line)) : null;
+  if (vibe !== null && !vibe.ok) return { scored: false, reason: vibe.code };
+
   let events;
   try {
-    events = normalize(loaded.records, line.runtime);
+    events = normalize(vibe !== null ? vibeRecords(vibe.entries) : loaded.records, line.runtime);
   } catch {
     // A runtime the tool tables do not cover would otherwise end the summary on
     // the first run it cannot read.

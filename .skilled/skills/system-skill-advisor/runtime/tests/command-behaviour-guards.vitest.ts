@@ -389,6 +389,19 @@ describe('entry guard', () => {
     expect(refused.status).toBe(2);
     expect(refused.stderr).toContain('--run: a whole number from 1 is required');
   });
+
+  it('names Vibe as not measured rather than unknown', () => {
+    const runnerPath = fileURLToPath(
+      new URL('../scripts/routing-accuracy/run-command-behaviour.mjs', import.meta.url),
+    );
+    const refused = spawnSync(process.execPath, [runnerPath, '--print-argv', 'vibe'], {
+      encoding: 'utf8',
+    });
+
+    expect(refused.status).toBe(2);
+    expect(refused.stderr).toContain('runtime vibe is not measured: ');
+    expect(refused.stderr).not.toContain('unknown runtime');
+  });
 });
 
 describe('arena builder', () => {
