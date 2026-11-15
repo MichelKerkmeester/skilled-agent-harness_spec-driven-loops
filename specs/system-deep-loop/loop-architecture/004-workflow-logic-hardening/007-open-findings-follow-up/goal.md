@@ -89,6 +89,7 @@ and findings belong here.
 | Findings 1 and 2 fixed: two PHRASE_BOOSTS entries (deep review penalizes sk-git -0.5, ai council boosts the council command and penalizes sk-code -0.6); golden 39/39 with the two pinned prompts fai... | Done |  |
 | Verification done: advisor 1710, runtime 2909, freshness 4/4, spec-kit CLI only typo-flags (two load timeouts pass alone); all six findings fixed | Done |  |
 | Operator approved the 2.3.0 install pin: V2_PKG is @opencode/cli@2.3.0, the docs name 2.3.0 as expected, cli-opencode 1.5.12.0; setup tests 27 pass, check mode shows 2.3.0 at the same link | Done |  |
+| Second merge with main (Mistral Vibe) committed 192ad1f30c8; README council moved to Spec Kit; advisor suite 1714 green; pushing to main | Done |  |
 
 ### Deviations and findings
 
