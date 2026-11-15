@@ -44,7 +44,7 @@
       "agents"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "scratch/agent-review/finding-to-phase.tsv",
@@ -173,18 +173,18 @@
     ],
     "causal_summary": "The packet `agents/006-agent-contract-and-registry-alignment` closed on 2026-11-14 and recorded four findings outside its scope",
     "created_at": "2026-11-14T15:48:56Z",
-    "last_save_at": "2026-11-15T00:18:35.317Z",
+    "last_save_at": "2026-11-15T00:26:53.675Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "source_fingerprint": "sha256:e86a6be9e25bb58fcb7f9cdd7be3a7b368c3395e3e8cdf9d617b8f7e2ebaf7e7",
+    "source_fingerprint": "sha256:6cc36a9f47b9bc6c78fe33ee64a53ead8cf101912934c1c0987a6c8f0c4f2381",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "16a05bdf255e00999f18d0bfb6780de8ab0b1534e772b3b983341a5098440658"
+      "spec.md": "4d0715d6da2ec6d0d6e44db1a690172c1bdb795398dcf6e72b4aebe27cc462e0"
     },
-    "last_active_child_id": "agents/007-agent-alignment-follow-ups/013-context-markdown-design-fixes",
-    "last_active_at": "2026-11-15T00:18:08.384Z"
+    "last_active_child_id": "agents/007-agent-alignment-follow-ups/014-prompt-improver-model-eligibility",
+    "last_active_at": "2026-11-15T00:26:27.929Z"
   }
 }

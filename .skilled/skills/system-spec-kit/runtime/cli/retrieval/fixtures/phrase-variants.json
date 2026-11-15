@@ -1,5 +1,5 @@
 {
-  "manifestHash": "473d3c2a68e24a97ccf6a96ee8895096334e999f3a07cfd8839791ac2d5e9719",
+  "manifestHash": "18e500db994b5c89955723f96c6ac73f094132479ff973929f417892bde5ce1a",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -88686,7 +88686,8 @@
       "prompt improver eligibility plan"
     ],
     "prompt improver model eligibility": [
-      "prompt improver model eligibility"
+      "prompt improver model eligibility",
+      "prompt-improver model eligibility"
     ],
     "prompt improver model eligibility implementation summary": [
       "prompt improver model eligibility implementation summary"
@@ -112530,6 +112531,9 @@
     "sk prompt 4 0 4 0": [
       "sk-prompt 4.0.4.0"
     ],
+    "sk prompt 4 0 5 0": [
+      "sk-prompt 4.0.5.0"
+    ],
     "sk prompt 7 against 5 frameworks": [
       "sk-prompt 7 against 5 frameworks"
     ],
@@ -112898,6 +112902,9 @@
     ],
     "sk prompt v4 0 4 0": [
       "sk-prompt v4.0.4.0"
+    ],
+    "sk prompt v4 0 5 0": [
+      "sk-prompt v4.0.5.0"
     ],
     "sk vision changelog retrofit": [
       "sk-vision changelog retrofit"

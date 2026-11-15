@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/384-agent-alignment-follow-ups` |
 | **Parent Spec** | ../spec.md |
@@ -235,7 +235,7 @@ REQ ids run in one sequence across the P0 and P1 tables. A new requirement takes
 
 - **Operator answer, 2026-11-14: A.** Keep the rule and move it to the dispatcher. REQ-002 is unblocked and builds outcome A.
 - The question was: are the Opus and Fable deny rows deliberate policy that stays? `git log -S` finds them added by `f2ed64975c` on 2026-09-11, packet `sk-prompt/009-prompt-improver-model-eligibility`. Its stated reason: "this agent produced weaker output on some models, and the failure was not a property of the model alone but of the pairing with the route it arrived through". That packet's spec calls it a view the operator holds and ranks it P0. A) Keep it and move the choice to the dispatcher: the workflow passes `model=sonnet`, the Claude copy pins `model: sonnet`, the table lives in `sk-prompt` `SKILL.md` only and the agent keeps a one-line backstop refusal in phase 006's canonical form. B) Drop it: section 0.1 and the skill's Model Eligibility subsection are deleted. Recommended: A, because the git record shows a deliberate operator decision.
-- Does a Claude Code `Task` dispatch with no `model` run on the parent session's model? Not measured, because a leaf cannot dispatch. The build answers it with the SC-002 probe before any REQ-002 edit.
+- Does a Claude Code `Task` dispatch with no `model` run on the parent session's model? **Answered 2026-11-15: yes, refusal.** The T007 probe, run before any edit from a Claude Code session on Opus 5.5 with no model passed, returned `FRAMEWORK: BLOCKED` and quoted the Opus deny row (`scratch/opus-probe.txt`). prompt-improver-1 reproduces on Claude Code.
 <!-- /ANCHOR:questions -->
 
 ---

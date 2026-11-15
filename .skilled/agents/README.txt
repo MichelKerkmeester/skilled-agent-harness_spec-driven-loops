@@ -11,7 +11,8 @@ Inventory rule: if an agent file is not present in this directory, it is not a l
 Translation contract: .skilled/bin/agent-mirror-crosswalk.md
   How every frontmatter declaration lands in each runtime tree, which differences are sanctioned,
   and what stands in for a declaration a runtime cannot carry.
-Model and effort: no agent file here pins a model. Dispatched routes pass model and effort
+Model and effort: no agent file here pins a model. The Claude tree pins `context`, `markdown` and
+  `Explore` to haiku and `prompt-improver` to sonnet. Dispatched routes pass model and effort
   explicitly; manual invocation inherits the runtime default, so a silent tree means no pin,
   not an unowned setting.
 

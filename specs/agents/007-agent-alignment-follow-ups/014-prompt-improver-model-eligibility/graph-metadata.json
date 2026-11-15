@@ -32,25 +32,28 @@
       "denies"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      ".skilled/commands/prompt/improve.md",
+      "scratch/after.txt",
+      "scratch/opus-probe.txt",
       ".skilled/agents/prompt-improver.md",
       ".claude/agents/prompt-improver.md",
+      ".skilled/skills/sk-prompt/SKILL.md",
+      ".skilled/skills/sk-prompt/changelog/v4.0.5.0.md",
+      ".skilled/agents/README.txt",
+      ".skilled/bin/agent-mirror-crosswalk.md",
+      ".skilled/commands/prompt/improve.md",
       ".pi/agents/prompt-improver.md",
       ".codex/agents/prompt-improver.toml",
       ".dsh/agents/prompt-improver.patch.yml",
-      ".skilled/skills/sk-prompt/SKILL.md",
       ".skilled/commands/prompt/assets/prompt_improve_auto.yaml",
-      ".skilled/agents/README.txt",
-      ".skilled/bin/agent-mirror-crosswalk.md",
       ".skilled/agents/agent-registry.json",
-      ".skilled/skills/sk-prompt/manual-testing-playbook/escalation-tiers/prompt-improver-output-block.md",
-      "specs/sk-prompt/009-prompt-improver-model-eligibility/spec.md"
+      "scratch/baseline.txt",
+      ".skilled/skills/sk-prompt/manual-testing-playbook/escalation-tiers/prompt-improver-output-block.md"
     ],
     "entities": [
       {
@@ -78,9 +81,15 @@
         "source": "derived"
       },
       {
-        "name": "improve.md",
-        "kind": "doc",
-        "path": ".skilled/commands/prompt/improve.md",
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
+        "source": "derived"
+      },
+      {
+        "name": "opus-probe.txt",
+        "kind": "file",
+        "path": "scratch/opus-probe.txt",
         "source": "derived"
       },
       {
@@ -90,27 +99,15 @@
         "source": "derived"
       },
       {
-        "name": "prompt-improver.toml",
-        "kind": "file",
-        "path": ".codex/agents/prompt-improver.toml",
-        "source": "derived"
-      },
-      {
-        "name": "prompt-improver.patch.yml",
-        "kind": "config",
-        "path": ".dsh/agents/prompt-improver.patch.yml",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".skilled/skills/sk-prompt/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "prompt_improve_auto.yaml",
-        "kind": "config",
-        "path": ".skilled/commands/prompt/assets/prompt_improve_auto.yaml",
+        "name": "v4.0.5.0.md",
+        "kind": "doc",
+        "path": ".skilled/skills/sk-prompt/changelog/v4.0.5.0.md",
         "source": "derived"
       },
       {
@@ -126,9 +123,39 @@
         "source": "derived"
       },
       {
+        "name": "improve.md",
+        "kind": "doc",
+        "path": ".skilled/commands/prompt/improve.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.toml",
+        "kind": "file",
+        "path": ".codex/agents/prompt-improver.toml",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.patch.yml",
+        "kind": "config",
+        "path": ".dsh/agents/prompt-improver.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "prompt_improve_auto.yaml",
+        "kind": "config",
+        "path": ".skilled/commands/prompt/assets/prompt_improve_auto.yaml",
+        "source": "derived"
+      },
+      {
         "name": "agent-registry.json",
         "kind": "config",
         "path": ".skilled/agents/agent-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
         "source": "derived"
       },
       {
@@ -172,35 +199,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Claude Code",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Two",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Section 0.1 of `prompt-improver.md` denies Opus and Fable on any route and tells an ineligible model to refuse the work",
     "created_at": "2026-11-14T20:19:24Z",
-    "last_save_at": "2026-11-14T21:25:07.546Z",
+    "last_save_at": "2026-11-15T00:26:27.906Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,13 +212,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:c02c8cf2aed6311c7a2e5b0d36b6df5d592864efa96b4a665b8cb10cc2f2ee9d",
+    "source_fingerprint": "sha256:742bb78b17beaecb9261733d611934aea7c69aacc675da9c402b116a047756e9",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "e67be6110beda92d56a9658b99724be2a2315e25a22d67658e7e7d1912e23e1f",
+      "spec.md": "25e628cf35e8e88d7bbca236dd5c5ff7591c8174ede8dacac6935410505cdc13",
       "plan.md": "0a1ecfe9be20e0606194e537a29122f6eaa7f7a33fe7dbfb2a234a6693422f46",
-      "tasks.md": "e728632e53bc1a0d0823293b2674904c1dd5121777b4b6004430e089a0207d54",
-      "implementation-summary.md": "0422273a48ee81d80dd98db0e519ba69840b787a18178dab4529fe80183bb81d"
+      "tasks.md": "a455298751258e7e06ecad603d7a1d8a9a8bbc004d5f30e67fea86aabdfbc1d1",
+      "implementation-summary.md": "7c87394ab0f4361173649789a452e4139473969a047191a897e594e8713523d7"
     },
     "last_active_at": null
   }

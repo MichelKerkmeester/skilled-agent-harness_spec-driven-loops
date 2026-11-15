@@ -1,5 +1,5 @@
 {
-  "corpusHash": "b8bb5542f572e12615c77eb27d8a5dddb6dd6b88f6e6c4eb547c750d4f2b7cbe",
+  "corpusHash": "5eecdb9db4030a18126d9bdeb6cc8c8a2ffc2334425ad7acb95cd97204ad4a09",
   "corpusHashRecipe": "sha256 over, for each included path in code-unit order: utf8(path) + 0x00 + file bytes + 0x0a",
   "exclusions": [
     "**/z_archive/**",
@@ -28,7 +28,7 @@
       "reason": "captured model transcript whose leading rule pair is not frontmatter"
     }
   ],
-  "includedPathCount": 27333,
+  "includedPathCount": 27334,
   "includedPaths": [
     ".skilled/changelog/skilled/README.md",
     ".skilled/changelog/skilled/v1+/v1.0.0.0.md",
@@ -7422,6 +7422,7 @@
     ".skilled/skills/sk-prompt/changelog/v4.0.2.0.md",
     ".skilled/skills/sk-prompt/changelog/v4.0.3.0.md",
     ".skilled/skills/sk-prompt/changelog/v4.0.4.0.md",
+    ".skilled/skills/sk-prompt/changelog/v4.0.5.0.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/change-report-length-warning.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/clashing-rules-resolved.md",
     ".skilled/skills/sk-prompt/manual-testing-playbook/checklist-pass/deliver-first-open-items.md",
@@ -27365,7 +27366,7 @@
     "specs/system-speckit/spec-folder-tooling/005-subtrack-proposal-and-archive-reach/spec.md"
   ],
   "indexSchemaVersion": 2,
-  "manifestHash": "473d3c2a68e24a97ccf6a96ee8895096334e999f3a07cfd8839791ac2d5e9719",
+  "manifestHash": "18e500db994b5c89955723f96c6ac73f094132479ff973929f417892bde5ce1a",
   "parserVersion": "1.0.0",
   "promptSetHash": null,
   "roots": [

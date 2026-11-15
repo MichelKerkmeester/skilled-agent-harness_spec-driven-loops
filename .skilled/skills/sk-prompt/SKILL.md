@@ -2,7 +2,7 @@
 name: sk-prompt
 description: "Prompt engineering: turns a request into a structured, checked AI prompt, with a component skeleton and CLEAR screening."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 4.0.4.0
+version: 4.0.5.0
 ---
 
 <!-- Keywords: prompt-engineering, prompt-improvement, improve prompt, improve this prompt, improve the prompt, enhance prompt, prompt improvement, improvement-checklist, early-exit, CLEAR-scoring, framework-selection, RCAF, COSTAR, CRAFT, TIDD-EC, CRISPE -->
@@ -252,7 +252,9 @@ The allowance list is closed (default-deny). A pair that matches no allowance cl
 
 An ineligible model must refuse the prompt-improve work, name the rule that denied it, and name an eligible (model, route) pair in its place, whether it was reached through this skill inline or through the agent. It must not do the work anyway with a caveat.
 
-The canonical home of this contract is `.skilled/agents/prompt-improver.md`, so future edits land in one place.
+The route list above is a list of executors. The `cli-jev` transport, mode `cli-jev` of the `cli-classifier` hub, is deliberately absent: it answers one typed judgment and runs nothing, so no prompt-improvement task can be dispatched to it and it needs no eligibility row.
+
+This table is the canonical home of the contract, so future edits land in one place. The dispatcher owns the choice: the `/prompt:improve` workflow dispatches `@prompt-improver` with `model=sonnet`, and the Claude Code copy of the agent pins `model: sonnet`. The agent keeps only a backstop that points here.
 
 ### Deterministic Agent Rules
 
@@ -267,7 +269,7 @@ The canonical home of this contract is `.skilled/agents/prompt-improver.md`, so 
 ```text
 FRAMEWORK: <default skeleton | preset name>
 CLEAR_SCORE: <n>/50 (C:<n> L:<n> E:<n> A:<n> R:<n>)
-TEST: <ran: summary of old vs new on 2-3 inputs | NOT RUN>
+TEST: NOT RUN
 CHANGES: <Added ...; Changed ...; Removed ...; Skipped ...>
 RATIONALE: <1-2 lines>
 ENHANCED_PROMPT: |

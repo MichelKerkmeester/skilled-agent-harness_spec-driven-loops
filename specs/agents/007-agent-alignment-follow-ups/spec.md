@@ -138,7 +138,7 @@ Each of the predecessor's four findings and each of the 62 review findings ends 
 | 11 | 011-debug-agent-revert-and-handoff/ | Revert a rejected debug fix before the next hypothesis, bound the cycle, settle who writes the delegation file and bring the file to 600 lines | Complete |
 | 12 | 012-review-agent-gates/ | Give the review agent's fast path, low-confidence case and final-line checker an exit the agent can take | Complete |
 | 13 | 013-context-markdown-design-fixes/ | Fix the context, markdown and design agents' instructions their granted tools cannot carry out | Complete |
-| 14 | 014-prompt-improver-model-eligibility/ | Settle the prompt-improver's model deny rows, its TEST field and its caller names | Planned |
+| 14 | 014-prompt-improver-model-eligibility/ | Settle the prompt-improver's model deny rows, its TEST field and its caller names | Complete |
 
 ### Phase Transition Rules
 
