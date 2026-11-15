@@ -537,7 +537,7 @@ When the index has no scored candidate, Gate 1 also scores declared trigger phra
 
 When a session claims a handoff note, the claim can carry a `## History Lookup` section after the note body. It holds one read-only command that searches, browses, loads and pages the sender's earlier turns, at most 16 KiB per reply. It returns only what the conversation showed, and it ends with `Use it for a detail this note does not spell out, before you guess.`
 
-`prepare` stores a locator for the sending session, and `claim` mints a fresh one for it. Only Claude Code, Codex and Vibe senders get one. The section is left out when the sender has no transcript, when the note names another runtime, when the sender ran in another checkout, or when the runtime is not built, and the claim then prints what it printed before.
+`prepare` stores a locator for the sending session, and `claim` mints a fresh one for it. Only Claude Code, Codex, Vibe, Pi and OpenCode senders get one. The section is left out when the sender has no transcript, when the note names another runtime, when the sender ran in another checkout, or when the runtime is not built, and the claim then prints what it printed before.
 
 The printed command is `node .skilled/hooks/session-handover/bin/history-lookup.mjs --session <id> --handle <hl1_...> <operation> <json>`. The locator works for 30 minutes from the claim and only for the session and checkout that minted it. Search matches whole identifier parts, split on `-`, `.`, `/`, `:` and `_` and on case changes. A query matches whole word parts, so 'live' does not match 'delivery'.
 

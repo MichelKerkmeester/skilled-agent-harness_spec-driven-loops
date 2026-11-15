@@ -869,6 +869,19 @@ function safeDirectory(directory) {
   }
 }
 
+// Pi and OpenCode keep no transcript file a handle could name. The lookup reads each through its
+// shared reader with the folder the session ran in and digests the session identity alone, so
+// the mint asks that same reader with that same folder and mints only when it finds the session.
+const SESSION_READERS_DIR = path.resolve(__dirname, '..', '..', 'shared', 'session-readers');
+
+function readerFindsSession(runtime, sessionId, projectDir) {
+  const load = runtime === 'pi'
+    ? require(path.join(SESSION_READERS_DIR, 'pi.mjs')).loadPiSession
+    : require(path.join(SESSION_READERS_DIR, 'opencode.mjs')).loadOpenCodeSession;
+  const result = load({ sessionId, projectDir, home: os.homedir(), env: process.env });
+  return result?.ok === true && result.source?.sessionId === sessionId;
+}
+
 // The hook state is compiled into the spec-kit runtime's build output and the history helpers
 // into this folder's history build, and a checkout may not have built either yet. Requiring them
 // inside the mint keeps this core loadable without those builds: a missing build is one more
@@ -918,6 +931,7 @@ function mintHandoverLocator({ runtime, sessionId, cwd = process.cwd(), now } = 
     const { hookState, digest, offer } = loadHistoryRuntime();
     const locatorKind = hookState.HISTORY_LOCATOR_KINDS[runtime];
     if (!nonEmptyString(locatorKind)) return null;
+    const readsBySession = runtime === 'pi' || runtime === 'opencode';
     const transcriptPath = runtime === 'claude'
       ? claudeSessionLogPath(sessionId, process.env)
       : runtime === 'codex'
@@ -925,22 +939,30 @@ function mintHandoverLocator({ runtime, sessionId, cwd = process.cwd(), now } = 
         : runtime === 'vibe'
           ? vibeSessionFolder(sessionId, process.env)
           : null;
-    if (transcriptPath === null) return null;
+    if (!readsBySession && transcriptPath === null) return null;
     const placement = offer.placeLookup(cwd);
     if (placement === null) return null;
-    // The transcript is found by session id across every project, so a note could name
-    // another project's session. The folder the transcript itself records must sit in the
-    // same checkout as the folder the note names.
-    const recordedFolder = runtime === 'vibe'
-      ? vibeWorkingFolder(transcriptPath, sessionId)
-      : transcriptWorkingFolder(transcriptPath);
-    if (recordedFolder === null) return null;
-    const recordedPlacement = offer.placeLookup(recordedFolder);
-    if (
-      recordedPlacement === null
-      || !sameCheckout(recordedPlacement.workspace, placement.workspace)
-    ) {
-      return null;
+    if (readsBySession) {
+      // The mint asks the same question the lookup will, so the two agree. The reader refuses a
+      // session recorded for another folder whenever the store records one: always on Pi, and
+      // on OpenCode when its session table has a directory column.
+      const projectDir = placement.sessionDirectory ?? placement.workspace;
+      if (!readerFindsSession(runtime, sessionId, projectDir)) return null;
+    } else {
+      // The transcript is found by session id across every project, so a note could name
+      // another project's session. The folder the transcript itself records must sit in the
+      // same checkout as the folder the note names.
+      const recordedFolder = runtime === 'vibe'
+        ? vibeWorkingFolder(transcriptPath, sessionId)
+        : transcriptWorkingFolder(transcriptPath);
+      if (recordedFolder === null) return null;
+      const recordedPlacement = offer.placeLookup(recordedFolder);
+      if (
+        recordedPlacement === null
+        || !sameCheckout(recordedPlacement.workspace, placement.workspace)
+      ) {
+        return null;
+      }
     }
 
     const mintedAt = toIsoTimestamp(now);

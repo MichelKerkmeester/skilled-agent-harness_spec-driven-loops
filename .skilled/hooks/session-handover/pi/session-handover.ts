@@ -42,6 +42,7 @@ interface CoreModule {
     options: { loopId: string; sessionId: string; runtime: string; env: NodeJS.ProcessEnv },
   ): { armable: boolean; reason: string };
   dropNestedLoop(env: NodeJS.ProcessEnv, options: { hostPid: number }): boolean;
+  markDeferred(options: { loopId: string; env: NodeJS.ProcessEnv }): RelaunchRecord | null;
   parseHandoff(text: string): { frontmatter: Record<string, unknown> };
   readRelaunchFile(loopId: string, env: NodeJS.ProcessEnv): RelaunchRecord | null;
 }
@@ -54,6 +55,7 @@ const CORE_FUNCTIONS = [
   'arm',
   'armableRecord',
   'dropNestedLoop',
+  'markDeferred',
   'parseHandoff',
   'readRelaunchFile',
 ] as const;
@@ -355,6 +357,30 @@ function logSpawnError(core: CoreModule, loopId: string, error: unknown): void {
   } catch {}
 }
 
+// A settle that cannot arm this session's pending record marks it, so the operator's next turn
+// withdraws it. Left unmarked, the record would wait for a later settle and relaunch from a note
+// that predates the work done since.
+function markParked(core: CoreModule, loopId: string, error: unknown): void {
+  try {
+    core.appendLog('agent-settled-arm-error', {
+      stage: 'arm',
+      loopId,
+      message: error instanceof Error ? error.message : String(error),
+    }, process.env);
+  } catch {}
+  try {
+    core.markDeferred({ loopId, env: process.env });
+  } catch (deferError) {
+    try {
+      core.appendLog('agent-settled-arm-error', {
+        stage: 'defer',
+        loopId,
+        message: deferError instanceof Error ? deferError.message : String(deferError),
+      }, process.env);
+    } catch {}
+  }
+}
+
 // The pointer is recorded in the same log as every other handoff step, and a state-dir write
 // that fails must not be the reason the session is left without its note.
 function logPointer(
@@ -496,12 +522,18 @@ async function armRelaunch(
   });
   if (!verdict.armable) return;
 
-  const armed = modules.core.arm({
-    loopId,
-    cwd: ctx.cwd,
-    settings: liveSettings(pi, ctx),
-    env: process.env,
-  });
+  let armed: RelaunchRecord | null;
+  try {
+    armed = modules.core.arm({
+      loopId,
+      cwd: ctx.cwd,
+      settings: liveSettings(pi, ctx),
+      env: process.env,
+    });
+  } catch (error) {
+    markParked(modules.core, loopId, error);
+    return;
+  }
   if (armed?.status !== 'armed') return;
 
   let sessionFile: string | undefined;
@@ -680,7 +712,6 @@ export default function sessionHandover(pi: ExtensionAPI): void {
         loopId,
         sessionId,
         reason: 'user-message',
-        pending: 'none',
         env: process.env,
       });
       if (withdrawn === null) return;

@@ -1,0 +1,18 @@
+{
+  "runtime": "opencode",
+  "label": "live1",
+  "codeWord": "ORCHID-8524",
+  "sideWord": "LAGOON-19740",
+  "name": "hoptest-live1-opencode",
+  "startMs": 1794773926387,
+  "logOffset": 4293,
+  "stateDir": "/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T//skilled-relaunch-501",
+  "notesDir": "/Users/michelkerkmeester/worktrees/public/420-cross-runtime-handover-parity-fixes/.skilled/skills/.state/session-handover/handoffs",
+  "launch": [
+    "--auto",
+    "--prompt",
+    "Carry this short task through a context handoff, then finish it in the new session. The task: report the line count of .skilled/hooks/session-handover/README.md, name its first heading and repeat the code word ORCHID-8524. Start by reading the README. One more fact for later: the side word is LAGOON-19740. Do not write the side word in the handoff note. The new session must report it too. Gate 3: D) Skip, no spec folder."
+  ],
+  "endMs": 1794774038275,
+  "trustDialogs": 0
+}

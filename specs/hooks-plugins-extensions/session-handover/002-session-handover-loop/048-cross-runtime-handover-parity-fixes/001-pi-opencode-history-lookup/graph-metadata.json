@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "pi opencode history lookup",
+      "pi history locator",
+      "opencode history locator",
+      "pi opencode history lookup plan",
+      "pi opencode history lookup tasks",
+      "pi opencode history lookup acceptance criteria",
+      "pi opencode history lookup implementation summary"
+    ],
+    "key_topics": [
+      "opencode",
+      "history",
+      "lookup",
+      "locator",
+      "plan",
+      "tasks",
+      "acceptance",
+      "criteria",
+      "implementation",
+      "summary",
+      "minthandoverlocator",
+      "finds"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md",
+      ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-handover/tests/session-handover-cli.test.cjs",
+      ".skilled/hooks/session-handover/README.md",
+      ".skilled/hooks/injection-contract.md",
+      "manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
+      ".skilled/hooks/shared/session-readers/pi.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "acceptance-criteria.md",
+        "kind": "doc",
+        "path": "acceptance-criteria.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-handover-cli.test.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/tests/session-handover-cli.test.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/session-handover/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "injection-contract.md",
+        "kind": "doc",
+        "path": ".skilled/hooks/injection-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "compaction-history-lookup.md",
+        "kind": "doc",
+        "path": "manual-testing-playbook/plugins-and-hooks/compaction-history-lookup.md",
+        "source": "derived"
+      },
+      {
+        "name": "pi.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/shared/session-readers/pi.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "History Lookup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Add Pi",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Runtime",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "`mintHandoverLocator` finds a transcript path only for Claude, Codex and Vibe and returns null for every other runtime, so a claim of a Pi or OpenCode note prints no History Lookup",
+    "created_at": "2026-11-15T19:49:18Z",
+    "last_save_at": "2026-11-15T20:38:58.306Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "acceptance-criteria.md",
+      "implementation-summary.md"
+    ],
+    "source_fingerprint": "sha256:b38b4034a3c74081b328ffd9c4fbdf472d2a2bb4f499dfe3cbf32a737de0359b",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "16c208e6216e0c0f9e8efe90101236c7d4c5caeca39bcba00c5da2d5e9e679c3",
+      "plan.md": "a47f360919485dae3405f94bc27fc967dc32b75c5b12090d3212e129c94ce21d",
+      "tasks.md": "f6442a69f4399c7261b77e2ded40a94a40b9b30157633cc7811ba6e3ec7ac18d",
+      "implementation-summary.md": "34a3c7fc720e747396e080ffc2cdd0ad7d7d1ddf93d83de4302b9d2ba4f0e936"
+    },
+    "last_active_at": null
+  }
+}

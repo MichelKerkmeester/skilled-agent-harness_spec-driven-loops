@@ -1,0 +1,20 @@
+{
+  "specFolder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup",
+  "description": "Phase 1: pi-opencode-history-lookup",
+  "keywords": [
+    "phase",
+    "pi-opencode-history-lookup"
+  ],
+  "lastUpdated": "2026-11-15T19:49:21.857Z",
+  "specId": "001",
+  "folderSlug": "pi-opencode-history-lookup",
+  "parentChain": [
+    "hooks-plugins-extensions",
+    "session-handover",
+    "002-session-handover-loop",
+    "048-cross-runtime-handover-parity-fixes"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

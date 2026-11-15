@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "packet_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes",
+  "spec_folder": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes",
+  "parent_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop",
+  "children_ids": [
+    "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/001-pi-opencode-history-lookup",
+    "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/002-failed-arm-deferred-mark",
+    "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "cross runtime handover parity fixes",
+      "phase 48 cross runtime handover parity fixes",
+      "pi opencode history lookup",
+      "shared nudge claim",
+      "048-cross-runtime-handover-parity-fixes operator decisions"
+    ],
+    "key_topics": [
+      "cross",
+      "runtime",
+      "handover",
+      "parity",
+      "phase",
+      "opencode",
+      "history",
+      "lookup",
+      "shared",
+      "nudge",
+      "claim",
+      "048-cross-runtime-handover-parity-fixes"
+    ],
+    "importance_tier": "normal",
+    "status": "draft",
+    "key_files": [
+      "spec.md",
+      "decision-record.md",
+      ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+      ".skilled/hooks/session-handover/codex/stop-arm.mjs",
+      ".skilled/hooks/session-handover/pi/session-handover.ts",
+      ".skilled/hooks/session-handover/lib/nudge.cjs",
+      ".skilled/hooks/session-handover/claude/context-nudge.mjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "relaunch-core.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/lib/relaunch-core.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "stop-arm.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/codex/stop-arm.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "session-handover.ts",
+        "kind": "code",
+        "path": ".skilled/hooks/session-handover/pi/session-handover.ts",
+        "source": "derived"
+      },
+      {
+        "name": "nudge.cjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/lib/nudge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "context-nudge.mjs",
+        "kind": "file",
+        "path": ".skilled/hooks/session-handover/claude/context-nudge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "History Lookup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Only Claude Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Record",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Operator Decisions",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "The Pi",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verbatim Operator Answers Each",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "Opus You",
+        "kind": "proper_noun",
+        "path": "decision-record.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Only Claude Code, Codex and Vibe senders mint a History Lookup at claim, so a Pi or OpenCode receiver cannot recover a detail the note left out",
+    "created_at": "2026-11-15T19:49:03Z",
+    "last_save_at": "2026-11-15T20:40:42.553Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "decision-record.md"
+    ],
+    "source_fingerprint": "sha256:5c25902e7c19825b95fa97b12271e60745fff4437217d864ad45d54dd59d6df1",
+    "source_fingerprint_docset": 3,
+    "source_doc_hashes": {
+      "spec.md": "37a47eff0b51d8aacfa6c9d1304b9e16ff03a28d8f457650bd25efee10b31213",
+      "decision-record.md": "9f7fa83b79d7fbfcd1bf517dfbf3df97bff9d72b81b17adaaff4803b4535e4c7"
+    },
+    "last_active_at": "2026-11-15T20:40:42.553Z",
+    "last_active_child_id": "hooks-plugins-extensions/session-handover/002-session-handover-loop/048-cross-runtime-handover-parity-fixes/003-nudge-parity-and-hop-scoring"
+  }
+}

@@ -55,7 +55,8 @@ function logEvent(event, fields) {
 // delivers no background-task completions as prompts, and the one prompt the hand-over itself
 // produces is the relaunch seed, which the caller has already answered. So any other prompt
 // means the session carries on past a hand-over a Stop armed, and the killer, which signals
-// after a few quiet seconds, would otherwise end that turn mid-way.
+// after a few quiet seconds, would otherwise end that turn mid-way. A record a Stop could not
+// arm is withdrawn too, so a later Stop cannot relaunch from a note the prompt moved past.
 function withdrawOnOperatorPrompt(eventName, sessionId) {
   const loopId = process.env.SKILLED_LOOP_ID;
   if (eventName !== 'UserPromptSubmit' || !loopId) return false;
@@ -64,7 +65,6 @@ function withdrawOnOperatorPrompt(eventName, sessionId) {
       loopId,
       sessionId,
       reason: 'user-message',
-      pending: 'none',
       env: process.env,
       onError: (stage, error) => {
         logEvent('context-nudge-error', { stage, message: error.message });
@@ -135,11 +135,20 @@ async function main(expectedEvent) {
   if (!decision.nudge || withdrawn) return quiet();
 
   const notePath = nudge.plannedNotePath({ cwd: payload.cwd, sessionId });
+  // A hook running beside this one may be delivering the same nudge, so only the hook that
+  // holds the session's nudge claim delivers it, after deciding again under that claim.
+  let committed;
   try {
-    nudge.writeState(sessionId, decision.level);
+    committed = nudge.commitNudge({
+      ratio,
+      threshold: nudge.relaunchThreshold(config),
+      sessionId,
+    });
   } catch (error) {
     logEvent('context-nudge-error', { stage: 'state', message: error.message });
+    committed = decision;
   }
+  if (committed === null) return quiet();
   return emit(eventName, nudge.handoffText({
     notePath,
     sessionId,

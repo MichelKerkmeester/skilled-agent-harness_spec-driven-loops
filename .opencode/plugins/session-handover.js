@@ -235,6 +235,26 @@ function logSpawnError(loopId, error) {
   });
 }
 
+// An idle that cannot arm this session's pending record marks it, so the next user message
+// withdraws it. Left unmarked, the record would wait for a later idle and relaunch from a note
+// that predates the work done since.
+function markParked(loopId, error) {
+  logEvent('session-idle-arm-error', {
+    stage: 'arm',
+    loopId,
+    message: error?.message || 'arm failed',
+  });
+  try {
+    core.markDeferred({ loopId, env: process.env });
+  } catch (deferError) {
+    logEvent('session-idle-arm-error', {
+      stage: 'defer',
+      loopId,
+      message: deferError?.message || 'defer failed',
+    });
+  }
+}
+
 // OpenCode 2 loads plugins in a server process its TUI starts, so signalling the plugin's
 // own pid ends that server and leaves the TUI the loop waits on still running. The loop's
 // direct child is the runtime the loop started on every version. A host the walk cannot
@@ -280,7 +300,8 @@ function titleSeedSession(client, sessionID) {
 }
 
 // The killer runs without a transcript, so it never sees the operator's next turn arrive;
-// the arm is withdrawn here, before its fixed idle wait ends and it signals a relaunch.
+// the arm is withdrawn here, before its fixed idle wait ends and it signals a relaunch. A
+// record an idle could not arm is withdrawn here too, rather than armed by a later idle.
 // Returns whether an arm was withdrawn, so the caller can drop what the hand-over made stale.
 function withdrawArmForUserMessage(loopId, sessionID) {
   try {
@@ -288,7 +309,6 @@ function withdrawArmForUserMessage(loopId, sessionID) {
       loopId,
       sessionId: sessionID,
       reason: 'user-message',
-      pending: 'none',
       env: process.env,
     });
     if (withdrawn === null) return false;
@@ -369,7 +389,13 @@ function sessionHandoverPlugin(ctx = {}) {
     const directory = typeof ctx.directory === 'string'
       ? ctx.directory
       : process.cwd();
-    const armed = core.arm({ loopId, cwd: directory, env: process.env });
+    let armed;
+    try {
+      armed = core.arm({ loopId, cwd: directory, env: process.env });
+    } catch (error) {
+      markParked(loopId, error);
+      return;
+    }
     if (armed?.status !== 'armed') return;
     spawnKiller(loopId);
   }

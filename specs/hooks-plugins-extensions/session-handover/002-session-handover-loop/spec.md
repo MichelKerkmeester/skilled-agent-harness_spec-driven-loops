@@ -151,6 +151,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 45 | 045-vibe-automatic-handover/ | Vibe joins the automatic tier: a usage reader over the session journal, a context part at turn start and after each tool call that nudges, expands the claim seed or withdraws, and a turn-end part that arms and starts the killer. Live hops score what Claude Code scores, and playbook scenarios cover the hop, the withdraw and the switch off | Complete |
 | 46 | 046-vibe-history-locator/ | A claim of a note a Vibe session wrote prints the History Lookup section: the locator mint finds the Vibe session folder and the working folder its `meta.json` records, and the printed command redeems | Complete |
 | 47 | 047-vibe-handover-hardening/ | [Phase 47 scope] | Pending |
+| 48 | 048-cross-runtime-handover-parity-fixes/ | [Phase 48 scope] | Pending |
 
 ### Phase Transition Rules
 
@@ -209,6 +210,7 @@ This is a phase-level file summary. Each child plan owns the detailed file list.
 | 044-in-session-handover-rename | 045-vibe-automatic-handover | Phase 44 is Complete and pushed, so the Vibe adapter uses the session handover names | `validate.sh 044-in-session-handover-rename --strict` RESULT: PASSED |
 | 045-vibe-automatic-handover | 046-vibe-history-locator | Phase 45 is Complete and pushed, and the history lookup phase 007 put the recorded-folder check into the mint | `validate.sh 045-vibe-automatic-handover --strict` RESULT: PASSED |
 | 046-vibe-history-locator | 047-vibe-handover-hardening | [Criteria TBD] | [Verification TBD] |
+| 047-vibe-handover-hardening | 048-cross-runtime-handover-parity-fixes | [Criteria TBD] | [Verification TBD] |
 <!-- /ANCHOR:phase-map -->
 
 ---
