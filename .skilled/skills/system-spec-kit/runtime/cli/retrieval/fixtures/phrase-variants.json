@@ -1,5 +1,5 @@
 {
-  "manifestHash": "aa2c55d73af5abe58c1f1af313e29b79096e58811214badb2cf518dc7e38fabf",
+  "manifestHash": "e67c064093f9ae5f70ae2d21466bf74b8acc3805d52af692b2cccc6f55a25e81",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -10133,6 +10133,18 @@
     "agent dispatch table": [
       "agent dispatch table"
     ],
+    "agent docs alignment research": [
+      "agent docs alignment research"
+    ],
+    "agent docs alignment research implementation summary": [
+      "agent docs alignment research implementation summary"
+    ],
+    "agent docs alignment research plan": [
+      "agent docs alignment research plan"
+    ],
+    "agent docs alignment research tasks": [
+      "agent docs alignment research tasks"
+    ],
     "agent emphasis register": [
       "agent emphasis register"
     ],
@@ -10541,6 +10553,9 @@
     ],
     "agent readme conformance": [
       "agent readme conformance"
+    ],
+    "agent readme drift research": [
+      "agent readme drift research"
     ],
     "agent registry and generated rosters": [
       "agent registry and generated rosters"
@@ -82232,6 +82247,9 @@
     "phase 19 template marker upgrade and staleness scope": [
       "phase 19 template marker upgrade and staleness scope"
     ],
+    "phase 19 vibe agent sync check": [
+      "phase 19 vibe agent sync check"
+    ],
     "phase 19 vibe relaunch command tier": [
       "phase 19 vibe relaunch command tier"
     ],
@@ -82462,6 +82480,9 @@
     ],
     "phase 2 worktree relocation restore": [
       "phase 2 worktree relocation restore"
+    ],
+    "phase 20 agent docs alignment research": [
+      "phase 20 agent docs alignment research"
     ],
     "phase 20 align system deep loop": [
       "phase 20 align system deep loop"
@@ -130136,6 +130157,18 @@
     "vibe advisor adapter": [
       "vibe advisor adapter"
     ],
+    "vibe agent sync check": [
+      "vibe agent sync check"
+    ],
+    "vibe agent sync check implementation summary": [
+      "vibe agent sync check implementation summary"
+    ],
+    "vibe agent sync check plan": [
+      "vibe agent sync check plan"
+    ],
+    "vibe agent sync check tasks": [
+      "vibe agent sync check tasks"
+    ],
     "vibe allowed models": [
       "vibe allowed_models"
     ],
@@ -130390,6 +130423,9 @@
     ],
     "vibe live hop": [
       "vibe live hop"
+    ],
+    "vibe mirror ci check": [
+      "vibe mirror ci check"
     ],
     "vibe mistral provider": [
       "vibe mistral provider"

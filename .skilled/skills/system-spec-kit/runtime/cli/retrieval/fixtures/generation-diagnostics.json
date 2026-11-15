@@ -2,10 +2,10 @@
   "counts": {
     "duplicate-phrase": 46,
     "missing-frontmatter": 6817,
-    "ok": 19088,
+    "ok": 19096,
     "valid-empty-list": 1581
   },
-  "documentsScanned": 27532,
+  "documentsScanned": 27540,
   "ignoredMalformedDocuments": 0,
   "ignoredPaths": [
     {
@@ -27,7 +27,7 @@
     "specs/sk-doc/016-create-diff-mode/014-skill-readme-standardization/012-mcp-chrome-devtools-readme/context/seats/iter-002/deepseek.extracted.md"
   ],
   "malformedDocuments": 0,
-  "manifestHash": "aa2c55d73af5abe58c1f1af313e29b79096e58811214badb2cf518dc7e38fabf",
+  "manifestHash": "e67c064093f9ae5f70ae2d21466bf74b8acc3805d52af692b2cccc6f55a25e81",
   "parserVersion": "1.0.0",
   "phraseQuality": {
     "documents": {
@@ -45,7 +45,7 @@
       "folder-token-fallback": 31,
       "generic-workflow-word": 3,
       "numeric-only": 27,
-      "ok": 43992,
+      "ok": 44004,
       "prose-sentence": 20,
       "single-token": 150,
       "stop-word-only": 1,
@@ -53452,6 +53452,14 @@
     },
     {
       "path": "specs/agents/007-agent-alignment-follow-ups/018-research-duration-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/019-vibe-agent-sync-check/scratch",
+      "reason": "excluded directory"
+    },
+    {
+      "path": "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/scratch",
       "reason": "excluded directory"
     },
     {

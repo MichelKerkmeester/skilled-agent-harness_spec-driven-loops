@@ -1,0 +1,19 @@
+commit: 64dd47d07ef + working tree
+$ sync-agents-vibe.cjs --check
+[vibe-agent-sync] PASS: 11 agent profiles are in sync.
+exit=0
+$ sync-skills-vibe.cjs --check
+[vibe-skill-sync] LINKS: 55
+[vibe-skill-sync] PASS: 55 skill links are in sync.
+exit=0
+$ sync-prompts-vibe.cjs --check
+[vibe-prompt-sync] PASS: 45 prompt stubs are in sync.
+exit=0
+$ jobs in command-tree-parity.yml
+['command-tree-parity', 'dsh-mirror', 'vibe-mirror']
+$ actionlint
+exit=0
+$ mutation: append a line to .vibe/agents/code.toml, then --check
+[vibe-agent-sync] FAIL: 1 drift item(s); run without --check to regenerate
+exit=1
+restored
