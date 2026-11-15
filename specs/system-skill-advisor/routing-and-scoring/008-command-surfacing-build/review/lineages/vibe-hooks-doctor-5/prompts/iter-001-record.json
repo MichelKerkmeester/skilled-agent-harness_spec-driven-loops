@@ -1,0 +1,301 @@
+{
+  "type": "iteration",
+  "iteration": 1,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-vibe-hooks-doctor-5-1794760565927-i99t40",
+  "status": "complete",
+  "focus": "correctness",
+  "dimensions": [
+    "correctness"
+  ],
+  "filesReviewed": [
+    ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:1-236",
+    ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs:1-162",
+    ".skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts:1-210",
+    ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:289-465",
+    ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:82-111"
+  ],
+  "findingsCount": 2,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 2
+  },
+  "findingsNew": [
+    "R1-P2-001",
+    "R1-P2-002"
+  ],
+  "findingDetails": [
+    {
+      "id": "R1-P2-001",
+      "severity": "P2",
+      "title": "The no-brief fallback is read as a routing head, so a command named in the directive block gains a document line after the directives",
+      "file": ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:125",
+      "findingClass": "boundary_parsing",
+      "claim": "withCommandDocuments treats a context that starts with the directive separator as a head, so a fallback whose directive block names a command gains a Command documents line after the directives.",
+      "evidenceRefs": [
+        "prompt-advisor.mjs:125-127",
+        "prompt-advisor.mjs:176-177",
+        "user-prompt-submit.ts:373"
+      ],
+      "counterevidenceSought": "Checked the handler fallback shape and the sibling reduceRepeatedHead label branch; both confirm the leading-newline fallback is a real input.",
+      "alternativeExplanation": "The separator at index 0 could be read as a malformed brief rather than a head; either way the function must not append a document line for a command nobody offered.",
+      "finalSeverity": "P2",
+      "confidence": "high",
+      "downgradeTrigger": "None; the line is truthful and only adds text after the directives.",
+      "scopeProof": "The Vibe part is in the declared vibe-hooks-doctor scope; withCommandDocuments is its only document-line producer and the fallback shape is produced by the in-scope handler.",
+      "affectedSurfaceHints": [
+        "Vibe no-brief fallback",
+        "document line placement",
+        "directive block"
+      ]
+    },
+    {
+      "id": "R1-P2-002",
+      "severity": "P2",
+      "title": "The subagent guard keys on a field no Vibe source or test names, while the hook contract promises a subagent turn gets no brief",
+      "file": ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:64",
+      "findingClass": "unverified_claim",
+      "claim": "isChildSession reads payload.parent_session_id as the subagent marker, but no in-repo Vibe payload schema or test names that key, so the contract promise is unverified.",
+      "evidenceRefs": [
+        "prompt-advisor.mjs:62-66",
+        "prompt-advisor.mjs:211-216",
+        "skill-advisor-hook.md:95"
+      ],
+      "counterevidenceSought": "Searched the repository for parent_session_id and for a Vibe pre_agent schema; the only hits are spec metadata, not a Vibe payload contract.",
+      "alternativeExplanation": "Vibe may send parent_session_id on subagent turns; the gap is that nothing in the repository proves it and no test pins it.",
+      "finalSeverity": "P2",
+      "confidence": "medium",
+      "downgradeTrigger": "Unchanged; the missing evidence is the finding.",
+      "scopeProof": "Both the part and the hook contract are in the declared scope; the child marker is a behavior the contract states.",
+      "affectedSurfaceHints": [
+        "Vibe subagent turns",
+        "child-session suppression",
+        "hook contract doc"
+      ]
+    }
+  ],
+  "traceabilityChecks": {
+    "spec_code": {
+      "level": "core",
+      "status": "partial",
+      "notes": "Phase 030 REQ-006 is contradicted for a fallback whose directive block names a command; REQ-007 cases hold."
+    },
+    "checklist_evidence": {
+      "level": "core",
+      "status": "partial",
+      "notes": "AC-006 and AC-007 are Met; neither covers the no-brief fallback."
+    },
+    "skill_agent": {
+      "level": "overlay",
+      "status": "notApplicable",
+      "notes": "No agent definition changed in this area."
+    },
+    "agent_cross_runtime": {
+      "level": "overlay",
+      "status": "partial",
+      "notes": "The part is runtime-neutral; live proof belongs to the manual playbook."
+    },
+    "feature_catalog_code": {
+      "level": "overlay",
+      "status": "pending",
+      "notes": "Deferred to the docs iteration."
+    },
+    "playbook_capability": {
+      "level": "overlay",
+      "status": "pending",
+      "notes": "Deferred to the docs iteration."
+    }
+  },
+  "newFindingsRatio": 1,
+  "noveltyJustification": "Both findings are new: the fallback-shape scan has no suite case, and the subagent key has no schema or test.",
+  "sessionId": "fanout-vibe-hooks-doctor-5-1794760565927-i99t40",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-15T16:54:07Z",
+  "durationMs": 900000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "standard",
+    "enforcement": "strict",
+    "reason": "Twelve changed source, test and doc files across the Vibe hook, the doctor checks and the CI workflow.",
+    "evidenceRefs": [
+      "review/review-scope-5.txt:3-12",
+      ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:1-236"
+    ]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+      ".skilled/hooks/session-lifecycle/vibe/turn-start.mjs",
+      ".skilled/skills/system-skill-advisor/runtime/tests/hooks/vibe-prompt-advisor.vitest.ts",
+      ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md"
+    ],
+    "selectionReason": "The correctness iteration follows the new Vibe part and the composer and handler that feed it.",
+    "discoveryMethods": [
+      "review-scope-5 area filter",
+      "direct_read",
+      "exported-function probe"
+    ],
+    "omittedHighRiskTargets": [
+      ".skilled/commands/doctor/scripts/hook-wiring-check.cjs (deferred to traceability)"
+    ],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "unavailable",
+    "evidenceRefs": [
+      "review/review-scope-5.txt:3-12"
+    ]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "boundary_parsing",
+      "unverified_claim",
+      "state_transition",
+      "doc_code_drift"
+    ],
+    "covered": [
+      "boundary_parsing",
+      "unverified_claim"
+    ],
+    "ruledOut": [
+      "state_transition"
+    ],
+    "deferred": [
+      "doc_code_drift"
+    ],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-001",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs"
+      ],
+      "bugClass": "boundary_parsing",
+      "hypothesis": "The document line can be produced for a context that has no routing head.",
+      "invariant": "Only a head that names a command gains a document line, before the directive block.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "prompt-advisor.mjs:123-148",
+          "result": "separator > 0 treats an index-0 separator as no separator.",
+          "evidenceRefs": [
+            "prompt-advisor.mjs:125-127"
+          ]
+        },
+        {
+          "method": "probe",
+          "queryOrPath": "withCommandDocuments(\"\\nDirectives:\\n- run /speckit:save\")",
+          "result": "Returned the fallback plus a Command documents line.",
+          "evidenceRefs": [
+            "prompt-advisor.mjs:123-148"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "linkedFindingId": "R1-P2-001",
+      "rationale": "The handler returns exactly that fallback shape when no brief exists."
+    },
+    {
+      "id": "SL-002",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs"
+      ],
+      "bugClass": "unverified_claim",
+      "hypothesis": "The subagent guard reads a field the host does not send.",
+      "invariant": "A subagent turn receives no brief.",
+      "searchActions": [
+        {
+          "method": "exact_search",
+          "queryOrPath": "parent_session_id",
+          "result": "No Vibe payload schema or test names the field.",
+          "evidenceRefs": [
+            "prompt-advisor.mjs:62-66"
+          ]
+        },
+        {
+          "method": "direct_read",
+          "queryOrPath": "vibe-prompt-advisor.vitest.ts:93-210",
+          "result": "No parent-session case.",
+          "evidenceRefs": [
+            "vibe-prompt-advisor.vitest.ts:187-209"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "linkedFindingId": "R1-P2-002",
+      "rationale": "The contract states the behavior and only the untested key implements it."
+    },
+    {
+      "id": "SL-003",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs"
+      ],
+      "bugClass": "state_transition",
+      "hypothesis": "A repeated head is delivered twice.",
+      "invariant": "An equal head is dropped.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "prompt-advisor.mjs:163-182",
+          "result": "Reads the receipt, compares, writes only on change.",
+          "evidenceRefs": [
+            "prompt-advisor.mjs:179-181"
+          ]
+        },
+        {
+          "method": "test_read",
+          "queryOrPath": "vibe-prompt-advisor.vitest.ts:187-209",
+          "result": "Second call returns an empty string.",
+          "evidenceRefs": [
+            "vibe-prompt-advisor.vitest.ts:205-208"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "ruledOutReason": "Equal head suppressed by the receipt comparison and pinned by the suite."
+    }
+  ],
+  "graphEvents": [
+    {
+      "type": "node",
+      "id": "file:vibe-part",
+      "kind": "FILE",
+      "label": "Vibe prompt advisor part"
+    },
+    {
+      "type": "node",
+      "id": "finding:R1-P2-001",
+      "kind": "FINDING",
+      "label": "Fallback read as a head"
+    },
+    {
+      "type": "node",
+      "id": "dimension:correctness",
+      "kind": "DIMENSION",
+      "label": "Correctness"
+    },
+    {
+      "type": "edge",
+      "id": "edge:part-in-correctness",
+      "source": "file:vibe-part",
+      "target": "dimension:correctness",
+      "relation": "IN_DIMENSION"
+    },
+    {
+      "type": "edge",
+      "id": "edge:finding-in-part",
+      "source": "finding:R1-P2-001",
+      "target": "file:vibe-part",
+      "relation": "IN_FILE"
+    }
+  ]
+}

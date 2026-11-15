@@ -317,6 +317,7 @@ and findings belong here.
 | Phase 031 probe P07 | Declined | floor: {"correct":24,"total":44} {"count":0,"total":35} {"own":2,"attached":0,"combined":2,"total":44} eval: [160,49,21,5] blocked=1 probe=[] |
 | Phase 031 alignment findings remediation | Complete | d509e9d5c07 + 2efe3204e3e: validator, CI Vibe checks, offer-rule docs, NC-012/CL-009/CL-010, P02 P04 P11 routed, P07 P01 declined, floors equal, review SHIP twice, recheck new=0 |
 | Q073 P1 probe declines | Accepted | operator accepted P07 and P01 declines as a waiver of the 0-P1 alignment criterion |
+| Catch-up merge with origin/main | Done | 2427bc4c4b6 merges 9414e518bd5: took main's Vibe CI job and doctor rows, regenerated the index, skill graph and Vibe agents; BAT-02/06/07 now pass, links 0 broken, suite 2157/0, doctor 1230/0, floors 24/44 0/35 2/44 and eval [160,49,21,5] unchanged |
 
 ### Deviations and findings
 

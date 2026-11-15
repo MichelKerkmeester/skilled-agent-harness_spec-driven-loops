@@ -1,0 +1,325 @@
+{
+  "type": "iteration",
+  "iteration": 2,
+  "mode": "review",
+  "target_agent": "deep-review",
+  "agent_definition_loaded": true,
+  "resolved_route": "Resolved route: mode=review target_agent=deep-review",
+  "run": "fanout-vibe-hooks-doctor-5-1794760565927-i99t40",
+  "status": "complete",
+  "focus": "security",
+  "dimensions": [
+    "security"
+  ],
+  "filesReviewed": [
+    ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:164-199",
+    ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:68-77,289-311",
+    ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs:203-236",
+    ".skilled/hooks/shared/hook-flags.cjs:38-115,154-285",
+    ".opencode/plugins/system-skill-advisor.js:195-210,255-270",
+    ".skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts:60-180"
+  ],
+  "findingsCount": 2,
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 2
+  },
+  "findingsNew": [
+    "R2-P2-001",
+    "R2-P2-002"
+  ],
+  "findingDetails": [
+    {
+      "id": "R2-P2-001",
+      "severity": "P2",
+      "title": "The handler resolves the shared switch resolver one level above the repository when it runs from source, so the canonical kill switch fails open there",
+      "file": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts:71",
+      "findingClass": "fail_open_control_bypass",
+      "claim": "skillAdvisorHookEnabled resolves hook-flags.cjs with six parent hops, which is correct only for the dist file; from the source folder the require throws and the catch returns true.",
+      "evidenceRefs": [
+        "user-prompt-submit.ts:71",
+        "user-prompt-submit.ts:73-76",
+        "user-prompt-submit.ts:301",
+        "hook-flags.cjs:256-266"
+      ],
+      "counterevidenceSought": "Resolved the same URL from both the source and the dist file with node; the dist path lands on .skilled/hooks/shared/hook-flags.cjs and the shipped settings entry runs the dist shim.",
+      "alternativeExplanation": "The six-hop path is deliberate for the dist file, and only source-run consumers see the gap.",
+      "finalSeverity": "P2",
+      "confidence": "high",
+      "downgradeTrigger": "None; the shipped path resolves, so the reach is source runs.",
+      "scopeProof": "The handler is in the declared scope; the dist file is the shipped entry and resolves, so the reach is the vitest and development consumers the repo uses.",
+      "affectedSurfaceHints": [
+        "canonical kill switch",
+        "source-run handler",
+        "test harness"
+      ]
+    },
+    {
+      "id": "R2-P2-002",
+      "severity": "P2",
+      "title": "The switch table implies a hook-versus-plugin split that the shared resolver does not make, so either name silences every adapter",
+      "file": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:173",
+      "findingClass": "doc_code_drift",
+      "claim": "The hook alias row says it disables the native adapters, but the shared resolver lists it with the plugin alias for one concern, and the OpenCode plugin and the Vibe part ask that resolver.",
+      "evidenceRefs": [
+        "skill-advisor-hook.md:173-174",
+        "hook-flags.cjs:70-77",
+        ".opencode/plugins/system-skill-advisor.js:205-207",
+        "prompt-advisor.mjs:216"
+      ],
+      "counterevidenceSought": "Read the plugin disabled path and the Vibe check; both call isHookEnabled for the one concern, and the table has no separate branch.",
+      "alternativeExplanation": "Native adapters could be read as every adapter; the table distinguishes the plugin row, so the wording implies a split.",
+      "finalSeverity": "P2",
+      "confidence": "high",
+      "downgradeTrigger": "None; the rows are the ones the pass-five change edited.",
+      "scopeProof": "The hook contract is a declared scope file and the rows are the changed lines; the resolver and plugin are read as context evidence.",
+      "affectedSurfaceHints": [
+        "kill-switch documentation",
+        "OpenCode plugin",
+        "Vibe part"
+      ]
+    }
+  ],
+  "traceabilityChecks": {
+    "spec_code": {
+      "level": "core",
+      "status": "partial",
+      "notes": "Phase 029 REQ-001 to REQ-008 hold; REQ-009 doc claim drift is R2-P2-002."
+    },
+    "checklist_evidence": {
+      "level": "core",
+      "status": "partial",
+      "notes": "AC-009 checks that lines did not change, not that they are true."
+    },
+    "skill_agent": {
+      "level": "overlay",
+      "status": "notApplicable",
+      "notes": "No agent definition changed in this area."
+    },
+    "agent_cross_runtime": {
+      "level": "overlay",
+      "status": "partial",
+      "notes": "One shared resolver for every runtime; the source-run gap is runtime-neutral."
+    },
+    "feature_catalog_code": {
+      "level": "overlay",
+      "status": "pending",
+      "notes": "Deferred to the docs iteration."
+    },
+    "playbook_capability": {
+      "level": "overlay",
+      "status": "pending",
+      "notes": "Deferred to the docs iteration."
+    }
+  },
+  "newFindingsRatio": 0.5,
+  "noveltyJustification": "Two new P2s against four weighted findings seen so far; both come from the switch surfaces the prior iteration did not read.",
+  "sessionId": "fanout-vibe-hooks-doctor-5-1794760565927-i99t40",
+  "generation": 1,
+  "lineageMode": "new",
+  "timestamp": "2026-11-15T16:56:31Z",
+  "durationMs": 780000,
+  "reviewDepthSchemaVersion": 2,
+  "reviewDepthApplicability": {
+    "scopeClass": "standard",
+    "enforcement": "strict",
+    "reason": "The switch surface spans the hook contract, the handler, the shared resolver and the plugin.",
+    "evidenceRefs": [
+      "review/review-scope-5.txt:17-18",
+      ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md:164-199"
+    ]
+  },
+  "targetSelection": {
+    "selectedTargets": [
+      ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+      ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+      ".skilled/hooks/shared/hook-flags.cjs",
+      ".opencode/plugins/system-skill-advisor.js"
+    ],
+    "selectionReason": "The security iteration follows every surface the switch table claims to stop.",
+    "discoveryMethods": [
+      "doc claim inventory",
+      "direct_read",
+      "URL resolution probe"
+    ],
+    "omittedHighRiskTargets": [
+      ".skilled/bin/system-skill-advisor-launcher.cjs (read as context only; kill-switch-cli owns its code)"
+    ],
+    "graphStatus": "unavailable",
+    "semanticSearchStatus": "unavailable",
+    "evidenceRefs": [
+      "review/review-scope-5.txt:17-18"
+    ]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "fail_open_control_bypass",
+      "doc_code_drift",
+      "environment_precedence",
+      "trust_boundary"
+    ],
+    "covered": [
+      "fail_open_control_bypass",
+      "doc_code_drift"
+    ],
+    "ruledOut": [
+      "environment_precedence",
+      "trust_boundary"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "searchLedger": [
+    {
+      "id": "SL-004",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts"
+      ],
+      "bugClass": "fail_open_control_bypass",
+      "hypothesis": "The canonical switch can be bypassed in a source run.",
+      "invariant": "When the shared resolver says disabled, the handler returns no brief.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "user-prompt-submit.ts:68-77",
+          "result": "The require path is fixed at six parent hops.",
+          "evidenceRefs": [
+            "user-prompt-submit.ts:71"
+          ]
+        },
+        {
+          "method": "probe",
+          "queryOrPath": "new URL(path, source vs dist file URL)",
+          "result": "Source resolves above the repo; dist resolves to .skilled/hooks/shared/hook-flags.cjs.",
+          "evidenceRefs": [
+            "user-prompt-submit.ts:71"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "linkedFindingId": "R2-P2-001",
+      "rationale": "The catch returns enabled, so a source-run handler ignores the canonical name."
+    },
+    {
+      "id": "SL-005",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md"
+      ],
+      "bugClass": "doc_code_drift",
+      "hypothesis": "The table promises a switch scope the resolver does not implement.",
+      "invariant": "A name that disables only some adapters leaves the others running.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "hook-flags.cjs:64-80",
+          "result": "Both names are aliases of one concern.",
+          "evidenceRefs": [
+            "hook-flags.cjs:70-77"
+          ]
+        },
+        {
+          "method": "direct_read",
+          "queryOrPath": ".opencode/plugins/system-skill-advisor.js:205-207",
+          "result": "The plugin asks isHookEnabled for the same concern.",
+          "evidenceRefs": [
+            ".opencode/plugins/system-skill-advisor.js:205-207"
+          ]
+        }
+      ],
+      "disposition": "finding",
+      "linkedFindingId": "R2-P2-002",
+      "rationale": "The hook name also stops the plugin and the Vibe part."
+    },
+    {
+      "id": "SL-006",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/advisor-disabled.ts"
+      ],
+      "bugClass": "environment_precedence",
+      "hypothesis": "The flags file can override the caller environment or reach the daemon.",
+      "invariant": "The environment wins over the file, and the daemon reads no file.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "advisor-disabled.ts:85-105",
+          "result": "Passes env and the loaded file to hookFlagDecision, which reads env first.",
+          "evidenceRefs": [
+            "advisor-disabled.ts:92-101"
+          ]
+        },
+        {
+          "method": "direct_read",
+          "queryOrPath": "handlers/advisor-recommend.ts:542",
+          "result": "The handler passes an empty config.",
+          "evidenceRefs": [
+            "handlers/advisor-recommend.ts:542"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "ruledOutReason": "Environment precedes the file, and the daemon path passes no file."
+    },
+    {
+      "id": "SL-007",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs"
+      ],
+      "bugClass": "trust_boundary",
+      "hypothesis": "A flagged caller leaves a disabled daemon for later callers.",
+      "invariant": "The daemon environment carries no switch name and no HOOK_FLAGS_CONFIG.",
+      "searchActions": [
+        {
+          "method": "direct_read",
+          "queryOrPath": "system-skill-advisor-launcher.cjs:312-342",
+          "result": "createChildEnv keeps only the allowlist.",
+          "evidenceRefs": [
+            "system-skill-advisor-launcher.cjs:312-315"
+          ]
+        }
+      ],
+      "disposition": "ruled_out",
+      "ruledOutReason": "The allowlist forwards neither the switch names nor HOOK_FLAGS_CONFIG."
+    }
+  ],
+  "graphEvents": [
+    {
+      "type": "node",
+      "id": "file:claude-handler",
+      "kind": "FILE",
+      "label": "Claude prompt-submit handler"
+    },
+    {
+      "type": "node",
+      "id": "file:hook-doc",
+      "kind": "FILE",
+      "label": "Hook contract switch table"
+    },
+    {
+      "type": "node",
+      "id": "finding:R2-P2-001",
+      "kind": "FINDING",
+      "label": "Source-run kill-switch gap"
+    },
+    {
+      "type": "edge",
+      "id": "edge:r2f1-in-handler",
+      "source": "finding:R2-P2-001",
+      "target": "file:claude-handler",
+      "relation": "IN_FILE"
+    },
+    {
+      "type": "edge",
+      "id": "edge:r2f2-in-doc",
+      "source": "finding:R2-P2-002",
+      "target": "file:hook-doc",
+      "relation": "IN_FILE"
+    }
+  ]
+}

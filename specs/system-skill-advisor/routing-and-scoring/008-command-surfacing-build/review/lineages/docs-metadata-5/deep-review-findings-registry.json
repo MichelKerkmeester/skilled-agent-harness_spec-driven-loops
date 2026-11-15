@@ -1,0 +1,924 @@
+{
+  "sessionId": "fanout-docs-metadata-5-1794760565927-i99t40",
+  "parentSessionId": null,
+  "generation": 1,
+  "lineageMode": "new",
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 4,
+    "timestamp": "2026-11-15T17:00:46.542Z"
+  },
+  "status": "COMPLETE",
+  "openFindings": [
+    {
+      "findingId": "DM5-P2-001",
+      "severity": "P2",
+      "title": "Meaning-match row count is one behind the generated bridge corpus",
+      "file": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md",
+      "line": 26,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DM5-P2-002",
+      "severity": "P2",
+      "title": "Playbook inputs name a directory shape that no longer exists",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 103,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DM5-P2-003",
+      "severity": "P2",
+      "title": "Wave 2 schedules a scenario the package says is not authored",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 155,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DM5-P2-004",
+      "severity": "P2",
+      "title": "Upgrade note says the retired create-skill name has no alias while the release note says it still reads",
+      "file": ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md",
+      "line": 251,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DM5-P2-005",
+      "severity": "P2",
+      "title": "Tests README directory tree omits every command-surfacing suite added by this packet",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/README.md",
+      "line": 95,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DM5-P2-006",
+      "severity": "P2",
+      "title": "Generated leaf manifest skips the DSH hook README while listing its three siblings",
+      "file": ".skilled/skills/system-skill-advisor/leaf-manifest.json",
+      "line": 51,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DM5-P2-007",
+      "severity": "P2",
+      "title": "Playbook scenario verdict set disagrees with its result-persistence contract",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 30,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    },
+    {
+      "findingId": "DM5-P2-008",
+      "severity": "P2",
+      "title": "Load-rate sentence and six-path heading do not match the published tally",
+      "file": ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md",
+      "line": 176,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": []
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "terminalGates": {
+    "run": 4,
+    "stopReason": "maxIterationsReached",
+    "failedRequiredGateIds": [
+      "coverage"
+    ]
+  },
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 8
+  },
+  "openFindingsCount": 8,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "graphSignals": {},
+  "candidateCoverage": {
+    "covered": [
+      "broken_path_reference",
+      "contradictory_statement",
+      "metadata_scope_gap",
+      "metric_formula_mismatch",
+      "missing_inventory_entry",
+      "stale_count",
+      "verdict_vocabulary_split"
+    ],
+    "ruledOut": [
+      "broken_path_reference",
+      "daemon_switch_forwarding",
+      "graph_drift",
+      "holdout_leak",
+      "journal_scoring_divergence",
+      "kill_switch_bypass",
+      "link_rot",
+      "load_counted_without_load",
+      "missing_inventory_entry",
+      "offer_counted_without_offer",
+      "prompt_text_in_docs",
+      "stale_line_anchor",
+      "unsupported_behavior_claim"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {
+      "stale_count": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "broken_path_reference": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "contradictory_statement": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "missing_inventory_entry": {
+        "covered": true,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1,
+          2
+        ]
+      },
+      "metadata_scope_gap": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "unsupported_behavior_claim": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "link_rot": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "graph_drift": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "stale_line_anchor": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          1
+        ]
+      },
+      "verdict_vocabulary_split": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          2
+        ]
+      },
+      "metric_formula_mismatch": {
+        "covered": true,
+        "ruledOut": false,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "offer_counted_without_offer": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "load_counted_without_load": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "journal_scoring_divergence": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          3
+        ]
+      },
+      "holdout_leak": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "prompt_text_in_docs": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "kill_switch_bypass": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      },
+      "daemon_switch_forwarding": {
+        "covered": false,
+        "ruledOut": true,
+        "deferred": false,
+        "blocked": false,
+        "iterations": [
+          4
+        ]
+      }
+    }
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        "nine scoped markdown files"
+      ],
+      "bugClass": "link_rot",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "doctor-command-routing.md:69"
+      ],
+      "reason": "all relative link targets resolve on disk"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md"
+      ],
+      "bugClass": "unsupported_behavior_claim",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "hook-flags.cjs:157",
+        "command-attach.ts:208",
+        "command-attach.ts:294"
+      ],
+      "reason": "each claim matches the named code path"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/graph-metadata.json"
+      ],
+      "bugClass": "graph_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "graph-metadata.json:1",
+        "skill-graph.json:1"
+      ],
+      "reason": "signals and enhance edges match exactly"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md"
+      ],
+      "bugClass": "stale_line_anchor",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "advisor-recommend.md:35"
+      ],
+      "reason": "every cited line anchor resolves to the named declaration"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-012",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/README.md"
+      ],
+      "bugClass": "missing_inventory_entry",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/README.md:56"
+      ],
+      "reason": "every named subfolder and key file exists; the defect is omission, not invention"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-013",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "broken_path_reference",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:303"
+      ],
+      "reason": "the central playbook target resolves"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-015",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs"
+      ],
+      "bugClass": "offer_counted_without_offer",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:926"
+      ],
+      "reason": "the ask path requires an observed offer and wait"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-016",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs"
+      ],
+      "bugClass": "load_counted_without_load",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1863"
+      ],
+      "reason": "both numerator paths require a witnessed load"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-017",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs"
+      ],
+      "bugClass": "journal_scoring_divergence",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1645"
+      ],
+      "reason": "Vibe records are normalized into the same event stream and path function"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-018",
+      "dimension": "security",
+      "targetRefs": [
+        "14 scoped files"
+      ],
+      "bugClass": "holdout_leak",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md:188"
+      ],
+      "reason": "counts only; no holdout row is named or quoted"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-019",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts"
+      ],
+      "bugClass": "prompt_text_in_docs",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:442",
+        ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md:62"
+      ],
+      "reason": "the record schema and the sample carry no prompt text"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-020",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts"
+      ],
+      "bugClass": "kill_switch_bypass",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1540"
+      ],
+      "reason": "the switch is answered before any daemon or scorer work"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-021",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs"
+      ],
+      "bugClass": "daemon_switch_forwarding",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs:131"
+      ],
+      "reason": "an allowlist with no disable key keeps the switch per-caller"
+    }
+  ],
+  "cleanSearchProof": [
+    {
+      "iteration": 1,
+      "id": "SL-007",
+      "dimension": "traceability",
+      "targetRefs": [
+        "nine scoped markdown files"
+      ],
+      "bugClass": "link_rot",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "doctor-command-routing.md:69"
+      ],
+      "proof": "all relative link targets resolve on disk"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-008",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md"
+      ],
+      "bugClass": "unsupported_behavior_claim",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "hook-flags.cjs:157",
+        "command-attach.ts:208",
+        "command-attach.ts:294"
+      ],
+      "proof": "each claim matches the named code path"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-009",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/graph-metadata.json"
+      ],
+      "bugClass": "graph_drift",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "graph-metadata.json:1",
+        "skill-graph.json:1"
+      ],
+      "proof": "signals and enhance edges match exactly"
+    },
+    {
+      "iteration": 1,
+      "id": "SL-010",
+      "dimension": "traceability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/feature-catalog/cli-surface/advisor-recommend.md"
+      ],
+      "bugClass": "stale_line_anchor",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        "advisor-recommend.md:35"
+      ],
+      "proof": "every cited line anchor resolves to the named declaration"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-012",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/README.md"
+      ],
+      "bugClass": "missing_inventory_entry",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/tests/README.md:56"
+      ],
+      "proof": "every named subfolder and key file exists; the defect is omission, not invention"
+    },
+    {
+      "iteration": 2,
+      "id": "SL-013",
+      "dimension": "maintainability",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md"
+      ],
+      "bugClass": "broken_path_reference",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md:303"
+      ],
+      "proof": "the central playbook target resolves"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-015",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs"
+      ],
+      "bugClass": "offer_counted_without_offer",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:926"
+      ],
+      "proof": "the ask path requires an observed offer and wait"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-016",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs"
+      ],
+      "bugClass": "load_counted_without_load",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1863"
+      ],
+      "proof": "both numerator paths require a witnessed load"
+    },
+    {
+      "iteration": 3,
+      "id": "SL-017",
+      "dimension": "correctness",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs"
+      ],
+      "bugClass": "journal_scoring_divergence",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs:1645"
+      ],
+      "proof": "Vibe records are normalized into the same event stream and path function"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-018",
+      "dimension": "security",
+      "targetRefs": [
+        "14 scoped files"
+      ],
+      "bugClass": "holdout_leak",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md:188"
+      ],
+      "proof": "counts only; no holdout row is named or quoted"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-019",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts"
+      ],
+      "bugClass": "prompt_text_in_docs",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/lib/metrics.ts:442",
+        ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md:62"
+      ],
+      "proof": "the record schema and the sample carry no prompt text"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-020",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts"
+      ],
+      "bugClass": "kill_switch_bypass",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/skills/system-skill-advisor/runtime/skill-advisor-cli.ts:1540"
+      ],
+      "proof": "the switch is answered before any daemon or scorer work"
+    },
+    {
+      "iteration": 4,
+      "id": "SL-021",
+      "dimension": "security",
+      "targetRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs"
+      ],
+      "bugClass": "daemon_switch_forwarding",
+      "disposition": "ruled_out",
+      "rationale": "UNKNOWN",
+      "evidenceRefs": [
+        ".skilled/bin/system-skill-advisor-launcher.cjs:131"
+      ],
+      "proof": "an allowlist with no disable key keeps the switch per-caller"
+    }
+  ],
+  "searchCoverage": {
+    "requiredBugClasses": [
+      "holdout_leak",
+      "prompt_text_in_docs",
+      "kill_switch_bypass",
+      "daemon_switch_forwarding"
+    ],
+    "covered": [],
+    "ruledOut": [
+      "holdout_leak",
+      "prompt_text_in_docs",
+      "kill_switch_bypass",
+      "daemon_switch_forwarding"
+    ],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "traceability": {
+    "summary": {
+      "required": 0,
+      "executed": 0,
+      "pass": 0,
+      "partial": 0,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 0,
+      "gatingFailures": 0
+    },
+    "results": []
+  },
+  "divergence": {
+    "started": [],
+    "completed": [],
+    "failed": [],
+    "overrides": [],
+    "saturatedDirections": [],
+    "remainingFrontier": [],
+    "currentFocus": ""
+  },
+  "fieldWarnings": [],
+  "corruptionWarnings": []
+}

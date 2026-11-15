@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"fanout-kill-switch-cli-5-1794760565927-i99t40","sessionId":"fanout-kill-switch-cli-5-1794760565927-i99t40"},"data":{"mode":"review","totalIterations":4,"activeP0":0,"activeP1":0,"activeP2":6,"dimensionCoverage":1,"verdict":"PASS","releaseReadinessState":"in-progress","stopReason":"maxIterationsReached"}}

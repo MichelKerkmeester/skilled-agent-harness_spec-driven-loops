@@ -3,15 +3,18 @@
     "accuracy-runner",
     "accuracy-runner-2",
     "accuracy-runner-4",
+    "accuracy-runner-5",
     "accuracy-runner-close-4c",
     "accuracy-runner-confirm-4b",
     "advisor-runtime-3",
+    "docs-metadata-5",
     "doctor-docs-3",
     "doctor-docs-4",
     "doctor-install",
     "doctor-install-2",
     "hook-close-3c",
     "hook-confirm-3b",
+    "kill-switch-cli-5",
     "noedit-close-3c",
     "noedit-confirm-3b",
     "render-hooks-plugin",
@@ -21,7 +24,8 @@
     "scorer-attach-2",
     "scorer-attach-4",
     "scorer-attach-close-4c",
-    "scorer-attach-confirm-4b"
+    "scorer-attach-confirm-4b",
+    "vibe-hooks-doctor-5"
   ],
   "lineageExecutors": {
     "accuracy-runner": {
@@ -39,6 +43,11 @@
       "model": "opencode-go/deepseek-v4.1-flash",
       "reasoningEffort": "max"
     },
+    "accuracy-runner-5": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
     "accuracy-runner-close-4c": {
       "kind": "cli-opencode",
       "model": "opencode-go/deepseek-v4.1-flash",
@@ -50,6 +59,11 @@
       "reasoningEffort": "max"
     },
     "advisor-runtime-3": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "docs-metadata-5": {
       "kind": "cli-opencode",
       "model": "opencode-go/deepseek-v4.1-flash",
       "reasoningEffort": "max"
@@ -80,6 +94,11 @@
       "reasoningEffort": "max"
     },
     "hook-confirm-3b": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
+    },
+    "kill-switch-cli-5": {
       "kind": "cli-opencode",
       "model": "opencode-go/deepseek-v4.1-flash",
       "reasoningEffort": "max"
@@ -133,9 +152,17 @@
       "kind": "cli-opencode",
       "model": "opencode-go/deepseek-v4.1-flash",
       "reasoningEffort": "max"
+    },
+    "vibe-hooks-doctor-5": {
+      "kind": "cli-opencode",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "reasoningEffort": "max"
     }
   },
-  "mergedVerdict": "CONDITIONAL",
+  "mergedVerdict": "FAIL",
+  "failedRequiredGateIds": [
+    "coverage"
+  ],
   "openFindings": [
     {
       "findingId": "iter3-P2-backfill-log-code-execution",
@@ -468,12 +495,54 @@
         {
           "relation": "CONTRADICTS",
           "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--49d99836d1c8",
+          "peerLineages": [
+            "vibe-hooks-doctor-5"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
           "peerId": "R3-P2-001--0e0d904eb571",
           "peerLineages": [
             "scorer-attach"
           ],
           "basis": "same-id-different-content"
         }
+      ]
+    },
+    {
+      "findingId": "iter2-P2-tracked-dotenv-cloned",
+      "severity": "P2",
+      "title": "A dotenv file tracked in the commit under test is cloned into the arena, because the dotenv guard runs only on the copied build trees",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs",
+      "line": 275,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-5"
       ]
     },
     {
@@ -623,6 +692,15 @@
             "scorer-attach"
           ],
           "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--8aa0323eda70",
+          "peerLineages": [
+            "vibe-hooks-doctor-5"
+          ],
+          "basis": "same-id-different-content"
         }
       ]
     },
@@ -720,6 +798,39 @@
       "mergedFindingIds": [],
       "_lineages": [
         "accuracy-runner"
+      ]
+    },
+    {
+      "findingId": "iter1-P2-mode-suffix-hides-repeat",
+      "severity": "P2",
+      "title": "A mode suffix hides a command reported twice",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 529,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-5"
       ]
     },
     {
@@ -848,6 +959,39 @@
       "mergedFindingIds": [],
       "_lineages": [
         "scorer-attach-confirm-4b"
+      ]
+    },
+    {
+      "findingId": "iter1-P2-quoted-command-line-is-a-start",
+      "severity": "P2",
+      "title": "A refusal that quotes the COMMAND: format is scored as a start",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 504,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-5"
       ]
     },
     {
@@ -1395,6 +1539,39 @@
       ]
     },
     {
+      "findingId": "iter3-P2-cli-mk-alias-filter",
+      "severity": "P2",
+      "title": "CLI disable loop filters out every MK_ alias, so the direct-call path never exercises those names",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/skill-advisor-cli-stale-daemon-retry.vitest.ts",
+      "line": 221,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "kill-switch-cli-5"
+      ]
+    },
+    {
       "findingId": "R4-P2-001--c63b4b48e481",
       "severity": "P2",
       "title": "Codex opens the caller's locator after containment resolved a different path",
@@ -1449,6 +1626,15 @@
             "scorer-attach"
           ],
           "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--8aa0323eda70",
+          "peerLineages": [
+            "vibe-hooks-doctor-5"
+          ],
+          "basis": "same-id-different-content"
         }
       ]
     },
@@ -1501,6 +1687,15 @@
           "peerId": "R4-P2-001--c63b4b48e481",
           "peerLineages": [
             "render-hooks-plugin-4"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--8aa0323eda70",
+          "peerLineages": [
+            "vibe-hooks-doctor-5"
           ],
           "basis": "same-id-different-content"
         }
@@ -1575,12 +1770,54 @@
         {
           "relation": "CONTRADICTS",
           "originalId": "R1-P2-002",
+          "peerId": "R1-P2-002--fd81d5c672ac",
+          "peerLineages": [
+            "vibe-hooks-doctor-5"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-002",
           "peerId": "R1-P2-002--95282927956e",
           "peerLineages": [
             "scorer-attach"
           ],
           "basis": "same-id-different-content"
         }
+      ]
+    },
+    {
+      "findingId": "iter2-P2-cp003-control-aliases",
+      "severity": "P2",
+      "title": "CP-003 control call can abstain under a switch alias it never unsets",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/compat-and-disable/global-disable-flag.md",
+      "line": 49,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "kill-switch-cli-5"
       ]
     },
     {
@@ -1629,6 +1866,15 @@
         {
           "relation": "CONTRADICTS",
           "originalId": "R4-P2-002",
+          "peerId": "R4-P2-002--a32c47732ce8",
+          "peerLineages": [
+            "vibe-hooks-doctor-5"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-002",
           "peerId": "R4-P2-002--15eee53d06a8",
           "peerLineages": [
             "render-hooks-plugin-4"
@@ -1638,7 +1884,7 @@
       ]
     },
     {
-      "findingId": "R1-P2-001",
+      "findingId": "R1-P2-001--47c642ddcda2",
       "severity": "P2",
       "title": "Deep-loop depth gate is satisfied by any typed /deep: prefix, not the attached command",
       "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
@@ -1667,6 +1913,19 @@
       "mergedFindingIds": [],
       "_lineages": [
         "scorer-attach"
+      ],
+      "_conflictOf": "R1-P2-001",
+      "_conflict_id": "R1-P2-001--47c642ddcda2",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-001",
+          "peerId": "R1-P2-001--fad6f8329979",
+          "peerLineages": [
+            "vibe-hooks-doctor-5"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
@@ -1734,6 +1993,39 @@
       ]
     },
     {
+      "findingId": "DM5-P2-006",
+      "severity": "P2",
+      "title": "Generated leaf manifest skips the DSH hook README while listing its three siblings",
+      "file": ".skilled/skills/system-skill-advisor/leaf-manifest.json",
+      "line": 51,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "docs-metadata-5"
+      ]
+    },
+    {
       "findingId": "DR5-P2-002",
       "severity": "P2",
       "title": "Hook wiring counts a marker anywhere in the event payload so a mention is read as a wired entry",
@@ -1766,7 +2058,7 @@
       ]
     },
     {
-      "findingId": "R2-P2-001",
+      "findingId": "R2-P2-001--96fde986fe71",
       "severity": "P2",
       "title": "Hub-attached commands skip the no-edit gate the command scorer applies",
       "file": ".skilled/skills/system-skill-advisor/runtime/lib/command-attach.ts",
@@ -1795,6 +2087,52 @@
       "mergedFindingIds": [],
       "_lineages": [
         "scorer-attach"
+      ],
+      "_conflictOf": "R2-P2-001",
+      "_conflict_id": "R2-P2-001--96fde986fe71",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--bf202e9d99f7",
+          "peerLineages": [
+            "vibe-hooks-doctor-5"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "iter1-P1-shell-writes-invisible",
+      "severity": "P1",
+      "title": "In-place shell edits are never write events, so unsafe and loopInit miss every write that is not a redirect",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/score-command-transcripts.mjs",
+      "line": 391,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-5"
       ]
     },
     {
@@ -1827,6 +2165,138 @@
       "mergedFindingIds": [],
       "_lineages": [
         "noedit-close-3c"
+      ]
+    },
+    {
+      "findingId": "iter3-P2-launcher-switch-fixture",
+      "severity": "P2",
+      "title": "Launcher test covers two of the ten switch names it claims to keep out of the daemon env",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/launcher-bootstrap.vitest.ts",
+      "line": 124,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "kill-switch-cli-5"
+      ]
+    },
+    {
+      "findingId": "iter3-P2-lib-readme-tree",
+      "severity": "P2",
+      "title": "lib README tree omits five flat modules that exist on disk",
+      "file": ".skilled/skills/system-skill-advisor/runtime/lib/README.md",
+      "line": 100,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "kill-switch-cli-5"
+      ]
+    },
+    {
+      "findingId": "DM5-P2-008",
+      "severity": "P2",
+      "title": "Load-rate sentence and six-path heading do not match the published tally",
+      "file": ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md",
+      "line": 176,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "docs-metadata-5"
+      ]
+    },
+    {
+      "findingId": "DM5-P2-001",
+      "severity": "P2",
+      "title": "Meaning-match row count is one behind the generated bridge corpus",
+      "file": ".skilled/skills/system-skill-advisor/feature-catalog/scorer-fusion/command-meaning-matching.md",
+      "line": 26,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "docs-metadata-5"
       ]
     },
     {
@@ -1987,6 +2457,72 @@
       "mergedFindingIds": [],
       "_lineages": [
         "accuracy-runner"
+      ]
+    },
+    {
+      "findingId": "DM5-P2-002",
+      "severity": "P2",
+      "title": "Playbook inputs name a directory shape that no longer exists",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 103,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "docs-metadata-5"
+      ]
+    },
+    {
+      "findingId": "DM5-P2-007",
+      "severity": "P2",
+      "title": "Playbook scenario verdict set disagrees with its result-persistence contract",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 30,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "docs-metadata-5"
       ]
     },
     {
@@ -2214,6 +2750,39 @@
       ]
     },
     {
+      "findingId": "DM5-P2-005",
+      "severity": "P2",
+      "title": "Tests README directory tree omits every command-surfacing suite added by this packet",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/README.md",
+      "line": 95,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "docs-metadata-5"
+      ]
+    },
+    {
       "findingId": "R4-P2-003--c007a1fddd18",
       "severity": "P2",
       "title": "The advisor README calls the companion policy run/start/ask and omits the child form the renderer prints",
@@ -2261,6 +2830,105 @@
           ],
           "basis": "same-id-different-content"
         }
+      ]
+    },
+    {
+      "findingId": "iter2-P2-env-source-column",
+      "severity": "P2",
+      "title": "The advisor switch row Source column omits the direct-call readers it claims",
+      "file": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      "line": 75,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "kill-switch-cli-5"
+      ]
+    },
+    {
+      "findingId": "iter4-P2-marker-literal-duplicated",
+      "severity": "P2",
+      "title": "The arena marker's name is a literal in two modules, and no test asserts they agree",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs",
+      "line": 61,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-5"
+      ]
+    },
+    {
+      "findingId": "iter3-P1-arena-build-not-the-commit",
+      "severity": "P1",
+      "title": "The arena's build output comes from the working tree while its tracked tree comes from HEAD, and no step checks that the two agree",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs",
+      "line": 310,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-5"
       ]
     },
     {
@@ -2469,6 +3137,15 @@
         {
           "relation": "CONTRADICTS",
           "originalId": "R4-P2-002",
+          "peerId": "R4-P2-002--a32c47732ce8",
+          "peerLineages": [
+            "vibe-hooks-doctor-5"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-002",
           "peerId": "R4-P2-002--15eee53d06a8",
           "peerLineages": [
             "render-hooks-plugin-4"
@@ -2510,6 +3187,39 @@
       ]
     },
     {
+      "findingId": "iter3-P1-remote-guard-first-turn-only",
+      "severity": "P1",
+      "title": "The containment guard runs before the first turn only, so a git remote added by any turn survives the restore and a later turn can push",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/run-command-behaviour.mjs",
+      "line": 1264,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-5"
+      ]
+    },
+    {
       "findingId": "HC3-P1-001",
       "severity": "P1",
       "title": "The contracted \"make changes\" instruction is not in the no-edit vocabulary, so a mutating command is offered on a plain no-edit prompt",
@@ -2539,6 +3249,142 @@
       "mergedFindingIds": [],
       "_lineages": [
         "hook-close-3c"
+      ]
+    },
+    {
+      "findingId": "R4-P2-001--8aa0323eda70",
+      "severity": "P2",
+      "title": "The dependency object env does not reach the receipt path, so a caller that injects only env still writes to and reads from the real temporary folder",
+      "file": ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+      "line": 68,
+      "description": "buildAdvisorPart accepts env for deterministic tests, but headReceiptDir and the default read and write keep using process.env and tmpdir(), so env only changes the child-session test.",
+      "findingClass": "partial_injection",
+      "deltaStatus": null,
+      "scopeProof": "The part and its suite are declared scope files; read, write and env are accepted in the same documented dependency object.",
+      "affectedSurfaceHints": [
+        "Vibe head receipt",
+        "test isolation",
+        "SPECKIT_DIRECTIVE_LIFECYCLE_STATE_DIR"
+      ],
+      "contentHash": "sha256:ffd4fa4c03f55564aaf87876c9f31abf687371bdb0943c943bb4226239677a07",
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-hooks-doctor-5"
+      ],
+      "_conflictOf": "R4-P2-001",
+      "_conflict_id": "R4-P2-001--8aa0323eda70",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--09ff48e9a0b9",
+          "peerLineages": [
+            "render-hooks-plugin"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--c63b4b48e481",
+          "peerLineages": [
+            "render-hooks-plugin-4"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-001",
+          "peerId": "R4-P2-001--d1528b81a2ca",
+          "peerLineages": [
+            "scorer-attach"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R4-P2-002--a32c47732ce8",
+      "severity": "P2",
+      "title": "The doctor contract test name says it checks DSH only while it now asserts the Vibe rows too",
+      "file": ".skilled/commands/doctor/scripts/tests/doctor-runtime-mirrors-contract.test.cjs",
+      "line": 203,
+      "description": "MIRROR_CHECKS is the union of DSH and Vibe rows and routeGaps iterates both, but the route test is still named for the three DSH checks.",
+      "findingClass": "test_naming_gap",
+      "deltaStatus": null,
+      "scopeProof": "The contract test is a declared scope file and the changed line added the Vibe rows to the same array.",
+      "affectedSurfaceHints": [
+        "doctor contract test",
+        "CI failure attribution",
+        "Vibe mirror coverage"
+      ],
+      "contentHash": "sha256:c34199f3db4d4e8e9c3a284da0378996e41ef3bb0daaa69e839b0ef40d0f628f",
+      "refines": null,
+      "dimension": "maintainability",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "maintainability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-hooks-doctor-5"
+      ],
+      "_conflictOf": "R4-P2-002",
+      "_conflict_id": "R4-P2-002--a32c47732ce8",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-002",
+          "peerId": "R4-P2-002--828881666f76",
+          "peerLineages": [
+            "scorer-attach"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-002",
+          "peerId": "R4-P2-002--de3d8b259d8e",
+          "peerLineages": [
+            "render-hooks-plugin"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-002",
+          "peerId": "R4-P2-002--15eee53d06a8",
+          "peerLineages": [
+            "render-hooks-plugin-4"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
@@ -2578,12 +3424,54 @@
         {
           "relation": "CONTRADICTS",
           "originalId": "R3-P2-002",
+          "peerId": "R3-P2-002--06b97979c27d",
+          "peerLineages": [
+            "vibe-hooks-doctor-5"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-002",
           "peerId": "R3-P2-002--5522ea1fe8dd",
           "peerLineages": [
             "scorer-attach"
           ],
           "basis": "same-id-different-content"
         }
+      ]
+    },
+    {
+      "findingId": "iter2-P2-symlink-escapes-arena",
+      "severity": "P2",
+      "title": "The dotenv skip and the containment claim cover regular files only, so a symlinked entry is copied as a link that can point outside the arena",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs",
+      "line": 218,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-5"
       ]
     },
     {
@@ -2715,6 +3603,89 @@
       ]
     },
     {
+      "findingId": "iter4-P2-arena-copy-path-untested",
+      "severity": "P2",
+      "title": "The guards suite never exercises the builder's copy path, so the dotenv skip, the clonefile flag and the ignored-tree walk are untested",
+      "file": ".skilled/skills/system-skill-advisor/runtime/tests/command-behaviour-guards.vitest.ts",
+      "line": 407,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-5"
+      ]
+    },
+    {
+      "findingId": "R2-P2-001--bf202e9d99f7",
+      "severity": "P2",
+      "title": "The handler resolves the shared switch resolver one level above the repository when it runs from source, so the canonical kill switch fails open there",
+      "file": ".skilled/skills/system-skill-advisor/hooks/claude/user-prompt-submit.ts",
+      "line": 71,
+      "description": "skillAdvisorHookEnabled resolves hook-flags.cjs with six parent hops, which is correct only for the dist file; from the source folder the require throws and the catch returns true.",
+      "findingClass": "fail_open_control_bypass",
+      "deltaStatus": null,
+      "scopeProof": "The handler is in the declared scope; the dist file is the shipped entry and resolves, so the reach is the vitest and development consumers the repo uses.",
+      "affectedSurfaceHints": [
+        "canonical kill switch",
+        "source-run handler",
+        "test harness"
+      ],
+      "contentHash": "sha256:099290aa55ce6b14d76c777e6ac0f5414751e72ecf9e93ceb7cce49da3d52592",
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-hooks-doctor-5"
+      ],
+      "_conflictOf": "R2-P2-001",
+      "_conflict_id": "R2-P2-001--bf202e9d99f7",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-001",
+          "peerId": "R2-P2-001--96fde986fe71",
+          "peerLineages": [
+            "scorer-attach"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
       "findingId": "iter2-P2-live-holdout-guard-baseline-only",
       "severity": "P2",
       "title": "The holdout publication guard reads the baseline, not the live capture",
@@ -2744,6 +3715,65 @@
       "mergedFindingIds": [],
       "_lineages": [
         "accuracy-runner-4"
+      ]
+    },
+    {
+      "findingId": "R3-P2-002--06b97979c27d",
+      "severity": "P2",
+      "title": "The hook contract names Vibe in its per-runtime table but leaves it out of the two runtime summaries that table feeds",
+      "file": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+      "line": 84,
+      "description": "The section intro and the starting-a-surfaced-command table omit Vibe while the new Vibe row says it uses the shared handler and needs the document line.",
+      "findingClass": "doc_code_drift",
+      "deltaStatus": null,
+      "scopeProof": "The hook contract is a declared scope file and the Vibe row is the changed line; the code it describes is in scope.",
+      "affectedSurfaceHints": [
+        "hook contract",
+        "Vibe command document line",
+        "runtime capability table"
+      ],
+      "contentHash": "sha256:527655716771c892b6b5ed19c3e780ee1a52e1954f83f722256e01dfbbeac75e",
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-hooks-doctor-5"
+      ],
+      "_conflictOf": "R3-P2-002",
+      "_conflict_id": "R3-P2-002--06b97979c27d",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-002",
+          "peerId": "R3-P2-002--ecbea1260371",
+          "peerLineages": [
+            "render-hooks-plugin"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-002",
+          "peerId": "R3-P2-002--5522ea1fe8dd",
+          "peerLineages": [
+            "scorer-attach"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
@@ -2907,7 +3937,7 @@
       ]
     },
     {
-      "findingId": "R2-P2-002",
+      "findingId": "R2-P2-002--1b7b07f775ee",
       "severity": "P2",
       "title": "The low-level advisor spawn accumulates child output without a byte cap",
       "file": ".skilled/skills/system-skill-advisor/runtime/lib/subprocess.ts",
@@ -2936,6 +3966,19 @@
       "mergedFindingIds": [],
       "_lineages": [
         "render-hooks-plugin"
+      ],
+      "_conflictOf": "R2-P2-002",
+      "_conflict_id": "R2-P2-002--1b7b07f775ee",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-002",
+          "peerId": "R2-P2-002--5d9308ec0670",
+          "peerLineages": [
+            "vibe-hooks-doctor-5"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
@@ -2968,6 +4011,39 @@
       "mergedFindingIds": [],
       "_lineages": [
         "hook-confirm-3b"
+      ]
+    },
+    {
+      "findingId": "iter2-P2-env-alias-column",
+      "severity": "P2",
+      "title": "The master-switch row says No aliases while the resolver honors MK_HOOKS_DISABLED",
+      "file": ".skilled/skills/system-spec-kit/runtime/ENV-REFERENCE.md",
+      "line": 74,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "kill-switch-cli-5"
       ]
     },
     {
@@ -3099,6 +4175,56 @@
       ]
     },
     {
+      "findingId": "R1-P2-001--fad6f8329979",
+      "severity": "P2",
+      "title": "The no-brief fallback is read as a routing head, so a command named in the directive block gains a document line after the directives",
+      "file": ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+      "line": 125,
+      "description": "withCommandDocuments treats a context that starts with the directive separator as a head, so a fallback whose directive block names a command gains a Command documents line after the directives.",
+      "findingClass": "boundary_parsing",
+      "deltaStatus": null,
+      "scopeProof": "The Vibe part is in the declared vibe-hooks-doctor scope; withCommandDocuments is its only document-line producer and the fallback shape is produced by the in-scope handler.",
+      "affectedSurfaceHints": [
+        "Vibe no-brief fallback",
+        "document line placement",
+        "directive block"
+      ],
+      "contentHash": "sha256:c097882dc09a636afeb0de676afbeb5901f2f174066552f58c2708c8d0748aac",
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-hooks-doctor-5"
+      ],
+      "_conflictOf": "R1-P2-001",
+      "_conflict_id": "R1-P2-001--fad6f8329979",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-001",
+          "peerId": "R1-P2-001--47c642ddcda2",
+          "peerLineages": [
+            "scorer-attach"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
       "findingId": "HC3B-P2-003",
       "severity": "P2",
       "title": "The no-edit guard table has no genuine object-bearing no-edit row, so the regression ships with a green suite",
@@ -3184,6 +4310,15 @@
           "peerId": "R4-P2-002--de3d8b259d8e",
           "peerLineages": [
             "render-hooks-plugin"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R4-P2-002",
+          "peerId": "R4-P2-002--a32c47732ce8",
+          "peerLineages": [
+            "vibe-hooks-doctor-5"
           ],
           "basis": "same-id-different-content"
         }
@@ -3814,6 +4949,15 @@
             "render-hooks-plugin"
           ],
           "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-002",
+          "peerId": "R3-P2-002--06b97979c27d",
+          "peerLineages": [
+            "vibe-hooks-doctor-5"
+          ],
+          "basis": "same-id-different-content"
         }
       ]
     },
@@ -3882,6 +5026,39 @@
       ]
     },
     {
+      "findingId": "iter2-P2-macos-only-copy-flag",
+      "severity": "P2",
+      "title": "The single copy call uses the macOS clonefile flag with no platform check",
+      "file": ".skilled/skills/system-skill-advisor/runtime/scripts/routing-accuracy/prepare-behaviour-arena.mjs",
+      "line": 226,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "accuracy-runner-5"
+      ]
+    },
+    {
       "findingId": "iter4-P2-g2-label-grammar-duplication",
       "severity": "P2",
       "title": "The started-command set row ids are a second source of truth for labels the scorer reconstructs from a regex",
@@ -3911,6 +5088,115 @@
       "mergedFindingIds": [],
       "_lineages": [
         "accuracy-runner"
+      ]
+    },
+    {
+      "findingId": "R1-P2-002--fd81d5c672ac",
+      "severity": "P2",
+      "title": "The subagent guard keys on a field no Vibe source or test names, while the hook contract promises a subagent turn gets no brief",
+      "file": ".skilled/skills/system-skill-advisor/hooks/vibe/prompt-advisor.mjs",
+      "line": 64,
+      "description": "isChildSession reads payload.parent_session_id as the subagent marker, but no in-repo Vibe payload schema or test names that key, so the contract promise is unverified.",
+      "findingClass": "unverified_claim",
+      "deltaStatus": null,
+      "scopeProof": "Both the part and the hook contract are in the declared scope; the child marker is a behavior the contract states.",
+      "affectedSurfaceHints": [
+        "Vibe subagent turns",
+        "child-session suppression",
+        "hook contract doc"
+      ],
+      "contentHash": "sha256:d439e745a5309d4e09cc4d372646a6c7975821166688acfcd7278cd9fe849d5c",
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-hooks-doctor-5"
+      ],
+      "_conflictOf": "R1-P2-002",
+      "_conflict_id": "R1-P2-002--fd81d5c672ac",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-002",
+          "peerId": "R1-P2-002--fabc628596e7",
+          "peerLineages": [
+            "render-hooks-plugin"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-002",
+          "peerId": "R1-P2-002--95282927956e",
+          "peerLineages": [
+            "scorer-attach"
+          ],
+          "basis": "same-id-different-content"
+        }
+      ]
+    },
+    {
+      "findingId": "R2-P2-002--5d9308ec0670",
+      "severity": "P2",
+      "title": "The switch table implies a hook-versus-plugin split that the shared resolver does not make, so either name silences every adapter",
+      "file": ".skilled/skills/system-skill-advisor/hooks/skill-advisor-hook.md",
+      "line": 173,
+      "description": "The hook alias row says it disables the native adapters, but the shared resolver lists it with the plugin alias for one concern, and the OpenCode plugin and the Vibe part ask that resolver.",
+      "findingClass": "doc_code_drift",
+      "deltaStatus": null,
+      "scopeProof": "The hook contract is a declared scope file and the rows are the changed lines; the resolver and plugin are read as context evidence.",
+      "affectedSurfaceHints": [
+        "kill-switch documentation",
+        "OpenCode plugin",
+        "Vibe part"
+      ],
+      "contentHash": "sha256:03379ed479386153758612630b8adecd772e998be6e41d8c5c7867000fd327d3",
+      "refines": null,
+      "dimension": "security",
+      "firstSeen": 2,
+      "lastSeen": 2,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "security"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-hooks-doctor-5"
+      ],
+      "_conflictOf": "R2-P2-002",
+      "_conflict_id": "R2-P2-002--5d9308ec0670",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R2-P2-002",
+          "peerId": "R2-P2-002--1b7b07f775ee",
+          "peerLineages": [
+            "render-hooks-plugin"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
@@ -4007,6 +5293,65 @@
       "mergedFindingIds": [],
       "_lineages": [
         "doctor-install"
+      ]
+    },
+    {
+      "findingId": "R3-P2-001--49d99836d1c8",
+      "severity": "P2",
+      "title": "The Vibe row ignores the hook match filter, so an entry Vibe never runs on a main turn still reads ok vibe",
+      "file": ".skilled/commands/doctor/scripts/hook-wiring-check.cjs",
+      "line": 249,
+      "description": "tomlCommands captures only type and command, and inspect accepts any pre_agent block whose command ends with the marker, so a match value other than main still reads ok.",
+      "findingClass": "false_pass_diagnostic",
+      "deltaStatus": null,
+      "scopeProof": "The check and its test are declared scope files; the hooks file and README are the code and claim it must match.",
+      "affectedSurfaceHints": [
+        "doctor hook-wiring check",
+        "Vibe prompt entry",
+        "target-repository diagnostics"
+      ],
+      "contentHash": "sha256:97893ae4ae140f6f44d2bf98999cb411ecf9d00501f10d3851855015a5198eea",
+      "refines": null,
+      "dimension": "traceability",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "traceability"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "vibe-hooks-doctor-5"
+      ],
+      "_conflictOf": "R3-P2-001",
+      "_conflict_id": "R3-P2-001--49d99836d1c8",
+      "_conflicts": [
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--16e5737e0e56",
+          "peerLineages": [
+            "render-hooks-plugin"
+          ],
+          "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--0e0d904eb571",
+          "peerLineages": [
+            "scorer-attach"
+          ],
+          "basis": "same-id-different-content"
+        }
       ]
     },
     {
@@ -4115,6 +5460,15 @@
             "render-hooks-plugin"
           ],
           "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R3-P2-001",
+          "peerId": "R3-P2-001--49d99836d1c8",
+          "peerLineages": [
+            "vibe-hooks-doctor-5"
+          ],
+          "basis": "same-id-different-content"
         }
       ]
     },
@@ -4160,7 +5514,82 @@
             "render-hooks-plugin"
           ],
           "basis": "same-id-different-content"
+        },
+        {
+          "relation": "CONTRADICTS",
+          "originalId": "R1-P2-002",
+          "peerId": "R1-P2-002--fd81d5c672ac",
+          "peerLineages": [
+            "vibe-hooks-doctor-5"
+          ],
+          "basis": "same-id-different-content"
         }
+      ]
+    },
+    {
+      "findingId": "DM5-P2-004",
+      "severity": "P2",
+      "title": "Upgrade note says the retired create-skill name has no alias while the release note says it still reads",
+      "file": ".skilled/skills/system-skill-advisor/changelog/v1.1.0.0.md",
+      "line": 251,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "docs-metadata-5"
+      ]
+    },
+    {
+      "findingId": "DM5-P2-003",
+      "severity": "P2",
+      "title": "Wave 2 schedules a scenario the package says is not authored",
+      "file": ".skilled/skills/system-skill-advisor/manual-testing-playbook/manual-testing-playbook.md",
+      "line": 155,
+      "description": "",
+      "findingClass": null,
+      "deltaStatus": null,
+      "scopeProof": null,
+      "affectedSurfaceHints": [],
+      "contentHash": null,
+      "refines": null,
+      "dimension": "correctness",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "status": "active",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery (delta)"
+        }
+      ],
+      "dimensions": [
+        "correctness"
+      ],
+      "mergedFindingIds": [],
+      "_lineages": [
+        "docs-metadata-5"
       ]
     }
   ],
@@ -4328,12 +5757,12 @@
   ],
   "findingsBySeverity": {
     "P0": 0,
-    "P1": 12,
-    "P2": 104
+    "P1": 15,
+    "P2": 133
   },
-  "openFindingsCount": 116,
+  "openFindingsCount": 148,
   "resolvedFindingsCount": 5,
   "activeP0": 0,
-  "activeP1": 12,
-  "activeP2": 104
+  "activeP1": 15,
+  "activeP2": 133
 }

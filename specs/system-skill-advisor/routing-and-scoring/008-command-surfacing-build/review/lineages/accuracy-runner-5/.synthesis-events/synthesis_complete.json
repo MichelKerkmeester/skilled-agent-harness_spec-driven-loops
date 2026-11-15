@@ -1,0 +1,1 @@
+{"stem":"deep_review.synthesis_complete","scope":{"runId":"accuracy-runner-5","sessionId":"accuracy-runner-5"},"data":{"mode":"review","totalIterations":4,"activeP0":0,"activeP1":3,"activeP2":7,"dimensionCoverage":1,"verdict":"CONDITIONAL","releaseReadinessState":"in-progress","stopReason":"maxIterationsReached"}}
