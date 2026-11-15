@@ -6,15 +6,16 @@
     "phase",
     "review-agent-gates"
   ],
-  "lastUpdated": "2026-11-14T20:48:12.098Z",
+  "lastUpdated": "2026-11-15T00:08:24.109Z",
   "specId": "012",
   "folderSlug": "review-agent-gates",
   "parentChain": [
     "agents",
     "007-agent-alignment-follow-ups"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "14-11-26_21-48__phase-012-findings-reproduced-before-planning.md"
+    "14-11-26_21-48__phase-012-findings-reproduced-before-planning.md",
+    "15-11-26_01-08__phase-012-built-review-agent-runs-both-report.md"
   ]
 }

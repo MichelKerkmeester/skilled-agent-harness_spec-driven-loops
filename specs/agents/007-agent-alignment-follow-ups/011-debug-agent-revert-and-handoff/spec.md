@@ -20,7 +20,7 @@ contextType: "general"
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-11-14 |
 | **Branch** | `worktrees/384-agent-alignment-follow-ups` |
 | **Parent Spec** | ../spec.md |

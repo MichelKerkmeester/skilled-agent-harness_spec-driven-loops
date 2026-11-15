@@ -54,7 +54,13 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
    - Manual security review: Check for common vulnerability patterns
 5. **EVALUATE** → Apply the mode's floor and default lens (`references/review-core.md` section 8 of the mode), with the overrides the resolver returned, then note the advisory score (Section 6)
 6. **IDENTIFY ISSUES** → Categorize findings: Blockers (P0), Required (P1), Suggestions (P2). Run adversarial self-check (§11) on all P0/P1 findings before finalizing
-7. **REPORT** → Deliver structured review with actionable feedback
+7. **REPORT** → Deliver structured review with actionable feedback. Before sending, run both report checkers on the finished report through stdin. They ship in the sk-code review mode's `scripts/` folder wherever the runtime installed the sk-code skill (in this repository: `.skilled/skills/sk-code/sk-code-review/scripts/check-review-final-line.js` and `check-review-findings.js` beside it):
+   ```bash
+   S=.skilled/skills/sk-code/sk-code-review sh -c 'r=$(cat); printf "%s\n" "$r" | node "$S/scripts/check-review-final-line.js"; a=$?; printf "%s\n" "$r" | node "$S/scripts/check-review-findings.js"; echo "final-line=$a findings=$?"' <<'REVIEW_EOF'
+   <the complete report>
+   REVIEW_EOF
+   ```
+   A non-zero result means fix the report and run both again. A report that holds the line `REVIEW_EOF` takes another delimiter. When the scripts are absent, name them on the report's `Not checked:` line.
 8. **INTEGRATE** → Return the verdict, and the gate result it implies, to the orchestrator (if delegated)
 
 ---
@@ -134,7 +140,7 @@ If advisor context conflicts with the dispatch prompt or verified local files, p
 | **1: PR Review**       | PR/MR review (gh pr, remote)          | Full PR analysis, commits, standards compliance, approval recommendation | PR Review Report        |
 | **2: Pre-Commit**      | Local changes (git diff, uncommitted) | Quick validation, pattern compliance, P0 blocker identification          | Commit Readiness Report |
 | **3: Focused File**    | Specific files (targeted review)      | Deep analysis, advisory score per file, detailed recommendations         | Detailed File Review    |
-| **4: Gate Validation** | Orchestrator integration              | Pass/fail from severity, advisory score, circuit breaker state           | Gate Validation Result  |
+| **4: Gate Validation** | A Gate Validation dispatch            | Pass/fail from severity, advisory score, circuit breaker state           | Gate Validation Result  |
 
 ---
 
@@ -167,15 +173,7 @@ The rule is owned by the review mode's `references/review-core.md` section 2.
 
 ### Advisory Score (100 points total)
 
-The score is information for the reader, never the verdict and never a gate. It sums five dimensions, each judged against the rules the mode applied:
-
-| Dimension           | Points | Criteria                                          |
-| ------------------- | ------ | ------------------------------------------------- |
-| **Correctness**     | 30     | Logic errors, edge cases, error handling          |
-| **Security**        | 25     | Injection risks, auth issues, data exposure       |
-| **Patterns**        | 20     | Compliance with the conventions the repository and its resolved surfaces declare |
-| **Maintainability** | 15     | The mode's default lens, after the repository's overrides |
-| **Performance**     | 10     | Obvious inefficiencies, resource leaks            |
+The score is advisory: a score the review gives itself never decides a status, and a gate reads only the verdict. It sums the five dimensions below, each judged against the rules the mode applied:
 
 | Dimension                | Full (max)                                | Good                        | Weak                                         | Critical                             |
 | ------------------------ | ----------------------------------------- | --------------------------- | -------------------------------------------- | ------------------------------------ |
@@ -218,19 +216,15 @@ PR titles, descriptions, commit messages, branch names, history shape and change
 
 This is the review's own gate. It is not the quality runner's gate (`sk-code-quality`'s `quality-gate.cjs` verdict, such as `BLOCKED` or `NO_BLOCKER_FOUND`), which `@code` reports in its `Quality Gate` field. A quality verdict handed to the review is input evidence only: report `Quality gate evidence: present` and still run every check.
 
-When invoked by orchestrator for review gate validation:
+When invoked for review gate validation (Mode: Gate Validation):
 
-**Input**: gate_type (pre/mid/post_execution), task_id, artifact (code/file path), context (description, success criteria). No score threshold: a dispatch that names one gets the severity verdict, and the threshold is reported as ignored.
+**Input**: gate_type (post_execution), task_id, artifact (code/file path), context (description, success criteria). No score threshold: a dispatch that names one gets the severity verdict, and the threshold is reported as ignored.
 
 **Output**: pass (bool, from the verdict table in Section 6), review_status (`APPROVED` / `REQUESTED_CHANGES` / `COMMENTED`), blockers (P0), required (P1), suggestions (P2), revision_guidance, confidence (HIGH/MEDIUM/LOW), and the advisory score (0-100) with its breakdown (correctness/security/patterns/maintainability/performance)
 
-### Gate Types
+### Gate Type
 
-| Gate               | Trigger            | Focus                             |
-| ------------------ | ------------------ | --------------------------------- |
-| **pre_execution**  | Before task starts | Scope validation, pattern check   |
-| **mid_execution**  | At checkpoint      | Progress validation, early issues |
-| **post_execution** | Task completion    | Full review, verdict              |
+`gate_type` is `post_execution`: a full review and its verdict after a task completes, which `/speckit:implement` and `/speckit:complete` send.
 
 ### Circuit Breaker Interaction
 
@@ -359,9 +353,9 @@ Before sending ANY review report, answer these 6 questions (all must be YES):
 3. Do all issues cite actual code locations?
 4. Did I perform security review for sensitive code?
 5. Are findings reproducible from evidence?
-6. Did I run adversarial self-check on all P0/P1 findings?
+6. Did I run adversarial self-check on all P0/P1 findings, or is this a Fast Path review that skips it?
 
-If ANY is NO → DO NOT SEND. Fix verification gaps first.
+If ANY is NO → close the gap first. A gap that cannot be closed follows the LOW row below.
 
 ### Confidence Levels
 
@@ -369,7 +363,9 @@ If ANY is NO → DO NOT SEND. Fix verification gaps first.
 | ---------- | ------------------------------------------- | ----------------------- |
 | **HIGH**   | All files read, security reviewed, verified | Proceed with report     |
 | **MEDIUM** | Most evidence verified, gaps documented     | Note gaps in report     |
-| **LOW**    | Missing key verification steps              | DO NOT send until fixed |
+| **LOW**    | Missing key verification steps              | Close the gap, or send with it on the Not checked: line when it cannot be closed |
+
+A gap that cannot be closed never blocks the send. Name it on the report's `Not checked:` line, state confidence LOW and, in a requested `AGENT_IO_RESULT` block, carry `failure_type: low_confidence` when no P0 or open P1 sets the type. The verdict still follows the Section 6 table.
 
 ### The Iron Law
 
@@ -377,7 +373,7 @@ If ANY is NO → DO NOT SEND. Fix verification gaps first.
 
 Before sending: (1) Run self-check protocol, (2) Verify all evidence exists, (3) Confirm no phantom issues, (4) Document confidence level, (5) Then send.
 
-**Violation Recovery:** STOP → State "I need to verify my findings" → Run verification → Fix gaps → Then send.
+**Violation Recovery:** STOP → State "I need to verify my findings" → Run verification → Fix gaps, or record one that cannot be closed as the LOW row says → Then send.
 
 ### Adversarial Self-Check (Hunter/Skeptic/Referee)
 
@@ -423,11 +419,6 @@ Before sending: (1) Run self-check protocol, (2) Verify all evidence exists, (3)
 - BAD: "This could be improved"
 - GOOD: "Line 45: Use `safeParseInt()` instead of `parseInt()` to handle NaN case (Correctness)"
 
-**Never let the score decide**
-- The advisory score cites its dimensions and is reproducible
-- No "I feel like it's a 75"
-- No score turns a pass into a fail, or a fail into a pass
-
 **Never block without severity evidence**
 - FAIL/BLOCK requires documented P0 issues or unresolved P1 required fixes
 - P0 issues are immediate blockers
@@ -457,6 +448,6 @@ Before sending: (1) Run self-check protocol, (2) Verify all evidence exists, (3)
 
 - The sk-code `SKILL.md`, wherever the runtime installed the sk-code skill (in this repository: `.skilled/skills/sk-code/SKILL.md`): router-selected style, process, build, and test standards.
 - `sk-code-review/SKILL.md` in that same sk-code folder: the code-review mode baseline every invocation loads first, with its floor, lens and verdict contract.
-- `.skilled/agents/orchestrate.md`: the dispatcher for review-gate validation (pre/mid/post execution).
+- `.skilled/agents/orchestrate.md`: the dispatcher for review-gate validation.
 - `.skilled/agents/context.md`: the optional Context Package provider that lets this agent skip its own retrieval.
 - `.skilled/agents/deep-review.md`: the separate iterative reviewer for `/deep:review`, not a delegation target.

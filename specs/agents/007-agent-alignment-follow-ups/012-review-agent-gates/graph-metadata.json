@@ -32,19 +32,21 @@
       "self-check"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
+      "scratch/after.txt",
       ".skilled/agents/review.md",
       ".claude/agents/review.md",
-      ".skilled/agents/orchestrate.md",
       ".pi/agents/review.md",
       ".codex/agents/review.toml",
-      "codex/sync-agents.cjs",
       ".dsh/agents/review.patch.yml",
+      "scratch/baseline.txt",
+      ".skilled/agents/orchestrate.md",
+      "codex/sync-agents.cjs",
       ".opencode/agents/review.md"
     ],
     "entities": [
@@ -73,15 +75,15 @@
         "source": "derived"
       },
       {
-        "name": "review.md",
-        "kind": "doc",
-        "path": ".skilled/agents/review.md",
+        "name": "after.txt",
+        "kind": "file",
+        "path": "scratch/after.txt",
         "source": "derived"
       },
       {
-        "name": "orchestrate.md",
+        "name": "review.md",
         "kind": "doc",
-        "path": ".skilled/agents/orchestrate.md",
+        "path": ".skilled/agents/review.md",
         "source": "derived"
       },
       {
@@ -91,15 +93,27 @@
         "source": "derived"
       },
       {
-        "name": "sync-agents.cjs",
-        "kind": "file",
-        "path": "codex/sync-agents.cjs",
-        "source": "derived"
-      },
-      {
         "name": "review.patch.yml",
         "kind": "config",
         "path": ".dsh/agents/review.patch.yml",
+        "source": "derived"
+      },
+      {
+        "name": "baseline.txt",
+        "kind": "file",
+        "path": "scratch/baseline.txt",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".skilled/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "sync-agents.cjs",
+        "kind": "file",
+        "path": "codex/sync-agents.cjs",
         "source": "derived"
       },
       {
@@ -179,23 +193,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Gate Types",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A fast-path review skips the adversarial self-check (`review.md:386`), and self-check question 6 then answers NO, which `:364` turns into DO NOT SEND",
     "created_at": "2026-11-14T20:19:22Z",
-    "last_save_at": "2026-11-14T20:48:12.098Z",
+    "last_save_at": "2026-11-15T00:08:24.109Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,13 +206,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:08170fcc5d50c297777502832a14751ae284f9c2f26c647ffd550f831dcdeee6",
+    "source_fingerprint": "sha256:2a3437cc0c60f363b7ea1ec2395a3d005cad2a0e2696b772122d7453d22e0f2d",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "f8546532bbd3a5dcd9bf6998640204a481d1d8ce44e7dbcb5f00f3265746c925",
+      "spec.md": "074c133733f1b7deccf88ec3a4e11c11ab5610e054e9f3b38a3099dc912bdac4",
       "plan.md": "5661d9ebd33f55de1659603da68213becdf9d1f65f5cacb9234990d123d1127b",
-      "tasks.md": "97619f79255b60796c32407bc5e4628aafac350a5843d2d273eb178bd395f768",
-      "implementation-summary.md": "c311b7ee3a493541e61aa79db6c9bd01ddd523496e40ea1b32e38a3b9af38245"
+      "tasks.md": "54204642855c8aab2d5bfc1666d33bf612be9ca7c6f8675dd02752a2036f8f8d",
+      "implementation-summary.md": "5fbc51c634ce29019e8c5e2c2ea568b3ea1fba43f60da6a3224601a9fb246eef"
     },
     "last_active_at": null
   }

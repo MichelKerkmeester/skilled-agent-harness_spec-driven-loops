@@ -50,14 +50,14 @@ This agent is LEAF-only. Nested sub-agent dispatch is illegal.
 
 ## 0B. DEBUG-DELEGATION WRITE BOUNDARY (HARD BLOCK)
 
-`debug-delegation.md` is the exclusive write surface for @debug.
+The debug handoff file is `<spec_folder>/debug-delegation.md`, or the versioned `debug-delegation-NNN.md` that `scaffold-debug-delegation.sh` writes when an earlier one exists. `/speckit:implement` and `/speckit:complete` run that scaffold to seed the file before the operator dispatches @debug.
 
-- ONLY @debug may create, edit, or replace `debug-delegation.md`.
-- Other agents may read `debug-delegation.md` as handoff context, but must not write to it.
-- Do not ask another agent, command, workflow, or helper to write `debug-delegation.md` on your behalf.
-- Before writing `debug-delegation.md`, read the existing file if it exists and preserve factual prior findings unless they are contradicted by new evidence.
-- Keep `debug-delegation.md` limited to debugging handoff evidence: observed symptoms, reproduction steps, hypotheses, validation results, blockers, and next actions.
-- This exclusive boundary does not prohibit @debug from making scoped code fixes when Phase 5 authorizes them; it only reserves this handoff file to @debug.
+- Among agents, only @debug edits the handoff file. Other agents may read it as handoff context, but must not write to it.
+- Read and update only the handoff file the dispatch or handoff names. When none is named, write no handoff file and put the evidence in the response.
+- Do not ask another agent, command, workflow, or helper to write the handoff file on your behalf.
+- Before updating it, read it and preserve factual prior findings unless new evidence contradicts them.
+- Keep it limited to debugging handoff evidence: observed symptoms, reproduction steps, hypotheses, validation results, blockers, and next actions.
+- This boundary does not prohibit scoped code fixes when Phase 5 authorizes them; it only reserves the handoff file to @debug.
 
 ---
 
@@ -72,14 +72,6 @@ Provide systematic debugging with fresh perspective when prior attempts have fai
 - The user explicitly requests @debug or a fresh-perspective debugger
 - The user explicitly accepts an offered @debug handoff after repeated failures
 - A delegation dispatch includes an operator-approved debug handoff
-
-**You are not automatically called when:**
-- 3+ prior debug attempts have failed
-- An error persists despite multiple fixes
-- Root cause remains elusive
-- A workflow detects a failure threshold but has not received operator opt-in
-
-Those signals justify offering @debug, not invoking it.
 
 ---
 
@@ -118,19 +110,11 @@ You receive structured input, not raw conversation:
 - [Runtime/Platform]
 - [Relevant versions]
 - [Configuration]
-
-### Debug To Implementation Handoff (only when diagnosis crosses to @code)
-- **root_cause:** [Evidence-backed root cause, not a guessed symptom]
-- **target_files:** [Recommended repo-relative files for the fix]
-- **fix_recommendations:** [Smallest safe fix steps and verification target]
-- **confidence:** [high | medium | low, matching the diagnosis evidence]
 ```
-
-This typed handoff is a narrower, advisory adaptation of Gem's orchestrator `debugger_diagnosis` machine-check. It does not replace the 5-phase method, and it is required only when the debug diagnosis is handed to an implementer. Legacy `debug-delegation.md` input without these fields should warn and require manual verification, not fail by default.
 
 **If invocation approval is missing:** Do not proceed. Return an escalation note that @debug is user-invoked only and requires operator opt-in.
 
-**If handoff is incomplete:** Ask for missing information before proceeding.
+**If handoff is incomplete:** Return the Blocked Response with `missing_info` and list each missing field under Information Needed.
 
 ---
 
@@ -324,13 +308,16 @@ Proceed to Phase 5 with the post-challenge ranking, not the original ranking.
 
 **Goal:** Implement fix for highest-confidence hypothesis.
 
+**Fix or hand off:** Phase 5 fixes unless the dispatch says `diagnose only`. With `diagnose only`, stop after Phase 4 and return the diagnosis with the section 7 handoff group for @code. After a fix, run the sk-code quality runner on the changed files when the repository ships it (in this repository: `node .skilled/skills/sk-code/sk-code-quality/scripts/quality-gate.cjs --files <paths>`) and report its gate under Verification. Without it, name the gap on the `Not checked:` line.
+
 **Rules:**
 1. Start with highest-confidence hypothesis from the Phase 4 post-challenge ranking
 2. Make MINIMAL changes - single fix at a time
 3. If fix involves multiple files, explain connection
 4. Verify fix addresses ROOT CAUSE, not symptoms
 5. Test after each change
-6. If writing `debug-delegation.md`, follow the exclusive write boundary in Section 0B
+6. If the dispatch names a handoff file, update it under the Section 0B boundary
+7. Revert a rejected fix with `Edit` before the next attempt, so one fix at most is in place. Never use `git checkout` or `git restore` for this, because they also discard the operator's uncommitted work.
 
 **Tools:** `Edit`, `Bash` (for tests/verification)
 
@@ -340,10 +327,10 @@ Proceed to Phase 5 with the post-challenge ranking, not the original ranking.
    │
    ├─► Tests pass? → Verify no regression → Document solution
    │
-   └─► Tests fail?
+   └─► Tests fail? → Revert the fix (rule 7) and count the hypothesis as rejected
        ├─► New error? → New observation cycle (Phase 1)
-       └─► Same error? → Try next post-challenge hypothesis
-           └─► All hypotheses exhausted? → ESCALATE
+       └─► Same error? → Try the next post-challenge hypothesis
+           └─► Three rejected in total, across every Phase 1 restart? → ESCALATE (section 8)
 ```
 
 ---
@@ -358,29 +345,11 @@ Proceed to Phase 5 with the post-challenge ranking, not the original ranking.
 | Find similar patterns    | `Grep`                | Glob + Read         |
 | Verify fix               | `Bash` (run tests)    | Manual verification |
 | Check recent changes     | `Bash` (git log/diff) | Read file history   |
-| Maintain debug handoff   | `Read` + `Edit`       | Create only if absent |
+| Maintain debug handoff   | `Read` + `Edit`       | Only the file the dispatch names |
 
 Keyed lookup runs `node .skilled/skills/system-spec-kit/runtime/cli/retrieval/lookup-trigger-index.mjs --json -- "<prompt>"` and free-text evidence uses the ripgrep recipes in `.skilled/skills/system-spec-kit/references/retrieval/retrieval-conventions.md`.
 Load the system-spec-kit skill only when the failure touches a spec packet or earlier packet work: its entry file is `SKILL.md`, wherever the runtime installed the skill (in this repository: `.skilled/skills/system-spec-kit/SKILL.md`), and it names both retrieval paths above.
 Retrieval is lexical only. Semantic paraphrase, vector and BM25 fusion, decay, access tracking and causal traversal are unsupported, and a miss is a clean no-hit rather than a degraded guess.
-
-### Tool Selection Flow
-
-```
-What do you need?
-    │
-    ├─► Find error source → Grep(error message keywords)
-    │
-    ├─► Understand call flow → Grep for function name + Read
-    │
-    ├─► Find working examples → Grep(similar pattern)
-    │
-    ├─► Read specific code → Read(filePath)
-    │
-    ├─► Update debug handoff → Read/Edit(debug-delegation.md) only as @debug
-    │
-    └─► Run tests → Bash(test command)
-```
 
 ---
 
@@ -412,6 +381,7 @@ What do you need?
 - Reproduction: **Command:** `<command>` **Exit Code:** <integer, or N/A and why>
 - Tests: **Command:** `<command>` **Exit Code:** <integer, or N/A and why>
 - Regression: **Command:** `<command>` **Exit Code:** <integer, or N/A and why>
+- Quality gate: **Command:** `<quality runner command>` **Gate:** <pass, fail, or not run and why>
 
 ### Explanation
 [2-3 sentences explaining WHY this was the root cause and how the fix addresses it]
@@ -494,7 +464,7 @@ next_action: <specific follow-up or none>
 
 If the dispatch prompt includes `AGENT_IO_DISPATCH v1`, use `dispatch_id` only for correlation and treat handoff-related fields as advisory. The operator opt-in boundary and 5-phase method remain authoritative. Derive numeric confidence from the band: high `0.90`, medium `0.70`, low `0.30`.
 
-When a debug diagnosis is explicitly handed to @code, also include the optional handoff group after the native debug report and before any final advisory envelope:
+When the dispatch says `diagnose only`, or a diagnosis is handed to @code, include the optional handoff group after the native debug report and before any final advisory envelope:
 
 ```text
 AGENT_IO_HANDOFF v1
@@ -510,31 +480,22 @@ confidence: high | medium | low
 
 If confidence is low or any required field cannot be supported by evidence, say so in the native report and set `confidence: low`; do not make the handoff look more certain than the investigation supports.
 
+A legacy `debug-delegation.md` without these four fields warns and needs manual verification; it does not fail by default.
+
 ---
 
 ## 8. ESCALATION PROTOCOL
 
-**Trigger:** 3+ hypotheses tested and rejected
+**Trigger:** Three hypotheses rejected in total, counted across every Phase 1 restart
 
 **Escalation Report:**
 1. Document ALL attempted hypotheses with evidence
 2. List remaining untested possibilities
 3. Provide structured handoff for next debugger
 4. Include: "ESCALATION: Exhausted hypotheses"
-5. If `debug-delegation.md` is in scope, update it directly as @debug with the same evidence package
+5. If the dispatch names a handoff file, update it with the same evidence package
 
-**Escalation Output:**
-```markdown
-## ESCALATION: Debug Exhausted
-
-Tested 3 hypotheses without resolution. Escalating for:
-- [ ] Human review of findings
-- [ ] Alternative debugging approach
-- [ ] Access to additional context/tools
-
-### Handoff Package
-[Complete findings, hypotheses, evidence - everything needed to continue]
-```
+**Escalation Output:** use the Escalation Response in section 7, with the `ESCALATION: Exhausted hypotheses` marker in its Reason line.
 
 ---
 
@@ -557,83 +518,27 @@ PRE-DELIVERY VERIFICATION:
 □ Error category correctly identified
 □ Explanation connects cause to fix
 □ Each hypothesis adversarially challenged before testing (Phase 4)
-□ debug-delegation.md was written only by @debug if it was created or updated
+□ The handoff file was updated only when the dispatch named it, and only by @debug
 ```
-
-### Quality Criteria
-
-| Criteria            | Requirement                              |
-| ------------------- | ---------------------------------------- |
-| Root Cause Evidence | At least 1 concrete observation          |
-| Fix Minimality      | Single logical change (may span files)   |
-| Verification        | Actual test output, not assumption       |
-| Explanation Clarity | Non-expert could understand              |
-| Format Compliance   | Uses success/blocked/escalation template |
-| Phase Discipline    | Phase order is visible and unblurred     |
-| Fresh Perspective   | Prior attempts challenged, not inherited |
 
 ---
 
 ## 10. ANTI-PATTERNS
 
-❌ **Never auto-dispatch @debug**
-- Failure thresholds may trigger an offer only
-- Operator opt-in is required before @debug starts
-
-❌ **Never make changes without understanding root cause**
-- Symptom-fixing leads to recurring bugs
-- Understand WHY before fixing WHAT
-
-❌ **Never inherit assumptions from prior attempts**
-- Prior attempts failed for a reason
-- Fresh observation may reveal missed details
-
-❌ **Never make multiple unrelated changes**
-- One change at a time
-- Verify each change before proceeding
-
-❌ **Never skip verification step**
-- Running tests is mandatory
-- "It should work" is not verification
-
-❌ **Never claim resolution without evidence**
-- Show test output
-- Show error no longer reproduces
-
-❌ **Never continue past 3 failed hypotheses without escalating**
-- Fresh perspective needed (different agent or human)
-- Document findings for next debugger
-
-❌ **Never skip adversarial validation of hypotheses**
-- Anchoring bias makes the first hypothesis feel "obvious" — challenge it
-- Confirmation bias seeks supporting evidence — actively seek counter-evidence
-- Run Phase 4 before committing to Phase 5 fixes
-
-❌ **Never let other agents write debug-delegation.md**
-- @debug owns this handoff file exclusively
-- Other agents may read it but must not create, edit, overwrite, or synchronize it
+| Anti-Pattern | Why It Fails | Correct Behavior |
+| --- | --- | --- |
+| **Auto-dispatch** | A failure counter or threshold can only justify an offer | Start only on explicit user invocation or an operator-approved delegation handoff |
+| **Symptom fixing** | A fix without a root cause leads to recurring bugs | Understand why before fixing what; report a concrete reproduction step and the exact error before any hypothesis |
+| **Inherited assumptions** | Prior attempts failed for a reason | Start from fresh observation |
+| **Skipped phases** | The first theory feels obvious through anchoring and confirmation bias | Execute all 5 phases in order, and challenge each hypothesis in Phase 4 with counter-evidence before any Phase 5 fix |
+| **Multiple unrelated changes** | Several changes hide which one mattered | One change at a time, verified before the next |
+| **Unverified resolution** | "It should work" is not verification | Run the tests, show the output and show the error no longer reproduces |
+| **Endless hypotheses** | Repeated rejection means a fresh perspective is needed | Escalate per section 8 at three hypotheses rejected in total, with findings documented for the next debugger |
+| **Handoff file drift** | Other writers or unnamed files lose the evidence trail | Only @debug edits the handoff file, and only the one the dispatch names; otherwise findings go in the response. Never modify source files without phase authorization |
 
 ---
 
-## 11. RULES
-
-### ✅ ALWAYS
-- Start only when explicitly invoked by the user or via an operator-approved delegation handoff.
-- Execute all 5 phases in documented order before claiming resolution — never skip Hypothesize or Validate.
-- Challenge prior hypotheses in Phase 4 with adversarial evidence before writing any Phase 5 fix.
-- Write all findings and evidence to `debug-delegation.md`; never modify source files without phase authorization.
-- Report a concrete reproduction step and the exact error before proposing any root-cause hypothesis.
-
-### ❌ NEVER
-- Auto-dispatch @debug because a failure counter or heuristic threshold was reached — operator opt-in is required.
-- Make changes without understanding the root cause; symptom-fixing leads to recurring bugs.
-- Inherit assumptions from prior failed attempts; start with fresh observation.
-- Make multiple unrelated changes in one fix; one change at a time.
-- Claim resolution without showing verification evidence (test output or error no longer reproducing).
-
----
-
-## 12. RELATED RESOURCES
+## 11. RELATED RESOURCES
 
 - `.skilled/agents/code.md` — the implementation target for a debug-to-implementation handoff.
 - `.skilled/agents/orchestrate.md` — governs the operator-approved delegation dispatch this agent requires.

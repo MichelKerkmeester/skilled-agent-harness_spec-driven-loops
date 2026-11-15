@@ -1,0 +1,63 @@
+$ git diff --stat 09f1d6499a HEAD -- .skilled/agents/debug.md | wc -l
+       2
+exit=0
+$ wc -l < .skilled/agents/debug.md
+     648
+exit=0
+$ sed -n '62p' .skilled/skills/sk-doc/sk-create-agent/assets/agent-template.md | cut -c1-61
+Production agent files should stay at or below **600 lines**.
+exit=0
+$ sed -n '335p;349,352p' .skilled/agents/debug.md
+1. Start with highest-confidence hypothesis from the Phase 4 post-challenge ranking
+   │
+   └─► Tests fail?
+       ├─► New error? → New observation cycle (Phase 1)
+       └─► Same error? → Try next post-challenge hypothesis
+exit=0
+$ rg -n -i 'revert|undo|roll ?back|restore' .skilled/agents/debug.md
+287:- Reversibility (easily undone fixes first)
+exit=0
+$ rg -n 'earliest affected phase|3\+ hypotheses|3 failed hypotheses' .skilled/agents/debug.md
+178:- If new evidence invalidates an earlier phase, return to the earliest affected phase and restate the updated observation, analysis, or hypothesis.
+524:**Trigger:** 3+ hypotheses tested and rejected
+610:❌ **Never continue past 3 failed hypotheses without escalating**
+exit=0
+$ sed -n '61p;339p;531p;631p' .skilled/agents/debug.md
+
+5. Test after each change
+5. If `debug-delegation.md` is in scope, update it directly as @debug with the same evidence package
+- Write all findings and evidence to `debug-delegation.md`; never modify source files without phase authorization.
+exit=0
+$ rg -n 'spec_folder|spec folder|debug-delegation-[0-9N]|scaffold' .skilled/agents/debug.md
+exit=1
+$ rg -n -o 'Run scaffold-debug-delegation.sh to generate .{0,95}' .skilled/commands/speckit/assets/speckit-implement.yaml .skilled/commands/speckit/assets/speckit-complete.yaml
+.skilled/commands/speckit/assets/speckit-implement.yaml:510:Run scaffold-debug-delegation.sh to generate <spec_folder>/debug-delegation.md (versioned to debug-delegation-NNN.md if a prior file exists)
+.skilled/commands/speckit/assets/speckit-complete.yaml:949:Run scaffold-debug-delegation.sh to generate {spec_folder}/debug-delegation.md (versioned to debug-delegation-NNN.md if a prior file exists)
+exit=0
+$ sed -n '96p;128,132p' .skilled/agents/debug.md
+
+
+### Debug To Implementation Handoff (only when diagnosis crosses to @code)
+- **root_cause:** [Evidence-backed root cause, not a guessed symptom]
+- **target_files:** [Recommended repo-relative files for the fix]
+- **fix_recommendations:** [Smallest safe fix steps and verification target]
+exit=0
+$ rg -n -i 'quality-gate|quality gate|dispatch allows|allowed to fix' .skilled/agents/debug.md
+exit=1
+$ sed -n '4p;16p;139p' .skilled/agents/debug.md
+mode: subagent
+  task: deny
+
+exit=0
+$ rg -n '^## (Debug Escalation|ESCALATION: Debug Exhausted|Debug Blocked)' .skilled/agents/debug.md
+435:## Debug Blocked
+462:## Debug Escalation
+535:## ESCALATION: Debug Exhausted
+exit=0
+$ node .skilled/bin/sync-agent-roster.cjs --check
+agent-roster: OK
+exit=0
+$ node .skilled/bin/check-agent-mirror-sync.cjs | rg -c 'all comparable mirrors in sync'
+1
+exit=0
+need=48
