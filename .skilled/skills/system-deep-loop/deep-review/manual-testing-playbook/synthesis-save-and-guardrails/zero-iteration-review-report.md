@@ -1,7 +1,7 @@
 ---
 title: "DRV-069 -- Zero-iteration review report"
 description: "Verify that a review which stops before its first iteration reports that it did not run, keeps the derived FAIL verdict, sets triggered false and reviewDidNotRun true, and names a /deep:review rerun."
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # DRV-069 -- Zero-iteration review report
@@ -88,7 +88,7 @@ Read the verdict script output first, because the report repeats that verdict ra
 | File | Role |
 |---|---|
 | `.skilled/commands/deep/assets/deep-review.yaml` | Report compilation step, verdict step, and the Planning Packet field list |
-| `.skilled/skills/system-deep-loop/runtime/scripts/review-verdict.cjs` | Verdict derivation from active counts and failed gate ids |
+| `.skilled/skills/system-deep-loop/runtime/scripts/review-verdict.cjs` | Verdict derivation from active counts, open search debt and failed gate ids |
 | `.skilled/skills/system-deep-loop/runtime/scripts/terminal-gates.cjs` | Coverage gate row and the failed gate id list |
 | `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json` | `maxDurationMinutes` limit used to reproduce the stop |
 | `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | `maxDurationReached` stop reason |

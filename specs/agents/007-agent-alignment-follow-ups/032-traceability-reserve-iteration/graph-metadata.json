@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The cap check (`.skilled/commands/deep/assets/deep-review.yaml:1021`) runs before the coverage veto, by design, so a run that reaches it with `speccode` or `checklistevidence` partial or unrecorded fails coverage at the terminal gates",
     "created_at": "2026-11-15T20:25:12Z",
-    "last_save_at": "2026-11-15T21:03:55.992Z",
+    "last_save_at": "2026-11-15T21:22:45.952Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,13 +205,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:fc27419cde6e74ddc7982a225bad6b4d1aae89b87b68acfc61608a5fc416bff4",
+    "source_fingerprint": "sha256:221862daf1d1b700d85a0efa72f69f1686ff7c4e56ae2d4788d8f42d4a16167c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "43674fde7959073fab5113c010ff170b0c0e96a98227b9e79612814bfd2bd2e5",
       "plan.md": "70eedd9f44df5e2679d2555cec18dabd399bcb84ddaf4959cd09e97f9a6254f7",
       "tasks.md": "38c20882ea0c4abeb5f794a6e893aab71e2c04c6b0accf62e86304f4fb14e26b",
-      "implementation-summary.md": "0d999d5eeeea53c19982f2e7a303f0a00d00995b38e5aabac391837d223b88e6"
+      "implementation-summary.md": "a57280f11c9cba8bdd2727c42f1f1ea44212346683fae2b19154c11c5b3e8c37"
     },
     "last_active_at": null
   }

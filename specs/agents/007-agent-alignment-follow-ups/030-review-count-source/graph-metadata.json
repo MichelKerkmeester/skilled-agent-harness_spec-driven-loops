@@ -192,7 +192,7 @@
     ],
     "causal_summary": "`stepderiveverdict` (.skilled/commands/deep/assets/deep-review.yaml) computes the verdict from the registry, but the report and the closeout use `activep0`, `activep1` and `activep2` from `stepbuildfindingregistry`, which the agent counts by hand and may lower in `stepadversarialselfcheck`",
     "created_at": "2026-11-15T20:25:10Z",
-    "last_save_at": "2026-11-15T20:39:27.049Z",
+    "last_save_at": "2026-11-15T21:22:44.452Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,13 +201,13 @@
       "tasks.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:a14fd61ac4b11a0a49abd55ee6807470cba9939c176b05b102f6c37920f84881",
+    "source_fingerprint": "sha256:e99d2be15220d4d6442e2293a5349336b4d1e83d9d23fbb212aa1b424351a20c",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
-      "spec.md": "cdc7e55b8e19c306c81790f5a29ee82947f665a96bc70bf22a822345aa3c61b9",
+      "spec.md": "299713e8698a86a38c3d722f0cb9953a08aa9bb6d6dc3446f12fee57d946e58c",
       "plan.md": "3bb696bcfcffa03236ba5b65d7875b6c19497cc12bb43a938c784cd8e45ea0dc",
       "tasks.md": "2929fe130287b4b63e6b5d29c8b3cb1da296d6f3aaa0ad4e1aa59455bee52e46",
-      "implementation-summary.md": "b33ee2f87f4bb4679903ee44adf42390dc9301b21fb9bd5133fb7f2169a14c48"
+      "implementation-summary.md": "a33ee4f26fb2396c20528209641a6ada4cba3b99e29e7cd496fccc8a46d217a5"
     },
     "last_active_at": null
   }

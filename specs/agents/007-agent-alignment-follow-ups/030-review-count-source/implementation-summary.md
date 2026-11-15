@@ -58,7 +58,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-A review's verdict, report counts and closeout row now come from one set of counts. Before this phase the report printed the loop agent's hand counts after its self-check, so 17 of 42 recent reports with readable counts disagreed with their registry in at least one severity.
+A review's verdict, report counts and closeout row now come from one set of counts. Before this phase the report printed the loop agent's hand counts after its self-check, so 10 of 34 recent reports with an explicit count line disagreed with their registry. In 4 the report was lower, the self-check's effect; two of those trace to refuted or downgraded findings when read by hand.
 
 ### Phase 30: review-count-source
 
