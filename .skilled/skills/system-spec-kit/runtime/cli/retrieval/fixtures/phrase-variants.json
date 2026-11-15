@@ -1,5 +1,5 @@
 {
-  "manifestHash": "cdc2cece0cf3bf1e253d62ae7fbe3e6860c12d051b1a0490485f30c2fdf90b97",
+  "manifestHash": "38bb0c6bc60edc148466c91159ce319b1dd8342406f381088471196bb089582c",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -30985,6 +30985,9 @@
     "conversation scenario runner": [
       "conversation scenario runner"
     ],
+    "conversation scenario suffix rename": [
+      "conversation scenario suffix rename"
+    ],
     "conversation scenario validator rules": [
       "conversation scenario validator rules"
     ],
@@ -58913,6 +58916,9 @@
     "hook helper skipped fail open": [
       "hook helper skipped fail_open"
     ],
+    "hook hub index gap links and conversation scenario": [
+      "hook hub index gap links and conversation scenario"
+    ],
     "hook injection contract": [
       "hook injection contract"
     ],
@@ -59551,6 +59557,18 @@
     ],
     "hub gate transient failure": [
       "hub gate transient failure"
+    ],
+    "hub index gap links": [
+      "hub index gap links"
+    ],
+    "hub index gap links implementation summary": [
+      "hub index gap links implementation summary"
+    ],
+    "hub index gap links plan": [
+      "hub index gap links plan"
+    ],
+    "hub index gap links tasks": [
+      "hub index gap links tasks"
     ],
     "hub intent vocabulary": [
       "hub intent vocabulary"
@@ -130405,6 +130423,9 @@
     ],
     "vibe goal injection": [
       "vibe goal injection"
+    ],
+    "vibe guard browsability symlink": [
+      "vibe guard browsability symlink"
     ],
     "vibe guard porting": [
       "vibe guard porting"

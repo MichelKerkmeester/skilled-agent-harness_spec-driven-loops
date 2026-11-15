@@ -40,7 +40,7 @@ contextType: "general"
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T002 Run `/deep:research:auto` with two `cli-mistral-vibe` lineages on `deepseek-flash`, three and two iterations (`research/`). Verify: `ls research/research.md` prints the path.
+- [x] T002 Run `/deep:research:auto` with two `cli-mistral-vibe` lineages on `deepseek-flash`, three and two iterations (`research/`). Verify: `ls research/research.md` prints the path. The first attempt failed on the exhausted Mistral API budget and is archived in `research_archive/`. The rerun used the Vibe budget through the keychain sign-in.
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -48,8 +48,8 @@ contextType: "general"
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T003 Spot-check findings against the cited lines (`research/research.md`). Verify: each checked finding is marked confirmed or refuted.
-- [ ] T004 Run strict validation on the parent and its children (`spec.md`). Verify: `RESULT: PASSED` for every folder.
+- [x] T003 Spot-check findings against the cited lines (`research/research.md`). Verify: each checked finding is marked confirmed or refuted.
+- [x] T004 Run strict validation on the parent and its children (`spec.md`). Verify: `RESULT: PASSED` for every folder.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -57,9 +57,9 @@ contextType: "general"
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] `research/research.md` holds cited findings
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] `research/research.md` holds cited findings
 <!-- /ANCHOR:completion -->
 
 ---

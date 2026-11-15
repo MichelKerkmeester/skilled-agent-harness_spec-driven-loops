@@ -1,0 +1,28 @@
+{
+  "run_id": "1794753228587-3k0px7",
+  "loop_type": "research",
+  "spec_folder": "specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research",
+  "base_artifact_dir": "/Users/michelkerkmeester/worktrees/public/384-agent-alignment-follow-ups/specs/agents/007-agent-alignment-follow-ups/020-agent-docs-alignment-research/research",
+  "total_cli_lineages": 2,
+  "orphaned_lineages": [],
+  "total": 2,
+  "succeeded": 0,
+  "failed": 2,
+  "all_failed": true,
+  "completed_with_containment_advisory": 0,
+  "gauges": {
+    "lag": 0,
+    "pending": 0,
+    "failed": 2
+  },
+  "failure_classes": {
+    "timeout": 0,
+    "exit": 2,
+    "salvage_miss": 0,
+    "artifact_miss": 0,
+    "projection_refusal": 0,
+    "unattributed_state_log": 0,
+    "needs_input": 0,
+    "quota": 0
+  }
+}
