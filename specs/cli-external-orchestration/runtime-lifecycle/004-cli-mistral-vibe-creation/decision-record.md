@@ -39,6 +39,7 @@ _memory:
 | Q003 | Merge origin/main into the Vibe branch by resolving each of the 82 conflicts by hand, keeping both sides and regenerating generated files. | Not stated. | None | Merge commits 1e6742548a2 and c7b8a6ff1d9 |
 | Q004 | Push the .vibe roster doc edits to main right away instead of holding them for one final push. | Not stated. | None | Commit e122448415c, pushed to main |
 | Q005 | Push the .vibe/plugins/README.md plugin map to main right away. | Not stated. | None | Commit 544fb7345ec, pushed to main |
+| Q006 | Push the Vibe branch to origin/main as a fast-forward. Main moved before the push, so the pushed tip e263e5481e7 adds one more merge of main's own commits and a regenerated trigger index. | The branch was five commits ahead as a fast-forward with every gate green. | None | origin/main e263e5481e7 |
 <!-- /ANCHOR:operator-decisions -->
 
 ---
@@ -140,6 +141,25 @@ Options:
 ```text
 Push it now (Recommended)
 Hold for the final push
+```
+
+Answer:
+```text
+Push it now (Recommended)
+```
+
+### Q006
+<!-- source: claude:425e79e1-c5de-4edb-b8bb-77ee620d2538:toolu_01NDMvHQQ4RzE6qo5LKJiZPr:0 -->
+
+Question:
+```text
+Branch worktrees/383-mistral-vibe-runtime is ready to push. It is 5 commits ahead of origin/main as a fast-forward: the alignment fixes, the 022 evidence and decisions, a trigger-index rebuild and two merges of main. Validation passes 23/23 and the gates are green. Push it to origin/main with `git push origin HEAD:main`?
+```
+
+Options:
+```text
+Push it now (Recommended)
+Don't push yet
 ```
 
 Answer:
