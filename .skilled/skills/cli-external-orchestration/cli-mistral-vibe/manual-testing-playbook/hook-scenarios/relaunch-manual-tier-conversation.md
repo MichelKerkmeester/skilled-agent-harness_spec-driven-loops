@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-026 -- The manual relaunch tier hands off and a fresh session claims it"
 description: "This scenario validates the Vibe manual relaunch tier: a sender prepares a handoff note, the operator ends the session, and a fresh Vibe session started from the wrapper's claim seed claims the note."
-version: 1.0.3.0
+version: 1.0.4.0
 ---
 
 # VIB-HK-026 -- The manual relaunch tier hands off and a fresh session claims it
@@ -27,7 +27,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 - Objective: verify that the manual relaunch tier prepares a handoff and that a fresh Vibe session claims it.
 - Real user request: `Hand this session's work to a fresh session, then claim the handoff there and continue it.`
 - Prompt: `Hand this session's work to a fresh session, then claim the handoff there and continue it.`
-- Expected execution process: the operator's terminal runs `skilled-loop vibe`, the sender runs `/speckit-handoff` and `prepare --runtime vibe`, the operator exits the session, the wrapper consumes the pending record and prints one claim command, and the operator runs it so a fresh Vibe session starts with the claim seed.
+- Expected execution process: the operator exports `SYSTEM_SESSION_HANDOVER_VIBE_ENABLED=1`, because session handover is default-on for Claude Code only, and starts `skilled-loop vibe --trust`. The sender follows `.skilled/commands/speckit/handoff.md`, which the operator names in words because Vibe has no command loader. Its `prepare --runtime vibe` prints `RESULT=manual` and one claim command. The operator exits the session and runs that command with `--trust` added, because the printed command leaves the sender's launch flags out, so a fresh Vibe session starts with the claim seed.
 - Expected signals: the note's frontmatter reads `status: claimed` with a `claimed_by` session id, the hop history holds one `claimed` line whose runtime column is `vibe`, and the fresh session's first turn carries the claim's output.
 - Desired user-visible outcome: the fresh session reads the note, names its remaining work and continues it.
 - Pass/fail: PASS when the note reads claimed and the fresh session's first turn shows the claim. FAIL when the note stays open or the new session never claims it. The shared runner reports SKIP with the named blocker, because it cannot run the wrapper, cannot type a per-run absolute seed, and starts its subject in a scratch project that holds no relaunch CLI; the operator procedure carries the manual steps.

@@ -1,0 +1,51 @@
+
+  ⡠⣒⠄  ⡔⢄⠔⡄   Mistral Vibe v3.1.2
+ ⢸⠸⣀⡔⢉⠱⣃⡢⣂⡣   compaction-probe[max] · Free
+  ⠉⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
+
+Hello Michel, how can I help you?
+
+
+
+> Read big.txt with your file read tool, then read small.txt the same way, and reply with small.txt's only line.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+⚠ [turn-start] Added context for the model: "Advisor: no skill matched. Directives: - Comment hygiene [HARD BLOCK]: NEVER em…"
+
+  I'll read both files as requested.
+
+⏵ Ran 1 command, thought                                                                                                                                                                   
+
+  Both files are in the session directory. Reading big.txt first.
+
+⏵ Read 2000 lines from big.txt
+
+✓ Context compacted 
+
+⚠ The history rebuilt after compaction did not fit the context and was reduced.
+
+⏵ Read 1 file, thought   
+
+  compaction-proof-ok
+
+
+> Create a file named answer.txt in this folder that holds only the line you read from small.txt.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+⏵ Wrote 1 file, read 1 file, thought                                                                                          
+
+  Created answer.txt next to small.txt with the single line compaction-proof-ok (20 bytes, one line, read back to confirm).
+
+
+
+
+
+
+                                                
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── compaction-probe[max] · auto approve ─
+>                                                                                                                
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.gPfiXA53C4/vibe                                                                                                        ctx █████  12.6k/15k
+

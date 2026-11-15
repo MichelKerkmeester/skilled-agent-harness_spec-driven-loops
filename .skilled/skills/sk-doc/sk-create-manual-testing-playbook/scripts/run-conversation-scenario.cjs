@@ -3016,6 +3016,7 @@ function createContext(options) {
     sandbox: sandboxMode(options.runtime, options.noSandbox),
     adapter: options.adapter,
     trustHooks: Boolean(options.script && options.script.trust_hooks === true),
+    launchSetup: options.script && Array.isArray(options.script.launch_setup) ? options.script.launch_setup : [],
     project: options.project,
     outDir,
     outRoot: options.out,
@@ -3037,6 +3038,50 @@ function createContext(options) {
     checkpointsPath: path.join(outDir, 'checkpoints.tsv'),
   };
   return ctx;
+}
+
+/**
+ * Run the script's launch setup once, after the adapter built its launch environment.
+ *
+ * Plain setup runs before the adapter exists, so it cannot reach anything the adapter creates
+ * at launch, such as Vibe's disposable home. These commands run in the scratch project with the
+ * adapter's environment, so `$VIBE_HOME` already names that home. A restart resumes the same
+ * home without running them again, so an appended config row is never written twice.
+ *
+ * @param {Object} ctx - Run context after `adapter.launch(ctx)` returned.
+ * @returns {Promise<{ok: boolean, blocker: (string|null)}>} Outcome.
+ */
+async function runLaunchSetup(ctx) {
+  if (ctx.launchSetup.length === 0) return { ok: true, blocker: null };
+  const env = {
+    ...process.env,
+    ...ctx.scriptEnv,
+    CONVERSATION_REPO_ROOT: ctx.repoRoot,
+    CONVERSATION_RUN_DIR: ctx.outDir,
+    CONVERSATION_RUNTIME: ctx.runtime,
+  };
+  const log = [];
+  let outcome = { ok: true, blocker: null };
+  for (const command of ctx.launchSetup) {
+    const result = await runBoundedCommand({
+      command,
+      cwd: ctx.project,
+      env,
+      timeoutMs: SETUP_TIMEOUT_MS,
+      ctx,
+    });
+    log.push(`$ ${command}\n${result.output}[exit ${result.code}]\n`);
+    if (result.timedOut) {
+      outcome = { ok: false, blocker: `LAUNCH_SETUP_TIMEOUT: ${command}` };
+      break;
+    }
+    if (result.code !== 0) {
+      outcome = { ok: false, blocker: `LAUNCH_SETUP_FAILED: exit ${result.code}: ${command}` };
+      break;
+    }
+  }
+  fs.writeFileSync(path.join(ctx.outDir, 'launch-setup.log'), log.join(''));
+  return outcome;
 }
 
 /**
@@ -3069,20 +3114,28 @@ async function runRuntime(options) {
     if (adapter.hookTrust && ctx.trustHooks) {
       ctx.hookTrustSnapshot = captureHookTrust(codexConfigPath(), ctx.project);
     }
-    startSubject(ctx, adapter.launch(ctx));
-    const launched = await waitForLaunch(ctx);
-    if (ctx.hookTrustRefused) {
-      blocker = 'HOOK_TRUST_OUTSIDE_PROJECT';
+    const launchArgs = adapter.launch(ctx);
+    const launchSetup = await runLaunchSetup(ctx);
+    if (!launchSetup.ok) {
+      // The subject never starts, so a failed launch setup is the run's only blocker.
+      blocker = launchSetup.blocker;
       isAborted = true;
-    } else if (!launched) {
-      const quotaLine = detectQuotaScreen(captureScreen(ctx));
-      if (quotaLine) {
-        failureReason = 'QUOTA_EXHAUSTED';
-        blocker = quotaLine;
-      } else {
-        blocker = 'LAUNCH_TIMEOUT';
+    } else {
+      startSubject(ctx, launchArgs);
+      const launched = await waitForLaunch(ctx);
+      if (ctx.hookTrustRefused) {
+        blocker = 'HOOK_TRUST_OUTSIDE_PROJECT';
+        isAborted = true;
+      } else if (!launched) {
+        const quotaLine = detectQuotaScreen(captureScreen(ctx));
+        if (quotaLine) {
+          failureReason = 'QUOTA_EXHAUSTED';
+          blocker = quotaLine;
+        } else {
+          blocker = 'LAUNCH_TIMEOUT';
+        }
+        isAborted = true;
       }
-      isAborted = true;
     }
   } catch (error) {
     blocker = error.code === 'SEND_KEYS_FAILED' ? 'SEND_KEYS_FAILED' : `LAUNCH_FAILED: ${error.message}`;

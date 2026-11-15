@@ -1,0 +1,3 @@
+2026-11-15T12:53:25.717Z  claimed      vibe      383-mistral-vibe-runtime by 21D1A964  Hand this Vibe session over to a fresh session through the session-handover protocol, so the receiving session proves...  [20261115T125127Z-BB3725D4-9E6F-4F3A-8FDF-812060E8791F.md]
+2026-11-15T12:53:40.829Z  done         vibe      383-mistral-vibe-runtime  Hand this Vibe session over to a fresh session through the session-handover protocol, so the receiving session proves...  [20261115T125127Z-BB3725D4-9E6F-4F3A-8FDF-812060E8791F.md]
+open notes: 1 handoff note not claimed yet, oldest 20261115T124826Z-E9ECD2EB-85BD-4288-A088-E6C5B3BC269B.md

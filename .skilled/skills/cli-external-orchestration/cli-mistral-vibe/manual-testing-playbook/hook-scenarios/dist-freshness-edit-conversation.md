@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-017 -- Dist freshness warns when an edit leaves a watched package's build behind"
 description: "This scenario validates that the Vibe dist-freshness-edit post_tool hook appends a STALE DIST WARNING to the tool result when an edit lands in a watched package's source while its build entry is older, judged from the session journal."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-HK-017 -- Dist freshness warns when an edit leaves a watched package's build behind
@@ -30,7 +30,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 - Expected execution process: the runner builds a scratch project containing the `@spec-kit/shared` package skeleton, with a `dist/tsconfig.tsbuildinfo` build entry dated before the source, renders the repository hooks into a fresh `VIBE_HOME`, starts Vibe and types the prompt. The subject edits the source file, and the hook runs the checkout's staleness checker on that file with the scratch project named as the workspace root.
 - Expected signals: a journal `post_tool_call` record whose tool result carries `Dist freshness after this tool call` and a `STALE DIST WARNING: @spec-kit/shared` line naming the rebuild command.
 - Desired user-visible outcome: the session reports the warning and the rebuild command, and the edit itself still lands.
-- Pass/fail: PASS when both turn checks pass. FAIL when the journal holds no warning, or the warning names no watched package.
+- Pass/fail: PASS when all three turn checks pass. FAIL when the journal holds no warning, or the warning names no watched package.
 
 ---
 
@@ -81,6 +81,20 @@ Operators run the conversation script through the shared runner with the `vibe` 
     {
       "id": "package",
       "check": "grep -rqs 'STALE DIST WARNING: @spec-kit/shared' \"$VIBE_HOME/logs/session/unified\" && grep -rqs 'npm run build' \"$VIBE_HOME/logs/session/unified\" && echo package-named"
+    },
+    {
+      "id": "outside-package",
+      "send": "Now create notes.txt at the top level of this project, next to the .skilled folder, holding the single line done.",
+      "questions": [
+        {
+          "match": "[Rr]ebuild|[Ss]pec folder|[Dd]ocumentation|[Cc]onfirm|[Ww]hich",
+          "answer": {
+            "other": "Leave the build alone and just write notes.txt."
+          },
+          "optional": true
+        }
+      ],
+      "check": "grep -qx done notes.txt || { echo no-notes; exit 1; }; for i in $(seq 1 20); do node \"$CONVERSATION_REPO_ROOT/.vibe/plugins/repo-guards/fixtures/journal-check.cjs\" \"$VIBE_HOME/logs/session/unified\" post-tool-lacks 'notes.txt' 'STALE DIST WARNING' && echo outside-edit-earned-no-warning && exit 0; sleep 1; done; exit 1"
     }
   ]
 }
@@ -90,7 +104,7 @@ The checker resolves watched packages from a workspace root, and the hook hands 
 
 ### Expected
 
-Turn `edit` finds the hook's banner and the warning in the journal's tool result. Turn `package` finds the warning naming `@spec-kit/shared` and its rebuild command, which is what tells an operator the checker mapped the edited file to a watched package rather than reporting an unmatched path.
+Turn `edit` finds the hook's banner and the warning in the journal's tool result. Turn `package` finds the warning naming `@spec-kit/shared` and its rebuild command, which is what tells an operator the checker mapped the edited file to a watched package rather than reporting an unmatched path. Turn `outside-package` asks for `notes.txt` at the project root, outside the package: the latest post-tool result for `notes.txt` carries no `STALE DIST WARNING`, so the warning follows the edited file, not the stale build that is still there.
 
 ### Evidence
 
@@ -98,8 +112,8 @@ Capture `matrix.md`, `checkpoints.tsv`, each turn's `screen.txt` and `check.txt`
 
 ### Pass / Fail
 
-- **Pass**: the journal holds the banner with a `STALE DIST WARNING: @spec-kit/shared` line and its rebuild command.
-- **Fail**: no warning record, or a warning that names no watched package.
+- **Pass**: the journal holds the banner with a `STALE DIST WARNING: @spec-kit/shared` line and its rebuild command, and the later edit outside the package earns no warning.
+- **Fail**: no warning record, or a warning that names no watched package, or the later edit outside the package also earned the warning.
 
 ### Failure Triage
 

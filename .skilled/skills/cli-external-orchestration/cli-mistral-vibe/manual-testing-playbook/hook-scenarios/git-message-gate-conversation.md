@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-014 -- Git message gate refuses a bad commit message"
 description: "This scenario validates that the Vibe git-message-gate pre_tool hook refuses a commit whose message breaks the sk-git template, judged from the session journal."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-HK-014 -- Git message gate refuses a bad commit message
@@ -30,7 +30,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 - Expected execution process: the runner creates a Git project with `a.txt` staged, renders the repository hooks into a fresh `VIBE_HOME`, starts Vibe and types the prompt. Vibe calls `bash` with the commit, and the hook returns `skip` with the sk-git reason.
 - Expected signals: a journal `hook_completed` record for `pre_tool_call` whose output is `skip` with `sk-git blocked this commit message`, and no commit whose subject is `stuff`. The subject may then commit with a message that fits the template.
 - Desired user-visible outcome: the session reports the refusal and suggests a message that fits the template.
-- Pass/fail: PASS when both turn checks pass. FAIL when the journal holds no refusal or the commit landed.
+- Pass/fail: PASS when all three turn checks pass. FAIL when the journal holds no refusal or the commit landed.
 
 ---
 
@@ -80,6 +80,20 @@ Operators run the conversation script through the shared runner with the `vibe` 
     {
       "id": "no-commit",
       "check": "if git log --format=%s 2>/dev/null | grep -qx stuff; then echo stuff-committed; exit 1; fi; echo no-stuff-commit"
+    },
+    {
+      "id": "still-staged",
+      "send": "Run git status and tell me whether a.txt is committed or still staged.",
+      "questions": [
+        {
+          "match": "[Ss]pec folder|[Dd]ocumentation|[Cc]ommit|[Ww]hich",
+          "answer": {
+            "other": "Do not commit anything now. Only run git status."
+          },
+          "optional": true
+        }
+      ],
+      "check": "grep -rqs 'git status' \"$VIBE_HOME/logs/session/unified\" || { echo no-git-status-call; exit 1; }; if git log --format=%s 2>/dev/null | grep -qx stuff; then echo stuff-committed; exit 1; fi; if git rev-parse -q --verify HEAD >/dev/null; then bad=$(git log --format=%s | grep -Evc '^[a-z]+\\([a-z0-9._/-]+\\)!?: .+'); [ \"$bad\" -eq 0 ] || { echo non-contract-subject-landed; exit 1; }; git ls-tree --name-only HEAD | grep -qx a.txt || { echo a-txt-not-in-commit; exit 1; }; echo \"compliant-commit-only: $(git log -1 --format=%s)\"; else git diff --cached --name-only | grep -qx a.txt || { echo a-txt-not-staged; exit 1; }; echo still-staged-no-commit; fi"
     }
   ]
 }
@@ -89,7 +103,7 @@ The gate applies a repository's own sk-git contract and lets a commit through in
 
 ### Expected
 
-Turn `commit` finds the refusal in the journal. Turn `no-commit` confirms no commit carries the subject `stuff`; a follow-up commit with a compliant message is allowed.
+Turn `commit` finds the refusal in the journal. Turn `no-commit` confirms no commit carries the subject `stuff`; a follow-up commit with a compliant message is allowed. Turn `still-staged` asks for `git status`: the journal records the call, no commit carries the subject `stuff`, and either `a.txt` is still staged with no commit or every commit that landed has a `type(scope): summary` subject and holds `a.txt`. The second branch is the follow-up the gate allows: after the refusal a model may write a compliant message itself.
 
 ### Evidence
 
@@ -97,8 +111,8 @@ Capture `matrix.md`, `checkpoints.tsv`, each turn's `screen.txt` and `check.txt`
 
 ### Pass / Fail
 
-- **Pass**: the journal holds the `pre_tool_call` `skip` with the sk-git reason and no commit carries the subject `stuff`.
-- **Fail**: no refusal record, or a commit with the subject `stuff` landed.
+- **Pass**: the journal holds the `pre_tool_call` `skip` with the sk-git reason and no commit carries the subject `stuff`, and the later `git status` call ran with either `a.txt` still staged or only a compliant commit landed.
+- **Fail**: no refusal record, or a commit with the subject `stuff` landed, or a commit with a subject outside the contract landed.
 
 ### Failure Triage
 

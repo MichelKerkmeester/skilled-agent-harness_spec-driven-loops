@@ -1,23 +1,23 @@
 
-  ⡠⣒⠄  ⡔⢄⠔⡄   Mistral Vibe v3.1.2
- ⢸⠸⣀⡔⢉⠱⣃⡢⣂⡣   deepseek-flash[max] · Free
+⢔⡢⡀    ⡔⢄⠔⡄   Mistral Vibe v3.1.2
+ ⢸⠸⣀⡔⢉⠱⣃⡐⣔⡣   deepseek-flash[max] · Free
   ⠉⠒⠣⠤⠵⠤⠬⠮⠆   Type /help for more information
 
 
 ⚠ [turn-start] Added context for the model: "Advisor: no skill matched. Directives: - Comment hygiene [HARD BLOCK]: NEVER em…"
 
-
-> Give me a one-line summary of what this project contains.
+                                                                                                                                                                                                    
+> Give me a one-line summary of what this project contains.                               
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+                           
+⏵ Ran 7 commands, thought
 
-  I'll look at the project structure to summarize it.
+  Skilled — a spec-driven agent harness: a markdown-only framework of specs, skills, agents, hooks and commands that installs into Claude Code, Codex, OpenCode, Pi, Devin and Cursor CLI to give an
+  AI coding agent persistent memory, an auditable paper trail, and specialized sub-agents.
 
-⏵ Ran 3 commands, thought
+✓ Resumed session 3b3f9f83.
 
-  Skilled — a spec-driven agent harness that gives AI coding CLIs (Claude Code, Codex, OpenCode, Pi, Devin, Cursor, and here Mistral Vibe) a persistent memory, a markdown paper trail, and a team of
-  specialist agents, all stored as diffable files inside your own repo.
 
-✓ Resumed session 2e672d66.
 
 
 
@@ -47,5 +47,5 @@
 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.dDeLqntCUH/vibe                                                                                                       ctx ▎      12.5k/256k
+/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.4Ns41Cd3ss/vibe                                                                                                       ctx ▍      16.3k/256k
 

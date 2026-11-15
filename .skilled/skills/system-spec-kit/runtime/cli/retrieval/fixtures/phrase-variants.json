@@ -1,5 +1,5 @@
 {
-  "manifestHash": "e67c064093f9ae5f70ae2d21466bf74b8acc3805d52af692b2cccc6f55a25e81",
+  "manifestHash": "1658b59df7d046802fe20b987d1c3d153344833ff159f53e6cd648fc0529d959",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -11497,6 +11497,18 @@
     "alignment mode retired six modes": [
       "alignment mode retired six modes"
     ],
+    "alignment open findings": [
+      "alignment open findings"
+    ],
+    "alignment open findings implementation summary": [
+      "alignment open findings implementation summary"
+    ],
+    "alignment open findings plan": [
+      "alignment open findings plan"
+    ],
+    "alignment open findings tasks": [
+      "alignment open findings tasks"
+    ],
     "alignment phase status": [
       "alignment phase status"
     ],
@@ -11535,6 +11547,18 @@
     ],
     "alignment registry sealing tasks": [
       "alignment registry sealing tasks"
+    ],
+    "alignment remaining findings": [
+      "alignment remaining findings"
+    ],
+    "alignment remaining findings implementation summary": [
+      "alignment remaining findings implementation summary"
+    ],
+    "alignment remaining findings plan": [
+      "alignment remaining findings plan"
+    ],
+    "alignment remaining findings tasks": [
+      "alignment remaining findings tasks"
     ],
     "alignment remediation": [
       "alignment remediation"
@@ -36413,6 +36437,9 @@
     "deep loop policy core": [
       "deep loop policy core"
     ],
+    "deep loop presentation mistral vibe executor": [
+      "deep loop presentation mistral vibe executor"
+    ],
     "deep loop promotion integrity": [
       "deep loop promotion integrity"
     ],
@@ -38164,6 +38191,9 @@
     ],
     "deep review fail release blocking": [
       "deep-review FAIL release-blocking"
+    ],
+    "deep review failed required gate verdict docs": [
+      "deep review failed required gate verdict docs"
     ],
     "deep review fan out dashboard": [
       "deep review fan-out dashboard"
@@ -72495,6 +72525,9 @@
     "mistral vibe research angles": [
       "mistral vibe research angles"
     ],
+    "mistral vibe session handover docs": [
+      "mistral vibe session handover docs"
+    ],
     "mistral zai glm 5 3 flash route": [
       "mistral zai glm 5 3 flash route"
     ],
@@ -82658,6 +82691,9 @@
     "phase 24 typed command ambiguity": [
       "phase 24 typed command ambiguity"
     ],
+    "phase 25 alignment open findings": [
+      "phase 25 alignment open findings"
+    ],
     "phase 25 cli opencode docs": [
       "phase 25 cli opencode docs"
     ],
@@ -82672,6 +82708,9 @@
     ],
     "phase 26 alignment findings fixes": [
       "phase 26 alignment findings fixes"
+    ],
+    "phase 26 alignment remaining findings": [
+      "phase 26 alignment remaining findings"
     ],
     "phase 26 ci and test runners": [
       "phase 26 ci and test runners"
@@ -100007,6 +100046,9 @@
     ],
     "routing corpus baseline recapture": [
       "routing corpus baseline recapture"
+    ],
+    "routing corpus pin recapture": [
+      "routing corpus pin recapture"
     ],
     "routing corpus proof commands": [
       "routing corpus proof commands"

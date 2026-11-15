@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-020 -- An answered question becomes one decision record"
 description: "This scenario validates that the Vibe decision-capture post_tool hook turns one answered ask_user_question call into one queue record keyed on the tool call id, judged from the queue file and the session journal."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-HK-020 -- An answered question becomes one decision record
@@ -30,7 +30,8 @@ Operators run the conversation script through the shared runner with the `vibe` 
 - Expected execution process: the runner creates a scratch project, renders the repository hooks into a fresh `VIBE_HOME`, starts Vibe and types the prompt. The subject calls `ask_user_question`, the runner answers the box with a typed answer, and the `post_tool` hook normalizes the result and appends one record to the queue under the scratch project.
 - Expected signals: exactly one `.jsonl` row under the scratch project's `.skilled/skills/.state/decision-capture`, whose `key` equals `vibe:<session_id>:<tool_use_id>:0`, and whose `tool_use_id` appears in the session journal as a call id beside the question tool.
 - Desired user-visible outcome: the subject carries the answer forward and no save is needed for the answer to be recorded.
-- Pass/fail: PASS when the turn check passes. FAIL when the queue holds no row, more than one row, or a key that is not built from the record's session id and tool call id.
+- Follow-up: the operator asks for a second question, about the backoff, and answers it, which must add exactly one more record.
+- Pass/fail: PASS when both turn checks pass. FAIL when the queue holds no row, more than one row after the first answer, a key that is not built from the record's session id and tool call id, or anything but two distinct records after the second answer.
 
 ---
 
@@ -39,6 +40,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 ### Prompt
 
 - Prompt: `I'm wiring the upload retry policy. Before you write anything, ask me one thing: should a failed upload retry three times or five?`
+- Follow-up: `Thanks. Before you write anything, ask me one more thing: should the backoff between retries be linear or exponential?`
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
@@ -75,6 +77,26 @@ Operators run the conversation script through the shared runner with the `vibe` 
         }
       ],
       "check": "node -e 'const fs=require(\"fs\"),path=require(\"path\");const qd=path.join(process.cwd(),\".skilled/skills/.state/decision-capture\");if(!fs.existsSync(qd)){console.log(\"no-queue-dir\");process.exit(1);}const files=[];(function w(d){for(const e of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,e.name);if(e.isDirectory())w(p);else if(e.name.endsWith(\".jsonl\")&&e.name!==\"consumed.jsonl\")files.push(p);}})(qd);const rows=files.flatMap(f=>fs.readFileSync(f,\"utf8\").split(\"\\n\").filter(Boolean).map(l=>JSON.parse(l)));if(rows.length!==1){console.log(\"records=\"+rows.length);process.exit(1);}const r=rows[0];const want=\"vibe:\"+r.session_id+\":\"+r.tool_use_id+\":0\";if(r.key!==want){console.log(\"key=\"+r.key+\" want=\"+want);process.exit(1);}let raw=\"\";(function w(d){for(const e of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,e.name);if(e.isDirectory())w(p);else if(/\\.(json|jsonl)$/.test(e.name))raw+=fs.readFileSync(p,\"utf8\");}})(path.join(process.env.VIBE_HOME,\"logs/session/unified\"));if(!raw.includes(r.tool_use_id)){console.log(\"call-id-not-in-journal\");process.exit(1);}if(!raw.includes(\"ask_user_question\")){console.log(\"no-question-tool-in-journal\");process.exit(1);}console.log(\"one-record keyed on \"+r.tool_use_id);'"
+    },
+    {
+      "id": "second-question",
+      "send": "Thanks. Before you write anything, ask me one more thing: should the backoff between retries be linear or exponential?",
+      "questions": [
+        {
+          "match": "[Bb]ackoff|[Ll]inear|[Ee]xponential",
+          "answer": {
+            "other": "Exponential backoff."
+          }
+        },
+        {
+          "match": "[Ss]pec folder|[Dd]ocumentation|[Pp]acket",
+          "answer": {
+            "other": "Skip the documentation question."
+          },
+          "optional": true
+        }
+      ],
+      "check": "node -e 'const fs=require(\"fs\"),path=require(\"path\");const qd=path.join(process.cwd(),\".skilled/skills/.state/decision-capture\");const files=[];(function w(d){for(const e of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,e.name);if(e.isDirectory())w(p);else if(e.name.endsWith(\".jsonl\")&&e.name!==\"consumed.jsonl\")files.push(p);}})(qd);const rows=files.flatMap(f=>fs.readFileSync(f,\"utf8\").split(\"\\n\").filter(Boolean).map(l=>JSON.parse(l)));const keys=new Set(rows.map(r=>r.key));const text=JSON.stringify(rows);if(rows.length!==2||keys.size!==2){console.log(\"records=\"+rows.length+\" keys=\"+keys.size);process.exit(1);}if(!/[Tt]hree/.test(text)||!/[Ee]xponential/.test(text)){console.log(\"answers-missing\");process.exit(1);}console.log(\"two-records-one-per-answer\");'"
     }
   ]
 }
@@ -84,7 +106,7 @@ The prompt asks one question, so one call carries one question and the record in
 
 ### Expected
 
-Turn `answer-question` leaves one queue row whose key is `vibe:<session_id>:<tool_use_id>:0`, and the journal names that call id beside `ask_user_question`.
+Turn `answer-question` leaves one queue row whose key is `vibe:<session_id>:<tool_use_id>:0`, and the journal names that call id beside `ask_user_question`. Turn `second-question` leaves two rows with distinct keys that carry both answers.
 
 ### Evidence
 
@@ -93,7 +115,7 @@ Capture `matrix.md`, `checkpoints.tsv`, the turn's `screen.txt` and `check.txt`,
 ### Pass / Fail
 
 - **Pass**: one queue row exists and its key is built from the record's session id and tool call id, which the journal names beside the question tool.
-- **Fail**: no queue row, more than one row, or a key that does not match the record's identity.
+- **Fail**: no queue row, more than one row after the first answer, a key that does not match the record's identity, or anything but two distinct rows after the second answer.
 
 ### Failure Triage
 

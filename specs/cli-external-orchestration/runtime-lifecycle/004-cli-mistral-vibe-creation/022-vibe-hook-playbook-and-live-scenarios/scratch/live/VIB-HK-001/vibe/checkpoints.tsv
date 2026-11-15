@@ -1,2 +1,3 @@
 turn	status	attempts	evidence	observed
 request	PASS	1	turns/request	spec-gate-open
+answer-skip	PASS	1	turns/answer-skip	gate-closed-by-skip-answer

@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-016 -- Post-edit quality returns a comment-hygiene finding in the tool result"
 description: "This scenario validates that the Vibe post-edit-quality post_tool hook appends the comment-hygiene finding for an edited source file to the tool result the model reads, judged from the session journal."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-HK-016 -- Post-edit quality returns a comment-hygiene finding in the tool result
@@ -30,7 +30,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 - Expected execution process: the runner creates a scratch project holding a small TypeScript file, renders the repository hooks into a fresh `VIBE_HOME`, starts Vibe and types the prompt. The subject edits the file, and the hook resolves the comment-hygiene checker from the checkout, runs it on the edited file and appends the finding as additional context.
 - Expected signals: a journal `post_tool_call` record whose tool result carries the advisory banner, the `comment-hygiene` label and the checker's `review finding reference` reason for the edited file.
 - Desired user-visible outcome: the session reports the finding, or at least carries it beside the edit, and the file keeps the comment the operator asked for.
-- Pass/fail: PASS when both turn checks pass. FAIL when the journal holds no advisory, or the advisory names neither the checker label nor the rule reason.
+- Pass/fail: PASS when all three turn checks pass. FAIL when the journal holds no advisory, or the advisory names neither the checker label nor the rule reason.
 
 ---
 
@@ -76,6 +76,20 @@ Operators run the conversation script through the shared runner with the `vibe` 
     {
       "id": "rule",
       "check": "grep -rqs 'review finding reference' \"$VIBE_HOME/logs/session/unified\" && grep -rqs 'greeting.ts' \"$VIBE_HOME/logs/session/unified\" && echo rule-named"
+    },
+    {
+      "id": "clean-edit",
+      "send": "Now remove that comment line and change the concatenation in greet to a template literal.",
+      "questions": [
+        {
+          "match": "[Ss]pec folder|[Dd]ocumentation|[Ww]hich|[Cc]onfirm",
+          "answer": {
+            "other": "Edit src/greeting.ts as asked."
+          },
+          "optional": true
+        }
+      ],
+      "check": "grep -q 'review finding' src/greeting.ts && { echo comment-still-there; exit 1; }; grep -qF '`Hello, ${name}`' src/greeting.ts || { echo no-template-literal; exit 1; }; for i in $(seq 1 20); do node \"$CONVERSATION_REPO_ROOT/.vibe/plugins/repo-guards/fixtures/journal-check.cjs\" \"$VIBE_HOME/logs/session/unified\" post-tool-lacks 'greeting.ts' '[comment-hygiene]' && echo clean-edit-earned-no-hygiene-finding && exit 0; sleep 1; done; exit 1"
     }
   ]
 }
@@ -85,7 +99,7 @@ The router resolves the comment-hygiene checker from the hub copy beside the rou
 
 ### Expected
 
-Turn `edit` finds the advisory banner and the `comment-hygiene` label in the journal's tool result. Turn `rule` finds the checker's `review finding reference` reason beside the edited file's name, which is what tells an operator the finding came from the rule table rather than from a bare exit status.
+Turn `edit` finds the advisory banner and the `comment-hygiene` label in the journal's tool result. Turn `rule` finds the checker's `review finding reference` reason beside the edited file's name, which is what tells an operator the finding came from the rule table rather than from a bare exit status. Turn `clean-edit` asks for the comment to go and the concatenation to become a template literal: the file holds the template literal and no review-finding comment, and the latest post-tool result for `greeting.ts` carries no `[comment-hygiene]` finding, so the finding clears once its cause is fixed.
 
 ### Evidence
 
@@ -93,8 +107,8 @@ Capture `matrix.md`, `checkpoints.tsv`, each turn's `screen.txt` and `check.txt`
 
 ### Pass / Fail
 
-- **Pass**: the journal holds the advisory with the `comment-hygiene` label, and the same advisory names the `review finding reference` reason and the edited file.
-- **Fail**: no advisory record, or an advisory that names neither the checker label nor the rule reason.
+- **Pass**: the journal holds the advisory with the `comment-hygiene` label, and the same advisory names the `review finding reference` reason and the edited file, and the follow-up clean edit earns no `[comment-hygiene]` finding.
+- **Fail**: no advisory record, or an advisory that names neither the checker label nor the rule reason, or the follow-up clean edit still earns the finding.
 
 ### Failure Triage
 

@@ -104,7 +104,7 @@ Each claim was checked against `deep-research.yaml`, `deep-review.yaml`, `verify
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Some drift stays open.** The two loop protocols still say `cli-cursor`, `cli-devin`, `cli-pi` and `cli-deepseek-harness` use the shared fan-out adapters, and `deep-research/SKILL.md` lists no `executor_missing` failure mode. Both were outside this phase's list.
+1. **Drift in other owners' files stays open.** The alignment report named more drift outside this phase's list, and phase 025 takes it up.
 <!-- /ANCHOR:limitations -->
 
 ---

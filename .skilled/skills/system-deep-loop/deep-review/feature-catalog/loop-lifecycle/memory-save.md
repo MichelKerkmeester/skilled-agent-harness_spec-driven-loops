@@ -7,7 +7,7 @@ trigger_phrases:
   - "generate-context.js"
   - "review packet continuity"
   - "post-synthesis preservation"
-version: 1.11.0.6
+version: 1.11.1.0
 ---
 
 # Memory save
@@ -22,7 +22,7 @@ This is the final lifecycle phase after synthesis. It hands the completed review
 
 ## 2. HOW IT WORKS
 
-The save step is intentionally narrow. It runs `generate-context.js` at the spec-folder boundary after the review report has already been written, and the skill treats that script as the supported continuity handoff. The save step is not allowed to rewrite the review conclusions or downgrade the packet if continuity persistence has trouble.
+The save step is intentionally narrow. It runs `generate-context.js` with a JSON payload, the spec folder and `--full-auto` after the review report has already been written, and the skill treats that script as the supported continuity handoff. Without `--full-auto` the writer only plans, so the payload carries `recent_action`, `next_safe_action`, `blockers` and `key_files`, the fields a full-auto save writes. The save step is not allowed to rewrite the review conclusions or downgrade the packet if continuity persistence has trouble.
 
 If the save step fails, the current `review/` packet remains the ground truth. The report, JSONL log, strategy, registry, and iteration files stay intact for resume or manual follow-up, so the failure is a continuity problem rather than a review-integrity problem.
 

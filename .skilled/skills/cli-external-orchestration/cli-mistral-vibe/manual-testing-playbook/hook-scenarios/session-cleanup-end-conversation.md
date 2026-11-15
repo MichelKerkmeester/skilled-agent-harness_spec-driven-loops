@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-021 -- Session cleanup writes its log line when the session closes"
 description: "This scenario validates that closing a Vibe session runs the session-cleanup-end session_end hook, which writes the cleanup script's log line, judged from the cleanup log the hook writes."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-HK-021 -- Session cleanup writes its log line when the session closes
@@ -30,7 +30,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 - Expected execution process: the runner renders the repository hooks into a fresh `VIBE_HOME`, records the cleanup log's line count, starts Vibe in the scratch project, and types the prompt. The runner's restart action then sends `/exit`, waits for the session to close, and starts a resumed subject. The `session_end` hook runs the cleanup script on the way out.
 - Expected signals: the cleanup log gains a line after the close whose text is `action=skip reason=no-session-pid`, and the first turn's journal names `user:turn-start`.
 - Desired user-visible outcome: the resumed session opens normally, and the cleanup log records that teardown ran for the closed session.
-- Pass/fail: PASS when the log's line count grew and its newest line carries the cleanup action text. FAIL when the count did not grow or the newest line is not the cleanup line.
+- Pass/fail: PASS when the log's line count grew, its newest line carries the cleanup action text and the resumed session still holds the earlier question. FAIL when the count did not grow, the newest line is not the cleanup line or the resumed session lost the question.
 
 ---
 
@@ -76,6 +76,20 @@ Operators run the conversation script through the shared runner with the `vibe` 
       "id": "close",
       "action": "restart",
       "check": "log=${SESSION_CLEANUP_LOG_PATH:-${CLAUDE_SESSION_CLEANUP_LOG_PATH:-$HOME/.local/share/session-cleanup.log}}; before=$(cat .cleanup-lines-before); after=$(wc -l < \"$log\" 2>/dev/null || echo 0); after=$(printf '%s' \"$after\" | tr -d ' '); line=$(tail -n 1 \"$log\" 2>/dev/null); if printf '%s\\n' \"$line\" | grep -qF 'action=skip reason=no-session-pid' && [ \"$after\" -gt \"$before\" ]; then echo \"$line\"; else echo \"no-new-cleanup-line before=$before after=$after last=$line\"; exit 1; fi"
+    },
+    {
+      "id": "resumed",
+      "send": "Write the question I asked you before the restart into prev.txt in this folder, as one line.",
+      "questions": [
+        {
+          "match": "[Ss]pec folder|[Dd]ocumentation|[Ww]hich",
+          "answer": {
+            "other": "Just write prev.txt."
+          },
+          "optional": true
+        }
+      ],
+      "check": "test -s prev.txt || { echo no-prev-file; exit 1; }; grep -qi 'project' prev.txt || { echo resumed-session-lost-history; exit 1; }; echo \"resumed-with-history: $(head -c 160 prev.txt)\""
     }
   ]
 }
@@ -85,7 +99,7 @@ The cleanup log path follows the plugin's own override chain, so a run with `SES
 
 ### Expected
 
-Turn `request` shows the session journal carries the `turn-start` binding. Turn `close` finds the cleanup log one line longer and its newest line is `action=skip reason=no-session-pid`.
+Turn `request` shows the session journal carries the `turn-start` binding. Turn `close` finds the cleanup log one line longer and its newest line is `action=skip reason=no-session-pid`. Turn `resumed` runs in the resumed session and asks for the first question to be written into `prev.txt`: the file names the project question, so the session-end hook closed the first process without losing the conversation the resume carries on.
 
 ### Evidence
 
@@ -93,8 +107,8 @@ Capture `matrix.md`, `checkpoints.tsv`, each turn's `screen.txt` and `check.txt`
 
 ### Pass / Fail
 
-- **Pass**: the log's line count grew after the close, and the newest line carries the cleanup action text.
-- **Fail**: the count did not grow, the newest line is not the cleanup line, or the session never closed.
+- **Pass**: the log's line count grew after the close, the newest line carries the cleanup action text, and the resumed session writes the earlier question into `prev.txt`.
+- **Fail**: the count did not grow, the newest line is not the cleanup line, the session never closed, or the resumed session lost the earlier question.
 
 ### Failure Triage
 

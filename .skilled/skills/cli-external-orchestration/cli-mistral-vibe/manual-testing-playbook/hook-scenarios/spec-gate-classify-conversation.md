@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-001 -- Spec gate classify opens the gate for an unbound write request"
 description: "This scenario validates that the Vibe spec-gate-classify pre_agent hook records an open gate state file for an operator request that would mutate a file with no bound spec packet, judged from the session journal and the hook-written state."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-HK-001 -- Spec gate classify opens the gate for an unbound write request
@@ -30,7 +30,8 @@ Operators run the conversation script through the shared runner with the `vibe` 
 - Expected execution process: the runner renders the repository hooks into a fresh `VIBE_HOME`, starts Vibe in the scratch project and types the prompt. Vibe runs the `pre_agent` hooks, and `spec-gate-classify` classifies the prompt, writes the session's gate state and adds the deferred instruction as turn-start context.
 - Expected signals: a journal `pre_agent_turn` record whose binding ids name `user:spec-gate-classify`, and a hook-written gate state file under the scratch project's `.skilled/skills/.state/spec-gate` whose status is `open`.
 - Desired user-visible outcome: the session carries the deferred spec-folder instruction and does not lose the request, and the gate is ready for the first mutation.
-- Pass/fail: PASS when the journal names the classify hook in a `pre_agent_turn` record and the gate state file reads open. FAIL when either signal is missing or the state landed outside the scratch project.
+- Follow-up: the operator answers `D` on the next turn, and the hook must read that answer and close the gate as skipped.
+- Pass/fail: PASS when both turn checks pass. FAIL when either first-turn signal is missing, the state landed outside the scratch project, or the `D` answer leaves the gate open.
 
 ---
 
@@ -39,6 +40,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 ### Prompt
 
 - Prompt: `Add a line to notes.txt by running: printf 'hello from the playbook\n' > notes.txt. Do not ask me any questions; just run that command.`
+- Follow-up: `D`
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
@@ -74,6 +76,11 @@ Operators run the conversation script through the shared runner with the `vibe` 
         }
       ],
       "check": "grep -rqsF 'user:spec-gate-classify' \"$VIBE_HOME/logs/session/unified\" && grep -rqsF '\"hook\":\"pre_agent_turn\"' \"$VIBE_HOME/logs/session/unified\" && s=$(ls .skilled/skills/.state/spec-gate/*.json 2>/dev/null | head -1) && [ -n \"$s\" ] && grep -qsF '\"status\": \"open\"' \"$s\" && echo spec-gate-open"
+    },
+    {
+      "id": "answer-skip",
+      "send": "D",
+      "check": "s=$(ls .skilled/skills/.state/spec-gate/*.json 2>/dev/null | head -1); [ -n \"$s\" ] && grep -qsF '\"status\": \"skipped\"' \"$s\" && echo gate-closed-by-skip-answer"
     }
   ]
 }
@@ -83,7 +90,7 @@ The spec gate is deliberately left enabled here, because this scenario judges th
 
 ### Expected
 
-Turn `request` finds a `pre_agent_turn` journal record that names `user:spec-gate-classify`, and the scratch project's `.skilled/skills/.state/spec-gate` holds a state file whose status is `open`.
+Turn `request` finds a `pre_agent_turn` journal record that names `user:spec-gate-classify`, and the scratch project's `.skilled/skills/.state/spec-gate` holds a state file whose status is `open`. Turn `answer-skip` sends `D` and finds the same state file reading `skipped`.
 
 ### Evidence
 
@@ -91,8 +98,8 @@ Capture `matrix.md`, `checkpoints.tsv`, each turn's `screen.txt` and `check.txt`
 
 ### Pass / Fail
 
-- **Pass**: the journal names the classify hook in a `pre_agent_turn` record, and the gate state file in the scratch project reads open.
-- **Fail**: no `pre_agent_turn` record for the hook, no state file, or a state file outside the scratch project.
+- **Pass**: the journal names the classify hook in a `pre_agent_turn` record, the gate state file in the scratch project reads open, and after the `D` answer it reads skipped.
+- **Fail**: no `pre_agent_turn` record for the hook, no state file, a state file outside the scratch project, or a gate the `D` answer did not close.
 
 ### Failure Triage
 

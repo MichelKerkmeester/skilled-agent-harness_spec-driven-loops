@@ -1,13 +1,13 @@
 {
   "runtime": "vibe",
-  "verdict": "SKIP",
-  "blocker": "no warning: every watched package in the checkout is fresh, so the all-packages check reports nothing and the runner cannot make the checkout stale mid-session",
-  "seed": 330637499,
-  "socket": "conv-31662-vibe",
-  "session_id": "4a2f9738-30fe-4ee3-9a41-ed99d1606fec",
-  "project": "/private/var/folders/3c/zfqcqsts0kn19cgblj82gqhm0000gn/T/tmp.vIu69q6bpJ/vibe",
-  "started_at": "2026-11-15T00:43:33.361Z",
-  "finished_at": "2026-11-15T00:44:00.391Z",
+  "verdict": "PASS",
+  "blocker": null,
+  "seed": 217527331,
+  "socket": "conv-14061-vibe",
+  "session_id": "2dac5161-3519-495d-ab3f-a64522d9817f",
+  "project": "/private/tmp/vib-hk-018/vibe",
+  "started_at": "2026-11-15T12:44:44.674Z",
+  "finished_at": "2026-11-15T12:45:38.398Z",
   "adapter": {
     "bin": "vibe",
     "probed": true
@@ -33,21 +33,21 @@
   "turns": [
     {
       "id": "validate",
-      "status": "SKIP",
+      "status": "PASS",
       "attempts": 1,
       "reason": null,
-      "blocker": "no warning: every watched package in the checkout is fresh, so the all-packages check reports nothing and the runner cannot make the checkout stale mid-session",
-      "observed": "no warning: every watched package in the checkout is fresh, so the all-packages check reports nothing and the runner cannot make the checkout stale mid-session",
+      "blocker": null,
+      "observed": "validator-result-warned",
       "evidence": "turns/validate"
     },
     {
-      "id": "build-state",
-      "status": "SKIP",
+      "id": "read-only-shell",
+      "status": "PASS",
       "attempts": 1,
       "reason": null,
-      "blocker": "no warning: every watched package in the checkout is fresh, so the all-packages check reports nothing and the runner cannot make the checkout stale mid-session",
-      "observed": "no warning: every watched package in the checkout is fresh, so the all-packages check reports nothing and the runner cannot make the checkout stale mid-session",
-      "evidence": "turns/build-state"
+      "blocker": null,
+      "observed": "read-only-call-earned-no-warning",
+      "evidence": "turns/read-only-shell"
     }
   ]
 }

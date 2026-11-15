@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-008 -- Turn end sends a prose option menu back once"
 description: "This scenario validates that the Vibe turn-end composer sends a reply that closes on a prose option menu back through one ask-surface retry naming ask_user_question, judged from the session journal."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-HK-008 -- Turn end sends a prose option menu back once
@@ -30,7 +30,8 @@ Operators run the conversation script through the shared runner with the `vibe` 
 - Expected execution process: the runner creates a scratch project, renders the repository hooks into a fresh `VIBE_HOME`, starts Vibe and types the prompt. The subject replies with a closing A/B menu and a question. Vibe runs `turn-end` at `post_agent`, the ask-surface part denies, and Vibe injects the reason as a retry message. The subject asks through `ask_user_question`, the runner answers the box, and the retried turn ends.
 - Expected signals: a journal `post_agent_turn` record whose output is `retry` and whose feedback carries `[ask-surface] Your reply ended with a prose option menu` and the backticked `ask_user_question` tool name, plus exactly one line in the session's ask-surface fire log.
 - Desired user-visible outcome: the subject asks the same question through the question box instead of leaving the menu as prose.
-- Pass/fail: PASS when the turn check passes. FAIL when the journal holds no ask-surface retry or the reprompt does not name the tool.
+- Follow-up: the operator picks option B and asks for a prose description with no further question, which must earn no second retry.
+- Pass/fail: PASS when both turn checks pass. FAIL when the journal holds no ask-surface retry, the reprompt does not name the tool, or the answered turn fires again.
 
 ---
 
@@ -39,6 +40,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 ### Prompt
 
 - Prompt: `I'm weighing two ways to cache the journal read: a small LRU inside the reader, or a memoized wrapper around it. Compare them as two labelled options, A) and B), with one trade-off each, reply in prose without opening the question box, and end by asking me which one I want.`
+- Follow-up: `B, the memoized wrapper. Describe in two sentences how you would build it, and do not ask me anything else.`
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
@@ -76,6 +78,20 @@ Operators run the conversation script through the shared runner with the `vibe` 
         }
       ],
       "check": "f=$(grep -rlF '[ask-surface] Your reply ended with a prose option menu' \"$VIBE_HOME/logs/session/unified\" | head -1); [ -n \"$f\" ] && grep -qF '\"type\":\"retry\"' \"$f\" && grep -qF '\"hook\":\"post_agent_turn\"' \"$f\" && grep -qF '`ask_user_question`' \"$f\" && [ \"$(grep -c . .skilled/skills/.state/ask-surface/fires.jsonl)\" -eq 1 ] && echo one-ask-surface-retry-naming-ask_user_question"
+    },
+    {
+      "id": "answer-menu",
+      "send": "B, the memoized wrapper. Describe in two sentences how you would build it, and do not ask me anything else.",
+      "questions": [
+        {
+          "match": "[Ss]pec folder|[Dd]ocumentation|[Pp]acket",
+          "answer": {
+            "other": "Skip the documentation question."
+          },
+          "optional": true
+        }
+      ],
+      "check": "[ \"$(grep -c . .skilled/skills/.state/ask-surface/fires.jsonl)\" -eq 1 ] && echo answered-menu-earned-no-second-retry"
     }
   ]
 }
@@ -85,7 +101,7 @@ The prompt asks for the menu in prose and rules out the question box, which is t
 
 ### Expected
 
-Turn `prose-menu` finds the `post_agent_turn` `retry` whose feedback carries the ask-surface reprompt and the `ask_user_question` name, and the fire log holds one line.
+Turn `prose-menu` finds the `post_agent_turn` `retry` whose feedback carries the ask-surface reprompt and the `ask_user_question` name, and the fire log holds one line. Turn `answer-menu` finds the fire log still at one line.
 
 ### Evidence
 
@@ -94,7 +110,7 @@ Capture `matrix.md`, `checkpoints.tsv`, the turn's `screen.txt` and `check.txt`,
 ### Pass / Fail
 
 - **Pass**: the journal holds the `post_agent_turn` `retry` with the ask-surface reprompt naming `ask_user_question`, and the fire log holds one line.
-- **Fail**: no retry record, a feedback that omits the tool name, or more than one fire for one turn.
+- **Fail**: no retry record, a feedback that omits the tool name, more than one fire for one turn, or a fire on the answered turn.
 
 ### Failure Triage
 

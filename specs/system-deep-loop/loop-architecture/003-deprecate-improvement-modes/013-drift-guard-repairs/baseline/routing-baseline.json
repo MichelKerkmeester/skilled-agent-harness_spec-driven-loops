@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "artifact": "routing-baseline",
-  "purpose": "The hash-pinned routing-accuracy + compiler baseline the routing-registry-drift workflow gates against. Recaptured on 2026-11-14 against the corpus on main, which the command surfacing work had changed in all three files since the 2026-10-11 pin.",
-  "capturedAt": "2026-11-14",
-  "capturedAtSha": "9d44528143",
+  "purpose": "The hash-pinned routing-accuracy + compiler baseline the routing-registry-drift workflow gates against. Recaptured on 2026-11-15 after the AI Council retirement removed two holdout rows, which left the holdout pin stale.",
+  "capturedAt": "2026-11-15",
+  "capturedAtSha": "fe8bdd46266",
   "captureRegime": {
     "projectionSource": "filesystem",
     "env": {
@@ -21,8 +21,8 @@
       "sha256": "4146b002802d010e4d9d3ddf4c07b0738e59a55fab590b2c51e1ed3d4da1e115"
     },
     "holdout-prompts.jsonl": {
-      "rows": 66,
-      "sha256": "e8c637d3f59fbba18521c78bc238c5c86dc60d9f8b40c2c921c42ac49766a4cf"
+      "rows": 64,
+      "sha256": "9408335972503fab0329f4535a95432f57d3adc998004a75c3b759a1fe62a686"
     },
     "ambiguity-prompts.jsonl": {
       "rows": 24,
@@ -63,9 +63,9 @@
         "accuracy": 0.8205
       },
       "holdout_top1": {
-        "correct": 51,
-        "total": 66,
-        "accuracy": 0.7727
+        "correct": 49,
+        "total": 64,
+        "accuracy": 0.7656
       },
       "ambiguity_top1": {
         "correct": 21,
@@ -85,8 +85,8 @@
           "accuracy": 0.875
         },
         "delegation": {
-          "correct": 20,
-          "total": 20,
+          "correct": 22,
+          "total": 22,
           "accuracy": 1
         }
       },
@@ -125,9 +125,9 @@
         "accuracy": 0.9026
       },
       "holdout_top3": {
-        "correct": 51,
-        "total": 66,
-        "accuracy": 0.7727
+        "correct": 50,
+        "total": 64,
+        "accuracy": 0.7813
       },
       "definition": "gold skill_top_1 label present among the top 3 ranked recommendations (alias-aware match, same regime as top-1)",
       "evidence": "capture-top3.json"
@@ -213,7 +213,38 @@
         "previousCapture": "55/72 = 0.7639",
         "currentCapture": "50/66 = 0.7576"
       }
-    ]
+    ],
+    "recapture-2026-11-15": {
+      "note": "Pin recapture after the AI Council retirement. Only the holdout file changed; the labeled and ambiguity files keep their hashes, and the corpus scorer output is unchanged, so its evidence files are not recaptured.",
+      "holdoutRowLoss": {
+        "previousRows": 66,
+        "currentRows": 64,
+        "removedRows": 2,
+        "cause": "commit adbba5a06a9 removed the holdout rows whose expected skill was the retired deep-ai-council"
+      },
+      "metricDiffs": [
+        {
+          "metric": "corpus.holdout-prompts.jsonl.sha256",
+          "previousCapture": "e8c637d3f59fbba18521c78bc238c5c86dc60d9f8b40c2c921c42ac49766a4cf",
+          "currentCapture": "9408335972503fab0329f4535a95432f57d3adc998004a75c3b759a1fe62a686"
+        },
+        {
+          "metric": "metrics.top1_capture_scorer_eval_baseline.holdout_top1",
+          "previousCapture": "51/66 = 0.7727",
+          "currentCapture": "49/64 = 0.7656"
+        },
+        {
+          "metric": "metrics.top1_capture_scorer_eval_baseline.buckets.delegation",
+          "previousCapture": "20/20 = 1",
+          "currentCapture": "22/22 = 1"
+        },
+        {
+          "metric": "metrics.top3_new.holdout_top3",
+          "previousCapture": "51/66 = 0.7727",
+          "currentCapture": "50/64 = 0.7813"
+        }
+      ]
+    }
   },
   "rawEvidenceFiles": [
     "compiler-validate-only.txt",

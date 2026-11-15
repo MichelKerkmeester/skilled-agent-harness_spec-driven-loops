@@ -42,11 +42,6 @@
       "tasks.md",
       "goal.md",
       "implementation-summary.md",
-      ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
-      ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
-      ".skilled/hooks/session-relaunch/README.md",
-      ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
-      ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
       "scratch/baseline.txt",
       "scratch/vibe-options.md",
       "scratch/final-suite.txt",
@@ -84,36 +79,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "relaunch-core.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "session-relaunch.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".skilled/hooks/session-relaunch/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "relaunch-core.test.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/session-relaunch/tests/relaunch-core.test.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "skilled-loop-wrapper-launch-arguments.test.cjs",
-        "kind": "file",
-        "path": ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs",
         "source": "derived"
       },
       {
@@ -199,12 +164,42 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Add Vibe",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Vibe",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Command",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "`relaunch-core.cjs:35` freezes the loop's runtimes as `claude pi opencode codex cursor devin`, and `skilled-loop` has no `vibe` case, so `skilled-loop vibe` falls through to Claude and `session-relaunch.cjs` refuses `--runtime vibe`",
     "created_at": "2026-11-14T20:13:11Z",
-    "last_save_at": "2026-11-14T21:42:48.755Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-11-15T13:31:21.061Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
@@ -213,13 +208,13 @@
       "goal.md",
       "implementation-summary.md"
     ],
-    "source_fingerprint": "sha256:828c152554e1292d9da4fe90d00e8573b323b8ba0ff8aa872a3800bfc104837f",
+    "source_fingerprint": "sha256:3a618ebbcaa1ed09d0a6f68ca8006c8ac1403c3a8f71303d04f9751f61395cbe",
     "source_fingerprint_docset": 3,
     "source_doc_hashes": {
       "spec.md": "f3378b7534087b4201c1f93a242bf787c0e9b068fac3307bafeccb7b46c52f0d",
       "plan.md": "1dddd540dc91376764a437158e6265ab0f763df9789fb0b92e853db9d1597e8f",
-      "tasks.md": "fde8cde2707f46ac56a94a4ee6772032c510ce385b025e120bf4f16b117a9cc4",
-      "implementation-summary.md": "ea02df1750622fd3976a1380350fbb49dee378aad044b5cca5aceca92e6f7ea0"
+      "tasks.md": "7909aa14652975aede6d33cbaa50ac4f6b6d7846e103697c63d6da50a9c2983e",
+      "implementation-summary.md": "54913b21e806ad97ccb4ce6652f68ac044ecf54ac5654490c0f75aa3e23798c3"
     },
     "last_active_at": null
   }

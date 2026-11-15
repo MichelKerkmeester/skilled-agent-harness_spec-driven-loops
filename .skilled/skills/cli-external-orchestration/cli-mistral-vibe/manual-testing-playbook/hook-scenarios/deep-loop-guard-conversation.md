@@ -1,7 +1,7 @@
 ---
 title: "VIB-HK-015 -- Deep-loop guard refuses a dispatch whose mode disagrees with the registry"
 description: "This scenario validates that the Vibe deep-loop-guard pre_tool hook refuses an agents_spawn whose prompt declares a workflow mode the mode registry does not give the target agent, judged from the session journal."
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # VIB-HK-015 -- Deep-loop guard refuses a dispatch whose mode disagrees with the registry
@@ -30,7 +30,7 @@ Operators run the conversation script through the shared runner with the `vibe` 
 - Expected execution process: the runner renders the repository hooks into a fresh `VIBE_HOME`, starts Vibe in a scratch project and types the prompt. The subject calls `agents.spawn` with the message, and the hook resolves the target agent from `config_name` or the prompt's `target_agent=` field, reads the declared mode, and compares both against the checkout's mode registry.
 - Expected signals: a journal `hook_completed` record for `pre_tool_call` whose output is a skip naming `Deep Route mode mismatch`, the registry's allowed modes and the declared mode, plus the deny notice naming `deep-loop-guard`.
 - Desired user-visible outcome: the session reports that the spawn was refused and that the dispatch names a mode the agent is not registered for.
-- Pass/fail: PASS when both turn checks pass. FAIL when the journal holds no refusal, or the refusal does not name the registry modes and the declared mode.
+- Pass/fail: PASS when all three turn checks pass. FAIL when the journal holds no refusal, or the refusal does not name the registry modes and the declared mode.
 
 ---
 
@@ -86,6 +86,20 @@ Operators run the conversation script through the shared runner with the `vibe` 
     {
       "id": "reason",
       "check": "grep -rqs 'registry modes=' \"$VIBE_HOME/logs/session/unified\" && grep -rqs 'but the prompt declares mode=' \"$VIBE_HOME/logs/session/unified\" && echo reason-recorded"
+    },
+    {
+      "id": "reason-carried",
+      "send": "Write the reason the guard gave for refusing that dispatch into reason.txt in this folder, as one line.",
+      "questions": [
+        {
+          "match": "[Ss]pec folder|[Dd]ocumentation|[Ww]hich|[Ss]hould I|[Cc]onfirm|[Rr]etry",
+          "answer": {
+            "other": "Do not retry the dispatch; only write reason.txt."
+          },
+          "optional": true
+        }
+      ],
+      "check": "test -s reason.txt || { echo no-reason-file; exit 1; }; grep -qi 'mode' reason.txt || { echo reason-lacks-mode; exit 1; }; echo \"reason-carried: $(head -c 160 reason.txt)\""
     }
   ]
 }
@@ -95,7 +109,7 @@ The guard reads the registry and the target agent's identity from the checkout, 
 
 ### Expected
 
-Turn `dispatch` finds the refusal in the journal, and the deny notice names `deep-loop-guard`. Turn `reason` finds the refusal text naming the registry's allowed modes and the declared mode, which is what tells an operator the guard read the registry rather than guessing.
+Turn `dispatch` finds the refusal in the journal, and the deny notice names `deep-loop-guard`. Turn `reason` finds the refusal text naming the registry's allowed modes and the declared mode, which is what tells an operator the guard read the registry rather than guessing. Turn `reason-carried` asks the session to write the refusal's reason into `reason.txt`: the file names the mode, which shows the reason reached the model and stayed in the conversation for the next turn.
 
 ### Evidence
 
@@ -103,8 +117,8 @@ Capture `matrix.md`, `checkpoints.tsv`, each turn's `screen.txt` and `check.txt`
 
 ### Pass / Fail
 
-- **Pass**: the journal holds the `pre_tool_call` skip with the mode mismatch, the deny notice names `deep-loop-guard`, and the reason names the registry modes and the declared mode.
-- **Fail**: no refusal record, or a refusal that names neither the registry modes nor the declared mode.
+- **Pass**: the journal holds the `pre_tool_call` skip with the mode mismatch, the deny notice names `deep-loop-guard`, and the reason names the registry modes and the declared mode, and `reason.txt` names the mode from the refusal.
+- **Fail**: no refusal record, or a refusal that names neither the registry modes nor the declared mode, or `reason.txt` is missing or does not name the mode.
 
 ### Failure Triage
 

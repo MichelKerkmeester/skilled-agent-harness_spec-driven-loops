@@ -1,0 +1,3 @@
+$ grep -qF '.skilled/commands/create/goal.md' path.txt && echo path-from-mirrored-prompt
+path-from-mirrored-prompt
+[exit 0]

@@ -8,30 +8,28 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "cli-external-orchestration/runtime-lifecycle/004-cli-mistral-vibe-creation/019-vibe-relaunch-command-tier"
-    last_updated_at: "2026-11-14T21:45:00Z"
-    last_updated_by: "mistral-vibe-worker"
-    recent_action: "Built the Vibe command-only relaunch tier and ran the relaunch suites"
-    next_safe_action: "Run the manual hop in scratch/manual-hop/procedure.md from an interactive terminal"
-    blockers:
-      - "T011 manual hop needs an interactive operator at a terminal"
+    last_updated_at: "2026-11-15T13:31:21Z"
+    last_updated_by: "generate-context"
+    recent_action: "Closed 016, 017 and 022 with live multi-turn runs; 019 waits on one bound-packet hop"
+    next_safe_action: "Run one Vibe hop with a bound packet to settle the 019 VIBE_SPEC_FOLDER decision"
+    packet_purpose: "Purpose: A Vibe session started through `skilled-loop vibe` hands off to a fresh Vibe session that claims the note, on the same command-only tier Cursor and Devin use."
+    blockers: []
     key_files:
-      - ".skilled/hooks/session-relaunch/lib/relaunch-core.cjs"
-      - ".skilled/bin/skilled-loop"
-      - ".skilled/hooks/session-relaunch/bin/session-relaunch.cjs"
-      - ".skilled/hooks/session-relaunch/README.md"
-      - ".skilled/hooks/session-relaunch/tests/skilled-loop-wrapper-launch-arguments.test.cjs"
+      - "spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "mistral-support-2026-11-14"
       parent_session_id: null
-    completion_pct: 93
-    open_questions:
-      - "Does a real Vibe hop claim the note from the seed without a turn-start claim part?"
-      - "Should skilled-loop vibe export VIBE_SPEC_FOLDER from the claimed note?"
-      - "Does vibe -p --resume continue a headless run when the roster guard allows the dispatch?"
-    answered_questions:
-      - "vibe -p --resume <id> --model <alias> exits 1 with '--model only applies to a new session'."
-      - "A resume dispatch without --model is refused by the vibe-closed-roster hard rule."
+    session_ref:
+      runtime: "claude"
+      sessionId: "425e79e1-c5de-4edb-b8bb-77ee620d2538"
+      workspace: "/Users/michelkerkmeester/worktrees/public/383-mistral-vibe-runtime"
+      savedAt: "2026-11-15T13:31:21Z"
+      locatorKind: "transcript_path"
+      version: 1
+    completion_pct: 90
+    open_questions: []
+    answered_questions: []
 ---
 
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.4 -->
