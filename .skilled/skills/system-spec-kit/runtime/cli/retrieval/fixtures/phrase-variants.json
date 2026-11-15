@@ -1,5 +1,5 @@
 {
-  "manifestHash": "2fb5ff24ccb2663425965ba2f2eda3341fac63d48b150a67b96b995645297e04",
+  "manifestHash": "6154f2b6ac6f41a096797c559df66457738f4020c60c2be0df921061a612c146",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -45089,6 +45089,21 @@
     "dsh turn stopping sentinel": [
       "dsh turn stopping sentinel"
     ],
+    "dsh verify iteration executor": [
+      "dsh verify iteration executor"
+    ],
+    "dsh verify iteration executor goal": [
+      "dsh verify iteration executor goal"
+    ],
+    "dsh verify iteration executor implementation summary": [
+      "dsh verify iteration executor implementation summary"
+    ],
+    "dsh verify iteration executor plan": [
+      "dsh verify iteration executor plan"
+    ],
+    "dsh verify iteration executor tasks": [
+      "dsh verify iteration executor tasks"
+    ],
     "dtype embedding profile key": [
       "dtype embedding profile key"
     ],
@@ -47803,6 +47818,9 @@
     ],
     "execute the specs flip": [
       "execute the specs flip"
+    ],
+    "executed post dispatch gate executor identity": [
+      "executed post-dispatch gate executor identity"
     ],
     "executepipeline detector recomputation harness": [
       "executePipeline detector recomputation harness"
@@ -82448,6 +82466,9 @@
     "phase 22 collapse plan": [
       "phase 22 collapse plan"
     ],
+    "phase 22 dsh verify iteration executor": [
+      "phase 22 dsh verify iteration executor"
+    ],
     "phase 22 implementation summary": [
       "phase 22 implementation summary"
     ],
@@ -87027,6 +87048,9 @@
     ],
     "post deprecation deep review coco": [
       "post-deprecation deep review coco"
+    ],
+    "post dispatch executor identity gate": [
+      "post-dispatch executor identity gate"
     ],
     "post dispatch validate": [
       "post-dispatch validate"
@@ -121326,6 +121350,9 @@
     "system deep loop 2 0 0 0": [
       "system-deep-loop 2.0.0.0"
     ],
+    "system deep loop 2 0 1 0": [
+      "system-deep-loop 2.0.1.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -121541,6 +121568,9 @@
     ],
     "system deep loop v2 0 0 0": [
       "system-deep-loop v2.0.0.0"
+    ],
+    "system deep loop v2 0 1 0": [
+      "system-deep-loop v2.0.1.0"
     ],
     "system deep research bugs": [
       "system deep research bugs"
@@ -129742,6 +129772,12 @@
     ],
     "verify iteration dispatch failure": [
       "verify iteration dispatch failure"
+    ],
+    "verify iteration executor check plan": [
+      "verify-iteration executor check plan"
+    ],
+    "verify iteration executor missing": [
+      "verify-iteration executor_missing"
     ],
     "verify premise evidence": [
       "verify premise evidence"
