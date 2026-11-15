@@ -8,27 +8,25 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-deep-loop/loop-architecture/004-workflow-logic-hardening/007-open-findings-follow-up"
-    last_updated_at: "2026-11-15T09:45:33Z"
+    last_updated_at: "2026-11-15T10:29:58Z"
     last_updated_by: "generate-context"
-    recent_action: "Pushed the merged branch to origin/main (8f218b3e1da) and removed worktree 382 and its branch"
-    next_safe_action: "None; phase closed"
+    recent_action: "Republished the release tag and notes with the deep-loop section"
+    next_safe_action: "None; packet closed"
     packet_purpose: "Purpose: Each of the six findings is fixed and proved by a command, or is named not fixed with the numbers that blocked it."
     blockers: []
     key_files:
-      - "README.md"
-      - ".skilled/commands/deep/assets/deep-review.yaml"
-      - ".skilled/commands/deep/assets/deep-research.yaml"
-      - ".skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs"
+      - ".skilled/changelog/skilled/v4.0.2.1.md"
       - ".skilled/skills/system-deep-loop/runtime/lib/deep-loop/write-containment.ts"
+      - "README.md"
     session_dedup:
-      fingerprint: "sha256:b47b4ee0471509d4da6722f29f5a47c3d22306c6ffe99ba8970edcfb833ff10b"
+      fingerprint: "sha256:6fc4d9edcbac9ef4751a6131a4ec242758ea41dffc817e57cc4d0b24281a545d"
       session_id: "scaffold-007-open-findings-follow-up"
       parent_session_id: null
     session_ref:
       runtime: "claude"
       sessionId: "6b959364-9580-45bd-923d-efd800111a7f"
       workspace: "/Users/michelkerkmeester/MEGA/Development/Skilled"
-      savedAt: "2026-11-15T09:45:33Z"
+      savedAt: "2026-11-15T10:29:58Z"
       locatorKind: "transcript_path"
       version: 1
     completion_pct: 100
