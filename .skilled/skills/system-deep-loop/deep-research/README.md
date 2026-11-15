@@ -8,7 +8,7 @@ trigger_phrases:
   - "iterative research"
   - "autonomous research"
   - "/deep:research"
-version: 1.14.4.0
+version: 1.14.6.0
 ---
 
 # deep-research
@@ -36,7 +36,7 @@ Long-form investigation inside a conversation degrades as findings pile up in th
 
 `deep-research` runs an autonomous multi-iteration research loop through `/deep:research:auto`. Each iteration dispatches a fresh `@deep-research` LEAF agent that reads the accumulated state from disk, investigates one focus area, writes findings to an iteration file and appends a JSONL record with a new-information ratio. A reducer updates the strategy, registry and dashboard after each pass. The loop stops when the new-information ratio falls below the convergence threshold for long enough, or when all research questions are answered.
 
-It does not perform one-shot codebase lookup (`@context` does that), audit code (`deep-review`) or compare competing plans (`deep-ai-council`). The active family and lane roster is authoritative in [`mode-registry.json`](../mode-registry.json). This packet does not repeat it. The runtime-backed families share `runtime/` for executors, state handling and coverage graphs.
+It does not perform one-shot codebase lookup (`@context` does that) or audit code (`deep-review`). The active family and lane roster is authoritative in [`mode-registry.json`](../mode-registry.json). This packet does not repeat it. The runtime-backed families share `runtime/` for executors, state handling and coverage graphs.
 
 ---
 
@@ -71,7 +71,7 @@ Expected output: a JSON summary with `registryPath`, `dashboardPath`, `iteration
 
 ### The Iteration Lifecycle
 
-The command YAML workflow owns dispatch. It initializes the research packet on first run, then loops: check convergence, dispatch the `@deep-research` LEAF agent for one iteration, wait for the write-back, run the reducer and decide whether to continue or stop. Each iteration is a single LEAF dispatch capped at roughly twelve tool calls. The agent investigates one focus area, writes a numbered iteration markdown file, appends a JSONL delta record and returns. It never dispatches sub-agents, never nests another loop and never asks the user a question.
+The command YAML workflow owns dispatch. It initializes the research packet on first run, then loops: check convergence, dispatch the `@deep-research` LEAF agent for one iteration, wait for the write-back, run the reducer and decide whether to continue or stop. Each iteration is a single LEAF dispatch whose tool-call budget comes from `maxToolCallsPerIteration` in the config. The agent investigates one focus area, writes a numbered iteration markdown file, appends a JSONL delta record and returns. It never dispatches sub-agents, never nests another loop and never asks the user a question.
 
 Lifecycle controls include [run-now control](./feature-catalog/loop-lifecycle/run-now-control.md), [per-iteration memory upsert](./feature-catalog/loop-lifecycle/per-iteration-memory-upsert.md), and [loop-wide dry-run](./feature-catalog/loop-lifecycle/loop-wide-dry-run.md).
 
@@ -96,7 +96,7 @@ Reducer-owned state also covers [injection inbox provenance](./feature-catalog/s
 
 Convergence is a composite stop signal driven by the new-information ratio per iteration. The loop continues as long as iterations keep surfacing new findings. It stops when the ratio falls below the convergence threshold (default 0.05) for long enough. A quality gate also checks source diversity, focus alignment and weak-source prevention before accepting a stop. A stuck-recovery path handles iterations that add nothing, escalating after the stuck threshold (default 3) is reached.
 
-The convergence model weighs the new-information ratio against a minimum-iterations floor. The full signal math lives in `references/convergence/convergence.md` and `references/convergence/convergence-signals.md`. The convergence threshold is not interchangeable with sibling deep loops. `deep-review` and `deep-ai-council` each use a different default tuned to their domain.
+The convergence model weighs the new-information ratio against a minimum-iterations floor. The full signal math lives in `references/convergence/convergence.md` and `references/convergence/convergence-signals.md`. The convergence threshold is not interchangeable with sibling deep loops. `deep-review` uses a different default tuned to its domain.
 
 The minimum-iteration behavior is documented as the [anti-convergence floor](./feature-catalog/convergence/anti-convergence-floor.md).
 
@@ -112,7 +112,7 @@ The minimum-iteration behavior is documented as the [anti-convergence floor](./f
 
 Run `deep-research` when a topic demands three or more rounds of investigation and the findings from one round should shape the next. Run it when you want the research to run overnight or unattended. Run it when you need a convergence-gated investigation that stops itself rather than running until you manually call it. Once the loop completes, save continuity to the memory index with `generate-context.js` and use `/speckit:resume` to rebuild context before extending or reviewing a completed run.
 
-Skip it for a single-question lookup, where a direct web search or the `@context` agent is faster. Skip it for implementation planning, where `/speckit:plan` owns the plan after context is gathered. Skip it for code audits (`deep-review`) or strategy comparison (`deep-ai-council`).
+Skip it for a single-question lookup, where a direct web search or the `@context` agent is faster. Skip it for implementation planning, where `/speckit:plan` owns the plan after context is gathered. Skip it for code audits (`deep-review`).
 
 ### Sibling Deep Loops
 
@@ -121,7 +121,6 @@ Skip it for a single-question lookup, where a direct web search or the `@context
 | Skill | Relationship |
 |---|---|
 | `deep-review` | Audits code for bugs, security gaps and quality issues. Run it after implementation. |
-| `deep-ai-council` | Compares competing plans with structured disagreement. Run `deep-research` first when the council needs an evidence base. |
 
 `/speckit:plan` and `/speckit:implement` consume the research report. `system-spec-kit` owns the spec folder, validation and memory continuity. `runtime/` provides the shared executor, state layer and coverage graph.
 
@@ -229,7 +228,7 @@ A feature change to this skill typically touches more than one surface. Before c
 - [ ] **`references/`** -- the owning protocol, state or convergence doc reflects the change (see section 8 table for which doc owns what)
 - [ ] **`feature-catalog/`** -- the feature's category package documents inputs, outputs, owner and acceptance criteria
 - [ ] **`manual-testing-playbook/`** -- a scenario exists (or is updated) with preconditions, expected signals and a pass/fail verdict
-- [ ] **command YAML/tests** -- `.skilled/commands/deep/assets/deep-research-auto.yaml` and `deep-research-confirm.yaml`, plus any `scripts/*.test.cjs`, cover the change
+- [ ] **command YAML/tests** -- `.skilled/commands/deep/assets/deep-research.yaml`, plus any `scripts/*.test.cjs`, cover the change
 - [ ] **`assets/`** -- templates (`deep-research-config.json`, `deep-research-strategy.md`, `deep-research-dashboard.md`, prompt pack) match the new shape
 - [ ] **`scripts/`** -- `reduce-state.cjs` and `runtime-capabilities.cjs` implement the change and stay idempotent
 

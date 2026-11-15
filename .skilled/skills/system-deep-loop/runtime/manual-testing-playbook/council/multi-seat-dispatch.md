@@ -1,7 +1,7 @@
 ---
 title: "DLR-018 -- Multi-seat dispatch"
 description: "Manual validation scenario for Multi-seat dispatch in the runtime/ skill."
-version: 1.4.0.4
+version: 1.4.1.0
 ---
 
 # DLR-018 -- Multi-seat dispatch
@@ -16,7 +16,7 @@ Runs seat executors in parallel for one council round; preserves seat result ord
 
 ### Why This Matters
 
-This is the per-round parallel-dispatch primitive that deep-ai-council consumes. If it drifts, council rounds can produce out-of-order seat results or lose per-seat error signals.
+This is the parallel-dispatch primitive the divergent pivot consumes when a stalled research or review run convenes pivot seats. If it drifts, a pivot round can produce out-of-order seat results or lose per-seat error signals.
 
 ---
 

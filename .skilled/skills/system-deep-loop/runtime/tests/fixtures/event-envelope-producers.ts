@@ -27,18 +27,6 @@ export const PRODUCER_FAMILY_FIXTURES: readonly ProducerFamilyFixture[] = Object
     }),
   }),
   Object.freeze({
-    family: 'council-round-state',
-    eventType: 'deep-loop.council.round-started',
-    payload: Object.freeze({
-      schema_version: '1.0',
-      event_id: 'fixture-round-event',
-      written_at_iso: '2026-01-01T00:00:00.000Z',
-      type: 'round_started',
-      round_id: 'round-001',
-      topic_id: 'topic-fixture',
-    }),
-  }),
-  Object.freeze({
     family: 'executor-audit',
     eventType: 'deep-loop.executor.dispatch-failed',
     payload: Object.freeze({

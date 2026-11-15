@@ -14,12 +14,8 @@ import { fileURLToPath } from 'node:url';
 const ASSETS = fileURLToPath(new URL('../../../../../commands/deep/assets/', import.meta.url));
 const SAVE_COMMAND = /generate-context\.js \/tmp\/save-context-data-<session-id>\.json \{spec_folder\}( --full-auto)?"/g;
 const WORKFLOWS = [
-  'deep-review-auto.yaml',
-  'deep-review-confirm.yaml',
-  'deep-research-auto.yaml',
-  'deep-research-confirm.yaml',
-  'deep-ai-council-auto.yaml',
-  'deep-ai-council-confirm.yaml',
+  'deep-review.yaml',
+  'deep-research.yaml',
 ];
 
 describe('deep loop save step', () => {
@@ -31,7 +27,7 @@ describe('deep loop save step', () => {
     expect(commands[0][1]).toBe(' --full-auto');
   });
 
-  it.each(WORKFLOWS.filter((name) => !name.startsWith('deep-ai-council')))(
+  it.each(WORKFLOWS)(
     '%s puts the four continuity fields in its example payload',
     (name) => {
       const text = readFileSync(`${ASSETS}${name}`, 'utf8');

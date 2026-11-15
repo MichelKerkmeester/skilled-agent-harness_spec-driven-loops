@@ -1,7 +1,7 @@
 ---
 title: "DRV-004 -- Fresh review initialization creates canonical state files"
 description: "Verify that a fresh review session creates the canonical config, JSONL, strategy, and iteration directory from the shipped assets."
-version: 1.11.0.15
+version: 1.11.1.0
 ---
 
 # DRV-004 -- Fresh review initialization creates canonical state files
@@ -45,9 +45,9 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 ### Prompt
 Validate fresh deep-review initialization and report whether all canonical review state files are created from live templates.
 ### Commands
-1. `bash: rg -n 'step_create_directories|step_create_config|step_create_state_log|step_create_findings_registry|step_create_strategy' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+1. `bash: rg -n 'step_create_directories|step_create_config|step_create_state_log|step_create_findings_registry|step_create_strategy' .skilled/commands/deep/assets/deep-review.yaml`
 2. `bash: sed -n '1,220p' .skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json && sed -n '1,220p' .skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md`
-3. `bash: rg -n 'state_paths|config:|state_log:|findings_registry:|strategy:|iteration_pattern' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+3. `bash: rg -n 'state_paths|config:|state_log:|findings_registry:|strategy:|iteration_pattern' .skilled/commands/deep/assets/deep-review.yaml`
 ### Expected
 The review/ directory is created, config comes from the shared config template, the findings registry comes from the reducer contract, strategy comes from the deep-review strategy template, and the JSONL begins with a config record.
 ### Evidence
@@ -55,7 +55,7 @@ Capture the initialization step names, the live template files, and the state_pa
 ### Pass/Fail
 PASS if protocol, YAML, and asset templates agree on the initial review artifacts and their roles. FAIL if the artifact list or template sources drift.
 ### Failure Triage
-Check both YAML variants, verify the JSONL init step writes a config record, confirm the reducer registry is created, and confirm the assets live under `assets/`.
+Check the workflow in both execution modes, verify the JSONL init step writes a config record, confirm the reducer registry is created, and confirm the assets live under `assets/`.
 ---
 
 ## 4. SOURCE FILES
@@ -71,8 +71,7 @@ Check both YAML variants, verify the JSONL init step writes a config record, con
 
 | File | Role |
 |---|---|
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Autonomous init steps, inspect `phase_init` and `state_paths` |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Confirm init steps, inspect `phase_init` |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Init steps, inspect `phase_init` and `state_paths` |
 | `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json` | Config template |
 | `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md` | Strategy template |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | State files table, use `ANCHOR:state-files` |

@@ -88,7 +88,6 @@ runtime/cli/
 +-- check-markdown-links.cjs # Markdown-link (](path)) integrity guard over skills/commands/agents
 +-- deploy-mcp.sh          # Rebuild every daemon-backed package dist
 +-- validate-command-tree-parity.sh # Policy-aware runtime mirror gate; explicit arbitrary trees use byte parity
-+-- test-council-matrix.sh # AI Council vitest + sk-doc + strict parent-spec validation in one pass
 +-- package.json           # ESM package manifest
 +-- tsconfig.json          # TypeScript project: extends the skill-root config, emits to dist/
 `-- README.md
@@ -129,7 +128,6 @@ Disallowed direction:
 | `spec/repair-derived.cjs` | Repairs the packet facts that are recomputable from disk, recorded location, declared level, generated-metadata fingerprint, and refuses everything else, reporting it by rule. Reporting is the default; `--apply` writes. Skips archived, scratch and pre-rename snapshot trees. See `spec/README-repair-derived.md` for the derived-versus-authored boundary. |
 | `deploy-mcp.sh` | Rebuilds every daemon-backed package `dist/` (the spec-kit runtime engine plus `@spec-kit/shared` via TS project references, and the skill advisor daemon) after a source change, then warns about launcher `.cjs` changes that only a fresh session can load. `dist/` is gitignored, so this is the canonical rebuild step after pulling source changes. |
 | `validate-command-tree-parity.sh` | Policy-aware runtime mirror gate run by the `command-tree-parity` GitHub workflow on every pull request; `spec/validate.sh` has no rule for it. Its default mode delegates to the generated mirror checker so runtime-exclusive commands stay excluded; explicit `--left`/`--right` trees retain byte-parity comparison and `--self-test` coverage. |
-| `test-council-matrix.sh` | Runs the AI Council runtime vitest suite, sk-doc validation for the deep-ai-council skill, and strict spec validation for the parent council skill package in one pass. |
 | `package.json` | Defines ESM runtime settings and build scripts. |
 | `tsconfig.json` | Compiles the CLI TypeScript to `dist/`. It extends the skill-root `tsconfig.json` and references the shared and runtime projects. |
 

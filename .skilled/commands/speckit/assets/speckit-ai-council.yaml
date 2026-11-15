@@ -1,0 +1,112 @@
+# ─────────────────────────────────────────────────────────────────
+# SPECKIT AI COUNCIL WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+execution_mode:
+  source: "$ARGUMENTS"
+  values: [auto, confirm]
+  default: confirm
+  rule: "Under confirm, execute every checkpoint block in order at the step that carries it. Under auto, skip every block whose applies_to is confirm and keep the autonomous wording of this file."
+checkpoints: [step_1_bind_spec_folder, step_3_report]
+
+role: Workflow runner for one AI Council run
+purpose: Give a planning question to the ai-council agent with a bound spec folder, then show its plan
+action: Bind the spec folder, dispatch the agent once, report
+
+runtime_agent_path_resolution:
+  default: .skilled/agents
+  claude: .claude/agents
+  codex: .codex/agents
+  cursor: .cursor/agents
+  devin: .devin/agents
+  dsh: .dsh/agents
+  opencode: .opencode/agents
+  pi: .pi/agents
+
+operating_mode:
+  workflow: sequential
+  rounds: single
+  writes: "none by this workflow. The ai-council agent writes [SPEC_FOLDER]/ai-council/** and nothing else."
+  implementation: never
+
+# ─────────────────────────────────────────────────────────────────
+# INPUTS
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  question: "[QUESTION] - The planning question or task the council deliberates. REQUIRED."
+  spec_folder: "[SPEC_FOLDER] - Spec folder path. REQUIRED before the agent is dispatched."
+  context: "[CONTEXT] - Optional background, constraints or files the seats should read."
+
+field_handling:
+  defaults: { question_empty: "REQUIRED", spec_folder_empty: "REQUIRED", context_empty: "Infer from QUESTION and the bound spec folder" }
+  spec_folder_flag: "--spec-folder=PATH binds [SPEC_FOLDER] without asking."
+
+gate_3:
+  machine_contract: ".skilled/skills/system-spec-kit/shared/gate-3-classifier.ts (classifyPrompt)"
+  standard_question: "Spec Folder (required): A) Existing | B) New (new or unrelated work only) | C) Related (Use a related folder, phase child, new or existing sub-track, or a series parent for a different change to the same artifact as an existing packet in the same track) | D) Skip"
+  ask_surface: "Ask standard_question through the question tool .skilled/repo-rules/communication-handoff.md section 5 names for your runtime, with A to D as its choices. Print it as text only where section 5 names no tool for this session."
+  child_dispatch: "When AI_SESSION_CHILD=1 marks a non-interactive worker bound to a lineage directory, Gate 3 is pre-resolved to that directory and the worker does not ask. Interactive sessions always ask."
+  skip_rule: "Option D leaves no folder to write to, so the workflow stops and says a council run needs a spec folder."
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  step_1_bind_spec_folder:
+    description: "Resolve [QUESTION] and [SPEC_FOLDER] before anything is written"
+    activities:
+      - "Read [QUESTION] from the arguments. If it is empty, ask for it."
+      - "Bind [SPEC_FOLDER] from --spec-folder, from the pre-bound setup answers, or by asking gate_3.standard_question."
+      - "Confirm the folder exists and holds a spec.md. If it does not, stop and point the user to /speckit:plan."
+      - "Check whether [SPEC_FOLDER]/ai-council/ already exists, and note it as a continuing run when it does."
+    outputs: [question, spec_folder, continuing_run]
+    validation: spec_folder_bound
+    on_failure: "Stop. Dispatch nothing and write nothing."
+    checkpoint:
+      applies_to: confirm
+      prompt: "Show the question, the bound spec folder and whether this continues an earlier run. Ask: A) Convene the council  B) Change the question or folder  C) Cancel"
+
+  step_2_dispatch_council:
+    description: "Dispatch the ai-council agent exactly once"
+    agent: ai-council
+    dispatch_count: 1
+    activities:
+      - "Resolve the agent file from runtime_agent_path_resolution for the runtime in use."
+      - "Dispatch @ai-council once through the runtime's delegation tool with the prompt in dispatch_prompt."
+      - "Wait for the agent to return. Do not dispatch council seats from this workflow. The agent owns its seats."
+    dispatch_prompt: |
+      Convene the AI Council on this question:
+      [QUESTION]
+
+      Target packet (already resolved, do not ask for it): [SPEC_FOLDER]
+      Write your artifacts under [SPEC_FOLDER]/ai-council/ and nowhere else.
+      Context: [CONTEXT]
+
+      Return the Multi-AI Council Report and the path of council-report.md.
+    outputs: [council_report, council_report_path]
+    validation: agent_returned
+    on_failure: "Report the failure the agent returned. Do not dispatch a second time and do not write the report yourself."
+
+  step_3_report:
+    description: "Verify the artifacts and show the plan"
+    activities:
+      - "Read [SPEC_FOLDER]/ai-council/council-report.md and confirm it exists."
+      - "Read the last line of [SPEC_FOLDER]/ai-council/ai-council-state.jsonl and confirm it is a council_complete event."
+      - "Show the result with the presentation contract's success template. When either check fails, use the failure template and name the missing artifact."
+    outputs: [result_display]
+    validation: report_shown
+    checkpoint:
+      applies_to: confirm
+      prompt: "Ask what the user wants next, with the presentation contract's next-step suggestions."
+
+# ─────────────────────────────────────────────────────────────────
+# RULES
+# ─────────────────────────────────────────────────────────────────
+rules:
+  always:
+    - "Bind the spec folder before the agent is dispatched."
+    - "Dispatch the agent once per command run."
+    - "Show the plan as the agent returned it. The scores and the dissent stay in."
+  never:
+    - "Write or edit a file from this workflow."
+    - "Implement the recommended plan."
+    - "Run a second round, a topic loop or a seat dispatch from this workflow."

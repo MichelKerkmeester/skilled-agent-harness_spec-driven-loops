@@ -1,0 +1,157 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/382-deep-loop-workflow-logic-hardening
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: You are a code implementation worker. Wire one new mode into one file, nothing else.
+Do not refactor, reformat or fix anything adjacent. Do not write spec ids, task ids, finding
+ids or spec paths in code comments: comments say the durable WHY. Do not commit.
+
+ALLOWED WRITE PATH (only this one file):
+- .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs
+
+BANNED OPERATIONS: git commit, git push, git checkout, git reset, git stash, rm, mv, any
+write outside the allowed path, any package install. Do NOT edit any test file. If a test
+looks wrong against the rules below, leave it failing and report it in RETURN.
+
+CONTEXT: convergence.cjs already exports the pure function `buildStopDecision(input)` (see
+the section `// 4B. STOP DECISION` and the header comment). It is not called yet. This
+change adds the `--stop-decision` mode that reads three files, builds the input object and
+adds `stop_decision` to the printed payload. Do NOT change the six pure functions.
+
+READ FIRST: the whole of convergence.cjs (about 1,400 lines), especially `CONVERGENCE_FLAGS`,
+`parseArgs`, `inputError`, `readConvergenceModeConfig` and `main()`.
+
+=== THE --stop-decision MODE OF convergence.cjs (input reading rules) ===
+
+New flags (the parser turns `--config-path` into `configPath`):
+  --stop-decision                  boolean switch. Without it the script behaves exactly as today.
+  --config-path <file>             REQUIRED with --stop-decision. Loop config JSON.
+  --state-log <file>               REQUIRED with --stop-decision. JSON-lines state log.
+  --registry-path <file>           optional. Findings registry JSON. Missing file = {}.
+  --iteration-count <n>            optional. Default: number of distinct iteration records.
+  --stuck-count <n>                optional. Default 0.
+  --security-sensitive-fix-scope <true|false>   review only, default false.
+  --fix-replay-required-rows <n>   review only, default 0.
+  --fix-replay-passing-rows <n>    review only, default 0.
+
+Errors (all through the existing `inputError`, so the script exits 3 with {"status":"error"}):
+  --stop-decision with a loop type other than research or review;
+  --config-path or --state-log missing, or naming a file that does not exist or is not JSON.
+
+Output: the normal payload plus one extra top-level key `stop_decision`, which is
+`buildStopDecision(input)`. Both existing output paths get it: the empty-graph early return
+(graphDecision is then 'CONTINUE') and the normal path.
+
+Graph failure rule: with --stop-decision, an error thrown while opening or evaluating the
+graph that is NOT an input error (err.code !== 'INPUT_VALIDATION') must not fail the script.
+The script then prints {"status":"ok","data":null,"graph_decision":null,"graph_error":"<message>",
+"stop_decision":{...}} with graphDecision null, and exits 0. Without --stop-decision the
+existing error behavior is unchanged (the tests around DEEP_LOOP_TEST_FAULT still pass).
+
+Building the input object:
+  loopType           the --loop-type value.
+  config.maxIterations        config.maxIterations (number), else Infinity is NOT allowed: use null.
+  config.minIterations        config.minIterations, else config.antiConvergence.minIterations, else 0;
+                              never above maxIterations.
+  config.convergenceThreshold config.convergenceThreshold (number) else null.
+  config.stopPolicy           config.stopPolicy when it is 'convergence' or 'max-iterations', else 'convergence'.
+  config.stuckThreshold       config.stuckThreshold (number), else 3 for research and 2 for review.
+  config.convergenceMode      the value the existing `readConvergenceModeConfig(args)` resolves when the
+                              --convergence-mode flag is given, else config.antiConvergence.convergenceMode,
+                              else 'default'.
+  State log: one JSON object per line. Skip blank and unparsable lines.
+    iteration records = rows with type === 'iteration'. The iteration number is `iteration`, else `run`.
+    When two rows share a number keep the later one. Order by number ascending.
+    evidence records = iteration records whose status is not 'thought'.
+  ratios             research: `newInfoRatio` of each evidence record. review: `newFindingsRatio`.
+                     Skip records where it is not a finite number.
+  iterationCount     --iteration-count, else the number of iteration records.
+  stuckCount         --stuck-count, else 0.
+  graphDecision      the graph decision ('STOP_ALLOWED' | 'STOP_BLOCKED' | 'CONTINUE'), null on graph failure.
+  graphBlockers      the graph blockers array, [] when none.
+  research (null for review):
+    answeredCount    registry.metrics.resolvedQuestions (number), else registry.resolvedQuestions.length, else 0.
+    totalQuestions   answeredCount + (registry.metrics.openQuestions (number), else registry.openQuestions.length, else 0).
+    iterationRecords evidence records mapped to { answeredQuestions, keyQuestions } (copy the field only when it is an array).
+    answeredQuestionSourceCounts
+                     null when the graph has no QUESTION node that is the target of an ANSWERS edge, or on graph failure.
+                     Otherwise an object keyed by the question node's id: for each QUESTION node that is the
+                     target of at least one ANSWERS edge, the number of distinct SOURCE nodes cited (CITES edge,
+                     finding -> source) by the FINDING nodes that ANSWER it. Keys sorted alphabetically.
+  review (null for research):
+    totalDimensions / missingDimensions
+                     dimensions = config.reviewDimensions (array), else the keys of registry.dimensionCoverage.
+                     missing = the dimensions whose registry.dimensionCoverage[name] is not true.
+    coverageAge      walk the evidence records in order, accumulating each record's `dimensions` array.
+                     Find the first record after which every dimension is covered. coverageAge = the number
+                     of evidence records AFTER that one. 0 when coverage is never complete.
+    traceabilityCovered
+                     true when registry.traceability.summary.gatingFailures is 0 (or the summary is absent
+                     and config.crossReference.core is empty or absent) AND every id in
+                     config.crossReference.core has an entry in registry.traceability.results whose
+                     `protocolId` equals it and whose `status` (lowercased) is not '', 'pending',
+                     'deferred' or 'skipped'. Otherwise false.
+    activeP0, activeP1   registry.findingsBySeverity.P0 / .P1 (numbers), else 0.
+    evidenceBackedP0P1   count of registry.openFindings entries with severity 'P0' or 'P1' whose `file`
+                         and `line` are both non-null.
+    hotspotSaturated     true/false = the `passed` value of the graph trace entry with signal
+                         'hotspotSaturation'; null when the graph is empty or failed.
+    lastClaimAdjudicationPassed
+                     the `passed` value of the LAST state-log row with type 'event' and event
+                     'claim_adjudication' when it is a boolean, else null.
+    securitySensitiveFixScope, fixReplayRequiredRows, fixReplayPassingRows   from the three flags.
+    reviewDepthSchemaVersion, reviewDepthApplicability   from the last iteration record, else null.
+    searchDebt           registry.searchDebt (array) else [].
+    candidateCovered     registry.candidateCoverage.covered (array) else [].
+    requiredBugClasses   registry.searchCoverage.requiredBugClasses (array) else [].
+    graphCoverageMode    registry.searchCoverage.graphCoverageMode (string) else null.
+    fallbackCoveredBugClasses
+                     distinct `bugClass` values of `searchLedger` rows, across all iteration records, that
+                     have a non-empty `evidenceRefs` array and at least one `searchActions[].method` in
+                     direct_read, exact_grep, semantic_search, producer_consumer_trace,
+                     negative_test_inspection. Sorted alphabetically.
+
+=== HOW TO WIRE IT ===
+
+1. Add the nine new camelCase flag names to `CONVERGENCE_FLAGS`, keeping the list sorted.
+2. Add helper functions in the `// 4B. STOP DECISION` section, below `buildStopDecision`:
+   one that reads and validates the three files, and one that builds the input object from
+   (args, loopType, files, graph facts). Keep them small and named for what they do.
+   Export the input builder as `buildStopDecisionInput` in `module.exports` (sorted).
+3. In `main()`:
+   - Read `const stopDecisionRequested = args.stopDecision === true;` right after the loop
+     type check, validate the loop type for this mode and read the three files THERE, before
+     the graph is opened, so an input error exits 3 before any graph work.
+   - Attach `payload.stop_decision` in both output paths (the empty-graph early return and
+     the normal path) just before `jsonOut(payload)`, and before the observability event
+     is appended so the event carries it.
+   - Implement the graph failure rule: wrap the graph work so a non-input error with
+     `stopDecisionRequested` prints the fallback payload and returns normally. `db?.closeDb()`
+     in the existing `finally` must still run.
+   - Without `--stop-decision` the script must behave byte-for-byte as before.
+
+=== VERIFY (run from the repository root, print the last 15 lines of each) ===
+  node --check .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/integration/convergence-script.vitest.ts tests/unit/stop-decision.vitest.ts tests/unit/convergence-score-delta.vitest.ts tests/unit/coverage-graph-signals.vitest.ts)
+  (cd .skilled/skills/system-deep-loop/runtime && npm run typecheck)
+
+EXPECTED: `node --check` exits 0. All four test files report 0 failed (31 tests in the
+integration file). The typecheck exits 0.
+
+RETURN: the three command summaries, and for any test still failing: its name and whether
+you believe the test or the rules are wrong, with one sentence of reasoning.

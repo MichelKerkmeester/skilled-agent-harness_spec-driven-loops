@@ -1,0 +1,44 @@
+ROLE: You are a test engineer. Repoint the test files listed below from four old workflow files
+to two new ones. Edit only the listed test files.
+
+CONTEXT: /deep:research and /deep:review each ran from an auto and a confirm workflow twin. Each
+now runs from ONE file that serves both modes:
+  .skilled/commands/deep/assets/deep-research.yaml
+  .skilled/commands/deep/assets/deep-review.yaml
+The old twins (deep-research-auto.yaml, deep-research-confirm.yaml, deep-review-auto.yaml,
+deep-review-confirm.yaml) still exist today and are deleted right after this change, so no test
+may read them any more.
+
+FACTS ABOUT THE SINGLE FILES:
+- Every step and executor branch of the auto twin is there once and runs in both modes.
+- Confirm-only blocks carry the key `applies_to: confirm`: the approval gates (`gate_...`), the
+  `if_consecutive_failures` branch and `step_classify_session.on_resume.confirm_choice`.
+- Top-level keys `execution_mode`, `mode_overrides` and `dry_run_control` exist. The key
+  `confirm_parity` is gone.
+- Inline Node heredocs are gone. Steps call runtime scripts: loop-heartbeat.cjs,
+  run-now-sentinel.cjs, iteration-graph-upsert.cjs, dispatch-iteration.cjs, divergent-pivot.cjs,
+  all in .skilled/skills/system-deep-loop/runtime/scripts/.
+- The compiler definition of each command has one `workflowPath` (no `autoWorkflowPath` or
+  `confirmWorkflowPath`), and the compiled contract has one line `workflow: <path>`.
+
+RULES:
+1. A test that read one twin reads the single file.
+2. A test that looped over both twins, or over a `variant` of auto and confirm, runs once over
+   the single file. Remove branches that only applied to one variant.
+3. A test that compared the auto twin with the confirm twin asserts the same contract on the
+   single file instead. Keep every content assertion.
+4. Never edit a workflow YAML, a script or a library to make a test pass. If a content assertion
+   fails against the single file and the rules here do not cover it, leave that assertion as it
+   is and report it under CONTENT MISMATCH with the test file, the line and what the file holds.
+5. Do not delete a test case unless it only compared the two twins and rule 3 cannot express it.
+   Name every deleted case in the report.
+6. Read a workflow file only through grep -n and small windows.
+
+RUN each file after editing it, from .skilled/skills/system-deep-loop/runtime:
+  node_modules/.bin/vitest run --no-coverage <path of the test file>
+(for a file under system-spec-kit/runtime/cli use, from that folder:
+  npx vitest run --config ../../vitest.config.ts --project cli tests/<file>)
+
+REPORT: one line per file: "passes, N tests", or "fails" with the failing case names. Then the
+CONTENT MISMATCH list, then the deleted cases.
+

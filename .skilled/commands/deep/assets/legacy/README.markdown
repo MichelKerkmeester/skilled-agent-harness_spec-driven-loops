@@ -14,17 +14,17 @@ importance_tier: "important"
 > family under `.skilled/commands/deep/`. This README uses the `.markdown` extension because
 > OpenCode registers every `.md` file under `.skilled/commands/` as a command.
 >
-> Router bodies retained as the base payload for the three compiler-managed deep commands.
+> Router bodies retained as the base payload for the two compiler-managed deep commands.
 
 ---
 
 ## 1. OVERVIEW
 
-`.skilled/commands/deep/assets/legacy/` stores three fallback command bodies: `deep/ai-council`, `deep/research` and `deep/review`.
+`.skilled/commands/deep/assets/legacy/` stores two fallback command bodies: `deep/research` and `deep/review`.
 
 Each body acts as a thin router. It resolves command setup and selects workflow YAML while leaving iteration dispatch, artifact writes and convergence handling to the selected workflow.
 
-Each body has a matching compiled contract in `../compiled/`. There is no fifth body and no unmatched body-to-contract relationship in this directory.
+Each body has a matching compiled contract in `../compiled/`. There is no third body and no unmatched body-to-contract relationship in this directory.
 
 ---
 
@@ -32,7 +32,6 @@ Each body has a matching compiled contract in `../compiled/`. There is no fifth 
 
 ```text
 legacy/
-+-- deep-ai-council.body.markdown
 +-- deep-research.body.markdown
 +-- deep-review.body.markdown
 `-- README.markdown
@@ -46,7 +45,6 @@ legacy/
 |---|---|
 | `deep-research.body.markdown` | Fallback router for the deep-research loop. |
 | `deep-review.body.markdown` | Fallback router for the deep-review loop. |
-| `deep-ai-council.body.markdown` | Fallback router for bounded AI Council sessions. |
 
 ---
 
@@ -78,8 +76,8 @@ Each body recognizes attached command modes:
 
 | Suffix | Behavior |
 |---|---|
-| `:auto` | Resolve supported inputs non-interactively and load the auto workflow. |
-| `:confirm` | Ask the consolidated setup question and load the confirm workflow. |
+| `:auto` | Resolve supported inputs non-interactively and load the command's workflow with execution_mode `auto`. |
+| `:confirm` | Ask the consolidated setup question and load the command's workflow with execution_mode `confirm`. |
 | No suffix | Ask for execution mode through the command's setup flow. |
 
 Inputs such as target paths, iteration limits, convergence settings and executor choices remain workflow inputs rather than execution modes.
@@ -88,7 +86,7 @@ Inputs such as target paths, iteration limits, convergence settings and executor
 
 ## 6. INJECTION BOUNDARY
 
-Render tooling's compiler registry contains exactly these three body-to-contract pairings. In `fallback` mode it returns the legacy body directly; in `fix` mode it prepends the matching fresh compiled contract to that body.
+Render tooling's compiler registry contains exactly these two body-to-contract pairings. In `fallback` mode it returns the legacy body directly; in `fix` mode it prepends the matching fresh compiled contract to that body.
 
 Compiled contracts live in the sibling `compiled/` folder. Their maintained sources remain authoritative, and generated contract files must not replace the workflow YAML as the owner of runtime execution. The fallback-only commands remain outside these asset directories because they are not registered with the contract compiler.
 
@@ -99,7 +97,6 @@ Compiled contracts live in the sibling `compiled/` folder. Their maintained sour
 Confirm the expected files exist from the repository root:
 
 ```bash
-test -f .skilled/commands/deep/assets/legacy/deep-ai-council.body.markdown
 test -f .skilled/commands/deep/assets/legacy/deep-research.body.markdown
 test -f .skilled/commands/deep/assets/legacy/deep-review.body.markdown
 ```

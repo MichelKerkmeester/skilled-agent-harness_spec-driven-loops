@@ -1,0 +1,3 @@
+$ for i in $(seq 1 40); do if grep -rqs '"kind":"compaction"' "$VIBE_HOME/logs/session/unified"; then echo compaction-checkpoint-recorded; exit 0; fi; sleep 1; done; echo no-compaction-checkpoint; exit 1
+compaction-checkpoint-recorded
+[exit 0]

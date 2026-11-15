@@ -1,0 +1,69 @@
+ROLE: You are a YAML editor. Remove repeated text from ONE file without changing what it says.
+
+CONTEXT: deep-review.yaml must shrink by about 17000 bytes. Five kinds of repeated text are stated
+once instead of many times. No step, branch, gate or key that carries behavior is removed.
+
+ALLOWED WRITE PATHS (only this file):
+- .skilled/commands/deep/assets/deep-review.yaml
+
+CUT 1. Decorative comment rules. Every comment line that consists of `#`, one space and a run of
+20 or more `─` or `═` characters (at any indentation) is shortened to the same indentation,
+`# ` and exactly 8 of that same character. Do it with one script over the file, for example a
+python3 one-liner with a regular expression. Change no other comment.
+
+CUT 2. Gate lock refresh. The same three-line block repeats under every `after_gate_refresh_lock:`
+key. Add this top-level block directly before the top-level `workflow:` key (keep one blank line
+around it):
+
+gate_defaults:
+  after_gate_refresh_lock:
+    action: "Refresh the packet lock heartbeat immediately after the operator response"
+    command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}"
+    on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet, so run step_release_lock and stop rather than continue without it."
+
+Then, inside `workflow:`, replace every `after_gate_refresh_lock:` key together with its three
+child lines (`action:`, `command:`, `on_refresh:`) by one line at the key's indentation:
+after_gate_refresh_lock: gate_defaults.after_gate_refresh_lock
+First check that every such block inside `workflow:` has exactly the three child lines above
+with that text. Leave any block that differs untouched and report it.
+
+CUT 3. Dispatch arguments. Inside `step_dispatch_iteration`, six branches (if_cli_claude_code,
+if_cli_cursor, if_cli_devin, if_cli_pi, if_cli_opencode, if_cli_codex) call dispatch-iteration.cjs
+with the same arguments after `--executor <kind>`. Add this key to `step_dispatch_iteration`,
+directly before its `if_native:` key, at that key's indentation:
+cli_dispatch_args: '--loop-type review --repo-root "{repo_root}" --prompt-file "{state_paths.prompt_dir}/iteration-{current_iteration}.md" --state-log "{state_paths.state_log}" --packet-dir "{state_paths.packet_dir}" --artifact-dir "{artifact_dir}" --iteration "{current_iteration}" --generation "{generation}" --session-id "{session_id}" --model "{config.executor.model}" --reasoning-effort "{config.executor.reasoningEffort}" --service-tier "{config.executor.serviceTier}" --sandbox-mode "{config.executor.sandboxMode}" --timeout-seconds "{config.executor.timeoutSeconds}"'
+Then in each of the six branches replace the argument text after `--executor <kind> ` with
+`{cli_dispatch_args}`, so the call line reads, for cursor:
+node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-cursor {cli_dispatch_args}
+If a branch has one more argument after the shared ones (review `if_cli_claude_code` ends with
+`--claude-config-dir "{optional_claude_config_dir}"`), keep that argument after
+`{cli_dispatch_args}`. Leave the `if_cli_deepseek_harness` call as it is.
+
+CUT 4. Dry-run event policies. In the top-level `dry_run_control:` block, under `event_policy:`,
+add this line after `default_halt_event:`:
+    preview_only: "A step or branch marked dry_run_event_policy: preview-only still runs its read and classify work. It prints the event it would append as a terminal JSONL preview line and appends nothing."
+Then replace the value of every `dry_run_event_policy:` key in the file with the bare word
+preview-only, so each such line reads `dry_run_event_policy: preview-only`.
+
+CUT 5. In `step_classify_session`, under `on_resume:` then `confirm_choice:` then
+`on_restart_choice:`, the `bind_prior_lineage:` block repeats the block of the same name in
+`step_apply_lifecycle_request`. Compare the two `command:` texts line by line. If they are the
+same apart from indentation, replace the whole `bind_prior_lineage:` block under
+`on_restart_choice:` with this one line at the key's indentation:
+bind_prior_lineage: "Run step_apply_lifecycle_request.bind_prior_lineage here: same command, same outputs and same on_fail."
+If they differ in any other way, change nothing and report the difference.
+
+CHECKS, from the repository root:
+  python3 -c "
+import yaml
+d=yaml.safe_load(open('.skilled/commands/deep/assets/deep-review.yaml'))
+print(sorted(d['gate_defaults']['after_gate_refresh_lock']), 'cli_dispatch_args' in d['workflow']['phase_loop']['steps']['step_dispatch_iteration'], 'preview_only' in d['dry_run_control']['event_policy'])
+"
+      must print: ['action', 'command', 'on_refresh'] True True
+  grep -c 'loop-lock.cjs refresh' .skilled/commands/deep/assets/deep-review.yaml       report the number (the gate copies are gone, the step-level refresh commands stay)
+  grep -c '{cli_dispatch_args}' .skilled/commands/deep/assets/deep-review.yaml          must print 6
+  grep -c 'dry_run_event_policy: preview-only' .skilled/commands/deep/assets/deep-review.yaml     must equal  grep -c 'dry_run_event_policy' .skilled/commands/deep/assets/deep-review.yaml
+  grep -cE '# [─═]{9,}' .skilled/commands/deep/assets/deep-review.yaml                  must print 0
+  wc -c .skilled/commands/deep/assets/deep-review.yaml                                  report the number
+
+REPORT: one line per cut, "done" or "left, <reason>", then the output of each check.

@@ -43,10 +43,6 @@
         {
           "sibling": "/deep:review",
           "when": "Prefer review when the target is a code or documentation audit with severity-weighted findings."
-        },
-        {
-          "sibling": "/deep:ai-council",
-          "when": "Prefer AI Council when the deliverable is a multi-seat planning deliberation rather than an investigation loop."
         }
       ]
     }
@@ -95,58 +91,6 @@
         {
           "sibling": "/deep:research",
           "when": "Prefer research when the target needs open-ended investigation rather than an audit verdict."
-        }
-      ]
-    }
-  },
-  {
-    "command": "/deep:ai-council",
-    "ownerMode": "ai-council",
-    "description": "Multi-topic deep-ai-council session loop with adjudicator-verdict stability. Modes :auto, :confirm.",
-    "argumentHint": "<deliberation-topic|topics> [:auto|:confirm] [--max-topics=N] [--max-rounds-per-topic=N] [--executor=TYPE]",
-    "mutating": "mutates",
-    "gate3_location": "packet-local ai-council/ artifacts under the resolved spec folder",
-    "ask_first": [
-      "spend"
-    ],
-    "userIntent": {
-      "job": "I want to convene several AI perspectives into a convergent planning decision.",
-      "ownedSignals": [
-        "convene an AI council",
-        "run multi-seat deliberation",
-        "make a planning decision with several perspectives"
-      ]
-    },
-    "choreography": [
-      {
-        "order": 1,
-        "skill": "system-deep-loop",
-        "resource": ".skilled/skills/system-deep-loop/SKILL.md",
-        "action": "load the system-deep-loop parent hub routing table"
-      },
-      {
-        "order": 2,
-        "skill": "deep-ai-council",
-        "resource": ".skilled/skills/system-deep-loop/deep-ai-council/SKILL.md",
-        "action": "load the AI Council mode contract, then apply the workflow to $ARGUMENTS"
-      },
-      {
-        "order": 3,
-        "skill": "deep-ai-council",
-        "resource": ".skilled/commands/deep/assets/deep-ai-council-presentation.txt",
-        "action": "load the command presentation contract before resolving setup and execution mode"
-      }
-    ],
-    "discriminator": {
-      "whenToUse": "Use this command when the deliverable is a bounded multi-seat planning deliberation with adjudication.",
-      "preferSiblingWhen": [
-        {
-          "sibling": "/deep:research",
-          "when": "Prefer research when one investigation loop, rather than several deliberative seats, should produce the findings."
-        },
-        {
-          "sibling": "/deep:review",
-          "when": "Prefer review when the primary output is an audit verdict and severity-weighted findings."
         }
       ]
     }

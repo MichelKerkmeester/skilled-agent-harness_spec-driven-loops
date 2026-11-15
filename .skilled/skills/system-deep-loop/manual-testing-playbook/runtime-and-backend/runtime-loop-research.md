@@ -7,7 +7,7 @@ description: "Verify the research mode resolves to backendKind runtime-loop-type
 expected_intent: research
 expected_workflow_mode: research
 expected_leaf_resources: []
-version: "1.2.1.0"
+version: "1.2.2.0"
 ---
 
 # RB-001: Runtime Loop Research Backend
@@ -38,7 +38,7 @@ For a deep research run, resolve the mode through the registry and state the bac
 
 **Why this route is expected**:
 - Registry fields: `workflowMode: "research"`, `runtimeLoopType: "research"`, and `backendKind: "runtime-loop-type"`.
-- Runtime extension evidence: `runtimeLoopTypes` are `"research"`, `"review"`, and `"council"`.
+- Runtime extension evidence: `runtimeLoopTypes` are `"research"` and `"review"`.
 - Hub rule: if `registry[mode].runtimeLoopType !== null`, backend is `convergence.cjs --loop-type <runtimeLoopType>`.
 
 **Desired user-visible outcome**: The AI reports that research uses the runtime-loop backend keyed by `research`, and states the command and agent, not just the backend.

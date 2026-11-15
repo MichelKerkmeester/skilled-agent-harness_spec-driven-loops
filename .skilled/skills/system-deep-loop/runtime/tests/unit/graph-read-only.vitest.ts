@@ -21,12 +21,10 @@ import {
 } from '../helpers/spawn-cjs';
 
 const COVERAGE_DB_FILENAME = 'deep-loop-graph.sqlite';
-const COUNCIL_DB_FILENAME = 'council-graph.sqlite';
 const OBSERVABILITY_EVENTS_FILENAME = 'observability-events.jsonl';
 
 type GraphDirs = {
   coverage: string;
-  council: string;
 };
 
 type DirSnapshotEntry = {
@@ -53,13 +51,12 @@ function makeTempRoot(): string {
 }
 
 /**
- * Builds the child environment with both graph database directories pinned to scratch paths.
+ * Builds the child environment with the graph database directory pinned to a scratch path.
  */
 function envFor(dirs: GraphDirs): NodeJS.ProcessEnv {
   return {
     ...process.env,
     DEEP_LOOP_COVERAGE_DB_DIR: dirs.coverage,
-    DEEP_LOOP_COUNCIL_DB_DIR: dirs.council,
   };
 }
 
@@ -157,22 +154,18 @@ function readCoverageSchemaVersion(dbPath: string): number {
  * Seeds one graph node for the given namespace through the upsert script.
  */
 function seedNode(namespace: ScriptNamespace, dirs: GraphDirs): ScriptResult {
-  const isCouncil = namespace.loopType === 'council';
   return runGraphScript('upsert', [
     ...namespaceArgs(namespace),
     '--nodes',
-    JSON.stringify([isCouncil
-      ? { id: 'session-1', kind: 'SESSION', name: 'Seeded session' }
-      : { id: 'finding-1', kind: 'FINDING', name: 'Seeded finding' }]),
+    JSON.stringify([{ id: 'finding-1', kind: 'FINDING', name: 'Seeded finding' }]),
   ], dirs);
 }
 
 describe('graph scripts read-only mode', () => {
   it('serves empty results from missing database directories without creating them', () => {
     const root = makeTempRoot();
-    const dirs = { coverage: join(root, 'coverage-db'), council: join(root, 'council-db') };
+    const dirs = { coverage: join(root, 'coverage-db') };
     const research = uniqueNamespace('status', 'research');
-    const council = uniqueNamespace('status', 'council');
 
     const statusResearch = runGraphScript('status', [...namespaceArgs(research), '--read-only'], dirs);
     const statusResearchData = expectReadOnlyPayload(statusResearch, false);
@@ -194,71 +187,32 @@ describe('graph scripts read-only mode', () => {
       '--persist-snapshot',
       '--iteration',
       '3',
-      '--round-id',
-      'r1',
       '--read-only',
     ], dirs);
     const convergenceResearchData = expectReadOnlyPayload(convergenceResearch, false);
     expect(convergenceResearchData.nodeCount).toBe(0);
     expect(convergenceResearchData.edgeCount).toBe(0);
 
-    const statusCouncil = runGraphScript('status', [...namespaceArgs(council), '--read-only'], dirs);
-    const statusCouncilData = expectReadOnlyPayload(statusCouncil, false);
-    expect(statusCouncilData.totalNodes).toBe(0);
-    expect(statusCouncilData.totalEdges).toBe(0);
-
-    const queryCouncil = runGraphScript('query', [
-      ...namespaceArgs(council),
-      '--query-type',
-      'unresolved_disagreements',
-      '--read-only',
-    ], dirs);
-    const queryCouncilData = expectReadOnlyPayload(queryCouncil, false);
-    expect(queryCouncilData.totalUnresolved).toBe(0);
-    expect(queryCouncilData.disagreements).toEqual([]);
-
-    const convergenceCouncil = runGraphScript('convergence', [
-      ...namespaceArgs(council),
-      '--persist-snapshot',
-      '--iteration',
-      '3',
-      '--round-id',
-      'r1',
-      '--read-only',
-    ], dirs);
-    const convergenceCouncilData = expectReadOnlyPayload(convergenceCouncil, false);
-    expect(convergenceCouncilData.nodeCount).toBe(0);
-    expect(convergenceCouncilData.edgeCount).toBe(0);
-
     expect(existsSync(dirs.coverage)).toBe(false);
-    expect(existsSync(dirs.council)).toBe(false);
   });
 
   it('leaves populated database directories byte-identical across read-only runs', () => {
     const root = makeTempRoot();
-    const dirs = { coverage: join(root, 'coverage-db'), council: join(root, 'council-db') };
+    const dirs = { coverage: join(root, 'coverage-db') };
     const research = uniqueNamespace('convergence', 'research');
-    const council = uniqueNamespace('convergence', 'council');
 
-    // One node per graph makes the read-only pass reach the convergence snapshot
-    // branch, and a writable status run materializes the observability log the
+    // One node makes the read-only pass reach the convergence snapshot branch,
+    // and a writable status run materializes the observability log the
     // byte-identity assertions compare against.
     expect(seedNode(research, dirs).exitCode).toBe(0);
-    expect(seedNode(council, dirs).exitCode).toBe(0);
     expect(runGraphScript('status', namespaceArgs(research), dirs).exitCode).toBe(0);
-    expect(runGraphScript('status', namespaceArgs(council), dirs).exitCode).toBe(0);
 
     removeSqliteSideFiles(join(dirs.coverage, COVERAGE_DB_FILENAME));
-    removeSqliteSideFiles(join(dirs.council, COUNCIL_DB_FILENAME));
 
     const coverageBefore = snapshotDir(dirs.coverage);
-    const councilBefore = snapshotDir(dirs.council);
     expect(coverageBefore.map((entry) => entry.path)).toContain(COVERAGE_DB_FILENAME);
     expect(coverageBefore.map((entry) => entry.path)).toContain(OBSERVABILITY_EVENTS_FILENAME);
-    expect(councilBefore.map((entry) => entry.path)).toContain(COUNCIL_DB_FILENAME);
-    expect(councilBefore.map((entry) => entry.path)).toContain(OBSERVABILITY_EVENTS_FILENAME);
     const coverageLinesBefore = observabilityLineCount(dirs.coverage);
-    const councilLinesBefore = observabilityLineCount(dirs.council);
 
     const statusResearchData = expectReadOnlyPayload(
       runGraphScript('status', [...namespaceArgs(research), '--read-only'], dirs),
@@ -275,57 +229,24 @@ describe('graph scripts read-only mode', () => {
         '--persist-snapshot',
         '--iteration',
         '3',
-        '--round-id',
-        'r1',
         '--read-only',
       ], dirs),
       true,
     );
     expect(convergenceResearchData.nodeCount).toBe(1);
 
-    const statusCouncilData = expectReadOnlyPayload(
-      runGraphScript('status', [...namespaceArgs(council), '--read-only'], dirs),
-      true,
-    );
-    expect(statusCouncilData.totalNodes).toBe(1);
-    expectReadOnlyPayload(
-      runGraphScript('query', [
-        ...namespaceArgs(council),
-        '--query-type',
-        'unresolved_disagreements',
-        '--read-only',
-      ], dirs),
-      true,
-    );
-    const convergenceCouncilData = expectReadOnlyPayload(
-      runGraphScript('convergence', [
-        ...namespaceArgs(council),
-        '--persist-snapshot',
-        '--iteration',
-        '3',
-        '--round-id',
-        'r1',
-        '--read-only',
-      ], dirs),
-      true,
-    );
-    expect(convergenceCouncilData.nodeCount).toBe(1);
-
     const coverageAfter = snapshotDir(dirs.coverage);
-    const councilAfter = snapshotDir(dirs.council);
-    for (const entry of [...coverageAfter, ...councilAfter]) {
+    for (const entry of coverageAfter) {
       expect(entry.path.endsWith('-wal')).toBe(false);
       expect(entry.path.endsWith('-shm')).toBe(false);
     }
     expect(coverageAfter).toEqual(coverageBefore);
-    expect(councilAfter).toEqual(councilBefore);
     expect(observabilityLineCount(dirs.coverage)).toBe(coverageLinesBefore);
-    expect(observabilityLineCount(dirs.council)).toBe(councilLinesBefore);
   });
 
   it('does not migrate or rewrite a coverage database stamped with an older schema version', () => {
     const root = makeTempRoot();
-    const dirs = { coverage: join(root, 'coverage-db'), council: join(root, 'council-db') };
+    const dirs = { coverage: join(root, 'coverage-db') };
     const research = uniqueNamespace('status', 'research');
 
     expect(seedNode(research, dirs).exitCode).toBe(0);
@@ -353,7 +274,7 @@ describe('graph scripts read-only mode', () => {
 
   it('control: a writable status run creates the missing database directory', () => {
     const root = makeTempRoot();
-    const dirs = { coverage: join(root, 'coverage-db'), council: join(root, 'council-db') };
+    const dirs = { coverage: join(root, 'coverage-db') };
     const research = uniqueNamespace('status', 'research');
 
     expect(existsSync(dirs.coverage)).toBe(false);

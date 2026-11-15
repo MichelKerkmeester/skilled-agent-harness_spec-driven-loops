@@ -1,0 +1,97 @@
+ROLE: You are a test author. Write two new vitest files and extend one existing vitest file so
+they check the WORKFLOW TEXT CONTRACT above, parts C7 to C10. Do not edit any workflow file or any
+source file. The workflow files do not meet the contract yet, so the workflow-text tests MUST FAIL
+today. That is the expected result. Do not weaken a test to make it pass.
+
+ALLOWED WRITE PATHS:
+- .skilled/skills/system-deep-loop/runtime/tests/unit/workflow-lock-lifetime.vitest.ts   (new)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/workflow-max-duration.vitest.ts    (new)
+- .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-lock-release.vitest.ts (add one describe block at the end; change nothing that is there)
+
+READ FIRST, for conventions:
+- .skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts
+- .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-lock-release.vitest.ts (whole file)
+
+COMMON RULES
+- The workflow files are read as plain text. No YAML parser is installed for these tests.
+- FILES is ['deep-research-auto', 'deep-research-confirm', 'deep-review-auto', 'deep-review-confirm'].
+  Every per-file title starts with the file name, for example `deep-research-auto derives ...`.
+- phaseStep(text, name): the block that starts at `      name:\n` (six spaces) and ends before the
+  next line that matches /\n      [a-z_0-9]+:\n/.
+- keyBlock(block, key): from the first line whose trimmed text is `key:` to the last following line
+  that is indented deeper than that line. '' when absent.
+- blockScalar(block, key): for a line `<indent>key: |`, the following deeper-indented lines with the
+  common indentation removed, joined by \n. '' when absent.
+- When a helper returns '' the test fails with expect(...).not.toBe('') before any command runs.
+- No test reads process.env. Temp folders come from mkdtempSync(join(tmpdir(), '<prefix>-')) and
+  are removed in afterEach.
+
+FILE 1: workflow-lock-lifetime.vitest.ts
+ a. For each file: `${name} derives the lock TTL from the dispatch timeout`
+    step = phaseStep(text, 'step_acquire_lock'). It contains
+    `ttl_ms: "lock_ttl_ms = max(1800000, executor_timeout * 1000).` and `--ttl-ms {lock_ttl_ms}`.
+    The whole file does not contain `--ttl-ms 1800000`.
+ b. For each file: `${name} refreshes the lock before and after dispatch`
+    step = phaseStep(text, 'step_dispatch_iteration'). keyBlock(step,'pre_dispatch_refresh_lock')
+    and keyBlock(step,'post_dispatch_refresh_lock') are both non-empty, each contains
+    `loop-lock.cjs refresh --lock-path {state_paths.lock_file} --owner-pid {captured_owner_pid} --nonce {captured_acquire_nonce}`
+    and `step_release_lock`, and the pre block comes before the post block.
+ c. `a lock at the derived TTL is not stale 3600 seconds after its last refresh`
+    The derived TTL for a 3600 second dispatch is Math.max(1800000, 3600 * 1000). Acquire a lock
+    with loop-lock.cjs (see how deep-research-lock-release.vitest.ts spawns it) in a temp folder
+    with `--ttl-ms <derived>`. Read the lock file as JSON, set its heartbeat field (the key that
+    holds the last heartbeat as an ISO string: read the lock file to find its name) to 3600 seconds
+    before now, write it back, then run `loop-lock.cjs status --lock-path <path>`. Expect
+    stale === false in the JSON output.
+ d. `a lock at the old fixed TTL is stale after one full dispatch`
+    Same, acquired with `--ttl-ms 1800000` and the heartbeat set 3601 seconds before now. Expect
+    stale === true. This case passes today and documents why the fixed value was wrong.
+
+FILE 2: workflow-max-duration.vitest.ts
+ a. For each file: `${name} holds step_check_max_duration at the top of the loop`
+    In the text, the index of '      step_refresh_lock:\n' is smaller than the index of
+    '      step_check_max_duration:\n', which is not -1 and is smaller than the index of
+    '      step_dispatch_iteration:\n'. keyBlock(step,'if_reached') contains
+    `reason: "maxDurationReached"`, `stopReason: "maxDurationReached"` and `skip_to: phase_synthesis`
+    and does not contain `halt: true`. 'maxDurationReached' is one of
+    Object.values(require(<runtime>/lib/deep-loop/lifecycle-taxonomy.cjs).STOP_REASONS)
+    (see tests/unit/lifecycle-taxonomy.vitest.ts for how that module is loaded).
+ b. For each file: `${name} stops and synthesizes when the limit is reached`
+    command = blockScalar(phaseStep(text,'step_check_max_duration'),'command') rendered with
+    {state_paths.config} -> a temp config file. With
+    { "maxDurationMinutes": 120, "createdAt": <now minus 121 minutes, ISO> } the command exits 0
+    and prints JSON with reached === true and elapsedMinutes >= 120. With createdAt 119 minutes
+    ago it prints reached === false.
+
+FILE 3: add to deep-research-lock-release.vitest.ts, after the existing describe block:
+  describe('every terminal path after the acquire releases the lock', ...)
+  For each of the four FILES (not the council files):
+    `${name} routes to step_release_lock on every terminal path`
+  Split the file into lines. acquireIndex is the index of the line `      step_acquire_lock:`.
+  Collect an array of problems (strings `line <n>: <what is wrong>`) and expect it toEqual([]),
+  so a failure names every path.
+   - For each line after acquireIndex whose trimmed text is exactly `halt: true`: the next line
+     must have the same leading whitespace and the trimmed text `release_lock: step_release_lock`.
+   - For each line after acquireIndex that contains `fail closed: lost the packet lock`: it must
+     contain `step_release_lock`.
+   - For each line after acquireIndex whose trimmed text starts with `on_fail:` or
+     `on_missing_counters:` and matches /\bhalt\b/i: it must contain `step_release_lock`.
+   - For each line after acquireIndex that contains `status: "CANCELLED"`: it must contain
+     `release_lock: step_release_lock`.
+   - For each line before acquireIndex: it must not contain `step_release_lock`.
+   - No line of the file contains `applies_to: [`.
+   - Exactly one line of the file is `      step_release_lock:`.
+  Also expect that at least one `halt: true` line was found after acquireIndex, so an empty match
+  cannot pass.
+
+VERIFY (run from the repository root and print the output):
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/workflow-lock-lifetime.vitest.ts tests/unit/workflow-max-duration.vitest.ts tests/unit/deep-research-lock-release.vitest.ts 2>&1 | tail -70)
+  rg -n 'process.env|F0[0-9]|REQ-|specs/' .skilled/skills/system-deep-loop/runtime/tests/unit/workflow-lock-lifetime.vitest.ts .skilled/skills/system-deep-loop/runtime/tests/unit/workflow-max-duration.vitest.ts
+  rg -n 'token|secret|password' .skilled/skills/system-deep-loop/runtime/tests/unit/workflow-lock-lifetime.vitest.ts .skilled/skills/system-deep-loop/runtime/tests/unit/workflow-max-duration.vitest.ts
+  (cd .skilled/skills/system-deep-loop/runtime && npm run typecheck 2>&1 | tail -5)
+
+EXPECTED: every per-file workflow-text test fails. Cases c and d of file 1 pass. Every test that
+was already in deep-research-lock-release.vitest.ts still passes. No syntax or import error. The
+two rg commands print nothing. The typecheck exits 0.
+
+RETURN: the outputs of the verify commands and the list of test titles with pass or fail.

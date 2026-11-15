@@ -19,6 +19,7 @@ CACHE_DIR="$REPO_ROOT/.skilled/skills/system-spec-kit/runtime/dist/lib/validatio
 PASSED=0
 FAILED=0
 SOURCE_BACKUP=""
+RECORD_BACKUP=""
 HOISTED_FIXTURE=""
 
 snapshot_times() {
@@ -41,7 +42,13 @@ if os.path.exists(source):
 if os.path.exists(dist):
     os.utime(dist, ns=(int(dist_atime), int(dist_mtime)))
 PY
+    # Put back the build records this test deleted, so the real dist stays as
+    # fresh as it was before the test ran.
     rm -f "$CACHE_DIR"/.dist-freshness-system-spec-kit-runtime-*.json
+    if [[ -n "$RECORD_BACKUP" && -d "$RECORD_BACKUP" ]]; then
+        cp "$RECORD_BACKUP"/.dist-freshness-system-spec-kit-runtime-*.json "$CACHE_DIR"/ 2>/dev/null || true
+        rm -rf "$RECORD_BACKUP"
+    fi
     [[ -n "$SOURCE_BACKUP" && -f "$SOURCE_BACKUP" ]] && rm -f "$SOURCE_BACKUP"
     if [[ -n "$HOISTED_FIXTURE" && -d "$HOISTED_FIXTURE" ]]; then
         rm -rf "$HOISTED_FIXTURE"
@@ -72,6 +79,8 @@ DIST_ATIME_NS=${DIST_TIMES%% *}
 DIST_MTIME_NS=${DIST_TIMES##* }
 SOURCE_BACKUP=$(mktemp)
 cp "$SOURCE" "$SOURCE_BACKUP"
+RECORD_BACKUP=$(mktemp -d)
+cp "$CACHE_DIR"/.dist-freshness-system-spec-kit-runtime-*.json "$RECORD_BACKUP"/ 2>/dev/null || true
 trap restore_file EXIT
 
 printf '\nDist Freshness Validation Tests\n'

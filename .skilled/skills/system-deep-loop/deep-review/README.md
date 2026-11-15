@@ -8,7 +8,7 @@ trigger_phrases:
   - "release readiness"
   - "convergence detection"
   - "/deep:review"
-version: 1.11.3.0
+version: 1.11.4.0
 ---
 
 # deep-review
@@ -32,7 +32,7 @@ version: 1.11.3.0
 
 `deep-review` runs an autonomous multi-iteration review loop through `/deep:review:auto`. Each iteration dispatches a fresh `@deep-review` LEAF agent that reads accumulated state from disk, audits one review dimension, writes findings to an iteration file and appends a JSONL delta record. A reducer rewrites the strategy and the dashboard after each pass. The findings registry tracks every discovery. The loop stops when a composite convergence signal clears and nine legal-stop gates pass, then produces a release-readiness verdict. PASS routes to changelog creation. FAIL and CONDITIONAL route to remediation planning.
 
-It does not investigate outward knowledge (`deep-research`), perform one-shot codebase lookup (`@context`) or compare competing plans (`deep-ai-council`). A single-pass review is `sk-code`'s code-review mode. The active deep-loop families share the `runtime/` for executors, state handling and coverage graphs.
+It does not investigate outward knowledge (`deep-research`), perform one-shot codebase lookup (`@context`) or compare competing plans. A single-pass review is `sk-code`'s code-review mode. The active deep-loop families share the `runtime/` for executors, state handling and coverage graphs.
 
 ### Why This Skill Exists
 
@@ -161,7 +161,6 @@ Skip it for the lighter cases:
 - Single-pass review: `sk-code`'s code-review mode is faster.
 - External investigation: `deep-research`.
 - One-shot codebase lookup: `@context`.
-- Strategy comparison: `deep-ai-council`.
 
 ### Sibling Deep Loops
 
@@ -170,7 +169,6 @@ Skip it for the lighter cases:
 | Skill | Relationship |
 |---|---|
 | `deep-research` | Investigates outward knowledge with web access. `deep-review` audits inward code with no web access |
-| `deep-ai-council` | Compares competing plans with structured disagreement. Run it before implementation, then `deep-review` after |
 
 `sk-code`'s code-review mode handles a single-pass review with no convergence gating. `deep-review` is the multi-iteration loop. `system-spec-kit` owns the spec folder, its validation, its memory continuity and its resume protocol.
 

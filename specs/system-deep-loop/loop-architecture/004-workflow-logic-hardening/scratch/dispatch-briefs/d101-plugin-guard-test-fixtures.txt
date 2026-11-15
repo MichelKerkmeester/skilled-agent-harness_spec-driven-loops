@@ -1,0 +1,46 @@
+
+ALLOWED WRITE PATHS:
+.opencode/plugins/tests/system-deep-loop-guard.test.cjs
+.opencode/plugins/tests/claude-task-dispatch-guard.test.cjs
+NOT any other file. NOT the guard source under .skilled/hooks/ or .opencode/plugins/*.js.
+
+TASK: both tests write a fixture `mode-registry.json` with three modes. The live registry
+now has two. Make the fixtures match it and keep every behavior the tests prove.
+
+1. In each file's `writeFixtureRegistry` (or the equivalent fixture writer), delete the entry
+   `{ workflowMode: 'ai-council', agent: 'ai-council' }`. The fixture keeps `research` with
+   agent `deep-research` and `review` with agent `deep-review`.
+2. Read the guard to learn what it does with an agent the registry does not list
+   (.skilled/hooks/task-dispatch/lib/dispatch-guard.cjs, read only). `ai-council` is now such
+   an agent: a Task dispatch to it is a no-op for the mode check.
+3. Every case that used `subagent_type: 'ai-council'` to prove a REGISTERED agent's behavior
+   moves to `subagent_type: 'deep-review'`:
+   - "matching mode" cases use the prompt `mode=review do the thing`
+   - "no mode declared" cases keep the prompt `do the thing`
+   - "mismatch" cases keep the prompt `mode=research do the thing`, which now disagrees with
+     the review agent
+   - a case that only needs any non-task tool or any agent keeps its shape with `deep-review`
+   Adjust an asserted message only if the guard's real output for the new input differs; read
+   the real output from a failing run, never guess it.
+4. A prompt that carries `mode=ai-council` as an unknown or quoted mode token (for example
+   the "Deep Route line wins over unrelated mode tokens" case and the cases with
+   `Deep Route: mode=ai-council; target_agent=@deep-research`) changes that token to
+   `mode=nonsense` only if the case still proves the same thing. If the case proves that an
+   unregistered mode is reported, keep the assertion and update the expected text from the
+   real output.
+5. Add ONE case per file, next to the "Unknown subagent_type" case, proving that a dispatch to
+   `ai-council` with `mode=research` in the prompt writes no mode-mismatch warning and does
+   not throw, in warn mode and in reject mode. Comment it in one line:
+   // ai-council is a standalone agent with no registered mode, so the mode check skips it.
+6. The loop-repeat case near the end of claude-task-dispatch-guard.test.cjs that proves
+   `@ai-council` is never loop-counted stays byte for byte.
+7. Do not weaken an assertion, delete a case, or add a skip. The number of cases only grows.
+
+CHECKS (repository root):
+  node --test .opencode/plugins/tests/system-deep-loop-guard.test.cjs      fail 0
+  node --test .opencode/plugins/tests/claude-task-dispatch-guard.test.cjs      fail 0
+  rg -n "workflowMode: 'ai-council'" .opencode/plugins/tests      prints nothing
+  git status --short      shows only the two test files as changed by you
+
+REPORT: per file, the cases you moved, the case you added, any asserted text you changed with
+the real output that justified it, and each CHECK's pass and fail counts.

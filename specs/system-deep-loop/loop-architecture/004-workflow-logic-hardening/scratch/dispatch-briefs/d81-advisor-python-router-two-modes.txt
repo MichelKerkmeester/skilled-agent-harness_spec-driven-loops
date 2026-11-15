@@ -1,0 +1,39 @@
+
+ALLOWED WRITE PATHS (A = .skilled/skills/system-skill-advisor/runtime):
+A/scripts/skill_advisor.py
+A/tests/routing-parity-deep-skills.vitest.ts  A/tests/skill-advisor-cli-parity.vitest.ts
+A/tests/parity/fixtures/local-native-approved-divergences.json
+
+TASK: the Python router `A/scripts/skill_advisor.py` scores three deep-loop modes. The hub now has
+two, `research` and `review`. Remove the `deep-ai-council` mode from the Python deep router.
+
+1. Find every anchor first: rg -n -i 'council' A/scripts/skill_advisor.py
+   A line that names `speckit` (the `command-speckit-ai-council` bridge) STAYS byte for byte.
+2. `PY_LEXICAL_ORDER` and `DEEP_ROUTING_SKILLS` become ("deep-review", "deep-research").
+3. Delete the `"deep-ai-council"` entry from: the alias group dict near line 303, the
+   `DEEP_ROUTING_MODE_BY_KEY` map near line 3445, and each pattern or weight dict that has a
+   `"deep-ai-council"` key (near lines 3464, 3485, 3535).
+4. Delete the line `totals["deep-ai-council"] *= 0.65` and any branch that exists only to adjust
+   or compare the council total. A branch that compares review with research stays.
+5. In the disambiguation question function near line 3628: delete the branch that returns the
+   question about "ai-council mode", and reword the two remaining questions so they name only
+   review and research and the outputs `review-report.md` and `research.md`.
+6. Usage text and docstrings that list `(research|review|ai-council)` or
+   `deep-review/deep-research/deep-ai-council` list two.
+7. In the regex near line 3679 delete the alternatives `deep[- ]council` and `ai[- ]council`.
+   Leave every other alternative.
+8. Tests in the allowed paths: delete council cases and council fixture rows. Do not weaken an
+   assertion about research or review.
+
+CHECKS (run from A):
+  rg -n -i 'council' scripts/skill_advisor.py | rg -v speckit      prints nothing
+  python3 -m py_compile scripts/skill_advisor.py      exits 0
+  echo '{"prompt":"run a deep review of the auth module"}' | python3 scripts/skill_advisor.py --deep-skill-routing-json      output names mode review
+  python3 scripts/skill_advisor.py "convene an ai council to compare three migration plans" --threshold 0.5 | rg '"mode": "(ai-council|research|review)"' | wc -l      prints 0
+  npx vitest run tests/routing-parity-deep-skills.vitest.ts tests/skill-advisor-cli-parity.vitest.ts      all pass
+  rg -n -i 'council' tests/routing-parity-deep-skills.vitest.ts tests/skill-advisor-cli-parity.vitest.ts tests/parity/fixtures/local-native-approved-divergences.json      prints nothing
+
+REPORT: the line ranges you deleted in the script, each test case or fixture row you deleted with
+one line why, then the output of each check. If the third check's input shape is wrong, read the
+`--deep-skill-routing-json` handler and report the shape you used. Do NOT run the full test
+suite, any generator or any baseline capture.

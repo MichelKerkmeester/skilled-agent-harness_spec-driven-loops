@@ -1,7 +1,7 @@
 ---
 title: "DR-030 -- Thought status handling in convergence"
 description: "Verify that thought iterations are handled correctly in convergence and do not count as stuck or toward rolling average."
-version: 1.14.0.15
+version: 1.14.1.0
 ---
 
 # DR-030 -- Thought status handling in convergence
@@ -48,7 +48,7 @@ Validate thought-status iterations are excluded from stuck counting and rolling 
 1. `bash: rg -n 'thought' .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md`
 2. `bash: rg -n 'thought\|rolling.average\|stuckCount' .skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md`
 3. `bash: rg -n 'thought\|insight\|stuck' .skilled/skills/system-deep-loop/deep-research/SKILL.md`
-4. `bash: rg -n 'stuck_count\|thought' .skilled/commands/deep/assets/deep-research-auto.yaml`
+4. `bash: rg -n 'deriveLoopCounters|stuckCount|thought' .skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs`
 ### Expected
 Iteration with status="thought", convergence treats it appropriately (does not count as stuck, does not count toward rolling average).
 ### Evidence
@@ -56,7 +56,7 @@ Capture the state-format.md thought status definition, the convergence.md handli
 ### Pass/Fail
 PASS if state-format.md defines "thought" status AND convergence.md confirms thought iterations are excluded from stuck counting and rolling average; FAIL if thought iterations affect convergence signals or the documentation is contradictory.
 ### Failure Triage
-Privilege state-format.md for the status taxonomy and convergence.md for the algorithm; use SKILL.md and YAML only as secondary confirmation.
+Privilege state-format.md for the status taxonomy and convergence.md for the algorithm; use SKILL.md and the convergence script only as secondary confirmation.
 ---
 
 ## 4. SOURCE FILES
@@ -75,7 +75,8 @@ Privilege state-format.md for the status taxonomy and convergence.md for the alg
 | `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Canonical JSONL schema; thought status definition and its convergence-neutral semantics |
 | `.skilled/skills/system-deep-loop/deep-research/references/convergence/convergence.md` | Convergence math; rolling average and stuckCount computation with thought exclusion |
 | `.skilled/skills/system-deep-loop/deep-research/SKILL.md` | Skill overview; iteration status taxonomy including thought |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow algorithm; stuck_count update logic in step_update_state |
+| `.skilled/skills/system-deep-loop/runtime/scripts/convergence.cjs` | Computes the stop decision; `deriveLoopCounters` rebuilds `stuckCount` from the state log and skips thought iterations |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow algorithm; `step_graph_convergence` runs convergence.cjs and binds its counters |
 
 ---
 

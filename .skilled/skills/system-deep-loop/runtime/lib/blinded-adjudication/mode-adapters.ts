@@ -71,17 +71,6 @@ export function createDeepReviewAdjudicationRequest(
   );
 }
 
-/** Bind council ranking and convergence to the full independence-sensitive probe set. */
-export function createCouncilAdjudicationRequest(
-  input: ModeRequestInput,
-): AdjudicationRequest {
-  return buildRequest(
-    AdjudicationDecisionKinds.DEEP_AI_COUNCIL,
-    input,
-    REQUIRED_COUNTERFACTUALS_BY_DECISION_KIND[AdjudicationDecisionKinds.DEEP_AI_COUNCIL],
-  );
-}
-
 // ───────────────────────────────────────────────────────────────────
 // 2. VERDICT ADAPTERS
 // ───────────────────────────────────────────────────────────────────
@@ -117,8 +106,4 @@ function adaptVerdict(
 
 export function adaptDeepReviewVerdict(verdict: AdjudicationVerdict): ModeAdjudicationInput {
   return adaptVerdict(AdjudicationDecisionKinds.DEEP_REVIEW, verdict);
-}
-
-export function adaptCouncilVerdict(verdict: AdjudicationVerdict): ModeAdjudicationInput {
-  return adaptVerdict(AdjudicationDecisionKinds.DEEP_AI_COUNCIL, verdict);
 }

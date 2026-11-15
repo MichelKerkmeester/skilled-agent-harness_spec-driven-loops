@@ -40,14 +40,10 @@ The table is the complete direct-file inventory. Test names are the public navig
 | `continuity-thread.vitest.ts` | Executable checks for the continuity thread runtime contract. |
 | `contradiction-supersession.vitest.ts` | Executable checks for the contradiction supersession runtime contract. |
 | `convergence-score-delta.vitest.ts` | Executable checks for the convergence score delta runtime contract. |
-| `council-graph-query.vitest.ts` | Executable checks for the council graph query runtime contract. |
 | `coverage-graph-db.vitest.ts` | Executable checks for the coverage graph db runtime contract. |
 | `coverage-graph-query.vitest.ts` | Executable checks for the coverage graph query runtime contract. |
 | `coverage-graph-signals.vitest.ts` | Executable checks for the coverage graph signals runtime contract. |
 | `cycle-detection.vitest.ts` | Executable checks for the cycle detection runtime contract. |
-| `deep-ai-council-ledger-schema.vitest.ts` | Executable checks for the deep ai council ledger schema runtime contract. |
-| `deep-ai-council-reducers.vitest.ts` | Executable checks for the deep ai council reducers runtime contract. |
-| `deep-ai-council-sealed-artifacts.vitest.ts` | Executable checks for the deep ai council sealed artifacts runtime contract. |
 | `deep-research-convergence-floor.vitest.ts` | Executable checks for the deep research convergence floor runtime contract. |
 | `deep-research-ledger-schema.vitest.ts` | Executable checks for the deep research ledger schema runtime contract. |
 | `deep-research-memory-upsert-yaml.vitest.ts` | Executable checks for the deep research memory upsert yaml runtime contract. |

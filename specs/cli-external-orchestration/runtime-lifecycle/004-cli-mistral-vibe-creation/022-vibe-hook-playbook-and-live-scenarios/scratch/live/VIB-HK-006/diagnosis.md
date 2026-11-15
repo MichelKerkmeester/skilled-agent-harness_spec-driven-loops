@@ -1,3 +1,13 @@
+> **Resolved 2026-11-15: PASS 4/4 on the live rerun** (`matrix.md`, `vibe/checkpoints.tsv`).
+> Two fixes closed it. The Vibe session reader now seeds from the committed snapshot generation
+> that `CURRENT` names, plus the journal tail after `snapshot_sequence`, so a compaction that the
+> snapshot absorbed is visible again (`.skilled/hooks/shared/session-readers/vibe.mjs`, reader
+> tests 11/11). `compaction-context.mjs` also keeps its watermark under the payload cwd and
+> remembers the compaction ids it already injected, because the runner's sandbox denied the
+> watermark write into the checkout (session-lifecycle tests 29/29). The rerun recorded
+> `compaction-checkpoint-recorded`, `reinjection-with-goal-slice` and
+> `history-lookup-offer-injected`. The diagnosis below is kept as the record of the failure.
+
 # VIB-HK-006 diagnosis: the compaction record is not in the journal the detector reads
 
 Verdict: FAIL. The turn-start composer ran on the turn after `/compact` and delivered only its

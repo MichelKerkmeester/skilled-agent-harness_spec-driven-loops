@@ -9,7 +9,7 @@ trigger_phrases:
   - "vibe prompt sources"
 importance_tier: important
 contextType: implementation
-version: 1.0.0.0
+version: 1.0.1.0
 ---
 
 # Mistral Vibe CLI - Print-Mode Command Reference
@@ -135,12 +135,13 @@ A dispatch therefore cannot raise or lower effort on the command line, and an ex
 Every dispatch composes the same line. Variables keep the shape copyable and the paths explicit:
 
 ```bash
-cd "$RUN_DIR" && AI_SESSION_CHILD=1 VIBE_SPEC_FOLDER="$REPO/$SPEC_FOLDER" VIBE_HOME="$RUN_DIR/.vibe-home" vibe -p "$PROMPT" --model deepseek-flash --output-dir "$RUN_DIR/out" </dev/null
+cd "$RUN_DIR" && node "$REPO/.vibe/plugins/repo-guards/render-home-hooks.cjs" "$RUN_DIR/.vibe-home" && AI_SESSION_CHILD=1 VIBE_SPEC_FOLDER="$REPO/$SPEC_FOLDER" VIBE_HOME="$RUN_DIR/.vibe-home" vibe -p "$PROMPT" --model deepseek-flash --output-dir "$RUN_DIR/out" </dev/null
 ```
 
 | Part | Why | Hard rule |
 |---|---|---|
 | `cd "$RUN_DIR"` | The repository root holds a dotenv file and the root `AGENTS.md`, so a root-cwd run puts both in reach of project discovery | `no-repo-root-cwd` |
+| `node "$REPO/.vibe/plugins/repo-guards/render-home-hooks.cjs" "$RUN_DIR/.vibe-home" &&` | Writes the repository hooks into the home before the run, with the same home path the run names, because Vibe loads `hooks.toml` from the home and a home with no rendered copy runs every tool with no guard | `rendered-home-hooks` |
 | `AI_SESSION_CHILD=1` | Marks the run as a dispatched child, so the spec gate in the rendered hooks never denies its writes | none; the sibling CLI packets set it the same way |
 | `VIBE_SPEC_FOLDER="$REPO/$SPEC_FOLDER"` | Names the packet whose goal slice the session-start hook injects; drop it when the task has no packet | none |
 | `VIBE_HOME="$RUN_DIR/.vibe-home"` | Logs, `vibehistory` and `trusted_folders.toml` land in the disposable home instead of the operator's `~/.vibe`, and the rendered `hooks.toml` loads from it | `isolated-vibe-home` |
@@ -149,9 +150,9 @@ cd "$RUN_DIR" && AI_SESSION_CHILD=1 VIBE_SPEC_FOLDER="$REPO/$SPEC_FOLDER" VIBE_H
 | `--output-dir "$RUN_DIR/out"` | The caller reads `out/export.json`, never stdout | `output-dir-required` |
 | `</dev/null` | An inherited stdin cannot hang the run | `stdin-redirect-required` |
 
-`RUN_DIR` is a fresh temp directory and the dispatch never starts at the repository root. Before the run, `node "$REPO/.vibe/plugins/repo-guards/render-home-hooks.cjs" "$VIBE_HOME"` writes the repository hooks into the home with absolute paths: the project `.vibe/hooks.toml` loads only from a trusted project root, so a scratch-cwd run sees only the home copy. The `mistral` provider takes browser sign-in or `MISTRAL_API_KEY` (`research.md` section 4), so a dispatch passes the key in its own environment rather than relying on the operator's sign-in.
+`RUN_DIR` is a fresh temp directory and the dispatch never starts at the repository root. The chained render writes the repository hooks into the home with absolute paths: the project `.vibe/hooks.toml` loads only from a trusted project root, so a scratch-cwd run sees only the home copy. The `mistral` provider takes browser sign-in or `MISTRAL_API_KEY` (`research.md` section 4), so a dispatch passes the key in its own environment rather than relying on the operator's sign-in.
 
-The six rules in the table are the ones [../hard-rules.json](../hard-rules.json) enforces, and a dispatch that breaks one breaks the packet's contract.
+The seven rules in the table are the ones [../hard-rules.json](../hard-rules.json) enforces, and a dispatch that breaks one breaks the packet's contract.
 
 ---
 
@@ -274,4 +275,4 @@ The runner also sets `SPECKIT_DIST_AUTO_REBUILD=0` for the lineage. Every Vibe l
 - [providers-and-models.md](./providers-and-models.md) - the `mistral` provider row, the two roster models with `thinking = "max"`, and `allowed_models`.
 - [runtime-folder-and-sync.md](./runtime-folder-and-sync.md) - the `.vibe/` layout and the generated mirror a dispatch's `VIBE_HOME` carries.
 - [guards-and-hooks.md](./guards-and-hooks.md) - the hook types and which of them accept `strict`.
-- [../hard-rules.json](../hard-rules.json) - the six rules the dispatch shape satisfies.
+- [../hard-rules.json](../hard-rules.json) - the seven rules the dispatch shape satisfies.

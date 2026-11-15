@@ -1,7 +1,7 @@
 ---
 title: "Command-Flow Stress Tests: deep-research CP-04x/05x scenarios"
 description: "Sandboxed scenarios validating the /deep:research command-level entrypoint separately from the leaf iteration body."
-version: 1.15.0.1
+version: 1.15.1.0
 ---
 
 # Command-Flow Stress Tests
@@ -26,7 +26,7 @@ Each scenario is one Markdown file named for its topic. Its sections follow the 
 
 | File | Scenario |
 |------|----------|
-| `setup-yaml-handoff.md` | CP-046. Proves setup inputs resolve before the auto YAML workflow loads |
+| `setup-yaml-handoff.md` | CP-046. Proves setup inputs resolve before the workflow loads |
 | `spec-fence-writeback.md` | CP-047. Proves spec mutation stays inside the lock and the generated findings fence |
 | `resource-map-toggle.md` | CP-048. Proves `--no-resource-map` is parsed and honored end to end |
 | `pause-sentinel-halt.md` | CP-049. Proves a packet-local `.deep-research-pause` sentinel halts the command before any iteration write |

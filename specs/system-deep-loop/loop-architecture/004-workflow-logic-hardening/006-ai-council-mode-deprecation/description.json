@@ -1,0 +1,19 @@
+{
+  "specFolder": "system-deep-loop/loop-architecture/004-workflow-logic-hardening/006-ai-council-mode-deprecation",
+  "description": "Phase 6: ai-council-mode-deprecation",
+  "keywords": [
+    "phase",
+    "ai-council-mode-deprecation"
+  ],
+  "lastUpdated": "2026-11-14T11:56:22.356Z",
+  "specId": "006",
+  "folderSlug": "ai-council-mode-deprecation",
+  "parentChain": [
+    "system-deep-loop",
+    "loop-architecture",
+    "004-workflow-logic-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

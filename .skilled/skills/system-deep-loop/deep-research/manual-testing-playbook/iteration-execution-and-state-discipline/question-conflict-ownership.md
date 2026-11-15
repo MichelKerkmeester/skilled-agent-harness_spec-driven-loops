@@ -1,7 +1,7 @@
 ---
 title: "DR-057 -- Question conflict ownership"
 description: "Verify that inbox and registry question disagreements emit conflict events instead of overwriting strategy markdown."
-version: 1.14.0.21
+version: 1.14.1.0
 ---
 
 # DR-057 -- Question conflict ownership
@@ -47,7 +47,7 @@ Validate the deep-research question conflict model across reducer, strategy docs
 ### Commands
 1. `bash: rg -n 'resolveQuestionConflicts|question_conflict|operatorDecision|inboxValue|registryValue' .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`
 2. `bash: rg -n 'question_conflict|operatorDecision|needs_decision|registry is the canonical owner|inbox.jsonl' .skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md .skilled/skills/system-deep-loop/deep-research/references/state/state-reducer-registry.md`
-3. `bash: rg -n 'question_conflict|operatorDecision|inboxValue|registryValue' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts`
+3. `bash: rg -n 'question_conflict|operatorDecision|inboxValue|registryValue' .skilled/commands/deep/assets/deep-research.yaml .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts`
 ### Expected
 The reducer records conflicts, the registry owns question text, and the workflow can surface `question_conflict` events with both competing values.
 ### Evidence
@@ -75,7 +75,7 @@ Privilege `state-reducer-registry.md` for ownership language and `reduce-state.c
 | `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Conflict resolution and event payload construction |
 | `.skilled/skills/system-deep-loop/deep-research/assets/deep-research-strategy.md` | Generated key-question projection and operator guidance |
 | `.skilled/skills/system-deep-loop/deep-research/references/state/state-reducer-registry.md` | Canonical ownership contract |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow surfacing for reducer conflict events |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow surfacing for reducer conflict events |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Unit coverage for conflict payloads and operator decisions |
 
 ---

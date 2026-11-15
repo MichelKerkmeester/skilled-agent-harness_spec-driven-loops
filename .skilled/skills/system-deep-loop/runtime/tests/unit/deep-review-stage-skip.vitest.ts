@@ -32,7 +32,7 @@ const sharedRequire = createRequire(
 );
 const { load: loadYaml } = sharedRequire('js-yaml') as { load: (source: string) => unknown };
 
-const WORKFLOW_FILES = ['deep-review-auto.yaml', 'deep-review-confirm.yaml'] as const;
+const WORKFLOW_FILE = 'deep-review.yaml';
 const STAGE_SKIP_WHEN = 'config.fanout_lineage_artifact_dir is present';
 
 type WorkflowStep = { skip_when?: string };
@@ -58,13 +58,11 @@ function stageStep(file: string): WorkflowStep {
 // ───────────────────────────────────────────────────────────────────
 
 describe('deep-review skips artifact staging inside a fan-out lineage', () => {
-  for (const file of WORKFLOW_FILES) {
-    it(`skips step_stage_artifact_dir when the lineage override is bound in ${file}`, () => {
-      expect(stageStep(file)['skip_when']).toBe(STAGE_SKIP_WHEN);
-    });
+  it('skips step_stage_artifact_dir when the lineage override is bound', () => {
+    expect(stageStep(WORKFLOW_FILE)['skip_when']).toBe(STAGE_SKIP_WHEN);
+  });
 
-    it(`makes the skip the first key of step_stage_artifact_dir in ${file}`, () => {
-      expect(Object.keys(stageStep(file))[0]).toBe('skip_when');
-    });
-  }
+  it('makes the skip the first key of step_stage_artifact_dir', () => {
+    expect(Object.keys(stageStep(WORKFLOW_FILE))[0]).toBe('skip_when');
+  });
 });

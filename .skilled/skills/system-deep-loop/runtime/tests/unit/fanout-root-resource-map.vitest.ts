@@ -5,8 +5,8 @@
 // A fan-out root has no root state log until closeout writes it, so the
 // root reducer that emits the resource map exits on a missing file and no
 // root map is written. Each lineage already emits its own map under
-// `lineages/<label>/`. Both review workflows therefore skip the root
-// reducer whenever the run is a fan-out root and point the report at the
+// `lineages/<label>/`. The review workflow therefore skips the root
+// reducer whenever the run is a fan-out root and points the report at the
 // lineage maps instead. A single lineage run still emits its own map,
 // because the skip is keyed on `config.fanout`, which a lineage never binds.
 
@@ -33,7 +33,7 @@ const sharedRequire = createRequire(
 );
 const { load: loadYaml } = sharedRequire('js-yaml') as { load: (source: string) => unknown };
 
-const WORKFLOW_FILES = ['deep-review-auto.yaml', 'deep-review-confirm.yaml'] as const;
+const WORKFLOW_FILE = 'deep-review.yaml';
 const ROOT_SKIP_WHEN = 'config.fanout is present';
 const MERGE_SKIP_WHEN = 'config.fanout is absent';
 const LINEAGE_MAPS = '{artifact_dir}/lineages/*/resource-map.md';
@@ -61,14 +61,12 @@ function synthesisStep(file: string, id: string): WorkflowStep {
 // ───────────────────────────────────────────────────────────────────
 
 describe('deep-review skips the root resource-map reducer at a fan-out root', () => {
-  for (const file of WORKFLOW_FILES) {
-    it(`skips step_emit_resource_map exactly when the fan-out merge runs in ${file}`, () => {
-      expect(synthesisStep(file, 'step_emit_resource_map')['skip_when']).toBe(ROOT_SKIP_WHEN);
-      expect(synthesisStep(file, 'step_fanout_merge')['skip_when']).toBe(MERGE_SKIP_WHEN);
-    });
+  it('skips step_emit_resource_map exactly when the fan-out merge runs', () => {
+    expect(synthesisStep(WORKFLOW_FILE, 'step_emit_resource_map')['skip_when']).toBe(ROOT_SKIP_WHEN);
+    expect(synthesisStep(WORKFLOW_FILE, 'step_fanout_merge')['skip_when']).toBe(MERGE_SKIP_WHEN);
+  });
 
-    it(`points a fan-out report at the lineage resource maps in ${file}`, () => {
-      expect(synthesisStep(file, 'step_emit_resource_map')['note']).toContain(LINEAGE_MAPS);
-    });
-  }
+  it('points a fan-out report at the lineage resource maps', () => {
+    expect(synthesisStep(WORKFLOW_FILE, 'step_emit_resource_map')['note']).toContain(LINEAGE_MAPS);
+  });
 });

@@ -1,7 +1,7 @@
 ---
 title: "DRV-028 -- Finding deduplication and registry"
 description: "Verify that finding deduplication uses adjudicated finalSeverity and produces a clean Active Finding Registry in the review report."
-version: 1.11.0.13
+version: 1.11.1.0
 ---
 
 # DRV-028 -- Finding deduplication and registry
@@ -46,7 +46,7 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep-review finding deduplication and confirm the active registry preserves unique P0/P1/P2 findings.
 ### Commands
 1. `bash: rg -n 'dedup|deduplic|finalSeverity|adjudic|Active Finding Registry|unique.*finding|merge.*finding|duplicate' .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md`
-2. `bash: rg -n 'dedup|deduplic|finalSeverity|adjudic|active_finding|merge|duplicate|unique' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+2. `bash: rg -n 'dedup|deduplic|finalSeverity|adjudic|active_finding|merge|duplicate|unique' .skilled/commands/deep/assets/deep-review.yaml`
 3. `bash: rg -n 'Active Finding Registry|Dedup|finalSeverity|finding.*registry|finding.*evidence|unique.*finding' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/commands/deep/review.md .skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md`
 ### Expected
 Findings compared across iterations, `finalSeverity` is highest severity encountered, Active Finding Registry has unique entries, P0 never downgraded, evidence included.
@@ -73,8 +73,7 @@ Privilege the SKILL.md rules for deduplication logic and the quick reference for
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Deduplication rules, severity classification, and synthesis contract, use `ANCHOR:how-it-works` and `ANCHOR:rules` |
 | `.skilled/skills/system-deep-loop/deep-review/README.md` | Feature summary for finding deduplication and registry |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Synthesis step with deduplication logic |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Synthesis step with deduplication logic |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Synthesis step with deduplication logic |
 | `.skilled/commands/deep/review.md` | Command entrypoint, output format and synthesis documentation |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Active Finding Registry section definition, use `ANCHOR:review-report-sections` |
 | `.skilled/skills/system-deep-loop/deep-review/assets/deep-review-strategy.md` | Strategy template with findings tracking |

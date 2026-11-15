@@ -1,0 +1,91 @@
+ROLE: You are a YAML editor. Replace inline script bodies with one-line script calls in ONE file.
+
+CONTEXT: deep-review.yaml holds long inline Node bodies inside `command: |` blocks. Each body now
+lives in a runtime script. This change swaps every such block for one call and folds the three
+pivot seat step pairs into one pair. The file shrinks by about 45000 bytes.
+
+ALLOWED WRITE PATHS (only this file):
+- .skilled/commands/deep/assets/deep-review.yaml
+
+WHAT A COMMAND BLOCK IS: the line `command: |` plus every following line that is indented deeper
+than that `command:` key: the wrapper lines, the heredoc with its closing EOF line and any shell
+lines after it. Replace the whole block with two lines: `command: |` at the same indentation,
+then the call given below, indented two spaces deeper. Leave every sibling key of the step or
+branch as it is (`action`, `skip_when`, `working_directory`, `timeout_seconds`,
+`wait_for_completion`, `render_hint`, `notes`, `outputs`, `dry_run_boundary`,
+`record_executor_audit` and the rest). Find each step with grep -n and read only its window.
+
+PART 1. Replace the command block of each step or branch below with the call under it.
+  1. step_prepare_divergent_pivot
+     node .skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs prepare --loop-type review --artifact-root "{state_paths.packet_dir}" --config "{state_paths.config}" --state-log "{state_paths.state_log}" --strategy "{state_paths.strategy}" --registry "{state_paths.findings_registry}" --current-iteration "{current_iteration}" --max-iterations "{max_iterations}" --trigger-reason "{reason_detail}"
+  2. step_finalize_divergent_pivot
+     node .skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs finalize --paths-json '{pivot_paths_json}' --pivot-id "{pivot_id}" --resumed "{pivot_resumed}"
+  3. if_cli_deepseek_harness (inside step_dispatch_iteration)
+     node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-deepseek-harness
+  4. if_cli_claude_code (inside step_dispatch_iteration)
+     node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-claude-code --loop-type review --repo-root "{repo_root}" --prompt-file "{state_paths.prompt_dir}/iteration-{current_iteration}.md" --state-log "{state_paths.state_log}" --packet-dir "{state_paths.packet_dir}" --artifact-dir "{artifact_dir}" --iteration "{current_iteration}" --generation "{generation}" --session-id "{session_id}" --model "{config.executor.model}" --reasoning-effort "{config.executor.reasoningEffort}" --service-tier "{config.executor.serviceTier}" --sandbox-mode "{config.executor.sandboxMode}" --timeout-seconds "{config.executor.timeoutSeconds}" --claude-config-dir "{optional_claude_config_dir}"
+  5. if_cli_cursor (inside step_dispatch_iteration)
+     node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-cursor --loop-type review --repo-root "{repo_root}" --prompt-file "{state_paths.prompt_dir}/iteration-{current_iteration}.md" --state-log "{state_paths.state_log}" --packet-dir "{state_paths.packet_dir}" --artifact-dir "{artifact_dir}" --iteration "{current_iteration}" --generation "{generation}" --session-id "{session_id}" --model "{config.executor.model}" --reasoning-effort "{config.executor.reasoningEffort}" --service-tier "{config.executor.serviceTier}" --sandbox-mode "{config.executor.sandboxMode}" --timeout-seconds "{config.executor.timeoutSeconds}"
+  6. if_cli_devin (inside step_dispatch_iteration)
+     node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-devin --loop-type review --repo-root "{repo_root}" --prompt-file "{state_paths.prompt_dir}/iteration-{current_iteration}.md" --state-log "{state_paths.state_log}" --packet-dir "{state_paths.packet_dir}" --artifact-dir "{artifact_dir}" --iteration "{current_iteration}" --generation "{generation}" --session-id "{session_id}" --model "{config.executor.model}" --reasoning-effort "{config.executor.reasoningEffort}" --service-tier "{config.executor.serviceTier}" --sandbox-mode "{config.executor.sandboxMode}" --timeout-seconds "{config.executor.timeoutSeconds}"
+  7. if_cli_pi (inside step_dispatch_iteration)
+     node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-pi --loop-type review --repo-root "{repo_root}" --prompt-file "{state_paths.prompt_dir}/iteration-{current_iteration}.md" --state-log "{state_paths.state_log}" --packet-dir "{state_paths.packet_dir}" --artifact-dir "{artifact_dir}" --iteration "{current_iteration}" --generation "{generation}" --session-id "{session_id}" --model "{config.executor.model}" --reasoning-effort "{config.executor.reasoningEffort}" --service-tier "{config.executor.serviceTier}" --sandbox-mode "{config.executor.sandboxMode}" --timeout-seconds "{config.executor.timeoutSeconds}"
+  8. if_cli_opencode (inside step_dispatch_iteration)
+     node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-opencode --loop-type review --repo-root "{repo_root}" --prompt-file "{state_paths.prompt_dir}/iteration-{current_iteration}.md" --state-log "{state_paths.state_log}" --packet-dir "{state_paths.packet_dir}" --artifact-dir "{artifact_dir}" --iteration "{current_iteration}" --generation "{generation}" --session-id "{session_id}" --model "{config.executor.model}" --reasoning-effort "{config.executor.reasoningEffort}" --service-tier "{config.executor.serviceTier}" --sandbox-mode "{config.executor.sandboxMode}" --timeout-seconds "{config.executor.timeoutSeconds}"
+  9. if_cli_codex (inside step_dispatch_iteration)
+     node .skilled/skills/system-deep-loop/runtime/scripts/dispatch-iteration.cjs --executor cli-codex --loop-type review --repo-root "{repo_root}" --prompt-file "{state_paths.prompt_dir}/iteration-{current_iteration}.md" --state-log "{state_paths.state_log}" --packet-dir "{state_paths.packet_dir}" --artifact-dir "{artifact_dir}" --iteration "{current_iteration}" --generation "{generation}" --session-id "{session_id}" --model "{config.executor.model}" --reasoning-effort "{config.executor.reasoningEffort}" --service-tier "{config.executor.serviceTier}" --sandbox-mode "{config.executor.sandboxMode}" --timeout-seconds "{config.executor.timeoutSeconds}"
+
+PART 2. Fold the pivot seats. Inside `step_handle_convergence`, replace everything from the line
+`              step_dispatch_pivot_seat_001:` through the last line before
+`              step_finalize_divergent_pivot:` (six steps) with this block, exactly, followed by
+one blank line:
+
+              step_dispatch_pivot_seat:
+                action: "Natively dispatch one read-only review direction-selection seat"
+                for_each: "seat_id in [seat-001, seat-002, seat-003], in that order. Run this step and then step_record_pivot_seat for one seat before the next seat starts. Seat roles: seat-001 analytical, seat-002 critical, seat-003 pragmatic."
+                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain seat_id"
+                dry_run_boundary: "dispatch"
+                capture_timing: true
+                if_native:
+                  dispatch:
+                    agent: deep-review
+                    model: opus
+                    context_source: "pivot_seat_prompt"
+                  wait_for_completion: true
+                failure_contract: "A native dispatch failure binds status=rejected, a {name,message} error, and the measured timestamps/duration, then proceeds to step_record_pivot_seat."
+                outputs:
+                  - pivot_seat_dispatch_status: "fulfilled or rejected"
+                  - pivot_seat_output_json: "Raw native return serialized as JSON when fulfilled, else null"
+                  - pivot_seat_error_json: "{name,message} when rejected, else null"
+                  - pivot_seat_started_at_iso: "Dispatch start timestamp"
+                  - pivot_seat_completed_at_iso: "Dispatch completion timestamp"
+                  - pivot_seat_duration_ms: "Dispatch duration in milliseconds"
+
+              step_record_pivot_seat:
+                action: "Durably record the native dispatch outcome of the seat just dispatched"
+                skip_when: "pivot_prepare_status != 'pending' or pivot_missing_seat_ids does not contain seat_id"
+                command: |
+                  node .skilled/skills/system-deep-loop/runtime/scripts/divergent-pivot.cjs record-seat <<'PIVOT_SEAT'
+                  {"paths":{pivot_paths_json},"pivotId":"{pivot_id}","seat":{pivot_seat_json},"status":"{pivot_seat_dispatch_status}","output":{pivot_seat_output_json},"error":{pivot_seat_error_json},"startedAtIso":"{pivot_seat_started_at_iso}","completedAtIso":"{pivot_seat_completed_at_iso}","durationMs":"{pivot_seat_duration_ms}"}
+                  PIVOT_SEAT
+                working_directory: "{repo_root}"
+
+PART 3. In `step_prepare_divergent_pivot`, under `outputs:`, replace the six lines that start
+with `- pivot_seat_001_json`, `- pivot_seat_002_json`, `- pivot_seat_003_json`,
+`- pivot_seat_001_prompt`, `- pivot_seat_002_prompt`, `- pivot_seat_003_prompt` with these two:
+                  - pivot_seat_json: "For the current seat_id, its mandate object from missingSeats"
+                  - pivot_seat_prompt: "For the current seat_id, seatPrompts[seat_id]"
+
+After your edits the file holds exactly four heredocs: the PIVOT_SEAT one of PART 2 and the three `cat` heredocs inside step_evaluate_results and step_post_iteration_claim_adjudication, which you must leave untouched.
+
+CHECKS. Run from the repository root and fix the file until all pass:
+  python3 -c "import yaml;yaml.safe_load(open('.skilled/commands/deep/assets/deep-review.yaml'));print('YAML OK')"
+  grep -c "<<" .skilled/commands/deep/assets/deep-review.yaml                       must print 4
+  grep -c "dispatch-iteration.cjs --executor" .skilled/commands/deep/assets/deep-review.yaml    must print 7
+  grep -c "pivot_seat_00" .skilled/commands/deep/assets/deep-review.yaml             must print 0
+  grep -c "node --import\|--input-type=module" .skilled/commands/deep/assets/deep-review.yaml   must print 0
+  grep -c "if_native:" .skilled/commands/deep/assets/deep-review.yaml                must print 2
+  wc -c .skilled/commands/deep/assets/deep-review.yaml                               report the number
+
+REPORT: one line per row of PART 1, "done" or "failed, <reason>", then PART 2 and PART 3, then
+the output of each check.

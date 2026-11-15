@@ -1,0 +1,81 @@
+ROLE: You are a Node.js engineer. Add one read-only "facts" check to an existing doc drift
+checker, and write its test first.
+
+ALLOWED WRITE PATHS (both under .skilled/skills/system-deep-loop/runtime/):
+- scripts/check-documentation-drift.cjs
+- tests/unit/check-documentation-drift.vitest.ts   (new file)
+Edit NO doc. The docs are wrong today on purpose: later work fixes them.
+
+READ FIRST: scripts/check-documentation-drift.cjs (150 lines), tests/unit/typo-flags.vitest.ts
+(how sibling tests spawn a script), lib/deep-loop/executor-config.ts (the EXECUTOR_KINDS array).
+
+BEHAVIOR TO ADD
+1. A new flag `--facts`. With `--facts` the script runs ONLY the facts check. With no flag it
+   runs every existing check AND the facts check. An unknown flag still exits 2.
+2. Output stays one JSON object on stdout with an `errors` array. Each facts error is one string
+   that starts with `facts: <repo-relative file>:<line>: `. Exit 0 when `errors` is empty, else 1.
+3. For tests, the script accepts the env variable DEEP_LOOP_FACTS_ROOT. When set, the facts
+   check treats that folder as the repository root for the scan set, for executor-config.ts and
+   for file resolution. When unset it uses the real repository root.
+
+SCAN SET (paths relative to the repository root):
+- .skilled/commands/deep/research.md, .skilled/commands/deep/review.md,
+  .skilled/commands/deep/assets/deep-research-presentation.txt,
+  .skilled/commands/deep/assets/deep-review-presentation.txt
+- every *.md file under .skilled/skills/system-deep-loop/deep-research/, deep-review/ and runtime/
+- .skilled/skills/system-deep-loop/SKILL.md, README.md and ARCHITECTURE.md
+- skip any path with a segment named changelog, benchmark, behavior-benchmark, tests or
+  node_modules. A file that is missing from the scan set is skipped without an error.
+
+RULE A, executor count. Parse the entries of `EXECUTOR_KINDS = [ ... ] as const` from
+.skilled/skills/system-deep-loop/runtime/lib/deep-loop/executor-config.ts. If it cannot be
+parsed, print `check-documentation-drift.cjs: cannot parse EXECUTOR_KINDS in <file>` to stderr
+and exit 2. In each scanned line match `<N> executor kinds`, where N is digits or a number word
+from one to twelve, in any letter case. A match whose number differs from the real count is an
+error: `facts: <file>:<line>: states <N> executor kinds, EXECUTOR_KINDS lists <real>`.
+
+RULE B, file existence. In each scanned line take every token made of the characters
+A-Z a-z 0-9 . _ / - { } , that ends in `.yaml`, `.cjs`, `.sh` or `.ts`. Expand one brace list
+`{a,b}` into one token per member. Skip a token that holds `*`, `<`, `>`, `$` or `[`, a token
+that still holds `{` after expansion (a placeholder such as `{spec_folder}`), and a token that
+starts with `http`. A token WITH a slash resolves when it exists relative to any of: the
+repository root, the doc's own folder, the doc's owning packet root (the first folder under
+.skilled/skills/system-deep-loop/, or .skilled/commands/deep for the command docs), the skill
+root .skilled/skills/system-deep-loop, or .skilled/commands/deep/assets. A token WITHOUT a
+slash resolves when a file with that base name exists anywhere under
+.skilled/skills/system-deep-loop, .skilled/commands or .skilled/skills/system-spec-kit
+(build that base-name set once, skipping node_modules). A token that does not resolve is an
+error: `facts: <file>:<line>: names <token>, which does not exist`.
+
+RULE C, routing flags. Only for research.md and review.md. Find the numbered list that follows
+the heading containing `MODE ROUTING` (up to the next `##` heading) and collect its `--flag`
+tokens. Find the table under the heading containing `Workflow Flag Surface` and collect the
+`--flag` token in the first cell of each row. If the routing list holds no flag, pass. If it
+holds flags and its set differs from the table set, one error:
+`facts: <file>:<line of the routing heading>: routing step flags differ from the Workflow Flag Surface table: only in routing [..], only in table [..]`.
+
+TEST FILE, write it before the script change. It spawns the script with `--facts`. Cases:
+- a fixture root (a temp folder that mirrors the needed paths, with a small executor-config.ts
+  holding 3 kinds) with a doc stating "four executor kinds" fails and names that doc and line
+- the same root with "three executor kinds" passes
+- a fixture doc naming `scripts/missing-thing.cjs` fails and names the token
+- a fixture doc naming a file that exists passes, and a `{a,b}` list with one missing member
+  fails for that member only
+- a fixture research.md whose routing list holds `--alpha` while the table holds `--alpha` and
+  `--beta` fails, and one whose routing list holds no flag passes
+- a fixture changelog/ file with a missing file name and a wrong count passes (excluded)
+- a fixture root whose executor-config.ts has no EXECUTOR_KINDS exits 2
+- an unknown flag exits 2
+- one case named `live tree has no facts errors` that runs `--facts` on the real repository and
+  expects exit 0. This case FAILS today. Leave it failing.
+
+CHECKS, run from .skilled/skills/system-deep-loop/runtime:
+  node --check scripts/check-documentation-drift.cjs
+  node_modules/.bin/vitest run --no-coverage tests/unit/check-documentation-drift.vitest.ts tests/unit/typo-flags.vitest.ts
+      every case passes except `live tree has no facts errors`
+  node scripts/check-documentation-drift.cjs --facts > /tmp/facts-live.json ; echo "status=$?"
+      status=1
+
+REPORT: the test summary line, then the number of live-tree facts errors per rule (A, B, C),
+then the first 40 live-tree error lines, then every live-tree error you believe is a false
+positive of the rules as written, with the reason. Do not loosen a rule to hide a real error.

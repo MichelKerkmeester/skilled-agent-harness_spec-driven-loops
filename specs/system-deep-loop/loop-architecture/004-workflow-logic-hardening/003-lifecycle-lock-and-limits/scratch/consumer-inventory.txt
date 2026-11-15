@@ -1,0 +1,94 @@
+.skilled/commands/deep/assets/deep-research-confirm.yaml:342:              lineage_mode: "resume"
+.skilled/commands/deep/assets/deep-research-confirm.yaml:351:              lineage_mode: "restart"
+.skilled/commands/deep/assets/deep-research-confirm.yaml:352:              parent_session_id: "{prior_session_id}"
+.skilled/commands/deep/assets/deep-research-confirm.yaml:353:              generation: "{prior_generation + 1}"
+.skilled/commands/deep/assets/deep-research-confirm.yaml:354:            append_jsonl: '{"type":"event","event":"restarted","mode":"research","sessionId":"{session_id}","parentSessionId":"{prior_session_id}","lineageMode":"restart","generation":{generation},"archivedPath":"{state_paths.archive_root}/{timestamp_slug}","timestamp":"{ISO_8601_NOW}"}'
+.skilled/commands/deep/assets/deep-research-confirm.yaml:397:          maxDurationMinutes: 120
+.skilled/commands/deep/assets/deep-review-auto.yaml:35:  lineage_mode: "[auto|resume|restart] - Session lifecycle intent. Default: auto. The runtime only persists lineage events for `resume` (same sessionId, no archive) and `restart` (new sessionId, generation+1, prior review/ archived). `fork` and `completed-continue` are deferred and no longer accepted — see deep-review/references/protocol/loop-protocol.md §Lifecycle Branches."
+.skilled/commands/deep/assets/deep-review-auto.yaml:187:    skip_when: "lineage_mode != 'restart'"
+.skilled/commands/deep/assets/deep-review-auto.yaml:199:      - lineage_mode: "restart"
+.skilled/commands/deep/assets/deep-review-auto.yaml:252:          - required_values_present: [review_target, review_target_type, review_dimensions, spec_folder, lineage_mode, max_iterations, convergence_threshold, convergence_mode, stop_policy]
+.skilled/commands/deep/assets/deep-review-auto.yaml:356:          - "If lineage_mode == restart and session_state is resume or completed-session, execute on_restart before on_resume or on_completed_session."
+.skilled/commands/deep/assets/deep-review-auto.yaml:357:          - "If lineage_mode == auto or lineage_mode == resume, preserve the existing resume/completed/fresh behavior."
+.skilled/commands/deep/assets/deep-review-auto.yaml:367:            lineage_mode: "restart"
+.skilled/commands/deep/assets/deep-review-auto.yaml:368:            parent_session_id: "{prior_session_id}"
+.skilled/commands/deep/assets/deep-review-auto.yaml:369:            generation: "{prior_generation + 1}"
+.skilled/commands/deep/assets/deep-review-auto.yaml:536:          maxDurationMinutes: 120
+.skilled/commands/deep/assets/deep-review-auto.yaml:600:        skip_when: "lineage_mode != 'restart'"
+.skilled/commands/deep/assets/deep-review-auto.yaml:602:        append_jsonl: '{"stem":"deep_review.run_restarted","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation}},"data":{"priorTailDigest":"{prior_tail_digest}","archivedLineageId":"{prior_session_id}","restartReason":"Restart requested: the prior review packet was archived and a new lineage segment opened.","continuedFromRunId":"{prior_session_id}-i{iteration_count}","compatibilityDecision":"exact","recoveryReceiptRef":"none"}}'
+.skilled/commands/deep/assets/deep-research-auto.yaml:327:            lineage_mode: "restart"
+.skilled/commands/deep/assets/deep-research-auto.yaml:328:            parent_session_id: "{prior_session_id}"
+.skilled/commands/deep/assets/deep-research-auto.yaml:329:            generation: "{prior_generation + 1}"
+.skilled/commands/deep/assets/deep-research-auto.yaml:330:          append_jsonl: '{"type":"event","event":"restarted","mode":"research","sessionId":"{session_id}","parentSessionId":"{prior_session_id}","lineageMode":"restart","generation":{generation},"archivedPath":"{state_paths.archive_root}/{timestamp_slug}","timestamp":"{ISO_8601_NOW}"}'
+.skilled/commands/deep/assets/deep-research-auto.yaml:369:          maxDurationMinutes: 120
+.skilled/commands/deep/assets/deep-review-confirm.yaml:35:  lineage_mode: "[auto|resume|restart] - Session lifecycle intent. Default: auto. The runtime only persists lineage events for `resume` (same sessionId, no archive) and `restart` (new sessionId, generation+1, prior review/ archived). `fork` and `completed-continue` are deferred and no longer accepted — see deep-review/references/protocol/loop-protocol.md §Lifecycle Branches."
+.skilled/commands/deep/assets/deep-review-confirm.yaml:345:              lineage_mode: "resume"
+.skilled/commands/deep/assets/deep-review-confirm.yaml:352:              lineage_mode: "restart"
+.skilled/commands/deep/assets/deep-review-confirm.yaml:353:              parent_session_id: "{prior_session_id}"
+.skilled/commands/deep/assets/deep-review-confirm.yaml:354:              generation: "{prior_generation + 1}"
+.skilled/commands/deep/assets/deep-review-confirm.yaml:523:          maxDurationMinutes: 120
+.skilled/commands/deep/assets/deep-review-confirm.yaml:585:        skip_when: "lineage_mode != 'restart'"
+.skilled/commands/deep/assets/deep-review-confirm.yaml:587:        append_jsonl: '{"stem":"deep_review.run_restarted","scope":{"runId":"{session_id}","sessionId":"{session_id}","generation":{generation}},"data":{"priorTailDigest":"{prior_tail_digest}","archivedLineageId":"{prior_session_id}","restartReason":"Restart requested: the prior review packet was archived and a new lineage segment opened.","continuedFromRunId":"{prior_session_id}-i{iteration_count}","compatibilityDecision":"exact","recoveryReceiptRef":"none"}}'
+.skilled/commands/deep/review.md:17:  - `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`, `lineage_mode`
+.skilled/commands/deep/review.md:74:6. Load the selected workflow asset only after `review_target`, `review_target_type`, `review_dimensions`, `spec_folder`, `execution_mode`, `maxIterations`, `convergenceThreshold`, `stop_policy`, and `lineage_mode` are bound.
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts:107:  'deep_research.run_restarted': Object.freeze(['run', 'status']),
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts:496:    case 'deep_research.run_restarted': {
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts:497:      const payload = payloadFor(event, 'deep_research.run_restarted');
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts:1330:    case 'deep_research.run_restarted':
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts:1419:    case 'deep_research.run_restarted':
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-reducers/deep-research-reducer.ts:1881:    case 'deep_research.run_restarted':
+.skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-contract-parity.vitest.ts:90:      expect(content, `${docPath} should expose lifecycle mode input`).toContain('lineage_mode');
+.skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts:28:    expect(command).toContain('lineage_mode');
+.skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts:34:    expect(presentation).toContain('lineage_mode: auto');
+.skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts:35:    expect(presentation).toContain('| `lineage_mode` | Y |');
+.skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts:38:    expect(presentation).toContain('|-- --restart -> lineage_mode = restart');
+.skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts:81:    expect(autoWorkflow).toContain('skip_when: "lineage_mode != \'restart\'"');
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:271:  'deep_research.run_restarted': {
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-schema.ts:701:  'deep_research.run_restarted': ['runId', 'lineageId'],
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts:624:  'deep_research.run_restarted',
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts:691:  'deep_research.run_restarted': { status: 'reserved', reason: 'No writer emits it today: restart rebinds the flat config in place. The restart step would speak it once the archived lineage and restart reason are appended.' },
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts:747:  'deep_research.run_restarted': 'deep-research.ledger.run-restarted',
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts:806:  readonly 'deep_research.run_restarted': RunRestartedData;
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/deep-research-ledger-types.ts:862:  readonly 'deep_research.run_restarted': DeepResearchBaseScope;
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:34:  restarted: 'deep_research.run_restarted',
+.skilled/skills/system-deep-loop/runtime/lib/deep-research-ledger-schema/legacy-compatibility.ts:578:    case 'deep_research.run_restarted':
+.skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-reducers/deep-ai-council-reducer.ts:110:  'ai_council.run_restarted': Object.freeze(['status']),
+.skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-reducers/deep-ai-council-reducer.ts:457:    case 'ai_council.run_restarted':
+.skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-reducers/deep-ai-council-reducer.ts:463:          payloadFor(event, 'ai_council.run_restarted').data.generation,
+.skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-reducers/deep-ai-council-reducer.ts:1306:    case 'ai_council.run_restarted':
+.skilled/skills/system-deep-loop/runtime/scripts/compile-command-contracts.cjs:215:        'lineage_mode',
+.skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-ledger-schema/deep-ai-council-ledger-types.ts:475:  'ai_council.run_restarted',
+.skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-ledger-schema/deep-ai-council-ledger-types.ts:505:  'ai_council.run_restarted': 'deep-ai-council.ledger.run-restarted',
+.skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-ledger-schema/deep-ai-council-ledger-types.ts:538:  readonly 'ai_council.run_restarted': RunRestartedData;
+.skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-ledger-schema/deep-ai-council-ledger-types.ts:566:  readonly 'ai_council.run_restarted': DeepAiCouncilGenerationScope;
+.skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-ledger-schema/deep-ai-council-ledger-schema.ts:149:  'ai_council.run_restarted': {
+.skilled/skills/system-deep-loop/runtime/lib/deep-ai-council-ledger-schema/deep-ai-council-ledger-schema.ts:432:  'ai_council.run_restarted': ['runId', 'roundId', 'generation'],
+.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1695:          `lineage_mode: auto`,
+.skilled/skills/system-deep-loop/runtime/scripts/fanout-run.cjs:1793:    'lineage_mode: auto',
+.skilled/skills/system-deep-loop/deep-research/manual-testing-playbook/command-flow-stress-tests/exhausted-approach-respect.md:93:Return status, lineage_mode, chosen_focus, blocked_approach_handling, and notes.
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts:105:  'deep_review.run_restarted': Object.freeze(['status']),
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts:493:    || event.payload.stem === 'deep_review.run_restarted') {
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts:676:    case 'deep_review.run_restarted':
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts:1384:    case 'deep_review.run_restarted':
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-reducers/deep-review-reducer.ts:1580:    case 'deep_review.run_restarted':
+.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-review-state-contract.ts:150:      } else if (stem === 'deep_review.run_restarted') {
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts:285:    'deep_research.run_restarted': {
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-ledger-schema.vitest.ts:1139:      ['deep_research.run_restarted', 'restartReason', 'Restart after incompatible state.'],
+.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-research-contract.ts:266:      } else if (stem === 'deep_research.run_restarted') {
+.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-ai-council-config-state-contract.ts:111:  'ai_council.run_restarted',
+.skilled/skills/system-deep-loop/runtime/lib/legacy-projections/deep-ai-council-config-state-contract.ts:413:  if (stem === 'ai_council.run_restarted') {
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts:165:    || stem === 'deep_review.run_restarted') {
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-ledger-schema.vitest.ts:262:    'deep_review.run_restarted': {
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts:157:  'deep_review.run_restarted': {
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-schema.ts:513:  'deep_review.run_restarted': ['runId', 'sessionId', 'generation'],
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:560:  'deep_review.run_restarted',
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:607:  'deep_review.run_restarted': { status: 'spoken', producers: ['.skilled/commands/deep/assets/deep-review-auto.yaml', '.skilled/commands/deep/assets/deep-review-confirm.yaml'] },
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:643:  'deep_review.run_restarted': 'deep-review.ledger.run-restarted',
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:682:  readonly 'deep_review.run_restarted': RunRestartedData;
+.skilled/skills/system-deep-loop/runtime/lib/deep-review-ledger-schema/deep-review-ledger-types.ts:718:  readonly 'deep_review.run_restarted': DeepReviewGenerationScope;
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-state-contract.vitest.ts:168:        'deep_review.run_restarted',
+.skilled/skills/system-deep-loop/runtime/tests/unit/combo-matrix.vitest.ts:135:        'lineage_mode: auto',
+.skilled/skills/system-deep-loop/runtime/tests/unit/check-ledger-stem-producers.vitest.ts:235:      'deep_review.run_restarted',
+.skilled/skills/system-deep-loop/runtime/tests/unit/opencode-dual-dispatch.vitest.ts:474:      'lineage_mode: auto',
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-ledger-schema.vitest.ts:159:  if (stem === 'ai_council.run_resumed' || stem === 'ai_council.run_restarted') {
+.skilled/skills/system-deep-loop/runtime/tests/unit/deep-ai-council-ledger-schema.vitest.ts:300:    'ai_council.run_restarted': {

@@ -1,0 +1,7 @@
+FILES (all under .skilled/skills/system-deep-loop/runtime/tests unless a full path is given):
+- .skilled/skills/system-spec-kit/runtime/cli/tests/deep-research-contract-parity.vitest.ts
+- .skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-contract-parity.vitest.ts
+- .skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-auto-restart-contract.vitest.ts
+- .skilled/skills/system-spec-kit/runtime/cli/tests/deep-review-reducer-schema.vitest.ts
+
+PER-FILE NOTES. These four live in another skill and use the second run command of the RUN section.

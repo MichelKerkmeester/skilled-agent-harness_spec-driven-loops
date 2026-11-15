@@ -119,7 +119,6 @@ const SHA256_PATTERN = /^[a-f0-9]{64}$/;
 const STATUS_SET = new Set<string>(Object.values(AdjudicationStatuses));
 const DECISION_KIND_SET = new Set<string>([
   'deep-review',
-  'deep-ai-council',
 ]);
 const ORDER_SET = new Set<string>(Object.values(AssignmentOrders));
 const JUDGMENT_SET = new Set<string>(Object.values(JudgmentOutcomes));

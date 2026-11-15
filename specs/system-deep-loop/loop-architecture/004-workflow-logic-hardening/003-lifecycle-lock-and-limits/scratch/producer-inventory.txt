@@ -1,0 +1,66 @@
+.skilled/commands/deep/assets/deep-research-auto.yaml:286:        command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs acquire --lock-path {state_paths.lock_file} --packet-id {spec_folder} --ttl-ms 1800000"
+.skilled/commands/deep/assets/deep-research-auto.yaml:287:        on_acquire: "Capture lock.ownerPid as captured_owner_pid and lock.acquireNonce as captured_acquire_nonce from the JSON output, and reuse both for every release below. If acquired=false, fail closed: another deep-research run already holds this packet."
+.skilled/commands/deep/assets/deep-research-auto.yaml:325:          command: "if [ -d {state_paths.packet_dir} ]; then mkdir -p {state_paths.archive_root} && mv {state_paths.packet_dir} {state_paths.archive_root}/{timestamp_slug}; fi"
+.skilled/commands/deep/assets/deep-research-auto.yaml:335:          halt: true
+.skilled/commands/deep/assets/deep-research-auto.yaml:338:          halt: true
+.skilled/commands/deep/assets/deep-research-auto.yaml:528:            halt: true
+.skilled/commands/deep/assets/deep-research-auto.yaml:600:        on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than iterate without it."
+.skilled/commands/deep/assets/deep-research-auto.yaml:742:          halt: true
+.skilled/commands/deep/assets/deep-research-auto.yaml:1026:                action: "Adopt a successful focus or fail closed to the existing synthesis path"
+.skilled/commands/deep/assets/deep-research-auto.yaml:1092:          halt: true
+.skilled/commands/deep/assets/deep-research-auto.yaml:1290:            // It throws (fail closed) when the binary is absent or the model is off the
+.skilled/commands/deep/assets/deep-research-auto.yaml:1391:            // It throws (fail closed) when the binary is absent or the model is off the
+.skilled/commands/deep/assets/deep-research-auto.yaml:1492:            // It throws (fail closed) when the binary is absent or the model is off the
+.skilled/commands/deep/assets/deep-research-auto.yaml:1914:          halt: true
+.skilled/commands/deep/assets/deep-research-auto.yaml:2062:            halt: true
+.skilled/commands/deep/assets/deep-research-auto.yaml:2298:              halt: true
+.skilled/commands/deep/assets/deep-research-confirm.yaml:304:        command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs acquire --lock-path {state_paths.lock_file} --packet-id {spec_folder} --ttl-ms 1800000"
+.skilled/commands/deep/assets/deep-research-confirm.yaml:336:            on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+.skilled/commands/deep/assets/deep-research-confirm.yaml:349:            command: "if [ -d {state_paths.packet_dir} ]; then mkdir -p {state_paths.archive_root} && mv {state_paths.packet_dir} {state_paths.archive_root}/{timestamp_slug}; fi"
+.skilled/commands/deep/assets/deep-research-confirm.yaml:357:            halt: true
+.skilled/commands/deep/assets/deep-research-confirm.yaml:362:          halt: true
+.skilled/commands/deep/assets/deep-research-confirm.yaml:365:          halt: true
+.skilled/commands/deep/assets/deep-research-confirm.yaml:548:          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+.skilled/commands/deep/assets/deep-research-confirm.yaml:595:            halt: true
+.skilled/commands/deep/assets/deep-research-confirm.yaml:629:          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+.skilled/commands/deep/assets/deep-research-confirm.yaml:646:        on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than iterate without it."
+.skilled/commands/deep/assets/deep-research-confirm.yaml:699:          halt: true
+.skilled/commands/deep/assets/deep-research-confirm.yaml:825:              on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+.skilled/commands/deep/assets/deep-research-confirm.yaml:1037:                    on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+.skilled/commands/deep/assets/deep-research-confirm.yaml:1072:                    on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+.skilled/commands/deep/assets/deep-research-confirm.yaml:1155:          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+.skilled/commands/deep/assets/deep-research-confirm.yaml:1405:          halt: true
+.skilled/commands/deep/assets/deep-research-confirm.yaml:1537:            halt: true
+.skilled/commands/deep/assets/deep-research-confirm.yaml:1568:          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+.skilled/commands/deep/assets/deep-research-confirm.yaml:1658:          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+.skilled/commands/deep/assets/deep-research-confirm.yaml:1770:          - fail closed on missing host anchor, duplicate markers, or human edits inside the machine-owned block
+.skilled/commands/deep/assets/deep-research-confirm.yaml:1780:          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+.skilled/commands/deep/assets/deep-research-confirm.yaml:1801:              halt: true
+.skilled/commands/deep/assets/deep-research-confirm.yaml:1849:          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+.skilled/commands/deep/assets/deep-review-auto.yaml:324:        command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs acquire --lock-path {state_paths.lock_file} --packet-id {spec_folder} --ttl-ms 1800000"
+.skilled/commands/deep/assets/deep-review-auto.yaml:325:        on_acquire: "Capture lock.ownerPid as captured_owner_pid and lock.acquireNonce as captured_acquire_nonce from the JSON output, and reuse both for every release below. If acquired=false, fail closed — another deep-review run already holds this packet."
+.skilled/commands/deep/assets/deep-review-auto.yaml:365:          command: "if [ -d {state_paths.packet_dir} ]; then mkdir -p {state_paths.archive_root} && mv {state_paths.packet_dir} {state_paths.archive_root}/{timestamp_slug}; fi"
+.skilled/commands/deep/assets/deep-review-auto.yaml:422:          halt: true
+.skilled/commands/deep/assets/deep-review-auto.yaml:669:        on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than iterate without it."
+.skilled/commands/deep/assets/deep-review-auto.yaml:1052:                action: "Adopt a successful read-only review direction or fail closed to the existing synthesis path"
+.skilled/commands/deep/assets/deep-review-auto.yaml:1097:          halt: true
+.skilled/commands/deep/assets/deep-review-auto.yaml:1638:            // It throws (fail closed) when the binary is absent or the model is off the
+.skilled/commands/deep/assets/deep-review-auto.yaml:1739:            // It throws (fail closed) when the binary is absent or the model is off the
+.skilled/commands/deep/assets/deep-review-auto.yaml:1840:            // It throws (fail closed) when the binary is absent or the model is off the
+.skilled/commands/deep/assets/deep-review-auto.yaml:2009:            halt: true
+.skilled/commands/deep/assets/deep-review-confirm.yaml:306:        command: "node .skilled/skills/system-deep-loop/runtime/scripts/loop-lock.cjs acquire --lock-path {state_paths.lock_file} --packet-id {spec_folder} --ttl-ms 1800000"
+.skilled/commands/deep/assets/deep-review-confirm.yaml:340:            on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+.skilled/commands/deep/assets/deep-review-confirm.yaml:350:            command: "if [ -d {state_paths.packet_dir} ]; then mkdir -p {state_paths.archive_root} && mv {state_paths.packet_dir} {state_paths.archive_root}/{timestamp_slug}; fi"
+.skilled/commands/deep/assets/deep-review-confirm.yaml:357:            halt: true
+.skilled/commands/deep/assets/deep-review-confirm.yaml:410:          halt: true
+.skilled/commands/deep/assets/deep-review-confirm.yaml:666:          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+.skilled/commands/deep/assets/deep-review-confirm.yaml:683:        on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than iterate without it."
+.skilled/commands/deep/assets/deep-review-confirm.yaml:905:              on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+.skilled/commands/deep/assets/deep-review-confirm.yaml:1117:                    on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+.skilled/commands/deep/assets/deep-review-confirm.yaml:1152:                    on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+.skilled/commands/deep/assets/deep-review-confirm.yaml:1202:          halt: true
+.skilled/commands/deep/assets/deep-review-confirm.yaml:1258:          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+.skilled/commands/deep/assets/deep-review-confirm.yaml:1529:            halt: true
+.skilled/commands/deep/assets/deep-review-confirm.yaml:1656:          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+.skilled/commands/deep/assets/deep-review-confirm.yaml:1761:          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."
+.skilled/commands/deep/assets/deep-review-confirm.yaml:1967:          on_refresh: "If the refresh output has refreshed:false, fail closed: lost the packet lock. This run no longer holds the packet and must stop rather than continue without it."

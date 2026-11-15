@@ -1,0 +1,54 @@
+ROLE: You are a test and workflow-file editor. Make exactly the four edits below, nothing else.
+Do not refactor, reformat, reorder or fix anything adjacent. Keep the indentation of the
+surrounding lines exactly. All four workflow files must still parse as YAML afterwards.
+
+CONTEXT: the full test suite found four places that still describe the workflows as they were
+before this phase. Each edit below declares one fact the phase made true. No assertion is
+loosened and no test is removed. The WORKFLOW TEXT CONTRACT above is background only.
+
+ALLOWED WRITE PATHS (only these six files):
+- .skilled/commands/deep/assets/deep-research-auto.yaml
+- .skilled/commands/deep/assets/deep-research-confirm.yaml
+- .skilled/commands/deep/assets/deep-review-auto.yaml
+- .skilled/commands/deep/assets/deep-review-confirm.yaml
+- .skilled/skills/system-deep-loop/runtime/tests/unit/deep-review-lock-refresh.vitest.ts
+- .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-bookkeeping-emission.vitest.ts
+
+EDIT 1 (all four workflow files). The duration stop prints a `bookkeeping_log` row with event
+`maxDurationReached`, so the event must be declared as pinned bookkeeping. Find the list with
+  grep -n -A1 '^  pinned_bookkeeping:' <file>
+The next line starts with `    events: [` and ends with `]`. Add `, maxDurationReached` directly
+before the closing `]`. Example: `events: [config_warning, lock_released]` becomes
+`events: [config_warning, lock_released, maxDurationReached]`. Change nothing else on the line.
+
+EDIT 2 (deep-research-confirm.yaml only). Find the census with
+  grep -n -A2 '^confirm_parity:' .skilled/commands/deep/assets/deep-research-confirm.yaml
+Directly after its `  omitted_steps:` line, add this one line (four spaces before the key):
+    step_apply_lifecycle_request: "Auto-only pre-step. An unattended run applies an explicit restart request before fan-out and before the lock is taken; the interactive surface classifies the session in step_classify_session (resume/restart/cancel) and archives the packet contents inside its on_restart_choice branch, so the request is applied there instead."
+
+EDIT 3 (deep-review-lock-refresh.vitest.ts). The lock TTL is now derived from the dispatch
+timeout. Replace the line
+  const LONG_TTL_ARG = '--ttl-ms 1800000';
+with
+  const LONG_TTL_ARG = '--ttl-ms {lock_ttl_ms}';
+Change nothing else in the file.
+
+EDIT 4 (deep-research-bookkeeping-emission.vitest.ts). The restarted row carries a digest field,
+and the gateway accepts only a 64-character hex digest there. In the object
+`ENUM_PLACEHOLDER_VALUES`, directly after the line `ISO_8601_NOW: '2026-05-24T00:00:00Z',`, add
+these three lines (two spaces before each):
+  // The restarted row carries the sha256 of the archived state log, and the
+  // gateway accepts only a real digest there. This is the digest of zero bytes.
+  prior_tail_digest: 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855',
+
+VERIFY (run from the repository root and print each output):
+  python3 -c "import sys, yaml; [yaml.safe_load(open(p)) for p in sys.argv[1:]]; print('yaml ok')" .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  grep -n -A1 '^  pinned_bookkeeping:' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/deep-review-lock-refresh.vitest.ts tests/unit/deep-research-bookkeeping-emission.vitest.ts tests/unit/deep-review-bookkeeping-emission.vitest.ts 2>&1 | tail -40)
+  git status --short
+
+EXPECTED: `yaml ok`. Each events list ends with `maxDurationReached]`. The three test files report
+0 failed. The two emission test files take up to two minutes. If a test still fails, print the
+whole failure message and stop: do not edit any other file and do not change an assertion.
+
+RETURN: the outputs of the verify commands.

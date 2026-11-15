@@ -8,7 +8,7 @@ trigger_phrases:
   - "behavior scenario table template"
 importance_tier: "important"
 contextType: "general"
-version: 1.5.2.0
+version: 1.5.3.0
 ---
 
 # Behavior Benchmark Index Template
@@ -90,8 +90,7 @@ already cover. They concentrate on the behaviors **distinctive to `{{MODE}}`**:
 <!-- One row per scenario file. Entry ∈ {E1,E2,E3,E4}, Clarity ∈ {C1,C2,C3},
      Expected ∈ {autonomous, question_halt, fail_fast}, and Budget is the
      provisional framework floor (180000 ms) until a baseline lands, capped by
-     mode at 900000 ms (research/review) or 1500000 ms
-     (ai-council). Confirm against framework.md BUDGET
+     mode at 900000 ms (research/review). Confirm against framework.md BUDGET
      POLICY, and do not invent a per-scenario number. -->
 
 | ID | Title | Entry | Clarity | Expected | Budget |

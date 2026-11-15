@@ -1,7 +1,7 @@
 ---
 title: "DR-010 -- Progressive synthesis behavior for research/research.md"
 description: "Verify that `research/research.md` remains workflow-owned while progressive updates are allowed when `progressiveSynthesis` is enabled."
-version: 1.14.0.16
+version: 1.14.1.0
 ---
 
 # DR-010 -- Progressive synthesis behavior for research/research.md
@@ -47,7 +47,7 @@ Validate progressive synthesis updates research/research.md during the loop whil
 ### Commands
 1. `bash: rg -n 'progressiveSynthesis|workflow-owned|research/research.md' .skilled/skills/system-deep-loop/deep-research/README.md .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md .skilled/skills/system-deep-loop/deep-research/SKILL.md`
 2. `bash: rg -n 'progressiveSynthesis|Update Research|research/research.md' .skilled/agents/deep-research.md`
-3. `bash: rg -n 'phase_synthesis|research_output|synthesis_complete' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml`
+3. `bash: rg -n 'phase_synthesis|research_output|synthesis_complete' .skilled/commands/deep/assets/deep-research.yaml`
 ### Expected
 The docs describe `research/research.md` as workflow-owned, `progressiveSynthesis` defaults to true, and the final synthesis phase still runs.
 ### Evidence
@@ -75,8 +75,7 @@ Use the runtime agent’s Step 7 and the README configuration table to resolve t
 | `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Canonical ownership wording; use `ANCHOR:overview` and `ANCHOR:config-file` |
 | `.skilled/skills/system-deep-loop/deep-research/SKILL.md` | Rule-level ownership statement; use `ANCHOR:rules` |
 | `.skilled/agents/deep-research.md` | Runtime progressive update rules; inspect `Step 7: Update Research` |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Synthesis and save workflow |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Synthesis and save workflow |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Synthesis and save workflow |
 
 ---
 

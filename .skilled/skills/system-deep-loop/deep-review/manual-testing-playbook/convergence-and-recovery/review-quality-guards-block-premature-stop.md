@@ -1,7 +1,7 @@
 ---
 title: "DRV-018 -- Review quality guards block premature stop"
 description: "Verify that 3 binary gates (evidence, scope, coverage) must all pass before the review loop can issue STOP."
-version: 1.11.0.15
+version: 1.11.1.0
 ---
 
 # DRV-018 -- Review quality guards block premature stop
@@ -48,16 +48,16 @@ Operators should run this as a real orchestrator-led check rather than a synthet
 Validate deep-review quality guards for evidence, scope, and coverage before any STOP decision.
 ### Commands
 1. `bash: rg -n 'quality.guard|binary.gate|evidence.*gate|scope.*gate|coverage.*gate|QUALITY_GUARD|gate.*pass' .skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md`
-2. `bash: rg -n 'quality_guard|binary_gate|evidence_gate|scope_gate|coverage_gate|guard.*check|gate.*pass' .skilled/commands/deep/assets/deep-review-auto.yaml .skilled/commands/deep/assets/deep-review-confirm.yaml`
+2. `bash: rg -n 'quality_guard|binary_gate|evidence_gate|scope_gate|coverage_gate|guard.*check|gate.*pass' .skilled/commands/deep/assets/deep-review.yaml`
 3. `bash: rg -n 'Quality Guard|Evidence|Scope|Coverage|binary gate|gate.*pass|inference.only' .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md .skilled/skills/system-deep-loop/deep-review/SKILL.md .skilled/skills/system-deep-loop/deep-review/README.md`
 ### Expected
 Three named binary gates (evidence, scope, coverage), each must return true, enforcement happens after convergence check but before STOP, and gates are review-specific.
 ### Evidence
-Capture the gate definitions from convergence.md, the YAML enforcement path, and the user-facing documentation of each gate.
+Capture the gate definitions from convergence.md, the workflow enforcement path, and the user-facing documentation of each gate.
 ### Pass/Fail
 PASS if all three gates are enforced before STOP and documented as review-specific. FAIL if any gate can be bypassed or is missing from the enforcement path.
 ### Failure Triage
-Privilege the convergence reference for gate definitions and the YAML workflow for enforcement ordering. Use quick reference for user-facing confirmation.
+Privilege the convergence reference for gate definitions and the workflow gate branch for enforcement ordering. Use quick reference for user-facing confirmation.
 ---
 
 ## 4. SOURCE FILES
@@ -74,8 +74,7 @@ Privilege the convergence reference for gate definitions and the YAML workflow f
 | File | Role |
 |---|---|
 | `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Canonical quality guard definitions, use §6 LEGAL-STOP GATE BUNDLE for the 9 review-specific gates |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Workflow algorithm, inspect quality guard enforcement in convergence step |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Workflow algorithm, inspect quality guard enforcement in convergence step |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Workflow branch on the `convergence.cjs` stop decision, inspect quality guard enforcement in the convergence step |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Quality guard summary, use `ANCHOR:quality-guards` |
 | `.skilled/skills/system-deep-loop/deep-review/SKILL.md` | Quality guard rules, use `ANCHOR:rules` Rule 12 |
 | `.skilled/skills/system-deep-loop/deep-review/README.md` | Feature summary for quality guards |

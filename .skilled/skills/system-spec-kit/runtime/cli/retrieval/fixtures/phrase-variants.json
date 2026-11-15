@@ -1,5 +1,5 @@
 {
-  "manifestHash": "145bce76d704aa0db57770fd54ceb5a3dc1bd7e6e7127fafa241b25df9030daa",
+  "manifestHash": "90c4bd99db5a29d43e0524e841a02141187c4d57fdd9ab498ffaeaec348c60a4",
   "parserVersion": "1.0.0",
   "variants": {
     "0 05 ambiguity window": [
@@ -103,6 +103,9 @@
     ],
     "001 deep research operator decisions": [
       "001-deep-research operator decisions"
+    ],
+    "001 deterministic stop decision operator decisions": [
+      "001-deterministic-stop-decision operator decisions"
     ],
     "001 eval benchmark fidelity implementation summary": [
       "001-eval-benchmark-fidelity implementation summary"
@@ -1215,6 +1218,9 @@
     ],
     "004 vec store rebuild": [
       "004 vec-store-rebuild"
+    ],
+    "004 workflow logic hardening operator decisions": [
+      "004-workflow-logic-hardening operator decisions"
     ],
     "005": [
       "005"
@@ -7535,9 +7541,6 @@
     "696 changelog files": [
       "696 changelog files"
     ],
-    "7 named writers contract": [
-      "7 named writers contract"
-    ],
     "70 cell cli manifest": [
       "70-cell CLI manifest"
     ],
@@ -7813,12 +7816,6 @@
     ],
     "ac waiver adr": [
       "ac waiver adr"
-    ],
-    "acb baseline": [
-      "ACB baseline"
-    ],
-    "acb scenario contract": [
-      "ACB scenario contract"
     ],
     "acceptance closure in checker": [
       "acceptance closure in checker"
@@ -8309,12 +8306,6 @@
     "adjudication sets finding severity": [
       "adjudication sets finding severity"
     ],
-    "adjudicator verdict scoring": [
-      "adjudicator verdict scoring"
-    ],
-    "adjudicator verdict scoring cjs": [
-      "adjudicator-verdict-scoring.cjs"
-    ],
     "admission baseline fix": [
       "admission baseline fix"
     ],
@@ -8748,6 +8739,24 @@
     ],
     "advisor cosine lane": [
       "advisor cosine lane"
+    ],
+    "advisor council removal": [
+      "advisor council removal"
+    ],
+    "advisor council removal acceptance criteria": [
+      "advisor council removal acceptance criteria"
+    ],
+    "advisor council removal goal": [
+      "advisor council removal goal"
+    ],
+    "advisor council removal implementation summary": [
+      "advisor council removal implementation summary"
+    ],
+    "advisor council removal plan": [
+      "advisor council removal plan"
+    ],
+    "advisor council removal tasks": [
+      "advisor council removal tasks"
     ],
     "advisor cross path parity": [
       "advisor cross-path parity"
@@ -9466,9 +9475,6 @@
     ],
     "advisor rollback": [
       "advisor rollback"
-    ],
-    "advisor routes council prompts to skill": [
-      "advisor routes council prompts to skill"
     ],
     "advisor routing and local install": [
       "advisor routing and local install"
@@ -10927,37 +10933,20 @@
     "ai browser automation": [
       "ai browser automation"
     ],
-    "ai council": [
-      "ai council"
-    ],
-    "ai council artifacts": [
-      "ai-council artifacts",
-      "ai-council/** artifacts"
-    ],
     "ai council deliberation round 1 029": [
       "ai council deliberation round 1 029"
     ],
     "ai council effectiveness": [
       "ai council effectiveness"
     ],
-    "ai council gets its own identity": [
-      "AI Council Gets Its Own Identity"
+    "ai council mode deprecation": [
+      "ai council mode deprecation"
     ],
-    "ai council loop protocol": [
-      "ai council loop protocol"
+    "ai council mode deprecation goal": [
+      "ai council mode deprecation goal"
     ],
-    "ai council operator guide": [
-      "ai council operator guide"
-    ],
-    "ai council round strategy": [
-      "ai council round strategy"
-    ],
-    "ai council state jsonl": [
-      "ai-council-state jsonl",
-      "ai-council-state.jsonl"
-    ],
-    "ai council status": [
-      "ai council status"
+    "ai council mode removed": [
+      "ai-council mode removed"
     ],
     "ai council strategy 029": [
       "ai council strategy 029"
@@ -11613,9 +11602,6 @@
     "all questions answered pivot": [
       "all_questions_answered pivot"
     ],
-    "all seats fail": [
-      "all seats fail"
-    ],
     "all skills alignment decisions": [
       "all skills alignment decisions"
     ],
@@ -12110,12 +12096,6 @@
     "append mode event review iteration": [
       "append-mode-event review iteration"
     ],
-    "append only council audit history": [
-      "append-only council audit history"
-    ],
-    "append only jsonl resume": [
-      "append-only JSONL resume"
-    ],
     "append only ledger": [
       "append-only ledger"
     ],
@@ -12127,9 +12107,6 @@
     ],
     "append only review history": [
       "append-only review history"
-    ],
-    "append round state": [
-      "append round state"
     ],
     "append task comment": [
       "append task comment"
@@ -12185,9 +12162,6 @@
     "applier verify commands": [
       "applier verify commands"
     ],
-    "apply 5 dimension rubric": [
-      "apply 5-dimension rubric"
-    ],
     "apply confirmed drift to release notes": [
       "apply confirmed drift to release notes"
     ],
@@ -12200,9 +12174,6 @@
     "apply design md to chart": [
       "apply DESIGN.md to chart",
       "apply design md to chart"
-    ],
-    "apply hunter skeptic referee pattern": [
-      "apply hunter skeptic referee pattern"
     ],
     "apply ledger rows": [
       "apply ledger rows"
@@ -12791,9 +12762,6 @@
     ],
     "artifact walker": [
       "artifact walker"
-    ],
-    "artifact written event": [
-      "artifact_written event"
     ],
     "ascii flowchart examples": [
       "ascii flowchart examples"
@@ -15156,9 +15124,6 @@
     "bloated skill description": [
       "bloated skill description"
     ],
-    "block convergence critical disagreement": [
-      "block convergence critical disagreement"
-    ],
     "block env file reads": [
       "block env file reads"
     ],
@@ -15500,9 +15465,6 @@
     ],
     "bounded startup restore panel changelog": [
       "bounded startup restore panel changelog"
-    ],
-    "bounded topic rounds": [
-      "bounded topic rounds"
     ],
     "boundedmap ttlmap audit rotation": [
       "BoundedMap TtlMap audit rotation"
@@ -16334,6 +16296,24 @@
     ],
     "caller side ranking tuple": [
       "caller-side ranking tuple"
+    ],
+    "caller sweep and verification": [
+      "caller sweep and verification"
+    ],
+    "caller sweep and verification acceptance criteria": [
+      "caller sweep and verification acceptance criteria"
+    ],
+    "caller sweep and verification goal": [
+      "caller sweep and verification goal"
+    ],
+    "caller sweep and verification implementation summary": [
+      "caller sweep and verification implementation summary"
+    ],
+    "caller sweep and verification plan": [
+      "caller sweep and verification plan"
+    ],
+    "caller sweep and verification tasks": [
+      "caller sweep and verification tasks"
     ],
     "calls resolution": [
       "CALLS resolution"
@@ -18707,12 +18687,6 @@
     ],
     "check corpus cjs has no way": [
       "check corpus cjs has no way"
-    ],
-    "check council agreement to proceed": [
-      "check council agreement to proceed"
-    ],
-    "check council run completed": [
-      "check council run completed"
     ],
     "check cupt defaults": [
       "check cupt defaults"
@@ -23373,6 +23347,9 @@
     "cli opencode 1 5 11 0": [
       "cli-opencode 1.5.11.0"
     ],
+    "cli opencode 1 5 12 0": [
+      "cli-opencode 1.5.12.0"
+    ],
     "cli opencode 1 5 2 0": [
       "cli-opencode 1.5.2.0"
     ],
@@ -23636,6 +23613,9 @@
     ],
     "cli opencode v1 5 11 0": [
       "cli-opencode v1.5.11.0"
+    ],
+    "cli opencode v1 5 12 0": [
+      "cli-opencode v1.5.12.0"
     ],
     "cli opencode v1 5 2 0": [
       "cli-opencode v1.5.2.0"
@@ -27747,6 +27727,24 @@
     "command and presentation templates": [
       "command and presentation templates"
     ],
+    "command and skill doc alignment": [
+      "command and skill doc alignment"
+    ],
+    "command and skill doc alignment acceptance criteria": [
+      "command and skill doc alignment acceptance criteria"
+    ],
+    "command and skill doc alignment goal": [
+      "command and skill doc alignment goal"
+    ],
+    "command and skill doc alignment implementation summary": [
+      "command and skill doc alignment implementation summary"
+    ],
+    "command and skill doc alignment plan": [
+      "command and skill doc alignment plan"
+    ],
+    "command and skill doc alignment tasks": [
+      "command and skill doc alignment tasks"
+    ],
     "command arg resolution": [
       "command arg resolution"
     ],
@@ -29323,6 +29321,9 @@
     "compute global worktree number": [
       "compute global worktree number"
     ],
+    "computed stop decision": [
+      "computed stop decision"
+    ],
     "computememoryqualityscore authored docs": [
       "computeMemoryQualityScore authored docs"
     ],
@@ -30743,9 +30744,6 @@
     "contradiction supersession tasks": [
       "contradiction supersession tasks"
     ],
-    "contradiction without resolution": [
-      "contradiction without resolution"
-    ],
     "contradictory permission precondition": [
       "contradictory permission precondition"
     ],
@@ -30782,9 +30780,6 @@
     "convergence cjs": [
       "convergence.cjs"
     ],
-    "convergence cjs three state": [
-      "convergence.cjs three-state"
-    ],
     "convergence degeneration signal": [
       "convergence degeneration signal"
     ],
@@ -30809,29 +30804,17 @@
     "convergence review": [
       "convergence review"
     ],
-    "convergence safety under critical disagreement": [
-      "convergence safety under critical disagreement"
-    ],
     "convergence score delta": [
       "convergence score-delta"
     ],
     "convergence score delta runtime": [
       "convergence score-delta runtime"
     ],
-    "convergence signals": [
-      "convergence_signals"
-    ],
-    "convergence signals escape hatch": [
-      "convergence_signals escape hatch"
-    ],
     "convergence snapshot digest boundary": [
       "convergence snapshot digest boundary"
     ],
     "convergence state protocol guides": [
       "convergence state protocol guides"
-    ],
-    "convergence sycophancy": [
-      "convergence sycophancy"
     ],
     "convergence termination and health": [
       "convergence termination and health"
@@ -30853,9 +30836,6 @@
     ],
     "convergence termination and health value of computation allocation changelog": [
       "convergence termination and health value of computation allocation changelog"
-    ],
-    "convergence threshold": [
-      "convergence threshold"
     ],
     "convergence threshold tuning": [
       "convergence threshold tuning"
@@ -31401,119 +31381,17 @@
     "cosine trigger matching": [
       "cosine trigger matching"
     ],
-    "cost guards": [
-      "cost guards"
-    ],
-    "cost guards cjs": [
-      "cost-guards.cjs"
-    ],
     "could not find chrome": [
       "could not find chrome"
     ],
     "council 10 line spec": [
       "council 10-line spec"
     ],
-    "council anti consensus critique": [
-      "council anti-consensus critique"
-    ],
-    "council anticonvergence": [
-      "council antiConvergence"
-    ],
-    "council artifact folders": [
-      "council artifact folders"
-    ],
-    "council artifact tree": [
-      "council artifact tree"
-    ],
-    "council artifact writes scoped": [
-      "council artifact writes scoped"
-    ],
-    "council cannot implement": [
-      "council cannot implement"
-    ],
-    "council cheat sheet": [
-      "council cheat sheet"
-    ],
-    "council comparison table": [
-      "council comparison table"
-    ],
-    "council complete terminal event": [
-      "council_complete terminal event"
-    ],
-    "council convergence": [
-      "council convergence"
-    ],
-    "council convergence floor": [
-      "council convergence floor"
-    ],
-    "council convergence saturation score": [
-      "council convergence saturation score"
-    ],
-    "council cost guards": [
-      "council cost guards"
-    ],
-    "council dashboard": [
-      "council dashboard"
-    ],
     "council database test isolation": [
       "council database test isolation"
     ],
-    "council deliberation": [
-      "council deliberation"
-    ],
-    "council did not converge top blockers": [
-      "council did not converge top blockers"
-    ],
-    "council diversity requirement": [
-      "council diversity requirement"
-    ],
-    "council escape hatches": [
-      "council escape hatches"
-    ],
-    "council executor behavior scenarios": [
-      "council executor behavior scenarios"
-    ],
-    "council fake consensus": [
-      "council fake consensus"
-    ],
-    "council graph": [
-      "council graph"
-    ],
-    "council graph db namespace delete": [
-      "council-graph-db namespace delete"
-    ],
-    "council graph derived projection ownership": [
-      "council graph derived projection ownership"
-    ],
-    "council graph mcp surface retired": [
-      "council graph mcp surface retired"
-    ],
-    "council graph no mcp context": [
-      "council graph no mcp context"
-    ],
-    "council graph query allowlist": [
-      "council-graph-query allowlist"
-    ],
-    "council graph query modes": [
-      "council graph query modes"
-    ],
-    "council graph readiness check": [
-      "council graph readiness check"
-    ],
-    "council graph runtime cli": [
-      "council graph runtime cli"
-    ],
-    "council graph runtime cli only": [
-      "council graph runtime cli only"
-    ],
-    "council graph scope boundary": [
-      "council graph scope boundary"
-    ],
     "council graph uncovered tools": [
       "council graph uncovered tools"
-    ],
-    "council hot nodes query": [
-      "council hot nodes query"
     ],
     "council ledger parity tasks": [
       "council ledger parity tasks"
@@ -31527,47 +31405,17 @@
     "council ledger shadow harness": [
       "council ledger shadow harness"
     ],
-    "council lens combinations": [
-      "council lens combinations"
-    ],
-    "council loop protocol": [
-      "council loop protocol"
-    ],
-    "council max rounds exceeded": [
-      "council max rounds exceeded"
-    ],
-    "council one round per invocation": [
-      "council one round per invocation"
-    ],
-    "council orchestrator stop rule": [
-      "council orchestrator stop rule"
-    ],
-    "council output format": [
-      "council output format"
-    ],
-    "council output persistence": [
-      "council output persistence"
-    ],
     "council parity receipt handoff": [
       "council parity receipt handoff"
     ],
     "council persist artifacts": [
       "council persist artifacts"
     ],
-    "council persistence flow": [
-      "council persistence flow"
-    ],
-    "council persistence helper": [
-      "council persistence helper"
-    ],
     "council persistence packet root": [
       "council persistence packet root"
     ],
     "council playbook coverage": [
       "council playbook coverage"
-    ],
-    "council process killed mid round": [
-      "council process killed mid-round"
     ],
     "council r1 r2 handover": [
       "council R1 R2 handover"
@@ -31578,104 +31426,17 @@
     "council reducer replay tasks": [
       "council reducer replay tasks"
     ],
-    "council report path": [
-      "council report path"
-    ],
     "council resume continuity projection": [
       "council resume continuity projection"
-    ],
-    "council resume semantics": [
-      "council resume semantics"
-    ],
-    "council round persistence": [
-      "council round persistence"
-    ],
-    "council round prompt pack": [
-      "council round prompt pack"
-    ],
-    "council round protocol": [
-      "council round protocol"
-    ],
-    "council run completion state": [
-      "council run completion state"
-    ],
-    "council seat prompt template": [
-      "council seat prompt template"
-    ],
-    "council seat roles": [
-      "council seat roles"
     ],
     "council seat roster": [
       "council seat roster"
     ],
-    "council seat scoring weights": [
-      "council seat scoring weights"
-    ],
-    "council seat timeout": [
-      "council seat timeout"
-    ],
-    "council seat verdict": [
-      "council seat verdict"
-    ],
-    "council session shape validation": [
-      "council session shape validation"
-    ],
     "council shadow parity rollback tasks": [
       "council shadow parity rollback tasks"
     ],
-    "council skill returns to the deep family": [
-      "Council Skill Returns to the deep-* Family"
-    ],
-    "council state continuation": [
-      "council state continuation"
-    ],
-    "council state events": [
-      "council state events"
-    ],
-    "council stop blocked unresolved critical": [
-      "council stop blocked unresolved critical"
-    ],
-    "council stop continue escalate decision": [
-      "council stop continue escalate decision"
-    ],
-    "council strategy count": [
-      "council strategy count"
-    ],
-    "council strategy lenses": [
-      "council strategy lenses"
-    ],
-    "council strategy template": [
-      "council strategy template"
-    ],
-    "council task type auto selection": [
-      "council task type auto-selection"
-    ],
     "council test suite": [
       "council test suite"
-    ],
-    "council validation": [
-      "council validation"
-    ],
-    "council validator graduation": [
-      "council validator graduation"
-    ],
-    "council vantage targets": [
-      "council vantage targets"
-    ],
-    "council workflow": [
-      "council workflow"
-    ],
-    "council write path boundary": [
-      "council write path boundary"
-    ],
-    "council write scope enforcement": [
-      "council write scope enforcement"
-    ],
-    "council writer sequence": [
-      "council writer sequence"
-    ],
-    "council yaml workflow": [
-      "council yaml workflow"
     ],
     "count only findings not reconstructed": [
       "count-only findings not reconstructed"
@@ -32289,9 +32050,6 @@
     "create router reference check": [
       "create router reference check"
     ],
-    "create session topic round state": [
-      "create session topic round state"
-    ],
     "create sh": [
       "create.sh"
     ],
@@ -32887,9 +32645,6 @@
     "cross runtime naming hook": [
       "cross-runtime naming hook"
     ],
-    "cross seat critique blocks premature convergence": [
-      "cross-seat critique blocks premature convergence"
-    ],
     "cross session kill scoping": [
       "cross session kill scoping"
     ],
@@ -32943,9 +32698,6 @@
     ],
     "cross surface references acceptance criteria": [
       "cross surface references acceptance criteria"
-    ],
-    "cross topic priors": [
-      "cross topic priors"
     ],
     "cross turn stability decision record": [
       "cross-turn stability decision record"
@@ -34663,12 +34415,6 @@
     "decision prefix registry": [
       "decision prefix registry"
     ],
-    "decision provenance audit graph vs baseline": [
-      "decision provenance audit graph vs baseline"
-    ],
-    "decision provenance graph": [
-      "decision provenance graph"
-    ],
     "decision rationale": [
       "decision rationale"
     ],
@@ -34917,12 +34663,6 @@
     ],
     "decoy artifact negative test landed": [
       "decoy artifact negative test landed"
-    ],
-    "dedicated council skill": [
-      "dedicated council skill"
-    ],
-    "dedicated graph projection": [
-      "dedicated graph projection"
     ],
     "dedicated plugin support reduced": [
       "dedicated plugin support reduced"
@@ -35201,74 +34941,7 @@
       "deep"
     ],
     "deep ai council": [
-      "deep ai council",
-      "deep-ai-council"
-    ],
-    "deep ai council 1 0 0 0": [
-      "deep-ai-council 1.0.0.0"
-    ],
-    "deep ai council 1 1 0 0": [
-      "deep-ai-council 1.1.0.0"
-    ],
-    "deep ai council 1 2 0 0": [
-      "deep-ai-council 1.2.0.0"
-    ],
-    "deep ai council 1 3 0 0": [
-      "deep-ai-council 1.3.0.0"
-    ],
-    "deep ai council 1 4 0 0": [
-      "deep-ai-council 1.4.0.0"
-    ],
-    "deep ai council 1 5 0 0": [
-      "deep-ai-council 1.5.0.0"
-    ],
-    "deep ai council 1 5 1 0": [
-      "deep-ai-council 1.5.1.0"
-    ],
-    "deep ai council 1 6 0 0": [
-      "deep-ai-council 1.6.0.0"
-    ],
-    "deep ai council 1 7 0 0": [
-      "deep-ai-council 1.7.0.0"
-    ],
-    "deep ai council 1 8 0 0": [
-      "deep-ai-council 1.8.0.0"
-    ],
-    "deep ai council 1 8 1 0": [
-      "deep-ai-council 1.8.1.0"
-    ],
-    "deep ai council 1 8 10 0": [
-      "deep-ai-council 1.8.10.0"
-    ],
-    "deep ai council 1 8 11 0": [
-      "deep-ai-council 1.8.11.0"
-    ],
-    "deep ai council 1 8 2 0": [
-      "deep-ai-council 1.8.2.0"
-    ],
-    "deep ai council 1 8 3 0": [
-      "deep-ai-council 1.8.3.0"
-    ],
-    "deep ai council 1 8 4 0": [
-      "deep-ai-council 1.8.4.0"
-    ],
-    "deep ai council 1 8 5 0": [
-      "deep-ai-council 1.8.5.0"
-    ],
-    "deep ai council 1 8 6 0": [
-      "deep-ai-council 1.8.6.0"
-    ],
-    "deep ai council 1 8 7 0": [
-      "deep-ai-council 1.8.7.0"
-    ],
-    "deep ai council 1 8 8 0": [
-      "deep-ai-council 1.8.8.0"
-    ],
-    "deep ai council 1 8 9 0": [
-      "deep-ai-council 1.8.9.0"
-    ],
-    "deep ai council anti patterns": [
-      "deep-ai-council anti-patterns"
+      "deep ai council"
     ],
     "deep ai council append only events": [
       "deep ai council append-only events"
@@ -35281,12 +34954,6 @@
     ],
     "deep ai council authority gate plan": [
       "deep-ai-council authority gate plan"
-    ],
-    "deep ai council baseline": [
-      "deep-ai-council baseline"
-    ],
-    "deep ai council behavior benchmark": [
-      "deep-ai-council behavior benchmark"
     ],
     "deep ai council certificates and receipts": [
       "deep ai council certificates and receipts"
@@ -35306,8 +34973,8 @@
     "deep ai council changelog": [
       "deep ai council changelog"
     ],
-    "deep ai council command wiring": [
-      "deep-ai-council command wiring"
+    "deep ai council command removed": [
+      "deep ai-council command removed"
     ],
     "deep ai council comparator": [
       "deep-ai-council comparator"
@@ -35318,17 +34985,8 @@
     "deep ai council content addressed seal plan": [
       "deep-ai-council content-addressed seal plan"
     ],
-    "deep ai council convergence": [
-      "deep-ai-council convergence"
-    ],
     "deep ai council cutover gate tasks": [
       "deep-ai-council cutover gate tasks"
-    ],
-    "deep ai council dashboard": [
-      "deep ai council dashboard"
-    ],
-    "deep ai council depth dispatch": [
-      "deep-ai-council depth dispatch"
     ],
     "deep ai council event contract plan": [
       "deep ai council event contract plan"
@@ -35351,15 +35009,6 @@
     "deep ai council fail closed cutover": [
       "deep-ai-council fail-closed cutover"
     ],
-    "deep ai council failure handling": [
-      "deep-ai-council failure handling"
-    ],
-    "deep ai council folder layout": [
-      "deep-ai-council folder layout"
-    ],
-    "deep ai council graph support": [
-      "deep-ai-council graph support"
-    ],
     "deep ai council health aggregate authenticity boundary": [
       "Deep AI Council health aggregate authenticity boundary"
     ],
@@ -35368,9 +35017,6 @@
     ],
     "deep ai council ledger migration": [
       "deep ai council ledger migration"
-    ],
-    "deep ai council ledger schema": [
-      "deep-ai-council-ledger-schema"
     ],
     "deep ai council legacy upcaster": [
       "deep ai council legacy upcaster"
@@ -35399,9 +35045,6 @@
     "deep ai council offline verifier tasks": [
       "deep-ai-council offline verifier tasks"
     ],
-    "deep ai council output schema": [
-      "deep-ai-council output schema"
-    ],
     "deep ai council plan": [
       "deep ai council plan"
     ],
@@ -35417,20 +35060,11 @@
     "deep ai council projection reducer tasks": [
       "deep-ai-council projection reducer tasks"
     ],
-    "deep ai council prose clarity": [
-      "deep-ai-council prose clarity"
-    ],
-    "deep ai council quick reference": [
-      "deep ai council quick reference"
-    ],
     "deep ai council receipt issuer": [
       "deep-ai-council receipt issuer"
     ],
     "deep ai council reducer implementation": [
       "deep ai council reducer implementation"
-    ],
-    "deep ai council reducers": [
-      "deep-ai-council-reducers"
     ],
     "deep ai council reducers and projections": [
       "Deep AI Council reducers and projections"
@@ -35489,35 +35123,17 @@
     "deep ai council rollback window": [
       "deep-ai-council rollback window"
     ],
-    "deep ai council router": [
-      "deep-ai-council router"
-    ],
-    "deep ai council routing": [
-      "deep-ai-council routing"
-    ],
     "deep ai council run certificate": [
       "deep-ai-council run certificate"
     ],
     "deep ai council schema migration plan": [
       "deep-ai-council schema migration plan"
     ],
-    "deep ai council scoring rubric": [
-      "deep-ai-council scoring rubric"
-    ],
-    "deep ai council scripts": [
-      "deep-ai-council scripts"
-    ],
-    "deep ai council scripts lib": [
-      "deep-ai-council scripts/lib"
-    ],
     "deep ai council seal on write": [
       "deep-ai-council seal-on-write"
     ],
     "deep ai council seal on write tasks": [
       "deep-ai-council seal-on-write tasks"
-    ],
-    "deep ai council sealed artifacts": [
-      "deep-ai-council-sealed-artifacts"
     ],
     "deep ai council sealed artifacts changelog": [
       "deep ai council sealed artifacts changelog"
@@ -35533,9 +35149,6 @@
     ],
     "deep ai council sealed reference artifacts": [
       "Deep AI Council sealed reference artifacts"
-    ],
-    "deep ai council seat diversity": [
-      "deep-ai-council seat diversity"
     ],
     "deep ai council shadow parity": [
       "deep ai council shadow parity"
@@ -35554,15 +35167,6 @@
     ],
     "deep ai council shadow parity tasks": [
       "deep ai council shadow parity tasks"
-    ],
-    "deep ai council state files": [
-      "deep-ai-council state files"
-    ],
-    "deep ai council state format": [
-      "deep-ai-council state format"
-    ],
-    "deep ai council strategy": [
-      "deep ai council strategy"
     ],
     "deep ai council tamper evident artifact reads": [
       "deep-ai-council tamper-evident artifact reads"
@@ -35596,69 +35200,6 @@
     ],
     "deep ai council typed ledger schema tasks": [
       "deep ai council typed ledger schema tasks"
-    ],
-    "deep ai council v1 0 0 0": [
-      "deep-ai-council v1.0.0.0"
-    ],
-    "deep ai council v1 1 0 0": [
-      "deep-ai-council v1.1.0.0"
-    ],
-    "deep ai council v1 2 0 0": [
-      "deep-ai-council v1.2.0.0"
-    ],
-    "deep ai council v1 3 0 0": [
-      "deep-ai-council v1.3.0.0"
-    ],
-    "deep ai council v1 4 0 0": [
-      "deep-ai-council v1.4.0.0"
-    ],
-    "deep ai council v1 5 0 0": [
-      "deep-ai-council v1.5.0.0"
-    ],
-    "deep ai council v1 5 1 0": [
-      "deep-ai-council v1.5.1.0"
-    ],
-    "deep ai council v1 6 0 0": [
-      "deep-ai-council v1.6.0.0"
-    ],
-    "deep ai council v1 7 0 0": [
-      "deep-ai-council v1.7.0.0"
-    ],
-    "deep ai council v1 8 0 0": [
-      "deep-ai-council v1.8.0.0"
-    ],
-    "deep ai council v1 8 1 0": [
-      "deep-ai-council v1.8.1.0"
-    ],
-    "deep ai council v1 8 10 0": [
-      "deep-ai-council v1.8.10.0"
-    ],
-    "deep ai council v1 8 11 0": [
-      "deep-ai-council v1.8.11.0"
-    ],
-    "deep ai council v1 8 2 0": [
-      "deep-ai-council v1.8.2.0"
-    ],
-    "deep ai council v1 8 3 0": [
-      "deep-ai-council v1.8.3.0"
-    ],
-    "deep ai council v1 8 4 0": [
-      "deep-ai-council v1.8.4.0"
-    ],
-    "deep ai council v1 8 5 0": [
-      "deep-ai-council v1.8.5.0"
-    ],
-    "deep ai council v1 8 6 0": [
-      "deep-ai-council v1.8.6.0"
-    ],
-    "deep ai council v1 8 7 0": [
-      "deep-ai-council v1.8.7.0"
-    ],
-    "deep ai council v1 8 8 0": [
-      "deep-ai-council v1.8.8.0"
-    ],
-    "deep ai council v1 8 9 0": [
-      "deep-ai-council v1.8.9.0"
     ],
     "deep ai council verified sealed reads": [
       "deep ai council verified sealed reads"
@@ -37004,6 +36545,9 @@
     "deep loop runtime 1 9 16 0": [
       "deep-loop-runtime 1.9.16.0"
     ],
+    "deep loop runtime 1 9 17 0": [
+      "deep-loop-runtime 1.9.17.0"
+    ],
     "deep loop runtime 1 9 2 0": [
       "deep-loop-runtime 1.9.2.0"
     ],
@@ -37129,6 +36673,9 @@
     ],
     "deep loop runtime v1 9 16 0": [
       "deep-loop-runtime v1.9.16.0"
+    ],
+    "deep loop runtime v1 9 17 0": [
+      "deep-loop-runtime v1.9.17.0"
     ],
     "deep loop runtime v1 9 2 0": [
       "deep-loop-runtime v1.9.2.0"
@@ -37262,8 +36809,14 @@
     "deep loop state records": [
       "deep loop state records"
     ],
+    "deep loop stdin eagain": [
+      "deep loop stdin eagain"
+    ],
     "deep loop stopping clocks": [
       "deep-loop stopping clocks"
+    ],
+    "deep loop stuck counter persistence": [
+      "deep loop stuck counter persistence"
     ],
     "deep loop surface agreement": [
       "deep-loop surface agreement"
@@ -37307,6 +36860,9 @@
     "deep loop workflow integrity audit": [
       "deep loop workflow integrity audit"
     ],
+    "deep loop workflow logic hardening": [
+      "deep loop workflow logic hardening"
+    ],
     "deep loop workflow state machine remediation": [
       "deep-loop workflow state machine remediation"
     ],
@@ -37321,12 +36877,6 @@
     ],
     "deep loop zero use telemetry": [
       "deep-loop zero-use telemetry"
-    ],
-    "deep mode docs script tests": [
-      "Deep-Mode Docs + Script Tests"
-    ],
-    "deep mode session hierarchy": [
-      "deep mode session hierarchy"
     ],
     "deep pi adoption status": [
       "deep-pi adoption status"
@@ -37509,6 +37059,12 @@
     "deep research 1 15 13 0": [
       "deep-research 1.15.13.0"
     ],
+    "deep research 1 15 14 0": [
+      "deep-research 1.15.14.0"
+    ],
+    "deep research 1 15 15 0": [
+      "deep-research 1.15.15.0"
+    ],
     "deep research 1 15 2 0": [
       "deep-research 1.15.2.0"
     ],
@@ -37604,6 +37160,9 @@
     ],
     "deep research authority switch plan": [
       "deep-research authority switch plan"
+    ],
+    "deep research auto confirm drift": [
+      "deep research auto confirm drift"
     ],
     "deep research automation plan": [
       "deep research automation plan"
@@ -37991,8 +37550,14 @@
     "deep research retained count boundary": [
       "Deep Research retained count boundary"
     ],
-    "deep research review council": [
-      "deep research review council"
+    "deep research review": [
+      "deep research review"
+    ],
+    "deep research review doc drift guard": [
+      "deep research review doc drift guard"
+    ],
+    "deep research review drift fix": [
+      "deep research review drift fix"
     ],
     "deep research review state hygiene": [
       "deep research review state hygiene",
@@ -38192,6 +37757,12 @@
     "deep research v1 15 13 0": [
       "deep-research v1.15.13.0"
     ],
+    "deep research v1 15 14 0": [
+      "deep-research v1.15.14.0"
+    ],
+    "deep research v1 15 15 0": [
+      "deep-research v1.15.15.0"
+    ],
     "deep research v1 15 2 0": [
       "deep-research v1.15.2.0"
     ],
@@ -38315,6 +37886,12 @@
     ],
     "deep review 1 11 15 0": [
       "deep-review 1.11.15.0"
+    ],
+    "deep review 1 11 16 0": [
+      "deep-review 1.11.16.0"
+    ],
+    "deep review 1 11 17 0": [
+      "deep-review 1.11.17.0"
     ],
     "deep review 1 11 3 0": [
       "deep-review 1.11.3.0"
@@ -39109,6 +38686,12 @@
     "deep review v1 11 15 0": [
       "deep-review v1.11.15.0"
     ],
+    "deep review v1 11 16 0": [
+      "deep-review v1.11.16.0"
+    ],
+    "deep review v1 11 17 0": [
+      "deep-review v1.11.17.0"
+    ],
     "deep review v1 11 2 0": [
       "deep-review v1.11.2.0"
     ],
@@ -39171,6 +38754,9 @@
     ],
     "deep review verified sealed reads": [
       "deep review verified sealed reads"
+    ],
+    "deep review workflow twin merge": [
+      "deep review workflow twin merge"
     ],
     "deep route guard plugin": [
       "deep route guard plugin"
@@ -39814,9 +39400,6 @@
     "deleted evidence rule no successor": [
       "deleted evidence rule no successor"
     ],
-    "deliberate with three seats": [
-      "deliberate with three seats"
-    ],
     "deliver the search the format promises recipes": [
       "deliver the search the format promises recipes"
     ],
@@ -40084,18 +39667,6 @@
     "deprecation tasks list": [
       "deprecation tasks list"
     ],
-    "depth 0 council dispatch": [
-      "depth 0 council dispatch"
-    ],
-    "depth 0 vs depth 1 council": [
-      "depth 0 vs depth 1 council"
-    ],
-    "depth 1 council dispatch": [
-      "depth 1 council dispatch"
-    ],
-    "depth detection parallel vs sequential": [
-      "depth detection parallel vs sequential"
-    ],
     "depth thinking framework removed": [
       "depth thinking framework removed"
     ],
@@ -40129,9 +39700,6 @@
     "derived command policy": [
       "derived command policy"
     ],
-    "derived council graph": [
-      "derived council graph"
-    ],
     "derived extraction": [
       "derived extraction"
     ],
@@ -40140,9 +39708,6 @@
     ],
     "derived generated affordance scoring": [
       "derived generated affordance scoring"
-    ],
-    "derived graph projection": [
-      "derived graph projection"
     ],
     "derived id": [
       "derived_id"
@@ -40191,12 +39756,6 @@
     ],
     "derived packet repair": [
       "derived packet repair"
-    ],
-    "derived projection rebuilds from artifacts": [
-      "derived projection rebuilds from artifacts"
-    ],
-    "derived projection replay": [
-      "derived projection replay"
     ],
     "derived provenance": [
       "derived provenance"
@@ -40633,9 +40192,6 @@
     "detect changes preflight handler": [
       "detect_changes preflight handler"
     ],
-    "detect nested council depth": [
-      "detect nested council depth"
-    ],
     "detect spec folder": [
       "detect spec folder"
     ],
@@ -40764,6 +40320,27 @@
     ],
     "deterministic scenario matrix": [
       "deterministic scenario matrix"
+    ],
+    "deterministic stop decision": [
+      "deterministic stop decision"
+    ],
+    "deterministic stop decision acceptance criteria": [
+      "deterministic stop decision acceptance criteria"
+    ],
+    "deterministic stop decision goal": [
+      "deterministic stop decision goal"
+    ],
+    "deterministic stop decision implementation summary": [
+      "deterministic stop decision implementation summary"
+    ],
+    "deterministic stop decision plan": [
+      "deterministic stop decision plan"
+    ],
+    "deterministic stop decision program": [
+      "deterministic stop decision program"
+    ],
+    "deterministic stop decision tasks": [
+      "deterministic stop decision tasks"
     ],
     "device and inode comparison": [
       "device and inode comparison"
@@ -41913,9 +41490,6 @@
     ],
     "dispatch matrix authoring": [
       "dispatch matrix authoring"
-    ],
-    "dispatch name council": [
-      "dispatch name council"
     ],
     "dispatch packetpath": [
       "dispatch packetPath"
@@ -44391,6 +43965,9 @@
     "documentation drift review tasks": [
       "documentation drift review tasks"
     ],
+    "documentation facts check": [
+      "documentation facts check"
+    ],
     "documentation freshness completion criteria": [
       "documentation freshness completion criteria"
     ],
@@ -44459,9 +44036,6 @@
     ],
     "docx pdf diff support": [
       "docx pdf diff support"
-    ],
-    "does council write to graph storage": [
-      "does council write to graph storage"
     ],
     "does create refresh the advisor": [
       "does create refresh the advisor"
@@ -45514,6 +45088,21 @@
     ],
     "dsh turn stopping sentinel": [
       "dsh turn stopping sentinel"
+    ],
+    "dsh verify iteration executor": [
+      "dsh verify iteration executor"
+    ],
+    "dsh verify iteration executor goal": [
+      "dsh verify iteration executor goal"
+    ],
+    "dsh verify iteration executor implementation summary": [
+      "dsh verify iteration executor implementation summary"
+    ],
+    "dsh verify iteration executor plan": [
+      "dsh verify iteration executor plan"
+    ],
+    "dsh verify iteration executor tasks": [
+      "dsh verify iteration executor tasks"
     ],
     "dtype embedding profile key": [
       "dtype embedding profile key"
@@ -46881,9 +46470,6 @@
     "empty data notice tasks": [
       "empty data notice tasks"
     ],
-    "empty diff upsert handling": [
-      "empty diff upsert handling"
-    ],
     "empty exchanges save succeeds": [
       "empty exchanges save succeeds"
     ],
@@ -47039,9 +46625,6 @@
     ],
     "enforce asking operator decisions through each runtime s": [
       "enforce asking operator decisions through each runtime s"
-    ],
-    "enforce session caps": [
-      "enforce session caps"
     ],
     "enforced model scope": [
       "enforced model scope"
@@ -48235,6 +47818,9 @@
     ],
     "execute the specs flip": [
       "execute the specs flip"
+    ],
+    "executed post dispatch gate executor identity": [
+      "executed post-dispatch gate executor identity"
     ],
     "executepipeline detector recomputation harness": [
       "executePipeline detector recomputation harness"
@@ -49509,9 +49095,6 @@
     "fail closed resolver": [
       "fail closed resolver"
     ],
-    "fail closed schema enforcement": [
-      "fail-closed schema enforcement"
-    ],
     "fail closed scope": [
       "fail closed scope"
     ],
@@ -49563,11 +49146,11 @@
     "failed embedding cleanup tasks": [
       "failed embedding cleanup tasks"
     ],
+    "failed iteration convergence exclusion": [
+      "failed iteration convergence exclusion"
+    ],
     "failed push rejected remote": [
       "failed push rejected remote"
-    ],
-    "failed round forensic evidence": [
-      "failed round forensic evidence"
     ],
     "failed to move to new namespace": [
       "failed to move to new namespace"
@@ -50753,9 +50336,6 @@
     "field ids": [
       "field ids"
     ],
-    "fifteen reference files grouped": [
-      "fifteen reference files grouped"
-    ],
     "fifth canon clean parent hub": [
       "fifth canon-clean parent hub"
     ],
@@ -51288,9 +50868,6 @@
     "find cdp method by keyword": [
       "find cdp method by keyword"
     ],
-    "find critical disagreements council": [
-      "find critical disagreements council"
-    ],
     "find doc": [
       "find doc"
     ],
@@ -51371,9 +50948,6 @@
     ],
     "findings completeness sweep": [
       "findings completeness sweep"
-    ],
-    "findings deduplication": [
-      "findings deduplication"
     ],
     "findings first": [
       "findings-first"
@@ -51597,12 +51171,6 @@
     "five deepseek v4 1 flash and three gpt": [
       "five deepseek v4 1 flash and three gpt"
     ],
-    "five dimension council scoring": [
-      "five-dimension council scoring"
-    ],
-    "five dimension scoring rubric application": [
-      "five-dimension scoring rubric application"
-    ],
     "five field frontmatter block": [
       "five field frontmatter block"
     ],
@@ -51660,9 +51228,6 @@
     "five port storage seam": [
       "five port storage seam"
     ],
-    "five query views council graph": [
-      "five query views council graph"
-    ],
     "five read path controls": [
       "five read-path controls"
     ],
@@ -51671,9 +51236,6 @@
     ],
     "five sonnet agents disjoint folders": [
       "five sonnet agents disjoint folders"
-    ],
-    "five topic folders": [
-      "five topic folders"
     ],
     "fix": [
       "fix"
@@ -52043,9 +51605,6 @@
     ],
     "fixture drift plural skills rename": [
       "fixture drift plural skills rename"
-    ],
-    "fixture driven value comparisons": [
-      "fixture-driven value comparisons"
     ],
     "fixture exemption validator": [
       "fixture exemption validator"
@@ -54871,17 +54430,8 @@
     "getcanonicalfallback profile ts": [
       "getCanonicalFallback profile.ts"
     ],
-    "getconvergenceblockers": [
-      "getConvergenceBlockers"
-    ],
-    "getdecisionsupport": [
-      "getDecisionSupport"
-    ],
     "getgraphreadinesssnapshot helper": [
       "getGraphReadinessSnapshot helper"
-    ],
-    "gethotnodes": [
-      "getHotNodes"
     ],
     "getiterationrun dashboard row": [
       "getIterationRun dashboard row"
@@ -54900,9 +54450,6 @@
     ],
     "getspecsbasepaths reuse": [
       "getSpecsBasePaths reuse"
-    ],
-    "getunresolveddisagreements": [
-      "getUnresolvedDisagreements"
     ],
     "gh pr create body": [
       "gh pr create body"
@@ -57093,9 +56640,6 @@
     "graph convergence graceful degradation": [
       "graph convergence graceful degradation"
     ],
-    "graph convergence safety guarantee": [
-      "graph convergence safety guarantee"
-    ],
     "graph counts and signals": [
       "graph counts and signals"
     ],
@@ -57113,9 +56657,6 @@
     ],
     "graph deriver run": [
       "graph deriver run"
-    ],
-    "graph driven disagreement triage": [
-      "graph-driven disagreement triage"
     ],
     "graph edge evidence enrichment": [
       "graph edge evidence enrichment"
@@ -57348,9 +56889,6 @@
     "graph readiness telemetry mapper": [
       "graph readiness telemetry mapper"
     ],
-    "graph ready or broken status": [
-      "graph ready or broken status"
-    ],
     "graph runtime mcp server": [
       "graph runtime mcp server"
     ],
@@ -57359,9 +56897,6 @@
     ],
     "graph status repair": [
       "graph status repair"
-    ],
-    "graph support stays derived and scoped": [
-      "graph support stays derived and scoped"
     ],
     "graph traversal index regression": [
       "graph traversal index regression"
@@ -58888,9 +58423,6 @@
     "hierarchy tree": [
       "hierarchy tree"
     ],
-    "high degree contested claim discovery": [
-      "high-degree contested claim discovery"
-    ],
     "high offset query fails fast": [
       "high-offset query fails fast"
     ],
@@ -59687,9 +59219,6 @@
     "hot node read model": [
       "hot-node read model"
     ],
-    "hot topic discovery graph vs baseline": [
-      "hot-topic discovery graph vs baseline"
-    ],
     "hover focus active capture": [
       "hover focus active capture"
     ],
@@ -60122,6 +59651,24 @@
     "hub surface truth tasks": [
       "hub surface truth tasks"
     ],
+    "hub two mode wiring": [
+      "hub two mode wiring"
+    ],
+    "hub two mode wiring acceptance criteria": [
+      "hub two mode wiring acceptance criteria"
+    ],
+    "hub two mode wiring goal": [
+      "hub two mode wiring goal"
+    ],
+    "hub two mode wiring implementation summary": [
+      "hub two mode wiring implementation summary"
+    ],
+    "hub two mode wiring plan": [
+      "hub two mode wiring plan"
+    ],
+    "hub two mode wiring tasks": [
+      "hub two mode wiring tasks"
+    ],
     "hub versus standalone skill class": [
       "hub versus standalone skill class"
     ],
@@ -60187,12 +59734,6 @@
     ],
     "human voice standard moved": [
       "human voice standard moved"
-    ],
-    "hunter skeptic referee": [
-      "hunter skeptic referee"
-    ],
-    "hunter skeptic referee cross critique": [
-      "hunter skeptic referee cross-critique"
     ],
     "hvr blocker readme fix": [
       "hvr blocker readme fix"
@@ -60538,9 +60079,6 @@
     ],
     "idempotent conformance re entry": [
       "idempotent conformance re-entry"
-    ],
-    "idempotent council graph upsert": [
-      "idempotent council graph upsert"
     ],
     "idempotent council re entry": [
       "idempotent council re-entry"
@@ -61649,9 +61187,6 @@
     "insufficient context abort constitutional": [
       "INSUFFICIENT_CONTEXT_ABORT constitutional"
     ],
-    "insufficient vantage diversity": [
-      "insufficient vantage diversity"
-    ],
     "intake contract": [
       "intake contract"
     ],
@@ -62212,9 +61747,6 @@
     ],
     "iteratively review loop word": [
       "iteratively review loop word"
-    ],
-    "jaccard delta axis flip rate": [
-      "jaccard delta axis flip rate"
     ],
     "javascript async patterns": [
       "javascript async patterns"
@@ -64959,12 +64491,6 @@
     "lib modules": [
       "lib modules"
     ],
-    "lib persist artifacts cjs": [
-      "lib/persist-artifacts.cjs"
-    ],
-    "library writer call sequence": [
-      "library writer call sequence"
-    ],
     "license audit summary": [
       "license audit summary"
     ],
@@ -65027,6 +64553,24 @@
     ],
     "lifecycle lifecycle taxonomy guards": [
       "lifecycle lifecycle taxonomy guards"
+    ],
+    "lifecycle lock and limits": [
+      "lifecycle lock and limits"
+    ],
+    "lifecycle lock and limits acceptance criteria": [
+      "lifecycle lock and limits acceptance criteria"
+    ],
+    "lifecycle lock and limits goal": [
+      "lifecycle lock and limits goal"
+    ],
+    "lifecycle lock and limits implementation summary": [
+      "lifecycle lock and limits implementation summary"
+    ],
+    "lifecycle lock and limits plan": [
+      "lifecycle lock and limits plan"
+    ],
+    "lifecycle lock and limits tasks": [
+      "lifecycle lock and limits tasks"
     ],
     "lifecycle policy capsule": [
       "lifecycle policy capsule"
@@ -66095,9 +65639,6 @@
     "locator freshness": [
       "locator freshness"
     ],
-    "lock guarded jsonl append": [
-      "lock-guarded jsonl append"
-    ],
     "lock nonce dispatch summary": [
       "lock nonce dispatch summary"
     ],
@@ -66614,9 +66155,6 @@
     ],
     "major minor patch build changelog": [
       "major minor patch build changelog"
-    ],
-    "majority agreement stop rule": [
-      "majority agreement stop rule"
     ],
     "make branch protection less strict": [
       "make branch protection less strict"
@@ -67244,9 +66782,6 @@
     ],
     "max only rule": [
       "max-only rule"
-    ],
-    "max rounds without convergence emits non converged": [
-      "max rounds without convergence emits non-converged"
     ],
     "max secondary clients 64": [
       "max secondary clients 64"
@@ -72294,9 +71829,6 @@
     "metadata json governance tasks": [
       "metadata json governance tasks"
     ],
-    "metadata key allowlist": [
-      "metadata key allowlist"
-    ],
     "metadata reconciliation status": [
       "metadata reconciliation status"
     ],
@@ -72419,9 +71951,6 @@
     ],
     "microservices data flow diagram": [
       "microservices data flow diagram"
-    ],
-    "mid run interruption recovery graph vs baseline": [
-      "mid-run interruption recovery graph vs baseline"
     ],
     "migrate generated json": [
       "migrate generated json"
@@ -72593,9 +72122,6 @@
     ],
     "miniterations convergence": [
       "minIterations convergence"
-    ],
-    "minrounds": [
-      "minRounds"
     ],
     "minstate inversion": [
       "minstate inversion"
@@ -73473,9 +72999,6 @@
     "mode packet packetkind": [
       "mode packet packetKind"
     ],
-    "mode packet renamed to deep ai council": [
-      "Mode Packet Renamed to deep-ai-council"
-    ],
     "mode projection contracts": [
       "mode projection contracts"
     ],
@@ -74013,9 +73536,6 @@
     "monotonic event append": [
       "monotonic event append"
     ],
-    "most contested council topics": [
-      "most contested council topics"
-    ],
     "motion dev cross stack category": [
       "motion_dev cross-stack category"
     ],
@@ -74208,9 +73728,6 @@
     "multi seat dispatch cjs": [
       "multi-seat-dispatch.cjs"
     ],
-    "multi seat planning": [
-      "multi-seat planning"
-    ],
     "multi series comparison": [
       "multi series comparison"
     ],
@@ -74231,9 +73748,6 @@
     ],
     "multi tool orchestration": [
       "multi tool orchestration"
-    ],
-    "multi topic council deliberation": [
-      "multi-topic council deliberation"
     ],
     "multi turn playbook scenario": [
       "multi-turn playbook scenario"
@@ -74415,9 +73929,6 @@
     "namespace dot notation": [
       "namespace dot notation"
     ],
-    "namespace scoped recovery payload": [
-      "namespace-scoped recovery payload"
-    ],
     "naming comment folder doc scanners": [
       "naming comment folder-doc scanners"
     ],
@@ -74562,9 +74073,6 @@
     "native scorer vitest": [
       "native scorer vitest"
     ],
-    "native scorer vitest ts": [
-      "native-scorer.vitest.ts"
-    ],
     "native surface last in tiebreak": [
       "native surface last in tiebreak"
     ],
@@ -74606,12 +74114,6 @@
     ],
     "ndcg mrr metrics harness": [
       "ndcg mrr metrics harness"
-    ],
-    "ndp compliance dispatch": [
-      "NDP compliance dispatch"
-    ],
-    "ndp compliant council": [
-      "ndp compliant council"
     ],
     "near duplicate dedup": [
       "near duplicate dedup"
@@ -75118,9 +74620,6 @@
     "no nudge outside skilled loop": [
       "no nudge outside skilled-loop"
     ],
-    "no op upsert branch": [
-      "no-op upsert branch"
-    ],
     "no packet ids in docs": [
       "no packet ids in docs"
     ],
@@ -75330,9 +74829,6 @@
     ],
     "non canonical template continuity": [
       "non-canonical template continuity"
-    ],
-    "non converged completion": [
-      "non-converged completion"
     ],
     "non converging flags": [
       "non-converging flags"
@@ -76994,6 +76490,21 @@
     "open ends research phase parent spec": [
       "open ends research phase parent spec"
     ],
+    "open findings follow up": [
+      "open findings follow up"
+    ],
+    "open findings follow up goal": [
+      "open findings follow up goal"
+    ],
+    "open findings follow up implementation summary": [
+      "open findings follow up implementation summary"
+    ],
+    "open findings follow up plan": [
+      "open findings follow up plan"
+    ],
+    "open findings follow up tasks": [
+      "open findings follow up tasks"
+    ],
     "open horizons check": [
       "open horizons check"
     ],
@@ -77155,6 +76666,9 @@
     ],
     "opencode and guards tasks": [
       "opencode and guards tasks"
+    ],
+    "opencode auth list": [
+      "opencode auth list"
     ],
     "opencode authoring checklists": [
       "opencode authoring checklists"
@@ -77329,9 +76843,6 @@
     ],
     "opencode dual version remediation list": [
       "opencode dual version remediation list"
-    ],
-    "opencode examples model routes": [
-      "opencode examples model routes"
     ],
     "opencode export patterns": [
       "opencode export patterns"
@@ -79090,12 +78601,6 @@
     "out of scope revert": [
       "out-of-scope revert"
     ],
-    "out of scope write error": [
-      "OUT_OF_SCOPE_WRITE error"
-    ],
-    "out of scope write rejection": [
-      "out_of_scope_write rejection"
-    ],
     "outage behaviour": [
       "outage behaviour"
     ],
@@ -79119,12 +78624,6 @@
     ],
     "output paths are not shipped": [
       "output paths are not shipped"
-    ],
-    "output schema": [
-      "output_schema"
-    ],
-    "output schema strict required sections fail closed": [
-      "output schema strict required sections fail closed"
     ],
     "output spec dials": [
       "output spec dials"
@@ -79960,9 +79459,6 @@
     "packet lineage lifecycle": [
       "packet lineage lifecycle"
     ],
-    "packet local artifact layout": [
-      "packet-local artifact layout"
-    ],
     "packet local changelog": [
       "packet-local changelog"
     ],
@@ -80701,9 +80197,6 @@
     "path filter decision": [
       "path filter decision"
     ],
-    "path guard implementation": [
-      "path guard implementation"
-    ],
     "path includes specs false positive": [
       "path includes specs false positive"
     ],
@@ -81239,18 +80732,6 @@
     "permissions matrix schema": [
       "permissions matrix schema"
     ],
-    "persist artifacts cjs": [
-      "persist-artifacts.cjs"
-    ],
-    "persist artifacts helper writes packet local tree": [
-      "persist-artifacts helper writes packet-local tree"
-    ],
-    "persist artifacts parser contract": [
-      "persist-artifacts parser contract"
-    ],
-    "persist council artifacts": [
-      "persist council artifacts"
-    ],
     "persist default list id": [
       "persist default list id"
     ],
@@ -81274,6 +80755,24 @@
     ],
     "persisted hops validation tasks": [
       "persisted hops validation tasks"
+    ],
+    "persisted loop state and failure policy": [
+      "persisted loop state and failure policy"
+    ],
+    "persisted loop state and failure policy acceptance criteria": [
+      "persisted loop state and failure policy acceptance criteria"
+    ],
+    "persisted loop state and failure policy goal": [
+      "persisted loop state and failure policy goal"
+    ],
+    "persisted loop state and failure policy implementation summary": [
+      "persisted loop state and failure policy implementation summary"
+    ],
+    "persisted loop state and failure policy plan": [
+      "persisted loop state and failure policy plan"
+    ],
+    "persisted loop state and failure policy tasks": [
+      "persisted loop state and failure policy tasks"
     ],
     "persisted wait crash resume": [
       "persisted-wait crash resume"
@@ -81809,6 +81308,9 @@
     "phase 1 deep research router files": [
       "phase 1 deep research router files"
     ],
+    "phase 1 deterministic stop decision": [
+      "phase 1 deterministic stop decision"
+    ],
     "phase 1 diagram references": [
       "phase 1 diagram references"
     ],
@@ -81925,6 +81427,9 @@
     ],
     "phase 1 spec template anchor nesting": [
       "phase 1 spec template anchor nesting"
+    ],
+    "phase 1 standalone agent and council command": [
+      "phase 1 standalone agent and council command"
     ],
     "phase 1 step order acceptance after development": [
       "phase 1 step order acceptance after development"
@@ -82709,6 +82214,9 @@
     "phase 2 hub surface removal": [
       "phase 2 hub surface removal"
     ],
+    "phase 2 hub two mode wiring": [
+      "phase 2 hub two mode wiring"
+    ],
     "phase 2 install guide router": [
       "phase 2 install guide router"
     ],
@@ -82738,6 +82246,9 @@
     ],
     "phase 2 path extraction regex fix": [
       "phase 2 path extraction regex fix"
+    ],
+    "phase 2 persisted loop state and failure policy": [
+      "phase 2 persisted loop state and failure policy"
     ],
     "phase 2 pi bind once": [
       "phase 2 pi bind once"
@@ -82954,6 +82465,9 @@
     ],
     "phase 22 collapse plan": [
       "phase 22 collapse plan"
+    ],
+    "phase 22 dsh verify iteration executor": [
+      "phase 22 dsh verify iteration executor"
     ],
     "phase 22 implementation summary": [
       "phase 22 implementation summary"
@@ -83177,6 +82691,9 @@
     "phase 3 launch flag replay": [
       "phase 3 launch flag replay"
     ],
+    "phase 3 lifecycle lock and limits": [
+      "phase 3 lifecycle lock and limits"
+    ],
     "phase 3 manual claim live settings": [
       "phase 3 manual claim live settings"
     ],
@@ -83227,6 +82744,9 @@
     ],
     "phase 3 review remediation": [
       "phase 3 review remediation"
+    ],
+    "phase 3 runtime council removal": [
+      "phase 3 runtime council removal"
     ],
     "phase 3 sk code frontend": [
       "phase 3 sk code frontend"
@@ -83326,6 +82846,9 @@
     ],
     "phase 39 sk code opencode alignment audit": [
       "phase 39 sk code opencode alignment audit"
+    ],
+    "phase 4 advisor council removal": [
+      "phase 4 advisor council removal"
     ],
     "phase 4 advisor hooks relaunch": [
       "phase 4 advisor hooks relaunch"
@@ -83540,6 +83063,9 @@
     "phase 4 webflow checker fix": [
       "phase 4 webflow checker fix"
     ],
+    "phase 4 workflow single source and drift guard": [
+      "phase 4 workflow single source and drift guard"
+    ],
     "phase 4 wrapper change notice": [
       "phase 4 wrapper change notice"
     ],
@@ -83585,6 +83111,9 @@
     "phase 5 barter parity": [
       "phase 5 barter parity"
     ],
+    "phase 5 caller sweep and verification": [
+      "phase 5 caller sweep and verification"
+    ],
     "phase 5 central doctor playbook": [
       "phase 5 central doctor playbook"
     ],
@@ -83608,6 +83137,9 @@
     ],
     "phase 5 cli mistral vibe skill packet": [
       "phase 5 cli mistral vibe skill packet"
+    ],
+    "phase 5 command and skill doc alignment": [
+      "phase 5 command and skill doc alignment"
     ],
     "phase 5 completed diagnostics governance": [
       "phase 5 completed diagnostics governance"
@@ -83806,6 +83338,9 @@
     ],
     "phase 6 adr": [
       "phase 6 ADR"
+    ],
+    "phase 6 ai council mode deprecation": [
+      "phase 6 ai council mode deprecation"
     ],
     "phase 6 append lock stale reclaim": [
       "phase 6 append lock stale reclaim"
@@ -84109,6 +83644,9 @@
     ],
     "phase 7 mcp notion": [
       "phase 7 mcp notion"
+    ],
+    "phase 7 open findings follow up": [
+      "phase 7 open findings follow up"
     ],
     "phase 7 per runtime behaviour proof": [
       "phase 7 per runtime behaviour proof"
@@ -85907,9 +85445,6 @@
     "pi rpc template": [
       "pi rpc template"
     ],
-    "pi runner stdin checks": [
-      "pi runner stdin checks"
-    ],
     "pi runtime binding plan": [
       "pi runtime binding plan"
     ],
@@ -86457,15 +85992,6 @@
     ],
     "planner reviewer focus": [
       "planner reviewer focus"
-    ],
-    "planning agent boundary": [
-      "planning agent boundary"
-    ],
-    "planning council": [
-      "planning council"
-    ],
-    "planning only boundary rejects implementation writes": [
-      "planning-only boundary rejects implementation writes"
     ],
     "planted bad tags": [
       "planted bad tags"
@@ -87523,6 +87049,9 @@
     "post deprecation deep review coco": [
       "post-deprecation deep review coco"
     ],
+    "post dispatch executor identity gate": [
+      "post-dispatch executor identity gate"
+    ],
     "post dispatch validate": [
       "post-dispatch validate"
     ],
@@ -88207,9 +87736,6 @@
     "preload tasks offline": [
       "preload tasks offline"
     ],
-    "premature agreement prevention": [
-      "premature agreement prevention"
-    ],
     "premature research stop guard": [
       "premature research stop guard"
     ],
@@ -88336,9 +87862,6 @@
     "preserve untracked task list": [
       "preserve untracked task list"
     ],
-    "pressure test plan with council": [
-      "pressure-test plan with council"
-    ],
     "pretooluse additional context": [
       "pretooluse additional context"
     ],
@@ -88377,9 +87900,6 @@
     ],
     "prioritization ranks": [
       "prioritization ranks"
-    ],
-    "prioritized blocker list council": [
-      "prioritized blocker list council"
     ],
     "priority based checklist items": [
       "priority-based checklist items"
@@ -89147,12 +88667,6 @@
     ],
     "prompt quick test": [
       "prompt quick test"
-    ],
-    "prompt safe bounded context query": [
-      "prompt-safe bounded context query"
-    ],
-    "prompt safe query output": [
-      "prompt-safe query output"
     ],
     "prompt safe telemetry outcomes": [
       "prompt-safe telemetry outcomes"
@@ -90277,9 +89791,6 @@
     "query cjs": [
       "query.cjs"
     ],
-    "query cjs per mode dispatch": [
-      "query.cjs per-mode dispatch"
-    ],
     "query class router single hop": [
       "query class router single hop"
     ],
@@ -90585,9 +90096,6 @@
     ],
     "ramp interiors even steps": [
       "ramp interiors even steps"
-    ],
-    "rank council blockers after max rounds": [
-      "rank council blockers after max rounds"
     ],
     "rank fusion primitives": [
       "rank fusion primitives"
@@ -91420,9 +90928,6 @@
     "readme rewritten nine section structure": [
       "readme rewritten nine-section structure"
     ],
-    "readme rewritten purpose first": [
-      "README rewritten purpose-first"
-    ],
     "readme routing section moved": [
       "readme routing section moved"
     ],
@@ -91740,9 +91245,6 @@
     ],
     "rebuild commit fanout adr": [
       "rebuild commit fanout adr"
-    ],
-    "rebuild council graph from artifacts": [
-      "rebuild council graph from artifacts"
     ],
     "rebuild crashes daemon rc 4": [
       "rebuild crashes daemon RC-4"
@@ -92137,12 +91639,6 @@
     "recount census pin": [
       "recount census pin"
     ],
-    "recover from council interruption": [
-      "recover from council interruption"
-    ],
-    "recover interrupted council run": [
-      "recover interrupted council run"
-    ],
     "recover iteration from stdout": [
       "recover iteration from stdout"
     ],
@@ -92163,9 +91659,6 @@
     ],
     "recursion guard macos": [
       "recursion guard macos"
-    ],
-    "recursive council": [
-      "recursive council"
     ],
     "recursive cte replaced bfs": [
       "recursive cte replaced bfs"
@@ -92223,9 +91716,6 @@
     ],
     "red then green vitest": [
       "red then green vitest"
-    ],
-    "redact council graph metadata": [
-      "redact council graph metadata"
     ],
     "reddit audit plan": [
       "reddit audit plan"
@@ -93023,9 +92513,6 @@
     "registry entry is not a route": [
       "registry entry is not a route"
     ],
-    "registry fingerprint": [
-      "registry fingerprint"
-    ],
     "registry is source of truth": [
       "registry is source of truth"
     ],
@@ -93188,12 +92675,6 @@
     ],
     "reinvention unneeded code": [
       "reinvention unneeded code"
-    ],
-    "reject incomplete council report": [
-      "reject incomplete council report"
-    ],
-    "reject out of scope council write": [
-      "reject out-of-scope council write"
     ],
     "reject unknown cli options": [
       "reject unknown cli options"
@@ -93983,9 +93464,6 @@
     ],
     "release changelogs": [
       "release changelogs"
-    ],
-    "release cleanup": [
-      "Release Cleanup"
     ],
     "release cleanup 016": [
       "release cleanup 016"
@@ -95035,9 +94513,6 @@
     "rename commit verification checklist": [
       "rename commit verification checklist"
     ],
-    "rename council agent": [
-      "rename council agent"
-    ],
     "rename double check review report": [
       "rename double-check review report"
     ],
@@ -95946,9 +95421,6 @@
     "requestquality citationpolicy render": [
       "requestQuality citationPolicy render"
     ],
-    "require critique before convergence": [
-      "require critique before convergence"
-    ],
     "required artifact gates": [
       "required artifact gates"
     ],
@@ -95972,9 +95444,6 @@
     ],
     "required files by level": [
       "required files by level"
-    ],
-    "required section validation": [
-      "required section validation"
     ],
     "required status check": [
       "required status check"
@@ -96800,6 +96269,9 @@
     "research session tracking": [
       "research session tracking"
     ],
+    "research sibling loop docs": [
+      "research sibling loop docs"
+    ],
     "research spec conflict detection": [
       "research spec conflict detection"
     ],
@@ -97449,9 +96921,6 @@
     "resume adapter forged confirmation": [
       "resume adapter forged confirmation"
     ],
-    "resume after interrupted state": [
-      "resume after interrupted state"
-    ],
     "resume after substrate wave": [
       "resume after substrate wave"
     ],
@@ -97511,9 +96980,6 @@
     ],
     "resume hook relocation": [
       "resume hook relocation"
-    ],
-    "resume interrupted council run": [
-      "resume interrupted council run"
     ],
     "resume ladder": [
       "resume ladder"
@@ -97610,6 +97076,9 @@
     ],
     "retire check 13c": [
       "retire check 13c"
+    ],
+    "retire deep ai council mode": [
+      "retire deep-ai-council mode"
     ],
     "retire detect changes plan": [
       "retire detect_changes plan"
@@ -98869,6 +98338,9 @@
     "review reducer missing config tasks": [
       "review reducer missing config tasks"
     ],
+    "review reducer path": [
+      "review reducer path"
+    ],
     "review reference map": [
       "review reference map"
     ],
@@ -99054,6 +98526,9 @@
     ],
     "review severity weights": [
       "review severity weights"
+    ],
+    "review sibling loop docs": [
+      "review sibling loop docs"
     ],
     "review skill authoring complete": [
       "review skill authoring complete"
@@ -99443,9 +98918,6 @@
     "roll back a re pin": [
       "roll back a re-pin"
     ],
-    "roll back council round": [
-      "roll back council round"
-    ],
     "rollback candidate hash hardening": [
       "rollback candidate hash hardening"
     ],
@@ -99467,9 +98939,6 @@
     "rollback child deep loop packet placement": [
       "rollback child deep-loop packet placement"
     ],
-    "rollback cjs": [
-      "rollback.cjs"
-    ],
     "rollback count authorization binding": [
       "rollback count authorization binding"
     ],
@@ -99487,9 +98956,6 @@
     ],
     "rollback evidence before cutover": [
       "rollback evidence before cutover"
-    ],
-    "rollback failed round preserves forensic trail": [
-      "rollback failed round preserves forensic trail"
     ],
     "rollback identity verification tasks": [
       "rollback identity verification tasks"
@@ -99517,9 +98983,6 @@
     ],
     "rollback snapshot refresh tasks": [
       "rollback snapshot refresh tasks"
-    ],
-    "rollback state event": [
-      "rollback state event"
     ],
     "rollback switch certificate binding": [
       "rollback switch certificate binding"
@@ -99821,12 +99284,6 @@
     "round four remediation": [
       "round four remediation"
     ],
-    "round state jsonl": [
-      "round-state jsonl"
-    ],
-    "round state jsonl cjs": [
-      "round-state-jsonl.cjs"
-    ],
     "round three criteria": [
       "round three criteria"
     ],
@@ -99850,9 +99307,6 @@
     ],
     "route categories save command": [
       "route categories save command"
-    ],
-    "route council request": [
-      "route council request"
     ],
     "route diagram resources": [
       "route_diagram_resources"
@@ -100551,9 +100005,6 @@
     "routing perfection research tasks": [
       "routing perfection research tasks"
     ],
-    "routing prose summary": [
-      "routing prose summary"
-    ],
     "routing ratchet deep review wave": [
       "routing ratchet deep-review wave"
     ],
@@ -101175,9 +100626,6 @@
     "runtime agent gateway audit review": [
       "runtime agent gateway audit review"
     ],
-    "runtime agent renamed to deep ai council": [
-      "runtime agent renamed to deep-ai-council"
-    ],
     "runtime agnostic lifecycle plan": [
       "runtime-agnostic lifecycle plan"
     ],
@@ -101304,8 +100752,23 @@
     "runtime config parity tasks": [
       "runtime config parity tasks"
     ],
-    "runtime convergence cli three state decision matrix": [
-      "runtime convergence cli three-state decision matrix"
+    "runtime council removal": [
+      "runtime council removal"
+    ],
+    "runtime council removal acceptance criteria": [
+      "runtime council removal acceptance criteria"
+    ],
+    "runtime council removal goal": [
+      "runtime council removal goal"
+    ],
+    "runtime council removal implementation summary": [
+      "runtime council removal implementation summary"
+    ],
+    "runtime council removal plan": [
+      "runtime council removal plan"
+    ],
+    "runtime council removal tasks": [
+      "runtime council removal tasks"
     ],
     "runtime council tests": [
       "runtime council tests"
@@ -101544,14 +101007,8 @@
     "runtime lint check passes": [
       "runtime lint check passes"
     ],
-    "runtime loop type council": [
-      "runtime/ --loop-type council"
-    ],
     "runtime matrix validation": [
       "runtime matrix validation"
-    ],
-    "runtime mirror": [
-      "runtime mirror"
     ],
     "runtime mirror alignment": [
       "runtime mirror alignment"
@@ -101661,12 +101118,6 @@
     "runtime project in ci": [
       "runtime project in ci"
     ],
-    "runtime query cli five modes return prompt safe context": [
-      "runtime query cli five modes return prompt-safe context"
-    ],
-    "runtime query cli hostile metadata redaction": [
-      "runtime query cli hostile metadata redaction"
-    ],
     "runtime question adapters": [
       "runtime question adapters"
     ],
@@ -101714,9 +101165,6 @@
     ],
     "runtime state relocation": [
       "runtime state relocation"
-    ],
-    "runtime status cli recovery payload and readiness": [
-      "runtime status cli recovery payload and readiness"
     ],
     "runtime stress test": [
       "runtime/stress-test"
@@ -101774,12 +101222,6 @@
     ],
     "runtime trio line count": [
       "runtime trio line count"
-    ],
-    "runtime upsert cli empty input no op success": [
-      "runtime upsert cli empty input no-op success"
-    ],
-    "runtime upsert cli idempotency and self loop rejection": [
-      "runtime upsert cli idempotency and self-loop rejection"
     ],
     "runtime vitest tmpdir": [
       "runtime vitest tmpdir"
@@ -102092,9 +101534,6 @@
     ],
     "sanitizeskilllabel v2": [
       "sanitizeSkillLabel v2"
-    ],
-    "saturation threshold enforcement": [
-      "saturation threshold enforcement"
     ],
     "save advisory lock": [
       "save advisory lock"
@@ -102774,9 +102213,6 @@
     "score a document": [
       "score a document"
     ],
-    "score adjustment role": [
-      "score adjustment role"
-    ],
     "score alignment suggestion": [
       "score-alignment-suggestion"
     ],
@@ -102899,9 +102335,6 @@
     ],
     "score goal lint tasks": [
       "score-goal-lint tasks"
-    ],
-    "score hypothetical seat output": [
-      "score hypothetical seat output"
     ],
     "score injection screen": [
       "score-injection-screen"
@@ -103044,9 +102477,6 @@
     "score track narrowing tasks": [
       "score-track-narrowing tasks"
     ],
-    "score verdict delta": [
-      "score verdict delta"
-    ],
     "score verdict fallback": [
       "score-verdict-fallback"
     ],
@@ -103088,9 +102518,6 @@
     ],
     "scorer calibration bench": [
       "scorer calibration bench"
-    ],
-    "scorer coverage": [
-      "scorer coverage"
     ],
     "scorer deem arms acceptance criteria": [
       "scorer deem arms acceptance criteria"
@@ -103145,12 +102572,6 @@
     ],
     "scoring matrix replay plan": [
       "scoring matrix replay plan"
-    ],
-    "scoring rubric": [
-      "scoring_rubric"
-    ],
-    "scoring rubric cross critique": [
-      "scoring_rubric cross-critique"
     ],
     "scoring tasks": [
       "scoring tasks"
@@ -103716,18 +103137,6 @@
     "searchresult mutable default fix": [
       "searchresult mutable default fix"
     ],
-    "seat diversity patterns": [
-      "seat_diversity_patterns"
-    ],
-    "seat lens diversity": [
-      "seat lens diversity"
-    ],
-    "seat output budget": [
-      "seat-output budget"
-    ],
-    "seat recommendation sections": [
-      "seat recommendation sections"
-    ],
     "second client reaps starting daemon": [
       "second client reaps starting daemon"
     ],
@@ -104004,9 +103413,6 @@
     "self invocation rule": [
       "self-invocation rule"
     ],
-    "self loop edge rejection": [
-      "self-loop edge rejection"
-    ],
     "self maintaining index changelog": [
       "self-maintaining index changelog"
     ],
@@ -104232,14 +103638,8 @@
     "sequence diagram layout": [
       "sequence diagram layout"
     ],
-    "sequential thinking council": [
-      "sequential thinking council"
-    ],
     "sequential thinking doctor": [
       "sequential thinking doctor"
-    ],
-    "sequential thinking inline mode": [
-      "sequential_thinking inline mode"
     ],
     "sequential thinking residue removal": [
       "sequential thinking residue removal"
@@ -104719,12 +104119,6 @@
     "session start primary reconcile": [
       "session start primary reconcile"
     ],
-    "session state hierarchy": [
-      "session state hierarchy"
-    ],
-    "session state hierarchy cjs": [
-      "session-state-hierarchy.cjs"
-    ],
     "session stop autosave canonical": [
       "session-stop autosave canonical"
     ],
@@ -104733,9 +104127,6 @@
     ],
     "session teardown sweep": [
       "session teardown sweep"
-    ],
-    "session topic round structure": [
-      "session topic round structure"
     ],
     "session trace causal reducer": [
       "session-trace causal reducer"
@@ -106482,8 +105873,14 @@
     "single pass review ux": [
       "single pass review ux"
     ],
+    "single research workflow file": [
+      "single research workflow file"
+    ],
     "single responsibility smell check": [
       "single responsibility smell check"
+    ],
+    "single review workflow file": [
+      "single review workflow file"
     ],
     "single safe segment accepted": [
       "single safe segment accepted"
@@ -108537,6 +107934,9 @@
     "sk code skilled 2 2 2 0": [
       "sk-code-skilled 2.2.2.0"
     ],
+    "sk code skilled 2 2 3 0": [
+      "sk-code-skilled 2.2.3.0"
+    ],
     "sk code skilled alignment": [
       "sk-code-skilled alignment"
     ],
@@ -108725,6 +108125,9 @@
     ],
     "sk code skilled v2 2 2 0": [
       "sk-code-skilled v2.2.2.0"
+    ],
+    "sk code skilled v2 2 3 0": [
+      "sk-code-skilled v2.2.3.0"
     ],
     "sk code smart routing": [
       "sk-code smart routing"
@@ -109525,6 +108928,12 @@
     "sk create command 1 0 11 0": [
       "sk-create-command 1.0.11.0"
     ],
+    "sk create command 1 0 12 0": [
+      "sk-create-command 1.0.12.0"
+    ],
+    "sk create command 1 0 13 0": [
+      "sk-create-command 1.0.13.0"
+    ],
     "sk create command 1 0 2 0": [
       "sk-create-command 1.0.2.0"
     ],
@@ -109581,6 +108990,12 @@
     ],
     "sk create command v1 0 11 0": [
       "sk-create-command v1.0.11.0"
+    ],
+    "sk create command v1 0 12 0": [
+      "sk-create-command v1.0.12.0"
+    ],
+    "sk create command v1 0 13 0": [
+      "sk-create-command v1.0.13.0"
     ],
     "sk create command v1 0 2 0": [
       "sk-create-command v1.0.2.0"
@@ -115041,9 +114456,6 @@
     "skill routing and clarity phase parent spec": [
       "skill routing and clarity phase parent spec"
     ],
-    "skill routing council": [
-      "skill routing council"
-    ],
     "skill routing deep research": [
       "skill routing deep research"
     ],
@@ -117719,6 +117131,9 @@
     "spec kit skill graph sqlite collision": [
       "spec-kit skill-graph sqlite collision"
     ],
+    "spec kit stale dist build": [
+      "spec kit stale dist build"
+    ],
     "spec kit sub track design": [
       "spec-kit sub-track design"
     ],
@@ -119520,9 +118935,6 @@
     "staleness signals declared": [
       "staleness signals declared"
     ],
-    "stalled council blocker ranking graph vs baseline": [
-      "stalled-council blocker ranking graph vs baseline"
-    ],
     "stamp migration tasks": [
       "stamp migration tasks"
     ],
@@ -119546,6 +118958,27 @@
     ],
     "standalone advisor shape": [
       "standalone advisor shape"
+    ],
+    "standalone agent and council command": [
+      "standalone agent and council command"
+    ],
+    "standalone agent and council command acceptance criteria": [
+      "standalone agent and council command acceptance criteria"
+    ],
+    "standalone agent and council command goal": [
+      "standalone agent and council command goal"
+    ],
+    "standalone agent and council command implementation summary": [
+      "standalone agent and council command implementation summary"
+    ],
+    "standalone agent and council command plan": [
+      "standalone agent and council command plan"
+    ],
+    "standalone agent and council command tasks": [
+      "standalone agent and council command tasks"
+    ],
+    "standalone ai council agent": [
+      "standalone ai-council agent"
     ],
     "standalone code graph mcp": [
       "standalone code graph MCP"
@@ -119748,17 +119181,11 @@
     "state directory consolidation tasks": [
       "state directory consolidation tasks"
     ],
-    "state format": [
-      "state_format"
-    ],
     "state ignore rules rewrite": [
       "state ignore rules rewrite"
     ],
     "state jsonl iteration field": [
       "state jsonl iteration field"
-    ],
-    "state jsonl records council complete event": [
-      "state jsonl records council_complete event"
     ],
     "state log unattributed": [
       "state log unattributed"
@@ -119867,12 +119294,6 @@
     ],
     "status cjs": [
       "status.cjs"
-    ],
-    "status cjs recovery field": [
-      "status.cjs recovery field"
-    ],
-    "status cjs recovery payload": [
-      "status.cjs recovery payload"
     ],
     "status classifier implemented blind spot": [
       "status classifier implemented blind spot"
@@ -120616,9 +120037,6 @@
     ],
     "structured choice": [
       "structured choice"
-    ],
-    "structured council recovery context": [
-      "structured council recovery context"
     ],
     "structured deeppi report": [
       "structured deeppi report"
@@ -121929,6 +121347,12 @@
     "system deep loop 1 6 9 0": [
       "system-deep-loop 1.6.9.0"
     ],
+    "system deep loop 2 0 0 0": [
+      "system-deep-loop 2.0.0.0"
+    ],
+    "system deep loop 2 0 1 0": [
+      "system-deep-loop 2.0.1.0"
+    ],
     "system deep loop architecture": [
       "system-deep-loop architecture"
     ],
@@ -122141,6 +121565,12 @@
     ],
     "system deep loop v1 6 9 0": [
       "system-deep-loop v1.6.9.0"
+    ],
+    "system deep loop v2 0 0 0": [
+      "system-deep-loop v2.0.0.0"
+    ],
+    "system deep loop v2 0 1 0": [
+      "system-deep-loop v2.0.1.0"
     ],
     "system deep research bugs": [
       "system deep research bugs"
@@ -125722,14 +125152,8 @@
     "three result floor is not a cap": [
       "three result floor is not a cap"
     ],
-    "three seat diverse deliberation": [
-      "three-seat diverse deliberation"
-    ],
     "three signal model": [
       "three-signal model"
-    ],
-    "three state convergence signal": [
-      "three-state convergence signal"
     ],
     "three suite regression control": [
       "three suite regression control"
@@ -126244,9 +125668,6 @@
     "top level session worktree wrapper": [
       "top-level session worktree wrapper"
     ],
-    "topic nnn slug round nnn ids": [
-      "topic-nnn-slug round-nnn ids"
-    ],
     "topology and build dist boundary remediation": [
       "topology and build dist boundary remediation"
     ],
@@ -126306,9 +125727,6 @@
     ],
     "touchpoints multilang tasks rust": [
       "touchpoints multilang tasks rust"
-    ],
-    "trace council decision evidence": [
-      "trace council decision evidence"
     ],
     "traceability": [
       "traceability"
@@ -127246,9 +126664,6 @@
     "trustrepochecks decision": [
       "trustRepoChecks decision"
     ],
-    "truthful stop without consensus": [
-      "truthful stop without consensus"
-    ],
     "try opposites recovery": [
       "try opposites recovery"
     ],
@@ -127431,15 +126846,6 @@
     ],
     "two of the three fixes in the packet": [
       "two of the three fixes in the packet"
-    ],
-    "two of three agree": [
-      "two of three agree"
-    ],
-    "two of three agree convergence": [
-      "two-of-three-agree convergence"
-    ],
-    "two of three agree triggers convergence": [
-      "two-of-three agree triggers convergence"
     ],
     "two orphaned runtime modules": [
       "two orphaned runtime modules"
@@ -128173,15 +127579,6 @@
     "unresolved citation detail plan": [
       "unresolved citation detail plan"
     ],
-    "unresolved council disagreements after rounds": [
-      "unresolved council disagreements after rounds"
-    ],
-    "unresolved disagreement triage graph vs baseline": [
-      "unresolved disagreement triage graph vs baseline"
-    ],
-    "unresolvedcriticaldisagreements": [
-      "unresolvedCriticalDisagreements"
-    ],
     "unrun tests ci coverage": [
       "unrun tests ci coverage"
     ],
@@ -128511,15 +127908,6 @@
     ],
     "upsert cjs": [
       "upsert.cjs"
-    ],
-    "upsert cjs empty input": [
-      "upsert.cjs empty-input"
-    ],
-    "upsert council session twice": [
-      "upsert council session twice"
-    ],
-    "upsert empty council graph": [
-      "upsert empty council graph"
     ],
     "upsert graph nodes edges": [
       "upsert graph nodes edges"
@@ -130385,6 +129773,12 @@
     "verify iteration dispatch failure": [
       "verify iteration dispatch failure"
     ],
+    "verify iteration executor check plan": [
+      "verify-iteration executor check plan"
+    ],
+    "verify iteration executor missing": [
+      "verify-iteration executor_missing"
+    ],
     "verify premise evidence": [
       "verify premise evidence"
     ],
@@ -132139,9 +131533,6 @@
     "why compaction loses the purpose": [
       "why compaction loses the purpose"
     ],
-    "why did council recommend plan": [
-      "why did council recommend plan"
-    ],
     "why did the scanner flag that": [
       "why did the scanner flag that"
     ],
@@ -132271,6 +131662,9 @@
     "workflow around validation coverage": [
       "workflow around validation coverage"
     ],
+    "workflow asset naming example": [
+      "workflow asset naming example"
+    ],
     "workflow asset rewrite tasks": [
       "workflow asset rewrite tasks"
     ],
@@ -132325,6 +131719,9 @@
     "workflow lock starvation": [
       "workflow lock starvation"
     ],
+    "workflow logic hardening phase parent spec": [
+      "workflow logic hardening phase parent spec"
+    ],
     "workflow owner guard": [
       "workflow owner guard",
       "workflow-owner guard"
@@ -132367,6 +131764,24 @@
     ],
     "workflow save completion seam": [
       "workflow save completion seam"
+    ],
+    "workflow single source and drift guard": [
+      "workflow single source and drift guard"
+    ],
+    "workflow single source and drift guard acceptance criteria": [
+      "workflow single source and drift guard acceptance criteria"
+    ],
+    "workflow single source and drift guard goal": [
+      "workflow single source and drift guard goal"
+    ],
+    "workflow single source and drift guard implementation summary": [
+      "workflow single source and drift guard implementation summary"
+    ],
+    "workflow single source and drift guard plan": [
+      "workflow single source and drift guard plan"
+    ],
+    "workflow single source and drift guard tasks": [
+      "workflow single source and drift guard tasks"
     ],
     "workflow strict shell mode": [
       "workflow strict shell mode"

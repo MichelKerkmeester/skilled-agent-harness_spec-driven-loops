@@ -2,32 +2,6 @@
   "modes": [
     {
       "leaves": [
-        "assets/deep-ai-council-config.json",
-        "assets/deep-ai-council-dashboard.md",
-        "assets/deep-ai-council-strategy.md",
-        "assets/prompt-pack-round.md",
-        "assets/runtime-capabilities.json",
-        "references/convergence/convergence-signals.md",
-        "references/convergence/deep-mode.md",
-        "references/convergence/depth-dispatch.md",
-        "references/convergence/failure-handling.md",
-        "references/integration/graph-support.md",
-        "references/integration/loop-protocol.md",
-        "references/integration/quick-reference.md",
-        "references/patterns/anti-patterns.md",
-        "references/patterns/command-wiring.md",
-        "references/patterns/seat-diversity-patterns.md",
-        "references/scoring/findings-registry.md",
-        "references/scoring/scoring-rubric.md",
-        "references/structure/folder-layout.md",
-        "references/structure/output-schema.md",
-        "references/structure/state-format.md"
-      ],
-      "packet": "deep-ai-council",
-      "workflowMode": "ai-council"
-    },
-    {
-      "leaves": [
         "assets/deep-research-config.json",
         "assets/deep-research-dashboard.md",
         "assets/deep-research-strategy.md",

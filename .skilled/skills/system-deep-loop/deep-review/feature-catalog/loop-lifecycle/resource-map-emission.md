@@ -7,7 +7,7 @@ trigger_phrases:
   - "resource-map.md"
   - "review coverage ledger"
   - "P0 P1 P2 per-file counts"
-version: 1.11.1.0
+version: 1.11.2.0
 ---
 
 # Resource Map Emission
@@ -36,8 +36,7 @@ The emitter is enabled by default through `config.resource_map.emit = true`. Ope
 |---|---|---|
 | `.skilled/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs` | Shared script | Normalizes review evidence and renders the ten-category resource map. |
 | `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs` | Reducer | Adds the `--emit-resource-map` path and honors `config.resource_map.emit`. |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Workflow | Triggers emission during synthesis after the final adjudication pass. |
-| `.skilled/commands/deep/assets/deep-review-confirm.yaml` | Workflow | Mirrors the same synthesis-time emission path in confirm mode. |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Workflow | Triggers emission during synthesis after the final adjudication pass, in both execution modes. |
 | `.skilled/skills/system-deep-loop/deep-review/references/convergence/convergence.md` | Reference | Documents the convergence-to-synthesis emission step and operator opt-out. |
 
 ### Validation And Tests
@@ -54,7 +53,7 @@ The emitter is enabled by default through `config.resource_map.emit = true`. Ope
 - Group: Loop lifecycle
 - Canonical catalog source: `feature-catalog.md`
 - Feature file path: `loop-lifecycle/resource-map-emission.md`
-- Primary sources: `.skilled/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs`, `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`, `.skilled/commands/deep/assets/deep-review-auto.yaml`, `.skilled/commands/deep/assets/deep-review-confirm.yaml`
+- Primary sources: `.skilled/skills/system-spec-kit/runtime/cli/resource-map/extract-from-evidence.cjs`, `.skilled/skills/system-deep-loop/runtime/scripts/reduce-state.cjs`, `.skilled/commands/deep/assets/deep-review.yaml`
 Related references:
 - [memory-save.md](../../feature-catalog/loop-lifecycle/memory-save.md) — Memory save
 - [resource-map-coverage-gate.md](../../feature-catalog/loop-lifecycle/resource-map-coverage-gate.md) — Resource Map Coverage Gate

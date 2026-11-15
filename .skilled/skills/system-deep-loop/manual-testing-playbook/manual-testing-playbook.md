@@ -1,7 +1,7 @@
 ---
 title: "system-deep-loop: Manual Testing Playbook"
 description: "Operator-facing reference for manually validating system-deep-loop hub routing, advisor integration, backend discrimination, state discipline, and per-mode artifact ownership against the live skill registry."
-version: "1.2.1.0"
+version: "1.2.2.0"
 ---
 
 # system-deep-loop: Manual Testing Playbook
@@ -33,7 +33,7 @@ Canonical package artifacts:
 This playbook validates the `system-deep-loop` parent-skill hub through the operator-scenario set enumerated in Section 6 (Category Index) and Section 8 (Scenario Directory), which are the source of truth for the current scenario and category totals. Each scenario keeps its stable `{PREFIX}-NNN` ID in a dedicated per-scenario file whose YAML frontmatter carries the typed routing gold and whose body holds the full execution contract. A separate `compiled-routing/` directory carries one routing-gold bundle (`DL-CR-001`) outside this operator-scenario set; it is exempt from this playbook's contract and scored elsewhere.
 
 Coverage note: the playbook covers the hub's registry-driven routing at version `2.0.0.0`. It exercises:
-- Dominant-intent routing for the lexical modes: `research`, `review`, and `ai-council`.
+- Dominant-intent routing for the lexical modes: `research` and `review`.
 - Explicit mode-hint override routing, such as `research: <request>`.
 - Advisor integration: the single advisor identity `system-deep-loop`, lexical scoring, and no false fire on ordinary code-edit prompts.
 - The three-tier discriminator: `workflowMode`, `runtimeLoopType`, and `backendKind`.
@@ -130,8 +130,8 @@ For each executed scenario, check:
 
 Release is READY only when:
 1. No feature verdict is FAIL.
-2. All critical scenarios are PASS: MO-001, MO-002, MO-003, AI-001, AI-004, RB-001, SC-001, SC-002, SC-004.
-3. Coverage is 100% of playbook scenarios: 14 / 14.
+2. All critical scenarios are PASS: MO-001, MO-002, AI-001, AI-004, RB-001, SC-001, SC-004.
+3. Coverage is 100% of playbook scenarios: 11 / 11.
 4. No unresolved blocking triage item remains.
 
 ### Root-vs-Feature Rule
@@ -148,7 +148,6 @@ Keep global verdict logic and routing-architecture explanations in this root pla
 |---|---|---|---|---|
 | `MO-001` | Research Routing | Outward investigation request resolves to `research` | [mode-routing/research-routing.md](mode-routing/research-routing.md) | Yes |
 | `MO-002` | Review Routing | Iterative review request resolves to `review` | [mode-routing/review-routing.md](mode-routing/review-routing.md) | Yes |
-| `MO-003` | AI Council Routing | Multi-seat planning deliberation resolves to `ai-council` | [mode-routing/ai-council-routing.md](mode-routing/ai-council-routing.md) | Yes |
 | `MO-004` | Mode-Hint Override | Explicit `research:` hint overrides ambiguous wording | [mode-routing/mode-hint-override.md](mode-routing/mode-hint-override.md) | No |
 
 ### Advisor Integration (`AI-001..AI-004`)
@@ -170,7 +169,6 @@ Keep global verdict logic and routing-architecture explanations in this root pla
 | Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
 |---|---|---|---|---|
 | `RB-001` | Runtime Loop Research | `research` resolves to `runtime-loop-type` and `runtimeLoopType: research` | [runtime-and-backend/runtime-loop-research.md](runtime-and-backend/runtime-loop-research.md) | Yes |
-| `RB-002` | Runtime Loop Council | `ai-council` resolves to `runtime-loop-type` and `runtimeLoopType: council` | [runtime-and-backend/runtime-loop-council.md](runtime-and-backend/runtime-loop-council.md) | No |
 | `RB-004` | Retired Backend | Retired runtime-and-backend scenario; no active mode uses this backend (negative marker) | [runtime-and-backend/external-adapter.md](runtime-and-backend/external-adapter.md) | No |
 
 ### State and Convergence Discipline (`SC-001..SC-004`)
@@ -178,7 +176,6 @@ Keep global verdict logic and routing-architecture explanations in this root pla
 | Feature ID | Feature Name | Scenario Name / Objective | Per-Feature File | Critical Path |
 |---|---|---|---|---|
 | `SC-001` | Externalized State | Runtime modes use packet-owned externalized state, not manual `/tmp` state | [state-and-convergence-discipline/externalized-state.md](state-and-convergence-discipline/externalized-state.md) | Yes |
-| `SC-002` | Artifact Root Writes | Iterations write to the mode's registry artifact root | [state-and-convergence-discipline/artifact-root-writes.md](state-and-convergence-discipline/artifact-root-writes.md) | Yes |
 | `SC-003` | Convergence Stop | Convergence detection ends the loop rather than continuing indefinitely | [state-and-convergence-discipline/convergence-stop.md](state-and-convergence-discipline/convergence-stop.md) | No |
 | `SC-004` | Hub Logic Boundary | Hub holds no per-mode convergence, state, or synthesis logic | [state-and-convergence-discipline/hub-logic-boundary.md](state-and-convergence-discipline/hub-logic-boundary.md) | Yes |
 
@@ -193,7 +190,7 @@ The `/doctor:deep-loop` scenarios now live in the [central manual testing playbo
 Automated drift guards may exist for advisor projection maps, but this playbook is the manual validation surface for operator-observed routing behavior. Do not treat an automated guard as a substitute for the scenario transcripts unless the feature file explicitly allows the automated output as supporting evidence.
 
 Tests NOT covered by automation here:
-- End-to-end advisor prompt behavior for the 14 manual scenarios.
+- End-to-end advisor prompt behavior for the 11 manual scenarios.
 - Operator-visible command routing transcript quality.
 - Runtime response shape proving the hub stayed routing-only.
 - Artifact-root and state-discipline evidence from live iteration dry-runs.
@@ -212,11 +209,11 @@ gate (`validate-playbook-topology.cjs`) can validate the gold against
 that supplies the observed leaf addresses lives at
 `ROUTER.md`.
 
-- **Mode Routing** (`mode-routing/`): `MO-001` research, `MO-002` review, `MO-003` ai-council, `MO-004` mode-hint override.
+- **Mode Routing** (`mode-routing/`): `MO-001` research, `MO-002` review, `MO-004` mode-hint override.
 - **Advisor Integration** (`advisor-integration/`): `AI-001` single advisor identity, `AI-002` lexical mode scoring, `AI-004` no false fire on code edit.
-- **Runtime and Backend** (`runtime-and-backend/`): `RB-001` runtime-loop research, `RB-002` runtime-loop council, `RB-004` retired backend.
-- **State and Convergence Discipline** (`state-and-convergence-discipline/`): `SC-001` externalized state, `SC-002` artifact-root writes, `SC-003` convergence stop, `SC-004` hub logic boundary.
+- **Runtime and Backend** (`runtime-and-backend/`): `RB-001` runtime-loop research, `RB-004` retired backend.
+- **State and Convergence Discipline** (`state-and-convergence-discipline/`): `SC-001` externalized state, `SC-003` convergence stop, `SC-004` hub logic boundary.
 
-**Total scenarios**: 14
-**Typed leaf-resource gold**: `MO-001`, `MO-002`, `MO-003` (the three distinct-packet modes).
+**Total scenarios**: 11
+**Typed leaf-resource gold**: `MO-001`, `MO-002` (the two distinct-packet modes).
 **Categories**: 4

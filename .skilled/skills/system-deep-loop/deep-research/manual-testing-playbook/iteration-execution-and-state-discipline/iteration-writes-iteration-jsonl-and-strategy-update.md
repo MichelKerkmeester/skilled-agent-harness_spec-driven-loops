@@ -1,7 +1,7 @@
 ---
 title: "DR-008 -- Iteration writes iteration-NNN.md, JSONL record, and reducer refresh"
 description: "Verify that each completed iteration writes the detailed iteration file, appends JSONL, and provides the reducer enough evidence to refresh synchronized packet state."
-version: 1.14.0.16
+version: 1.14.1.0
 ---
 
 # DR-008 -- Iteration writes iteration-NNN.md, JSONL record, and reducer refresh
@@ -47,7 +47,7 @@ Validate each deep-research iteration writes iteration files, appends JSONL, and
 ### Commands
 1. `bash: rg -n 'iteration-{NNN}|Verify JSONL was appended|reducer refreshed' .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
 2. `bash: rg -n 'iteration-NNN|deep-research-state.jsonl|findings-registry.json|Reducer Contract' .skilled/skills/system-deep-loop/deep-research/references/state/state-format.md .skilled/agents/deep-research.md`
-3. `bash: rg -n 'step_reduce_state|reduce-state.cjs|findings-registry.json|deep-research-dashboard.md' .skilled/commands/deep/assets/deep-research-auto.yaml .skilled/commands/deep/assets/deep-research-confirm.yaml`
+3. `bash: rg -n 'step_reduce_state|reduce-state.cjs|findings-registry.json|deep-research-dashboard.md' .skilled/commands/deep/assets/deep-research.yaml`
 ### Expected
 Iteration file creation, JSONL append, and reducer refresh are all mandatory parts of the loop, not optional side effects.
 ### Evidence
@@ -74,8 +74,7 @@ Use the reducer script and runtime agent write contract as the lower-level sourc
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Evaluation and write-back checks; use `ANCHOR:phase-iteration-loop` |
 | `.skilled/skills/system-deep-loop/deep-research/references/state/state-format.md` | Schema expectations for JSONL and strategy; use `ANCHOR:state-log` and `ANCHOR:strategy-file` |
 | `.skilled/agents/deep-research.md` | Iteration write sequence; inspect `Step 4`, `Step 5`, and `Step 6` |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow verification after dispatch |
-| `.skilled/commands/deep/assets/deep-research-confirm.yaml` | Workflow verification after dispatch |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow verification after dispatch |
 
 ---
 

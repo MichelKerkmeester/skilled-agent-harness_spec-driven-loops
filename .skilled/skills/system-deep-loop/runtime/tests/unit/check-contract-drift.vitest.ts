@@ -52,8 +52,6 @@ const checker = require('../../scripts/check-contract-drift.cjs') as {
 
 const COMMAND = 'deep/review';
 const REVIEW_CONFIG_SOURCE = '.skilled/skills/system-deep-loop/deep-review/assets/deep-review-config.json';
-const COUNCIL_COMMAND = 'deep/ai-council';
-const COUNCIL_PATTERN_SOURCE = '.skilled/skills/system-deep-loop/deep-ai-council/references/patterns/command-wiring.md';
 
 function realContract(command = COMMAND): string {
   return readFileSync(compiler.outputPathFor(command), 'utf8');
@@ -125,23 +123,18 @@ describe('check-contract-drift', () => {
     expect(classes(result)).toContain(checker.DRIFT_CLASSES.TOOL_ALLOWLIST_OVERFLOW);
   });
 
-  for (const { command, sourcePath } of [
-    { command: COMMAND, sourcePath: REVIEW_CONFIG_SOURCE },
-    { command: COUNCIL_COMMAND, sourcePath: COUNCIL_PATTERN_SOURCE },
-  ]) {
-    it(`flags enumerated authority sources missing from sourceDigests for ${command}`, () => {
-      const contract = withHeader(realContract(command), (header) => {
-        header.sourceDigests = header.sourceDigests.filter((digest) => digest.path !== sourcePath);
-      });
-
-      const result = checkMutated(contract, false, command);
-      const failure = result.failures.find((item) => item.class === checker.DRIFT_CLASSES.ENUMERATED_SOURCE_GAP);
-
-      expect(failure).toBeDefined();
-      // The reason names the source as the command documents spell it, under either root name.
-      expect(failure?.reason).toContain(sourcePath.replace(/^\.skilled\//, ''));
+  it('flags enumerated authority sources missing from sourceDigests for deep/review', () => {
+    const contract = withHeader(realContract(), (header) => {
+      header.sourceDigests = header.sourceDigests.filter((digest) => digest.path !== REVIEW_CONFIG_SOURCE);
     });
-  }
+
+    const result = checkMutated(contract);
+    const failure = result.failures.find((item) => item.class === checker.DRIFT_CLASSES.ENUMERATED_SOURCE_GAP);
+
+    expect(failure).toBeDefined();
+    // The reason names the source as the command documents spell it, under either root name.
+    expect(failure?.reason).toContain(REVIEW_CONFIG_SOURCE.replace(/^\.skilled\//, ''));
+  });
 
   // The source tree may sit under .skilled or .opencode, with one name linked to the other,
   // so recorded and referenced sources must compare the same whichever name they spell.

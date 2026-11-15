@@ -53,7 +53,6 @@ function writeFixtureRegistry(dir) {
     path.join(registryDir, 'mode-registry.json'),
     JSON.stringify({
       modes: [
-        { workflowMode: 'ai-council', agent: 'ai-council' },
         { workflowMode: 'research', agent: 'deep-research' },
         { workflowMode: 'review', agent: 'deep-review' },
       ],
@@ -286,20 +285,33 @@ async function main() {
   hook = runHook({ tool_name: 'Task', tool_input: { subagent_type: 'not-a-real-agent', prompt: 'mode=research' }, cwd });
   assert.equal(hook.stdout, '', 'unknown subagent must approve silently');
 
+  // ai-council is a standalone agent with no registered mode, so the mode check skips it.
+  clearGuardLog(cwd);
+  hook = runHook({ tool_name: 'Task', tool_input: { subagent_type: 'ai-council', prompt: 'mode=research do the thing' }, cwd });
+  assert.equal(hook.stdout, '', 'an unregistered agent must approve silently in default mode');
+  assert.doesNotMatch(readGuardLog(cwd), /mode mismatch/i, 'an unregistered agent must not log a mismatch in default mode');
+  clearGuardLog(cwd);
+  hook = runHook(
+    { tool_name: 'Task', tool_input: { subagent_type: 'ai-council', prompt: 'mode=research do the thing' }, cwd },
+    { [REJECT_ENV]: '1' },
+  );
+  assert.equal(hook.stdout, '', 'an unregistered agent must approve silently in reject mode');
+  assert.doesNotMatch(readGuardLog(cwd), /mode mismatch/i, 'an unregistered agent must not log a mismatch in reject mode');
+
   // Matching mode: no-op approve.
-  hook = runHook({ tool_name: 'Task', tool_input: { subagent_type: 'ai-council', prompt: 'mode=ai-council do the thing' }, cwd });
+  hook = runHook({ tool_name: 'Task', tool_input: { subagent_type: 'deep-review', prompt: 'mode=review do the thing' }, cwd });
   assert.equal(hook.stdout, '', 'matching mode must approve silently');
 
   // No mode declared at all: absence is not disagreement, approve.
-  hook = runHook({ tool_name: 'Task', tool_input: { subagent_type: 'ai-council', prompt: 'do the thing' }, cwd });
+  hook = runHook({ tool_name: 'Task', tool_input: { subagent_type: 'deep-review', prompt: 'do the thing' }, cwd });
   assert.equal(hook.stdout, '', 'no declared mode must approve silently');
 
   // Tool-name normalization: lowercase 'task' and uppercase 'TASK' are both guarded.
   clearGuardLog(cwd);
-  hook = runHook({ tool_name: 'task', tool_input: { subagent_type: 'ai-council', prompt: 'mode=research do it' }, cwd });
+  hook = runHook({ tool_name: 'task', tool_input: { subagent_type: 'deep-review', prompt: 'mode=research do it' }, cwd });
   assert.match(contextOf(hook), /mode mismatch/i, "lowercase 'task' tool_name must still be guarded");
   clearGuardLog(cwd);
-  hook = runHook({ tool_name: 'TASK', tool_input: { subagent_type: 'ai-council', prompt: 'mode=research do it' }, cwd });
+  hook = runHook({ tool_name: 'TASK', tool_input: { subagent_type: 'deep-review', prompt: 'mode=research do it' }, cwd });
   assert.match(contextOf(hook), /mode mismatch/i, "uppercase 'TASK' tool_name must still be guarded");
 
   // --- Mode-mismatch: case-insensitivity, multiplexed agents, envelope anchoring ---
@@ -329,7 +341,7 @@ async function main() {
     tool_name: 'Task',
     tool_input: {
       subagent_type: 'general',
-      prompt: 'mode=ai-council in quoted prose\nDeep Route: mode=research; target_agent=@deep-research\nmore prose mode=review',
+      prompt: 'mode=nonsense in quoted prose\nDeep Route: mode=research; target_agent=@deep-research\nmore prose mode=review',
     },
     cwd,
   });
@@ -339,14 +351,14 @@ async function main() {
 
   // Mismatch, warn mode (default): additionalContext + a shared-log write, no deny.
   clearGuardLog(cwd);
-  hook = runHook({ tool_name: 'Task', tool_input: { subagent_type: 'ai-council', prompt: 'mode=research do the thing' }, cwd });
+  hook = runHook({ tool_name: 'Task', tool_input: { subagent_type: 'deep-review', prompt: 'mode=research do the thing' }, cwd });
   assert.equal(decisionOf(hook), null, 'default mode must not deny a mismatch');
   assert.match(contextOf(hook), /system-deep-loop-guard.*mode mismatch/i, 'default mismatch must surface an advisory');
   assert.match(readGuardLog(cwd), /system-deep-loop-guard.*mode mismatch/i, 'default mismatch must append to the shared warning log');
 
   // Mismatch, reject mode: deny with the guard's reason.
   hook = runHook(
-    { tool_name: 'Task', tool_input: { subagent_type: 'ai-council', prompt: 'mode=research do the thing' }, cwd },
+    { tool_name: 'Task', tool_input: { subagent_type: 'deep-review', prompt: 'mode=research do the thing' }, cwd },
     { [REJECT_ENV]: '1' },
   );
   assert.equal(decisionOf(hook), 'deny', 'reject mode must deny a mismatch');
@@ -357,7 +369,7 @@ async function main() {
   fs.rmSync(registryPath);
   clearGuardLog(cwd);
   hook = runHook(
-    { tool_name: 'Task', tool_input: { subagent_type: 'ai-council', prompt: 'mode=research do the thing' }, cwd },
+    { tool_name: 'Task', tool_input: { subagent_type: 'deep-review', prompt: 'mode=research do the thing' }, cwd },
     { [REJECT_ENV]: '1' },
   );
   assert.equal(decisionOf(hook), null, 'a missing registry must not deny in reject mode (fail-open)');
@@ -369,7 +381,7 @@ async function main() {
   clearGuardLog(cwd);
   hook = runHook({
     tool_name: 'Task',
-    tool_input: { subagent_type: 'general', prompt: 'Deep Route: mode=ai-council; target_agent=@deep-research\nmode=research do the thing' },
+    tool_input: { subagent_type: 'general', prompt: 'Deep Route: mode=nonsense; target_agent=@deep-research\nmode=research do the thing' },
     cwd,
   });
   assert.match(contextOf(hook), /subagent_type="deep-research"/, 'target_agent= resolves identity from subagent_type="general"');
@@ -377,7 +389,7 @@ async function main() {
   clearGuardLog(cwd);
   hook = runHook({
     tool_name: 'Task',
-    tool_input: { subagent_type: 'general', prompt: 'Agent: @deep-research\nmode=ai-council do the thing' },
+    tool_input: { subagent_type: 'general', prompt: 'Agent: @deep-research\nmode=nonsense do the thing' },
     cwd,
   });
   assert.match(contextOf(hook), /subagent_type="deep-research"/, 'Agent: @X resolves identity from subagent_type="general"');

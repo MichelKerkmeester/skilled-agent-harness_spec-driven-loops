@@ -1,0 +1,68 @@
+REPOSITORY ROOT: /Users/michelkerkmeester/worktrees/public/382-deep-loop-workflow-logic-hardening
+Every read, write and command uses this root. Your environment block may name a different
+"Workspace root folder": ignore it, it is another checkout of the same repository.
+
+GATE 3 IS PRE-RESOLVED. DO NOT ASK THE DOCUMENTATION-SCOPE QUESTION.
+
+You are a non-interactive dispatched worker. `AI_SESSION_CHILD=1` and
+`SYSTEM_SPEC_GATE_ENFORCE=0` are set in your environment, which this repository's AGENTS.md
+defines as the autonomous child-dispatch exemption: the spec-folder question is pre-resolved
+and MUST NOT be asked. No answer can reach you, because nobody is at a prompt.
+
+Your write authority is already bound. The spec folder is:
+  specs/system-deep-loop/loop-architecture/004-workflow-logic-hardening/001-deterministic-stop-decision
+
+Proceed directly to the work. Do not print A/B/C/D options. Do not stop to confirm anything.
+A failed edit match means a stale anchor: re-read the file and retry; halt only after three
+failures on the same file.
+Your task is complete only when files exist on disk and the verification command has been run.
+
+ROLE: You are a test author. Create exactly one new test file, nothing else. Do not edit
+any other file. Do not write spec ids, task ids or spec paths in comments. Do not commit.
+
+ALLOWED WRITE PATH (only this one new file):
+- .skilled/skills/system-deep-loop/runtime/tests/unit/stop-decision-yaml-contract.vitest.ts
+
+BANNED OPERATIONS: git commit, git push, git checkout, git reset, git stash, rm, mv, any
+write outside the allowed path, any package install. Do NOT edit the YAML files. Do NOT
+read the YAML files whole: each is over 150 KB.
+
+CONTEXT: four workflow files in .skilled/commands/deep/assets/ each have a step named
+`step_check_convergence`. Today that step holds vote arithmetic in prose. A later change
+moves the arithmetic into a script, and the step will only branch on a `stop_decision`
+object. This test guards that. It is EXPECTED TO FAIL today. Do not make it pass.
+
+READ FIRST (small file, copy its style, header banner, imports, ASSETS constant and the
+`stepText` helper exactly):
+- .skilled/skills/system-deep-loop/runtime/tests/unit/stop-policy-yaml-parity.vitest.ts (lines 1-30)
+
+WRITE the new file with this shape:
+
+- Header banner comment `MODULE: Stop Decision YAML Contract` in the same style.
+- A short comment above the tests saying WHY: the stop decision must be computed by a
+  script from files, so a workflow step that carries vote arithmetic lets two runs over
+  the same state stop at different points.
+- `const FILES = ['deep-research-auto.yaml', 'deep-research-confirm.yaml', 'deep-review-auto.yaml', 'deep-review-confirm.yaml'];`
+- `const FORBIDDEN_IN_STEP = ['MAD(', 'mean(last', 'w=0.', '0.08', '0.05', 'checkQualityGuards', 'graph_decision is absent', 'Skip hard stops'];`
+- One `describe(file, ...)` block per file (use `describe.each` or a for loop so the
+  describe name is exactly the file name). Inside each, these `it` tests:
+  1. `'step_check_convergence holds no vote arithmetic'`: `stepText(text, 'step_check_convergence')`
+     is non-empty and contains none of FORBIDDEN_IN_STEP. Collect the found ones in an
+     array and `expect(found).toEqual([])`.
+  2. `'step_check_convergence branches on stop_decision'`: the step text contains both
+     `stop_decision.decision` and `stop_decision.stopReason`.
+  3. `'runs convergence.cjs once with --stop-decision'`: the whole file text has exactly
+     one occurrence of `runtime/scripts/convergence.cjs`, and the line holding it contains
+     `--stop-decision`.
+  4. `'the divergent pivot reads stop_decision.reasonDetail'`: at least one line of the
+     whole file contains both `branch_on` and `stop_decision.reasonDetail`.
+  5. Only for the two files whose name starts with `deep-review-`:
+     `'holds no hardcoded 0.05 threshold'`: the whole file text does not match `/0\.05\b/`.
+
+VERIFY (run from the repository root and print the last 15 lines of output):
+  (cd .skilled/skills/system-deep-loop/runtime && node_modules/.bin/vitest run --no-coverage tests/unit/stop-decision-yaml-contract.vitest.ts)
+
+EXPECTED: the file is collected with no syntax or import error, and it reports 18 tests
+with at least 4 failed. Failing tests are the correct result today.
+
+RETURN: the test summary lines and the name of the file you created.

@@ -1,0 +1,50 @@
+ROLE: You are a YAML editor. Copy five approval gate blocks from one file into another. Edit ONE file.
+
+CONTEXT: deep-review.yaml serves both execution modes. The confirm twin holds approval gates
+that run only in confirm mode. Each gate moves into deep-review.yaml and gets the marker
+`applies_to: confirm`, so auto mode skips it. Line numbers below are lines of the SOURCE. Find
+each insert point in the TARGET with grep -n.
+
+ALLOWED WRITE PATHS (only this file):
+- .skilled/commands/deep/assets/deep-review.yaml   (the TARGET)
+SOURCE, read only: .skilled/commands/deep/assets/deep-review-confirm.yaml
+
+RULE FOR EVERY ROW:
+  1. Read the SOURCE lines with sed -n and copy them exactly, indentation included.
+  2. In the copy, add one line directly after the `gate_...:` line, indented two spaces deeper
+     than it:   applies_to: confirm
+  3. Insert the copy at the named place in the TARGET, with one blank line before it and one
+     blank line after it.
+  4. Do not change, move or delete any existing TARGET line.
+
+ROWS "gate: SOURCE lines -> place in the TARGET".
+  gate_init_approval: 683-714 -> directly after the last line of the `step_init_complete:` block, which is the last step of `phase_init`
+  gate_pre_iteration: 1307-1334 -> directly before the line `      step_dispatch_iteration:`
+  gate_post_iteration: 1710-1742 -> directly before the line `      step_update_tracking:`
+  gate_pre_synthesis: 1820-1846 -> directly before the line `      step_read_all_iterations:`
+  gate_post_synthesis: 2026-2053 -> directly after the last line of the `step_stage_artifact_dir:` block, which is the last step of `phase_synthesis`
+
+A step block ends at the last line before the next line that is indented six spaces or less and
+is not blank and not a comment. If a comment line sits directly above the step that follows an
+insert point, insert above that comment.
+
+CHECKS. Run from the repository root and fix the file until all pass:
+  python3 -c "
+import yaml
+d=yaml.safe_load(open('.skilled/commands/deep/assets/deep-review.yaml'))
+w=d['workflow']
+def order(p): return [k for k in w[p]['steps'] if k.startswith(('gate_','step_'))]
+i=order('phase_init'); l=order('phase_loop'); s=order('phase_synthesis')
+print(i[-2:])
+print(l[l.index('gate_pre_iteration')+1], l[l.index('gate_post_iteration')-1], l[l.index('gate_post_iteration')+1])
+print(s[s.index('gate_pre_synthesis')-1], s[s.index('gate_pre_synthesis')+1], s[-2:])
+print(all(g['applies_to']=='confirm' for p in ('phase_init','phase_loop','phase_synthesis') for k,g in w[p]['steps'].items() if k.startswith('gate_')))
+"
+    must print these four lines:
+    ['step_init_complete', 'gate_init_approval']
+    step_dispatch_iteration step_graph_upsert step_update_tracking
+    step_derive_verdict step_read_all_iterations ['step_stage_artifact_dir', 'gate_post_synthesis']
+    True
+  grep -c 'applies_to: confirm' .skilled/commands/deep/assets/deep-review.yaml      must print 5 more than before your edits
+
+REPORT: one line per gate, "placed" or "failed, <reason>", then the output of each check.

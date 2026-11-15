@@ -1,7 +1,7 @@
 ---
 title: "DR-059 -- Ideas backlog lifecycle"
 description: "Verify that leaf agents only observe ideas and the reducer owns promotion, ranking, and rejection suppression."
-version: 1.14.0.21
+version: 1.14.1.0
 ---
 
 # DR-059 -- Ideas backlog lifecycle
@@ -47,7 +47,7 @@ Validate the ideas backlog lifecycle across agent rules, JSONL docs, reducer pro
 ### Commands
 1. `bash: rg -n 'idea_observed|idea_promoted|idea_rejected|minIdeaObservations' .skilled/agents/deep-research.md .skilled/skills/system-deep-loop/deep-research/references/state/state-jsonl.md .skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md`
 2. `bash: rg -n 'resolveMinIdeaObservations|derivePromotedIdeas|appendIdeaPromotionEvents|idea_promoted|suppressedIdeas' .skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs`
-3. `bash: rg -n 'step_ideas_backlog_lifecycle|minIdeaObservations|idea_promoted|idea_rejected' .skilled/commands/deep/assets/deep-research-auto.yaml`
+3. `bash: rg -n 'step_ideas_backlog_lifecycle|minIdeaObservations|idea_promoted|idea_rejected' .skilled/commands/deep/assets/deep-research.yaml`
 4. `bash: rg -n 'promotes observed ideas|idea_promoted|suppressedIdeas|minIdeaObservations' .skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts`
 ### Expected
 Leaf agents emit observed-only idea events, reducer promotes after the configured threshold, and rejected ideas are suppressed from promoted ideas and candidates.
@@ -77,7 +77,7 @@ Privilege `.skilled/agents/deep-research.md` for leaf permissions and `reduce-st
 | `.skilled/skills/system-deep-loop/deep-research/references/state/state-jsonl.md` | Idea event schemas |
 | `.skilled/skills/system-deep-loop/deep-research/references/protocol/loop-protocol.md` | Ideas lifecycle and candidate rules |
 | `.skilled/skills/system-deep-loop/deep-research/scripts/reduce-state.cjs` | Promotion, ranking, and suppression implementation |
-| `.skilled/commands/deep/assets/deep-research-auto.yaml` | Workflow lifecycle step and threshold reads |
+| `.skilled/commands/deep/assets/deep-research.yaml` | Workflow lifecycle step and threshold reads |
 | `.skilled/skills/system-deep-loop/runtime/tests/unit/deep-research-reduce-state.vitest.ts` | Unit coverage for promotion and rejection behavior |
 
 ---

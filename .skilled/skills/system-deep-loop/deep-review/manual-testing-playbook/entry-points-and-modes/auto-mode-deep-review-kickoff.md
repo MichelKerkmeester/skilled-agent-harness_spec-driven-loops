@@ -1,7 +1,7 @@
 ---
 title: "DRV-001 -- Auto mode deep-review kickoff"
-description: "Verify that autonomous mode is exposed consistently across the README, quick reference, command entrypoint, and auto YAML workflow."
-version: 1.11.0.14
+description: "Verify that autonomous mode is exposed consistently across the README, quick reference, command entrypoint, and the workflow in auto mode."
+version: 1.11.1.0
 ---
 
 # DRV-001 -- Auto mode deep-review kickoff
@@ -12,7 +12,7 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates auto mode deep-review kickoff for `DRV-001`. The objective is to verify that autonomous mode is exposed consistently across the README, quick reference, command entrypoint, and auto YAML workflow.
+This scenario validates auto mode deep-review kickoff for `DRV-001`. The objective is to verify that autonomous mode is exposed consistently across the README, quick reference, command entrypoint, and the workflow in auto mode.
 
 ### WHY THIS MATTERS
 
@@ -24,10 +24,10 @@ Operators need one coherent story for `/deep:review:auto` so they can launch una
 
 Operators should run this as a real orchestrator-led check rather than a synthetic command-matrix exercise. The scenario is only complete when the operator can explain the behavior back to a user in plain language.
 
-- Objective: Verify that autonomous mode is exposed consistently across the README, quick reference, command entrypoint, and auto YAML workflow.
+- Objective: Verify that autonomous mode is exposed consistently across the README, quick reference, command entrypoint, and the workflow in auto mode.
 - Real user request: Run a deep review on a spec folder without stopping for approvals and tell me what it will create.
 - Prompt: `Validate the autonomous deep-review entrypoint and report whether docs, command routing, YAML, and expected artifacts agree.`
-- Expected execution process: Inspect the public docs first, then the command entrypoint, then the autonomous YAML workflow so the operator explanation stays anchored in the user-facing contract before the internal workflow contract.
+- Expected execution process: Inspect the public docs first, then the command entrypoint, then the workflow in auto mode so the operator explanation stays anchored in the user-facing contract before the internal workflow contract.
 - Desired user-facing outcome: The user is told exactly how to invoke autonomous mode, that it runs without approval gates, and that it produces a `review/` packet plus `review/review-report.md`.
 - Expected signals: The same autonomous command appears across sources, autonomous mode is approval-free, and the workflow points to config, JSONL, strategy, iteration files, and `review/review-report.md`.
 - Pass/fail posture: PASS if all inspected sources agree on command shape, autonomous behavior, and output artifacts. FAIL if any source materially contradicts the others.
@@ -47,7 +47,7 @@ Validate the autonomous deep-review entrypoint and report whether docs, command 
 ### Commands
 1. `bash: rg -n '/deep:review:auto|review/review-report.md|review/iterations' .skilled/skills/system-deep-loop/deep-review/README.md .skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md`
 2. `bash: sed -n '1,220p' .skilled/commands/deep/review.md`
-3. `bash: sed -n '1,260p' .skilled/commands/deep/assets/deep-review-auto.yaml`
+3. `bash: sed -n '1,260p' .skilled/commands/deep/assets/deep-review.yaml`
 ### Expected
 The same autonomous command appears across sources, autonomous mode is approval-free, and the workflow points to config, JSONL, strategy, iteration files, and `review/review-report.md`.
 ### Evidence
@@ -55,7 +55,7 @@ Capture the command examples, the mode-routing block, and the `state_paths` cont
 ### Pass/Fail
 PASS if all inspected sources agree on command shape, autonomous behavior, and output artifacts. FAIL if any source materially contradicts the others.
 ### Failure Triage
-Start with the README examples, confirm the Markdown command maps `:auto` to the autonomous YAML, then inspect YAML `state_paths` if the artifact contract is unclear.
+Start with the README examples, confirm the Markdown command routes `:auto` to the workflow's auto execution mode, then inspect YAML `state_paths` if the artifact contract is unclear.
 ---
 
 ## 4. SOURCE FILES
@@ -74,7 +74,7 @@ Start with the README examples, confirm the Markdown command maps `:auto` to the
 | `.skilled/skills/system-deep-loop/deep-review/README.md` | User-facing examples, use `ANCHOR:quick-start` and `ANCHOR:configuration` |
 | `.skilled/skills/system-deep-loop/deep-review/references/protocol/quick-reference.md` | Cheat-sheet command contract, use `ANCHOR:commands` and `ANCHOR:state-files` |
 | `.skilled/commands/deep/review.md` | Markdown setup and mode routing, use `SINGLE CONSOLIDATED SETUP PROMPT` and `## 0. UNIFIED SETUP PHASE` |
-| `.skilled/commands/deep/assets/deep-review-auto.yaml` | Autonomous workflow contract, inspect `state_paths`, `phase_init`, and `phase_loop` |
+| `.skilled/commands/deep/assets/deep-review.yaml` | Autonomous workflow contract, inspect `state_paths`, `phase_init`, and `phase_loop` |
 
 ---
 

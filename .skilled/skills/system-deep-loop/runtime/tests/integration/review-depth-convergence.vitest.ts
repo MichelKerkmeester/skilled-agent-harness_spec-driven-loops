@@ -12,24 +12,21 @@ const testDir = dirname(fileURLToPath(import.meta.url));
 const opencodeRoot = resolve(testDir, '../../../../..');
 
 /**
- * Reads a deep-review workflow YAML fixture from the commands directory.
+ * Reads the deep-review workflow YAML fixture from the commands directory.
  */
-function readWorkflow(name: 'auto' | 'confirm'): string {
+function readWorkflow(): string {
   return readFileSync(
-    resolve(opencodeRoot, `commands/deep/assets/deep-review-${name}.yaml`),
+    resolve(opencodeRoot, 'commands/deep/assets/deep-review.yaml'),
     'utf8',
   );
 }
 
 describe('review-depth convergence v2 fixtures', () => {
   it('blocks graphless standard-scope STOP when fallback ledger rows are missing', () => {
-    for (const workflow of [readWorkflow('auto'), readWorkflow('confirm')]) {
-      expect(workflow).toContain('candidateCoverageGate');
-      expect(workflow).toContain('graphlessFallbackGate');
-      expect(workflow).toContain('at least one `searchLedger` row exists for each entry');
-      expect(workflow).toContain('Fail automatically when graphCoverageMode is `unavailable_blocked`');
-      expect(workflow).toContain('"gateResults":{gate_results_array_json}');
-      expect(workflow).toMatch(/gate_results_array_json: "One \{gateId,status,reasonCode,evidenceDigest\} row per legal-stop gate \([^)]*graphlessFallbackGate[^)]*\)/);
-    }
+    const workflow = readWorkflow();
+    expect(workflow).toContain('candidateCoverageGate');
+    expect(workflow).toContain('graphlessFallbackGate');
+    expect(workflow).toContain('"gateResults":{gate_results_array_json}');
+    expect(workflow).toMatch(/gate_results_array_json: "One \{gateId,status,reasonCode,evidenceDigest\} row per legal-stop gate \([^)]*graphlessFallbackGate[^)]*\)/);
   });
 });

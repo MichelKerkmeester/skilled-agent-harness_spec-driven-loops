@@ -1,3 +1,9 @@
+> **Resolved: PASS 3/3 on the rerun** (`matrix.md`). `sync-agents-vibe.cjs` now emits
+> `agent_type = "subagent"` for a source that declares `mode: subagent` (generator tests 6/6), and
+> `.vibe/agents/` was regenerated, so `agents.spawn` with a mirrored `config_name` is accepted.
+> `references/runtime-folder-and-sync.md` and `.vibe/SYNC.md` now document the third key. The
+> diagnosis below is kept as the record of the failure.
+
 # VIB-HK-024 diagnosis: the mirrored agent profiles are never subagents
 
 Verdict: **FAIL** (product bug). The subject names the mirrored profile in an
